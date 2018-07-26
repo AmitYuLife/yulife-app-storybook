@@ -10,7 +10,7 @@
   "dependencies": {
     "react": "16.4.1",
     "react-native": "0.56.0",
-    "tslint": "^5.11.0"
+    "react-native-navigation": "^2.0.2431"
   },
   "devDependencies": {
     "@types/jest": "^23.3.0",
@@ -20,10 +20,10 @@
     "babel-jest": "23.4.0",
     "babel-preset-react-native": "^5",
     "jest": "23.4.1",
-    "react-native-navigation": "^1.1.478",
     "react-native-typescript-transformer": "^1.2.10",
     "react-test-renderer": "16.4.1",
     "ts-jest": "^23.0.1",
+    "tslint": "^5.11.0",
     "tslint-react": "^3.6.0",
     "typescript": "^2.9.2"
   },
