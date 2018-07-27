@@ -6,7 +6,9 @@
     "start": "react-native start",
     "start:ios": "react-native run-ios",
     "start:android": "react-native run-android",
-    "test": "jest"
+    "test": "jest",
+    "prestorybook": "rnstl",
+    "storybook": "storybook start -p 7007"
   },
   "dependencies": {
     "react": "16.4.1",
@@ -14,19 +16,38 @@
     "react-native-navigation": "^2.0.2431"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.4.8",
+    "@storybook/addon-knobs": "^3.4.8",
+    "@storybook/addon-links": "^3.4.8",
+    "@storybook/addons": "^3.4.8",
+    "@storybook/react-native": "^3.4.8",
     "@types/jest": "^23.3.1",
     "@types/react": "^16.4.7",
     "@types/react-native": "^0.56.4",
     "@types/react-test-renderer": "^16.0.1",
+    "babel-core": "^7.0.0-beta",
     "babel-jest": "23.4.0",
     "babel-preset-react-native": "^5",
+    "babel-runtime": "^7.0.0-beta",
     "jest": "23.4.1",
+    "prop-types": "^15.6.2",
+    "react-dom": "16.4.1",
+    "react-native-storybook-loader": "^1.8.0",
     "react-native-typescript-transformer": "^1.2.10",
     "react-test-renderer": "16.4.1",
     "ts-jest": "^23.0.1",
     "tslint": "^5.11.0",
     "tslint-react": "^3.6.0",
     "typescript": "^2.9.2"
+  },
+  "config": {
+    "react-native-storybook-loader": {
+      "searchDir": [
+        "./src"
+      ],
+      "pattern": "**/*.stories.tsx",
+      "outputFile": "./storybook/storyLoader.js"
+    }
   },
   "jest": {
     "preset": "react-native",
