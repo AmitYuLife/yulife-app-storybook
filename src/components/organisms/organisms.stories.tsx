@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import {
     LoginScreen,
+    ResetPasswordScreen,
     WelcomeScreen,
 } from "./screens";
 
@@ -26,5 +27,11 @@ storiesOf("Organisms", module)
             onSignUpPress={action("on signup press")}
             password=""
             passwordError=""
+        />
+    ))
+    .add("3. Reset Password", () => (
+        <ResetPasswordScreen
+            onCancelPress={action("on cancel press")}
+            onSubmitPress={action("on submit press")}
         />
     ));

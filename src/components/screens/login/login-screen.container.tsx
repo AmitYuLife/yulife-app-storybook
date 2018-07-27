@@ -104,7 +104,7 @@ export class LoginContainer extends Component<Props, IState> {
     private onForgotPasswordPress = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.ForgotPasswordScreen"
+                name: "yulife.ResetPasswordScreen"
             }
         });
     }
