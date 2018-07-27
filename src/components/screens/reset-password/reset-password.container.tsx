@@ -8,7 +8,7 @@ interface IProps {
     componentId: string;
 }
 
-class ResetPasswordScreenContainer extends PureComponent<IProps> {
+class ResetPasswordContainer extends PureComponent<IProps> {
 
     public render() {
         return (
@@ -32,4 +32,4 @@ class ResetPasswordScreenContainer extends PureComponent<IProps> {
     }
 }
 
-export default ResetPasswordScreenContainer;
+export default ResetPasswordContainer;

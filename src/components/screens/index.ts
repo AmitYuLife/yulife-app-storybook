@@ -1,8 +1,11 @@
 // root screens
-export { default as LoginScreenContainer } from "./login/login-screen.container";
-export { default as ResetPasswordScreenContainer } from "./reset-password/reset-password.container";
-export { default as WelcomeScreenContainer } from "./welcome/welcome-screen.container";
+export { default as LoginContainer } from "./login/login.container";
+export { default as ResetPasswordContainer } from "./reset-password/reset-password.container";
+export { default as WelcomeContainer } from "./welcome/welcome.container";
 
 // onboarding screens
-export { default as FitKitConnectScreenContainer } from "./onboarding/fitkit-connect/fitkit-connect-screen.container";
-export { default as SignUpRewardScreenContainer } from "./onboarding/signup-reward/signup-reward-screen.container";
+export { default as FitKitConnectContainer } from "./onboarding/fitkit-connect/fitkit-connect.container";
+export { default as SignUpRewardContainer } from "./onboarding/signup-reward/signup-reward.container";
+
+// member screens
+export { default as DailyStepsContainer } from "./member/daily-steps/daily-steps.container";

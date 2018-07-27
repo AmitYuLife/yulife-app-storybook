@@ -1,20 +1,24 @@
 import { Navigation } from "react-native-navigation";
 import {
-    FitKitConnectScreenContainer,
-    LoginScreenContainer,
-    ResetPasswordScreenContainer,
-    SignUpRewardScreenContainer,
-    WelcomeScreenContainer
+    DailyStepsContainer,
+    FitKitConnectContainer,
+    LoginContainer,
+    ResetPasswordContainer,
+    SignUpRewardContainer,
+    WelcomeContainer
 } from "./components/screens";
 
 // root screens
-Navigation.registerComponent("yulife.WelcomeScreen", () => WelcomeScreenContainer);
-Navigation.registerComponent("yulife.LoginScreen", () => LoginScreenContainer);
-Navigation.registerComponent("yulife.ResetPasswordScreen", () => ResetPasswordScreenContainer);
+Navigation.registerComponent("yulife.WelcomeScreen", () => WelcomeContainer);
+Navigation.registerComponent("yulife.LoginScreen", () => LoginContainer);
+Navigation.registerComponent("yulife.ResetPasswordScreen", () => ResetPasswordContainer);
 
 // onboarding screens
-Navigation.registerComponent("yulife.onboarding.FitKitConnectScreen", () => FitKitConnectScreenContainer);
-Navigation.registerComponent("yulife.onboarding.SignUpRewardScreen", () => SignUpRewardScreenContainer);
+Navigation.registerComponent("yulife.onboarding.FitKitConnectScreen", () => FitKitConnectContainer);
+Navigation.registerComponent("yulife.onboarding.SignUpRewardScreen", () => SignUpRewardContainer);
+
+// member screens
+Navigation.registerComponent("yulife.member.DailyStepsScreen", () => DailyStepsContainer);
 
 Navigation.events().registerAppLaunchedListener(() => {
 

@@ -6,12 +6,14 @@
 
 function loadStories() {
   require('../src/components/atoms/atoms.stories');
+  require('../src/components/molecules/molecules.stories');
   require('../src/components/organisms/organisms.stories');
   
 }
 
 const stories = [
   '../src/components/atoms/atoms.stories',
+  '../src/components/molecules/molecules.stories',
   '../src/components/organisms/organisms.stories',
   
 ];

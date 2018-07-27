@@ -1,0 +1,844 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Scroll should render when active and not pressed 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Scroll
+    isActive={true}
+    isPressed={false}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Path
+          d="M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z"
+          fill="rgba(255,255,255,1)"
+        />,
+        <Rect
+          fill="rgba(255,255,255,1)"
+          height="3"
+          rx={0}
+          ry={0}
+          width="30"
+          x="208.5"
+          y="76.3"
+        />,
+        <Rect
+          fill="rgba(255,255,255,1)"
+          height="3"
+          rx={0}
+          ry={0}
+          width="30"
+          x="208.5"
+          y="82.3"
+        />,
+        <Rect
+          fill="rgba(255,255,255,1)"
+          height="3"
+          rx={0}
+          ry={0}
+          width="22"
+          x="208.5"
+          y="88.3"
+        />,
+        <Circle
+          cx="223.5"
+          cy="18"
+          fill="rgba(255,255,255,1)"
+          r="10"
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "d": "M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z",
+          "fill": "rgba(255,255,255,1)",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "rgba(255,255,255,1)",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "30",
+          "x": "208.5",
+          "y": "76.3",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "rgba(255,255,255,1)",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "30",
+          "x": "208.5",
+          "y": "82.3",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "rgba(255,255,255,1)",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "22",
+          "x": "208.5",
+          "y": "88.3",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "223.5",
+          "cy": "18",
+          "fill": "rgba(255,255,255,1)",
+          "r": "10",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Path
+            d="M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z"
+            fill="rgba(255,255,255,1)"
+          />,
+          <Rect
+            fill="rgba(255,255,255,1)"
+            height="3"
+            rx={0}
+            ry={0}
+            width="30"
+            x="208.5"
+            y="76.3"
+          />,
+          <Rect
+            fill="rgba(255,255,255,1)"
+            height="3"
+            rx={0}
+            ry={0}
+            width="30"
+            x="208.5"
+            y="82.3"
+          />,
+          <Rect
+            fill="rgba(255,255,255,1)"
+            height="3"
+            rx={0}
+            ry={0}
+            width="22"
+            x="208.5"
+            y="88.3"
+          />,
+          <Circle
+            cx="223.5"
+            cy="18"
+            fill="rgba(255,255,255,1)"
+            r="10"
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "d": "M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z",
+            "fill": "rgba(255,255,255,1)",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "rgba(255,255,255,1)",
+            "height": "3",
+            "rx": 0,
+            "ry": 0,
+            "width": "30",
+            "x": "208.5",
+            "y": "76.3",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "rgba(255,255,255,1)",
+            "height": "3",
+            "rx": 0,
+            "ry": 0,
+            "width": "30",
+            "x": "208.5",
+            "y": "82.3",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "rgba(255,255,255,1)",
+            "height": "3",
+            "rx": 0,
+            "ry": 0,
+            "width": "22",
+            "x": "208.5",
+            "y": "88.3",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "223.5",
+            "cy": "18",
+            "fill": "rgba(255,255,255,1)",
+            "r": "10",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`Scroll should render when inactive and not pressed 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Scroll
+    isActive={false}
+    isPressed={false}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Path
+          d="M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z"
+          fill="rgba(255,255,255,0.4)"
+        />,
+        <Rect
+          fill="rgba(255,255,255,0.4)"
+          height="3"
+          rx={0}
+          ry={0}
+          width="30"
+          x="208.5"
+          y="76.3"
+        />,
+        <Rect
+          fill="rgba(255,255,255,0.4)"
+          height="3"
+          rx={0}
+          ry={0}
+          width="30"
+          x="208.5"
+          y="82.3"
+        />,
+        <Rect
+          fill="rgba(255,255,255,0.4)"
+          height="3"
+          rx={0}
+          ry={0}
+          width="22"
+          x="208.5"
+          y="88.3"
+        />,
+        <Circle
+          cx="223.5"
+          cy="18"
+          fill="rgba(255,255,255,0.4)"
+          r="10"
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "d": "M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z",
+          "fill": "rgba(255,255,255,0.4)",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "rgba(255,255,255,0.4)",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "30",
+          "x": "208.5",
+          "y": "76.3",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "rgba(255,255,255,0.4)",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "30",
+          "x": "208.5",
+          "y": "82.3",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "rgba(255,255,255,0.4)",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "22",
+          "x": "208.5",
+          "y": "88.3",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "223.5",
+          "cy": "18",
+          "fill": "rgba(255,255,255,0.4)",
+          "r": "10",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Path
+            d="M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z"
+            fill="rgba(255,255,255,0.4)"
+          />,
+          <Rect
+            fill="rgba(255,255,255,0.4)"
+            height="3"
+            rx={0}
+            ry={0}
+            width="30"
+            x="208.5"
+            y="76.3"
+          />,
+          <Rect
+            fill="rgba(255,255,255,0.4)"
+            height="3"
+            rx={0}
+            ry={0}
+            width="30"
+            x="208.5"
+            y="82.3"
+          />,
+          <Rect
+            fill="rgba(255,255,255,0.4)"
+            height="3"
+            rx={0}
+            ry={0}
+            width="22"
+            x="208.5"
+            y="88.3"
+          />,
+          <Circle
+            cx="223.5"
+            cy="18"
+            fill="rgba(255,255,255,0.4)"
+            r="10"
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "d": "M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z",
+            "fill": "rgba(255,255,255,0.4)",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "rgba(255,255,255,0.4)",
+            "height": "3",
+            "rx": 0,
+            "ry": 0,
+            "width": "30",
+            "x": "208.5",
+            "y": "76.3",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "rgba(255,255,255,0.4)",
+            "height": "3",
+            "rx": 0,
+            "ry": 0,
+            "width": "30",
+            "x": "208.5",
+            "y": "82.3",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "rgba(255,255,255,0.4)",
+            "height": "3",
+            "rx": 0,
+            "ry": 0,
+            "width": "22",
+            "x": "208.5",
+            "y": "88.3",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "223.5",
+            "cy": "18",
+            "fill": "rgba(255,255,255,0.4)",
+            "r": "10",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`Scroll should render when inactive and pressed 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Scroll
+    isActive={false}
+    isPressed={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Path
+          d="M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z"
+          fill="rgba(255,255,255,0.2)"
+        />,
+        <Rect
+          fill="rgba(255,255,255,0.2)"
+          height="3"
+          rx={0}
+          ry={0}
+          width="30"
+          x="208.5"
+          y="76.3"
+        />,
+        <Rect
+          fill="rgba(255,255,255,0.2)"
+          height="3"
+          rx={0}
+          ry={0}
+          width="30"
+          x="208.5"
+          y="82.3"
+        />,
+        <Rect
+          fill="rgba(255,255,255,0.2)"
+          height="3"
+          rx={0}
+          ry={0}
+          width="22"
+          x="208.5"
+          y="88.3"
+        />,
+        <Circle
+          cx="223.5"
+          cy="18"
+          fill="rgba(255,255,255,0.2)"
+          r="10"
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "d": "M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z",
+          "fill": "rgba(255,255,255,0.2)",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "rgba(255,255,255,0.2)",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "30",
+          "x": "208.5",
+          "y": "76.3",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "rgba(255,255,255,0.2)",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "30",
+          "x": "208.5",
+          "y": "82.3",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "rgba(255,255,255,0.2)",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "22",
+          "x": "208.5",
+          "y": "88.3",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "223.5",
+          "cy": "18",
+          "fill": "rgba(255,255,255,0.2)",
+          "r": "10",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Path
+            d="M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z"
+            fill="rgba(255,255,255,0.2)"
+          />,
+          <Rect
+            fill="rgba(255,255,255,0.2)"
+            height="3"
+            rx={0}
+            ry={0}
+            width="30"
+            x="208.5"
+            y="76.3"
+          />,
+          <Rect
+            fill="rgba(255,255,255,0.2)"
+            height="3"
+            rx={0}
+            ry={0}
+            width="30"
+            x="208.5"
+            y="82.3"
+          />,
+          <Rect
+            fill="rgba(255,255,255,0.2)"
+            height="3"
+            rx={0}
+            ry={0}
+            width="22"
+            x="208.5"
+            y="88.3"
+          />,
+          <Circle
+            cx="223.5"
+            cy="18"
+            fill="rgba(255,255,255,0.2)"
+            r="10"
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "d": "M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z",
+            "fill": "rgba(255,255,255,0.2)",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "rgba(255,255,255,0.2)",
+            "height": "3",
+            "rx": 0,
+            "ry": 0,
+            "width": "30",
+            "x": "208.5",
+            "y": "76.3",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "rgba(255,255,255,0.2)",
+            "height": "3",
+            "rx": 0,
+            "ry": 0,
+            "width": "30",
+            "x": "208.5",
+            "y": "82.3",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "rgba(255,255,255,0.2)",
+            "height": "3",
+            "rx": 0,
+            "ry": 0,
+            "width": "22",
+            "x": "208.5",
+            "y": "88.3",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "223.5",
+            "cy": "18",
+            "fill": "rgba(255,255,255,0.2)",
+            "r": "10",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

@@ -2,6 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import {
+    DailyStepsScreen,
     FitKitConnectScreen,
     LoginScreen,
     ResetPasswordScreen,
@@ -49,5 +50,19 @@ storiesOf("Organisms", module)
         <SignUpRewardScreen
             onCollectPress={action("on collect press")}
             reward={12345}
+        />
+    ))
+    .add("6. Daily Steps", () => (
+        <DailyStepsScreen
+            coinsToday={5}
+            coinsTotal={12345}
+            currentStreak={2}
+            hasNotification={true}
+            isDoneToday={false}
+            maxStreak={4}
+            onCtaPress={action("on cta press")}
+            onMenuPress={action("on menu press")}
+            onStreakPress={action("on streak press")}
+            steps={12345}
         />
     ));

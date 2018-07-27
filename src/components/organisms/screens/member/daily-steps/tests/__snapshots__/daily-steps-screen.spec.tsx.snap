@@ -1,0 +1,800 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DailyStepsScreen should render 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <DailyStepsScreen
+    coinsToday={0}
+    coinsTotal={0}
+    currentStreak={0}
+    hasNotification={false}
+    isDoneToday={false}
+    maxStreak={4}
+    onCtaPress={[MockFunction]}
+    onMenuPress={[MockFunction]}
+    onStreakPress={[MockFunction]}
+    steps={0}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <TopBar
+          coins={0}
+          onPress={[MockFunction]}
+        />,
+        <Streak
+          currentStreak={0}
+          isFinished={false}
+          maxStreak={4}
+          onPress={[MockFunction]}
+        />,
+        <Pad
+          height={60}
+        />,
+        <YuCoin
+          scale={0.5}
+        />,
+        <YuText>
+          0
+           steps
+        </YuText>,
+        <Pad
+          height={8}
+        />,
+        <YuText>
+          <YuText
+            style={
+              Object {
+                "fontSize": 70,
+              }
+            }
+          >
+            0 
+          </YuText>
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "fontSize": 70,
+              }
+            }
+          >
+            yu
+          </YuText>
+          <YuText
+            style={
+              Object {
+                "fontSize": 70,
+              }
+            }
+          >
+            coin 
+          </YuText>
+          <YuText
+            style={
+              Object {
+                "fontSize": 70,
+              }
+            }
+          >
+            today
+          </YuText>
+        </YuText>,
+        <Pad
+          height={22}
+        />,
+        <Button
+          label="earn more"
+          onPress={[MockFunction]}
+          type="PrimaryMedium"
+        />,
+        <Component
+          style={
+            Object {
+              "bottom": 34,
+              "position": "absolute",
+            }
+          }
+        >
+          <NavBar
+            activeIndex={0}
+            hasNotification={false}
+            labels={
+              Array [
+                Object {
+                  "name": "yucoin",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "quest",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "rewards",
+                  "onPress": [Function],
+                },
+              ]
+            }
+            scale={0.5}
+          />
+        </Component>,
+      ],
+      "footerImage": "large_forest",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "coins": 0,
+          "onPress": [MockFunction],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "currentStreak": 0,
+          "isFinished": false,
+          "maxStreak": 4,
+          "onPress": [MockFunction],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "height": 60,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "scale": 0.5,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            0,
+            " steps",
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          0,
+          " steps",
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "height": 8,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <YuText
+              style={
+                Object {
+                  "fontSize": 70,
+                }
+              }
+            >
+              0 
+            </YuText>,
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "fontSize": 70,
+                }
+              }
+            >
+              yu
+            </YuText>,
+            <YuText
+              style={
+                Object {
+                  "fontSize": 70,
+                }
+              }
+            >
+              coin 
+            </YuText>,
+            <YuText
+              style={
+                Object {
+                  "fontSize": 70,
+                }
+              }
+            >
+              today
+            </YuText>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "0 ",
+              "style": Object {
+                "fontSize": 70,
+              },
+            },
+            "ref": null,
+            "rendered": "0 ",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "bold": true,
+              "children": "yu",
+              "style": Object {
+                "fontSize": 70,
+              },
+            },
+            "ref": null,
+            "rendered": "yu",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "coin ",
+              "style": Object {
+                "fontSize": 70,
+              },
+            },
+            "ref": null,
+            "rendered": "coin ",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "today",
+              "style": Object {
+                "fontSize": 70,
+              },
+            },
+            "ref": null,
+            "rendered": "today",
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "height": 22,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "earn more",
+          "onPress": [MockFunction],
+          "type": "PrimaryMedium",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <NavBar
+            activeIndex={0}
+            hasNotification={false}
+            labels={
+              Array [
+                Object {
+                  "name": "yucoin",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "quest",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "rewards",
+                  "onPress": [Function],
+                },
+              ]
+            }
+            scale={0.5}
+          />,
+          "style": Object {
+            "bottom": 34,
+            "position": "absolute",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeIndex": 0,
+            "hasNotification": false,
+            "labels": Array [
+              Object {
+                "name": "yucoin",
+                "onPress": [Function],
+              },
+              Object {
+                "name": "quest",
+                "onPress": [Function],
+              },
+              Object {
+                "name": "rewards",
+                "onPress": [Function],
+              },
+            ],
+            "scale": 0.5,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <TopBar
+            coins={0}
+            onPress={[MockFunction]}
+          />,
+          <Streak
+            currentStreak={0}
+            isFinished={false}
+            maxStreak={4}
+            onPress={[MockFunction]}
+          />,
+          <Pad
+            height={60}
+          />,
+          <YuCoin
+            scale={0.5}
+          />,
+          <YuText>
+            0
+             steps
+          </YuText>,
+          <Pad
+            height={8}
+          />,
+          <YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 70,
+                }
+              }
+            >
+              0 
+            </YuText>
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "fontSize": 70,
+                }
+              }
+            >
+              yu
+            </YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 70,
+                }
+              }
+            >
+              coin 
+            </YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 70,
+                }
+              }
+            >
+              today
+            </YuText>
+          </YuText>,
+          <Pad
+            height={22}
+          />,
+          <Button
+            label="earn more"
+            onPress={[MockFunction]}
+            type="PrimaryMedium"
+          />,
+          <Component
+            style={
+              Object {
+                "bottom": 34,
+                "position": "absolute",
+              }
+            }
+          >
+            <NavBar
+              activeIndex={0}
+              hasNotification={false}
+              labels={
+                Array [
+                  Object {
+                    "name": "yucoin",
+                    "onPress": [Function],
+                  },
+                  Object {
+                    "name": "quest",
+                    "onPress": [Function],
+                  },
+                  Object {
+                    "name": "rewards",
+                    "onPress": [Function],
+                  },
+                ]
+              }
+              scale={0.5}
+            />
+          </Component>,
+        ],
+        "footerImage": "large_forest",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "coins": 0,
+            "onPress": [MockFunction],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "currentStreak": 0,
+            "isFinished": false,
+            "maxStreak": 4,
+            "onPress": [MockFunction],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "height": 60,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "scale": 0.5,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              0,
+              " steps",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            0,
+            " steps",
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "height": 8,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 70,
+                  }
+                }
+              >
+                0 
+              </YuText>,
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 70,
+                  }
+                }
+              >
+                yu
+              </YuText>,
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 70,
+                  }
+                }
+              >
+                coin 
+              </YuText>,
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 70,
+                  }
+                }
+              >
+                today
+              </YuText>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "0 ",
+                "style": Object {
+                  "fontSize": 70,
+                },
+              },
+              "ref": null,
+              "rendered": "0 ",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "bold": true,
+                "children": "yu",
+                "style": Object {
+                  "fontSize": 70,
+                },
+              },
+              "ref": null,
+              "rendered": "yu",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "coin ",
+                "style": Object {
+                  "fontSize": 70,
+                },
+              },
+              "ref": null,
+              "rendered": "coin ",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "today",
+                "style": Object {
+                  "fontSize": 70,
+                },
+              },
+              "ref": null,
+              "rendered": "today",
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "height": 22,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "earn more",
+            "onPress": [MockFunction],
+            "type": "PrimaryMedium",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <NavBar
+              activeIndex={0}
+              hasNotification={false}
+              labels={
+                Array [
+                  Object {
+                    "name": "yucoin",
+                    "onPress": [Function],
+                  },
+                  Object {
+                    "name": "quest",
+                    "onPress": [Function],
+                  },
+                  Object {
+                    "name": "rewards",
+                    "onPress": [Function],
+                  },
+                ]
+              }
+              scale={0.5}
+            />,
+            "style": Object {
+              "bottom": 34,
+              "position": "absolute",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeIndex": 0,
+              "hasNotification": false,
+              "labels": Array [
+                Object {
+                  "name": "yucoin",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "quest",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "rewards",
+                  "onPress": [Function],
+                },
+              ],
+              "scale": 0.5,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

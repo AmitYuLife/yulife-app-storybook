@@ -5,6 +5,7 @@ export { default as CoinConfetti } from "./coin-confetti/coin-confetti";
 export { default as Heading } from "./heading/heading";
 export { default as Pad } from "./pad/pad";
 export { default as PlusPoints } from "./plus-points/plus-points";
+export { default as Streak } from "./streak/streak";
 export { default as Text } from "./text/text";
 export { default as TextInput } from "./text-input/text-input";
 export { default as TextInputError } from "./text-input/text-input-error";
