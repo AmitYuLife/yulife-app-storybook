@@ -2,6 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import {
+    FitKitConnectScreen,
     LoginScreen,
     ResetPasswordScreen,
     WelcomeScreen,
@@ -33,5 +34,13 @@ storiesOf("Organisms", module)
         <ResetPasswordScreen
             onCancelPress={action("on cancel press")}
             onSubmitPress={action("on submit press")}
+        />
+    ))
+    .add("4. FitKit Connect", () => (
+        <FitKitConnectScreen
+            connecting={false}
+            onConnectPress={action("on connect press")}
+            onPrivacyPolicyPress={action("on privacy policy press")}
+            onSkipPress={action("on skip press")}
         />
     ));

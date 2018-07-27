@@ -1,5 +1,6 @@
 import { Navigation } from "react-native-navigation";
 import {
+    FitKitConnectScreenContainer,
     LoginScreenContainer,
     ResetPasswordScreenContainer,
     WelcomeScreenContainer
@@ -8,6 +9,8 @@ import {
 Navigation.registerComponent("yulife.WelcomeScreen", () => WelcomeScreenContainer);
 Navigation.registerComponent("yulife.LoginScreen", () => LoginScreenContainer);
 Navigation.registerComponent("yulife.ResetPasswordScreen", () => ResetPasswordScreenContainer);
+
+Navigation.registerComponent("yulife.onboarding.FitKitConnectScreen", () => FitKitConnectScreenContainer);
 
 Navigation.events().registerAppLaunchedListener(() => {
 

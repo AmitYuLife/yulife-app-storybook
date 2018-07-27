@@ -86,7 +86,7 @@ export class LoginContainer extends Component<Props, IState> {
             // });
             Navigation.push(this.props.componentId, {
                 component: {
-                    name: "yulife.onboarding.ConnectKitScreen"
+                    name: "yulife.onboarding.FitKitConnectScreen"
                 }
             });
         }
