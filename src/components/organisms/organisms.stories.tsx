@@ -5,6 +5,7 @@ import {
     FitKitConnectScreen,
     LoginScreen,
     ResetPasswordScreen,
+    SignUpRewardScreen,
     WelcomeScreen,
 } from "./screens";
 
@@ -42,5 +43,11 @@ storiesOf("Organisms", module)
             onConnectPress={action("on connect press")}
             onPrivacyPolicyPress={action("on privacy policy press")}
             onSkipPress={action("on skip press")}
+        />
+    ))
+    .add("5. SignUp Reward", () => (
+        <SignUpRewardScreen
+            onCollectPress={action("on collect press")}
+            reward={12345}
         />
     ));

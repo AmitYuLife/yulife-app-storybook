@@ -5,3 +5,4 @@ export { default as WelcomeScreenContainer } from "./welcome/welcome-screen.cont
 
 // onboarding screens
 export { default as FitKitConnectScreenContainer } from "./onboarding/fitkit-connect/fitkit-connect-screen.container";
+export { default as SignUpRewardScreenContainer } from "./onboarding/signup-reward/signup-reward-screen.container";

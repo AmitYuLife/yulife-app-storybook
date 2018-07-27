@@ -8,6 +8,7 @@ import {
     Blurb,
     Button,
     CentredScreen,
+    CoinConfetti,
     Heading,
     Pad,
     TextInput
@@ -59,7 +60,7 @@ storiesOf("Atoms", module)
                 type={TextInput.Types.EMAIL}
                 onBlur={action("email blur")}
             />
-            <Pad height={30}/>
+            <Pad height={30} />
             <Text>Password</Text>
             <TextInput
                 value=""
@@ -68,6 +69,18 @@ storiesOf("Atoms", module)
                 errorMessage=""
                 type={TextInput.Types.PASSWORD}
                 onBlur={action("password blur")}
+            />
+        </CenterView>
+    ))
+    .add("6a. Coin Confetti - without reward", () => (
+        <CenterView>
+            <CoinConfetti />
+        </CenterView>
+    ))
+    .add("6b. Coin Confetti - with reward", () => (
+        <CenterView>
+            <CoinConfetti
+                coins={2500}
             />
         </CenterView>
     ));

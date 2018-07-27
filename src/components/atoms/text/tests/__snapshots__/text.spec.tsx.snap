@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text should render when bold 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <YuText
+    bold={true}
+  >
+    test
+  </YuText>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": "test",
+      "style": Object {
+        "color": "rgb(51,51,51)",
+        "fontFamily": "Bariol-Bold",
+        "fontSize": 30,
+      },
+    },
+    "ref": null,
+    "rendered": "test",
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": "test",
+        "style": Object {
+          "color": "rgb(51,51,51)",
+          "fontFamily": "Bariol-Bold",
+          "fontSize": 30,
+        },
+      },
+      "ref": null,
+      "rendered": "test",
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`Text should render with the minimum props 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <YuText>
+    test
+  </YuText>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": "test",
+      "style": Object {
+        "color": "rgb(51,51,51)",
+        "fontFamily": "Bariol-Regular",
+        "fontSize": 30,
+      },
+    },
+    "ref": null,
+    "rendered": "test",
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": "test",
+        "style": Object {
+          "color": "rgb(51,51,51)",
+          "fontFamily": "Bariol-Regular",
+          "fontSize": 30,
+        },
+      },
+      "ref": null,
+      "rendered": "test",
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
