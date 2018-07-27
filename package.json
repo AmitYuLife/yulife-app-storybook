@@ -13,7 +13,8 @@
   "dependencies": {
     "react": "16.4.1",
     "react-native": "0.56.0",
-    "react-native-navigation": "^2.0.2431"
+    "react-native-navigation": "^2.0.2431",
+    "react-native-svg": "^6.5.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.8",
@@ -27,6 +28,7 @@
     "@types/react-native": "^0.56.4",
     "@types/react-test-renderer": "^16.0.1",
     "@types/storybook__addon-actions": "^3.0.3",
+    "@types/storybook__addon-knobs": "^3.3.1",
     "@types/storybook__addon-links": "^3.3.1",
     "@types/storybook__react": "^3.0.8",
     "@types/storybook__react-native": "^3.0.0",

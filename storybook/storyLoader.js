@@ -6,13 +6,13 @@
 
 function loadStories() {
   require('../src/components/atoms/atoms.stories');
-  require('../src/components/organisms/screens/welcome/welcome-screen.stories');
+  require('../src/components/organisms/organisms.stories');
   
 }
 
 const stories = [
   '../src/components/atoms/atoms.stories',
-  '../src/components/organisms/screens/welcome/welcome-screen.stories',
+  '../src/components/organisms/organisms.stories',
   
 ];
 

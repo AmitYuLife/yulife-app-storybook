@@ -1,0 +1,1202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInput should render email textinput 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <TextInput
+    onChange={[MockFunction]}
+    type="Email"
+    value="test"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Component
+          style={
+            Object {
+              "alignItems": "flex-end",
+              "borderBottomColor": "rgb(106,106,106)",
+              "borderBottomWidth": 1,
+              "flexDirection": "row",
+              "height": 100,
+              "paddingBottom": 32,
+              "width": "100%",
+            }
+          }
+        >
+          <Component
+            style={
+              Object {
+                "marginRight": 40,
+              }
+            }
+          >
+            <Mail
+              colour="rgb(106,106,106)"
+              scale={0.5}
+            />
+          </Component>
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            autoFocus={false}
+            keyboardType="default"
+            onBlur={[Function]}
+            onChangeText={[MockFunction]}
+            onFocus={[Function]}
+            placeholder="Email"
+            secureTextEntry={false}
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontFamily": "Bariol-Regular",
+                "fontSize": 32,
+                "padding": 0,
+                "width": "100%",
+              }
+            }
+            underlineColorAndroid="transparent"
+            value="test"
+          />
+        </Component>,
+        false,
+      ],
+      "style": Object {
+        "paddingHorizontal": 88,
+        "width": "100%",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Component
+              style={
+                Object {
+                  "marginRight": 40,
+                }
+              }
+            >
+              <Mail
+                colour="rgb(106,106,106)"
+                scale={0.5}
+              />
+            </Component>,
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              autoFocus={false}
+              keyboardType="default"
+              onBlur={[Function]}
+              onChangeText={[MockFunction]}
+              onFocus={[Function]}
+              placeholder="Email"
+              secureTextEntry={false}
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "padding": 0,
+                  "width": "100%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value="test"
+            />,
+          ],
+          "style": Object {
+            "alignItems": "flex-end",
+            "borderBottomColor": "rgb(106,106,106)",
+            "borderBottomWidth": 1,
+            "flexDirection": "row",
+            "height": 100,
+            "paddingBottom": 32,
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <Mail
+                colour="rgb(106,106,106)"
+                scale={0.5}
+              />,
+              "style": Object {
+                "marginRight": 40,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "rgb(106,106,106)",
+                "scale": 0.5,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "allowFontScaling": true,
+              "autoCapitalize": "none",
+              "autoCorrect": false,
+              "autoFocus": false,
+              "keyboardType": "default",
+              "onBlur": [Function],
+              "onChangeText": [MockFunction],
+              "onFocus": [Function],
+              "placeholder": "Email",
+              "secureTextEntry": false,
+              "style": Object {
+                "color": "rgb(51,51,51)",
+                "fontFamily": "Bariol-Regular",
+                "fontSize": 32,
+                "padding": 0,
+                "width": "100%",
+              },
+              "underlineColorAndroid": "transparent",
+              "value": "test",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      false,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Component
+            style={
+              Object {
+                "alignItems": "flex-end",
+                "borderBottomColor": "rgb(106,106,106)",
+                "borderBottomWidth": 1,
+                "flexDirection": "row",
+                "height": 100,
+                "paddingBottom": 32,
+                "width": "100%",
+              }
+            }
+          >
+            <Component
+              style={
+                Object {
+                  "marginRight": 40,
+                }
+              }
+            >
+              <Mail
+                colour="rgb(106,106,106)"
+                scale={0.5}
+              />
+            </Component>
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              autoFocus={false}
+              keyboardType="default"
+              onBlur={[Function]}
+              onChangeText={[MockFunction]}
+              onFocus={[Function]}
+              placeholder="Email"
+              secureTextEntry={false}
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "padding": 0,
+                  "width": "100%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value="test"
+            />
+          </Component>,
+          false,
+        ],
+        "style": Object {
+          "paddingHorizontal": 88,
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Component
+                style={
+                  Object {
+                    "marginRight": 40,
+                  }
+                }
+              >
+                <Mail
+                  colour="rgb(106,106,106)"
+                  scale={0.5}
+                />
+              </Component>,
+              <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoFocus={false}
+                keyboardType="default"
+                onBlur={[Function]}
+                onChangeText={[MockFunction]}
+                onFocus={[Function]}
+                placeholder="Email"
+                secureTextEntry={false}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "padding": 0,
+                    "width": "100%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value="test"
+              />,
+            ],
+            "style": Object {
+              "alignItems": "flex-end",
+              "borderBottomColor": "rgb(106,106,106)",
+              "borderBottomWidth": 1,
+              "flexDirection": "row",
+              "height": 100,
+              "paddingBottom": 32,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <Mail
+                  colour="rgb(106,106,106)"
+                  scale={0.5}
+                />,
+                "style": Object {
+                  "marginRight": 40,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "colour": "rgb(106,106,106)",
+                  "scale": 0.5,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "allowFontScaling": true,
+                "autoCapitalize": "none",
+                "autoCorrect": false,
+                "autoFocus": false,
+                "keyboardType": "default",
+                "onBlur": [Function],
+                "onChangeText": [MockFunction],
+                "onFocus": [Function],
+                "placeholder": "Email",
+                "secureTextEntry": false,
+                "style": Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "padding": 0,
+                  "width": "100%",
+                },
+                "underlineColorAndroid": "transparent",
+                "value": "test",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        false,
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`TextInput should render password textinput 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <TextInput
+    onChange={[MockFunction]}
+    type="Password"
+    value="test"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Component
+          style={
+            Object {
+              "alignItems": "flex-end",
+              "borderBottomColor": "rgb(106,106,106)",
+              "borderBottomWidth": 1,
+              "flexDirection": "row",
+              "height": 100,
+              "paddingBottom": 32,
+              "width": "100%",
+            }
+          }
+        >
+          <Component
+            style={
+              Object {
+                "marginRight": 40,
+              }
+            }
+          >
+            <Lock
+              colour="rgb(106,106,106)"
+              scale={0.5}
+            />
+          </Component>
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            autoFocus={false}
+            keyboardType="default"
+            onBlur={[Function]}
+            onChangeText={[MockFunction]}
+            onFocus={[Function]}
+            placeholder="Password"
+            secureTextEntry={true}
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontFamily": "Bariol-Regular",
+                "fontSize": 32,
+                "padding": 0,
+                "width": "100%",
+              }
+            }
+            underlineColorAndroid="transparent"
+            value="test"
+          />
+        </Component>,
+        false,
+      ],
+      "style": Object {
+        "paddingHorizontal": 88,
+        "width": "100%",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Component
+              style={
+                Object {
+                  "marginRight": 40,
+                }
+              }
+            >
+              <Lock
+                colour="rgb(106,106,106)"
+                scale={0.5}
+              />
+            </Component>,
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              autoFocus={false}
+              keyboardType="default"
+              onBlur={[Function]}
+              onChangeText={[MockFunction]}
+              onFocus={[Function]}
+              placeholder="Password"
+              secureTextEntry={true}
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "padding": 0,
+                  "width": "100%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value="test"
+            />,
+          ],
+          "style": Object {
+            "alignItems": "flex-end",
+            "borderBottomColor": "rgb(106,106,106)",
+            "borderBottomWidth": 1,
+            "flexDirection": "row",
+            "height": 100,
+            "paddingBottom": 32,
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <Lock
+                colour="rgb(106,106,106)"
+                scale={0.5}
+              />,
+              "style": Object {
+                "marginRight": 40,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "rgb(106,106,106)",
+                "scale": 0.5,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "allowFontScaling": true,
+              "autoCapitalize": "none",
+              "autoCorrect": false,
+              "autoFocus": false,
+              "keyboardType": "default",
+              "onBlur": [Function],
+              "onChangeText": [MockFunction],
+              "onFocus": [Function],
+              "placeholder": "Password",
+              "secureTextEntry": true,
+              "style": Object {
+                "color": "rgb(51,51,51)",
+                "fontFamily": "Bariol-Regular",
+                "fontSize": 32,
+                "padding": 0,
+                "width": "100%",
+              },
+              "underlineColorAndroid": "transparent",
+              "value": "test",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      false,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Component
+            style={
+              Object {
+                "alignItems": "flex-end",
+                "borderBottomColor": "rgb(106,106,106)",
+                "borderBottomWidth": 1,
+                "flexDirection": "row",
+                "height": 100,
+                "paddingBottom": 32,
+                "width": "100%",
+              }
+            }
+          >
+            <Component
+              style={
+                Object {
+                  "marginRight": 40,
+                }
+              }
+            >
+              <Lock
+                colour="rgb(106,106,106)"
+                scale={0.5}
+              />
+            </Component>
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              autoFocus={false}
+              keyboardType="default"
+              onBlur={[Function]}
+              onChangeText={[MockFunction]}
+              onFocus={[Function]}
+              placeholder="Password"
+              secureTextEntry={true}
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "padding": 0,
+                  "width": "100%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value="test"
+            />
+          </Component>,
+          false,
+        ],
+        "style": Object {
+          "paddingHorizontal": 88,
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Component
+                style={
+                  Object {
+                    "marginRight": 40,
+                  }
+                }
+              >
+                <Lock
+                  colour="rgb(106,106,106)"
+                  scale={0.5}
+                />
+              </Component>,
+              <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoFocus={false}
+                keyboardType="default"
+                onBlur={[Function]}
+                onChangeText={[MockFunction]}
+                onFocus={[Function]}
+                placeholder="Password"
+                secureTextEntry={true}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "padding": 0,
+                    "width": "100%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value="test"
+              />,
+            ],
+            "style": Object {
+              "alignItems": "flex-end",
+              "borderBottomColor": "rgb(106,106,106)",
+              "borderBottomWidth": 1,
+              "flexDirection": "row",
+              "height": 100,
+              "paddingBottom": 32,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <Lock
+                  colour="rgb(106,106,106)"
+                  scale={0.5}
+                />,
+                "style": Object {
+                  "marginRight": 40,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "colour": "rgb(106,106,106)",
+                  "scale": 0.5,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "allowFontScaling": true,
+                "autoCapitalize": "none",
+                "autoCorrect": false,
+                "autoFocus": false,
+                "keyboardType": "default",
+                "onBlur": [Function],
+                "onChangeText": [MockFunction],
+                "onFocus": [Function],
+                "placeholder": "Password",
+                "secureTextEntry": true,
+                "style": Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "padding": 0,
+                  "width": "100%",
+                },
+                "underlineColorAndroid": "transparent",
+                "value": "test",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        false,
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`TextInput should render with error message 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <TextInput
+    errorMessage="error"
+    onChange={[MockFunction]}
+    type="Password"
+    value="test"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Component
+          style={
+            Object {
+              "alignItems": "flex-end",
+              "borderBottomColor": "rgb(106,106,106)",
+              "borderBottomWidth": 1,
+              "flexDirection": "row",
+              "height": 100,
+              "paddingBottom": 32,
+              "width": "100%",
+            }
+          }
+        >
+          <Component
+            style={
+              Object {
+                "marginRight": 40,
+              }
+            }
+          >
+            <Lock
+              colour="rgb(106,106,106)"
+              scale={0.5}
+            />
+          </Component>
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            autoFocus={false}
+            keyboardType="default"
+            onBlur={[Function]}
+            onChangeText={[MockFunction]}
+            onFocus={[Function]}
+            placeholder="Password"
+            secureTextEntry={true}
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontFamily": "Bariol-Regular",
+                "fontSize": 32,
+                "padding": 0,
+                "width": "100%",
+              }
+            }
+            underlineColorAndroid="transparent"
+            value="test"
+          />
+        </Component>,
+        <TextInputError>
+          error
+        </TextInputError>,
+      ],
+      "style": Object {
+        "paddingHorizontal": 88,
+        "width": "100%",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Component
+              style={
+                Object {
+                  "marginRight": 40,
+                }
+              }
+            >
+              <Lock
+                colour="rgb(106,106,106)"
+                scale={0.5}
+              />
+            </Component>,
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              autoFocus={false}
+              keyboardType="default"
+              onBlur={[Function]}
+              onChangeText={[MockFunction]}
+              onFocus={[Function]}
+              placeholder="Password"
+              secureTextEntry={true}
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "padding": 0,
+                  "width": "100%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value="test"
+            />,
+          ],
+          "style": Object {
+            "alignItems": "flex-end",
+            "borderBottomColor": "rgb(106,106,106)",
+            "borderBottomWidth": 1,
+            "flexDirection": "row",
+            "height": 100,
+            "paddingBottom": 32,
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <Lock
+                colour="rgb(106,106,106)"
+                scale={0.5}
+              />,
+              "style": Object {
+                "marginRight": 40,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "rgb(106,106,106)",
+                "scale": 0.5,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "allowFontScaling": true,
+              "autoCapitalize": "none",
+              "autoCorrect": false,
+              "autoFocus": false,
+              "keyboardType": "default",
+              "onBlur": [Function],
+              "onChangeText": [MockFunction],
+              "onFocus": [Function],
+              "placeholder": "Password",
+              "secureTextEntry": true,
+              "style": Object {
+                "color": "rgb(51,51,51)",
+                "fontFamily": "Bariol-Regular",
+                "fontSize": 32,
+                "padding": 0,
+                "width": "100%",
+              },
+              "underlineColorAndroid": "transparent",
+              "value": "test",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": "error",
+        },
+        "ref": null,
+        "rendered": "error",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Component
+            style={
+              Object {
+                "alignItems": "flex-end",
+                "borderBottomColor": "rgb(106,106,106)",
+                "borderBottomWidth": 1,
+                "flexDirection": "row",
+                "height": 100,
+                "paddingBottom": 32,
+                "width": "100%",
+              }
+            }
+          >
+            <Component
+              style={
+                Object {
+                  "marginRight": 40,
+                }
+              }
+            >
+              <Lock
+                colour="rgb(106,106,106)"
+                scale={0.5}
+              />
+            </Component>
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              autoFocus={false}
+              keyboardType="default"
+              onBlur={[Function]}
+              onChangeText={[MockFunction]}
+              onFocus={[Function]}
+              placeholder="Password"
+              secureTextEntry={true}
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "padding": 0,
+                  "width": "100%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value="test"
+            />
+          </Component>,
+          <TextInputError>
+            error
+          </TextInputError>,
+        ],
+        "style": Object {
+          "paddingHorizontal": 88,
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Component
+                style={
+                  Object {
+                    "marginRight": 40,
+                  }
+                }
+              >
+                <Lock
+                  colour="rgb(106,106,106)"
+                  scale={0.5}
+                />
+              </Component>,
+              <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoFocus={false}
+                keyboardType="default"
+                onBlur={[Function]}
+                onChangeText={[MockFunction]}
+                onFocus={[Function]}
+                placeholder="Password"
+                secureTextEntry={true}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "padding": 0,
+                    "width": "100%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value="test"
+              />,
+            ],
+            "style": Object {
+              "alignItems": "flex-end",
+              "borderBottomColor": "rgb(106,106,106)",
+              "borderBottomWidth": 1,
+              "flexDirection": "row",
+              "height": 100,
+              "paddingBottom": 32,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <Lock
+                  colour="rgb(106,106,106)"
+                  scale={0.5}
+                />,
+                "style": Object {
+                  "marginRight": 40,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "colour": "rgb(106,106,106)",
+                  "scale": 0.5,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "allowFontScaling": true,
+                "autoCapitalize": "none",
+                "autoCorrect": false,
+                "autoFocus": false,
+                "keyboardType": "default",
+                "onBlur": [Function],
+                "onChangeText": [MockFunction],
+                "onFocus": [Function],
+                "placeholder": "Password",
+                "secureTextEntry": true,
+                "style": Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "padding": 0,
+                  "width": "100%",
+                },
+                "underlineColorAndroid": "transparent",
+                "value": "test",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "error",
+          },
+          "ref": null,
+          "rendered": "error",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

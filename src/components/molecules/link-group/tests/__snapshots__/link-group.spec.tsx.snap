@@ -1,0 +1,414 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinkGroup should render 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <LinkGroup
+    data={
+      Array [
+        Object {
+          "label": "Forgot password",
+          "onPress": [Function],
+        },
+        Object {
+          "label": "Sign up",
+          "onPress": [Function],
+        },
+      ]
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row-reverse",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Button
+            label="Forgot password"
+            onPress={[Function]}
+            type="Link"
+            wrapperStyle={
+              Object {
+                "marginHorizontal": 66,
+                "width": "auto",
+              }
+            }
+          />
+        </Component>,
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row-reverse",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Button
+            label="Sign up"
+            onPress={[Function]}
+            type="Link"
+            wrapperStyle={
+              Object {
+                "marginHorizontal": 66,
+                "width": "auto",
+              }
+            }
+          />
+          <Component
+            style={
+              Object {
+                "backgroundColor": "rgb(96,96,96)",
+                "height": 24,
+                "width": 1,
+              }
+            }
+          />
+        </Component>,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "width": "100%",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": "0",
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Button
+              label="Forgot password"
+              onPress={[Function]}
+              type="Link"
+              wrapperStyle={
+                Object {
+                  "marginHorizontal": 66,
+                  "width": "auto",
+                }
+              }
+            />,
+            null,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "flexDirection": "row-reverse",
+            "justifyContent": "center",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Forgot password",
+              "onPress": [Function],
+              "type": "Link",
+              "wrapperStyle": Object {
+                "marginHorizontal": 66,
+                "width": "auto",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          null,
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "1",
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Button
+              label="Sign up"
+              onPress={[Function]}
+              type="Link"
+              wrapperStyle={
+                Object {
+                  "marginHorizontal": 66,
+                  "width": "auto",
+                }
+              }
+            />,
+            <Component
+              style={
+                Object {
+                  "backgroundColor": "rgb(96,96,96)",
+                  "height": 24,
+                  "width": 1,
+                }
+              }
+            />,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "flexDirection": "row-reverse",
+            "justifyContent": "center",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Sign up",
+              "onPress": [Function],
+              "type": "Link",
+              "wrapperStyle": Object {
+                "marginHorizontal": 66,
+                "width": "auto",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "style": Object {
+                "backgroundColor": "rgb(96,96,96)",
+                "height": 24,
+                "width": 1,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row-reverse",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Button
+              label="Forgot password"
+              onPress={[Function]}
+              type="Link"
+              wrapperStyle={
+                Object {
+                  "marginHorizontal": 66,
+                  "width": "auto",
+                }
+              }
+            />
+          </Component>,
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row-reverse",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Button
+              label="Sign up"
+              onPress={[Function]}
+              type="Link"
+              wrapperStyle={
+                Object {
+                  "marginHorizontal": 66,
+                  "width": "auto",
+                }
+              }
+            />
+            <Component
+              style={
+                Object {
+                  "backgroundColor": "rgb(96,96,96)",
+                  "height": 24,
+                  "width": 1,
+                }
+              }
+            />
+          </Component>,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "0",
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Button
+                label="Forgot password"
+                onPress={[Function]}
+                type="Link"
+                wrapperStyle={
+                  Object {
+                    "marginHorizontal": 66,
+                    "width": "auto",
+                  }
+                }
+              />,
+              null,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "flexDirection": "row-reverse",
+              "justifyContent": "center",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Forgot password",
+                "onPress": [Function],
+                "type": "Link",
+                "wrapperStyle": Object {
+                  "marginHorizontal": 66,
+                  "width": "auto",
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            null,
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "1",
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Button
+                label="Sign up"
+                onPress={[Function]}
+                type="Link"
+                wrapperStyle={
+                  Object {
+                    "marginHorizontal": 66,
+                    "width": "auto",
+                  }
+                }
+              />,
+              <Component
+                style={
+                  Object {
+                    "backgroundColor": "rgb(96,96,96)",
+                    "height": 24,
+                    "width": 1,
+                  }
+                }
+              />,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "flexDirection": "row-reverse",
+              "justifyContent": "center",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Sign up",
+                "onPress": [Function],
+                "type": "Link",
+                "wrapperStyle": Object {
+                  "marginHorizontal": 66,
+                  "width": "auto",
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "style": Object {
+                  "backgroundColor": "rgb(96,96,96)",
+                  "height": 24,
+                  "width": 1,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

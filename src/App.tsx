@@ -1,11 +1,11 @@
 import { Navigation } from "react-native-navigation";
 import {
-    LoginScreen,
+    LoginScreenContainer,
     WelcomeScreenContainer
 } from "./components/screens";
 
 Navigation.registerComponent("yulife.WelcomeScreen", () => WelcomeScreenContainer);
-Navigation.registerComponent("yulife.LoginScreen", () => LoginScreen);
+Navigation.registerComponent("yulife.LoginScreen", () => LoginScreenContainer);
 
 Navigation.events().registerAppLaunchedListener(() => {
 

@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getColour should cover all colour cases 1`] = `"rgb(204,204,204)"`;
+
+exports[`getColour should cover all colour cases 2`] = `"rgb(255,102,102)"`;
+
+exports[`getColour should cover all colour cases 3`] = `"rgb(106,106,106)"`;
+
+exports[`getColour should cover all colour cases 4`] = `"rgb(255,102,102)"`;
+
+exports[`getWrapperStyle should cover all wrapper cases 1`] = `
+Object {
+  "alignItems": "flex-end",
+  "borderBottomColor": "rgb(255,102,102)",
+  "borderBottomWidth": 1,
+  "flexDirection": "row",
+  "height": 100,
+  "paddingBottom": 32,
+  "width": "100%",
+}
+`;
+
+exports[`getWrapperStyle should cover all wrapper cases 2`] = `
+Object {
+  "alignItems": "flex-end",
+  "borderBottomColor": "#333",
+  "borderBottomWidth": 4,
+  "flexDirection": "row",
+  "height": 100,
+  "paddingBottom": 32,
+  "width": "100%",
+}
+`;
+
+exports[`getWrapperStyle should cover all wrapper cases 3`] = `
+Object {
+  "alignItems": "flex-end",
+  "borderBottomColor": "rgb(106,106,106)",
+  "borderBottomWidth": 1,
+  "flexDirection": "row",
+  "height": 100,
+  "paddingBottom": 32,
+  "width": "100%",
+}
+`;
+
+exports[`getWrapperStyle should cover all wrapper cases 4`] = `
+Object {
+  "alignItems": "flex-end",
+  "borderBottomColor": "rgb(255,102,102)",
+  "borderBottomWidth": 1,
+  "flexDirection": "row",
+  "height": 100,
+  "paddingBottom": 32,
+  "width": "100%",
+}
+`;
+
+exports[`getWrapperStyle should cover all wrapper cases 5`] = `
+Object {
+  "alignItems": "flex-end",
+  "borderBottomColor": "#333",
+  "borderBottomWidth": 4,
+  "flexDirection": "row",
+  "height": 100,
+  "paddingBottom": 32,
+  "width": "100%",
+}
+`;
+
+exports[`getWrapperStyle should cover all wrapper cases 6`] = `
+Object {
+  "alignItems": "flex-end",
+  "borderBottomColor": "rgb(255,102,102)",
+  "borderBottomWidth": 1,
+  "flexDirection": "row",
+  "height": 100,
+  "paddingBottom": 32,
+  "width": "100%",
+}
+`;
+
+exports[`getWrapperStyle should cover all wrapper cases 7`] = `
+Object {
+  "alignItems": "flex-end",
+  "borderBottomColor": "rgb(204,204,204)",
+  "borderBottomWidth": 1,
+  "flexDirection": "row",
+  "height": 100,
+  "paddingBottom": 32,
+  "width": "100%",
+}
+`;
