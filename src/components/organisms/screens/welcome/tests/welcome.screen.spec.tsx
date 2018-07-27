@@ -1,6 +1,6 @@
 import { shallow } from "enzyme";
 import * as React from "react";
-import WelcomeScreen from "../welcome.screen";
+import WelcomeScreen from "../welcome-screen";
 
 describe("WelcomeScreen component", () => {
 
@@ -8,7 +8,8 @@ describe("WelcomeScreen component", () => {
 
         const actual = shallow(
             <WelcomeScreen
-                onLoginPress={jest.fn()}
+                onLogInPress={jest.fn()}
+                onSignUpPress={jest.fn()}
             />
         );
 

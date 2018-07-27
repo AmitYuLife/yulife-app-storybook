@@ -1,13 +1,19 @@
 import { Navigation } from "react-native-navigation";
 import {
     LoginScreen,
-    WelcomeScreen
+    WelcomeScreenContainer
 } from "./components/screens";
 
-Navigation.registerComponent("yulife.WelcomeScreen", () => WelcomeScreen);
+Navigation.registerComponent("yulife.WelcomeScreen", () => WelcomeScreenContainer);
 Navigation.registerComponent("yulife.LoginScreen", () => LoginScreen);
 
 Navigation.events().registerAppLaunchedListener(() => {
+
+    Navigation.setDefaultOptions({
+        topBar: {
+            visible: false
+        }
+    });
 
     Navigation.setRoot({
         root: {
@@ -21,5 +27,4 @@ Navigation.events().registerAppLaunchedListener(() => {
             }
         }
     });
-
 });
