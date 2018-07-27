@@ -5,6 +5,7 @@
   "scripts": {
     "start": "react-native start",
     "start:ios": "react-native run-ios",
+    "start:android": "react-native run-android",
     "test": "jest"
   },
   "dependencies": {
@@ -13,7 +14,7 @@
     "react-native-navigation": "^2.0.2431"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.0",
+    "@types/jest": "^23.3.1",
     "@types/react": "^16.4.7",
     "@types/react-native": "^0.56.4",
     "@types/react-test-renderer": "^16.0.1",
