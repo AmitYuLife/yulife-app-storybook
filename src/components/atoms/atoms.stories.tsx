@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { text, withKnobs } from "@storybook/addon-knobs";
+import { boolean, number, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import { Text } from "react-native";
@@ -19,15 +19,20 @@ storiesOf("Atoms", module)
     .addDecorator(withKnobs)
     .add("1. Blurb", () => (
         <CenterView>
-            <Blurb label="Let's begin the journey of making you the best of yu!" />
+            <Blurb label={text("Label", "Let's begin the journey of making you the best of yu!")} />
         </CenterView>
     ))
     .add("2. Button", () => (
         <CenterView>
             <Button
+                type={Button.Types.PRIMARY}
+                onPress={action("button-click")}
+                label={text("Primary Label", "do a backflip", "PRIMARY")}
+            />
+            <Button
                 type={Button.Types.SECONDARY}
                 onPress={action("button-click")}
-                label="sign up"
+                label={text("Secondary Label", "sign up", "SECONDARY")}
             />
         </CenterView>
     ))
@@ -43,10 +48,10 @@ storiesOf("Atoms", module)
     ))
     .add("4. Heading", () => (
         <CenterView>
-            <Heading label="This is the default heading" />
+            <Heading label={text("Default Label", "Default heading", "DEFAULT")} />
             <Heading
                 size={Heading.Sizes.LARGE}
-                label="This is a large heading"
+                label={text("Large Label", "Large heading", "LARGE")}
             />
         </CenterView>
     ))
@@ -81,47 +86,25 @@ storiesOf("Atoms", module)
     .add("6b. Coin Confetti - with reward", () => (
         <CenterView>
             <CoinConfetti
-                coins={2500}
+                coins={number("Reward", 1000, {
+                    max: 2000,
+                    min: 0,
+                    range: true,
+                    step: 1,
+                })}
             />
         </CenterView>
     ))
-    .add("7a. Streak - 0% complete", () => (
+    .add("7. Streak", () => (
         <Streak
             onPress={action("streak pressed")}
-            currentStreak={0}
+            currentStreak={number("Current Streak", 2, {
+                max: 4,
+                min: 0,
+                range: true,
+                step: 1,
+            })}
             maxStreak={4}
-            isFinished={false}
-        />
-    ))
-    .add("7b. Streak - 25% complete", () => (
-        <Streak
-            onPress={action("streak pressed")}
-            currentStreak={1}
-            maxStreak={4}
-            isFinished={false}
-        />
-    ))
-    .add("7c. Streak - 50% complete", () => (
-        <Streak
-            onPress={action("streak pressed")}
-            currentStreak={2}
-            maxStreak={4}
-            isFinished={false}
-        />
-    ))
-    .add("7d. Streak - 75% complete", () => (
-        <Streak
-            onPress={action("streak pressed")}
-            currentStreak={3}
-            maxStreak={4}
-            isFinished={false}
-        />
-    ))
-    .add("7e. Streak - 100% complete", () => (
-        <Streak
-            onPress={action("streak pressed")}
-            currentStreak={4}
-            maxStreak={4}
-            isFinished={true}
+            isFinished={boolean("Is Finished?", false)}
         />
     ));

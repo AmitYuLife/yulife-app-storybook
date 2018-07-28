@@ -1,4 +1,3 @@
-// tslint:disable:ordered-imports
 import "@storybook/react-native/addons";
 import "@storybook/addon-actions/register";
 import "@storybook/addon-knobs/register";

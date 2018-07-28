@@ -1,10 +1,30 @@
 import * as React from "react";
-import { SFC } from "react";
-import { View } from "react-native";
+import { Component } from "react";
+import { StyleSheet, View } from "react-native";
 import style from "./style";
 
-const CenterView: SFC<{}> = ({ children }) => (
-    <View style={style.main}>{children}</View>
-);
+type BackgroundType = "light" | "dark";
+
+interface IProps {
+    background?: BackgroundType;
+}
+
+class CenterView extends Component<IProps> {
+
+    public render() {
+        const { background = "light", children } = this.props;
+
+        return (
+            <View
+                style={StyleSheet.flatten([
+                    style.main,
+                    style[background]
+                ])}
+            >
+                {children}
+            </View>
+        );
+    }
+}
 
 export default CenterView;

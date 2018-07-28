@@ -1,4 +1,5 @@
 import { action } from "@storybook/addon-actions";
+import { boolean, number, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import {
@@ -11,6 +12,7 @@ import {
 } from "./screens";
 
 storiesOf("Organisms", module)
+    .addDecorator(withKnobs)
     .add("1. Welcome", () => (
         <WelcomeScreen
             onSignUpPress={action("on sign-up press")}
@@ -40,7 +42,7 @@ storiesOf("Organisms", module)
     ))
     .add("4. FitKit Connect", () => (
         <FitKitConnectScreen
-            connecting={false}
+            connecting={boolean("Connecting?", false, "FitKit")}
             onConnectPress={action("on connect press")}
             onPrivacyPolicyPress={action("on privacy policy press")}
             onSkipPress={action("on skip press")}
@@ -49,20 +51,45 @@ storiesOf("Organisms", module)
     .add("5. SignUp Reward", () => (
         <SignUpRewardScreen
             onCollectPress={action("on collect press")}
-            reward={12345}
+            reward={number("Reward", 1000, {
+                max: 2000,
+                min: 0,
+                range: true,
+                step: 1,
+            }, "SignUp")}
         />
     ))
     .add("6. Daily Steps", () => (
         <DailyStepsScreen
-            coinsToday={5}
-            coinsTotal={12345}
-            currentStreak={2}
-            hasNotification={true}
-            isDoneToday={false}
+            coinsToday={number("Coins", 4, {
+                max: 12,
+                min: 0,
+                range: true,
+                step: 1,
+            }, "DailySteps")}
+            coinsTotal={number("Coins Total", 246, {
+                max: 35000,
+                min: 0,
+                range: true,
+                step: 1,
+            }, "DailySteps")}
+            currentStreak={number("Current Streak", 2, {
+                max: 4,
+                min: 0,
+                range: true,
+                step: 1,
+            }, "DailySteps")}
+            hasNotification={boolean("Notification?", false, "NavBar")}
+            isDoneToday={boolean("Done Today?", false, "NavBar")}
             maxStreak={4}
             onCtaPress={action("on cta press")}
             onMenuPress={action("on menu press")}
             onStreakPress={action("on streak press")}
-            steps={12345}
+            steps={number("Steps", 1246, {
+                max: 35000,
+                min: 0,
+                range: true,
+                step: 1,
+            }, "DailySteps")}
         />
     ));

@@ -37,6 +37,7 @@ type Types =
     | "Link";
 
 class Button extends PureComponent<IProps> {
+
     public static Types = BUTTON_TYPES;
 
     public render() {
