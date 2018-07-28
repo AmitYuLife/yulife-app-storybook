@@ -1,5 +1,4 @@
 {
-    "verbose": true,
     "preset": "react-native",
     "setupTestFrameworkScriptFile": "<rootDir>/jest/setup-unit.js",
     "transform": {
@@ -18,6 +17,16 @@
     ],
     "modulePaths": [
         "<rootDir>"
+    ],
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage/",
+    "coverageReporters": [
+        "lcov",
+        "text-summary"
+    ],
+    "collectCoverageFrom": [
+        "src/**/*.{ts,tsx}",
+        "!src/**/*.{spec,stories}.{ts,tsx}"
     ],
     "globals": {
         "ts-jest": {
