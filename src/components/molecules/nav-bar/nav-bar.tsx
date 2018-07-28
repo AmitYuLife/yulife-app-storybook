@@ -18,7 +18,7 @@ import styles, {
     getLabelAdjustment,
 } from "./nav-bar.styles";
 
-interface ILabel {
+export interface ILabel {
     name: string;
     onPress: () => void;
 }

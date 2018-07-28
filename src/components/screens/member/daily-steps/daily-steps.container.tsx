@@ -1,6 +1,7 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
+import { ILabel } from "../../../molecules/nav-bar/nav-bar";
 import { DailyStepsScreen } from "../../../organisms/screens";
 
 // TODO find where these props actually come from in RNN types
@@ -10,6 +11,21 @@ interface IProps {
 
 class DailyStepsContainer extends PureComponent<IProps> {
 
+    private labels: ILabel[] = [
+        {
+            name: "yucoin",
+            onPress: (): void => this.onNavPress("yulife.member.DailyStepScreen"),
+        },
+        {
+            name: "quest",
+            onPress: (): void => this.onNavPress("yulife.member.QuestScreen"),
+        },
+        {
+            name: "rewards",
+            onPress: (): void => this.onNavPress("yulife.member.RewardsScreen"),
+        },
+    ];
+
     public render() {
         return (
             <DailyStepsScreen
@@ -18,6 +34,7 @@ class DailyStepsContainer extends PureComponent<IProps> {
                 currentStreak={2}
                 hasNotification={true}
                 isDoneToday={false}
+                labels={this.labels}
                 maxStreak={4}
                 onCtaPress={this.onCta}
                 onMenuPress={this.onMenu}
@@ -44,6 +61,12 @@ class DailyStepsContainer extends PureComponent<IProps> {
             component: {
                 name: "yulife.LoginScreen"
             }
+        });
+    }
+
+    private onNavPress = (name: string) => {
+        Navigation.push(this.props.componentId, {
+            component: { name }
         });
     }
 }

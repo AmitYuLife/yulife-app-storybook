@@ -9,6 +9,7 @@ import {
     Text,
 } from "../../../../atoms";
 import { NavBar, TopBar } from "../../../../molecules";
+import { ILabel } from "../../../../molecules/nav-bar/nav-bar";
 import YuCoin from "./assets/yu-coin";
 import styles from "./daily-steps-screen.styles";
 
@@ -23,6 +24,7 @@ interface IProps {
     maxStreak: number;
     hasNotification: boolean;
     isDoneToday: boolean;
+    labels?: ILabel[];
 }
 
 const DailyStepsScreen: SFC<IProps> = ({
@@ -36,6 +38,7 @@ const DailyStepsScreen: SFC<IProps> = ({
     onCtaPress,
     hasNotification,
     isDoneToday,
+    labels
 }) => (
     <CentredScreen
         footerImage={
@@ -70,8 +73,9 @@ const DailyStepsScreen: SFC<IProps> = ({
         />
         <View style={styles.navBarWrapper}>
             <NavBar
-                hasNotification={hasNotification}
                 activeIndex={0}
+                hasNotification={hasNotification}
+                labels={labels}
                 scale={0.5}
             />
         </View>
