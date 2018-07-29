@@ -4,6 +4,7 @@ import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import { ChallengeTile, ILabel } from "../molecules";
 import {
+    ChallengeCompleteModal,
     ChallengeDetailsModal
 } from "./modals";
 import { ChallengeType } from "./modals/challenge-details/challenge-details";
@@ -183,5 +184,10 @@ storiesOf("Organisms - Modals", module)
                 }
             ], "ChallengeDetails")}
             unit="steps"
+        />
+    ))
+    .add("2. Challenge Complete", () => (
+        <ChallengeCompleteModal
+            onCtaPress={action("on cta press")}
         />
     ));
