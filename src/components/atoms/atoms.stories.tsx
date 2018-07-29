@@ -11,7 +11,6 @@ import {
     CoinConfetti,
     Heading,
     Pad,
-    Streak,
     TextInput
 } from "./";
 
@@ -94,17 +93,4 @@ storiesOf("Atoms", module)
                 })}
             />
         </CenterView>
-    ))
-    .add("7. Streak", () => (
-        <Streak
-            onPress={action("streak pressed")}
-            currentStreak={number("Current Streak", 2, {
-                max: 4,
-                min: 0,
-                range: true,
-                step: 1,
-            })}
-            maxStreak={4}
-            isFinished={boolean("Is Finished?", false)}
-        />
     ));

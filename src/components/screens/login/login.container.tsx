@@ -86,7 +86,7 @@ export class LoginContainer extends Component<Props, IState> {
             // });
             Navigation.push(this.props.componentId, {
                 component: {
-                    name: "yulife.onboarding.FitKitConnectScreen"
+                    name: "yulife.onboarding.FitKitConnect"
                 }
             });
         }
@@ -95,7 +95,7 @@ export class LoginContainer extends Component<Props, IState> {
     private onSignUpPress = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.SignUpScreen"
+                name: "yulife.SignUp"
             }
         });
     }
@@ -104,7 +104,7 @@ export class LoginContainer extends Component<Props, IState> {
     private onForgotPasswordPress = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.ResetPasswordScreen"
+                name: "yulife.ResetPassword"
             }
         });
     }

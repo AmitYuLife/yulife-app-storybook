@@ -26,7 +26,7 @@ class ResetPasswordContainer extends PureComponent<IProps> {
     private onSubmit = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.LoginScreen"
+                name: "yulife.Login"
             }
         });
     }

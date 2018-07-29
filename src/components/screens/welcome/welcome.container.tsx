@@ -22,7 +22,7 @@ class WelcomeContainer extends PureComponent<IProps> {
     private onSignUp = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.SignUpScreen"
+                name: "yulife.SignUp"
             }
         });
     }
@@ -30,7 +30,7 @@ class WelcomeContainer extends PureComponent<IProps> {
     private onLogin = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.LoginScreen"
+                name: "yulife.Login"
             }
         });
     }

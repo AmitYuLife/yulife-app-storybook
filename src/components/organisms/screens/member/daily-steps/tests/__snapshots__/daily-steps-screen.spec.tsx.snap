@@ -10,6 +10,22 @@ ShallowWrapper {
     currentStreak={0}
     hasNotification={false}
     isDoneToday={false}
+    labels={
+      Array [
+        Object {
+          "name": "yucoin",
+          "onPress": [MockFunction],
+        },
+        Object {
+          "name": "quest",
+          "onPress": [MockFunction],
+        },
+        Object {
+          "name": "rewards",
+          "onPress": [MockFunction],
+        },
+      ]
+    }
     maxStreak={4}
     onCtaPress={[MockFunction]}
     onMenuPress={[MockFunction]}
@@ -114,15 +130,15 @@ ShallowWrapper {
               Array [
                 Object {
                   "name": "yucoin",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "name": "quest",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "name": "rewards",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
               ]
             }
@@ -353,15 +369,15 @@ ShallowWrapper {
               Array [
                 Object {
                   "name": "yucoin",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "name": "quest",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "name": "rewards",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
               ]
             }
@@ -383,15 +399,15 @@ ShallowWrapper {
             "labels": Array [
               Object {
                 "name": "yucoin",
-                "onPress": [Function],
+                "onPress": [MockFunction],
               },
               Object {
                 "name": "quest",
-                "onPress": [Function],
+                "onPress": [MockFunction],
               },
               Object {
                 "name": "rewards",
-                "onPress": [Function],
+                "onPress": [MockFunction],
               },
             ],
             "scale": 0.5,
@@ -497,15 +513,15 @@ ShallowWrapper {
                 Array [
                   Object {
                     "name": "yucoin",
-                    "onPress": [Function],
+                    "onPress": [MockFunction],
                   },
                   Object {
                     "name": "quest",
-                    "onPress": [Function],
+                    "onPress": [MockFunction],
                   },
                   Object {
                     "name": "rewards",
-                    "onPress": [Function],
+                    "onPress": [MockFunction],
                   },
                 ]
               }
@@ -736,15 +752,15 @@ ShallowWrapper {
                 Array [
                   Object {
                     "name": "yucoin",
-                    "onPress": [Function],
+                    "onPress": [MockFunction],
                   },
                   Object {
                     "name": "quest",
-                    "onPress": [Function],
+                    "onPress": [MockFunction],
                   },
                   Object {
                     "name": "rewards",
-                    "onPress": [Function],
+                    "onPress": [MockFunction],
                   },
                 ]
               }
@@ -766,15 +782,15 @@ ShallowWrapper {
               "labels": Array [
                 Object {
                   "name": "yucoin",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "name": "quest",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "name": "rewards",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
               ],
               "scale": 0.5,

@@ -9,3 +9,4 @@ export { default as SignUpRewardScreen } from "./onboarding/signup-reward/signup
 
 // member screens
 export { default as DailyStepsScreen } from "./member/daily-steps/daily-steps-screen";
+export { default as ChallengesListScreen } from "./member/challenges/challenges-list/challenges-list-screen";

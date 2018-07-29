@@ -14,15 +14,15 @@ class DailyStepsContainer extends PureComponent<IProps> {
     private labels: ILabel[] = [
         {
             name: "yucoin",
-            onPress: (): void => this.onNavPress("yulife.member.DailyStepScreen"),
+            onPress: (): void => this.onNavPress("yulife.member.DailySteps"),
         },
         {
-            name: "quest",
-            onPress: (): void => this.onNavPress("yulife.member.QuestScreen"),
+            name: "challenges",
+            onPress: (): void => this.onNavPress("yulife.member.ChallengesList"),
         },
         {
             name: "rewards",
-            onPress: (): void => this.onNavPress("yulife.member.RewardsScreen"),
+            onPress: (): void => this.onNavPress("yulife.member.Rewards"),
         },
     ];
 
@@ -51,7 +51,7 @@ class DailyStepsContainer extends PureComponent<IProps> {
     private onMenu = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.LoginScreen"
+                name: "yulife.Login"
             }
         });
     }
@@ -59,7 +59,7 @@ class DailyStepsContainer extends PureComponent<IProps> {
     private onStreak = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.LoginScreen"
+                name: "yulife.Login"
             }
         });
     }

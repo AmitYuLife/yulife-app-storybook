@@ -15,9 +15,7 @@
         "json",
         "node"
     ],
-    "modulePaths": [
-        "<rootDir>"
-    ],
+    "modulePaths": ["<rootDir>"],
     "collectCoverage": true,
     "coverageDirectory": "./coverage/",
     "coverageReporters": [

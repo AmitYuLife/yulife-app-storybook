@@ -1,0 +1,411 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChallengeTile should render 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ChallengeTile
+    activity=""
+    duration=""
+    image="bird"
+    reward=""
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <AnimalImage
+          image="bird"
+          isImageBackgroundFlipped={false}
+          isLocked={false}
+        />,
+        <ContentWrapper
+          activity=""
+          duration=""
+          reward=""
+        />,
+      ],
+      "style": Object {
+        "height": 440,
+        "marginTop": 14,
+        "width": 330,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "image": "bird",
+          "isImageBackgroundFlipped": false,
+          "isLocked": false,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "activity": "",
+          "duration": "",
+          "reward": "",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <AnimalImage
+            image="bird"
+            isImageBackgroundFlipped={false}
+            isLocked={false}
+          />,
+          <ContentWrapper
+            activity=""
+            duration=""
+            reward=""
+          />,
+        ],
+        "style": Object {
+          "height": 440,
+          "marginTop": 14,
+          "width": 330,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "image": "bird",
+            "isImageBackgroundFlipped": false,
+            "isLocked": false,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "activity": "",
+            "duration": "",
+            "reward": "",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`ChallengeTile should render when flipped 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ChallengeTile
+    activity=""
+    duration=""
+    image="bird"
+    isImageBackgroundFlipped={true}
+    reward=""
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <AnimalImage
+          image="bird"
+          isImageBackgroundFlipped={true}
+          isLocked={false}
+        />,
+        <ContentWrapper
+          activity=""
+          duration=""
+          reward=""
+        />,
+      ],
+      "style": Object {
+        "height": 440,
+        "marginTop": 14,
+        "width": 330,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "image": "bird",
+          "isImageBackgroundFlipped": true,
+          "isLocked": false,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "activity": "",
+          "duration": "",
+          "reward": "",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <AnimalImage
+            image="bird"
+            isImageBackgroundFlipped={true}
+            isLocked={false}
+          />,
+          <ContentWrapper
+            activity=""
+            duration=""
+            reward=""
+          />,
+        ],
+        "style": Object {
+          "height": 440,
+          "marginTop": 14,
+          "width": 330,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "image": "bird",
+            "isImageBackgroundFlipped": true,
+            "isLocked": false,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "activity": "",
+            "duration": "",
+            "reward": "",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`ChallengeTile should render when locked 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ChallengeTile
+    activity=""
+    duration=""
+    image="bird"
+    isLocked={true}
+    minimumLevel={5}
+    reward=""
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <AnimalImage
+          image="bird"
+          isImageBackgroundFlipped={false}
+          isLocked={true}
+        />,
+        <LockedOverlay
+          isImageBackgroundFlipped={false}
+          minimumLevel={5}
+        />,
+      ],
+      "style": Object {
+        "height": 440,
+        "marginTop": 14,
+        "width": 330,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "image": "bird",
+          "isImageBackgroundFlipped": false,
+          "isLocked": true,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "isImageBackgroundFlipped": false,
+          "minimumLevel": 5,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <AnimalImage
+            image="bird"
+            isImageBackgroundFlipped={false}
+            isLocked={true}
+          />,
+          <LockedOverlay
+            isImageBackgroundFlipped={false}
+            minimumLevel={5}
+          />,
+        ],
+        "style": Object {
+          "height": 440,
+          "marginTop": 14,
+          "width": 330,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "image": "bird",
+            "isImageBackgroundFlipped": false,
+            "isLocked": true,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "isImageBackgroundFlipped": false,
+            "minimumLevel": 5,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

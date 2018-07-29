@@ -36,7 +36,7 @@ class FitKitConnectContainer extends PureComponent<IProps, IState> {
         this.setState({ connecting: true });
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.onboarding.SignUpRewardScreen"
+                name: "yulife.onboarding.SignUpReward"
             }
         });
     }
@@ -52,7 +52,7 @@ class FitKitConnectContainer extends PureComponent<IProps, IState> {
         // TODO set up react-native-config
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.onboarding.SignUpRewardScreen"
+                name: "yulife.onboarding.SignUpReward"
             }
         });
     }
@@ -60,7 +60,7 @@ class FitKitConnectContainer extends PureComponent<IProps, IState> {
     private onSkip = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.onboarding.SignUpRewardScreen"
+                name: "yulife.onboarding.SignUpReward"
             }
         });
     }

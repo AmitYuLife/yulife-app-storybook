@@ -22,7 +22,7 @@ class FitKitConnectContainer extends PureComponent<IProps> {
     private onCollect = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.member.DailyStepsScreen"
+                name: "yulife.member.DailySteps"
             }
         });
     }

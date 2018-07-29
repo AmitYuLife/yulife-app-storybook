@@ -9,16 +9,30 @@ describe("DailyStepsScreen", () => {
 
         const actual = shallow(
             <DailyStepsScreen
-                onMenuPress={jest.fn()}
-                onCtaPress={jest.fn()}
-                onStreakPress={jest.fn()}
-                coinsTotal={0}
                 coinsToday={0}
-                steps={0}
+                coinsTotal={0}
                 currentStreak={0}
-                maxStreak={4}
                 hasNotification={false}
                 isDoneToday={false}
+                labels={[
+                    {
+                        name: "yucoin",
+                        onPress: jest.fn(),
+                    },
+                    {
+                        name: "quest",
+                        onPress: jest.fn(),
+                    },
+                    {
+                        name: "rewards",
+                        onPress: jest.fn(),
+                    },
+                ]}
+                maxStreak={4}
+                onCtaPress={jest.fn()}
+                onMenuPress={jest.fn()}
+                onStreakPress={jest.fn()}
+                steps={0}
             />
         );
 

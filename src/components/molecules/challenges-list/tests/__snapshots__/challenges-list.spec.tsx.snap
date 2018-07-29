@@ -1,0 +1,898 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChallengesList should render when unlocked all levels 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ChallengeSet
+    challenges={
+      Array [
+        Object {
+          "activity": "brisk walk",
+          "duration": "10",
+          "image": "squirrel",
+          "reward": "0-3",
+        },
+        Object {
+          "activity": "long walk",
+          "duration": "30",
+          "image": "ostrich",
+          "reward": "0-6",
+        },
+        Object {
+          "activity": "short stroll",
+          "duration": "5",
+          "image": "elephant",
+          "reward": "0-1",
+        },
+        Object {
+          "activity": "meditation",
+          "duration": "3-10",
+          "image": "bird",
+          "reward": "0-3",
+        },
+      ]
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Component
+          style={
+            Object {
+              "borderColor": "transparent",
+              "borderWidth": 1,
+              "height": "auto",
+              "justifyContent": "flex-start",
+              "paddingTop": 0,
+            }
+          }
+        >
+          <ChallengeTile
+            activity="brisk walk"
+            duration="10"
+            image="squirrel"
+            isImageBackgroundFlipped={false}
+            reward="0-3"
+          />
+          <ChallengeTile
+            activity="long walk"
+            duration="30"
+            image="ostrich"
+            isImageBackgroundFlipped={true}
+            reward="0-6"
+          />
+        </Component>,
+        <Component
+          style={
+            Object {
+              "borderColor": "transparent",
+              "borderWidth": 1,
+              "height": "auto",
+              "justifyContent": "flex-start",
+              "marginLeft": "auto",
+              "marginTop": 74,
+              "paddingTop": 0,
+            }
+          }
+        >
+          <ChallengeTile
+            activity="short stroll"
+            duration="5"
+            image="elephant"
+            isImageBackgroundFlipped={true}
+            reward="0-1"
+          />
+          <ChallengeTile
+            activity="meditation"
+            duration="3-10"
+            image="bird"
+            isImageBackgroundFlipped={false}
+            reward="0-3"
+          />
+        </Component>,
+      ],
+      "style": Object {
+        "flexDirection": "row",
+        "height": "100%",
+        "marginTop": 0,
+        "width": "100%",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <ChallengeTile
+              activity="brisk walk"
+              duration="10"
+              image="squirrel"
+              isImageBackgroundFlipped={false}
+              reward="0-3"
+            />,
+            <ChallengeTile
+              activity="long walk"
+              duration="30"
+              image="ostrich"
+              isImageBackgroundFlipped={true}
+              reward="0-6"
+            />,
+          ],
+          "style": Object {
+            "borderColor": "transparent",
+            "borderWidth": 1,
+            "height": "auto",
+            "justifyContent": "flex-start",
+            "paddingTop": 0,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "class",
+            "props": Object {
+              "activity": "brisk walk",
+              "duration": "10",
+              "image": "squirrel",
+              "isImageBackgroundFlipped": false,
+              "reward": "0-3",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "class",
+            "props": Object {
+              "activity": "long walk",
+              "duration": "30",
+              "image": "ostrich",
+              "isImageBackgroundFlipped": true,
+              "reward": "0-6",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <ChallengeTile
+              activity="short stroll"
+              duration="5"
+              image="elephant"
+              isImageBackgroundFlipped={true}
+              reward="0-1"
+            />,
+            <ChallengeTile
+              activity="meditation"
+              duration="3-10"
+              image="bird"
+              isImageBackgroundFlipped={false}
+              reward="0-3"
+            />,
+          ],
+          "style": Object {
+            "borderColor": "transparent",
+            "borderWidth": 1,
+            "height": "auto",
+            "justifyContent": "flex-start",
+            "marginLeft": "auto",
+            "marginTop": 74,
+            "paddingTop": 0,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "class",
+            "props": Object {
+              "activity": "short stroll",
+              "duration": "5",
+              "image": "elephant",
+              "isImageBackgroundFlipped": true,
+              "reward": "0-1",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "class",
+            "props": Object {
+              "activity": "meditation",
+              "duration": "3-10",
+              "image": "bird",
+              "isImageBackgroundFlipped": false,
+              "reward": "0-3",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Component
+            style={
+              Object {
+                "borderColor": "transparent",
+                "borderWidth": 1,
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 0,
+              }
+            }
+          >
+            <ChallengeTile
+              activity="brisk walk"
+              duration="10"
+              image="squirrel"
+              isImageBackgroundFlipped={false}
+              reward="0-3"
+            />
+            <ChallengeTile
+              activity="long walk"
+              duration="30"
+              image="ostrich"
+              isImageBackgroundFlipped={true}
+              reward="0-6"
+            />
+          </Component>,
+          <Component
+            style={
+              Object {
+                "borderColor": "transparent",
+                "borderWidth": 1,
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "marginLeft": "auto",
+                "marginTop": 74,
+                "paddingTop": 0,
+              }
+            }
+          >
+            <ChallengeTile
+              activity="short stroll"
+              duration="5"
+              image="elephant"
+              isImageBackgroundFlipped={true}
+              reward="0-1"
+            />
+            <ChallengeTile
+              activity="meditation"
+              duration="3-10"
+              image="bird"
+              isImageBackgroundFlipped={false}
+              reward="0-3"
+            />
+          </Component>,
+        ],
+        "style": Object {
+          "flexDirection": "row",
+          "height": "100%",
+          "marginTop": 0,
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <ChallengeTile
+                activity="brisk walk"
+                duration="10"
+                image="squirrel"
+                isImageBackgroundFlipped={false}
+                reward="0-3"
+              />,
+              <ChallengeTile
+                activity="long walk"
+                duration="30"
+                image="ostrich"
+                isImageBackgroundFlipped={true}
+                reward="0-6"
+              />,
+            ],
+            "style": Object {
+              "borderColor": "transparent",
+              "borderWidth": 1,
+              "height": "auto",
+              "justifyContent": "flex-start",
+              "paddingTop": 0,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "class",
+              "props": Object {
+                "activity": "brisk walk",
+                "duration": "10",
+                "image": "squirrel",
+                "isImageBackgroundFlipped": false,
+                "reward": "0-3",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "class",
+              "props": Object {
+                "activity": "long walk",
+                "duration": "30",
+                "image": "ostrich",
+                "isImageBackgroundFlipped": true,
+                "reward": "0-6",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <ChallengeTile
+                activity="short stroll"
+                duration="5"
+                image="elephant"
+                isImageBackgroundFlipped={true}
+                reward="0-1"
+              />,
+              <ChallengeTile
+                activity="meditation"
+                duration="3-10"
+                image="bird"
+                isImageBackgroundFlipped={false}
+                reward="0-3"
+              />,
+            ],
+            "style": Object {
+              "borderColor": "transparent",
+              "borderWidth": 1,
+              "height": "auto",
+              "justifyContent": "flex-start",
+              "marginLeft": "auto",
+              "marginTop": 74,
+              "paddingTop": 0,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "class",
+              "props": Object {
+                "activity": "short stroll",
+                "duration": "5",
+                "image": "elephant",
+                "isImageBackgroundFlipped": true,
+                "reward": "0-1",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "class",
+              "props": Object {
+                "activity": "meditation",
+                "duration": "3-10",
+                "image": "bird",
+                "isImageBackgroundFlipped": false,
+                "reward": "0-3",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`ChallengesList should render when unlocked only first level 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ChallengeSet
+    challenges={
+      Array [
+        Object {
+          "activity": "brisk walk",
+          "duration": "10",
+          "image": "squirrel",
+          "reward": "0-3",
+        },
+        Object {
+          "image": "squirrel",
+          "isLocked": true,
+          "minimumLevel": 4,
+        },
+        Object {
+          "image": "elephant",
+          "isLocked": true,
+          "minimumLevel": 2,
+        },
+        Object {
+          "image": "bird",
+          "isLocked": true,
+          "minimumLevel": 10,
+        },
+      ]
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Component
+          style={
+            Object {
+              "borderColor": "transparent",
+              "borderWidth": 1,
+              "height": "auto",
+              "justifyContent": "flex-start",
+              "paddingTop": 0,
+            }
+          }
+        >
+          <ChallengeTile
+            activity="brisk walk"
+            duration="10"
+            image="squirrel"
+            isImageBackgroundFlipped={false}
+            reward="0-3"
+          />
+          <ChallengeTile
+            image="squirrel"
+            isImageBackgroundFlipped={true}
+            isLocked={true}
+            minimumLevel={4}
+          />
+        </Component>,
+        <Component
+          style={
+            Object {
+              "borderColor": "transparent",
+              "borderWidth": 1,
+              "height": "auto",
+              "justifyContent": "flex-start",
+              "marginLeft": "auto",
+              "marginTop": 74,
+              "paddingTop": 0,
+            }
+          }
+        >
+          <ChallengeTile
+            image="elephant"
+            isImageBackgroundFlipped={true}
+            isLocked={true}
+            minimumLevel={2}
+          />
+          <ChallengeTile
+            image="bird"
+            isImageBackgroundFlipped={false}
+            isLocked={true}
+            minimumLevel={10}
+          />
+        </Component>,
+      ],
+      "style": Object {
+        "flexDirection": "row",
+        "height": "100%",
+        "marginTop": 0,
+        "width": "100%",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <ChallengeTile
+              activity="brisk walk"
+              duration="10"
+              image="squirrel"
+              isImageBackgroundFlipped={false}
+              reward="0-3"
+            />,
+            <ChallengeTile
+              image="squirrel"
+              isImageBackgroundFlipped={true}
+              isLocked={true}
+              minimumLevel={4}
+            />,
+          ],
+          "style": Object {
+            "borderColor": "transparent",
+            "borderWidth": 1,
+            "height": "auto",
+            "justifyContent": "flex-start",
+            "paddingTop": 0,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "class",
+            "props": Object {
+              "activity": "brisk walk",
+              "duration": "10",
+              "image": "squirrel",
+              "isImageBackgroundFlipped": false,
+              "reward": "0-3",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "class",
+            "props": Object {
+              "image": "squirrel",
+              "isImageBackgroundFlipped": true,
+              "isLocked": true,
+              "minimumLevel": 4,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <ChallengeTile
+              image="elephant"
+              isImageBackgroundFlipped={true}
+              isLocked={true}
+              minimumLevel={2}
+            />,
+            <ChallengeTile
+              image="bird"
+              isImageBackgroundFlipped={false}
+              isLocked={true}
+              minimumLevel={10}
+            />,
+          ],
+          "style": Object {
+            "borderColor": "transparent",
+            "borderWidth": 1,
+            "height": "auto",
+            "justifyContent": "flex-start",
+            "marginLeft": "auto",
+            "marginTop": 74,
+            "paddingTop": 0,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "class",
+            "props": Object {
+              "image": "elephant",
+              "isImageBackgroundFlipped": true,
+              "isLocked": true,
+              "minimumLevel": 2,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "class",
+            "props": Object {
+              "image": "bird",
+              "isImageBackgroundFlipped": false,
+              "isLocked": true,
+              "minimumLevel": 10,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Component
+            style={
+              Object {
+                "borderColor": "transparent",
+                "borderWidth": 1,
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 0,
+              }
+            }
+          >
+            <ChallengeTile
+              activity="brisk walk"
+              duration="10"
+              image="squirrel"
+              isImageBackgroundFlipped={false}
+              reward="0-3"
+            />
+            <ChallengeTile
+              image="squirrel"
+              isImageBackgroundFlipped={true}
+              isLocked={true}
+              minimumLevel={4}
+            />
+          </Component>,
+          <Component
+            style={
+              Object {
+                "borderColor": "transparent",
+                "borderWidth": 1,
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "marginLeft": "auto",
+                "marginTop": 74,
+                "paddingTop": 0,
+              }
+            }
+          >
+            <ChallengeTile
+              image="elephant"
+              isImageBackgroundFlipped={true}
+              isLocked={true}
+              minimumLevel={2}
+            />
+            <ChallengeTile
+              image="bird"
+              isImageBackgroundFlipped={false}
+              isLocked={true}
+              minimumLevel={10}
+            />
+          </Component>,
+        ],
+        "style": Object {
+          "flexDirection": "row",
+          "height": "100%",
+          "marginTop": 0,
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <ChallengeTile
+                activity="brisk walk"
+                duration="10"
+                image="squirrel"
+                isImageBackgroundFlipped={false}
+                reward="0-3"
+              />,
+              <ChallengeTile
+                image="squirrel"
+                isImageBackgroundFlipped={true}
+                isLocked={true}
+                minimumLevel={4}
+              />,
+            ],
+            "style": Object {
+              "borderColor": "transparent",
+              "borderWidth": 1,
+              "height": "auto",
+              "justifyContent": "flex-start",
+              "paddingTop": 0,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "class",
+              "props": Object {
+                "activity": "brisk walk",
+                "duration": "10",
+                "image": "squirrel",
+                "isImageBackgroundFlipped": false,
+                "reward": "0-3",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "class",
+              "props": Object {
+                "image": "squirrel",
+                "isImageBackgroundFlipped": true,
+                "isLocked": true,
+                "minimumLevel": 4,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <ChallengeTile
+                image="elephant"
+                isImageBackgroundFlipped={true}
+                isLocked={true}
+                minimumLevel={2}
+              />,
+              <ChallengeTile
+                image="bird"
+                isImageBackgroundFlipped={false}
+                isLocked={true}
+                minimumLevel={10}
+              />,
+            ],
+            "style": Object {
+              "borderColor": "transparent",
+              "borderWidth": 1,
+              "height": "auto",
+              "justifyContent": "flex-start",
+              "marginLeft": "auto",
+              "marginTop": 74,
+              "paddingTop": 0,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "class",
+              "props": Object {
+                "image": "elephant",
+                "isImageBackgroundFlipped": true,
+                "isLocked": true,
+                "minimumLevel": 2,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "class",
+              "props": Object {
+                "image": "bird",
+                "isImageBackgroundFlipped": false,
+                "isLocked": true,
+                "minimumLevel": 10,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

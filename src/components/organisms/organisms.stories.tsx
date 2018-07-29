@@ -1,8 +1,10 @@
-import { action } from "@storybook/addon-actions";
-import { boolean, number, withKnobs } from "@storybook/addon-knobs";
+import { action, HandlerFunction } from "@storybook/addon-actions";
+import { boolean, number, object, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
+import { ChallengeTile, ILabel } from "../molecules";
 import {
+    ChallengesListScreen,
     DailyStepsScreen,
     FitKitConnectScreen,
     LoginScreen,
@@ -10,6 +12,21 @@ import {
     SignUpRewardScreen,
     WelcomeScreen,
 } from "./screens";
+
+const labels: ILabel[] = [
+    {
+        name: "yucoin",
+        onPress: (): HandlerFunction => action("on yucoin press"),
+    },
+    {
+        name: "quest",
+        onPress: (): HandlerFunction => action("on quest press"),
+    },
+    {
+        name: "rewards",
+        onPress: (): HandlerFunction => action("on rewards press"),
+    },
+];
 
 storiesOf("Organisms", module)
     .addDecorator(withKnobs)
@@ -81,6 +98,7 @@ storiesOf("Organisms", module)
             }, "DailySteps")}
             hasNotification={boolean("Notification?", false, "NavBar")}
             isDoneToday={boolean("Done Today?", false, "NavBar")}
+            labels={labels}
             maxStreak={4}
             onCtaPress={action("on cta press")}
             onMenuPress={action("on menu press")}
@@ -91,5 +109,44 @@ storiesOf("Organisms", module)
                 range: true,
                 step: 1,
             }, "DailySteps")}
+        />
+    ))
+    .add("7. Challenges List", () => (
+        <ChallengesListScreen
+            challenges={object("Challenges", [
+                {
+                    activity: "brisk walk",
+                    duration: "10",
+                    image: ChallengeTile.Images.SQUIRREL,
+                    reward: "0-3",
+                },
+                {
+                    activity: "long walk",
+                    duration: "30",
+                    image: ChallengeTile.Images.OSTRICH,
+                    reward: "0-6",
+                },
+                {
+                    activity: "short stroll",
+                    duration: "5",
+                    image: ChallengeTile.Images.ELEPHANT,
+                    reward: "0-1",
+                },
+                {
+                    activity: "meditation",
+                    duration: "3-10",
+                    image: ChallengeTile.Images.BIRD,
+                    reward: "0-3",
+                }
+            ], "ChallengesList")}
+            coinsTotal={number("Coins Total", 246, {
+                max: 35000,
+                min: 0,
+                range: true,
+                step: 1,
+            }, "ChallengesList")}
+            hasNotification={boolean("Notification?", false, "ChallengesList")}
+            onMenuPress={action("on menu press")}
+            labels={labels}
         />
     ));

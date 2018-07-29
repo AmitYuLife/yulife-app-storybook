@@ -5,40 +5,44 @@ import {
     Button,
     CentredScreen,
     Pad,
-    Streak,
     Text,
 } from "../../../../atoms";
-import { NavBar, TopBar } from "../../../../molecules";
+import { NavBar, Streak, TopBar } from "../../../../molecules";
 import { ILabel } from "../../../../molecules/nav-bar/nav-bar";
 import YuCoin from "./assets/yu-coin";
 import styles from "./daily-steps-screen.styles";
 
-interface IProps {
-    onMenuPress: () => void;
-    onCtaPress: () => void;
-    onStreakPress: () => void;
+interface IMemberScreenProps {
     coinsTotal: number;
-    coinsToday: number;
-    steps: number;
-    currentStreak: number;
-    maxStreak: number;
     hasNotification: boolean;
-    isDoneToday: boolean;
-    labels?: ILabel[];
+    labels: ILabel[];
+    onMenuPress: () => void;
 }
 
-const DailyStepsScreen: SFC<IProps> = ({
-    currentStreak,
-    maxStreak,
-    onStreakPress,
-    onMenuPress,
-    coinsTotal,
+interface IDailyStepsScreenProps {
+    coinsToday: number;
+    currentStreak: number;
+    isDoneToday: boolean;
+    maxStreak: number;
+    onCtaPress: () => void;
+    onStreakPress: () => void;
+    steps: number;
+}
+
+type Props = IMemberScreenProps & IDailyStepsScreenProps;
+
+const DailyStepsScreen: SFC<Props> = ({
     coinsToday,
-    steps,
-    onCtaPress,
+    coinsTotal,
+    currentStreak,
     hasNotification,
     isDoneToday,
-    labels
+    labels,
+    maxStreak,
+    onCtaPress,
+    onMenuPress,
+    onStreakPress,
+    steps,
 }) => (
     <CentredScreen
         footerImage={

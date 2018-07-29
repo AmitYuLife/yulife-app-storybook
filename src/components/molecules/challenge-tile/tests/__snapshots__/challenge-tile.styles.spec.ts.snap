@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Challenge Tile styles getImageStyle should always return typeof ImageStyle 1`] = `
+Object {
+  "position": "absolute",
+  "right": 0,
+  "top": 0,
+}
+`;
+
+exports[`Challenge Tile styles getImageStyle should always return typeof ImageStyle 2`] = `
+Object {
+  "position": "absolute",
+  "right": 20,
+  "top": 34,
+}
+`;
+
+exports[`Challenge Tile styles getImageStyle should always return typeof ImageStyle 3`] = `
+Object {
+  "position": "absolute",
+  "right": 30,
+  "top": 14,
+}
+`;
+
+exports[`Challenge Tile styles getImageStyle should always return typeof ImageStyle 4`] = `
+Object {
+  "position": "absolute",
+  "right": 18,
+  "top": 14,
+}
+`;
+
+exports[`Challenge Tile styles getImageStyle should always return typeof ImageStyle 5`] = `
+Object {
+  "position": "absolute",
+  "right": 54,
+  "top": 0,
+}
+`;
