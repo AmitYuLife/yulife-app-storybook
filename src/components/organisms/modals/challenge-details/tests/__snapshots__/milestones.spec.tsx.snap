@@ -1,0 +1,3233 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Milestones should render with units as minutes 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Milestones
+    milestones={
+      Array [
+        Object {
+          "reward": 1,
+          "target": 120,
+        },
+        Object {
+          "reward": 2,
+          "target": 240,
+        },
+        Object {
+          "reward": 3,
+          "target": 480,
+        },
+      ]
+    }
+    unit="minutes"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 10,
+            }
+          }
+        >
+          <Component
+            style={
+              Object {
+                "paddingVertical": 12,
+                "width": 152,
+              }
+            }
+          >
+            <YuText>
+              120 minutes
+            </YuText>
+          </Component>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <Component
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginRight": 16,
+              }
+            }
+          >
+            <YuText>
+              1 x
+            </YuText>
+          </Component>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+              }
+            }
+            style={
+              Object {
+                "marginTop": -8,
+              }
+            }
+          />
+        </Component>,
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 10,
+            }
+          }
+        >
+          <Component
+            style={
+              Object {
+                "paddingVertical": 12,
+                "width": 152,
+              }
+            }
+          >
+            <YuText>
+              240 minutes
+            </YuText>
+          </Component>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <Component
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginRight": 16,
+              }
+            }
+          >
+            <YuText>
+              2 x
+            </YuText>
+          </Component>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+              }
+            }
+            style={
+              Object {
+                "marginTop": -8,
+              }
+            }
+          />
+        </Component>,
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 10,
+            }
+          }
+        >
+          <Component
+            style={
+              Object {
+                "paddingVertical": 12,
+                "width": 152,
+              }
+            }
+          >
+            <YuText>
+              480 minutes
+            </YuText>
+          </Component>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <Component
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginRight": 16,
+              }
+            }
+          >
+            <YuText>
+              3 x
+            </YuText>
+          </Component>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+              }
+            }
+            style={
+              Object {
+                "marginTop": -8,
+              }
+            }
+          />
+        </Component>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": "0",
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Component
+              style={
+                Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                }
+              }
+            >
+              <YuText>
+                120 minutes
+              </YuText>
+            </Component>,
+            Array [
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginRight": 6,
+                    "marginTop": -8,
+                  }
+                }
+              />,
+            ],
+            <Component
+              style={
+                Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                }
+              }
+            >
+              <YuText>
+                1 x
+              </YuText>
+            </Component>,
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                }
+              }
+              style={
+                Object {
+                  "marginTop": -8,
+                }
+              }
+            />,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "marginBottom": 10,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText>
+                120 minutes
+              </YuText>,
+              "style": Object {
+                "paddingVertical": 12,
+                "width": 152,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "120 minutes",
+              },
+              "ref": null,
+              "rendered": "120 minutes",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              },
+              "style": Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText>
+                1 x
+              </YuText>,
+              "style": Object {
+                "marginLeft": "auto",
+                "marginRight": 16,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "1 x",
+              },
+              "ref": null,
+              "rendered": "1 x",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+              },
+              "style": Object {
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "1",
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Component
+              style={
+                Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                }
+              }
+            >
+              <YuText>
+                240 minutes
+              </YuText>
+            </Component>,
+            Array [
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginRight": 6,
+                    "marginTop": -8,
+                  }
+                }
+              />,
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginRight": 6,
+                    "marginTop": -8,
+                  }
+                }
+              />,
+            ],
+            <Component
+              style={
+                Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                }
+              }
+            >
+              <YuText>
+                2 x
+              </YuText>
+            </Component>,
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                }
+              }
+              style={
+                Object {
+                  "marginTop": -8,
+                }
+              }
+            />,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "marginBottom": 10,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText>
+                240 minutes
+              </YuText>,
+              "style": Object {
+                "paddingVertical": 12,
+                "width": 152,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "240 minutes",
+              },
+              "ref": null,
+              "rendered": "240 minutes",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              },
+              "style": Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              },
+              "style": Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText>
+                2 x
+              </YuText>,
+              "style": Object {
+                "marginLeft": "auto",
+                "marginRight": 16,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "2 x",
+              },
+              "ref": null,
+              "rendered": "2 x",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+              },
+              "style": Object {
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "2",
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Component
+              style={
+                Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                }
+              }
+            >
+              <YuText>
+                480 minutes
+              </YuText>
+            </Component>,
+            Array [
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginRight": 6,
+                    "marginTop": -8,
+                  }
+                }
+              />,
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginRight": 6,
+                    "marginTop": -8,
+                  }
+                }
+              />,
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginRight": 6,
+                    "marginTop": -8,
+                  }
+                }
+              />,
+            ],
+            <Component
+              style={
+                Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                }
+              }
+            >
+              <YuText>
+                3 x
+              </YuText>
+            </Component>,
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                }
+              }
+              style={
+                Object {
+                  "marginTop": -8,
+                }
+              }
+            />,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "marginBottom": 10,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText>
+                480 minutes
+              </YuText>,
+              "style": Object {
+                "paddingVertical": 12,
+                "width": 152,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "480 minutes",
+              },
+              "ref": null,
+              "rendered": "480 minutes",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              },
+              "style": Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              },
+              "style": Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              },
+              "style": Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText>
+                3 x
+              </YuText>,
+              "style": Object {
+                "marginLeft": "auto",
+                "marginRight": 16,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "3 x",
+              },
+              "ref": null,
+              "rendered": "3 x",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+              },
+              "style": Object {
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginBottom": 10,
+              }
+            }
+          >
+            <Component
+              style={
+                Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                }
+              }
+            >
+              <YuText>
+                120 minutes
+              </YuText>
+            </Component>
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <Component
+              style={
+                Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                }
+              }
+            >
+              <YuText>
+                1 x
+              </YuText>
+            </Component>
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                }
+              }
+              style={
+                Object {
+                  "marginTop": -8,
+                }
+              }
+            />
+          </Component>,
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginBottom": 10,
+              }
+            }
+          >
+            <Component
+              style={
+                Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                }
+              }
+            >
+              <YuText>
+                240 minutes
+              </YuText>
+            </Component>
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <Component
+              style={
+                Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                }
+              }
+            >
+              <YuText>
+                2 x
+              </YuText>
+            </Component>
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                }
+              }
+              style={
+                Object {
+                  "marginTop": -8,
+                }
+              }
+            />
+          </Component>,
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginBottom": 10,
+              }
+            }
+          >
+            <Component
+              style={
+                Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                }
+              }
+            >
+              <YuText>
+                480 minutes
+              </YuText>
+            </Component>
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <Component
+              style={
+                Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                }
+              }
+            >
+              <YuText>
+                3 x
+              </YuText>
+            </Component>
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                }
+              }
+              style={
+                Object {
+                  "marginTop": -8,
+                }
+              }
+            />
+          </Component>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "0",
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Component
+                style={
+                  Object {
+                    "paddingVertical": 12,
+                    "width": 152,
+                  }
+                }
+              >
+                <YuText>
+                  120 minutes
+                </YuText>
+              </Component>,
+              Array [
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "marginRight": 6,
+                      "marginTop": -8,
+                    }
+                  }
+                />,
+              ],
+              <Component
+                style={
+                  Object {
+                    "marginLeft": "auto",
+                    "marginRight": 16,
+                  }
+                }
+              >
+                <YuText>
+                  1 x
+                </YuText>
+              </Component>,
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginTop": -8,
+                  }
+                }
+              />,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 10,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText>
+                  120 minutes
+                </YuText>,
+                "style": Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "120 minutes",
+                },
+                "ref": null,
+                "rendered": "120 minutes",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                },
+                "style": Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText>
+                  1 x
+                </YuText>,
+                "style": Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "1 x",
+                },
+                "ref": null,
+                "rendered": "1 x",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                },
+                "style": Object {
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "1",
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Component
+                style={
+                  Object {
+                    "paddingVertical": 12,
+                    "width": 152,
+                  }
+                }
+              >
+                <YuText>
+                  240 minutes
+                </YuText>
+              </Component>,
+              Array [
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "marginRight": 6,
+                      "marginTop": -8,
+                    }
+                  }
+                />,
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "marginRight": 6,
+                      "marginTop": -8,
+                    }
+                  }
+                />,
+              ],
+              <Component
+                style={
+                  Object {
+                    "marginLeft": "auto",
+                    "marginRight": 16,
+                  }
+                }
+              >
+                <YuText>
+                  2 x
+                </YuText>
+              </Component>,
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginTop": -8,
+                  }
+                }
+              />,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 10,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText>
+                  240 minutes
+                </YuText>,
+                "style": Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "240 minutes",
+                },
+                "ref": null,
+                "rendered": "240 minutes",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                },
+                "style": Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                },
+                "style": Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText>
+                  2 x
+                </YuText>,
+                "style": Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "2 x",
+                },
+                "ref": null,
+                "rendered": "2 x",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                },
+                "style": Object {
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "2",
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Component
+                style={
+                  Object {
+                    "paddingVertical": 12,
+                    "width": 152,
+                  }
+                }
+              >
+                <YuText>
+                  480 minutes
+                </YuText>
+              </Component>,
+              Array [
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "marginRight": 6,
+                      "marginTop": -8,
+                    }
+                  }
+                />,
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "marginRight": 6,
+                      "marginTop": -8,
+                    }
+                  }
+                />,
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "marginRight": 6,
+                      "marginTop": -8,
+                    }
+                  }
+                />,
+              ],
+              <Component
+                style={
+                  Object {
+                    "marginLeft": "auto",
+                    "marginRight": 16,
+                  }
+                }
+              >
+                <YuText>
+                  3 x
+                </YuText>
+              </Component>,
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginTop": -8,
+                  }
+                }
+              />,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 10,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText>
+                  480 minutes
+                </YuText>,
+                "style": Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "480 minutes",
+                },
+                "ref": null,
+                "rendered": "480 minutes",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                },
+                "style": Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                },
+                "style": Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "2",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                },
+                "style": Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText>
+                  3 x
+                </YuText>,
+                "style": Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "3 x",
+                },
+                "ref": null,
+                "rendered": "3 x",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                },
+                "style": Object {
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`Milestones should render with units as steps 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Milestones
+    milestones={
+      Array [
+        Object {
+          "reward": 1,
+          "target": 1000,
+        },
+        Object {
+          "reward": 2,
+          "target": 2000,
+        },
+        Object {
+          "reward": 3,
+          "target": 3000,
+        },
+      ]
+    }
+    unit="steps"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 10,
+            }
+          }
+        >
+          <Component
+            style={
+              Object {
+                "paddingVertical": 12,
+                "width": 152,
+              }
+            }
+          >
+            <YuText>
+              1000 steps
+            </YuText>
+          </Component>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <Component
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginRight": 16,
+              }
+            }
+          >
+            <YuText>
+              1 x
+            </YuText>
+          </Component>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+              }
+            }
+            style={
+              Object {
+                "marginTop": -8,
+              }
+            }
+          />
+        </Component>,
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 10,
+            }
+          }
+        >
+          <Component
+            style={
+              Object {
+                "paddingVertical": 12,
+                "width": 152,
+              }
+            }
+          >
+            <YuText>
+              2000 steps
+            </YuText>
+          </Component>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <Component
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginRight": 16,
+              }
+            }
+          >
+            <YuText>
+              2 x
+            </YuText>
+          </Component>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+              }
+            }
+            style={
+              Object {
+                "marginTop": -8,
+              }
+            }
+          />
+        </Component>,
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 10,
+            }
+          }
+        >
+          <Component
+            style={
+              Object {
+                "paddingVertical": 12,
+                "width": 152,
+              }
+            }
+          >
+            <YuText>
+              3000 steps
+            </YuText>
+          </Component>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <Component
+            style={
+              Object {
+                "marginLeft": "auto",
+                "marginRight": 16,
+              }
+            }
+          >
+            <YuText>
+              3 x
+            </YuText>
+          </Component>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+              }
+            }
+            style={
+              Object {
+                "marginTop": -8,
+              }
+            }
+          />
+        </Component>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": "0",
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Component
+              style={
+                Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                }
+              }
+            >
+              <YuText>
+                1000 steps
+              </YuText>
+            </Component>,
+            Array [
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginRight": 6,
+                    "marginTop": -8,
+                  }
+                }
+              />,
+            ],
+            <Component
+              style={
+                Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                }
+              }
+            >
+              <YuText>
+                1 x
+              </YuText>
+            </Component>,
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                }
+              }
+              style={
+                Object {
+                  "marginTop": -8,
+                }
+              }
+            />,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "marginBottom": 10,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText>
+                1000 steps
+              </YuText>,
+              "style": Object {
+                "paddingVertical": 12,
+                "width": 152,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "1000 steps",
+              },
+              "ref": null,
+              "rendered": "1000 steps",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              },
+              "style": Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText>
+                1 x
+              </YuText>,
+              "style": Object {
+                "marginLeft": "auto",
+                "marginRight": 16,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "1 x",
+              },
+              "ref": null,
+              "rendered": "1 x",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+              },
+              "style": Object {
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "1",
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Component
+              style={
+                Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                }
+              }
+            >
+              <YuText>
+                2000 steps
+              </YuText>
+            </Component>,
+            Array [
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginRight": 6,
+                    "marginTop": -8,
+                  }
+                }
+              />,
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginRight": 6,
+                    "marginTop": -8,
+                  }
+                }
+              />,
+            ],
+            <Component
+              style={
+                Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                }
+              }
+            >
+              <YuText>
+                2 x
+              </YuText>
+            </Component>,
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                }
+              }
+              style={
+                Object {
+                  "marginTop": -8,
+                }
+              }
+            />,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "marginBottom": 10,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText>
+                2000 steps
+              </YuText>,
+              "style": Object {
+                "paddingVertical": 12,
+                "width": 152,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "2000 steps",
+              },
+              "ref": null,
+              "rendered": "2000 steps",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              },
+              "style": Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              },
+              "style": Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText>
+                2 x
+              </YuText>,
+              "style": Object {
+                "marginLeft": "auto",
+                "marginRight": 16,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "2 x",
+              },
+              "ref": null,
+              "rendered": "2 x",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+              },
+              "style": Object {
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "2",
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Component
+              style={
+                Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                }
+              }
+            >
+              <YuText>
+                3000 steps
+              </YuText>
+            </Component>,
+            Array [
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginRight": 6,
+                    "marginTop": -8,
+                  }
+                }
+              />,
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginRight": 6,
+                    "marginTop": -8,
+                  }
+                }
+              />,
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginRight": 6,
+                    "marginTop": -8,
+                  }
+                }
+              />,
+            ],
+            <Component
+              style={
+                Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                }
+              }
+            >
+              <YuText>
+                3 x
+              </YuText>
+            </Component>,
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                }
+              }
+              style={
+                Object {
+                  "marginTop": -8,
+                }
+              }
+            />,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "marginBottom": 10,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText>
+                3000 steps
+              </YuText>,
+              "style": Object {
+                "paddingVertical": 12,
+                "width": 152,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "3000 steps",
+              },
+              "ref": null,
+              "rendered": "3000 steps",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              },
+              "style": Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              },
+              "style": Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+              },
+              "style": Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText>
+                3 x
+              </YuText>,
+              "style": Object {
+                "marginLeft": "auto",
+                "marginRight": 16,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "3 x",
+              },
+              "ref": null,
+              "rendered": "3 x",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+              },
+              "style": Object {
+                "marginTop": -8,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginBottom": 10,
+              }
+            }
+          >
+            <Component
+              style={
+                Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                }
+              }
+            >
+              <YuText>
+                1000 steps
+              </YuText>
+            </Component>
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <Component
+              style={
+                Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                }
+              }
+            >
+              <YuText>
+                1 x
+              </YuText>
+            </Component>
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                }
+              }
+              style={
+                Object {
+                  "marginTop": -8,
+                }
+              }
+            />
+          </Component>,
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginBottom": 10,
+              }
+            }
+          >
+            <Component
+              style={
+                Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                }
+              }
+            >
+              <YuText>
+                2000 steps
+              </YuText>
+            </Component>
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <Component
+              style={
+                Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                }
+              }
+            >
+              <YuText>
+                2 x
+              </YuText>
+            </Component>
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                }
+              }
+              style={
+                Object {
+                  "marginTop": -8,
+                }
+              }
+            />
+          </Component>,
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginBottom": 10,
+              }
+            }
+          >
+            <Component
+              style={
+                Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                }
+              }
+            >
+              <YuText>
+                3000 steps
+              </YuText>
+            </Component>
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <Component
+              style={
+                Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                }
+              }
+            >
+              <YuText>
+                3 x
+              </YuText>
+            </Component>
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                }
+              }
+              style={
+                Object {
+                  "marginTop": -8,
+                }
+              }
+            />
+          </Component>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "0",
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Component
+                style={
+                  Object {
+                    "paddingVertical": 12,
+                    "width": 152,
+                  }
+                }
+              >
+                <YuText>
+                  1000 steps
+                </YuText>
+              </Component>,
+              Array [
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "marginRight": 6,
+                      "marginTop": -8,
+                    }
+                  }
+                />,
+              ],
+              <Component
+                style={
+                  Object {
+                    "marginLeft": "auto",
+                    "marginRight": 16,
+                  }
+                }
+              >
+                <YuText>
+                  1 x
+                </YuText>
+              </Component>,
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginTop": -8,
+                  }
+                }
+              />,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 10,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText>
+                  1000 steps
+                </YuText>,
+                "style": Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "1000 steps",
+                },
+                "ref": null,
+                "rendered": "1000 steps",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                },
+                "style": Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText>
+                  1 x
+                </YuText>,
+                "style": Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "1 x",
+                },
+                "ref": null,
+                "rendered": "1 x",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                },
+                "style": Object {
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "1",
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Component
+                style={
+                  Object {
+                    "paddingVertical": 12,
+                    "width": 152,
+                  }
+                }
+              >
+                <YuText>
+                  2000 steps
+                </YuText>
+              </Component>,
+              Array [
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "marginRight": 6,
+                      "marginTop": -8,
+                    }
+                  }
+                />,
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "marginRight": 6,
+                      "marginTop": -8,
+                    }
+                  }
+                />,
+              ],
+              <Component
+                style={
+                  Object {
+                    "marginLeft": "auto",
+                    "marginRight": 16,
+                  }
+                }
+              >
+                <YuText>
+                  2 x
+                </YuText>
+              </Component>,
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginTop": -8,
+                  }
+                }
+              />,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 10,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText>
+                  2000 steps
+                </YuText>,
+                "style": Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "2000 steps",
+                },
+                "ref": null,
+                "rendered": "2000 steps",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                },
+                "style": Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                },
+                "style": Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText>
+                  2 x
+                </YuText>,
+                "style": Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "2 x",
+                },
+                "ref": null,
+                "rendered": "2 x",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                },
+                "style": Object {
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "2",
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Component
+                style={
+                  Object {
+                    "paddingVertical": 12,
+                    "width": 152,
+                  }
+                }
+              >
+                <YuText>
+                  3000 steps
+                </YuText>
+              </Component>,
+              Array [
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "marginRight": 6,
+                      "marginTop": -8,
+                    }
+                  }
+                />,
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "marginRight": 6,
+                      "marginTop": -8,
+                    }
+                  }
+                />,
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "marginRight": 6,
+                      "marginTop": -8,
+                    }
+                  }
+                />,
+              ],
+              <Component
+                style={
+                  Object {
+                    "marginLeft": "auto",
+                    "marginRight": 16,
+                  }
+                }
+              >
+                <YuText>
+                  3 x
+                </YuText>
+              </Component>,
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                  }
+                }
+                style={
+                  Object {
+                    "marginTop": -8,
+                  }
+                }
+              />,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 10,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText>
+                  3000 steps
+                </YuText>,
+                "style": Object {
+                  "paddingVertical": 12,
+                  "width": 152,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "3000 steps",
+                },
+                "ref": null,
+                "rendered": "3000 steps",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                },
+                "style": Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                },
+                "style": Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "2",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/star.png",
+                },
+                "style": Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText>
+                  3 x
+                </YuText>,
+                "style": Object {
+                  "marginLeft": "auto",
+                  "marginRight": 16,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "3 x",
+                },
+                "ref": null,
+                "rendered": "3 x",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/yucoin.png",
+                },
+                "style": Object {
+                  "marginTop": -8,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

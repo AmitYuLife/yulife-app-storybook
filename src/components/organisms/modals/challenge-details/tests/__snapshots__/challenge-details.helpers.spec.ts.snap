@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 1`] = `
+Object {
+  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/squirrel.png",
+}
+`;
+
+exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 2`] = `
+Object {
+  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/ostrich.png",
+}
+`;
+
+exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 3`] = `
+Object {
+  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/bird.png",
+}
+`;
+
+exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 4`] = `
+Object {
+  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/elephant.png",
+}
+`;
+
+exports[`ChallengeDetails helpers getImageStyle helper should return a view style for each challenge type 1`] = `
+Object {
+  "marginTop": 200,
+}
+`;
+
+exports[`ChallengeDetails helpers getImageStyle helper should return a view style for each challenge type 2`] = `
+Object {
+  "marginTop": 200,
+}
+`;
+
+exports[`ChallengeDetails helpers getImageStyle helper should return a view style for each challenge type 3`] = `
+Object {
+  "marginTop": 100,
+}
+`;
+
+exports[`ChallengeDetails helpers getImageStyle helper should return a view style for each challenge type 4`] = `
+Object {
+  "marginTop": 200,
+}
+`;

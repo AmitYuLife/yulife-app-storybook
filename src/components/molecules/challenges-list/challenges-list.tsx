@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SFC } from "react";
 import { StyleSheet, View } from "react-native";
-import { ChallengeTile, Images as ChallengeTileImages } from "../";
+import { ChallengeTile, Images as ChallengeTileImages } from "..";
 import styles from "./challenges-list.styles";
 
 interface IChallenge {

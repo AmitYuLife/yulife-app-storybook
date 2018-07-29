@@ -6,6 +6,7 @@ import {
 } from "../button.helpers";
 
 describe("getWrapperStyle", () => {
+
     it("should return null for an undefined input", () => {
         expect(getWrapperStyle(undefined)).toBeNull();
     });
@@ -43,6 +44,7 @@ describe("getWrapperStyle", () => {
 });
 
 describe("getTextStyle", () => {
+
     it("should return null for an undefined input", () => {
         expect(getTextStyle(undefined)).toBeNull();
     });

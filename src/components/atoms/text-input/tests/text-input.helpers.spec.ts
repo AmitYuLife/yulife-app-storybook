@@ -5,6 +5,7 @@ import {
 } from "../text-input.helpers";
 
 describe("getWrapperStyle", () => {
+
     it("should cover all wrapper cases", () => {
 
         const a = getWrapperStyle({
@@ -59,6 +60,7 @@ describe("getWrapperStyle", () => {
 });
 
 describe("getColour", () => {
+
     it("should cover all colour cases", () => {
         const a = getColour({
             hasError: false,
