@@ -21,7 +21,7 @@ export async function getToken(): Promise<string | null> {
     }
 }
 
-export async function setFitkitPermision(fitkitPermision: string): Promise<void> {
+export async function setFitkitPermission(fitkitPermision: string): Promise<void> {
     try {
         await AsyncStorage.setItem(FITKIT_KEY, fitkitPermision);
     } catch (e) {
@@ -29,7 +29,7 @@ export async function setFitkitPermision(fitkitPermision: string): Promise<void>
     }
 }
 
-export async function getFitkitPermision(): Promise<string | null> {
+export async function getFitkitPermission(): Promise<string | null> {
     try {
         const fitkitPermision = await AsyncStorage.getItem(FITKIT_KEY);
         return fitkitPermision;

@@ -1,11 +1,12 @@
 import {
+    ChallengesListContainer,
     DailyStepsContainer,
     FitKitConnectContainer,
     LoginContainer,
     ResetPasswordContainer,
+    SignUpContainer,
     SignUpRewardContainer,
     WelcomeContainer,
-    ChallengesListContainer,
 } from "./../components/screens";
 
 export default [
@@ -13,6 +14,7 @@ export default [
     { name: "Welcome", component: WelcomeContainer },
     { name: "Login", component: LoginContainer },
     { name: "ResetPassword", component: ResetPasswordContainer },
+    { name: "SignUp", component: SignUpContainer },
 
     // onboarding screens
     { name: "onboarding.SignUpReward", component: SignUpRewardContainer },
