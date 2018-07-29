@@ -5,7 +5,8 @@ import React from "react";
 import { ChallengeTile, ILabel } from "../molecules";
 import {
     ChallengeCompleteModal,
-    ChallengeDetailsModal
+    ChallengeDetailsModal,
+    CollectRewardModal,
 } from "./modals";
 import { ChallengeType } from "./modals/challenge-details/challenge-details";
 import {
@@ -49,7 +50,7 @@ storiesOf("Organisms - Screens", module)
             isLoggingIn={false}
             loginError=""
             onEmailChange={action("on email change")}
-            onForgotPress={action("forgotten password press")}
+            onResetPasswordPress={action("forgotten password press")}
             onLogInPress={action("login press")}
             onPasswordChange={action("on password change")}
             onSignUpPress={action("on signup press")}
@@ -200,5 +201,11 @@ storiesOf("Organisms - Modals", module)
     .add("2. Challenge Complete", () => (
         <ChallengeCompleteModal
             onCtaPress={action("on cta press")}
+        />
+    ))
+    .add("3. Collect Reward", () => (
+        <CollectRewardModal
+            date={text("Date", "", "CollectReward")}
+            onPress={action("on press")}
         />
     ));

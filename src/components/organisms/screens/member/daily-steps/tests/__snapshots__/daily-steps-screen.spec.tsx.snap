@@ -49,12 +49,7 @@ ShallowWrapper {
           coins={0}
           onPress={[MockFunction]}
         />,
-        <Streak
-          currentStreak={0}
-          isFinished={false}
-          maxStreak={4}
-          onPress={[MockFunction]}
-        />,
+        false,
         <Pad
           height={60}
         />,
@@ -162,20 +157,7 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "currentStreak": 0,
-          "isFinished": false,
-          "maxStreak": 4,
-          "onPress": [MockFunction],
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
+      false,
       Object {
         "instance": null,
         "key": undefined,
@@ -432,12 +414,7 @@ ShallowWrapper {
             coins={0}
             onPress={[MockFunction]}
           />,
-          <Streak
-            currentStreak={0}
-            isFinished={false}
-            maxStreak={4}
-            onPress={[MockFunction]}
-          />,
+          false,
           <Pad
             height={60}
           />,
@@ -545,20 +522,7 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "currentStreak": 0,
-            "isFinished": false,
-            "maxStreak": 4,
-            "onPress": [MockFunction],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
+        false,
         Object {
           "instance": null,
           "key": undefined,

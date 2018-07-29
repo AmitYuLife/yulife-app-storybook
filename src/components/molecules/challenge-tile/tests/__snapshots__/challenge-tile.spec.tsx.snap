@@ -29,7 +29,7 @@ ShallowWrapper {
           isLocked={false}
         />,
         <ContentWrapper
-          activity=""
+          challengeType=""
           duration=""
           reward=""
         />,
@@ -60,7 +60,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "activity": "",
+          "challengeType": "",
           "duration": "",
           "reward": "",
         },
@@ -84,7 +84,7 @@ ShallowWrapper {
             isLocked={false}
           />,
           <ContentWrapper
-            activity=""
+            challengeType=""
             duration=""
             reward=""
           />,
@@ -115,7 +115,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "activity": "",
+            "challengeType": "",
             "duration": "",
             "reward": "",
           },
@@ -167,7 +167,7 @@ ShallowWrapper {
           isLocked={false}
         />,
         <ContentWrapper
-          activity=""
+          challengeType=""
           duration=""
           reward=""
         />,
@@ -198,7 +198,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "activity": "",
+          "challengeType": "",
           "duration": "",
           "reward": "",
         },
@@ -222,7 +222,7 @@ ShallowWrapper {
             isLocked={false}
           />,
           <ContentWrapper
-            activity=""
+            challengeType=""
             duration=""
             reward=""
           />,
@@ -253,7 +253,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "activity": "",
+            "challengeType": "",
             "duration": "",
             "reward": "",
           },
