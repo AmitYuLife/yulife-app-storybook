@@ -9,6 +9,7 @@ import {
 } from "./modals";
 import { ChallengeType } from "./modals/challenge-details/challenge-details";
 import {
+    ChallengeProgressScreen,
     ChallengesListScreen,
     DailyStepsScreen,
     FitKitConnectScreen,
@@ -153,6 +154,16 @@ storiesOf("Organisms - Screens", module)
             hasNotification={boolean("Notification?", false, "ChallengesList")}
             onMenuPress={action("on menu press")}
             labels={labels}
+        />
+    ))
+    .add("8. Challenge Progress", () => (
+        <ChallengeProgressScreen
+            challengeType={select("Challenge Type", [
+                "brisk walk",
+                "short stroll",
+                "long walk",
+                "meditation"
+            ], "brisk walk", "ChallengeDetails") as ChallengeType}
         />
     ));
 
