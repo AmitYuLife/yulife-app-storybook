@@ -4,6 +4,32 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: DailySteps
+// ====================================================
+
+export interface DailySteps_getCurrentUser_userStatus {
+  totalCoins: number | null;
+}
+
+export interface DailySteps_getCurrentUser_userFeatures {
+  name: string | null;
+  value: boolean | null;
+}
+
+export interface DailySteps_getCurrentUser {
+  userStatus: DailySteps_getCurrentUser_userStatus | null;
+  userFeatures: (DailySteps_getCurrentUser_userFeatures | null)[] | null;
+}
+
+export interface DailySteps {
+  getCurrentUser: DailySteps_getCurrentUser | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: loginUser
 // ====================================================
 

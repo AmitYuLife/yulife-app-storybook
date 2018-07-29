@@ -1,6 +1,8 @@
 import * as React from "react";
 import { PureComponent } from "react";
+import { Text } from "react-native";
 import { Navigation } from "react-native-navigation";
+import DailyStepsQuery, { dailyStepsGql } from "../../../../graphql/member/dailySteps.gql";
 import { ILabel } from "../../../molecules/nav-bar/nav-bar";
 import { DailyStepsScreen } from "../../../organisms/screens";
 
@@ -28,19 +30,38 @@ class DailyStepsContainer extends PureComponent<IProps> {
 
     public render() {
         return (
-            <DailyStepsScreen
-                coinsToday={5}
-                coinsTotal={12345}
-                currentStreak={2}
-                hasNotification={true}
-                isDoneToday={false}
-                labels={this.labels}
-                maxStreak={4}
-                onCtaPress={this.onCta}
-                onMenuPress={this.onMenu}
-                onStreakPress={this.onStreak}
-                steps={12345}
-            />
+            <DailyStepsQuery
+                fetchPolicy="cache-first" // TODO this should be cache-only!
+                query={dailyStepsGql}
+            >
+                {({ error, loading, data }) => {
+                    if (error) {
+                        return <Text> ERROR!!! </Text>;
+                    }
+
+                    if (loading) {
+                        return <Text>Loading</Text>;
+                    }
+
+                    const { userStatus } = data.getCurrentUser;
+
+                    return (
+                        <DailyStepsScreen
+                            coinsToday={5}
+                            coinsTotal={userStatus.totalCoins}
+                            currentStreak={2}
+                            hasNotification={true}
+                            isDoneToday={false}
+                            labels={this.labels}
+                            maxStreak={4}
+                            onCtaPress={this.onCta}
+                            onMenuPress={this.onMenu}
+                            onStreakPress={this.onStreak}
+                            steps={12345}
+                        />
+                    );
+                }}
+            </DailyStepsQuery>
         );
     }
 

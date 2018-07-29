@@ -22,6 +22,7 @@ interface IMemberScreenProps {
 interface IDailyStepsScreenProps {
     coinsToday: number;
     currentStreak: number;
+    displayStreak?: boolean;
     isDoneToday: boolean;
     maxStreak: number;
     onCtaPress: () => void;
@@ -35,6 +36,7 @@ const DailyStepsScreen: SFC<Props> = ({
     coinsToday,
     coinsTotal,
     currentStreak,
+    displayStreak = false,
     hasNotification,
     isDoneToday,
     labels,
@@ -50,12 +52,12 @@ const DailyStepsScreen: SFC<Props> = ({
         }
     >
         <TopBar coins={coinsTotal} onPress={onMenuPress} />
-        <Streak
+        {displayStreak && <Streak
             isFinished={isDoneToday}
             onPress={onStreakPress}
             currentStreak={currentStreak}
             maxStreak={maxStreak}
-        />
+        />}
         <Pad height={60} />
         <YuCoin scale={0.5} />
         <Text>{steps || 0} steps</Text>
