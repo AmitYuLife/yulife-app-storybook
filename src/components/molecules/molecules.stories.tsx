@@ -2,8 +2,14 @@ import { action } from "@storybook/addon-actions";
 import { boolean, number, object, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
+import {
+    ChallengesList,
+    ChallengeTile,
+    NavBar,
+    Streak,
+    TopBar,
+} from ".";
 import CenterView from "../../../storybook/stories/CenterView";
-import { ChallengesList, ChallengeTile, NavBar, Streak, TopBar } from "./";
 
 storiesOf("Molecules", module)
     .addDecorator(withKnobs)

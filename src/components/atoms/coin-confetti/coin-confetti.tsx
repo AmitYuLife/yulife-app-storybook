@@ -5,7 +5,7 @@ import {
     StyleSheet,
     View,
 } from "react-native";
-import { PlusPoints } from "../";
+import { PlusPoints } from "..";
 import styles from "./coin-confetti.styles";
 
 interface IProps {

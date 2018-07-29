@@ -45,7 +45,11 @@ class DailyStepsContainer extends PureComponent<IProps> {
     }
 
     private onCta = () => {
-        Navigation.pop(this.props.componentId);
+        Navigation.push(this.props.componentId, {
+            component: {
+                name: "yulife.member.ChallengesList"
+            }
+        });
     }
 
     private onMenu = () => {

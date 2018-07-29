@@ -25,7 +25,7 @@ export interface IProps {
     isLoggingIn: boolean;
     loginError: string;
     onEmailChange: (email: string) => void;
-    onForgotPress: () => void;
+    onResetPasswordPress: () => void;
     onLogInPress: () => void;
     onPasswordChange: (password: string) => void;
     onSignUpPress: () => void;
@@ -85,43 +85,41 @@ class LoginScreen extends PureComponent<IProps, IState> {
                 style={styles.kAV}
             >
                 <CentredScreen
-                    footerImage={
-                        CentredScreen.FooterImages.FOREST
-                    }
+                    footerImage={CentredScreen.FooterImages.FOREST}
                 >
                     {this.state.isShowingKeyboard ? null : (
                         <View>
                             <Pad height={100} />
                             <Heading
-                                size={Heading.Sizes.LARGE}
                                 label={data.heading}
+                                size={Heading.Sizes.LARGE}
                             />
                         </View>
                     )}
                     <Pad height={44} />
                     <TextInput
-                        hasError={!!emailError}
                         errorMessage={emailError}
+                        hasError={!!emailError}
+                        onChange={onEmailChange}
                         type={TextInput.Types.EMAIL}
                         value={email}
-                        onChange={onEmailChange}
                     />
                     <Pad height={12} />
                     <TextInput
-                        hasError={!!passwordError}
                         errorMessage={passwordError}
-                        type={TextInput.Types.PASSWORD}
-                        value={password}
+                        hasError={!!passwordError}
                         onChange={onPasswordChange}
+                        value={password}
+                        type={TextInput.Types.PASSWORD}
                     />
                     {!!loginError && (
                         <TextInputError>{loginError}</TextInputError>
                     )}
                     <Pad height={44} />
                     <Button
-                        type={Button.Types.PRIMARY}
                         label={isLoggingIn ? data.isLoggingIn : data.logInCta}
                         onPress={onLogInPress}
+                        type={Button.Types.PRIMARY}
                     />
                     <Pad height={15} />
                     <LinkGroup data={this.getLinks()} />
@@ -135,11 +133,11 @@ class LoginScreen extends PureComponent<IProps, IState> {
     }
 
     private getLinks = () => {
-        const { onForgotPress, onSignUpPress } = this.props;
+        const { onResetPasswordPress, onSignUpPress } = this.props;
         return [
             {
                 label: "Forgot password",
-                onPress: onForgotPress,
+                onPress: onResetPasswordPress,
             },
             {
                 label: "Sign up",

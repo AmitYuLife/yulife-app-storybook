@@ -1,0 +1,66 @@
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: loginUser
+// ====================================================
+
+export interface loginUser_loginUser_user_userStatus {
+  totalCoins: number | null;
+}
+
+export interface loginUser_loginUser_user_userFeatures {
+  name: string | null;
+  value: boolean | null;
+}
+
+export interface loginUser_loginUser_user {
+  id: string | null;
+  businessAccountId: string | null;
+  membershipType: string | null;
+  email: string | null;
+  firstName: string | null;
+  lastName: string | null;
+  dateOfBirth: string | null;
+  smokerStatus: string | null;
+  bmi: string | null;
+  userStatus: loginUser_loginUser_user_userStatus | null;
+  userFeatures: (loginUser_loginUser_user_userFeatures | null)[] | null;
+}
+
+export interface loginUser_loginUser {
+  token: string | null;
+  expiresAt: number | null;
+  message: string | null;
+  user: loginUser_loginUser_user | null;
+}
+
+export interface loginUser {
+  loginUser: loginUser_loginUser | null;
+}
+
+export interface loginUserVariables {
+  email: string;
+  password: string;
+  method?: LoginMethod | null;
+  tokenExpiration?: number | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+//==============================================================
+// START Enums and Input Objects
+//==============================================================
+
+export enum LoginMethod {
+  FACEBOOK = "FACEBOOK",
+  OTP = "OTP",
+  PASSWORD = "PASSWORD",
+}
+
+//==============================================================
+// END Enums and Input Objects
+//==============================================================

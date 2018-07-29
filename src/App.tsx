@@ -1,45 +1,32 @@
 import { Navigation } from "react-native-navigation";
-import {
-    ChallengesListContainer,
-    DailyStepsContainer,
-    FitKitConnectContainer,
-    LoginContainer,
-    ResetPasswordContainer,
-    SignUpRewardContainer,
-    WelcomeContainer
-} from "./components/screens";
+import registerScreens from "./navigation";
+import { getFitkitPermision, getToken } from "./services/storage";
 
-// root screens
-Navigation.registerComponent("yulife.Welcome", () => WelcomeContainer);
-Navigation.registerComponent("yulife.Login", () => LoginContainer);
-Navigation.registerComponent("yulife.ResetPassword", () => ResetPasswordContainer);
+// register all the screens
+registerScreens();
 
-// onboarding screens
-Navigation.registerComponent("yulife.onboarding.FitKitConnect", () => FitKitConnectContainer);
-Navigation.registerComponent("yulife.onboarding.SignUpReward", () => SignUpRewardContainer);
-
-// member screens
-Navigation.registerComponent("yulife.member.DailySteps", () => DailyStepsContainer);
-Navigation.registerComponent("yulife.member.ChallengesList", () => ChallengesListContainer);
-
-Navigation.events().registerAppLaunchedListener(() => {
+Navigation.events().registerAppLaunchedListener(async () => {
+    const token = await getToken();
+    // const fitkitPermision = await getFitkitPermision();
 
     Navigation.setDefaultOptions({
         topBar: {
-            visible: false
-        }
+            visible: false,
+        },
     });
 
-    Navigation.setRoot({
+    await Navigation.setRoot({
         root: {
             stack: {
-                children: [{
-                    component: {
-                        name: "yulife.Welcome"
+                children: [
+                    {
+                        component: {
+                            name: token ? "yulife.member.DailySteps" : "yulife.Welcome",
+                        },
+                        id: "TEST",
                     },
-                    id: "TEST",
-                }]
-            }
-        }
+                ],
+            },
+        },
     });
 });

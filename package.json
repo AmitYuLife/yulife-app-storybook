@@ -7,11 +7,18 @@
     "start:ios": "react-native run-ios",
     "start:android": "react-native run-android",
     "test": "jest --config=jest.config.json",
+    "download-schema": "apollo-codegen download-schema http://yulife-api-server-develop.eu-west-2.elasticbeanstalk.com/graphql --output ./src/graphql/_core/schema.json",
+    "generate-graphql-types": "apollo-codegen generate ./src/graphql/**/*.gql.ts --schema ./src/graphql/_core/schema.json --target ts --output ./src/graphql/_core/schema.ts",
     "prestorybook": "rnstl",
     "storybook": "storybook start -p 7007"
   },
   "dependencies": {
+    "apollo-boost": "^0.1.12",
+    "apollo-codegen": "^0.20.2",
+    "apollo-link-context": "^1.0.8",
+    "graphql": "^0.13.2",
     "react": "16.4.1",
+    "react-apollo": "^2.1.9",
     "react-native": "0.56.0",
     "react-native-navigation": "^2.0.2431",
     "react-native-svg": "^6.5.0"

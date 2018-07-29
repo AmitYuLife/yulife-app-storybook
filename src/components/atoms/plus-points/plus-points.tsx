@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SFC } from "react";
 import { View } from "react-native";
-import { Text } from "../";
+import { Text } from "..";
 import Plus from "./assets/plus";
 import styles from "./plus-points.styles";
 
