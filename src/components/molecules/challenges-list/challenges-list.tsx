@@ -1,20 +1,21 @@
 import * as React from "react";
 import { SFC } from "react";
 import { StyleSheet, View } from "react-native";
-import { ChallengeTile, Images as ChallengeTileImages } from "..";
+import { ChallengeTile, IChallengeTileProps, Images as ChallengeTileImages } from "..";
+import { ChallengeType } from "../../organisms/modals";
 import styles from "./challenges-list.styles";
 
-interface IChallenge {
-    activity?: string;
-    duration?: string;
+export interface IChallengesListTileProps {
+    challengeType: ChallengeType;
+    duration: string;
     image: ChallengeTileImages;
     isLocked?: boolean;
     minimumLevel?: number;
-    reward?: string;
+    reward: string;
 }
 
 export interface IChallengesListProps {
-    challenges: IChallenge[];
+    challenges: IChallengeTileProps[];
 }
 
 const ChallengeSet: SFC<IChallengesListProps> = ({ challenges }) => (
@@ -24,11 +25,9 @@ const ChallengeSet: SFC<IChallengesListProps> = ({ challenges }) => (
                 .slice(0, 2)
                 .map((challenge, index) => (
                     <ChallengeTile
-                        key={index}
                         {...challenge}
-                        isImageBackgroundFlipped={
-                            index % 2 !== 0
-                        }
+                        isImageBackgroundFlipped={index % 2 !== 0}
+                        key={index}
                     />
                 ))}
         </View>
@@ -42,11 +41,9 @@ const ChallengeSet: SFC<IChallengesListProps> = ({ challenges }) => (
                 .slice(2, 4)
                 .map((challenge, index) => (
                     <ChallengeTile
-                        key={index}
                         {...challenge}
-                        isImageBackgroundFlipped={
-                            index % 2 === 0
-                        }
+                        isImageBackgroundFlipped={index % 2 === 0}
+                        key={index}
                     />
                 ))}
         </View>

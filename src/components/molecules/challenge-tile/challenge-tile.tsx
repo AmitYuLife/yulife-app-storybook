@@ -8,13 +8,13 @@ import styles, {
 } from "./challenge-tile.styles";
 
 export interface IChallengeTileProps {
-    image: Images;
-    activity?: string;
+    challengeType?: string;
     duration?: string;
-    reward?: string;
+    image: Images;
     isImageBackgroundFlipped?: boolean;
     isLocked?: boolean;
     minimumLevel?: number;
+    reward?: string;
 }
 
 export enum IMAGES {
@@ -40,7 +40,7 @@ class ChallengeTile extends PureComponent<Props> {
         const {
             image = null,
             isImageBackgroundFlipped = false,
-            activity = "",
+            challengeType = "",
             duration = "",
             reward = "",
             isLocked = false,
@@ -65,7 +65,7 @@ class ChallengeTile extends PureComponent<Props> {
                     />
                 ) : (
                     <ContentWrapper
-                        activity={activity}
+                        challengeType={challengeType}
                         duration={duration}
                         reward={reward}
                     />
@@ -127,10 +127,10 @@ const AnimalImage: SFC<Partial<Props>> = ({ image, isLocked, isImageBackgroundFl
     </View>
 );
 
-const ContentWrapper: SFC<Partial<Props>> = ({ activity, duration, reward }) => (
+const ContentWrapper: SFC<Partial<Props>> = ({ challengeType, duration, reward }) => (
     <View style={styles.sectionBottomWrapper}>
         <Content
-            activity={activity}
+            challengeType={challengeType}
             duration={duration}
             reward={reward}
         />
@@ -144,16 +144,16 @@ const ContentWrapper: SFC<Partial<Props>> = ({ activity, duration, reward }) => 
     </View>
 );
 
-const Content: SFC<Partial<Props>> = ({ activity, duration, reward }) => (
+const Content: SFC<Partial<Props>> = ({ challengeType, duration, reward }) => (
     <View style={styles.contentWrapper}>
         <View style={styles.contentTitleWrapper}>
             <Text bold={true} style={styles.contentTitle}>
-                {activity}
+                {challengeType}
             </Text>
         </View>
         <View style={styles.contentDurationWrapper}>
             <Text bold={true} style={styles.contentTitle}>
-                {duration} mins
+                {duration}
             </Text>
         </View>
         <View style={styles.contentRewardWrapper}>

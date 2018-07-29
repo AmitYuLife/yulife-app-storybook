@@ -4,6 +4,37 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: ChallengesList
+// ====================================================
+
+export interface ChallengesList_getChallenges_milestones {
+  id: string | null;
+  target: (number | null)[] | null;
+  coins: number | null;
+}
+
+export interface ChallengesList_getChallenges {
+  id: string | null;
+  type: string | null;
+  subtype: string | null;
+  level: number | null;
+  target: (number | null)[] | null;
+  totalCoins: number | null;
+  timelimit: number | null;
+  unit: string | null;
+  milestones: (ChallengesList_getChallenges_milestones | null)[] | null;
+  __typename: "ChallengeTemplate";
+}
+
+export interface ChallengesList {
+  getChallenges: (ChallengesList_getChallenges | null)[] | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: DailySteps
 // ====================================================
 

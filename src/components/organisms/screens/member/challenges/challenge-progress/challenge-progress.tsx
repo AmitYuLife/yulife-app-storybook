@@ -6,6 +6,7 @@ import styles from "./challenge-progress.styles";
 export type ChallengeType =
     | "short stroll"
     | "meditation"
+    | "day walk"
     | "long walk"
     | "brisk walk";
 
