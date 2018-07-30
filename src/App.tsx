@@ -8,6 +8,15 @@ registerScreens();
 Navigation.events().registerAppLaunchedListener(async () => {
     const token = await getToken();
     // const fitkitPermission = await getFitkitPermission();
+    const name = token ? "yulife.member.DailySteps" : "yulife.Welcome";
+    const children = [
+        {
+            component: {
+                name,
+                id: name,
+            },
+        },
+    ];
 
     Navigation.setDefaultOptions({
         topBar: {
@@ -15,23 +24,10 @@ Navigation.events().registerAppLaunchedListener(async () => {
         },
     });
 
-    // TODO use this for logging?
-    // Navigation.events().registerComponentDidAppearListener(({ componentId, componentName }) => {
-    //     console.log("Component Name", componentName);
-    // });
+    Navigation.setRoot({ root: { stack: { children } } });
+});
 
-    Navigation.setRoot({
-        root: {
-            stack: {
-                children: [
-                    {
-                        component: {
-                            name: token ? "yulife.member.DailySteps" : "yulife.Welcome",
-                        },
-                        id: "TEST",
-                    },
-                ],
-            },
-        },
-    });
+// TODO use this for logging?
+Navigation.events().registerComponentDidAppearListener(({ componentId, componentName }) => {
+    console.log(`Component Name -> ${componentName} -> ${componentId}`);
 });

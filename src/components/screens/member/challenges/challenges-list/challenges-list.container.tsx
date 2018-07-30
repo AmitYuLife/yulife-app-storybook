@@ -38,8 +38,7 @@ export const getChallengeImage = (challengeType: ChallengeType): Images => {
     }
 };
 
-const reduceMilestones = (milestones: any[]): number =>
-    milestones.reduce((sum, milestone) => sum + milestone.coins, 0);
+const reduceMilestones = (milestones: any[]): number => milestones.reduce((sum, milestone) => sum + milestone.coins, 0);
 
 const secondsToMinutes = (seconds: number): number => Math.floor(seconds / 60);
 
@@ -47,7 +46,9 @@ const getChallengeDuration = (challenge: any): string => {
     switch (challenge.subtype) {
         case "meditation":
             // tslint:disable-next-line
-            return `${secondsToMinutes(challenge.milestones[0].target[0])}-${secondsToMinutes(challenge.milestones[2].target[0])} mins`;
+            return `${secondsToMinutes(challenge.milestones[0].target[0])}-${secondsToMinutes(
+                challenge.milestones[2].target[0],
+            )} mins`;
 
         case "day walk":
             return "all day";
@@ -58,19 +59,18 @@ const getChallengeDuration = (challenge: any): string => {
 };
 
 class ChallengesListContainer extends PureComponent<IProps> {
-
     private labels: ILabel[] = [
         {
             name: "yucoin",
-            onPress: (): void => this.onNavPress("yulife.member.DailySteps"),
+            onPress: (): Promise<void> => this.onNavPress("yulife.member.DailySteps"),
         },
         {
             name: "challenges",
-            onPress: (): void => this.onNavPress("yulife.member.ChallengesList"),
+            onPress: (): Promise<void> => this.onNavPress("yulife.member.ChallengesList"),
         },
         {
             name: "rewards",
-            onPress: (): void => this.onNavPress("yulife.member.Rewards"),
+            onPress: (): Promise<void> => this.onNavPress("yulife.member.Rewards"),
         },
     ];
 
@@ -78,7 +78,6 @@ class ChallengesListContainer extends PureComponent<IProps> {
         return (
             <ChallengesListQuery query={challengesListGql}>
                 {({ loading, error, data }) => {
-
                     if (loading) {
                         return <Text>LOADING</Text>;
                     }
@@ -109,21 +108,35 @@ class ChallengesListContainer extends PureComponent<IProps> {
             reward: `0-${reduceMilestones(template.milestones)}`,
             unit: template.unit,
         }));
-    }
+    };
 
     private onMenu = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.Login"
-            }
+                name: "yulife.Login",
+            },
         });
-    }
+    };
 
-    private onNavPress = (name: string) => {
-        Navigation.push(this.props.componentId, {
-            component: { name }
+    private onNavPress = async (name: string) => {
+        if (name === "yulife.member.DailySteps") {
+            await Navigation.popToRoot(this.props.componentId);
+            return;
+        } else {
+            try {
+                await Navigation.popTo(name);
+                return;
+            } catch (e) {}
+        }
+
+        await Navigation.push(this.props.componentId, {
+            component: {
+                name,
+                id: name,
+            },
         });
-    }
+        return;
+    };
 }
 
 export default ChallengesListContainer;

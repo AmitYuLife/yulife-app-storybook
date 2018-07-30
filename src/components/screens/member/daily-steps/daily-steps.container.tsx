@@ -12,7 +12,7 @@ interface IProps {
 }
 
 class DailyStepsContainer extends PureComponent<IProps> {
-
+    private COMPONENT_ID = "yulife.member.DailySteps";
     private labels: ILabel[] = [
         {
             name: "yucoin",
@@ -68,32 +68,35 @@ class DailyStepsContainer extends PureComponent<IProps> {
     private onCta = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.member.ChallengesList"
-            }
+                name: "yulife.member.ChallengesList",
+            },
         });
-    }
+    };
 
     private onMenu = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.Login"
-            }
+                name: "yulife.member.ChallengesList",
+            },
         });
-    }
+    };
 
     private onStreak = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.Login"
-            }
+                name: "yulife.member.ChallengesList",
+            },
         });
-    }
+    };
 
     private onNavPress = (name: string) => {
         Navigation.push(this.props.componentId, {
-            component: { name }
+            component: {
+                name,
+                id: name,
+            },
         });
-    }
+    };
 }
 
 export default DailyStepsContainer;
