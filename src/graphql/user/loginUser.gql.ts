@@ -2,6 +2,8 @@ import gql from "graphql-tag";
 import { Mutation, MutationFn, MutationResult } from "react-apollo";
 
 import { loginUser, loginUserVariables } from "../_core/schema";
+import { challengeFragmentGql } from "../_fragments/challenge.gql";
+import { challengeTemplateFragmentGql } from "../_fragments/challengeTemplate.gql";
 
 export const loginUserGql = gql`
     mutation loginUser($email: String!, $password: String!, $method: LoginMethod, $tokenExpiration: Int) {
@@ -10,6 +12,7 @@ export const loginUserGql = gql`
             expiresAt
             message
             user {
+                __typename
                 id
                 businessAccountId
                 membershipType
@@ -21,6 +24,21 @@ export const loginUserGql = gql`
                 bmi
                 userStatus {
                     totalCoins
+                    challenges {
+                        passive {
+                            ...Challenge
+                            challengeTemplate {
+                                ...ChallengeTemplate
+                            }
+                        }
+                        nextActiveAvailable
+                        active {
+                            ...Challenge
+                            challengeTemplate {
+                                ...ChallengeTemplate
+                            }
+                        }
+                    }
                 }
                 userFeatures {
                     name
@@ -29,6 +47,8 @@ export const loginUserGql = gql`
             }
         }
     }
+    ${challengeFragmentGql}
+    ${challengeTemplateFragmentGql}
 `;
 
 export type LoginUserMutationType = MutationFn<loginUser, loginUserVariables>;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Navigation } from "react-native-navigation";
 import { LoginMethod, loginUser_loginUser } from "../../../graphql/_core/schema";
 import LoginUserMutation, { loginUserGql } from "../../../graphql/user/loginUser.gql";
-import { setToken } from "../../../services/storage";
+import { setToken, setUser } from "../../../services/storage";
 import { LoginScreen } from "../../organisms/screens";
 import { validateEmail, validatePassword } from "./login.helpers";
 
@@ -39,13 +39,7 @@ export class LoginContainer extends Component<Props, IState> {
     // }
 
     public render() {
-        const {
-            email,
-            emailError,
-            loggingIn,
-            passwordError,
-            password
-        } = this.state;
+        const { email, emailError, loggingIn, passwordError, password } = this.state;
 
         return (
             <LoginUserMutation mutation={loginUserGql}>
@@ -94,6 +88,7 @@ export class LoginContainer extends Component<Props, IState> {
 
     private onLogIn = async (result: loginUser_loginUser) => {
         this.setState({ loggingIn: true }, async () => {
+            await setUser(result.user);
             await setToken(result.token);
             await Navigation.push(this.props.componentId, {
                 component: {
@@ -101,7 +96,7 @@ export class LoginContainer extends Component<Props, IState> {
                 },
             });
         });
-    }
+    };
 
     private onSignUp = () => {
         Navigation.push(this.props.componentId, {
@@ -109,7 +104,7 @@ export class LoginContainer extends Component<Props, IState> {
                 name: "yulife.SignUp",
             },
         });
-    }
+    };
 
     private onResetPassword = () => {
         Navigation.push(this.props.componentId, {
@@ -117,19 +112,19 @@ export class LoginContainer extends Component<Props, IState> {
                 name: "yulife.ResetPassword",
             },
         });
-    }
+    };
 
     private onEmailChange = (email: string) => {
         const emailError = validateEmail(email);
 
         this.setState({ email, emailError });
-    }
+    };
 
     private onPasswordChange = (password: string) => {
         const passwordError = validatePassword(password);
 
         this.setState({ password, passwordError });
-    }
+    };
 
     private isFormValid = () => {
         const { email, password } = this.state;
@@ -143,7 +138,7 @@ export class LoginContainer extends Component<Props, IState> {
         }
 
         return formIsValid;
-    }
+    };
 }
 
 export default LoginContainer;

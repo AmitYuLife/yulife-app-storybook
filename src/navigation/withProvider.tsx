@@ -1,15 +1,15 @@
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
-import { ApolloClient } from "../../node_modules/apollo-client";
+import { ApolloClient } from "apollo-client";
 import ContextProvider from "../context";
 
-const withProvider = (Component: React.ComponentClass, client: ApolloClient<{}>) => {
+const withProvider = (WrappedComponent: React.ComponentClass, client: ApolloClient<{}>) => {
     return class extends React.Component {
         public render() {
             return (
                 <ApolloProvider client={client}>
                     <ContextProvider>
-                        <Component {...this.props} />
+                        <WrappedComponent {...this.props} />
                     </ContextProvider>
                 </ApolloProvider>
             );

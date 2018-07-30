@@ -1,14 +1,15 @@
-import * as React from "react";
-import { Component } from "react";
-import { SideEffect } from "../typings";
-import { loginUser_loginUser_user } from "../graphql/_core/schema";
-import { EmptyUser } from "./user";
+import React, { Component } from "react";
 import { NetInfo, ConnectionInfo } from "react-native";
+import { SideEffect } from "../typings";
+import { EmptyUser, IUserState } from "./user";
+import { EmptyStatus, IUserStatusState } from "./status";
+import { EmptyFeatures, IUserFeaturesState } from "./features";
+import { getUser, getUserStatus, getUserFeatures, setUser } from "../services/storage";
 
 export interface IStore {
     state: IState;
     actions: {
-        updateUser: (state: Partial<loginUser_loginUser_user>) => void;
+        updateUser: (state: IUserState) => void;
         setError: SideEffect<Error>;
         clearError: SideEffect;
     };
@@ -17,6 +18,8 @@ export interface IStore {
 const EmptyStore: IStore = {
     state: {
         user: EmptyUser,
+        status: EmptyStatus,
+        features: EmptyFeatures,
         isConnected: true,
         error: null,
     },
@@ -26,7 +29,9 @@ const EmptyStore: IStore = {
 export const { Consumer, Provider } = React.createContext(EmptyStore);
 
 export interface IState {
-    user: loginUser_loginUser_user;
+    user: IUserState;
+    status: IUserStatusState;
+    features: IUserFeaturesState;
     isConnected: boolean;
     error: Error | null;
 }
@@ -35,12 +40,15 @@ class ContextProvider extends Component<{}, IState> {
     NET_INFO_EVENT_NAME = "connectionChange";
     state: IState = {
         user: EmptyUser,
+        status: EmptyStatus,
+        features: EmptyFeatures,
         isConnected: true,
         error: null,
     };
 
-    componentDidMount() {
+    async componentDidMount() {
         NetInfo.addEventListener(this.NET_INFO_EVENT_NAME, this.checkConnection);
+        await this.hydrateStore();
     }
 
     componentWillUnmount() {
@@ -51,15 +59,21 @@ class ContextProvider extends Component<{}, IState> {
         this.setState({ isConnected: info.type !== "none" });
     };
 
-    formatObject = (obj: Partial<any>) => {
-        const { __typename, ...result } = obj;
-        return result;
+    hydrateStore = async () => {
+        const user = (await getUser()) || {};
+        const status = (await getUserStatus()) || {};
+        const features = (await getUserFeatures()) || {};
+
+        this.setState(state => ({
+            user: { ...state.user, ...user },
+            status: { ...state.status, ...status },
+            features: { ...state.features, ...features },
+        }));
     };
 
-    updateUser = (obj: Partial<loginUser_loginUser_user>) => {
-        this.setState(({ user }) => ({
-            user: { ...user, ...this.formatObject(obj) },
-        }));
+    updateUser = async (user: IUserState) => {
+        await setUser(user);
+        await this.hydrateStore();
     };
 
     setError = (error: Error) => {

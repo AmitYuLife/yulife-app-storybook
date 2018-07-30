@@ -7,7 +7,7 @@ import {
     SignUpContainer,
     SignUpRewardContainer,
     WelcomeContainer,
-} from "./../components/screens";
+} from "../components/screens";
 
 export default [
     // root screens

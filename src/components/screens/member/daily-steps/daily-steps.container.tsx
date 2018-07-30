@@ -5,6 +5,7 @@ import { Navigation } from "react-native-navigation";
 import DailyStepsQuery, { dailyStepsGql } from "../../../../graphql/member/dailySteps.gql";
 import { ILabel } from "../../../molecules/nav-bar/nav-bar";
 import { DailyStepsScreen } from "../../../organisms/screens";
+import { setToken } from "../../../../services/storage";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -44,7 +45,7 @@ class DailyStepsContainer extends PureComponent<IProps> {
                     }
 
                     const { userStatus } = data.getCurrentUser;
-
+                    console.log(data.getCurrentUser);
                     return (
                         <DailyStepsScreen
                             coinsToday={5}
@@ -66,11 +67,12 @@ class DailyStepsContainer extends PureComponent<IProps> {
     }
 
     private onCta = () => {
-        Navigation.push(this.props.componentId, {
-            component: {
-                name: "yulife.member.ChallengesList",
-            },
-        });
+        setToken("");
+        // Navigation.push(this.props.componentId, {
+        //     component: {
+        //         name: "yulife.member.ChallengesList",
+        //     },
+        // });
     };
 
     private onMenu = () => {
