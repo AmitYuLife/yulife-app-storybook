@@ -12,8 +12,8 @@ Navigation.events().registerAppLaunchedListener(async () => {
     const children = [
         {
             component: {
-                name,
                 id: name,
+                name,
             },
         },
     ];

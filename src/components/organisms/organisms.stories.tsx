@@ -18,6 +18,7 @@ import {
     FitKitConnectScreen,
     LoginScreen,
     ResetPasswordScreen,
+    ResetPasswordSuccessScreen,
     SignUpRewardScreen,
     WelcomeScreen,
 } from "./screens";
@@ -60,10 +61,15 @@ storiesOf("Organisms - Screens", module)
             passwordError=""
         />
     ))
-    .add("3. Reset Password", () => (
+    .add("3a. Reset Password", () => (
         <ResetPasswordScreen
             onCancelPress={action("on cancel press")}
             onSubmitPress={action("on submit press")}
+        />
+    ))
+    .add("3b. Reset Password Success", () => (
+        <ResetPasswordSuccessScreen
+            onLogInPress={action("on login press")}
         />
     ))
     .add("4. FitKit Connect", () => (

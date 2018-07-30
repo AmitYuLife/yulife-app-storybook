@@ -18,7 +18,7 @@ interface IState {
     email: string;
 }
 
-export default class RewardScreen extends PureComponent<IProps, IState> {
+class ResetPasswordScreen extends PureComponent<IProps, IState> {
 
     public state: IState = {
         email: "",
@@ -65,3 +65,5 @@ export default class RewardScreen extends PureComponent<IProps, IState> {
         this.setState({ email });
     }
 }
+
+export default ResetPasswordScreen;

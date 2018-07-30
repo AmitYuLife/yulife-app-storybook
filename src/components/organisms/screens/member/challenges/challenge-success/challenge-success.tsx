@@ -1,4 +1,5 @@
-import React, { SFC } from "react";
+import * as React from "react";
+import { SFC } from "react";
 import { Image, View } from "react-native";
 import { Button, PlusPoints, Stars, Text } from "../../../../../atoms";
 import Assets from "./assets";

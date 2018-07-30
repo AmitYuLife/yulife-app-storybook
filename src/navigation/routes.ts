@@ -4,6 +4,7 @@ import {
     FitKitConnectContainer,
     LoginContainer,
     ResetPasswordContainer,
+    ResetPasswordSuccessContainer,
     SignUpContainer,
     SignUpRewardContainer,
     WelcomeContainer,
@@ -14,6 +15,7 @@ export default [
     { name: "Welcome", component: WelcomeContainer },
     { name: "Login", component: LoginContainer },
     { name: "ResetPassword", component: ResetPasswordContainer },
+    { name: "ResetPasswordSuccess", component: ResetPasswordSuccessContainer },
     { name: "SignUp", component: SignUpContainer },
 
     // onboarding screens

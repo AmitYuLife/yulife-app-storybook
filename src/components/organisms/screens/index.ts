@@ -2,6 +2,7 @@
 export { default as LoginScreen } from "./login/login-screen";
 export { default as SignUpScreen } from "./sign-up/sign-up";
 export { default as ResetPasswordScreen } from "./reset-password/reset-password";
+export { default as ResetPasswordSuccessScreen } from "./reset-password/reset-password-success";
 export { default as WelcomeScreen } from "./welcome/welcome-screen";
 
 // onboarding screens
