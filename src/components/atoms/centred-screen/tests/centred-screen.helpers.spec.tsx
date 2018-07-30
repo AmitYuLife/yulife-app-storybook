@@ -1,3 +1,4 @@
+import "react-native";
 import { IMAGES } from "../centred-screen";
 import {
     getImage,
@@ -16,6 +17,7 @@ describe("getImage", () => {
     it("should return a mocked image for forest", () => {
 
         const actual = getImage(IMAGES.FOREST);
+
         expect(actual).toBeDefined();
     });
 

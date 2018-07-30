@@ -12,34 +12,38 @@ describe("getWrapperStyle", () => {
     });
 
     it("should be defined when given a known input", () => {
-        const value = getWrapperStyle(
-            BUTTON_TYPES.PRIMARY_SMALL
-        );
-        expect(value).toBeDefined();
+
+        const actual = getWrapperStyle(BUTTON_TYPES.PRIMARY_SMALL);
+
+        expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-        const value = getWrapperStyle(BUTTON_TYPES.PRIMARY);
-        expect(value).toBeDefined();
+
+        const actual = getWrapperStyle(BUTTON_TYPES.PRIMARY);
+
+        expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-        const value = getWrapperStyle(
-            BUTTON_TYPES.PRIMARY_MEDIUM
-        );
-        expect(value).toBeDefined();
+
+        const actual = getWrapperStyle(BUTTON_TYPES.PRIMARY_MEDIUM);
+
+        expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-        const value = getWrapperStyle(
-            BUTTON_TYPES.SECONDARY
-        );
-        expect(value).toBeDefined();
+
+        const actual = getWrapperStyle(BUTTON_TYPES.SECONDARY);
+
+        expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-        const value = getWrapperStyle(BUTTON_TYPES.LINK);
-        expect(value).toBeDefined();
+
+        const actual = getWrapperStyle(BUTTON_TYPES.LINK);
+
+        expect(actual).toBeDefined();
     });
 });
 
@@ -50,46 +54,58 @@ describe("getTextStyle", () => {
     });
 
     it("should be defined when given a known input", () => {
-        const value = getTextStyle(BUTTON_TYPES.PRIMARY);
-        expect(value).toBeDefined();
+
+        const actual = getTextStyle(BUTTON_TYPES.PRIMARY);
+
+        expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-        const value = getTextStyle(
-            BUTTON_TYPES.PRIMARY_SMALL
-        );
-        expect(value).toBeDefined();
+
+        const actual = getTextStyle(BUTTON_TYPES.PRIMARY_SMALL);
+
+        expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-        const value = getTextStyle(BUTTON_TYPES.SECONDARY);
-        expect(value).toBeDefined();
+
+        const actual = getTextStyle(BUTTON_TYPES.SECONDARY);
+
+        expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-        const value = getTextStyle(BUTTON_TYPES.LINK);
-        expect(value).toBeDefined();
+
+        const actual = getTextStyle(BUTTON_TYPES.LINK);
+
+        expect(actual).toBeDefined();
     });
 });
 
 describe("getShadowStyle", () => {
+
     it("should return null for an undefined input", () => {
         expect(getShadowStyle(undefined)).toBeNull();
     });
+
     it("should be defined when given a known input", () => {
-        const value = getShadowStyle(BUTTON_TYPES.PRIMARY);
-        expect(value).toBeDefined();
+
+        const actual = getShadowStyle(BUTTON_TYPES.PRIMARY);
+
+        expect(actual).toBeDefined();
     });
+
     it("should be defined when given a known input", () => {
-        const value = getShadowStyle(
-            BUTTON_TYPES.PRIMARY_MEDIUM
-        );
-        expect(value).toBeDefined();
+
+        const actual = getShadowStyle(BUTTON_TYPES.PRIMARY_MEDIUM);
+
+        expect(actual).toBeDefined();
     });
+
     it("should be defined when given a known input", () => {
-        const value = getShadowStyle(
-            BUTTON_TYPES.PRIMARY_SMALL
-        );
-        expect(value).toBeDefined();
+
+        const actual = getShadowStyle(BUTTON_TYPES.PRIMARY_SMALL);
+
+        expect(actual).toBeDefined();
     });
 });

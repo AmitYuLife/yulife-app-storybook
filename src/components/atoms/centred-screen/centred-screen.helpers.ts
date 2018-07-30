@@ -8,6 +8,8 @@ export const getImage = (image: string) => {
             return require("./assets/forestBackground.png");
         case IMAGES.LARGE_FOREST:
             return require("./assets/largeForest.png");
+        case IMAGES.MOUNTAINS:
+            return require("./assets/mountains.png");
         default:
             return null;
     }
@@ -21,6 +23,11 @@ export const getImageStyle = (image: string) => {
                 styles.imageForest,
             ]);
         case IMAGES.LARGE_FOREST:
+            return StyleSheet.flatten([
+                styles.imageBase,
+                styles.imageLargeForest,
+            ]);
+        case IMAGES.MOUNTAINS:
             return StyleSheet.flatten([
                 styles.imageBase,
                 styles.imageLargeForest,

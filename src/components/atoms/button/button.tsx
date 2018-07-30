@@ -15,9 +15,9 @@ import {
 } from "./button.helpers";
 
 interface IProps {
-    type: Types;
-    onPress: () => void;
     label: string;
+    onPress: () => void;
+    type: Types;
     wrapperStyle?: ViewStyle;
 }
 
@@ -25,6 +25,7 @@ export enum BUTTON_TYPES {
     PRIMARY = "Primary",
     PRIMARY_MEDIUM = "PrimaryMedium",
     PRIMARY_SMALL = "PrimarySmall",
+    PRIMARY_GREYSCALE_SMALL = "PrimaryGreyscaleSmall",
     SECONDARY = "Secondary",
     LINK = "Link",
 }
@@ -33,11 +34,11 @@ type Types =
     | "Primary"
     | "PrimaryMedium"
     | "PrimarySmall"
+    | "PrimaryGreyscaleSmall"
     | "Secondary"
     | "Link";
 
 class Button extends PureComponent<IProps> {
-
     public static Types = BUTTON_TYPES;
 
     public render() {
@@ -47,6 +48,7 @@ class Button extends PureComponent<IProps> {
             onPress,
             wrapperStyle,
         } = this.props;
+
         if (
             Platform.OS === "android" &&
             type.startsWith(BUTTON_TYPES.PRIMARY)

@@ -10,8 +10,10 @@ import {
 } from "./modals";
 import { ChallengeType } from "./modals/challenge-details/challenge-details";
 import {
+    ChallengeFailedScreen,
     ChallengeProgressScreen,
     ChallengesListScreen,
+    ChallengeSuccessScreen,
     DailyStepsScreen,
     FitKitConnectScreen,
     LoginScreen,
@@ -165,6 +167,38 @@ storiesOf("Organisms - Screens", module)
                 "long walk",
                 "meditation"
             ], "brisk walk", "ChallengeDetails") as ChallengeType}
+        />
+    ))
+    .add("9. Challenge Success", () => (
+        <ChallengeSuccessScreen
+            onPressCta={action("on cta press")}
+            score={number("Score", 246, {
+                max: 35000,
+                min: 0,
+                range: true,
+                step: 1,
+            }, "ChallengeSuccess")}
+            unit={select("Unit", [
+                "steps",
+                "minutes"
+            ], "steps", "ChallengeSuccess")}
+            rating={number("Rating", 0, {
+                max: 3,
+                min: 0,
+                range: true,
+                step: 1
+            }, "ChallengeSuccess")}
+            reward={number("Reward", 0, {
+                max: 3,
+                min: 0,
+                range: true,
+                step: 1
+            }, "ChallengeSuccess")}
+        />
+    ))
+    .add("10. Challenge Failed", () => (
+        <ChallengeFailedScreen
+            onPress={action("on press")}
         />
     ));
 

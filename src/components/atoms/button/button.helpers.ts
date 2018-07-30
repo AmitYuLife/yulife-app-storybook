@@ -18,6 +18,12 @@ export const getWrapperStyle = (type: string) => {
                 styles.wrapperPrimary,
                 styles.wrapperPrimarySmall,
             ]);
+        case BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL:
+            return StyleSheet.flatten([
+                styles.wrapperPrimary,
+                styles.wrapperPrimaryGreyscale,
+                styles.wrapperPrimarySmall,
+            ]);
         case BUTTON_TYPES.LINK:
             return styles.wrapperLink;
         default:
@@ -33,6 +39,11 @@ export const getTextStyle = (type: string) => {
         case BUTTON_TYPES.PRIMARY_MEDIUM:
         case BUTTON_TYPES.PRIMARY_SMALL:
             return styles.textPrimary;
+        case BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL:
+            return StyleSheet.flatten([
+                styles.textPrimary,
+                styles.textGreyscale,
+            ]);
         case BUTTON_TYPES.LINK:
             return styles.textLink;
         default:
@@ -52,6 +63,12 @@ export const getShadowStyle = (type: string) => {
         case BUTTON_TYPES.PRIMARY_SMALL:
             return StyleSheet.flatten([
                 styles.shadow,
+                styles.shadowSmall,
+            ]);
+        case BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL:
+            return StyleSheet.flatten([
+                styles.shadow,
+                styles.shadowGrey,
                 styles.shadowSmall,
             ]);
         default:

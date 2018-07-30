@@ -11,8 +11,9 @@ import {
     CoinConfetti,
     Heading,
     Pad,
+    Stars,
     TextInput
-} from ".";
+} from "./";
 
 storiesOf("Atoms", module)
     .addDecorator(withKnobs)
@@ -28,6 +29,7 @@ storiesOf("Atoms", module)
                 onPress={action("button-click")}
                 label={text("Primary Label", "do a backflip", "PRIMARY")}
             />
+            <Pad height={30} />
             <Button
                 type={Button.Types.SECONDARY}
                 onPress={action("button-click")}
@@ -91,6 +93,15 @@ storiesOf("Atoms", module)
                     range: true,
                     step: 1,
                 })}
+            />
+        </CenterView>
+    ))
+    .add("7. Stars", () => (
+        <CenterView>
+            <Stars
+                isLeftHighlighted={boolean("Left Highlighted?", true, "Stars")}
+                isMidHighlighted={boolean("Middle Highlighted?", true, "Stars")}
+                isRightHighlighted={boolean("Right Highlighted?", true, "Stars")}
             />
         </CenterView>
     ));

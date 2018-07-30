@@ -14,15 +14,15 @@ interface IProps {
     challengeType: ChallengeType;
 }
 
-const ChallengeInProgress: SFC<IProps> = ({ challengeType }) => (
+const ChallengeProgressScreen: SFC<IProps> = ({ challengeType }) => (
     <View style={styles.wrapper}>
         <Image
-            source={getBackgroundImage(challengeType)}
-            style={StyleSheet.flatten([styles.backgroundImage, { height: getBackgroundImageHeight(challengeType) }])}
             resizeMethod="resize"
             resizeMode="cover"
+            source={getBackgroundImage(challengeType)}
+            style={StyleSheet.flatten([styles.backgroundImage, { height: getBackgroundImageHeight(challengeType) }])}
         />
     </View>
 );
 
-export default ChallengeInProgress;
+export default ChallengeProgressScreen;

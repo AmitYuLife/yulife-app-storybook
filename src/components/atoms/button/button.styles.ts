@@ -16,6 +16,9 @@ export default StyleSheet.create({
         top: Style.SCALE_UP_AND_DOWN(4),
         width: Style.SCALE_UP_AND_DOWN(306),
     } as ViewStyle,
+    shadowGrey: {
+        backgroundColor: "rgb(150,150,150)",
+    },
     shadowMedium: {
         top: Style.SCALE_UP_AND_DOWN(3),
         width: Style.SCALE_UP_AND_DOWN(210),
@@ -24,6 +27,10 @@ export default StyleSheet.create({
         top: Style.SCALE_UP_AND_DOWN(2),
         width: Style.SCALE_UP_AND_DOWN(170),
     } as ViewStyle,
+    textGreyscale: {
+        color: "rgb(85,85,85)",
+        fontFamily: Style.FONT_FAMILY_PRIMARY,
+    } as TextStyle,
     textLink: {
         color: Colours.button.link,
         fontFamily: Style.FONT_FAMILY_PRIMARY,
@@ -65,6 +72,11 @@ export default StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 1,
         width: Style.SCALE_UP_AND_DOWN(306),
+    } as ViewStyle,
+    wrapperPrimaryGreyscale: {
+        backgroundColor: "white",
+        borderColor: "white",
+        shadowColor: "rgb(150,150,150)",
     } as ViewStyle,
     wrapperPrimaryMedium: {
         shadowOffset: {

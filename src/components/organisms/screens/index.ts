@@ -10,5 +10,7 @@ export { default as SignUpRewardScreen } from "./onboarding/signup-reward/signup
 
 // member screens
 export { default as DailyStepsScreen } from "./member/daily-steps/daily-steps-screen";
+export { default as ChallengeFailedScreen } from "./member/challenges/challenge-failed/challenge-failed";
 export { default as ChallengeProgressScreen } from "./member/challenges/challenge-progress/challenge-progress";
+export { default as ChallengeSuccessScreen } from "./member/challenges/challenge-success/challenge-success";
 export { default as ChallengesListScreen } from "./member/challenges/challenges-list/challenges-list-screen";
