@@ -1,4 +1,5 @@
 export { default as Blurb } from "./blurb/blurb";
+export { default as BlurProvider } from "./blur/blur-provider";
 export { default as Button } from "./button/button";
 export { default as CentredScreen } from "./centred-screen/centred-screen";
 export { default as Close } from "./close/close";

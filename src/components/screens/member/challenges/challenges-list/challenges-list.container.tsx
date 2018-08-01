@@ -3,22 +3,33 @@ import { PureComponent } from "react";
 import { Text } from "react-native";
 import { Navigation } from "react-native-navigation";
 import ChallengesListQuery, { challengesListGql } from "../../../../../graphql/member/challengesList.gql";
-import { ChallengeTile, ILabel, Images, IMAGES } from "../../../../molecules";
+import { BlurProvider } from "../../../../atoms";
+import { ILabel, Images, IMAGES } from "../../../../molecules";
+import { ChallengeDetailsModal } from "../../../../organisms/modals";
 import { ChallengesListScreen } from "../../../../organisms/screens";
-import { ChallengeType } from "../../../../organisms/screens/member/challenges/challenge-progress/challenge-progress";
 
-// TODO find where these props actually come from in RNN types
-interface IProps {
-    componentId?: string;
+interface IChallengeDetailsMilestone {
+    reward: number;
+    target: number;
 }
 
-// const getChallengeMilestones = (milestones: any[]): any[] =>
-//     milestones.map((milestone) => ({
-//         reward: milestone.coins,
-//         target: milestone.target[0],
-//     }));
+interface IHandlePressChallenge {
+    challengeType: string;
+    duration: string;
+    id: string;
+    reward: string;
+    milestones: IChallengeDetailsMilestone[];
+    unit: string;
+    handleToggleBlur: () => void;
+}
 
-export const getChallengeImage = (challengeType: ChallengeType): Images => {
+const getChallengeMilestones = (milestones: any[]): IChallengeDetailsMilestone[] =>
+    milestones.map((milestone) => ({
+        reward: milestone.coins,
+        target: milestone.target[0],
+    }));
+
+export const getChallengeImage = (challengeType: string): Images => {
     switch (challengeType) {
         case "meditation":
             return IMAGES.BIRD;
@@ -28,10 +39,10 @@ export const getChallengeImage = (challengeType: ChallengeType): Images => {
             return IMAGES.SQUIRREL;
 
         case "long walk":
-            return IMAGES.ELEPHANT;
+            return IMAGES.OSTRICH;
 
         case "day walk":
-            return IMAGES.OSTRICH;
+            return IMAGES.ELEPHANT;
 
         default:
             return IMAGES.BIRD;
@@ -58,7 +69,31 @@ const getChallengeDuration = (challenge: any): string => {
     }
 };
 
-class ChallengesListContainer extends PureComponent<IProps> {
+// TODO find where these props actually come from in RNN types
+interface IProps {
+    componentId: string;
+}
+
+interface IState {
+    challengeType: string;
+    duration: string;
+    id: string;
+    reward: string;
+    milestones: IChallengeDetailsMilestone[];
+    unit: string;
+}
+
+class ChallengesListContainer extends PureComponent<IProps, IState> {
+
+    public state: IState = {
+        challengeType: "brisk walk",
+        duration: "",
+        id: "",
+        milestones: [],
+        reward: "",
+        unit: "",
+    };
+
     private labels: ILabel[] = [
         {
             name: "yucoin",
@@ -78,6 +113,7 @@ class ChallengesListContainer extends PureComponent<IProps> {
         return (
             <ChallengesListQuery query={challengesListGql}>
                 {({ loading, error, data }) => {
+
                     if (loading) {
                         return <Text>LOADING</Text>;
                     }
@@ -86,13 +122,47 @@ class ChallengesListContainer extends PureComponent<IProps> {
                         return <Text>ERROR!</Text>;
                     }
 
+                    const challenges = this.mapChallengeTemplates(data.getChallenges);
+                    const {
+                        challengeType,
+                        duration,
+                        id,
+                        milestones,
+                        unit
+                    } = this.state;
+
                     return (
-                        <ChallengesListScreen
-                            challenges={this.mapChallengeTemplates(data.getChallenges)}
-                            coinsTotal={12345}
-                            hasNotification={true}
-                            labels={this.labels}
-                            onMenuPress={this.onMenu}
+                        <BlurProvider
+                            render={({ handleToggleBlur }) => (
+                                <ChallengesListScreen
+                                    challenges={challenges.map((challenge: IHandlePressChallenge) => ({
+                                        ...challenge,
+                                        onPress: this.handlePressChallenge({
+                                            challengeType: challenge.challengeType,
+                                            duration: challenge.duration,
+                                            handleToggleBlur,
+                                            id: challenge.id,
+                                            milestones: challenge.milestones,
+                                            reward: challenge.reward,
+                                            unit: challenge.unit,
+                                        }),
+                                    }))}
+                                    coinsTotal={12345}
+                                    hasNotification={true}
+                                    labels={this.labels}
+                                    onMenuPress={this.onMenu}
+                                />
+                            )}
+                            renderOverlay={({ handleToggleBlur }) => (
+                                <ChallengeDetailsModal
+                                    challengeType={challengeType}
+                                    duration={duration}
+                                    milestones={milestones}
+                                    onPressCta={handleToggleBlur}
+                                    onPressClose={handleToggleBlur}
+                                    unit={unit}
+                                />
+                            )}
                         />
                     );
                 }}
@@ -100,15 +170,23 @@ class ChallengesListContainer extends PureComponent<IProps> {
         );
     }
 
+    private handlePressChallenge = ({ handleToggleBlur, ...challengeProps }: IHandlePressChallenge) => {
+        return () => {
+            this.setState({ ...challengeProps });
+            handleToggleBlur();
+        };
+    }
+
     private mapChallengeTemplates = (challengeTemplates: any) => {
         return challengeTemplates.map((template: any) => ({
             challengeType: template.subtype,
             duration: getChallengeDuration(template),
             image: getChallengeImage(template.subtype),
+            milestones: getChallengeMilestones(template.milestones),
             reward: `0-${reduceMilestones(template.milestones)}`,
             unit: template.unit,
         }));
-    };
+    }
 
     private onMenu = () => {
         Navigation.push(this.props.componentId, {
@@ -116,7 +194,7 @@ class ChallengesListContainer extends PureComponent<IProps> {
                 name: "yulife.Login",
             },
         });
-    };
+    }
 
     private onNavPress = async (name: string) => {
         if (name === "yulife.member.DailySteps") {
@@ -126,17 +204,21 @@ class ChallengesListContainer extends PureComponent<IProps> {
             try {
                 await Navigation.popTo(name);
                 return;
-            } catch (e) {}
+            } catch (e) {
+                // TODO proper catch error
+                // tslint:disable-next-line
+                console.log("navigation error: ", e.message);
+            }
         }
 
         await Navigation.push(this.props.componentId, {
             component: {
-                name,
                 id: name,
+                name,
             },
         });
         return;
-    };
+    }
 }
 
 export default ChallengesListContainer;

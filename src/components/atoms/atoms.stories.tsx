@@ -4,8 +4,11 @@ import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import { Text } from "react-native";
 import CenterView from "../../../storybook/stories/CenterView";
+import { CollectRewardModal } from "../organisms/modals";
+import { SignUpRewardScreen } from "../organisms/screens";
 import {
     Blurb,
+    BlurProvider,
     Button,
     CentredScreen,
     CoinConfetti,
@@ -17,12 +20,27 @@ import {
 
 storiesOf("Atoms", module)
     .addDecorator(withKnobs)
-    .add("1. Blurb", () => (
+    .add("1. BlurProvider", () => (
+        <BlurProvider
+            renderOverlay={({ handleToggleBlur }) => (
+                <CollectRewardModal
+                    onPress={handleToggleBlur}
+                />
+            )}
+            render={({ handleToggleBlur }) => (
+                <SignUpRewardScreen
+                    onCollectPress={handleToggleBlur}
+                    reward={200}
+                />
+            )}
+        />
+    ))
+    .add("2. Blurb", () => (
         <CenterView>
             <Blurb label={text("Label", "Let's begin the journey of making you the best of yu!")} />
         </CenterView>
     ))
-    .add("2. Button", () => (
+    .add("3. Button", () => (
         <CenterView>
             <Button
                 type={Button.Types.PRIMARY}
@@ -37,17 +55,17 @@ storiesOf("Atoms", module)
             />
         </CenterView>
     ))
-    .add("3a. Centred Screen - Forest", () => (
+    .add("4a. Centred Screen - Forest", () => (
         <CentredScreen
             footerImage={CentredScreen.FooterImages.FOREST}
         />
     ))
-    .add("3b. Centred Screen - Large Forest", () => (
+    .add("4b. Centred Screen - Large Forest", () => (
         <CentredScreen
             footerImage={CentredScreen.FooterImages.LARGE_FOREST}
         />
     ))
-    .add("4. Heading", () => (
+    .add("5. Heading", () => (
         <CenterView>
             <Heading label={text("Default Label", "Default heading", "DEFAULT")} />
             <Heading
@@ -56,7 +74,7 @@ storiesOf("Atoms", module)
             />
         </CenterView>
     ))
-    .add("5. TextInput", () => (
+    .add("6. TextInput", () => (
         <CenterView>
             <Text>Email</Text>
             <TextInput
@@ -79,12 +97,12 @@ storiesOf("Atoms", module)
             />
         </CenterView>
     ))
-    .add("6a. Coin Confetti - without reward", () => (
+    .add("7a. Coin Confetti - without reward", () => (
         <CenterView>
             <CoinConfetti />
         </CenterView>
     ))
-    .add("6b. Coin Confetti - with reward", () => (
+    .add("7b. Coin Confetti - with reward", () => (
         <CenterView>
             <CoinConfetti
                 coins={number("Reward", 1000, {
@@ -96,7 +114,7 @@ storiesOf("Atoms", module)
             />
         </CenterView>
     ))
-    .add("7. Stars", () => (
+    .add("8. Stars", () => (
         <CenterView>
             <Stars
                 isLeftHighlighted={boolean("Left Highlighted?", true, "Stars")}

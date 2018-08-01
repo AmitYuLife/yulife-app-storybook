@@ -55,9 +55,10 @@ storiesOf("Molecules", module)
     .add("4. Challenge Tile", () => (
         <CenterView background="dark">
             <ChallengeTile
-                activity={text("Activity", "brisk walk", "ChallengeTile")}
-                duration={text("Duration", "3-10", "ChallengeTile")}
-                image={select("Active Index", ["bird", "squirrel", "elephant", "ostrich"], "squirrel", "ChallengeTile")}
+                challengeType={text("Challenge Type", "brisk walk", "ChallengeTile")}
+                duration={text("Duration", "3-10 mins", "ChallengeTile")}
+                image={select("Image", ["bird", "squirrel", "elephant", "ostrich"], "squirrel", "ChallengeTile")}
+                onPress={action("on press")}
                 reward={text("Reward", "0-3", "ChallengeTile")}
             />
         </CenterView>
@@ -67,25 +68,25 @@ storiesOf("Molecules", module)
             <ChallengesList
                 challenges={object("Challenges", [
                     {
-                        activity: "brisk walk",
+                        challengeType: "brisk walk",
                         duration: "10",
                         image: ChallengeTile.Images.SQUIRREL,
                         reward: "0-3",
                     },
                     {
-                        activity: "long walk",
+                        challengeType: "long walk",
                         duration: "30",
                         image: ChallengeTile.Images.OSTRICH,
                         reward: "0-6",
                     },
                     {
-                        activity: "short stroll",
+                        challengeType: "short stroll",
                         duration: "5",
                         image: ChallengeTile.Images.ELEPHANT,
                         reward: "0-1",
                     },
                     {
-                        activity: "meditation",
+                        challengeType: "meditation",
                         duration: "3-10",
                         image: ChallengeTile.Images.BIRD,
                         reward: "0-3",

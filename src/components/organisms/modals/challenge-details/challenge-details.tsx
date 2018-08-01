@@ -2,34 +2,55 @@ import * as React from "react";
 import { SFC } from "react";
 import { Image, View } from "react-native";
 import { Button, Close, Text } from "../../../atoms";
+import Assets from "./assets/";
 import data from "./challenge-details.data";
-import { getImage, getImageStyle } from "./challenge-details.helpers";
 import styles from "./challenge-details.styles";
-import Milestones, { IProps as IMilestoneProps } from "./milestones";
-
-export type ChallengeType =
-    | "brisk walk"
-    | "short stroll"
-    | "long walk"
-    | "meditation";
+import Milestones, { IProps as MilestoneProps } from "./milestones";
 
 interface IOwnProps {
-    challengeType: ChallengeType;
+    challengeType: string;
+    duration: string;
     onPressClose: () => void;
     onPressCta: () => void;
     onPressSetUp?: () => void;
-    duration: string;
 }
 
-type Props = IOwnProps & IMilestoneProps;
+type Props = IOwnProps & MilestoneProps;
 
-const ChallengeDetails: SFC<Props> = ({
+const getImage = (challengeType: string) => {
+    switch (challengeType) {
+        case "brisk walk":
+            return Assets.squirrel;
+        case "day walk":
+        case "short stroll":
+            return Assets.elephant;
+        case "long walk":
+            return Assets.ostrich;
+        case "meditation":
+            return Assets.bird;
+        default:
+            return null;
+    }
+};
+
+const getImageStyle = (challengeType: string) => {
+    switch (challengeType) {
+        case "meditation":
+            return styles.imageMeditation;
+        case "long walk":
+            return styles.imageLongWalk;
+        default:
+            return styles.image;
+    }
+};
+
+const ActiveChallenge: SFC<Props> = ({
     challengeType,
     duration = "",
     milestones = [],
     onPressClose = (): null => null,
     onPressCta = (): null => null,
-    onPressSetUp = (): null => null,
+    onPressSetUp = null,
     unit = "",
 }) => (
     <View style={styles.wrapper}>
@@ -71,4 +92,4 @@ const ChallengeDetails: SFC<Props> = ({
     </View>
 );
 
-export default ChallengeDetails;
+export default ActiveChallenge;

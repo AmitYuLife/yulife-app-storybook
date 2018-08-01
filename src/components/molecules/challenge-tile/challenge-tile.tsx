@@ -1,6 +1,6 @@
 import * as React from "react";
 import { PureComponent, SFC } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "../../atoms";
 import styles, {
     getImage,
@@ -14,6 +14,7 @@ export interface IChallengeTileProps {
     isImageBackgroundFlipped?: boolean;
     isLocked?: boolean;
     minimumLevel?: number;
+    onPress?: () => void;
     reward?: string;
 }
 
@@ -42,13 +43,17 @@ class ChallengeTile extends PureComponent<Props> {
             isImageBackgroundFlipped = false,
             challengeType = "",
             duration = "",
-            reward = "",
             isLocked = false,
             minimumLevel,
+            onPress = (): any => null,
+            reward = "",
         } = this.props;
 
         return (
-            <View style={styles.wrapper}>
+            <TouchableOpacity
+                onPress={onPress}
+                style={styles.wrapper}
+            >
                 <AnimalImage
                     image={image}
                     isLocked={isLocked}
@@ -70,7 +75,7 @@ class ChallengeTile extends PureComponent<Props> {
                         reward={reward}
                     />
                 )}
-            </View>
+            </TouchableOpacity>
         );
     }
 }

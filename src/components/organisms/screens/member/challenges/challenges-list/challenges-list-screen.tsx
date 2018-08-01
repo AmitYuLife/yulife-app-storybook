@@ -34,10 +34,10 @@ const ChallengesListScreen: SFC<Props> = ({ challenges, hasNotification, labels,
                 <ChallengesListBackground />
             ) : (
                 <Image
-                    style={styles.background}
                     resizeMethod="scale"
                     resizeMode="contain"
                     source={require("./challenges-list-background/challenges-list-background.png")}
+                    style={styles.background}
                 />
             )}
         </SafeAreaView>

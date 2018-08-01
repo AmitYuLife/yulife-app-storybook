@@ -130,26 +130,26 @@ storiesOf("Organisms - Screens", module)
         <ChallengesListScreen
             challenges={object("Challenges", [
                 {
-                    activity: "brisk walk",
-                    duration: "10",
+                    challengeType: "brisk walk",
+                    duration: "10 mins",
                     image: ChallengeTile.Images.SQUIRREL,
                     reward: "0-3",
                 },
                 {
-                    activity: "long walk",
-                    duration: "30",
+                    challengeType: "long walk",
+                    duration: "30 mins",
                     image: ChallengeTile.Images.OSTRICH,
                     reward: "0-6",
                 },
                 {
-                    activity: "short stroll",
-                    duration: "5",
+                    challengeType: "short stroll",
+                    duration: "5 mins",
                     image: ChallengeTile.Images.ELEPHANT,
                     reward: "0-1",
                 },
                 {
-                    activity: "meditation",
-                    duration: "3-10",
+                    challengeType: "meditation",
+                    duration: "3-10 mins",
                     image: ChallengeTile.Images.BIRD,
                     reward: "0-3",
                 }
