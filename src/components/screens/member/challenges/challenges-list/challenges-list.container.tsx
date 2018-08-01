@@ -9,7 +9,7 @@ import { ChallengeType } from "../../../../organisms/screens/member/challenges/c
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
-    componentId: string;
+    componentId?: string;
 }
 
 // const getChallengeMilestones = (milestones: any[]): any[] =>

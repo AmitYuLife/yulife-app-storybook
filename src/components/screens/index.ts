@@ -12,3 +12,4 @@ export { default as SignUpRewardContainer } from "./onboarding/signup-reward/sig
 // member screens
 export { default as ChallengesListContainer } from "./member/challenges/challenges-list/challenges-list.container";
 export { default as DailyStepsContainer } from "./member/daily-steps/daily-steps.container";
+export { default as MainContainer } from "./member/main/main.container";

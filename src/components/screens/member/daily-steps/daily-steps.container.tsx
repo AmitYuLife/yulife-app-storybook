@@ -6,10 +6,11 @@ import DailyStepsQuery, { dailyStepsGql } from "../../../../graphql/member/daily
 import { ILabel } from "../../../molecules/nav-bar/nav-bar";
 import { DailyStepsScreen } from "../../../organisms/screens";
 import { setToken } from "../../../../services/storage";
+import Loading from '../../../atoms/loading/index';
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
-    componentId: string;
+    componentId?: string;
 }
 
 class DailyStepsContainer extends PureComponent<IProps> {
@@ -41,7 +42,7 @@ class DailyStepsContainer extends PureComponent<IProps> {
                     }
 
                     if (loading) {
-                        return <Text>Loading</Text>;
+                        return <Loading/>;
                     }
 
                     const { userStatus } = data.getCurrentUser;

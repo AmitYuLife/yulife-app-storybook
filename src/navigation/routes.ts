@@ -8,6 +8,7 @@ import {
     SignUpContainer,
     SignUpRewardContainer,
     WelcomeContainer,
+    MainContainer,
 } from "../components/screens";
 
 export const ROUTES = {
@@ -21,6 +22,9 @@ export const ROUTES = {
     // onboarding screens
     onboardingSignUpReward: "yulife.onboarding.SignUpReward",
     onboardingFitKitConnect: "yulife.onboarding.FitKitConnect",
+
+    // main screen
+    main: "yulife.member.main",
 
     // member screens
     memberDailySteps: "yulife.member.DailySteps",
@@ -41,7 +45,10 @@ export default [
     { name: ROUTES.onboardingFitKitConnect, component: FitKitConnectContainer },
 
     // member screens
-    { name: ROUTES.memberDailySteps, component: DailyStepsContainer },
-    { name: ROUTES.memberChallengesList, component: ChallengesListContainer },
-    { name: ROUTES.memberRewardsList, component: ChallengesListContainer },
+    { name: ROUTES.main, component: MainContainer },
+
+    // // member screens
+    // { name: ROUTES.memberDailySteps, component: DailyStepsContainer },
+    // { name: ROUTES.memberChallengesList, component: ChallengesListContainer },
+    // { name: ROUTES.memberRewardsList, component: ChallengesListContainer },
 ];

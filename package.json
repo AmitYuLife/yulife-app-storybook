@@ -22,7 +22,8 @@
     "react-apollo": "^2.1.9",
     "react-native": "0.56.0",
     "react-native-navigation": "^2.0.2431",
-    "react-native-svg": "^6.5.0"
+    "react-native-svg": "^6.5.0",
+    "react-native-swiper": "^1.5.13"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.8",
