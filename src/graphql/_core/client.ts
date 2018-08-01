@@ -6,6 +6,7 @@ import { getToken } from "../../services/storage";
 
 const httpLink = createHttpLink({
     uri: "https://api-develop.yulife.com/graphql",
+    // uri: "http://localhost:5000/graphql",
 });
 
 const authLink = setContext(async (_, { headers }) => {

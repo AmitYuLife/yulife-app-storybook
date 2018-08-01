@@ -25,7 +25,7 @@ class DailyStepsContainer extends PureComponent<IProps> {
         },
         {
             name: "rewards",
-            onPress: (): void => this.onNavPress("yulife.member.Rewards"),
+            onPress: (): void => this.onNavPress("yulife.member.RewardsList"),
         },
     ];
 
@@ -45,7 +45,7 @@ class DailyStepsContainer extends PureComponent<IProps> {
                     }
 
                     const { userStatus } = data.getCurrentUser;
-                    console.log(data.getCurrentUser);
+
                     return (
                         <DailyStepsScreen
                             coinsToday={5}

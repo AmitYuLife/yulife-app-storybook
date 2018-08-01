@@ -5,6 +5,6 @@ import withProvider from "./withProvider";
 
 export default function registerScreens() {
     routes.forEach(({ name, component }) => {
-        Navigation.registerComponent(`yulife.${name}`, () => withProvider(component, client));
+        Navigation.registerComponent(name, () => withProvider(component, client));
     });
 }

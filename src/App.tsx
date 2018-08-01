@@ -1,6 +1,7 @@
 import { Navigation } from "react-native-navigation";
 import registerScreens from "./navigation";
 import { getFitkitPermission, getToken } from "./services/storage";
+import { ROUTES } from "./navigation/routes";
 
 // register all the screens
 registerScreens();
@@ -8,7 +9,7 @@ registerScreens();
 Navigation.events().registerAppLaunchedListener(async () => {
     const token = await getToken();
     // const fitkitPermission = await getFitkitPermission();
-    const name = token ? "yulife.member.DailySteps" : "yulife.Welcome";
+    const name = token ? ROUTES.memberDailySteps : ROUTES.welcome;
     const children = [
         {
             component: {

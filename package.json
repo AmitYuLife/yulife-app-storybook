@@ -8,6 +8,7 @@
     "start:android": "react-native run-android",
     "test": "jest --config=jest.config.json",
     "download-schema": "apollo-codegen download-schema http://yulife-api-server-develop.eu-west-2.elasticbeanstalk.com/graphql --output ./src/graphql/_core/schema.json",
+    "download-schema-local": "apollo-codegen download-schema http://localhost:5000/graphql --output ./src/graphql/_core/schema.json",
     "generate-graphql-types": "apollo-codegen generate ./src/graphql/**/*.gql.ts --schema ./src/graphql/_core/schema.json --target ts --output ./src/graphql/_core/schema.ts",
     "prestorybook": "rnstl",
     "storybook": "storybook start -p 7007"

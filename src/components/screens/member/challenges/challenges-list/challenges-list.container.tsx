@@ -70,7 +70,7 @@ class ChallengesListContainer extends PureComponent<IProps> {
         },
         {
             name: "rewards",
-            onPress: (): Promise<void> => this.onNavPress("yulife.member.Rewards"),
+            onPress: (): Promise<void> => this.onNavPress("yulife.member.RewardsList"),
         },
     ];
 

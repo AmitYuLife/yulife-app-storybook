@@ -10,19 +10,38 @@ import {
     WelcomeContainer,
 } from "../components/screens";
 
-export default [
+export const ROUTES = {
     // root screens
-    { name: "Welcome", component: WelcomeContainer },
-    { name: "Login", component: LoginContainer },
-    { name: "ResetPassword", component: ResetPasswordContainer },
-    { name: "ResetPasswordSuccess", component: ResetPasswordSuccessContainer },
-    { name: "SignUp", component: SignUpContainer },
+    welcome: "yulife.Welcome",
+    login: "yulife.Login",
+    resetPassword: "yulife.ResetPassword",
+    resetPasswordSuccess: "yulife.ResetPasswordSuccess",
+    signUp: "yulife.SignUp",
 
     // onboarding screens
-    { name: "onboarding.SignUpReward", component: SignUpRewardContainer },
-    { name: "onboarding.FitKitConnect", component: FitKitConnectContainer },
+    onboardingSignUpReward: "yulife.onboarding.SignUpReward",
+    onboardingFitKitConnect: "yulife.onboarding.FitKitConnect",
 
     // member screens
-    { name: "member.DailySteps", component: DailyStepsContainer },
-    { name: "member.ChallengesList", component: ChallengesListContainer },
+    memberDailySteps: "yulife.member.DailySteps",
+    memberChallengesList: "yulife.member.ChallengesList",
+    memberRewardsList: "yulife.member.RewardsList",
+};
+
+export default [
+    // root screens
+    { name: ROUTES.welcome, component: WelcomeContainer },
+    { name: ROUTES.login, component: LoginContainer },
+    { name: ROUTES.resetPassword, component: ResetPasswordContainer },
+    { name: ROUTES.resetPasswordSuccess, component: ResetPasswordSuccessContainer },
+    { name: ROUTES.signUp, component: SignUpContainer },
+
+    // onboarding screens
+    { name: ROUTES.onboardingSignUpReward, component: SignUpRewardContainer },
+    { name: ROUTES.onboardingFitKitConnect, component: FitKitConnectContainer },
+
+    // member screens
+    { name: ROUTES.memberDailySteps, component: DailyStepsContainer },
+    { name: ROUTES.memberChallengesList, component: ChallengesListContainer },
+    { name: ROUTES.memberRewardsList, component: ChallengesListContainer },
 ];

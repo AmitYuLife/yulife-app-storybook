@@ -13,7 +13,7 @@ import {
     Pad,
     Stars,
     TextInput
-} from "./";
+} from ".";
 
 storiesOf("Atoms", module)
     .addDecorator(withKnobs)
