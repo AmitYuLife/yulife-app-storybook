@@ -1,6 +1,6 @@
+import { ApolloClient } from "apollo-client";
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
-import { ApolloClient } from "apollo-client";
 import ContextProvider from "../context";
 
 const withProvider = (WrappedComponent: React.ComponentClass, client: ApolloClient<{}>) => {

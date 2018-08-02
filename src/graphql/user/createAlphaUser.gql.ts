@@ -1,3 +1,4 @@
+// tslint:disable:max-line-length
 import gql from "graphql-tag";
 import { Mutation, MutationFn, MutationResult } from "react-apollo";
 

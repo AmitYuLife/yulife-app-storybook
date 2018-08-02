@@ -33,7 +33,7 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
         <Component
@@ -54,7 +54,7 @@ ShallowWrapper {
             }
           >
             <YuText>
-              120 minutes
+              2 mins
             </YuText>
           </Component>
           <Image
@@ -113,7 +113,7 @@ ShallowWrapper {
             }
           >
             <YuText>
-              240 minutes
+              4 mins
             </YuText>
           </Component>
           <Image
@@ -185,7 +185,7 @@ ShallowWrapper {
             }
           >
             <YuText>
-              480 minutes
+              8 mins
             </YuText>
           </Component>
           <Image
@@ -271,7 +271,7 @@ ShallowWrapper {
               }
             >
               <YuText>
-                120 minutes
+                2 mins
               </YuText>
             </Component>,
             Array [
@@ -328,7 +328,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <YuText>
-                120 minutes
+                2 mins
               </YuText>,
               "style": Object {
                 "paddingVertical": 12,
@@ -341,10 +341,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "children": "120 minutes",
+                "children": "2 mins",
               },
               "ref": null,
-              "rendered": "120 minutes",
+              "rendered": "2 mins",
               "type": [Function],
             },
             "type": [Function],
@@ -427,7 +427,7 @@ ShallowWrapper {
               }
             >
               <YuText>
-                240 minutes
+                4 mins
               </YuText>
             </Component>,
             Array [
@@ -497,7 +497,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <YuText>
-                240 minutes
+                4 mins
               </YuText>,
               "style": Object {
                 "paddingVertical": 12,
@@ -510,10 +510,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "children": "240 minutes",
+                "children": "4 mins",
               },
               "ref": null,
-              "rendered": "240 minutes",
+              "rendered": "4 mins",
               "type": [Function],
             },
             "type": [Function],
@@ -613,7 +613,7 @@ ShallowWrapper {
               }
             >
               <YuText>
-                480 minutes
+                8 mins
               </YuText>
             </Component>,
             Array [
@@ -696,7 +696,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <YuText>
-                480 minutes
+                8 mins
               </YuText>,
               "style": Object {
                 "paddingVertical": 12,
@@ -709,10 +709,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "children": "480 minutes",
+                "children": "8 mins",
               },
               "ref": null,
-              "rendered": "480 minutes",
+              "rendered": "8 mins",
               "type": [Function],
             },
             "type": [Function],
@@ -815,13 +815,13 @@ ShallowWrapper {
         "type": [Function],
       },
     ],
-    "type": [Function],
+    "type": Symbol(react.fragment),
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <Component
@@ -842,7 +842,7 @@ ShallowWrapper {
               }
             >
               <YuText>
-                120 minutes
+                2 mins
               </YuText>
             </Component>
             <Image
@@ -901,7 +901,7 @@ ShallowWrapper {
               }
             >
               <YuText>
-                240 minutes
+                4 mins
               </YuText>
             </Component>
             <Image
@@ -973,7 +973,7 @@ ShallowWrapper {
               }
             >
               <YuText>
-                480 minutes
+                8 mins
               </YuText>
             </Component>
             <Image
@@ -1059,7 +1059,7 @@ ShallowWrapper {
                 }
               >
                 <YuText>
-                  120 minutes
+                  2 mins
                 </YuText>
               </Component>,
               Array [
@@ -1116,7 +1116,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <YuText>
-                  120 minutes
+                  2 mins
                 </YuText>,
                 "style": Object {
                   "paddingVertical": 12,
@@ -1129,10 +1129,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "function",
                 "props": Object {
-                  "children": "120 minutes",
+                  "children": "2 mins",
                 },
                 "ref": null,
-                "rendered": "120 minutes",
+                "rendered": "2 mins",
                 "type": [Function],
               },
               "type": [Function],
@@ -1215,7 +1215,7 @@ ShallowWrapper {
                 }
               >
                 <YuText>
-                  240 minutes
+                  4 mins
                 </YuText>
               </Component>,
               Array [
@@ -1285,7 +1285,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <YuText>
-                  240 minutes
+                  4 mins
                 </YuText>,
                 "style": Object {
                   "paddingVertical": 12,
@@ -1298,10 +1298,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "function",
                 "props": Object {
-                  "children": "240 minutes",
+                  "children": "4 mins",
                 },
                 "ref": null,
-                "rendered": "240 minutes",
+                "rendered": "4 mins",
                 "type": [Function],
               },
               "type": [Function],
@@ -1401,7 +1401,7 @@ ShallowWrapper {
                 }
               >
                 <YuText>
-                  480 minutes
+                  8 mins
                 </YuText>
               </Component>,
               Array [
@@ -1484,7 +1484,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <YuText>
-                  480 minutes
+                  8 mins
                 </YuText>,
                 "style": Object {
                   "paddingVertical": 12,
@@ -1497,10 +1497,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "function",
                 "props": Object {
-                  "children": "480 minutes",
+                  "children": "8 mins",
                 },
                 "ref": null,
-                "rendered": "480 minutes",
+                "rendered": "8 mins",
                 "type": [Function],
               },
               "type": [Function],
@@ -1603,7 +1603,7 @@ ShallowWrapper {
           "type": [Function],
         },
       ],
-      "type": [Function],
+      "type": Symbol(react.fragment),
     },
   ],
   Symbol(enzyme.__options__): Object {
@@ -1649,7 +1649,7 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
         <Component
@@ -2431,13 +2431,13 @@ ShallowWrapper {
         "type": [Function],
       },
     ],
-    "type": [Function],
+    "type": Symbol(react.fragment),
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <Component
@@ -3219,7 +3219,7 @@ ShallowWrapper {
           "type": [Function],
         },
       ],
-      "type": [Function],
+      "type": Symbol(react.fragment),
     },
   ],
   Symbol(enzyme.__options__): Object {

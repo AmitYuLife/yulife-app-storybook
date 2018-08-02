@@ -3,9 +3,6 @@ import { boolean, number, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import { Text } from "react-native";
-import CenterView from "../../../storybook/stories/CenterView";
-import { CollectRewardModal } from "../organisms/modals";
-import { SignUpRewardScreen } from "../organisms/screens";
 import {
     Blurb,
     BlurProvider,
@@ -17,6 +14,9 @@ import {
     Stars,
     TextInput
 } from ".";
+import CenterView from "../../../storybook/stories/CenterView";
+import { CollectRewardModal } from "../organisms/modals";
+import { SignUpRewardScreen } from "../organisms/screens";
 
 storiesOf("Atoms", module)
     .addDecorator(withKnobs)

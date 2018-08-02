@@ -3,10 +3,10 @@ import { PureComponent } from "react";
 import { Text } from "react-native";
 import { Navigation } from "react-native-navigation";
 import DailyStepsQuery, { dailyStepsGql } from "../../../../graphql/member/dailySteps.gql";
+import { setToken } from "../../../../services/storage";
+import { Loading } from "../../../atoms";
 import { ILabel } from "../../../molecules/nav-bar/nav-bar";
 import { DailyStepsScreen } from "../../../organisms/screens";
-import { setToken } from "../../../../services/storage";
-import Loading from '../../../atoms/loading/index';
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -74,7 +74,7 @@ class DailyStepsContainer extends PureComponent<IProps> {
         //         name: "yulife.member.ChallengesList",
         //     },
         // });
-    };
+    }
 
     private onMenu = () => {
         Navigation.push(this.props.componentId, {
@@ -82,7 +82,7 @@ class DailyStepsContainer extends PureComponent<IProps> {
                 name: "yulife.member.ChallengesList",
             },
         });
-    };
+    }
 
     private onStreak = () => {
         Navigation.push(this.props.componentId, {
@@ -90,16 +90,16 @@ class DailyStepsContainer extends PureComponent<IProps> {
                 name: "yulife.member.ChallengesList",
             },
         });
-    };
+    }
 
     private onNavPress = (name: string) => {
         Navigation.push(this.props.componentId, {
             component: {
-                name,
                 id: name,
+                name,
             },
         });
-    };
+    }
 }
 
 export default DailyStepsContainer;

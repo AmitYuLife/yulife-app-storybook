@@ -5,6 +5,7 @@ export { default as CentredScreen } from "./centred-screen/centred-screen";
 export { default as Close } from "./close/close";
 export { default as CoinConfetti } from "./coin-confetti/coin-confetti";
 export { default as Heading } from "./heading/heading";
+export { default as Loading } from "./loading/loading";
 export { default as Pad } from "./pad/pad";
 export { default as PlusPoints } from "./plus-points/plus-points";
 export { default as Stars } from "./stars/stars";

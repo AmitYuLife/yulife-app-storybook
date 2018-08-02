@@ -1,6 +1,6 @@
-import React from "react";
 import { shallow } from "enzyme";
-import Loading from "./index";
+import * as React from "react";
+import Loading from "../loading";
 
 describe("Loading", () => {
 

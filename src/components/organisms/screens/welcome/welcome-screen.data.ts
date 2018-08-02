@@ -1,7 +1,6 @@
 export default {
+    blurb: "Let's begin the journey of making you the best of yu!",
     heading: "welcome!",
-    blurb:
-        "Let's begin the journey of making you the best of yu!",
-    signUpCta: "sign up",
     logInCta: "log in",
+    signUpCta: "sign up",
 };

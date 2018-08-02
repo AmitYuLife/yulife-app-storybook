@@ -1,25 +1,25 @@
 import { StyleSheet, ViewStyle } from "react-native";
-import { Style, Colours } from "../../../styles";
+import { Colours, Style } from "../../../styles";
 
 export default StyleSheet.create({
-    wrapper: {
-        width: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "row",
-    } as ViewStyle,
-    divider: {
-        height: Style.SCALE_UP_AND_DOWN(12),
-        width: 1,
-        backgroundColor: Colours.divider,
+    button: {
+        marginHorizontal: Style.SCALE_UP_AND_DOWN(33),
+        width: "auto",
     } as ViewStyle,
     buttonWrapper: {
-        justifyContent: "center",
         alignItems: "center",
         flexDirection: "row-reverse",
+        justifyContent: "center",
     } as ViewStyle,
-    button: {
-        width: "auto",
-        marginHorizontal: Style.SCALE_UP_AND_DOWN(33),
+    divider: {
+        backgroundColor: Colours.divider,
+        height: Style.SCALE_UP_AND_DOWN(12),
+        width: 1,
+    } as ViewStyle,
+    wrapper: {
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "center",
+        width: "100%",
     } as ViewStyle,
 });

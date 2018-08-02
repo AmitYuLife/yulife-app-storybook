@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { NetInfo, ConnectionInfo } from "react-native";
+import { ConnectionInfo, NetInfo } from "react-native";
+import { getUser, getUserFeatures, getUserStatus, setUser } from "../services/storage";
 import { SideEffect } from "../typings";
-import { EmptyUser, IUserState } from "./user";
-import { EmptyStatus, IUserStatusState } from "./status";
 import { EmptyFeatures, IUserFeaturesState } from "./features";
-import { getUser, getUserStatus, getUserFeatures, setUser } from "../services/storage";
+import { EmptyStatus, IUserStatusState } from "./status";
+import { EmptyUser, IUserState } from "./user";
 
 export interface IStore {
     state: IState;
@@ -16,14 +16,14 @@ export interface IStore {
 }
 
 const EmptyStore: IStore = {
+    actions: null,
     state: {
-        user: EmptyUser,
-        status: EmptyStatus,
+        error: null,
         features: EmptyFeatures,
         isConnected: true,
-        error: null,
+        status: EmptyStatus,
+        user: EmptyUser,
     },
-    actions: null,
 };
 
 export const { Consumer, Provider } = React.createContext(EmptyStore);
@@ -37,54 +37,27 @@ export interface IState {
 }
 
 class ContextProvider extends Component<{}, IState> {
-    NET_INFO_EVENT_NAME = "connectionChange";
-    state: IState = {
-        user: EmptyUser,
-        status: EmptyStatus,
+
+    public state: IState = {
+        error: null,
         features: EmptyFeatures,
         isConnected: true,
-        error: null,
+        status: EmptyStatus,
+        user: EmptyUser,
     };
 
-    async componentDidMount() {
+    private NET_INFO_EVENT_NAME = "connectionChange";
+
+    public async componentDidMount() {
         NetInfo.addEventListener(this.NET_INFO_EVENT_NAME, this.checkConnection);
         await this.hydrateStore();
     }
 
-    componentWillUnmount() {
+    public componentWillUnmount() {
         NetInfo.removeEventListener(this.NET_INFO_EVENT_NAME, this.checkConnection);
     }
 
-    checkConnection = (info: ConnectionInfo) => {
-        this.setState({ isConnected: info.type !== "none" });
-    };
-
-    hydrateStore = async () => {
-        const user = (await getUser()) || {};
-        const status = (await getUserStatus()) || {};
-        const features = (await getUserFeatures()) || {};
-
-        this.setState(state => ({
-            user: { ...state.user, ...user },
-            status: { ...state.status, ...status },
-            features: { ...state.features, ...features },
-        }));
-    };
-
-    updateUser = async (user: IUserState) => {
-        await setUser(user);
-        await this.hydrateStore();
-    };
-
-    setError = (error: Error) => {
-        this.setState({ error });
-    };
-
-    clearError = () => {
-        this.setState({ error: null });
-    };
-
-    render() {
+    public render() {
         const {
             setError,
             clearError,
@@ -94,12 +67,41 @@ class ContextProvider extends Component<{}, IState> {
         } = this;
 
         const actions = {
-            updateUser,
             clearError,
             setError,
+            updateUser
         };
 
         return <Provider value={{ state, actions }}>{children}</Provider>;
+    }
+
+    private checkConnection = (info: ConnectionInfo) => {
+        this.setState({ isConnected: info.type !== "none" });
+    }
+
+    private hydrateStore = async () => {
+        const user = (await getUser()) || {};
+        const status = (await getUserStatus()) || {};
+        const features = (await getUserFeatures()) || {};
+
+        this.setState((state) => ({
+            features: { ...state.features, ...features },
+            status: { ...state.status, ...status },
+            user: { ...state.user, ...user },
+        }));
+    }
+
+    private updateUser = async (user: IUserState) => {
+        await setUser(user);
+        await this.hydrateStore();
+    }
+
+    private setError = (error: Error) => {
+        this.setState({ error });
+    }
+
+    private clearError = () => {
+        this.setState({ error: null });
     }
 }
 

@@ -1,27 +1,27 @@
 import {
-    ChallengesListContainer,
-    DailyStepsContainer,
     FitKitConnectContainer,
     LoginContainer,
+    MainContainer,
     ResetPasswordContainer,
     ResetPasswordSuccessContainer,
     SignUpContainer,
     SignUpRewardContainer,
-    WelcomeContainer,
-    MainContainer,
+    TestContainer,
+    WelcomeContainer
 } from "../components/screens";
 
+// tslint:disable:object-literal-sort-keys
 export const ROUTES = {
     // root screens
-    welcome: "yulife.Welcome",
     login: "yulife.Login",
     resetPassword: "yulife.ResetPassword",
     resetPasswordSuccess: "yulife.ResetPasswordSuccess",
     signUp: "yulife.SignUp",
+    welcome: "yulife.Welcome",
 
     // onboarding screens
-    onboardingSignUpReward: "yulife.onboarding.SignUpReward",
     onboardingFitKitConnect: "yulife.onboarding.FitKitConnect",
+    onboardingSignUpReward: "yulife.onboarding.SignUpReward",
 
     // main screen
     main: "yulife.member.main",
@@ -31,6 +31,7 @@ export const ROUTES = {
     memberChallengesList: "yulife.member.ChallengesList",
     memberRewardsList: "yulife.member.RewardsList",
 };
+// tslint:enable:object-literal-sort-keys
 
 export default [
     // root screens
@@ -46,6 +47,7 @@ export default [
 
     // member screens
     { name: ROUTES.main, component: MainContainer },
+    { name: ROUTES.test, component: TestContainer },
 
     // // member screens
     // { name: ROUTES.memberDailySteps, component: DailyStepsContainer },

@@ -90,16 +90,17 @@ ShallowWrapper {
             }
           }
         />,
-        <Button
-          label="set up tutorial"
-          onPress={[Function]}
-          type="Secondary"
-          wrapperStyle={
+        <YuText
+          style={
             Object {
-              "marginTop": 30,
+              "color": "rgb(170,170,170)",
+              "fontSize": 32,
+              "marginTop": 48,
             }
           }
-        />,
+        >
+          You can only do one challenge a day
+        </YuText>,
       ],
       "style": Object {
         "alignItems": "center",
@@ -229,17 +230,17 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {
-          "label": "set up tutorial",
-          "onPress": [Function],
-          "type": "Secondary",
-          "wrapperStyle": Object {
-            "marginTop": 30,
+          "children": "You can only do one challenge a day",
+          "style": Object {
+            "color": "rgb(170,170,170)",
+            "fontSize": 32,
+            "marginTop": 48,
           },
         },
         "ref": null,
-        "rendered": null,
+        "rendered": "You can only do one challenge a day",
         "type": [Function],
       },
     ],
@@ -310,16 +311,17 @@ ShallowWrapper {
               }
             }
           />,
-          <Button
-            label="set up tutorial"
-            onPress={[Function]}
-            type="Secondary"
-            wrapperStyle={
+          <YuText
+            style={
               Object {
-                "marginTop": 30,
+                "color": "rgb(170,170,170)",
+                "fontSize": 32,
+                "marginTop": 48,
               }
             }
-          />,
+          >
+            You can only do one challenge a day
+          </YuText>,
         ],
         "style": Object {
           "alignItems": "center",
@@ -449,17 +451,17 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "label": "set up tutorial",
-            "onPress": [Function],
-            "type": "Secondary",
-            "wrapperStyle": Object {
-              "marginTop": 30,
+            "children": "You can only do one challenge a day",
+            "style": Object {
+              "color": "rgb(170,170,170)",
+              "fontSize": 32,
+              "marginTop": 48,
             },
           },
           "ref": null,
-          "rendered": null,
+          "rendered": "You can only do one challenge a day",
           "type": [Function],
         },
       ],

@@ -1,7 +1,7 @@
 import { Navigation } from "react-native-navigation";
 import registerScreens from "./navigation";
-import { getFitkitPermission, getToken } from "./services/storage";
 import { ROUTES } from "./navigation/routes";
+import { getFitkitPermission, getToken } from "./services/storage";
 
 // register all the screens
 registerScreens();

@@ -96,7 +96,7 @@ export class LoginContainer extends Component<Props, IState> {
                 },
             });
         });
-    };
+    }
 
     private onSignUp = () => {
         Navigation.push(this.props.componentId, {
@@ -104,7 +104,7 @@ export class LoginContainer extends Component<Props, IState> {
                 name: "yulife.SignUp",
             },
         });
-    };
+    }
 
     private onResetPassword = () => {
         Navigation.push(this.props.componentId, {
@@ -112,19 +112,19 @@ export class LoginContainer extends Component<Props, IState> {
                 name: "yulife.ResetPassword",
             },
         });
-    };
+    }
 
     private onEmailChange = (email: string) => {
         const emailError = validateEmail(email);
 
         this.setState({ email, emailError });
-    };
+    }
 
     private onPasswordChange = (password: string) => {
         const passwordError = validatePassword(password);
 
         this.setState({ password, passwordError });
-    };
+    }
 
     private isFormValid = () => {
         const { email, password } = this.state;
@@ -138,7 +138,7 @@ export class LoginContainer extends Component<Props, IState> {
         }
 
         return formIsValid;
-    };
+    }
 }
 
 export default LoginContainer;

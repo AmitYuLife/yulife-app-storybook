@@ -1,4 +1,3 @@
-import { Image } from "react-native";
 import { getImage, getImageStyle } from "../challenge-details.helpers";
 
 describe("ChallengeDetails helpers", () => {

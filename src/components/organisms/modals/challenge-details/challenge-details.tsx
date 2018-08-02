@@ -2,8 +2,8 @@ import * as React from "react";
 import { SFC } from "react";
 import { Image, View } from "react-native";
 import { Button, Close, Text } from "../../../atoms";
-import Assets from "./assets/";
 import data from "./challenge-details.data";
+import { getImage, getImageStyle } from "./challenge-details.helpers";
 import styles from "./challenge-details.styles";
 import Milestones, { IProps as MilestoneProps } from "./milestones";
 
@@ -17,34 +17,7 @@ interface IOwnProps {
 
 type Props = IOwnProps & MilestoneProps;
 
-const getImage = (challengeType: string) => {
-    switch (challengeType) {
-        case "brisk walk":
-            return Assets.squirrel;
-        case "day walk":
-        case "short stroll":
-            return Assets.elephant;
-        case "long walk":
-            return Assets.ostrich;
-        case "meditation":
-            return Assets.bird;
-        default:
-            return null;
-    }
-};
-
-const getImageStyle = (challengeType: string) => {
-    switch (challengeType) {
-        case "meditation":
-            return styles.imageMeditation;
-        case "long walk":
-            return styles.imageLongWalk;
-        default:
-            return styles.image;
-    }
-};
-
-const ActiveChallenge: SFC<Props> = ({
+const ChallengeDetails: SFC<Props> = ({
     challengeType,
     duration = "",
     milestones = [],
@@ -92,4 +65,4 @@ const ActiveChallenge: SFC<Props> = ({
     </View>
 );
 
-export default ActiveChallenge;
+export default ChallengeDetails;

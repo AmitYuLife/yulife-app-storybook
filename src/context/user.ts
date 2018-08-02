@@ -3,13 +3,13 @@ import { loginUser_loginUser_user } from "../graphql/_core/schema";
 export type IUserState = Partial<loginUser_loginUser_user>;
 
 export const EmptyUser: IUserState = {
-    id: null,
+    bmi: null,
     businessAccountId: null,
-    membershipType: null,
+    dateOfBirth: null,
     email: null,
     firstName: null,
+    id: null,
     lastName: null,
-    dateOfBirth: null,
+    membershipType: null,
     smokerStatus: null,
-    bmi: null,
 };

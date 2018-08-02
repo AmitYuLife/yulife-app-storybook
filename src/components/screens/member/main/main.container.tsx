@@ -1,10 +1,10 @@
 import React, { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
 import Swiper from "react-native-swiper";
-import DailyStepsContainer from "../daily-steps/daily-steps.container";
-import ChallengesListContainer from "../challenges/challenges-list/challenges-list.container";
-import { ILabel } from "../../../molecules/nav-bar/nav-bar";
+import { ChallengesListContainer } from "../..";
 import { ROUTES } from "../../../../navigation/routes";
+import { ILabel } from "../../../molecules";
+import DailyStepsContainer from "../daily-steps/daily-steps.container";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -16,6 +16,10 @@ interface IState {
 }
 
 class MainContainer extends PureComponent<IProps, IState> {
+    public state: IState = {
+        currentIndex: 0,
+    };
+
     private COMPONENT_ID = ROUTES.main;
     private labels: ILabel[] = [
         {
@@ -32,12 +36,9 @@ class MainContainer extends PureComponent<IProps, IState> {
         },
     ];
 
-    public state = {
-        currentIndex: 0,
-    };
-
     public render() {
         const { currentIndex } = this.state;
+
         return (
             <>
                 <Swiper loop={false} showsPagination={false} index={currentIndex} autoplay={false} showsButtons={false}>

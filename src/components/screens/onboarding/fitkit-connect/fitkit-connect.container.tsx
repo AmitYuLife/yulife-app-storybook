@@ -2,7 +2,7 @@ import * as React from "react";
 import { PureComponent } from "react";
 import { Linking } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { setFitkitPermision } from "../../../../services/storage";
+import { setFitkitPermission } from "../../../../services/storage";
 import { FitKitConnectScreen } from "../../../organisms/screens";
 
 // TODO find where these props actually come from in RNN types
@@ -34,14 +34,14 @@ class FitKitConnectContainer extends PureComponent<IProps, IState> {
 
     private onConnect = () => {
         this.setState({ connecting: true }, async () => {
-            await setFitkitPermision("accepted");
+            await setFitkitPermission("accepted");
             await Navigation.push(this.props.componentId, {
                 component: {
                     name: "yulife.onboarding.SignUpReward",
                 },
             });
         });
-    };
+    }
 
     private onPrivacyPolicy = async () => {
         // try {
@@ -57,7 +57,7 @@ class FitKitConnectContainer extends PureComponent<IProps, IState> {
                 name: "yulife.onboarding.SignUpReward",
             },
         });
-    };
+    }
 
     private onSkip = () => {
         Navigation.push(this.props.componentId, {
@@ -65,7 +65,7 @@ class FitKitConnectContainer extends PureComponent<IProps, IState> {
                 name: "yulife.onboarding.SignUpReward",
             },
         });
-    };
+    }
 }
 
 export default FitKitConnectContainer;
