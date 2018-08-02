@@ -24,15 +24,15 @@ class MainContainer extends PureComponent<IProps, IState> {
     private labels: ILabel[] = [
         {
             name: "yucoin",
-            onPress: (): void => this.onNavPress("yulife.member.DailySteps"),
+            onPress: (): void => null
         },
         {
             name: "challenges",
-            onPress: (): void => this.onNavPress("yulife.member.ChallengesList"),
+            onPress: (): void => null
         },
         {
             name: "rewards",
-            onPress: (): void => this.onNavPress("yulife.member.RewardsList"),
+            onPress: (): void => null
         },
     ];
 
@@ -40,24 +40,22 @@ class MainContainer extends PureComponent<IProps, IState> {
         const { currentIndex } = this.state;
 
         return (
-            <>
-                <Swiper loop={false} showsPagination={false} index={currentIndex} autoplay={false} showsButtons={false}>
-                    <DailyStepsContainer componentId={this.props.componentId} />
-                    <ChallengesListContainer componentId={this.props.componentId} />
-                </Swiper>
-            </>
+            <Swiper loop={false} showsPagination={false} index={currentIndex} autoplay={false} showsButtons={false}>
+                <DailyStepsContainer componentId={this.props.componentId} />
+                <ChallengesListContainer componentId={this.props.componentId} />
+            </Swiper>
         );
     }
 
     // TODO fix these
     // tslint:disable:no-empty
-    private onCta = () => {};
+    private onCta = () => { };
 
-    private onMenu = () => {};
+    private onMenu = () => { };
 
-    private onStreak = () => {};
+    private onStreak = () => { };
 
-    private onNavPress = (name: string) => {};
+    private onNavPress = (name: string) => { };
     // tslint:enable:no-empty
 }
 

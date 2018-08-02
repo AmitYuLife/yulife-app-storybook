@@ -97,15 +97,15 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
     private labels: ILabel[] = [
         {
             name: "yucoin",
-            onPress: (): Promise<void> => this.onNavPress("yulife.member.DailySteps"),
+            onPress: (): void => null
         },
         {
             name: "challenges",
-            onPress: (): Promise<void> => this.onNavPress("yulife.member.ChallengesList"),
+            onPress: (): void => null
         },
         {
             name: "rewards",
-            onPress: (): Promise<void> => this.onNavPress("yulife.member.RewardsList"),
+            onPress: (): void => null
         },
     ];
 
