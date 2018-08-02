@@ -1,3 +1,5 @@
+// TODO fix console.logs
+// tslint:disable:no-console
 import { AsyncStorage } from "react-native";
 import { IUserFeaturesState } from "../../context/features";
 import {

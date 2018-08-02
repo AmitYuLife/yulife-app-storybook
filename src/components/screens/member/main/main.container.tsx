@@ -42,13 +42,15 @@ class MainContainer extends PureComponent<IProps, IState> {
         return (
             <>
                 <Swiper loop={false} showsPagination={false} index={currentIndex} autoplay={false} showsButtons={false}>
-                    <DailyStepsContainer />
-                    <ChallengesListContainer />
+                    <DailyStepsContainer componentId={this.props.componentId} />
+                    <ChallengesListContainer componentId={this.props.componentId} />
                 </Swiper>
             </>
         );
     }
 
+    // TODO fix these
+    // tslint:disable:no-empty
     private onCta = () => {};
 
     private onMenu = () => {};
@@ -56,6 +58,7 @@ class MainContainer extends PureComponent<IProps, IState> {
     private onStreak = () => {};
 
     private onNavPress = (name: string) => {};
+    // tslint:enable:no-empty
 }
 
 export default MainContainer;

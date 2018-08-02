@@ -1,3 +1,5 @@
+// TODO fix console.logs
+// tslint:disable:no-console
 import { AsyncStorage } from "react-native";
 
 const TOKEN_KEY = "@Store:token";

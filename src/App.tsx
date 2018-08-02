@@ -30,5 +30,6 @@ Navigation.events().registerAppLaunchedListener(async () => {
 
 // TODO use this for logging?
 Navigation.events().registerComponentDidAppearListener(({ componentId, componentName }) => {
+    // tslint:disable-next-line
     console.log(`Component Name -> ${componentName} -> ${componentId}`);
 });

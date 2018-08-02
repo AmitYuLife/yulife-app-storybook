@@ -6,7 +6,6 @@ import {
     ResetPasswordSuccessContainer,
     SignUpContainer,
     SignUpRewardContainer,
-    TestContainer,
     WelcomeContainer
 } from "../components/screens";
 
@@ -47,7 +46,6 @@ export default [
 
     // member screens
     { name: ROUTES.main, component: MainContainer },
-    { name: ROUTES.test, component: TestContainer },
 
     // // member screens
     // { name: ROUTES.memberDailySteps, component: DailyStepsContainer },
