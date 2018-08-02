@@ -4,37 +4,24 @@ import {
     findNodeHandle,
     StyleSheet,
     View,
-    ViewStyle,
 } from "react-native";
 import Blur from "./blur";
+import styles from "./blur-provider.styles";
 
 export interface IToggleBlur {
     handleToggleBlur: () => void;
 }
 
 interface IProps {
-    renderOverlay?: (
-        prop: IToggleBlur
-    ) => /* tslint:disable-next-line */
-        React.ReactElement<any>;
-    /* tslint:disable-next-line */
-    render?: (prop: IToggleBlur) => React.ReactElement<any>;
+    renderOverlay?: (prop: IToggleBlur) => React.ReactNode;
+    render?: (prop: IToggleBlur) => React.ReactNode;
+    display?: boolean;
 }
 
 interface IState {
     viewRef: number;
     isVisible: boolean;
 }
-
-const styles = StyleSheet.create({
-    flex: {
-        flex: 1,
-    } as ViewStyle,
-    wrapper: {
-        flex: 1,
-        marginBottom: -2,
-    } as ViewStyle,
-});
 
 class BlurProvider extends React.PureComponent<IProps, IState> {
 
@@ -51,6 +38,12 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
         this.viewRef = ref;
     }
 
+    public componentDidUpdate(prevProps: IProps, prevState: IState) {
+        if (this.props.display && this.state.viewRef !== prevState.viewRef) {
+            this.showOverlay();
+        }
+    }
+
     public render() {
         const { viewRef } = this.state;
         const { render, renderOverlay } = this.props;
@@ -65,30 +58,24 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
                     {!render
                         ? null
                         : render({
-                            handleToggleBlur: this
-                                .handleToggleBlur,
-                        })}
+                            handleToggleBlur: this.handleToggleBlur,
+                        })
+                    }
                 </View>
                 {viewRef ? (
                     <Blur
                         blurRef={viewRef}
-                        wrapperOpacity={
-                            this.animatedWrapperOpacity
-                        }
-                        wrapperPosition={
-                            this.animatedWrapperPosition
-                        }
+                        wrapperOpacity={this.animatedWrapperOpacity}
+                        wrapperPosition={this.animatedWrapperPosition}
                     />
                 ) : null}
                 <Animated.View
                     style={{
                         ...StyleSheet.absoluteFillObject,
-                        opacity: this
-                            .animatedWrapperOpacity,
+                        opacity: this.animatedWrapperOpacity,
                         transform: [
                             {
-                                translateX: this
-                                    .animatedWrapperPosition,
+                                translateX: this.animatedWrapperPosition,
                             },
                         ],
                     }}
@@ -96,9 +83,9 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
                     {!renderOverlay
                         ? null
                         : renderOverlay({
-                            handleToggleBlur: this
-                                .handleToggleBlur,
-                        })}
+                            handleToggleBlur: this.handleToggleBlur,
+                        })
+                    }
                 </Animated.View>
             </View>
         );
@@ -134,6 +121,13 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
         }
 
         return () => sequence.start();
+    }
+
+    private showOverlay = () => {
+        this.setState(
+            (state) => ({ isVisible: true }),
+            this.animate(this.state.isVisible)
+        );
     }
 
     private handleToggleBlur = () => {
