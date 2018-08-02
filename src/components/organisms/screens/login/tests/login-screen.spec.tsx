@@ -4,9 +4,18 @@ import { Platform } from "react-native";
 import LoginScreen, { IProps } from "../login-screen";
 
 const filler = {
-    onForgotPress: (): null => null,
-    onLogInPress: (): null => null,
-    onSignUpPress: (): null => null,
+    email: "",
+    emailError: "",
+    isLoggingIn: false,
+    loginError: "",
+    onEmailChange: jest.fn(),
+    onForgotPress: jest.fn(),
+    onLogInPress: jest.fn(),
+    onPasswordChange: jest.fn(),
+    onResetPasswordPress: jest.fn(),
+    onSignUpPress: jest.fn(),
+    password: "",
+    passwordError: "",
 } as IProps;
 
 describe("LoginScreen", () => {

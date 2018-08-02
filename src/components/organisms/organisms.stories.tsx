@@ -8,7 +8,6 @@ import {
     ChallengeDetailsModal,
     CollectRewardModal,
 } from "./modals";
-import { ChallengeType } from "./modals/challenge-details/challenge-details";
 import {
     ChallengeFailedScreen,
     ChallengeProgressScreen,
@@ -172,7 +171,7 @@ storiesOf("Organisms - Screens", module)
                 "short stroll",
                 "long walk",
                 "meditation"
-            ], "brisk walk", "ChallengeDetails") as ChallengeType}
+            ], "brisk walk", "ChallengeDetails")}
         />
     ))
     .add("9. Challenge Success", () => (
@@ -217,7 +216,7 @@ storiesOf("Organisms - Modals", module)
                 "short stroll",
                 "long walk",
                 "meditation"
-            ], "brisk walk", "ChallengeDetails") as ChallengeType}
+            ], "brisk walk", "ChallengeDetails")}
             duration={text("Duration", "0-3", "ChallengeDetails")}
             onPressClose={action("on press close")}
             onPressCta={action("on press cta")}

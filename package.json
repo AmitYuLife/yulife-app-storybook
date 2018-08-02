@@ -78,7 +78,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "run-s tslint"
+      "pre-push": "run-s tslint tsc"
     }
   }
 }

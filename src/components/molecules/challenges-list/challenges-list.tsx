@@ -2,11 +2,10 @@ import * as React from "react";
 import { SFC } from "react";
 import { StyleSheet, View } from "react-native";
 import { ChallengeTile, IChallengeTileProps, Images as ChallengeTileImages } from "..";
-import { ChallengeType } from "../../organisms/modals";
 import styles from "./challenges-list.styles";
 
 export interface IChallengesListTileProps {
-    challengeType: ChallengeType;
+    challengeType: string;
     duration: string;
     image: ChallengeTileImages;
     isLocked?: boolean;

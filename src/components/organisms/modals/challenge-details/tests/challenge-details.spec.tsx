@@ -1,9 +1,9 @@
 import { shallow } from "enzyme";
 import * as React from "react";
-import ChallengeDetails, { ChallengeType } from "../challenge-details";
+import ChallengeDetails from "../challenge-details";
 
 const filler = {
-    challengeType: "brisk walk" as ChallengeType,
+    challengeType: "brisk walk",
     duration: "10 mins",
     milestones: [
         {

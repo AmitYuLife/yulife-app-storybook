@@ -11,7 +11,7 @@ describe("ChallengesList", () => {
             <ChallengesList
                 challenges={[
                     {
-                        activity: "brisk walk",
+                        challengeType: "brisk walk",
                         duration: "10",
                         image: ChallengeTile.Images.SQUIRREL,
                         reward: "0-3",
@@ -44,25 +44,25 @@ describe("ChallengesList", () => {
             <ChallengesList
                 challenges={[
                     {
-                        activity: "brisk walk",
+                        challengeType: "brisk walk",
                         duration: "10",
                         image: ChallengeTile.Images.SQUIRREL,
                         reward: "0-3",
                     },
                     {
-                        activity: "long walk",
+                        challengeType: "long walk",
                         duration: "30",
                         image: ChallengeTile.Images.OSTRICH,
                         reward: "0-6",
                     },
                     {
-                        activity: "short stroll",
+                        challengeType: "short stroll",
                         duration: "5",
                         image: ChallengeTile.Images.ELEPHANT,
                         reward: "0-1",
                     },
                     {
-                        activity: "meditation",
+                        challengeType: "meditation",
                         duration: "3-10",
                         image: ChallengeTile.Images.BIRD,
                         reward: "0-3",
