@@ -3,7 +3,7 @@ import { PureComponent } from "react";
 import { Text } from "react-native";
 import { Navigation } from "react-native-navigation";
 import ChallengesListQuery, { challengesListGql } from "../../../../../graphql/member/challengesList.gql";
-import { BlurProvider } from "../../../../atoms";
+import { BlurProvider, Loading } from "../../../../atoms";
 import { ILabel, Images, IMAGES } from "../../../../molecules";
 import { ChallengeDetailsModal } from "../../../../organisms/modals";
 import { ChallengesListScreen } from "../../../../organisms/screens";
@@ -20,7 +20,7 @@ interface IHandlePressChallenge {
     reward: string;
     milestones: IChallengeDetailsMilestone[];
     unit: string;
-    handleToggleBlur: () => void;
+    showOverlay: () => void;
 }
 
 const getChallengeMilestones = (milestones: any[]): IChallengeDetailsMilestone[] =>
@@ -115,7 +115,7 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
                 {({ loading, error, data }) => {
 
                     if (loading) {
-                        return <Text>LOADING</Text>;
+                        return <Loading />;
                     }
 
                     if (error) {
@@ -133,17 +133,17 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
 
                     return (
                         <BlurProvider
-                            render={({ handleToggleBlur }) => (
+                            render={({ showOverlay }) => (
                                 <ChallengesListScreen
                                     challenges={challenges.map((challenge: IHandlePressChallenge) => ({
                                         ...challenge,
                                         onPress: this.handlePressChallenge({
                                             challengeType: challenge.challengeType,
                                             duration: challenge.duration,
-                                            handleToggleBlur,
                                             id: challenge.id,
                                             milestones: challenge.milestones,
                                             reward: challenge.reward,
+                                            showOverlay,
                                             unit: challenge.unit,
                                         }),
                                     }))}
@@ -153,13 +153,13 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
                                     onMenuPress={this.onMenu}
                                 />
                             )}
-                            renderOverlay={({ handleToggleBlur }) => (
+                            renderOverlay={({ hideOverlay }) => (
                                 <ChallengeDetailsModal
                                     challengeType={challengeType}
                                     duration={duration}
                                     milestones={milestones}
-                                    onPressCta={handleToggleBlur}
-                                    onPressClose={handleToggleBlur}
+                                    onPressCta={hideOverlay}
+                                    onPressClose={hideOverlay}
                                     unit={unit}
                                 />
                             )}
@@ -170,10 +170,10 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
         );
     }
 
-    private handlePressChallenge = ({ handleToggleBlur, ...challengeProps }: IHandlePressChallenge) => {
+    private handlePressChallenge = ({ showOverlay, ...challengeProps }: IHandlePressChallenge) => {
         return () => {
             this.setState({ ...challengeProps });
-            handleToggleBlur();
+            showOverlay();
         };
     }
 

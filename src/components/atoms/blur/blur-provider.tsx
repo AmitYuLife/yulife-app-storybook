@@ -9,13 +9,15 @@ import Blur from "./blur";
 import styles from "./blur-provider.styles";
 
 export interface IToggleBlur {
-    handleToggleBlur: () => void;
+    hideOverlay: () => void;
+    showOverlay: () => void;
+    toggleOverlay: () => void;
 }
 
 interface IProps {
     renderOverlay?: (prop: IToggleBlur) => React.ReactNode;
     render?: (prop: IToggleBlur) => React.ReactNode;
-    display?: boolean;
+    displayOverlay?: boolean;
 }
 
 interface IState {
@@ -39,7 +41,7 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
     }
 
     public componentDidUpdate(prevProps: IProps, prevState: IState) {
-        if (this.props.display && this.state.viewRef !== prevState.viewRef) {
+        if (this.props.displayOverlay && this.state.viewRef !== prevState.viewRef) {
             this.showOverlay();
         }
     }
@@ -58,7 +60,9 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
                     {!render
                         ? null
                         : render({
-                            handleToggleBlur: this.handleToggleBlur,
+                            hideOverlay: this.hideOverlay,
+                            showOverlay: this.showOverlay,
+                            toggleOverlay: this.toggleOverlay
                         })
                     }
                 </View>
@@ -83,7 +87,9 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
                     {!renderOverlay
                         ? null
                         : renderOverlay({
-                            handleToggleBlur: this.handleToggleBlur,
+                            hideOverlay: this.hideOverlay,
+                            showOverlay: this.showOverlay,
+                            toggleOverlay: this.toggleOverlay
                         })
                     }
                 </Animated.View>
@@ -130,7 +136,14 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
         );
     }
 
-    private handleToggleBlur = () => {
+    private hideOverlay = () => {
+        this.setState(
+            (state) => ({ isVisible: false }),
+            this.animate(this.state.isVisible)
+        );
+    }
+
+    private toggleOverlay = () => {
         this.setState(
             (state) => ({ isVisible: !state.isVisible }),
             this.animate(this.state.isVisible)

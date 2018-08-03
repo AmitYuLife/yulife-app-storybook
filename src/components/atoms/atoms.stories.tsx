@@ -22,14 +22,14 @@ storiesOf("Atoms", module)
     .addDecorator(withKnobs)
     .add("1. BlurProvider", () => (
         <BlurProvider
-            renderOverlay={({ handleToggleBlur }) => (
+            renderOverlay={({ toggleOverlay }) => (
                 <CollectRewardModal
-                    onPress={handleToggleBlur}
+                    onPress={toggleOverlay}
                 />
             )}
-            render={({ handleToggleBlur }) => (
+            render={({ toggleOverlay }) => (
                 <SignUpRewardScreen
-                    onCollectPress={handleToggleBlur}
+                    onCollectPress={toggleOverlay}
                     reward={200}
                 />
             )}

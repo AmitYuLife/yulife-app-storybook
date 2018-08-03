@@ -5,9 +5,18 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <LoginScreen
-    onForgotPress={[Function]}
-    onLogInPress={[Function]}
-    onSignUpPress={[Function]}
+    email=""
+    emailError=""
+    isLoggingIn={false}
+    loginError=""
+    onEmailChange={[MockFunction]}
+    onForgotPress={[MockFunction]}
+    onLogInPress={[MockFunction]}
+    onPasswordChange={[MockFunction]}
+    onResetPasswordPress={[MockFunction]}
+    onSignUpPress={[MockFunction]}
+    password=""
+    passwordError=""
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -38,22 +47,28 @@ ShallowWrapper {
           height={44}
         />
         <TextInput
+          errorMessage=""
           hasError={false}
+          onChange={[MockFunction]}
           type="Email"
+          value=""
         />
         <Pad
           height={12}
         />
         <TextInput
+          errorMessage=""
           hasError={false}
+          onChange={[MockFunction]}
           type="Password"
+          value=""
         />
         <Pad
           height={44}
         />
         <Button
           label="log in"
-          onPress={[Function]}
+          onPress={[MockFunction]}
           type="Primary"
         />
         <Pad
@@ -64,11 +79,11 @@ ShallowWrapper {
             Array [
               Object {
                 "label": "Forgot password",
-                "onPress": undefined,
+                "onPress": [MockFunction],
               },
               Object {
                 "label": "Sign up",
-                "onPress": [Function],
+                "onPress": [MockFunction],
               },
             ]
           }
@@ -100,15 +115,21 @@ ShallowWrapper {
             height={44}
           />,
           <TextInput
+            errorMessage=""
             hasError={false}
+            onChange={[MockFunction]}
             type="Email"
+            value=""
           />,
           <Pad
             height={12}
           />,
           <TextInput
+            errorMessage=""
             hasError={false}
+            onChange={[MockFunction]}
             type="Password"
+            value=""
           />,
           false,
           <Pad
@@ -116,7 +137,7 @@ ShallowWrapper {
           />,
           <Button
             label="log in"
-            onPress={[Function]}
+            onPress={[MockFunction]}
             type="Primary"
           />,
           <Pad
@@ -127,11 +148,11 @@ ShallowWrapper {
               Array [
                 Object {
                   "label": "Forgot password",
-                  "onPress": undefined,
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "label": "Sign up",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
               ]
             }
@@ -200,11 +221,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "errorMessage": undefined,
+            "errorMessage": "",
             "hasError": false,
-            "onChange": undefined,
+            "onChange": [MockFunction],
             "type": "Email",
-            "value": undefined,
+            "value": "",
           },
           "ref": null,
           "rendered": null,
@@ -226,11 +247,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "errorMessage": undefined,
+            "errorMessage": "",
             "hasError": false,
-            "onChange": undefined,
+            "onChange": [MockFunction],
             "type": "Password",
-            "value": undefined,
+            "value": "",
           },
           "ref": null,
           "rendered": null,
@@ -254,7 +275,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "label": "log in",
-            "onPress": [Function],
+            "onPress": [MockFunction],
             "type": "Primary",
           },
           "ref": null,
@@ -280,11 +301,11 @@ ShallowWrapper {
             "data": Array [
               Object {
                 "label": "Forgot password",
-                "onPress": undefined,
+                "onPress": [MockFunction],
               },
               Object {
                 "label": "Sign up",
-                "onPress": [Function],
+                "onPress": [MockFunction],
               },
             ],
           },
@@ -320,22 +341,28 @@ ShallowWrapper {
             height={44}
           />
           <TextInput
+            errorMessage=""
             hasError={false}
+            onChange={[MockFunction]}
             type="Email"
+            value=""
           />
           <Pad
             height={12}
           />
           <TextInput
+            errorMessage=""
             hasError={false}
+            onChange={[MockFunction]}
             type="Password"
+            value=""
           />
           <Pad
             height={44}
           />
           <Button
             label="log in"
-            onPress={[Function]}
+            onPress={[MockFunction]}
             type="Primary"
           />
           <Pad
@@ -346,11 +373,11 @@ ShallowWrapper {
               Array [
                 Object {
                   "label": "Forgot password",
-                  "onPress": undefined,
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "label": "Sign up",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
               ]
             }
@@ -382,15 +409,21 @@ ShallowWrapper {
               height={44}
             />,
             <TextInput
+              errorMessage=""
               hasError={false}
+              onChange={[MockFunction]}
               type="Email"
+              value=""
             />,
             <Pad
               height={12}
             />,
             <TextInput
+              errorMessage=""
               hasError={false}
+              onChange={[MockFunction]}
               type="Password"
+              value=""
             />,
             false,
             <Pad
@@ -398,7 +431,7 @@ ShallowWrapper {
             />,
             <Button
               label="log in"
-              onPress={[Function]}
+              onPress={[MockFunction]}
               type="Primary"
             />,
             <Pad
@@ -409,11 +442,11 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "Forgot password",
-                    "onPress": undefined,
+                    "onPress": [MockFunction],
                   },
                   Object {
                     "label": "Sign up",
-                    "onPress": [Function],
+                    "onPress": [MockFunction],
                   },
                 ]
               }
@@ -482,11 +515,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "errorMessage": undefined,
+              "errorMessage": "",
               "hasError": false,
-              "onChange": undefined,
+              "onChange": [MockFunction],
               "type": "Email",
-              "value": undefined,
+              "value": "",
             },
             "ref": null,
             "rendered": null,
@@ -508,11 +541,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "errorMessage": undefined,
+              "errorMessage": "",
               "hasError": false,
-              "onChange": undefined,
+              "onChange": [MockFunction],
               "type": "Password",
-              "value": undefined,
+              "value": "",
             },
             "ref": null,
             "rendered": null,
@@ -536,7 +569,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "label": "log in",
-              "onPress": [Function],
+              "onPress": [MockFunction],
               "type": "Primary",
             },
             "ref": null,
@@ -562,11 +595,11 @@ ShallowWrapper {
               "data": Array [
                 Object {
                   "label": "Forgot password",
-                  "onPress": undefined,
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "label": "Sign up",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
               ],
             },
@@ -595,9 +628,18 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <LoginScreen
-    onForgotPress={[Function]}
-    onLogInPress={[Function]}
-    onSignUpPress={[Function]}
+    email=""
+    emailError=""
+    isLoggingIn={false}
+    loginError=""
+    onEmailChange={[MockFunction]}
+    onForgotPress={[MockFunction]}
+    onLogInPress={[MockFunction]}
+    onPasswordChange={[MockFunction]}
+    onResetPasswordPress={[MockFunction]}
+    onSignUpPress={[MockFunction]}
+    password=""
+    passwordError=""
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -628,22 +670,28 @@ ShallowWrapper {
           height={44}
         />
         <TextInput
+          errorMessage=""
           hasError={false}
+          onChange={[MockFunction]}
           type="Email"
+          value=""
         />
         <Pad
           height={12}
         />
         <TextInput
+          errorMessage=""
           hasError={false}
+          onChange={[MockFunction]}
           type="Password"
+          value=""
         />
         <Pad
           height={44}
         />
         <Button
           label="log in"
-          onPress={[Function]}
+          onPress={[MockFunction]}
           type="Primary"
         />
         <Pad
@@ -654,11 +702,11 @@ ShallowWrapper {
             Array [
               Object {
                 "label": "Forgot password",
-                "onPress": undefined,
+                "onPress": [MockFunction],
               },
               Object {
                 "label": "Sign up",
-                "onPress": [Function],
+                "onPress": [MockFunction],
               },
             ]
           }
@@ -690,15 +738,21 @@ ShallowWrapper {
             height={44}
           />,
           <TextInput
+            errorMessage=""
             hasError={false}
+            onChange={[MockFunction]}
             type="Email"
+            value=""
           />,
           <Pad
             height={12}
           />,
           <TextInput
+            errorMessage=""
             hasError={false}
+            onChange={[MockFunction]}
             type="Password"
+            value=""
           />,
           false,
           <Pad
@@ -706,7 +760,7 @@ ShallowWrapper {
           />,
           <Button
             label="log in"
-            onPress={[Function]}
+            onPress={[MockFunction]}
             type="Primary"
           />,
           <Pad
@@ -717,11 +771,11 @@ ShallowWrapper {
               Array [
                 Object {
                   "label": "Forgot password",
-                  "onPress": undefined,
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "label": "Sign up",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
               ]
             }
@@ -790,11 +844,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "errorMessage": undefined,
+            "errorMessage": "",
             "hasError": false,
-            "onChange": undefined,
+            "onChange": [MockFunction],
             "type": "Email",
-            "value": undefined,
+            "value": "",
           },
           "ref": null,
           "rendered": null,
@@ -816,11 +870,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "errorMessage": undefined,
+            "errorMessage": "",
             "hasError": false,
-            "onChange": undefined,
+            "onChange": [MockFunction],
             "type": "Password",
-            "value": undefined,
+            "value": "",
           },
           "ref": null,
           "rendered": null,
@@ -844,7 +898,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "label": "log in",
-            "onPress": [Function],
+            "onPress": [MockFunction],
             "type": "Primary",
           },
           "ref": null,
@@ -870,11 +924,11 @@ ShallowWrapper {
             "data": Array [
               Object {
                 "label": "Forgot password",
-                "onPress": undefined,
+                "onPress": [MockFunction],
               },
               Object {
                 "label": "Sign up",
-                "onPress": [Function],
+                "onPress": [MockFunction],
               },
             ],
           },
@@ -910,22 +964,28 @@ ShallowWrapper {
             height={44}
           />
           <TextInput
+            errorMessage=""
             hasError={false}
+            onChange={[MockFunction]}
             type="Email"
+            value=""
           />
           <Pad
             height={12}
           />
           <TextInput
+            errorMessage=""
             hasError={false}
+            onChange={[MockFunction]}
             type="Password"
+            value=""
           />
           <Pad
             height={44}
           />
           <Button
             label="log in"
-            onPress={[Function]}
+            onPress={[MockFunction]}
             type="Primary"
           />
           <Pad
@@ -936,11 +996,11 @@ ShallowWrapper {
               Array [
                 Object {
                   "label": "Forgot password",
-                  "onPress": undefined,
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "label": "Sign up",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
               ]
             }
@@ -972,15 +1032,21 @@ ShallowWrapper {
               height={44}
             />,
             <TextInput
+              errorMessage=""
               hasError={false}
+              onChange={[MockFunction]}
               type="Email"
+              value=""
             />,
             <Pad
               height={12}
             />,
             <TextInput
+              errorMessage=""
               hasError={false}
+              onChange={[MockFunction]}
               type="Password"
+              value=""
             />,
             false,
             <Pad
@@ -988,7 +1054,7 @@ ShallowWrapper {
             />,
             <Button
               label="log in"
-              onPress={[Function]}
+              onPress={[MockFunction]}
               type="Primary"
             />,
             <Pad
@@ -999,11 +1065,11 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "Forgot password",
-                    "onPress": undefined,
+                    "onPress": [MockFunction],
                   },
                   Object {
                     "label": "Sign up",
-                    "onPress": [Function],
+                    "onPress": [MockFunction],
                   },
                 ]
               }
@@ -1072,11 +1138,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "errorMessage": undefined,
+              "errorMessage": "",
               "hasError": false,
-              "onChange": undefined,
+              "onChange": [MockFunction],
               "type": "Email",
-              "value": undefined,
+              "value": "",
             },
             "ref": null,
             "rendered": null,
@@ -1098,11 +1164,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "errorMessage": undefined,
+              "errorMessage": "",
               "hasError": false,
-              "onChange": undefined,
+              "onChange": [MockFunction],
               "type": "Password",
-              "value": undefined,
+              "value": "",
             },
             "ref": null,
             "rendered": null,
@@ -1126,7 +1192,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "label": "log in",
-              "onPress": [Function],
+              "onPress": [MockFunction],
               "type": "Primary",
             },
             "ref": null,
@@ -1152,11 +1218,11 @@ ShallowWrapper {
               "data": Array [
                 Object {
                   "label": "Forgot password",
-                  "onPress": undefined,
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "label": "Sign up",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
               ],
             },
@@ -1185,9 +1251,18 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <LoginScreen
-    onForgotPress={[Function]}
-    onLogInPress={[Function]}
-    onSignUpPress={[Function]}
+    email=""
+    emailError=""
+    isLoggingIn={false}
+    loginError=""
+    onEmailChange={[MockFunction]}
+    onForgotPress={[MockFunction]}
+    onLogInPress={[MockFunction]}
+    onPasswordChange={[MockFunction]}
+    onResetPasswordPress={[MockFunction]}
+    onSignUpPress={[MockFunction]}
+    password=""
+    passwordError=""
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1209,22 +1284,28 @@ ShallowWrapper {
           height={44}
         />
         <TextInput
+          errorMessage=""
           hasError={false}
+          onChange={[MockFunction]}
           type="Email"
+          value=""
         />
         <Pad
           height={12}
         />
         <TextInput
+          errorMessage=""
           hasError={false}
+          onChange={[MockFunction]}
           type="Password"
+          value=""
         />
         <Pad
           height={44}
         />
         <Button
           label="log in"
-          onPress={[Function]}
+          onPress={[MockFunction]}
           type="Primary"
         />
         <Pad
@@ -1235,11 +1316,11 @@ ShallowWrapper {
             Array [
               Object {
                 "label": "Forgot password",
-                "onPress": undefined,
+                "onPress": [MockFunction],
               },
               Object {
                 "label": "Sign up",
-                "onPress": [Function],
+                "onPress": [MockFunction],
               },
             ]
           }
@@ -1263,15 +1344,21 @@ ShallowWrapper {
             height={44}
           />,
           <TextInput
+            errorMessage=""
             hasError={false}
+            onChange={[MockFunction]}
             type="Email"
+            value=""
           />,
           <Pad
             height={12}
           />,
           <TextInput
+            errorMessage=""
             hasError={false}
+            onChange={[MockFunction]}
             type="Password"
+            value=""
           />,
           false,
           <Pad
@@ -1279,7 +1366,7 @@ ShallowWrapper {
           />,
           <Button
             label="log in"
-            onPress={[Function]}
+            onPress={[MockFunction]}
             type="Primary"
           />,
           <Pad
@@ -1290,11 +1377,11 @@ ShallowWrapper {
               Array [
                 Object {
                   "label": "Forgot password",
-                  "onPress": undefined,
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "label": "Sign up",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
               ]
             }
@@ -1321,11 +1408,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "errorMessage": undefined,
+            "errorMessage": "",
             "hasError": false,
-            "onChange": undefined,
+            "onChange": [MockFunction],
             "type": "Email",
-            "value": undefined,
+            "value": "",
           },
           "ref": null,
           "rendered": null,
@@ -1347,11 +1434,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "errorMessage": undefined,
+            "errorMessage": "",
             "hasError": false,
-            "onChange": undefined,
+            "onChange": [MockFunction],
             "type": "Password",
-            "value": undefined,
+            "value": "",
           },
           "ref": null,
           "rendered": null,
@@ -1375,7 +1462,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "label": "log in",
-            "onPress": [Function],
+            "onPress": [MockFunction],
             "type": "Primary",
           },
           "ref": null,
@@ -1401,11 +1488,11 @@ ShallowWrapper {
             "data": Array [
               Object {
                 "label": "Forgot password",
-                "onPress": undefined,
+                "onPress": [MockFunction],
               },
               Object {
                 "label": "Sign up",
-                "onPress": [Function],
+                "onPress": [MockFunction],
               },
             ],
           },
@@ -1432,22 +1519,28 @@ ShallowWrapper {
             height={44}
           />
           <TextInput
+            errorMessage=""
             hasError={false}
+            onChange={[MockFunction]}
             type="Email"
+            value=""
           />
           <Pad
             height={12}
           />
           <TextInput
+            errorMessage=""
             hasError={false}
+            onChange={[MockFunction]}
             type="Password"
+            value=""
           />
           <Pad
             height={44}
           />
           <Button
             label="log in"
-            onPress={[Function]}
+            onPress={[MockFunction]}
             type="Primary"
           />
           <Pad
@@ -1458,11 +1551,11 @@ ShallowWrapper {
               Array [
                 Object {
                   "label": "Forgot password",
-                  "onPress": undefined,
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "label": "Sign up",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
               ]
             }
@@ -1486,15 +1579,21 @@ ShallowWrapper {
               height={44}
             />,
             <TextInput
+              errorMessage=""
               hasError={false}
+              onChange={[MockFunction]}
               type="Email"
+              value=""
             />,
             <Pad
               height={12}
             />,
             <TextInput
+              errorMessage=""
               hasError={false}
+              onChange={[MockFunction]}
               type="Password"
+              value=""
             />,
             false,
             <Pad
@@ -1502,7 +1601,7 @@ ShallowWrapper {
             />,
             <Button
               label="log in"
-              onPress={[Function]}
+              onPress={[MockFunction]}
               type="Primary"
             />,
             <Pad
@@ -1513,11 +1612,11 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "Forgot password",
-                    "onPress": undefined,
+                    "onPress": [MockFunction],
                   },
                   Object {
                     "label": "Sign up",
-                    "onPress": [Function],
+                    "onPress": [MockFunction],
                   },
                 ]
               }
@@ -1544,11 +1643,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "errorMessage": undefined,
+              "errorMessage": "",
               "hasError": false,
-              "onChange": undefined,
+              "onChange": [MockFunction],
               "type": "Email",
-              "value": undefined,
+              "value": "",
             },
             "ref": null,
             "rendered": null,
@@ -1570,11 +1669,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "errorMessage": undefined,
+              "errorMessage": "",
               "hasError": false,
-              "onChange": undefined,
+              "onChange": [MockFunction],
               "type": "Password",
-              "value": undefined,
+              "value": "",
             },
             "ref": null,
             "rendered": null,
@@ -1598,7 +1697,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "label": "log in",
-              "onPress": [Function],
+              "onPress": [MockFunction],
               "type": "Primary",
             },
             "ref": null,
@@ -1624,11 +1723,11 @@ ShallowWrapper {
               "data": Array [
                 Object {
                   "label": "Forgot password",
-                  "onPress": undefined,
+                  "onPress": [MockFunction],
                 },
                 Object {
                   "label": "Sign up",
-                  "onPress": [Function],
+                  "onPress": [MockFunction],
                 },
               ],
             },
