@@ -7,7 +7,7 @@ import {
     SignUpContainer,
     SignUpRewardContainer,
     WelcomeContainer
-} from "../components/screens";
+} from "../components/containers";
 
 // tslint:disable:object-literal-sort-keys
 export const ROUTES = {

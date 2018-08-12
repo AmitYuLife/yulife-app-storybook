@@ -15,8 +15,8 @@ import {
     TextInput
 } from ".";
 import CenterView from "../../../storybook/stories/CenterView";
-import { CollectRewardModal } from "../organisms/modals";
-import { SignUpRewardScreen } from "../organisms/screens";
+import { CollectRewardModal } from "../modals";
+import { SignUpRewardScreen } from "../screens";
 
 storiesOf("Atoms", module)
     .addDecorator(withKnobs)
