@@ -15,12 +15,13 @@ interface IState {
     currentIndex: number;
 }
 
-class MainContainer extends PureComponent<IProps, IState> {
+class MemberRootContainer extends PureComponent<IProps, IState> {
+
     public state: IState = {
         currentIndex: 0,
     };
 
-    private COMPONENT_ID = ROUTES.main;
+    private COMPONENT_ID = ROUTES.member;
     private labels: ILabel[] = [
         {
             name: "yucoin",
@@ -59,4 +60,4 @@ class MainContainer extends PureComponent<IProps, IState> {
     // tslint:enable:no-empty
 }
 
-export default MainContainer;
+export default MemberRootContainer;

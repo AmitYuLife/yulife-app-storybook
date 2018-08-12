@@ -1,7 +1,7 @@
 import {
     FitKitConnectContainer,
     LoginContainer,
-    MainContainer,
+    MemberRootContainer,
     ResetPasswordContainer,
     ResetPasswordSuccessContainer,
     SignUpContainer,
@@ -22,10 +22,8 @@ export const ROUTES = {
     onboardingFitKitConnect: "yulife.onboarding.FitKitConnect",
     onboardingSignUpReward: "yulife.onboarding.SignUpReward",
 
-    // main screen
-    main: "yulife.member.main",
-
     // member screens
+    member: "yulife.member",
     memberDailySteps: "yulife.member.DailySteps",
     memberChallengesList: "yulife.member.ChallengesList",
     memberRewardsList: "yulife.member.RewardsList",
@@ -45,7 +43,7 @@ export default [
     { name: ROUTES.onboardingFitKitConnect, component: FitKitConnectContainer },
 
     // member screens
-    { name: ROUTES.main, component: MainContainer },
+    { name: ROUTES.member, component: MemberRootContainer },
 
     // // member screens
     // { name: ROUTES.memberDailySteps, component: DailyStepsContainer },

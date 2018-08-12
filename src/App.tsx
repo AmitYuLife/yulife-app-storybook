@@ -9,7 +9,7 @@ registerScreens();
 Navigation.events().registerAppLaunchedListener(async () => {
     const token = await getToken();
     // const fitkitPermission = await getFitkitPermission();
-    const name = token ? ROUTES.main : ROUTES.welcome;
+    const name = token ? ROUTES.member : ROUTES.welcome;
     const children = [
         {
             component: {
