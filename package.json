@@ -13,7 +13,8 @@
     "start:android:local": "react-native run-android --variant=local",
     "start:android:uat": "react-native run-android --variant=uat",
     "start:android:production": "react-native run-android --variant=production",
-    "test": "jest --config=jest.config.json",
+    "test": "run-s test:unit",
+    "test:unit": "jest --config=jest.config.json",
     "tslint": "tslint -p tsconfig.json",
     "tsc": "tsc",
     "tsc:watch": "tsc --watch --pretty",
@@ -88,7 +89,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "run-s tslint tsc"
+      "pre-push": "run-s tslint tsc test:unit"
     }
   }
 }
