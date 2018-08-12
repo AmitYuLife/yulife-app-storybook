@@ -2,7 +2,6 @@
 
 exports[`ChallengeSuccessScreen should match snapshot 1`] = `
 ShallowWrapper {
-  "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeSuccessScreen
     onPressCta={[MockFunction]}
@@ -45,7 +44,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/organisms/screens/member/challenges/challenge-success/assets/challenge-success.png",
+                "testUri": "../../../src/components/screens/member/challenges/challenge-success/assets/challenge-success.png",
               }
             }
           />
@@ -139,7 +138,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/organisms/screens/member/challenges/challenge-success/assets/challenge-success.png",
+                  "testUri": "../../../src/components/screens/member/challenges/challenge-success/assets/challenge-success.png",
                 }
               }
             />,
@@ -196,7 +195,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/organisms/screens/member/challenges/challenge-success/assets/challenge-success.png",
+                "testUri": "../../../src/components/screens/member/challenges/challenge-success/assets/challenge-success.png",
               },
             },
             "ref": null,
@@ -314,7 +313,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/organisms/screens/member/challenges/challenge-success/assets/challenge-success.png",
+                  "testUri": "../../../src/components/screens/member/challenges/challenge-success/assets/challenge-success.png",
                 }
               }
             />
@@ -408,7 +407,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/organisms/screens/member/challenges/challenge-success/assets/challenge-success.png",
+                    "testUri": "../../../src/components/screens/member/challenges/challenge-success/assets/challenge-success.png",
                   }
                 }
               />,
@@ -465,7 +464,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/organisms/screens/member/challenges/challenge-success/assets/challenge-success.png",
+                  "testUri": "../../../src/components/screens/member/challenges/challenge-success/assets/challenge-success.png",
                 },
               },
               "ref": null,
@@ -560,8 +559,16 @@ ShallowWrapper {
     "adapter": ReactSixteenAdapter {
       "options": Object {
         "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
       },
     },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
   },
 }
 `;

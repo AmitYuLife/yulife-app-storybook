@@ -2,7 +2,6 @@
 
 exports[`ChallengeComplete should match snapshot 1`] = `
 ShallowWrapper {
-  "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeComplete
     onCtaPress={[MockFunction]}
@@ -23,7 +22,7 @@ ShallowWrapper {
         <Image
           source={
             Object {
-              "testUri": "../../../src/components/organisms/modals/challenge-complete/assets/timeup.png",
+              "testUri": "../../../src/components/modals/challenge-complete/assets/timeup.png",
             }
           }
         />,
@@ -70,7 +69,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "source": Object {
-            "testUri": "../../../src/components/organisms/modals/challenge-complete/assets/timeup.png",
+            "testUri": "../../../src/components/modals/challenge-complete/assets/timeup.png",
           },
         },
         "ref": null,
@@ -143,7 +142,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/organisms/modals/challenge-complete/assets/timeup.png",
+                "testUri": "../../../src/components/modals/challenge-complete/assets/timeup.png",
               }
             }
           />,
@@ -190,7 +189,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "source": Object {
-              "testUri": "../../../src/components/organisms/modals/challenge-complete/assets/timeup.png",
+              "testUri": "../../../src/components/modals/challenge-complete/assets/timeup.png",
             },
           },
           "ref": null,
@@ -258,8 +257,16 @@ ShallowWrapper {
     "adapter": ReactSixteenAdapter {
       "options": Object {
         "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
       },
     },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
   },
 }
 `;

@@ -2,7 +2,6 @@
 
 exports[`ChallengeFailedScreen should match snapshot 1`] = `
 ShallowWrapper {
-  "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeFailedScreen
     onPress={[MockFunction]}
@@ -35,7 +34,7 @@ ShallowWrapper {
         <Image
           source={
             Object {
-              "testUri": "../../../src/components/organisms/screens/member/challenges/challenge-failed/assets/face.png",
+              "testUri": "../../../src/components/screens/member/challenges/challenge-failed/assets/face.png",
             }
           }
           style={
@@ -105,7 +104,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "source": Object {
-            "testUri": "../../../src/components/organisms/screens/member/challenges/challenge-failed/assets/face.png",
+            "testUri": "../../../src/components/screens/member/challenges/challenge-failed/assets/face.png",
           },
           "style": Object {
             "marginTop": 54,
@@ -173,7 +172,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/organisms/screens/member/challenges/challenge-failed/assets/face.png",
+                "testUri": "../../../src/components/screens/member/challenges/challenge-failed/assets/face.png",
               }
             }
             style={
@@ -243,7 +242,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "source": Object {
-              "testUri": "../../../src/components/organisms/screens/member/challenges/challenge-failed/assets/face.png",
+              "testUri": "../../../src/components/screens/member/challenges/challenge-failed/assets/face.png",
             },
             "style": Object {
               "marginTop": 54,
@@ -294,8 +293,16 @@ ShallowWrapper {
     "adapter": ReactSixteenAdapter {
       "options": Object {
         "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
       },
     },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
   },
 }
 `;

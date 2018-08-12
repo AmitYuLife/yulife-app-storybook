@@ -2,25 +2,25 @@
 
 exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 1`] = `
 Object {
-  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/squirrel.png",
+  "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
 }
 `;
 
 exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 2`] = `
 Object {
-  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/ostrich.png",
+  "testUri": "../../../src/components/modals/challenge-details/assets/ostrich.png",
 }
 `;
 
 exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 3`] = `
 Object {
-  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/bird.png",
+  "testUri": "../../../src/components/modals/challenge-details/assets/bird.png",
 }
 `;
 
 exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 4`] = `
 Object {
-  "testUri": "../../../src/components/organisms/modals/challenge-details/assets/elephant.png",
+  "testUri": "../../../src/components/modals/challenge-details/assets/elephant.png",
 }
 `;
 

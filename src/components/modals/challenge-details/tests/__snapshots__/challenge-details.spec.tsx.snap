@@ -2,7 +2,6 @@
 
 exports[`ChallengeDetailsModal should match snapshot 1`] = `
 ShallowWrapper {
-  "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeDetails
     challengeType="brisk walk"
@@ -38,7 +37,7 @@ ShallowWrapper {
         <Image
           source={
             Object {
-              "testUri": "../../../src/components/organisms/modals/challenge-details/assets/squirrel.png",
+              "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
             }
           }
           style={
@@ -126,7 +125,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "source": Object {
-            "testUri": "../../../src/components/organisms/modals/challenge-details/assets/squirrel.png",
+            "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
           },
           "style": Object {
             "marginTop": 200,
@@ -259,7 +258,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/organisms/modals/challenge-details/assets/squirrel.png",
+                "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
               }
             }
             style={
@@ -347,7 +346,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "source": Object {
-              "testUri": "../../../src/components/organisms/modals/challenge-details/assets/squirrel.png",
+              "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
             },
             "style": Object {
               "marginTop": 200,
@@ -472,8 +471,16 @@ ShallowWrapper {
     "adapter": ReactSixteenAdapter {
       "options": Object {
         "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
       },
     },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
   },
 }
 `;
