@@ -3,6 +3,7 @@ package com.yulife;
 import com.cmcewen.blurview.BlurViewPackage;
 import com.horcrux.svg.SvgPackage;
 import com.facebook.react.ReactPackage;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.reactnativenavigation.NavigationApplication;
 
 import java.util.Arrays;
@@ -19,7 +20,8 @@ public class MainApplication extends NavigationApplication {
         return Arrays.<ReactPackage>asList(
                 // eg. new VectorIconsPackage()
                 new BlurViewPackage(),
-                new SvgPackage()
+                new SvgPackage(),
+                new ReactNativeConfigPackage()
         );
     }
 }

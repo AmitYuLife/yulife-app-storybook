@@ -1,6 +1,7 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import { NativeSyntheticEvent, StyleSheet, Text, WebView, WebViewMessageEventData } from "react-native";
+import Config from "react-native-config";
 import styles from "./sign-up.styles";
 
 const injectScript = `
@@ -39,7 +40,7 @@ class SignUpScreen extends PureComponent<IProps> {
                     onLoad={onLoad}
                     onMessage={onMessage}
                     scalesPageToFit={true}
-                    source={{ uri: "https://join-develop.yulife.com/signup/email" }}
+                    source={{ uri: Config.SIGN_UP_URL }}
                     style={StyleSheet.flatten([
                         styles.webView,
                         loading ? styles.invisible : null

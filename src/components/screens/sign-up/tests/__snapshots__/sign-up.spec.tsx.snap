@@ -48,7 +48,7 @@ ShallowWrapper {
           scalesPageToFit={true}
           source={
             Object {
-              "uri": "https://join-develop.yulife.com/signup/email",
+              "uri": undefined,
             }
           }
           style={
@@ -88,7 +88,7 @@ ShallowWrapper {
           ],
           "scalesPageToFit": true,
           "source": Object {
-            "uri": "https://join-develop.yulife.com/signup/email",
+            "uri": undefined,
           },
           "style": Object {
             "borderColor": "red",
@@ -134,7 +134,7 @@ ShallowWrapper {
             scalesPageToFit={true}
             source={
               Object {
-                "uri": "https://join-develop.yulife.com/signup/email",
+                "uri": undefined,
               }
             }
             style={
@@ -174,7 +174,7 @@ ShallowWrapper {
             ],
             "scalesPageToFit": true,
             "source": Object {
-              "uri": "https://join-develop.yulife.com/signup/email",
+              "uri": undefined,
             },
             "style": Object {
               "borderColor": "red",
@@ -259,7 +259,7 @@ ShallowWrapper {
           scalesPageToFit={true}
           source={
             Object {
-              "uri": "https://join-develop.yulife.com/signup/email",
+              "uri": undefined,
             }
           }
           style={
@@ -309,7 +309,7 @@ ShallowWrapper {
           ],
           "scalesPageToFit": true,
           "source": Object {
-            "uri": "https://join-develop.yulife.com/signup/email",
+            "uri": undefined,
           },
           "style": Object {
             "borderColor": "red",
@@ -357,7 +357,7 @@ ShallowWrapper {
             scalesPageToFit={true}
             source={
               Object {
-                "uri": "https://join-develop.yulife.com/signup/email",
+                "uri": undefined,
               }
             }
             style={
@@ -407,7 +407,7 @@ ShallowWrapper {
             ],
             "scalesPageToFit": true,
             "source": Object {
-              "uri": "https://join-develop.yulife.com/signup/email",
+              "uri": undefined,
             },
             "style": Object {
               "borderColor": "red",
@@ -492,7 +492,7 @@ ShallowWrapper {
           scalesPageToFit={true}
           source={
             Object {
-              "uri": "https://join-develop.yulife.com/signup/email",
+              "uri": undefined,
             }
           }
           style={
@@ -543,7 +543,7 @@ ShallowWrapper {
           ],
           "scalesPageToFit": true,
           "source": Object {
-            "uri": "https://join-develop.yulife.com/signup/email",
+            "uri": undefined,
           },
           "style": Object {
             "borderColor": "red",
@@ -592,7 +592,7 @@ ShallowWrapper {
             scalesPageToFit={true}
             source={
               Object {
-                "uri": "https://join-develop.yulife.com/signup/email",
+                "uri": undefined,
               }
             }
             style={
@@ -643,7 +643,7 @@ ShallowWrapper {
             ],
             "scalesPageToFit": true,
             "source": Object {
-              "uri": "https://join-develop.yulife.com/signup/email",
+              "uri": undefined,
             },
             "style": Object {
               "borderColor": "red",

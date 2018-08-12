@@ -1,5 +1,13 @@
 apply plugin: "com.android.application"
 
+project.ext.envConfigFiles = [
+        debug:       ".env",
+        local:       ".env.local",
+        uat:         ".env.uat",
+        production:  ".env.production"
+]
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
 import com.android.build.OutputFile
 
 /**
@@ -104,6 +112,7 @@ android {
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative56"
         renderscriptTargetApi rootProject.ext.minSdkVersion
         renderscriptSupportModeEnabled true
+        resValue "string", "build_config_package", "com.yulife"
         versionCode 1
         versionName "1.0"
         ndk {
@@ -123,9 +132,24 @@ android {
         }
     }
     buildTypes {
-        release {
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+            matchingFallbacks = ['debug']
+        }
+        local {
+            initWith debug
+        }
+        uat {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            applicationIdSuffix ".uat"
+            matchingFallbacks = ['release']
+        }
+        production {
+            initWith uat
+            applicationIdSuffix ".app"
+            matchingFallbacks = ['release']
         }
     }
     // applicationVariants are e.g. debug, release
@@ -144,6 +168,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-config')
     implementation project(':react-native-blur')
     implementation project(':react-native-svg')
     implementation fileTree(dir: "libs", include: ["*.jar"])
