@@ -6,15 +6,17 @@
 
 function loadStories() {
   require('../src/components/atoms/atoms.stories');
+  require('../src/components/modals/modals.stories');
   require('../src/components/molecules/molecules.stories');
-  require('../src/components/organisms/organisms.stories');
+  require('../src/components/screens/screens.stories');
   
 }
 
 const stories = [
   '../src/components/atoms/atoms.stories',
+  '../src/components/modals/modals.stories',
   '../src/components/molecules/molecules.stories',
-  '../src/components/organisms/organisms.stories',
+  '../src/components/screens/screens.stories',
   
 ];
 
