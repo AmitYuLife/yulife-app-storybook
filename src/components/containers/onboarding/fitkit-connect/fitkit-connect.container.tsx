@@ -1,6 +1,7 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import { Linking } from "react-native";
+import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { setFitkitPermission } from "../../../../services/storage";
 import { FitKitConnectScreen } from "../../../screens";
@@ -44,19 +45,12 @@ class FitKitConnectContainer extends PureComponent<IProps, IState> {
     }
 
     private onPrivacyPolicy = async () => {
-        // try {
-        //     await Linking.openURL(Config.PRIVACY_POLICY_URL);
-        // } catch (e) {
-        //     // tslint:disable-next-line
-        //     console.log("Unable to open privacy policy link:", e);
-        // }
-
-        // TODO set up react-native-config
-        Navigation.push(this.props.componentId, {
-            component: {
-                name: "yulife.onboarding.SignUpReward",
-            },
-        });
+        try {
+            await Linking.openURL(Config.PRIVACY_POLICY_URL);
+        } catch (e) {
+            // tslint:disable-next-line
+            console.log("Unable to open privacy policy link:", e);
+        }
     }
 
     private onSkip = () => {
