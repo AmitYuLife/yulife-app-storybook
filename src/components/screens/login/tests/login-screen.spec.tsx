@@ -44,4 +44,28 @@ describe("LoginScreen", () => {
 
         expect(actual).toMatchSnapshot();
     });
+
+    it("should render with login error", () => {
+
+        const actual = shallow(
+            <LoginScreen
+                {...filler}
+                loginError="Bergatron error"
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render as logging in", () => {
+
+        const actual = shallow(
+            <LoginScreen
+                {...filler}
+                isLoggingIn={true}
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
 });

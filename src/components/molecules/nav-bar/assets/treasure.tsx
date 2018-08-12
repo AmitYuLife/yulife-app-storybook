@@ -8,7 +8,7 @@ interface IProps {
     isPressed: boolean;
 }
 
-const Treasure: SFC<IProps> = ({ isActive = false, isPressed = false }) => (
+const Treasure: SFC<IProps> = ({ isActive, isPressed }) => (
     <G>
         <Rect
             x="380.2"

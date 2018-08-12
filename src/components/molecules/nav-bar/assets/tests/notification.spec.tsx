@@ -43,4 +43,17 @@ describe("Notification", () => {
 
         expect(actual).toMatchSnapshot();
     });
+
+    it("should not render when not visible", () => {
+
+        const actual = shallow(
+            <Notification
+                isVisible={false}
+                isActive={true}
+                isPressed={false}
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
 });

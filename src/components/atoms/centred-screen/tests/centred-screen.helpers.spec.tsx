@@ -27,6 +27,13 @@ describe("getImage", () => {
 
         expect(actual).toBeDefined();
     });
+
+    it("should return a mocked image for mountains", () => {
+
+        const actual = getImage(IMAGES.MOUNTAINS);
+
+        expect(actual).toBeDefined();
+    });
 });
 
 describe("getImageStyle", () => {
@@ -48,6 +55,13 @@ describe("getImageStyle", () => {
     it("should be defined for a known argument", () => {
 
         const actual = getImageStyle(IMAGES.LARGE_FOREST);
+
+        expect(actual).toBeDefined();
+    });
+
+    it("should be defined for a known argument", () => {
+
+        const actual = getImageStyle(IMAGES.MOUNTAINS);
 
         expect(actual).toBeDefined();
     });

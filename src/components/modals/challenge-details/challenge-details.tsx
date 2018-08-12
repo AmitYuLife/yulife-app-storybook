@@ -19,12 +19,12 @@ type Props = IOwnProps & MilestoneProps;
 
 const ChallengeDetails: SFC<Props> = ({
     challengeType,
-    duration = "",
-    milestones = [],
-    onPressClose = (): null => null,
-    onPressCta = (): null => null,
+    duration,
+    milestones,
+    onPressClose,
+    onPressCta,
     onPressSetUp = null,
-    unit = "",
+    unit,
 }) => (
     <View style={styles.wrapper}>
         <Close onPress={onPressClose} />

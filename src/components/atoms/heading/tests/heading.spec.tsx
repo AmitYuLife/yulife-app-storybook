@@ -23,4 +23,16 @@ describe("Heading", () => {
 
         expect(actual).toMatchSnapshot();
     });
+
+    it("should render as bold", () => {
+
+        const actual = shallow(
+            <Heading
+                bold={true}
+                label="test"
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
 });

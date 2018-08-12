@@ -1,6 +1,490 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ChallengeDetailsModal should match snapshot 1`] = `
+exports[`ChallengeDetailsModal should render with setup 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ChallengeDetails
+    challengeType="brisk walk"
+    duration="10 mins"
+    milestones={
+      Array [
+        Object {
+          "reward": 1,
+          "target": 100,
+        },
+      ]
+    }
+    onPressClose={[Function]}
+    onPressCta={[Function]}
+    onPressSetUp={[MockFunction]}
+    unit="steps"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Close
+          onPress={[Function]}
+        />,
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
+            }
+          }
+          style={
+            Object {
+              "marginTop": 200,
+            }
+          }
+        />,
+        <Component
+          style={
+            Object {
+              "backgroundColor": "rgb(237, 251, 248)",
+              "padding": 40,
+              "width": 570,
+            }
+          }
+        >
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontSize": 50,
+                "marginBottom": 20,
+              }
+            }
+          >
+            brisk walk / 10 mins
+          </YuText>
+          <Milestones
+            milestones={
+              Array [
+                Object {
+                  "reward": 1,
+                  "target": 100,
+                },
+              ]
+            }
+            unit="steps"
+          />
+        </Component>,
+        <Button
+          label="take challenge"
+          onPress={[Function]}
+          type="Primary"
+          wrapperStyle={
+            Object {
+              "marginTop": -8,
+            }
+          }
+        />,
+        <Button
+          label="set up tutorial"
+          onPress={[MockFunction]}
+          type="Secondary"
+          wrapperStyle={
+            Object {
+              "marginTop": 30,
+            }
+          }
+        />,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "flex": 1,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "onPress": [Function],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "source": Object {
+            "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
+          },
+          "style": Object {
+            "marginTop": 200,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontSize": 50,
+                  "marginBottom": 20,
+                }
+              }
+            >
+              brisk walk / 10 mins
+            </YuText>,
+            <Milestones
+              milestones={
+                Array [
+                  Object {
+                    "reward": 1,
+                    "target": 100,
+                  },
+                ]
+              }
+              unit="steps"
+            />,
+          ],
+          "style": Object {
+            "backgroundColor": "rgb(237, 251, 248)",
+            "padding": 40,
+            "width": 570,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "bold": true,
+              "children": "brisk walk / 10 mins",
+              "style": Object {
+                "color": "rgb(51,51,51)",
+                "fontSize": 50,
+                "marginBottom": 20,
+              },
+            },
+            "ref": null,
+            "rendered": "brisk walk / 10 mins",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "milestones": Array [
+                Object {
+                  "reward": 1,
+                  "target": 100,
+                },
+              ],
+              "unit": "steps",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "take challenge",
+          "onPress": [Function],
+          "type": "Primary",
+          "wrapperStyle": Object {
+            "marginTop": -8,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "set up tutorial",
+          "onPress": [MockFunction],
+          "type": "Secondary",
+          "wrapperStyle": Object {
+            "marginTop": 30,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Close
+            onPress={[Function]}
+          />,
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
+              }
+            }
+            style={
+              Object {
+                "marginTop": 200,
+              }
+            }
+          />,
+          <Component
+            style={
+              Object {
+                "backgroundColor": "rgb(237, 251, 248)",
+                "padding": 40,
+                "width": 570,
+              }
+            }
+          >
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontSize": 50,
+                  "marginBottom": 20,
+                }
+              }
+            >
+              brisk walk / 10 mins
+            </YuText>
+            <Milestones
+              milestones={
+                Array [
+                  Object {
+                    "reward": 1,
+                    "target": 100,
+                  },
+                ]
+              }
+              unit="steps"
+            />
+          </Component>,
+          <Button
+            label="take challenge"
+            onPress={[Function]}
+            type="Primary"
+            wrapperStyle={
+              Object {
+                "marginTop": -8,
+              }
+            }
+          />,
+          <Button
+            label="set up tutorial"
+            onPress={[MockFunction]}
+            type="Secondary"
+            wrapperStyle={
+              Object {
+                "marginTop": 30,
+              }
+            }
+          />,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "onPress": [Function],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "source": Object {
+              "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
+            },
+            "style": Object {
+              "marginTop": 200,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontSize": 50,
+                    "marginBottom": 20,
+                  }
+                }
+              >
+                brisk walk / 10 mins
+              </YuText>,
+              <Milestones
+                milestones={
+                  Array [
+                    Object {
+                      "reward": 1,
+                      "target": 100,
+                    },
+                  ]
+                }
+                unit="steps"
+              />,
+            ],
+            "style": Object {
+              "backgroundColor": "rgb(237, 251, 248)",
+              "padding": 40,
+              "width": 570,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "bold": true,
+                "children": "brisk walk / 10 mins",
+                "style": Object {
+                  "color": "rgb(51,51,51)",
+                  "fontSize": 50,
+                  "marginBottom": 20,
+                },
+              },
+              "ref": null,
+              "rendered": "brisk walk / 10 mins",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "milestones": Array [
+                  Object {
+                    "reward": 1,
+                    "target": 100,
+                  },
+                ],
+                "unit": "steps",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "take challenge",
+            "onPress": [Function],
+            "type": "Primary",
+            "wrapperStyle": Object {
+              "marginTop": -8,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "set up tutorial",
+            "onPress": [MockFunction],
+            "type": "Secondary",
+            "wrapperStyle": Object {
+              "marginTop": 30,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`ChallengeDetailsModal should render without setup 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeDetails

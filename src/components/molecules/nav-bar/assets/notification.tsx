@@ -9,7 +9,7 @@ interface IProps {
     isPressed: boolean;
 }
 
-const Notification: SFC<IProps> = ({ isVisible = false, isActive = false, isPressed = false }) =>
+const Notification: SFC<IProps> = ({ isVisible, isActive, isPressed }) =>
     !isVisible ? null : (
         <Path
             fill={

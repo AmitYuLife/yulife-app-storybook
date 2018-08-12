@@ -41,6 +41,13 @@ describe("getWrapperStyle", () => {
 
     it("should be defined when given a known input", () => {
 
+        const actual = getWrapperStyle(BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL);
+
+        expect(actual).toBeDefined();
+    });
+
+    it("should be defined when given a known input", () => {
+
         const actual = getWrapperStyle(BUTTON_TYPES.LINK);
 
         expect(actual).toBeDefined();
@@ -76,6 +83,13 @@ describe("getTextStyle", () => {
 
     it("should be defined when given a known input", () => {
 
+        const actual = getTextStyle(BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL);
+
+        expect(actual).toBeDefined();
+    });
+
+    it("should be defined when given a known input", () => {
+
         const actual = getTextStyle(BUTTON_TYPES.LINK);
 
         expect(actual).toBeDefined();
@@ -98,6 +112,13 @@ describe("getShadowStyle", () => {
     it("should be defined when given a known input", () => {
 
         const actual = getShadowStyle(BUTTON_TYPES.PRIMARY_MEDIUM);
+
+        expect(actual).toBeDefined();
+    });
+
+    it("should be defined when given a known input", () => {
+
+        const actual = getShadowStyle(BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL);
 
         expect(actual).toBeDefined();
     });

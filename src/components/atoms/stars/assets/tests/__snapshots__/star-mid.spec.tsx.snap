@@ -1,0 +1,343 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StarMid component should render highlighted 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <StarMid
+    isHighlighted={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Polygon
+          fill="#FBCF27"
+          points="43.5,0.5 53.6,31.9 86.6,31.8 59.9,51.2 70.2,82.5 43.5,63.1 16.8,82.5 27.1,51.2 0.4,31.8 33.4,31.9 "
+        />,
+        <Polygon
+          fill="#E59E00"
+          fillOpacity={0.59}
+          points="0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	"
+        />,
+        <Polygon
+          fill="#E59E00"
+          fillOpacity={0.59}
+          points="86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	"
+        />,
+      ],
+      "height": 42,
+      "preserveAspectRatio": "xMidYMid meet",
+      "viewBox": "0 0 87 84",
+      "width": 43.5,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "#FBCF27",
+          "points": "43.5,0.5 53.6,31.9 86.6,31.8 59.9,51.2 70.2,82.5 43.5,63.1 16.8,82.5 27.1,51.2 0.4,31.8 33.4,31.9 ",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "#E59E00",
+          "fillOpacity": 0.59,
+          "points": "0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "#E59E00",
+          "fillOpacity": 0.59,
+          "points": "86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Polygon
+            fill="#FBCF27"
+            points="43.5,0.5 53.6,31.9 86.6,31.8 59.9,51.2 70.2,82.5 43.5,63.1 16.8,82.5 27.1,51.2 0.4,31.8 33.4,31.9 "
+          />,
+          <Polygon
+            fill="#E59E00"
+            fillOpacity={0.59}
+            points="0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	"
+          />,
+          <Polygon
+            fill="#E59E00"
+            fillOpacity={0.59}
+            points="86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	"
+          />,
+        ],
+        "height": 42,
+        "preserveAspectRatio": "xMidYMid meet",
+        "viewBox": "0 0 87 84",
+        "width": 43.5,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "#FBCF27",
+            "points": "43.5,0.5 53.6,31.9 86.6,31.8 59.9,51.2 70.2,82.5 43.5,63.1 16.8,82.5 27.1,51.2 0.4,31.8 33.4,31.9 ",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "#E59E00",
+            "fillOpacity": 0.59,
+            "points": "0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "#E59E00",
+            "fillOpacity": 0.59,
+            "points": "86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`StarMid component should render not highlighted 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <StarMid
+    isHighlighted={false}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Polygon
+          fill="#E2E2E2"
+          points="43.5,0.5 53.6,31.9 86.6,31.8 59.9,51.2 70.2,82.5 43.5,63.1 16.8,82.5 27.1,51.2 0.4,31.8 33.4,31.9 "
+        />,
+        <Polygon
+          fill="#C4C4C4"
+          fillOpacity={0.59}
+          points="0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	"
+        />,
+        <Polygon
+          fill="#C4C4C4"
+          fillOpacity={0.59}
+          points="86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	"
+        />,
+      ],
+      "height": 42,
+      "preserveAspectRatio": "xMidYMid meet",
+      "viewBox": "0 0 87 84",
+      "width": 43.5,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "#E2E2E2",
+          "points": "43.5,0.5 53.6,31.9 86.6,31.8 59.9,51.2 70.2,82.5 43.5,63.1 16.8,82.5 27.1,51.2 0.4,31.8 33.4,31.9 ",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "#C4C4C4",
+          "fillOpacity": 0.59,
+          "points": "0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "#C4C4C4",
+          "fillOpacity": 0.59,
+          "points": "86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Polygon
+            fill="#E2E2E2"
+            points="43.5,0.5 53.6,31.9 86.6,31.8 59.9,51.2 70.2,82.5 43.5,63.1 16.8,82.5 27.1,51.2 0.4,31.8 33.4,31.9 "
+          />,
+          <Polygon
+            fill="#C4C4C4"
+            fillOpacity={0.59}
+            points="0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	"
+          />,
+          <Polygon
+            fill="#C4C4C4"
+            fillOpacity={0.59}
+            points="86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	"
+          />,
+        ],
+        "height": 42,
+        "preserveAspectRatio": "xMidYMid meet",
+        "viewBox": "0 0 87 84",
+        "width": 43.5,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "#E2E2E2",
+            "points": "43.5,0.5 53.6,31.9 86.6,31.8 59.9,51.2 70.2,82.5 43.5,63.1 16.8,82.5 27.1,51.2 0.4,31.8 33.4,31.9 ",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "#C4C4C4",
+            "fillOpacity": 0.59,
+            "points": "0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "#C4C4C4",
+            "fillOpacity": 0.59,
+            "points": "86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

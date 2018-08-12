@@ -18,11 +18,23 @@ const filler = {
 
 describe("ChallengeDetailsModal", () => {
 
-    it("should match snapshot", () => {
+    it("should render without setup", () => {
 
         const actual = shallow(
             <ChallengeDetails
                 {...filler}
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render with setup", () => {
+
+        const actual = shallow(
+            <ChallengeDetails
+                {...filler}
+                onPressSetUp={jest.fn()}
             />
         );
 

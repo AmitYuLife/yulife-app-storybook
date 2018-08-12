@@ -1,5 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Heading should render as bold 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Heading
+    bold={true}
+    label="test"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": "test",
+      "style": Object {
+        "color": "#000",
+        "fontFamily": "Bariol-Bold",
+        "fontSize": 60,
+        "textAlign": "center",
+      },
+    },
+    "ref": null,
+    "rendered": "test",
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": "test",
+        "style": Object {
+          "color": "#000",
+          "fontFamily": "Bariol-Bold",
+          "fontSize": 60,
+          "textAlign": "center",
+        },
+      },
+      "ref": null,
+      "rendered": "test",
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
 exports[`Heading should render the default size without passing props 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],

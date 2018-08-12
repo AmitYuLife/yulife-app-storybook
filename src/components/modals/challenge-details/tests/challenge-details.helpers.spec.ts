@@ -17,6 +17,12 @@ describe("ChallengeDetails helpers", () => {
 
             actual = getImage("short stroll");
             expect(actual).toMatchSnapshot();
+
+            actual = getImage("day walk");
+            expect(actual).toMatchSnapshot();
+
+            actual = getImage("nothing");
+            expect(actual).toMatchSnapshot();
         });
     });
 
@@ -34,6 +40,9 @@ describe("ChallengeDetails helpers", () => {
             expect(actual).toMatchSnapshot();
 
             actual = getImageStyle("short stroll");
+            expect(actual).toMatchSnapshot();
+
+            actual = getImageStyle("day walk");
             expect(actual).toMatchSnapshot();
         });
     });

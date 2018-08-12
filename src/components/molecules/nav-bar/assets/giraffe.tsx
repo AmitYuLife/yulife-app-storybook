@@ -8,7 +8,7 @@ interface IProps {
     isPressed: boolean;
 }
 
-const Giraffe: SFC<IProps> = ({ isActive = false, isPressed = false }) => (
+const Giraffe: SFC<IProps> = ({ isActive, isPressed }) => (
     <G>
         <Path
             fill={

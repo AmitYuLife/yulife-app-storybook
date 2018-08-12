@@ -1,4 +1,5 @@
-import React, { SFC } from "react";
+import * as React from "react";
+import { SFC } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { getBackgroundImage, getBackgroundImageHeight } from "./challenge-progress.helpers";
 import styles from "./challenge-progress.styles";

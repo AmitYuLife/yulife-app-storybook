@@ -20,4 +20,15 @@ describe("CoinConfetti", () => {
 
         expect(actual).toMatchSnapshot();
     });
+
+    it("should render as expanded", () => {
+
+        const actual = shallow(
+            <CoinConfetti
+                isExpanded={true}
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
 });

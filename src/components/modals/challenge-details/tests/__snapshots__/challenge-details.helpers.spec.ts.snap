@@ -24,6 +24,14 @@ Object {
 }
 `;
 
+exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 5`] = `
+Object {
+  "testUri": "../../../src/components/modals/challenge-details/assets/elephant.png",
+}
+`;
+
+exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 6`] = `null`;
+
 exports[`ChallengeDetails helpers getImageStyle helper should return a view style for each challenge type 1`] = `
 Object {
   "marginTop": 200,
@@ -43,6 +51,12 @@ Object {
 `;
 
 exports[`ChallengeDetails helpers getImageStyle helper should return a view style for each challenge type 4`] = `
+Object {
+  "marginTop": 200,
+}
+`;
+
+exports[`ChallengeDetails helpers getImageStyle helper should return a view style for each challenge type 5`] = `
 Object {
   "marginTop": 200,
 }

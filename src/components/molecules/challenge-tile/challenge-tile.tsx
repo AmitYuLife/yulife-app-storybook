@@ -39,12 +39,12 @@ class ChallengeTile extends PureComponent<Props> {
 
     public render() {
         const {
-            image = null,
-            isImageBackgroundFlipped = false,
             challengeType = "",
             duration = "",
+            image,
+            isImageBackgroundFlipped = false,
             isLocked = false,
-            minimumLevel,
+            minimumLevel = 1,
             onPress = (): any => null,
             reward = "",
         } = this.props;

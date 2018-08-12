@@ -33,7 +33,7 @@ const ChallengeSuccessScreen: SFC<IProps> = ({ onPressCta, rating, reward, score
         />
         <View>
             <View style={styles.plusPointsWrapper}>
-                <PlusPoints coins={reward || 0} />
+                <PlusPoints coins={reward} />
             </View>
             <Image source={Assets.challengeSuccess} />
             <Text bold={true} style={styles.score}>{`${getScoreByUnit(score, unit)} ${unit}`}</Text>

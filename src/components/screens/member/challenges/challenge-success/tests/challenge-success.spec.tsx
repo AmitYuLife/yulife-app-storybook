@@ -5,12 +5,27 @@ import ChallengeSuccessScreen from "../challenge-success";
 
 describe("ChallengeSuccessScreen", () => {
 
-    it("should match snapshot", () => {
+    it("should render steps as expected", () => {
 
         const actual = shallow(
             <ChallengeSuccessScreen
                 score={1180}
                 unit="steps"
+                rating={2}
+                reward={2}
+                onPressCta={jest.fn()}
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render minutes as expected", () => {
+
+        const actual = shallow(
+            <ChallengeSuccessScreen
+                score={360}
+                unit="minutes"
                 rating={2}
                 reward={2}
                 onPressCta={jest.fn()}

@@ -24,4 +24,16 @@ describe("CollectReward", () => {
 
         expect(actual).toMatchSnapshot();
     });
+
+    it("should render with heading", () => {
+
+        const actual = shallow(
+            <CollectReward
+                onPress={jest.fn()}
+                date="12-15 Blerguary"
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
 });

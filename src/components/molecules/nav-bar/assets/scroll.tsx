@@ -8,7 +8,7 @@ interface IProps {
     isPressed: boolean;
 }
 
-const Scroll: SFC<IProps> = ({ isActive = false, isPressed = false }) => (
+const Scroll: SFC<IProps> = ({ isActive, isPressed }) => (
     <G>
         <Path
             fill={
