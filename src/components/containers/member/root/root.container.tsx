@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react";
-import { Navigation } from "react-native-navigation";
+// import { Navigation } from "react-native-navigation";
 import Swiper from "react-native-swiper";
 import { ChallengesListContainer } from "../..";
-import { ROUTES } from "../../../../navigation/routes";
-import { ILabel } from "../../../molecules";
+// import { ROUTES } from "../../../../navigation/routes";
+// import { ILabel } from "../../../molecules";
 import DailyStepsContainer from "../daily-steps/daily-steps.container";
 
 // TODO find where these props actually come from in RNN types
@@ -21,21 +21,21 @@ class MemberRootContainer extends PureComponent<IProps, IState> {
         currentIndex: 0,
     };
 
-    private COMPONENT_ID = ROUTES.member;
-    private labels: ILabel[] = [
-        {
-            name: "yucoin",
-            onPress: (): void => null
-        },
-        {
-            name: "challenges",
-            onPress: (): void => null
-        },
-        {
-            name: "rewards",
-            onPress: (): void => null
-        },
-    ];
+    // private COMPONENT_ID = ROUTES.member;
+    // private labels: ILabel[] = [
+    //     {
+    //         name: "yucoin",
+    //         onPress: (): void => null
+    //     },
+    //     {
+    //         name: "challenges",
+    //         onPress: (): void => null
+    //     },
+    //     {
+    //         name: "rewards",
+    //         onPress: (): void => null
+    //     },
+    // ];
 
     public render() {
         const { currentIndex } = this.state;
@@ -49,15 +49,13 @@ class MemberRootContainer extends PureComponent<IProps, IState> {
     }
 
     // TODO fix these
-    // tslint:disable:no-empty
-    private onCta = () => { };
+    // private onCta = () => { };
 
-    private onMenu = () => { };
+    // private onMenu = () => { };
 
-    private onStreak = () => { };
+    // private onStreak = () => { };
 
-    private onNavPress = (name: string) => { };
-    // tslint:enable:no-empty
+    // private onNavPress = (name: string) => { };
 }
 
 export default MemberRootContainer;

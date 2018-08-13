@@ -126,7 +126,7 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
                     const {
                         challengeType,
                         duration,
-                        id,
+                        // id,
                         milestones,
                         unit
                     } = this.state;
@@ -196,29 +196,29 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
         });
     }
 
-    private onNavPress = async (name: string) => {
-        if (name === "yulife.member.DailySteps") {
-            await Navigation.popToRoot(this.props.componentId);
-            return;
-        } else {
-            try {
-                await Navigation.popTo(name);
-                return;
-            } catch (e) {
-                // TODO proper catch error
-                // tslint:disable-next-line
-                console.log("navigation error: ", e.message);
-            }
-        }
+    // private onNavPress = async (name: string) => {
+    //     if (name === "yulife.member.DailySteps") {
+    //         await Navigation.popToRoot(this.props.componentId);
+    //         return;
+    //     } else {
+    //         try {
+    //             await Navigation.popTo(name);
+    //             return;
+    //         } catch (e) {
+    //             // TODO proper catch error
+    //             // tslint:disable-next-line
+    //             console.log("navigation error: ", e.message);
+    //         }
+    //     }
 
-        await Navigation.push(this.props.componentId, {
-            component: {
-                id: name,
-                name,
-            },
-        });
-        return;
-    }
+    //     await Navigation.push(this.props.componentId, {
+    //         component: {
+    //             id: name,
+    //             name,
+    //         },
+    //     });
+    //     return;
+    // }
 }
 
 export default ChallengesListContainer;

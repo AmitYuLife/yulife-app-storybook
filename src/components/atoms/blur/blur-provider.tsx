@@ -40,7 +40,8 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
         this.viewRef = ref;
     }
 
-    public componentDidUpdate(prevProps: IProps, prevState: IState) {
+    // tslint:disable:variable-name
+    public componentDidUpdate(_prevProps: IProps, prevState: IState) {
         if (this.props.displayOverlay && this.state.viewRef !== prevState.viewRef) {
             this.showOverlay();
         }
@@ -48,14 +49,14 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
 
     public showOverlay = () => {
         this.setState(
-            (state) => ({ isVisible: true }),
+            () => ({ isVisible: true }),
             this.animate(this.state.isVisible)
         );
     }
 
     public hideOverlay = () => {
         this.setState(
-            (state) => ({ isVisible: false }),
+            () => ({ isVisible: false }),
             this.animate(this.state.isVisible)
         );
     }

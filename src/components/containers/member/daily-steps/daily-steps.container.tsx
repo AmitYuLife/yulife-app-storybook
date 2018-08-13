@@ -14,7 +14,7 @@ interface IProps {
 }
 
 class DailyStepsContainer extends PureComponent<IProps> {
-    private COMPONENT_ID = "yulife.member.DailySteps";
+    // private COMPONENT_ID = "yulife.member.DailySteps";
     private labels: ILabel[] = [
         {
             name: "yucoin",
@@ -92,14 +92,14 @@ class DailyStepsContainer extends PureComponent<IProps> {
         });
     }
 
-    private onNavPress = (name: string) => {
-        Navigation.push(this.props.componentId, {
-            component: {
-                id: name,
-                name,
-            },
-        });
-    }
+    // private onNavPress = (name: string) => {
+    //     Navigation.push(this.props.componentId, {
+    //         component: {
+    //             id: name,
+    //             name,
+    //         },
+    //     });
+    // }
 }
 
 export default DailyStepsContainer;

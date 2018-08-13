@@ -82,7 +82,7 @@ ShallowWrapper {
               }
             }
           >
-            You can take challenge again tomorrow.
+            You can take a challenge again tomorrow.
           </YuText>
         </Component>,
         <Button
@@ -240,7 +240,7 @@ ShallowWrapper {
               }
             }
           >
-            You can take challenge again tomorrow.
+            You can take a challenge again tomorrow.
           </YuText>,
           "style": Object {
             "marginTop": 20,
@@ -253,7 +253,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "You can take challenge again tomorrow.",
+            "children": "You can take a challenge again tomorrow.",
             "style": Object {
               "color": "rgb(170,170,170)",
               "fontSize": 30,
@@ -261,7 +261,7 @@ ShallowWrapper {
             },
           },
           "ref": null,
-          "rendered": "You can take challenge again tomorrow.",
+          "rendered": "You can take a challenge again tomorrow.",
           "type": [Function],
         },
         "type": [Function],
@@ -351,7 +351,7 @@ ShallowWrapper {
                 }
               }
             >
-              You can take challenge again tomorrow.
+              You can take a challenge again tomorrow.
             </YuText>
           </Component>,
           <Button
@@ -509,7 +509,7 @@ ShallowWrapper {
                 }
               }
             >
-              You can take challenge again tomorrow.
+              You can take a challenge again tomorrow.
             </YuText>,
             "style": Object {
               "marginTop": 20,
@@ -522,7 +522,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": "You can take challenge again tomorrow.",
+              "children": "You can take a challenge again tomorrow.",
               "style": Object {
                 "color": "rgb(170,170,170)",
                 "fontSize": 30,
@@ -530,7 +530,7 @@ ShallowWrapper {
               },
             },
             "ref": null,
-            "rendered": "You can take challenge again tomorrow.",
+            "rendered": "You can take a challenge again tomorrow.",
             "type": [Function],
           },
           "type": [Function],
@@ -655,7 +655,7 @@ ShallowWrapper {
               }
             }
           >
-            You can take challenge again tomorrow.
+            You can take a challenge again tomorrow.
           </YuText>
         </Component>,
         <Button
@@ -813,7 +813,7 @@ ShallowWrapper {
               }
             }
           >
-            You can take challenge again tomorrow.
+            You can take a challenge again tomorrow.
           </YuText>,
           "style": Object {
             "marginTop": 20,
@@ -826,7 +826,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "You can take challenge again tomorrow.",
+            "children": "You can take a challenge again tomorrow.",
             "style": Object {
               "color": "rgb(170,170,170)",
               "fontSize": 30,
@@ -834,7 +834,7 @@ ShallowWrapper {
             },
           },
           "ref": null,
-          "rendered": "You can take challenge again tomorrow.",
+          "rendered": "You can take a challenge again tomorrow.",
           "type": [Function],
         },
         "type": [Function],
@@ -924,7 +924,7 @@ ShallowWrapper {
                 }
               }
             >
-              You can take challenge again tomorrow.
+              You can take a challenge again tomorrow.
             </YuText>
           </Component>,
           <Button
@@ -1082,7 +1082,7 @@ ShallowWrapper {
                 }
               }
             >
-              You can take challenge again tomorrow.
+              You can take a challenge again tomorrow.
             </YuText>,
             "style": Object {
               "marginTop": 20,
@@ -1095,7 +1095,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": "You can take challenge again tomorrow.",
+              "children": "You can take a challenge again tomorrow.",
               "style": Object {
                 "color": "rgb(170,170,170)",
                 "fontSize": 30,
@@ -1103,7 +1103,7 @@ ShallowWrapper {
               },
             },
             "ref": null,
-            "rendered": "You can take challenge again tomorrow.",
+            "rendered": "You can take a challenge again tomorrow.",
             "type": [Function],
           },
           "type": [Function],
