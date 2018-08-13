@@ -46,6 +46,27 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
         }
     }
 
+    public showOverlay = () => {
+        this.setState(
+            (state) => ({ isVisible: true }),
+            this.animate(this.state.isVisible)
+        );
+    }
+
+    public hideOverlay = () => {
+        this.setState(
+            (state) => ({ isVisible: false }),
+            this.animate(this.state.isVisible)
+        );
+    }
+
+    public toggleOverlay = () => {
+        this.setState(
+            (state) => ({ isVisible: !state.isVisible }),
+            this.animate(this.state.isVisible)
+        );
+    }
+
     public render() {
         const { viewRef } = this.state;
         const { render, renderOverlay } = this.props;
@@ -127,27 +148,6 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
         }
 
         return () => sequence.start();
-    }
-
-    private showOverlay = () => {
-        this.setState(
-            (state) => ({ isVisible: true }),
-            this.animate(this.state.isVisible)
-        );
-    }
-
-    private hideOverlay = () => {
-        this.setState(
-            (state) => ({ isVisible: false }),
-            this.animate(this.state.isVisible)
-        );
-    }
-
-    private toggleOverlay = () => {
-        this.setState(
-            (state) => ({ isVisible: !state.isVisible }),
-            this.animate(this.state.isVisible)
-        );
     }
 
     private handleLayout = () => {
