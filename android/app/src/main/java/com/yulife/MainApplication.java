@@ -5,9 +5,12 @@ import com.horcrux.svg.SvgPackage;
 import com.facebook.react.ReactPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.reactnativenavigation.NavigationApplication;
+import com.robinpowered.react.Intercom.IntercomPackage;
 
 import java.util.Arrays;
 import java.util.List;
+
+import io.intercom.android.sdk.Intercom;
 
 public class MainApplication extends NavigationApplication {
     @Override
@@ -16,12 +19,18 @@ public class MainApplication extends NavigationApplication {
     }
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+        Intercom.initialize(this, BuildConfig.INTERCOM_API_KEY_ANDROID, BuildConfig.INTERCOM_APP_ID);
+    }
+
+    @Override
     public List<ReactPackage> createAdditionalReactPackages() {
         return Arrays.<ReactPackage>asList(
-                // eg. new VectorIconsPackage()
                 new BlurViewPackage(),
                 new SvgPackage(),
-                new ReactNativeConfigPackage()
+                new ReactNativeConfigPackage(),
+                new IntercomPackage()
         );
     }
 }

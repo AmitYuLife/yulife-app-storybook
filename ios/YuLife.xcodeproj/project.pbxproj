@@ -25,11 +25,14 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		18999BAED804416DA2F297A9 /* Bariol-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9903AC7FFDE9457B9E58F46A /* Bariol-Bold.otf */; };
 		3A34E0CC210A33120022EAAA /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A34E0C9210A32FF0022EAAA /* libReactNativeNavigation.a */; };
+		3A85BDDB2121DA530081B400 /* Intercom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A85BDAD2121DA520081B400 /* Intercom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3A85BE302122D9CA0081B400 /* Intercom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A85BE2F2122D9CA0081B400 /* Intercom.framework */; };
 		5DD9F6AA5BA7418987C4008B /* Bariol-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58BDFA96FD7F4A21A586A35D /* Bariol-Light.otf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8470B5A883B14DAEB00B99CD /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8680205BCB6C46FEB6D2A697 /* libReactNativeConfig.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		BE55738547FE45A793211840 /* libRNIntercom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAEEA81EB5F49559EB99517 /* libRNIntercom.a */; };
 		EBAA9B26F42B473A81BB43A3 /* Bariol-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 63DDB257B8034DF18D1D01CA /* Bariol-Regular.otf */; };
 		F7C6483916D3450C8AD04253 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D735CA38EBDC4E069BDE45DC /* libRNBlur.a */; };
 /* End PBXBuildFile section */
@@ -188,6 +191,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 7B49FEBB1E95090800DEB3EA;
 			remoteInfo = ReactNativeNavigationTests;
+		};
+		3A85BE352122DC1C0081B400 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A85BE312122DC1C0081B400 /* RNIntercom.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 112EE36D1CC0AB8A00BF6BB8;
+			remoteInfo = RNIntercom;
 		};
 		3AA6826B2120C2DA0036CBD0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -352,6 +362,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3A85BDDC2121DA530081B400 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3A85BDDB2121DA530081B400 /* Intercom.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
@@ -373,8 +397,12 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = YuLife/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		1A79B36F254642778D2C0368 /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = "<group>"; };
+		1AAEEA81EB5F49559EB99517 /* libRNIntercom.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNIntercom.a; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A34E09E210A32FF0022EAAA /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/lib/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
+		3A85BDAD2121DA520081B400 /* Intercom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Intercom.framework; sourceTree = "<group>"; };
+		3A85BE2F2122D9CA0081B400 /* Intercom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intercom.framework; path = "../../../Downloads/intercom-ios-master/Intercom.framework"; sourceTree = "<group>"; };
+		3A85BE312122DC1C0081B400 /* RNIntercom.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNIntercom.xcodeproj; path = "../node_modules/react-native-intercom/iOS/RNIntercom.xcodeproj"; sourceTree = "<group>"; };
 		58BDFA96FD7F4A21A586A35D /* Bariol-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Bariol-Light.otf"; path = "../assets/fonts/Bariol-Light.otf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		613BBA4952A34123AD5DA2C6 /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSVG.a; sourceTree = "<group>"; };
@@ -410,6 +438,7 @@
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
+				3A85BE302122D9CA0081B400 /* Intercom.framework in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
@@ -419,6 +448,7 @@
 				01CCC4BD7C9942259C273026 /* libRNSVG.a in Frameworks */,
 				F7C6483916D3450C8AD04253 /* libRNBlur.a in Frameworks */,
 				8470B5A883B14DAEB00B99CD /* libReactNativeConfig.a in Frameworks */,
+				BE55738547FE45A793211840 /* libRNIntercom.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +574,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A85BE2F2122D9CA0081B400 /* Intercom.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 			);
 			name = Frameworks;
@@ -558,12 +589,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3A85BE322122DC1C0081B400 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3A85BE362122DC1C0081B400 /* libRNIntercom.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3AA6823E2120C2D90036CBD0 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
 				613BBA4952A34123AD5DA2C6 /* libRNSVG.a */,
 				D735CA38EBDC4E069BDE45DC /* libRNBlur.a */,
 				8680205BCB6C46FEB6D2A697 /* libReactNativeConfig.a */,
+				1AAEEA81EB5F49559EB99517 /* libRNIntercom.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -631,6 +671,7 @@
 				ECAF7C7DE0AE4E27AF136FB8 /* RNSVG.xcodeproj */,
 				67B634C5C9AB4C64921C5198 /* RNBlur.xcodeproj */,
 				1A79B36F254642778D2C0368 /* ReactNativeConfig.xcodeproj */,
+				3A85BE312122DC1C0081B400 /* RNIntercom.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -647,6 +688,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				3A85BDAD2121DA520081B400 /* Intercom.framework */,
 				13B07FAE1A68108700A75B9A /* YuLife */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* YuLifeTests */,
@@ -717,6 +759,8 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				3A85BDDC2121DA530081B400 /* Embed Frameworks */,
+				3A85BDDD2121DA710081B400 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -816,6 +860,10 @@
 				{
 					ProductGroup = 3AA682662120C2D90036CBD0 /* Products */;
 					ProjectRef = 67B634C5C9AB4C64921C5198 /* RNBlur.xcodeproj */;
+				},
+				{
+					ProductGroup = 3A85BE322122DC1C0081B400 /* Products */;
+					ProjectRef = 3A85BE312122DC1C0081B400 /* RNIntercom.xcodeproj */;
 				},
 				{
 					ProductGroup = 3AA682732120C2DA0036CBD0 /* Products */;
@@ -976,6 +1024,13 @@
 			fileType = wrapper.cfbundle;
 			path = ReactNativeNavigationTests.xctest;
 			remoteRef = 3A34E0CA210A32FF0022EAAA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3A85BE362122DC1C0081B400 /* libRNIntercom.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNIntercom.a;
+			remoteRef = 3A85BE352122DC1C0081B400 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3AA6826C2120C2DA0036CBD0 /* libReactNativeConfig.a */ = {
@@ -1178,6 +1233,19 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		3A85BDDD2121DA710081B400 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Intercom.framework/strip-frameworks.sh\"";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1234,12 +1302,14 @@
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
+					"$(SRCROOT)/../node_modules/react-native-intercom/iOS",
 				);
 				INFOPLIST_FILE = YuLifeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1263,12 +1333,14 @@
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
+					"$(SRCROOT)/../node_modules/react-native-intercom/iOS",
 				);
 				INFOPLIST_FILE = YuLifeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1289,11 +1361,16 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 739BJV2T6V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
+					"$(SRCROOT)/../node_modules/react-native-intercom/iOS",
 				);
 				INFOPLIST_FILE = YuLife/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
@@ -1318,11 +1395,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 739BJV2T6V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
+					"$(SRCROOT)/../node_modules/react-native-intercom/iOS",
 				);
 				INFOPLIST_FILE = YuLife/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
