@@ -9,6 +9,7 @@
 #import "ReactNativeConfig.h"
 #import "Intercom/intercom.h"
 #import "Mixpanel.h"
+#import <BugsnagReactNative/BugsnagReactNative.h>
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -26,6 +27,9 @@
     // Mixpanel
     NSString *mixpanelApiKey = [ReactNativeConfig envFor:@"MIXPANEL_API_TOKEN"];
     [Mixpanel sharedInstanceWithToken:mixpanelApiKey];
+
+    // Bugsnag
+    [BugsnagReactNative start];
 
     NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
     [ReactNativeNavigation bootstrap:jsCodeLocation launchOptions:launchOptions];

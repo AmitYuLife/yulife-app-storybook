@@ -184,6 +184,9 @@ dependencies {
     implementation project(':react-native-mixpanel')
     implementation "com.mixpanel.android:mixpanel-android:5.+"
     implementation "com.google.android.gms:play-services-gcm:7.5.0+"
+
+    // Bugsnag
+    implementation project(':bugsnag-react-native')
 }
 
 // Run this once to be able to run the application with BUCK

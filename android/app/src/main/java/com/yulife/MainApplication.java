@@ -1,6 +1,8 @@
 package com.yulife;
 
+import com.bugsnag.BugsnagReactNative;
 import com.cmcewen.blurview.BlurViewPackage;
+import com.facebook.soloader.SoLoader;
 import com.horcrux.svg.SvgPackage;
 import com.facebook.react.ReactPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
@@ -29,6 +31,10 @@ public class MainApplication extends NavigationApplication {
 
         // Mixpanel
         MixpanelAPI mixpanel = MixpanelAPI.getInstance(this, BuildConfig.MIXPANEL_API_TOKEN);
+
+        // Bugsnag
+        BugsnagReactNative.start(this);
+        SoLoader.init(this, /* native exopackage */ false);
     }
 
     @Override
@@ -38,7 +44,8 @@ public class MainApplication extends NavigationApplication {
                 new BlurViewPackage(),
                 new SvgPackage(),
                 new ReactNativeConfigPackage(),
-                new IntercomPackage()
+                new IntercomPackage(),
+                BugsnagReactNative.getPackage()
         );
     }
 }

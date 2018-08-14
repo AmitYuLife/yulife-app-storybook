@@ -37,5 +37,9 @@
             android:exported="true"
             tools:replace="android:exported" />
 
+        <!-- Bugsnag -->
+        <meta-data android:name="com.bugsnag.android.API_KEY"
+            android:value="@string/BUGSNAG_API_KEY"/>
+
     </application>
 </manifest>
