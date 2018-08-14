@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "ReactNativeConfig.h"
 #import "Intercom/intercom.h"
+#import "Mixpanel.h"
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -21,7 +22,11 @@
     NSString *intercomApiKey = [ReactNativeConfig envFor:@"INTERCOM_API_KEY_IOS"];
     NSString *intercomAppId = [ReactNativeConfig envFor:@"INTERCOM_APP_ID"];
     [Intercom setApiKey:intercomApiKey forAppId:intercomAppId];
-    
+   
+    // Mixpanel
+    NSString *mixpanelApiKey = [ReactNativeConfig envFor:@"MIXPANEL_API_TOKEN"];
+    [Mixpanel sharedInstanceWithToken:mixpanelApiKey];
+
     NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
     [ReactNativeNavigation bootstrap:jsCodeLocation launchOptions:launchOptions];
     
