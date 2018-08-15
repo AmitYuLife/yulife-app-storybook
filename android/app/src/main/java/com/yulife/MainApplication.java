@@ -10,6 +10,7 @@ import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.reactnativenavigation.NavigationApplication;
 import com.robinpowered.react.Intercom.IntercomPackage;
 import com.kevinejohn.RNMixpanel.RNMixpanel;
+import com.wwdrew.reactnative.RNDualPedometerPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,12 +41,13 @@ public class MainApplication extends NavigationApplication {
     @Override
     public List<ReactPackage> createAdditionalReactPackages() {
         return Arrays.<ReactPackage>asList(
-                new RNMixpanel(),
-                new BlurViewPackage(),
-                new SvgPackage(),
-                new ReactNativeConfigPackage(),
-                new IntercomPackage(),
-                BugsnagReactNative.getPackage()
+                new ReactNativeConfigPackage(),     // react-native
+                new BlurViewPackage(),              // react-native-blur
+                new SvgPackage(),                   // react-native-svg
+                new RNMixpanel(),                   // react-native-mixpanel
+                new IntercomPackage(),              // react-native-intercom
+                BugsnagReactNative.getPackage(),    // bugsnag-react-native
+                new RNDualPedometerPackage()        // react-native-dual-pedometer
         );
     }
 }

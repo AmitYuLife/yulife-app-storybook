@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSMotionUsageDescription</key>
+	<string>We use your pedometer to track how many steps you&apos;ve taken during the day.</string>
 	<key>BugsnagAPIKey</key>
 	<string>__RN_CONFIG_BUGSNAG_API_KEY</string>
 	<key>CFBundleDevelopmentRegion</key>

@@ -14,6 +14,7 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* YuLifeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* YuLifeTests.m */; };
 		01CCC4BD7C9942259C273026 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 613BBA4952A34123AD5DA2C6 /* libRNSVG.a */; };
+		09BBA0D09CD04BB0A158E1A6 /* libRNDualPedometer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FF90C857A2446193BAF74B /* libRNDualPedometer.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -326,6 +327,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 112EE36D1CC0AB8A00BF6BB8;
 			remoteInfo = RNIntercom;
+		};
+		3A90FC382124228900202C5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 776A2D8EEF894386BE0231B4 /* RNDualPedometer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNDualPedometer;
 		};
 		3AA6826B2120C2DA0036CBD0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -720,12 +728,14 @@
 		63DDB257B8034DF18D1D01CA /* Bariol-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Bariol-Regular.otf"; path = "../assets/fonts/Bariol-Regular.otf"; sourceTree = "<group>"; };
 		67B634C5C9AB4C64921C5198 /* RNBlur.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
 		741B056F3798488EB651C6D6 /* libBugsnagReactNative.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBugsnagReactNative.a; sourceTree = "<group>"; };
+		776A2D8EEF894386BE0231B4 /* RNDualPedometer.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDualPedometer.xcodeproj; path = "../node_modules/react-native-dual-pedometer/ios/RNDualPedometer.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8680205BCB6C46FEB6D2A697 /* libReactNativeConfig.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeConfig.a; sourceTree = "<group>"; };
 		9903AC7FFDE9457B9E58F46A /* Bariol-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Bariol-Bold.otf"; path = "../assets/fonts/Bariol-Bold.otf"; sourceTree = "<group>"; };
 		A23499BFDAA5480F982F1227 /* BugsnagReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BugsnagReactNative.xcodeproj; path = "../node_modules/bugsnag-react-native/cocoa/BugsnagReactNative.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		C3FF90C857A2446193BAF74B /* libRNDualPedometer.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDualPedometer.a; sourceTree = "<group>"; };
 		D735CA38EBDC4E069BDE45DC /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
 		ECAF7C7DE0AE4E27AF136FB8 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -774,6 +784,7 @@
 				20CA7E202D0B4540B721C211 /* libRNMixpanel.a in Frameworks */,
 				A3335D14F85D42C8A71DB717 /* libBugsnagReactNative.a in Frameworks */,
 				361D6BD0B022419E81A2465F /* libz.tbd in Frameworks */,
+				09BBA0D09CD04BB0A158E1A6 /* libRNDualPedometer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1137,6 +1148,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3A90FC352124228900202C5E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3A90FC392124228900202C5E /* libRNDualPedometer.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3AA6823E2120C2D90036CBD0 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -1146,6 +1165,7 @@
 				1AAEEA81EB5F49559EB99517 /* libRNIntercom.a */,
 				0BACDC9E77C6424F9F3382BF /* libRNMixpanel.a */,
 				741B056F3798488EB651C6D6 /* libBugsnagReactNative.a */,
+				C3FF90C857A2446193BAF74B /* libRNDualPedometer.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1216,6 +1236,7 @@
 				3A85BE312122DC1C0081B400 /* RNIntercom.xcodeproj */,
 				471472263CA94EA79BF575CE /* RNMixpanel.xcodeproj */,
 				A23499BFDAA5480F982F1227 /* BugsnagReactNative.xcodeproj */,
+				776A2D8EEF894386BE0231B4 /* RNDualPedometer.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1408,6 +1429,10 @@
 				{
 					ProductGroup = 3AA682662120C2D90036CBD0 /* Products */;
 					ProjectRef = 67B634C5C9AB4C64921C5198 /* RNBlur.xcodeproj */;
+				},
+				{
+					ProductGroup = 3A90FC352124228900202C5E /* Products */;
+					ProjectRef = 776A2D8EEF894386BE0231B4 /* RNDualPedometer.xcodeproj */;
 				},
 				{
 					ProductGroup = 3A85BE322122DC1C0081B400 /* Products */;
@@ -1604,6 +1629,13 @@
 			fileType = archive.ar;
 			path = libRNIntercom.a;
 			remoteRef = 3A85BE352122DC1C0081B400 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3A90FC392124228900202C5E /* libRNDualPedometer.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNDualPedometer.a;
+			remoteRef = 3A90FC382124228900202C5E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3AA6826C2120C2DA0036CBD0 /* libReactNativeConfig.a */ = {
@@ -1973,12 +2005,14 @@
 					"$(SRCROOT)/../node_modules/react-native-intercom/iOS",
 					"$(SRCROOT)/../node_modules/react-native-mixpanel/RNMixpanel",
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
+					"$(SRCROOT)/../node_modules/react-native-dual-pedometer/ios/**",
 				);
 				INFOPLIST_FILE = YuLifeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2008,12 +2042,14 @@
 					"$(SRCROOT)/../node_modules/react-native-intercom/iOS",
 					"$(SRCROOT)/../node_modules/react-native-mixpanel/RNMixpanel",
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
+					"$(SRCROOT)/../node_modules/react-native-dual-pedometer/ios/**",
 				);
 				INFOPLIST_FILE = YuLifeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2049,6 +2085,7 @@
 					"$(SRCROOT)/../node_modules/react-native-intercom/iOS",
 					"$(SRCROOT)/../node_modules/react-native-mixpanel/RNMixpanel",
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
+					"$(SRCROOT)/../node_modules/react-native-dual-pedometer/ios/**",
 				);
 				INFOPLIST_FILE = YuLife/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
@@ -2085,6 +2122,7 @@
 					"$(SRCROOT)/../node_modules/react-native-intercom/iOS",
 					"$(SRCROOT)/../node_modules/react-native-mixpanel/RNMixpanel",
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
+					"$(SRCROOT)/../node_modules/react-native-dual-pedometer/ios/**",
 				);
 				INFOPLIST_FILE = YuLife/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";

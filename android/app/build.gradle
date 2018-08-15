@@ -1,3 +1,7 @@
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
 apply plugin: "com.android.application"
 
 project.ext.envConfigFiles = [
@@ -168,13 +172,17 @@ android {
 }
 
 dependencies {
+    def googlePlayServicesVersion = safeExtGet("googlePlayServicesVersion", "+")
+    def androidAppCompatVersion = safeExtGet("androidAppCompatVersion", "+")
+    def reactNativeVersion = safeExtGet("reactNativeVersion", "+")
+
     implementation project(':react-native-blur')
     implementation project(':react-native-config')
     implementation project(':react-native-navigation')
     implementation project(':react-native-svg')
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.android.support:appcompat-v7:25.4.0"
-    implementation "com.facebook.react:react-native:+"
+    implementation "com.android.support:appcompat-v7:$androidAppCompatVersion"
+    implementation "com.facebook.react:react-native:$reactNativeVersion"
 
     // Intercom
     implementation project(':react-native-intercom')
@@ -183,10 +191,13 @@ dependencies {
     // Mixpanel
     implementation project(':react-native-mixpanel')
     implementation "com.mixpanel.android:mixpanel-android:5.+"
-    implementation "com.google.android.gms:play-services-gcm:7.5.0+"
+    implementation "com.google.android.gms:play-services-gcm:$googlePlayServicesVersion"
 
     // Bugsnag
     implementation project(':bugsnag-react-native')
+
+    // Dual Pedometer
+    implementation project(':react-native-dual-pedometer')
 }
 
 // Run this once to be able to run the application with BUCK
