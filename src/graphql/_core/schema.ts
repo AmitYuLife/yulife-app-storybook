@@ -4,6 +4,60 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: AddDailySteps
+// ====================================================
+
+export interface AddDailySteps_challengeAction_currentPassiveChallenge_milestoneLog {
+  id: string | null;
+  completed: number | null;
+  completionData: (number | null)[] | null;
+  description: string | null;
+}
+
+export interface AddDailySteps_challengeAction_currentPassiveChallenge {
+  id: string | null;
+  actions: (string | null)[] | null;
+  challengeTemplateId: string | null;
+  currentData: number | null;
+  currentTarget: number | null;
+  customerId: string | null;
+  data: (number | null)[] | null;
+  endTime: number | null;
+  milestoneLog: (AddDailySteps_challengeAction_currentPassiveChallenge_milestoneLog | null)[] | null;
+  startTime: number | null;
+  status: string | null;
+  target: (number | null)[] | null;
+  updatedAt: number | null;
+  XPAwarded: number | null;
+  yuCoinAwarded: number | null;
+  __typename: "Challenge";
+}
+
+export interface AddDailySteps_challengeAction_userStatus {
+  totalCoins: number | null;
+}
+
+export interface AddDailySteps_challengeAction {
+  currentPassiveChallenge: AddDailySteps_challengeAction_currentPassiveChallenge | null;
+  message: string | null;
+  newCoins: number | null;
+  timestamp: number | null;
+  userStatus: AddDailySteps_challengeAction_userStatus | null;
+}
+
+export interface AddDailySteps {
+  challengeAction: AddDailySteps_challengeAction | null;
+}
+
+export interface AddDailyStepsVariables {
+  payload?: (ActionPayload | null)[] | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: ChallengesList
 // ====================================================
 
@@ -26,32 +80,6 @@ export interface ChallengesList_getChallenges {
 
 export interface ChallengesList {
   getChallenges: (ChallengesList_getChallenges | null)[] | null;
-}
-
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: DailySteps
-// ====================================================
-
-export interface DailySteps_getCurrentUser_userStatus {
-  totalCoins: number | null;
-}
-
-export interface DailySteps_getCurrentUser_userFeatures {
-  name: string | null;
-  value: boolean | null;
-}
-
-export interface DailySteps_getCurrentUser {
-  userStatus: DailySteps_getCurrentUser_userStatus | null;
-  userFeatures: (DailySteps_getCurrentUser_userFeatures | null)[] | null;
-}
-
-export interface DailySteps {
-  getCurrentUser: DailySteps_getCurrentUser | null;
 }
 
 
@@ -446,6 +474,13 @@ export enum LoginMethod {
   FACEBOOK = "FACEBOOK",
   OTP = "OTP",
   PASSWORD = "PASSWORD",
+}
+
+// 
+export interface ActionPayload {
+  startTime?: number | null;
+  endTime?: number | null;
+  value?: number | null;
 }
 
 //==============================================================

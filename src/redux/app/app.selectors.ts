@@ -4,5 +4,5 @@ import { IReduxState } from "../_core/reducers";
 
 const reducer = (state: IReduxState): IAppStore => state.app;
 
-const appStateSelect = (appReducer: IAppStore): string => appReducer.appState;
-export const appStateSelector = createSelector(reducer, appStateSelect);
+const appStateSelector = (appReducer: IAppStore): string => appReducer.appState;
+export const getAppState = createSelector(reducer, appStateSelector);

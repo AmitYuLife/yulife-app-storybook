@@ -1,4 +1,4 @@
-import { appStateSelector } from "../app.selectors";
+import { getAppState } from "../app.selectors";
 import { initialState } from "../../_core/reducers";
 
 // TODO update this to new style and add missing tests
@@ -16,7 +16,7 @@ describe("App Selectors", () => {
 
     describe("appStateSelector", () => {
 
-        const appState = appStateSelector(updatedStore);
+        const appState = getAppState(updatedStore);
 
         it("selects the appState", () => {
             expect(appState).toEqual(updatedStore.app.appState);
