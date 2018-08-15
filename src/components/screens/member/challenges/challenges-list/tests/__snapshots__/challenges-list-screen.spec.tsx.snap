@@ -5,25 +5,6 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengesListScreen
     challenges={Array []}
-    coinsTotal={0}
-    hasNotification={false}
-    labels={
-      Array [
-        Object {
-          "name": "yucoin",
-          "onPress": [MockFunction],
-        },
-        Object {
-          "name": "quest",
-          "onPress": [MockFunction],
-        },
-        Object {
-          "name": "rewards",
-          "onPress": [MockFunction],
-        },
-      ]
-    }
-    onMenuPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -64,61 +45,12 @@ ShallowWrapper {
               "paddingHorizontal": 30,
               "position": "absolute",
               "right": 0,
+              "top": 40,
             }
           }
         >
           <ChallengeSet
             challenges={Array []}
-          />
-        </Component>,
-        <Component
-          style={
-            Object {
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 40,
-            }
-          }
-        >
-          <TopBar
-            coins={0}
-            onPress={[MockFunction]}
-          />
-        </Component>,
-        <Component
-          style={
-            Object {
-              "alignItems": "center",
-              "bottom": 36,
-              "justifyContent": "center",
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "width": "100%",
-            }
-          }
-        >
-          <NavBar
-            activeIndex={1}
-            hasNotification={false}
-            labels={
-              Array [
-                Object {
-                  "name": "yucoin",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "quest",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "rewards",
-                  "onPress": [MockFunction],
-                },
-              ]
-            }
-            scale={0.5}
           />
         </Component>,
       ],
@@ -181,35 +113,6 @@ ShallowWrapper {
             "paddingHorizontal": 30,
             "position": "absolute",
             "right": 0,
-          },
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "challenges": Array [],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": <TopBar
-            coins={0}
-            onPress={[MockFunction]}
-          />,
-          "style": Object {
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
             "top": 40,
           },
         },
@@ -219,74 +122,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "coins": 0,
-            "onPress": [MockFunction],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": <NavBar
-            activeIndex={1}
-            hasNotification={false}
-            labels={
-              Array [
-                Object {
-                  "name": "yucoin",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "quest",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "rewards",
-                  "onPress": [MockFunction],
-                },
-              ]
-            }
-            scale={0.5}
-          />,
-          "style": Object {
-            "alignItems": "center",
-            "bottom": 36,
-            "justifyContent": "center",
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "width": "100%",
-          },
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "activeIndex": 1,
-            "hasNotification": false,
-            "labels": Array [
-              Object {
-                "name": "yucoin",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "name": "quest",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "name": "rewards",
-                "onPress": [MockFunction],
-              },
-            ],
-            "scale": 0.5,
+            "challenges": Array [],
           },
           "ref": null,
           "rendered": null,
@@ -330,61 +166,12 @@ ShallowWrapper {
                 "paddingHorizontal": 30,
                 "position": "absolute",
                 "right": 0,
+                "top": 40,
               }
             }
           >
             <ChallengeSet
               challenges={Array []}
-            />
-          </Component>,
-          <Component
-            style={
-              Object {
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 40,
-              }
-            }
-          >
-            <TopBar
-              coins={0}
-              onPress={[MockFunction]}
-            />
-          </Component>,
-          <Component
-            style={
-              Object {
-                "alignItems": "center",
-                "bottom": 36,
-                "justifyContent": "center",
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "width": "100%",
-              }
-            }
-          >
-            <NavBar
-              activeIndex={1}
-              hasNotification={false}
-              labels={
-                Array [
-                  Object {
-                    "name": "yucoin",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "name": "quest",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "name": "rewards",
-                    "onPress": [MockFunction],
-                  },
-                ]
-              }
-              scale={0.5}
             />
           </Component>,
         ],
@@ -447,35 +234,6 @@ ShallowWrapper {
               "paddingHorizontal": 30,
               "position": "absolute",
               "right": 0,
-            },
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "challenges": Array [],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <TopBar
-              coins={0}
-              onPress={[MockFunction]}
-            />,
-            "style": Object {
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
               "top": 40,
             },
           },
@@ -485,74 +243,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "coins": 0,
-              "onPress": [MockFunction],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <NavBar
-              activeIndex={1}
-              hasNotification={false}
-              labels={
-                Array [
-                  Object {
-                    "name": "yucoin",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "name": "quest",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "name": "rewards",
-                    "onPress": [MockFunction],
-                  },
-                ]
-              }
-              scale={0.5}
-            />,
-            "style": Object {
-              "alignItems": "center",
-              "bottom": 36,
-              "justifyContent": "center",
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "width": "100%",
-            },
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "activeIndex": 1,
-              "hasNotification": false,
-              "labels": Array [
-                Object {
-                  "name": "yucoin",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "quest",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "rewards",
-                  "onPress": [MockFunction],
-                },
-              ],
-              "scale": 0.5,
+              "challenges": Array [],
             },
             "ref": null,
             "rendered": null,
@@ -587,25 +278,6 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengesListScreen
     challenges={Array []}
-    coinsTotal={0}
-    hasNotification={false}
-    labels={
-      Array [
-        Object {
-          "name": "yucoin",
-          "onPress": [MockFunction],
-        },
-        Object {
-          "name": "quest",
-          "onPress": [MockFunction],
-        },
-        Object {
-          "name": "rewards",
-          "onPress": [MockFunction],
-        },
-      ]
-    }
-    onMenuPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -661,61 +333,12 @@ ShallowWrapper {
               "paddingHorizontal": 30,
               "position": "absolute",
               "right": 0,
+              "top": 40,
             }
           }
         >
           <ChallengeSet
             challenges={Array []}
-          />
-        </Component>,
-        <Component
-          style={
-            Object {
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 40,
-            }
-          }
-        >
-          <TopBar
-            coins={0}
-            onPress={[MockFunction]}
-          />
-        </Component>,
-        <Component
-          style={
-            Object {
-              "alignItems": "center",
-              "bottom": 36,
-              "justifyContent": "center",
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "width": "100%",
-            }
-          }
-        >
-          <NavBar
-            activeIndex={1}
-            hasNotification={false}
-            labels={
-              Array [
-                Object {
-                  "name": "yucoin",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "quest",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "rewards",
-                  "onPress": [MockFunction],
-                },
-              ]
-            }
-            scale={0.5}
           />
         </Component>,
       ],
@@ -804,35 +427,6 @@ ShallowWrapper {
             "paddingHorizontal": 30,
             "position": "absolute",
             "right": 0,
-          },
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "challenges": Array [],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": <TopBar
-            coins={0}
-            onPress={[MockFunction]}
-          />,
-          "style": Object {
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
             "top": 40,
           },
         },
@@ -842,74 +436,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "coins": 0,
-            "onPress": [MockFunction],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": <NavBar
-            activeIndex={1}
-            hasNotification={false}
-            labels={
-              Array [
-                Object {
-                  "name": "yucoin",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "quest",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "rewards",
-                  "onPress": [MockFunction],
-                },
-              ]
-            }
-            scale={0.5}
-          />,
-          "style": Object {
-            "alignItems": "center",
-            "bottom": 36,
-            "justifyContent": "center",
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "width": "100%",
-          },
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "activeIndex": 1,
-            "hasNotification": false,
-            "labels": Array [
-              Object {
-                "name": "yucoin",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "name": "quest",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "name": "rewards",
-                "onPress": [MockFunction],
-              },
-            ],
-            "scale": 0.5,
+            "challenges": Array [],
           },
           "ref": null,
           "rendered": null,
@@ -968,61 +495,12 @@ ShallowWrapper {
                 "paddingHorizontal": 30,
                 "position": "absolute",
                 "right": 0,
+                "top": 40,
               }
             }
           >
             <ChallengeSet
               challenges={Array []}
-            />
-          </Component>,
-          <Component
-            style={
-              Object {
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 40,
-              }
-            }
-          >
-            <TopBar
-              coins={0}
-              onPress={[MockFunction]}
-            />
-          </Component>,
-          <Component
-            style={
-              Object {
-                "alignItems": "center",
-                "bottom": 36,
-                "justifyContent": "center",
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "width": "100%",
-              }
-            }
-          >
-            <NavBar
-              activeIndex={1}
-              hasNotification={false}
-              labels={
-                Array [
-                  Object {
-                    "name": "yucoin",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "name": "quest",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "name": "rewards",
-                    "onPress": [MockFunction],
-                  },
-                ]
-              }
-              scale={0.5}
             />
           </Component>,
         ],
@@ -1111,35 +589,6 @@ ShallowWrapper {
               "paddingHorizontal": 30,
               "position": "absolute",
               "right": 0,
-            },
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "challenges": Array [],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <TopBar
-              coins={0}
-              onPress={[MockFunction]}
-            />,
-            "style": Object {
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
               "top": 40,
             },
           },
@@ -1149,74 +598,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "coins": 0,
-              "onPress": [MockFunction],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <NavBar
-              activeIndex={1}
-              hasNotification={false}
-              labels={
-                Array [
-                  Object {
-                    "name": "yucoin",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "name": "quest",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "name": "rewards",
-                    "onPress": [MockFunction],
-                  },
-                ]
-              }
-              scale={0.5}
-            />,
-            "style": Object {
-              "alignItems": "center",
-              "bottom": 36,
-              "justifyContent": "center",
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "width": "100%",
-            },
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "activeIndex": 1,
-              "hasNotification": false,
-              "labels": Array [
-                Object {
-                  "name": "yucoin",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "quest",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "rewards",
-                  "onPress": [MockFunction],
-                },
-              ],
-              "scale": 0.5,
+              "challenges": Array [],
             },
             "ref": null,
             "rendered": null,

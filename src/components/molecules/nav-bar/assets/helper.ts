@@ -1,0 +1,36 @@
+import NavBar from "../nav-bar";
+import { Colours } from "../../../../styles";
+
+interface IGetIconFill {
+    isActive: boolean;
+    isPressed: boolean;
+    colour: string;
+}
+
+export const getIconFill = ({
+    isActive,
+    isPressed,
+    colour,
+}: IGetIconFill) => {
+    if (isActive) {
+        if (colour === NavBar.Colours.LIGHT) {
+            return Colours.navBar.light.active;
+        } else if (colour === NavBar.Colours.DARKER) {
+            return Colours.navBar.darker.active;
+        } else {
+            return Colours.navBar.dark.active;
+        }
+    } else if (isPressed) {
+        if (colour === NavBar.Colours.LIGHT) {
+            return Colours.navBar.light.pressed;
+        } else {
+            return Colours.navBar.dark.pressed;
+        }
+    } else {
+        if (colour === NavBar.Colours.LIGHT) {
+            return Colours.navBar.light.inactive;
+        } else {
+            return Colours.navBar.dark.inactive;
+        }
+    }
+};

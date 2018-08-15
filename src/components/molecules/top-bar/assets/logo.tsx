@@ -6,7 +6,7 @@ interface IProps {
     scale?: number;
 }
 
-const Logo: SFC<IProps> = ({ scale = 1 }) => (
+const Logo: SFC<IProps> = ({ scale = 0.5 }) => (
     <Svg
         height={74 * scale}
         width={74 * scale}

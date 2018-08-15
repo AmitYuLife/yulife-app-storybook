@@ -5,7 +5,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <TopBar
     coins={0}
-    onPress={[MockFunction]}
+    onPressLeftIcon={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -25,6 +25,8 @@ ShallowWrapper {
           onPress={[MockFunction]}
           style={
             Object {
+              "alignItems": "center",
+              "flexDirection": "row",
               "left": 30,
               "position": "absolute",
             }
@@ -32,9 +34,7 @@ ShallowWrapper {
         >
           <Menu />
         </TouchableOpacity>,
-        <Logo
-          scale={0.5}
-        />,
+        <Logo />,
         <Component
           style={
             Object {
@@ -77,32 +77,38 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "activeOpacity": 0.2,
-          "children": <Menu />,
+          "children": Array [
+            <Menu />,
+            null,
+          ],
           "onPress": [MockFunction],
           "style": Object {
+            "alignItems": "center",
+            "flexDirection": "row",
             "left": 30,
             "position": "absolute",
           },
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          null,
+        ],
         "type": [Function],
       },
       Object {
         "instance": null,
         "key": undefined,
         "nodeType": "function",
-        "props": Object {
-          "scale": 0.5,
-        },
+        "props": Object {},
         "ref": null,
         "rendered": null,
         "type": [Function],
@@ -182,6 +188,8 @@ ShallowWrapper {
             onPress={[MockFunction]}
             style={
               Object {
+                "alignItems": "center",
+                "flexDirection": "row",
                 "left": 30,
                 "position": "absolute",
               }
@@ -189,9 +197,7 @@ ShallowWrapper {
           >
             <Menu />
           </TouchableOpacity>,
-          <Logo
-            scale={0.5}
-          />,
+          <Logo />,
           <Component
             style={
               Object {
@@ -234,32 +240,38 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeOpacity": 0.2,
-            "children": <Menu />,
+            "children": Array [
+              <Menu />,
+              null,
+            ],
             "onPress": [MockFunction],
             "style": Object {
+              "alignItems": "center",
+              "flexDirection": "row",
               "left": 30,
               "position": "absolute",
             },
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            null,
+          ],
           "type": [Function],
         },
         Object {
           "instance": null,
           "key": undefined,
           "nodeType": "function",
-          "props": Object {
-            "scale": 0.5,
-          },
+          "props": Object {},
           "ref": null,
           "rendered": null,
           "type": [Function],

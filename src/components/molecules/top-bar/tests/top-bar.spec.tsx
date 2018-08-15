@@ -8,7 +8,7 @@ describe("TopBar", () => {
     it("should render", () => {
 
         const actual = shallow(
-            <TopBar onPress={jest.fn()} coins={0} />
+            <TopBar onPressLeftIcon={jest.fn()} coins={0} />
         );
 
         expect(actual).toMatchSnapshot();

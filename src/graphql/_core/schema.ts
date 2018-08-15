@@ -59,175 +59,50 @@ export interface DailySteps {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: createAlphaUser
+// GraphQL query operation: GetRewards
 // ====================================================
 
-export interface createAlphaUser_createAlphaUser_user_userStatus_challenges_passive_milestoneLog {
-  id: string | null;
-  completed: number | null;
-  completionData: (number | null)[] | null;
-  description: string | null;
+export interface GetRewards_getRewards_available_denominations {
+  yuCoin: number | null;
+  value: number | null;
+  stock: number | null;
 }
 
-export interface createAlphaUser_createAlphaUser_user_userStatus_challenges_passive_challengeTemplate_milestones {
-  id: string | null;
-  description: string | null;
-  unit: string | null;
-  target: (number | null)[] | null;
-  coins: number | null;
-  XP: number | null;
+export interface GetRewards_getRewards_redeem_steps {
+  info: string | null;
+  steps: (string | null)[] | null;
 }
 
-export interface createAlphaUser_createAlphaUser_user_userStatus_challenges_passive_challengeTemplate {
+export interface GetRewards_getRewards_uiSettings {
+  logoWidth: number | null;
+  logoHeight: number | null;
+}
+
+export interface GetRewards_getRewards {
   id: string | null;
+  reward_sticker: string | null;
+  loyalty_programme: (string | null)[] | null;
+  rewardProviderId: string | null;
+  availability: string | null;
+  progression_level: string | null;
+  available_denominations: (GetRewards_getRewards_available_denominations | null)[] | null;
+  card_image_url: string | null;
+  code: string | null;
+  currency_code: string | null;
+  denomination_type: string | null;
+  description: string | null;
+  e_code_usage_type: string | null;
+  expiry_date_policy: string | null;
+  maximum_value: number | null;
+  minimum_value: number | null;
   name: string | null;
-  description: string | null;
-  type: string | null;
-  subtype: string | null;
-  level: number | null;
-  passive: boolean | null;
-  actions: (string | null)[] | null;
-  target: (number | null)[] | null;
-  totalCoins: number | null;
-  totalXP: number | null;
-  timelimit: number | null;
-  successTitle: string | null;
-  successDescription: string | null;
-  failureTitle: string | null;
-  failureDescription: string | null;
-  challengeCompleteText: string | null;
-  unit: string | null;
-  milestones: (createAlphaUser_createAlphaUser_user_userStatus_challenges_passive_challengeTemplate_milestones | null)[] | null;
-  __typename: "ChallengeTemplate";
+  redeem_steps: GetRewards_getRewards_redeem_steps | null;
+  terms_and_conditions_url: string | null;
+  uiSettings: GetRewards_getRewards_uiSettings | null;
 }
 
-export interface createAlphaUser_createAlphaUser_user_userStatus_challenges_passive {
-  id: string | null;
-  actions: (string | null)[] | null;
-  challengeTemplateId: string | null;
-  currentData: number | null;
-  currentTarget: number | null;
-  customerId: string | null;
-  data: (number | null)[] | null;
-  endTime: number | null;
-  milestoneLog: (createAlphaUser_createAlphaUser_user_userStatus_challenges_passive_milestoneLog | null)[] | null;
-  startTime: number | null;
-  status: string | null;
-  target: (number | null)[] | null;
-  updatedAt: number | null;
-  XPAwarded: number | null;
-  yuCoinAwarded: number | null;
-  __typename: "Challenge";
-  challengeTemplate: createAlphaUser_createAlphaUser_user_userStatus_challenges_passive_challengeTemplate | null;
-}
-
-export interface createAlphaUser_createAlphaUser_user_userStatus_challenges_active_milestoneLog {
-  id: string | null;
-  completed: number | null;
-  completionData: (number | null)[] | null;
-  description: string | null;
-}
-
-export interface createAlphaUser_createAlphaUser_user_userStatus_challenges_active_challengeTemplate_milestones {
-  id: string | null;
-  description: string | null;
-  unit: string | null;
-  target: (number | null)[] | null;
-  coins: number | null;
-  XP: number | null;
-}
-
-export interface createAlphaUser_createAlphaUser_user_userStatus_challenges_active_challengeTemplate {
-  id: string | null;
-  name: string | null;
-  description: string | null;
-  type: string | null;
-  subtype: string | null;
-  level: number | null;
-  passive: boolean | null;
-  actions: (string | null)[] | null;
-  target: (number | null)[] | null;
-  totalCoins: number | null;
-  totalXP: number | null;
-  timelimit: number | null;
-  successTitle: string | null;
-  successDescription: string | null;
-  failureTitle: string | null;
-  failureDescription: string | null;
-  challengeCompleteText: string | null;
-  unit: string | null;
-  milestones: (createAlphaUser_createAlphaUser_user_userStatus_challenges_active_challengeTemplate_milestones | null)[] | null;
-  __typename: "ChallengeTemplate";
-}
-
-export interface createAlphaUser_createAlphaUser_user_userStatus_challenges_active {
-  id: string | null;
-  actions: (string | null)[] | null;
-  challengeTemplateId: string | null;
-  currentData: number | null;
-  currentTarget: number | null;
-  customerId: string | null;
-  data: (number | null)[] | null;
-  endTime: number | null;
-  milestoneLog: (createAlphaUser_createAlphaUser_user_userStatus_challenges_active_milestoneLog | null)[] | null;
-  startTime: number | null;
-  status: string | null;
-  target: (number | null)[] | null;
-  updatedAt: number | null;
-  XPAwarded: number | null;
-  yuCoinAwarded: number | null;
-  __typename: "Challenge";
-  challengeTemplate: createAlphaUser_createAlphaUser_user_userStatus_challenges_active_challengeTemplate | null;
-}
-
-export interface createAlphaUser_createAlphaUser_user_userStatus_challenges {
-  passive: createAlphaUser_createAlphaUser_user_userStatus_challenges_passive | null;
-  nextActiveAvailable: number | null;
-  active: createAlphaUser_createAlphaUser_user_userStatus_challenges_active | null;
-}
-
-export interface createAlphaUser_createAlphaUser_user_userStatus {
-  totalCoins: number | null;
-  challenges: createAlphaUser_createAlphaUser_user_userStatus_challenges | null;
-}
-
-export interface createAlphaUser_createAlphaUser_user_userFeatures {
-  name: string | null;
-  value: boolean | null;
-}
-
-export interface createAlphaUser_createAlphaUser_user {
-  __typename: "User";
-  id: string | null;
-  businessAccountId: string | null;
-  membershipType: string | null;
-  email: string | null;
-  firstName: string | null;
-  lastName: string | null;
-  dateOfBirth: string | null;
-  smokerStatus: string | null;
-  bmi: string | null;
-  userStatus: createAlphaUser_createAlphaUser_user_userStatus | null;
-  userFeatures: (createAlphaUser_createAlphaUser_user_userFeatures | null)[] | null;
-}
-
-export interface createAlphaUser_createAlphaUser {
-  token: string | null;
-  expiresAt: number | null;
-  message: string | null;
-  user: createAlphaUser_createAlphaUser_user | null;
-}
-
-export interface createAlphaUser {
-  createAlphaUser: createAlphaUser_createAlphaUser | null;
-}
-
-export interface createAlphaUserVariables {
-  email: string;
-  password: string;
-  firstName?: string | null;
-  lastName?: string | null;
-  dateOfBirth?: string | null;
+export interface GetRewards {
+  getRewards: (GetRewards_getRewards | null)[] | null;
 }
 
 

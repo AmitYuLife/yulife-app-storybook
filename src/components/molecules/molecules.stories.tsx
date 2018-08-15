@@ -22,14 +22,13 @@ storiesOf("Molecules", module)
                     2: "reward"
                 }, 0, "NavBar")}
                 hasNotification={boolean("Notification?", false, "NavBar")}
-                scale={0.5}
             />
         </CenterView>
     ))
     .add("2. TopBar", () => (
         <CenterView>
             <TopBar
-                onPress={action("topbar pressed")}
+                onPressLeftIcon={action("topbar pressed")}
                 coins={number("Coins", 246, {
                     max: 35000,
                     min: 0,

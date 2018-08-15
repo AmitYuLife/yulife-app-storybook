@@ -1,4 +1,5 @@
 import * as React from "react";
+import { StatelessComponent } from "react";
 import { PureComponent } from "react";
 import {
     StyleSheet,
@@ -17,17 +18,31 @@ import {
 import styles, {
     getLabelAdjustment,
 } from "./nav-bar.styles";
+import { getTextStyle } from "./nav-bar.helpers";
+import { IconProps } from "./assets/icon.model";
 
 export interface ILabel {
     name: string;
     onPress: () => void;
+    colour?: Colours;
 }
 
+export enum COLOURS {
+    DARK = "dark",
+    DARKER = "darker",
+    LIGHT = "light",
+}
+
+export type Colours = "dark" | "darker" | "light";
+
 interface IProps {
-    scale?: number;
     activeIndex: number;
-    hasNotification: boolean;
+    hasNotification?: boolean;
+    hasDismiss?: boolean;
     labels?: ILabel[];
+    colour?: Colours;
+    areIconsHidden?: boolean;
+    onCancelPress?: () => void;
 }
 
 interface IState {
@@ -36,6 +51,8 @@ interface IState {
 
 class NavBar extends PureComponent<IProps, IState> {
 
+    public static Colours = COLOURS;
+
     public static defaultProps = {
         labels: [
             {
@@ -43,7 +60,7 @@ class NavBar extends PureComponent<IProps, IState> {
                 onPress: (): null => null,
             },
             {
-                name: "quest",
+                name: "challenges",
                 onPress: (): null => null,
             },
             {
@@ -51,6 +68,7 @@ class NavBar extends PureComponent<IProps, IState> {
                 onPress: (): null => null,
             },
         ],
+        colour: COLOURS.LIGHT,
     };
 
     public state: IState = {
@@ -59,37 +77,46 @@ class NavBar extends PureComponent<IProps, IState> {
 
     public render() {
         const {
-            scale = 1,
+            colour = COLOURS.LIGHT,
+            areIconsHidden,
+            hasDismiss,
             activeIndex,
             hasNotification,
             labels,
         } = this.props;
         const { pressed } = this.state;
-        const icons = [Giraffe, Scroll, Treasure];
+        const icons: Array<StatelessComponent<IconProps>> = [Giraffe, Scroll, Treasure];
 
         return (
             <View
                 style={{
+                    height: (85 * (!areIconsHidden ? 1 : 0.55)),
                     alignItems: "center",
-                    height: 170 * scale,
                     justifyContent: "flex-start",
-                    width: 560 * scale,
+                    width: 280,
                 }}
             >
                 <Svg
-                    width={457 * scale}
-                    height={124 * scale}
+                    width={228}
+                    height={62}
                     viewBox="0 0 457 124"
                 >
-                    <Lines isExtended={!hasNotification} />
+                    <Lines
+                        colour={colour}
+                        isExtended={!hasDismiss && !hasNotification}
+                    />
                     {icons.map((Icon, index) => (
                         <Icon
                             key={index}
                             isPressed={pressed === index}
                             isActive={activeIndex === index}
+                            colour={colour}
+                            hasDismiss={hasDismiss && index === 1}
+                            isIconHidden={areIconsHidden}
                         />
                     ))}
                     <Notification
+                        colour={colour}
                         isPressed={pressed === 1}
                         isVisible={hasNotification}
                         isActive={activeIndex === 1}
@@ -100,40 +127,20 @@ class NavBar extends PureComponent<IProps, IState> {
                         ({ name, onPress }, index) => (
                             <TouchableWithoutFeedback
                                 key={index}
-                                disabled={
-                                    activeIndex === index
-                                }
-                                onPressIn={this.handlePressIn(
-                                    index
-                                )}
-                                onPressOut={this.handlePressOut(
-                                    onPress
-                                )}
+                                onPressIn={this.handlePressIn(index)}
+                                onPressOut={this.handlePressOut(onPress)}
                             >
-                                <View
-                                    style={
-                                        styles.textWrapper
-                                    }
-                                >
-                                    <View
-                                        style={getLabelAdjustment(
-                                            index
-                                        )}
-                                    >
+                                <View style={styles.textWrapper}>
+                                    <View style={getLabelAdjustment(index)}>
                                         <Text
-                                            style={StyleSheet.flatten(
-                                                [
-                                                    styles.text,
-                                                    activeIndex ===
-                                                    index
-                                                        ? styles.activeText
-                                                        : styles.inactiveText,
-                                                    pressed ===
-                                                    index
-                                                        ? styles.pressed
-                                                        : null,
-                                                ]
-                                            )}
+                                            style={StyleSheet.flatten([
+                                                styles.text,
+                                                getTextStyle({
+                                                    isActive: activeIndex === index,
+                                                    isPressed: pressed === index,
+                                                    colour,
+                                                }),
+                                            ])}
                                         >
                                             {name}
                                         </Text>
@@ -143,7 +150,7 @@ class NavBar extends PureComponent<IProps, IState> {
                         )
                     )}
                 </View>
-            </View>
+            </View >
         );
     }
 

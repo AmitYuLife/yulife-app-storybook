@@ -1,12 +1,12 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import { Text } from "react-native";
-import { Navigation } from "react-native-navigation";
 import ChallengesListQuery, { challengesListGql } from "../../../../../graphql/member/challengesList.gql";
 import { BlurProvider, Loading } from "../../../../atoms";
 import { ChallengeDetailsModal } from "../../../../modals";
-import { ILabel, Images, IMAGES } from "../../../../molecules";
+import { Images, IMAGES } from "../../../../molecules";
 import { ChallengesListScreen } from "../../../../screens";
+import { SideEffect } from "../../../../../typings";
 
 interface IChallengeDetailsMilestone {
     reward: number;
@@ -20,7 +20,7 @@ interface IHandlePressChallenge {
     reward: string;
     milestones: IChallengeDetailsMilestone[];
     unit: string;
-    showOverlay: () => void;
+    showOverlay: SideEffect;
 }
 
 const getChallengeMilestones = (milestones: any[]): IChallengeDetailsMilestone[] =>
@@ -69,9 +69,8 @@ const getChallengeDuration = (challenge: any): string => {
     }
 };
 
-// TODO find where these props actually come from in RNN types
 interface IProps {
-    componentId: string;
+    onModalToggle: SideEffect<boolean>;
 }
 
 interface IState {
@@ -84,7 +83,6 @@ interface IState {
 }
 
 class ChallengesListContainer extends PureComponent<IProps, IState> {
-
     public state: IState = {
         challengeType: "brisk walk",
         duration: "",
@@ -94,26 +92,10 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
         unit: "",
     };
 
-    private labels: ILabel[] = [
-        {
-            name: "yucoin",
-            onPress: (): void => null
-        },
-        {
-            name: "challenges",
-            onPress: (): void => null
-        },
-        {
-            name: "rewards",
-            onPress: (): void => null
-        },
-    ];
-
     public render() {
         return (
             <ChallengesListQuery query={challengesListGql}>
                 {({ loading, error, data }) => {
-
                     if (loading) {
                         return <Loading />;
                     }
@@ -128,7 +110,7 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
                         duration,
                         // id,
                         milestones,
-                        unit
+                        unit,
                     } = this.state;
 
                     return (
@@ -147,10 +129,6 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
                                             unit: challenge.unit,
                                         }),
                                     }))}
-                                    coinsTotal={12345}
-                                    hasNotification={true}
-                                    labels={this.labels}
-                                    onMenuPress={this.onMenu}
                                 />
                             )}
                             renderOverlay={({ hideOverlay }) => (
@@ -159,7 +137,10 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
                                     duration={duration}
                                     milestones={milestones}
                                     onPressCta={hideOverlay}
-                                    onPressClose={hideOverlay}
+                                    onPressClose={() => {
+                                        this.props.onModalToggle(false);
+                                        hideOverlay();
+                                    }}
                                     unit={unit}
                                 />
                             )}
@@ -173,6 +154,7 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
     private handlePressChallenge = ({ showOverlay, ...challengeProps }: IHandlePressChallenge) => {
         return () => {
             this.setState({ ...challengeProps });
+            this.props.onModalToggle(true);
             showOverlay();
         };
     }
@@ -186,14 +168,6 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
             reward: `0-${reduceMilestones(template.milestones)}`,
             unit: template.unit,
         }));
-    }
-
-    private onMenu = () => {
-        Navigation.push(this.props.componentId, {
-            component: {
-                name: "yulife.Login",
-            },
-        });
     }
 
     // private onNavPress = async (name: string) => {

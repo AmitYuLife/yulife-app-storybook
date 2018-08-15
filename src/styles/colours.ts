@@ -11,9 +11,19 @@ export default {
     lightGray: "rgb(170,170,170)",
     lightRed: "rgb(255,102,102)",
     navBar: {
-        active: "rgba(255,255,255,1)",
-        inactive: "rgba(255,255,255,0.4)",
-        pressed: "rgba(255,255,255,0.2)",
+        light: {
+            active: "rgba(255,255,255,1)",
+            inactive: "rgba(255,255,255,0.4)",
+            pressed: "rgba(255,255,255,0.2)",
+        },
+        dark: {
+            active: "rgba(0,0,0,0.4)",
+            inactive: "rgba(0,0,0,0.2)",
+            pressed: "rgba(0,0,0,0.1)",
+        },
+        darker: {
+            active: "rgb(0,0,0)",
+        }
     },
     progressBar: {
         background: "black",

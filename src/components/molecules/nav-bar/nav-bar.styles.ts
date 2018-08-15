@@ -3,33 +3,24 @@ import {
     TextStyle,
     ViewStyle,
 } from "react-native";
-import { Colours, Style } from "../../../styles";
+import { Style } from "../../../styles";
 
 const styles = StyleSheet.create({
-    activeText: {
-        color: Colours.navBar.active,
-    } as TextStyle,
-    inactiveText: {
-        color: Colours.navBar.inactive,
-    } as TextStyle,
-    labelsWrapper: {
-        flexDirection: "row",
-        height: "100%",
-        position: "absolute",
-        width: "100%",
-    } as ViewStyle,
-    pressed: {
-        color: Colours.navBar.pressed,
-    } as TextStyle,
-    text: {
-        fontSize: Style.SCALE_UP_AND_DOWN(16),
-        textAlign: "center",
-        width: "100%",
-    } as TextStyle,
     textWrapper: {
-        alignItems: "center",
         flex: 1,
         justifyContent: "flex-end",
+        alignItems: "center",
+    } as ViewStyle,
+    text: {
+        textAlign: "center",
+        width: "100%",
+        fontSize: Style.SCALE_UP_AND_DOWN(16),
+    } as TextStyle,
+    labelsWrapper: {
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        flexDirection: "row",
     } as ViewStyle,
 });
 

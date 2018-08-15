@@ -1,18 +1,24 @@
 import * as React from "react";
 import { SFC } from "react";
 import { G, Rect } from "react-native-svg";
+import { COLOURS } from "../nav-bar";
 import { Colours } from "../../../../styles";
 
 interface IProps {
     isExtended: boolean;
+    colour?: string;
 }
 
-const Lines: SFC<IProps> = ({ isExtended }) => (
+const Lines: SFC<IProps> = ({ isExtended, colour = COLOURS.LIGHT }) => (
     <G>
         <Rect
             x="46.1"
             y="16.5"
-            fill={Colours.navBar.inactive}
+            fill={
+                colour && colour.startsWith("dark")
+                    ? Colours.navBar.dark.inactive
+                    : Colours.navBar.light.inactive
+            }
             width={isExtended ? 168 : 161}
             height="3"
         />
@@ -20,7 +26,11 @@ const Lines: SFC<IProps> = ({ isExtended }) => (
             x={239.9}
             y="16.5"
             transform="matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)"
-            fill={Colours.navBar.inactive}
+            fill={
+                colour && colour.startsWith("dark")
+                    ? Colours.navBar.dark.inactive
+                    : Colours.navBar.light.inactive
+            }
             width={isExtended ? 168 : 161}
             height="3"
         />

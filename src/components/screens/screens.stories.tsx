@@ -1,8 +1,8 @@
-import { action, HandlerFunction } from "@storybook/addon-actions";
+import { action } from "@storybook/addon-actions";
 import { boolean, number, object, select, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
-import { ChallengeTile, ILabel } from "../molecules";
+import { ChallengeTile } from "../molecules";
 import {
     ChallengeFailedScreen,
     ChallengeProgressScreen,
@@ -16,21 +16,6 @@ import {
     SignUpRewardScreen,
     WelcomeScreen,
 } from "./index";
-
-const labels: ILabel[] = [
-    {
-        name: "yucoin",
-        onPress: (): HandlerFunction => action("on yucoin press"),
-    },
-    {
-        name: "quest",
-        onPress: (): HandlerFunction => action("on quest press"),
-    },
-    {
-        name: "rewards",
-        onPress: (): HandlerFunction => action("on rewards press"),
-    },
-];
 
 storiesOf("Screens", module)
     .addDecorator(withKnobs)
@@ -93,24 +78,15 @@ storiesOf("Screens", module)
                 range: true,
                 step: 1,
             }, "DailySteps")}
-            coinsTotal={number("Coins Total", 246, {
-                max: 35000,
-                min: 0,
-                range: true,
-                step: 1,
-            }, "DailySteps")}
             currentStreak={number("Current Streak", 2, {
                 max: 4,
                 min: 0,
                 range: true,
                 step: 1,
             }, "DailySteps")}
-            hasNotification={boolean("Notification?", false, "NavBar")}
             isDoneToday={boolean("Done Today?", false, "NavBar")}
-            labels={labels}
             maxStreak={4}
             onCtaPress={action("on cta press")}
-            onMenuPress={action("on menu press")}
             onStreakPress={action("on streak press")}
             steps={number("Steps", 1246, {
                 max: 35000,
@@ -148,15 +124,6 @@ storiesOf("Screens", module)
                     reward: "0-3",
                 }
             ], "ChallengesList")}
-            coinsTotal={number("Coins Total", 246, {
-                max: 35000,
-                min: 0,
-                range: true,
-                step: 1,
-            }, "ChallengesList")}
-            hasNotification={boolean("Notification?", false, "ChallengesList")}
-            onMenuPress={action("on menu press")}
-            labels={labels}
         />
     ))
     .add("8. Challenge Progress", () => (
