@@ -1,23 +1,13 @@
 import * as React from "react";
 import { SFC } from "react";
-import {
-    Image,
-    Platform,
-    SafeAreaView,
-    StatusBar,
-    View,
-} from "react-native";
-import {
-    ChallengesList,
-    IChallengesListProps,
-    ILabel,
-    NavBar,
-    TopBar,
-} from "../../../../molecules";
+import { Image, Platform, SafeAreaView, StatusBar, View } from "react-native";
+import { ChallengesList, IChallengesListProps, ILabel, NavBar, TopBar } from "../../../../molecules";
 import ChallengesListBackground from "./challenges-list-background/challenges-list-background";
 import styles from "./challenges-list-screen.styles";
 
 interface IMemberScreenProps {
+    showTopBar?: boolean;
+    showNavBar?: boolean;
     coinsTotal: number;
     hasNotification: boolean;
     labels: ILabel[];
@@ -26,7 +16,15 @@ interface IMemberScreenProps {
 
 type Props = IChallengesListProps & IMemberScreenProps;
 
-const ChallengesListScreen: SFC<Props> = ({ challenges, hasNotification, labels, onMenuPress, coinsTotal }) => (
+const ChallengesListScreen: SFC<Props> = ({
+    showTopBar = true,
+    showNavBar = true,
+    challenges,
+    hasNotification,
+    labels,
+    onMenuPress,
+    coinsTotal,
+}) => (
     <SafeAreaView style={styles.wrapper}>
         <StatusBar />
         <SafeAreaView style={styles.backgroundWrapper}>
@@ -44,17 +42,16 @@ const ChallengesListScreen: SFC<Props> = ({ challenges, hasNotification, labels,
         <View style={styles.challengeSetWrapper}>
             <ChallengesList challenges={challenges} />
         </View>
-        <View style={styles.topBarWrapper}>
-            <TopBar coins={coinsTotal} onPress={onMenuPress} />
-        </View>
-        <View style={styles.navBarWrapper}>
-            <NavBar
-                scale={0.5}
-                activeIndex={1}
-                hasNotification={hasNotification}
-                labels={labels}
-            />
-        </View>
+        {showTopBar && (
+            <View style={styles.topBarWrapper}>
+                <TopBar coins={coinsTotal} onPress={onMenuPress} />
+            </View>
+        )}
+        {showNavBar && (
+            <View style={styles.navBarWrapper}>
+                <NavBar scale={0.5} activeIndex={1} hasNotification={hasNotification} labels={labels} />
+            </View>
+        )}
     </SafeAreaView>
 );
 

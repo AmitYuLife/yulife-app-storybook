@@ -64,7 +64,6 @@ ShallowWrapper {
               "paddingHorizontal": 30,
               "position": "absolute",
               "right": 0,
-              "top": 110,
             }
           }
         >
@@ -182,7 +181,6 @@ ShallowWrapper {
             "paddingHorizontal": 30,
             "position": "absolute",
             "right": 0,
-            "top": 110,
           },
         },
         "ref": null,
@@ -332,7 +330,6 @@ ShallowWrapper {
                 "paddingHorizontal": 30,
                 "position": "absolute",
                 "right": 0,
-                "top": 110,
               }
             }
           >
@@ -450,7 +447,6 @@ ShallowWrapper {
               "paddingHorizontal": 30,
               "position": "absolute",
               "right": 0,
-              "top": 110,
             },
           },
           "ref": null,
@@ -665,7 +661,6 @@ ShallowWrapper {
               "paddingHorizontal": 30,
               "position": "absolute",
               "right": 0,
-              "top": 110,
             }
           }
         >
@@ -809,7 +804,6 @@ ShallowWrapper {
             "paddingHorizontal": 30,
             "position": "absolute",
             "right": 0,
-            "top": 110,
           },
         },
         "ref": null,
@@ -974,7 +968,6 @@ ShallowWrapper {
                 "paddingHorizontal": 30,
                 "position": "absolute",
                 "right": 0,
-                "top": 110,
               }
             }
           >
@@ -1118,7 +1111,6 @@ ShallowWrapper {
               "paddingHorizontal": 30,
               "position": "absolute",
               "right": 0,
-              "top": 110,
             },
           },
           "ref": null,

@@ -23,13 +23,6 @@ export default StyleSheet.create({
         paddingHorizontal: Style.SCALE_UP_AND_DOWN(15),
         position: "absolute",
         right: 0,
-        top: Style.SCALE_UP_AND_DOWN(
-            isIphoneX()
-                ? 85
-                : Platform.OS === "android"
-                    ? 75
-                    : 55
-        ),
     } as ViewStyle,
     navBarWrapper: {
         alignItems: "center",
