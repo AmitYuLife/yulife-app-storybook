@@ -7,10 +7,17 @@ import { TopBar, NavBar, ILabel } from "../../molecules";
 import { Style } from "../../../styles";
 import { ROUTES } from "../../../navigation/routes";
 import { Navigation } from "react-native-navigation";
+import { IReduxState } from "../../../redux/_core/reducers";
+import { getTotalCoins } from "../../../redux/coins/coins.selectors";
+import { connect } from "react-redux";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
     componentId: string;
+}
+
+interface IConnectedState {
+    totalCoins: number;
 }
 
 interface IState {
@@ -20,7 +27,9 @@ interface IState {
     isThirdPageLoaded: boolean;
 }
 
-class MemberRootContainer extends PureComponent<IProps, IState> {
+type Props = IProps & IConnectedState;
+
+class MemberRootContainer extends PureComponent<Props, IState> {
     public state: IState = {
         currentIndex: 0,
         isModalVisible: false,
@@ -45,6 +54,7 @@ class MemberRootContainer extends PureComponent<IProps, IState> {
     ];
 
     public render() {
+        const { totalCoins } = this.props;
         const { currentIndex, isModalVisible, isSecondPageLoaded, isThirdPageLoaded } = this.state;
 
         return (
@@ -73,7 +83,7 @@ class MemberRootContainer extends PureComponent<IProps, IState> {
                             />
                         </View>
                         <View style={styles.topBarWrapper}>
-                            <TopBar coins={1000} onPressLeftIcon={this.showMenu} />
+                            <TopBar coins={totalCoins} onPressLeftIcon={this.showMenu} />
                         </View>
                     </>
                 )}
@@ -113,7 +123,13 @@ class MemberRootContainer extends PureComponent<IProps, IState> {
     // private onNavPress = (name: string) => { };
 }
 
-export default MemberRootContainer;
+const mapStateToProps = (state: IReduxState) => ({
+    totalCoins: getTotalCoins(state)
+});
+
+export default connect<IConnectedState>(
+    mapStateToProps,
+)(MemberRootContainer);
 
 const styles = StyleSheet.create({
     navBarWrapper: {
