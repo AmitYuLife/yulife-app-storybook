@@ -1,3 +1,7 @@
+export { default as RewardsList } from "./rewards-list/rewards-list";
+export { default as RewardTabs } from "./reward-tabs/reward-tabs";
+export { default as RewardItemContent } from "./reward-item-content/reward-item-content";
+export { default as Instruction } from "./instruction/instruction";
 export { default as ChallengesList, IChallengesListProps } from "./challenges-list/challenges-list";
 export { default as ChallengeTile, IChallengeTileProps, Images, IMAGES } from "./challenge-tile/challenge-tile";
 export { default as LinkGroup } from "./link-group/link-group";

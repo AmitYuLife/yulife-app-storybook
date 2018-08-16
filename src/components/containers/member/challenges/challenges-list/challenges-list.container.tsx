@@ -70,6 +70,7 @@ const getChallengeDuration = (challenge: any): string => {
 };
 
 interface IProps {
+    isLoaded: boolean;
     onModalToggle: SideEffect<boolean>;
 }
 
@@ -93,10 +94,12 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
     };
 
     public render() {
+        const { isLoaded } = this.props;
+
         return (
-            <ChallengesListQuery query={challengesListGql}>
+            <ChallengesListQuery query={challengesListGql} skip={!isLoaded}>
                 {({ loading, error, data }) => {
-                    if (loading) {
+                    if (loading || !isLoaded) {
                         return <Loading />;
                     }
 

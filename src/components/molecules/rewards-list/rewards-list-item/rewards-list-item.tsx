@@ -1,0 +1,82 @@
+import * as React from "react";
+import { View, StyleSheet, Image, TouchableOpacity, ActivityIndicator } from "react-native";
+import styles from "./rewards-list-item.styles";
+import LockedOverlay from "./locked-overlay";
+import UnlockedOverlay from "./unlocked-overlay";
+import { getCloudinaryUrl } from "../../../../services/cloudinary/index";
+import { GetRewards_getRewards_uiSettings } from "../../../../graphql/_core/schema";
+
+interface IProps {
+    onPress?: () => void;
+    isLocked?: boolean;
+    code: string;
+    cost: number;
+    rewardValue: number;
+    rewardCurrency: string;
+    settings: GetRewards_getRewards_uiSettings;
+}
+
+interface IState {
+    hasLoaded: boolean;
+}
+
+class RewardsListItem extends React.PureComponent<IProps, IState> {
+    public state = {
+        hasLoaded: false,
+    };
+
+    public render() {
+        const { code, onPress, isLocked, cost, rewardValue, rewardCurrency, settings } = this.props;
+        const { hasLoaded } = this.state;
+        return (
+            <TouchableOpacity
+                activeOpacity={1}
+                onPress={onPress || ((): null => null)}
+                style={StyleSheet.flatten([styles.wrapper, hasLoaded ? {} : styles.wrapperLoading])}
+            >
+                <>
+                    <View
+                        style={{
+                            ...StyleSheet.absoluteFillObject,
+                            backgroundColor: "#bebebe",
+                        }}
+                    />
+                    <Image
+                        resizeMethod="scale"
+                        resizeMode="cover"
+                        style={[styles.imageBackground, { opacity: isLocked ? 0.3 : 1 }]}
+                        onLoad={this.handleLoadEnd}
+                        source={getCloudinaryUrl({
+                            url: `reward/background/${code}`,
+                            transformation: [
+                                {
+                                    effect: isLocked ? "grayscale" : null,
+                                },
+                            ],
+                        })}
+                    />
+                    <View style={styles.overlayWrapper}>
+                        {isLocked ? (
+                            <LockedOverlay code={code} settings={settings} />
+                        ) : (
+                            <UnlockedOverlay
+                                settings={settings}
+                                cost={cost}
+                                rewardValue={rewardValue}
+                                rewardCurrency={rewardCurrency}
+                                code={code}
+                            />
+                        )}
+                    </View>
+                    <ActivityIndicator style={styles.activityIndicator} animating={!hasLoaded} />
+                </>
+            </TouchableOpacity>
+        );
+    }
+
+    private handleLoadEnd = () => {
+        this.setState({ hasLoaded: true });
+    }
+}
+
+export default RewardsListItem;

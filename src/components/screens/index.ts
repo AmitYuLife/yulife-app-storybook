@@ -15,3 +15,4 @@ export { default as ChallengeFailedScreen } from "./member/challenges/challenge-
 export { default as ChallengeProgressScreen } from "./member/challenges/challenge-progress/challenge-progress";
 export { default as ChallengeSuccessScreen } from "./member/challenges/challenge-success/challenge-success";
 export { default as ChallengesListScreen } from "./member/challenges/challenges-list/challenges-list-screen";
+export { default as RewardsListScreen } from "./member/rewards/list/rewards-list-screen";

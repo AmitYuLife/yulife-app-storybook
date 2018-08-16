@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { View, StyleSheet, ViewStyle, Platform } from "react-native";
 import Swiper from "react-native-swiper";
-import { ChallengesListContainer, DailyStepsContainer } from "../index";
+import { ChallengesListContainer, DailyStepsContainer, RewardsContainer } from "../index";
 import { CentredScreen } from "../../atoms";
 import { TopBar, NavBar, ILabel } from "../../molecules";
 import { Style } from "../../../styles";
@@ -15,12 +15,16 @@ interface IProps {
 interface IState {
     currentIndex: number;
     isModalVisible: boolean;
+    isSecondPageLoaded: boolean;
+    isThirdPageLoaded: boolean;
 }
 
 class MemberRootContainer extends PureComponent<IProps, IState> {
     public state: IState = {
         currentIndex: 0,
         isModalVisible: false,
+        isSecondPageLoaded: false,
+        isThirdPageLoaded: false,
     };
 
     // private COMPONENT_ID = ROUTES.member;
@@ -40,7 +44,7 @@ class MemberRootContainer extends PureComponent<IProps, IState> {
     ];
 
     public render() {
-        const { currentIndex, isModalVisible } = this.state;
+        const { currentIndex, isModalVisible, isSecondPageLoaded, isThirdPageLoaded } = this.state;
 
         return (
             <CentredScreen>
@@ -53,7 +57,8 @@ class MemberRootContainer extends PureComponent<IProps, IState> {
                     onIndexChanged={this.handleNavBarIndexChange}
                 >
                     <DailyStepsContainer />
-                    <ChallengesListContainer onModalToggle={this.handleToggleModal} />
+                    <ChallengesListContainer isLoaded={isSecondPageLoaded} onModalToggle={this.handleToggleModal} />
+                    <RewardsContainer isLoaded={isThirdPageLoaded} />
                 </Swiper>
                 {!isModalVisible && (
                     <>
@@ -62,6 +67,7 @@ class MemberRootContainer extends PureComponent<IProps, IState> {
                                 activeIndex={currentIndex}
                                 areIconsHidden={currentIndex === 2}
                                 hasNotification={false}
+                                colour={currentIndex === 2 ? NavBar.Colours.DARKER : NavBar.Colours.LIGHT}
                                 labels={this.labels}
                             />
                         </View>
@@ -75,7 +81,11 @@ class MemberRootContainer extends PureComponent<IProps, IState> {
     }
 
     private handleNavBarIndexChange = (currentIndex: number) => {
-        this.setState({ currentIndex });
+        this.setState(({ isSecondPageLoaded, isThirdPageLoaded }) => ({
+            currentIndex,
+            isSecondPageLoaded: isSecondPageLoaded || currentIndex === 1,
+            isThirdPageLoaded: isThirdPageLoaded || currentIndex === 2,
+        }));
     }
 
     private handleToggleModal = (isModalVisible: boolean) => {

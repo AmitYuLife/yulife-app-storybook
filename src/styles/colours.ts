@@ -23,7 +23,7 @@ export default {
         },
         darker: {
             active: "rgb(0,0,0)",
-        }
+        },
     },
     progressBar: {
         background: "black",
@@ -45,5 +45,11 @@ export default {
         filled: "rgb(106,106,106)",
         focus: "#333",
         inactive: "rgb(204,204,204)",
+    },
+    rewardsTabs: {
+        inactive: "rgb(51,51,51)",
+        inactiveTransparent: "rgba(150,150,150,0.5)",
+        active: "rgb(226,1,119)",
+        divider: "rgb(96,96,96)",
     },
 };
