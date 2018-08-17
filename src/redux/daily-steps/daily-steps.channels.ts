@@ -3,7 +3,9 @@ import Pedometer from "react-native-dual-pedometer";
 
 export function dailyStepsChannel(startTime: string) {
     return eventChannel((emitter) => {
-        Pedometer.addListener("pedometer:update", emitter);
+        const { PEDOMETER_UPDATE } = Pedometer.constants;
+
+        Pedometer.addListener(PEDOMETER_UPDATE, emitter);
         Pedometer.startPedometerUpdatesFromDate(startTime);
 
         const unlisten = () => {

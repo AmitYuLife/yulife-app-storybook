@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSMotionUsageDescription</key>
-	<string>We use your pedometer to track how many steps you&apos;ve taken during the day.</string>
+	<string>We use your pedometer to track how many steps you've taken during the day.</string>
 	<key>BugsnagAPIKey</key>
 	<string>__RN_CONFIG_BUGSNAG_API_KEY</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -27,7 +27,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationCategoryType</key>
-	<string></string>
+	<string/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -42,7 +42,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Send photos to resolve app issues</string>
 	<key>UIAppFonts</key>
