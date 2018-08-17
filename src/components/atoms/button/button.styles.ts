@@ -1,8 +1,4 @@
-import {
-    StyleSheet,
-    TextStyle,
-    ViewStyle,
-} from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../styles";
 
 export default StyleSheet.create({
@@ -52,6 +48,9 @@ export default StyleSheet.create({
         lineHeight: Style.SCALE_UP_AND_DOWN(40),
         textAlign: "center",
     } as TextStyle,
+    textSecondaryMedium: {
+        fontSize: Style.SCALE_UP_AND_DOWN(16),
+    } as TextStyle,
     wrapperLink: {
         borderRadius: Style.SCALE_UP_AND_DOWN(50),
         height: Style.SCALE_UP_AND_DOWN(50),
@@ -97,5 +96,11 @@ export default StyleSheet.create({
         height: Style.SCALE_UP_AND_DOWN(50),
         justifyContent: "center",
         width: Style.SCALE_UP_AND_DOWN(306),
+    } as ViewStyle,
+    wrapperMedium: {
+        width: Style.SCALE_UP_AND_DOWN(210),
+        shadowOffset: {
+            height: Style.SCALE_UP_AND_DOWN(3),
+        },
     } as ViewStyle,
 });

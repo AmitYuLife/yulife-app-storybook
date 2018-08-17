@@ -3,6 +3,7 @@ import { PureComponent } from "react";
 import { NativeSyntheticEvent, WebViewMessageEventData } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { SignUpScreen } from "../../screens";
+import { ROUTES } from "../../../navigation/routes";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -15,7 +16,6 @@ interface IState {
 }
 
 class SignUpContainer extends PureComponent<IProps, IState> {
-
     public state: IState = {
         loading: false,
     };
@@ -24,10 +24,10 @@ class SignUpContainer extends PureComponent<IProps, IState> {
         Navigation.mergeOptions(this.props.componentId, {
             topBar: {
                 title: {
-                    text: "Sign Up"
+                    text: "Sign Up",
                 },
-                visible: true
-            }
+                visible: true,
+            },
         });
     }
 
@@ -67,8 +67,9 @@ class SignUpContainer extends PureComponent<IProps, IState> {
         if (event.nativeEvent.data === "signedup") {
             Navigation.setStackRoot(this.props.componentId, {
                 component: {
-                    name: "yulife.Login"
-                }
+                    id: ROUTES.login,
+                    name: ROUTES.login,
+                },
             });
         }
     }

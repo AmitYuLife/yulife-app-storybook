@@ -27,6 +27,7 @@ export enum BUTTON_TYPES {
     PRIMARY_SMALL = "PrimarySmall",
     PRIMARY_GREYSCALE_SMALL = "PrimaryGreyscaleSmall",
     SECONDARY = "Secondary",
+    SECONDARY_MEDIUM = "SecondaryMedium",
     LINK = "Link",
 }
 
@@ -36,6 +37,7 @@ type Types =
     | "PrimarySmall"
     | "PrimaryGreyscaleSmall"
     | "Secondary"
+    | "SecondaryMedium"
     | "Link";
 
 class Button extends PureComponent<IProps> {

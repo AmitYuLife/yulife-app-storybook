@@ -5,6 +5,7 @@ import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { setFitkitPermission } from "../../../../services/storage";
 import { FitKitConnectScreen } from "../../../screens";
+import { ROUTES } from "../../../../navigation/routes";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -38,7 +39,8 @@ class FitKitConnectContainer extends PureComponent<IProps, IState> {
             await setFitkitPermission("accepted");
             await Navigation.push(this.props.componentId, {
                 component: {
-                    name: "yulife.onboarding.SignUpReward",
+                    id: ROUTES.onboardingSignUpReward,
+                    name: ROUTES.onboardingSignUpReward,
                 },
             });
         });
@@ -56,7 +58,8 @@ class FitKitConnectContainer extends PureComponent<IProps, IState> {
     private onSkip = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.onboarding.SignUpReward",
+                id: ROUTES.onboardingSignUpReward,
+                name: ROUTES.onboardingSignUpReward,
             },
         });
     }

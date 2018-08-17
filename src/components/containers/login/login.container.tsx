@@ -5,6 +5,7 @@ import LoginUserMutation, { loginUserGql } from "../../../graphql/user/loginUser
 import { setToken, setUser } from "../../../services/storage";
 import { LoginScreen } from "../../screens";
 import { validateEmail, validatePassword } from "./login.helpers";
+import { ROUTES } from "../../../navigation/routes";
 
 const trimGraphQLError = (message: string) => message.replace(/^GraphQL error: /, "");
 
@@ -92,7 +93,8 @@ export class LoginContainer extends Component<Props, IState> {
             await setToken(result.token);
             await Navigation.push(this.props.componentId, {
                 component: {
-                    name: "yulife.onboarding.FitKitConnect",
+                    id: ROUTES.onboardingFitKitConnect,
+                    name: ROUTES.onboardingFitKitConnect,
                 },
             });
         });
@@ -101,7 +103,8 @@ export class LoginContainer extends Component<Props, IState> {
     private onSignUp = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.SignUp",
+                id: ROUTES.signUp,
+                name: ROUTES.signUp,
             },
         });
     }
@@ -109,7 +112,8 @@ export class LoginContainer extends Component<Props, IState> {
     private onResetPassword = () => {
         Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.ResetPassword",
+                id: ROUTES.resetPassword,
+                name: ROUTES.resetPassword,
             },
         });
     }

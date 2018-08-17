@@ -1,3 +1,4 @@
+export { default as RewardsListItem } from "./rewards-list/rewards-list-item/rewards-list-item";
 export { default as RewardsList } from "./rewards-list/rewards-list";
 export { default as RewardTabs } from "./reward-tabs/reward-tabs";
 export { default as RewardItemContent } from "./reward-item-content/reward-item-content";

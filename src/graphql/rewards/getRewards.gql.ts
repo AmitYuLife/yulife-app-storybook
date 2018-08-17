@@ -5,6 +5,7 @@ import { GetRewards } from "../_core/schema";
 export const getRewardsGql = gql`
     query GetRewards {
         getRewards {
+            __typename
             id
             reward_sticker
             loyalty_programme
@@ -12,6 +13,7 @@ export const getRewardsGql = gql`
             availability
             progression_level
             available_denominations {
+                __typename
                 yuCoin
                 value
                 stock
@@ -27,11 +29,13 @@ export const getRewardsGql = gql`
             minimum_value
             name
             redeem_steps {
+                __typename
                 info
                 steps
             }
             terms_and_conditions_url
             uiSettings {
+                __typename
                 logoWidth
                 logoHeight
             }

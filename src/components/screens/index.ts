@@ -16,3 +16,4 @@ export { default as ChallengeProgressScreen } from "./member/challenges/challeng
 export { default as ChallengeSuccessScreen } from "./member/challenges/challenge-success/challenge-success";
 export { default as ChallengesListScreen } from "./member/challenges/challenges-list/challenges-list-screen";
 export { default as RewardsListScreen } from "./member/rewards/list/rewards-list-screen";
+export { default as PurchasedListScreen } from "./member/rewards/purchased/rewards-purchased";

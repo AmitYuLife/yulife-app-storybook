@@ -1,4 +1,4 @@
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { InMemoryCache, defaultDataIdFromObject } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
 import { from } from "apollo-link";
@@ -14,7 +14,28 @@ const httpLink = createHttpLink({
     // uri: `http://localhost:5000/graphql`,
 });
 
-const cache = new InMemoryCache();
+const dataIdFromObject = (object: any) => {
+    switch (object.__typename) {
+        case "UserPayload":
+            return `${object.__typename}-${object.expiresAt}`;
+        case "User":
+            return `${object.__typename}-${object.id}`;
+        case "Reward":
+            return `${object.__typename}-${object.code}`;
+        case "RewardUiSettings":
+            return `${object.__typename}-${object.logoWidth}-${object.logoHeight}`;
+        case "RedeemSteps":
+            return `${object.__typename}-${object.info}`;
+        case "Denomination":
+            return `${object.__typename}-${object.yuCoin}-${object.value}`;
+        default:
+            return defaultDataIdFromObject(object);
+    }
+};
+
+const cache = new InMemoryCache({
+    dataIdFromObject,
+});
 
 persistCache({
     cache,
