@@ -6,7 +6,8 @@ import {
     ResetPasswordSuccessContainer,
     SignUpContainer,
     SignUpRewardContainer,
-    WelcomeContainer
+    WelcomeContainer,
+    WegiftRewardDetailsContainer,
 } from "../components/containers";
 
 // tslint:disable:object-literal-sort-keys
@@ -23,10 +24,17 @@ export const ROUTES = {
     onboardingSignUpReward: "yulife.onboarding.SignUpReward",
 
     // member screens
+    menu: "yulife.menu",
     member: "yulife.member",
     memberDailySteps: "yulife.member.DailySteps",
     memberChallengesList: "yulife.member.ChallengesList",
     memberRewardsList: "yulife.member.RewardsList",
+
+    // rewards screens
+    wegiftDetails: "yulife.rewards.WegiftDetails",
+    wegiftConfirmed: "yulife.rewards.WegiftConfirmed",
+    aviosDetails: "yulife.rewards.AviosDetails",
+    aviosConfirmed: "yulife.rewards.AviosConfirmed",
 };
 // tslint:enable:object-literal-sort-keys
 
@@ -45,8 +53,8 @@ export default [
     // member screens
     { name: ROUTES.member, component: MemberRootContainer },
 
-    // // member screens
-    // { name: ROUTES.memberDailySteps, component: DailyStepsContainer },
+    // rewards screens
+    { name: ROUTES.wegiftDetails, component: WegiftRewardDetailsContainer },
     // { name: ROUTES.memberChallengesList, component: ChallengesListContainer },
     // { name: ROUTES.memberRewardsList, component: ChallengesListContainer },
 ];

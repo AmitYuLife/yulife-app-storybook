@@ -23,7 +23,7 @@ interface IProps {
     onRightTabPress: () => void;
 }
 
-const RewardDetail: React.SFC<IProps> = ({
+const WegiftRewardDetails: React.SFC<IProps> = ({
     uiSettings,
     code,
     cost,
@@ -70,4 +70,4 @@ const RewardDetail: React.SFC<IProps> = ({
     </SafeAreaView>
 );
 
-export default RewardDetail;
+export default WegiftRewardDetails;

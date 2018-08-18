@@ -201,6 +201,39 @@ export interface GetRewards {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: RedeemReward
+// ====================================================
+
+export interface RedeemReward_redeemReward {
+  id: string | null;
+  userId: string | null;
+  rewardProviderId: string | null;
+  amount: number | null;
+  code: string | null;
+  currency_code: string | null;
+  pin: string | null;
+  expiry_date: string | null;
+  name: string | null;
+  yuCoinsSpent: number | null;
+  updatedAt: string | null;
+  createdAt: string | null;
+}
+
+export interface RedeemReward {
+  redeemReward: RedeemReward_redeemReward | null;
+}
+
+export interface RedeemRewardVariables {
+  id: string;
+  amount: number;
+  metadata?: ProductMetadata | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: loginUser
 // ====================================================
 
@@ -544,6 +577,19 @@ export interface ActionPayload {
   startTime?: number | null;
   endTime?: number | null;
   value?: number | null;
+}
+
+// 
+export interface ProductMetadata {
+  avios?: AviosMetadata | null;
+}
+
+// 
+export interface AviosMetadata {
+  firstName: string;
+  lastName: string;
+  loyaltyProgramme: string;
+  accountNumber: string;
 }
 
 //==============================================================

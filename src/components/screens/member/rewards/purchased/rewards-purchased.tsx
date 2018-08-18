@@ -16,7 +16,7 @@ type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
     id: string;
 };
 
-const Rewards: React.SFC<IProps> = ({ data, onLeftTabPress, onRightTabPress }) => (
+const PurchasedListScreen: React.SFC<IProps> = ({ data, onLeftTabPress, onRightTabPress }) => (
     <SafeAreaView style={styles.wrapper}>
         <Pad height={40} />
         <View style={styles.rewardTabsWrapper}>
@@ -46,4 +46,4 @@ const Rewards: React.SFC<IProps> = ({ data, onLeftTabPress, onRightTabPress }) =
     </SafeAreaView>
 );
 
-export default Rewards;
+export default PurchasedListScreen;

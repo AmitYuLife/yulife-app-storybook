@@ -4,6 +4,7 @@ import { View } from "react-native";
 import { Text, Button } from "../../atoms";
 import { Instruction } from "../../molecules";
 import styles from "./reward-item-content.styles";
+import LinkGroup from "../link-group/link-group";
 
 interface IProps {
     description?: string;
@@ -27,6 +28,8 @@ const RewardItemContent: SFC<IProps> = ({
     labelCtaPrimary,
     labelCtaSecondary,
     labelCtaTertiary,
+    onPressTerms,
+    onPressPolicy,
 }) => (
     <View style={styles.wrapper}>
         {!description ? null : (
@@ -69,7 +72,20 @@ const RewardItemContent: SFC<IProps> = ({
                 label={labelCtaSecondary}
             />
         )}
-        {!onPressCtaTertiary ? null : (
+        {!onPressCtaTertiary ? (
+            <LinkGroup
+                data={[
+                    {
+                        label: "T&Cs",
+                        onPress: onPressTerms,
+                    },
+                    {
+                        label: "Reward policy",
+                        onPress: onPressPolicy,
+                    },
+                ]}
+            />
+        ) : (
             <Button
                 wrapperStyle={styles.tertiaryWrapper}
                 type={Button.Types.LINK}

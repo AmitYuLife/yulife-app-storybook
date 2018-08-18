@@ -3,9 +3,10 @@ import { isIphoneX } from "react-native-iphone-x-helper";
 import { View, StyleSheet, ViewStyle, Platform } from "react-native";
 import Swiper from "react-native-swiper";
 import { ChallengesListContainer, DailyStepsContainer, RewardsContainer } from "../index";
-import { CentredScreen } from "../../atoms";
 import { TopBar, NavBar, ILabel } from "../../molecules";
 import { Style } from "../../../styles";
+import { ROUTES } from "../../../navigation/routes";
+import { Navigation } from "react-native-navigation";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -47,7 +48,7 @@ class MemberRootContainer extends PureComponent<IProps, IState> {
         const { currentIndex, isModalVisible, isSecondPageLoaded, isThirdPageLoaded } = this.state;
 
         return (
-            <CentredScreen>
+            <>
                 <Swiper
                     loop={false}
                     showsPagination={false}
@@ -72,12 +73,22 @@ class MemberRootContainer extends PureComponent<IProps, IState> {
                             />
                         </View>
                         <View style={styles.topBarWrapper}>
-                            <TopBar coins={1000} onPressLeftIcon={() => null} />
+                            <TopBar coins={1000} onPressLeftIcon={this.showMenu} />
                         </View>
                     </>
                 )}
-            </CentredScreen>
+            </>
         );
+    }
+
+    private showMenu = () => {
+        Navigation.mergeOptions(ROUTES.menu, {
+            sideMenu: {
+              left: {
+                visible: true
+              }
+            }
+      });
     }
 
     private handleNavBarIndexChange = (currentIndex: number) => {
