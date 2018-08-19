@@ -24,6 +24,7 @@ export default StyleSheet.create({
     } as ViewStyle,
     wrapper: {
         alignItems: "center",
+        backgroundColor: "white",
         flex: 1,
         flexDirection: "column",
     } as ViewStyle,

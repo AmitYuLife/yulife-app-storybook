@@ -49,6 +49,7 @@ ShallowWrapper {
       ],
       "style": Object {
         "alignItems": "center",
+        "backgroundColor": "white",
         "flex": 1,
         "flexDirection": "column",
       },
@@ -144,6 +145,7 @@ ShallowWrapper {
         ],
         "style": Object {
           "alignItems": "center",
+          "backgroundColor": "white",
           "flex": 1,
           "flexDirection": "column",
         },
@@ -243,6 +245,7 @@ ShallowWrapper {
       ],
       "style": Object {
         "alignItems": "center",
+        "backgroundColor": "white",
         "flex": 1,
         "flexDirection": "column",
       },
@@ -266,6 +269,7 @@ ShallowWrapper {
         ],
         "style": Object {
           "alignItems": "center",
+          "backgroundColor": "white",
           "flex": 1,
           "flexDirection": "column",
         },
