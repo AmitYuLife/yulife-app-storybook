@@ -133,6 +133,8 @@ export default connect<IConnectedState>(
 
 const styles = StyleSheet.create({
     navBarWrapper: {
+        width: Style.DEVICE_WIDTH,
+        alignItems: "center",
         bottom: Style.SCALE_UP_AND_DOWN(17),
         position: "absolute",
     } as ViewStyle,

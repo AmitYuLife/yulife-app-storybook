@@ -1,11 +1,10 @@
 import { Navigation } from "react-native-navigation";
 import registerScreens from "./navigation";
-import { ROUTES } from "./navigation/routes";
 import {
     // getFitkitPermission,
     getToken,
 } from "./services/storage";
-import { Style } from "./styles";
+import { setAuthenticatedRoot, setUnauthenticatedRoot } from "./navigation/root";
 
 // register all the screens
 registerScreens();
@@ -13,15 +12,6 @@ registerScreens();
 Navigation.events().registerAppLaunchedListener(async () => {
     const token = await getToken();
     // const fitkitPermission = await getFitkitPermission();
-    const name = token ? ROUTES.member : ROUTES.welcome;
-    const children = [
-        {
-            component: {
-                id: name,
-                name,
-            },
-        },
-    ];
 
     Navigation.setDefaultOptions({
         layout: {
@@ -31,26 +21,13 @@ Navigation.events().registerAppLaunchedListener(async () => {
             visible: false,
             drawBehind: true,
         },
-        sideMenu: {
-            left: { width: Style.DEVICE_WIDTH },
-        },
     });
 
-    Navigation.setRoot({
-        root: {
-            sideMenu: {
-                left: {
-                    component: {
-                        name: ROUTES.login,
-                        id: ROUTES.menu,
-                    },
-                },
-                center: {
-                    stack: { children },
-                },
-            },
-        },
-    });
+    if (token) {
+        setAuthenticatedRoot();
+    } else {
+        setUnauthenticatedRoot();
+    }
 });
 
 // TODO use this for logging?

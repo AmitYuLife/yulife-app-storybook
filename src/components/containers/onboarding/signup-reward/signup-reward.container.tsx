@@ -1,8 +1,7 @@
 import * as React from "react";
 import { PureComponent } from "react";
-import { Navigation } from "react-native-navigation";
 import { SignUpRewardScreen } from "../../../screens";
-import { ROUTES } from "../../../../navigation/routes";
+import { setAuthenticatedRoot } from "../../../../navigation/root";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -15,12 +14,7 @@ class FitKitConnectContainer extends PureComponent<IProps> {
     }
 
     private onCollect = () => {
-        Navigation.setStackRoot(this.props.componentId, {
-            component: {
-                id: ROUTES.member,
-                name: ROUTES.member,
-            },
-        });
+        setAuthenticatedRoot();
     }
 }
 

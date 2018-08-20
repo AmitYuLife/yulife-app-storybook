@@ -8,3 +8,5 @@ jest.mock("react-native-config", () => ({
     API_URL: "http://api-url.com",
     SIGNUP_URL: "http://signup-url.com"
 }));
+
+jest.mock('react-native-intercom', () => {}, { virtual: true });

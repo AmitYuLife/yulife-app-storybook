@@ -8,6 +8,7 @@ import {
     SignUpRewardContainer,
     WelcomeContainer,
     WegiftRewardDetailsContainer,
+    MenuContainer,
 } from "../components/containers";
 
 // tslint:disable:object-literal-sort-keys
@@ -51,6 +52,7 @@ export default [
     { name: ROUTES.onboardingFitKitConnect, component: FitKitConnectContainer },
 
     // member screens
+    { name: ROUTES.menu, component: MenuContainer },
     { name: ROUTES.member, component: MemberRootContainer },
 
     // rewards screens

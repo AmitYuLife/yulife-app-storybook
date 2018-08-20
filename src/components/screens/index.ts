@@ -10,6 +10,8 @@ export { default as FitKitConnectScreen } from "./onboarding/fitkit-connect/fitk
 export { default as SignUpRewardScreen } from "./onboarding/signup-reward/signup-reward-screen";
 
 // member screens
+export { default as MenuScreen, IMenuLink } from "./member/menu/menu";
+
 export { default as DailyStepsScreen } from "./member/daily-steps/daily-steps-screen";
 export { default as ChallengeFailedScreen } from "./member/challenges/challenge-failed/challenge-failed";
 export { default as ChallengeProgressScreen } from "./member/challenges/challenge-progress/challenge-progress";
