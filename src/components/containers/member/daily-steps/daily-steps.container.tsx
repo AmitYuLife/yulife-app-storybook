@@ -4,6 +4,7 @@ import { setToken } from "../../../../services/storage";
 import { connect } from "react-redux";
 import { DailyStepsScreen } from "../../../screens";
 import { IReduxState } from "../../../../redux/_core/reducers";
+import { getDailyEarnedCoins } from "../../../../redux/coins/coins.selectors";
 import { getDailySteps } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { startDailySteps, stopDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
 import { getAppState } from "../../../../redux/app/app.selectors";
@@ -15,6 +16,7 @@ interface IProps {
 
 interface IConnectedState {
     appState: string;
+    dailyEarnedCoins: number;
     dailySteps: number;
 }
 
@@ -53,11 +55,11 @@ class DailyStepsContainer extends PureComponent<Props> {
     }
 
     public render() {
-        const { dailySteps } = this.props;
+        const { dailyEarnedCoins, dailySteps } = this.props;
 
         return (
             <DailyStepsScreen
-                coinsToday={5}
+                coinsToday={dailyEarnedCoins}
                 currentStreak={2}
                 isDoneToday={false}
                 maxStreak={4}
@@ -80,20 +82,12 @@ class DailyStepsContainer extends PureComponent<Props> {
     private onStreak = () => {
         // console.log("");
     }
-
-    // private onNavPress = (name: string) => {
-    //     Navigation.push(this.props.componentId, {
-    //         component: {
-    //             id: name,
-    //             name,
-    //         },
-    //     });
-    // }
 }
 
 const mapStateToProps = (state: IReduxState) => ({
     appState: getAppState(state),
-    dailySteps: getDailySteps(state)
+    dailyEarnedCoins: getDailyEarnedCoins(state),
+    dailySteps: getDailySteps(state),
 });
 
 const mapDispatchToProps = {

@@ -9,11 +9,12 @@ export const addDailyStepsGql = gql`
             type: "passiveSteps",
             actionPayload: $payload
         }) {
+            completedActiveChallenges {
+                ...Challenge
+            }
             currentPassiveChallenge {
                 ...Challenge
             }
-            message
-            newCoins
             timestamp
             userStatus {
                 totalCoins

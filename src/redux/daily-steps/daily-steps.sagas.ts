@@ -18,7 +18,7 @@ const mapPedometerResults = (results: PedometerResponse): ActionPayload => ({
     value: results.steps
 });
 
-function* listenToDailySteps() {
+export function* listenToDailySteps() {
     const startOfDay = moment().startOf("day").toISOString();
     const stepsChannel = yield call(dailyStepsChannel, startOfDay);
 

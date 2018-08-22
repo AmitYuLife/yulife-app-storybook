@@ -9,4 +9,12 @@ jest.mock("react-native-config", () => ({
     SIGNUP_URL: "http://signup-url.com"
 }));
 
-jest.mock('react-native-intercom', () => {}, { virtual: true });
+jest.mock("react-native-intercom", () => {}, { virtual: true });
+
+jest.mock("react-native-dual-pedometer", () => {
+    Pedometer: {}
+});
+
+jest.mock("../src/graphql/member/addDailySteps.gql", () => ({
+    addDailyStepsGql: jest.fn(),
+}));

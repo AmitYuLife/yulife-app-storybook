@@ -7,6 +7,32 @@
 // GraphQL mutation operation: AddDailySteps
 // ====================================================
 
+export interface AddDailySteps_challengeAction_completedActiveChallenges_milestoneLog {
+  id: string | null;
+  completed: number | null;
+  completionData: (number | null)[] | null;
+  description: string | null;
+}
+
+export interface AddDailySteps_challengeAction_completedActiveChallenges {
+  id: string | null;
+  actions: (string | null)[] | null;
+  challengeTemplateId: string | null;
+  currentData: number | null;
+  currentTarget: number | null;
+  customerId: string | null;
+  data: (number | null)[] | null;
+  endTime: number | null;
+  milestoneLog: (AddDailySteps_challengeAction_completedActiveChallenges_milestoneLog | null)[] | null;
+  startTime: number | null;
+  status: string | null;
+  target: (number | null)[] | null;
+  updatedAt: number | null;
+  XPAwarded: number | null;
+  yuCoinAwarded: number | null;
+  __typename: "Challenge";
+}
+
 export interface AddDailySteps_challengeAction_currentPassiveChallenge_milestoneLog {
   id: string | null;
   completed: number | null;
@@ -38,9 +64,8 @@ export interface AddDailySteps_challengeAction_userStatus {
 }
 
 export interface AddDailySteps_challengeAction {
+  completedActiveChallenges: (AddDailySteps_challengeAction_completedActiveChallenges | null)[] | null;
   currentPassiveChallenge: AddDailySteps_challengeAction_currentPassiveChallenge | null;
-  message: string | null;
-  newCoins: number | null;
   timestamp: number | null;
   userStatus: AddDailySteps_challengeAction_userStatus | null;
 }

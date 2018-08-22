@@ -14,10 +14,13 @@ describe("Coins Reducer", () => {
 
     it("updates the total coins earned after daily steps are updated", () => {
         const localData: AddDailySteps = { ...addDailyStepsSuccessFixture };
+        const { challengeAction } = localData;
 
         const expected: ICoinsStore = {
             ...initialState,
-            total: addDailyStepsSuccessFixture.challengeAction.userStatus.totalCoins,
+            dailyChallengeEarned: challengeAction.completedActiveChallenges[0].yuCoinAwarded,
+            dailyStepsEarned: challengeAction.currentPassiveChallenge.yuCoinAwarded,
+            total: challengeAction.userStatus.totalCoins,
         };
         const actual = coinsReducer(initialState, updateDailyStepsSuccess(localData));
 

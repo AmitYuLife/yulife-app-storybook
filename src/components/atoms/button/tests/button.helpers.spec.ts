@@ -41,6 +41,13 @@ describe("getWrapperStyle", () => {
 
     it("should be defined when given a known input", () => {
 
+        const actual = getWrapperStyle(BUTTON_TYPES.SECONDARY_MEDIUM);
+
+        expect(actual).toBeDefined();
+    });
+
+    it("should be defined when given a known input", () => {
+
         const actual = getWrapperStyle(BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL);
 
         expect(actual).toBeDefined();
@@ -77,6 +84,13 @@ describe("getTextStyle", () => {
     it("should be defined when given a known input", () => {
 
         const actual = getTextStyle(BUTTON_TYPES.SECONDARY);
+
+        expect(actual).toBeDefined();
+    });
+
+    it("should be defined when given a known input", () => {
+
+        const actual = getTextStyle(BUTTON_TYPES.SECONDARY_MEDIUM);
 
         expect(actual).toBeDefined();
     });

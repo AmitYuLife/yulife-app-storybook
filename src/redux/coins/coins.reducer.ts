@@ -1,5 +1,5 @@
 import { UPDATE_DAILY_STEPS_SUCCESS } from "../daily-steps/daily-steps.actions";
-import { AddDailySteps } from "../../graphql/_core/schema";
+import { AddDailySteps, Challenge } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 
 export interface ICoinsStore {
@@ -29,5 +29,10 @@ export default coinsReducer;
 
 const updateDailyStepsSuccess = (state: ICoinsStore, { challengeAction }: AddDailySteps): ICoinsStore => ({
     ...state,
+    dailyChallengeEarned: sumCompletedChallenges(challengeAction.completedActiveChallenges),
+    dailyStepsEarned: challengeAction.currentPassiveChallenge.yuCoinAwarded,
     total: challengeAction.userStatus.totalCoins,
 });
+
+const sumCompletedChallenges = (challenges: Challenge[]): number =>
+    challenges.reduce((prev, challenge) => prev + challenge.yuCoinAwarded, 0);
