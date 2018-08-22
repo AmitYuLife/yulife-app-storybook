@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">yulife</string>
+    <string name="intercom_gcm_sender_id">@string/INTERCOM_GCM_SENDER_ID</string>
 </resources>
