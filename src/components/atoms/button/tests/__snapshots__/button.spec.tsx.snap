@@ -34,6 +34,7 @@ ShallowWrapper {
       >
         test
       </Component>,
+      "disabled": undefined,
       "onPress": [MockFunction],
       "style": Object {
         "borderRadius": 100,
@@ -83,6 +84,7 @@ ShallowWrapper {
         >
           test
         </Component>,
+        "disabled": undefined,
         "onPress": [MockFunction],
         "style": Object {
           "borderRadius": 100,
@@ -151,56 +153,169 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "activeOpacity": 0.2,
-      "children": <Component
-        style={
-          Object {
-            "color": "white",
-            "fontFamily": "Bariol-Regular",
-            "fontSize": 36,
-            "lineHeight": 80,
-            "textAlign": "center",
+      "children": Array [
+        <Component
+          style={
+            Object {
+              "backgroundColor": "#95012b",
+              "borderRadius": 100,
+              "height": 100,
+              "justifyContent": "center",
+              "paddingHorizontal": 170,
+              "position": "absolute",
+              "top": 8,
+              "width": 612,
+            }
           }
-        }
-      >
-        test
-      </Component>,
-      "onPress": [MockFunction],
-      "style": Object {
-        "backgroundColor": "rgb(226,1,119)",
-        "borderColor": "rgb(226,1,119)",
-        "borderRadius": 100,
-        "borderWidth": 2,
-        "height": 100,
-        "justifyContent": "center",
-        "shadowColor": "#95012b",
-        "shadowOffset": Object {
-          "height": 8,
-        },
-        "shadowOpacity": 1,
-        "shadowRadius": 1,
-        "width": 612,
-      },
+        />,
+        <TouchableWithoutFeedback
+          onPressIn={[Function]}
+          onPressOut={[Function]}
+        >
+          <Component
+            style={
+              Object {
+                "backgroundColor": "#e20177",
+                "borderColor": "#e20177",
+                "borderRadius": 100,
+                "borderWidth": 2,
+                "height": 100,
+                "justifyContent": "center",
+                "width": 612,
+              }
+            }
+          >
+            <Component
+              style={
+                Object {
+                  "color": "white",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 36,
+                  "lineHeight": 80,
+                  "textAlign": "center",
+                }
+              }
+            >
+              test
+            </Component>
+          </Component>
+        </TouchableWithoutFeedback>,
+        null,
+      ],
+      "style": undefined,
     },
     "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": "test",
-        "style": Object {
-          "color": "white",
-          "fontFamily": "Bariol-Regular",
-          "fontSize": 36,
-          "lineHeight": 80,
-          "textAlign": "center",
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "style": Object {
+            "backgroundColor": "#95012b",
+            "borderRadius": 100,
+            "height": 100,
+            "justifyContent": "center",
+            "paddingHorizontal": 170,
+            "position": "absolute",
+            "top": 8,
+            "width": 612,
+          },
         },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
       },
-      "ref": null,
-      "rendered": "test",
-      "type": [Function],
-    },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Component
+            style={
+              Object {
+                "backgroundColor": "#e20177",
+                "borderColor": "#e20177",
+                "borderRadius": 100,
+                "borderWidth": 2,
+                "height": 100,
+                "justifyContent": "center",
+                "width": 612,
+              }
+            }
+          >
+            <Component
+              style={
+                Object {
+                  "color": "white",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 36,
+                  "lineHeight": 80,
+                  "textAlign": "center",
+                }
+              }
+            >
+              test
+            </Component>
+          </Component>,
+          "disabled": undefined,
+          "onPressIn": [Function],
+          "onPressOut": [Function],
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Component
+              style={
+                Object {
+                  "color": "white",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 36,
+                  "lineHeight": 80,
+                  "textAlign": "center",
+                }
+              }
+            >
+              test
+            </Component>,
+            "style": Object {
+              "backgroundColor": "#e20177",
+              "borderColor": "#e20177",
+              "borderRadius": 100,
+              "borderWidth": 2,
+              "height": 100,
+              "justifyContent": "center",
+              "width": 612,
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "test",
+              "style": Object {
+                "color": "white",
+                "fontFamily": "Bariol-Regular",
+                "fontSize": 36,
+                "lineHeight": 80,
+                "textAlign": "center",
+              },
+            },
+            "ref": null,
+            "rendered": "test",
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      null,
+    ],
     "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
@@ -209,56 +324,169 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "activeOpacity": 0.2,
-        "children": <Component
-          style={
-            Object {
-              "color": "white",
-              "fontFamily": "Bariol-Regular",
-              "fontSize": 36,
-              "lineHeight": 80,
-              "textAlign": "center",
+        "children": Array [
+          <Component
+            style={
+              Object {
+                "backgroundColor": "#95012b",
+                "borderRadius": 100,
+                "height": 100,
+                "justifyContent": "center",
+                "paddingHorizontal": 170,
+                "position": "absolute",
+                "top": 8,
+                "width": 612,
+              }
             }
-          }
-        >
-          test
-        </Component>,
-        "onPress": [MockFunction],
-        "style": Object {
-          "backgroundColor": "rgb(226,1,119)",
-          "borderColor": "rgb(226,1,119)",
-          "borderRadius": 100,
-          "borderWidth": 2,
-          "height": 100,
-          "justifyContent": "center",
-          "shadowColor": "#95012b",
-          "shadowOffset": Object {
-            "height": 8,
-          },
-          "shadowOpacity": 1,
-          "shadowRadius": 1,
-          "width": 612,
-        },
+          />,
+          <TouchableWithoutFeedback
+            onPressIn={[Function]}
+            onPressOut={[Function]}
+          >
+            <Component
+              style={
+                Object {
+                  "backgroundColor": "#e20177",
+                  "borderColor": "#e20177",
+                  "borderRadius": 100,
+                  "borderWidth": 2,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "width": 612,
+                }
+              }
+            >
+              <Component
+                style={
+                  Object {
+                    "color": "white",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 36,
+                    "lineHeight": 80,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                test
+              </Component>
+            </Component>
+          </TouchableWithoutFeedback>,
+          null,
+        ],
+        "style": undefined,
       },
       "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": "test",
-          "style": Object {
-            "color": "white",
-            "fontFamily": "Bariol-Regular",
-            "fontSize": 36,
-            "lineHeight": 80,
-            "textAlign": "center",
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "style": Object {
+              "backgroundColor": "#95012b",
+              "borderRadius": 100,
+              "height": 100,
+              "justifyContent": "center",
+              "paddingHorizontal": 170,
+              "position": "absolute",
+              "top": 8,
+              "width": 612,
+            },
           },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
         },
-        "ref": null,
-        "rendered": "test",
-        "type": [Function],
-      },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Component
+              style={
+                Object {
+                  "backgroundColor": "#e20177",
+                  "borderColor": "#e20177",
+                  "borderRadius": 100,
+                  "borderWidth": 2,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "width": 612,
+                }
+              }
+            >
+              <Component
+                style={
+                  Object {
+                    "color": "white",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 36,
+                    "lineHeight": 80,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                test
+              </Component>
+            </Component>,
+            "disabled": undefined,
+            "onPressIn": [Function],
+            "onPressOut": [Function],
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <Component
+                style={
+                  Object {
+                    "color": "white",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 36,
+                    "lineHeight": 80,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                test
+              </Component>,
+              "style": Object {
+                "backgroundColor": "#e20177",
+                "borderColor": "#e20177",
+                "borderRadius": 100,
+                "borderWidth": 2,
+                "height": 100,
+                "justifyContent": "center",
+                "width": 612,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "test",
+                "style": Object {
+                  "color": "white",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 36,
+                  "lineHeight": 80,
+                  "textAlign": "center",
+                },
+              },
+              "ref": null,
+              "rendered": "test",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        null,
+      ],
       "type": [Function],
     },
   ],
@@ -315,41 +543,39 @@ ShallowWrapper {
             }
           }
         />,
-        <TouchableOpacity
-          activeOpacity={0.2}
-          onPress={[MockFunction]}
-          style={
-            Object {
-              "backgroundColor": "rgb(226,1,119)",
-              "borderColor": "rgb(226,1,119)",
-              "borderRadius": 100,
-              "borderWidth": 2,
-              "height": 100,
-              "justifyContent": "center",
-              "shadowColor": "#95012b",
-              "shadowOffset": Object {
-                "height": 8,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 1,
-              "width": 612,
-            }
-          }
+        <TouchableWithoutFeedback
+          onPressIn={[Function]}
+          onPressOut={[Function]}
         >
           <Component
             style={
               Object {
-                "color": "white",
-                "fontFamily": "Bariol-Regular",
-                "fontSize": 36,
-                "lineHeight": 80,
-                "textAlign": "center",
+                "backgroundColor": "#e20177",
+                "borderColor": "#e20177",
+                "borderRadius": 100,
+                "borderWidth": 2,
+                "height": 100,
+                "justifyContent": "center",
+                "width": 612,
               }
             }
           >
-            test
+            <Component
+              style={
+                Object {
+                  "color": "white",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 36,
+                  "lineHeight": 80,
+                  "textAlign": "center",
+                }
+              }
+            >
+              test
+            </Component>
           </Component>
-        </TouchableOpacity>,
+        </TouchableWithoutFeedback>,
+        null,
       ],
       "style": undefined,
     },
@@ -380,36 +606,36 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "activeOpacity": 0.2,
           "children": <Component
             style={
               Object {
-                "color": "white",
-                "fontFamily": "Bariol-Regular",
-                "fontSize": 36,
-                "lineHeight": 80,
-                "textAlign": "center",
+                "backgroundColor": "#e20177",
+                "borderColor": "#e20177",
+                "borderRadius": 100,
+                "borderWidth": 2,
+                "height": 100,
+                "justifyContent": "center",
+                "width": 612,
               }
             }
           >
-            test
+            <Component
+              style={
+                Object {
+                  "color": "white",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 36,
+                  "lineHeight": 80,
+                  "textAlign": "center",
+                }
+              }
+            >
+              test
+            </Component>
           </Component>,
-          "onPress": [MockFunction],
-          "style": Object {
-            "backgroundColor": "rgb(226,1,119)",
-            "borderColor": "rgb(226,1,119)",
-            "borderRadius": 100,
-            "borderWidth": 2,
-            "height": 100,
-            "justifyContent": "center",
-            "shadowColor": "#95012b",
-            "shadowOffset": Object {
-              "height": 8,
-            },
-            "shadowOpacity": 1,
-            "shadowRadius": 1,
-            "width": 612,
-          },
+          "disabled": undefined,
+          "onPressIn": [Function],
+          "onPressOut": [Function],
         },
         "ref": null,
         "rendered": Object {
@@ -417,21 +643,53 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "test",
+            "children": <Component
+              style={
+                Object {
+                  "color": "white",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 36,
+                  "lineHeight": 80,
+                  "textAlign": "center",
+                }
+              }
+            >
+              test
+            </Component>,
             "style": Object {
-              "color": "white",
-              "fontFamily": "Bariol-Regular",
-              "fontSize": 36,
-              "lineHeight": 80,
-              "textAlign": "center",
+              "backgroundColor": "#e20177",
+              "borderColor": "#e20177",
+              "borderRadius": 100,
+              "borderWidth": 2,
+              "height": 100,
+              "justifyContent": "center",
+              "width": 612,
             },
           },
           "ref": null,
-          "rendered": "test",
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "test",
+              "style": Object {
+                "color": "white",
+                "fontFamily": "Bariol-Regular",
+                "fontSize": 36,
+                "lineHeight": 80,
+                "textAlign": "center",
+              },
+            },
+            "ref": null,
+            "rendered": "test",
+            "type": [Function],
+          },
           "type": [Function],
         },
         "type": [Function],
       },
+      null,
     ],
     "type": [Function],
   },
@@ -456,41 +714,39 @@ ShallowWrapper {
               }
             }
           />,
-          <TouchableOpacity
-            activeOpacity={0.2}
-            onPress={[MockFunction]}
-            style={
-              Object {
-                "backgroundColor": "rgb(226,1,119)",
-                "borderColor": "rgb(226,1,119)",
-                "borderRadius": 100,
-                "borderWidth": 2,
-                "height": 100,
-                "justifyContent": "center",
-                "shadowColor": "#95012b",
-                "shadowOffset": Object {
-                  "height": 8,
-                },
-                "shadowOpacity": 1,
-                "shadowRadius": 1,
-                "width": 612,
-              }
-            }
+          <TouchableWithoutFeedback
+            onPressIn={[Function]}
+            onPressOut={[Function]}
           >
             <Component
               style={
                 Object {
-                  "color": "white",
-                  "fontFamily": "Bariol-Regular",
-                  "fontSize": 36,
-                  "lineHeight": 80,
-                  "textAlign": "center",
+                  "backgroundColor": "#e20177",
+                  "borderColor": "#e20177",
+                  "borderRadius": 100,
+                  "borderWidth": 2,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "width": 612,
                 }
               }
             >
-              test
+              <Component
+                style={
+                  Object {
+                    "color": "white",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 36,
+                    "lineHeight": 80,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                test
+              </Component>
             </Component>
-          </TouchableOpacity>,
+          </TouchableWithoutFeedback>,
+          null,
         ],
         "style": undefined,
       },
@@ -521,36 +777,36 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "activeOpacity": 0.2,
             "children": <Component
               style={
                 Object {
-                  "color": "white",
-                  "fontFamily": "Bariol-Regular",
-                  "fontSize": 36,
-                  "lineHeight": 80,
-                  "textAlign": "center",
+                  "backgroundColor": "#e20177",
+                  "borderColor": "#e20177",
+                  "borderRadius": 100,
+                  "borderWidth": 2,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "width": 612,
                 }
               }
             >
-              test
+              <Component
+                style={
+                  Object {
+                    "color": "white",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 36,
+                    "lineHeight": 80,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                test
+              </Component>
             </Component>,
-            "onPress": [MockFunction],
-            "style": Object {
-              "backgroundColor": "rgb(226,1,119)",
-              "borderColor": "rgb(226,1,119)",
-              "borderRadius": 100,
-              "borderWidth": 2,
-              "height": 100,
-              "justifyContent": "center",
-              "shadowColor": "#95012b",
-              "shadowOffset": Object {
-                "height": 8,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 1,
-              "width": 612,
-            },
+            "disabled": undefined,
+            "onPressIn": [Function],
+            "onPressOut": [Function],
           },
           "ref": null,
           "rendered": Object {
@@ -558,21 +814,53 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "test",
+              "children": <Component
+                style={
+                  Object {
+                    "color": "white",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 36,
+                    "lineHeight": 80,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                test
+              </Component>,
               "style": Object {
-                "color": "white",
-                "fontFamily": "Bariol-Regular",
-                "fontSize": 36,
-                "lineHeight": 80,
-                "textAlign": "center",
+                "backgroundColor": "#e20177",
+                "borderColor": "#e20177",
+                "borderRadius": 100,
+                "borderWidth": 2,
+                "height": 100,
+                "justifyContent": "center",
+                "width": 612,
               },
             },
             "ref": null,
-            "rendered": "test",
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "test",
+                "style": Object {
+                  "color": "white",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 36,
+                  "lineHeight": 80,
+                  "textAlign": "center",
+                },
+              },
+              "ref": null,
+              "rendered": "test",
+              "type": [Function],
+            },
             "type": [Function],
           },
           "type": [Function],
         },
+        null,
       ],
       "type": [Function],
     },
@@ -629,6 +917,7 @@ ShallowWrapper {
       >
         test
       </Component>,
+      "disabled": undefined,
       "onPress": [MockFunction],
       "style": Object {
         "borderColor": "rgb(226,1,119)",
@@ -680,6 +969,7 @@ ShallowWrapper {
         >
           test
         </Component>,
+        "disabled": undefined,
         "onPress": [MockFunction],
         "style": Object {
           "borderColor": "rgb(226,1,119)",

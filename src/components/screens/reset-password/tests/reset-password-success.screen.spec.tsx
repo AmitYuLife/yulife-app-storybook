@@ -1,15 +1,15 @@
 import { shallow } from "enzyme";
 import * as React from "react";
-import WelcomeScreen from "../welcome.screen";
+import "react-native";
+import ResetPasswordSuccessScreen from "../reset-password-success.screen";
 
-describe("WelcomeScreen component", () => {
+describe("ResetPassword", () => {
 
-    it ("should render with props", () => {
+    it("should render", () => {
 
         const actual = shallow(
-            <WelcomeScreen
+            <ResetPasswordSuccessScreen
                 onLogInPress={jest.fn()}
-                onSignUpPress={jest.fn()}
             />
         );
 

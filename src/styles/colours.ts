@@ -1,6 +1,16 @@
 export default {
     button: {
         link: "rgb(232, 49, 129)",
+        primary: {
+            default: {
+                body: "#e20177",
+                shadow: "#95012b",
+            },
+            pressedIn: {
+                body: "#cb016b",
+                shadow: "#860127",
+            },
+        },
     },
     darkGray: "rgb(51,51,51)",
     darkHotPink: "rgb(226,1,119)",

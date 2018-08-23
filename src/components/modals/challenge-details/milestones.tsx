@@ -2,7 +2,7 @@ import * as React from "react";
 import { SFC } from "react";
 import { Image, View } from "react-native";
 import { Text } from "../../atoms";
-import styles from "./challenge-details.styles";
+import styles from "./challenge-details.modal.styles";
 
 export interface IMilestone {
     target: number;

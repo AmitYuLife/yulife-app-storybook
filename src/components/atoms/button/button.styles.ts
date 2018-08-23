@@ -1,106 +1,118 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Colours, Style } from "../../../styles";
+import {
+    StyleSheet,
+    TextStyle,
+    ViewStyle,
+} from "react-native";
+import { Style, Colours } from "../../../styles";
+
+const wrapperPrimaryBodyHeight = Style.SCALE_UP_AND_DOWN(50);
+const wrapperPrimaryBodyWidth = Style.SCALE_UP_AND_DOWN(306);
+const wrapperPrimaryShadowOffset = Style.SCALE_UP_AND_DOWN(4);
+const wrapperPrimaryTotalHeight = wrapperPrimaryBodyHeight + wrapperPrimaryShadowOffset;
 
 export default StyleSheet.create({
-    shadow: {
-        backgroundColor: Colours.darkHotPinkShadow,
+    wrapperSecondary: {
+        borderWidth: Style.SCALE_UP_AND_DOWN(1),
+        borderColor: Colours.darkHotPink,
         borderRadius: Style.SCALE_UP_AND_DOWN(50),
         height: Style.SCALE_UP_AND_DOWN(50),
-        justifyContent: "center",
-        paddingHorizontal: Style.SCALE_UP_AND_DOWN(85),
-        position: "absolute",
-        top: Style.SCALE_UP_AND_DOWN(4),
         width: Style.SCALE_UP_AND_DOWN(306),
+        justifyContent: "center",
     } as ViewStyle,
-    shadowGrey: {
-        backgroundColor: "rgb(150,150,150)",
-    },
-    shadowMedium: {
-        top: Style.SCALE_UP_AND_DOWN(3),
-        width: Style.SCALE_UP_AND_DOWN(210),
-    } as ViewStyle,
-    shadowSmall: {
-        top: Style.SCALE_UP_AND_DOWN(2),
-        width: Style.SCALE_UP_AND_DOWN(170),
-    } as ViewStyle,
-    textGreyscale: {
-        color: "rgb(85,85,85)",
-        fontFamily: Style.FONT_FAMILY_PRIMARY,
-    } as TextStyle,
-    textLink: {
-        color: Colours.button.link,
-        fontFamily: Style.FONT_FAMILY_PRIMARY,
-        fontSize: Style.SCALE_UP_AND_DOWN(16),
-        lineHeight: Style.SCALE_UP_AND_DOWN(23),
-        textAlign: "center",
-    } as TextStyle,
-    textPrimary: {
-        color: "white",
-        fontFamily: Style.FONT_FAMILY_PRIMARY,
-        fontSize: Style.SCALE_UP_AND_DOWN(18),
-        lineHeight: Style.SCALE_UP_AND_DOWN(40),
-        textAlign: "center",
-    } as TextStyle,
     textSecondary: {
-        color: Colours.darkHotPink,
+        textAlign: "center",
         fontFamily: Style.FONT_FAMILY_PRIMARY,
+        color: Colours.darkHotPink,
         fontSize: Style.SCALE_UP_AND_DOWN(18),
         lineHeight: Style.SCALE_UP_AND_DOWN(40),
-        textAlign: "center",
     } as TextStyle,
     textSecondaryMedium: {
         fontSize: Style.SCALE_UP_AND_DOWN(16),
     } as TextStyle,
-    wrapperLink: {
-        borderRadius: Style.SCALE_UP_AND_DOWN(50),
-        height: Style.SCALE_UP_AND_DOWN(50),
-        justifyContent: "center",
-        width: Style.SCALE_UP_AND_DOWN(306),
-    } as ViewStyle,
     wrapperPrimary: {
-        backgroundColor: Colours.darkHotPink,
-        borderColor: Colours.darkHotPink,
-        borderRadius: Style.SCALE_UP_AND_DOWN(50),
         borderWidth: Style.SCALE_UP_AND_DOWN(1),
-        height: Style.SCALE_UP_AND_DOWN(50),
+        borderColor: Colours.button.primary.default.body,
+        borderRadius: Style.SCALE_UP_AND_DOWN(50),
+        height: wrapperPrimaryBodyHeight,
+        width: wrapperPrimaryBodyWidth,
+        backgroundColor: Colours.button.primary.default.body,
         justifyContent: "center",
-        shadowColor: Colours.darkHotPinkShadow,
-        shadowOffset: {
-            height: Style.SCALE_UP_AND_DOWN(4),
-        },
-        shadowOpacity: 1,
-        shadowRadius: 1,
-        width: Style.SCALE_UP_AND_DOWN(306),
+    } as ViewStyle,
+    wrapperOverlayPrimaryDisabled: {
+        ...StyleSheet.absoluteFillObject,
+        left: -3,
+        height: wrapperPrimaryTotalHeight,
+        width: wrapperPrimaryBodyWidth + 8,
+        borderRadius: wrapperPrimaryTotalHeight / 2,
+        backgroundColor: "rgba(255,255,255,0.8)",
+    } as ViewStyle,
+    wrapperPrimaryPressed: {
+        borderColor: Colours.button.primary.pressedIn.body,
+        backgroundColor: Colours.button.primary.pressedIn.body,
     } as ViewStyle,
     wrapperPrimaryGreyscale: {
-        backgroundColor: "white",
         borderColor: "white",
+        backgroundColor: "white",
         shadowColor: "rgb(150,150,150)",
-    } as ViewStyle,
-    wrapperPrimaryMedium: {
-        shadowOffset: {
-            height: Style.SCALE_UP_AND_DOWN(3),
-        },
-        width: Style.SCALE_UP_AND_DOWN(210),
-    } as ViewStyle,
-    wrapperPrimarySmall: {
-        shadowOffset: {
-            height: Style.SCALE_UP_AND_DOWN(2),
-        },
-        width: Style.SCALE_UP_AND_DOWN(170),
-    } as ViewStyle,
-    wrapperSecondary: {
-        borderColor: Colours.darkHotPink,
-        borderRadius: Style.SCALE_UP_AND_DOWN(50),
-        borderWidth: Style.SCALE_UP_AND_DOWN(1),
-        height: Style.SCALE_UP_AND_DOWN(50),
-        justifyContent: "center",
-        width: Style.SCALE_UP_AND_DOWN(306),
     } as ViewStyle,
     wrapperMedium: {
         width: Style.SCALE_UP_AND_DOWN(210),
         shadowOffset: {
             height: Style.SCALE_UP_AND_DOWN(3),
         },
+    } as ViewStyle,
+    wrapperPrimarySmall: {
+        width: Style.SCALE_UP_AND_DOWN(170),
+        shadowOffset: {
+            height: Style.SCALE_UP_AND_DOWN(2),
+        },
+    } as ViewStyle,
+    textPrimary: {
+        textAlign: "center",
+        fontFamily: Style.FONT_FAMILY_PRIMARY,
+        color: "white",
+        fontSize: Style.SCALE_UP_AND_DOWN(18),
+        lineHeight: Style.SCALE_UP_AND_DOWN(40),
+    } as TextStyle,
+    textGreyscale: {
+        fontFamily: Style.FONT_FAMILY_PRIMARY,
+        color: "rgb(85,85,85)",
+    } as TextStyle,
+    wrapperLink: {
+        borderRadius: Style.SCALE_UP_AND_DOWN(50),
+        height: Style.SCALE_UP_AND_DOWN(50),
+        width: Style.SCALE_UP_AND_DOWN(306),
+        justifyContent: "center",
+    } as ViewStyle,
+    textLink: {
+        textAlign: "center",
+        fontFamily: Style.FONT_FAMILY_PRIMARY,
+        color: Colours.button.link,
+        fontSize: Style.SCALE_UP_AND_DOWN(16),
+        lineHeight: Style.SCALE_UP_AND_DOWN(23),
+    } as TextStyle,
+    shadow: {
+        paddingHorizontal: Style.SCALE_UP_AND_DOWN(85),
+        borderRadius: Style.SCALE_UP_AND_DOWN(50),
+        height: Style.SCALE_UP_AND_DOWN(50),
+        width: Style.SCALE_UP_AND_DOWN(306),
+        backgroundColor: Colours.darkHotPinkShadow,
+        justifyContent: "center",
+        position: "absolute",
+        top: wrapperPrimaryShadowOffset,
+    } as ViewStyle,
+    shadowPressed: {
+        backgroundColor: Colours.button.primary.pressedIn.shadow,
+    } as ViewStyle,
+    shadowGrey: {
+        backgroundColor: "rgb(150,150,150)",
+    },
+    shadowMedium: {
+        width: Style.SCALE_UP_AND_DOWN(210),
+        top: Style.SCALE_UP_AND_DOWN(3),
+    } as ViewStyle,
+    shadowSmall: {
+        width: Style.SCALE_UP_AND_DOWN(170),
+        top: Style.SCALE_UP_AND_DOWN(2),
     } as ViewStyle,
 });

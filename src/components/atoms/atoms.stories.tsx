@@ -46,12 +46,14 @@ storiesOf("Atoms", module)
                 type={Button.Types.PRIMARY}
                 onPress={action("button-click")}
                 label={text("Primary Label", "do a backflip", "PRIMARY")}
+                disabled={boolean("Primary Disabled", false, "PRIMARY")}
             />
             <Pad height={30} />
             <Button
                 type={Button.Types.SECONDARY}
                 onPress={action("button-click")}
                 label={text("Secondary Label", "sign up", "SECONDARY")}
+                disabled={boolean("Secondary Disabled", false, "SECONDARY")}
             />
         </CenterView>
     ))

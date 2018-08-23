@@ -1,8 +1,8 @@
 import { BUTTON_TYPES } from "../button";
 import {
-    getShadowStyle,
-    getTextStyle,
     getWrapperStyle,
+    getTextStyle,
+    getShadowStyle,
 } from "../button.helpers";
 
 describe("getWrapperStyle", () => {
@@ -12,50 +12,37 @@ describe("getWrapperStyle", () => {
     });
 
     it("should be defined when given a known input", () => {
-
-        const actual = getWrapperStyle(BUTTON_TYPES.PRIMARY_SMALL);
-
-        expect(actual).toBeDefined();
-    });
-
-    it("should be defined when given a known input", () => {
-
-        const actual = getWrapperStyle(BUTTON_TYPES.PRIMARY);
+        const actual = getWrapperStyle({
+            type: BUTTON_TYPES.PRIMARY_SMALL
+        });
 
         expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-
-        const actual = getWrapperStyle(BUTTON_TYPES.PRIMARY_MEDIUM);
-
-        expect(actual).toBeDefined();
-    });
-
-    it("should be defined when given a known input", () => {
-
-        const actual = getWrapperStyle(BUTTON_TYPES.SECONDARY);
+        const actual = getWrapperStyle({ type: BUTTON_TYPES.PRIMARY });
 
         expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-
-        const actual = getWrapperStyle(BUTTON_TYPES.SECONDARY_MEDIUM);
-
-        expect(actual).toBeDefined();
-    });
-
-    it("should be defined when given a known input", () => {
-
-        const actual = getWrapperStyle(BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL);
+        const actual = getWrapperStyle({
+            type: BUTTON_TYPES.PRIMARY_MEDIUM
+        });
 
         expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
+        const actual = getWrapperStyle({
+            type: BUTTON_TYPES.SECONDARY
+        });
 
-        const actual = getWrapperStyle(BUTTON_TYPES.LINK);
+        expect(actual).toBeDefined();
+    });
+
+    it("should be defined when given a known input", () => {
+        const actual = getWrapperStyle({ type: BUTTON_TYPES.LINK });
 
         expect(actual).toBeDefined();
     });
@@ -68,42 +55,26 @@ describe("getTextStyle", () => {
     });
 
     it("should be defined when given a known input", () => {
-
         const actual = getTextStyle(BUTTON_TYPES.PRIMARY);
 
         expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-
-        const actual = getTextStyle(BUTTON_TYPES.PRIMARY_SMALL);
+        const actual = getTextStyle(
+            BUTTON_TYPES.PRIMARY_SMALL
+        );
 
         expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-
         const actual = getTextStyle(BUTTON_TYPES.SECONDARY);
 
         expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-
-        const actual = getTextStyle(BUTTON_TYPES.SECONDARY_MEDIUM);
-
-        expect(actual).toBeDefined();
-    });
-
-    it("should be defined when given a known input", () => {
-
-        const actual = getTextStyle(BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL);
-
-        expect(actual).toBeDefined();
-    });
-
-    it("should be defined when given a known input", () => {
-
         const actual = getTextStyle(BUTTON_TYPES.LINK);
 
         expect(actual).toBeDefined();
@@ -117,29 +88,23 @@ describe("getShadowStyle", () => {
     });
 
     it("should be defined when given a known input", () => {
-
-        const actual = getShadowStyle(BUTTON_TYPES.PRIMARY);
-
-        expect(actual).toBeDefined();
-    });
-
-    it("should be defined when given a known input", () => {
-
-        const actual = getShadowStyle(BUTTON_TYPES.PRIMARY_MEDIUM);
+        const actual = getShadowStyle({ type: BUTTON_TYPES.PRIMARY });
 
         expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-
-        const actual = getShadowStyle(BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL);
+        const actual = getShadowStyle({
+            type: BUTTON_TYPES.PRIMARY_MEDIUM
+        });
 
         expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-
-        const actual = getShadowStyle(BUTTON_TYPES.PRIMARY_SMALL);
+        const actual = getShadowStyle({
+            type: BUTTON_TYPES.PRIMARY_SMALL
+        });
 
         expect(actual).toBeDefined();
     });
