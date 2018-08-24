@@ -4,7 +4,9 @@ import { appStateChannel, appNetworkChannel } from "./app.channels";
 // import PushNotification from "react-native-push-notification";
 // import bugsnag from "../../utils/bugsnag";
 // import { SyncAction, AsyncAction } from "../_core/types";
-import { updateAppState, updateOfflineState, SHOW_MAINTENANCE } from "./app.actions";
+import { updateAppState, updateOfflineState, SHOW_MAINTENANCE, AUTHORISE_FITKIT } from "./app.actions";
+import RNFitKit from "react-native-fitkit";
+import FitKitPermissions from "../../services/fitkit/fitkit.permissions";
 
 function* listenToAppState() {
     const stateChannel = yield call(appStateChannel);
@@ -22,6 +24,10 @@ function* listenToNetworkState() {
         const network: ConnectionInfo = yield take(networkChannel);
         yield put(updateOfflineState(network.type === "none"));
     }
+}
+
+function* authoriseFitKitSaga() {
+    yield call(RNFitKit.authorise, FitKitPermissions);
 }
 
 // example of moving from reducer logic
@@ -70,6 +76,7 @@ function* showMaintenance() {
 export default [
     takeLatest("INIT", listenToAppState),
     takeLatest("INIT", listenToNetworkState),
+    takeLatest(AUTHORISE_FITKIT, authoriseFitKitSaga),
     // takeEvery("*", logBreadcrumbs),
     // takeLatest(LOGOUT, unregisterPush),
     takeLatest(SHOW_MAINTENANCE, showMaintenance),

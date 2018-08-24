@@ -1,4 +1,5 @@
-import React, { SFC } from "react";
+import * as React from "react";
+import { SFC } from "react";
 import Svg, { Polygon } from "react-native-svg";
 
 const Back: SFC<{}> = () => (

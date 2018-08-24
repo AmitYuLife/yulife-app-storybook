@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DailyStepsFitKitAuthorise should render default values 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <DailyStepsFitKitAuthorise
+    onPress={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        <YuText
+          style={
+            Object {
+              "color": "rgb(96,96,96)",
+              "lineHeight": 44,
+              "marginBottom": 40,
+              "textAlign": "center",
+              "width": 600,
+            }
+          }
+        >
+          We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.
+        </YuText>,
+        <Button
+          label="yes let’s connect"
+          onPress={[MockFunction]}
+          type="PrimaryMedium"
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+          "style": Object {
+            "color": "rgb(96,96,96)",
+            "lineHeight": 44,
+            "marginBottom": 40,
+            "textAlign": "center",
+            "width": 600,
+          },
+        },
+        "ref": null,
+        "rendered": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "yes let’s connect",
+          "onPress": [MockFunction],
+          "type": "PrimaryMedium",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <YuText
+            style={
+              Object {
+                "color": "rgb(96,96,96)",
+                "lineHeight": 44,
+                "marginBottom": 40,
+                "textAlign": "center",
+                "width": 600,
+              }
+            }
+          >
+            We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.
+          </YuText>,
+          <Button
+            label="yes let’s connect"
+            onPress={[MockFunction]}
+            type="PrimaryMedium"
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+            "style": Object {
+              "color": "rgb(96,96,96)",
+              "lineHeight": 44,
+              "marginBottom": 40,
+              "textAlign": "center",
+              "width": 600,
+            },
+          },
+          "ref": null,
+          "rendered": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "yes let’s connect",
+            "onPress": [MockFunction],
+            "type": "PrimaryMedium",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

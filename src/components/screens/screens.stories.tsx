@@ -54,6 +54,7 @@ storiesOf("Screens", module)
     .add("4. FitKit Connect", () => (
         <FitKitConnectScreen
             connecting={boolean("Connecting?", false, "FitKit")}
+            fitKitAvailable={boolean("FitKit Available?", true, "FitKit")}
             onConnectPress={action("on connect press")}
             onPrivacyPolicyPress={action("on privacy policy press")}
             onSkipPress={action("on skip press")}
@@ -84,8 +85,15 @@ storiesOf("Screens", module)
                 range: true,
                 step: 1,
             }, "DailySteps")}
-            isDoneToday={boolean("Done Today?", false, "NavBar")}
+            displayStreak={boolean("Display Streak?", true, "DailySteps")}
+            fitKitAvailable={boolean("FitKit Available?", true, "DailySteps")}
+            hasPermission={boolean("FitKit Permission?", true, "DailySteps")}
+            isDoneToday={boolean("Done Today?", false, "DailySteps")}
+            isLoading={boolean("Loading Daily Steps?", false, "DailySteps")}
+            isOnline={boolean("Online?", true, "DailySteps")}
             maxStreak={4}
+            onAuthoriseFitKitPress={action("on authorise fitkit press")}
+            onCoinPress={action("on coin press")}
             onCtaPress={action("on cta press")}
             onStreakPress={action("on streak press")}
             steps={number("Steps", 1246, {

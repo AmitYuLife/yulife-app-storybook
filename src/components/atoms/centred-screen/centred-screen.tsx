@@ -22,9 +22,10 @@ export enum IMAGES {
     FOREST = "forest",
     LARGE_FOREST = "large_forest",
     MOUNTAINS = "mountains",
+    GRAY_FOREST = "gray_forest"
 }
 
-type Images = "forest" | "large_forest" | "mountains";
+type Images = "forest" | "large_forest" | "mountains" | "gray_forest";
 
 class CenteredScreen extends PureComponent<IProps> {
 

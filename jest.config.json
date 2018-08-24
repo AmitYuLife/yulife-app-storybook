@@ -25,7 +25,16 @@
     "collectCoverageFrom": [
         "src/**/*.{ts,tsx}",
         "!src/**/*.{spec,stories}.{ts,tsx}",
-        "!src/**/*.d.ts"
+        "!src/**/*.d.ts",
+        "!src/**/*.styles.ts",
+        "!src/**/*.data.ts",
+        "!src/**/*.fixtures.ts",
+        "!src/App.tsx",
+        "!src/context/**/*",
+        "!src/graphql/**/*",
+        "!src/navigation/**/*",
+        "!src/styles/**/*",
+        "!src/services/**/*"
     ],
     "globals": {
         "ts-jest": {

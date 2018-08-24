@@ -11,6 +11,7 @@ import com.reactnativenavigation.NavigationApplication;
 import com.robinpowered.react.Intercom.IntercomPackage;
 import com.kevinejohn.RNMixpanel.RNMixpanel;
 import com.wwdrew.reactnative.RNDualPedometerPackage;
+import com.yulife.reactnative.fitkit.RNFitKitPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -47,7 +48,8 @@ public class MainApplication extends NavigationApplication {
                 new RNMixpanel(),                   // react-native-mixpanel
                 new IntercomPackage(),              // react-native-intercom
                 BugsnagReactNative.getPackage(),    // bugsnag-react-native
-                new RNDualPedometerPackage()        // react-native-dual-pedometer
+                new RNDualPedometerPackage(),       // react-native-dual-pedometer
+                new RNFitKitPackage()               // react-native-fitkit
         );
     }
 }

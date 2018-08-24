@@ -53,7 +53,80 @@ ShallowWrapper {
           "componentDidUpdate": Object {
             "onSetState": true,
           },
+          "getDerivedStateFromProps": true,
           "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`OuterShadow should render as grayscale 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <OuterShadow
+    isGrayScale={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "cx": "106",
+      "cy": "112.6",
+      "fill": "#868686",
+      "rx": "105",
+      "ry": "105",
+      "transform": "matrix(2.296964e-02 -0.9997 0.9997 2.296964e-02 -9.055 216.0345)",
+    },
+    "ref": null,
+    "rendered": null,
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "cx": "106",
+        "cy": "112.6",
+        "fill": "#868686",
+        "rx": "105",
+        "ry": "105",
+        "transform": "matrix(2.296964e-02 -0.9997 0.9997 2.296964e-02 -9.055 216.0345)",
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
         },
       },
     },

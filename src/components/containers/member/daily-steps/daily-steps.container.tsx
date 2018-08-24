@@ -5,9 +5,14 @@ import { connect } from "react-redux";
 import { DailyStepsScreen } from "../../../screens";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getDailyEarnedCoins } from "../../../../redux/coins/coins.selectors";
-import { getDailySteps } from "../../../../redux/daily-steps/daily-steps.selectors";
+import { getDailySteps, getLastUpdated } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { startDailySteps, stopDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
-import { getAppState } from "../../../../redux/app/app.selectors";
+import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
+import { FitKitAvailable } from "react-native-fitkit";
+import { authoriseFitKit } from "../../../../redux/app/app.actions";
+import { SyncAction } from "../../../../redux/_core/types";
+import moment from "moment";
+import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -18,19 +23,31 @@ interface IConnectedState {
     appState: string;
     dailyEarnedCoins: number;
     dailySteps: number;
+    lastUpdated: string;
+    offline: boolean;
 }
 
-// TODO tyyyyyyypes!
 interface IConnectedDispatch {
-    startDailySteps: () => any;
-    stopDailySteps: () => any;
+    authoriseFitKit: () => SyncAction;
+    dailyStepsCoinClicked: () => SyncAction;
+    startDailySteps: () => SyncAction;
+    stopDailySteps: () => SyncAction;
 }
 
 type Props = IProps &
     IConnectedState &
     IConnectedDispatch;
 
-class DailyStepsContainer extends PureComponent<Props> {
+interface IState {
+    dailyStepsLoading: boolean;
+    lastUpdate?: string;
+}
+
+class DailyStepsContainer extends PureComponent<Props, IState> {
+
+    public state: IState = {
+        dailyStepsLoading: true
+    };
 
     public componentDidMount() {
         this.props.startDailySteps();
@@ -41,7 +58,17 @@ class DailyStepsContainer extends PureComponent<Props> {
     }
 
     public componentDidUpdate(prevProps: Props) {
-        const { appState } = this.props;
+        const { appState, lastUpdated } = this.props;
+
+        if (prevProps.lastUpdated !== this.props.lastUpdated) {
+            const lastUpdatedMoment = moment(lastUpdated);
+            const startOfDay = moment().startOf("day");
+
+            this.setState({
+                dailyStepsLoading: lastUpdatedMoment.isBefore(startOfDay),
+                lastUpdate: lastUpdatedMoment.format("ddd D MMM, HH:mm")
+            });
+        }
 
         // bringing app back from background
         if (prevProps.appState.match(/inactive|background/) && appState === "active") {
@@ -55,19 +82,37 @@ class DailyStepsContainer extends PureComponent<Props> {
     }
 
     public render() {
-        const { dailyEarnedCoins, dailySteps } = this.props;
+        const { dailyEarnedCoins, dailySteps, offline } = this.props;
+        const { dailyStepsLoading, lastUpdate } = this.state;
 
         return (
-            <DailyStepsScreen
-                coinsToday={dailyEarnedCoins}
-                currentStreak={2}
-                isDoneToday={false}
-                maxStreak={4}
-                onCtaPress={this.onCta}
-                onStreakPress={this.onStreak}
-                steps={dailySteps}
-            />
+            <FitKitAvailable>
+                {(fitKitAvailable, fitKitAuthorised, fitKitLoading) => {
+                    return (
+                        <DailyStepsScreen
+                            coinsToday={dailyEarnedCoins}
+                            currentStreak={2}
+                            fitKitAvailable={fitKitAvailable}
+                            hasPermission={fitKitAuthorised}
+                            isDoneToday={false}
+                            isLoading={fitKitLoading || dailyStepsLoading}
+                            isOnline={!offline}
+                            lastUpdate={lastUpdate}
+                            maxStreak={4}
+                            onAuthoriseFitKitPress={this.props.authoriseFitKit}
+                            onCoinPress={this.onCoinPress}
+                            onCtaPress={this.onCta}
+                            onStreakPress={this.onStreak}
+                            steps={dailySteps}
+                        />
+                    );
+                }}
+            </FitKitAvailable>
         );
+    }
+
+    private onCoinPress = () => {
+        this.props.dailyStepsCoinClicked();
     }
 
     private onCta = () => {
@@ -88,9 +133,13 @@ const mapStateToProps = (state: IReduxState) => ({
     appState: getAppState(state),
     dailyEarnedCoins: getDailyEarnedCoins(state),
     dailySteps: getDailySteps(state),
+    lastUpdated: getLastUpdated(state),
+    offline: getOfflineState(state)
 });
 
 const mapDispatchToProps = {
+    authoriseFitKit,
+    dailyStepsCoinClicked,
     startDailySteps,
     stopDailySteps
 };

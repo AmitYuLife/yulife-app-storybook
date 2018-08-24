@@ -1,13 +1,14 @@
 import { shallow } from "enzyme";
 import * as React from "react";
 import "react-native";
-import Giraffe from "../giraffe";
+import Back from "../back";
 
-describe("Giraffe", () => {
+describe("Back", () => {
 
     it("should render", () => {
-
-        const actual = shallow(<Giraffe />);
+        const actual = shallow(
+            <Back />
+        );
 
         expect(actual).toMatchSnapshot();
     });

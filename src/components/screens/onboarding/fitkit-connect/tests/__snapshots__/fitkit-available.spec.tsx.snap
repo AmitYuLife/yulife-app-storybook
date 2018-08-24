@@ -1,0 +1,465 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FitKitAvailable should render default values 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <FitKitAvailable
+    connecting={false}
+    onConnectPress={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        <Heading
+          label="connect to health app"
+        />,
+        <Pad
+          height={14}
+        />,
+        <Blurb
+          label="We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings."
+          wrapperStyle={
+            Object {
+              "paddingHorizontal": 80,
+            }
+          }
+        />,
+        <Pad
+          height={34}
+        />,
+        <Button
+          disabled={false}
+          label="yes let’s connect"
+          onPress={[MockFunction]}
+          type="Primary"
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "connect to health app",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "height": 14,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "label": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+          "wrapperStyle": Object {
+            "paddingHorizontal": 80,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "height": 34,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "disabled": false,
+          "label": "yes let’s connect",
+          "onPress": [MockFunction],
+          "type": "Primary",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <Heading
+            label="connect to health app"
+          />,
+          <Pad
+            height={14}
+          />,
+          <Blurb
+            label="We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings."
+            wrapperStyle={
+              Object {
+                "paddingHorizontal": 80,
+              }
+            }
+          />,
+          <Pad
+            height={34}
+          />,
+          <Button
+            disabled={false}
+            label="yes let’s connect"
+            onPress={[MockFunction]}
+            type="Primary"
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "connect to health app",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "height": 14,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "label": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+            "wrapperStyle": Object {
+              "paddingHorizontal": 80,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "height": 34,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "disabled": false,
+            "label": "yes let’s connect",
+            "onPress": [MockFunction],
+            "type": "Primary",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`FitKitAvailable should render when connecting 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <FitKitAvailable
+    connecting={true}
+    onConnectPress={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        <Heading
+          label="connect to health app"
+        />,
+        <Pad
+          height={14}
+        />,
+        <Blurb
+          label="We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings."
+          wrapperStyle={
+            Object {
+              "paddingHorizontal": 80,
+            }
+          }
+        />,
+        <Pad
+          height={34}
+        />,
+        <Button
+          disabled={true}
+          label="connecting ..."
+          onPress={[MockFunction]}
+          type="Primary"
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "connect to health app",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "height": 14,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "label": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+          "wrapperStyle": Object {
+            "paddingHorizontal": 80,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "height": 34,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "disabled": true,
+          "label": "connecting ...",
+          "onPress": [MockFunction],
+          "type": "Primary",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <Heading
+            label="connect to health app"
+          />,
+          <Pad
+            height={14}
+          />,
+          <Blurb
+            label="We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings."
+            wrapperStyle={
+              Object {
+                "paddingHorizontal": 80,
+              }
+            }
+          />,
+          <Pad
+            height={34}
+          />,
+          <Button
+            disabled={true}
+            label="connecting ..."
+            onPress={[MockFunction]}
+            type="Primary"
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "connect to health app",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "height": 14,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "label": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+            "wrapperStyle": Object {
+              "paddingHorizontal": 80,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "height": 34,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "disabled": true,
+            "label": "connecting ...",
+            "onPress": [MockFunction],
+            "type": "Primary",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

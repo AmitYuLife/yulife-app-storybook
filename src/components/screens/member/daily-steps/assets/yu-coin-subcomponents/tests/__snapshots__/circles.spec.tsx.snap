@@ -85,12 +85,6 @@ ShallowWrapper {
         />,
         <Circle
           cx="8"
-          cy="96"
-          fill="#F8CB31"
-          r="2.2"
-        />,
-        <Circle
-          cx="8"
           cy="116.7"
           fill="#F8CB31"
           r="2.2"
@@ -98,6 +92,12 @@ ShallowWrapper {
         <Circle
           cx="12.3"
           cy="136.8"
+          fill="#F8CB31"
+          r="2.2"
+        />,
+        <Circle
+          cx="8"
+          cy="96"
           fill="#F8CB31"
           r="2.2"
         />,
@@ -361,20 +361,6 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "cx": "8",
-          "cy": "96",
-          "fill": "#F8CB31",
-          "r": "2.2",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "cx": "8",
           "cy": "116.7",
           "fill": "#F8CB31",
           "r": "2.2",
@@ -390,6 +376,20 @@ ShallowWrapper {
         "props": Object {
           "cx": "12.3",
           "cy": "136.8",
+          "fill": "#F8CB31",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "8",
+          "cy": "96",
           "fill": "#F8CB31",
           "r": "2.2",
         },
@@ -699,12 +699,6 @@ ShallowWrapper {
           />,
           <Circle
             cx="8"
-            cy="96"
-            fill="#F8CB31"
-            r="2.2"
-          />,
-          <Circle
-            cx="8"
             cy="116.7"
             fill="#F8CB31"
             r="2.2"
@@ -712,6 +706,12 @@ ShallowWrapper {
           <Circle
             cx="12.3"
             cy="136.8"
+            fill="#F8CB31"
+            r="2.2"
+          />,
+          <Circle
+            cx="8"
+            cy="96"
             fill="#F8CB31"
             r="2.2"
           />,
@@ -975,20 +975,6 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "cx": "8",
-            "cy": "96",
-            "fill": "#F8CB31",
-            "r": "2.2",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "cx": "8",
             "cy": "116.7",
             "fill": "#F8CB31",
             "r": "2.2",
@@ -1004,6 +990,20 @@ ShallowWrapper {
           "props": Object {
             "cx": "12.3",
             "cy": "136.8",
+            "fill": "#F8CB31",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "8",
+            "cy": "96",
             "fill": "#F8CB31",
             "r": "2.2",
           },
@@ -1247,7 +1247,1274 @@ ShallowWrapper {
           "componentDidUpdate": Object {
             "onSetState": true,
           },
+          "getDerivedStateFromProps": true,
           "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Circles should render as grayscale 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Circles
+    isGrayScale={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Circle
+          cx="20.6"
+          cy="155.6"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="32.8"
+          cy="172.3"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="48.1"
+          cy="186.1"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="65.9"
+          cy="196.4"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="85.5"
+          cy="202.8"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="106"
+          cy="204.9"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="126.5"
+          cy="202.8"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="146.1"
+          cy="196.4"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="163.9"
+          cy="186.1"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="179.2"
+          cy="172.3"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="191.4"
+          cy="155.6"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="8"
+          cy="116.7"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="12.3"
+          cy="136.8"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="8"
+          cy="96"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+        <Circle
+          cx="199.7"
+          cy="136.8"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="204"
+          cy="116.7"
+          fill="#e0e0e0"
+          r="2.2"
+        />,
+        <Circle
+          cx="204"
+          cy="96"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+        <Circle
+          cx="106"
+          cy="7.8"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+        <Circle
+          cx="85.5"
+          cy="9.9"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+        <Circle
+          cx="65.9"
+          cy="16.3"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+        <Circle
+          cx="48.1"
+          cy="26.6"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+        <Circle
+          cx="32.8"
+          cy="40.4"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+        <Circle
+          cx="20.6"
+          cy="57.1"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+        <Circle
+          cx="12.3"
+          cy="75.9"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+        <Circle
+          cx="199.7"
+          cy="75.9"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+        <Circle
+          cx="191.4"
+          cy="57.1"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+        <Circle
+          cx="179.2"
+          cy="40.4"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+        <Circle
+          cx="163.9"
+          cy="26.6"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+        <Circle
+          cx="146.1"
+          cy="16.3"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+        <Circle
+          cx="126.5"
+          cy="9.9"
+          fill="#ebebeb"
+          r="2.2"
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "20.6",
+          "cy": "155.6",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "32.8",
+          "cy": "172.3",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "48.1",
+          "cy": "186.1",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "65.9",
+          "cy": "196.4",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "85.5",
+          "cy": "202.8",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "106",
+          "cy": "204.9",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "126.5",
+          "cy": "202.8",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "146.1",
+          "cy": "196.4",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "163.9",
+          "cy": "186.1",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "179.2",
+          "cy": "172.3",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "191.4",
+          "cy": "155.6",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "8",
+          "cy": "116.7",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "12.3",
+          "cy": "136.8",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "8",
+          "cy": "96",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "199.7",
+          "cy": "136.8",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "204",
+          "cy": "116.7",
+          "fill": "#e0e0e0",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "204",
+          "cy": "96",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "106",
+          "cy": "7.8",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "85.5",
+          "cy": "9.9",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "65.9",
+          "cy": "16.3",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "48.1",
+          "cy": "26.6",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "32.8",
+          "cy": "40.4",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "20.6",
+          "cy": "57.1",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "12.3",
+          "cy": "75.9",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "199.7",
+          "cy": "75.9",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "191.4",
+          "cy": "57.1",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "179.2",
+          "cy": "40.4",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "163.9",
+          "cy": "26.6",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "146.1",
+          "cy": "16.3",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "126.5",
+          "cy": "9.9",
+          "fill": "#ebebeb",
+          "r": "2.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Circle
+            cx="20.6"
+            cy="155.6"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="32.8"
+            cy="172.3"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="48.1"
+            cy="186.1"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="65.9"
+            cy="196.4"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="85.5"
+            cy="202.8"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="106"
+            cy="204.9"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="126.5"
+            cy="202.8"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="146.1"
+            cy="196.4"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="163.9"
+            cy="186.1"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="179.2"
+            cy="172.3"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="191.4"
+            cy="155.6"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="8"
+            cy="116.7"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="12.3"
+            cy="136.8"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="8"
+            cy="96"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+          <Circle
+            cx="199.7"
+            cy="136.8"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="204"
+            cy="116.7"
+            fill="#e0e0e0"
+            r="2.2"
+          />,
+          <Circle
+            cx="204"
+            cy="96"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+          <Circle
+            cx="106"
+            cy="7.8"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+          <Circle
+            cx="85.5"
+            cy="9.9"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+          <Circle
+            cx="65.9"
+            cy="16.3"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+          <Circle
+            cx="48.1"
+            cy="26.6"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+          <Circle
+            cx="32.8"
+            cy="40.4"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+          <Circle
+            cx="20.6"
+            cy="57.1"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+          <Circle
+            cx="12.3"
+            cy="75.9"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+          <Circle
+            cx="199.7"
+            cy="75.9"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+          <Circle
+            cx="191.4"
+            cy="57.1"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+          <Circle
+            cx="179.2"
+            cy="40.4"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+          <Circle
+            cx="163.9"
+            cy="26.6"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+          <Circle
+            cx="146.1"
+            cy="16.3"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+          <Circle
+            cx="126.5"
+            cy="9.9"
+            fill="#ebebeb"
+            r="2.2"
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "20.6",
+            "cy": "155.6",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "32.8",
+            "cy": "172.3",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "48.1",
+            "cy": "186.1",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "65.9",
+            "cy": "196.4",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "85.5",
+            "cy": "202.8",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "106",
+            "cy": "204.9",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "126.5",
+            "cy": "202.8",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "146.1",
+            "cy": "196.4",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "163.9",
+            "cy": "186.1",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "179.2",
+            "cy": "172.3",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "191.4",
+            "cy": "155.6",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "8",
+            "cy": "116.7",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "12.3",
+            "cy": "136.8",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "8",
+            "cy": "96",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "199.7",
+            "cy": "136.8",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "204",
+            "cy": "116.7",
+            "fill": "#e0e0e0",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "204",
+            "cy": "96",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "106",
+            "cy": "7.8",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "85.5",
+            "cy": "9.9",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "65.9",
+            "cy": "16.3",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "48.1",
+            "cy": "26.6",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "32.8",
+            "cy": "40.4",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "20.6",
+            "cy": "57.1",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "12.3",
+            "cy": "75.9",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "199.7",
+            "cy": "75.9",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "191.4",
+            "cy": "57.1",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "179.2",
+            "cy": "40.4",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "163.9",
+            "cy": "26.6",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "146.1",
+            "cy": "16.3",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "126.5",
+            "cy": "9.9",
+            "fill": "#ebebeb",
+            "r": "2.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
         },
       },
     },

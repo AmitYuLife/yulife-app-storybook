@@ -1,10 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FitKitConnectScreen should render when connecting 1`] = `
+exports[`FitKitConnectScreen should render when FitKit is unavailable 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <FitKitConnectScreen
     connecting={true}
+    fitKitAvailable={false}
     onConnectPress={[MockFunction]}
     onPrivacyPolicyPress={[MockFunction]}
     onSkipPress={[MockFunction]}
@@ -25,32 +26,12 @@ ShallowWrapper {
         <Pad
           height={120}
         />,
-        <Heading
-          label="connect to health app"
-        />,
-        <Pad
-          height={14}
-        />,
-        <Blurb
-          label="We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings."
-          wrapperStyle={
-            Object {
-              "paddingHorizontal": 80,
-            }
-          }
-        />,
-        <Pad
-          height={34}
-        />,
-        <Button
-          label="connecting ..."
-          onPress={[MockFunction]}
-          type="Primary"
-        />,
+        <FitKitUnavailable />,
         <Pad
           height={19}
         />,
         <Button
+          disabled={true}
           label="skip"
           onPress={[MockFunction]}
           type="Secondary"
@@ -82,59 +63,8 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "label": "connect to health app",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
         "nodeType": "function",
-        "props": Object {
-          "height": 14,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "label": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
-          "wrapperStyle": Object {
-            "paddingHorizontal": 80,
-          },
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "height": 34,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "label": "connecting ...",
-          "onPress": [MockFunction],
-          "type": "Primary",
-        },
+        "props": Object {},
         "ref": null,
         "rendered": null,
         "type": [Function],
@@ -155,6 +85,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "disabled": true,
           "label": "skip",
           "onPress": [MockFunction],
           "type": "Secondary",
@@ -200,32 +131,12 @@ ShallowWrapper {
           <Pad
             height={120}
           />,
-          <Heading
-            label="connect to health app"
-          />,
-          <Pad
-            height={14}
-          />,
-          <Blurb
-            label="We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings."
-            wrapperStyle={
-              Object {
-                "paddingHorizontal": 80,
-              }
-            }
-          />,
-          <Pad
-            height={34}
-          />,
-          <Button
-            label="connecting ..."
-            onPress={[MockFunction]}
-            type="Primary"
-          />,
+          <FitKitUnavailable />,
           <Pad
             height={19}
           />,
           <Button
+            disabled={true}
             label="skip"
             onPress={[MockFunction]}
             type="Secondary"
@@ -257,59 +168,8 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "label": "connect to health app",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
           "nodeType": "function",
-          "props": Object {
-            "height": 14,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "label": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
-            "wrapperStyle": Object {
-              "paddingHorizontal": 80,
-            },
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 34,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "label": "connecting ...",
-            "onPress": [MockFunction],
-            "type": "Primary",
-          },
+          "props": Object {},
           "ref": null,
           "rendered": null,
           "type": [Function],
@@ -330,6 +190,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "disabled": true,
             "label": "skip",
             "onPress": [MockFunction],
             "type": "Secondary",
@@ -374,7 +235,272 @@ ShallowWrapper {
           "componentDidUpdate": Object {
             "onSetState": true,
           },
+          "getDerivedStateFromProps": true,
           "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`FitKitConnectScreen should render when connecting 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <FitKitConnectScreen
+    connecting={true}
+    fitKitAvailable={true}
+    onConnectPress={[MockFunction]}
+    onPrivacyPolicyPress={[MockFunction]}
+    onSkipPress={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Pad
+          height={120}
+        />,
+        <FitKitAvailable
+          connecting={true}
+          onConnectPress={[MockFunction]}
+        />,
+        <Pad
+          height={19}
+        />,
+        <Button
+          disabled={true}
+          label="skip"
+          onPress={[MockFunction]}
+          type="Secondary"
+        />,
+        <Pad
+          height={10}
+        />,
+        <Button
+          label="Privacy notice"
+          onPress={[MockFunction]}
+          type="Link"
+        />,
+      ],
+      "footerImage": "forest",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "height": 120,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "connecting": true,
+          "onConnectPress": [MockFunction],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "height": 19,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "disabled": true,
+          "label": "skip",
+          "onPress": [MockFunction],
+          "type": "Secondary",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "height": 10,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "Privacy notice",
+          "onPress": [MockFunction],
+          "type": "Link",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Pad
+            height={120}
+          />,
+          <FitKitAvailable
+            connecting={true}
+            onConnectPress={[MockFunction]}
+          />,
+          <Pad
+            height={19}
+          />,
+          <Button
+            disabled={true}
+            label="skip"
+            onPress={[MockFunction]}
+            type="Secondary"
+          />,
+          <Pad
+            height={10}
+          />,
+          <Button
+            label="Privacy notice"
+            onPress={[MockFunction]}
+            type="Link"
+          />,
+        ],
+        "footerImage": "forest",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "height": 120,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "connecting": true,
+            "onConnectPress": [MockFunction],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "height": 19,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "disabled": true,
+            "label": "skip",
+            "onPress": [MockFunction],
+            "type": "Secondary",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "height": 10,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "Privacy notice",
+            "onPress": [MockFunction],
+            "type": "Link",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
         },
       },
     },
@@ -389,6 +515,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <FitKitConnectScreen
     connecting={false}
+    fitKitAvailable={true}
     onConnectPress={[MockFunction]}
     onPrivacyPolicyPress={[MockFunction]}
     onSkipPress={[MockFunction]}
@@ -409,32 +536,15 @@ ShallowWrapper {
         <Pad
           height={120}
         />,
-        <Heading
-          label="connect to health app"
-        />,
-        <Pad
-          height={14}
-        />,
-        <Blurb
-          label="We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings."
-          wrapperStyle={
-            Object {
-              "paddingHorizontal": 80,
-            }
-          }
-        />,
-        <Pad
-          height={34}
-        />,
-        <Button
-          label="yes let’s connect"
-          onPress={[MockFunction]}
-          type="Primary"
+        <FitKitAvailable
+          connecting={false}
+          onConnectPress={[MockFunction]}
         />,
         <Pad
           height={19}
         />,
         <Button
+          disabled={false}
           label="skip"
           onPress={[MockFunction]}
           type="Secondary"
@@ -466,58 +576,10 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "label": "connect to health app",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 14,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "label": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
-          "wrapperStyle": Object {
-            "paddingHorizontal": 80,
-          },
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "height": 34,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "label": "yes let’s connect",
-          "onPress": [MockFunction],
-          "type": "Primary",
+          "connecting": false,
+          "onConnectPress": [MockFunction],
         },
         "ref": null,
         "rendered": null,
@@ -539,6 +601,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "disabled": false,
           "label": "skip",
           "onPress": [MockFunction],
           "type": "Secondary",
@@ -584,32 +647,15 @@ ShallowWrapper {
           <Pad
             height={120}
           />,
-          <Heading
-            label="connect to health app"
-          />,
-          <Pad
-            height={14}
-          />,
-          <Blurb
-            label="We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings."
-            wrapperStyle={
-              Object {
-                "paddingHorizontal": 80,
-              }
-            }
-          />,
-          <Pad
-            height={34}
-          />,
-          <Button
-            label="yes let’s connect"
-            onPress={[MockFunction]}
-            type="Primary"
+          <FitKitAvailable
+            connecting={false}
+            onConnectPress={[MockFunction]}
           />,
           <Pad
             height={19}
           />,
           <Button
+            disabled={false}
             label="skip"
             onPress={[MockFunction]}
             type="Secondary"
@@ -641,58 +687,10 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "label": "connect to health app",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 14,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "label": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
-            "wrapperStyle": Object {
-              "paddingHorizontal": 80,
-            },
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 34,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "label": "yes let’s connect",
-            "onPress": [MockFunction],
-            "type": "Primary",
+            "connecting": false,
+            "onConnectPress": [MockFunction],
           },
           "ref": null,
           "rendered": null,
@@ -714,6 +712,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "disabled": false,
             "label": "skip",
             "onPress": [MockFunction],
             "type": "Secondary",
@@ -758,7 +757,11 @@ ShallowWrapper {
           "componentDidUpdate": Object {
             "onSetState": true,
           },
+          "getDerivedStateFromProps": true,
           "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
         },
       },
     },

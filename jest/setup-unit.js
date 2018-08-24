@@ -15,6 +15,18 @@ jest.mock("react-native-dual-pedometer", () => {
     Pedometer: {}
 });
 
+jest.mock("react-native-mixpanel", () => ({
+    sharedInstanceWithToken: jest.fn(),
+    identify: jest.fn(),
+    track: jest.fn(),
+    trackChargeWithProperties: jest.fn(),
+}));
+
+jest.mock("bugsnag-react-native", () => ({
+    Configuration: jest.fn(),
+    Client: jest.fn(),
+}));
+
 jest.mock("../src/graphql/member/addDailySteps.gql", () => ({
     addDailyStepsGql: jest.fn(),
 }));

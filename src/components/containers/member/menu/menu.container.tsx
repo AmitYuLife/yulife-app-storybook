@@ -1,4 +1,5 @@
 import * as React from "react";
+import { PureComponent } from "react";
 import Intercom from "react-native-intercom";
 import { Navigation } from "react-native-navigation";
 import { MenuScreen } from "../../../screens";
@@ -7,7 +8,7 @@ import assets, { LINKS } from "./assets";
 
 export type Link = "debug" | "leaderboard" | "activity" | "chat" | "logout" | "member" | "play";
 
-export default class MenuContainer extends React.PureComponent {
+export default class MenuContainer extends PureComponent {
     public render() {
         return (
             <MenuScreen
