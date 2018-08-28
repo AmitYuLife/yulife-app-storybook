@@ -1,7 +1,7 @@
-import "react-native";
-import * as React from "react";
-import OuterShadow from "../outer-shadow";
 import { shallow } from "enzyme";
+import * as React from "react";
+import "react-native";
+import OuterShadow from "../outer-shadow";
 
 describe("OuterShadow", () => {
 

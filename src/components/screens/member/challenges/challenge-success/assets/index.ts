@@ -1,3 +1,3 @@
 export default {
-    challengeSuccess: require("./challenge-success.png"),
+    challengeSuccess: require("./challenge-success.png")
 };

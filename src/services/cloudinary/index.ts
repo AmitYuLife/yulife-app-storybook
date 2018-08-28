@@ -4,7 +4,7 @@ const pixelRatio = PixelRatio.get();
 
 const cloudinary = Cloudinary.new({
     cloud_name: "yu-life",
-    protocol: "https://",
+    protocol: "https://"
 });
 
 interface IGetCloudinaryUrl extends Transformation.Options {
@@ -26,7 +26,7 @@ export function getCloudinaryUrl({ url, width, crop, quality, transformation }: 
         crop: crop || "fit",
         quality: quality || 80,
         transformation,
-        width,
+        width
     };
     const uri = cloudinary.url(`${url}${getExtension()}.png`, options);
     return { uri };

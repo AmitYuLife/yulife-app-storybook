@@ -111,7 +111,7 @@ storiesOf("Atoms", module)
                     max: 2000,
                     min: 0,
                     range: true,
-                    step: 1,
+                    step: 1
                 })}
             />
         </CenterView>

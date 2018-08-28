@@ -1,7 +1,7 @@
-import "react-native";
-import * as React from "react";
-import Shine from "../shine";
 import { shallow } from "enzyme";
+import * as React from "react";
+import "react-native";
+import Shine from "../shine";
 
 describe("Shine", () => {
 

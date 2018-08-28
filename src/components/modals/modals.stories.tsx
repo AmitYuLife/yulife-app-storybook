@@ -5,7 +5,7 @@ import React from "react";
 import {
     ChallengeCompleteModal,
     ChallengeDetailsModal,
-    CollectRewardModal,
+    CollectRewardModal
 } from "./index";
 
 storiesOf("Modals", module)

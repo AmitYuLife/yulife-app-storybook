@@ -7,7 +7,6 @@ import CollectReward from "../collect-reward.modal";
 describe("CollectReward", () => {
 
     it("should render on iOS", () => {
-
         const actual = shallow(
             <CollectReward onPress={jest.fn()} />
         );
@@ -16,7 +15,6 @@ describe("CollectReward", () => {
     });
 
     it("should render on Android", () => {
-
         Platform.OS = "android";
         const actual = shallow(
             <CollectReward onPress={jest.fn()} />
@@ -26,7 +24,6 @@ describe("CollectReward", () => {
     });
 
     it("should render with heading", () => {
-
         const actual = shallow(
             <CollectReward
                 onPress={jest.fn()}

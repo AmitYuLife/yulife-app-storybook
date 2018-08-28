@@ -3,7 +3,7 @@ import { PureComponent } from "react";
 import {
     StyleSheet,
     TouchableWithoutFeedback,
-    View,
+    View
 } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Pad, Text } from "../../atoms";
@@ -24,14 +24,14 @@ interface IState {
 class Streak extends PureComponent<IProps, IState> {
 
     public state: IState = {
-        isPressed: false,
+        isPressed: false
     };
 
     public render() {
         const {
             isFinished,
             currentStreak,
-            maxStreak,
+            maxStreak
         } = this.props;
         const { isPressed } = this.state;
         const backgroundColor = getColour(
@@ -46,7 +46,7 @@ class Streak extends PureComponent<IProps, IState> {
                 <View
                     style={StyleSheet.flatten([
                         styles.wrapper,
-                        { backgroundColor },
+                        { backgroundColor }
                     ])}
                 >
                     <Pad width={20} />

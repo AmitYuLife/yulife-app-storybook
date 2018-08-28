@@ -12,17 +12,17 @@ export function getWrapperStyle({ hasError, isFocused, isFilled }: IGetWrapperSt
     if (hasError) {
         return StyleSheet.flatten([
             styles.wrapper,
-            styles.wrapperError,
+            styles.wrapperError
         ]);
     } else if (isFocused) {
         return StyleSheet.flatten([
             styles.wrapper,
-            styles.wrapperFocused,
+            styles.wrapperFocused
         ]);
     } else if (isFilled) {
         return StyleSheet.flatten([
             styles.wrapper,
-            styles.wrapperFilled,
+            styles.wrapperFilled
         ]);
     } else {
         return styles.wrapper;

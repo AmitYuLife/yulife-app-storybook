@@ -1,7 +1,7 @@
+import { Client } from "bugsnag-react-native";
+import Config from "react-native-config";
 import Intercom from "react-native-intercom";
 import Mixpanel from "react-native-mixpanel";
-import Config from "react-native-config";
-import { Client } from "bugsnag-react-native";
 import bugsnag from "../bugsnag";
 
 class LoggerInstance {
@@ -67,7 +67,7 @@ class LoggerInstance {
     public logRevenue(productIdentifier: string, quantity: number, price: number, receipt: string) {
         Mixpanel.trackChargeWithProperties(price * quantity, {
             productIdentifier,
-            receipt,
+            receipt
         });
     }
 }

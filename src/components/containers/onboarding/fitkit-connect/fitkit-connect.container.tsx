@@ -4,14 +4,14 @@ import * as React from "react";
 import { PureComponent } from "react";
 import { Linking } from "react-native";
 import Config from "react-native-config";
-import { Navigation } from "react-native-navigation";
-import { FitKitConnectScreen } from "../../../screens";
-import { ROUTES } from "../../../../navigation/routes";
 import { FitKitAvailable } from "react-native-fitkit";
-import { Loading } from "../../../atoms";
-import { SyncAction } from "../../../../redux/_core/types";
+import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
+import { ROUTES } from "../../../../navigation/routes";
+import { SyncAction } from "../../../../redux/_core/types";
 import { authoriseFitKit } from "../../../../redux/app/app.actions";
+import { Loading } from "../../../atoms";
+import { FitKitConnectScreen } from "../../../screens";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -31,7 +31,7 @@ type Props = IProps & IConnectedDispatch;
 class FitKitConnectContainer extends PureComponent<Props, IState> {
 
     public state: IState = {
-        connecting: false,
+        connecting: false
     };
 
     public render() {
@@ -87,8 +87,8 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
         await Navigation.push(this.props.componentId, {
             component: {
                 id: ROUTES.onboardingSignUpReward,
-                name: ROUTES.onboardingSignUpReward,
-            },
+                name: ROUTES.onboardingSignUpReward
+            }
         });
     }
 }

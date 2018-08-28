@@ -1,7 +1,7 @@
-import coinsReducer, { initialState, ICoinsStore } from "../coins.reducer";
 import { AddDailySteps } from "../../../graphql/_core/schema";
-import { addDailyStepsSuccessFixture } from "../../daily-steps/tests/daily-steps.fixtures";
 import { updateDailyStepsSuccess } from "../../daily-steps/daily-steps.actions";
+import { addDailyStepsSuccessFixture } from "../../daily-steps/tests/daily-steps.fixtures";
+import coinsReducer, { ICoinsStore, initialState } from "../coins.reducer";
 
 describe("Coins Reducer", () => {
 
@@ -20,7 +20,7 @@ describe("Coins Reducer", () => {
             ...initialState,
             dailyChallengeEarned: challengeAction.completedActiveChallenges[0].yuCoinAwarded,
             dailyStepsEarned: challengeAction.currentPassiveChallenge.yuCoinAwarded,
-            total: challengeAction.userStatus.totalCoins,
+            total: challengeAction.userStatus.totalCoins
         };
         const actual = coinsReducer(initialState, updateDailyStepsSuccess(localData));
 

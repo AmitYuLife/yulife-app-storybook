@@ -12,7 +12,7 @@ interface IProps {
 enum SIZES {
     DEFAULT = "default",
     LARGE = "large",
-    SMALL = "small",
+    SMALL = "small"
 }
 
 type Sizes = "default" | "large" | "small";
@@ -28,7 +28,7 @@ class Heading extends PureComponent<IProps> {
                     styles.base,
                     styles[size || SIZES.DEFAULT],
                     bold ? styles.bold : null,
-                    style,
+                    style
                 ])}
             >
                 {label}

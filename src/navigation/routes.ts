@@ -2,13 +2,13 @@ import {
     FitKitConnectContainer,
     LoginContainer,
     MemberRootContainer,
+    MenuContainer,
     ResetPasswordContainer,
     ResetPasswordSuccessContainer,
     SignUpContainer,
     SignUpRewardContainer,
-    WelcomeContainer,
     WegiftRewardDetailsContainer,
-    MenuContainer,
+    WelcomeContainer
 } from "../components/containers";
 
 // tslint:disable:object-literal-sort-keys
@@ -35,7 +35,7 @@ export const ROUTES = {
     wegiftDetails: "yulife.rewards.WegiftDetails",
     wegiftConfirmed: "yulife.rewards.WegiftConfirmed",
     aviosDetails: "yulife.rewards.AviosDetails",
-    aviosConfirmed: "yulife.rewards.AviosConfirmed",
+    aviosConfirmed: "yulife.rewards.AviosConfirmed"
 };
 // tslint:enable:object-literal-sort-keys
 
@@ -56,7 +56,7 @@ export default [
     { name: ROUTES.member, component: MemberRootContainer },
 
     // rewards screens
-    { name: ROUTES.wegiftDetails, component: WegiftRewardDetailsContainer },
+    { name: ROUTES.wegiftDetails, component: WegiftRewardDetailsContainer }
     // { name: ROUTES.memberChallengesList, component: ChallengesListContainer },
     // { name: ROUTES.memberRewardsList, component: ChallengesListContainer },
 ];

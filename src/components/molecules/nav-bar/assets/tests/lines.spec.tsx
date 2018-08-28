@@ -6,7 +6,6 @@ import Lines from "../lines";
 describe("Lines", () => {
 
     it("should render when not extended", () => {
-
         const actual = shallow(
             <Lines isExtended={false} />
         );
@@ -15,7 +14,6 @@ describe("Lines", () => {
     });
 
     it("should render when extended", () => {
-
         const actual = shallow(
             <Lines isExtended={true} />
         );

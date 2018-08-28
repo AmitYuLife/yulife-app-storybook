@@ -1,3 +1,3 @@
 export default {
-    face: require("./face.png"),
+    face: require("./face.png")
 };

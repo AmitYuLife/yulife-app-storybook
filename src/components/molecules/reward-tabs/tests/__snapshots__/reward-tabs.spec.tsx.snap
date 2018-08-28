@@ -5,8 +5,8 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <RewardTabs
     activeTabIndex={0}
-    onLeftTabPress={[Function]}
-    onRightTabPress={[Function]}
+    onLeftTabPress={[MockFunction]}
+    onRightTabPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -36,7 +36,7 @@ ShallowWrapper {
         <RewardTab
           isActive={true}
           label="rewards"
-          onPress={[Function]}
+          onPress={[MockFunction]}
         />,
         <Component
           style={
@@ -59,7 +59,7 @@ ShallowWrapper {
           isActive={false}
           isFlipped={true}
           label="purchased"
-          onPress={[Function]}
+          onPress={[MockFunction]}
         />,
       ],
       "style": Object {
@@ -96,7 +96,7 @@ ShallowWrapper {
         "props": Object {
           "isActive": true,
           "label": "rewards",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         "ref": null,
         "rendered": null,
@@ -146,7 +146,7 @@ ShallowWrapper {
           "isActive": false,
           "isFlipped": true,
           "label": "purchased",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         "ref": null,
         "rendered": null,
@@ -177,7 +177,7 @@ ShallowWrapper {
           <RewardTab
             isActive={true}
             label="rewards"
-            onPress={[Function]}
+            onPress={[MockFunction]}
           />,
           <Component
             style={
@@ -200,7 +200,7 @@ ShallowWrapper {
             isActive={false}
             isFlipped={true}
             label="purchased"
-            onPress={[Function]}
+            onPress={[MockFunction]}
           />,
         ],
         "style": Object {
@@ -237,7 +237,7 @@ ShallowWrapper {
           "props": Object {
             "isActive": true,
             "label": "rewards",
-            "onPress": [Function],
+            "onPress": [MockFunction],
           },
           "ref": null,
           "rendered": null,
@@ -287,7 +287,7 @@ ShallowWrapper {
             "isActive": false,
             "isFlipped": true,
             "label": "purchased",
-            "onPress": [Function],
+            "onPress": [MockFunction],
           },
           "ref": null,
           "rendered": null,
@@ -323,9 +323,9 @@ exports[`RewardTabs should match snapshot when right tab is active 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <RewardTabs
-    activeTabIndex={0}
-    onLeftTabPress={[Function]}
-    onRightTabPress={[Function]}
+    activeTabIndex={1}
+    onLeftTabPress={[MockFunction]}
+    onRightTabPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -353,9 +353,9 @@ ShallowWrapper {
           }
         />,
         <RewardTab
-          isActive={true}
+          isActive={false}
           label="rewards"
-          onPress={[Function]}
+          onPress={[MockFunction]}
         />,
         <Component
           style={
@@ -375,10 +375,10 @@ ShallowWrapper {
           />
         </Component>,
         <RewardTab
-          isActive={false}
+          isActive={true}
           isFlipped={true}
           label="purchased"
-          onPress={[Function]}
+          onPress={[MockFunction]}
         />,
       ],
       "style": Object {
@@ -413,9 +413,9 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "isActive": true,
+          "isActive": false,
           "label": "rewards",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         "ref": null,
         "rendered": null,
@@ -462,10 +462,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "isActive": false,
+          "isActive": true,
           "isFlipped": true,
           "label": "purchased",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         "ref": null,
         "rendered": null,
@@ -494,9 +494,9 @@ ShallowWrapper {
             }
           />,
           <RewardTab
-            isActive={true}
+            isActive={false}
             label="rewards"
-            onPress={[Function]}
+            onPress={[MockFunction]}
           />,
           <Component
             style={
@@ -516,10 +516,10 @@ ShallowWrapper {
             />
           </Component>,
           <RewardTab
-            isActive={false}
+            isActive={true}
             isFlipped={true}
             label="purchased"
-            onPress={[Function]}
+            onPress={[MockFunction]}
           />,
         ],
         "style": Object {
@@ -554,9 +554,9 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "isActive": true,
+            "isActive": false,
             "label": "rewards",
-            "onPress": [Function],
+            "onPress": [MockFunction],
           },
           "ref": null,
           "rendered": null,
@@ -603,10 +603,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "isActive": false,
+            "isActive": true,
             "isFlipped": true,
             "label": "purchased",
-            "onPress": [Function],
+            "onPress": [MockFunction],
           },
           "ref": null,
           "rendered": null,

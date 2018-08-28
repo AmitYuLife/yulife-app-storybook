@@ -6,7 +6,6 @@ import ChallengeSuccessScreen from "../challenge-success.screen";
 describe("ChallengeSuccessScreen", () => {
 
     it("should render steps as expected", () => {
-
         const actual = shallow(
             <ChallengeSuccessScreen
                 score={1180}
@@ -21,7 +20,6 @@ describe("ChallengeSuccessScreen", () => {
     });
 
     it("should render minutes as expected", () => {
-
         const actual = shallow(
             <ChallengeSuccessScreen
                 score={360}

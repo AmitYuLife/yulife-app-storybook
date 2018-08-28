@@ -1,4 +1,4 @@
 export default {
     cta: "see result",
-    heading: "time’s up!",
+    heading: "time’s up!"
 };

@@ -14,7 +14,7 @@ import {
     ResetPasswordScreen,
     ResetPasswordSuccessScreen,
     SignUpRewardScreen,
-    WelcomeScreen,
+    WelcomeScreen
 } from "./index";
 
 storiesOf("Screens", module)
@@ -67,7 +67,7 @@ storiesOf("Screens", module)
                 max: 2000,
                 min: 0,
                 range: true,
-                step: 1,
+                step: 1
             }, "SignUp")}
         />
     ))
@@ -77,13 +77,13 @@ storiesOf("Screens", module)
                 max: 12,
                 min: 0,
                 range: true,
-                step: 1,
+                step: 1
             }, "DailySteps")}
             currentStreak={number("Current Streak", 2, {
                 max: 4,
                 min: 0,
                 range: true,
-                step: 1,
+                step: 1
             }, "DailySteps")}
             displayStreak={boolean("Display Streak?", true, "DailySteps")}
             fitKitAvailable={boolean("FitKit Available?", true, "DailySteps")}
@@ -100,7 +100,7 @@ storiesOf("Screens", module)
                 max: 35000,
                 min: 0,
                 range: true,
-                step: 1,
+                step: 1
             }, "DailySteps")}
         />
     ))
@@ -111,25 +111,25 @@ storiesOf("Screens", module)
                     challengeType: "brisk walk",
                     duration: "10 mins",
                     image: ChallengeTile.Images.SQUIRREL,
-                    reward: "0-3",
+                    reward: "0-3"
                 },
                 {
                     challengeType: "long walk",
                     duration: "30 mins",
                     image: ChallengeTile.Images.OSTRICH,
-                    reward: "0-6",
+                    reward: "0-6"
                 },
                 {
                     challengeType: "short stroll",
                     duration: "5 mins",
                     image: ChallengeTile.Images.ELEPHANT,
-                    reward: "0-1",
+                    reward: "0-1"
                 },
                 {
                     challengeType: "meditation",
                     duration: "3-10 mins",
                     image: ChallengeTile.Images.BIRD,
-                    reward: "0-3",
+                    reward: "0-3"
                 }
             ], "ChallengesList")}
         />
@@ -151,7 +151,7 @@ storiesOf("Screens", module)
                 max: 35000,
                 min: 0,
                 range: true,
-                step: 1,
+                step: 1
             }, "ChallengeSuccess")}
             unit={select("Unit", [
                 "steps",

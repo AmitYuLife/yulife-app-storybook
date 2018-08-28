@@ -6,8 +6,9 @@ import Plus from "../plus";
 describe("Plus SVG", () => {
 
     it("should render without props", () => {
-
-        const actual = shallow(<Plus />);
+        const actual = shallow(
+            <Plus />
+        );
 
         expect(actual).toMatchSnapshot();
     });

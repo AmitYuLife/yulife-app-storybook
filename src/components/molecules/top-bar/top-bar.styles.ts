@@ -1,65 +1,65 @@
 import {
+    ImageStyle,
     Platform,
     StyleSheet,
     TextStyle,
-    ViewStyle,
-    ImageStyle,
+    ViewStyle
 } from "react-native";
 import { Style } from "../../../styles";
 
 export default StyleSheet.create({
-    wrapper: {
-        width: "100%",
-        justifyContent: "center",
-        flexDirection: "row",
-        alignItems: "center",
-        marginTop: Style.SCALE_UP_AND_DOWN(
-            Platform.OS === "ios" ? 4 : 8
-        ),
-    } as ViewStyle,
-    menuWrapper: {
-        position: "absolute",
-        left: Style.SCALE_UP_AND_DOWN(15),
-        flexDirection: "row",
-        alignItems: "center",
-    } as ViewStyle,
-    coinsWrapper: {
-        position: "absolute",
-        right: Style.SCALE_UP_AND_DOWN(15),
-        flexDirection: "row",
-        alignItems: "center",
-    } as ViewStyle,
-    coinsTextWrapper: {
-        alignItems: "center",
-        height: "100%",
-        alignSelf: "stretch",
-    } as ViewStyle,
     coinsText: {
         fontSize: Style.SCALE_UP_AND_DOWN(18),
-        marginRight: Style.SCALE_UP_AND_DOWN(8),
         marginBottom: Style.SCALE_UP_AND_DOWN(
             Platform.OS === "ios" ? -4 : 0
         ),
+        marginRight: Style.SCALE_UP_AND_DOWN(8)
     } as TextStyle,
-    timerWrapper: {
-        marginBottom: Style.SCALE_UP_AND_DOWN(-6),
-        paddingLeft: Style.SCALE_UP_AND_DOWN(20),
+    coinsTextWrapper: {
+        alignItems: "center",
+        alignSelf: "stretch",
+        height: "100%"
+    } as ViewStyle,
+    coinsWrapper: {
+        alignItems: "center",
         flexDirection: "row",
+        position: "absolute",
+        right: Style.SCALE_UP_AND_DOWN(15)
+    } as ViewStyle,
+    menuLabel: {
+        fontSize: Style.SCALE_UP_AND_DOWN(18)
+    } as TextStyle,
+    menuLabelWrapper: {
+        marginBottom: Style.SCALE_UP_AND_DOWN(-6),
+        marginLeft: Style.SCALE_UP_AND_DOWN(8)
+    } as ViewStyle,
+    menuWrapper: {
+        alignItems: "center",
+        flexDirection: "row",
+        left: Style.SCALE_UP_AND_DOWN(15),
+        position: "absolute"
     } as ViewStyle,
     time: {
-        marginRight: Style.SCALE_UP_AND_DOWN(9),
         height: Style.SCALE_UP_AND_DOWN(25),
-        width: Style.SCALE_UP_AND_DOWN(25),
+        marginRight: Style.SCALE_UP_AND_DOWN(9),
+        width: Style.SCALE_UP_AND_DOWN(25)
     } as ImageStyle,
     timer: {
         fontSize: Style.SCALE_UP_AND_DOWN(18),
-        marginTop: Style.SCALE_UP_AND_DOWN(Platform.OS === "android" ? -2 : 2),
+        marginTop: Style.SCALE_UP_AND_DOWN(Platform.OS === "android" ? -2 : 2)
     } as TextStyle,
-    menuLabelWrapper: {
-        marginLeft: Style.SCALE_UP_AND_DOWN(8),
+    timerWrapper: {
+        flexDirection: "row",
         marginBottom: Style.SCALE_UP_AND_DOWN(-6),
+        paddingLeft: Style.SCALE_UP_AND_DOWN(20)
     } as ViewStyle,
-    menuLabel: {
-        fontSize: Style.SCALE_UP_AND_DOWN(18),
-    } as TextStyle,
+    wrapper: {
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "center",
+        marginTop: Style.SCALE_UP_AND_DOWN(
+            Platform.OS === "ios" ? 4 : 8
+        ),
+        width: "100%"
+    } as ViewStyle
 });

@@ -6,7 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <RewardTab
     isActive={true}
     label="purchased"
-    onPress={[Function]}
+    onPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -44,7 +44,7 @@ ShallowWrapper {
           purchased
         </YuText>,
       ],
-      "onPress": [Function],
+      "onPress": [MockFunction],
       "style": Object {
         "alignItems": "center",
         "borderBottomColor": "rgb(226,1,119)",
@@ -132,7 +132,7 @@ ShallowWrapper {
             purchased
           </YuText>,
         ],
-        "onPress": [Function],
+        "onPress": [MockFunction],
         "style": Object {
           "alignItems": "center",
           "borderBottomColor": "rgb(226,1,119)",
@@ -220,7 +220,7 @@ ShallowWrapper {
     isActive={false}
     isFlipped={true}
     label="purchased"
-    onPress={[Function]}
+    onPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -258,7 +258,7 @@ ShallowWrapper {
           purchased
         </YuText>,
       ],
-      "onPress": [Function],
+      "onPress": [MockFunction],
       "style": Object {
         "alignItems": "center",
         "flex": 1,
@@ -344,7 +344,7 @@ ShallowWrapper {
             purchased
           </YuText>,
         ],
-        "onPress": [Function],
+        "onPress": [MockFunction],
         "style": Object {
           "alignItems": "center",
           "flex": 1,
@@ -429,7 +429,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <RewardTab
     isActive={false}
     label="purchased"
-    onPress={[Function]}
+    onPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -467,7 +467,7 @@ ShallowWrapper {
           purchased
         </YuText>,
       ],
-      "onPress": [Function],
+      "onPress": [MockFunction],
       "style": Object {
         "alignItems": "center",
         "flex": 1,
@@ -553,7 +553,7 @@ ShallowWrapper {
             purchased
           </YuText>,
         ],
-        "onPress": [Function],
+        "onPress": [MockFunction],
         "style": Object {
           "alignItems": "center",
           "flex": 1,

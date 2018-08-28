@@ -6,7 +6,6 @@ import TextInput from "../text-input";
 describe("TextInput", () => {
 
     it("should render email textinput", () => {
-
         const actual = shallow(
             <TextInput
                 value="test"
@@ -18,7 +17,6 @@ describe("TextInput", () => {
     });
 
     it("should render password textinput", () => {
-
         const actual = shallow(
             <TextInput
                 value="test"
@@ -31,7 +29,6 @@ describe("TextInput", () => {
     });
 
     it("should render with error message", () => {
-
         const actual = shallow(
             <TextInput
                 value="test"
@@ -45,7 +42,6 @@ describe("TextInput", () => {
     });
 
     it("should handle focus", () => {
-
         const actual = shallow(
             <TextInput
                 value="test"

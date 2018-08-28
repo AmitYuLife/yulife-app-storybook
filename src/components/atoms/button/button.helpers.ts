@@ -14,7 +14,7 @@ export const getWrapperStyle = (props: IGetWrapperStyle) => {
     const { type, pressedIn } = props;
     const wrapperPrimary = StyleSheet.flatten([
         styles.wrapperPrimary,
-        pressedIn ? styles.wrapperPrimaryPressed : {},
+        pressedIn ? styles.wrapperPrimaryPressed : {}
     ]);
     switch (type) {
         case BUTTON_TYPES.SECONDARY:
@@ -22,25 +22,25 @@ export const getWrapperStyle = (props: IGetWrapperStyle) => {
         case BUTTON_TYPES.SECONDARY_MEDIUM:
             return StyleSheet.flatten([
                 styles.wrapperSecondary,
-                styles.wrapperMedium,
+                styles.wrapperMedium
             ]);
         case BUTTON_TYPES.PRIMARY:
             return wrapperPrimary;
         case BUTTON_TYPES.PRIMARY_MEDIUM:
             return StyleSheet.flatten([
                 wrapperPrimary,
-                styles.wrapperMedium,
+                styles.wrapperMedium
             ]);
         case BUTTON_TYPES.PRIMARY_SMALL:
             return StyleSheet.flatten([
                 wrapperPrimary,
-                styles.wrapperPrimarySmall,
+                styles.wrapperPrimarySmall
             ]);
         case BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL:
             return StyleSheet.flatten([
                 styles.wrapperPrimary,
                 styles.wrapperPrimaryGreyscale,
-                styles.wrapperPrimarySmall,
+                styles.wrapperPrimarySmall
             ]);
         case BUTTON_TYPES.LINK:
             return styles.wrapperLink;
@@ -56,7 +56,7 @@ export const getTextStyle = (type: string) => {
         case BUTTON_TYPES.SECONDARY_MEDIUM:
             return StyleSheet.flatten([
                 styles.textSecondary,
-                styles.textSecondaryMedium,
+                styles.textSecondaryMedium
             ]);
         case BUTTON_TYPES.PRIMARY:
         case BUTTON_TYPES.PRIMARY_MEDIUM:
@@ -65,7 +65,7 @@ export const getTextStyle = (type: string) => {
         case BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL:
             return StyleSheet.flatten([
                 styles.textPrimary,
-                styles.textGreyscale,
+                styles.textGreyscale
             ]);
         case BUTTON_TYPES.LINK:
             return styles.textLink;
@@ -86,7 +86,7 @@ export const getShadowStyle = (props: IGetShadowStyle) => {
     const { type, pressedIn } = props;
     const shadowStyle = StyleSheet.flatten([
         styles.shadow,
-        pressedIn ? styles.shadowPressed : {},
+        pressedIn ? styles.shadowPressed : {}
     ]);
     switch (type) {
         case BUTTON_TYPES.PRIMARY:
@@ -94,18 +94,18 @@ export const getShadowStyle = (props: IGetShadowStyle) => {
         case BUTTON_TYPES.PRIMARY_MEDIUM:
             return StyleSheet.flatten([
                 shadowStyle,
-                styles.shadowMedium,
+                styles.shadowMedium
             ]);
         case BUTTON_TYPES.PRIMARY_SMALL:
             return StyleSheet.flatten([
                 shadowStyle,
-                styles.shadowSmall,
+                styles.shadowSmall
             ]);
         case BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL:
             return StyleSheet.flatten([
                 styles.shadow,
                 styles.shadowGrey,
-                styles.shadowSmall,
+                styles.shadowSmall
             ]);
         default:
             return null;

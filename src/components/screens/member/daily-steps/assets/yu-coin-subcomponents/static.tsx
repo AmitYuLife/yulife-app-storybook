@@ -1,11 +1,11 @@
 import * as React from "react";
 import { SFC } from "react";
-import Label from "./label";
-import Circles from "./circles";
-import OuterShadow from "./outer-shadow";
-import LowerInnerShadow from "./lower-inner-shadow";
-import UpperInnerShadow from "./upper-inner-shadow";
 import Body from "./body";
+import Circles from "./circles";
+import Label from "./label";
+import LowerInnerShadow from "./lower-inner-shadow";
+import OuterShadow from "./outer-shadow";
+import UpperInnerShadow from "./upper-inner-shadow";
 
 interface IProps {
     isGrayScale?: boolean;

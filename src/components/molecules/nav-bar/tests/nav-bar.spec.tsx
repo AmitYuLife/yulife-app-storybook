@@ -3,23 +3,22 @@ import * as React from "react";
 import "react-native";
 import NavBar from "../nav-bar";
 
-const fillers = {
+const defaultProps = {
+    activeIndex: 0,
+    hasNotification: false,
     labels: [
-        { name: "yucoin", onPress: (): null => null },
-        { name: "quest", onPress: (): null => null },
-        { name: "rewards", onPress: (): null => null },
-    ],
+        { name: "yucoin", onPress: jest.fn() },
+        { name: "quest", onPress: jest.fn() },
+        { name: "rewards", onPress: jest.fn() }
+    ]
 };
 
 describe("NavBar", () => {
 
     it("should render activeIndex 0 without notification", () => {
-
         const actual = shallow(
             <NavBar
-                activeIndex={0}
-                hasNotification={false}
-                {...fillers}
+                {...defaultProps}
             />
         );
 
@@ -27,12 +26,10 @@ describe("NavBar", () => {
     });
 
     it("should render activeIndex 1 without notification", () => {
-
         const actual = shallow(
             <NavBar
+                {...defaultProps}
                 activeIndex={1}
-                hasNotification={false}
-                {...fillers}
             />
         );
 
@@ -40,12 +37,10 @@ describe("NavBar", () => {
     });
 
     it("should render activeIndex 2 without notification", () => {
-
         const actual = shallow(
             <NavBar
+                {...defaultProps}
                 activeIndex={2}
-                hasNotification={false}
-                {...fillers}
             />
         );
 
@@ -53,12 +48,10 @@ describe("NavBar", () => {
     });
 
     it("should render activeIndex 0 with notification", () => {
-
         const actual = shallow(
             <NavBar
-                activeIndex={0}
+                {...defaultProps}
                 hasNotification={true}
-                {...fillers}
             />
         );
 
@@ -66,12 +59,11 @@ describe("NavBar", () => {
     });
 
     it("should render activeIndex 1 with notification", () => {
-
         const actual = shallow(
             <NavBar
+                {...defaultProps}
                 activeIndex={1}
                 hasNotification={true}
-                {...fillers}
             />
         );
 
@@ -79,12 +71,11 @@ describe("NavBar", () => {
     });
 
     it("should render activeIndex 2 with notification", () => {
-
         const actual = shallow(
             <NavBar
+                {...defaultProps}
                 activeIndex={2}
                 hasNotification={true}
-                {...fillers}
             />
         );
 

@@ -4,7 +4,7 @@ import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "../../atoms";
 import styles, {
     getImage,
-    getImageStyle,
+    getImageStyle
 } from "./challenge-tile.styles";
 
 export interface IChallengeTileProps {
@@ -22,7 +22,7 @@ export enum IMAGES {
     SQUIRREL = "squirrel",
     ELEPHANT = "elephant",
     BIRD = "bird",
-    OSTRICH = "ostrich",
+    OSTRICH = "ostrich"
 }
 
 export type Images =
@@ -46,7 +46,7 @@ class ChallengeTile extends PureComponent<Props> {
             isLocked = false,
             minimumLevel = 1,
             onPress = (): any => null,
-            reward = "",
+            reward = ""
         } = this.props;
 
         return (
@@ -88,7 +88,7 @@ const LockedOverlay: SFC<Partial<Props>> = ({ isImageBackgroundFlipped, minimumL
             styles.lockedOverlay,
             isImageBackgroundFlipped
                 ? styles.lockedOverlayFlipped
-                : null,
+                : null
         ])}
     >
         <Image
@@ -121,7 +121,7 @@ const AnimalImage: SFC<Partial<Props>> = ({ image, isLocked, isImageBackgroundFl
                     : null,
                 isImageBackgroundFlipped
                     ? styles.imageBackgroundFlipped
-                    : null,
+                    : null
             ])}
         />
         <Image

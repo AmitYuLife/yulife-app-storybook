@@ -6,7 +6,6 @@ import TopBar from "../top-bar";
 describe("TopBar", () => {
 
     it("should render", () => {
-
         const actual = shallow(
             <TopBar onPressLeftIcon={jest.fn()} coins={0} />
         );

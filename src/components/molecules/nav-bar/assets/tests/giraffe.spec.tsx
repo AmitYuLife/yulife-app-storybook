@@ -6,7 +6,6 @@ import Giraffe from "../giraffe";
 describe("Giraffe", () => {
 
     it("should render when inactive and not pressed", () => {
-
         const actual = shallow(
             <Giraffe isActive={false} isPressed={false} />
         );
@@ -15,7 +14,6 @@ describe("Giraffe", () => {
     });
 
     it("should render when inactive and pressed", () => {
-
         const actual = shallow(
             <Giraffe isActive={false} isPressed={true} />
         );
@@ -24,7 +22,6 @@ describe("Giraffe", () => {
     });
 
     it("should render when active and not pressed", () => {
-
         const actual = shallow(
             <Giraffe isActive={true} isPressed={false} />
         );

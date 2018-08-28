@@ -6,8 +6,9 @@ import Menu from "../menu";
 describe("Menu", () => {
 
     it("should render", () => {
-
-        const actual = shallow(<Menu />);
+        const actual = shallow(
+            <Menu />
+        );
 
         expect(actual).toMatchSnapshot();
     });

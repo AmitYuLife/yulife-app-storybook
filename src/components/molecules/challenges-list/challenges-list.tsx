@@ -33,7 +33,7 @@ const ChallengeSet: SFC<IChallengesListProps> = ({ challenges }) => (
         <View
             style={StyleSheet.flatten([
                 styles.column,
-                styles.rightColumnWrapper,
+                styles.rightColumnWrapper
             ])}
         >
             {challenges

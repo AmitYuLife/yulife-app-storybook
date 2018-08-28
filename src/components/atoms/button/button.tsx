@@ -1,18 +1,18 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import {
-    View,
+    StyleSheet,
+    Text,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    Text,
-    ViewStyle,
-    StyleSheet,
+    View,
+    ViewStyle
 } from "react-native";
 import {
-    getWrapperStyle,
-    getTextStyle,
     getShadowStyle,
+    getTextStyle,
     getWrapperOverlayStyle,
+    getWrapperStyle
 } from "./button.helpers";
 
 interface IProps {
@@ -30,7 +30,7 @@ export enum BUTTON_TYPES {
     PRIMARY_GREYSCALE_SMALL = "PrimaryGreyscaleSmall",
     SECONDARY = "Secondary",
     SECONDARY_MEDIUM = "SecondaryMedium",
-    LINK = "Link",
+    LINK = "Link"
 }
 
 export type Types =
@@ -51,7 +51,7 @@ class Button extends PureComponent<IProps, IState> {
     public static Types = BUTTON_TYPES;
 
     public state = {
-        pressedIn: false,
+        pressedIn: false
     };
 
     public render() {
@@ -60,7 +60,7 @@ class Button extends PureComponent<IProps, IState> {
             type,
             onPress,
             wrapperStyle,
-            disabled,
+            disabled
         } = this.props;
         const {
             pressedIn
@@ -96,7 +96,7 @@ class Button extends PureComponent<IProps, IState> {
                     onPress={onPress}
                     style={StyleSheet.flatten([
                         getWrapperStyle({ type }),
-                        wrapperStyle,
+                        wrapperStyle
                     ])}
                 >
                     <Text style={getTextStyle(type)}>

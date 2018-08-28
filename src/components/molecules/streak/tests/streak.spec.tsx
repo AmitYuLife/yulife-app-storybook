@@ -6,14 +6,13 @@ import Streak from "../streak";
 const allFillers = {
     currentStreak: 0,
     maxStreak: 0,
-    onPress: (): null => null,
+    onPress: jest.fn()
 };
-const onPressFiller = { onPress: (): null => null };
+const onPressFiller = { onPress: jest.fn() };
 
 describe("Streak", () => {
 
     it("should render unfinished state", () => {
-
         const actual = shallow(
             <Streak isFinished={false} {...allFillers} />
         );
@@ -22,7 +21,6 @@ describe("Streak", () => {
     });
 
     it("should render finished state", () => {
-
         const actual = shallow(
             <Streak isFinished={false} {...allFillers} />
         );
@@ -31,7 +29,6 @@ describe("Streak", () => {
     });
 
     it("should render 0% progress state", () => {
-
         const actual = shallow(
             <Streak
                 isFinished={false}
@@ -45,7 +42,6 @@ describe("Streak", () => {
     });
 
     it("should render 100% progress state", () => {
-
         const actual = shallow(
             <Streak
                 isFinished={false}
@@ -59,7 +55,6 @@ describe("Streak", () => {
     });
 
     it("should render 50% progress state", () => {
-
         const actual = shallow(
             <Streak
                 isFinished={false}

@@ -1,27 +1,27 @@
 import {
     StyleSheet,
     TextStyle,
-    ViewStyle,
+    ViewStyle
 } from "react-native";
 import { Style } from "../../../styles";
 
 const styles = StyleSheet.create({
-    textWrapper: {
-        flex: 1,
-        justifyContent: "flex-end",
-        alignItems: "center",
-    } as ViewStyle,
-    text: {
-        textAlign: "center",
-        width: "100%",
-        fontSize: Style.SCALE_UP_AND_DOWN(16),
-    } as TextStyle,
     labelsWrapper: {
-        width: "100%",
+        flexDirection: "row",
         height: "100%",
         position: "absolute",
-        flexDirection: "row",
+        width: "100%"
     } as ViewStyle,
+    text: {
+        fontSize: Style.SCALE_UP_AND_DOWN(16),
+        textAlign: "center",
+        width: "100%"
+    } as TextStyle,
+    textWrapper: {
+        alignItems: "center",
+        flex: 1,
+        justifyContent: "flex-end"
+    } as ViewStyle
 });
 
 export function getLabelAdjustment(index: number) {

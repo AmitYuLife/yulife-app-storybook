@@ -5,7 +5,7 @@ import {
     Button,
     CentredScreen,
     Heading,
-    Pad,
+    Pad
 } from "../../atoms";
 import data from "./welcome.screen.data";
 

@@ -2,8 +2,8 @@ import * as React from "react";
 import { PureComponent } from "react";
 import { NativeSyntheticEvent, WebViewMessageEventData } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { SignUpScreen } from "../../screens";
 import { ROUTES } from "../../../navigation/routes";
+import { SignUpScreen } from "../../screens";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -17,17 +17,17 @@ interface IState {
 
 class SignUpContainer extends PureComponent<IProps, IState> {
     public state: IState = {
-        loading: false,
+        loading: false
     };
 
     public componentDidMount() {
         Navigation.mergeOptions(this.props.componentId, {
             topBar: {
                 title: {
-                    text: "Sign Up",
+                    text: "Sign Up"
                 },
-                visible: true,
-            },
+                visible: true
+            }
         });
     }
 
@@ -68,8 +68,8 @@ class SignUpContainer extends PureComponent<IProps, IState> {
             Navigation.setStackRoot(this.props.componentId, {
                 component: {
                     id: ROUTES.login,
-                    name: ROUTES.login,
-                },
+                    name: ROUTES.login
+                }
             });
         }
     }

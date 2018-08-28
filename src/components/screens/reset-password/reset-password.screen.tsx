@@ -5,7 +5,7 @@ import {
     CentredScreen,
     Heading,
     Pad,
-    TextInput,
+    TextInput
 } from "../../atoms";
 import styles from "./reset-password.screen.styles";
 
@@ -21,7 +21,7 @@ interface IState {
 class ResetPasswordScreen extends PureComponent<IProps, IState> {
 
     public state: IState = {
-        email: "",
+        email: ""
     };
 
     public render() {

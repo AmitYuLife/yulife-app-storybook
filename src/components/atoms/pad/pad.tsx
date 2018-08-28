@@ -12,7 +12,7 @@ const Pad: SFC<IProps> = ({ height, width }) => (
     <View
         style={StyleSheet.flatten([
             getHeight(height),
-            getWidth(width),
+            getWidth(width)
         ])}
     />
 );

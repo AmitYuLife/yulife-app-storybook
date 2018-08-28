@@ -1,12 +1,12 @@
-import { takeLatest, call, take, put } from "redux-saga/effects";
 import { Alert, ConnectionInfo } from "react-native";
-import { appStateChannel, appNetworkChannel } from "./app.channels";
+import RNFitKit from "react-native-fitkit";
+import { call, put, take, takeLatest } from "redux-saga/effects";
+import FitKitPermissions from "../../services/fitkit/fitkit.permissions";
 // import PushNotification from "react-native-push-notification";
 // import bugsnag from "../../utils/bugsnag";
 // import { SyncAction, AsyncAction } from "../_core/types";
-import { updateAppState, updateOfflineState, SHOW_MAINTENANCE, AUTHORISE_FITKIT } from "./app.actions";
-import RNFitKit from "react-native-fitkit";
-import FitKitPermissions from "../../services/fitkit/fitkit.permissions";
+import { AUTHORISE_FITKIT, SHOW_MAINTENANCE, updateAppState, updateOfflineState } from "./app.actions";
+import { appNetworkChannel, appStateChannel } from "./app.channels";
 
 function* listenToAppState() {
     const stateChannel = yield call(appStateChannel);
@@ -61,14 +61,14 @@ function* showMaintenance() {
             "Please come back later",
             [
                 {
-                    text: "OK",
                     onPress: () => {
                         // Quick and dirty way to close the app, and track in bugsnag
                         throw new Error("503 Pressed!");
                     },
-                },
+                    text: "OK"
+                }
             ],
-            { cancelable: false },
+            { cancelable: false }
         );
     });
 }
@@ -79,5 +79,5 @@ export default [
     takeLatest(AUTHORISE_FITKIT, authoriseFitKitSaga),
     // takeEvery("*", logBreadcrumbs),
     // takeLatest(LOGOUT, unregisterPush),
-    takeLatest(SHOW_MAINTENANCE, showMaintenance),
+    takeLatest(SHOW_MAINTENANCE, showMaintenance)
 ];

@@ -1,8 +1,8 @@
 import * as React from "react";
-import { View, Image } from "react-native";
-import { Text, Button } from "../../../../../atoms";
-import styles from "./purchases-empty.styles";
+import { Image, View } from "react-native";
+import { Button, Text } from "../../../../../atoms";
 import data from "./purchases-empty.data";
+import styles from "./purchases-empty.styles";
 
 interface IProps {
     onCtaPress: () => void;

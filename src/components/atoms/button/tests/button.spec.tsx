@@ -7,7 +7,6 @@ import Button from "../button";
 describe("Button", () => {
 
     it("should render secondary button", () => {
-
         const actual = shallow(
             <Button
                 onPress={jest.fn()}
@@ -20,7 +19,6 @@ describe("Button", () => {
     });
 
     it("should render primary button", () => {
-
         const actual = shallow(
             <Button
                 onPress={jest.fn()}
@@ -33,7 +31,6 @@ describe("Button", () => {
     });
 
     it("should render link button", () => {
-
         const actual = shallow(
             <Button
                 onPress={jest.fn()}
@@ -46,7 +43,6 @@ describe("Button", () => {
     });
 
     it("should render primary button on Android", () => {
-
         Platform.OS = "android";
         const actual = shallow(
             <Button

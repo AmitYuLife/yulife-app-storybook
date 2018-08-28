@@ -1,5 +1,5 @@
-import { getAppState } from "../app.selectors";
 import { initialState } from "../../_core/reducers";
+import { getAppState } from "../app.selectors";
 
 // TODO update this to new style and add missing tests
 
@@ -9,9 +9,9 @@ describe("App Selectors", () => {
         ...initialState,
         appReducer: {
             ...initialState.app,
-            appState: "active",
             appStarted: true,
-        },
+            appState: "active"
+        }
     };
 
     describe("appStateSelector", () => {

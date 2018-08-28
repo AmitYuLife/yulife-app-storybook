@@ -5,7 +5,7 @@ import { IUserFeaturesState } from "../../context/features";
 import {
     loginUser_loginUser_user,
     loginUser_loginUser_user_userFeatures,
-    loginUser_loginUser_user_userStatus,
+    loginUser_loginUser_user_userStatus
 } from "../../graphql/_core/schema";
 
 const USER_KEY = "@Store:user";

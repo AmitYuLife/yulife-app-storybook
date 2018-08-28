@@ -6,7 +6,6 @@ import TextInputError from "../text-input-error";
 describe("TextInputError", () => {
 
     it("should render email textinput", () => {
-
         const actual = shallow(
             <TextInputError>Testing Error Message</TextInputError>
         );

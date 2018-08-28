@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
-import { IAppStore } from "./app.reducer";
 import { IReduxState } from "../_core/reducers";
+import { IAppStore } from "./app.reducer";
 
 const reducer = (state: IReduxState): IAppStore => state.app;
 

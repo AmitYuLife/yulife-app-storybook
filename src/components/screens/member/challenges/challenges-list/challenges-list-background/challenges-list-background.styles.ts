@@ -1,7 +1,7 @@
 import {
     Platform,
     StyleSheet,
-    ViewStyle,
+    ViewStyle
 } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../../../styles";
@@ -31,14 +31,14 @@ export const height =
     Style.DEVICE_HEIGHT +
     getHeightAdjust({
         adjustHeight: Style.DEVICE_HEIGHT,
-        isAndroid: Platform.OS === "android",
+        isAndroid: Platform.OS === "android"
     });
 
 const styles = StyleSheet.create({
     wrapper: {
         left: getLeftAdjust(isIphoneX()),
-        top: getTopAdjust(isIphoneX()),
-    } as ViewStyle,
+        top: getTopAdjust(isIphoneX())
+    } as ViewStyle
 });
 
 export default styles;

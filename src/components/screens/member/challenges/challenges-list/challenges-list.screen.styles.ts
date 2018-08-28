@@ -2,7 +2,7 @@ import {
     ImageStyle,
     Platform,
     StyleSheet,
-    ViewStyle,
+    ViewStyle
 } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../../styles";
@@ -11,10 +11,10 @@ export default StyleSheet.create({
     background: {
         borderColor: "transparent",
         borderWidth: 1,
-        height: "100%",
+        height: "100%"
     } as ImageStyle,
     backgroundWrapper: {
-        ...StyleSheet.absoluteFillObject,
+        ...StyleSheet.absoluteFillObject
     } as ViewStyle,
     challengeSetWrapper: {
         alignItems: "center",
@@ -29,7 +29,7 @@ export default StyleSheet.create({
                 : Platform.OS === "android"
                     ? 0
                     : 20
-        ),
+        )
     } as ViewStyle,
     navBarWrapper: {
         alignItems: "center",
@@ -38,14 +38,14 @@ export default StyleSheet.create({
         left: 0,
         position: "absolute",
         right: 0,
-        width: "100%",
+        width: "100%"
     } as ViewStyle,
     topBarWrapper: {
         left: 0,
         position: "absolute",
-        right: 0,
+        right: 0
     } as ViewStyle,
     wrapper: {
-        flex: 1,
-    } as ViewStyle,
+        flex: 1
+    } as ViewStyle
 });

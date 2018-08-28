@@ -1,7 +1,7 @@
-import "react-native";
-import * as React from "react";
-import Circles from "../circles";
 import { shallow } from "enzyme";
+import * as React from "react";
+import "react-native";
+import Circles from "../circles";
 
 describe("Circles", () => {
 

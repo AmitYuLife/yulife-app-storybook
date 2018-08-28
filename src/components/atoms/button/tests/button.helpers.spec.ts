@@ -1,8 +1,8 @@
 import { BUTTON_TYPES } from "../button";
 import {
-    getWrapperStyle,
-    getTextStyle,
     getShadowStyle,
+    getTextStyle,
+    getWrapperStyle
 } from "../button.helpers";
 
 describe("getWrapperStyle", () => {

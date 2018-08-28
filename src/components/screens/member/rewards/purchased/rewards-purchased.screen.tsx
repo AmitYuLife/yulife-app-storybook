@@ -1,10 +1,10 @@
 import * as React from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
-import styles from "./rewards-purchased.screen.styles";
-import PurchasesEmpty from "./purchases-empty/purchases-empty";
+import { Pad } from "../../../../atoms";
 import { RewardTabs } from "../../../../molecules";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
-import { Pad } from "../../../../atoms";
+import PurchasesEmpty from "./purchases-empty/purchases-empty";
+import styles from "./rewards-purchased.screen.styles";
 
 interface IProps {
     data: RewardsPurchasedItemData[];

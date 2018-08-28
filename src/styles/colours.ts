@@ -4,13 +4,13 @@ export default {
         primary: {
             default: {
                 body: "#e20177",
-                shadow: "#95012b",
+                shadow: "#95012b"
             },
             pressedIn: {
                 body: "#cb016b",
-                shadow: "#860127",
-            },
-        },
+                shadow: "#860127"
+            }
+        }
     },
     darkGray: "rgb(51,51,51)",
     darkHotPink: "rgb(226,1,119)",
@@ -21,45 +21,45 @@ export default {
     lightGray: "rgb(170,170,170)",
     lightRed: "rgb(255,102,102)",
     navBar: {
-        light: {
-            active: "rgba(255,255,255,1)",
-            inactive: "rgba(255,255,255,0.4)",
-            pressed: "rgba(255,255,255,0.2)",
-        },
         dark: {
             active: "rgba(0,0,0,0.4)",
             inactive: "rgba(0,0,0,0.2)",
-            pressed: "rgba(0,0,0,0.1)",
+            pressed: "rgba(0,0,0,0.1)"
         },
         darker: {
-            active: "rgb(0,0,0)",
+            active: "rgb(0,0,0)"
         },
+        light: {
+            active: "rgba(255,255,255,1)",
+            inactive: "rgba(255,255,255,0.4)",
+            pressed: "rgba(255,255,255,0.2)"
+        }
     },
     progressBar: {
         background: "black",
         heading: "black",
-        shadow: "rgb(233, 233, 233)",
+        shadow: "rgb(233, 233, 233)"
+    },
+    rewardsTabs: {
+        active: "rgb(226,1,119)",
+        divider: "rgb(96,96,96)",
+        inactive: "rgb(51,51,51)",
+        inactiveTransparent: "rgba(150,150,150,0.5)"
     },
     streak: {
         finished: {
             pressed: "#81d1c4",
-            unpressed: "#99ded3",
+            unpressed: "#99ded3"
         },
         unfinished: {
             pressed: "#cb016b",
-            unpressed: "#e20177",
-        },
+            unpressed: "#e20177"
+        }
     },
     textInput: {
         error: "rgb(255,102,102)",
         filled: "rgb(106,106,106)",
         focus: "#333",
-        inactive: "rgb(204,204,204)",
-    },
-    rewardsTabs: {
-        inactive: "rgb(51,51,51)",
-        inactiveTransparent: "rgba(150,150,150,0.5)",
-        active: "rgb(226,1,119)",
-        divider: "rgb(96,96,96)",
-    },
+        inactive: "rgb(204,204,204)"
+    }
 };

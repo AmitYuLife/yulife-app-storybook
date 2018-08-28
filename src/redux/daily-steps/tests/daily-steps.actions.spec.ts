@@ -1,12 +1,12 @@
 import {
-    startDailySteps,
-    stopDailySteps,
-    updateDailyStepsFailed,
-    updateDailyStepsSuccess,
     START_DAILY_STEPS,
+    startDailySteps,
     STOP_DAILY_STEPS,
+    stopDailySteps,
     UPDATE_DAILY_STEPS_FAILED,
     UPDATE_DAILY_STEPS_SUCCESS,
+    updateDailyStepsFailed,
+    updateDailyStepsSuccess
 } from "../daily-steps.actions";
 import { addDailyStepsSuccessFixture } from "./daily-steps.fixtures";
 

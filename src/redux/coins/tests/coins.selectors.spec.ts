@@ -1,5 +1,5 @@
+import { initialState, IReduxState } from "../../_core/reducers";
 import { initialState as initialCoinsState } from "../coins.reducer";
-import { IReduxState, initialState } from "../../_core/reducers";
 import {
     getDailyChallengeCoins,
     getDailyEarnedCoins,
@@ -35,7 +35,7 @@ describe ("Coins Selectors", () => {
                 coins: {
                     ...initialCoinsState,
                     dailyChallengeEarned: 12,
-                    dailyStepsEarned: 24,
+                    dailyStepsEarned: 24
                 }
             };
 
@@ -71,7 +71,7 @@ describe ("Coins Selectors", () => {
                 ...initialState,
                 coins: {
                     ...initialCoinsState,
-                    total: 12345,
+                    total: 12345
                 }
             };
 

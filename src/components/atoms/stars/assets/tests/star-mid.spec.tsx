@@ -6,7 +6,6 @@ import StarMid from "../star-mid";
 describe("StarMid component", () => {
 
     it("should render not highlighted", () => {
-
         const actual = shallow(
             <StarMid
                 isHighlighted={false}
@@ -17,7 +16,6 @@ describe("StarMid component", () => {
     });
 
     it("should render highlighted", () => {
-
         const actual = shallow(
             <StarMid
                 isHighlighted={true}

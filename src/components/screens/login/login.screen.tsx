@@ -5,7 +5,7 @@ import {
     Keyboard,
     KeyboardAvoidingView,
     Platform,
-    View,
+    View
 } from "react-native";
 import {
     Button,
@@ -13,7 +13,7 @@ import {
     Heading,
     Pad,
     TextInput,
-    TextInputError,
+    TextInputError
 } from "../../atoms";
 import { LinkGroup } from "../../molecules";
 import data from "./login.screen.data";
@@ -40,7 +40,7 @@ interface IState {
 class LoginScreen extends PureComponent<IProps, IState> {
 
     public state: IState = {
-        isShowingKeyboard: false,
+        isShowingKeyboard: false
     };
 
     private keyboardDidShowListener?: EmitterSubscription;
@@ -76,7 +76,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
             onLogInPress,
             onPasswordChange,
             password,
-            passwordError,
+            passwordError
          } = this.props;
 
         return (
@@ -138,12 +138,12 @@ class LoginScreen extends PureComponent<IProps, IState> {
         return [
             {
                 label: "Forgot password",
-                onPress: onResetPasswordPress,
+                onPress: onResetPasswordPress
             },
             {
                 label: "Sign up",
-                onPress: onSignUpPress,
-            },
+                onPress: onSignUpPress
+            }
         ];
     }
 }

@@ -4,7 +4,7 @@ import { ViewStyle } from "react-native";
 import Svg, {
     Circle,
     Path,
-    Polygon,
+    Polygon
 } from "react-native-svg";
 
 interface IProps {
@@ -39,7 +39,7 @@ const Calendar: SFC<IProps> = ({
     scale = 1,
     style,
     progress,
-    backgroundColor = "#fff",
+    backgroundColor = "#fff"
 }) => (
     <Svg
         style={style}

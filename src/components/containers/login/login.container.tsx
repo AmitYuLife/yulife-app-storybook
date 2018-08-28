@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Navigation } from "react-native-navigation";
 import { LoginMethod, loginUser_loginUser } from "../../../graphql/_core/schema";
 import LoginUserMutation, { loginUserGql } from "../../../graphql/user/loginUser.gql";
+import { ROUTES } from "../../../navigation/routes";
 import { setToken, setUser } from "../../../services/storage";
 import { LoginScreen } from "../../screens";
 import { validateEmail, validatePassword } from "./login.helpers";
-import { ROUTES } from "../../../navigation/routes";
 
 const trimGraphQLError = (message: string) => message.replace(/^GraphQL error: /, "");
 
@@ -31,7 +31,7 @@ export class LoginContainer extends Component<Props, IState> {
         emailError: "",
         loggingIn: false,
         password: "",
-        passwordError: "",
+        passwordError: ""
     };
 
     // public componentDidMount() {
@@ -53,8 +53,8 @@ export class LoginContainer extends Component<Props, IState> {
                                         email,
                                         method: LoginMethod.PASSWORD,
                                         password,
-                                        tokenExpiration: TOKEN_EXPIRATION,
-                                    },
+                                        tokenExpiration: TOKEN_EXPIRATION
+                                    }
                                 });
 
                                 if (result && result.data && result.data.loginUser) {
@@ -94,8 +94,8 @@ export class LoginContainer extends Component<Props, IState> {
             await Navigation.push(this.props.componentId, {
                 component: {
                     id: ROUTES.onboardingFitKitConnect,
-                    name: ROUTES.onboardingFitKitConnect,
-                },
+                    name: ROUTES.onboardingFitKitConnect
+                }
             });
         });
     }
@@ -104,8 +104,8 @@ export class LoginContainer extends Component<Props, IState> {
         Navigation.push(this.props.componentId, {
             component: {
                 id: ROUTES.signUp,
-                name: ROUTES.signUp,
-            },
+                name: ROUTES.signUp
+            }
         });
     }
 
@@ -113,8 +113,8 @@ export class LoginContainer extends Component<Props, IState> {
         Navigation.push(this.props.componentId, {
             component: {
                 id: ROUTES.resetPassword,
-                name: ROUTES.resetPassword,
-            },
+                name: ROUTES.resetPassword
+            }
         });
     }
 

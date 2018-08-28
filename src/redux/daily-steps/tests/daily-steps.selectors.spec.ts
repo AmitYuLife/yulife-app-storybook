@@ -1,9 +1,9 @@
+import { initialState, IReduxState } from "../../_core/reducers";
+import { initialState as dailyStepsInitialState } from "../daily-steps.reducer";
 import {
     getDailySteps,
-    getLastUpdated,
+    getLastUpdated
 } from "../daily-steps.selectors";
-import { initialState as dailyStepsInitialState } from "../daily-steps.reducer";
-import { IReduxState, initialState } from "../../_core/reducers";
 
 describe ("Daily Steps Selectors", () => {
 
@@ -14,7 +14,7 @@ describe ("Daily Steps Selectors", () => {
                 ...initialState,
                 dailySteps: {
                     ...dailyStepsInitialState,
-                    dailySteps: 12345,
+                    dailySteps: 12345
                 }
             };
 
@@ -32,7 +32,7 @@ describe ("Daily Steps Selectors", () => {
                 ...initialState,
                 dailySteps: {
                     ...dailyStepsInitialState,
-                    lastUpdated: "2018-04-08T23:00:40.000Z",
+                    lastUpdated: "2018-04-08T23:00:40.000Z"
                 }
             };
 

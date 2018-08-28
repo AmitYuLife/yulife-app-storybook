@@ -6,8 +6,11 @@ import Blurb from "../blurb";
 describe("Blurb", () => {
 
     it("should render", () => {
-
-        const actual = shallow(<Blurb label="test" />);
+        const actual = shallow(
+            <Blurb
+                label="test"
+            />
+        );
 
         expect(actual).toMatchSnapshot();
     });

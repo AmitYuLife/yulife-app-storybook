@@ -1,9 +1,9 @@
 import * as React from "react";
-import { View, Image } from "react-native";
+import { Image, View } from "react-native";
+import { GetRewards_getRewards_uiSettings } from "../../../../graphql/_core/schema";
+import { getCloudinaryUrl } from "../../../../services/cloudinary/index";
 import { Text } from "../../../atoms";
 import styles from "./locked-overlay.styles";
-import { getCloudinaryUrl } from "../../../../services/cloudinary/index";
-import { GetRewards_getRewards_uiSettings } from "../../../../graphql/_core/schema";
 
 interface IProps {
     code: string;
@@ -18,18 +18,18 @@ const LockedOverlay: React.SFC<IProps> = ({ code, settings }) => (
                 resizeMode="contain"
                 style={{
                     height: (settings && settings.logoHeight) || 30,
-                    width: (settings && settings.logoWidth) || 100,
+                    width: (settings && settings.logoWidth) || 100
                 }}
                 source={getCloudinaryUrl({
-                    url: `reward/logo/${code}`,
                     transformation: [
                         {
-                            effect: "grayscale",
+                            effect: "grayscale"
                         },
                         {
-                            effect: "replace_color:white",
-                        },
+                            effect: "replace_color:white"
+                        }
                     ],
+                    url: `reward/logo/${code}`
                 })}
             />
             <Text bold={true} style={styles.voucherText}>

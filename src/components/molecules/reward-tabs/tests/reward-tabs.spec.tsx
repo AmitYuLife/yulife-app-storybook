@@ -1,21 +1,34 @@
-import "react-native";
-import * as React from "react";
-import RewardTabs from "../reward-tabs";
 import { shallow } from "enzyme";
+import * as React from "react";
+import "react-native";
+import RewardTabs from "../reward-tabs";
 
-const fillers = {
-    onLeftTabPress: (): null => null,
-    onRightTabPress: (): null => null,
+const defaultProps = {
+    activeTabIndex: 0,
+    onLeftTabPress: jest.fn(),
+    onRightTabPress: jest.fn()
 };
 
 describe("RewardTabs", () => {
+
     it("should match snapshot when left tab is active", () => {
-        const actual = shallow(<RewardTabs activeTabIndex={0} {...fillers} />);
+        const actual = shallow(
+            <RewardTabs
+                {...defaultProps}
+            />
+        );
+
         expect(actual).toMatchSnapshot();
     });
 
     it("should match snapshot when right tab is active", () => {
-        const actual = shallow(<RewardTabs activeTabIndex={0} {...fillers} />);
+        const actual = shallow(
+            <RewardTabs
+                {...defaultProps}
+                activeTabIndex={1}
+            />
+        );
+
         expect(actual).toMatchSnapshot();
     });
 });

@@ -1,9 +1,9 @@
 import * as React from "react";
-import { View, ScrollView, SafeAreaView } from "react-native";
-import { Pad } from "../../../../atoms";
-import { RewardsListItem, RewardItemContent, TopBar, RewardTabs } from "../../../../molecules";
-import styles from "./wegift-details.screen.styles";
+import { SafeAreaView, ScrollView, View } from "react-native";
 import { GetRewards_getRewards_uiSettings } from "../../../../../graphql/_core/schema";
+import { Pad } from "../../../../atoms";
+import { RewardItemContent, RewardsListItem, RewardTabs, TopBar } from "../../../../molecules";
+import styles from "./wegift-details.screen.styles";
 
 interface IProps {
     uiSettings: GetRewards_getRewards_uiSettings;
@@ -38,7 +38,7 @@ const WegiftRewardDetails: React.SFC<IProps> = ({
     onPressTopBar,
     coins,
     onLeftTabPress,
-    onRightTabPress,
+    onRightTabPress
 }) => (
     <SafeAreaView style={styles.wrapper}>
         <View>

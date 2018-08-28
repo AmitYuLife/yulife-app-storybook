@@ -7,7 +7,7 @@ import {
     ChallengeTile,
     NavBar,
     Streak,
-    TopBar,
+    TopBar
 } from ".";
 import CenterView from "../../../storybook/stories/CenterView";
 
@@ -33,7 +33,7 @@ storiesOf("Molecules", module)
                     max: 35000,
                     min: 0,
                     range: true,
-                    step: 1,
+                    step: 1
                 }, "TopBar")}
             />
         </CenterView>
@@ -45,7 +45,7 @@ storiesOf("Molecules", module)
                 max: 4,
                 min: 0,
                 range: true,
-                step: 1,
+                step: 1
             })}
             maxStreak={4}
             isFinished={boolean("Is Finished?", false)}
@@ -70,25 +70,25 @@ storiesOf("Molecules", module)
                         challengeType: "brisk walk",
                         duration: "10",
                         image: ChallengeTile.Images.SQUIRREL,
-                        reward: "0-3",
+                        reward: "0-3"
                     },
                     {
                         challengeType: "long walk",
                         duration: "30",
                         image: ChallengeTile.Images.OSTRICH,
-                        reward: "0-6",
+                        reward: "0-6"
                     },
                     {
                         challengeType: "short stroll",
                         duration: "5",
                         image: ChallengeTile.Images.ELEPHANT,
-                        reward: "0-1",
+                        reward: "0-1"
                     },
                     {
                         challengeType: "meditation",
                         duration: "3-10",
                         image: ChallengeTile.Images.BIRD,
-                        reward: "0-3",
+                        reward: "0-3"
                     }
                 ], "Challenges")}
             />

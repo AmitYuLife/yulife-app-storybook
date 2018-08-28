@@ -17,7 +17,7 @@ const defaultProps = {
     onCoinPress: jest.fn(),
     onCtaPress: jest.fn(),
     onStreakPress: jest.fn(),
-    steps: 0,
+    steps: 0
 };
 
 describe("DailyStepsScreen", () => {

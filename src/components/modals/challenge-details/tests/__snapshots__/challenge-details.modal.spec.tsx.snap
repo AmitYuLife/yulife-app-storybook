@@ -14,8 +14,8 @@ ShallowWrapper {
         },
       ]
     }
-    onPressClose={[Function]}
-    onPressCta={[Function]}
+    onPressClose={[MockFunction]}
+    onPressCta={[MockFunction]}
     onPressSetUp={[MockFunction]}
     unit="steps"
   />,
@@ -33,7 +33,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Close
-          onPress={[Function]}
+          onPress={[MockFunction]}
         />,
         <Image
           source={
@@ -82,7 +82,7 @@ ShallowWrapper {
         </Component>,
         <Button
           label="take challenge"
-          onPress={[Function]}
+          onPress={[MockFunction]}
           type="Primary"
           wrapperStyle={
             Object {
@@ -113,7 +113,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         "ref": null,
         "rendered": null,
@@ -216,7 +216,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "label": "take challenge",
-          "onPress": [Function],
+          "onPress": [MockFunction],
           "type": "Primary",
           "wrapperStyle": Object {
             "marginTop": -8,
@@ -253,7 +253,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Close
-            onPress={[Function]}
+            onPress={[MockFunction]}
           />,
           <Image
             source={
@@ -302,7 +302,7 @@ ShallowWrapper {
           </Component>,
           <Button
             label="take challenge"
-            onPress={[Function]}
+            onPress={[MockFunction]}
             type="Primary"
             wrapperStyle={
               Object {
@@ -333,7 +333,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "onPress": [Function],
+            "onPress": [MockFunction],
           },
           "ref": null,
           "rendered": null,
@@ -436,7 +436,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "label": "take challenge",
-            "onPress": [Function],
+            "onPress": [MockFunction],
             "type": "Primary",
             "wrapperStyle": Object {
               "marginTop": -8,
@@ -502,8 +502,8 @@ ShallowWrapper {
         },
       ]
     }
-    onPressClose={[Function]}
-    onPressCta={[Function]}
+    onPressClose={[MockFunction]}
+    onPressCta={[MockFunction]}
     unit="steps"
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -520,7 +520,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Close
-          onPress={[Function]}
+          onPress={[MockFunction]}
         />,
         <Image
           source={
@@ -569,7 +569,7 @@ ShallowWrapper {
         </Component>,
         <Button
           label="take challenge"
-          onPress={[Function]}
+          onPress={[MockFunction]}
           type="Primary"
           wrapperStyle={
             Object {
@@ -601,7 +601,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         "ref": null,
         "rendered": null,
@@ -704,7 +704,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "label": "take challenge",
-          "onPress": [Function],
+          "onPress": [MockFunction],
           "type": "Primary",
           "wrapperStyle": Object {
             "marginTop": -8,
@@ -741,7 +741,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Close
-            onPress={[Function]}
+            onPress={[MockFunction]}
           />,
           <Image
             source={
@@ -790,7 +790,7 @@ ShallowWrapper {
           </Component>,
           <Button
             label="take challenge"
-            onPress={[Function]}
+            onPress={[MockFunction]}
             type="Primary"
             wrapperStyle={
               Object {
@@ -822,7 +822,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "onPress": [Function],
+            "onPress": [MockFunction],
           },
           "ref": null,
           "rendered": null,
@@ -925,7 +925,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "label": "take challenge",
-            "onPress": [Function],
+            "onPress": [MockFunction],
             "type": "Primary",
             "wrapperStyle": Object {
               "marginTop": -8,

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { PureComponent } from "react";
-import { TiltDown, TiltUp, TiltNeutral } from "./giraffe/giraffe-states";
+import { TiltDown, TiltNeutral, TiltUp } from "./giraffe/giraffe-states";
 
 interface IState {
     animationStates: React.StatelessComponent[];
@@ -10,8 +10,8 @@ interface IState {
 class Giraffe extends PureComponent<{}, IState> {
 
     public state: IState = {
-        animationStates: [TiltUp, TiltDown, TiltNeutral],
         animationStateIndex: 0,
+        animationStates: [TiltUp, TiltDown, TiltNeutral]
     };
 
     private interval: NodeJS.Timer;

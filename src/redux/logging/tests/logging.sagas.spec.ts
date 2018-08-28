@@ -1,6 +1,6 @@
 import { call } from "redux-saga/effects";
-import { logDailyStepsCoinClickedSaga } from "../logging.sagas";
 import Logger from "../../../services/logging/logger";
+import { logDailyStepsCoinClickedSaga } from "../logging.sagas";
 
 describe("Logging Sagas", () => {
 

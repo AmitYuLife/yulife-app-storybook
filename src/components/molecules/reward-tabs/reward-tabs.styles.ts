@@ -1,27 +1,27 @@
 import { StyleSheet, ViewStyle } from "react-native";
-import { Style, Colours } from "../../../styles";
+import { Colours, Style } from "../../../styles";
 
 export default StyleSheet.create({
-    wrapper: {
-        justifyContent: "space-between",
-        alignItems: "center",
-        width: Style.SCALE_UP_AND_DOWN(345),
-        flexDirection: "row",
-    } as ViewStyle,
-    dividerWrapper: {
-        paddingBottom: Style.SCALE_UP_AND_DOWN(16),
+    bottomBorder: {
+        borderColor: Colours.rewardsTabs.inactiveTransparent,
+        borderWidth: StyleSheet.hairlineWidth,
+        bottom: 0,
+        position: "absolute",
+        width: "100%",
+        zIndex: -1
     } as ViewStyle,
     divider: {
-        height: Style.SCALE_UP_AND_DOWN(12),
-        borderLeftWidth: 1,
         borderColor: Colours.rewardsTabs.divider,
+        borderLeftWidth: 1,
+        height: Style.SCALE_UP_AND_DOWN(12)
     } as ViewStyle,
-    bottomBorder: {
-        position: "absolute",
-        borderWidth: StyleSheet.hairlineWidth,
-        borderColor: Colours.rewardsTabs.inactiveTransparent,
-        bottom: 0,
-        width: "100%",
-        zIndex: -1,
+    dividerWrapper: {
+        paddingBottom: Style.SCALE_UP_AND_DOWN(16)
     } as ViewStyle,
+    wrapper: {
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: Style.SCALE_UP_AND_DOWN(345)
+    } as ViewStyle
 });

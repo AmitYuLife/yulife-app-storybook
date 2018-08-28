@@ -6,14 +6,14 @@ import CentredScreen from "../centred-screen";
 describe("CentredScreen", () => {
 
     it("should render without any props", () => {
-
-        const actual = shallow(<CentredScreen />);
+        const actual = shallow(
+            <CentredScreen />
+        );
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render with a forest footer image", () => {
-
         const actual = shallow(
             <CentredScreen
                 footerImage={
@@ -26,12 +26,9 @@ describe("CentredScreen", () => {
     });
 
     it("should render with a gray forest footer image", () => {
-
         const actual = shallow(
             <CentredScreen
-                footerImage={
-                    CentredScreen.FooterImages.GRAY_FOREST
-                }
+                footerImage={CentredScreen.FooterImages.GRAY_FOREST}
             />
         );
 
@@ -39,12 +36,9 @@ describe("CentredScreen", () => {
     });
 
     it("should render with a large forest footer image", () => {
-
         const actual = shallow(
             <CentredScreen
-                footerImage={
-                    CentredScreen.FooterImages.LARGE_FOREST
-                }
+                footerImage={CentredScreen.FooterImages.LARGE_FOREST}
             />
         );
 
@@ -52,12 +46,9 @@ describe("CentredScreen", () => {
     });
 
     it("should render with a mountain footer image", () => {
-
         const actual = shallow(
             <CentredScreen
-                footerImage={
-                    CentredScreen.FooterImages.MOUNTAINS
-                }
+                footerImage={CentredScreen.FooterImages.MOUNTAINS}
             />
         );
 

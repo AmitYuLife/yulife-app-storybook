@@ -1,5 +1,5 @@
-import { eventChannel } from "redux-saga";
 import Pedometer from "react-native-dual-pedometer";
+import { eventChannel } from "redux-saga";
 
 export function dailyStepsChannel(startTime: string) {
     return eventChannel((emitter) => {

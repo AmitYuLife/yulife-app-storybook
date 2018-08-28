@@ -1,7 +1,7 @@
-import "react-native";
-import * as React from "react";
-import YuCoin from "../yu-coin";
 import { shallow } from "enzyme";
+import * as React from "react";
+import "react-native";
+import YuCoin from "../yu-coin";
 
 describe("YuCoin", () => {
 

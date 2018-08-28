@@ -1,10 +1,10 @@
 import * as React from "react";
 import { SFC } from "react";
 import { View } from "react-native";
-import { Text, Button } from "../../atoms";
+import { Button, Text } from "../../atoms";
 import { Instruction } from "../../molecules";
-import styles from "./reward-item-content.styles";
 import LinkGroup from "../link-group/link-group";
+import styles from "./reward-item-content.styles";
 
 interface IProps {
     description?: string;
@@ -29,7 +29,7 @@ const RewardItemContent: SFC<IProps> = ({
     labelCtaSecondary,
     labelCtaTertiary,
     onPressTerms,
-    onPressPolicy,
+    onPressPolicy
 }) => (
     <View style={styles.wrapper}>
         {!description ? null : (
@@ -77,12 +77,12 @@ const RewardItemContent: SFC<IProps> = ({
                 data={[
                     {
                         label: "T&Cs",
-                        onPress: onPressTerms,
+                        onPress: onPressTerms
                     },
                     {
                         label: "Reward policy",
-                        onPress: onPressPolicy,
-                    },
+                        onPress: onPressPolicy
+                    }
                 ]}
             />
         ) : (

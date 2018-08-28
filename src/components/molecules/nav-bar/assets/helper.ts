@@ -1,5 +1,5 @@
-import NavBar from "../nav-bar";
 import { Colours } from "../../../../styles";
+import NavBar from "../nav-bar";
 
 interface IGetIconFill {
     isActive: boolean;
@@ -10,7 +10,7 @@ interface IGetIconFill {
 export const getIconFill = ({
     isActive,
     isPressed,
-    colour,
+    colour
 }: IGetIconFill) => {
     if (isActive) {
         if (colour === NavBar.Colours.LIGHT) {

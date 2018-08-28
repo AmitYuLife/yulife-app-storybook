@@ -1,9 +1,9 @@
 import * as React from "react";
 import { SFC } from "react";
 import { Button, CentredScreen, Pad } from "../../../atoms";
+import FitKitAvailable from "./fitkit-available";
 import data from "./fitkit-connect.screen.data";
 import FitKitUnavailable from "./fitkit-unavailable";
-import FitKitAvailable from "./fitkit-available";
 
 interface IProps {
     connecting: boolean;
@@ -18,7 +18,7 @@ const FitKitConnectScreen: SFC<IProps> = ({
     fitKitAvailable,
     onConnectPress,
     onPrivacyPolicyPress,
-    onSkipPress,
+    onSkipPress
 }) => (
     <CentredScreen
         footerImage={CentredScreen.FooterImages.FOREST}

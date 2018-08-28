@@ -4,11 +4,11 @@ import { TouchableOpacity } from "react-native";
 import { CentredScreen, Pad } from "../../../atoms";
 import { Streak } from "../../../molecules";
 import YuCoin from "./assets/yu-coin";
-import DailyStepsOnline, { IProps as IDailyStepsOnlineProps } from "./daily-steps-online";
-import DailyStepsOffline, { IProps as IDailyStepsOfflineProps } from "./daily-steps-offline";
 import DailyStepsFitKitAuthorise from "./daily-steps-fitkit-authorise";
-import DailyStepsLoading from "./daily-steps-loading";
 import DailyStepsFitKitUnavailable from "./daily-steps-fitkit-unavailable";
+import DailyStepsLoading from "./daily-steps-loading";
+import DailyStepsOffline, { IProps as IDailyStepsOfflineProps } from "./daily-steps-offline";
+import DailyStepsOnline, { IProps as IDailyStepsOnlineProps } from "./daily-steps-online";
 
 interface IProps {
     currentStreak?: number;

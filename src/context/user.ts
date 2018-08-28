@@ -11,5 +11,5 @@ export const EmptyUser: IUserState = {
     id: null,
     lastName: null,
     membershipType: null,
-    smokerStatus: null,
+    smokerStatus: null
 };

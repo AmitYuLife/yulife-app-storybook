@@ -1,7 +1,7 @@
 import * as React from "react";
 import { PureComponent } from "react";
-import { SignUpRewardScreen } from "../../../screens";
 import { setAuthenticatedRoot } from "../../../../navigation/root";
+import { SignUpRewardScreen } from "../../../screens";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {

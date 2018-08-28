@@ -3,9 +3,9 @@ import { Style } from "../../../styles";
 
 export default StyleSheet.create({
     centredScreen: {
-        justifyContent: "center",
+        justifyContent: "center"
     } as ViewStyle,
     dateWrapper: {
-        height: Style.SCALE_UP_AND_DOWN(25),
-    } as ViewStyle,
+        height: Style.SCALE_UP_AND_DOWN(25)
+    } as ViewStyle
 });

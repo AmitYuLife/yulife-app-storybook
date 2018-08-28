@@ -1,10 +1,10 @@
+import moment from "moment";
 import RNFitKit, {
     // AggregateQueryResult,
-    SampleQueryResult,
+    FitKitTypes,
     // FitKitAuthOptions,
-    FitKitTypes
+    SampleQueryResult
 } from "react-native-fitkit";
-import moment from "moment";
 import { ActionPayload } from "../../graphql/_core/schema";
 
 // const transformQueryResultToPayload = (item: AggregateQueryResult): ActionPayload => ({
@@ -14,8 +14,8 @@ import { ActionPayload } from "../../graphql/_core/schema";
 // });
 
 const transformSampleResultToPayload = (item: SampleQueryResult): ActionPayload => ({
-    startTime: moment(item.startTime).unix(),
     endTime: moment(item.endTime).unix(),
+    startTime: moment(item.startTime).unix()
     // value: Math.round(item.endTime - item.startTime),
 });
 
@@ -99,16 +99,16 @@ export const queryMindfulSessions = async (startTime: string): Promise<ActionPay
     try {
         const authorised = await RNFitKit.authorise({
             read: [
-                FitKitTypes.Types.Mindfulness,
-            ],
+                FitKitTypes.Types.Mindfulness
+            ]
         });
 
         if (authorised) {
             const endTime = moment().endOf("day").toISOString();
             const results = await RNFitKit.sampleQuery({
-                startTime,
                 endTime,
                 sampleType: FitKitTypes.Types.Mindfulness,
+                startTime
             });
 
             return results.map(transformSampleResultToPayload);

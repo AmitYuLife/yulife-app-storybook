@@ -33,7 +33,7 @@ class DailyStepsLoading extends PureComponent<{}, IState> {
 
     public state: IState = {
         animationStateIndex: 0,
-        animationStates: [First, Second, Third, Third, Third, Third],
+        animationStates: [First, Second, Third, Third, Third, Third]
     };
 
     private interval: NodeJS.Timer;

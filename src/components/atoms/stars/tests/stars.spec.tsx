@@ -6,7 +6,6 @@ import Stars from "../stars";
 describe("Stars component", () => {
 
     it("should render all stars un-highlighted", () => {
-
         const actual = shallow(
             <Stars />
         );
@@ -15,7 +14,6 @@ describe("Stars component", () => {
     });
 
     it("should render all stars highlighted", () => {
-
         const actual = shallow(
             <Stars
                 isLeftHighlighted={true}
@@ -28,7 +26,6 @@ describe("Stars component", () => {
     });
 
     it("should render with some stars highlighted", () => {
-
         const actual = shallow(
             <Stars
                 isLeftHighlighted={false}

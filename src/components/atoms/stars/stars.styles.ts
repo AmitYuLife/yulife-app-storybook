@@ -3,7 +3,7 @@ import { Style } from "../../../styles";
 
 export default StyleSheet.create({
     starMidWrapper: {
-        marginTop: Style.SCALE_UP_AND_DOWN(-4),
+        marginTop: Style.SCALE_UP_AND_DOWN(-4)
     } as ViewStyle,
     wrapper: {
         alignItems: "center",
@@ -11,6 +11,6 @@ export default StyleSheet.create({
         height: Style.SCALE_UP_AND_DOWN(60),
         justifyContent: "space-around",
         marginBottom: Style.SCALE_UP_AND_DOWN(16),
-        width: Style.SCALE_UP_AND_DOWN(180),
-    } as ViewStyle,
+        width: Style.SCALE_UP_AND_DOWN(180)
+    } as ViewStyle
 });

@@ -1,4 +1,4 @@
-import { dailyStepsCoinClicked, DAILY_STEPS_COIN_CLICKED } from "../logging.actions";
+import { DAILY_STEPS_COIN_CLICKED, dailyStepsCoinClicked } from "../logging.actions";
 
 describe("Logging Actions", () => {
 

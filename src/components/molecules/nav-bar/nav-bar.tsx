@@ -4,7 +4,7 @@ import { PureComponent } from "react";
 import {
     StyleSheet,
     TouchableWithoutFeedback,
-    View,
+    View
 } from "react-native";
 import Svg from "react-native-svg";
 import { Text } from "../../atoms";
@@ -13,13 +13,13 @@ import {
     Lines,
     Notification,
     Scroll,
-    Treasure,
+    Treasure
 } from "./assets";
-import styles, {
-    getLabelAdjustment,
-} from "./nav-bar.styles";
-import { getTextStyle } from "./nav-bar.helpers";
 import { IconProps } from "./assets/icon.model";
+import { getTextStyle } from "./nav-bar.helpers";
+import styles, {
+    getLabelAdjustment
+} from "./nav-bar.styles";
 
 export interface ILabel {
     name: string;
@@ -30,7 +30,7 @@ export interface ILabel {
 export enum COLOURS {
     DARK = "dark",
     DARKER = "darker",
-    LIGHT = "light",
+    LIGHT = "light"
 }
 
 export type Colours = "dark" | "darker" | "light";
@@ -54,25 +54,25 @@ class NavBar extends PureComponent<IProps, IState> {
     public static Colours = COLOURS;
 
     public static defaultProps = {
+        colour: COLOURS.LIGHT,
         labels: [
             {
                 name: "yucoin",
-                onPress: (): null => null,
+                onPress: (): null => null
             },
             {
                 name: "challenges",
-                onPress: (): null => null,
+                onPress: (): null => null
             },
             {
                 name: "rewards",
-                onPress: (): null => null,
-            },
-        ],
-        colour: COLOURS.LIGHT,
+                onPress: (): null => null
+            }
+        ]
     };
 
     public state: IState = {
-        pressed: null,
+        pressed: null
     };
 
     public render() {
@@ -82,7 +82,7 @@ class NavBar extends PureComponent<IProps, IState> {
             hasDismiss,
             activeIndex,
             hasNotification,
-            labels,
+            labels
         } = this.props;
         const { pressed } = this.state;
         const icons: Array<StatelessComponent<IconProps>> = [Giraffe, Scroll, Treasure];
@@ -90,10 +90,10 @@ class NavBar extends PureComponent<IProps, IState> {
         return (
             <View
                 style={{
-                    height: (85 * (!areIconsHidden ? 1 : 0.55)),
                     alignItems: "center",
+                    height: (85 * (!areIconsHidden ? 1 : 0.55)),
                     justifyContent: "flex-start",
-                    width: 280,
+                    width: 280
                 }}
             >
                 <Svg
@@ -136,10 +136,10 @@ class NavBar extends PureComponent<IProps, IState> {
                                             style={StyleSheet.flatten([
                                                 styles.text,
                                                 getTextStyle({
-                                                    isActive: activeIndex === index,
-                                                    isPressed: pressed === index,
                                                     colour,
-                                                }),
+                                                    isActive: activeIndex === index,
+                                                    isPressed: pressed === index
+                                                })
                                             ])}
                                         >
                                             {name}

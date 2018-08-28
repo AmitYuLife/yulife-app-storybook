@@ -1,8 +1,8 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
-import { WelcomeScreen } from "../../screens";
 import { ROUTES } from "../../../navigation/routes";
+import { WelcomeScreen } from "../../screens";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -18,8 +18,8 @@ class WelcomeContainer extends PureComponent<IProps> {
         Navigation.push(this.props.componentId, {
             component: {
                 id: ROUTES.signUp,
-                name: ROUTES.signUp,
-            },
+                name: ROUTES.signUp
+            }
         });
     }
 
@@ -27,8 +27,8 @@ class WelcomeContainer extends PureComponent<IProps> {
         Navigation.push(this.props.componentId, {
             component: {
                 id: ROUTES.login,
-                name: ROUTES.login,
-            },
+                name: ROUTES.login
+            }
         });
     }
 }

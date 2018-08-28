@@ -6,24 +6,24 @@ import MenuScreen from "../menu.screen";
 const defaultProps = {
     links: [
         {
-            onPress: jest.fn(),
+            condition: true,
             label: "debug",
-            condition: true,
+            onPress: jest.fn()
         },
         {
-            onPress: jest.fn(),
+            condition: true,
             label: "activity history",
-            condition: true,
+            onPress: jest.fn()
         },
         {
-            onPress: jest.fn(),
+            condition: true,
             label: "leaderboard",
-            condition: true,
+            onPress: jest.fn()
         },
         {
-            onPress: jest.fn(),
-            label: "member zone",
             condition: true,
+            label: "member zone",
+            onPress: jest.fn()
         }],
         onPressClose: jest.fn()
 };

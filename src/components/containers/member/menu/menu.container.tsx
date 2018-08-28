@@ -2,8 +2,8 @@ import * as React from "react";
 import { PureComponent } from "react";
 import Intercom from "react-native-intercom";
 import { Navigation } from "react-native-navigation";
-import { MenuScreen } from "../../../screens";
 import { ROUTES } from "../../../../navigation/routes";
+import { MenuScreen } from "../../../screens";
 import assets, { LINKS } from "./assets";
 
 export type Link = "debug" | "leaderboard" | "activity" | "chat" | "logout" | "member" | "play";
@@ -15,46 +15,46 @@ export default class MenuContainer extends PureComponent {
                 onPressClose={this.handleClose}
                 links={[
                     {
-                        onPress: this.handlePressLink(LINKS.DEBUG),
+                        condition: true,
                         label: "debug",
-                        condition: true,
+                        onPress: this.handlePressLink(LINKS.DEBUG)
                     },
                     {
-                        source: assets[LINKS.ACTIVITY],
-                        onPress: this.handlePressLink(LINKS.ACTIVITY),
+                        condition: true,
                         label: "activity history",
-                        condition: true,
+                        onPress: this.handlePressLink(LINKS.ACTIVITY),
+                        source: assets[LINKS.ACTIVITY]
                     },
                     {
-                        source: assets[LINKS.MEMBER],
-                        onPress: this.handlePressLink(LINKS.LEADERBOARD),
+                        condition: true,
                         label: "leaderboard",
-                        condition: true,
+                        onPress: this.handlePressLink(LINKS.LEADERBOARD),
+                        source: assets[LINKS.MEMBER]
                     },
                     {
-                        source: assets[LINKS.MEMBER],
-                        onPress: this.handlePressLink(LINKS.MEMBER),
+                        condition: true,
                         label: "member zone",
-                        condition: true,
+                        onPress: this.handlePressLink(LINKS.MEMBER),
+                        source: assets[LINKS.MEMBER]
                     },
                     {
-                        source: assets[LINKS.PLAY],
-                        onPress: this.handlePressLink(LINKS.PLAY),
-                        label: "play intro",
                         condition: false,
+                        label: "play intro",
+                        onPress: this.handlePressLink(LINKS.PLAY),
+                        source: assets[LINKS.PLAY]
                     },
                     {
-                        source: assets[LINKS.CHAT],
-                        onPress: this.handlePressLink(LINKS.CHAT),
+                        condition: true,
                         label: "chat",
-                        condition: true,
+                        onPress: this.handlePressLink(LINKS.CHAT),
+                        source: assets[LINKS.CHAT]
                     },
                     {
-                        source: assets[LINKS.LOGOUT],
-                        onPress: this.handlePressLink(LINKS.LOGOUT),
-                        label: "log out",
                         condition: true,
-                    },
+                        label: "log out",
+                        onPress: this.handlePressLink(LINKS.LOGOUT),
+                        source: assets[LINKS.LOGOUT]
+                    }
                 ]}
             />
         );
@@ -86,9 +86,9 @@ export default class MenuContainer extends PureComponent {
         Navigation.mergeOptions(ROUTES.menu, {
             sideMenu: {
                 left: {
-                    visible: false,
-                },
-            },
+                    visible: false
+                }
+            }
         });
     }
 }

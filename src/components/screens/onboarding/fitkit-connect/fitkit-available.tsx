@@ -1,8 +1,8 @@
 import * as React from "react";
 import { SFC } from "react";
-import { Heading, Pad, Blurb, Button } from "../../../atoms";
-import styles from "./fitkit-connect.screen.styles";
+import { Blurb, Button, Heading, Pad } from "../../../atoms";
 import data from "./fitkit-connect.screen.data";
+import styles from "./fitkit-connect.screen.styles";
 
 interface IProps {
     connecting: boolean;

@@ -3,12 +3,9 @@ import * as React from "react";
 import "react-native";
 import FitKitConnectScreen from "../fitkit-connect.screen";
 
-// TODO add fitkit states
-
 describe("FitKitConnectScreen", () => {
 
     it("should render when not connecting", () => {
-
         const actual = shallow(
             <FitKitConnectScreen
                 connecting={false}
@@ -23,7 +20,6 @@ describe("FitKitConnectScreen", () => {
     });
 
     it("should render when connecting", () => {
-
         const actual = shallow(
             <FitKitConnectScreen
                 connecting={true}
@@ -38,7 +34,6 @@ describe("FitKitConnectScreen", () => {
     });
 
     it("should render when FitKit is unavailable", () => {
-
         const actual = shallow(
             <FitKitConnectScreen
                 connecting={true}

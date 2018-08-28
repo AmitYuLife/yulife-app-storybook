@@ -6,7 +6,6 @@ import SignUpRewardScreen from "../signup-reward.screen";
 describe("SignUpRewardScreen", () => {
 
     it("should render with required props", () => {
-
         const actual = shallow(
             <SignUpRewardScreen
                 onCollectPress={jest.fn()}

@@ -1,7 +1,7 @@
 import * as React from "react";
-import { TouchableOpacity, View, Image } from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 import { Text } from "../../atoms";
-import { Coins, Logo, Menu, Back } from "./assets";
+import { Back, Coins, Logo, Menu } from "./assets";
 import styles from "./top-bar.styles";
 
 interface IProps {
@@ -14,7 +14,7 @@ interface IProps {
 
 export enum LEFT_ICON_TYPES {
     MENU = "Menu",
-    BACK = "Back",
+    BACK = "Back"
 }
 
 type LeftIconTypes = "Menu" | "Back";

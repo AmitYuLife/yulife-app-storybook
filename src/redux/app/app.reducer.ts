@@ -2,7 +2,7 @@ import { AppState } from "react-native";
 import { SyncAction } from "../_core/types";
 import {
     UPDATE_APP_STATE,
-    UPDATE_OFFLINE_STATE,
+    UPDATE_OFFLINE_STATE
 } from "./app.actions";
 
 export interface IAppStore {
@@ -12,7 +12,7 @@ export interface IAppStore {
 
 export const initialState: IAppStore = {
     appState: AppState.currentState,
-    isOffline: false,
+    isOffline: false
 };
 
 const appReducer = (state: IAppStore = initialState, action: SyncAction) => {
@@ -34,10 +34,10 @@ export default appReducer;
 // cases
 const updateAppState = (state: IAppStore, appState: string): IAppStore => ({
     ...state,
-    appState,
+    appState
 });
 
 const updateOfflineState = (state: IAppStore, isOffline: boolean): IAppStore => ({
     ...state,
-    isOffline,
+    isOffline
 });

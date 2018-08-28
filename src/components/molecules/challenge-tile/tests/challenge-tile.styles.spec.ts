@@ -1,7 +1,7 @@
 import { IMAGES } from "../challenge-tile";
 import {
     getImage,
-    getImageStyle,
+    getImageStyle
 } from "../challenge-tile.styles";
 
 describe("Challenge Tile styles", () => {

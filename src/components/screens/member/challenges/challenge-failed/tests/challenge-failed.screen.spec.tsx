@@ -6,8 +6,11 @@ import ChallengeFailedScreen from "../challenge-failed.screen";
 describe("ChallengeFailedScreen", () => {
 
     it("should match snapshot", () => {
-
-        const actual = shallow(<ChallengeFailedScreen onPress={jest.fn()} />);
+        const actual = shallow(
+            <ChallengeFailedScreen
+                onPress={jest.fn()}
+            />
+        );
 
         expect(actual).toMatchSnapshot();
     });

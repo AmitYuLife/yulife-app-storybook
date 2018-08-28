@@ -1,16 +1,16 @@
 import { StyleSheet, ViewStyle } from "react-native";
 
 const styles = StyleSheet.create({
-    svgWrapper: {
-        height: 109,
-        width: 109,
-        borderRadius: 53,
-        overflow: "hidden",
-    },
     innerWrapper: {
         ...StyleSheet.absoluteFillObject,
-        justifyContent: "center",
         alignItems: "center",
+        justifyContent: "center"
+    },
+    svgWrapper: {
+        borderRadius: 53,
+        height: 109,
+        overflow: "hidden",
+        width: 109
     },
     wrapper: {
         height: 200,
@@ -19,16 +19,15 @@ const styles = StyleSheet.create({
 });
 
 export const svgSpecs = {
-    style: {
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius:
-            (106) / 2,
-        overflow: "hidden",
-    } as ViewStyle,
     height: 109,
-    width: 106,
+    style: {
+        alignItems: "center",
+        borderRadius: (106) / 2,
+        justifyContent: "center",
+        overflow: "hidden"
+    } as ViewStyle,
     viewBox: "0 0 212 218",
+    width: 106
 };
 
 export default styles;

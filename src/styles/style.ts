@@ -26,7 +26,7 @@ const Style = {
     PIXEL_RATIO: pixelRatio,
     SCALE_UP_AND_DOWN,
     isShortAndroid,
-    isShortToMediumAndroid,
+    isShortToMediumAndroid
 };
 
 export default Style;

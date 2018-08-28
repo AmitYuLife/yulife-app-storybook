@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "../../../../../atoms";
 import styles from "./purchased-item.styles";
 
@@ -15,7 +15,7 @@ export interface IRewardsPurchasedItemProps {
 export enum RewardStatus {
     failed = "failed",
     pending = "pending",
-    delivered = "delivered",
+    delivered = "delivered"
 }
 
 const RewardsPurchasedItem: React.SFC<IRewardsPurchasedItemProps> = ({ day, month, reward, cost, status, onPress }) => (
@@ -34,7 +34,7 @@ const RewardsPurchasedItem: React.SFC<IRewardsPurchasedItemProps> = ({ day, mont
             <Text
                 style={StyleSheet.flatten([
                     styles.statusBase,
-                    status === RewardStatus.failed ? styles.statusDeclined : styles.statusPending,
+                    status === RewardStatus.failed ? styles.statusDeclined : styles.statusPending
                 ])}
             >
                 {([RewardStatus.failed, RewardStatus.pending] as string[]).indexOf(status) === -1 ? "" : status}

@@ -1,8 +1,8 @@
 import * as React from "react";
 import { SFC } from "react";
+import { Platform } from "react-native";
 import { Text } from "../../../atoms";
 import styles from "./daily-steps.screen.styles";
-import { Platform } from "react-native";
 
 const DailyStepsFitKitUnavailable: SFC<{}> = () => (
     <>
@@ -15,7 +15,7 @@ const DailyStepsFitKitUnavailable: SFC<{}> = () => (
         <Text style={styles.lastUpdate}>
             {Platform.select({
                 android: "your device requires Google Play Services in order to use this app.",
-                ios: "your device requires Apple Healthkit in order to use this app.",
+                ios: "your device requires Apple Healthkit in order to use this app."
             })}
         </Text>
     </>

@@ -8,8 +8,8 @@ const Glow = () => (
     <View
         style={{
             ...StyleSheet.absoluteFillObject,
-            justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
+            justifyContent: "center"
         }}
     >
         <Svg

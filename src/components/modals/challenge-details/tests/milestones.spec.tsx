@@ -5,7 +5,6 @@ import Milestones from "../milestones";
 describe("Milestones", () => {
 
     it("should render with units as minutes", () => {
-
         const actual = shallow(
             <Milestones
                 milestones={[
@@ -30,7 +29,6 @@ describe("Milestones", () => {
     });
 
     it("should render with units as steps", () => {
-
         const actual = shallow(
             <Milestones
                 milestones={[

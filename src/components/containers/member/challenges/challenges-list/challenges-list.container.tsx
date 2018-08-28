@@ -2,11 +2,11 @@ import * as React from "react";
 import { PureComponent } from "react";
 import { Text } from "react-native";
 import ChallengesListQuery, { challengesListGql } from "../../../../../graphql/member/challengesList.gql";
+import { SideEffect } from "../../../../../typings";
 import { BlurProvider, Loading } from "../../../../atoms";
 import { ChallengeDetailsModal } from "../../../../modals";
 import { Images, IMAGES } from "../../../../molecules";
 import { ChallengesListScreen } from "../../../../screens";
-import { SideEffect } from "../../../../../typings";
 
 interface IChallengeDetailsMilestone {
     reward: number;
@@ -26,7 +26,7 @@ interface IHandlePressChallenge {
 const getChallengeMilestones = (milestones: any[]): IChallengeDetailsMilestone[] =>
     milestones.map((milestone) => ({
         reward: milestone.coins,
-        target: milestone.target[0],
+        target: milestone.target[0]
     }));
 
 export const getChallengeImage = (challengeType: string): Images => {
@@ -58,7 +58,7 @@ const getChallengeDuration = (challenge: any): string => {
         case "meditation":
             // tslint:disable-next-line
             return `${secondsToMinutes(challenge.milestones[0].target[0])}-${secondsToMinutes(
-                challenge.milestones[2].target[0],
+                challenge.milestones[2].target[0]
             )} mins`;
 
         case "day walk":
@@ -90,7 +90,7 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
         id: "",
         milestones: [],
         reward: "",
-        unit: "",
+        unit: ""
     };
 
     public render() {
@@ -113,7 +113,7 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
                         duration,
                         // id,
                         milestones,
-                        unit,
+                        unit
                     } = this.state;
 
                     return (
@@ -129,8 +129,8 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
                                             milestones: challenge.milestones,
                                             reward: challenge.reward,
                                             showOverlay,
-                                            unit: challenge.unit,
-                                        }),
+                                            unit: challenge.unit
+                                        })
                                     }))}
                                 />
                             )}
@@ -169,7 +169,7 @@ class ChallengesListContainer extends PureComponent<IProps, IState> {
             image: getChallengeImage(template.subtype),
             milestones: getChallengeMilestones(template.milestones),
             reward: `0-${reduceMilestones(template.milestones)}`,
-            unit: template.unit,
+            unit: template.unit
         }));
     }
 

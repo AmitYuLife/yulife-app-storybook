@@ -2,7 +2,7 @@ import {
     Platform,
     StyleSheet,
     TextStyle,
-    ViewStyle,
+    ViewStyle
 } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Colours, Style } from "../../../styles";
@@ -31,7 +31,7 @@ export default StyleSheet.create({
         marginTop:
             Platform.OS === "ios"
                 ? Style.SCALE_UP_AND_DOWN(4)
-                : 0,
+                : 0
     } as TextStyle,
     wrapper: {
         alignItems: "center",
@@ -46,6 +46,6 @@ export default StyleSheet.create({
         ),
         top: Style.SCALE_UP_AND_DOWN(
             isIphoneX() ? 120 : 80
-        ),
-    } as ViewStyle,
+        )
+    } as ViewStyle
 });

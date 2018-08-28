@@ -1,7 +1,7 @@
-import "react-native";
-import * as React from "react";
-import { TiltDown, TiltNeutral, TiltUp } from "../giraffe-states";
 import { shallow } from "enzyme";
+import * as React from "react";
+import "react-native";
+import { TiltDown, TiltNeutral, TiltUp } from "../giraffe-states";
 
 describe("Giraffe States", () => {
 

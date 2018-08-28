@@ -1,7 +1,7 @@
 import {
     StyleSheet,
     TextStyle,
-    ViewStyle,
+    ViewStyle
 } from "react-native";
 import { Colours, Style } from "../../../styles";
 
@@ -11,9 +11,9 @@ export default StyleSheet.create({
         fontFamily: Style.FONT_FAMILY_PRIMARY,
         fontSize: Style.SCALE_UP_AND_DOWN(15),
         lineHeight: Style.SCALE_UP_AND_DOWN(22),
-        textAlign: "center",
+        textAlign: "center"
     } as TextStyle,
     wrapper: {
-        paddingHorizontal: Style.SCALE_UP_AND_DOWN(85),
-    } as ViewStyle,
+        paddingHorizontal: Style.SCALE_UP_AND_DOWN(85)
+    } as ViewStyle
 });

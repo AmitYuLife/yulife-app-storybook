@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SFC } from "react";
-import { G, Circle } from "react-native-svg";
+import { Circle, G } from "react-native-svg";
 import { ISvgComponentProps } from "./model";
 
 const Circles: SFC<ISvgComponentProps> = ({ isGrayScale }) => (

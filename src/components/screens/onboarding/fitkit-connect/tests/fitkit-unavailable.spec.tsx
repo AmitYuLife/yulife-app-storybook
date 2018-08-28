@@ -6,7 +6,6 @@ import FitKitUnavailable from "../fitkit-unavailable";
 describe("FitKitUnavailable", () => {
 
     it("should render default values", () => {
-
         const actual = shallow(
             <FitKitUnavailable />
         );

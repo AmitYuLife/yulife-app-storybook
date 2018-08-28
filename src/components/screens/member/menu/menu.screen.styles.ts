@@ -1,48 +1,48 @@
-import { StyleSheet, ViewStyle, ImageStyle, TextStyle } from "react-native";
-import { Style } from "../../../../styles";
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
+import { Style } from "../../../../styles";
 
 export default StyleSheet.create({
-    wrapper: {
-        flex: 1,
-        paddingLeft: Style.SCALE_UP_AND_DOWN(105),
-        paddingTop: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 150 : 110),
-        backgroundColor: "white",
-    } as ViewStyle,
-    closeWrapper: {
-        position: "absolute",
-        top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 30 : 10),
-        right: 0,
-        height: Style.SCALE_UP_AND_DOWN(56),
-        width: Style.SCALE_UP_AND_DOWN(46),
-        justifyContent: "center",
-        alignItems: "center",
-    } as ViewStyle,
     close: {
         height: Style.SCALE_UP_AND_DOWN(13),
-        width: Style.SCALE_UP_AND_DOWN(13),
+        width: Style.SCALE_UP_AND_DOWN(13)
     } as ImageStyle,
-    logoWrapper: {
-        width: Style.SCALE_UP_AND_DOWN(56),
-        marginBottom: Style.SCALE_UP_AND_DOWN(34),
+    closeWrapper: {
+        alignItems: "center",
+        height: Style.SCALE_UP_AND_DOWN(56),
+        justifyContent: "center",
+        position: "absolute",
+        right: 0,
+        top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 30 : 10),
+        width: Style.SCALE_UP_AND_DOWN(46)
+    } as ViewStyle,
+    iconWrapper: {
+        width: Style.SCALE_UP_AND_DOWN(56)
+    } as ViewStyle,
+    itemWrapper: {
+        alignItems: "center",
+        flexDirection: "row",
+        height: Style.SCALE_UP_AND_DOWN(62)
     } as ViewStyle,
     logo: {} as ImageStyle,
-    itemWrapper: {
-        flexDirection: "row",
-        alignItems: "center",
-        height: Style.SCALE_UP_AND_DOWN(62),
-    } as ViewStyle,
-    textWrapper: {
-        paddingRight: Style.SCALE_UP_AND_DOWN(8),
+    logoWrapper: {
+        marginBottom: Style.SCALE_UP_AND_DOWN(34),
+        width: Style.SCALE_UP_AND_DOWN(56)
     } as ViewStyle,
     text: {
-        fontSize: Style.SCALE_UP_AND_DOWN(18),
-        color: "rgb(51,51,51)",
-        width: "100%",
-        borderWidth: 1,
         borderColor: "transparent",
+        borderWidth: 1,
+        color: "rgb(51,51,51)",
+        fontSize: Style.SCALE_UP_AND_DOWN(18),
+        width: "100%"
     } as TextStyle,
-    iconWrapper: {
-        width: Style.SCALE_UP_AND_DOWN(56),
+    textWrapper: {
+        paddingRight: Style.SCALE_UP_AND_DOWN(8)
     } as ViewStyle,
+    wrapper: {
+        backgroundColor: "white",
+        flex: 1,
+        paddingLeft: Style.SCALE_UP_AND_DOWN(105),
+        paddingTop: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 150 : 110)
+    } as ViewStyle
 });

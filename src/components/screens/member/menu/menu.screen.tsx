@@ -1,9 +1,9 @@
 import * as React from "react";
 import { SFC } from "react";
-import { View, TouchableOpacity, Image, ImageRequireSource, StatusBar } from "react-native";
-import styles from "./menu.screen.styles";
+import { Image, ImageRequireSource, StatusBar, TouchableOpacity, View } from "react-native";
 import { Text } from "../../../atoms";
 import assets from "./assets";
+import styles from "./menu.screen.styles";
 
 export interface IMenuLink {
     source?: ImageRequireSource;
@@ -42,7 +42,7 @@ const MenuScreen: SFC<IProps> = ({ onPressClose, links }) => (
                                       <Text style={styles.text} bold={true}>{`${label}  `}</Text>
                                   </View>
                               </TouchableOpacity>
-                          ),
+                          )
                   )}
         </View>
     </>

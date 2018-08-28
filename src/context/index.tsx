@@ -22,8 +22,8 @@ const EmptyStore: IStore = {
         features: EmptyFeatures,
         isConnected: true,
         status: EmptyStatus,
-        user: EmptyUser,
-    },
+        user: EmptyUser
+    }
 };
 
 export const { Consumer, Provider } = React.createContext(EmptyStore);
@@ -43,7 +43,7 @@ class ContextProvider extends Component<{}, IState> {
         features: EmptyFeatures,
         isConnected: true,
         status: EmptyStatus,
-        user: EmptyUser,
+        user: EmptyUser
     };
 
     private NET_INFO_EVENT_NAME = "connectionChange";
@@ -63,7 +63,7 @@ class ContextProvider extends Component<{}, IState> {
             clearError,
             updateUser,
             state,
-            props: { children },
+            props: { children }
         } = this;
 
         const actions = {
@@ -87,7 +87,7 @@ class ContextProvider extends Component<{}, IState> {
         this.setState((state) => ({
             features: { ...state.features, ...features },
             status: { ...state.status, ...status },
-            user: { ...state.user, ...user },
+            user: { ...state.user, ...user }
         }));
     }
 

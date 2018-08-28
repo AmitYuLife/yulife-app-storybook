@@ -3,17 +3,18 @@ import * as React from "react";
 import "react-native";
 import ResetPassword from "../reset-password.screen";
 
-const filler = {
-    onCancelPress: (): null => null,
-    onSubmitPress: (): null => null,
+const defaultProps = {
+    onCancelPress: jest.fn(),
+    onSubmitPress: jest.fn()
 };
 
 describe("ResetPassword", () => {
 
     it("should render", () => {
-
         const actual = shallow(
-            <ResetPassword {...filler} />
+            <ResetPassword
+                {...defaultProps}
+            />
         );
 
         expect(actual).toMatchSnapshot();

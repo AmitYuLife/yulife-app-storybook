@@ -6,8 +6,9 @@ import Logo from "../logo";
 describe("Logo", () => {
 
     it("should render", () => {
-
-        const actual = shallow(<Logo />);
+        const actual = shallow(
+            <Logo />
+        );
 
         expect(actual).toMatchSnapshot();
     });

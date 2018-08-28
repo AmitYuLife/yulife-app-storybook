@@ -1,4 +1,4 @@
 export default {
     ctaLabel: "collect",
-    footer: "You can take a challenge again tomorrow.",
+    footer: "You can take a challenge again tomorrow."
 };

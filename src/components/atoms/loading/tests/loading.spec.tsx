@@ -6,7 +6,7 @@ describe("Loading", () => {
 
     it("should render as expected", () => {
         const actual = shallow(
-            <Loading />,
+            <Loading />
         );
 
         expect(actual).toMatchSnapshot();

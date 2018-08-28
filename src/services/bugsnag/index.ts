@@ -1,4 +1,4 @@
-import { Configuration, Client } from "bugsnag-react-native";
+import { Client, Configuration } from "bugsnag-react-native";
 import Config from "react-native-config";
 
 let client: Client; // singleton

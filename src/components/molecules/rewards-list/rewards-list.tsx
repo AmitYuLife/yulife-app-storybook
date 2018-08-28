@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FlatList } from "react-native";
-import RewardsListItem from "./rewards-list-item/rewards-list-item";
 import { GetRewards_getRewards } from "../../../graphql/_core/schema";
+import RewardsListItem from "./rewards-list-item/rewards-list-item";
 
 interface IProps {
     data: Array<Partial<GetRewards_getRewards>>;

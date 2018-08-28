@@ -13,7 +13,7 @@ const YuText: SFC<IProps> = ({ children, bold, style }) => (
         style={StyleSheet.flatten([
             styles.base,
             bold ? styles.weightBold : styles.weightNormal,
-            style,
+            style
         ])}
     >
         {children}

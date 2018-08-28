@@ -10,11 +10,11 @@ export const authoriseFitKit = (): SyncAction => ({
 });
 
 export const updateAppState = (appState: string): SyncAction => ({
-    type: UPDATE_APP_STATE,
     payload: appState,
+    type: UPDATE_APP_STATE
 });
 
 export const updateOfflineState = (isOffline: boolean): SyncAction => ({
-    type: UPDATE_OFFLINE_STATE,
     payload: isOffline,
+    type: UPDATE_OFFLINE_STATE
 });

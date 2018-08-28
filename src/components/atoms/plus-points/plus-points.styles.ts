@@ -3,7 +3,7 @@ import { Colours, Style } from "../../../styles";
 
 export default StyleSheet.create({
     plusWrapper: {
-        marginRight: Style.SCALE_UP_AND_DOWN(6),
+        marginRight: Style.SCALE_UP_AND_DOWN(6)
     } as ViewStyle,
     text: {
         color: Colours.darkHotPink,
@@ -11,7 +11,7 @@ export default StyleSheet.create({
         fontSize: Style.SCALE_UP_AND_DOWN(25),
         marginBottom: Style.SCALE_UP_AND_DOWN(
             Platform.OS === "android" ? 2 : -4
-        ),
+        )
     } as TextStyle,
     textWrapper: {
         alignItems: "center",
@@ -22,6 +22,6 @@ export default StyleSheet.create({
         position: "absolute",
         top: 0,
         width: Style.SCALE_UP_AND_DOWN(84),
-        zIndex: 2,
-    } as ViewStyle,
+        zIndex: 2
+    } as ViewStyle
 });

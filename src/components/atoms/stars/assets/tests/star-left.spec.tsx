@@ -6,7 +6,6 @@ import StarLeft from "../star-left";
 describe("StarLeft component", () => {
 
     it("should render not highlighted", () => {
-
         const actual = shallow(
             <StarLeft
                 isHighlighted={false}
@@ -17,7 +16,6 @@ describe("StarLeft component", () => {
     });
 
     it("should render highlighted", () => {
-
         const actual = shallow(
             <StarLeft
                 isHighlighted={true}

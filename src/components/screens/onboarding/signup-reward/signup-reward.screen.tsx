@@ -6,7 +6,7 @@ import {
     CentredScreen,
     CoinConfetti,
     Heading,
-    Pad,
+    Pad
 } from "../../../atoms";
 import data from "./signup-reward.screen.data";
 import styles from "./signup-reward.screen.styles";

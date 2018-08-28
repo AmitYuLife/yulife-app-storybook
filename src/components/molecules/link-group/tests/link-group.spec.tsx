@@ -6,17 +6,23 @@ import LinkGroup from "../link-group";
 const data = [
     {
         label: "Forgot password",
-        onPress: (): null => null,
+        onPress: jest.fn()
     },
     {
         label: "Sign up",
-        onPress: (): null => null,
-    },
+        onPress: jest.fn()
+    }
 ];
 
 describe("LinkGroup", () => {
+
     it("should render", () => {
-        const wrapper = shallow(<LinkGroup data={data} />);
-        expect(wrapper).toMatchSnapshot();
+        const actual = shallow(
+            <LinkGroup
+                data={data}
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
     });
 });

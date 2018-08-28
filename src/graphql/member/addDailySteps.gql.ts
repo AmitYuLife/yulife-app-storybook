@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
-import { AddDailySteps, AddDailyStepsVariables, ActionPayload } from "../_core/schema";
-import { challengeFragmentGql } from "../_fragments/challenge.gql";
 import client from "../_core/client";
+import { ActionPayload, AddDailySteps, AddDailyStepsVariables } from "../_core/schema";
+import { challengeFragmentGql } from "../_fragments/challenge.gql";
 
 export const addDailyStepsGql = gql`
     mutation AddDailySteps($payload: [ActionPayload]) {

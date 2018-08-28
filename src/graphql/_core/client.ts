@@ -1,4 +1,4 @@
-import { InMemoryCache, defaultDataIdFromObject } from "apollo-cache-inmemory";
+import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
 import { from } from "apollo-link";
@@ -10,7 +10,7 @@ import Config from "react-native-config";
 import { getToken } from "../../services/storage";
 
 const httpLink = createHttpLink({
-    uri: `${Config.API_URL}/graphql`,
+    uri: `${Config.API_URL}/graphql`
 });
 
 const dataIdFromObject = (object: any) => {
@@ -33,12 +33,12 @@ const dataIdFromObject = (object: any) => {
 };
 
 const cache = new InMemoryCache({
-    dataIdFromObject,
+    dataIdFromObject
 });
 
 persistCache({
     cache,
-    storage: AsyncStorage,
+    storage: AsyncStorage
 });
 
 const authMiddleware = setContext(async (_, { headers }) => {
@@ -50,8 +50,8 @@ const authMiddleware = setContext(async (_, { headers }) => {
         headers: {
             ...headers,
             authorization: token ? `Bearer ${token}` : "",
-            date: new Date().toISOString(),
-        },
+            date: new Date().toISOString()
+        }
     };
 });
 
@@ -62,7 +62,7 @@ const errorAfterware = onError(() => {
 
 const client = new ApolloClient({
     cache,
-    link: from([authMiddleware, errorAfterware, httpLink]),
+    link: from([authMiddleware, errorAfterware, httpLink])
 });
 
 export default client;

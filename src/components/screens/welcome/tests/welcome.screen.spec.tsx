@@ -5,7 +5,6 @@ import WelcomeScreen from "../welcome.screen";
 describe("WelcomeScreen component", () => {
 
     it ("should render with props", () => {
-
         const actual = shallow(
             <WelcomeScreen
                 onLogInPress={jest.fn()}

@@ -4,11 +4,11 @@ import Svg, {
     Polygon,
     Polyline,
     Rect,
-    Stop,
+    Stop
 } from "react-native-svg";
 import styles, {
     height,
-    width,
+    width
 } from "./challenges-list-background.styles";
 
 const ChallengeSetBackground = () => (

@@ -1,18 +1,18 @@
+import moment from "moment";
 import React from "react";
 import { PureComponent } from "react";
-import { setToken } from "../../../../services/storage";
-import { connect } from "react-redux";
-import { DailyStepsScreen } from "../../../screens";
-import { IReduxState } from "../../../../redux/_core/reducers";
-import { getDailyEarnedCoins } from "../../../../redux/coins/coins.selectors";
-import { getDailySteps, getLastUpdated } from "../../../../redux/daily-steps/daily-steps.selectors";
-import { startDailySteps, stopDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
-import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
 import { FitKitAvailable } from "react-native-fitkit";
-import { authoriseFitKit } from "../../../../redux/app/app.actions";
+import { connect } from "react-redux";
+import { IReduxState } from "../../../../redux/_core/reducers";
 import { SyncAction } from "../../../../redux/_core/types";
-import moment from "moment";
+import { authoriseFitKit } from "../../../../redux/app/app.actions";
+import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
+import { getDailyEarnedCoins } from "../../../../redux/coins/coins.selectors";
+import { startDailySteps, stopDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
+import { getDailySteps, getLastUpdated } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
+import { setToken } from "../../../../services/storage";
+import { DailyStepsScreen } from "../../../screens";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {

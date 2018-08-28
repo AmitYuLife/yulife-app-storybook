@@ -4,5 +4,5 @@ export type IUserStatusState = Partial<loginUser_loginUser_user_userStatus>;
 
 export const EmptyStatus: IUserStatusState = {
     challenges: null,
-    totalCoins: null,
+    totalCoins: null
 };

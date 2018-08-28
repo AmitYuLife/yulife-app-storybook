@@ -1,42 +1,42 @@
 import * as React from "react";
 import { SFC } from "react";
-import { G, Path, Circle } from "react-native-svg";
-import { IconProps } from "./icon.model";
-import { getIconFill } from "./helper";
+import { Circle, G, Path } from "react-native-svg";
 import { COLOURS } from "../nav-bar";
+import { getIconFill } from "./helper";
+import { IconProps } from "./icon.model";
 
 const Giraffe: SFC<IconProps> = ({
     isActive = false,
     isPressed = false,
     colour = COLOURS.LIGHT,
-    isIconHidden,
+    isIconHidden
 }) => (
         <G>{
             isIconHidden ? null : (
                 <G>
                     <Path
                         fill={getIconFill({
-                            isActive,
-                            isPressed,
                             colour,
+                            isActive,
+                            isPressed
                         })}
                         /*tslint:disable-next-line*/
                         d="M36.5,52.3c-19.9,0-36,16.1-36,36s16.1,36,36,36s36-16.1,36-36S56.4,52.3,36.5,52.3z M36.5,121.3 c-18.2,0-33-14.8-33-33s14.8-33,33-33s33,14.8,33,33S54.7,121.3,36.5,121.3z"
                     />
                     <Path
                         fill={getIconFill({
-                            isActive,
-                            isPressed,
                             colour,
+                            isActive,
+                            isPressed
                         })}
                         /*tslint:disable-next-line*/
                         d="M40.6,89.5c0-2-1.7-3.7-3.7-3.7c-2,0-3.7,1.7-3.7,3.7c0,2,1.7,3.7,3.7,3.7C38.9,93.2,40.6,91.6,40.6,89.5z M36.9,90.2c-0.4,0-0.7-0.3-0.7-0.7c0-0.4,0.3-0.7,0.7-0.7c0.4,0,0.7,0.3,0.7,0.7C37.6,89.9,37.3,90.2,36.9,90.2z"
                     />
                     <Path
                         fill={getIconFill({
-                            isActive,
-                            isPressed,
                             colour,
+                            isActive,
+                            isPressed
                         })}
                         /*tslint:disable-next-line*/
                         d="M50.6,85.9c-3.1-1.4-7.6-3.3-12.1-5.1l2.3-8.2c1.8-0.3,3.2-1.8,3.2-3.7c0-2-1.7-3.7-3.7-3.7c-2,0-3.7,1.7-3.7,3.7c0,1.2,0.5,2.2,1.4,2.9l-2.1,7.5l-2-7.5c0.8-0.7,1.4-1.7,1.4-2.9c0-2-1.7-3.7-3.7-3.7c-2,0-3.7,1.7-3.7,3.7c0,1.9,1.4,3.4,3.2,3.7l1.9,7.4c-0.5,0.2-0.9,0.4-1.3,0.7c0,0,0,0,0,0c-0.3-0.6-0.8-1.2-1.4-1.7c-3.3-2.7-7.4-3.4-12.2-2.1c-0.5,0.1-1,0.5-1.2,1c-0.3,0.5-0.3,1.1-0.1,1.6c1.8,4.7,4.7,7.7,8.4,8.8l0.3,0.1c0.5,0.1,1,0.2,1.5,0.2c0.8,0,1.7-0.2,2.4-0.6v21.9h3V85.1c0-0.8,0.4-1.5,1-2c0.7-0.5,1.5-0.5,2.2-0.3c5.1,2,10.4,4.3,13.9,5.8c2.6,1.1,4.1,3.2,4.1,5.5c0,0.6-0.2,6.3-6.5,6.3h-7.9v9.5h3v-6.5H47c6.5,0,9.5-4.8,9.5-9.3C56.5,90.7,54.2,87.5,50.6,85.9z M29,84.3L29,84.3c-0.1,0.2-0.3,0.5-0.5,0.6c-0.6,0.6-1.5,0.8-2.3,0.6c-0.1,0-0.2-0.1-0.3-0.1c-2.5-0.8-4.5-2.8-5.9-5.9c3.3-0.7,6.1-0.1,8.4,1.8c0.4,0.3,0.7,0.8,0.9,1.4C29.3,83.2,29.2,83.8,29,84.3z M40.3,68.2c0.4,0,0.7,0.3,0.7,0.7c0,0.4-0.3,0.7-0.7,0.7c-0.4,0-0.7-0.3-0.7-0.7C39.5,68.5,39.9,68.2,40.3,68.2z M31.5,68.2c0.4,0,0.7,0.3,0.7,0.7c0,0.4-0.3,0.7-0.7,0.7c-0.4,0-0.7-0.3-0.7-0.7C30.8,68.5,31.1,68.2,31.5,68.2z"
@@ -47,9 +47,9 @@ const Giraffe: SFC<IconProps> = ({
         }
             <Circle
                 fill={getIconFill({
-                    isActive,
-                    isPressed,
                     colour,
+                    isActive,
+                    isPressed
                 })}
                 cx="36.5"
                 cy="18"

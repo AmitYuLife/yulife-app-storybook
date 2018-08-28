@@ -1,7 +1,7 @@
-import "react-native";
-import * as React from "react";
-import LowerInnerShadow from "../lower-inner-shadow";
 import { shallow } from "enzyme";
+import * as React from "react";
+import "react-native";
+import LowerInnerShadow from "../lower-inner-shadow";
 
 describe("LowerInnerShadow", () => {
 

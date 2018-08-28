@@ -6,7 +6,6 @@ import Treasure from "../treasure";
 describe("Treasure", () => {
 
     it("should render when inactive and not pressed", () => {
-
         const actual = shallow(
             <Treasure isActive={false} isPressed={false} />
         );
@@ -15,7 +14,6 @@ describe("Treasure", () => {
     });
 
     it("should render when inactive and pressed", () => {
-
         const actual = shallow(
             <Treasure isActive={false} isPressed={true} />
         );
@@ -24,7 +22,6 @@ describe("Treasure", () => {
     });
 
     it("should render when active and not pressed", () => {
-
         const actual = shallow(
             <Treasure isActive={true} isPressed={false} />
         );

@@ -6,9 +6,9 @@ export default StyleSheet.create({
         left: 0,
         position: "absolute",
         right: 0,
-        width: "100%",
+        width: "100%"
     } as ImageStyle,
     wrapper: {
-        flex: 1,
-    } as ViewStyle,
+        flex: 1
+    } as ViewStyle
 });

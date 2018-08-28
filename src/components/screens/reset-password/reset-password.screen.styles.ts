@@ -3,6 +3,6 @@ import { Colours } from "../../../styles";
 
 export default StyleSheet.create({
     heading: {
-        color: Colours.darkGray,
-    } as TextStyle,
+        color: Colours.darkGray
+    } as TextStyle
 });

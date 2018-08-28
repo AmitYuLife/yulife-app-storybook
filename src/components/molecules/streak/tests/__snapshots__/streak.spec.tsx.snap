@@ -7,7 +7,7 @@ ShallowWrapper {
     currentStreak={0}
     isFinished={false}
     maxStreak={1}
-    onPress={[Function]}
+    onPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -349,7 +349,7 @@ ShallowWrapper {
     currentStreak={1}
     isFinished={false}
     maxStreak={2}
-    onPress={[Function]}
+    onPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -691,7 +691,7 @@ ShallowWrapper {
     currentStreak={1}
     isFinished={false}
     maxStreak={1}
-    onPress={[Function]}
+    onPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1033,7 +1033,7 @@ ShallowWrapper {
     currentStreak={0}
     isFinished={false}
     maxStreak={0}
-    onPress={[Function]}
+    onPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1375,7 +1375,7 @@ ShallowWrapper {
     currentStreak={0}
     isFinished={false}
     maxStreak={0}
-    onPress={[Function]}
+    onPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],

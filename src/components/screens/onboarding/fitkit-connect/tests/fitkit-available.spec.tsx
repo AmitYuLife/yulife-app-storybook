@@ -11,7 +11,6 @@ const defaultProps = {
 describe("FitKitAvailable", () => {
 
     it("should render default values", () => {
-
         const actual = shallow(
             <FitKitAvailable
                 {...defaultProps}
@@ -22,7 +21,6 @@ describe("FitKitAvailable", () => {
     });
 
     it("should render when connecting", () => {
-
         const actual = shallow(
             <FitKitAvailable
                 {...defaultProps}

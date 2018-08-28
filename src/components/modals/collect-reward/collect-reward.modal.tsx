@@ -6,7 +6,7 @@ import {
     CentredScreen,
     CoinConfetti,
     Heading,
-    Pad,
+    Pad
 } from "../../atoms";
 import styles from "./collect-reward.modal.styles";
 

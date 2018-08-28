@@ -4,5 +4,5 @@ export default {
     ostrich: require("./ostrich.png"),
     squirrel: require("./squirrel.png"),
     star: require("./star.png"),
-    yucoin: require("./yucoin.png"),
+    yucoin: require("./yucoin.png")
 };

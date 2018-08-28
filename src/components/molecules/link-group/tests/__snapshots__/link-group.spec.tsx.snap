@@ -8,11 +8,11 @@ ShallowWrapper {
       Array [
         Object {
           "label": "Forgot password",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         Object {
           "label": "Sign up",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
       ]
     }
@@ -41,7 +41,7 @@ ShallowWrapper {
         >
           <Button
             label="Forgot password"
-            onPress={[Function]}
+            onPress={[MockFunction]}
             type="Link"
             wrapperStyle={
               Object {
@@ -62,7 +62,7 @@ ShallowWrapper {
         >
           <Button
             label="Sign up"
-            onPress={[Function]}
+            onPress={[MockFunction]}
             type="Link"
             wrapperStyle={
               Object {
@@ -99,7 +99,7 @@ ShallowWrapper {
           "children": Array [
             <Button
               label="Forgot password"
-              onPress={[Function]}
+              onPress={[MockFunction]}
               type="Link"
               wrapperStyle={
                 Object {
@@ -124,7 +124,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "label": "Forgot password",
-              "onPress": [Function],
+              "onPress": [MockFunction],
               "type": "Link",
               "wrapperStyle": Object {
                 "marginHorizontal": 66,
@@ -147,7 +147,7 @@ ShallowWrapper {
           "children": Array [
             <Button
               label="Sign up"
-              onPress={[Function]}
+              onPress={[MockFunction]}
               type="Link"
               wrapperStyle={
                 Object {
@@ -180,7 +180,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "label": "Sign up",
-              "onPress": [Function],
+              "onPress": [MockFunction],
               "type": "Link",
               "wrapperStyle": Object {
                 "marginHorizontal": 66,
@@ -230,7 +230,7 @@ ShallowWrapper {
           >
             <Button
               label="Forgot password"
-              onPress={[Function]}
+              onPress={[MockFunction]}
               type="Link"
               wrapperStyle={
                 Object {
@@ -251,7 +251,7 @@ ShallowWrapper {
           >
             <Button
               label="Sign up"
-              onPress={[Function]}
+              onPress={[MockFunction]}
               type="Link"
               wrapperStyle={
                 Object {
@@ -288,7 +288,7 @@ ShallowWrapper {
             "children": Array [
               <Button
                 label="Forgot password"
-                onPress={[Function]}
+                onPress={[MockFunction]}
                 type="Link"
                 wrapperStyle={
                   Object {
@@ -313,7 +313,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "label": "Forgot password",
-                "onPress": [Function],
+                "onPress": [MockFunction],
                 "type": "Link",
                 "wrapperStyle": Object {
                   "marginHorizontal": 66,
@@ -336,7 +336,7 @@ ShallowWrapper {
             "children": Array [
               <Button
                 label="Sign up"
-                onPress={[Function]}
+                onPress={[MockFunction]}
                 type="Link"
                 wrapperStyle={
                   Object {
@@ -369,7 +369,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "label": "Sign up",
-                "onPress": [Function],
+                "onPress": [MockFunction],
                 "type": "Link",
                 "wrapperStyle": Object {
                   "marginHorizontal": 66,

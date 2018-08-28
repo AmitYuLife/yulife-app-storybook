@@ -14,11 +14,11 @@ export const stopDailySteps = () => ({
 });
 
 export const updateDailyStepsSuccess = (results: AddDailySteps) => ({
-    type: UPDATE_DAILY_STEPS_SUCCESS,
-    payload: results
+    payload: results,
+    type: UPDATE_DAILY_STEPS_SUCCESS
 });
 
 export const updateDailyStepsFailed = (error: string) => ({
-    type: UPDATE_DAILY_STEPS_FAILED,
-    payload: error
+    payload: error,
+    type: UPDATE_DAILY_STEPS_FAILED
 });

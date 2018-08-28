@@ -1,16 +1,16 @@
 import * as React from "react";
 import {
-    View,
     SafeAreaView,
     StatusBar,
+    View
 } from "react-native";
-import {
-    RewardsList,
-    RewardTabs,
-} from "../../../../molecules";
-import styles from "./rewards-list.screen.styles";
 import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
 import { Pad } from "../../../../atoms";
+import {
+    RewardsList,
+    RewardTabs
+} from "../../../../molecules";
+import styles from "./rewards-list.screen.styles";
 
 export interface IRewardsListScreenProps {
     data: Array<Partial<GetRewards_getRewards>>;
@@ -23,7 +23,7 @@ const RewardsListScreen: React.SFC<IRewardsListScreenProps> = ({
     data,
     onLeftTabPress,
     onRightTabPress,
-    onItemPress,
+    onItemPress
 }) => (
     <SafeAreaView style={styles.wrapper}>
         <StatusBar />

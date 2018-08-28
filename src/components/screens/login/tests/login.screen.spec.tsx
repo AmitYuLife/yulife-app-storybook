@@ -3,7 +3,7 @@ import * as React from "react";
 import { Platform } from "react-native";
 import LoginScreen, { IProps } from "../login.screen";
 
-const filler = {
+const defaultProps = {
     email: "",
     emailError: "",
     isLoggingIn: false,
@@ -15,30 +15,37 @@ const filler = {
     onResetPasswordPress: jest.fn(),
     onSignUpPress: jest.fn(),
     password: "",
-    passwordError: "",
+    passwordError: ""
 } as IProps;
 
 describe("LoginScreen", () => {
 
     it("should render", () => {
-
-        const actual = shallow(<LoginScreen {...filler} />);
+        const actual = shallow(
+            <LoginScreen
+                {...defaultProps}
+            />
+        );
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render on Android", () => {
-
         Platform.OS = "android";
-        const actual = shallow(<LoginScreen {...filler} />);
+        const actual = shallow(
+            <LoginScreen
+                {...defaultProps}
+            />
+        );
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render when showingKeyboard", () => {
-
         const actual = shallow(
-            <LoginScreen {...filler} />
+            <LoginScreen
+                {...defaultProps}
+            />
         );
         actual.setState({ isShowingKeyboard: true });
 
@@ -46,10 +53,9 @@ describe("LoginScreen", () => {
     });
 
     it("should render with login error", () => {
-
         const actual = shallow(
             <LoginScreen
-                {...filler}
+                {...defaultProps}
                 loginError="Bergatron error"
             />
         );
@@ -58,10 +64,9 @@ describe("LoginScreen", () => {
     });
 
     it("should render as logging in", () => {
-
         const actual = shallow(
             <LoginScreen
-                {...filler}
+                {...defaultProps}
                 isLoggingIn={true}
             />
         );

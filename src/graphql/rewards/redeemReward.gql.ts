@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import { MutationResult, Mutation, MutationFn } from "react-apollo";
+import { Mutation, MutationFn, MutationResult } from "react-apollo";
 import { RedeemReward, RedeemRewardVariables } from "../_core/schema";
 
 export const redeemRewardGql = gql`

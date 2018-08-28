@@ -2,14 +2,14 @@ import * as React from "react";
 import { PureComponent } from "react";
 import {
     TextInput as Input,
-    View,
+    View
 } from "react-native";
 import Lock from "./assets/lock";
 import Mail from "./assets/mail";
 import TextInputError from "./text-input-error";
 import {
     getColour,
-    getWrapperStyle,
+    getWrapperStyle
 } from "./text-input.helpers";
 import styles from "./text-input.styles";
 
@@ -24,7 +24,7 @@ interface IProps {
 
 export enum TEXT_INPUT_TYPES {
     EMAIL = "Email",
-    PASSWORD = "Password",
+    PASSWORD = "Password"
 }
 
 export type Types = "Email" | "Password";
@@ -33,7 +33,7 @@ class TextInput extends PureComponent<IProps> {
     public static Types = TEXT_INPUT_TYPES;
 
     public state = {
-        isFocused: false,
+        isFocused: false
     };
 
     public render() {
@@ -42,7 +42,7 @@ class TextInput extends PureComponent<IProps> {
             onChange,
             hasError,
             errorMessage,
-            type,
+            type
         } = this.props;
         const { isFocused } = this.state;
         const Icon =
@@ -54,7 +54,7 @@ class TextInput extends PureComponent<IProps> {
                     style={getWrapperStyle({
                         hasError,
                         isFilled: !!value,
-                        isFocused,
+                        isFocused
                     })}
                 >
                     <View style={styles.iconWrapper}>
@@ -62,7 +62,7 @@ class TextInput extends PureComponent<IProps> {
                             <Icon
                                 colour={getColour({
                                     hasError,
-                                    hasValue: !!value,
+                                    hasValue: !!value
                                 })}
                                 scale={0.5}
                             />

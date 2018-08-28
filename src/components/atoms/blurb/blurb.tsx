@@ -4,7 +4,7 @@ import {
     StyleSheet,
     Text,
     View,
-    ViewStyle,
+    ViewStyle
 } from "react-native";
 import styles from "./blurb.styles";
 
@@ -17,7 +17,7 @@ const Blurb: SFC<IProps> = ({ label, wrapperStyle }) => (
     <View
         style={StyleSheet.flatten([
             styles.wrapper,
-            wrapperStyle,
+            wrapperStyle
         ])}
     >
         <Text style={styles.base}>{label}</Text>

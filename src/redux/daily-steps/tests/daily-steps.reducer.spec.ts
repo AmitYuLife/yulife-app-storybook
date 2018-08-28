@@ -1,7 +1,7 @@
-import stepsReducer, { initialState, IDailyStepsStore } from "../daily-steps.reducer";
 import { AddDailySteps } from "../../../graphql/_core/schema";
+import { updateDailyStepsFailed, updateDailyStepsSuccess } from "../daily-steps.actions";
+import stepsReducer, { IDailyStepsStore, initialState } from "../daily-steps.reducer";
 import { addDailyStepsSuccessFixture } from "./daily-steps.fixtures";
-import { updateDailyStepsSuccess, updateDailyStepsFailed } from "../daily-steps.actions";
 
 describe("Daily Steps Reducer", () => {
 
@@ -19,7 +19,7 @@ describe("Daily Steps Reducer", () => {
         const expected: IDailyStepsStore = {
             ...initialState,
             dailySteps: 4321,
-            lastUpdated: "2018-04-08T23:00:40.000Z",
+            lastUpdated: "2018-04-08T23:00:40.000Z"
         };
         const actual = stepsReducer(initialState, updateDailyStepsSuccess(localData));
 

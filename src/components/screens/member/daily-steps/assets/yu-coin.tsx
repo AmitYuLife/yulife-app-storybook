@@ -3,11 +3,11 @@ import { SFC } from "react";
 import { View } from "react-native";
 import Svg from "react-native-svg";
 import {
-    Static,
     GiraffeAnimated,
     GiraffeStatic,
     Glow,
     Shine,
+    Static
 } from "./yu-coin-subcomponents";
 import styles, { svgSpecs } from "./yu-coin.styles";
 

@@ -3,7 +3,7 @@ import { SFC } from "react";
 import {
     Image,
     StyleSheet,
-    View,
+    View
 } from "react-native";
 import { PlusPoints } from "..";
 import styles from "./coin-confetti.styles";
@@ -15,14 +15,14 @@ interface IProps {
 
 const CoinConfetti: SFC<IProps> = ({
     coins,
-    isExpanded,
+    isExpanded
 }) => (
     <View
         style={StyleSheet.flatten([
             styles.wrapper,
             isExpanded
                 ? styles.wrapperExpanded
-                : styles.null,
+                : styles.null
         ])}
     >
         <Image source={require("./assets/coin.png")} />
@@ -32,7 +32,7 @@ const CoinConfetti: SFC<IProps> = ({
                     styles.confetti,
                     isExpanded
                         ? styles.confettiExpanded
-                        : null,
+                        : null
                 ])}
                 source={require("./assets/confetti.png")}
             />

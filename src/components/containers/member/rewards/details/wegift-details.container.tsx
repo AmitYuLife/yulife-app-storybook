@@ -1,13 +1,13 @@
 import * as React from "react";
-import { Linking, Alert } from "react-native";
+import { Alert, Linking } from "react-native";
 import { Config } from "react-native-config";
 import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
-import { WegiftRewardDetailsScreen } from "../../../../screens";
 import RedeemRewardMutation, {
     redeemRewardGql,
-    RedeemRewardMutationType,
+    RedeemRewardMutationType
 } from "../../../../../graphql/rewards/redeemReward.gql";
 import { Loading } from "../../../../atoms";
+import { WegiftRewardDetailsScreen } from "../../../../screens";
 
 interface IProps {
     componentId: string;
@@ -24,8 +24,8 @@ export default class WegiftRewardDetailsContainer extends React.Component<IProps
                 description,
                 redeem_steps: { steps },
                 available_denominations,
-                uiSettings,
-            },
+                uiSettings
+            }
         } = this.props;
         const [{ yuCoin, value }] = available_denominations;
         const labelCtaPrimary = `buy with ${yuCoin} yucoin`;
@@ -94,13 +94,13 @@ export default class WegiftRewardDetailsContainer extends React.Component<IProps
             [
                 { text: "Cancel", style: "cancel" },
                 {
-                    text: "OK",
                     onPress: async () => {
                         await redeemReward({ variables: { id: reward.code, amount: value } });
                         // console.log("DAA SUCAAA... ", purchase);
                     },
-                },
-            ],
+                    text: "OK"
+                }
+            ]
         );
     }
 }

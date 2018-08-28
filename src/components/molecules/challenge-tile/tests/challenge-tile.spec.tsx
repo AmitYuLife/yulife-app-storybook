@@ -2,29 +2,27 @@ import { shallow } from "enzyme";
 import * as React from "react";
 import ChallengeTile, { IMAGES } from "../challenge-tile";
 
-const filler = {
+const defaultProps = {
     activity: "",
     duration: "",
     image: IMAGES.BIRD,
-    reward: "",
+    reward: ""
 };
 
 describe("ChallengeTile", () => {
 
     it("should render", () => {
-
         const actual = shallow(
-            <ChallengeTile {...filler} />
+            <ChallengeTile {...defaultProps} />
         );
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render when flipped", () => {
-
         const actual = shallow(
             <ChallengeTile
-                {...filler}
+                {...defaultProps}
                 isImageBackgroundFlipped={true}
             />
         );
@@ -33,10 +31,9 @@ describe("ChallengeTile", () => {
     });
 
     it("should render when locked", () => {
-
         const actual = shallow(
             <ChallengeTile
-                {...filler}
+                {...defaultProps}
                 isLocked={true}
                 minimumLevel={5}
             />

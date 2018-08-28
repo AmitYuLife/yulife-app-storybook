@@ -1,7 +1,7 @@
-import "react-native";
-import * as React from "react";
-import Static from "../static";
 import { shallow } from "enzyme";
+import * as React from "react";
+import "react-native";
+import Static from "../static";
 
 describe("Static", () => {
 

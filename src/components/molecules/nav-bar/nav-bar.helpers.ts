@@ -1,5 +1,5 @@
-import NavBar from "./nav-bar";
 import { Colours } from "../../../styles";
+import NavBar from "./nav-bar";
 
 interface IGetTextStyle {
     isActive: boolean;
@@ -10,7 +10,7 @@ interface IGetTextStyle {
 export const getTextStyle = ({
     isActive,
     isPressed,
-    colour,
+    colour
 }: IGetTextStyle) => {
     let color;
     if (colour === NavBar.Colours.LIGHT) {

@@ -20,17 +20,17 @@ export const getImageStyle = (image: string) => {
         case IMAGES.FOREST:
             return StyleSheet.flatten([
                 styles.imageBase,
-                styles.imageForest,
+                styles.imageForest
             ]);
         case IMAGES.LARGE_FOREST:
             return StyleSheet.flatten([
                 styles.imageBase,
-                styles.imageLargeForest,
+                styles.imageLargeForest
             ]);
         case IMAGES.MOUNTAINS:
             return StyleSheet.flatten([
                 styles.imageBase,
-                styles.imageLargeForest,
+                styles.imageLargeForest
             ]);
         default:
             return null;

@@ -6,7 +6,6 @@ import Close from "../close";
 describe("Close", () => {
 
     it("should render the close button", () => {
-
         const actual = shallow(
             <Close />
         );

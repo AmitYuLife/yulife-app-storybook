@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SFC } from "react";
-import { Text, Pad, Button } from "../../../atoms";
+import { Button, Pad, Text } from "../../../atoms";
 import styles from "./daily-steps.screen.styles";
 
 export interface IProps {

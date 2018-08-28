@@ -6,7 +6,6 @@ import ChallengesListScreen from "../challenges-list.screen";
 describe("ChallengesListScreen", () => {
 
     it("should render", () => {
-
         const actual = shallow(
             <ChallengesListScreen challenges={[]} />
         );
@@ -15,7 +14,6 @@ describe("ChallengesListScreen", () => {
     });
 
     it("should render as Android", () => {
-
         Platform.OS = "android";
         const actual = shallow(
             <ChallengesListScreen challenges={[]} />

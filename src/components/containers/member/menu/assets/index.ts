@@ -7,7 +7,7 @@ export const enum LINKS {
     CHAT = "chat",
     LOGOUT = "logout",
     MEMBER = "member",
-    PLAY = "play",
+    PLAY = "play"
 }
 
 export default {
@@ -15,5 +15,5 @@ export default {
     [LINKS.CHAT]: require("./chat.png"),
     [LINKS.LOGOUT]: require("./logout.png"),
     [LINKS.MEMBER]: require("./member.png"),
-    [LINKS.PLAY]: require("./play.png"),
+    [LINKS.PLAY]: require("./play.png")
 } as { [key: string]: ImageRequireSource };

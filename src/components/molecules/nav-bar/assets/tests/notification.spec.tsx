@@ -6,7 +6,6 @@ import Notification from "../notification";
 describe("Notification", () => {
 
     it("should render when inactive and not pressed", () => {
-
         const actual = shallow(
             <Notification
                 isVisible={true}
@@ -19,7 +18,6 @@ describe("Notification", () => {
     });
 
     it("should render when inactive and pressed", () => {
-
         const actual = shallow(
             <Notification
                 isVisible={true}
@@ -32,7 +30,6 @@ describe("Notification", () => {
     });
 
     it("should render when active and not pressed", () => {
-
         const actual = shallow(
             <Notification
                 isVisible={true}
@@ -45,7 +42,6 @@ describe("Notification", () => {
     });
 
     it("should not render when not visible", () => {
-
         const actual = shallow(
             <Notification
                 isVisible={false}

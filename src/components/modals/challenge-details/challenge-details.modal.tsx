@@ -24,7 +24,7 @@ const ChallengeDetails: SFC<Props> = ({
     onPressClose,
     onPressCta,
     onPressSetUp = null,
-    unit,
+    unit
 }) => (
     <View style={styles.wrapper}>
         <Close onPress={onPressClose} />

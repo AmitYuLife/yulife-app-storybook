@@ -11,15 +11,15 @@ ShallowWrapper {
       Array [
         Object {
           "name": "yucoin",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         Object {
           "name": "quest",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         Object {
           "name": "rewards",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
       ]
     }
@@ -1574,15 +1574,15 @@ ShallowWrapper {
       Array [
         Object {
           "name": "yucoin",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         Object {
           "name": "quest",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         Object {
           "name": "rewards",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
       ]
     }
@@ -3137,15 +3137,15 @@ ShallowWrapper {
       Array [
         Object {
           "name": "yucoin",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         Object {
           "name": "quest",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         Object {
           "name": "rewards",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
       ]
     }
@@ -4700,15 +4700,15 @@ ShallowWrapper {
       Array [
         Object {
           "name": "yucoin",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         Object {
           "name": "quest",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         Object {
           "name": "rewards",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
       ]
     }
@@ -6263,15 +6263,15 @@ ShallowWrapper {
       Array [
         Object {
           "name": "yucoin",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         Object {
           "name": "quest",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         Object {
           "name": "rewards",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
       ]
     }
@@ -7826,15 +7826,15 @@ ShallowWrapper {
       Array [
         Object {
           "name": "yucoin",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         Object {
           "name": "quest",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
         Object {
           "name": "rewards",
-          "onPress": [Function],
+          "onPress": [MockFunction],
         },
       ]
     }

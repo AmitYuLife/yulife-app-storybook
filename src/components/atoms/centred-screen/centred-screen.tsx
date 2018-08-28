@@ -5,11 +5,11 @@ import {
     SafeAreaView,
     StyleSheet,
     View,
-    ViewStyle,
+    ViewStyle
 } from "react-native";
 import {
     getImage,
-    getImageStyle,
+    getImageStyle
 } from "./centred-screen.helpers";
 import styles from "./centred-screen.styles";
 
@@ -38,7 +38,7 @@ class CenteredScreen extends PureComponent<IProps> {
             <SafeAreaView
                 style={StyleSheet.flatten([
                     styles.wrapper,
-                    style,
+                    style
                 ])}
             >
                 {!footerImage ? null : (

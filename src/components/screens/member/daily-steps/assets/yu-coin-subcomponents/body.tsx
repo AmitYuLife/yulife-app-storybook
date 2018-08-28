@@ -4,7 +4,7 @@ import {
     Circle,
     G,
     LinearGradient,
-    Stop,
+    Stop
 } from "react-native-svg";
 import { ISvgComponentProps } from "./model";
 

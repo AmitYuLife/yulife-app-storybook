@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
     wrapper: {
         position: "absolute",
         right: Style.SCALE_UP_AND_DOWN(15),
-        top: Style.SCALE_UP_AND_DOWN(30),
-    } as ViewStyle,
+        top: Style.SCALE_UP_AND_DOWN(30)
+    } as ViewStyle
 });
 
 const Close: SFC<TouchableWithoutFeedbackProps> = ({ onPress }) => (

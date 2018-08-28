@@ -1,8 +1,8 @@
 import * as React from "react";
 import { SFC } from "react";
 import { G, Rect } from "react-native-svg";
-import { COLOURS } from "../nav-bar";
 import { Colours } from "../../../../styles";
+import { COLOURS } from "../nav-bar";
 
 interface IProps {
     isExtended: boolean;

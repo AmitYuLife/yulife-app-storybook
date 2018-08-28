@@ -1,6 +1,6 @@
 import {
-  updateAppState,
   UPDATE_APP_STATE,
+  updateAppState
 } from "../app.actions";
 
 // TODO update to new style and add missing tests

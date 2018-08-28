@@ -4,7 +4,7 @@ import {
     Button,
     CentredScreen,
     Heading,
-    Pad,
+    Pad
 } from "../../atoms";
 import styles from "./reset-password.screen.styles";
 

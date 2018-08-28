@@ -1,9 +1,9 @@
 import * as React from "react";
 import { SFC } from "react";
-import { Heading, Pad, Blurb } from "../../../atoms";
-import styles from "./fitkit-connect.screen.styles";
-import data from "./fitkit-connect.screen.data";
 import { Platform } from "react-native";
+import { Blurb, Heading, Pad } from "../../../atoms";
+import data from "./fitkit-connect.screen.data";
+import styles from "./fitkit-connect.screen.styles";
 
 const FitKitUnavailable: SFC<{}> = () => (
     <>

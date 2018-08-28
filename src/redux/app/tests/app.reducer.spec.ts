@@ -1,7 +1,7 @@
-import appReducer, { initialState } from "../app.reducer";
 import {
-    UPDATE_APP_STATE,
+    UPDATE_APP_STATE
 } from "../app.actions";
+import appReducer, { initialState } from "../app.reducer";
 
 // TODO update this to new style and add missing tests
 

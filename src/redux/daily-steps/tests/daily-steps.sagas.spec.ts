@@ -1,11 +1,11 @@
 // tslint:disable:no-any
 import { cancel, fork, take } from "redux-saga/effects";
 import { createMockTask } from "redux-saga/utils";
-import { startDailySteps, listenToDailySteps } from "../daily-steps.sagas";
 import {
     START_DAILY_STEPS,
-    STOP_DAILY_STEPS,
+    STOP_DAILY_STEPS
 } from "../daily-steps.actions";
+import { listenToDailySteps, startDailySteps } from "../daily-steps.sagas";
 
 // TODO add tests for listenToDailySteps saga
 

@@ -1,15 +1,15 @@
+import moment from "moment";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Text } from "react-native";
 import { Navigation } from "react-native-navigation";
-import GetRewardsQuery, { getRewardsGql } from "../../../../graphql/rewards/getRewards.gql";
-import GetAllPurchases, { getAllPurchasesGql } from "../../../../graphql/rewards/getAllPurchases.gql";
-import { Loading } from "../../../atoms";
-import { RewardsListScreen, PurchasedListScreen } from "../../../screens";
 import { GetAllPurchases_getAllPurchases, GetRewards_getRewards } from "../../../../graphql/_core/schema";
-import moment from "moment";
-import { formatMoney } from "../../../../services/money";
+import GetAllPurchases, { getAllPurchasesGql } from "../../../../graphql/rewards/getAllPurchases.gql";
+import GetRewardsQuery, { getRewardsGql } from "../../../../graphql/rewards/getRewards.gql";
 import { ROUTES } from "../../../../navigation/routes";
+import { formatMoney } from "../../../../services/money";
+import { Loading } from "../../../atoms";
+import { PurchasedListScreen, RewardsListScreen } from "../../../screens";
 
 type Tab = "rewards" | "purchases";
 
@@ -23,7 +23,7 @@ interface IState {
 
 class RewardsContainer extends PureComponent<IProps, IState> {
     public state: IState = {
-        tab: "rewards",
+        tab: "rewards"
     };
 
     public render() {
@@ -82,10 +82,10 @@ class RewardsContainer extends PureComponent<IProps, IState> {
                 id: route,
                 name: route,
                 passProps: {
-                    reward,
                     onTabChange: this.handleTabChange,
-                },
-            },
+                    reward
+                }
+            }
         });
     }
 
@@ -134,24 +134,24 @@ class RewardsContainer extends PureComponent<IProps, IState> {
             const route = this.getConfirmedRoute(purchase.rewardProviderId);
 
             return {
-                day,
-                month,
-                reward,
                 cost: `${yuCoinsSpent} yucoin`,
-                status,
+                day,
                 id,
+                month,
                 onPress: async () => {
                     await Navigation.push(ROUTES.member, {
                         component: {
                             id: route,
                             name: route,
                             passProps: {
-                                purchase,
                                 onTabChange: this.handleTabChange,
-                            },
-                        },
+                                purchase
+                            }
+                        }
                     });
                 },
+                reward,
+                status
             };
         });
     }

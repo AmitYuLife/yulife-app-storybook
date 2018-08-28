@@ -6,7 +6,6 @@ import ChallengesListBackground from "../challenges-list-background";
 describe("ChallengeChallengesListBackgroundsListScreen", () => {
 
     it("should render", () => {
-
         const actual = shallow(
             <ChallengesListBackground />
         );
@@ -15,7 +14,6 @@ describe("ChallengeChallengesListBackgroundsListScreen", () => {
     });
 
     it("should render as Android", () => {
-
         Platform.OS = "android";
         const actual = shallow(
             <ChallengesListBackground />

@@ -11,7 +11,7 @@ interface IState {
 class Shine extends PureComponent<{}, IState> {
 
     public state: IState = {
-        x: -500,
+        x: -500
     };
 
     private animationTimeout: NodeJS.Timer;

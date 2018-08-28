@@ -1,7 +1,7 @@
-import "react-native";
-import * as React from "react";
-import Body from "../body";
 import { shallow } from "enzyme";
+import * as React from "react";
+import "react-native";
+import Body from "../body";
 
 describe("Body", () => {
 

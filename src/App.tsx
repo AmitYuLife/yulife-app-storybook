@@ -1,10 +1,10 @@
 import { Navigation } from "react-native-navigation";
 import registerScreens from "./navigation";
+import { setAuthenticatedRoot, setUnauthenticatedRoot } from "./navigation/root";
 import {
     // getFitkitPermission,
-    getToken,
+    getToken
 } from "./services/storage";
-import { setAuthenticatedRoot, setUnauthenticatedRoot } from "./navigation/root";
 
 // register all the screens
 registerScreens();
@@ -15,12 +15,12 @@ Navigation.events().registerAppLaunchedListener(async () => {
 
     Navigation.setDefaultOptions({
         layout: {
-            backgroundColor: "white",
+            backgroundColor: "white"
         },
         topBar: {
-            visible: false,
             drawBehind: true,
-        },
+            visible: false
+        }
     });
 
     if (token) {

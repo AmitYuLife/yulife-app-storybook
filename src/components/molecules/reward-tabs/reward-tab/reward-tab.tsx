@@ -1,8 +1,8 @@
 import * as React from "react";
 import { SFC } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
-import { Text } from "../../../atoms";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Colours } from "../../../../styles";
+import { Text } from "../../../atoms";
 import Coupon from "../assets/coupon";
 import styles from "./reward-tab.styles";
 

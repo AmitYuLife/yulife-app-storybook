@@ -6,8 +6,9 @@ import Mail from "../mail";
 describe("Mail SVG", () => {
 
     it("should render without props", () => {
-
-        const actual = shallow(<Mail />);
+        const actual = shallow(
+            <Mail />
+        );
 
         expect(actual).toMatchSnapshot();
     });

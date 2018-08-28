@@ -3,7 +3,7 @@ import {
     Animated,
     findNodeHandle,
     StyleSheet,
-    View,
+    View
 } from "react-native";
 import Blur from "./blur";
 import styles from "./blur-provider.styles";
@@ -29,7 +29,7 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
 
     public state: IState = {
         isVisible: false,
-        viewRef: null,
+        viewRef: null
     };
 
     public viewRef: View = null;
@@ -101,9 +101,9 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
                         opacity: this.animatedWrapperOpacity,
                         transform: [
                             {
-                                translateX: this.animatedWrapperPosition,
-                            },
-                        ],
+                                translateX: this.animatedWrapperPosition
+                            }
+                        ]
                     }}
                 >
                     {!renderOverlay
@@ -124,14 +124,14 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
             this.animatedWrapperOpacity,
             {
                 duration: 300,
-                toValue: isVisible ? 0 : 1,
+                toValue: isVisible ? 0 : 1
             }
         );
         const animatePosition = Animated.timing(
             this.animatedWrapperPosition,
             {
                 duration: 0,
-                toValue: isVisible ? -1000 : 0,
+                toValue: isVisible ? -1000 : 0
             }
         );
         let sequence: Animated.CompositeAnimation;
@@ -139,12 +139,12 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
         if (isVisible) {
             sequence = Animated.sequence([
                 animateOpacity,
-                animatePosition,
+                animatePosition
             ]);
         } else {
             sequence = Animated.sequence([
                 animatePosition,
-                animateOpacity,
+                animateOpacity
             ]);
         }
 
@@ -153,7 +153,7 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
 
     private handleLayout = () => {
         this.setState({
-            viewRef: findNodeHandle(this.viewRef),
+            viewRef: findNodeHandle(this.viewRef)
         });
     }
 }

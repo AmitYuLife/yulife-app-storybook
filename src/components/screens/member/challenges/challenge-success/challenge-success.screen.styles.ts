@@ -3,20 +3,20 @@ import { Style } from "../../../../../styles";
 
 export default StyleSheet.create({
     ctaWrapper: {
-        marginTop: Style.SCALE_UP_AND_DOWN(50),
+        marginTop: Style.SCALE_UP_AND_DOWN(50)
     } as ViewStyle,
     footer: {
         color: "rgb(170,170,170)",
         fontSize: Style.SCALE_UP_AND_DOWN(15),
-        textAlign: "center",
+        textAlign: "center"
     } as TextStyle,
     footerWrapper: {
         marginTop: Style.SCALE_UP_AND_DOWN(10),
-        width: Style.SCALE_UP_AND_DOWN(140),
+        width: Style.SCALE_UP_AND_DOWN(140)
     } as ViewStyle,
     plusPointsWrapper: {
         alignItems: "center",
-        marginBottom: Style.SCALE_UP_AND_DOWN(-8),
+        marginBottom: Style.SCALE_UP_AND_DOWN(-8)
     } as ViewStyle,
     score: {
         bottom: Style.SCALE_UP_AND_DOWN(20),
@@ -25,11 +25,11 @@ export default StyleSheet.create({
         left: 0,
         position: "absolute",
         right: 0,
-        textAlign: "center",
+        textAlign: "center"
     } as TextStyle,
     wrapper: {
         alignItems: "center",
         flex: 1,
-        justifyContent: "center",
-    } as ViewStyle,
+        justifyContent: "center"
+    } as ViewStyle
 });

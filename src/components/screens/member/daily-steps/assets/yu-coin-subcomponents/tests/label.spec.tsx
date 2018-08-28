@@ -1,7 +1,7 @@
-import "react-native";
-import * as React from "react";
-import Label from "../label";
 import { shallow } from "enzyme";
+import * as React from "react";
+import "react-native";
+import Label from "../label";
 
 describe("Label", () => {
 

@@ -1,15 +1,15 @@
-import { createStore, applyMiddleware, Store, compose } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
 import Config from "react-native-config";
+import { applyMiddleware, compose, createStore, Store } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
-import sagas from "./sagas";
 import combinedReducers, { IReduxState } from "./reducers";
+import sagas from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware({
     onError: (error) => {
         // bugsnag().notify(error);
         console.error(error); // tslint:disable-line
-    },
+    }
 });
 
 const middlewares = [sagaMiddleware];
@@ -20,7 +20,7 @@ const configureStore = (preloadedState?: IReduxState): Store<IReduxState> => {
     const configuredStore = createStore(
         combinedReducers,
         preloadedState,
-        composeEnhancers(applyMiddleware(...middlewares)),
+        composeEnhancers(applyMiddleware(...middlewares))
     );
 
     // Enable hot reloading for reducers.

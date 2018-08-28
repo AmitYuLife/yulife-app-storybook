@@ -3,7 +3,7 @@ import { SFC } from "react";
 import {
     Animated,
     Platform,
-    StyleSheet,
+    StyleSheet
 } from "react-native";
 import { BlurView } from "react-native-blur";
 
@@ -21,9 +21,9 @@ const Blur: SFC<IProps> = ({ blurRef, wrapperOpacity, wrapperPosition }) =>
                 opacity: wrapperOpacity,
                 transform: [
                     {
-                        translateX: wrapperPosition,
-                    },
-                ],
+                        translateX: wrapperPosition
+                    }
+                ]
             }}
         >
             <BlurView
@@ -40,9 +40,9 @@ const Blur: SFC<IProps> = ({ blurRef, wrapperOpacity, wrapperPosition }) =>
                 opacity: wrapperOpacity,
                 transform: [
                     {
-                        translateX: wrapperPosition,
-                    },
-                ],
+                        translateX: wrapperPosition
+                    }
+                ]
             }}
         >
             <BlurView
