@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "run-p start:bundler tsc:watch",
+    "start:storybook": "run-p storybook",
     "start:bundler": "react-native start",
     "start:ios": "react-native run-ios",
     "start:ios:local": "react-native run-ios --scheme=local",
