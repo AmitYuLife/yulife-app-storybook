@@ -4,12 +4,11 @@ import * as React from "react";
 import { PureComponent } from "react";
 import { Linking } from "react-native";
 import Config from "react-native-config";
-import { FitKitAvailable } from "react-native-fitkit";
+import { FitKitAuthoriseFunction, FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
-import { connect } from "react-redux";
 import { ROUTES } from "../../../../navigation/routes";
 import { SyncAction } from "../../../../redux/_core/types";
-import { authoriseFitKit } from "../../../../redux/app/app.actions";
+import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
 import { Loading } from "../../../atoms";
 import { FitKitConnectScreen } from "../../../screens";
 
@@ -39,16 +38,20 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
 
         return (
             <FitKitAvailable>
-                {(fitKitAvailable, _authorised, fitKitLoading) => {
-                    if (fitKitLoading) {
+                {({ available, authorised, authorise, loading }) => {
+                    if (loading) {
                         return <Loading />;
+                    }
+
+                    if (authorised) {
+                        this.continue();
                     }
 
                     return (
                         <FitKitConnectScreen
                             connecting={connecting}
-                            fitKitAvailable={fitKitAvailable}
-                            onConnectPress={this.onConnect}
+                            fitKitAvailable={available}
+                            onConnectPress={() => this.onConnect(authorise)}
                             onPrivacyPolicyPress={this.onPrivacyPolicy}
                             onSkipPress={this.onSkip}
                         />
@@ -58,15 +61,9 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
         );
     }
 
-    private onConnect = () => {
-        this.setState({ connecting: true }, async () => {
-            try {
-                this.props.authoriseFitKit();
-                this.continue();
-            } catch (e) {
-                // tslint:disable-next-line
-                console.log("ERR", e);
-            }
+    private onConnect = (authorise: FitKitAuthoriseFunction) => {
+        this.setState({ connecting: true }, () => {
+            authorise(FitKitPermissions);
         });
     }
 
@@ -93,11 +90,4 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
     }
 }
 
-const mapDispatchToProps = {
-    authoriseFitKit
-};
-
-export default connect<{}, IConnectedDispatch>(
-    null,
-    mapDispatchToProps
-)(FitKitConnectContainer);
+export default FitKitConnectContainer;

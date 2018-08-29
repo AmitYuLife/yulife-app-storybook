@@ -1,11 +1,9 @@
 import { Alert, ConnectionInfo } from "react-native";
-import RNFitKit from "react-native-fitkit";
 import { call, put, take, takeLatest } from "redux-saga/effects";
-import FitKitPermissions from "../../services/fitkit/fitkit.permissions";
 // import PushNotification from "react-native-push-notification";
 // import bugsnag from "../../utils/bugsnag";
 // import { SyncAction, AsyncAction } from "../_core/types";
-import { AUTHORISE_FITKIT, SHOW_MAINTENANCE, updateAppState, updateOfflineState } from "./app.actions";
+import { SHOW_MAINTENANCE, updateAppState, updateOfflineState } from "./app.actions";
 import { appNetworkChannel, appStateChannel } from "./app.channels";
 
 function* listenToAppState() {
@@ -24,10 +22,6 @@ function* listenToNetworkState() {
         const network: ConnectionInfo = yield take(networkChannel);
         yield put(updateOfflineState(network.type === "none"));
     }
-}
-
-function* authoriseFitKitSaga() {
-    yield call(RNFitKit.authorise, FitKitPermissions);
 }
 
 // example of moving from reducer logic
@@ -76,7 +70,6 @@ function* showMaintenance() {
 export default [
     takeLatest("INIT", listenToAppState),
     takeLatest("INIT", listenToNetworkState),
-    takeLatest(AUTHORISE_FITKIT, authoriseFitKitSaga),
     // takeEvery("*", logBreadcrumbs),
     // takeLatest(LOGOUT, unregisterPush),
     takeLatest(SHOW_MAINTENANCE, showMaintenance)

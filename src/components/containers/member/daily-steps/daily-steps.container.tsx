@@ -5,12 +5,12 @@ import { FitKitAvailable } from "react-native-fitkit";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { SyncAction } from "../../../../redux/_core/types";
-import { authoriseFitKit } from "../../../../redux/app/app.actions";
 import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
 import { getDailyEarnedCoins } from "../../../../redux/coins/coins.selectors";
 import { startDailySteps, stopDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
 import { getDailySteps, getLastUpdated } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
+import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
 import { setToken } from "../../../../services/storage";
 import { DailyStepsScreen } from "../../../screens";
 
@@ -28,7 +28,6 @@ interface IConnectedState {
 }
 
 interface IConnectedDispatch {
-    authoriseFitKit: () => SyncAction;
     dailyStepsCoinClicked: () => SyncAction;
     startDailySteps: () => SyncAction;
     stopDailySteps: () => SyncAction;
@@ -87,19 +86,19 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
 
         return (
             <FitKitAvailable>
-                {(fitKitAvailable, fitKitAuthorised, fitKitLoading) => {
+                {({ available, authorised, authorise, loading }) => {
                     return (
                         <DailyStepsScreen
                             coinsToday={dailyEarnedCoins}
                             currentStreak={2}
-                            fitKitAvailable={fitKitAvailable}
-                            hasPermission={fitKitAuthorised}
+                            fitKitAvailable={available}
+                            hasPermission={authorised}
                             isDoneToday={false}
-                            isLoading={fitKitLoading || dailyStepsLoading}
+                            isLoading={loading || dailyStepsLoading}
                             isOnline={!offline}
                             lastUpdate={lastUpdate}
                             maxStreak={4}
-                            onAuthoriseFitKitPress={this.props.authoriseFitKit}
+                            onAuthoriseFitKitPress={() => authorise(FitKitPermissions)}
                             onCoinPress={this.onCoinPress}
                             onCtaPress={this.onCta}
                             onStreakPress={this.onStreak}
@@ -138,7 +137,6 @@ const mapStateToProps = (state: IReduxState) => ({
 });
 
 const mapDispatchToProps = {
-    authoriseFitKit,
     dailyStepsCoinClicked,
     startDailySteps,
     stopDailySteps
