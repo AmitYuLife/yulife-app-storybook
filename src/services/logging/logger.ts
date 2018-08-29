@@ -16,21 +16,7 @@ class LoggerInstance {
     public setUserId = (userId: string) => {
         Intercom.registerIdentifiedUser({ userId });
         Mixpanel.identify(userId);
-        this.setMixpanelProperties({ customerId: userId });
         this.bugsnag.setUser(userId, "", "");
-    }
-
-    public setIntercomProperties(props: {}) {
-        if (props) {
-            Intercom.updateUser(props as any); // tslint:disable-line
-        }
-    }
-
-    public setMixpanelProperties = (props: {}) => {
-        if (props) {
-            Mixpanel.set(props);
-            Mixpanel.registerSuperProperties(props);
-        }
     }
 
     public logEvent(event: string, props?: {}) {

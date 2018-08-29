@@ -1,12 +1,12 @@
 import gql from "graphql-tag";
 import { Mutation, MutationFn, MutationResult } from "react-apollo";
 
-import { loginUser, loginUserVariables } from "../_core/schema";
+import { LoginUser, LoginUserVariables } from "../_core/schema";
 import { challengeFragmentGql } from "../_fragments/challenge.gql";
 import { challengeTemplateFragmentGql } from "../_fragments/challengeTemplate.gql";
 
 export const loginUserGql = gql`
-    mutation loginUser($email: String!, $password: String!, $method: LoginMethod, $tokenExpiration: Int) {
+    mutation LoginUser($email: String!, $password: String!, $method: LoginMethod, $tokenExpiration: Int) {
         loginUser(email: $email, password: $password, method: $method, tokenExpiration: $tokenExpiration) {
             token
             expiresAt
@@ -15,13 +15,6 @@ export const loginUserGql = gql`
                 __typename
                 id
                 businessAccountId
-                membershipType
-                email
-                firstName
-                lastName
-                dateOfBirth
-                smokerStatus
-                bmi
                 userStatus {
                     totalCoins
                     challenges {
@@ -51,8 +44,7 @@ export const loginUserGql = gql`
     ${challengeTemplateFragmentGql}
 `;
 
-export type LoginUserMutationType = MutationFn<loginUser, loginUserVariables>;
+export type LoginUserResultType = MutationResult<LoginUser>;
+export type LoginUserMutationFunction = MutationFn<LoginUser, LoginUserVariables>;
 
-export type LoginUserResultType = MutationResult<loginUser>;
-
-export default class LoginUserMutation extends Mutation<loginUser, loginUserVariables> {}
+export default class LoginUserMutation extends Mutation<LoginUser, LoginUserVariables> {}

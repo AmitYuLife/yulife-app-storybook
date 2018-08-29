@@ -1,15 +1,14 @@
-// tslint:disable:variable-name
-
 import * as React from "react";
 import { PureComponent } from "react";
 import { Linking } from "react-native";
 import Config from "react-native-config";
 import { FitKitAuthoriseFunction, FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
+import { connect } from "react-redux";
 import { ROUTES } from "../../../../navigation/routes";
 import { SyncAction } from "../../../../redux/_core/types";
+import { fitKitConsentAuthorised } from "../../../../redux/user/user.actions";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
-import { Loading } from "../../../atoms";
 import { FitKitConnectScreen } from "../../../screens";
 
 // TODO find where these props actually come from in RNN types
@@ -18,14 +17,15 @@ interface IProps {
 }
 
 interface IConnectedDispatch {
-    authoriseFitKit: () => SyncAction;
+    fitKitConsentAuthorised: () => SyncAction;
 }
 
 interface IState {
     connecting: boolean;
 }
 
-type Props = IProps & IConnectedDispatch;
+type Props = IProps &
+    IConnectedDispatch;
 
 class FitKitConnectContainer extends PureComponent<Props, IState> {
 
@@ -39,17 +39,16 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
         return (
             <FitKitAvailable>
                 {({ available, authorised, authorise, loading }) => {
-                    if (loading) {
-                        return <Loading />;
-                    }
-
                     if (authorised) {
+                        // ensure authorised when coming back to app
+                        // authorise(FitKitPermissions);
                         this.continue();
                     }
 
                     return (
                         <FitKitConnectScreen
                             connecting={connecting}
+                            loading={loading || authorised}
                             fitKitAvailable={available}
                             onConnectPress={() => this.onConnect(authorise)}
                             onPrivacyPolicyPress={this.onPrivacyPolicy}
@@ -63,6 +62,7 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
 
     private onConnect = (authorise: FitKitAuthoriseFunction) => {
         this.setState({ connecting: true }, () => {
+            this.props.fitKitConsentAuthorised();
             authorise(FitKitPermissions);
         });
     }
@@ -90,4 +90,11 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
     }
 }
 
-export default FitKitConnectContainer;
+const mapDispatchToProps = {
+    fitKitConsentAuthorised
+};
+
+export default connect<{}, IConnectedDispatch>(
+    null,
+    mapDispatchToProps
+)(FitKitConnectContainer);

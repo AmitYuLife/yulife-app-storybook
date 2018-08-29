@@ -2,8 +2,8 @@ import { Navigation } from "react-native-navigation";
 import { Style } from "../styles";
 import { ROUTES } from "./routes";
 
-export const setAuthenticatedRoot = () =>
-    Navigation.setRoot({
+export const setAuthenticatedRoot = async () =>
+    await Navigation.setRoot({
         root: {
             sideMenu: {
                 center: {
@@ -35,8 +35,8 @@ export const setAuthenticatedRoot = () =>
         }
     });
 
-export const setUnauthenticatedRoot = () =>
-    Navigation.setRoot({
+export const setUnauthenticatedRoot = async () =>
+    await Navigation.setRoot({
         root: {
             stack: {
                 children: [

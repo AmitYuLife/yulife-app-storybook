@@ -112,6 +112,30 @@ export interface ChallengesList {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: UpdateMemberConsent
+// ====================================================
+
+export interface UpdateMemberConsent_upsertMobileConsent {
+  mobileHealth: boolean | null;
+  marketing: boolean | null;
+  pushNotifications: boolean | null;
+  companyLeaderboard: boolean | null;
+  workspaceLeaderboard: boolean | null;
+}
+
+export interface UpdateMemberConsent {
+  upsertMobileConsent: UpdateMemberConsent_upsertMobileConsent | null;
+}
+
+export interface UpdateMemberConsentVariables {
+  consent?: MobileConsentInput | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetAllPurchases
 // ====================================================
 
@@ -259,17 +283,17 @@ export interface RedeemRewardVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: loginUser
+// GraphQL mutation operation: LoginUser
 // ====================================================
 
-export interface loginUser_loginUser_user_userStatus_challenges_passive_milestoneLog {
+export interface LoginUser_loginUser_user_userStatus_challenges_passive_milestoneLog {
   id: string | null;
   completed: number | null;
   completionData: (number | null)[] | null;
   description: string | null;
 }
 
-export interface loginUser_loginUser_user_userStatus_challenges_passive_challengeTemplate_milestones {
+export interface LoginUser_loginUser_user_userStatus_challenges_passive_challengeTemplate_milestones {
   id: string | null;
   description: string | null;
   unit: string | null;
@@ -278,7 +302,7 @@ export interface loginUser_loginUser_user_userStatus_challenges_passive_challeng
   XP: number | null;
 }
 
-export interface loginUser_loginUser_user_userStatus_challenges_passive_challengeTemplate {
+export interface LoginUser_loginUser_user_userStatus_challenges_passive_challengeTemplate {
   id: string | null;
   name: string | null;
   description: string | null;
@@ -297,11 +321,11 @@ export interface loginUser_loginUser_user_userStatus_challenges_passive_challeng
   failureDescription: string | null;
   challengeCompleteText: string | null;
   unit: string | null;
-  milestones: (loginUser_loginUser_user_userStatus_challenges_passive_challengeTemplate_milestones | null)[] | null;
+  milestones: (LoginUser_loginUser_user_userStatus_challenges_passive_challengeTemplate_milestones | null)[] | null;
   __typename: "ChallengeTemplate";
 }
 
-export interface loginUser_loginUser_user_userStatus_challenges_passive {
+export interface LoginUser_loginUser_user_userStatus_challenges_passive {
   id: string | null;
   actions: (string | null)[] | null;
   challengeTemplateId: string | null;
@@ -310,7 +334,7 @@ export interface loginUser_loginUser_user_userStatus_challenges_passive {
   customerId: string | null;
   data: (number | null)[] | null;
   endTime: number | null;
-  milestoneLog: (loginUser_loginUser_user_userStatus_challenges_passive_milestoneLog | null)[] | null;
+  milestoneLog: (LoginUser_loginUser_user_userStatus_challenges_passive_milestoneLog | null)[] | null;
   startTime: number | null;
   status: string | null;
   target: (number | null)[] | null;
@@ -318,17 +342,17 @@ export interface loginUser_loginUser_user_userStatus_challenges_passive {
   XPAwarded: number | null;
   yuCoinAwarded: number | null;
   __typename: "Challenge";
-  challengeTemplate: loginUser_loginUser_user_userStatus_challenges_passive_challengeTemplate | null;
+  challengeTemplate: LoginUser_loginUser_user_userStatus_challenges_passive_challengeTemplate | null;
 }
 
-export interface loginUser_loginUser_user_userStatus_challenges_active_milestoneLog {
+export interface LoginUser_loginUser_user_userStatus_challenges_active_milestoneLog {
   id: string | null;
   completed: number | null;
   completionData: (number | null)[] | null;
   description: string | null;
 }
 
-export interface loginUser_loginUser_user_userStatus_challenges_active_challengeTemplate_milestones {
+export interface LoginUser_loginUser_user_userStatus_challenges_active_challengeTemplate_milestones {
   id: string | null;
   description: string | null;
   unit: string | null;
@@ -337,7 +361,7 @@ export interface loginUser_loginUser_user_userStatus_challenges_active_challenge
   XP: number | null;
 }
 
-export interface loginUser_loginUser_user_userStatus_challenges_active_challengeTemplate {
+export interface LoginUser_loginUser_user_userStatus_challenges_active_challengeTemplate {
   id: string | null;
   name: string | null;
   description: string | null;
@@ -356,11 +380,11 @@ export interface loginUser_loginUser_user_userStatus_challenges_active_challenge
   failureDescription: string | null;
   challengeCompleteText: string | null;
   unit: string | null;
-  milestones: (loginUser_loginUser_user_userStatus_challenges_active_challengeTemplate_milestones | null)[] | null;
+  milestones: (LoginUser_loginUser_user_userStatus_challenges_active_challengeTemplate_milestones | null)[] | null;
   __typename: "ChallengeTemplate";
 }
 
-export interface loginUser_loginUser_user_userStatus_challenges_active {
+export interface LoginUser_loginUser_user_userStatus_challenges_active {
   id: string | null;
   actions: (string | null)[] | null;
   challengeTemplateId: string | null;
@@ -369,7 +393,7 @@ export interface loginUser_loginUser_user_userStatus_challenges_active {
   customerId: string | null;
   data: (number | null)[] | null;
   endTime: number | null;
-  milestoneLog: (loginUser_loginUser_user_userStatus_challenges_active_milestoneLog | null)[] | null;
+  milestoneLog: (LoginUser_loginUser_user_userStatus_challenges_active_milestoneLog | null)[] | null;
   startTime: number | null;
   status: string | null;
   target: (number | null)[] | null;
@@ -377,52 +401,45 @@ export interface loginUser_loginUser_user_userStatus_challenges_active {
   XPAwarded: number | null;
   yuCoinAwarded: number | null;
   __typename: "Challenge";
-  challengeTemplate: loginUser_loginUser_user_userStatus_challenges_active_challengeTemplate | null;
+  challengeTemplate: LoginUser_loginUser_user_userStatus_challenges_active_challengeTemplate | null;
 }
 
-export interface loginUser_loginUser_user_userStatus_challenges {
-  passive: loginUser_loginUser_user_userStatus_challenges_passive | null;
+export interface LoginUser_loginUser_user_userStatus_challenges {
+  passive: LoginUser_loginUser_user_userStatus_challenges_passive | null;
   nextActiveAvailable: number | null;
-  active: loginUser_loginUser_user_userStatus_challenges_active | null;
+  active: LoginUser_loginUser_user_userStatus_challenges_active | null;
 }
 
-export interface loginUser_loginUser_user_userStatus {
+export interface LoginUser_loginUser_user_userStatus {
   totalCoins: number | null;
-  challenges: loginUser_loginUser_user_userStatus_challenges | null;
+  challenges: LoginUser_loginUser_user_userStatus_challenges | null;
 }
 
-export interface loginUser_loginUser_user_userFeatures {
+export interface LoginUser_loginUser_user_userFeatures {
   name: string | null;
   value: boolean | null;
 }
 
-export interface loginUser_loginUser_user {
+export interface LoginUser_loginUser_user {
   __typename: "User";
   id: string | null;
   businessAccountId: string | null;
-  membershipType: string | null;
-  email: string | null;
-  firstName: string | null;
-  lastName: string | null;
-  dateOfBirth: string | null;
-  smokerStatus: string | null;
-  bmi: string | null;
-  userStatus: loginUser_loginUser_user_userStatus | null;
-  userFeatures: (loginUser_loginUser_user_userFeatures | null)[] | null;
+  userStatus: LoginUser_loginUser_user_userStatus | null;
+  userFeatures: (LoginUser_loginUser_user_userFeatures | null)[] | null;
 }
 
-export interface loginUser_loginUser {
+export interface LoginUser_loginUser {
   token: string | null;
   expiresAt: number | null;
   message: string | null;
-  user: loginUser_loginUser_user | null;
+  user: LoginUser_loginUser_user | null;
 }
 
-export interface loginUser {
-  loginUser: loginUser_loginUser | null;
+export interface LoginUser {
+  loginUser: LoginUser_loginUser | null;
 }
 
-export interface loginUserVariables {
+export interface LoginUserVariables {
   email: string;
   password: string;
   method?: LoginMethod | null;
@@ -602,6 +619,15 @@ export interface ActionPayload {
   startTime?: number | null;
   endTime?: number | null;
   value?: number | null;
+}
+
+// 
+export interface MobileConsentInput {
+  mobileHealth?: boolean | null;
+  marketing?: boolean | null;
+  pushNotifications?: boolean | null;
+  companyLeaderboard?: boolean | null;
+  workspaceLeaderboard?: boolean | null;
 }
 
 // 

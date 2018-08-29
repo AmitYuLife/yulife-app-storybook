@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SFC } from "react";
-import { Button, CentredScreen, Pad } from "../../../atoms";
+import { Button, CentredScreen, Loading, Pad } from "../../../atoms";
 import FitKitAvailable from "./fitkit-available";
 import data from "./fitkit-connect.screen.data";
 import FitKitUnavailable from "./fitkit-unavailable";
@@ -8,6 +8,7 @@ import FitKitUnavailable from "./fitkit-unavailable";
 interface IProps {
     connecting: boolean;
     fitKitAvailable: boolean;
+    loading: boolean;
     onConnectPress: () => void;
     onPrivacyPolicyPress: () => void;
     onSkipPress: () => void;
@@ -16,36 +17,43 @@ interface IProps {
 const FitKitConnectScreen: SFC<IProps> = ({
     connecting,
     fitKitAvailable,
+    loading,
     onConnectPress,
     onPrivacyPolicyPress,
     onSkipPress
 }) => (
-    <CentredScreen
-        footerImage={CentredScreen.FooterImages.FOREST}
-    >
-        <Pad height={120} />
-        {fitKitAvailable ? (
-            <FitKitAvailable
-                connecting={connecting}
-                onConnectPress={onConnectPress}
-            />
+    <>
+        {!loading ? (
+            <CentredScreen
+                footerImage={CentredScreen.FooterImages.FOREST}
+            >
+                <Pad height={120} />
+                {fitKitAvailable ? (
+                    <FitKitAvailable
+                        connecting={connecting}
+                        onConnectPress={onConnectPress}
+                    />
+                ) : (
+                    <FitKitUnavailable />
+                )}
+                <Pad height={19} />
+                <Button
+                    disabled={connecting}
+                    label={data.secondaryButtonLabel}
+                    onPress={onSkipPress}
+                    type={Button.Types.SECONDARY}
+                />
+                <Pad height={10} />
+                <Button
+                    label={data.linkButtonLabel}
+                    onPress={onPrivacyPolicyPress}
+                    type={Button.Types.LINK}
+                />
+            </CentredScreen>
         ) : (
-            <FitKitUnavailable />
+            <Loading />
         )}
-        <Pad height={19} />
-        <Button
-            disabled={connecting}
-            label={data.secondaryButtonLabel}
-            onPress={onSkipPress}
-            type={Button.Types.SECONDARY}
-        />
-        <Pad height={10} />
-        <Button
-            label={data.linkButtonLabel}
-            onPress={onPrivacyPolicyPress}
-            type={Button.Types.LINK}
-        />
-    </CentredScreen>
+    </>
 );
 
 export default FitKitConnectScreen;

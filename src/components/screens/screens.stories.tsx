@@ -55,6 +55,7 @@ storiesOf("Screens", module)
         <FitKitConnectScreen
             connecting={boolean("Connecting?", false, "FitKit")}
             fitKitAvailable={boolean("FitKit Available?", true, "FitKit")}
+            loading={boolean("FitKit Loading?", false, "FitKit")}
             onConnectPress={action("on connect press")}
             onPrivacyPolicyPress={action("on privacy policy press")}
             onSkipPress={action("on skip press")}

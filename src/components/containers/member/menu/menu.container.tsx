@@ -2,7 +2,10 @@ import * as React from "react";
 import { PureComponent } from "react";
 import Intercom from "react-native-intercom";
 import { Navigation } from "react-native-navigation";
+import { setUnauthenticatedRoot } from "../../../../navigation/root";
 import { ROUTES } from "../../../../navigation/routes";
+import { clearToken } from "../../../../services/storage/token";
+import { clearUser } from "../../../../services/storage/user";
 import { MenuScreen } from "../../../screens";
 import assets, { LINKS } from "./assets";
 
@@ -72,6 +75,7 @@ export default class MenuContainer extends PureComponent {
             case LINKS.LEADERBOARD:
                 return null;
             case LINKS.LOGOUT:
+                this.handleLogout();
                 return null;
             case LINKS.MEMBER:
                 return null;
@@ -90,5 +94,11 @@ export default class MenuContainer extends PureComponent {
                 }
             }
         });
+    }
+
+    private handleLogout = async () => {
+        await clearToken();
+        await clearUser();
+        setUnauthenticatedRoot();
     }
 }

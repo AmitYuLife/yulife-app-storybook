@@ -29,7 +29,11 @@ Navigation.registerComponent("yulife.Storybook", () => StorybookUIHMRRoot);
 Navigation.events().registerAppLaunchedListener(() => {
 
     Navigation.setDefaultOptions({
+        layout: {
+            backgroundColor: "white"
+        },
         topBar: {
+            drawBehind: true,
             visible: false
         }
     });

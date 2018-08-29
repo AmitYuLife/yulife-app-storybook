@@ -1,17 +1,13 @@
 import { Navigation } from "react-native-navigation";
 import registerScreens from "./navigation";
 import { setAuthenticatedRoot, setUnauthenticatedRoot } from "./navigation/root";
-import {
-    // getFitkitPermission,
-    getToken
-} from "./services/storage";
+import { getToken } from "./services/storage";
 
 // register all the screens
 registerScreens();
 
 Navigation.events().registerAppLaunchedListener(async () => {
     const token = await getToken();
-    // const fitkitPermission = await getFitkitPermission();
 
     Navigation.setDefaultOptions({
         layout: {

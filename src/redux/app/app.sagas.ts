@@ -3,6 +3,9 @@ import { call, put, take, takeLatest } from "redux-saga/effects";
 // import PushNotification from "react-native-push-notification";
 // import bugsnag from "../../utils/bugsnag";
 // import { SyncAction, AsyncAction } from "../_core/types";
+import Logger from "../../services/logging/logger";
+import { setToken, setUser } from "../../services/storage";
+import { LOGIN_USER_SUCCESS, LoginUserSuccessAction } from "../user/user.actions";
 import { SHOW_MAINTENANCE, updateAppState, updateOfflineState } from "./app.actions";
 import { appNetworkChannel, appStateChannel } from "./app.channels";
 
@@ -22,6 +25,14 @@ function* listenToNetworkState() {
         const network: ConnectionInfo = yield take(networkChannel);
         yield put(updateOfflineState(network.type === "none"));
     }
+}
+
+function* loginUserSuccessSaga({ payload }: LoginUserSuccessAction) {
+    const { token, user } = payload.loginUser;
+
+    yield call(setUser, user);
+    yield call(setToken, token);
+    yield call(Logger.setUserId, user.id);
 }
 
 // example of moving from reducer logic
@@ -70,6 +81,7 @@ function* showMaintenance() {
 export default [
     takeLatest("INIT", listenToAppState),
     takeLatest("INIT", listenToNetworkState),
+    takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
     // takeEvery("*", logBreadcrumbs),
     // takeLatest(LOGOUT, unregisterPush),
     takeLatest(SHOW_MAINTENANCE, showMaintenance)
