@@ -1,0 +1,618 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RewardsListItem should render with default props 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <RewardsListItem
+    code="abcdefg"
+    cost={20}
+    isLocked={false}
+    onPress={[MockFunction]}
+    rewardCurrency="GBP"
+    rewardValue={10}
+    settings={
+      Object {
+        "__typename": "RewardUiSettings",
+        "logoHeight": 1234,
+        "logoWidth": 1234,
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "activeOpacity": 1,
+      "children": <React.Fragment>
+        <Component
+          style={
+            Object {
+              "backgroundColor": "#bebebe",
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+        <Image
+          onLoad={[Function]}
+          resizeMethod="scale"
+          resizeMode="cover"
+          source={
+            Object {
+              "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/background/abcdefg_2x.png",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "height": 300,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "width": 750,
+              },
+              Object {
+                "opacity": 1,
+              },
+            ]
+          }
+        />
+        <Component
+          style={
+            Object {
+              "marginRight": "auto",
+            }
+          }
+        >
+          <UnlockedOverlay
+            code="abcdefg"
+            cost={20}
+            rewardCurrency="GBP"
+            rewardValue={10}
+            settings={
+              Object {
+                "__typename": "RewardUiSettings",
+                "logoHeight": 1234,
+                "logoWidth": 1234,
+              }
+            }
+          />
+        </Component>
+        <Component
+          animating={true}
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+      </React.Fragment>,
+      "onPress": [MockFunction],
+      "style": Object {
+        "alignItems": "center",
+        "height": 300,
+        "justifyContent": "center",
+        "width": 750,
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <Component
+            style={
+              Object {
+                "backgroundColor": "#bebebe",
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />,
+          <Image
+            onLoad={[Function]}
+            resizeMethod="scale"
+            resizeMode="cover"
+            source={
+              Object {
+                "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/background/abcdefg_2x.png",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "height": 300,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": 750,
+                },
+                Object {
+                  "opacity": 1,
+                },
+              ]
+            }
+          />,
+          <Component
+            style={
+              Object {
+                "marginRight": "auto",
+              }
+            }
+          >
+            <UnlockedOverlay
+              code="abcdefg"
+              cost={20}
+              rewardCurrency="GBP"
+              rewardValue={10}
+              settings={
+                Object {
+                  "__typename": "RewardUiSettings",
+                  "logoHeight": 1234,
+                  "logoWidth": 1234,
+                }
+              }
+            />
+          </Component>,
+          <Component
+            animating={true}
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "style": Object {
+              "backgroundColor": "#bebebe",
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "onLoad": [Function],
+            "resizeMethod": "scale",
+            "resizeMode": "cover",
+            "source": Object {
+              "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/background/abcdefg_2x.png",
+            },
+            "style": Array [
+              Object {
+                "bottom": 0,
+                "height": 300,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "width": 750,
+              },
+              Object {
+                "opacity": 1,
+              },
+            ],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <UnlockedOverlay
+              code="abcdefg"
+              cost={20}
+              rewardCurrency="GBP"
+              rewardValue={10}
+              settings={
+                Object {
+                  "__typename": "RewardUiSettings",
+                  "logoHeight": 1234,
+                  "logoWidth": 1234,
+                }
+              }
+            />,
+            "style": Object {
+              "marginRight": "auto",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "code": "abcdefg",
+              "cost": 20,
+              "rewardCurrency": "GBP",
+              "rewardValue": 10,
+              "settings": Object {
+                "__typename": "RewardUiSettings",
+                "logoHeight": 1234,
+                "logoWidth": 1234,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "animating": true,
+            "style": Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": Symbol(react.fragment),
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "activeOpacity": 1,
+        "children": <React.Fragment>
+          <Component
+            style={
+              Object {
+                "backgroundColor": "#bebebe",
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <Image
+            onLoad={[Function]}
+            resizeMethod="scale"
+            resizeMode="cover"
+            source={
+              Object {
+                "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/background/abcdefg_2x.png",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "height": 300,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": 750,
+                },
+                Object {
+                  "opacity": 1,
+                },
+              ]
+            }
+          />
+          <Component
+            style={
+              Object {
+                "marginRight": "auto",
+              }
+            }
+          >
+            <UnlockedOverlay
+              code="abcdefg"
+              cost={20}
+              rewardCurrency="GBP"
+              rewardValue={10}
+              settings={
+                Object {
+                  "__typename": "RewardUiSettings",
+                  "logoHeight": 1234,
+                  "logoWidth": 1234,
+                }
+              }
+            />
+          </Component>
+          <Component
+            animating={true}
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+        </React.Fragment>,
+        "onPress": [MockFunction],
+        "style": Object {
+          "alignItems": "center",
+          "height": 300,
+          "justifyContent": "center",
+          "width": 750,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <Component
+              style={
+                Object {
+                  "backgroundColor": "#bebebe",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />,
+            <Image
+              onLoad={[Function]}
+              resizeMethod="scale"
+              resizeMode="cover"
+              source={
+                Object {
+                  "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/background/abcdefg_2x.png",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "bottom": 0,
+                    "height": 300,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 750,
+                  },
+                  Object {
+                    "opacity": 1,
+                  },
+                ]
+              }
+            />,
+            <Component
+              style={
+                Object {
+                  "marginRight": "auto",
+                }
+              }
+            >
+              <UnlockedOverlay
+                code="abcdefg"
+                cost={20}
+                rewardCurrency="GBP"
+                rewardValue={10}
+                settings={
+                  Object {
+                    "__typename": "RewardUiSettings",
+                    "logoHeight": 1234,
+                    "logoWidth": 1234,
+                  }
+                }
+              />
+            </Component>,
+            <Component
+              animating={true}
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "style": Object {
+                "backgroundColor": "#bebebe",
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "onLoad": [Function],
+              "resizeMethod": "scale",
+              "resizeMode": "cover",
+              "source": Object {
+                "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/background/abcdefg_2x.png",
+              },
+              "style": Array [
+                Object {
+                  "bottom": 0,
+                  "height": 300,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": 750,
+                },
+                Object {
+                  "opacity": 1,
+                },
+              ],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <UnlockedOverlay
+                code="abcdefg"
+                cost={20}
+                rewardCurrency="GBP"
+                rewardValue={10}
+                settings={
+                  Object {
+                    "__typename": "RewardUiSettings",
+                    "logoHeight": 1234,
+                    "logoWidth": 1234,
+                  }
+                }
+              />,
+              "style": Object {
+                "marginRight": "auto",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "code": "abcdefg",
+                "cost": 20,
+                "rewardCurrency": "GBP",
+                "rewardValue": 10,
+                "settings": Object {
+                  "__typename": "RewardUiSettings",
+                  "logoHeight": 1234,
+                  "logoWidth": 1234,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "animating": true,
+              "style": Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": Symbol(react.fragment),
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

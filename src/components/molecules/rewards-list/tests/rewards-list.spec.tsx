@@ -1,4 +1,5 @@
 import { shallow } from "enzyme";
+import * as React from "react";
 import RewardsList from "../rewards-list";
 
 const defaultProps = {
@@ -6,9 +7,7 @@ const defaultProps = {
     onItemPress: jest.fn()
 };
 
-// TODO another test that mysteriously won't run
-
-xdescribe("RewardsList", () => {
+describe("RewardsList", () => {
 
     it("should render with default props", () => {
         const actual = shallow(

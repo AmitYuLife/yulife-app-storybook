@@ -6,11 +6,11 @@ import Button from "../button";
 
 describe("Button", () => {
 
-    it("should render secondary button", () => {
+    it("should render primary button", () => {
         const actual = shallow(
             <Button
                 onPress={jest.fn()}
-                type={Button.Types.SECONDARY}
+                type={Button.Types.PRIMARY}
                 label="test"
             />
         );
@@ -18,11 +18,24 @@ describe("Button", () => {
         expect(actual).toMatchSnapshot();
     });
 
-    it("should render primary button", () => {
+    it("should render primary button as disabled", () => {
+        const actual = shallow(
+            <Button
+                disabled={true}
+                onPress={jest.fn()}
+                type={Button.Types.PRIMARY}
+                label="test"
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render secondary button", () => {
         const actual = shallow(
             <Button
                 onPress={jest.fn()}
-                type={Button.Types.PRIMARY}
+                type={Button.Types.SECONDARY}
                 label="test"
             />
         );

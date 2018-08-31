@@ -8,7 +8,7 @@ const defaultProps = {
     onPressLeftIcon: jest.fn()
 };
 
-xdescribe("TopBar", () => {
+describe("TopBar", () => {
 
     it("should render with default props", () => {
         const actual = shallow(

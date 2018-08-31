@@ -18,10 +18,7 @@ const defaultProps = {
     } as GetRewards_getRewards_uiSettings
 };
 
-// TODO this test won't run for some stupid magical reason wtaf
-// a shiny penny to anyone who can get it to work
-
-xdescribe("RewardsListItem", () => {
+describe("RewardsListItem", () => {
 
     it("should render with default props", () => {
         const actual = shallow(
