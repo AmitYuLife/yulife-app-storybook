@@ -114,6 +114,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative56"
+        multiDexEnabled true
         renderscriptTargetApi rootProject.ext.minSdkVersion
         renderscriptSupportModeEnabled true
         resValue "string", "build_config_package", "com.yulife"
