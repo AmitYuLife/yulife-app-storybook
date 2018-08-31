@@ -13,6 +13,10 @@ const isShortAndroid = () => {
     return Platform.OS === "android" && pixelRatio < 3 && y < 700;
 };
 
+const isXShortAndroid = () => {
+    return Platform.OS === "android" && y < 600;
+};
+
 const isShortToMediumAndroid = () => {
     return Platform.OS === "android" && y < 700;
 };
@@ -26,7 +30,8 @@ const Style = {
     PIXEL_RATIO: pixelRatio,
     SCALE_UP_AND_DOWN,
     isShortAndroid,
-    isShortToMediumAndroid
+    isShortToMediumAndroid,
+    isXShortAndroid
 };
 
 export default Style;

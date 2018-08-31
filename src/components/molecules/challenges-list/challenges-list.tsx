@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SFC } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { ChallengeTile, IChallengeTileProps, Images as ChallengeTileImages } from "..";
 import styles from "./challenges-list.styles";
 
@@ -19,7 +19,7 @@ export interface IChallengesListProps {
 
 const ChallengeSet: SFC<IChallengesListProps> = ({ challenges }) => (
     <View style={styles.wrapper}>
-        <View style={styles.column}>
+        <View>
             {challenges
                 .slice(0, 2)
                 .map((challenge, index) => (
@@ -30,12 +30,7 @@ const ChallengeSet: SFC<IChallengesListProps> = ({ challenges }) => (
                     />
                 ))}
         </View>
-        <View
-            style={StyleSheet.flatten([
-                styles.column,
-                styles.rightColumnWrapper
-            ])}
-        >
+        <View style={styles.rightColumnWrapper}>
             {challenges
                 .slice(2, 4)
                 .map((challenge, index) => (

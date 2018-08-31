@@ -10,22 +10,23 @@ import { Images, IMAGES } from "./challenge-tile";
 export const getImageStyle = (image: Images): ImageStyle => {
     let top;
     let right;
+    const topAdjust = Style.isShortAndroid() || Style.isXShortAndroid() ? 0 : 0;
 
     switch (image) {
         case IMAGES.SQUIRREL:
-            top = Style.SCALE_UP_AND_DOWN(7);
+            top = Style.SCALE_UP_AND_DOWN(7 + topAdjust);
             right = Style.SCALE_UP_AND_DOWN(15);
             break;
         case IMAGES.OSTRICH:
-            top = 0;
+            top = 0 + topAdjust;
             right = Style.SCALE_UP_AND_DOWN(27);
             break;
         case IMAGES.ELEPHANT:
-            top = Style.SCALE_UP_AND_DOWN(7);
+            top = Style.SCALE_UP_AND_DOWN(7 + topAdjust);
             right = Style.SCALE_UP_AND_DOWN(9);
             break;
         case IMAGES.BIRD:
-            top = Style.SCALE_UP_AND_DOWN(17);
+            top = Style.SCALE_UP_AND_DOWN(17 + topAdjust);
             right = Style.SCALE_UP_AND_DOWN(10);
             break;
         default:
@@ -36,7 +37,7 @@ export const getImageStyle = (image: Images): ImageStyle => {
         {
             position: "absolute",
             right,
-            top: top - (Style.isShortAndroid() ? 40 : 0)
+            top
         } as ImageStyle
     ]);
 };
@@ -83,9 +84,7 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(255,255,255,0.5)",
         borderTopRightRadius: Style.SCALE_UP_AND_DOWN(20),
         bottom: 0,
-        height: Style.SCALE_UP_AND_DOWN(
-            Style.isShortAndroid() ? 108 : 120
-        ),
+        height: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() || Style.isXShortAndroid() ? 80 : 120),
         left: 0,
         position: "absolute",
         right: 0
@@ -96,26 +95,19 @@ const styles = StyleSheet.create({
     } as ViewStyle,
     imageBackgroundLocked: {
         backgroundColor: "transparent",
-        height: Style.SCALE_UP_AND_DOWN(
-            Style.isShortAndroid() ? 100 : 200
-        )
+        height: Style.SCALE_UP_AND_DOWN(200)
     } as ViewStyle,
     imageNext: {
         height: Style.SCALE_UP_AND_DOWN(25),
         width: Style.SCALE_UP_AND_DOWN(25)
     } as ImageStyle,
     imageWrapper: {
-        height: Style.SCALE_UP_AND_DOWN(
-            Style.isShortAndroid() ? 80 : 140
-        )
+        height: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() || Style.isXShortAndroid() ? 120 : 140)
     } as ViewStyle,
     imageWrapperLocked: {
         alignItems: "center",
-        height: Style.SCALE_UP_AND_DOWN(
-            Style.isShortAndroid() ? 200 : 220
-        ),
-        justifyContent: "center",
-        paddingBottom: Style.isShortAndroid() ? 100 : 0
+        height: Style.SCALE_UP_AND_DOWN(220),
+        justifyContent: "center"
     } as ViewStyle,
     imageWrapperNext: {
         alignItems: "center",
@@ -137,14 +129,12 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(255,255,255,0.7)",
         borderTopRightRadius: Style.SCALE_UP_AND_DOWN(20),
         bottom: 0,
-        height: Style.isShortAndroid() ? 160 : "auto",
+        height: "auto",
         justifyContent: "center",
         left: 0,
         position: "absolute",
         right: 0,
-        top: Style.SCALE_UP_AND_DOWN(
-            Style.isShortAndroid() ? -22 : 20
-        )
+        top: Style.SCALE_UP_AND_DOWN(20)
     } as ViewStyle,
     lockedOverlayFlipped: {
         borderTopLeftRadius: Style.SCALE_UP_AND_DOWN(20),
@@ -157,14 +147,11 @@ const styles = StyleSheet.create({
     sectionBottomWrapper: {
         backgroundColor: "rgba(255,255,255,0.9)",
         flexDirection: "row",
-        height: Style.SCALE_UP_AND_DOWN(
-            Style.isShortAndroid() ? 64 : 80
-        )
+        height: Style.SCALE_UP_AND_DOWN(80)
     } as ViewStyle,
     wrapper: {
-        height: Style.SCALE_UP_AND_DOWN(
-            Style.isShortAndroid() ? 200 : 220
-        ),
+        height: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() || Style.isXShortAndroid() ? 204 : 224),
+        justifyContent: "flex-end",
         marginTop: Style.SCALE_UP_AND_DOWN(7),
         width: Style.SCALE_UP_AND_DOWN(165)
     } as ViewStyle

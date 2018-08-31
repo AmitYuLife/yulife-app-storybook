@@ -36,7 +36,8 @@ ShallowWrapper {
       ],
       "onPress": [Function],
       "style": Object {
-        "height": 440,
+        "height": 448,
+        "justifyContent": "flex-end",
         "marginTop": 14,
         "width": 330,
       },
@@ -93,7 +94,8 @@ ShallowWrapper {
         ],
         "onPress": [Function],
         "style": Object {
-          "height": 440,
+          "height": 448,
+          "justifyContent": "flex-end",
           "marginTop": 14,
           "width": 330,
         },
@@ -189,7 +191,8 @@ ShallowWrapper {
       ],
       "onPress": [Function],
       "style": Object {
-        "height": 440,
+        "height": 448,
+        "justifyContent": "flex-end",
         "marginTop": 14,
         "width": 330,
       },
@@ -246,7 +249,8 @@ ShallowWrapper {
         ],
         "onPress": [Function],
         "style": Object {
-          "height": 440,
+          "height": 448,
+          "justifyContent": "flex-end",
           "marginTop": 14,
           "width": 330,
         },
@@ -342,7 +346,8 @@ ShallowWrapper {
       ],
       "onPress": [Function],
       "style": Object {
-        "height": 440,
+        "height": 448,
+        "justifyContent": "flex-end",
         "marginTop": 14,
         "width": 330,
       },
@@ -397,7 +402,8 @@ ShallowWrapper {
         ],
         "onPress": [Function],
         "style": Object {
-          "height": 440,
+          "height": 448,
+          "justifyContent": "flex-end",
           "marginTop": 14,
           "width": 330,
         },
