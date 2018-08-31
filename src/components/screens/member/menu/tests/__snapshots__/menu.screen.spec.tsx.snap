@@ -10,9 +10,9 @@ ShallowWrapper {
           "condition": true,
           "label": "debug",
           "onPress": [MockFunction],
+          "source": 1234,
         },
         Object {
-          "condition": true,
           "label": "activity history",
           "onPress": [MockFunction],
         },
@@ -22,7 +22,6 @@ ShallowWrapper {
           "onPress": [MockFunction],
         },
         Object {
-          "condition": true,
           "label": "member zone",
           "onPress": [MockFunction],
         },
@@ -119,6 +118,18 @@ ShallowWrapper {
             <Component
               style={
                 Object {
+                  "width": 112,
+                }
+              }
+            >
+              <Image
+                source={1234}
+                style={Object {}}
+              />
+            </Component>
+            <Component
+              style={
+                Object {
                   "paddingRight": 16,
                 }
               }
@@ -169,75 +180,7 @@ ShallowWrapper {
                   }
                 }
               >
-                activity history  
-              </YuText>
-            </Component>
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.2}
-            onPress={[MockFunction]}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 124,
-              }
-            }
-          >
-            <Component
-              style={
-                Object {
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <YuText
-                bold={true}
-                style={
-                  Object {
-                    "borderColor": "transparent",
-                    "borderWidth": 1,
-                    "color": "rgb(51,51,51)",
-                    "fontSize": 36,
-                    "width": "100%",
-                  }
-                }
-              >
                 leaderboard  
-              </YuText>
-            </Component>
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.2}
-            onPress={[MockFunction]}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 124,
-              }
-            }
-          >
-            <Component
-              style={
-                Object {
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <YuText
-                bold={true}
-                style={
-                  Object {
-                    "borderColor": "transparent",
-                    "borderWidth": 1,
-                    "color": "rgb(51,51,51)",
-                    "fontSize": 36,
-                    "width": "100%",
-                  }
-                }
-              >
-                member zone  
               </YuText>
             </Component>
           </TouchableOpacity>
@@ -327,6 +270,18 @@ ShallowWrapper {
                 <Component
                   style={
                     Object {
+                      "width": 112,
+                    }
+                  }
+                >
+                  <Image
+                    source={1234}
+                    style={Object {}}
+                  />
+                </Component>
+                <Component
+                  style={
+                    Object {
                       "paddingRight": 16,
                     }
                   }
@@ -347,40 +302,7 @@ ShallowWrapper {
                   </YuText>
                 </Component>
               </TouchableOpacity>,
-              <TouchableOpacity
-                activeOpacity={0.2}
-                onPress={[MockFunction]}
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flexDirection": "row",
-                    "height": 124,
-                  }
-                }
-              >
-                <Component
-                  style={
-                    Object {
-                      "paddingRight": 16,
-                    }
-                  }
-                >
-                  <YuText
-                    bold={true}
-                    style={
-                      Object {
-                        "borderColor": "transparent",
-                        "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
-                        "width": "100%",
-                      }
-                    }
-                  >
-                    activity history  
-                  </YuText>
-                </Component>
-              </TouchableOpacity>,
+              null,
               <TouchableOpacity
                 activeOpacity={0.2}
                 onPress={[MockFunction]}
@@ -415,40 +337,7 @@ ShallowWrapper {
                   </YuText>
                 </Component>
               </TouchableOpacity>,
-              <TouchableOpacity
-                activeOpacity={0.2}
-                onPress={[MockFunction]}
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flexDirection": "row",
-                    "height": 124,
-                  }
-                }
-              >
-                <Component
-                  style={
-                    Object {
-                      "paddingRight": 16,
-                    }
-                  }
-                >
-                  <YuText
-                    bold={true}
-                    style={
-                      Object {
-                        "borderColor": "transparent",
-                        "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
-                        "width": "100%",
-                      }
-                    }
-                  >
-                    member zone  
-                  </YuText>
-                </Component>
-              </TouchableOpacity>,
+              null,
             ],
           ],
           "style": Object {
@@ -556,7 +445,18 @@ ShallowWrapper {
             "props": Object {
               "activeOpacity": 0.2,
               "children": Array [
-                undefined,
+                <Component
+                  style={
+                    Object {
+                      "width": 112,
+                    }
+                  }
+                >
+                  <Image
+                    source={1234}
+                    style={Object {}}
+                  />
+                </Component>,
                 <Component
                   style={
                     Object {
@@ -589,7 +489,34 @@ ShallowWrapper {
             },
             "ref": null,
             "rendered": Array [
-              undefined,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <Image
+                    source={1234}
+                    style={Object {}}
+                  />,
+                  "style": Object {
+                    "width": 112,
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1234,
+                    "style": Object {},
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
               Object {
                 "instance": null,
                 "key": undefined,
@@ -638,95 +565,7 @@ ShallowWrapper {
             ],
             "type": [Function],
           },
-          Object {
-            "instance": null,
-            "key": "1",
-            "nodeType": "class",
-            "props": Object {
-              "activeOpacity": 0.2,
-              "children": Array [
-                undefined,
-                <Component
-                  style={
-                    Object {
-                      "paddingRight": 16,
-                    }
-                  }
-                >
-                  <YuText
-                    bold={true}
-                    style={
-                      Object {
-                        "borderColor": "transparent",
-                        "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
-                        "width": "100%",
-                      }
-                    }
-                  >
-                    activity history  
-                  </YuText>
-                </Component>,
-              ],
-              "onPress": [MockFunction],
-              "style": Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 124,
-              },
-            },
-            "ref": null,
-            "rendered": Array [
-              undefined,
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <YuText
-                    bold={true}
-                    style={
-                      Object {
-                        "borderColor": "transparent",
-                        "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
-                        "width": "100%",
-                      }
-                    }
-                  >
-                    activity history  
-                  </YuText>,
-                  "style": Object {
-                    "paddingRight": 16,
-                  },
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "bold": true,
-                    "children": "activity history  ",
-                    "style": Object {
-                      "borderColor": "transparent",
-                      "borderWidth": 1,
-                      "color": "rgb(51,51,51)",
-                      "fontSize": 36,
-                      "width": "100%",
-                    },
-                  },
-                  "ref": null,
-                  "rendered": "activity history  ",
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-            ],
-            "type": [Function],
-          },
+          null,
           Object {
             "instance": null,
             "key": "2",
@@ -816,95 +655,7 @@ ShallowWrapper {
             ],
             "type": [Function],
           },
-          Object {
-            "instance": null,
-            "key": "3",
-            "nodeType": "class",
-            "props": Object {
-              "activeOpacity": 0.2,
-              "children": Array [
-                undefined,
-                <Component
-                  style={
-                    Object {
-                      "paddingRight": 16,
-                    }
-                  }
-                >
-                  <YuText
-                    bold={true}
-                    style={
-                      Object {
-                        "borderColor": "transparent",
-                        "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
-                        "width": "100%",
-                      }
-                    }
-                  >
-                    member zone  
-                  </YuText>
-                </Component>,
-              ],
-              "onPress": [MockFunction],
-              "style": Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 124,
-              },
-            },
-            "ref": null,
-            "rendered": Array [
-              undefined,
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <YuText
-                    bold={true}
-                    style={
-                      Object {
-                        "borderColor": "transparent",
-                        "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
-                        "width": "100%",
-                      }
-                    }
-                  >
-                    member zone  
-                  </YuText>,
-                  "style": Object {
-                    "paddingRight": 16,
-                  },
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "bold": true,
-                    "children": "member zone  ",
-                    "style": Object {
-                      "borderColor": "transparent",
-                      "borderWidth": 1,
-                      "color": "rgb(51,51,51)",
-                      "fontSize": 36,
-                      "width": "100%",
-                    },
-                  },
-                  "ref": null,
-                  "rendered": "member zone  ",
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-            ],
-            "type": [Function],
-          },
+          null,
         ],
         "type": [Function],
       },
@@ -994,6 +745,18 @@ ShallowWrapper {
               <Component
                 style={
                   Object {
+                    "width": 112,
+                  }
+                }
+              >
+                <Image
+                  source={1234}
+                  style={Object {}}
+                />
+              </Component>
+              <Component
+                style={
+                  Object {
                     "paddingRight": 16,
                   }
                 }
@@ -1044,75 +807,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  activity history  
-                </YuText>
-              </Component>
-            </TouchableOpacity>
-            <TouchableOpacity
-              activeOpacity={0.2}
-              onPress={[MockFunction]}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "height": 124,
-                }
-              }
-            >
-              <Component
-                style={
-                  Object {
-                    "paddingRight": 16,
-                  }
-                }
-              >
-                <YuText
-                  bold={true}
-                  style={
-                    Object {
-                      "borderColor": "transparent",
-                      "borderWidth": 1,
-                      "color": "rgb(51,51,51)",
-                      "fontSize": 36,
-                      "width": "100%",
-                    }
-                  }
-                >
                   leaderboard  
-                </YuText>
-              </Component>
-            </TouchableOpacity>
-            <TouchableOpacity
-              activeOpacity={0.2}
-              onPress={[MockFunction]}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "height": 124,
-                }
-              }
-            >
-              <Component
-                style={
-                  Object {
-                    "paddingRight": 16,
-                  }
-                }
-              >
-                <YuText
-                  bold={true}
-                  style={
-                    Object {
-                      "borderColor": "transparent",
-                      "borderWidth": 1,
-                      "color": "rgb(51,51,51)",
-                      "fontSize": 36,
-                      "width": "100%",
-                    }
-                  }
-                >
-                  member zone  
                 </YuText>
               </Component>
             </TouchableOpacity>
@@ -1202,6 +897,18 @@ ShallowWrapper {
                   <Component
                     style={
                       Object {
+                        "width": 112,
+                      }
+                    }
+                  >
+                    <Image
+                      source={1234}
+                      style={Object {}}
+                    />
+                  </Component>
+                  <Component
+                    style={
+                      Object {
                         "paddingRight": 16,
                       }
                     }
@@ -1222,40 +929,7 @@ ShallowWrapper {
                     </YuText>
                   </Component>
                 </TouchableOpacity>,
-                <TouchableOpacity
-                  activeOpacity={0.2}
-                  onPress={[MockFunction]}
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "height": 124,
-                    }
-                  }
-                >
-                  <Component
-                    style={
-                      Object {
-                        "paddingRight": 16,
-                      }
-                    }
-                  >
-                    <YuText
-                      bold={true}
-                      style={
-                        Object {
-                          "borderColor": "transparent",
-                          "borderWidth": 1,
-                          "color": "rgb(51,51,51)",
-                          "fontSize": 36,
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      activity history  
-                    </YuText>
-                  </Component>
-                </TouchableOpacity>,
+                null,
                 <TouchableOpacity
                   activeOpacity={0.2}
                   onPress={[MockFunction]}
@@ -1290,40 +964,7 @@ ShallowWrapper {
                     </YuText>
                   </Component>
                 </TouchableOpacity>,
-                <TouchableOpacity
-                  activeOpacity={0.2}
-                  onPress={[MockFunction]}
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "height": 124,
-                    }
-                  }
-                >
-                  <Component
-                    style={
-                      Object {
-                        "paddingRight": 16,
-                      }
-                    }
-                  >
-                    <YuText
-                      bold={true}
-                      style={
-                        Object {
-                          "borderColor": "transparent",
-                          "borderWidth": 1,
-                          "color": "rgb(51,51,51)",
-                          "fontSize": 36,
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      member zone  
-                    </YuText>
-                  </Component>
-                </TouchableOpacity>,
+                null,
               ],
             ],
             "style": Object {
@@ -1431,7 +1072,18 @@ ShallowWrapper {
               "props": Object {
                 "activeOpacity": 0.2,
                 "children": Array [
-                  undefined,
+                  <Component
+                    style={
+                      Object {
+                        "width": 112,
+                      }
+                    }
+                  >
+                    <Image
+                      source={1234}
+                      style={Object {}}
+                    />
+                  </Component>,
                   <Component
                     style={
                       Object {
@@ -1464,7 +1116,34 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": Array [
-                undefined,
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <Image
+                      source={1234}
+                      style={Object {}}
+                    />,
+                    "style": Object {
+                      "width": 112,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "source": 1234,
+                      "style": Object {},
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
                 Object {
                   "instance": null,
                   "key": undefined,
@@ -1513,95 +1192,7 @@ ShallowWrapper {
               ],
               "type": [Function],
             },
-            Object {
-              "instance": null,
-              "key": "1",
-              "nodeType": "class",
-              "props": Object {
-                "activeOpacity": 0.2,
-                "children": Array [
-                  undefined,
-                  <Component
-                    style={
-                      Object {
-                        "paddingRight": 16,
-                      }
-                    }
-                  >
-                    <YuText
-                      bold={true}
-                      style={
-                        Object {
-                          "borderColor": "transparent",
-                          "borderWidth": 1,
-                          "color": "rgb(51,51,51)",
-                          "fontSize": 36,
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      activity history  
-                    </YuText>
-                  </Component>,
-                ],
-                "onPress": [MockFunction],
-                "style": Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "height": 124,
-                },
-              },
-              "ref": null,
-              "rendered": Array [
-                undefined,
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": <YuText
-                      bold={true}
-                      style={
-                        Object {
-                          "borderColor": "transparent",
-                          "borderWidth": 1,
-                          "color": "rgb(51,51,51)",
-                          "fontSize": 36,
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      activity history  
-                    </YuText>,
-                    "style": Object {
-                      "paddingRight": 16,
-                    },
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {
-                      "bold": true,
-                      "children": "activity history  ",
-                      "style": Object {
-                        "borderColor": "transparent",
-                        "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
-                        "width": "100%",
-                      },
-                    },
-                    "ref": null,
-                    "rendered": "activity history  ",
-                    "type": [Function],
-                  },
-                  "type": [Function],
-                },
-              ],
-              "type": [Function],
-            },
+            null,
             Object {
               "instance": null,
               "key": "2",
@@ -1691,95 +1282,7 @@ ShallowWrapper {
               ],
               "type": [Function],
             },
-            Object {
-              "instance": null,
-              "key": "3",
-              "nodeType": "class",
-              "props": Object {
-                "activeOpacity": 0.2,
-                "children": Array [
-                  undefined,
-                  <Component
-                    style={
-                      Object {
-                        "paddingRight": 16,
-                      }
-                    }
-                  >
-                    <YuText
-                      bold={true}
-                      style={
-                        Object {
-                          "borderColor": "transparent",
-                          "borderWidth": 1,
-                          "color": "rgb(51,51,51)",
-                          "fontSize": 36,
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      member zone  
-                    </YuText>
-                  </Component>,
-                ],
-                "onPress": [MockFunction],
-                "style": Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "height": 124,
-                },
-              },
-              "ref": null,
-              "rendered": Array [
-                undefined,
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": <YuText
-                      bold={true}
-                      style={
-                        Object {
-                          "borderColor": "transparent",
-                          "borderWidth": 1,
-                          "color": "rgb(51,51,51)",
-                          "fontSize": 36,
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      member zone  
-                    </YuText>,
-                    "style": Object {
-                      "paddingRight": 16,
-                    },
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {
-                      "bold": true,
-                      "children": "member zone  ",
-                      "style": Object {
-                        "borderColor": "transparent",
-                        "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
-                        "width": "100%",
-                      },
-                    },
-                    "ref": null,
-                    "rendered": "member zone  ",
-                    "type": [Function],
-                  },
-                  "type": [Function],
-                },
-              ],
-              "type": [Function],
-            },
+            null,
           ],
           "type": [Function],
         },
@@ -1813,7 +1316,7 @@ exports[`MenuScreen should render without links 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <MenuScreen
-    links={Array []}
+    links={null}
     onPressClose={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -1962,7 +1465,7 @@ ShallowWrapper {
                 style={Object {}}
               />
             </Component>,
-            Array [],
+            null,
           ],
           "style": Object {
             "backgroundColor": "white",
@@ -2062,6 +1565,7 @@ ShallowWrapper {
             },
             "type": [Function],
           },
+          null,
         ],
         "type": [Function],
       },
@@ -2208,7 +1712,7 @@ ShallowWrapper {
                   style={Object {}}
                 />
               </Component>,
-              Array [],
+              null,
             ],
             "style": Object {
               "backgroundColor": "white",
@@ -2308,6 +1812,7 @@ ShallowWrapper {
               },
               "type": [Function],
             },
+            null,
           ],
           "type": [Function],
         },

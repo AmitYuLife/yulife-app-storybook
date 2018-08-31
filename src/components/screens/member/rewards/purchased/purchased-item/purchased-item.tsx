@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SFC } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "../../../../../atoms";
 import styles from "./purchased-item.styles";
@@ -18,7 +19,7 @@ export enum RewardStatus {
     delivered = "delivered"
 }
 
-const RewardsPurchasedItem: React.SFC<IRewardsPurchasedItemProps> = ({ day, month, reward, cost, status, onPress }) => (
+const RewardsPurchasedItem: SFC<IRewardsPurchasedItemProps> = ({ day, month, reward, cost, status, onPress }) => (
     <TouchableOpacity onPress={onPress} style={styles.wrapper}>
         <View style={styles.dateWrapper}>
             <Text style={styles.day}>{day}</Text>

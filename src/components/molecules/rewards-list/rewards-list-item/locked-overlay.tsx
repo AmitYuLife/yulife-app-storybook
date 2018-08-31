@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SFC } from "react";
 import { Image, View } from "react-native";
 import { GetRewards_getRewards_uiSettings } from "../../../../graphql/_core/schema";
 import { getCloudinaryUrl } from "../../../../services/cloudinary/index";
@@ -7,10 +8,10 @@ import styles from "./locked-overlay.styles";
 
 interface IProps {
     code: string;
-    settings: GetRewards_getRewards_uiSettings;
+    settings?: GetRewards_getRewards_uiSettings;
 }
 
-const LockedOverlay: React.SFC<IProps> = ({ code, settings }) => (
+const LockedOverlay: SFC<IProps> = ({ code, settings }) => (
     <View style={styles.lockedContainer}>
         <View style={styles.lockedWhiteSpace}>
             <Image

@@ -1,11 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TopBar should render 1`] = `
+exports[`PurchasesEmpty should render 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <TopBar
-    coins={0}
-    onPressLeftIcon={[MockFunction]}
+  Symbol(enzyme.__unrendered__): <PurchasesEmpty
+    onCtaPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -20,53 +19,58 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <TouchableOpacity
-          activeOpacity={0.2}
-          onPress={[MockFunction]}
-          style={
+        <Image
+          source={
             Object {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "left": 30,
-              "position": "absolute",
+              "testUri": "../../../src/components/screens/member/rewards/purchased/purchases-empty/assets/rewards-empty.png",
             }
           }
-        >
-          <Menu />
-        </TouchableOpacity>,
-        <Logo />,
+          style={
+            Object {
+              "marginBottom": 42,
+            }
+          }
+        />,
         <Component
           style={
             Object {
               "alignItems": "center",
-              "flexDirection": "row",
-              "position": "absolute",
-              "right": 30,
+              "justifyContent": "center",
+              "marginBottom": 36,
             }
           }
         >
           <YuText
             style={
               Object {
-                "fontSize": 36,
-                "marginBottom": -8,
-                "marginRight": 16,
+                "fontSize": 32,
+                "marginBottom": 6,
               }
             }
           >
-            0
+            It’s empty!
           </YuText>
-          <Coins
-            scale={0.5}
-          />
+          <YuText
+            style={
+              Object {
+                "fontSize": 32,
+                "marginBottom": 6,
+              }
+            }
+          >
+            Buy a voucher and it will appear here
+          </YuText>
         </Component>,
+        <Button
+          label="check rewards"
+          onPress={[MockFunction]}
+          type="SecondaryMedium"
+        />,
       ],
       "style": Object {
         "alignItems": "center",
-        "flexDirection": "row",
+        "flex": 1,
         "justifyContent": "center",
-        "marginTop": 8,
-        "width": "100%",
       },
     },
     "ref": null,
@@ -76,39 +80,13 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "activeOpacity": 0.2,
-          "children": Array [
-            <Menu />,
-            null,
-          ],
-          "onPress": [MockFunction],
+          "source": Object {
+            "testUri": "../../../src/components/screens/member/rewards/purchased/purchases-empty/assets/rewards-empty.png",
+          },
           "style": Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "left": 30,
-            "position": "absolute",
+            "marginBottom": 42,
           },
         },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          null,
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {},
         "ref": null,
         "rendered": null,
         "type": [Function],
@@ -122,23 +100,28 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
-                  "fontSize": 36,
-                  "marginBottom": -8,
-                  "marginRight": 16,
+                  "fontSize": 32,
+                  "marginBottom": 6,
                 }
               }
             >
-              0
+              It’s empty!
             </YuText>,
-            <Coins
-              scale={0.5}
-            />,
+            <YuText
+              style={
+                Object {
+                  "fontSize": 32,
+                  "marginBottom": 6,
+                }
+              }
+            >
+              Buy a voucher and it will appear here
+            </YuText>,
           ],
           "style": Object {
             "alignItems": "center",
-            "flexDirection": "row",
-            "position": "absolute",
-            "right": 30,
+            "justifyContent": "center",
+            "marginBottom": 36,
           },
         },
         "ref": null,
@@ -148,15 +131,14 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": 0,
+              "children": "It’s empty!",
               "style": Object {
-                "fontSize": 36,
-                "marginBottom": -8,
-                "marginRight": 16,
+                "fontSize": 32,
+                "marginBottom": 6,
               },
             },
             "ref": null,
-            "rendered": 0,
+            "rendered": "It’s empty!",
             "type": [Function],
           },
           Object {
@@ -164,13 +146,30 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "scale": 0.5,
+              "children": "Buy a voucher and it will appear here",
+              "style": Object {
+                "fontSize": 32,
+                "marginBottom": 6,
+              },
             },
             "ref": null,
-            "rendered": null,
+            "rendered": "Buy a voucher and it will appear here",
             "type": [Function],
           },
         ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "check rewards",
+          "onPress": [MockFunction],
+          "type": "SecondaryMedium",
+        },
+        "ref": null,
+        "rendered": null,
         "type": [Function],
       },
     ],
@@ -183,53 +182,58 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <TouchableOpacity
-            activeOpacity={0.2}
-            onPress={[MockFunction]}
-            style={
+          <Image
+            source={
               Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "left": 30,
-                "position": "absolute",
+                "testUri": "../../../src/components/screens/member/rewards/purchased/purchases-empty/assets/rewards-empty.png",
               }
             }
-          >
-            <Menu />
-          </TouchableOpacity>,
-          <Logo />,
+            style={
+              Object {
+                "marginBottom": 42,
+              }
+            }
+          />,
           <Component
             style={
               Object {
                 "alignItems": "center",
-                "flexDirection": "row",
-                "position": "absolute",
-                "right": 30,
+                "justifyContent": "center",
+                "marginBottom": 36,
               }
             }
           >
             <YuText
               style={
                 Object {
-                  "fontSize": 36,
-                  "marginBottom": -8,
-                  "marginRight": 16,
+                  "fontSize": 32,
+                  "marginBottom": 6,
                 }
               }
             >
-              0
+              It’s empty!
             </YuText>
-            <Coins
-              scale={0.5}
-            />
+            <YuText
+              style={
+                Object {
+                  "fontSize": 32,
+                  "marginBottom": 6,
+                }
+              }
+            >
+              Buy a voucher and it will appear here
+            </YuText>
           </Component>,
+          <Button
+            label="check rewards"
+            onPress={[MockFunction]}
+            type="SecondaryMedium"
+          />,
         ],
         "style": Object {
           "alignItems": "center",
-          "flexDirection": "row",
+          "flex": 1,
           "justifyContent": "center",
-          "marginTop": 8,
-          "width": "100%",
         },
       },
       "ref": null,
@@ -239,39 +243,13 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "activeOpacity": 0.2,
-            "children": Array [
-              <Menu />,
-              null,
-            ],
-            "onPress": [MockFunction],
+            "source": Object {
+              "testUri": "../../../src/components/screens/member/rewards/purchased/purchases-empty/assets/rewards-empty.png",
+            },
             "style": Object {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "left": 30,
-              "position": "absolute",
+              "marginBottom": 42,
             },
           },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            null,
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {},
           "ref": null,
           "rendered": null,
           "type": [Function],
@@ -285,23 +263,28 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
-                    "fontSize": 36,
-                    "marginBottom": -8,
-                    "marginRight": 16,
+                    "fontSize": 32,
+                    "marginBottom": 6,
                   }
                 }
               >
-                0
+                It’s empty!
               </YuText>,
-              <Coins
-                scale={0.5}
-              />,
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "marginBottom": 6,
+                  }
+                }
+              >
+                Buy a voucher and it will appear here
+              </YuText>,
             ],
             "style": Object {
               "alignItems": "center",
-              "flexDirection": "row",
-              "position": "absolute",
-              "right": 30,
+              "justifyContent": "center",
+              "marginBottom": 36,
             },
           },
           "ref": null,
@@ -311,15 +294,14 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "children": 0,
+                "children": "It’s empty!",
                 "style": Object {
-                  "fontSize": 36,
-                  "marginBottom": -8,
-                  "marginRight": 16,
+                  "fontSize": 32,
+                  "marginBottom": 6,
                 },
               },
               "ref": null,
-              "rendered": 0,
+              "rendered": "It’s empty!",
               "type": [Function],
             },
             Object {
@@ -327,13 +309,30 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "scale": 0.5,
+                "children": "Buy a voucher and it will appear here",
+                "style": Object {
+                  "fontSize": 32,
+                  "marginBottom": 6,
+                },
               },
               "ref": null,
-              "rendered": null,
+              "rendered": "Buy a voucher and it will appear here",
               "type": [Function],
             },
           ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "check rewards",
+            "onPress": [MockFunction],
+            "type": "SecondaryMedium",
+          },
+          "ref": null,
+          "rendered": null,
           "type": [Function],
         },
       ],

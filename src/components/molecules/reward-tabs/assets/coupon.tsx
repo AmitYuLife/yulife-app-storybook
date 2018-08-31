@@ -1,7 +1,7 @@
-/* tslint:disable */
+// tslint:disable:max-line-length
 import * as React from "react";
 import { SFC } from "react";
-import Svg, { Path, Rect, Polygon } from "react-native-svg";
+import Svg, { Path, Polygon, Rect } from "react-native-svg";
 
 interface IProps {
     hasCheckmark: boolean;

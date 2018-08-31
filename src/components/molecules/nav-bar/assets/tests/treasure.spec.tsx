@@ -7,7 +7,10 @@ describe("Treasure", () => {
 
     it("should render when inactive and not pressed", () => {
         const actual = shallow(
-            <Treasure isActive={false} isPressed={false} />
+            <Treasure
+                isActive={false}
+                isPressed={false}
+            />
         );
 
         expect(actual).toMatchSnapshot();
@@ -15,7 +18,10 @@ describe("Treasure", () => {
 
     it("should render when inactive and pressed", () => {
         const actual = shallow(
-            <Treasure isActive={false} isPressed={true} />
+            <Treasure
+                isActive={false}
+                isPressed={true}
+            />
         );
 
         expect(actual).toMatchSnapshot();
@@ -23,7 +29,20 @@ describe("Treasure", () => {
 
     it("should render when active and not pressed", () => {
         const actual = shallow(
-            <Treasure isActive={true} isPressed={false} />
+            <Treasure
+                isActive={true}
+                isPressed={false}
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should not render when icon is hidden", () => {
+        const actual = shallow(
+            <Treasure
+                isIconHidden={true}
+            />
         );
 
         expect(actual).toMatchSnapshot();

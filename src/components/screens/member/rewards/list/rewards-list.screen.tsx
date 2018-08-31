@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SFC } from "react";
 import {
     SafeAreaView,
     StatusBar,
@@ -19,7 +20,7 @@ export interface IRewardsListScreenProps {
     onItemPress: (item: GetRewards_getRewards) => void;
 }
 
-const RewardsListScreen: React.SFC<IRewardsListScreenProps> = ({
+const RewardsListScreen: SFC<IRewardsListScreenProps> = ({
     data,
     onLeftTabPress,
     onRightTabPress,

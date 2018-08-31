@@ -1,6 +1,7 @@
 import { shallow } from "enzyme";
 import * as React from "react";
 import "react-native";
+import { ImageRequireSource } from "react-native";
 import MenuScreen from "../menu.screen";
 
 const defaultProps = {
@@ -8,10 +9,10 @@ const defaultProps = {
         {
             condition: true,
             label: "debug",
-            onPress: jest.fn()
+            onPress: jest.fn(),
+            source: 1234 as ImageRequireSource
         },
         {
-            condition: true,
             label: "activity history",
             onPress: jest.fn()
         },
@@ -21,7 +22,6 @@ const defaultProps = {
             onPress: jest.fn()
         },
         {
-            condition: true,
             label: "member zone",
             onPress: jest.fn()
         }],
@@ -44,7 +44,7 @@ describe("MenuScreen", () => {
         const actual = shallow(
             <MenuScreen
                 {...defaultProps}
-                links={[]}
+                links={null}
             />
         );
 

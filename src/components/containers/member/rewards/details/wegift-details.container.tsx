@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Component } from "react";
 import { Alert, Linking } from "react-native";
 import { Config } from "react-native-config";
 import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
@@ -15,7 +16,7 @@ interface IProps {
     onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
 }
 
-export default class WegiftRewardDetailsContainer extends React.Component<IProps> {
+export default class WegiftRewardDetailsContainer extends Component<IProps> {
     public render() {
         const {
             reward: {

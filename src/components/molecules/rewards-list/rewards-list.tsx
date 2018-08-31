@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SFC } from "react";
 import { FlatList } from "react-native";
 import { GetRewards_getRewards } from "../../../graphql/_core/schema";
 import RewardsListItem from "./rewards-list-item/rewards-list-item";
@@ -41,7 +42,7 @@ const handleRenderItem = (onPress: RenderItem) => ({ item, index }: IRenderItemA
 
 const keyExtractor = (item: GetRewards_getRewards) => item.code;
 
-const RewardsList: React.SFC<IProps> = ({ data, onItemPress }) => {
+const RewardsList: SFC<IProps> = ({ data, onItemPress }) => {
     const renderItem = handleRenderItem(onItemPress);
 
     return <FlatList renderItem={renderItem} keyExtractor={keyExtractor} data={data} />;

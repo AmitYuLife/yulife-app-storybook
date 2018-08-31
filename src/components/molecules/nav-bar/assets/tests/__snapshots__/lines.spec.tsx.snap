@@ -1,5 +1,177 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Lines should render dark colours 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Lines
+    colour="dark"
+    isExtended={false}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Rect
+          fill="rgba(0,0,0,0.2)"
+          height="3"
+          rx={0}
+          ry={0}
+          width={161}
+          x="46.1"
+          y="16.5"
+        />,
+        <Rect
+          fill="rgba(0,0,0,0.2)"
+          height="3"
+          rx={0}
+          ry={0}
+          transform="matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)"
+          width={161}
+          x={239.9}
+          y="16.5"
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "rgba(0,0,0,0.2)",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": 161,
+          "x": "46.1",
+          "y": "16.5",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "rgba(0,0,0,0.2)",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "transform": "matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)",
+          "width": 161,
+          "x": 239.9,
+          "y": "16.5",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Rect
+            fill="rgba(0,0,0,0.2)"
+            height="3"
+            rx={0}
+            ry={0}
+            width={161}
+            x="46.1"
+            y="16.5"
+          />,
+          <Rect
+            fill="rgba(0,0,0,0.2)"
+            height="3"
+            rx={0}
+            ry={0}
+            transform="matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)"
+            width={161}
+            x={239.9}
+            y="16.5"
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "rgba(0,0,0,0.2)",
+            "height": "3",
+            "rx": 0,
+            "ry": 0,
+            "width": 161,
+            "x": "46.1",
+            "y": "16.5",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "rgba(0,0,0,0.2)",
+            "height": "3",
+            "rx": 0,
+            "ry": 0,
+            "transform": "matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)",
+            "width": 161,
+            "x": 239.9,
+            "y": "16.5",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
 exports[`Lines should render when extended 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],

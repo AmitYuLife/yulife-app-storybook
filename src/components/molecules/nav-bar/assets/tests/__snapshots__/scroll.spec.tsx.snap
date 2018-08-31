@@ -1,5 +1,112 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Scroll should not render when icon is hidden 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Scroll
+    isIconHidden={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        null,
+        <Circle
+          cx="223.5"
+          cy="18"
+          fill="rgba(255,255,255,0.4)"
+          r="10"
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      null,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "cx": "223.5",
+          "cy": "18",
+          "fill": "rgba(255,255,255,0.4)",
+          "r": "10",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          null,
+          <Circle
+            cx="223.5"
+            cy="18"
+            fill="rgba(255,255,255,0.4)"
+            r="10"
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cx": "223.5",
+            "cy": "18",
+            "fill": "rgba(255,255,255,0.4)",
+            "r": "10",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
 exports[`Scroll should render when active and not pressed 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
@@ -1124,6 +1231,481 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Scroll should render when it has a notification 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Scroll
+    hasDismiss={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <React.Fragment>
+          <Path
+            d="M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z"
+            fill="rgba(255,255,255,0.4)"
+          />
+          <Rect
+            fill="rgba(255,255,255,0.4)"
+            height="3"
+            rx={0}
+            ry={0}
+            width="30"
+            x="208.5"
+            y="76.3"
+          />
+          <Rect
+            fill="rgba(255,255,255,0.4)"
+            height="3"
+            rx={0}
+            ry={0}
+            width="30"
+            x="208.5"
+            y="82.3"
+          />
+          <Rect
+            fill="rgba(255,255,255,0.4)"
+            height="3"
+            rx={0}
+            ry={0}
+            width="22"
+            x="208.5"
+            y="88.3"
+          />
+        </React.Fragment>,
+        <G
+          x={52}
+          y={-28}
+        >
+          <Path
+            d="M228.5,41c-11.6,0-21,9.4-21,21s9.4,21,21,21s21-9.4,21-21S240.1,41,228.5,41z M228.5,80c-9.9,0-18-8.1-18-18s8.1-18,18-18s18,8.1,18,18S238.4,80,228.5,80z"
+            fill="rgba(255,255,255,0.4)"
+            scale={0.75}
+          />
+          <Polygon
+            fill="rgba(255,255,255,0.4)"
+            points="232.6,55.7 228.5,59.9 224.4,55.7 222.2,57.9 226.4,62 222.2,66.1 224.4,68.3 228.5,64.1 232.6,68.3 234.8,66.1 230.6,62 234.8,57.9 "
+            scale={0.75}
+          />
+        </G>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <Path
+              d="M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z"
+              fill="rgba(255,255,255,0.4)"
+            />,
+            <Rect
+              fill="rgba(255,255,255,0.4)"
+              height="3"
+              rx={0}
+              ry={0}
+              width="30"
+              x="208.5"
+              y="76.3"
+            />,
+            <Rect
+              fill="rgba(255,255,255,0.4)"
+              height="3"
+              rx={0}
+              ry={0}
+              width="30"
+              x="208.5"
+              y="82.3"
+            />,
+            <Rect
+              fill="rgba(255,255,255,0.4)"
+              height="3"
+              rx={0}
+              ry={0}
+              width="22"
+              x="208.5"
+              y="88.3"
+            />,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "d": "M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z",
+              "fill": "rgba(255,255,255,0.4)",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "fill": "rgba(255,255,255,0.4)",
+              "height": "3",
+              "rx": 0,
+              "ry": 0,
+              "width": "30",
+              "x": "208.5",
+              "y": "76.3",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "fill": "rgba(255,255,255,0.4)",
+              "height": "3",
+              "rx": 0,
+              "ry": 0,
+              "width": "30",
+              "x": "208.5",
+              "y": "82.3",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "fill": "rgba(255,255,255,0.4)",
+              "height": "3",
+              "rx": 0,
+              "ry": 0,
+              "width": "22",
+              "x": "208.5",
+              "y": "88.3",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": Symbol(react.fragment),
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Path
+              d="M228.5,41c-11.6,0-21,9.4-21,21s9.4,21,21,21s21-9.4,21-21S240.1,41,228.5,41z M228.5,80c-9.9,0-18-8.1-18-18s8.1-18,18-18s18,8.1,18,18S238.4,80,228.5,80z"
+              fill="rgba(255,255,255,0.4)"
+              scale={0.75}
+            />,
+            <Polygon
+              fill="rgba(255,255,255,0.4)"
+              points="232.6,55.7 228.5,59.9 224.4,55.7 222.2,57.9 226.4,62 222.2,66.1 224.4,68.3 228.5,64.1 232.6,68.3 234.8,66.1 230.6,62 234.8,57.9 "
+              scale={0.75}
+            />,
+          ],
+          "x": 52,
+          "y": -28,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "d": "M228.5,41c-11.6,0-21,9.4-21,21s9.4,21,21,21s21-9.4,21-21S240.1,41,228.5,41z M228.5,80c-9.9,0-18-8.1-18-18s8.1-18,18-18s18,8.1,18,18S238.4,80,228.5,80z",
+              "fill": "rgba(255,255,255,0.4)",
+              "scale": 0.75,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "fill": "rgba(255,255,255,0.4)",
+              "points": "232.6,55.7 228.5,59.9 224.4,55.7 222.2,57.9 226.4,62 222.2,66.1 224.4,68.3 228.5,64.1 232.6,68.3 234.8,66.1 230.6,62 234.8,57.9 ",
+              "scale": 0.75,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <React.Fragment>
+            <Path
+              d="M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z"
+              fill="rgba(255,255,255,0.4)"
+            />
+            <Rect
+              fill="rgba(255,255,255,0.4)"
+              height="3"
+              rx={0}
+              ry={0}
+              width="30"
+              x="208.5"
+              y="76.3"
+            />
+            <Rect
+              fill="rgba(255,255,255,0.4)"
+              height="3"
+              rx={0}
+              ry={0}
+              width="30"
+              x="208.5"
+              y="82.3"
+            />
+            <Rect
+              fill="rgba(255,255,255,0.4)"
+              height="3"
+              rx={0}
+              ry={0}
+              width="22"
+              x="208.5"
+              y="88.3"
+            />
+          </React.Fragment>,
+          <G
+            x={52}
+            y={-28}
+          >
+            <Path
+              d="M228.5,41c-11.6,0-21,9.4-21,21s9.4,21,21,21s21-9.4,21-21S240.1,41,228.5,41z M228.5,80c-9.9,0-18-8.1-18-18s8.1-18,18-18s18,8.1,18,18S238.4,80,228.5,80z"
+              fill="rgba(255,255,255,0.4)"
+              scale={0.75}
+            />
+            <Polygon
+              fill="rgba(255,255,255,0.4)"
+              points="232.6,55.7 228.5,59.9 224.4,55.7 222.2,57.9 226.4,62 222.2,66.1 224.4,68.3 228.5,64.1 232.6,68.3 234.8,66.1 230.6,62 234.8,57.9 "
+              scale={0.75}
+            />
+          </G>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <Path
+                d="M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z"
+                fill="rgba(255,255,255,0.4)"
+              />,
+              <Rect
+                fill="rgba(255,255,255,0.4)"
+                height="3"
+                rx={0}
+                ry={0}
+                width="30"
+                x="208.5"
+                y="76.3"
+              />,
+              <Rect
+                fill="rgba(255,255,255,0.4)"
+                height="3"
+                rx={0}
+                ry={0}
+                width="30"
+                x="208.5"
+                y="82.3"
+              />,
+              <Rect
+                fill="rgba(255,255,255,0.4)"
+                height="3"
+                rx={0}
+                ry={0}
+                width="22"
+                x="208.5"
+                y="88.3"
+              />,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "d": "M253.5,55.3h-50c-3.6,0-6.5,2.9-6.5,6.5v46.5h-3.5c-3.6,0-6.5,2.9-6.5,6.5s2.9,6.5,6.5,6.5h50c3.6,0,6.5-2.9,6.5-6.5V68.3h3.5c3.6,0,6.5-2.9,6.5-6.5S257.1,55.3,253.5,55.3z M200,61.8c0-1.9,1.6-3.5,3.5-3.5H248c-0.6,1-1,2.2-1,3.5v46.5h-3.5H200V61.8z M190,114.8c0-1.9,1.6-3.5,3.5-3.5H238c-0.6,1-1,2.2-1,3.5s0.4,2.5,1,3.5h-44.5C191.6,118.3,190,116.7,190,114.8z M243.5,118.3c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h3.5v3.5C247,116.7,245.4,118.3,243.5,118.3z M253.5,65.3H250v-3.5c0-1.9,1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S255.4,65.3,253.5,65.3z",
+                "fill": "rgba(255,255,255,0.4)",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "fill": "rgba(255,255,255,0.4)",
+                "height": "3",
+                "rx": 0,
+                "ry": 0,
+                "width": "30",
+                "x": "208.5",
+                "y": "76.3",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "fill": "rgba(255,255,255,0.4)",
+                "height": "3",
+                "rx": 0,
+                "ry": 0,
+                "width": "30",
+                "x": "208.5",
+                "y": "82.3",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "fill": "rgba(255,255,255,0.4)",
+                "height": "3",
+                "rx": 0,
+                "ry": 0,
+                "width": "22",
+                "x": "208.5",
+                "y": "88.3",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": Symbol(react.fragment),
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Path
+                d="M228.5,41c-11.6,0-21,9.4-21,21s9.4,21,21,21s21-9.4,21-21S240.1,41,228.5,41z M228.5,80c-9.9,0-18-8.1-18-18s8.1-18,18-18s18,8.1,18,18S238.4,80,228.5,80z"
+                fill="rgba(255,255,255,0.4)"
+                scale={0.75}
+              />,
+              <Polygon
+                fill="rgba(255,255,255,0.4)"
+                points="232.6,55.7 228.5,59.9 224.4,55.7 222.2,57.9 226.4,62 222.2,66.1 224.4,68.3 228.5,64.1 232.6,68.3 234.8,66.1 230.6,62 234.8,57.9 "
+                scale={0.75}
+              />,
+            ],
+            "x": 52,
+            "y": -28,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "d": "M228.5,41c-11.6,0-21,9.4-21,21s9.4,21,21,21s21-9.4,21-21S240.1,41,228.5,41z M228.5,80c-9.9,0-18-8.1-18-18s8.1-18,18-18s18,8.1,18,18S238.4,80,228.5,80z",
+                "fill": "rgba(255,255,255,0.4)",
+                "scale": 0.75,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "fill": "rgba(255,255,255,0.4)",
+                "points": "232.6,55.7 228.5,59.9 224.4,55.7 222.2,57.9 226.4,62 222.2,66.1 224.4,68.3 228.5,64.1 232.6,68.3 234.8,66.1 230.6,62 234.8,57.9 ",
+                "scale": 0.75,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
       ],

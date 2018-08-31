@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SFC } from "react";
 import { Image, View } from "react-native";
 import { GetRewards_getRewards_uiSettings } from "../../../../graphql/_core/schema";
 import { getCloudinaryUrl } from "../../../../services/cloudinary/index";
@@ -11,10 +12,10 @@ interface IProps {
     rewardCurrency: string;
     rewardValue: number;
     cost: number;
-    settings: GetRewards_getRewards_uiSettings;
+    settings?: GetRewards_getRewards_uiSettings;
 }
 
-const UnlockedOverlay: React.SFC<IProps> = ({ code, rewardCurrency, rewardValue, cost, settings }) => (
+const UnlockedOverlay: SFC<IProps> = ({ code, rewardCurrency, rewardValue, cost, settings }) => (
     <View style={styles.unlockedContainer}>
         <Image
             resizeMethod="resize"

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { PureComponent } from "react";
 import { ActivityIndicator, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { GetRewards_getRewards_uiSettings } from "../../../../graphql/_core/schema";
 import { getCloudinaryUrl } from "../../../../services/cloudinary/index";
@@ -7,12 +8,12 @@ import styles from "./rewards-list-item.styles";
 import UnlockedOverlay from "./unlocked-overlay";
 
 interface IProps {
-    onPress?: () => void;
-    isLocked?: boolean;
     code: string;
     cost: number;
-    rewardValue: number;
+    isLocked?: boolean;
+    onPress?: () => void;
     rewardCurrency: string;
+    rewardValue: number;
     settings: GetRewards_getRewards_uiSettings;
 }
 
@@ -20,14 +21,16 @@ interface IState {
     hasLoaded: boolean;
 }
 
-class RewardsListItem extends React.PureComponent<IProps, IState> {
-    public state = {
+class RewardsListItem extends PureComponent<IProps, IState> {
+
+    public state: IState = {
         hasLoaded: false
     };
 
     public render() {
         const { code, onPress, isLocked, cost, rewardValue, rewardCurrency, settings } = this.props;
         const { hasLoaded } = this.state;
+
         return (
             <TouchableOpacity
                 activeOpacity={1}

@@ -1,8 +1,8 @@
 import * as React from "react";
 import { SFC } from "react";
 import { Path } from "react-native-svg";
-import { Colours } from "../../../../styles";
 import NavBar from "../nav-bar";
+import { getNotificationFill } from "./helpers";
 
 interface IProps {
     isVisible: boolean;
@@ -11,38 +11,10 @@ interface IProps {
     colour?: string;
 }
 
-type GetNotificationFill = Partial<IProps>;
-
-const getNotificationFill = ({
-    isPressed,
-    isActive,
-    colour
-}: GetNotificationFill) => {
-    if (isPressed) {
-        if (colour === NavBar.Colours.LIGHT) {
-            return Colours.navBar.light.pressed;
-        } else {
-            return Colours.navBar.dark.pressed;
-        }
-    } else if (isActive) {
-        if (colour === NavBar.Colours.LIGHT) {
-            return Colours.navBar.light.active;
-        } else {
-            return Colours.navBar.dark.active;
-        }
-    } else {
-        if (colour === NavBar.Colours.LIGHT) {
-            return Colours.navBar.light.inactive;
-        } else {
-            return Colours.navBar.dark.inactive;
-        }
-    }
-};
-
 const Notification: SFC<IProps> = ({
-    isVisible = false,
-    isActive = false,
-    isPressed = false,
+    isVisible,
+    isActive,
+    isPressed,
     colour = NavBar.Colours.LIGHT
 }) =>
     !isVisible ? null : (

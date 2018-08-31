@@ -1,0 +1,1462 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RewardItemContent should render with a description and instructions 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <RewardItemContent
+    description="This is a description"
+    instructions={
+      Array [
+        "These",
+        "are",
+        "the",
+        "instructions",
+      ]
+    }
+    labelCtaPrimary="Label 1"
+    onPressCtaPrimary={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Component>
+          <Component
+            style={
+              Object {
+                "marginTop": 110,
+                "width": "100%",
+              }
+            }
+          >
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "fontSize": 40,
+                }
+              }
+            >
+              Description
+            </YuText>
+          </Component>
+          <Component
+            style={
+              Object {
+                "marginTop": 32,
+                "width": "100%",
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "fontSize": 32,
+                  "lineHeight": 46,
+                }
+              }
+            >
+              This is a description
+            </YuText>
+          </Component>
+        </Component>,
+        <React.Fragment>
+          <Component
+            style={
+              Object {
+                "marginTop": 64,
+                "width": "100%",
+              }
+            }
+          >
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "fontSize": 40,
+                }
+              }
+            >
+              How to redeem
+            </YuText>
+          </Component>
+          <Component
+            style={
+              Object {
+                "marginTop": 40,
+                "width": "100%",
+              }
+            }
+          >
+            <Instruction
+              bullet={1}
+              instruction="These"
+            />
+            <Instruction
+              bullet={2}
+              instruction="are"
+            />
+            <Instruction
+              bullet={3}
+              instruction="the"
+            />
+            <Instruction
+              bullet={4}
+              instruction="instructions"
+            />
+          </Component>
+        </React.Fragment>,
+        <Button
+          label="Label 1"
+          onPress={[MockFunction]}
+          type="Primary"
+          wrapperStyle={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "marginTop": 82,
+            }
+          }
+        />,
+        null,
+        <LinkGroup
+          data={
+            Array [
+              Object {
+                "label": "T&Cs",
+                "onPress": undefined,
+              },
+              Object {
+                "label": "Reward policy",
+                "onPress": undefined,
+              },
+            ]
+          }
+        />,
+      ],
+      "style": Object {
+        "flex": 1,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Component
+              style={
+                Object {
+                  "marginTop": 110,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 40,
+                  }
+                }
+              >
+                Description
+              </YuText>
+            </Component>,
+            <Component
+              style={
+                Object {
+                  "marginTop": 32,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 46,
+                  }
+                }
+              >
+                This is a description
+              </YuText>
+            </Component>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 40,
+                  }
+                }
+              >
+                Description
+              </YuText>,
+              "style": Object {
+                "marginTop": 110,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "bold": true,
+                "children": "Description",
+                "style": Object {
+                  "fontSize": 40,
+                },
+              },
+              "ref": null,
+              "rendered": "Description",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 46,
+                  }
+                }
+              >
+                This is a description
+              </YuText>,
+              "style": Object {
+                "marginTop": 32,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "This is a description",
+                "style": Object {
+                  "fontSize": 32,
+                  "lineHeight": 46,
+                },
+              },
+              "ref": null,
+              "rendered": "This is a description",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <Component
+              style={
+                Object {
+                  "marginTop": 64,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 40,
+                  }
+                }
+              >
+                How to redeem
+              </YuText>
+            </Component>,
+            <Component
+              style={
+                Object {
+                  "marginTop": 40,
+                  "width": "100%",
+                }
+              }
+            >
+              <Instruction
+                bullet={1}
+                instruction="These"
+              />
+              <Instruction
+                bullet={2}
+                instruction="are"
+              />
+              <Instruction
+                bullet={3}
+                instruction="the"
+              />
+              <Instruction
+                bullet={4}
+                instruction="instructions"
+              />
+            </Component>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 40,
+                  }
+                }
+              >
+                How to redeem
+              </YuText>,
+              "style": Object {
+                "marginTop": 64,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "bold": true,
+                "children": "How to redeem",
+                "style": Object {
+                  "fontSize": 40,
+                },
+              },
+              "ref": null,
+              "rendered": "How to redeem",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <Instruction
+                  bullet={1}
+                  instruction="These"
+                />,
+                <Instruction
+                  bullet={2}
+                  instruction="are"
+                />,
+                <Instruction
+                  bullet={3}
+                  instruction="the"
+                />,
+                <Instruction
+                  bullet={4}
+                  instruction="instructions"
+                />,
+              ],
+              "style": Object {
+                "marginTop": 40,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": "0",
+                "nodeType": "function",
+                "props": Object {
+                  "bullet": 1,
+                  "instruction": "These",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "1",
+                "nodeType": "function",
+                "props": Object {
+                  "bullet": 2,
+                  "instruction": "are",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "2",
+                "nodeType": "function",
+                "props": Object {
+                  "bullet": 3,
+                  "instruction": "the",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "3",
+                "nodeType": "function",
+                "props": Object {
+                  "bullet": 4,
+                  "instruction": "instructions",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": Symbol(react.fragment),
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "Label 1",
+          "onPress": [MockFunction],
+          "type": "Primary",
+          "wrapperStyle": Object {
+            "alignItems": "center",
+            "alignSelf": "center",
+            "marginTop": 82,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      null,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "data": Array [
+            Object {
+              "label": "T&Cs",
+              "onPress": undefined,
+            },
+            Object {
+              "label": "Reward policy",
+              "onPress": undefined,
+            },
+          ],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Component>
+            <Component
+              style={
+                Object {
+                  "marginTop": 110,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 40,
+                  }
+                }
+              >
+                Description
+              </YuText>
+            </Component>
+            <Component
+              style={
+                Object {
+                  "marginTop": 32,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 46,
+                  }
+                }
+              >
+                This is a description
+              </YuText>
+            </Component>
+          </Component>,
+          <React.Fragment>
+            <Component
+              style={
+                Object {
+                  "marginTop": 64,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 40,
+                  }
+                }
+              >
+                How to redeem
+              </YuText>
+            </Component>
+            <Component
+              style={
+                Object {
+                  "marginTop": 40,
+                  "width": "100%",
+                }
+              }
+            >
+              <Instruction
+                bullet={1}
+                instruction="These"
+              />
+              <Instruction
+                bullet={2}
+                instruction="are"
+              />
+              <Instruction
+                bullet={3}
+                instruction="the"
+              />
+              <Instruction
+                bullet={4}
+                instruction="instructions"
+              />
+            </Component>
+          </React.Fragment>,
+          <Button
+            label="Label 1"
+            onPress={[MockFunction]}
+            type="Primary"
+            wrapperStyle={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "marginTop": 82,
+              }
+            }
+          />,
+          null,
+          <LinkGroup
+            data={
+              Array [
+                Object {
+                  "label": "T&Cs",
+                  "onPress": undefined,
+                },
+                Object {
+                  "label": "Reward policy",
+                  "onPress": undefined,
+                },
+              ]
+            }
+          />,
+        ],
+        "style": Object {
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Component
+                style={
+                  Object {
+                    "marginTop": 110,
+                    "width": "100%",
+                  }
+                }
+              >
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "fontSize": 40,
+                    }
+                  }
+                >
+                  Description
+                </YuText>
+              </Component>,
+              <Component
+                style={
+                  Object {
+                    "marginTop": 32,
+                    "width": "100%",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                      "lineHeight": 46,
+                    }
+                  }
+                >
+                  This is a description
+                </YuText>
+              </Component>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "fontSize": 40,
+                    }
+                  }
+                >
+                  Description
+                </YuText>,
+                "style": Object {
+                  "marginTop": 110,
+                  "width": "100%",
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "bold": true,
+                  "children": "Description",
+                  "style": Object {
+                    "fontSize": 40,
+                  },
+                },
+                "ref": null,
+                "rendered": "Description",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                      "lineHeight": 46,
+                    }
+                  }
+                >
+                  This is a description
+                </YuText>,
+                "style": Object {
+                  "marginTop": 32,
+                  "width": "100%",
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "This is a description",
+                  "style": Object {
+                    "fontSize": 32,
+                    "lineHeight": 46,
+                  },
+                },
+                "ref": null,
+                "rendered": "This is a description",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <Component
+                style={
+                  Object {
+                    "marginTop": 64,
+                    "width": "100%",
+                  }
+                }
+              >
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "fontSize": 40,
+                    }
+                  }
+                >
+                  How to redeem
+                </YuText>
+              </Component>,
+              <Component
+                style={
+                  Object {
+                    "marginTop": 40,
+                    "width": "100%",
+                  }
+                }
+              >
+                <Instruction
+                  bullet={1}
+                  instruction="These"
+                />
+                <Instruction
+                  bullet={2}
+                  instruction="are"
+                />
+                <Instruction
+                  bullet={3}
+                  instruction="the"
+                />
+                <Instruction
+                  bullet={4}
+                  instruction="instructions"
+                />
+              </Component>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "fontSize": 40,
+                    }
+                  }
+                >
+                  How to redeem
+                </YuText>,
+                "style": Object {
+                  "marginTop": 64,
+                  "width": "100%",
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "bold": true,
+                  "children": "How to redeem",
+                  "style": Object {
+                    "fontSize": 40,
+                  },
+                },
+                "ref": null,
+                "rendered": "How to redeem",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Instruction
+                    bullet={1}
+                    instruction="These"
+                  />,
+                  <Instruction
+                    bullet={2}
+                    instruction="are"
+                  />,
+                  <Instruction
+                    bullet={3}
+                    instruction="the"
+                  />,
+                  <Instruction
+                    bullet={4}
+                    instruction="instructions"
+                  />,
+                ],
+                "style": Object {
+                  "marginTop": 40,
+                  "width": "100%",
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": "0",
+                  "nodeType": "function",
+                  "props": Object {
+                    "bullet": 1,
+                    "instruction": "These",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "1",
+                  "nodeType": "function",
+                  "props": Object {
+                    "bullet": 2,
+                    "instruction": "are",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "2",
+                  "nodeType": "function",
+                  "props": Object {
+                    "bullet": 3,
+                    "instruction": "the",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "3",
+                  "nodeType": "function",
+                  "props": Object {
+                    "bullet": 4,
+                    "instruction": "instructions",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
+          "type": Symbol(react.fragment),
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "Label 1",
+            "onPress": [MockFunction],
+            "type": "Primary",
+            "wrapperStyle": Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "marginTop": 82,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "data": Array [
+              Object {
+                "label": "T&Cs",
+                "onPress": undefined,
+              },
+              Object {
+                "label": "Reward policy",
+                "onPress": undefined,
+              },
+            ],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`RewardItemContent should render with additional buttons 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <RewardItemContent
+    labelCtaPrimary="Label 1"
+    labelCtaSecondary="Label 2"
+    labelCtaTertiary="Label 3"
+    onPressCtaPrimary={[MockFunction]}
+    onPressCtaSecondary={[MockFunction]}
+    onPressCtaTertiary={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        null,
+        false,
+        <Button
+          label="Label 1"
+          onPress={[MockFunction]}
+          type="Primary"
+          wrapperStyle={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "marginTop": 82,
+            }
+          }
+        />,
+        <Button
+          label="Label 2"
+          onPress={[MockFunction]}
+          type="Secondary"
+          wrapperStyle={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "marginTop": 36,
+            }
+          }
+        />,
+        <Button
+          label="Label 3"
+          onPress={[MockFunction]}
+          type="Link"
+          wrapperStyle={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "marginTop": 16,
+            }
+          }
+        />,
+      ],
+      "style": Object {
+        "flex": 1,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      null,
+      false,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "Label 1",
+          "onPress": [MockFunction],
+          "type": "Primary",
+          "wrapperStyle": Object {
+            "alignItems": "center",
+            "alignSelf": "center",
+            "marginTop": 82,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "Label 2",
+          "onPress": [MockFunction],
+          "type": "Secondary",
+          "wrapperStyle": Object {
+            "alignItems": "center",
+            "alignSelf": "center",
+            "marginTop": 36,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "Label 3",
+          "onPress": [MockFunction],
+          "type": "Link",
+          "wrapperStyle": Object {
+            "alignItems": "center",
+            "alignSelf": "center",
+            "marginTop": 16,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          null,
+          false,
+          <Button
+            label="Label 1"
+            onPress={[MockFunction]}
+            type="Primary"
+            wrapperStyle={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "marginTop": 82,
+              }
+            }
+          />,
+          <Button
+            label="Label 2"
+            onPress={[MockFunction]}
+            type="Secondary"
+            wrapperStyle={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "marginTop": 36,
+              }
+            }
+          />,
+          <Button
+            label="Label 3"
+            onPress={[MockFunction]}
+            type="Link"
+            wrapperStyle={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "marginTop": 16,
+              }
+            }
+          />,
+        ],
+        "style": Object {
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        null,
+        false,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "Label 1",
+            "onPress": [MockFunction],
+            "type": "Primary",
+            "wrapperStyle": Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "marginTop": 82,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "Label 2",
+            "onPress": [MockFunction],
+            "type": "Secondary",
+            "wrapperStyle": Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "marginTop": 36,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "Label 3",
+            "onPress": [MockFunction],
+            "type": "Link",
+            "wrapperStyle": Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "marginTop": 16,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`RewardItemContent should render with default props 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <RewardItemContent
+    labelCtaPrimary="Label 1"
+    onPressCtaPrimary={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        null,
+        false,
+        <Button
+          label="Label 1"
+          onPress={[MockFunction]}
+          type="Primary"
+          wrapperStyle={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "marginTop": 82,
+            }
+          }
+        />,
+        null,
+        <LinkGroup
+          data={
+            Array [
+              Object {
+                "label": "T&Cs",
+                "onPress": undefined,
+              },
+              Object {
+                "label": "Reward policy",
+                "onPress": undefined,
+              },
+            ]
+          }
+        />,
+      ],
+      "style": Object {
+        "flex": 1,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      null,
+      false,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "Label 1",
+          "onPress": [MockFunction],
+          "type": "Primary",
+          "wrapperStyle": Object {
+            "alignItems": "center",
+            "alignSelf": "center",
+            "marginTop": 82,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      null,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "data": Array [
+            Object {
+              "label": "T&Cs",
+              "onPress": undefined,
+            },
+            Object {
+              "label": "Reward policy",
+              "onPress": undefined,
+            },
+          ],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          null,
+          false,
+          <Button
+            label="Label 1"
+            onPress={[MockFunction]}
+            type="Primary"
+            wrapperStyle={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "marginTop": 82,
+              }
+            }
+          />,
+          null,
+          <LinkGroup
+            data={
+              Array [
+                Object {
+                  "label": "T&Cs",
+                  "onPress": undefined,
+                },
+                Object {
+                  "label": "Reward policy",
+                  "onPress": undefined,
+                },
+              ]
+            }
+          />,
+        ],
+        "style": Object {
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        null,
+        false,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "Label 1",
+            "onPress": [MockFunction],
+            "type": "Primary",
+            "wrapperStyle": Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "marginTop": 82,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "data": Array [
+              Object {
+                "label": "T&Cs",
+                "onPress": undefined,
+              },
+              Object {
+                "label": "Reward policy",
+                "onPress": undefined,
+              },
+            ],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

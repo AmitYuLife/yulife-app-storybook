@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SFC } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import { GetRewards_getRewards_uiSettings } from "../../../../../graphql/_core/schema";
 import { Pad } from "../../../../atoms";
@@ -23,7 +24,7 @@ interface IProps {
     onRightTabPress: () => void;
 }
 
-const WegiftRewardDetails: React.SFC<IProps> = ({
+const WegiftDetailsScreen: SFC<IProps> = ({
     uiSettings,
     code,
     cost,
@@ -70,4 +71,4 @@ const WegiftRewardDetails: React.SFC<IProps> = ({
     </SafeAreaView>
 );
 
-export default WegiftRewardDetails;
+export default WegiftDetailsScreen;

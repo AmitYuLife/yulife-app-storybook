@@ -3,11 +3,51 @@ import * as React from "react";
 import "react-native";
 import TopBar from "../top-bar";
 
-describe("TopBar", () => {
+const defaultProps = {
+    coins: 1234,
+    onPressLeftIcon: jest.fn()
+};
 
-    it("should render", () => {
+xdescribe("TopBar", () => {
+
+    it("should render with default props", () => {
         const actual = shallow(
-            <TopBar onPressLeftIcon={jest.fn()} coins={0} />
+            <TopBar
+                {...defaultProps}
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render with menu label", () => {
+        const actual = shallow(
+            <TopBar
+                {...defaultProps}
+                menuLabel="Menu Label"
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render with timer", () => {
+        const actual = shallow(
+            <TopBar
+                {...defaultProps}
+                timer="11:58:00"
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render with back button", () => {
+        const actual = shallow(
+            <TopBar
+                {...defaultProps}
+                leftIcon="Back"
+            />
         );
 
         expect(actual).toMatchSnapshot();

@@ -2,7 +2,7 @@ import * as React from "react";
 import { SFC } from "react";
 import { Circle, G, Path, Rect } from "react-native-svg";
 import { COLOURS } from "../nav-bar";
-import { getIconFill } from "./helper";
+import { getIconFill } from "./helpers";
 import { IconProps } from "./icon.model";
 
 const Treasure: SFC<IconProps> = ({

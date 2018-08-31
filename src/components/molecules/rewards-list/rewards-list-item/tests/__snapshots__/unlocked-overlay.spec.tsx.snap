@@ -1,0 +1,544 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UnlockedOverlay should render with default props 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <UnlockedOverlay
+    code="abcdefg"
+    cost={20}
+    rewardCurrency="GBP"
+    rewardValue={10}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Image
+          resizeMethod="resize"
+          resizeMode="contain"
+          source={
+            Object {
+              "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/logo/abcdefg_2x.png",
+            }
+          }
+          style={
+            Object {
+              "height": 30,
+              "width": 100,
+            }
+          }
+        />,
+        <YuText
+          bold={true}
+          style={
+            Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 30,
+              "marginBottom": 8,
+              "marginTop": 28,
+            }
+          }
+        >
+          £10 voucher
+        </YuText>,
+        <YuText
+          style={
+            Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 28,
+            }
+          }
+        >
+          yucoin x 20
+        </YuText>,
+      ],
+      "style": Object {
+        "alignItems": "flex-start",
+        "backgroundColor": "#FFFFFF",
+        "flexDirection": "column",
+        "height": 300,
+        "justifyContent": "flex-start",
+        "opacity": 0.92,
+        "paddingLeft": 30,
+        "paddingTop": 40,
+        "width": 310,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "resizeMethod": "resize",
+          "resizeMode": "contain",
+          "source": Object {
+            "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/logo/abcdefg_2x.png",
+          },
+          "style": Object {
+            "height": 30,
+            "width": 100,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "bold": true,
+          "children": "£10 voucher",
+          "style": Object {
+            "color": "rgb(51,51,51)",
+            "fontSize": 30,
+            "marginBottom": 8,
+            "marginTop": 28,
+          },
+        },
+        "ref": null,
+        "rendered": "£10 voucher",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": "yucoin x 20",
+          "style": Object {
+            "color": "rgb(51,51,51)",
+            "fontSize": 28,
+          },
+        },
+        "ref": null,
+        "rendered": "yucoin x 20",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Image
+            resizeMethod="resize"
+            resizeMode="contain"
+            source={
+              Object {
+                "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/logo/abcdefg_2x.png",
+              }
+            }
+            style={
+              Object {
+                "height": 30,
+                "width": 100,
+              }
+            }
+          />,
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontSize": 30,
+                "marginBottom": 8,
+                "marginTop": 28,
+              }
+            }
+          >
+            £10 voucher
+          </YuText>,
+          <YuText
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontSize": 28,
+              }
+            }
+          >
+            yucoin x 20
+          </YuText>,
+        ],
+        "style": Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "#FFFFFF",
+          "flexDirection": "column",
+          "height": 300,
+          "justifyContent": "flex-start",
+          "opacity": 0.92,
+          "paddingLeft": 30,
+          "paddingTop": 40,
+          "width": 310,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "resizeMethod": "resize",
+            "resizeMode": "contain",
+            "source": Object {
+              "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/logo/abcdefg_2x.png",
+            },
+            "style": Object {
+              "height": 30,
+              "width": 100,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "bold": true,
+            "children": "£10 voucher",
+            "style": Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 30,
+              "marginBottom": 8,
+              "marginTop": 28,
+            },
+          },
+          "ref": null,
+          "rendered": "£10 voucher",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "yucoin x 20",
+            "style": Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 28,
+            },
+          },
+          "ref": null,
+          "rendered": "yucoin x 20",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`UnlockedOverlay should render with settings 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <UnlockedOverlay
+    code="abcdefg"
+    cost={20}
+    rewardCurrency="GBP"
+    rewardValue={10}
+    settings={
+      Object {
+        "__typename": "RewardUiSettings",
+        "logoHeight": 1234,
+        "logoWidth": 1234,
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Image
+          resizeMethod="resize"
+          resizeMode="contain"
+          source={
+            Object {
+              "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/logo/abcdefg_2x.png",
+            }
+          }
+          style={
+            Object {
+              "height": 1234,
+              "width": 1234,
+            }
+          }
+        />,
+        <YuText
+          bold={true}
+          style={
+            Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 30,
+              "marginBottom": 8,
+              "marginTop": 28,
+            }
+          }
+        >
+          £10 voucher
+        </YuText>,
+        <YuText
+          style={
+            Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 28,
+            }
+          }
+        >
+          yucoin x 20
+        </YuText>,
+      ],
+      "style": Object {
+        "alignItems": "flex-start",
+        "backgroundColor": "#FFFFFF",
+        "flexDirection": "column",
+        "height": 300,
+        "justifyContent": "flex-start",
+        "opacity": 0.92,
+        "paddingLeft": 30,
+        "paddingTop": 40,
+        "width": 310,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "resizeMethod": "resize",
+          "resizeMode": "contain",
+          "source": Object {
+            "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/logo/abcdefg_2x.png",
+          },
+          "style": Object {
+            "height": 1234,
+            "width": 1234,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "bold": true,
+          "children": "£10 voucher",
+          "style": Object {
+            "color": "rgb(51,51,51)",
+            "fontSize": 30,
+            "marginBottom": 8,
+            "marginTop": 28,
+          },
+        },
+        "ref": null,
+        "rendered": "£10 voucher",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": "yucoin x 20",
+          "style": Object {
+            "color": "rgb(51,51,51)",
+            "fontSize": 28,
+          },
+        },
+        "ref": null,
+        "rendered": "yucoin x 20",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Image
+            resizeMethod="resize"
+            resizeMode="contain"
+            source={
+              Object {
+                "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/logo/abcdefg_2x.png",
+              }
+            }
+            style={
+              Object {
+                "height": 1234,
+                "width": 1234,
+              }
+            }
+          />,
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontSize": 30,
+                "marginBottom": 8,
+                "marginTop": 28,
+              }
+            }
+          >
+            £10 voucher
+          </YuText>,
+          <YuText
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontSize": 28,
+              }
+            }
+          >
+            yucoin x 20
+          </YuText>,
+        ],
+        "style": Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "#FFFFFF",
+          "flexDirection": "column",
+          "height": 300,
+          "justifyContent": "flex-start",
+          "opacity": 0.92,
+          "paddingLeft": 30,
+          "paddingTop": 40,
+          "width": 310,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "resizeMethod": "resize",
+            "resizeMode": "contain",
+            "source": Object {
+              "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/logo/abcdefg_2x.png",
+            },
+            "style": Object {
+              "height": 1234,
+              "width": 1234,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "bold": true,
+            "children": "£10 voucher",
+            "style": Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 30,
+              "marginBottom": 8,
+              "marginTop": 28,
+            },
+          },
+          "ref": null,
+          "rendered": "£10 voucher",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "yucoin x 20",
+            "style": Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 28,
+            },
+          },
+          "ref": null,
+          "rendered": "yucoin x 20",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

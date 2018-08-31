@@ -7,11 +7,7 @@ interface IGetIconFill {
     colour: string;
 }
 
-export const getIconFill = ({
-    isActive,
-    isPressed,
-    colour
-}: IGetIconFill) => {
+export const getIconFill = ({ isActive, isPressed, colour }: IGetIconFill) => {
     if (isActive) {
         if (colour === NavBar.Colours.LIGHT) {
             return Colours.navBar.light.active;
@@ -25,6 +21,28 @@ export const getIconFill = ({
             return Colours.navBar.light.pressed;
         } else {
             return Colours.navBar.dark.pressed;
+        }
+    } else {
+        if (colour === NavBar.Colours.LIGHT) {
+            return Colours.navBar.light.inactive;
+        } else {
+            return Colours.navBar.dark.inactive;
+        }
+    }
+};
+
+export const getNotificationFill = ({ isPressed, isActive, colour }: IGetIconFill) => {
+    if (isPressed) {
+        if (colour === NavBar.Colours.LIGHT) {
+            return Colours.navBar.light.pressed;
+        } else {
+            return Colours.navBar.dark.pressed;
+        }
+    } else if (isActive) {
+        if (colour === NavBar.Colours.LIGHT) {
+            return Colours.navBar.light.active;
+        } else {
+            return Colours.navBar.dark.active;
         }
     } else {
         if (colour === NavBar.Colours.LIGHT) {

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SFC } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { Pad } from "../../../../atoms";
 import { RewardTabs } from "../../../../molecules";
@@ -16,7 +17,7 @@ type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
     id: string;
 };
 
-const PurchasedListScreen: React.SFC<IProps> = ({ data, onLeftTabPress, onRightTabPress }) => (
+const RewardsPurchasedScreen: SFC<IProps> = ({ data, onLeftTabPress, onRightTabPress }) => (
     <SafeAreaView style={styles.wrapper}>
         <Pad height={40} />
         <View style={styles.rewardTabsWrapper}>
@@ -46,4 +47,4 @@ const PurchasedListScreen: React.SFC<IProps> = ({ data, onLeftTabPress, onRightT
     </SafeAreaView>
 );
 
-export default PurchasedListScreen;
+export default RewardsPurchasedScreen;

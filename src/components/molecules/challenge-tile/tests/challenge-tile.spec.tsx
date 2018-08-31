@@ -3,17 +3,16 @@ import * as React from "react";
 import ChallengeTile, { IMAGES } from "../challenge-tile";
 
 const defaultProps = {
-    activity: "",
-    duration: "",
-    image: IMAGES.BIRD,
-    reward: ""
+    image: IMAGES.BIRD
 };
 
 describe("ChallengeTile", () => {
 
-    it("should render", () => {
+    it("should render default props", () => {
         const actual = shallow(
-            <ChallengeTile {...defaultProps} />
+            <ChallengeTile
+                {...defaultProps}
+            />
         );
 
         expect(actual).toMatchSnapshot();

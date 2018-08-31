@@ -5,11 +5,11 @@ import { Back, Coins, Logo, Menu } from "./assets";
 import styles from "./top-bar.styles";
 
 interface IProps {
-    onPressLeftIcon: () => void;
     coins: number;
-    timer?: string;
-    menuLabel?: string;
     leftIcon?: LeftIconTypes;
+    menuLabel?: string;
+    onPressLeftIcon: () => void;
+    timer?: string;
 }
 
 export enum LEFT_ICON_TYPES {
@@ -21,20 +21,20 @@ type LeftIconTypes = "Menu" | "Back";
 
 const renderLeftIcon = (leftIcon: LeftIconTypes) => {
     switch (leftIcon) {
-        case "Menu":
-            return <Menu />;
         case "Back":
             return <Back />;
         default:
-            return null;
+            return <Menu />;
     }
 };
 
 class TopBar extends React.PureComponent<IProps> {
+
     public static LeftIcon = LEFT_ICON_TYPES;
 
     public render() {
-        const { onPressLeftIcon, coins, leftIcon = "Menu", timer, menuLabel } = this.props;
+        const { onPressLeftIcon, coins, leftIcon, timer, menuLabel } = this.props;
+
         return (
             <View style={styles.wrapper}>
                 <TouchableOpacity style={styles.menuWrapper} onPress={onPressLeftIcon}>
@@ -59,7 +59,7 @@ class TopBar extends React.PureComponent<IProps> {
                     </View>
                 )}
                 <View style={styles.coinsWrapper}>
-                    <Text style={styles.coinsText}>{coins || 0}</Text>
+                    <Text style={styles.coinsText}>{coins}</Text>
                     <Coins scale={0.5} />
                 </View>
             </View>

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SFC } from "react";
 import { View } from "react-native";
 import RewardTab from "./reward-tab/reward-tab";
 import styles from "./reward-tabs.styles";
@@ -9,7 +10,7 @@ interface IProps {
     activeTabIndex: number;
 }
 
-const RewardTabs: React.SFC<IProps> = ({ onLeftTabPress, onRightTabPress, activeTabIndex }) => (
+const RewardTabs: SFC<IProps> = ({ onLeftTabPress, onRightTabPress, activeTabIndex }) => (
     <View style={styles.wrapper}>
         <View style={styles.bottomBorder} />
         <RewardTab isActive={activeTabIndex === 0} onPress={onLeftTabPress} label="rewards" />

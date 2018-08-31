@@ -9,7 +9,7 @@ export interface IMenuLink {
     source?: ImageRequireSource;
     onPress: () => void;
     label: string;
-    condition: boolean;
+    condition?: boolean;
 }
 
 interface IProps {

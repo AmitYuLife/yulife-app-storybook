@@ -1,8 +1,9 @@
-import React from 'react';
+import * as React from 'react';
+import { Component } from "react";
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 
-export default class Welcome extends React.Component {
+export default class Welcome extends Component {
   styles = {
     wrapper: {
       flex: 1,

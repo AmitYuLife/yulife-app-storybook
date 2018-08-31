@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SFC } from "react";
 import { Image, View } from "react-native";
 import { Button, Text } from "../../../../../atoms";
 import data from "./purchases-empty.data";
@@ -8,7 +9,7 @@ interface IProps {
     onCtaPress: () => void;
 }
 
-const RewardsEmpty: React.SFC<IProps> = ({ onCtaPress }) => (
+const PurchasesEmpty: SFC<IProps> = ({ onCtaPress }) => (
     <View style={styles.wrapper}>
         <Image style={styles.image} source={require("./assets/rewards-empty.png")} />
         <View style={styles.contentWrapper}>
@@ -19,4 +20,4 @@ const RewardsEmpty: React.SFC<IProps> = ({ onCtaPress }) => (
     </View>
 );
 
-export default RewardsEmpty;
+export default PurchasesEmpty;
