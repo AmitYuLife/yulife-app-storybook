@@ -10,29 +10,29 @@ import {
 import styles from "./reset-password.screen.styles";
 
 interface IProps {
+    email: string;
+    emailError: string;
+    isSubmitting: boolean;
     onCancelPress: () => void;
+    onEmailChange: (email: string) => void;
     onSubmitPress: () => void;
 }
 
-interface IState {
-    email: string;
-}
-
-class ResetPasswordScreen extends PureComponent<IProps, IState> {
-
-    public state: IState = {
-        email: ""
-    };
+class ResetPasswordScreen extends PureComponent<IProps> {
 
     public render() {
-        const { onSubmitPress, onCancelPress } = this.props;
-        const { email } = this.state;
+        const {
+            email,
+            emailError,
+            isSubmitting,
+            onCancelPress,
+            onEmailChange,
+            onSubmitPress
+        } = this.props;
 
         return (
             <CentredScreen
-                footerImage={
-                    CentredScreen.FooterImages.FOREST
-                }
+                footerImage={CentredScreen.FooterImages.FOREST}
             >
                 <Pad height={120} />
                 <Heading
@@ -41,15 +41,18 @@ class ResetPasswordScreen extends PureComponent<IProps, IState> {
                 />
                 <Pad height={90} />
                 <TextInput
-                    onChange={this.handleEmailChange}
-                    value={email}
+                    errorMessage={emailError}
+                    hasError={!!emailError}
+                    onChange={onEmailChange}
                     type={TextInput.Types.EMAIL}
+                    value={email}
                 />
                 <Pad height={30} />
                 <Button
-                    label="send me the link"
-                    type={Button.Types.PRIMARY}
+                    disabled={isSubmitting}
+                    label={isSubmitting ? "submitting ..." : "send me the link"}
                     onPress={onSubmitPress}
+                    type={Button.Types.PRIMARY}
                 />
                 <Pad height={10} />
                 <Button
@@ -59,10 +62,6 @@ class ResetPasswordScreen extends PureComponent<IProps, IState> {
                 />
             </CentredScreen>
         );
-    }
-
-    private handleEmailChange = (email: string) => {
-        this.setState({ email });
     }
 }
 

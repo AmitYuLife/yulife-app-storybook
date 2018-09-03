@@ -451,6 +451,28 @@ export interface LoginUserVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: SendMagicLink
+// ====================================================
+
+export interface SendMagicLink_sendMagicLink {
+  exists: boolean | null;
+  message: string | null;
+  member: boolean | null;
+}
+
+export interface SendMagicLink {
+  sendMagicLink: SendMagicLink_sendMagicLink | null;
+}
+
+export interface SendMagicLinkVariables {
+  email: string;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Challenge
 // ====================================================
 

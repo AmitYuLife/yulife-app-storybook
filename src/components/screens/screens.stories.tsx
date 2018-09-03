@@ -42,7 +42,11 @@ storiesOf("Screens", module)
     ))
     .add("3a. Reset Password", () => (
         <ResetPasswordScreen
+            email=""
+            emailError=""
+            isSubmitting={boolean("Is Submitting?", false, "ResetPassword")}
             onCancelPress={action("on cancel press")}
+            onEmailChange={action("on email change")}
             onSubmitPress={action("on submit press")}
         />
     ))

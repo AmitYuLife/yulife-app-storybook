@@ -18,8 +18,8 @@ class ResetPasswordSuccessContainer extends PureComponent<IProps> {
         );
     }
 
-    private onLogIn = () => {
-        Navigation.push(this.props.componentId, {
+    private onLogIn = async () => {
+        await Navigation.push(this.props.componentId, {
             component: {
                 name: "yulife.Login"
             }

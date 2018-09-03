@@ -23,7 +23,7 @@ const ResetPasswordSuccessScreen: SFC<IProps> = ({ onLogInPress }) => (
         />
         <Pad height={60} />
         <Button
-            label="go back to log in"
+            label="return to log in"
             type={Button.Types.PRIMARY}
             onPress={onLogInPress}
         />

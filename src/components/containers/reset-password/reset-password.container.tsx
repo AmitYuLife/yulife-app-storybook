@@ -1,21 +1,48 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
+import SendMagicLinkMutation, {
+    sendMagicLinkGql,
+    SendMagicLinkMutationFunction
+} from "../../../graphql/user/sendMagicLink.gql";
 import { ResetPasswordScreen } from "../../screens";
+import { validateEmail } from "../login/login.helpers";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
     componentId: string;
 }
 
-class ResetPasswordContainer extends PureComponent<IProps> {
+interface IState {
+    email: string;
+    emailError: string;
+}
+
+class ResetPasswordContainer extends PureComponent<IProps, IState> {
+
+    public state: IState = {
+        email: "",
+        emailError: ""
+    };
 
     public render() {
         return (
-            <ResetPasswordScreen
-                onCancelPress={this.onCancel}
-                onSubmitPress={this.onSubmit}
-            />
+            <SendMagicLinkMutation mutation={sendMagicLinkGql}>
+                {(sendMagicLink, { loading }) => {
+                    const { email, emailError } = this.state;
+
+                    return (
+                        <ResetPasswordScreen
+                            email={email}
+                            emailError={emailError}
+                            isSubmitting={loading}
+                            onCancelPress={this.onCancel}
+                            onEmailChange={this.onEmailChange}
+                            onSubmitPress={() => this.onSubmit(sendMagicLink)}
+                        />
+                    );
+                }}
+            </SendMagicLinkMutation>
         );
     }
 
@@ -23,12 +50,46 @@ class ResetPasswordContainer extends PureComponent<IProps> {
         Navigation.pop(this.props.componentId);
     }
 
-    private onSubmit = () => {
-        Navigation.push(this.props.componentId, {
-            component: {
-                name: "yulife.Login"
+    private onEmailChange = (email: string) => {
+        const emailError = validateEmail(email);
+
+        this.setState({ email, emailError });
+    }
+
+    private isFormValid = () => {
+        let formIsValid = true;
+        const { email } = this.state;
+
+        if (validateEmail(email)) {
+            formIsValid = false;
+        }
+
+        return formIsValid;
+    }
+
+    private onSubmit = async (sendMagicLink: SendMagicLinkMutationFunction) => {
+        const { email } = this.state;
+
+        if (this.isFormValid()) {
+            try {
+                const results = await sendMagicLink({
+                    variables: {
+                        email
+                    }
+                });
+
+                if (results && results.data) {
+                    await Navigation.push(this.props.componentId, {
+                        component: {
+                            name: "yulife.ResetPasswordSuccess"
+                        }
+                    });
+                }
+            } catch (e) {
+                // tslint:disable-next-line
+                console.log(e);
             }
-        });
+        }
     }
 }
 
