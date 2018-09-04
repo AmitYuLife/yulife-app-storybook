@@ -4,6 +4,32 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: UpsertPassiveChallenge
+// ====================================================
+
+export interface UpsertPassiveChallenge_upsertPassiveChallenge_incomingData {
+  steps: number | null;
+}
+
+export interface UpsertPassiveChallenge_upsertPassiveChallenge {
+  updatedAt: number | null;
+  yuCoinAwarded: number | null;
+  incomingData: UpsertPassiveChallenge_upsertPassiveChallenge_incomingData | null;
+}
+
+export interface UpsertPassiveChallenge {
+  upsertPassiveChallenge: UpsertPassiveChallenge_upsertPassiveChallenge | null;
+}
+
+export interface UpsertPassiveChallengeVariables {
+  payload?: (ChallengePayload | null)[] | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: AddDailySteps
 // ====================================================
 
@@ -634,6 +660,13 @@ export enum LoginMethod {
   FACEBOOK = "FACEBOOK",
   OTP = "OTP",
   PASSWORD = "PASSWORD",
+}
+
+// 
+export interface ChallengePayload {
+  startDateTime?: string | null;
+  endDateTime?: string | null;
+  value?: number | null;
 }
 
 // 
