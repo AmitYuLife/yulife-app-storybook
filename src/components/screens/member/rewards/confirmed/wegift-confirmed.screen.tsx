@@ -1,0 +1,105 @@
+import React, { PureComponent } from "react";
+import { ActivityIndicator, Image, ScrollView, View } from "react-native";
+import { Pad, Text } from "../../../../atoms";
+import { RewardItemContent, TopBar } from "../../../../molecules";
+import styles from "./wegift-confirmed.styles";
+
+export interface IServerProps {
+    rewardName: string;
+    redeemInstructions: string[];
+    description: string;
+    purchaseDate: string;
+    validDate: string;
+    imageUrl: string;
+    coins: number;
+}
+
+interface IContainerProps {
+    onPressCancel: () => void;
+    onPressConfirm: () => void;
+    onPressTerms: () => void;
+    onPressPolicy: () => void;
+    onPressTopBar: () => void;
+}
+
+type Props = IServerProps & IContainerProps;
+
+interface IState {
+    hasLoaded: boolean;
+}
+
+class WegiftRewardsConfirmed extends PureComponent<Props, IState> {
+    public state = {
+        hasLoaded: false
+    };
+
+    public render() {
+        const {
+            onPressCancel,
+            onPressConfirm,
+            onPressTerms,
+            onPressPolicy,
+            onPressTopBar,
+            rewardName,
+            redeemInstructions = [],
+            description,
+            purchaseDate,
+            validDate,
+            imageUrl,
+            coins
+        } = this.props;
+        const { hasLoaded } = this.state;
+        return (
+            <>
+                <ScrollView style={styles.wrapper} contentContainerStyle={styles.contentWrapper}>
+                    <View style={styles.imageWrapper}>
+                        <Image onLoad={this.handleLoadImage} style={styles.image} source={{ uri: imageUrl }} />
+                        <ActivityIndicator animating={!hasLoaded} style={styles.activityIndicator} />
+                    </View>
+                    <View style={styles.rewardNameWrapper}>
+                        <Text style={styles.rewardName} bold={true}>
+                            {rewardName}
+                        </Text>
+                    </View>
+                    <View style={styles.divider} />
+                    <View style={styles.dateRowWrapper}>
+                        <View style={styles.dateLabelWrapper}>
+                            <Text style={styles.textSizeDefault}>Purchased date</Text>
+                        </View>
+                        <View style={styles.dateWrapper}>
+                            <Text style={styles.textSizeDefault}>{purchaseDate}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.dateRowWrapper}>
+                        <View style={styles.dateLabelWrapper}>
+                            <Text style={styles.textSizeDefault}>Valid date</Text>
+                        </View>
+                        <View style={styles.dateWrapper}>
+                            <Text style={styles.textSizeDefault}>{validDate}</Text>
+                        </View>
+                    </View>
+                    <RewardItemContent
+                        description={description}
+                        instructions={redeemInstructions}
+                        onPressCtaPrimary={onPressCancel}
+                        labelCtaPrimary="see other rewards"
+                        onPressCtaSecondary={onPressConfirm}
+                        labelCtaSecondary="get voucher"
+                        onPressTerms={onPressTerms}
+                        onPressPolicy={onPressPolicy}
+                    />
+                    <Pad height={50} />
+                </ScrollView>
+                <View style={styles.topBarWrapper}>
+                    <TopBar coins={coins} leftIcon={TopBar.LeftIcon.BACK} onPressLeftIcon={onPressTopBar} />
+                </View>
+            </>
+        );
+    }
+
+    private handleLoadImage = () => {
+        this.setState({ hasLoaded: true });
+    }
+}
+
+export default WegiftRewardsConfirmed;

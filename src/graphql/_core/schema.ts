@@ -189,6 +189,7 @@ export interface GetAllPurchases_getAllPurchases_reward {
   name: string | null;
   description: string | null;
   card_image_url: string | null;
+  terms_and_conditions_url: string | null;
   redeem_steps: GetAllPurchases_getAllPurchases_reward_redeem_steps | null;
 }
 
@@ -279,6 +280,21 @@ export interface GetRewards {
 // GraphQL mutation operation: RedeemReward
 // ====================================================
 
+export interface RedeemReward_redeemReward_reward_redeem_steps {
+  __typename: "RedeemSteps";
+  info: string | null;
+  steps: (string | null)[] | null;
+}
+
+export interface RedeemReward_redeemReward_reward {
+  __typename: "Reward";
+  name: string | null;
+  description: string | null;
+  card_image_url: string | null;
+  terms_and_conditions_url: string | null;
+  redeem_steps: RedeemReward_redeemReward_reward_redeem_steps | null;
+}
+
 export interface RedeemReward_redeemReward {
   id: string | null;
   userId: string | null;
@@ -292,6 +308,7 @@ export interface RedeemReward_redeemReward {
   yuCoinsSpent: number | null;
   updatedAt: string | null;
   createdAt: string | null;
+  reward: RedeemReward_redeemReward_reward | null;
 }
 
 export interface RedeemReward {

@@ -22,5 +22,6 @@ export { default as ChallengesListScreen } from "./member/challenges/challenges-
 export { default as RewardsListScreen } from "./member/rewards/list/rewards-list.screen";
 export { default as PurchasedListScreen } from "./member/rewards/purchased/rewards-purchased.screen";
 export { default as WegiftRewardDetailsScreen } from "./member/rewards/details/wegift-details.screen";
+export { default as WegiftRewardConfirmedScreen } from "./member/rewards/confirmed/wegift-confirmed.screen";
 
 export { default as ActivityHistoryLevels } from "./activity-history-levels/activity-history-levels";

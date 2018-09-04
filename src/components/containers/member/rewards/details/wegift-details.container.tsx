@@ -2,11 +2,19 @@ import * as React from "react";
 import { Component } from "react";
 import { Alert, Linking } from "react-native";
 import { Config } from "react-native-config";
-import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
+import { Navigation } from "react-native-navigation";
+import { connect } from "react-redux";
+import {
+    GetRewards_getRewards,
+    RedeemReward
+} from "../../../../../graphql/_core/schema";
 import RedeemRewardMutation, {
     redeemRewardGql,
     RedeemRewardMutationType
 } from "../../../../../graphql/rewards/redeemReward.gql";
+import { ROUTES } from "../../../../../navigation/routes";
+import { IReduxState } from "../../../../../redux/_core/reducers";
+import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { Loading } from "../../../../atoms";
 import { WegiftRewardDetailsScreen } from "../../../../screens";
 
@@ -16,9 +24,16 @@ interface IProps {
     onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
 }
 
-export default class WegiftRewardDetailsContainer extends Component<IProps> {
+interface IConnectedState {
+    totalCoins: number;
+}
+
+type Props = IProps & IConnectedState;
+
+class WegiftRewardDetailsContainer extends Component<Props> {
     public render() {
         const {
+            totalCoins,
             reward: {
                 code,
                 currency_code,
@@ -55,7 +70,7 @@ export default class WegiftRewardDetailsContainer extends Component<IProps> {
                             labelCtaPrimary={labelCtaPrimary}
                             onPressTerms={this.openPDFs("terms")}
                             onPressPolicy={this.openPDFs("policy")}
-                            coins={12345}
+                            coins={totalCoins}
                             onPressTopBar={this.handleRewardsPress}
                             onLeftTabPress={this.handleRewardsPress}
                             onRightTabPress={this.handlePurchasesPress}
@@ -96,8 +111,19 @@ export default class WegiftRewardDetailsContainer extends Component<IProps> {
                 { text: "Cancel", style: "cancel" },
                 {
                     onPress: async () => {
-                        await redeemReward({ variables: { id: reward.code, amount: value } });
-                        // console.log("DAA SUCAAA... ", purchase);
+                        const result = await redeemReward({ variables: { id: reward.code, amount: value } });
+                        if ((result as { data: RedeemReward }).data.redeemReward) {
+                            await Navigation.push(ROUTES.member, {
+                                component: {
+                                    id: ROUTES.wegiftConfirmed,
+                                    name: ROUTES.wegiftConfirmed,
+                                    passProps: {
+                                        onTabChange: this.props.onTabChange,
+                                        purchase: (result as { data: RedeemReward }).data.redeemReward
+                                    }
+                                }
+                            });
+                        }
                     },
                     text: "OK"
                 }
@@ -105,3 +131,9 @@ export default class WegiftRewardDetailsContainer extends Component<IProps> {
         );
     }
 }
+
+const mapStateToProps = (state: IReduxState) => ({
+    totalCoins: getTotalCoins(state)
+});
+
+export default connect<IConnectedState>(mapStateToProps)(WegiftRewardDetailsContainer);

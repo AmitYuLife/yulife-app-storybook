@@ -19,3 +19,4 @@ export { default as RewardsContainer } from "./member/rewards/rewards.container"
 
 // reward containers
 export { default as WegiftRewardDetailsContainer } from "./member/rewards/details/wegift-details.container";
+export { default as WegiftRewardConfirmedContainer } from "./member/rewards/confirmed/wegift-confirmed.container";

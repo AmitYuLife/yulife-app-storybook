@@ -17,6 +17,18 @@ export const redeemRewardGql = gql`
             yuCoinsSpent
             updatedAt
             createdAt
+            reward {
+                __typename
+                name
+                description
+                card_image_url
+                terms_and_conditions_url
+                redeem_steps {
+                    __typename
+                    info
+                    steps
+                }
+            }
         }
     }
 `;

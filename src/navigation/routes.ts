@@ -7,6 +7,7 @@ import {
     ResetPasswordSuccessContainer,
     SignUpContainer,
     SignUpRewardContainer,
+    WegiftRewardConfirmedContainer,
     WegiftRewardDetailsContainer,
     WelcomeContainer
 } from "../components/containers";
@@ -56,7 +57,8 @@ export default [
     { name: ROUTES.member, component: MemberRootContainer },
 
     // rewards screens
-    { name: ROUTES.wegiftDetails, component: WegiftRewardDetailsContainer }
+    { name: ROUTES.wegiftDetails, component: WegiftRewardDetailsContainer },
+    { name: ROUTES.wegiftConfirmed, component: WegiftRewardConfirmedContainer }
     // { name: ROUTES.memberChallengesList, component: ChallengesListContainer },
     // { name: ROUTES.memberRewardsList, component: ChallengesListContainer },
 ];
