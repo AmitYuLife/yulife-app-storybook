@@ -12,3 +12,4 @@ export { default as Stars } from "./stars/stars";
 export { default as Text } from "./text/text";
 export { default as TextInput } from "./text-input/text-input";
 export { default as TextInputError } from "./text-input/text-input-error";
+export { default as StarInline } from "./star-inline/star-inline";

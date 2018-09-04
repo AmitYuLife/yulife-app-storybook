@@ -21,6 +21,7 @@
     "test:unit": "jest --config=jest.config.json",
     "test:all": "run-s tslint tsc test:unit",
     "tslint": "tslint -p tsconfig.json",
+    "tslint:fix": "tslint -p tsconfig.json --fix",
     "tsc": "tsc --noUnusedLocals --noUnusedParameters",
     "tsc:watch": "tsc --noUnusedLocals --noUnusedParameters --watch --pretty",
     "download-schema": "apollo-codegen download-schema http://yulife-api-server-develop.eu-west-2.elasticbeanstalk.com/graphql --output ./src/graphql/_core/schema.json",

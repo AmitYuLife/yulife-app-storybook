@@ -4,6 +4,7 @@ import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import { ChallengeTile } from "../molecules";
 import {
+    ActivityHistoryLevels,
     ChallengeFailedScreen,
     ChallengeProgressScreen,
     ChallengesListScreen,
@@ -179,5 +180,98 @@ storiesOf("Screens", module)
     .add("10. Challenge Failed", () => (
         <ChallengeFailedScreen
             onPress={action("on press")}
+        />
+    ))
+    .add("11. Activity History w/ Levels", () => (
+        <ActivityHistoryLevels
+            items={object("Items", [
+                {
+                    challenges: [],
+                    dayOfMonth: 14,
+                    dayOfWeek: "SUN",
+                    steps: 10098
+                },
+                {
+                    challenges: [
+                        {
+                            earned: 1,
+                            milestones: 1,
+                            name: "long walk",
+                            score: "8000 steps"
+                        },
+                        {
+                            earned: 3,
+                            milestones: 2,
+                            name: "meditation",
+                            score: "08m 00s"
+                        },
+                        {
+                            earned: 1,
+                            milestones: 3,
+                            name: "short stroll",
+                            score: "1299 steps"
+                        }
+                    ],
+                    dayOfMonth: 13,
+                    dayOfWeek: "SAT",
+                    level: 4,
+                    steps: 4098
+                },
+                {
+                    challenges: [
+                        {
+                            earned: 4,
+                            milestones: 3,
+                            name: "long walk",
+                            score: "9299 steps"
+                        },
+                        {
+                            earned: 3,
+                            milestones: 2,
+                            name: "meditation",
+                            score: "08m 00s"
+                        }
+                    ],
+                    dayOfMonth: 12,
+                    dayOfWeek: "FRI",
+                    level: 3,
+                    steps: 6098
+                },
+                {
+                    challenges: [],
+                    dayOfMonth: 11,
+                    dayOfWeek: "THU",
+                    steps: 10098
+                },
+                {
+                    challenges: [
+                        {
+                            earned: 1,
+                            milestones: 3,
+                            name: "short stroll",
+                            score: "08m 00s"
+                        }
+                    ],
+                    dayOfMonth: 10,
+                    dayOfWeek: "WED",
+                    level: 2,
+                    steps: 10098
+                },
+                {
+                    challenges: [
+                        {
+                            earned: 1,
+                            milestones: 3,
+                            name: "short stroll",
+                            score: "05m 00s"
+                        }
+                    ],
+                    dayOfMonth: 9,
+                    dayOfWeek: "TUE",
+                    level: 1,
+                    steps: 7890
+                }
+            ], "Items")}
+            onPressClose={action("on press close")}
         />
     ));

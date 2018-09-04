@@ -8,9 +8,11 @@ import {
     BlurProvider,
     Button,
     CentredScreen,
+    Close,
     CoinConfetti,
     Heading,
     Pad,
+    StarInline,
     Stars,
     TextInput
 } from ".";
@@ -123,5 +125,17 @@ storiesOf("Atoms", module)
                 isMidHighlighted={boolean("Middle Highlighted?", true, "Stars")}
                 isRightHighlighted={boolean("Right Highlighted?", true, "Stars")}
             />
+        </CenterView>
+    ))
+    .add("9. StarInline", () => (
+        <CenterView>
+            <StarInline
+                filled={boolean("filled?", true, "StarInline")}
+            />
+        </CenterView>
+    ))
+    .add("10. Close", () => (
+        <CenterView>
+            <Close />
         </CenterView>
     ));

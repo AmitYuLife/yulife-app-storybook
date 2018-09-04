@@ -21,6 +21,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": "test",
+      "numberOfLines": undefined,
       "style": Object {
         "color": "rgb(51,51,51)",
         "fontFamily": "Bariol-Bold",
@@ -38,6 +39,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": "test",
+        "numberOfLines": undefined,
         "style": Object {
           "color": "rgb(51,51,51)",
           "fontFamily": "Bariol-Bold",
@@ -90,6 +92,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": "test",
+      "numberOfLines": undefined,
       "style": Object {
         "color": "rgb(51,51,51)",
         "fontFamily": "Bariol-Regular",
@@ -107,6 +110,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": "test",
+        "numberOfLines": undefined,
         "style": Object {
           "color": "rgb(51,51,51)",
           "fontFamily": "Bariol-Regular",

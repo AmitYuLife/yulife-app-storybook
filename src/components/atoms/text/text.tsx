@@ -6,10 +6,12 @@ import styles from "./text.styles";
 interface IProps {
     bold?: boolean;
     style?: TextStyle;
+    numberOfLines?: number;
 }
 
-const YuText: SFC<IProps> = ({ children, bold, style }) => (
+const YuText: SFC<IProps> = ({ children, bold, style, numberOfLines }) => (
     <Text
+        numberOfLines={numberOfLines}
         style={StyleSheet.flatten([
             styles.base,
             bold ? styles.weightBold : styles.weightNormal,
