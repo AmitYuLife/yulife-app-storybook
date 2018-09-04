@@ -9,3 +9,4 @@ export { default as LinkGroup } from "./link-group/link-group";
 export { default as NavBar, ILabel } from "./nav-bar/nav-bar";
 export { default as Streak } from "./streak/streak";
 export { default as TopBar } from "./top-bar/top-bar";
+export { default as AnimatedChest } from "./animated-chest/animated-chest";
