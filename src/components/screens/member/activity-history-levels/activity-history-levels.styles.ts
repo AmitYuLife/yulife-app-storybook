@@ -1,5 +1,5 @@
 import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Style } from "../../../styles";
+import { Style } from "../../../../styles";
 
 const headerTwoWidth = Style.SCALE_UP_AND_DOWN(56);
 const rowHeight = Style.SCALE_UP_AND_DOWN(23);

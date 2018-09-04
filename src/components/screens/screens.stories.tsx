@@ -16,6 +16,7 @@ import {
     ResetPasswordScreen,
     ResetPasswordSuccessScreen,
     SignUpRewardScreen,
+    StreaksScreen,
     WelcomeScreen
 } from "./index";
 
@@ -278,4 +279,23 @@ storiesOf("Screens", module)
     ))
     .add("12. Intro", () => (
         <IntroScreen />
+    ))
+    .add("13. Streaks", () => (
+        <StreaksScreen
+            streakCompleted={number("streakCompleted", 0, {
+                max: 5,
+                min: 0,
+                range: true,
+                step: 1
+            })}
+            streakMax={number("streakMax", 1, {
+                max: 5,
+                min: 1,
+                range: true,
+                step: 1
+            })}
+            isTodayDone={boolean("isTodayDone", true)}
+            onPressCtaPrimary={action("pressed streak cta primary")}
+            onPressCtaSecondary={action("pressed streak cta secondary")}
+        />
     ));

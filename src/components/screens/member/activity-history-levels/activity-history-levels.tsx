@@ -1,6 +1,7 @@
-import React from "react";
+import * as React from "react";
+import { PureComponent } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
-import { Close, Text } from "../../atoms";
+import { Close, Text } from "../../../atoms";
 import data from "./activity-history-levels.data";
 import styles from "./activity-history-levels.styles";
 import Item, { ItemProps } from "./item";
@@ -15,9 +16,10 @@ export interface IOwnProps {
 
 type IProps = IOwnProps & IServerProps;
 
-class ActivityHistoryLevels extends React.PureComponent<IProps> {
+class ActivityHistoryLevels extends PureComponent<IProps> {
     public render() {
         const { onPressClose, items } = this.props;
+
         return (
             <SafeAreaView style={styles.wrapper}>
                 <View style={styles.padding}>
@@ -64,7 +66,7 @@ class ActivityHistoryLevels extends React.PureComponent<IProps> {
                     }
                 </ScrollView>
                 <Close onPress={onPressClose} />
-            </SafeAreaView >
+            </SafeAreaView>
         );
     }
 }
