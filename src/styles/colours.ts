@@ -33,6 +33,9 @@ export default {
             active: "rgba(255,255,255,1)",
             inactive: "rgba(255,255,255,0.4)",
             pressed: "rgba(255,255,255,0.2)"
+        },
+        pink: {
+            active: "rgb(232, 49, 129)"
         }
     },
     progressBar: {

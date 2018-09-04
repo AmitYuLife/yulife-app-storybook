@@ -1,9 +1,9 @@
-import { Colours } from "../nav-bar";
+import { IColours } from "../nav-bar";
 
 export interface IconProps {
     isActive?: boolean;
     isPressed?: boolean;
     hasDismiss?: boolean;
-    colour?: Colours;
+    colour?: IColours;
     isIconHidden?: boolean;
 }

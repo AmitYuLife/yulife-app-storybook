@@ -20,7 +20,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": Array [
+      "children": <React.Fragment>
         <TouchableOpacity
           activeOpacity={0.2}
           onPress={[MockFunction]}
@@ -34,8 +34,8 @@ ShallowWrapper {
           }
         >
           <Back />
-        </TouchableOpacity>,
-        <Logo />,
+        </TouchableOpacity>
+        <Logo />
         <Component
           style={
             Object {
@@ -60,8 +60,8 @@ ShallowWrapper {
           <Coins
             scale={0.5}
           />
-        </Component>,
-      ],
+        </Component>
+      </React.Fragment>,
       "style": Object {
         "alignItems": "center",
         "flexDirection": "row",
@@ -71,117 +71,10 @@ ShallowWrapper {
       },
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "activeOpacity": 0.2,
-          "children": Array [
-            <Back />,
-            null,
-          ],
-          "onPress": [MockFunction],
-          "style": Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "left": 30,
-            "position": "absolute",
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          null,
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <YuText
-              style={
-                Object {
-                  "fontSize": 36,
-                  "marginBottom": -8,
-                  "marginRight": 16,
-                }
-              }
-            >
-              1234
-            </YuText>,
-            <Coins
-              scale={0.5}
-            />,
-          ],
-          "style": Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "position": "absolute",
-            "right": 30,
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": 1234,
-              "style": Object {
-                "fontSize": 36,
-                "marginBottom": -8,
-                "marginRight": 16,
-              },
-            },
-            "ref": null,
-            "rendered": 1234,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "scale": 0.5,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "rendered": Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <TouchableOpacity
@@ -225,13 +118,6 @@ ShallowWrapper {
             />
           </Component>,
         ],
-        "style": Object {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "justifyContent": "center",
-          "marginTop": 8,
-          "width": "100%",
-        },
       },
       "ref": null,
       "rendered": Array [
@@ -338,6 +224,222 @@ ShallowWrapper {
           "type": [Function],
         },
       ],
+      "type": Symbol(react.fragment),
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <React.Fragment>
+          <TouchableOpacity
+            activeOpacity={0.2}
+            onPress={[MockFunction]}
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "left": 30,
+                "position": "absolute",
+              }
+            }
+          >
+            <Back />
+          </TouchableOpacity>
+          <Logo />
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "position": "absolute",
+                "right": 30,
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "fontSize": 36,
+                  "marginBottom": -8,
+                  "marginRight": 16,
+                }
+              }
+            >
+              1234
+            </YuText>
+            <Coins
+              scale={0.5}
+            />
+          </Component>
+        </React.Fragment>,
+        "style": Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginTop": 8,
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <TouchableOpacity
+              activeOpacity={0.2}
+              onPress={[MockFunction]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "left": 30,
+                  "position": "absolute",
+                }
+              }
+            >
+              <Back />
+            </TouchableOpacity>,
+            <Logo />,
+            <Component
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "position": "absolute",
+                  "right": 30,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 36,
+                    "marginBottom": -8,
+                    "marginRight": 16,
+                  }
+                }
+              >
+                1234
+              </YuText>
+              <Coins
+                scale={0.5}
+              />
+            </Component>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 0.2,
+              "children": Array [
+                <Back />,
+                null,
+              ],
+              "onPress": [MockFunction],
+              "style": Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "left": 30,
+                "position": "absolute",
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              null,
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 36,
+                      "marginBottom": -8,
+                      "marginRight": 16,
+                    }
+                  }
+                >
+                  1234
+                </YuText>,
+                <Coins
+                  scale={0.5}
+                />,
+              ],
+              "style": Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "position": "absolute",
+                "right": 30,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": 1234,
+                  "style": Object {
+                    "fontSize": 36,
+                    "marginBottom": -8,
+                    "marginRight": 16,
+                  },
+                },
+                "ref": null,
+                "rendered": 1234,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "scale": 0.5,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": Symbol(react.fragment),
+      },
       "type": [Function],
     },
   ],
@@ -382,7 +484,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": Array [
+      "children": <React.Fragment>
         <TouchableOpacity
           activeOpacity={0.2}
           onPress={[MockFunction]}
@@ -396,8 +498,8 @@ ShallowWrapper {
           }
         >
           <Menu />
-        </TouchableOpacity>,
-        <Logo />,
+        </TouchableOpacity>
+        <Logo />
         <Component
           style={
             Object {
@@ -422,8 +524,8 @@ ShallowWrapper {
           <Coins
             scale={0.5}
           />
-        </Component>,
-      ],
+        </Component>
+      </React.Fragment>,
       "style": Object {
         "alignItems": "center",
         "flexDirection": "row",
@@ -433,117 +535,10 @@ ShallowWrapper {
       },
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "activeOpacity": 0.2,
-          "children": Array [
-            <Menu />,
-            null,
-          ],
-          "onPress": [MockFunction],
-          "style": Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "left": 30,
-            "position": "absolute",
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          null,
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <YuText
-              style={
-                Object {
-                  "fontSize": 36,
-                  "marginBottom": -8,
-                  "marginRight": 16,
-                }
-              }
-            >
-              1234
-            </YuText>,
-            <Coins
-              scale={0.5}
-            />,
-          ],
-          "style": Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "position": "absolute",
-            "right": 30,
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": 1234,
-              "style": Object {
-                "fontSize": 36,
-                "marginBottom": -8,
-                "marginRight": 16,
-              },
-            },
-            "ref": null,
-            "rendered": 1234,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "scale": 0.5,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "rendered": Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <TouchableOpacity
@@ -587,13 +582,6 @@ ShallowWrapper {
             />
           </Component>,
         ],
-        "style": Object {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "justifyContent": "center",
-          "marginTop": 8,
-          "width": "100%",
-        },
       },
       "ref": null,
       "rendered": Array [
@@ -700,6 +688,222 @@ ShallowWrapper {
           "type": [Function],
         },
       ],
+      "type": Symbol(react.fragment),
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <React.Fragment>
+          <TouchableOpacity
+            activeOpacity={0.2}
+            onPress={[MockFunction]}
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "left": 30,
+                "position": "absolute",
+              }
+            }
+          >
+            <Menu />
+          </TouchableOpacity>
+          <Logo />
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "position": "absolute",
+                "right": 30,
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "fontSize": 36,
+                  "marginBottom": -8,
+                  "marginRight": 16,
+                }
+              }
+            >
+              1234
+            </YuText>
+            <Coins
+              scale={0.5}
+            />
+          </Component>
+        </React.Fragment>,
+        "style": Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginTop": 8,
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <TouchableOpacity
+              activeOpacity={0.2}
+              onPress={[MockFunction]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "left": 30,
+                  "position": "absolute",
+                }
+              }
+            >
+              <Menu />
+            </TouchableOpacity>,
+            <Logo />,
+            <Component
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "position": "absolute",
+                  "right": 30,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 36,
+                    "marginBottom": -8,
+                    "marginRight": 16,
+                  }
+                }
+              >
+                1234
+              </YuText>
+              <Coins
+                scale={0.5}
+              />
+            </Component>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 0.2,
+              "children": Array [
+                <Menu />,
+                null,
+              ],
+              "onPress": [MockFunction],
+              "style": Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "left": 30,
+                "position": "absolute",
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              null,
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 36,
+                      "marginBottom": -8,
+                      "marginRight": 16,
+                    }
+                  }
+                >
+                  1234
+                </YuText>,
+                <Coins
+                  scale={0.5}
+                />,
+              ],
+              "style": Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "position": "absolute",
+                "right": 30,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": 1234,
+                  "style": Object {
+                    "fontSize": 36,
+                    "marginBottom": -8,
+                    "marginRight": 16,
+                  },
+                },
+                "ref": null,
+                "rendered": 1234,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "scale": 0.5,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": Symbol(react.fragment),
+      },
       "type": [Function],
     },
   ],
@@ -745,7 +949,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": Array [
+      "children": <React.Fragment>
         <TouchableOpacity
           activeOpacity={0.2}
           onPress={[MockFunction]}
@@ -777,8 +981,8 @@ ShallowWrapper {
               Menu Label
             </YuText>
           </Component>
-        </TouchableOpacity>,
-        <Logo />,
+        </TouchableOpacity>
+        <Logo />
         <Component
           style={
             Object {
@@ -803,8 +1007,8 @@ ShallowWrapper {
           <Coins
             scale={0.5}
           />
-        </Component>,
-      ],
+        </Component>
+      </React.Fragment>,
       "style": Object {
         "alignItems": "center",
         "flexDirection": "row",
@@ -814,169 +1018,10 @@ ShallowWrapper {
       },
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "activeOpacity": 0.2,
-          "children": Array [
-            <Menu />,
-            <Component
-              style={
-                Object {
-                  "marginBottom": -12,
-                  "marginLeft": 16,
-                }
-              }
-            >
-              <YuText
-                style={
-                  Object {
-                    "fontSize": 36,
-                  }
-                }
-              >
-                Menu Label
-              </YuText>
-            </Component>,
-          ],
-          "onPress": [MockFunction],
-          "style": Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "left": 30,
-            "position": "absolute",
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <YuText
-                style={
-                  Object {
-                    "fontSize": 36,
-                  }
-                }
-              >
-                Menu Label
-              </YuText>,
-              "style": Object {
-                "marginBottom": -12,
-                "marginLeft": 16,
-              },
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": "Menu Label",
-                "style": Object {
-                  "fontSize": 36,
-                },
-              },
-              "ref": null,
-              "rendered": "Menu Label",
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <YuText
-              style={
-                Object {
-                  "fontSize": 36,
-                  "marginBottom": -8,
-                  "marginRight": 16,
-                }
-              }
-            >
-              1234
-            </YuText>,
-            <Coins
-              scale={0.5}
-            />,
-          ],
-          "style": Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "position": "absolute",
-            "right": 30,
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": 1234,
-              "style": Object {
-                "fontSize": 36,
-                "marginBottom": -8,
-                "marginRight": 16,
-              },
-            },
-            "ref": null,
-            "rendered": 1234,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "scale": 0.5,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "rendered": Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <TouchableOpacity
@@ -1038,13 +1083,6 @@ ShallowWrapper {
             />
           </Component>,
         ],
-        "style": Object {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "justifyContent": "center",
-          "marginTop": 8,
-          "width": "100%",
-        },
       },
       "ref": null,
       "rendered": Array [
@@ -1203,6 +1241,310 @@ ShallowWrapper {
           "type": [Function],
         },
       ],
+      "type": Symbol(react.fragment),
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <React.Fragment>
+          <TouchableOpacity
+            activeOpacity={0.2}
+            onPress={[MockFunction]}
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "left": 30,
+                "position": "absolute",
+              }
+            }
+          >
+            <Menu />
+            <Component
+              style={
+                Object {
+                  "marginBottom": -12,
+                  "marginLeft": 16,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 36,
+                  }
+                }
+              >
+                Menu Label
+              </YuText>
+            </Component>
+          </TouchableOpacity>
+          <Logo />
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "position": "absolute",
+                "right": 30,
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "fontSize": 36,
+                  "marginBottom": -8,
+                  "marginRight": 16,
+                }
+              }
+            >
+              1234
+            </YuText>
+            <Coins
+              scale={0.5}
+            />
+          </Component>
+        </React.Fragment>,
+        "style": Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginTop": 8,
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <TouchableOpacity
+              activeOpacity={0.2}
+              onPress={[MockFunction]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "left": 30,
+                  "position": "absolute",
+                }
+              }
+            >
+              <Menu />
+              <Component
+                style={
+                  Object {
+                    "marginBottom": -12,
+                    "marginLeft": 16,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 36,
+                    }
+                  }
+                >
+                  Menu Label
+                </YuText>
+              </Component>
+            </TouchableOpacity>,
+            <Logo />,
+            <Component
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "position": "absolute",
+                  "right": 30,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 36,
+                    "marginBottom": -8,
+                    "marginRight": 16,
+                  }
+                }
+              >
+                1234
+              </YuText>
+              <Coins
+                scale={0.5}
+              />
+            </Component>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 0.2,
+              "children": Array [
+                <Menu />,
+                <Component
+                  style={
+                    Object {
+                      "marginBottom": -12,
+                      "marginLeft": 16,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 36,
+                      }
+                    }
+                  >
+                    Menu Label
+                  </YuText>
+                </Component>,
+              ],
+              "onPress": [MockFunction],
+              "style": Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "left": 30,
+                "position": "absolute",
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <YuText
+                    style={
+                      Object {
+                        "fontSize": 36,
+                      }
+                    }
+                  >
+                    Menu Label
+                  </YuText>,
+                  "style": Object {
+                    "marginBottom": -12,
+                    "marginLeft": 16,
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "Menu Label",
+                    "style": Object {
+                      "fontSize": 36,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "Menu Label",
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 36,
+                      "marginBottom": -8,
+                      "marginRight": 16,
+                    }
+                  }
+                >
+                  1234
+                </YuText>,
+                <Coins
+                  scale={0.5}
+                />,
+              ],
+              "style": Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "position": "absolute",
+                "right": 30,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": 1234,
+                  "style": Object {
+                    "fontSize": 36,
+                    "marginBottom": -8,
+                    "marginRight": 16,
+                  },
+                },
+                "ref": null,
+                "rendered": 1234,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "scale": 0.5,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": Symbol(react.fragment),
+      },
       "type": [Function],
     },
   ],
@@ -1248,7 +1590,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": Array [
+      "children": <React.Fragment>
         <TouchableOpacity
           activeOpacity={0.2}
           onPress={[MockFunction]}
@@ -1262,7 +1604,7 @@ ShallowWrapper {
           }
         >
           <Menu />
-        </TouchableOpacity>,
+        </TouchableOpacity>
         <Component
           style={
             Object {
@@ -1272,22 +1614,7 @@ ShallowWrapper {
             }
           }
         >
-          <Image
-            resizeMethod="resize"
-            resizeMode="contain"
-            source={
-              Object {
-                "testUri": "../../../src/components/molecules/top-bar/assets/clockIcon.png",
-              }
-            }
-            style={
-              Object {
-                "height": 50,
-                "marginRight": 18,
-                "width": 50,
-              }
-            }
-          />
+          <Clock />
           <YuText
             style={
               Object {
@@ -1298,7 +1625,7 @@ ShallowWrapper {
           >
             11:58:00
           </YuText>
-        </Component>,
+        </Component>
         <Component
           style={
             Object {
@@ -1323,8 +1650,8 @@ ShallowWrapper {
           <Coins
             scale={0.5}
           />
-        </Component>,
-      ],
+        </Component>
+      </React.Fragment>,
       "style": Object {
         "alignItems": "center",
         "flexDirection": "row",
@@ -1334,187 +1661,10 @@ ShallowWrapper {
       },
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "activeOpacity": 0.2,
-          "children": Array [
-            <Menu />,
-            null,
-          ],
-          "onPress": [MockFunction],
-          "style": Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "left": 30,
-            "position": "absolute",
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          null,
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <Image
-              resizeMethod="resize"
-              resizeMode="contain"
-              source={
-                Object {
-                  "testUri": "../../../src/components/molecules/top-bar/assets/clockIcon.png",
-                }
-              }
-              style={
-                Object {
-                  "height": 50,
-                  "marginRight": 18,
-                  "width": 50,
-                }
-              }
-            />,
-            <YuText
-              style={
-                Object {
-                  "fontSize": 36,
-                  "marginTop": 4,
-                }
-              }
-            >
-              11:58:00
-            </YuText>,
-          ],
-          "style": Object {
-            "flexDirection": "row",
-            "marginBottom": -12,
-            "paddingLeft": 40,
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "resizeMethod": "resize",
-              "resizeMode": "contain",
-              "source": Object {
-                "testUri": "../../../src/components/molecules/top-bar/assets/clockIcon.png",
-              },
-              "style": Object {
-                "height": 50,
-                "marginRight": 18,
-                "width": 50,
-              },
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "11:58:00",
-              "style": Object {
-                "fontSize": 36,
-                "marginTop": 4,
-              },
-            },
-            "ref": null,
-            "rendered": "11:58:00",
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <YuText
-              style={
-                Object {
-                  "fontSize": 36,
-                  "marginBottom": -8,
-                  "marginRight": 16,
-                }
-              }
-            >
-              1234
-            </YuText>,
-            <Coins
-              scale={0.5}
-            />,
-          ],
-          "style": Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "position": "absolute",
-            "right": 30,
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": 1234,
-              "style": Object {
-                "fontSize": 36,
-                "marginBottom": -8,
-                "marginRight": 16,
-              },
-            },
-            "ref": null,
-            "rendered": 1234,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "scale": 0.5,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "rendered": Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <TouchableOpacity
@@ -1540,22 +1690,7 @@ ShallowWrapper {
               }
             }
           >
-            <Image
-              resizeMethod="resize"
-              resizeMode="contain"
-              source={
-                Object {
-                  "testUri": "../../../src/components/molecules/top-bar/assets/clockIcon.png",
-                }
-              }
-              style={
-                Object {
-                  "height": 50,
-                  "marginRight": 18,
-                  "width": 50,
-                }
-              }
-            />
+            <Clock />
             <YuText
               style={
                 Object {
@@ -1593,13 +1728,6 @@ ShallowWrapper {
             />
           </Component>,
         ],
-        "style": Object {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "justifyContent": "center",
-          "marginTop": 8,
-          "width": "100%",
-        },
       },
       "ref": null,
       "rendered": Array [
@@ -1642,22 +1770,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Image
-                resizeMethod="resize"
-                resizeMode="contain"
-                source={
-                  Object {
-                    "testUri": "../../../src/components/molecules/top-bar/assets/clockIcon.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 50,
-                    "marginRight": 18,
-                    "width": 50,
-                  }
-                }
-              />,
+              <Clock />,
               <YuText
                 style={
                   Object {
@@ -1680,19 +1793,8 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "resizeMethod": "resize",
-                "resizeMode": "contain",
-                "source": Object {
-                  "testUri": "../../../src/components/molecules/top-bar/assets/clockIcon.png",
-                },
-                "style": Object {
-                  "height": 50,
-                  "marginRight": 18,
-                  "width": 50,
-                },
-              },
+              "nodeType": "function",
+              "props": Object {},
               "ref": null,
               "rendered": null,
               "type": [Function],
@@ -1776,6 +1878,306 @@ ShallowWrapper {
           "type": [Function],
         },
       ],
+      "type": Symbol(react.fragment),
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <React.Fragment>
+          <TouchableOpacity
+            activeOpacity={0.2}
+            onPress={[MockFunction]}
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "left": 30,
+                "position": "absolute",
+              }
+            }
+          >
+            <Menu />
+          </TouchableOpacity>
+          <Component
+            style={
+              Object {
+                "flexDirection": "row",
+                "marginBottom": -12,
+                "paddingLeft": 40,
+              }
+            }
+          >
+            <Clock />
+            <YuText
+              style={
+                Object {
+                  "fontSize": 36,
+                  "marginTop": 4,
+                }
+              }
+            >
+              11:58:00
+            </YuText>
+          </Component>
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "position": "absolute",
+                "right": 30,
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "fontSize": 36,
+                  "marginBottom": -8,
+                  "marginRight": 16,
+                }
+              }
+            >
+              1234
+            </YuText>
+            <Coins
+              scale={0.5}
+            />
+          </Component>
+        </React.Fragment>,
+        "style": Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginTop": 8,
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <TouchableOpacity
+              activeOpacity={0.2}
+              onPress={[MockFunction]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "left": 30,
+                  "position": "absolute",
+                }
+              }
+            >
+              <Menu />
+            </TouchableOpacity>,
+            <Component
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "marginBottom": -12,
+                  "paddingLeft": 40,
+                }
+              }
+            >
+              <Clock />
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 36,
+                    "marginTop": 4,
+                  }
+                }
+              >
+                11:58:00
+              </YuText>
+            </Component>,
+            <Component
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "position": "absolute",
+                  "right": 30,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 36,
+                    "marginBottom": -8,
+                    "marginRight": 16,
+                  }
+                }
+              >
+                1234
+              </YuText>
+              <Coins
+                scale={0.5}
+              />
+            </Component>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 0.2,
+              "children": Array [
+                <Menu />,
+                null,
+              ],
+              "onPress": [MockFunction],
+              "style": Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "left": 30,
+                "position": "absolute",
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              null,
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <Clock />,
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 36,
+                      "marginTop": 4,
+                    }
+                  }
+                >
+                  11:58:00
+                </YuText>,
+              ],
+              "style": Object {
+                "flexDirection": "row",
+                "marginBottom": -12,
+                "paddingLeft": 40,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "11:58:00",
+                  "style": Object {
+                    "fontSize": 36,
+                    "marginTop": 4,
+                  },
+                },
+                "ref": null,
+                "rendered": "11:58:00",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 36,
+                      "marginBottom": -8,
+                      "marginRight": 16,
+                    }
+                  }
+                >
+                  1234
+                </YuText>,
+                <Coins
+                  scale={0.5}
+                />,
+              ],
+              "style": Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "position": "absolute",
+                "right": 30,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": 1234,
+                  "style": Object {
+                    "fontSize": 36,
+                    "marginBottom": -8,
+                    "marginRight": 16,
+                  },
+                },
+                "ref": null,
+                "rendered": 1234,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "scale": 0.5,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": Symbol(react.fragment),
+      },
       "type": [Function],
     },
   ],

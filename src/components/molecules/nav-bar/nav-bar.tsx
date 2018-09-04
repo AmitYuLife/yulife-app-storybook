@@ -24,23 +24,24 @@ import styles, {
 export interface ILabel {
     name: string;
     onPress: () => void;
-    colour?: Colours;
+    colour?: IColours;
 }
 
 export enum COLOURS {
     DARK = "dark",
     DARKER = "darker",
-    LIGHT = "light"
+    LIGHT = "light",
+    PINK = "pink"
 }
 
-export type Colours = "dark" | "darker" | "light";
+export type IColours = "dark" | "darker" | "light" | "pink";
 
 interface IProps {
     activeIndex: number;
     hasNotification?: boolean;
     hasDismiss?: boolean;
     labels?: ILabel[];
-    colour?: Colours;
+    colour?: IColours;
     areIconsHidden?: boolean;
     onCancelPress?: () => void;
 }

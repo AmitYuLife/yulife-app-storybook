@@ -37,30 +37,30 @@ ShallowWrapper {
         />,
         <Rect
           fill="#333"
-          height={18}
+          height={9}
           rx={0}
           ry={0}
-          width={6}
+          width={3}
           x="31.7"
           y="0.9"
         />,
         <Rect
           fill="#333"
-          height={18}
+          height={9}
           rx={0}
           ry={0}
           transform="matrix(0.866 -0.5 0.5 0.866 -1.8019 11.1796)"
-          width={6}
+          width={3}
           x="18.5"
           y="4.4"
         />,
         <Rect
           fill="#333"
-          height={18}
+          height={9}
           rx={0}
           ry={0}
           transform="matrix(0.5 -0.8661 0.8661 0.5 -11.0388 18.2095)"
-          width={6}
+          width={3}
           x="8.7"
           y="14.1"
         />,
@@ -72,11 +72,11 @@ ShallowWrapper {
           strokeWidth={3}
         />,
       ],
-      "height": 61,
+      "height": 30.5,
       "preserveAspectRatio": "xMidYMid meet",
       "style": undefined,
       "viewBox": "0 0 73 61",
-      "width": 73,
+      "width": 36.5,
     },
     "ref": null,
     "rendered": Array [
@@ -128,10 +128,10 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "fill": "#333",
-          "height": 18,
+          "height": 9,
           "rx": 0,
           "ry": 0,
-          "width": 6,
+          "width": 3,
           "x": "31.7",
           "y": "0.9",
         },
@@ -145,11 +145,11 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "fill": "#333",
-          "height": 18,
+          "height": 9,
           "rx": 0,
           "ry": 0,
           "transform": "matrix(0.866 -0.5 0.5 0.866 -1.8019 11.1796)",
-          "width": 6,
+          "width": 3,
           "x": "18.5",
           "y": "4.4",
         },
@@ -163,11 +163,11 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "fill": "#333",
-          "height": 18,
+          "height": 9,
           "rx": 0,
           "ry": 0,
           "transform": "matrix(0.5 -0.8661 0.8661 0.5 -11.0388 18.2095)",
-          "width": 6,
+          "width": 3,
           "x": "8.7",
           "y": "14.1",
         },
@@ -220,30 +220,30 @@ ShallowWrapper {
           />,
           <Rect
             fill="#333"
-            height={18}
+            height={9}
             rx={0}
             ry={0}
-            width={6}
+            width={3}
             x="31.7"
             y="0.9"
           />,
           <Rect
             fill="#333"
-            height={18}
+            height={9}
             rx={0}
             ry={0}
             transform="matrix(0.866 -0.5 0.5 0.866 -1.8019 11.1796)"
-            width={6}
+            width={3}
             x="18.5"
             y="4.4"
           />,
           <Rect
             fill="#333"
-            height={18}
+            height={9}
             rx={0}
             ry={0}
             transform="matrix(0.5 -0.8661 0.8661 0.5 -11.0388 18.2095)"
-            width={6}
+            width={3}
             x="8.7"
             y="14.1"
           />,
@@ -255,11 +255,11 @@ ShallowWrapper {
             strokeWidth={3}
           />,
         ],
-        "height": 61,
+        "height": 30.5,
         "preserveAspectRatio": "xMidYMid meet",
         "style": undefined,
         "viewBox": "0 0 73 61",
-        "width": 73,
+        "width": 36.5,
       },
       "ref": null,
       "rendered": Array [
@@ -311,10 +311,10 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "fill": "#333",
-            "height": 18,
+            "height": 9,
             "rx": 0,
             "ry": 0,
-            "width": 6,
+            "width": 3,
             "x": "31.7",
             "y": "0.9",
           },
@@ -328,11 +328,11 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "fill": "#333",
-            "height": 18,
+            "height": 9,
             "rx": 0,
             "ry": 0,
             "transform": "matrix(0.866 -0.5 0.5 0.866 -1.8019 11.1796)",
-            "width": 6,
+            "width": 3,
             "x": "18.5",
             "y": "4.4",
           },
@@ -346,11 +346,11 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "fill": "#333",
-            "height": 18,
+            "height": 9,
             "rx": 0,
             "ry": 0,
             "transform": "matrix(0.5 -0.8661 0.8661 0.5 -11.0388 18.2095)",
-            "width": 6,
+            "width": 3,
             "x": "8.7",
             "y": "14.1",
           },

@@ -8,6 +8,7 @@ export { default as WelcomeScreen } from "./welcome/welcome.screen";
 // onboarding screens
 export { default as FitKitConnectScreen } from "./onboarding/fitkit-connect/fitkit-connect.screen";
 export { default as SignUpRewardScreen } from "./onboarding/signup-reward/signup-reward.screen";
+export { default as IntroScreen } from "./onboarding/intro/intro.screen";
 
 // member screens
 export { default as MenuScreen, IMenuLink } from "./member/menu/menu.screen";

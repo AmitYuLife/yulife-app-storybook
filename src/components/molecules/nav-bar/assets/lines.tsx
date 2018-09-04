@@ -15,7 +15,7 @@ const Lines: SFC<IProps> = ({ isExtended, colour = COLOURS.LIGHT }) => (
             x="46.1"
             y="16.5"
             fill={
-                colour && colour.startsWith("dark")
+                colour && (colour.startsWith("dark") || colour.startsWith("pink"))
                     ? Colours.navBar.dark.inactive
                     : Colours.navBar.light.inactive
             }
@@ -27,7 +27,7 @@ const Lines: SFC<IProps> = ({ isExtended, colour = COLOURS.LIGHT }) => (
             y="16.5"
             transform="matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)"
             fill={
-                colour && colour.startsWith("dark")
+                colour && (colour.startsWith("dark") || colour.startsWith("pink"))
                     ? Colours.navBar.dark.inactive
                     : Colours.navBar.light.inactive
             }

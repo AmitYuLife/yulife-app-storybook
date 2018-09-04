@@ -11,6 +11,7 @@ import {
     ChallengeSuccessScreen,
     DailyStepsScreen,
     FitKitConnectScreen,
+    IntroScreen,
     LoginScreen,
     ResetPasswordScreen,
     ResetPasswordSuccessScreen,
@@ -274,4 +275,7 @@ storiesOf("Screens", module)
             ], "Items")}
             onPressClose={action("on press close")}
         />
+    ))
+    .add("12. Intro", () => (
+        <IntroScreen />
     ));
