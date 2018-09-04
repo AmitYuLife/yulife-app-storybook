@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { ActivityIndicator, Image, ScrollView, View } from "react-native";
 import { Pad, Text } from "../../../../atoms";
 import { RewardItemContent, TopBar } from "../../../../molecules";
-import styles from "./wegift-confirmed.styles";
+import styles from "./wegift-confirmed.screen.styles";
 
 export interface IServerProps {
     rewardName: string;

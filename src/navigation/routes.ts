@@ -1,4 +1,6 @@
 import {
+    AviosRewardConfirmedContainer,
+    AviosRewardDetailsContainer,
     FitKitConnectContainer,
     LoginContainer,
     MemberRootContainer,
@@ -58,7 +60,9 @@ export default [
 
     // rewards screens
     { name: ROUTES.wegiftDetails, component: WegiftRewardDetailsContainer },
-    { name: ROUTES.wegiftConfirmed, component: WegiftRewardConfirmedContainer }
+    { name: ROUTES.wegiftConfirmed, component: WegiftRewardConfirmedContainer },
+    { name: ROUTES.aviosDetails, component: AviosRewardDetailsContainer },
+    { name: ROUTES.aviosConfirmed, component: AviosRewardConfirmedContainer }
     // { name: ROUTES.memberChallengesList, component: ChallengesListContainer },
     // { name: ROUTES.memberRewardsList, component: ChallengesListContainer },
 ];

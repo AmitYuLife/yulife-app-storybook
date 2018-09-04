@@ -1,0 +1,254 @@
+import * as React from "react";
+import {
+    EmitterSubscription,
+    Keyboard,
+    KeyboardAvoidingView,
+    Platform,
+    ScrollView,
+    StyleSheet,
+    View
+} from "react-native";
+import { GetRewards_getRewards_uiSettings } from "../../../../../graphql/_core/schema";
+import { Button, Pad, Text, TextInput } from "../../../../atoms";
+import { LinkGroup, Picker, RewardsListItem, RewardTabs, TopBar } from "../../../../molecules";
+import styles from "./avios-details.screen.styles";
+
+const noop = () => ({});
+
+export interface IRewardReturnedUsersItem {
+    id: string;
+    label: string;
+}
+
+export interface IContainerProps {
+    uiSettings: GetRewards_getRewards_uiSettings;
+    code: string;
+    cost: number;
+    coins: number;
+    rewardValue: number;
+    rewardCurrency: string;
+    welcomeHeading: string;
+    welcomeParagraph: string;
+    instructionsHeading: string;
+    instructionsParagraph: string;
+    loyaltyList?: IRewardReturnedUsersItem[];
+    amountList?: IRewardReturnedUsersItem[];
+    onLeftTabPress: () => void;
+    onRightTabPress: () => void;
+    onPressTopBar: () => void;
+    onPressConfirm: () => void;
+    onPressSetUp: () => void;
+    onPressPolicy: () => void;
+}
+
+export interface IOnPressPickerArgs {
+    items: IRewardReturnedUsersItem[];
+    instruction: string;
+}
+
+interface IOwnProps {
+    hasErrorAccountNumber: boolean;
+    isDisabledCta: boolean;
+    confirmButtonLabel: string;
+    loyaltyValue: string;
+    forenameValue: string;
+    surnameValue: string;
+    amountValue: string;
+    accountNumberValue: string;
+    onForenameChange: (value: string) => void;
+    onSurnameChange: (value: string) => void;
+    onCardChange: (value: string) => void;
+    onPressLoyaltyPicker: (args: IOnPressPickerArgs) => void;
+    onPressAmountPicker: (args: IOnPressPickerArgs) => void;
+}
+
+type Props = IContainerProps & IOwnProps;
+
+interface IState {
+    isShowingKeyboard: boolean;
+}
+
+class AviosDetailsScreen extends React.PureComponent<Props, IState> {
+
+    public state = {
+        isShowingKeyboard: false
+    };
+    private keyboardDidShowListener?: EmitterSubscription;
+    private keyboardDidHideListener?: EmitterSubscription;
+
+    public componentWillUnmount() {
+        this.keyboardDidShowListener.remove();
+        this.keyboardDidHideListener.remove();
+    }
+
+    public componentDidMount() {
+        this.keyboardDidShowListener = Keyboard.addListener(
+            Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow",
+            this.keyboardDidShow(true)
+        );
+        this.keyboardDidHideListener = Keyboard.addListener(
+            Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide",
+            this.keyboardDidShow(false)
+        );
+    }
+
+    public render() {
+        const {
+            uiSettings,
+            hasErrorAccountNumber,
+            isDisabledCta,
+            confirmButtonLabel,
+            code,
+            cost,
+            rewardValue,
+            rewardCurrency,
+            welcomeHeading,
+            welcomeParagraph,
+            instructionsHeading,
+            instructionsParagraph,
+            onPressConfirm,
+            onPressSetUp,
+            onPressPolicy,
+            onForenameChange,
+            onSurnameChange,
+            onPressTopBar,
+            onCardChange,
+            onLeftTabPress,
+            onRightTabPress,
+            loyaltyValue,
+            accountNumberValue,
+            forenameValue,
+            surnameValue,
+            amountValue,
+            coins
+        } = this.props;
+        const { isShowingKeyboard } = this.state;
+        return (
+            <KeyboardAvoidingView style={styles.kAV}>
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                    style={styles.wrapper}
+                    contentContainerStyle={StyleSheet.flatten([
+                        styles.contentContainerStyle,
+                        isShowingKeyboard ? styles.contentContainerWithKeyboard : {}
+                    ])}
+                >
+                    {isShowingKeyboard ? null : (
+                        <View>
+                            <Pad height={60} />
+                            <View style={styles.rewardTabsWrapper}>
+                                <RewardTabs
+                                    activeTabIndex={0}
+                                    onRightTabPress={onRightTabPress}
+                                    onLeftTabPress={onLeftTabPress}
+                                />
+                            </View>
+                            <RewardsListItem
+                                settings={uiSettings}
+                                onPress={noop}
+                                code={code}
+                                cost={cost}
+                                rewardValue={rewardValue}
+                                rewardCurrency={rewardCurrency}
+                            />
+                            <View style={styles.contentWrapper}>
+                                <Text bold={true} style={styles.heading}>
+                                    {welcomeHeading}
+                                </Text>
+                                <Text style={styles.paragraph}>{welcomeParagraph}</Text>
+                            </View>
+                            <View style={styles.contentWrapper}>
+                                <Text bold={true} style={styles.heading}>
+                                    {instructionsHeading}
+                                </Text>
+                                <Text style={styles.paragraph}>{instructionsParagraph}</Text>
+                            </View>
+                        </View>
+                    )}
+                    <View style={styles.formWrapper}>
+                        <Picker
+                            label={loyaltyValue}
+                            placeholder={loyaltyValue ? "" : "loyalty programme"}
+                            onPress={this.handlePressLoyalty}
+                            icon={Picker.Icons.HEART}
+                        />
+                        <TextInput
+                            style={styles.textInput}
+                            onChange={onForenameChange}
+                            value={forenameValue}
+                            placeholder="forename"
+                            type={TextInput.Types.TEXT}
+                        />
+                        <TextInput
+                            style={styles.textInput}
+                            onChange={onSurnameChange}
+                            value={surnameValue}
+                            placeholder="surname"
+                            type={TextInput.Types.TEXT}
+                        />
+                        <TextInput
+                            style={styles.textInput}
+                            onChange={onCardChange}
+                            value={accountNumberValue}
+                            type={TextInput.Types.CARD}
+                            hasError={hasErrorAccountNumber}
+                            errorMessage={"Please enter a valid account number"}
+                        />
+                        <Picker
+                            placeholder="amount"
+                            label={amountValue}
+                            onPress={this.handlePressAmount}
+                            icon={Picker.Icons.COINS}
+                        />
+                    </View>
+                    <View style={styles.ctaWrapper}>
+                        <Button
+                            type={Button.Types.PRIMARY}
+                            label={confirmButtonLabel}
+                            onPress={onPressConfirm}
+                            disabled={isDisabledCta}
+                        />
+                    </View>
+                    <View style={styles.linksWrapper}>
+                        <LinkGroup
+                            data={[
+                                {
+                                    label: "new to Avios?",
+                                    onPress: onPressSetUp
+                                },
+                                {
+                                    label: "Reward Policy",
+                                    onPress: onPressPolicy
+                                }
+                            ]}
+                        />
+                    </View>
+                    <Pad height={50} />
+                </ScrollView>
+                <View style={styles.topBarWrapper}>
+                    <TopBar coins={coins} leftIcon={TopBar.LeftIcon.BACK} onPressLeftIcon={onPressTopBar} />
+                </View>
+            </KeyboardAvoidingView>
+        );
+    }
+
+    private keyboardDidShow = (isShowingKeyboard: boolean) => {
+        return () => this.setState({ isShowingKeyboard });
+    }
+
+    private handlePressLoyalty = () => {
+        this.props.onPressLoyaltyPicker({
+            instruction: "Select your loyalty programme",
+            items: this.props.loyaltyList
+        });
+    }
+
+    private handlePressAmount = () => {
+        this.props.onPressAmountPicker({
+            instruction: "Select your amount",
+            items: this.props.amountList
+        });
+    }
+}
+
+export default AviosDetailsScreen;

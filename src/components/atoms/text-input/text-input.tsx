@@ -1,16 +1,7 @@
 import * as React from "react";
-import { PureComponent } from "react";
-import {
-    TextInput as Input,
-    View
-} from "react-native";
-import Lock from "./assets/lock";
-import Mail from "./assets/mail";
+import { StyleSheet, TextInput as Input, View, ViewStyle } from "react-native";
 import TextInputError from "./text-input-error";
-import {
-    getColour,
-    getWrapperStyle
-} from "./text-input.helpers";
+import { getColour, getIcon, getPlaceholder, getStyle, getValue, getWrapperStyle } from "./text-input.helpers";
 import styles from "./text-input.styles";
 
 interface IProps {
@@ -20,36 +11,32 @@ interface IProps {
     errorMessage?: string;
     type: Types;
     onBlur?: (value: string) => void;
+    placeholder?: string;
+    style?: ViewStyle;
 }
 
 export enum TEXT_INPUT_TYPES {
     EMAIL = "Email",
-    PASSWORD = "Password"
+    PASSWORD = "Password",
+    TEXT = "Text",
+    CARD = "Card"
 }
 
-export type Types = "Email" | "Password";
+export type Types = "Email" | "Password" | "Text" | "Card";
 
-class TextInput extends PureComponent<IProps> {
+class TextInput extends React.PureComponent<IProps> {
     public static Types = TEXT_INPUT_TYPES;
-
+    public cardInput: Input;
     public state = {
         isFocused: false
     };
 
     public render() {
-        const {
-            value,
-            onChange,
-            hasError,
-            errorMessage,
-            type
-        } = this.props;
+        const { value, onChange, hasError, errorMessage, type, placeholder = "", style } = this.props;
         const { isFocused } = this.state;
-        const Icon =
-            type === TEXT_INPUT_TYPES.EMAIL ? Mail : Lock;
-
+        const Icon = getIcon(type);
         return (
-            <View style={styles.outerWrapper}>
+            <View style={StyleSheet.flatten([styles.outerWrapper, style])}>
                 <View
                     style={getWrapperStyle({
                         hasError,
@@ -57,7 +44,9 @@ class TextInput extends PureComponent<IProps> {
                         isFocused
                     })}
                 >
-                    <View style={styles.iconWrapper}>
+                    <View
+                        style={StyleSheet.flatten([styles.iconWrapper, type === "Text" ? styles.iconWrapperCard : {}])}
+                    >
                         {
                             <Icon
                                 colour={getColour({
@@ -72,27 +61,18 @@ class TextInput extends PureComponent<IProps> {
                         onFocus={this.handleFocus(true)}
                         onBlur={this.handleFocus(false)}
                         onChangeText={onChange}
-                        value={value}
+                        value={getValue({ value, type })}
                         autoCapitalize="none"
                         autoCorrect={false}
                         autoFocus={false}
-                        placeholder={
-                            type === TEXT_INPUT_TYPES.EMAIL
-                                ? "Email"
-                                : "Password"
-                        }
-                        style={styles.input}
+                        placeholder={getPlaceholder({ type, placeholder })}
+                        style={getStyle({ type })}
                         underlineColorAndroid="transparent"
-                        secureTextEntry={
-                            type ===
-                            TEXT_INPUT_TYPES.PASSWORD
-                        }
-                        keyboardType="default"
+                        secureTextEntry={type === TEXT_INPUT_TYPES.PASSWORD}
+                        keyboardType={type === TEXT_INPUT_TYPES.CARD ? "numeric" : "default"}
                     />
                 </View>
-                {!!errorMessage && (
-                    <TextInputError>{errorMessage}</TextInputError>
-                )}
+                {hasError ? <TextInputError>{errorMessage || ""}</TextInputError> : null}
             </View>
         );
     }

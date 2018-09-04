@@ -8,6 +8,13 @@ import {
 import Blur from "./blur";
 import styles from "./blur-provider.styles";
 
+enum TYPES {
+    DEFAULT = "default",
+    DARK = "dark"
+}
+
+export type Types = "default" | "dark";
+
 export interface IToggleBlur {
     hideOverlay: () => void;
     showOverlay: () => void;
@@ -18,6 +25,7 @@ interface IProps {
     renderOverlay?: (prop: IToggleBlur) => React.ReactNode;
     render?: (prop: IToggleBlur) => React.ReactNode;
     displayOverlay?: boolean;
+    type?: Types;
 }
 
 interface IState {
@@ -26,7 +34,7 @@ interface IState {
 }
 
 class BlurProvider extends React.PureComponent<IProps, IState> {
-
+    public static Types = TYPES;
     public state: IState = {
         isVisible: false,
         viewRef: null

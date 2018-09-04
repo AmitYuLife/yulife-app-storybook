@@ -190,6 +190,7 @@ export interface GetAllPurchases_getAllPurchases_reward {
   description: string | null;
   card_image_url: string | null;
   terms_and_conditions_url: string | null;
+  loyalty_programme: (string | null)[] | null;
   redeem_steps: GetAllPurchases_getAllPurchases_reward_redeem_steps | null;
 }
 
@@ -292,6 +293,7 @@ export interface RedeemReward_redeemReward_reward {
   description: string | null;
   card_image_url: string | null;
   terms_and_conditions_url: string | null;
+  loyalty_programme: (string | null)[] | null;
   redeem_steps: RedeemReward_redeemReward_reward_redeem_steps | null;
 }
 

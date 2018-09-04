@@ -36,6 +36,7 @@ export const getAllPurchasesGql = gql`
                 description
                 card_image_url
                 terms_and_conditions_url
+                loyalty_programme
                 redeem_steps {
                     __typename
                     info

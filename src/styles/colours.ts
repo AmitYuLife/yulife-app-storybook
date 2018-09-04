@@ -38,6 +38,10 @@ export default {
             active: "rgb(232, 49, 129)"
         }
     },
+    picker: {
+        empty: "rgb(204,204,204)",
+        filled: "rgb(106,106,106)"
+    },
     progressBar: {
         background: "black",
         heading: "black",

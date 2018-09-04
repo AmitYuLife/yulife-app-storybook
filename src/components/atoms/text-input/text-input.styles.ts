@@ -1,5 +1,6 @@
 import {
     ImageStyle,
+    Platform,
     StyleSheet,
     TextStyle,
     ViewStyle
@@ -10,6 +11,9 @@ export default StyleSheet.create({
     iconWrapper: {
         marginRight: Style.SCALE_UP_AND_DOWN(20)
     } as ViewStyle,
+    iconWrapperCard: {
+        marginBottom: Style.SCALE_UP_AND_DOWN(-4)
+    } as ViewStyle,
     image: {
         marginRight: Style.SCALE_UP_AND_DOWN(20),
         width: Style.SCALE_UP_AND_DOWN(25)
@@ -18,9 +22,13 @@ export default StyleSheet.create({
         color: Colours.darkGray,
         fontFamily: Style.FONT_FAMILY_PRIMARY,
         fontSize: Style.SCALE_UP_AND_DOWN(16),
+        marginBottom: Platform.OS === "ios" ? 0 : Style.SCALE_UP_AND_DOWN(-4),
         padding: 0,
         width: "100%"
     } as TextStyle,
+    inputCard: {
+        marginLeft: 2
+    } as ViewStyle,
     outerWrapper: {
         paddingHorizontal: Style.SCALE_UP_AND_DOWN(44),
         width: "100%"
