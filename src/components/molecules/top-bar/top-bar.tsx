@@ -102,10 +102,14 @@ class TopBar extends PureComponent<IProps> {
                                     )
                                 }
                                 <View style={styles.coinsWrapper}>
-                                    <Text style={styles.coinsText}>
-                                        {coins || 0}
-                                    </Text>
-                                    <Coins scale={0.5} />
+                                    <View style={styles.coinsTextWrapper}>
+                                        <Text style={styles.coinsText}>
+                                            {coins || 0}
+                                        </Text>
+                                    </View>
+                                    <View style={styles.coinsLogoWrapper}>
+                                        <Coins scale={0.5} />
+                                    </View>
                                 </View>
                             </>
                         )

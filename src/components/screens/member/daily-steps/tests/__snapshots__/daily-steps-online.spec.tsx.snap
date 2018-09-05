@@ -19,7 +19,7 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "function",
+    "nodeType": "class",
     "props": Object {
       "children": Array [
         <YuText>
@@ -77,6 +77,10 @@ ShallowWrapper {
           type="PrimaryMedium"
         />,
       ],
+      "style": Object {
+        "alignItems": "center",
+        "marginTop": -32,
+      },
     },
     "ref": null,
     "rendered": Array [
@@ -240,13 +244,13 @@ ShallowWrapper {
         "type": [Function],
       },
     ],
-    "type": Symbol(react.fragment),
+    "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "function",
+      "nodeType": "class",
       "props": Object {
         "children": Array [
           <YuText>
@@ -304,6 +308,10 @@ ShallowWrapper {
             type="PrimaryMedium"
           />,
         ],
+        "style": Object {
+          "alignItems": "center",
+          "marginTop": -32,
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -467,7 +475,7 @@ ShallowWrapper {
           "type": [Function],
         },
       ],
-      "type": Symbol(react.fragment),
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {

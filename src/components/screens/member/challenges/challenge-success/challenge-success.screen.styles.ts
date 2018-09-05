@@ -11,8 +11,7 @@ export default StyleSheet.create({
         textAlign: "center"
     } as TextStyle,
     footerWrapper: {
-        marginTop: Style.SCALE_UP_AND_DOWN(10),
-        width: Style.SCALE_UP_AND_DOWN(140)
+        marginTop: Style.SCALE_UP_AND_DOWN(10)
     } as ViewStyle,
     plusPointsWrapper: {
         alignItems: "center",

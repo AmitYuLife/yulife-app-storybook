@@ -104,6 +104,7 @@ ShallowWrapper {
       ],
       "style": Object {
         "alignItems": "center",
+        "backgroundColor": "rgba(255,255,255,0.9)",
         "flex": 1,
       },
     },
@@ -324,6 +325,7 @@ ShallowWrapper {
         ],
         "style": Object {
           "alignItems": "center",
+          "backgroundColor": "rgba(255,255,255,0.9)",
           "flex": 1,
         },
       },
@@ -593,6 +595,7 @@ ShallowWrapper {
       ],
       "style": Object {
         "alignItems": "center",
+        "backgroundColor": "rgba(255,255,255,0.9)",
         "flex": 1,
       },
     },
@@ -814,6 +817,7 @@ ShallowWrapper {
         ],
         "style": Object {
           "alignItems": "center",
+          "backgroundColor": "rgba(255,255,255,0.9)",
           "flex": 1,
         },
       },

@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     } as ViewStyle,
     wrapper: {
         alignItems: "center",
+        backgroundColor: "rgba(255,255,255,0.9)",
         flex: 1
     } as ViewStyle,
     yucoinImage: {
