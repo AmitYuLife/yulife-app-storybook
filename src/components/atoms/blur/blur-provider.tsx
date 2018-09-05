@@ -78,7 +78,7 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
 
     public render() {
         const { viewRef } = this.state;
-        const { render, renderOverlay } = this.props;
+        const { render, renderOverlay, type } = this.props;
 
         return (
             <View style={styles.wrapper}>
@@ -96,7 +96,7 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
                         })
                     }
                 </View>
-                {viewRef ? (
+                {viewRef && type === "default" ? (
                     <Blur
                         blurRef={viewRef}
                         wrapperOpacity={this.animatedWrapperOpacity}
@@ -105,6 +105,7 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
                 ) : null}
                 <Animated.View
                     style={{
+                        backgroundColor: type === "dark" ? "rgba(0,0,0,0.5)" : "transparent",
                         ...StyleSheet.absoluteFillObject,
                         opacity: this.animatedWrapperOpacity,
                         transform: [
