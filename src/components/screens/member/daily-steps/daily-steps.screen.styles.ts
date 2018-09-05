@@ -2,6 +2,10 @@ import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../../styles";
 
 export default StyleSheet.create({
+    dailyStepsOnlineWrapper: {
+        alignItems: "center",
+        marginTop: Style.SCALE_UP_AND_DOWN(-16)
+    } as ViewStyle,
     heading: {
         fontSize: Style.SCALE_UP_AND_DOWN(35)
     } as TextStyle,

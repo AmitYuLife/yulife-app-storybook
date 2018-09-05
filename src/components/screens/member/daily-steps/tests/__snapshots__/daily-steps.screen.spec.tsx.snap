@@ -35,7 +35,7 @@ ShallowWrapper {
       "children": Array [
         false,
         <Pad
-          height={60}
+          height={20}
         />,
         <TouchableOpacity
           activeOpacity={1}
@@ -60,7 +60,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 60,
+          "height": 20,
         },
         "ref": null,
         "rendered": null,
@@ -116,7 +116,7 @@ ShallowWrapper {
         "children": Array [
           false,
           <Pad
-            height={60}
+            height={20}
           />,
           <TouchableOpacity
             activeOpacity={1}
@@ -141,7 +141,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 60,
+            "height": 20,
           },
           "ref": null,
           "rendered": null,
@@ -246,7 +246,7 @@ ShallowWrapper {
       "children": Array [
         false,
         <Pad
-          height={60}
+          height={20}
         />,
         <TouchableOpacity
           activeOpacity={1}
@@ -269,7 +269,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 60,
+          "height": 20,
         },
         "ref": null,
         "rendered": null,
@@ -323,7 +323,7 @@ ShallowWrapper {
         "children": Array [
           false,
           <Pad
-            height={60}
+            height={20}
           />,
           <TouchableOpacity
             activeOpacity={1}
@@ -346,7 +346,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 60,
+            "height": 20,
           },
           "ref": null,
           "rendered": null,
@@ -455,7 +455,7 @@ ShallowWrapper {
           onPress={[MockFunction]}
         />,
         <Pad
-          height={60}
+          height={20}
         />,
         <TouchableOpacity
           activeOpacity={1}
@@ -495,7 +495,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 60,
+          "height": 20,
         },
         "ref": null,
         "rendered": null,
@@ -558,7 +558,7 @@ ShallowWrapper {
             onPress={[MockFunction]}
           />,
           <Pad
-            height={60}
+            height={20}
           />,
           <TouchableOpacity
             activeOpacity={1}
@@ -598,7 +598,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 60,
+            "height": 20,
           },
           "ref": null,
           "rendered": null,
@@ -705,7 +705,7 @@ ShallowWrapper {
       "children": Array [
         false,
         <Pad
-          height={60}
+          height={20}
         />,
         <TouchableOpacity
           activeOpacity={1}
@@ -732,7 +732,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 60,
+          "height": 20,
         },
         "ref": null,
         "rendered": null,
@@ -790,7 +790,7 @@ ShallowWrapper {
         "children": Array [
           false,
           <Pad
-            height={60}
+            height={20}
           />,
           <TouchableOpacity
             activeOpacity={1}
@@ -817,7 +817,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 60,
+            "height": 20,
           },
           "ref": null,
           "rendered": null,
@@ -924,7 +924,7 @@ ShallowWrapper {
       "children": Array [
         false,
         <Pad
-          height={60}
+          height={20}
         />,
         <TouchableOpacity
           activeOpacity={1}
@@ -947,7 +947,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 60,
+          "height": 20,
         },
         "ref": null,
         "rendered": null,
@@ -1001,7 +1001,7 @@ ShallowWrapper {
         "children": Array [
           false,
           <Pad
-            height={60}
+            height={20}
           />,
           <TouchableOpacity
             activeOpacity={1}
@@ -1024,7 +1024,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 60,
+            "height": 20,
           },
           "ref": null,
           "rendered": null,

@@ -58,7 +58,7 @@ const DailyStepsScreen: SFC<Props> = ({
                 currentStreak={currentStreak}
                 maxStreak={maxStreak}
             />}
-            <Pad height={!isOnline ? 0 : 60} />
+            <Pad height={!isOnline ? 0 : 20} />
             <TouchableOpacity
                 onPress={onCoinPress}
                 activeOpacity={1}

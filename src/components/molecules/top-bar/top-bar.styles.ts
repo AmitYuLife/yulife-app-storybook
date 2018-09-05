@@ -8,6 +8,10 @@ import {
 import { Style } from "../../../styles";
 
 export default StyleSheet.create({
+    coinsLogoWrapper: {
+        alignSelf: "flex-start",
+        marginTop: Style.SCALE_UP_AND_DOWN(-8)
+    } as ViewStyle,
     coinsText: {
         fontSize: Style.SCALE_UP_AND_DOWN(18),
         marginBottom: Style.SCALE_UP_AND_DOWN(
@@ -16,9 +20,8 @@ export default StyleSheet.create({
         marginRight: Style.SCALE_UP_AND_DOWN(8)
     } as TextStyle,
     coinsTextWrapper: {
-        alignItems: "center",
-        alignSelf: "stretch",
-        height: "100%"
+        height: "100%",
+        justifyContent: "center"
     } as ViewStyle,
     coinsWrapper: {
         alignItems: "center",

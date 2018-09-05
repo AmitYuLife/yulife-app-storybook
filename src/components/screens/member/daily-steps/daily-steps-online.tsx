@@ -1,5 +1,6 @@
 import * as React from "react";
 import { SFC } from "react";
+import { View } from "react-native";
 import { Button, Pad, Text } from "../../../atoms";
 import styles from "./daily-steps.screen.styles";
 
@@ -10,7 +11,7 @@ export interface IProps {
 }
 
 const DailyStepsOnline: SFC<IProps> = ({ coinsToday, onCtaPress, steps }) => (
-    <>
+    <View style={styles.dailyStepsOnlineWrapper}>
         <Text>{steps} steps</Text>
         <Pad height={8} />
         <Text>
@@ -42,7 +43,7 @@ const DailyStepsOnline: SFC<IProps> = ({ coinsToday, onCtaPress, steps }) => (
             type={Button.Types.PRIMARY_MEDIUM}
             label="earn more"
         />
-    </>
+    </View>
 );
 
 export default DailyStepsOnline;

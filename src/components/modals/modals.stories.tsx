@@ -5,7 +5,8 @@ import React from "react";
 import {
     ChallengeCompleteModal,
     ChallengeDetailsModal,
-    CollectRewardModal
+    CollectRewardModal,
+    GenericModal
 } from "./index";
 
 storiesOf("Modals", module)
@@ -47,5 +48,12 @@ storiesOf("Modals", module)
         <CollectRewardModal
             date={text("Date", "", "CollectReward")}
             onPress={action("on press")}
+        />
+    ))
+    .add("4. Generic Modal", () => (
+        <GenericModal
+            heading={text("heading", "the voucher is not currently available")}
+            subheading={text("subheading", "Please come back later.")}
+            ctaLabel={text("ctaLabel", "check other rewards")}
         />
     ));
