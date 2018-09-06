@@ -29,6 +29,10 @@ const isThinIOS = () => {
     return Platform.OS === "ios" && x < 400;
 };
 
+const isShortAndWideAndroid = () => (
+    Platform.OS === "android" && (Style.PIXEL_RATIO <= 2 || x / y >= 0.6)
+);
+
 export const TOTAL_WIDTH = x * pixelRatio;
 
 const Style = {
@@ -40,6 +44,7 @@ const Style = {
     PIXEL_RATIO: pixelRatio,
     SCALE_UP_AND_DOWN,
     TOTAL_WIDTH,
+    isShortAndWideAndroid,
     isShortAndroid,
     isShortToMediumAndroid,
     isTallAndroid,

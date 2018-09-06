@@ -1,6 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { boolean, number, object, select, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
+import moment from "moment";
 import React from "react";
 import { ChallengeTile } from "../molecules";
 import {
@@ -13,6 +14,8 @@ import {
     FitKitConnectScreen,
     IntroScreen,
     LoginScreen,
+    QuestsScreen,
+    QuestsScreenOffline,
     ResetPasswordScreen,
     ResetPasswordSuccessScreen,
     SignUpRewardScreen,
@@ -298,4 +301,16 @@ storiesOf("Screens", module)
             onPressCtaPrimary={action("pressed streak cta primary")}
             onPressCtaSecondary={action("pressed streak cta secondary")}
         />
+    ))
+    .add("14a. QuestScreen", () => (
+        <QuestsScreen
+            data={[
+                { id: "a", rating: 2 },
+                { id: "b", rating: 3 }
+            ]}
+            nextAvailable={moment().unix()}
+        />
+    ))
+    .add("14b. QuestScreenOffline", () => (
+        <QuestsScreenOffline />
     ));
