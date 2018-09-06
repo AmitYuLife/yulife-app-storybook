@@ -28,3 +28,6 @@ export { default as RewardsListScreen } from "./member/rewards/list/rewards-list
 export { default as WegiftRewardDetailsScreen } from "./member/rewards/details/wegift-details.screen";
 export { default as WegiftRewardConfirmedScreen } from "./member/rewards/confirmed/wegift-confirmed.screen";
 export { default as AviosRewardDetailsScreen } from "./member/rewards/details/avios-details.screen";
+
+export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";
+export { default as QuestsScreen, IChallenge } from "./member/quests/quests-screen/quests-screen";
