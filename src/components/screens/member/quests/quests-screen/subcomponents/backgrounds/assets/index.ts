@@ -12,3 +12,4 @@ export { default as BackgroundImage6 } from "./bg-6/";
 export { default as Progress6 } from "./bg-6/progress";
 export { default as BackgroundImage7 } from "./bg-7/";
 export { default as Progress7 } from "./bg-7/progress";
+export { default as BackgroundImage8 } from "./bg-8";

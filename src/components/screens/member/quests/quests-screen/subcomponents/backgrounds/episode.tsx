@@ -12,26 +12,46 @@ import styles, { height, width } from "./episode.styles";
 import levels from "./levels";
 
 interface IProps {
+    isLockedLastLevel: boolean;
     data: IChallenge[];
     level: number;
     setUnityLockerRef: (ref: UnityLockerImage) => void;
 }
 
 class Episode extends PureComponent<IProps> {
+    public getLevel = (index: number) => {
+        return (index + 1) + (42 - (7 * (this.props.level - 1)));
+    }
+
+    public handlePressLevel = (challenge: IChallenge) => {
+        return (): null => {
+            if (challenge) {
+                challenge.onPress();
+                return null;
+            } else {
+                // handle press locked level
+                return null;
+            }
+        };
+    }
+
     public render() {
         const {
             data,
             level,
-            setUnityLockerRef
+            setUnityLockerRef,
+            isLockedLastLevel
         } = this.props;
-        const Background = backgrounds[level];
+        const Background = backgrounds(isLockedLastLevel)[level];
         if (!Background) {
             return null;
         }
 
-        const backgroundLevels = levels[level - 1];
+        const backgroundLevels = levels[level];
         return (
-            <View style={styles.wrapper}>
+            <View
+                style={styles.wrapper}
+            >
                 <Svg
                     style={styles.svg}
                     height={height}
@@ -39,18 +59,20 @@ class Episode extends PureComponent<IProps> {
                     viewBox="0 0 750 1334"
                 >
                     <Background>
-                        {!level ? null : backgroundLevels.map(({ x, y }, index) => (
-                            <Level
-                                data={data[index]}
-                                lockIcon={getLevelLockIcon({ level, index, completedLevels: data.length })}
+                        {backgroundLevels.map((points, index) => {
+                            const { x, y } = points;
+                            const levelData = data[index];
+                            return <Level
+                                onPress={this.handlePressLevel(levelData)}
                                 key={index}
-                                level={index + 1}
+                                data={levelData}
+                                lockIcon={getLevelLockIcon({ level, index, completedLevels: data.length })}
+                                level={this.getLevel(index)}
                                 fill={getLevelFill(level)}
                                 cx={x}
                                 cy={y}
-                                size="50"
-                            />
-                        ))}
+                            />;
+                        })}
                     </Background>
                 </Svg >
                 {

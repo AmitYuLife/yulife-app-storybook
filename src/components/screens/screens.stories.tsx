@@ -302,15 +302,18 @@ storiesOf("Screens", module)
             onPressCtaSecondary={action("pressed streak cta secondary")}
         />
     ))
-    .add("14a. QuestScreen", () => (
-        <QuestsScreen
-            data={[
-                { id: "a", rating: 2 },
-                { id: "b", rating: 3 }
-            ]}
-            nextAvailable={moment().unix()}
-        />
-    ))
+    .add("14a. QuestScreen", () => {
+        const nextAvailable = moment().unix();
+        return (
+            <QuestsScreen
+                data={object("data", Array.from({ length: 7 }).map((_, i) => ({
+                    id: `_${i + 1}`,
+                    onPress: action(`@ pressed _${i + 1}`),
+                    rating: 3
+                })).concat({ isNext: true, nextAvailable, onPress: action(`@ pressed next`) } as any) )}
+            />
+        );
+    })
     .add("14b. QuestScreenOffline", () => (
         <QuestsScreenOffline />
     ));

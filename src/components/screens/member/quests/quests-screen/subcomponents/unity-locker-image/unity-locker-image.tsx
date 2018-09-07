@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Animated, Image, View } from "react-native";
+import { Animated, Image } from "react-native";
 import assets from "./assets";
 import styles from "./unity-locker-image.styles";
 
@@ -14,8 +14,18 @@ class UnityLockerImage extends PureComponent {
     private darkCloudX = new Animated.Value(darkCloudStart);
     private mediumCloudX = new Animated.Value(mediumCloudStart);
     private whiteCloudX = new Animated.Value(whiteCloudStart);
+    private wrapperScale = new Animated.Value(0);
+    private wrapperOpacity = new Animated.Value(0);
 
     public animateIn = (callback?: () => void) => {
+        const scaleUp = Animated.timing(this.wrapperScale, {
+            duration: 0,
+            toValue: 1
+        });
+        const opacityUp = Animated.timing(this.wrapperOpacity, {
+            duration: 0,
+            toValue: 1
+        });
         const animateDarkCloud = Animated.spring(this.darkCloudX, {
             bounciness: 0,
             toValue: darkCloudEnd
@@ -28,14 +38,27 @@ class UnityLockerImage extends PureComponent {
             bounciness: 0,
             toValue: whiteCloudEnd
         });
-        Animated.parallel([
+        const cloudAnimation = Animated.parallel([
             animateDarkCloud,
             animateMediumCloud,
             animateWhiteCloud
+        ]);
+        Animated.sequence([
+            scaleUp,
+            opacityUp,
+            cloudAnimation
         ]).start(callback);
     }
 
     public animateOut = (callback?: () => void) => {
+        const scaleDown = Animated.timing(this.wrapperScale, {
+            duration: 0,
+            toValue: 0
+        });
+        const opacityDown = Animated.timing(this.wrapperOpacity, {
+            duration: 0,
+            toValue: 1
+        });
         const animateDarkCloud = Animated.spring(this.darkCloudX, {
             bounciness: 0,
             toValue: darkCloudStart
@@ -48,16 +71,33 @@ class UnityLockerImage extends PureComponent {
             bounciness: 0,
             toValue: whiteCloudStart
         });
-        Animated.parallel([
+        const cloudAnimation = Animated.parallel([
             animateDarkCloud,
             animateMediumCloud,
             animateWhiteCloud
+        ]);
+        Animated.sequence([
+            cloudAnimation,
+            opacityDown,
+            scaleDown
         ]).start(callback);
     }
 
     public render() {
         return (
-            <View style={styles.wrapper}>
+            <Animated.View
+                style={[
+                    styles.wrapper,
+                    {
+                        opacity: this.wrapperOpacity,
+                        transform: [
+                            {
+                                scale: this.wrapperScale
+                            }
+                        ]
+                    }
+                ]}
+            >
                 <Animated.View
                     style={[
                         styles.cloudWrapper,
@@ -112,7 +152,7 @@ class UnityLockerImage extends PureComponent {
                         source={assets.whiteCloud}
                     />
                 </Animated.View>
-            </View>
+            </Animated.View>
         );
     }
 }

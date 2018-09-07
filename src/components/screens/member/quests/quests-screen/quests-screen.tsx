@@ -19,6 +19,7 @@ export interface IChallenge {
     rating?: number;
     isNext?: boolean;
     nextAvailable?: number;
+    onPress?: () => void;
 }
 
 interface ISwipeCallback {
@@ -28,14 +29,17 @@ interface ISwipeCallback {
 
 interface IProps {
     data: IChallenge[];
-    nextAvailable: number;
 }
 
-const indices = Array.from({ length: 8 }).map((_, i) => (
-    !i
-        ? Style.DEVICE_HEIGHT / 1.5
-        : i * Style.DEVICE_HEIGHT
-));
+const calculateIndices = (levelsCompleted: number) => {
+    return Array.from({ length: 8 }).map((_, i) => {
+        const episodeHeight = i * Style.DEVICE_HEIGHT;
+        const lockHeight = Style.DEVICE_HEIGHT / 1.5;
+        return !i
+            ? levelsCompleted < 50 ? lockHeight : episodeHeight
+            : episodeHeight;
+    });
+};
 
 interface IState {
     hasInitialized: boolean;
@@ -49,9 +53,10 @@ class QuestsScreen extends PureComponent<IProps, IState> {
     public unityLocker: UnityLockerImage;
     public animateInDelay: NodeJS.Timer;
     public animateOutDelay: NodeJS.Timer;
-
+    public indices = calculateIndices(this.props.data.length);
+    public activeIndex = this.indices.length - Math.ceil(this.props.data.length / 7);
     public state = {
-        activeIndex: indices.length - 1,
+        activeIndex: this.activeIndex,
         hasInitialized: false,
         isAnimatingUnity: false,
         isSwipeDisabled: false
@@ -78,7 +83,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         this.scrollTimer = setTimeout(
             () => {
                 this.scrollView.scrollTo({
-                    y: indices[indices.length - 1]
+                    y: this.indices[this.state.activeIndex]
                 });
             },
             500);
@@ -86,38 +91,42 @@ class QuestsScreen extends PureComponent<IProps, IState> {
 
     public render() {
         const {
-            data,
-            nextAvailable
+            data
         } = this.props;
+        const isLockedLastLevel = this.props.data.length < 50;
         return (
             <SafeAreaView style={styles.wrapper}>
                 <StatusBar translucent={true} />
-                <View style={styles.scrollViewWrapper}>
+                <View
+                    {...this.panResponder.panHandlers}
+                    style={styles.scrollViewWrapper}
+                >
                     <ScrollView
+                        scrollEnabled={false}
+                        scrollsToTop={false}
                         showsVerticalScrollIndicator={false}
                         style={styles.platformAdjust}
                         ref={(ref) =>
                             (this.scrollView = ref)
                         }
-                        pagingEnabled={true}
                     >
-                        <UnityLockerLabel />
-                        {indices.map(
+                        {
+                            !isLockedLastLevel
+                                ? null
+                                : <UnityLockerLabel />
+                        }
+                        {this.indices.map(
                             (_, index) => {
-                                const sliceFrom = (indices.length - index - 1) * 7;
-                                const sliceTo = (indices.length - index) * 7;
-                                const isNextLevel = index + 1 === indices.length;
-                                const items = data.slice(sliceFrom, sliceTo).concat(
-                                    isNextLevel
-                                        ? [{ isNext: true, nextAvailable }]
-                                        : []
-                                );
+                                const sliceFrom = (this.indices.length - index - 1) * 7;
+                                const sliceTo = (this.indices.length - index) * 7;
+                                const items = data.slice(sliceFrom, sliceTo);
                                 return <Episode
+                                    isLockedLastLevel={isLockedLastLevel}
                                     setUnityLockerRef={this.setUnityLockerRef}
                                     key={index}
                                     level={index}
                                     data={
-                                        !index
+                                        !index && isLockedLastLevel
                                             ? []
                                             : items
                                     }
@@ -126,10 +135,6 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                         }
                     </ScrollView>
                 </View>
-                <View
-                    {...this.panResponder.panHandlers}
-                    style={styles.panResponder}
-                />
             </SafeAreaView>
         );
     }
@@ -139,7 +144,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
     }
 
     public swipeCallback = ({ prevIndex, currIndex }: ISwipeCallback) => {
-        const isLockedLastLevel = true; // TODO: condition
+        const isLockedLastLevel = this.props.data.length < 50;
         const toUnity = isLockedLastLevel && prevIndex === 1 && currIndex === 0;
         const fromUnity = isLockedLastLevel && prevIndex === 0 && currIndex === 1;
         if (toUnity) {
@@ -153,7 +158,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                         () => {
                             this.setState({ isSwipeDisabled: false });
                             this.scrollView.scrollTo({
-                                y: indices[this.state.activeIndex]
+                                y: this.indices[this.state.activeIndex]
                             });
                         },
                         150
@@ -169,7 +174,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                         { isSwipeDisabled: true },
                         () => {
                             this.scrollView.scrollTo({
-                                y: indices[this.state.activeIndex]
+                                y: this.indices[this.state.activeIndex]
                             });
                         }
                     );
@@ -184,7 +189,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                 });
         } else {
             this.scrollView.scrollTo({
-                y: indices[this.state.activeIndex]
+                y: this.indices[this.state.activeIndex]
             });
             const hasDarkNavBar = [6, 5, 4, 3, 1, 0];
             if (
@@ -202,7 +207,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         const topEdge =
             activeIndex === 0 && direction === "down";
         const bottomEdge =
-            activeIndex + 1 === indices.length &&
+            activeIndex + 1 === this.indices.length &&
             direction === "up";
         if (topEdge || bottomEdge) {
             return null;

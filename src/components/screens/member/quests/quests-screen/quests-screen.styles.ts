@@ -47,10 +47,6 @@ export function platformAdjustPosition(
 }
 
 export default StyleSheet.create({
-    panResponder: {
-        backgroundColor: "transparent",
-        ...StyleSheet.absoluteFillObject
-    } as ViewStyle,
     platformAdjust: {
         bottom: isIphoneX() ? -20 : 0,
         position: "absolute",

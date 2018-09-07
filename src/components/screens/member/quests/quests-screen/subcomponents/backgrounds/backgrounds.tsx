@@ -1,4 +1,5 @@
 import React from "react";
+import { Platform } from "react-native";
 import { G, Text } from "react-native-svg";
 import {
     BackgroundImage1,
@@ -8,6 +9,7 @@ import {
     BackgroundImage5,
     BackgroundImage6,
     BackgroundImage7,
+    BackgroundImage8,
     Progress1,
     Progress2,
     Progress3,
@@ -83,7 +85,8 @@ const BackgroundSix: React.SFC<React.ReactNode> = ({ children }) => (
         <BackgroundImage6 />
         <G {...episode6PathPlatformAdjustments}>
             <Progress6 />
-            <G y={-90}>
+            {/* <G y={-90}> */}
+            <G y={Platform.OS === "ios" ? -84 : -90}>
                 {children}
             </G>
         </G>
@@ -100,19 +103,32 @@ const BackgroundSeven: React.SFC<React.ReactNode> = ({ children }) => (
     </G>
 );
 
+const BackgroundEight: React.SFC<React.ReactNode> = ({ children }) => (
+    <G>
+        <BackgroundImage8 />
+        <G>
+            {children}
+        </G>
+    </G>
+);
+
 const UnityLevelLocker: React.SFC<React.ReactNode> = () => (
     <G>
         <Text>unlock at level 49</Text>
     </G>
 );
 
-export default [
-    UnityLevelLocker,
-    BackgroundSeven,
-    BackgroundSix,
-    BackgroundFive,
-    BackgroundFour,
-    BackgroundThree,
-    BackgroundTwo,
-    BackgroundOne
-];
+const getBackgrounds = (isLockedLastLevel: boolean) => {
+    return [
+        isLockedLastLevel ? UnityLevelLocker : BackgroundEight,
+        BackgroundSeven,
+        BackgroundSix,
+        BackgroundFive,
+        BackgroundFour,
+        BackgroundThree,
+        BackgroundTwo,
+        BackgroundOne
+    ];
+};
+
+export default getBackgrounds;
