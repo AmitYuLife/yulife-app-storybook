@@ -9,22 +9,22 @@ interface LockIconProps {
     y: string;
 }
 
-interface Props {
+interface IProps {
     cx: string;
     cy: string;
     level: number;
     fill: string;
-    size: string;
     data: IChallenge;
     lockIcon: React.StatelessComponent<LockIconProps>;
+    onPress: () => void;
 }
 
-interface State {
+interface IState {
     pulseSize: number;
     pulseOpacity: number;
 }
 
-class Level extends PureComponent<Props, State> {
+class Level extends PureComponent<IProps, IState> {
     public state = {
         pulseSize: 55,
         pulseOpacity: 0.3,
@@ -82,6 +82,7 @@ class Level extends PureComponent<Props, State> {
             data,
             lockIcon: LockIcon,
             level,
+            onPress,
         } = this.props;
         const {
             pulseSize,
@@ -102,7 +103,9 @@ class Level extends PureComponent<Props, State> {
         }
         const { isNext, nextAvailable, rating } = data;
         return (
-            <G>
+            <G
+                onPress={onPress}
+            >
                 <Circle
                     fill={
                         isNext
