@@ -1,6 +1,7 @@
 {
   "name": "yulife",
-  "version": "0.0.1",
+  "version": "1.0.1",
+  "versionCode": 20,
   "private": true,
   "scripts": {
     "android:adb:reverse": "adb reverse tcp:8081 tcp:8081",
@@ -22,13 +23,17 @@
     "test:all": "run-s tslint tsc test:unit",
     "tslint": "tslint -p tsconfig.json",
     "tslint:fix": "tslint -p tsconfig.json --fix",
+    "build": "tsc -v && npm run tsc",
     "tsc": "tsc --noUnusedLocals --noUnusedParameters",
     "tsc:watch": "tsc --noUnusedLocals --noUnusedParameters --watch --pretty",
     "download-schema": "apollo-codegen download-schema http://yulife-api-server-develop.eu-west-2.elasticbeanstalk.com/graphql --output ./src/graphql/_core/schema.json",
     "download-schema-local": "apollo-codegen download-schema http://localhost:5000/graphql --output ./src/graphql/_core/schema.json",
     "generate-graphql-types": "apollo-codegen generate ./src/graphql/**/*.gql.ts --schema ./src/graphql/_core/schema.json --target ts --output ./src/graphql/_core/schema.ts",
     "prestorybook": "rnstl",
-    "storybook": "storybook start -p 7007"
+    "set-ios-version": "scripts/set-ios-version.sh",
+    "storybook": "storybook start -p 7007",
+    "bitrise:edit": "bitrise :workflow-editor",
+    "version-ios": "./scripts/set-ios-version.sh"
   },
   "dependencies": {
     "apollo-boost": "^0.1.15",
@@ -46,7 +51,7 @@
     "react-native-blur": "^3.2.2",
     "react-native-config": "^0.11.5",
     "react-native-dual-pedometer": "git+https://github.com/poppiestar/react-native-dual-pedometer.git",
-    "react-native-fitkit": "gitlab:yu-life/react-native-fitkit",
+    "react-native-fitkit": "ssh://git@gitlab.com:yu-life/react-native-fitkit.git",
     "react-native-intercom": "^12.0.0",
     "react-native-iphone-x-helper": "1.0.3",
     "react-native-mixpanel": "^1.1.1",
@@ -68,6 +73,7 @@
     "@storybook/react-native": "^3.4.10",
     "@types/enzyme": "^3.1.13",
     "@types/jest": "^23.3.1",
+    "@types/node": "^10.9.4",
     "@types/react": "^16.4.11",
     "@types/react-native": "^0.56.15",
     "@types/react-native-mixpanel": "^0.1.0",

@@ -15,7 +15,7 @@ apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.grad
 import com.android.build.OutputFile
 
 project.ext.react = [
-        entryFile: "index.js"
+        entryFile: "index.android.js"
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -38,8 +38,8 @@ android {
         renderscriptTargetApi rootProject.ext.minSdkVersion
         renderscriptSupportModeEnabled true
         resValue "string", "build_config_package", "com.yulife"
-        versionCode 1
-        versionName "1.0"
+        versionCode getNPMVersionCode()
+        versionName getNPMVersionName()
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }

@@ -52,6 +52,25 @@ subprojects { subproject ->
     }
 }
 
+subprojects {
+    ext {
+        versionCode = getNPMVersionCode()
+        versionName = getNPMVersionName()
+    }
+}
+
+def getNPMVersionName() {
+    def inputFile = new File("$rootDir/../package.json")
+    def packageJson = new JsonSlurper().parseText(inputFile.text)
+    return packageJson["version"]
+}
+
+def getNPMVersionCode() {
+    def inputFile = new File("$rootDir/../package.json")
+    def packageJson = new JsonSlurper().parseText(inputFile.text)
+    return packageJson["versionCode"]
+}
+
 def getRNVersion() {
     def inputFile = new File("$rootDir/../package.json")
     def packageJson = new JsonSlurper().parseText(inputFile.text)
