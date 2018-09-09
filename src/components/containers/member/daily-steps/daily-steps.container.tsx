@@ -11,7 +11,6 @@ import { startDailySteps, stopDailySteps } from "../../../../redux/daily-steps/d
 import { getDailySteps, getLastUpdated } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
-import { setToken } from "../../../../services/storage";
 import { DailyStepsScreen } from "../../../screens";
 
 // TODO find where these props actually come from in RNN types
@@ -115,7 +114,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     private onCta = () => {
-        setToken("");
+        // setToken("");
         // Navigation.push(this.props.componentId, {
         //     component: {
         //         name: "yulife.member.ChallengesList",

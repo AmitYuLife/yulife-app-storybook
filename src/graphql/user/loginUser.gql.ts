@@ -37,6 +37,14 @@ export const loginUserGql = gql`
                     name
                     value
                 }
+                mobileConsent {
+                    mobileHealth
+                    marketing
+                    pushNotifications
+                    companyLeaderboard
+                    workspaceLeaderboard
+                }
+                redeemedOnboarding
             }
         }
     }

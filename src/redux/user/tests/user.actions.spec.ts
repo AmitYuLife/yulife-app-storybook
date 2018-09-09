@@ -25,6 +25,14 @@ const loginSuccessFixture: LoginUser = {
             __typename: "User",
             businessAccountId: "abcdefghijkl",
             id: "1234567890",
+            mobileConsent: {
+                companyLeaderboard: null,
+                marketing: null,
+                mobileHealth: null,
+                pushNotifications: null,
+                workspaceLeaderboard: null
+            },
+            redeemedOnboarding: false,
             userFeatures: [],
             userStatus: {
                 challenges: null,

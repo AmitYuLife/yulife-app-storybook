@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { LoginMethod, LoginUser } from "../../../graphql/_core/schema";
 import LoginUserMutation, { loginUserGql, LoginUserMutationFunction } from "../../../graphql/user/loginUser.gql";
 import { ROUTES } from "../../../navigation/routes";
 import { loginUserSuccess, LoginUserSuccessAction } from "../../../redux/user/user.actions";
+import { setToken } from "../../../services/storage";
 import { LoginScreen } from "../../screens";
 import { validateEmail, validatePassword } from "./login.helpers";
 
@@ -30,7 +32,6 @@ export interface IState {
 type Props = IOwnProps & IConnectedDispatch;
 
 export class LoginContainer extends Component<Props, IState> {
-
     public state: IState = {
         email: "",
         emailError: "",
@@ -47,29 +48,45 @@ export class LoginContainer extends Component<Props, IState> {
         const { email, emailError, passwordError, password } = this.state;
 
         return (
-            <LoginUserMutation mutation={loginUserGql}>
-                {(loginUser, { error, loading }) => {
-                    return (
-                        <LoginScreen
-                            email={email}
-                            emailError={emailError}
-                            isLoggingIn={loading}
-                            loginError={error && trimGraphQLError(error.message)}
-                            onEmailChange={this.onEmailChange}
-                            onResetPasswordPress={this.onResetPassword}
-                            onLogInPress={() => this.onLogIn(loginUser)}
-                            onPasswordChange={this.onPasswordChange}
-                            onSignUpPress={this.onSignUp}
-                            password={password}
-                            passwordError={passwordError}
-                        />
-                    );
-                }}
-            </LoginUserMutation>
+            <FitKitAvailable>
+                {({ authorised }) => (
+                    <LoginUserMutation mutation={loginUserGql}>
+                        {(loginUser, { error, loading }) => {
+                            return (
+                                <LoginScreen
+                                    email={email}
+                                    emailError={emailError}
+                                    isLoggingIn={loading}
+                                    loginError={error && trimGraphQLError(error.message)}
+                                    onEmailChange={this.onEmailChange}
+                                    onResetPasswordPress={this.onResetPassword}
+                                    onLogInPress={() => this.onLogIn(loginUser, authorised)}
+                                    onPasswordChange={this.onPasswordChange}
+                                    onSignUpPress={this.onSignUp}
+                                    password={password}
+                                    passwordError={passwordError}
+                                />
+                            );
+                        }}
+                    </LoginUserMutation>
+                )}
+            </FitKitAvailable>
         );
     }
 
-    private onLogIn = async (loginUser: LoginUserMutationFunction) => {
+    private getLoginRoute = (authorised: boolean, onboarded: boolean) => {
+        if (!authorised) {
+            return ROUTES.onboardingFitKitConnect;
+        }
+
+        if (!onboarded) {
+            return ROUTES.onboardingSignUpReward;
+        }
+
+        return ROUTES.member;
+    }
+
+    private onLogIn = async (loginUser: LoginUserMutationFunction, authorised: boolean) => {
         const { email, password } = this.state;
 
         if (this.isFormValid()) {
@@ -84,11 +101,15 @@ export class LoginContainer extends Component<Props, IState> {
                 });
 
                 if (results && results.data) {
+                    await setToken(results.data.loginUser.token);
                     this.props.loginUserSuccess(results.data);
+
+                    const route = this.getLoginRoute(authorised, results.data.loginUser.user.redeemedOnboarding);
+
                     await Navigation.push(this.props.componentId, {
                         component: {
-                            id: ROUTES.onboardingFitKitConnect,
-                            name: ROUTES.onboardingFitKitConnect
+                            id: route,
+                            name: route
                         }
                     });
                 }

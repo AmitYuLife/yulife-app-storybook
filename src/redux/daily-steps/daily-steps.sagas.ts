@@ -26,6 +26,7 @@ export function* listenToDailySteps() {
         try {
             const results = yield take(stepsChannel);
             const { data } = yield call(addDailyStepsGql, [mapPedometerResults(results)]);
+
             yield put(updateDailyStepsSuccess(data));
         } catch (e) {
             yield put(updateDailyStepsFailed(e.message));

@@ -4,6 +4,22 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: UpsertOnboardingChallenge
+// ====================================================
+
+export interface UpsertOnboardingChallenge_upsertPassiveChallenge {
+  yuCoinAwarded: number | null;
+}
+
+export interface UpsertOnboardingChallenge {
+  upsertPassiveChallenge: UpsertOnboardingChallenge_upsertPassiveChallenge | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: UpsertPassiveChallenge
 // ====================================================
 
@@ -281,6 +297,19 @@ export interface GetRewards {
 // GraphQL mutation operation: RedeemReward
 // ====================================================
 
+export interface RedeemReward_redeemReward_metadata_avios {
+  __typename: "Avios";
+  firstName: string | null;
+  lastName: string | null;
+  loyaltyProgramme: string | null;
+  accountNumber: string | null;
+}
+
+export interface RedeemReward_redeemReward_metadata {
+  __typename: "Metadata";
+  avios: RedeemReward_redeemReward_metadata_avios | null;
+}
+
 export interface RedeemReward_redeemReward_reward_redeem_steps {
   __typename: "RedeemSteps";
   info: string | null;
@@ -310,6 +339,7 @@ export interface RedeemReward_redeemReward {
   yuCoinsSpent: number | null;
   updatedAt: string | null;
   createdAt: string | null;
+  metadata: RedeemReward_redeemReward_metadata | null;
   reward: RedeemReward_redeemReward_reward | null;
 }
 
@@ -465,12 +495,22 @@ export interface LoginUser_loginUser_user_userFeatures {
   value: boolean | null;
 }
 
+export interface LoginUser_loginUser_user_mobileConsent {
+  mobileHealth: boolean | null;
+  marketing: boolean | null;
+  pushNotifications: boolean | null;
+  companyLeaderboard: boolean | null;
+  workspaceLeaderboard: boolean | null;
+}
+
 export interface LoginUser_loginUser_user {
   __typename: "User";
   id: string | null;
   businessAccountId: string | null;
   userStatus: LoginUser_loginUser_user_userStatus | null;
   userFeatures: (LoginUser_loginUser_user_userFeatures | null)[] | null;
+  mobileConsent: LoginUser_loginUser_user_mobileConsent | null;
+  redeemedOnboarding: boolean | null;
 }
 
 export interface LoginUser_loginUser {
