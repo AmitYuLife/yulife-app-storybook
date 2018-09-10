@@ -8,7 +8,7 @@ import {
     updateDailyStepsFailed,
     updateDailyStepsSuccess
 } from "../daily-steps.actions";
-import { addDailyStepsSuccessFixture } from "./daily-steps.fixtures";
+import { upsertStepsSuccessFixture } from "./daily-steps.fixtures";
 
 describe("Daily Steps Actions", () => {
 
@@ -50,7 +50,7 @@ describe("Daily Steps Actions", () => {
     });
 
     describe("updateDailyStepsSuccess action", () => {
-        const actual = updateDailyStepsSuccess(addDailyStepsSuccessFixture);
+        const actual = updateDailyStepsSuccess(upsertStepsSuccessFixture);
 
         it("has the correct type", () => {
             const expected = UPDATE_DAILY_STEPS_SUCCESS;
@@ -59,7 +59,7 @@ describe("Daily Steps Actions", () => {
         });
 
         it("has the correct payload", () => {
-            const expected = addDailyStepsSuccessFixture;
+            const expected = upsertStepsSuccessFixture;
 
             expect(actual.payload).toEqual(expected);
         });

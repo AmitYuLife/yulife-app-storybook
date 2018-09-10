@@ -1,7 +1,7 @@
-import { AddDailySteps } from "../../../graphql/_core/schema";
+import { UpsertPassiveChallenge } from "../../../graphql/_core/schema";
 import { updateDailyStepsFailed, updateDailyStepsSuccess } from "../daily-steps.actions";
 import stepsReducer, { IDailyStepsStore, initialState } from "../daily-steps.reducer";
-import { addDailyStepsSuccessFixture } from "./daily-steps.fixtures";
+import { upsertStepsSuccessFixture } from "./daily-steps.fixtures";
 
 describe("Daily Steps Reducer", () => {
 
@@ -13,8 +13,8 @@ describe("Daily Steps Reducer", () => {
     });
 
     it("updates the store when the daily steps have been updated", () => {
-        const localData: AddDailySteps = { ...addDailyStepsSuccessFixture };
-        localData.challengeAction.currentPassiveChallenge.currentData = 4321;
+        const localData: UpsertPassiveChallenge = { ...upsertStepsSuccessFixture };
+        localData.upsertPassiveChallenge.challenge.incomingData = { steps: 4321 };
 
         const expected: IDailyStepsStore = {
             ...initialState,

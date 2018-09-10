@@ -30,3 +30,7 @@ jest.mock("bugsnag-react-native", () => ({
 jest.mock("../src/graphql/member/addDailySteps.gql", () => ({
     addDailyStepsGql: jest.fn(),
 }));
+
+jest.mock("../src/graphql/challenges/upsertStepsChallenge.gql", () => ({
+    addDailyStepsGql: jest.fn(),
+}));

@@ -66,6 +66,8 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                 dailyStepsLoading: lastUpdatedMoment.isBefore(startOfDay),
                 lastUpdate: lastUpdatedMoment.format("ddd D MMM, HH:mm")
             });
+        } else {
+            this.setState({ dailyStepsLoading: false });
         }
 
         // bringing app back from background

@@ -1,8 +1,8 @@
 import moment from "moment";
 import { PedometerResponse } from "react-native-dual-pedometer";
 import { call, cancel, cancelled, fork, put, take } from "redux-saga/effects";
-import { ActionPayload } from "../../graphql/_core/schema";
-import addDailyStepsGql from "../../graphql/member/addDailySteps.gql";
+import { ChallengePayload } from "../../graphql/_core/schema";
+import upsertStepsChallenge from "../../graphql/challenges/upsertStepsChallenge.gql";
 import {
     START_DAILY_STEPS,
     STOP_DAILY_STEPS,
@@ -12,9 +12,9 @@ import {
 import { dailyStepsChannel } from "./daily-steps.channels";
 
 // TODO this will change (or be removed) with the new Challenges API
-const mapPedometerResults = (results: PedometerResponse): ActionPayload => ({
-    endTime: moment(results.endTime).unix(),
-    startTime: moment(results.startTime).unix(),
+const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
+    endDateTime: moment(results.endTime).format(),
+    startDateTime: moment(results.startTime).format(),
     value: results.steps
 });
 
@@ -25,7 +25,7 @@ export function* listenToDailySteps() {
     while (true) {
         try {
             const results = yield take(stepsChannel);
-            const { data } = yield call(addDailyStepsGql, [mapPedometerResults(results)]);
+            const { data } = yield call(upsertStepsChallenge, [mapPedometerResults(results)]);
 
             yield put(updateDailyStepsSuccess(data));
         } catch (e) {

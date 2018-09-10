@@ -1,4 +1,4 @@
-import { AddDailySteps } from "../../graphql/_core/schema";
+import { UpsertPassiveChallenge } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 
 export const START_DAILY_STEPS = "START_DAILY_STEPS";
@@ -14,8 +14,8 @@ export const stopDailySteps = (): SyncAction => ({
     type: STOP_DAILY_STEPS
 });
 
-export type UpdateDailyStepsSuccessAction = SyncAction<AddDailySteps>;
-export const updateDailyStepsSuccess = (results: AddDailySteps): UpdateDailyStepsSuccessAction => ({
+export type UpdateDailyStepsSuccessAction = SyncAction<UpsertPassiveChallenge>;
+export const updateDailyStepsSuccess = (results: UpsertPassiveChallenge): UpdateDailyStepsSuccessAction => ({
     payload: results,
     type: UPDATE_DAILY_STEPS_SUCCESS
 });

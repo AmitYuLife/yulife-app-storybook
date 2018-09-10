@@ -7,8 +7,12 @@
 // GraphQL mutation operation: UpsertOnboardingChallenge
 // ====================================================
 
-export interface UpsertOnboardingChallenge_upsertPassiveChallenge {
+export interface UpsertOnboardingChallenge_upsertPassiveChallenge_challenge {
   yuCoinAwarded: number | null;
+}
+
+export interface UpsertOnboardingChallenge_upsertPassiveChallenge {
+  challenge: UpsertOnboardingChallenge_upsertPassiveChallenge_challenge | null;
 }
 
 export interface UpsertOnboardingChallenge {
@@ -23,14 +27,19 @@ export interface UpsertOnboardingChallenge {
 // GraphQL mutation operation: UpsertPassiveChallenge
 // ====================================================
 
-export interface UpsertPassiveChallenge_upsertPassiveChallenge_incomingData {
+export interface UpsertPassiveChallenge_upsertPassiveChallenge_challenge_incomingData {
   steps: number | null;
 }
 
-export interface UpsertPassiveChallenge_upsertPassiveChallenge {
+export interface UpsertPassiveChallenge_upsertPassiveChallenge_challenge {
   updatedAt: number | null;
   yuCoinAwarded: number | null;
-  incomingData: UpsertPassiveChallenge_upsertPassiveChallenge_incomingData | null;
+  incomingData: UpsertPassiveChallenge_upsertPassiveChallenge_challenge_incomingData | null;
+}
+
+export interface UpsertPassiveChallenge_upsertPassiveChallenge {
+  challenge: UpsertPassiveChallenge_upsertPassiveChallenge_challenge | null;
+  totalCoins: number | null;
 }
 
 export interface UpsertPassiveChallenge {

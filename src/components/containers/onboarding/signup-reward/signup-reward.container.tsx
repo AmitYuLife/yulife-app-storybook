@@ -44,7 +44,10 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps, IState> {
         }
 
         return (
-            <SignUpRewardScreen onCollectPress={this.onCollect} reward={data.upsertPassiveChallenge.yuCoinAwarded} />
+            <SignUpRewardScreen
+                onCollectPress={this.onCollect}
+                reward={data.upsertPassiveChallenge.challenge.yuCoinAwarded}
+            />
         );
     }
 

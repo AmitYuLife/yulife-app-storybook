@@ -1,4 +1,4 @@
-import { AddDailySteps, Challenge } from "../../graphql/_core/schema";
+import { UpsertPassiveChallenge } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { UPDATE_DAILY_STEPS_SUCCESS } from "../daily-steps/daily-steps.actions";
 
@@ -16,7 +16,6 @@ export const initialState: ICoinsStore = {
 
 const coinsReducer = (state: ICoinsStore = initialState, action: SyncAction) => {
     switch (action.type) {
-
         case UPDATE_DAILY_STEPS_SUCCESS:
             return updateDailyStepsSuccess(state, action.payload);
 
@@ -27,12 +26,22 @@ const coinsReducer = (state: ICoinsStore = initialState, action: SyncAction) => 
 
 export default coinsReducer;
 
-const updateDailyStepsSuccess = (state: ICoinsStore, { challengeAction }: AddDailySteps): ICoinsStore => ({
-    ...state,
-    dailyChallengeEarned: sumCompletedChallenges(challengeAction.completedActiveChallenges),
-    dailyStepsEarned: challengeAction.currentPassiveChallenge.yuCoinAwarded,
-    total: challengeAction.userStatus.totalCoins
-});
+// const updateDailyStepsSuccess = (state: ICoinsStore, { challengeAction }: AddDailySteps): ICoinsStore => ({
+//     ...state,
+//     dailyChallengeEarned: sumCompletedChallenges(challengeAction.completedActiveChallenges),
+//     dailyStepsEarned: challengeAction.currentPassiveChallenge.yuCoinAwarded,
+//     total: challengeAction.userStatus.totalCoins
+// });
 
-const sumCompletedChallenges = (challenges: Challenge[]): number =>
-    challenges.reduce((prev, challenge) => prev + challenge.yuCoinAwarded, 0);
+// const sumCompletedChallenges = (challenges: Challenge[]): number =>
+//     challenges.reduce((prev, challenge) => prev + challenge.yuCoinAwarded, 0);
+
+const updateDailyStepsSuccess = (
+    state: ICoinsStore,
+    { upsertPassiveChallenge: { challenge, totalCoins } }: UpsertPassiveChallenge
+): ICoinsStore => ({
+    ...state,
+    // dailyChallengeEarned: sumCompletedChallenges(challengeAction.completedActiveChallenges),
+    dailyStepsEarned: challenge.yuCoinAwarded,
+    total: totalCoins
+});

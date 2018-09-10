@@ -5,11 +5,14 @@ import { ChallengePayload, UpsertPassiveChallenge, UpsertPassiveChallengeVariabl
 export const upsertPassiveChallengeGql = gql`
     mutation UpsertPassiveChallenge($payload: [ChallengePayload]) {
         upsertPassiveChallenge(type: STEPS, payload: $payload) {
-            updatedAt
-            yuCoinAwarded
-            incomingData {
-                steps
+            challenge {
+                updatedAt
+                yuCoinAwarded
+                incomingData {
+                    steps
+                }
             }
+            totalCoins
         }
     }
 `;

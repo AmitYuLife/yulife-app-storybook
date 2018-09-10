@@ -1,6 +1,6 @@
-import { AddDailySteps } from "../../../graphql/_core/schema";
+import { UpsertPassiveChallenge } from "../../../graphql/_core/schema";
 import { updateDailyStepsSuccess } from "../../daily-steps/daily-steps.actions";
-import { addDailyStepsSuccessFixture } from "../../daily-steps/tests/daily-steps.fixtures";
+import { upsertStepsSuccessFixture } from "../../daily-steps/tests/daily-steps.fixtures";
 import coinsReducer, { ICoinsStore, initialState } from "../coins.reducer";
 
 describe("Coins Reducer", () => {
@@ -13,14 +13,14 @@ describe("Coins Reducer", () => {
     });
 
     it("updates the total coins earned after daily steps are updated", () => {
-        const localData: AddDailySteps = { ...addDailyStepsSuccessFixture };
-        const { challengeAction } = localData;
+        const localData: UpsertPassiveChallenge = { ...upsertStepsSuccessFixture };
+        const { upsertPassiveChallenge: { challenge, totalCoins } } = localData;
 
         const expected: ICoinsStore = {
             ...initialState,
-            dailyChallengeEarned: challengeAction.completedActiveChallenges[0].yuCoinAwarded,
-            dailyStepsEarned: challengeAction.currentPassiveChallenge.yuCoinAwarded,
-            total: challengeAction.userStatus.totalCoins
+            // dailyChallengeEarned: challengeAction.completedActiveChallenges[0].yuCoinAwarded,
+            dailyStepsEarned: challenge.yuCoinAwarded,
+            total: totalCoins
         };
         const actual = coinsReducer(initialState, updateDailyStepsSuccess(localData));
 

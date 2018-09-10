@@ -1,4 +1,4 @@
-import { AddDailySteps, Challenge } from "../../../graphql/_core/schema";
+import { AddDailySteps, Challenge, UpsertPassiveChallenge } from "../../../graphql/_core/schema";
 
 const currentPassiveChallengeFixture: Challenge = {
     XPAwarded: 0,
@@ -62,5 +62,14 @@ export const addDailyStepsSuccessFixture: AddDailySteps = {
         userStatus: {
             totalCoins: 1234
         }
+    }
+};
+
+export const upsertStepsSuccessFixture: UpsertPassiveChallenge = {
+    upsertPassiveChallenge: {
+        challenge: {
+            ...(currentPassiveChallengeFixture as any)
+        },
+        totalCoins: 1234
     }
 };
