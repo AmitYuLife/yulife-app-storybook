@@ -33,9 +33,8 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        false,
         <Pad
-          height={20}
+          height={60}
         />,
         <TouchableOpacity
           activeOpacity={1}
@@ -49,18 +48,18 @@ ShallowWrapper {
         <DailyStepsFitKitAuthorise
           onPress={[MockFunction]}
         />,
+        false,
       ],
       "footerImage": "gray_forest",
     },
     "ref": null,
     "rendered": Array [
-      false,
       Object {
         "instance": null,
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 20,
+          "height": 60,
         },
         "ref": null,
         "rendered": null,
@@ -104,6 +103,7 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
+      false,
     ],
     "type": [Function],
   },
@@ -114,9 +114,8 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          false,
           <Pad
-            height={20}
+            height={60}
           />,
           <TouchableOpacity
             activeOpacity={1}
@@ -130,18 +129,18 @@ ShallowWrapper {
           <DailyStepsFitKitAuthorise
             onPress={[MockFunction]}
           />,
+          false,
         ],
         "footerImage": "gray_forest",
       },
       "ref": null,
       "rendered": Array [
-        false,
         Object {
           "instance": null,
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 20,
+            "height": 60,
           },
           "ref": null,
           "rendered": null,
@@ -185,6 +184,7 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
+        false,
       ],
       "type": [Function],
     },
@@ -244,9 +244,8 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        false,
         <Pad
-          height={20}
+          height={60}
         />,
         <TouchableOpacity
           activeOpacity={1}
@@ -258,18 +257,18 @@ ShallowWrapper {
           />
         </TouchableOpacity>,
         <DailyStepsFitKitUnavailable />,
+        false,
       ],
       "footerImage": "large_forest",
     },
     "ref": null,
     "rendered": Array [
-      false,
       Object {
         "instance": null,
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 20,
+          "height": 60,
         },
         "ref": null,
         "rendered": null,
@@ -311,6 +310,7 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
+      false,
     ],
     "type": [Function],
   },
@@ -321,9 +321,8 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          false,
           <Pad
-            height={20}
+            height={60}
           />,
           <TouchableOpacity
             activeOpacity={1}
@@ -335,18 +334,18 @@ ShallowWrapper {
             />
           </TouchableOpacity>,
           <DailyStepsFitKitUnavailable />,
+          false,
         ],
         "footerImage": "large_forest",
       },
       "ref": null,
       "rendered": Array [
-        false,
         Object {
           "instance": null,
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 20,
+            "height": 60,
           },
           "ref": null,
           "rendered": null,
@@ -388,6 +387,7 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
+        false,
       ],
       "type": [Function],
     },
@@ -448,14 +448,8 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Streak
-          currentStreak={0}
-          isFinished={false}
-          maxStreak={4}
-          onPress={[MockFunction]}
-        />,
         <Pad
-          height={20}
+          height={60}
         />,
         <TouchableOpacity
           activeOpacity={1}
@@ -471,6 +465,12 @@ ShallowWrapper {
           onCtaPress={[MockFunction]}
           steps={0}
         />,
+        <Streak
+          currentStreak={0}
+          isFinished={false}
+          maxStreak={4}
+          onPress={[MockFunction]}
+        />,
       ],
       "footerImage": "large_forest",
     },
@@ -479,23 +479,9 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "currentStreak": 0,
-          "isFinished": false,
-          "maxStreak": 4,
-          "onPress": [MockFunction],
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 20,
+          "height": 60,
         },
         "ref": null,
         "rendered": null,
@@ -541,6 +527,20 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "currentStreak": 0,
+          "isFinished": false,
+          "maxStreak": 4,
+          "onPress": [MockFunction],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
     ],
     "type": [Function],
   },
@@ -551,14 +551,8 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Streak
-            currentStreak={0}
-            isFinished={false}
-            maxStreak={4}
-            onPress={[MockFunction]}
-          />,
           <Pad
-            height={20}
+            height={60}
           />,
           <TouchableOpacity
             activeOpacity={1}
@@ -574,6 +568,12 @@ ShallowWrapper {
             onCtaPress={[MockFunction]}
             steps={0}
           />,
+          <Streak
+            currentStreak={0}
+            isFinished={false}
+            maxStreak={4}
+            onPress={[MockFunction]}
+          />,
         ],
         "footerImage": "large_forest",
       },
@@ -582,23 +582,9 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "currentStreak": 0,
-            "isFinished": false,
-            "maxStreak": 4,
-            "onPress": [MockFunction],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 20,
+            "height": 60,
           },
           "ref": null,
           "rendered": null,
@@ -639,6 +625,20 @@ ShallowWrapper {
             "coinsToday": 0,
             "onCtaPress": [MockFunction],
             "steps": 0,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "currentStreak": 0,
+            "isFinished": false,
+            "maxStreak": 4,
+            "onPress": [MockFunction],
           },
           "ref": null,
           "rendered": null,
@@ -703,9 +703,8 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        false,
         <Pad
-          height={20}
+          height={60}
         />,
         <TouchableOpacity
           activeOpacity={1}
@@ -721,18 +720,18 @@ ShallowWrapper {
           onCtaPress={[MockFunction]}
           steps={0}
         />,
+        false,
       ],
       "footerImage": "large_forest",
     },
     "ref": null,
     "rendered": Array [
-      false,
       Object {
         "instance": null,
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 20,
+          "height": 60,
         },
         "ref": null,
         "rendered": null,
@@ -778,6 +777,7 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
+      false,
     ],
     "type": [Function],
   },
@@ -788,9 +788,8 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          false,
           <Pad
-            height={20}
+            height={60}
           />,
           <TouchableOpacity
             activeOpacity={1}
@@ -806,18 +805,18 @@ ShallowWrapper {
             onCtaPress={[MockFunction]}
             steps={0}
           />,
+          false,
         ],
         "footerImage": "large_forest",
       },
       "ref": null,
       "rendered": Array [
-        false,
         Object {
           "instance": null,
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 20,
+            "height": 60,
           },
           "ref": null,
           "rendered": null,
@@ -863,6 +862,7 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
+        false,
       ],
       "type": [Function],
     },
@@ -922,9 +922,8 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        false,
         <Pad
-          height={20}
+          height={60}
         />,
         <TouchableOpacity
           activeOpacity={1}
@@ -936,18 +935,18 @@ ShallowWrapper {
           />
         </TouchableOpacity>,
         <DailyStepsLoading />,
+        false,
       ],
       "footerImage": "large_forest",
     },
     "ref": null,
     "rendered": Array [
-      false,
       Object {
         "instance": null,
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 20,
+          "height": 60,
         },
         "ref": null,
         "rendered": null,
@@ -989,6 +988,7 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
+      false,
     ],
     "type": [Function],
   },
@@ -999,9 +999,8 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          false,
           <Pad
-            height={20}
+            height={60}
           />,
           <TouchableOpacity
             activeOpacity={1}
@@ -1013,18 +1012,18 @@ ShallowWrapper {
             />
           </TouchableOpacity>,
           <DailyStepsLoading />,
+          false,
         ],
         "footerImage": "large_forest",
       },
       "ref": null,
       "rendered": Array [
-        false,
         Object {
           "instance": null,
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 20,
+            "height": 60,
           },
           "ref": null,
           "rendered": null,
@@ -1066,6 +1065,7 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
+        false,
       ],
       "type": [Function],
     },
@@ -1125,9 +1125,8 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        false,
         <Pad
-          height={0}
+          height={60}
         />,
         <TouchableOpacity
           activeOpacity={1}
@@ -1141,18 +1140,18 @@ ShallowWrapper {
         <DailyStepsOffline
           lastUpdate="thing"
         />,
+        false,
       ],
       "footerImage": "gray_forest",
     },
     "ref": null,
     "rendered": Array [
-      false,
       Object {
         "instance": null,
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 0,
+          "height": 60,
         },
         "ref": null,
         "rendered": null,
@@ -1196,6 +1195,7 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
+      false,
     ],
     "type": [Function],
   },
@@ -1206,9 +1206,8 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          false,
           <Pad
-            height={0}
+            height={60}
           />,
           <TouchableOpacity
             activeOpacity={1}
@@ -1222,18 +1221,18 @@ ShallowWrapper {
           <DailyStepsOffline
             lastUpdate="thing"
           />,
+          false,
         ],
         "footerImage": "gray_forest",
       },
       "ref": null,
       "rendered": Array [
-        false,
         Object {
           "instance": null,
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 0,
+            "height": 60,
           },
           "ref": null,
           "rendered": null,
@@ -1277,6 +1276,7 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
+        false,
       ],
       "type": [Function],
     },

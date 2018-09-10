@@ -39,7 +39,9 @@ export default StyleSheet.create({
     menuWrapper: {
         alignItems: "center",
         flexDirection: "row",
+        height: "100%",
         left: Style.SCALE_UP_AND_DOWN(15),
+        paddingHorizontal: Style.SCALE_UP_AND_DOWN(8),
         position: "absolute"
     } as ViewStyle,
     time: {
