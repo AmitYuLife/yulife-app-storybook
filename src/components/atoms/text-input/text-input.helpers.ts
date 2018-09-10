@@ -52,6 +52,17 @@ export const getIcon = (type: Types) => {
     }
 };
 
+export const getKeyboardType = (type: Types) => {
+    switch (type) {
+        case "Card":
+            return "numeric";
+        case "Email":
+            return "email-address";
+        default:
+            return "default";
+    }
+};
+
 interface IGetPlaceholder {
     type: Types;
     placeholder: string;

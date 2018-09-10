@@ -1,7 +1,15 @@
 import * as React from "react";
 import { StyleSheet, TextInput as Input, View, ViewStyle } from "react-native";
 import TextInputError from "./text-input-error";
-import { getColour, getIcon, getPlaceholder, getStyle, getValue, getWrapperStyle } from "./text-input.helpers";
+import {
+    getColour,
+    getIcon,
+    getKeyboardType,
+    getPlaceholder,
+    getStyle,
+    getValue,
+    getWrapperStyle
+} from "./text-input.helpers";
 import styles from "./text-input.styles";
 
 interface IProps {
@@ -69,7 +77,7 @@ class TextInput extends React.PureComponent<IProps> {
                         style={getStyle({ type })}
                         underlineColorAndroid="transparent"
                         secureTextEntry={type === TEXT_INPUT_TYPES.PASSWORD}
-                        keyboardType={type === TEXT_INPUT_TYPES.CARD ? "numeric" : "default"}
+                        keyboardType={getKeyboardType(type)}
                     />
                 </View>
                 {hasError ? <TextInputError>{errorMessage || ""}</TextInputError> : null}

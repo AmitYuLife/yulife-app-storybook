@@ -52,7 +52,7 @@ ShallowWrapper {
             autoCapitalize="none"
             autoCorrect={false}
             autoFocus={false}
-            keyboardType="default"
+            keyboardType="email-address"
             onBlur={[Function]}
             onChangeText={[MockFunction]}
             onFocus={[Function]}
@@ -104,7 +104,7 @@ ShallowWrapper {
               autoCapitalize="none"
               autoCorrect={false}
               autoFocus={false}
-              keyboardType="default"
+              keyboardType="email-address"
               onBlur={[Function]}
               onChangeText={[MockFunction]}
               onFocus={[Function]}
@@ -173,7 +173,7 @@ ShallowWrapper {
               "autoCapitalize": "none",
               "autoCorrect": false,
               "autoFocus": false,
-              "keyboardType": "default",
+              "keyboardType": "email-address",
               "onBlur": [Function],
               "onChangeText": [MockFunction],
               "onFocus": [Function],
@@ -238,7 +238,7 @@ ShallowWrapper {
               autoCapitalize="none"
               autoCorrect={false}
               autoFocus={false}
-              keyboardType="default"
+              keyboardType="email-address"
               onBlur={[Function]}
               onChangeText={[MockFunction]}
               onFocus={[Function]}
@@ -290,7 +290,7 @@ ShallowWrapper {
                 autoCapitalize="none"
                 autoCorrect={false}
                 autoFocus={false}
-                keyboardType="default"
+                keyboardType="email-address"
                 onBlur={[Function]}
                 onChangeText={[MockFunction]}
                 onFocus={[Function]}
@@ -359,7 +359,7 @@ ShallowWrapper {
                 "autoCapitalize": "none",
                 "autoCorrect": false,
                 "autoFocus": false,
-                "keyboardType": "default",
+                "keyboardType": "email-address",
                 "onBlur": [Function],
                 "onChangeText": [MockFunction],
                 "onFocus": [Function],
