@@ -4,12 +4,12 @@ import { isIphoneX } from "react-native-iphone-x-helper";
 import { Navigation } from "react-native-navigation";
 import Swiper from "react-native-swiper";
 import { connect } from "react-redux";
+import { DailyStepsContainer, QuestsContainer, RewardsContainer } from "..";
 import { ROUTES } from "../../../navigation/routes";
 import { IReduxState } from "../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../redux/coins/coins.selectors";
 import { Style } from "../../../styles";
 import { ILabel, NavBar, TopBar } from "../../molecules";
-import { ChallengesListContainer, DailyStepsContainer, RewardsContainer } from "../index";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -55,7 +55,7 @@ class MemberRootContainer extends PureComponent<Props, IState> {
 
     public render() {
         const { totalCoins } = this.props;
-        const { currentIndex, isModalVisible, isSecondPageLoaded, isThirdPageLoaded } = this.state;
+        const { currentIndex, isModalVisible } = this.state;
 
         return (
             <>
@@ -68,8 +68,8 @@ class MemberRootContainer extends PureComponent<Props, IState> {
                     onIndexChanged={this.handleNavBarIndexChange}
                 >
                     <DailyStepsContainer />
-                    <ChallengesListContainer isLoaded={isSecondPageLoaded} onModalToggle={this.handleToggleModal} />
-                    <RewardsContainer isLoaded={isThirdPageLoaded} />
+                    <QuestsContainer />
+                    <RewardsContainer />
                 </Swiper>
                 {!isModalVisible && (
                     <>
@@ -94,11 +94,11 @@ class MemberRootContainer extends PureComponent<Props, IState> {
     private showMenu = () => {
         Navigation.mergeOptions(ROUTES.menu, {
             sideMenu: {
-              left: {
-                visible: true
-              }
+                left: {
+                    visible: true
+                }
             }
-      });
+        });
     }
 
     private handleNavBarIndexChange = (currentIndex: number) => {
@@ -109,9 +109,9 @@ class MemberRootContainer extends PureComponent<Props, IState> {
         }));
     }
 
-    private handleToggleModal = (isModalVisible: boolean) => {
-        this.setState({ isModalVisible });
-    }
+    // private handleToggleModal = (isModalVisible: boolean) => {
+    //     this.setState({ isModalVisible });
+    // }
 
     // TODO fix these
     // private onCta = () => { };
@@ -127,9 +127,7 @@ const mapStateToProps = (state: IReduxState) => ({
     totalCoins: getTotalCoins(state)
 });
 
-export default connect<IConnectedState>(
-    mapStateToProps
-)(MemberRootContainer);
+export default connect<IConnectedState>(mapStateToProps)(MemberRootContainer);
 
 const styles = StyleSheet.create({
     navBarWrapper: {

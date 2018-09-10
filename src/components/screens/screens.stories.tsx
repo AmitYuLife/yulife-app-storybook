@@ -310,7 +310,7 @@ storiesOf("Screens", module)
                     id: `_${i + 1}`,
                     onPress: action(`@ pressed _${i + 1}`),
                     rating: 3
-                })).concat({ isNext: true, nextAvailable, onPress: action(`@ pressed next`) } as any) )}
+                })).concat({ isNext: true, nextAvailable, onPress: action(`@ pressed next`) } as any) ) as any}
             />
         );
     })

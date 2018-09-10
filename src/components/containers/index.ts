@@ -12,7 +12,8 @@ export { default as SignUpRewardContainer } from "./onboarding/signup-reward/sig
 // member containers
 export { default as MenuContainer } from "./member/menu/menu.container";
 
-export { default as MemberRootContainer } from "./member/root.container";
+export { default as MemberRootContainer } from "./member/member.container";
+export { default as QuestsContainer } from "./member/quests/quests.container";
 export { default as ChallengesListContainer } from "./member/challenges/challenges-list/challenges-list.container";
 export { default as DailyStepsContainer } from "./member/daily-steps/daily-steps.container";
 export { default as RewardsContainer } from "./member/rewards/rewards.container";

@@ -88,7 +88,7 @@ class Level extends PureComponent<IProps, IState> {
             pulseSize,
             pulseOpacity,
         } = this.state;
-        if (!data) {
+        if (!data || (data.rating === null && !data.isNext)) {
             return (
                 <G>
                     <Circle

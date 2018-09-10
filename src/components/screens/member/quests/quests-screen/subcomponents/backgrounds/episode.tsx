@@ -2,8 +2,10 @@ import React, { PureComponent } from "react";
 import {
     View
 } from "react-native";
+import { Navigation } from "react-native-navigation";
 import Svg from "react-native-svg";
 import { UnityLockerImage } from "../";
+import { ROUTES } from "../../../../../../../navigation/routes";
 import { IChallenge } from "../../quests-screen";
 import { Level } from "../common";
 import backgrounds from "./backgrounds";
@@ -23,10 +25,18 @@ class Episode extends PureComponent<IProps> {
         return (index + 1) + (42 - (7 * (this.props.level - 1)));
     }
 
-    public handlePressLevel = (challenge: IChallenge) => {
+    public handlePressLevel = (level: IChallenge) => {
         return (): null => {
-            if (challenge) {
-                challenge.onPress();
+            if (level.isNext) {
+                Navigation.push(ROUTES.member, {
+                    component: {
+                        id: ROUTES.questsChallengesList,
+                        name: ROUTES.questsChallengesList,
+                        passProps: {
+                            level
+                        }
+                    }
+                });
                 return null;
             } else {
                 // handle press locked level
@@ -62,6 +72,7 @@ class Episode extends PureComponent<IProps> {
                         {backgroundLevels.map((points, index) => {
                             const { x, y } = points;
                             const levelData = data[index];
+
                             return <Level
                                 onPress={this.handlePressLevel(levelData)}
                                 key={index}

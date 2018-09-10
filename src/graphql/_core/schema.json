@@ -500,6 +500,42 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "rating",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "nextAvailable",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isNext",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -10283,9 +10319,9 @@
   "extensions": {
     "tracing": {
       "version": 1,
-      "startTime": "2018-09-10T07:39:05.902Z",
-      "endTime": "2018-09-10T07:39:06.155Z",
-      "duration": 252329534,
+      "startTime": "2018-09-10T11:31:43.232Z",
+      "endTime": "2018-09-10T11:31:43.470Z",
+      "duration": 238231819,
       "execution": {
         "resolvers": []
       }

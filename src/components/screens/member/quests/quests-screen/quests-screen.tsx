@@ -6,6 +6,7 @@ import {
     StatusBar,
     View
 } from "react-native";
+import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { Style } from "../../../../../styles";
 import {
     handlePanResponderGrant,
@@ -14,13 +15,7 @@ import {
 import styles from "./quests-screen.styles";
 import { Episode, UnityLockerImage, UnityLockerLabel } from "./subcomponents";
 
-export interface IChallenge {
-    id?: string;
-    rating?: number;
-    isNext?: boolean;
-    nextAvailable?: number;
-    onPress?: () => void;
-}
+export type IChallenge = GetCurrentWorld_getCurrentWorld;
 
 interface ISwipeCallback {
     prevIndex: number;

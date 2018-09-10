@@ -14,7 +14,7 @@ import { PurchasedListScreen, RewardsListScreen } from "../../../screens";
 type Tab = "rewards" | "purchases";
 
 interface IProps {
-    isLoaded: boolean;
+    isLoaded?: boolean;
 }
 
 interface IState {
@@ -44,7 +44,7 @@ class RewardsContainer extends PureComponent<IProps, IState> {
     private renderRewards = () => (
         <GetRewardsQuery query={getRewardsGql} skip={!this.props.isLoaded} fetchPolicy="cache-first">
             {({ error, loading, data, refetch }) => {
-                if (loading || !this.props.isLoaded) {
+                if (loading) {
                     return <Loading />;
                 }
 

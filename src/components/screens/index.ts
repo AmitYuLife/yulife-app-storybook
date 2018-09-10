@@ -12,14 +12,17 @@ export { default as IntroScreen } from "./onboarding/intro/intro.screen";
 
 // member screens
 export { default as MenuScreen, IMenuLink } from "./member/menu/menu.screen";
-
 export { default as ActivityHistoryLevels } from "./member/activity-history-levels/activity-history-levels";
 export { default as DailyStepsScreen } from "./member/daily-steps/daily-steps.screen";
+export { default as StreaksScreen } from "./member/streaks/streaks.screen";
+
+// quests screens
+export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";
+export { default as QuestsScreen, IChallenge } from "./member/quests/quests-screen/quests-screen";
 export { default as ChallengeFailedScreen } from "./member/challenges/challenge-failed/challenge-failed.screen";
 export { default as ChallengeProgressScreen } from "./member/challenges/challenge-progress/challenge-progress.screen";
 export { default as ChallengeSuccessScreen } from "./member/challenges/challenge-success/challenge-success.screen";
 export { default as ChallengesListScreen } from "./member/challenges/challenges-list/challenges-list.screen";
-export { default as StreaksScreen } from "./member/streaks/streaks.screen";
 
 // rewards screens
 export { default as AviosRewardConfirmedScreen } from "./member/rewards/confirmed/avios-confirmed.screen";
@@ -28,6 +31,3 @@ export { default as RewardsListScreen } from "./member/rewards/list/rewards-list
 export { default as WegiftRewardDetailsScreen } from "./member/rewards/details/wegift-details.screen";
 export { default as WegiftRewardConfirmedScreen } from "./member/rewards/confirmed/wegift-confirmed.screen";
 export { default as AviosRewardDetailsScreen } from "./member/rewards/details/avios-details.screen";
-
-export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";
-export { default as QuestsScreen, IChallenge } from "./member/quests/quests-screen/quests-screen";
