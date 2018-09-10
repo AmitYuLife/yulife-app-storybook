@@ -31,7 +31,7 @@ const YuCoin: SFC<IProps> = ({ isGrayScale, isLoading }) => (
                 <Svg {...svgSpecs}>
                     <Static isGrayScale={isGrayScale} />
                     {
-                        isLoading ? (
+                        isLoading && !isGrayScale ? (
                             <GiraffeAnimated />
                         ) : (
                                 <GiraffeStatic isGrayScale={isGrayScale} />

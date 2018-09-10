@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SFC } from "react";
-import { TouchableOpacity } from "react-native";
+import { Platform, TouchableOpacity } from "react-native";
 import { CentredScreen, Pad } from "../../../atoms";
 import { Streak } from "../../../molecules";
 import YuCoin from "./assets/yu-coin";
@@ -52,13 +52,7 @@ const DailyStepsScreen: SFC<Props> = ({
                     ? CentredScreen.FooterImages.LARGE_FOREST
                     : CentredScreen.FooterImages.GRAY_FOREST}
         >
-            {displayStreak && <Streak
-                isFinished={isDoneToday}
-                onPress={onStreakPress}
-                currentStreak={currentStreak}
-                maxStreak={maxStreak}
-            />}
-            <Pad height={!isOnline ? 0 : 20} />
+            <Pad height={Platform.OS === "ios" ? 60 : 80} />
             <TouchableOpacity
                 onPress={onCoinPress}
                 activeOpacity={1}
@@ -85,6 +79,12 @@ const DailyStepsScreen: SFC<Props> = ({
                     />
                 )
             }
+            {displayStreak && <Streak
+                isFinished={isDoneToday}
+                onPress={onStreakPress}
+                currentStreak={currentStreak}
+                maxStreak={maxStreak}
+            />}
         </CentredScreen>
     );
 };

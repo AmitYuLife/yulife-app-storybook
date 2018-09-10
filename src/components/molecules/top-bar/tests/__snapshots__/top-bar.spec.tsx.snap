@@ -29,7 +29,9 @@ ShallowWrapper {
             Object {
               "alignItems": "center",
               "flexDirection": "row",
+              "height": "100%",
               "left": 30,
+              "paddingHorizontal": 16,
               "position": "absolute",
             }
           }
@@ -103,7 +105,9 @@ ShallowWrapper {
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "height": "100%",
                 "left": 30,
+                "paddingHorizontal": 16,
                 "position": "absolute",
               }
             }
@@ -172,7 +176,9 @@ ShallowWrapper {
             "style": Object {
               "alignItems": "center",
               "flexDirection": "row",
+              "height": "100%",
               "left": 30,
+              "paddingHorizontal": 16,
               "position": "absolute",
             },
           },
@@ -337,7 +343,9 @@ ShallowWrapper {
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "height": "100%",
                 "left": 30,
+                "paddingHorizontal": 16,
                 "position": "absolute",
               }
             }
@@ -411,7 +419,9 @@ ShallowWrapper {
                 Object {
                   "alignItems": "center",
                   "flexDirection": "row",
+                  "height": "100%",
                   "left": 30,
+                  "paddingHorizontal": 16,
                   "position": "absolute",
                 }
               }
@@ -480,7 +490,9 @@ ShallowWrapper {
               "style": Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "height": "100%",
                 "left": 30,
+                "paddingHorizontal": 16,
                 "position": "absolute",
               },
             },
@@ -682,7 +694,9 @@ ShallowWrapper {
             Object {
               "alignItems": "center",
               "flexDirection": "row",
+              "height": "100%",
               "left": 30,
+              "paddingHorizontal": 16,
               "position": "absolute",
             }
           }
@@ -756,7 +770,9 @@ ShallowWrapper {
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "height": "100%",
                 "left": 30,
+                "paddingHorizontal": 16,
                 "position": "absolute",
               }
             }
@@ -825,7 +841,9 @@ ShallowWrapper {
             "style": Object {
               "alignItems": "center",
               "flexDirection": "row",
+              "height": "100%",
               "left": 30,
+              "paddingHorizontal": 16,
               "position": "absolute",
             },
           },
@@ -990,7 +1008,9 @@ ShallowWrapper {
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "height": "100%",
                 "left": 30,
+                "paddingHorizontal": 16,
                 "position": "absolute",
               }
             }
@@ -1064,7 +1084,9 @@ ShallowWrapper {
                 Object {
                   "alignItems": "center",
                   "flexDirection": "row",
+                  "height": "100%",
                   "left": 30,
+                  "paddingHorizontal": 16,
                   "position": "absolute",
                 }
               }
@@ -1133,7 +1155,9 @@ ShallowWrapper {
               "style": Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "height": "100%",
                 "left": 30,
+                "paddingHorizontal": 16,
                 "position": "absolute",
               },
             },
@@ -1336,7 +1360,9 @@ ShallowWrapper {
             Object {
               "alignItems": "center",
               "flexDirection": "row",
+              "height": "100%",
               "left": 30,
+              "paddingHorizontal": 16,
               "position": "absolute",
             }
           }
@@ -1428,7 +1454,9 @@ ShallowWrapper {
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "height": "100%",
                 "left": 30,
+                "paddingHorizontal": 16,
                 "position": "absolute",
               }
             }
@@ -1532,7 +1560,9 @@ ShallowWrapper {
             "style": Object {
               "alignItems": "center",
               "flexDirection": "row",
+              "height": "100%",
               "left": 30,
+              "paddingHorizontal": 16,
               "position": "absolute",
             },
           },
@@ -1732,7 +1762,9 @@ ShallowWrapper {
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "height": "100%",
                 "left": 30,
+                "paddingHorizontal": 16,
                 "position": "absolute",
               }
             }
@@ -1824,7 +1856,9 @@ ShallowWrapper {
                 Object {
                   "alignItems": "center",
                   "flexDirection": "row",
+                  "height": "100%",
                   "left": 30,
+                  "paddingHorizontal": 16,
                   "position": "absolute",
                 }
               }
@@ -1928,7 +1962,9 @@ ShallowWrapper {
               "style": Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "height": "100%",
                 "left": 30,
+                "paddingHorizontal": 16,
                 "position": "absolute",
               },
             },
@@ -2166,7 +2202,9 @@ ShallowWrapper {
             Object {
               "alignItems": "center",
               "flexDirection": "row",
+              "height": "100%",
               "left": 30,
+              "paddingHorizontal": 16,
               "position": "absolute",
             }
           }
@@ -2260,7 +2298,9 @@ ShallowWrapper {
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "height": "100%",
                 "left": 30,
+                "paddingHorizontal": 16,
                 "position": "absolute",
               }
             }
@@ -2349,7 +2389,9 @@ ShallowWrapper {
             "style": Object {
               "alignItems": "center",
               "flexDirection": "row",
+              "height": "100%",
               "left": 30,
+              "paddingHorizontal": 16,
               "position": "absolute",
             },
           },
@@ -2558,7 +2600,9 @@ ShallowWrapper {
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "height": "100%",
                 "left": 30,
+                "paddingHorizontal": 16,
                 "position": "absolute",
               }
             }
@@ -2652,7 +2696,9 @@ ShallowWrapper {
                 Object {
                   "alignItems": "center",
                   "flexDirection": "row",
+                  "height": "100%",
                   "left": 30,
+                  "paddingHorizontal": 16,
                   "position": "absolute",
                 }
               }
@@ -2741,7 +2787,9 @@ ShallowWrapper {
               "style": Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "height": "100%",
                 "left": 30,
+                "paddingHorizontal": 16,
                 "position": "absolute",
               },
             },
