@@ -1674,6 +1674,18 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "currentBalance",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -10271,9 +10283,9 @@
   "extensions": {
     "tracing": {
       "version": 1,
-      "startTime": "2018-09-09T07:06:29.228Z",
-      "endTime": "2018-09-09T07:06:29.389Z",
-      "duration": 161292908,
+      "startTime": "2018-09-10T07:39:05.902Z",
+      "endTime": "2018-09-10T07:39:06.155Z",
+      "duration": 252329534,
       "execution": {
         "resolvers": []
       }

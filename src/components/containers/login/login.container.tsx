@@ -4,6 +4,7 @@ import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { LoginMethod, LoginUser } from "../../../graphql/_core/schema";
 import LoginUserMutation, { loginUserGql, LoginUserMutationFunction } from "../../../graphql/user/loginUser.gql";
+import { setAuthenticatedRoot } from "../../../navigation/root";
 import { ROUTES } from "../../../navigation/routes";
 import { loginUserSuccess, LoginUserSuccessAction } from "../../../redux/user/user.actions";
 import { setToken } from "../../../services/storage";
@@ -74,16 +75,31 @@ export class LoginContainer extends Component<Props, IState> {
         );
     }
 
-    private getLoginRoute = (authorised: boolean, onboarded: boolean) => {
+    private navigateToNext = async (authorised: boolean, onboarded: boolean) => {
         if (!authorised) {
-            return ROUTES.onboardingFitKitConnect;
+            const route = ROUTES.onboardingFitKitConnect;
+            Navigation.push(this.props.componentId, {
+                component: {
+                    id: route,
+                    name: route
+                }
+            });
+            return;
         }
 
         if (!onboarded) {
-            return ROUTES.onboardingSignUpReward;
+            const route = ROUTES.onboardingSignUpReward;
+            Navigation.push(this.props.componentId, {
+                component: {
+                    id: route,
+                    name: route
+                }
+            });
+            return;
         }
 
-        return ROUTES.member;
+        setAuthenticatedRoot();
+        return;
     }
 
     private onLogIn = async (loginUser: LoginUserMutationFunction, authorised: boolean) => {
@@ -104,14 +120,7 @@ export class LoginContainer extends Component<Props, IState> {
                     await setToken(results.data.loginUser.token);
                     this.props.loginUserSuccess(results.data);
 
-                    const route = this.getLoginRoute(authorised, results.data.loginUser.user.redeemedOnboarding);
-
-                    await Navigation.push(this.props.componentId, {
-                        component: {
-                            id: route,
-                            name: route
-                        }
-                    });
+                    await this.navigateToNext(authorised, results.data.loginUser.user.redeemedOnboarding);
                 }
             } catch (e) {
                 // tslint:disable-next-line

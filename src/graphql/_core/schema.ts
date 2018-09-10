@@ -520,6 +520,7 @@ export interface LoginUser_loginUser_user {
   userFeatures: (LoginUser_loginUser_user_userFeatures | null)[] | null;
   mobileConsent: LoginUser_loginUser_user_mobileConsent | null;
   redeemedOnboarding: boolean | null;
+  currentBalance: number | null;
 }
 
 export interface LoginUser_loginUser {
