@@ -133,14 +133,16 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
             this.animatedWrapperOpacity,
             {
                 duration: 300,
-                toValue: isVisible ? 0 : 1
+                toValue: isVisible ? 0 : 1,
+                useNativeDriver: true
             }
         );
         const animatePosition = Animated.timing(
             this.animatedWrapperPosition,
             {
                 duration: 0,
-                toValue: isVisible ? -1000 : 0
+                toValue: isVisible ? -1000 : 0,
+                useNativeDriver: true
             }
         );
         let sequence: Animated.CompositeAnimation;

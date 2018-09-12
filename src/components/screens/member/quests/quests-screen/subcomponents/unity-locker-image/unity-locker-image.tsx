@@ -20,23 +20,28 @@ class UnityLockerImage extends PureComponent {
     public animateIn = (callback?: () => void) => {
         const scaleUp = Animated.timing(this.wrapperScale, {
             duration: 0,
-            toValue: 1
+            toValue: 1,
+            useNativeDriver: true
         });
         const opacityUp = Animated.timing(this.wrapperOpacity, {
             duration: 0,
-            toValue: 1
+            toValue: 1,
+            useNativeDriver: true
         });
         const animateDarkCloud = Animated.spring(this.darkCloudX, {
             bounciness: 0,
-            toValue: darkCloudEnd
+            toValue: darkCloudEnd,
+            useNativeDriver: true
         });
         const animateMediumCloud = Animated.spring(this.mediumCloudX, {
             bounciness: 0,
-            toValue: mediumCloudEnd
+            toValue: mediumCloudEnd,
+            useNativeDriver: true
         });
         const animateWhiteCloud = Animated.spring(this.whiteCloudX, {
             bounciness: 0,
-            toValue: whiteCloudEnd
+            toValue: whiteCloudEnd,
+            useNativeDriver: true
         });
         const cloudAnimation = Animated.parallel([
             animateDarkCloud,
@@ -53,23 +58,28 @@ class UnityLockerImage extends PureComponent {
     public animateOut = (callback?: () => void) => {
         const scaleDown = Animated.timing(this.wrapperScale, {
             duration: 0,
-            toValue: 0
+            toValue: 0,
+            useNativeDriver: true
         });
         const opacityDown = Animated.timing(this.wrapperOpacity, {
             duration: 0,
-            toValue: 1
+            toValue: 1,
+            useNativeDriver: true
         });
         const animateDarkCloud = Animated.spring(this.darkCloudX, {
             bounciness: 0,
-            toValue: darkCloudStart
+            toValue: darkCloudStart,
+            useNativeDriver: true
         });
         const animateMediumCloud = Animated.spring(this.mediumCloudX, {
             bounciness: 0,
-            toValue: mediumCloudStart
+            toValue: mediumCloudStart,
+            useNativeDriver: true
         });
         const animateWhiteCloud = Animated.spring(this.whiteCloudX, {
             bounciness: 0,
-            toValue: whiteCloudStart
+            toValue: whiteCloudStart,
+            useNativeDriver: true
         });
         const cloudAnimation = Animated.parallel([
             animateDarkCloud,
