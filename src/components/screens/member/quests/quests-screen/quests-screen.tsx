@@ -15,7 +15,9 @@ import {
 import styles from "./quests-screen.styles";
 import { Episode, UnityLockerImage, UnityLockerLabel } from "./subcomponents";
 
-export type IChallenge = GetCurrentWorld_getCurrentWorld;
+export interface IChallenge extends GetCurrentWorld_getCurrentWorld {
+    onPress?: () => void;
+}
 
 interface ISwipeCallback {
     prevIndex: number;
@@ -51,7 +53,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
     public indices = calculateIndices(this.props.data.length);
     public activeIndex = this.indices.length - Math.ceil(this.props.data.length / 7);
     public state = {
-        activeIndex: this.activeIndex,
+        activeIndex: 7,
         hasInitialized: false,
         isAnimatingUnity: false,
         isSwipeDisabled: false

@@ -27,6 +27,7 @@ export const getCurrentWorldGql = gql`
                     XP
                     coins
                     target {
+                        __typename
                         steps
                         meditation
                     }

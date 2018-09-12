@@ -22,7 +22,7 @@ ShallowWrapper {
       "activeOpacity": 0.2,
       "children": Array [
         <AnimalImage
-          image="bird"
+          image="elephant"
           isImageBackgroundFlipped={false}
           isLocked={false}
         />,
@@ -47,7 +47,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "image": "bird",
+          "image": "elephant",
           "isImageBackgroundFlipped": false,
           "isLocked": false,
         },
@@ -80,7 +80,7 @@ ShallowWrapper {
         "activeOpacity": 0.2,
         "children": Array [
           <AnimalImage
-            image="bird"
+            image="elephant"
             isImageBackgroundFlipped={false}
             isLocked={false}
           />,
@@ -105,7 +105,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "image": "bird",
+            "image": "elephant",
             "isImageBackgroundFlipped": false,
             "isLocked": false,
           },
@@ -175,7 +175,7 @@ ShallowWrapper {
       "activeOpacity": 0.2,
       "children": Array [
         <AnimalImage
-          image="bird"
+          image="elephant"
           isImageBackgroundFlipped={true}
           isLocked={false}
         />,
@@ -200,7 +200,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "image": "bird",
+          "image": "elephant",
           "isImageBackgroundFlipped": true,
           "isLocked": false,
         },
@@ -233,7 +233,7 @@ ShallowWrapper {
         "activeOpacity": 0.2,
         "children": Array [
           <AnimalImage
-            image="bird"
+            image="elephant"
             isImageBackgroundFlipped={true}
             isLocked={false}
           />,
@@ -258,7 +258,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "image": "bird",
+            "image": "elephant",
             "isImageBackgroundFlipped": true,
             "isLocked": false,
           },
@@ -329,7 +329,7 @@ ShallowWrapper {
       "activeOpacity": 0.2,
       "children": Array [
         <AnimalImage
-          image="bird"
+          image="elephant"
           isImageBackgroundFlipped={false}
           isLocked={true}
         />,
@@ -353,7 +353,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "image": "bird",
+          "image": "elephant",
           "isImageBackgroundFlipped": false,
           "isLocked": true,
         },
@@ -385,7 +385,7 @@ ShallowWrapper {
         "activeOpacity": 0.2,
         "children": Array [
           <AnimalImage
-            image="bird"
+            image="elephant"
             isImageBackgroundFlipped={false}
             isLocked={true}
           />,
@@ -409,7 +409,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "image": "bird",
+            "image": "elephant",
             "isImageBackgroundFlipped": false,
             "isLocked": true,
           },

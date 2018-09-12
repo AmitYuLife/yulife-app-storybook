@@ -67,8 +67,8 @@ class MemberRootContainer extends PureComponent<Props, IState> {
                     showsButtons={false}
                     onIndexChanged={this.handleNavBarIndexChange}
                 >
-                    <DailyStepsContainer />
-                    <QuestsContainer />
+                    <DailyStepsContainer onNavBarIndexChange={this.handleNavBarIndexChange} />
+                    <QuestsContainer onNavBarIndexChange={this.handleNavBarIndexChange} />
                     <RewardsContainer />
                 </Swiper>
                 {!isModalVisible && (

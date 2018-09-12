@@ -1,6 +1,6 @@
 import moment from "moment";
-import React from "react";
 import { PureComponent } from "react";
+import React from "react";
 import { FitKitAvailable } from "react-native-fitkit";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
@@ -11,11 +11,11 @@ import { startDailySteps, stopDailySteps } from "../../../../redux/daily-steps/d
 import { getDailySteps, getLastUpdated } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
+import { SideEffect } from "../../../../typings";
 import { DailyStepsScreen } from "../../../screens";
 
-// TODO find where these props actually come from in RNN types
 interface IProps {
-    componentId?: string;
+    onNavBarIndexChange: SideEffect<number>;
 }
 
 interface IConnectedState {
@@ -116,12 +116,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     private onCta = () => {
-        // setToken("");
-        // Navigation.push(this.props.componentId, {
-        //     component: {
-        //         name: "yulife.member.ChallengesList",
-        //     },
-        // });
+        this.props.onNavBarIndexChange(1);
     }
 
     private onStreak = () => {

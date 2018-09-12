@@ -1,13 +1,12 @@
 import * as React from "react";
 import { SFC } from "react";
 import { View } from "react-native";
-import { ChallengeTile, IChallengeTileProps, Images as ChallengeTileImages } from "..";
+import { ChallengeTile, IChallengeTileProps } from "..";
 import styles from "./challenges-list.styles";
 
 export interface IChallengesListTileProps {
     challengeType: string;
     duration: string;
-    image: ChallengeTileImages;
     isLocked?: boolean;
     minimumLevel?: number;
     reward: string;

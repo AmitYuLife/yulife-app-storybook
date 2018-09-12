@@ -17,6 +17,14 @@ const dataIdFromObject = (object: any) => {
     switch (object.__typename) {
         case "UserPayload":
             return `${object.__typename}-${object.expiresAt}`;
+        case "Level":
+            return `${object.__typename}-${object.id}`;
+        case "LevelSlot":
+            return `${object.__typename}-${object.id}`;
+        case "LevelSlotMilestone":
+            return `${object.__typename}-${object.id}`;
+        case "MilestoneTarget":
+            return `${object.__typename}-${object.steps}-${object.meditation}`;
         case "User":
             return `${object.__typename}-${object.id}`;
         case "Reward":

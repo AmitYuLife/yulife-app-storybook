@@ -10,7 +10,7 @@ import styles, {
 export interface IChallengeTileProps {
     challengeType?: string;
     duration?: string;
-    image: Images;
+    image?: Images;
     isImageBackgroundFlipped?: boolean;
     isLocked?: boolean;
     minimumLevel?: number;
@@ -37,11 +37,24 @@ class ChallengeTile extends PureComponent<Props> {
 
     public static Images = IMAGES;
 
+    public getImage = (challengeType: string): Images => {
+        switch (challengeType) {
+            case "meditation":
+            return IMAGES.BIRD;
+            case "long walk":
+            return IMAGES.OSTRICH;
+            case "brisk walk":
+                return IMAGES.SQUIRREL;
+            case "short stroll":
+            default:
+                return IMAGES.ELEPHANT;
+        }
+    }
+
     public render() {
         const {
             challengeType = "",
             duration = "",
-            image,
             isImageBackgroundFlipped = false,
             isLocked = false,
             minimumLevel = 1,
@@ -55,7 +68,7 @@ class ChallengeTile extends PureComponent<Props> {
                 style={styles.wrapper}
             >
                 <AnimalImage
-                    image={image}
+                    image={this.getImage(challengeType)}
                     isLocked={isLocked}
                     isImageBackgroundFlipped={
                         isImageBackgroundFlipped

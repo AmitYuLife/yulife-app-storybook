@@ -7,7 +7,13 @@ describe("ChallengesListScreen", () => {
 
     it("should render", () => {
         const actual = shallow(
-            <ChallengesListScreen challenges={[]} />
+            <ChallengesListScreen
+                challenges={[]}
+                labels={[]}
+                name="level 1"
+                onPressLeftIcon={() => null}
+                totalCoins={1234}
+            />
         );
 
         expect(actual).toMatchSnapshot();
@@ -16,7 +22,13 @@ describe("ChallengesListScreen", () => {
     it("should render as Android", () => {
         Platform.OS = "android";
         const actual = shallow(
-            <ChallengesListScreen challenges={[]} />
+            <ChallengesListScreen
+                challenges={[]}
+                labels={[]}
+                name="level 1"
+                onPressLeftIcon={() => null}
+                totalCoins={1234}
+            />
         );
 
         expect(actual).toMatchSnapshot();

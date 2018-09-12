@@ -42,7 +42,7 @@ class RewardsContainer extends PureComponent<IProps, IState> {
 
     // all related to the rewards tab
     private renderRewards = () => (
-        <GetRewardsQuery query={getRewardsGql} skip={!this.props.isLoaded} fetchPolicy="cache-first">
+        <GetRewardsQuery query={getRewardsGql} fetchPolicy="cache-first">
             {({ error, loading, data, refetch }) => {
                 if (loading) {
                     return <Loading />;

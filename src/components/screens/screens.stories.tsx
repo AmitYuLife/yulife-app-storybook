@@ -143,6 +143,28 @@ storiesOf("Screens", module)
                     reward: "0-3"
                 }
             ], "ChallengesList")}
+            labels={object("Labels", [
+                {
+                    name: "yucoin",
+                    onPress: action("on first tab press")
+                },
+                {
+                    name: "quest",
+                    onPress: action("on second tab press")
+                },
+                {
+                    name: "rewards",
+                    onPress: action("on third tab press")
+                }
+            ], "ChallengesList")}
+            name="level 1"
+            onPressLeftIcon={action("on left icon press")}
+            totalCoins={number("TotalCoins", 1246, {
+                max: 35000,
+                min: 0,
+                range: true,
+                step: 1
+            }, "ChallengesList")}
         />
     ))
     .add("8. Challenge Progress", () => (
