@@ -16,7 +16,7 @@ class OnboardingScreenOne extends PureComponent<IScreenProps> {
                     resizeMethod="resize"
                     resizeMode="contain"
                     style={styles.image}
-                    source={require("../assets/onboarding-app-1.png")}
+                    source={require("../../../../../../assets/intro/onboarding-app-1.png")}
                 />
             </TouchableOpacity>
         );

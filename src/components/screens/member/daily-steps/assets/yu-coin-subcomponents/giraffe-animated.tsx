@@ -21,7 +21,7 @@ class Giraffe extends PureComponent<{}, IState> {
     }
 
     public componentDidMount() {
-        this.interval = setInterval(
+        this.interval = global.setInterval(
             () => this.setState(
                 ({ animationStates, animationStateIndex }) => (
                     {

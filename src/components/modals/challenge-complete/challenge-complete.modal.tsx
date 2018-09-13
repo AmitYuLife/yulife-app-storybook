@@ -11,7 +11,7 @@ interface IProps {
 
 const ChallengeComplete: SFC<IProps> = ({ onCtaPress }) => (
     <View style={styles.wrapper}>
-        <Image source={require("./assets/timeup.png")} />
+        <Image source={require("../../../../assets/challenge-complete/timeup.png")} />
         <View style={styles.headingWrapper}>
             <Text bold={true} style={styles.text}>{data.heading}</Text>
         </View>

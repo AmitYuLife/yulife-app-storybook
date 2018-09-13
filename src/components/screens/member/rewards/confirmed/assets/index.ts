@@ -1,6 +1,6 @@
 export default {
-    clock: require("./clockIcon.png"),
-    delivered: require("./delivered.png"),
-    failedIcon: require("./failedIcon.png"),
-    pending: require("./pending.png")
+    clock: require("../../../../../../../assets/rewards-confirmed/clockIcon.png"),
+    delivered: require("../../../../../../../assets/rewards-confirmed/delivered.png"),
+    failedIcon: require("../../../../../../../assets/rewards-confirmed/failedIcon.png"),
+    pending: require("../../../../../../../assets/rewards-confirmed/pending.png")
 };

@@ -60,7 +60,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               }
             }
             style={
@@ -85,7 +85,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                "testUri": "../../../assets/challenge-details/yucoin.png",
               }
             }
             style={
@@ -119,7 +119,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               }
             }
             style={
@@ -132,7 +132,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               }
             }
             style={
@@ -157,7 +157,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                "testUri": "../../../assets/challenge-details/yucoin.png",
               }
             }
             style={
@@ -191,7 +191,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               }
             }
             style={
@@ -204,7 +204,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               }
             }
             style={
@@ -217,7 +217,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               }
             }
             style={
@@ -242,7 +242,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                "testUri": "../../../assets/challenge-details/yucoin.png",
               }
             }
             style={
@@ -278,7 +278,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                    "testUri": "../../../assets/challenge-details/star.png",
                   }
                 }
                 style={
@@ -304,7 +304,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 }
               }
               style={
@@ -355,7 +355,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               },
               "style": Object {
                 "marginRight": 6,
@@ -399,7 +399,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                "testUri": "../../../assets/challenge-details/yucoin.png",
               },
               "style": Object {
                 "marginTop": -8,
@@ -434,7 +434,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                    "testUri": "../../../assets/challenge-details/star.png",
                   }
                 }
                 style={
@@ -447,7 +447,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                    "testUri": "../../../assets/challenge-details/star.png",
                   }
                 }
                 style={
@@ -473,7 +473,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 }
               }
               style={
@@ -524,7 +524,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               },
               "style": Object {
                 "marginRight": 6,
@@ -541,7 +541,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               },
               "style": Object {
                 "marginRight": 6,
@@ -585,7 +585,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                "testUri": "../../../assets/challenge-details/yucoin.png",
               },
               "style": Object {
                 "marginTop": -8,
@@ -620,7 +620,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                    "testUri": "../../../assets/challenge-details/star.png",
                   }
                 }
                 style={
@@ -633,7 +633,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                    "testUri": "../../../assets/challenge-details/star.png",
                   }
                 }
                 style={
@@ -646,7 +646,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                    "testUri": "../../../assets/challenge-details/star.png",
                   }
                 }
                 style={
@@ -672,7 +672,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 }
               }
               style={
@@ -723,7 +723,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               },
               "style": Object {
                 "marginRight": 6,
@@ -740,7 +740,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               },
               "style": Object {
                 "marginRight": 6,
@@ -757,7 +757,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               },
               "style": Object {
                 "marginRight": 6,
@@ -801,7 +801,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                "testUri": "../../../assets/challenge-details/yucoin.png",
               },
               "style": Object {
                 "marginTop": -8,
@@ -848,7 +848,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 }
               }
               style={
@@ -873,7 +873,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 }
               }
               style={
@@ -907,7 +907,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 }
               }
               style={
@@ -920,7 +920,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 }
               }
               style={
@@ -945,7 +945,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 }
               }
               style={
@@ -979,7 +979,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 }
               }
               style={
@@ -992,7 +992,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 }
               }
               style={
@@ -1005,7 +1005,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 }
               }
               style={
@@ -1030,7 +1030,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 }
               }
               style={
@@ -1066,7 +1066,7 @@ ShallowWrapper {
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                      "testUri": "../../../assets/challenge-details/star.png",
                     }
                   }
                   style={
@@ -1092,7 +1092,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                    "testUri": "../../../assets/challenge-details/yucoin.png",
                   }
                 }
                 style={
@@ -1143,7 +1143,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 },
                 "style": Object {
                   "marginRight": 6,
@@ -1187,7 +1187,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 },
                 "style": Object {
                   "marginTop": -8,
@@ -1222,7 +1222,7 @@ ShallowWrapper {
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                      "testUri": "../../../assets/challenge-details/star.png",
                     }
                   }
                   style={
@@ -1235,7 +1235,7 @@ ShallowWrapper {
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                      "testUri": "../../../assets/challenge-details/star.png",
                     }
                   }
                   style={
@@ -1261,7 +1261,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                    "testUri": "../../../assets/challenge-details/yucoin.png",
                   }
                 }
                 style={
@@ -1312,7 +1312,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 },
                 "style": Object {
                   "marginRight": 6,
@@ -1329,7 +1329,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 },
                 "style": Object {
                   "marginRight": 6,
@@ -1373,7 +1373,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 },
                 "style": Object {
                   "marginTop": -8,
@@ -1408,7 +1408,7 @@ ShallowWrapper {
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                      "testUri": "../../../assets/challenge-details/star.png",
                     }
                   }
                   style={
@@ -1421,7 +1421,7 @@ ShallowWrapper {
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                      "testUri": "../../../assets/challenge-details/star.png",
                     }
                   }
                   style={
@@ -1434,7 +1434,7 @@ ShallowWrapper {
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                      "testUri": "../../../assets/challenge-details/star.png",
                     }
                   }
                   style={
@@ -1460,7 +1460,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                    "testUri": "../../../assets/challenge-details/yucoin.png",
                   }
                 }
                 style={
@@ -1511,7 +1511,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 },
                 "style": Object {
                   "marginRight": 6,
@@ -1528,7 +1528,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 },
                 "style": Object {
                   "marginRight": 6,
@@ -1545,7 +1545,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 },
                 "style": Object {
                   "marginRight": 6,
@@ -1589,7 +1589,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 },
                 "style": Object {
                   "marginTop": -8,
@@ -1688,7 +1688,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               }
             }
             style={
@@ -1713,7 +1713,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                "testUri": "../../../assets/challenge-details/yucoin.png",
               }
             }
             style={
@@ -1747,7 +1747,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               }
             }
             style={
@@ -1760,7 +1760,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               }
             }
             style={
@@ -1785,7 +1785,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                "testUri": "../../../assets/challenge-details/yucoin.png",
               }
             }
             style={
@@ -1819,7 +1819,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               }
             }
             style={
@@ -1832,7 +1832,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               }
             }
             style={
@@ -1845,7 +1845,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               }
             }
             style={
@@ -1870,7 +1870,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                "testUri": "../../../assets/challenge-details/yucoin.png",
               }
             }
             style={
@@ -1906,7 +1906,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                    "testUri": "../../../assets/challenge-details/star.png",
                   }
                 }
                 style={
@@ -1932,7 +1932,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 }
               }
               style={
@@ -1983,7 +1983,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               },
               "style": Object {
                 "marginRight": 6,
@@ -2027,7 +2027,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                "testUri": "../../../assets/challenge-details/yucoin.png",
               },
               "style": Object {
                 "marginTop": -8,
@@ -2062,7 +2062,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                    "testUri": "../../../assets/challenge-details/star.png",
                   }
                 }
                 style={
@@ -2075,7 +2075,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                    "testUri": "../../../assets/challenge-details/star.png",
                   }
                 }
                 style={
@@ -2101,7 +2101,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 }
               }
               style={
@@ -2152,7 +2152,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               },
               "style": Object {
                 "marginRight": 6,
@@ -2169,7 +2169,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               },
               "style": Object {
                 "marginRight": 6,
@@ -2213,7 +2213,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                "testUri": "../../../assets/challenge-details/yucoin.png",
               },
               "style": Object {
                 "marginTop": -8,
@@ -2248,7 +2248,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                    "testUri": "../../../assets/challenge-details/star.png",
                   }
                 }
                 style={
@@ -2261,7 +2261,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                    "testUri": "../../../assets/challenge-details/star.png",
                   }
                 }
                 style={
@@ -2274,7 +2274,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                    "testUri": "../../../assets/challenge-details/star.png",
                   }
                 }
                 style={
@@ -2300,7 +2300,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 }
               }
               style={
@@ -2351,7 +2351,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               },
               "style": Object {
                 "marginRight": 6,
@@ -2368,7 +2368,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               },
               "style": Object {
                 "marginRight": 6,
@@ -2385,7 +2385,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                "testUri": "../../../assets/challenge-details/star.png",
               },
               "style": Object {
                 "marginRight": 6,
@@ -2429,7 +2429,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "source": Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                "testUri": "../../../assets/challenge-details/yucoin.png",
               },
               "style": Object {
                 "marginTop": -8,
@@ -2476,7 +2476,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 }
               }
               style={
@@ -2501,7 +2501,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 }
               }
               style={
@@ -2535,7 +2535,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 }
               }
               style={
@@ -2548,7 +2548,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 }
               }
               style={
@@ -2573,7 +2573,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 }
               }
               style={
@@ -2607,7 +2607,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 }
               }
               style={
@@ -2620,7 +2620,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 }
               }
               style={
@@ -2633,7 +2633,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 }
               }
               style={
@@ -2658,7 +2658,7 @@ ShallowWrapper {
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 }
               }
               style={
@@ -2694,7 +2694,7 @@ ShallowWrapper {
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                      "testUri": "../../../assets/challenge-details/star.png",
                     }
                   }
                   style={
@@ -2720,7 +2720,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                    "testUri": "../../../assets/challenge-details/yucoin.png",
                   }
                 }
                 style={
@@ -2771,7 +2771,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 },
                 "style": Object {
                   "marginRight": 6,
@@ -2815,7 +2815,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 },
                 "style": Object {
                   "marginTop": -8,
@@ -2850,7 +2850,7 @@ ShallowWrapper {
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                      "testUri": "../../../assets/challenge-details/star.png",
                     }
                   }
                   style={
@@ -2863,7 +2863,7 @@ ShallowWrapper {
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                      "testUri": "../../../assets/challenge-details/star.png",
                     }
                   }
                   style={
@@ -2889,7 +2889,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                    "testUri": "../../../assets/challenge-details/yucoin.png",
                   }
                 }
                 style={
@@ -2940,7 +2940,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 },
                 "style": Object {
                   "marginRight": 6,
@@ -2957,7 +2957,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 },
                 "style": Object {
                   "marginRight": 6,
@@ -3001,7 +3001,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 },
                 "style": Object {
                   "marginTop": -8,
@@ -3036,7 +3036,7 @@ ShallowWrapper {
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                      "testUri": "../../../assets/challenge-details/star.png",
                     }
                   }
                   style={
@@ -3049,7 +3049,7 @@ ShallowWrapper {
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                      "testUri": "../../../assets/challenge-details/star.png",
                     }
                   }
                   style={
@@ -3062,7 +3062,7 @@ ShallowWrapper {
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                      "testUri": "../../../assets/challenge-details/star.png",
                     }
                   }
                   style={
@@ -3088,7 +3088,7 @@ ShallowWrapper {
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                    "testUri": "../../../assets/challenge-details/yucoin.png",
                   }
                 }
                 style={
@@ -3139,7 +3139,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 },
                 "style": Object {
                   "marginRight": 6,
@@ -3156,7 +3156,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 },
                 "style": Object {
                   "marginRight": 6,
@@ -3173,7 +3173,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/star.png",
+                  "testUri": "../../../assets/challenge-details/star.png",
                 },
                 "style": Object {
                   "marginRight": 6,
@@ -3217,7 +3217,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "source": Object {
-                  "testUri": "../../../src/components/modals/challenge-details/assets/yucoin.png",
+                  "testUri": "../../../assets/challenge-details/yucoin.png",
                 },
                 "style": Object {
                   "marginTop": -8,

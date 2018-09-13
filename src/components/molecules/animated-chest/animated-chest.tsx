@@ -39,7 +39,7 @@ export default class AnimatedChest extends PureComponent<IProps> {
             return null;
         }
 
-        this.animationDelay = setTimeout(
+        this.animationDelay = global.setTimeout(
             this.animate,
             500
         );

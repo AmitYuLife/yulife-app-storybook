@@ -24,7 +24,7 @@ ShallowWrapper {
         resizeMode="cover"
         source={
           Object {
-            "testUri": "../../../src/components/screens/member/challenges/challenge-progress/assets/brisk-walk.png",
+            "testUri": "../../../assets/challenge-progress/brisk-walk.png",
           }
         }
         style={
@@ -51,7 +51,7 @@ ShallowWrapper {
         "resizeMethod": "resize",
         "resizeMode": "cover",
         "source": Object {
-          "testUri": "../../../src/components/screens/member/challenges/challenge-progress/assets/brisk-walk.png",
+          "testUri": "../../../assets/challenge-progress/brisk-walk.png",
         },
         "style": Object {
           "bottom": 0,
@@ -79,7 +79,7 @@ ShallowWrapper {
           resizeMode="cover"
           source={
             Object {
-              "testUri": "../../../src/components/screens/member/challenges/challenge-progress/assets/brisk-walk.png",
+              "testUri": "../../../assets/challenge-progress/brisk-walk.png",
             }
           }
           style={
@@ -106,7 +106,7 @@ ShallowWrapper {
           "resizeMethod": "resize",
           "resizeMode": "cover",
           "source": Object {
-            "testUri": "../../../src/components/screens/member/challenges/challenge-progress/assets/brisk-walk.png",
+            "testUri": "../../../assets/challenge-progress/brisk-walk.png",
           },
           "style": Object {
             "bottom": 0,

@@ -12,7 +12,7 @@ const Clock = () => (
         resizeMethod="resize"
         resizeMode="contain"
         style={styles.time}
-        source={require("./clock.png")}
+        source={require("../../../../assets/clock/clock.png")}
     />
 );
 

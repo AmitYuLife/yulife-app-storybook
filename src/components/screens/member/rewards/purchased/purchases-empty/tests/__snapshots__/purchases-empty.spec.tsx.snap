@@ -23,7 +23,7 @@ ShallowWrapper {
         <Image
           source={
             Object {
-              "testUri": "../../../src/components/screens/member/rewards/purchased/purchases-empty/assets/rewards-empty.png",
+              "testUri": "../../../assets/purchases-empty/rewards-empty.png",
             }
           }
           style={
@@ -82,7 +82,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "source": Object {
-            "testUri": "../../../src/components/screens/member/rewards/purchased/purchases-empty/assets/rewards-empty.png",
+            "testUri": "../../../assets/purchases-empty/rewards-empty.png",
           },
           "style": Object {
             "marginBottom": 42,
@@ -186,7 +186,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/screens/member/rewards/purchased/purchases-empty/assets/rewards-empty.png",
+                "testUri": "../../../assets/purchases-empty/rewards-empty.png",
               }
             }
             style={
@@ -245,7 +245,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "source": Object {
-              "testUri": "../../../src/components/screens/member/rewards/purchased/purchases-empty/assets/rewards-empty.png",
+              "testUri": "../../../assets/purchases-empty/rewards-empty.png",
             },
             "style": Object {
               "marginBottom": 42,

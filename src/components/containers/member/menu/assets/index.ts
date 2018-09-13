@@ -11,9 +11,9 @@ export const enum LINKS {
 }
 
 export default {
-    [LINKS.ACTIVITY]: require("./activity.png"),
-    [LINKS.CHAT]: require("./chat.png"),
-    [LINKS.LOGOUT]: require("./logout.png"),
-    [LINKS.MEMBER]: require("./member.png"),
-    [LINKS.PLAY]: require("./play.png")
+    [LINKS.ACTIVITY]: require("../../../../../../assets/menu/activity.png"),
+    [LINKS.CHAT]: require("../../../../../../assets/menu/chat.png"),
+    [LINKS.LOGOUT]: require("../../../../../../assets/menu/logout.png"),
+    [LINKS.MEMBER]: require("../../../../../../assets/menu/member.png"),
+    [LINKS.PLAY]: require("../../../../../../assets/menu/play.png")
 } as { [key: string]: ImageRequireSource };

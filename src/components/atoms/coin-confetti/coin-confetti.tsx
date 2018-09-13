@@ -25,7 +25,7 @@ const CoinConfetti: SFC<IProps> = ({
                 : styles.null
         ])}
     >
-        <Image source={require("./assets/coin.png")} />
+        <Image source={require("../../../../assets/coin-confetti/coin.png")} />
         <View style={styles.confettiWrapper}>
             <Image
                 style={StyleSheet.flatten([
@@ -34,7 +34,7 @@ const CoinConfetti: SFC<IProps> = ({
                         ? styles.confettiExpanded
                         : null
                 ])}
-                source={require("./assets/confetti.png")}
+                source={require("../../../../assets/coin-confetti/confetti.png")}
             />
         </View>
         {!coins ? null : (

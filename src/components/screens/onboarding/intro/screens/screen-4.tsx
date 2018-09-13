@@ -13,7 +13,7 @@ class OnboardingScreenFour extends PureComponent<IScreenProps> {
                         <Image
                             resizeMode="cover"
                             style={styles.image}
-                            source={require("../assets/onboarding-app-4.png")}
+                            source={require("../../../../../../assets/intro/onboarding-app-4.png")}
                         />
                     </View>
                     <View style={styles.buttonsWrapper}>

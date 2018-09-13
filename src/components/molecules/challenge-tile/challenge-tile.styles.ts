@@ -45,13 +45,13 @@ export const getImageStyle = (image: Images): ImageStyle => {
 export const getImage = (image: Images) => {
     switch (image) {
         case IMAGES.SQUIRREL:
-            return require("./assets/squirrel.png");
+            return require("../../../../assets/challenge-tile/squirrel.png");
         case IMAGES.ELEPHANT:
-            return require("./assets/elephant.png");
+            return require("../../../../assets/challenge-tile/elephant.png");
         case IMAGES.OSTRICH:
-            return require("./assets/ostrich.png");
+            return require("../../../../assets/challenge-tile/ostrich.png");
         case IMAGES.BIRD:
-            return require("./assets/bird.png");
+            return require("../../../../assets/challenge-tile/bird.png");
         default:
             return null;
     }

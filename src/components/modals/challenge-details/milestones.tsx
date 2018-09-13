@@ -42,12 +42,19 @@ const Milestones: SFC<IProps> = ({ milestones, unit }) => (
                     <Text>{`${getTargetByUnit(target, unit)} ${translateUnit(unit)}`}</Text>
                 </View>
                 {Array.from({ length: milestones.length === 1 ? 3 : index + 1 }).map((_, i) => (
-                    <Image key={i} source={require("./assets/star.png")} style={styles.starImage} />
+                    <Image
+                        key={i}
+                        source={require("../../../../assets/challenge-details/star.png")}
+                        style={styles.starImage}
+                    />
                 ))}
                 <View style={styles.rewardWrapper}>
                     <Text>{`${reward} x`}</Text>
                 </View>
-                <Image style={styles.yucoinImage} source={require("./assets/yucoin.png")} />
+                <Image
+                    style={styles.yucoinImage}
+                    source={require("../../../../assets/challenge-details/yucoin.png")}
+                />
             </View>
         ))}
     </>

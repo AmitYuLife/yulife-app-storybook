@@ -11,7 +11,7 @@ interface IProps {
 
 const PurchasesEmpty: SFC<IProps> = ({ onCtaPress }) => (
     <View style={styles.wrapper}>
-        <Image style={styles.image} source={require("./assets/rewards-empty.png")} />
+        <Image style={styles.image} source={require("../../../../../../../assets/purchases-empty/rewards-empty.png")} />
         <View style={styles.contentWrapper}>
             <Text style={styles.text}>{data.contentLine1}</Text>
             <Text style={styles.text}>{data.contentLine2}</Text>
