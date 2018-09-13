@@ -16,7 +16,7 @@ const QuestsScreenOffline: SFC = () => (
                 <Image
                     resizeMode="cover"
                     style={styles.background}
-                    source={require("./static/challenge-offline.png")}
+                    source={require("../../../../../../assets/quests-offline/challenge-offline.png")}
                 />
             </View>
             <View style={styles.headingWrapper}>

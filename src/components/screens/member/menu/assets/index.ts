@@ -1,4 +1,4 @@
 export default {
-    close: require("./x.png"),
-    logo: require("./logo.png")
+    close: require("../../../../../../assets/menu/x.png"),
+    logo: require("../../../../../../assets/menu/logo.png")
 };

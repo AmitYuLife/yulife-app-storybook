@@ -13,7 +13,7 @@ class OnboardingScreenTwo extends PureComponent<IScreenProps> {
                         <Image
                             style={styles.image}
                             resizeMode="cover"
-                            source={require("../assets/onboarding-app-2.png")}
+                            source={require("../../../../../../assets/intro/onboarding-app-2.png")}
                         />
                         </View>
                     <View style={styles.buttonsWrapper}>

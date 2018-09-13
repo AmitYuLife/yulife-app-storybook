@@ -76,7 +76,7 @@ ShallowWrapper {
               resizeMode="contain"
               source={
                 Object {
-                  "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                  "testUri": "../../../assets/menu/x.png",
                 }
               }
               style={
@@ -99,7 +99,7 @@ ShallowWrapper {
               resizeMode="contain"
               source={
                 Object {
-                  "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                  "testUri": "../../../assets/menu/logo.png",
                 }
               }
               style={Object {}}
@@ -227,7 +227,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                    "testUri": "../../../assets/menu/x.png",
                   }
                 }
                 style={
@@ -250,7 +250,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                    "testUri": "../../../assets/menu/logo.png",
                   }
                 }
                 style={Object {}}
@@ -360,7 +360,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                    "testUri": "../../../assets/menu/x.png",
                   }
                 }
                 style={
@@ -389,7 +389,7 @@ ShallowWrapper {
               "props": Object {
                 "resizeMode": "contain",
                 "source": Object {
-                  "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                  "testUri": "../../../assets/menu/x.png",
                 },
                 "style": Object {
                   "height": 26,
@@ -411,7 +411,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                    "testUri": "../../../assets/menu/logo.png",
                   }
                 }
                 style={Object {}}
@@ -429,7 +429,7 @@ ShallowWrapper {
               "props": Object {
                 "resizeMode": "contain",
                 "source": Object {
-                  "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                  "testUri": "../../../assets/menu/logo.png",
                 },
                 "style": Object {},
               },
@@ -703,7 +703,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                    "testUri": "../../../assets/menu/x.png",
                   }
                 }
                 style={
@@ -726,7 +726,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                    "testUri": "../../../assets/menu/logo.png",
                   }
                 }
                 style={Object {}}
@@ -854,7 +854,7 @@ ShallowWrapper {
                   resizeMode="contain"
                   source={
                     Object {
-                      "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                      "testUri": "../../../assets/menu/x.png",
                     }
                   }
                   style={
@@ -877,7 +877,7 @@ ShallowWrapper {
                   resizeMode="contain"
                   source={
                     Object {
-                      "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                      "testUri": "../../../assets/menu/logo.png",
                     }
                   }
                   style={Object {}}
@@ -987,7 +987,7 @@ ShallowWrapper {
                   resizeMode="contain"
                   source={
                     Object {
-                      "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                      "testUri": "../../../assets/menu/x.png",
                     }
                   }
                   style={
@@ -1016,7 +1016,7 @@ ShallowWrapper {
                 "props": Object {
                   "resizeMode": "contain",
                   "source": Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                    "testUri": "../../../assets/menu/x.png",
                   },
                   "style": Object {
                     "height": 26,
@@ -1038,7 +1038,7 @@ ShallowWrapper {
                   resizeMode="contain"
                   source={
                     Object {
-                      "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                      "testUri": "../../../assets/menu/logo.png",
                     }
                   }
                   style={Object {}}
@@ -1056,7 +1056,7 @@ ShallowWrapper {
                 "props": Object {
                   "resizeMode": "contain",
                   "source": Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                    "testUri": "../../../assets/menu/logo.png",
                   },
                   "style": Object {},
                 },
@@ -1367,7 +1367,7 @@ ShallowWrapper {
               resizeMode="contain"
               source={
                 Object {
-                  "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                  "testUri": "../../../assets/menu/x.png",
                 }
               }
               style={
@@ -1390,7 +1390,7 @@ ShallowWrapper {
               resizeMode="contain"
               source={
                 Object {
-                  "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                  "testUri": "../../../assets/menu/logo.png",
                 }
               }
               style={Object {}}
@@ -1438,7 +1438,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                    "testUri": "../../../assets/menu/x.png",
                   }
                 }
                 style={
@@ -1461,7 +1461,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                    "testUri": "../../../assets/menu/logo.png",
                   }
                 }
                 style={Object {}}
@@ -1488,7 +1488,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                    "testUri": "../../../assets/menu/x.png",
                   }
                 }
                 style={
@@ -1517,7 +1517,7 @@ ShallowWrapper {
               "props": Object {
                 "resizeMode": "contain",
                 "source": Object {
-                  "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                  "testUri": "../../../assets/menu/x.png",
                 },
                 "style": Object {
                   "height": 26,
@@ -1539,7 +1539,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                    "testUri": "../../../assets/menu/logo.png",
                   }
                 }
                 style={Object {}}
@@ -1557,7 +1557,7 @@ ShallowWrapper {
               "props": Object {
                 "resizeMode": "contain",
                 "source": Object {
-                  "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                  "testUri": "../../../assets/menu/logo.png",
                 },
                 "style": Object {},
               },
@@ -1614,7 +1614,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                    "testUri": "../../../assets/menu/x.png",
                   }
                 }
                 style={
@@ -1637,7 +1637,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                    "testUri": "../../../assets/menu/logo.png",
                   }
                 }
                 style={Object {}}
@@ -1685,7 +1685,7 @@ ShallowWrapper {
                   resizeMode="contain"
                   source={
                     Object {
-                      "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                      "testUri": "../../../assets/menu/x.png",
                     }
                   }
                   style={
@@ -1708,7 +1708,7 @@ ShallowWrapper {
                   resizeMode="contain"
                   source={
                     Object {
-                      "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                      "testUri": "../../../assets/menu/logo.png",
                     }
                   }
                   style={Object {}}
@@ -1735,7 +1735,7 @@ ShallowWrapper {
                   resizeMode="contain"
                   source={
                     Object {
-                      "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                      "testUri": "../../../assets/menu/x.png",
                     }
                   }
                   style={
@@ -1764,7 +1764,7 @@ ShallowWrapper {
                 "props": Object {
                   "resizeMode": "contain",
                   "source": Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/x.png",
+                    "testUri": "../../../assets/menu/x.png",
                   },
                   "style": Object {
                     "height": 26,
@@ -1786,7 +1786,7 @@ ShallowWrapper {
                   resizeMode="contain"
                   source={
                     Object {
-                      "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                      "testUri": "../../../assets/menu/logo.png",
                     }
                   }
                   style={Object {}}
@@ -1804,7 +1804,7 @@ ShallowWrapper {
                 "props": Object {
                   "resizeMode": "contain",
                   "source": Object {
-                    "testUri": "../../../src/components/screens/member/menu/assets/logo.png",
+                    "testUri": "../../../assets/menu/logo.png",
                   },
                   "style": Object {},
                 },

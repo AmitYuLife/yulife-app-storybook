@@ -21,7 +21,7 @@ ShallowWrapper {
       "children": <Image
         source={
           Object {
-            "testUri": "../../../src/components/atoms/close/assets/close.png",
+            "testUri": "../../../assets/close/close.png",
           }
         }
       />,
@@ -39,7 +39,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "source": Object {
-          "testUri": "../../../src/components/atoms/close/assets/close.png",
+          "testUri": "../../../assets/close/close.png",
         },
       },
       "ref": null,
@@ -58,7 +58,7 @@ ShallowWrapper {
         "children": <Image
           source={
             Object {
-              "testUri": "../../../src/components/atoms/close/assets/close.png",
+              "testUri": "../../../assets/close/close.png",
             }
           }
         />,
@@ -76,7 +76,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "source": Object {
-            "testUri": "../../../src/components/atoms/close/assets/close.png",
+            "testUri": "../../../assets/close/close.png",
           },
         },
         "ref": null,

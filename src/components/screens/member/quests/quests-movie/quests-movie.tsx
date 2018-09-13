@@ -18,7 +18,7 @@ class QuestsMovie extends React.PureComponent<{}, IState> {
     }
 
     public startAnimation = () => {
-        this.frameInterval = setInterval(
+        this.frameInterval = global.setInterval(
             this.goToNextFrame,
             150
         );

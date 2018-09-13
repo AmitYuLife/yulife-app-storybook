@@ -1,4 +1,4 @@
 export default {
-    empty: require("./starEmpty.png"),
-    filled: require("./starFilled.png")
+    empty: require("../../../../../assets/star-inline/starEmpty.png"),
+    filled: require("../../../../../assets/star-inline/starFilled.png")
 };

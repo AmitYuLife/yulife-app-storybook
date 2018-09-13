@@ -15,7 +15,7 @@ class OnboardingScreenFive extends PureComponent<IScreenProps> {
                         <Image
                             resizeMethod="resize"
                             resizeMode="contain"
-                            source={require("../assets/onboarding-app-5.png")}
+                            source={require("../../../../../../assets/intro/onboarding-app-5.png")}
                         />
                     </View>
                     <View style={styles.buttonsWrapper}>

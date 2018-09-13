@@ -21,7 +21,7 @@ class LevelPending extends PureComponent<IProps, IState> {
     public componentDidMount() {
         const { nextAvailable } = this.props;
         this.setState({ nextAvailable }, () => {
-            this.interval = setInterval(
+            this.interval = global.setInterval(
                 this.handleUpdateNextAvailable,
                 1000
             );

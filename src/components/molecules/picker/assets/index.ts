@@ -1,5 +1,5 @@
 export default {
-    v: require("./v.png")
+    v: require("../../../../../assets/picker/v.png")
 };
 
 export { default as Coins } from "./coins";

@@ -79,8 +79,8 @@ class TodayYucoinScreen extends PureComponent<IProps> {
                                             style={styles.star}
                                             source={
                                                 (steps / 2000) >= index + 1
-                                                    ? require("./assets/check-filled.png")
-                                                    : require("./assets/check-empty.png")
+                                                    ? require("../../../../../assets/today-yucoin/check-filled.png")
+                                                    : require("../../../../../assets/today-yucoin/check-empty.png")
                                             }
                                         />
                                     ))}

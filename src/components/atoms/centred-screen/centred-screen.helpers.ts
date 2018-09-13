@@ -5,11 +5,11 @@ import styles from "./centred-screen.styles";
 export const getImage = (image: string) => {
     switch (image) {
         case IMAGES.FOREST:
-            return require("./assets/forestBackground.png");
+            return require("../../../../assets/centred-screen/forestBackground.png");
         case IMAGES.LARGE_FOREST:
-            return require("./assets/largeForest.png");
+            return require("../../../../assets/centred-screen/largeForest.png");
         case IMAGES.MOUNTAINS:
-            return require("./assets/mountains.png");
+            return require("../../../../assets/centred-screen/mountains.png");
         default:
             return null;
     }

@@ -37,7 +37,7 @@ class Level extends PureComponent<IProps, IState> {
         const { pulseSize } = this.state;
         const { nextAvailable } = this.props.data;
         const multiplier = nextAvailable < 0 ? 1 : 2
-        this.pulseTimeout = setTimeout(
+        this.pulseTimeout = global.setTimeout(
             () => this.setState(({
                 pulseSize,
             }) => ({

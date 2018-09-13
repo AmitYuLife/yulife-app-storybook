@@ -39,7 +39,7 @@ ShallowWrapper {
         <Image
           source={
             Object {
-              "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
+              "testUri": "../../../assets/challenge-details/squirrel.png",
             }
           }
           style={
@@ -127,7 +127,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "source": Object {
-            "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
+            "testUri": "../../../assets/challenge-details/squirrel.png",
           },
           "style": Object {
             "marginTop": 200,
@@ -260,7 +260,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
+                "testUri": "../../../assets/challenge-details/squirrel.png",
               }
             }
             style={
@@ -348,7 +348,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "source": Object {
-              "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
+              "testUri": "../../../assets/challenge-details/squirrel.png",
             },
             "style": Object {
               "marginTop": 200,
@@ -529,7 +529,7 @@ ShallowWrapper {
         <Image
           source={
             Object {
-              "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
+              "testUri": "../../../assets/challenge-details/squirrel.png",
             }
           }
           style={
@@ -618,7 +618,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "source": Object {
-            "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
+            "testUri": "../../../assets/challenge-details/squirrel.png",
           },
           "style": Object {
             "marginTop": 200,
@@ -751,7 +751,7 @@ ShallowWrapper {
           <Image
             source={
               Object {
-                "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
+                "testUri": "../../../assets/challenge-details/squirrel.png",
               }
             }
             style={
@@ -840,7 +840,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "source": Object {
-              "testUri": "../../../src/components/modals/challenge-details/assets/squirrel.png",
+              "testUri": "../../../assets/challenge-details/squirrel.png",
             },
             "style": Object {
               "marginTop": 200,

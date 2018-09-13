@@ -24,7 +24,7 @@ const ChallengesListScreen: SFC<IProps> = ({ challenges, labels, onPressLeftIcon
                 <Image
                     resizeMethod="scale"
                     resizeMode="contain"
-                    source={require("./challenges-list-background/challenges-list-background.png")}
+                    source={require("../../../../../../assets/challenges-list/challenges-list-background.png")}
                     style={styles.background}
                 />
             )}

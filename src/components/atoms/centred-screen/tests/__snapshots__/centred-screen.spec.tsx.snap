@@ -35,7 +35,7 @@ ShallowWrapper {
             resizeMode="cover"
             source={
               Object {
-                "testUri": "../../../src/components/atoms/centred-screen/assets/forestBackground.png",
+                "testUri": "../../../assets/centred-screen/forestBackground.png",
               }
             }
             style={
@@ -66,7 +66,7 @@ ShallowWrapper {
             resizeMode="cover"
             source={
               Object {
-                "testUri": "../../../src/components/atoms/centred-screen/assets/forestBackground.png",
+                "testUri": "../../../assets/centred-screen/forestBackground.png",
               }
             }
             style={
@@ -92,7 +92,7 @@ ShallowWrapper {
           "props": Object {
             "resizeMode": "cover",
             "source": Object {
-              "testUri": "../../../src/components/atoms/centred-screen/assets/forestBackground.png",
+              "testUri": "../../../assets/centred-screen/forestBackground.png",
             },
             "style": Object {
               "height": 400,
@@ -131,7 +131,7 @@ ShallowWrapper {
               resizeMode="cover"
               source={
                 Object {
-                  "testUri": "../../../src/components/atoms/centred-screen/assets/forestBackground.png",
+                  "testUri": "../../../assets/centred-screen/forestBackground.png",
                 }
               }
               style={
@@ -162,7 +162,7 @@ ShallowWrapper {
               resizeMode="cover"
               source={
                 Object {
-                  "testUri": "../../../src/components/atoms/centred-screen/assets/forestBackground.png",
+                  "testUri": "../../../assets/centred-screen/forestBackground.png",
                 }
               }
               style={
@@ -188,7 +188,7 @@ ShallowWrapper {
             "props": Object {
               "resizeMode": "cover",
               "source": Object {
-                "testUri": "../../../src/components/atoms/centred-screen/assets/forestBackground.png",
+                "testUri": "../../../assets/centred-screen/forestBackground.png",
               },
               "style": Object {
                 "height": 400,
@@ -445,7 +445,7 @@ ShallowWrapper {
             resizeMode="cover"
             source={
               Object {
-                "testUri": "../../../src/components/atoms/centred-screen/assets/largeForest.png",
+                "testUri": "../../../assets/centred-screen/largeForest.png",
               }
             }
             style={
@@ -477,7 +477,7 @@ ShallowWrapper {
             resizeMode="cover"
             source={
               Object {
-                "testUri": "../../../src/components/atoms/centred-screen/assets/largeForest.png",
+                "testUri": "../../../assets/centred-screen/largeForest.png",
               }
             }
             style={
@@ -504,7 +504,7 @@ ShallowWrapper {
           "props": Object {
             "resizeMode": "cover",
             "source": Object {
-              "testUri": "../../../src/components/atoms/centred-screen/assets/largeForest.png",
+              "testUri": "../../../assets/centred-screen/largeForest.png",
             },
             "style": Object {
               "height": 600,
@@ -544,7 +544,7 @@ ShallowWrapper {
               resizeMode="cover"
               source={
                 Object {
-                  "testUri": "../../../src/components/atoms/centred-screen/assets/largeForest.png",
+                  "testUri": "../../../assets/centred-screen/largeForest.png",
                 }
               }
               style={
@@ -576,7 +576,7 @@ ShallowWrapper {
               resizeMode="cover"
               source={
                 Object {
-                  "testUri": "../../../src/components/atoms/centred-screen/assets/largeForest.png",
+                  "testUri": "../../../assets/centred-screen/largeForest.png",
                 }
               }
               style={
@@ -603,7 +603,7 @@ ShallowWrapper {
             "props": Object {
               "resizeMode": "cover",
               "source": Object {
-                "testUri": "../../../src/components/atoms/centred-screen/assets/largeForest.png",
+                "testUri": "../../../assets/centred-screen/largeForest.png",
               },
               "style": Object {
                 "height": 600,
@@ -679,7 +679,7 @@ ShallowWrapper {
             resizeMode="cover"
             source={
               Object {
-                "testUri": "../../../src/components/atoms/centred-screen/assets/mountains.png",
+                "testUri": "../../../assets/centred-screen/mountains.png",
               }
             }
             style={
@@ -711,7 +711,7 @@ ShallowWrapper {
             resizeMode="cover"
             source={
               Object {
-                "testUri": "../../../src/components/atoms/centred-screen/assets/mountains.png",
+                "testUri": "../../../assets/centred-screen/mountains.png",
               }
             }
             style={
@@ -738,7 +738,7 @@ ShallowWrapper {
           "props": Object {
             "resizeMode": "cover",
             "source": Object {
-              "testUri": "../../../src/components/atoms/centred-screen/assets/mountains.png",
+              "testUri": "../../../assets/centred-screen/mountains.png",
             },
             "style": Object {
               "height": 600,
@@ -778,7 +778,7 @@ ShallowWrapper {
               resizeMode="cover"
               source={
                 Object {
-                  "testUri": "../../../src/components/atoms/centred-screen/assets/mountains.png",
+                  "testUri": "../../../assets/centred-screen/mountains.png",
                 }
               }
               style={
@@ -810,7 +810,7 @@ ShallowWrapper {
               resizeMode="cover"
               source={
                 Object {
-                  "testUri": "../../../src/components/atoms/centred-screen/assets/mountains.png",
+                  "testUri": "../../../assets/centred-screen/mountains.png",
                 }
               }
               style={
@@ -837,7 +837,7 @@ ShallowWrapper {
             "props": Object {
               "resizeMode": "cover",
               "source": Object {
-                "testUri": "../../../src/components/atoms/centred-screen/assets/mountains.png",
+                "testUri": "../../../assets/centred-screen/mountains.png",
               },
               "style": Object {
                 "height": 600,

@@ -77,7 +77,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
     }
 
     public componentDidMount() {
-        this.scrollTimer = setTimeout(
+        this.scrollTimer = global.setTimeout(
             () => {
                 this.scrollView.scrollTo({
                     y: this.indices[this.state.activeIndex]
@@ -151,7 +151,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                 },
                 () => {
                     this.unityLocker.animateIn();
-                    this.animateInDelay = setTimeout(
+                    this.animateInDelay = global.setTimeout(
                         () => {
                             this.setState({ isSwipeDisabled: false });
                             this.scrollView.scrollTo({
@@ -175,7 +175,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                             });
                         }
                     );
-                    this.animateOutDelay = setTimeout(
+                    this.animateOutDelay = global.setTimeout(
                         () => {
                             this.unityLocker.animateOut(() => {
                                 this.setState({ isSwipeDisabled: false });

@@ -2,25 +2,25 @@
 
 exports[`getBackgroundImage should return null for an undefined input 1`] = `
 Object {
-  "testUri": "../../../src/components/screens/member/challenges/challenge-progress/assets/brisk-walk.png",
+  "testUri": "../../../assets/challenge-progress/brisk-walk.png",
 }
 `;
 
 exports[`getBackgroundImage should return null for an undefined input 2`] = `
 Object {
-  "testUri": "../../../src/components/screens/member/challenges/challenge-progress/assets/short-stroll.png",
+  "testUri": "../../../assets/challenge-progress/short-stroll.png",
 }
 `;
 
 exports[`getBackgroundImage should return null for an undefined input 3`] = `
 Object {
-  "testUri": "../../../src/components/screens/member/challenges/challenge-progress/assets/meditation.png",
+  "testUri": "../../../assets/challenge-progress/meditation.png",
 }
 `;
 
 exports[`getBackgroundImage should return null for an undefined input 4`] = `
 Object {
-  "testUri": "../../../src/components/screens/member/challenges/challenge-progress/assets/long-walk.png",
+  "testUri": "../../../assets/challenge-progress/long-walk.png",
 }
 `;
 

@@ -23,7 +23,7 @@ class Shine extends PureComponent<{}, IState> {
     }
 
     public componentDidMount() {
-        this.animationInterval = setInterval(
+        this.animationInterval = global.setInterval(
             this.animate,
             4000
         );
@@ -34,7 +34,7 @@ class Shine extends PureComponent<{}, IState> {
             return this.setState(
                 ({ x }) => ({ x: x + 80 }),
                 () => {
-                    this.animationTimeout = setTimeout(
+                    this.animationTimeout = global.setTimeout(
                         this.animate,
                         40
                     );

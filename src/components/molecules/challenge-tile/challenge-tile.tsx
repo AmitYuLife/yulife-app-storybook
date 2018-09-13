@@ -107,7 +107,7 @@ const LockedOverlay: SFC<Partial<Props>> = ({ isImageBackgroundFlipped, minimumL
         <Image
             resizeMode="contain"
             style={styles.lockedImage}
-            source={require("./assets/lock.png")}
+            source={require("../../../../assets/challenge-tile/lock.png")}
         />
         <Text
             style={styles.lockedLabel}
@@ -154,7 +154,7 @@ const ContentWrapper: SFC<Partial<Props>> = ({ challengeType, duration, reward }
         />
         <View style={styles.imageWrapperNext}>
             <Image
-                source={require("./assets/next.png")}
+                source={require("../../../../assets/challenge-tile/next.png")}
                 resizeMode="contain"
                 style={styles.imageNext}
             />
