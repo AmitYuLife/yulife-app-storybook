@@ -2,7 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { boolean, number, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import * as React from "react";
-import { Text } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import {
     Blurb,
     BlurProvider,
@@ -17,7 +17,6 @@ import {
     TextInput
 } from ".";
 import CenterView from "../../../storybook/stories/CenterView";
-import { CollectRewardModal } from "../modals";
 import { SignUpRewardScreen } from "../screens";
 
 storiesOf("Atoms", module)
@@ -25,9 +24,16 @@ storiesOf("Atoms", module)
     .add("1. BlurProvider", () => (
         <BlurProvider
             renderOverlay={({ toggleOverlay }) => (
-                <CollectRewardModal
+                <TouchableOpacity
                     onPress={toggleOverlay}
-                />
+                    style={{
+                        alignItems: "center",
+                        flex: 1,
+                        justifyContent: "center"
+                    }}
+                >
+                    <Text>Transparent background</Text>
+                </TouchableOpacity>
             )}
             render={({ toggleOverlay }) => (
                 <SignUpRewardScreen

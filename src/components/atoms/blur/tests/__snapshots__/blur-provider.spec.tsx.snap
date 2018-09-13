@@ -481,7 +481,11 @@ ShallowWrapper {
             }
           }
         />,
-        null,
+        <Blur
+          blurRef={1}
+          wrapperOpacity={0}
+          wrapperPosition={-1000}
+        />,
         <AnimatedComponent
           style={
             Object {
@@ -523,7 +527,19 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
-      null,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "blurRef": 1,
+          "wrapperOpacity": 0,
+          "wrapperPosition": -1000,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
       Object {
         "instance": null,
         "key": undefined,
@@ -567,7 +583,11 @@ ShallowWrapper {
               }
             }
           />,
-          null,
+          <Blur
+            blurRef={1}
+            wrapperOpacity={0}
+            wrapperPosition={-1000}
+          />,
           <AnimatedComponent
             style={
               Object {
@@ -609,7 +629,19 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
-        null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "blurRef": 1,
+            "wrapperOpacity": 0,
+            "wrapperPosition": -1000,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
         Object {
           "instance": null,
           "key": undefined,

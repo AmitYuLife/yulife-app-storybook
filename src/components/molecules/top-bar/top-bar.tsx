@@ -14,6 +14,7 @@ interface IProps {
     menuLabel?: string;
     leftIcon?: LeftIconTypes;
     isDemo?: boolean;
+    middleLabel?: string;
 }
 
 export enum LEFT_ICON_TYPES {
@@ -52,7 +53,7 @@ class TopBar extends PureComponent<IProps> {
         if (name) {
             return (
                 <View style={styles.timerWrapper}>
-                    <Text style={styles.timer}>{name}</Text>
+                    <Text style={styles.name}>{name}</Text>
                 </View>
             );
         }
@@ -61,7 +62,13 @@ class TopBar extends PureComponent<IProps> {
     }
 
     public render() {
-        const { onPressLeftIcon, coins, leftIcon = "Menu", menuLabel, isDemo } = this.props;
+        const {
+            onPressLeftIcon,
+            coins,
+            leftIcon = "Menu",
+            menuLabel,
+            isDemo
+        } = this.props;
         return (
             <View style={styles.wrapper}>
                 {isDemo ? (

@@ -1379,7 +1379,9 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
-                  "fontSize": 36,
+                  "fontSize": 40,
+                  "marginLeft": 8,
+                  "marginTop": -8,
                 }
               }
             >
@@ -1473,7 +1475,9 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
-                    "fontSize": 36,
+                    "fontSize": 40,
+                    "marginLeft": 8,
+                    "marginTop": -8,
                   }
                 }
               >
@@ -1548,7 +1552,9 @@ ShallowWrapper {
                 <YuText
                   style={
                     Object {
-                      "fontSize": 36,
+                      "fontSize": 40,
+                      "marginLeft": 8,
+                      "marginTop": -8,
                     }
                   }
                 >
@@ -1585,7 +1591,9 @@ ShallowWrapper {
                 "children": <YuText
                   style={
                     Object {
-                      "fontSize": 36,
+                      "fontSize": 40,
+                      "marginLeft": 8,
+                      "marginTop": -8,
                     }
                   }
                 >
@@ -1604,7 +1612,9 @@ ShallowWrapper {
                 "props": Object {
                   "children": "Menu Label",
                   "style": Object {
-                    "fontSize": 36,
+                    "fontSize": 40,
+                    "marginLeft": 8,
+                    "marginTop": -8,
                   },
                 },
                 "ref": null,
@@ -1781,7 +1791,9 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
-                    "fontSize": 36,
+                    "fontSize": 40,
+                    "marginLeft": 8,
+                    "marginTop": -8,
                   }
                 }
               >
@@ -1875,7 +1887,9 @@ ShallowWrapper {
                 <YuText
                   style={
                     Object {
-                      "fontSize": 36,
+                      "fontSize": 40,
+                      "marginLeft": 8,
+                      "marginTop": -8,
                     }
                   }
                 >
@@ -1950,7 +1964,9 @@ ShallowWrapper {
                   <YuText
                     style={
                       Object {
-                        "fontSize": 36,
+                        "fontSize": 40,
+                        "marginLeft": 8,
+                        "marginTop": -8,
                       }
                     }
                   >
@@ -1987,7 +2003,9 @@ ShallowWrapper {
                   "children": <YuText
                     style={
                       Object {
-                        "fontSize": 36,
+                        "fontSize": 40,
+                        "marginLeft": 8,
+                        "marginTop": -8,
                       }
                     }
                   >
@@ -2006,7 +2024,9 @@ ShallowWrapper {
                   "props": Object {
                     "children": "Menu Label",
                     "style": Object {
-                      "fontSize": 36,
+                      "fontSize": 40,
+                      "marginLeft": 8,
+                      "marginTop": -8,
                     },
                   },
                   "ref": null,

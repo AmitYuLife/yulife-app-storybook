@@ -29,6 +29,12 @@ storiesOf("Molecules", module)
     .add("2. TopBar", () => (
         <CenterView>
             <TopBar
+                leftIcon={select("leftIcon", [
+                    "Menu",
+                    "Back"
+                ], "Menu")}
+                menuLabel={text("menuLabel", "")}
+                name={text("middleLabel", "")}
                 onPressLeftIcon={action("topbar pressed")}
                 coins={number("Coins", 246, {
                     max: 35000,
