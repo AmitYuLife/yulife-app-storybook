@@ -41,8 +41,10 @@
 	</dict>
 	<key>NSHealthShareUsageDescription</key>
 	<string>We use your step and meditation data so we can verify you have completed challenges.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Need the ability to write your step and meditation data so we can update completed challenges</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Need the ability to access your location movement for step tracking challenges</string>
 	<key>NSMotionUsageDescription</key>
 	<string>We use your pedometer to track how many steps you've taken during the day.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
