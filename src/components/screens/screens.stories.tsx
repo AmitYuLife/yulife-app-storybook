@@ -1,5 +1,12 @@
 import { action } from "@storybook/addon-actions";
-import { boolean, number, object, select, withKnobs } from "@storybook/addon-knobs";
+import {
+    boolean,
+    number,
+    object,
+    select,
+    text,
+    withKnobs
+} from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import moment from "moment";
 import React from "react";
@@ -21,6 +28,7 @@ import {
     ResetPasswordSuccessScreen,
     SignUpRewardScreen,
     StreaksScreen,
+    TodayYucoin,
     WelcomeScreen
 } from "./index";
 
@@ -342,4 +350,16 @@ storiesOf("Screens", module)
     ))
     .add("14c. QuestsMovie", () => (
         <QuestsMovie />
+    ))
+    .add("15. Today Yucoin", () => (
+        <TodayYucoin
+            showStars={boolean("showStars", false)}
+            steps={number("steps", 0)}
+            activeChallengeEarnings={number("activeChallengeEarnings", 0)}
+            activeChallengeLabel={text("activeChallengeLabel", "brisk walk / 1299 steps")}
+            activeChallengeRating={number("activeChallengeRating", 3)}
+            showCta={boolean("showCta", false)}
+            onPressCta={action("pressed cta")}
+            onPressClose={action("pressed close")}
+        />
     ));

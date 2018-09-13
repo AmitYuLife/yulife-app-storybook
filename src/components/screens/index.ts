@@ -32,3 +32,5 @@ export { default as RewardsListScreen } from "./member/rewards/list/rewards-list
 export { default as WegiftRewardDetailsScreen } from "./member/rewards/details/wegift-details.screen";
 export { default as WegiftRewardConfirmedScreen } from "./member/rewards/confirmed/wegift-confirmed.screen";
 export { default as AviosRewardDetailsScreen } from "./member/rewards/details/avios-details.screen";
+
+export { default as TodayYucoin } from "./member/today-yucoin/today-yucoin";
