@@ -30,7 +30,9 @@ export default StyleSheet.create({
         right: Style.SCALE_UP_AND_DOWN(15)
     } as ViewStyle,
     menuLabel: {
-        fontSize: Style.SCALE_UP_AND_DOWN(18)
+        fontSize: Style.SCALE_UP_AND_DOWN(20),
+        marginLeft: Style.SCALE_UP_AND_DOWN(4),
+        marginTop: Style.SCALE_UP_AND_DOWN(-4)
     } as TextStyle,
     menuLabelWrapper: {
         marginBottom: Style.SCALE_UP_AND_DOWN(-6),
@@ -44,6 +46,12 @@ export default StyleSheet.create({
         paddingHorizontal: Style.SCALE_UP_AND_DOWN(8),
         position: "absolute"
     } as ViewStyle,
+    middleLabel: {
+        fontSize: Style.SCALE_UP_AND_DOWN(20)
+    } as TextStyle,
+    name: {
+        fontSize: Style.SCALE_UP_AND_DOWN(20)
+    } as TextStyle,
     time: {
         height: Style.SCALE_UP_AND_DOWN(25),
         marginRight: Style.SCALE_UP_AND_DOWN(9),

@@ -78,7 +78,7 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
 
     public render() {
         const { viewRef } = this.state;
-        const { render, renderOverlay, type } = this.props;
+        const { render, renderOverlay, type = "default" } = this.props;
 
         return (
             <View style={styles.wrapper}>
