@@ -1,7 +1,7 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import { Animated, Image, StyleSheet, View, ViewStyle } from "react-native";
-import { Button, Text } from "../../atoms";
+import { Button, ChestCoin, Text } from "../../atoms";
 import styles from "./animated-chest.styles";
 import assets from "./assets";
 
@@ -84,7 +84,7 @@ export default class AnimatedChest extends PureComponent<IProps> {
                                             { transform: [{ translateY: this.coinYOffset }] }
                                         ] as ViewStyle)}
                                     >
-                                        <Image source={assets.chestCoin} />
+                                        <ChestCoin />
                                     </Animated.View>
                                     <View
                                         style={styles.chestBaseWrapper}

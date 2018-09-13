@@ -1,7 +1,7 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
-import { Close, Text } from "../../../atoms";
+import { Close, GenericHeading, Text } from "../../../atoms";
 import data from "./activity-history-levels.data";
 import styles from "./activity-history-levels.styles";
 import Item, { ItemProps } from "./item";
@@ -22,17 +22,7 @@ class ActivityHistoryLevels extends PureComponent<IProps> {
 
         return (
             <SafeAreaView style={styles.wrapper}>
-                <View style={styles.padding}>
-                    <View style={styles.headingWrapper}>
-                        <Text
-                            bold={true}
-                            style={styles.heading}
-                        >
-                            {data.heading}
-                        </Text>
-                    </View>
-                </View>
-
+                <GenericHeading heading={data.heading} />
                 <View style={styles.headersWrapper}>
                     <View style={StyleSheet.flatten([styles.headerBase, styles.headerOneWrapper])}>
                         <Text style={styles.headerSpecial} bold={true}>level</Text>

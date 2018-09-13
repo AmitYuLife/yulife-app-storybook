@@ -109,16 +109,6 @@ export default StyleSheet.create({
         height: Style.SCALE_UP_AND_DOWN(65),
         paddingHorizontal: Style.SCALE_UP_AND_DOWN(15)
     } as ViewStyle,
-    heading: {
-        fontSize: Style.SCALE_UP_AND_DOWN(20)
-    } as TextStyle,
-    headingWrapper: {
-        alignItems: "center",
-        borderBottomColor: "rgb(233,233,233)",
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        paddingBottom: Style.SCALE_UP_AND_DOWN(13),
-        paddingTop: Style.SCALE_UP_AND_DOWN(17)
-    } as ViewStyle,
     levelCircle: {
         alignItems: "center",
         backgroundColor: "rgb(251,207,39)",
@@ -163,9 +153,6 @@ export default StyleSheet.create({
     } as ViewStyle,
     listItemWrapper: {
         flexDirection: "row"
-    } as ViewStyle,
-    padding: {
-        paddingHorizontal: Style.SCALE_UP_AND_DOWN(15)
     } as ViewStyle,
     scrollView: {
         flex: 1
