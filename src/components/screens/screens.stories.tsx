@@ -14,6 +14,7 @@ import {
     FitKitConnectScreen,
     IntroScreen,
     LoginScreen,
+    QuestsMovie,
     QuestsScreen,
     QuestsScreenOffline,
     ResetPasswordScreen,
@@ -338,4 +339,7 @@ storiesOf("Screens", module)
     })
     .add("14b. QuestScreenOffline", () => (
         <QuestsScreenOffline />
+    ))
+    .add("14c. QuestsMovie", () => (
+        <QuestsMovie />
     ));
