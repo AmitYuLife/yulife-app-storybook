@@ -1,4 +1,5 @@
 import {
+    ActivityHistoryContainer,
     AviosRewardConfirmedContainer,
     AviosRewardDetailsContainer,
     ChallengesListContainer,
@@ -31,6 +32,7 @@ export const ROUTES = {
     // member screens
     menu: "yulife.menu",
     member: "yulife.member",
+    activityHistory: "yulife.member.activityHistory",
 
     // quests
     questsChallengesList: "yulife.quests.ChallengesList",
@@ -58,6 +60,7 @@ export default [
     // member screens
     { name: ROUTES.menu, component: MenuContainer },
     { name: ROUTES.member, component: MemberRootContainer },
+    { name: ROUTES.activityHistory, component: ActivityHistoryContainer },
 
     // quests screens
     { name: ROUTES.questsChallengesList, component: ChallengesListContainer },

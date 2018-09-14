@@ -223,7 +223,7 @@ storiesOf("Screens", module)
             items={object("Items", [
                 {
                     challenges: [],
-                    dayOfMonth: 14,
+                    dayOfMonth: "14",
                     dayOfWeek: "SUN",
                     steps: 10098
                 },
@@ -248,7 +248,7 @@ storiesOf("Screens", module)
                             score: "1299 steps"
                         }
                     ],
-                    dayOfMonth: 13,
+                    dayOfMonth: "13",
                     dayOfWeek: "SAT",
                     level: 4,
                     steps: 4098
@@ -268,14 +268,14 @@ storiesOf("Screens", module)
                             score: "08m 00s"
                         }
                     ],
-                    dayOfMonth: 12,
+                    dayOfMonth: "12",
                     dayOfWeek: "FRI",
                     level: 3,
                     steps: 6098
                 },
                 {
                     challenges: [],
-                    dayOfMonth: 11,
+                    dayOfMonth: "11",
                     dayOfWeek: "THU",
                     steps: 10098
                 },
@@ -288,7 +288,7 @@ storiesOf("Screens", module)
                             score: "08m 00s"
                         }
                     ],
-                    dayOfMonth: 10,
+                    dayOfMonth: "10",
                     dayOfWeek: "WED",
                     level: 2,
                     steps: 10098
@@ -302,7 +302,7 @@ storiesOf("Screens", module)
                             score: "05m 00s"
                         }
                     ],
-                    dayOfMonth: 9,
+                    dayOfMonth: "9",
                     dayOfWeek: "TUE",
                     level: 1,
                     steps: 7890

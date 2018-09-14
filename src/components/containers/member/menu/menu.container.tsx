@@ -66,6 +66,13 @@ export default class MenuContainer extends PureComponent {
     private handlePressLink = (link: Link) => (): null => {
         switch (link) {
             case LINKS.ACTIVITY:
+                Navigation.push(ROUTES.member, {
+                    component: {
+                        id: ROUTES.activityHistory,
+                        name: ROUTES.activityHistory
+                    }
+                });
+                this.handleClose();
                 return null;
             case LINKS.CHAT:
                 Intercom.displayConversationsList();

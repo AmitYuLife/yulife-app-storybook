@@ -13,7 +13,7 @@ export interface IChallenge {
 
 export interface ItemProps {
     challenges: IChallenge[];
-    dayOfMonth: number;
+    dayOfMonth: string;
     dayOfWeek: string;
     level?: number;
     steps: number;

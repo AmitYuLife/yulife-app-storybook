@@ -5,6 +5,7 @@ import { from } from "apollo-link";
 import { setContext } from "apollo-link-context";
 import { onError } from "apollo-link-error";
 import { createHttpLink } from "apollo-link-http";
+import moment from "moment";
 import { AsyncStorage } from "react-native";
 import Config from "react-native-config";
 import { getToken } from "../../services/storage";
@@ -58,7 +59,7 @@ const authMiddleware = setContext(async (_, { headers }) => {
         headers: {
             ...headers,
             authorization: token ? `Bearer ${token}` : "",
-            date: new Date().toISOString()
+            date: moment().format()
         }
     };
 });

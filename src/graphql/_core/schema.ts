@@ -8,6 +8,7 @@
 // ====================================================
 
 export interface GetCurrentWorld_getCurrentWorld_slots_milestones_target {
+  __typename: "MilestoneTarget";
   steps: number | null;
   meditation: number | null;
 }
@@ -408,6 +409,53 @@ export interface RedeemRewardVariables {
   id: string;
   amount: number;
   metadata?: ProductMetadata | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetActivityHistory
+// ====================================================
+
+export interface GetActivityHistory_data_passive {
+  id: string | null;
+  data: (number | null)[] | null;
+  yuCoinAwarded: number | null;
+}
+
+export interface GetActivityHistory_data_challenge_milestoneLog {
+  id: string | null;
+}
+
+export interface GetActivityHistory_data_challenge_challengeTemplate {
+  id: string | null;
+  subtype: string | null;
+}
+
+export interface GetActivityHistory_data_challenge {
+  id: string | null;
+  actions: (string | null)[] | null;
+  data: (number | null)[] | null;
+  yuCoinAwarded: number | null;
+  milestoneLog: (GetActivityHistory_data_challenge_milestoneLog | null)[] | null;
+  challengeTemplate: GetActivityHistory_data_challenge_challengeTemplate | null;
+}
+
+export interface GetActivityHistory_data {
+  id: string | null;
+  date: string | null;
+  passive: GetActivityHistory_data_passive | null;
+  challenge: GetActivityHistory_data_challenge | null;
+}
+
+export interface GetActivityHistory {
+  data: (GetActivityHistory_data | null)[] | null;
+}
+
+export interface GetActivityHistoryVariables {
+  monthsAgo?: number | null;
 }
 
 
