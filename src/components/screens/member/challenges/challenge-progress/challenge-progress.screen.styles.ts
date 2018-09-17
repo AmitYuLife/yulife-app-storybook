@@ -1,4 +1,5 @@
 import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
+import { Style } from "../../../../../styles";
 
 export default StyleSheet.create({
     backgroundImage: {
@@ -8,6 +9,9 @@ export default StyleSheet.create({
         right: 0,
         width: "100%"
     } as ImageStyle,
+    progressBarWrapper: {
+        marginTop: Style.SCALE_UP_AND_DOWN(48)
+    } as ViewStyle,
     wrapper: {
         flex: 1
     } as ViewStyle

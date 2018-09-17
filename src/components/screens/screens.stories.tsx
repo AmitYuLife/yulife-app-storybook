@@ -178,6 +178,9 @@ storiesOf("Screens", module)
     ))
     .add("8. Challenge Progress", () => (
         <ChallengeProgressScreen
+            userProgress={number("userProgress", 1000)}
+            progressTargets={object("progressTargets", [2000, 4000, 6000])}
+            unit={select("unit", ["steps", "minutes"], "steps")}
             challengeType={select("Challenge Type", [
                 "brisk walk",
                 "short stroll",
@@ -341,7 +344,7 @@ storiesOf("Screens", module)
                     id: `_${i + 1}`,
                     onPress: action(`@ pressed _${i + 1}`),
                     rating: 3
-                })).concat({ isNext: true, nextAvailable, onPress: action(`@ pressed next`) } as any) ) as any}
+                })).concat({ isNext: true, nextAvailable, onPress: action(`@ pressed next`) } as any)) as any}
             />
         );
     })
