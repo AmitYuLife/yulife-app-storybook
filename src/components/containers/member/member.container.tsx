@@ -4,7 +4,11 @@ import { isIphoneX } from "react-native-iphone-x-helper";
 import { Navigation } from "react-native-navigation";
 import Swiper from "react-native-swiper";
 import { connect } from "react-redux";
-import { DailyStepsContainer, QuestsContainer, RewardsContainer } from "..";
+import {
+    DailyStepsContainer,
+    QuestsContainer,
+    RewardsContainer
+} from "..";
 import { ROUTES } from "../../../navigation/routes";
 import { IReduxState } from "../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../redux/coins/coins.selectors";

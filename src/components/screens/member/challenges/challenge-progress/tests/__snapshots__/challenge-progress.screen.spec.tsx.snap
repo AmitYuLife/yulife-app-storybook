@@ -5,6 +5,15 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeProgressScreen
     challengeType="brisk walk"
+    progressTargets={
+      Array [
+        2000,
+        4000,
+        6000,
+      ]
+    }
+    unit="steps"
+    userProgress={1000}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -19,62 +28,27 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <Image
-        resizeMethod="resize"
-        resizeMode="cover"
-        source={
-          Object {
-            "testUri": "../../../assets/challenge-progress/brisk-walk.png",
+      "children": Array [
+        <Component
+          style={
+            Object {
+              "marginTop": 96,
+            }
           }
-        }
-        style={
-          Object {
-            "bottom": 0,
-            "height": 900,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "width": "100%",
-          }
-        }
-      />,
-      "style": Object {
-        "flex": 1,
-      },
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "resizeMethod": "resize",
-        "resizeMode": "cover",
-        "source": Object {
-          "testUri": "../../../assets/challenge-progress/brisk-walk.png",
-        },
-        "style": Object {
-          "bottom": 0,
-          "height": 900,
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "width": "100%",
-        },
-      },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": <Image
+        >
+          <ProgressBar
+            amount={1000}
+            goals={
+              Array [
+                2000,
+                4000,
+                6000,
+              ]
+            }
+            type="steps"
+          />
+        </Component>,
+        <Image
           resizeMethod="resize"
           resizeMode="cover"
           source={
@@ -93,12 +67,54 @@ ShallowWrapper {
             }
           }
         />,
-        "style": Object {
-          "flex": 1,
-        },
+      ],
+      "style": Object {
+        "flex": 1,
       },
-      "ref": null,
-      "rendered": Object {
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <ProgressBar
+            amount={1000}
+            goals={
+              Array [
+                2000,
+                4000,
+                6000,
+              ]
+            }
+            type="steps"
+          />,
+          "style": Object {
+            "marginTop": 96,
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "amount": 1000,
+            "goals": Array [
+              2000,
+              4000,
+              6000,
+            ],
+            "type": "steps",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
         "instance": null,
         "key": undefined,
         "nodeType": "class",
@@ -121,6 +137,125 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Component
+            style={
+              Object {
+                "marginTop": 96,
+              }
+            }
+          >
+            <ProgressBar
+              amount={1000}
+              goals={
+                Array [
+                  2000,
+                  4000,
+                  6000,
+                ]
+              }
+              type="steps"
+            />
+          </Component>,
+          <Image
+            resizeMethod="resize"
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-progress/brisk-walk.png",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "height": 900,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": "100%",
+              }
+            }
+          />,
+        ],
+        "style": Object {
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <ProgressBar
+              amount={1000}
+              goals={
+                Array [
+                  2000,
+                  4000,
+                  6000,
+                ]
+              }
+              type="steps"
+            />,
+            "style": Object {
+              "marginTop": 96,
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "amount": 1000,
+              "goals": Array [
+                2000,
+                4000,
+                6000,
+              ],
+              "type": "steps",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "resizeMethod": "resize",
+            "resizeMode": "cover",
+            "source": Object {
+              "testUri": "../../../assets/challenge-progress/brisk-walk.png",
+            },
+            "style": Object {
+              "bottom": 0,
+              "height": 900,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
       "type": [Function],
     },
   ],

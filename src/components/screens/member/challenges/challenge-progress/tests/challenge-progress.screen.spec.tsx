@@ -4,7 +4,10 @@ import "react-native";
 import ChallengeProgressScreen, { ChallengeType } from "../challenge-progress.screen";
 
 const defaultProps = {
-    challengeType: "brisk walk" as ChallengeType
+    challengeType: "brisk walk" as ChallengeType,
+    progressTargets: [2000, 4000, 6000],
+    unit: "steps" as "steps",
+    userProgress: 1000
 };
 
 describe("ChallengeProgressScreen", () => {
