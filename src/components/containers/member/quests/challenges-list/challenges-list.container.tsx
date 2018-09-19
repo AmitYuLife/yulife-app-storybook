@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
+import { challengeStartAction, ChallengeStartAction } from "../../../../../redux/levels/levels.actions";
+import { currentLevelSelector } from "../../../../../redux/levels/levels.selectors";
 import { SideEffect } from "../../../../../typings";
 import { BlurProvider } from "../../../../atoms";
 import { ChallengeDetailsModal } from "../../../../modals";
@@ -13,7 +15,12 @@ import { ChallengesListScreen } from "../../../../screens";
 import { formatMilestones, getSlotDuration, reduceMilestones } from "./challenges-list.helpers";
 
 interface IConnectedState {
+    currentLevel: number;
     totalCoins: number;
+}
+
+interface IConnectedDispatch {
+    challengeStartAction: ChallengeStartAction;
 }
 
 interface IProps {
@@ -22,7 +29,7 @@ interface IProps {
     onNavBarIndexChange: SideEffect<number>;
 }
 
-type Props = IProps & IConnectedState;
+type Props = IProps & IConnectedState & IConnectedDispatch;
 
 interface IState {
     slot: {
@@ -72,7 +79,7 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
     ];
 
     public render() {
-        const { level, totalCoins } = this.props;
+        const { currentLevel, level, totalCoins } = this.props;
         const {
             slot: { challengeType, duration, milestones, unit }
         } = this.state;
@@ -85,16 +92,18 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
                             const formattedSlot = {
                                 challengeType: slot.subtype,
                                 duration: getSlotDuration(slot),
+                                id: slot.id,
                                 milestones: formatMilestones(slot.milestones, slot.subtype),
                                 reward: `0-${reduceMilestones(slot.milestones)}`,
                                 unit: slot.unit
                             };
+                            const isLocked = currentLevel < slot.availableAtLevel;
 
                             return {
                                 ...formattedSlot,
-                                isLocked: slot.subtype !== "short stroll", // TODO: this should be base on currentLevel
+                                isLocked,
                                 minimumLevel: slot.availableAtLevel || 0,
-                                onPress: this.handleSlotPress(formattedSlot, showOverlay)
+                                onPress: isLocked ? () => ({}) : this.handleSlotPress(formattedSlot, showOverlay)
                             };
                         })}
                         labels={this.labels}
@@ -108,7 +117,7 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
                         challengeType={challengeType}
                         duration={duration}
                         milestones={milestones}
-                        onPressCta={hideOverlay}
+                        onPressCta={this.handleSubmitChallenge}
                         onPressClose={() => {
                             hideOverlay();
                         }}
@@ -119,10 +128,14 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
         );
     }
 
+    private handleSubmitChallenge = async () => {
+        const { id: levelSlotId } = this.state.slot;
+        this.props.challengeStartAction({ levelSlotId });
+        await this.onNavPress();
+    }
+
     private handleSlotPress = (slot: any, showOverlay: () => void) => () => {
-        if (slot.challengeType === "short stroll") {
-            this.setState({ slot }, showOverlay);
-        }
+        this.setState({ slot }, showOverlay);
     }
 
     private onNavPress = async () => {
@@ -131,7 +144,15 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
+    currentLevel: currentLevelSelector(state),
     totalCoins: getTotalCoins(state)
 });
 
-export default connect<IConnectedState>(mapStateToProps)(ChallengesListContainer);
+const mapDispatchToProps = {
+    challengeStartAction
+};
+
+export default connect<IConnectedState, IConnectedDispatch>(
+    mapStateToProps,
+    mapDispatchToProps
+)(ChallengesListContainer);

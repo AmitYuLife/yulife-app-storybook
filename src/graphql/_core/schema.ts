@@ -4,6 +4,53 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: CreateActiveChallenge
+// ====================================================
+
+export interface CreateActiveChallenge_createActiveChallenge_challenge {
+  levelSlotId: string | null;
+  status: string | null;
+  startDateTime: string | null;
+  endDateTime: string | null;
+}
+
+export interface CreateActiveChallenge_createActiveChallenge_levelSlot_milestones_target {
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface CreateActiveChallenge_createActiveChallenge_levelSlot_milestones {
+  id: string | null;
+  XP: number | null;
+  coins: number | null;
+  target: CreateActiveChallenge_createActiveChallenge_levelSlot_milestones_target | null;
+}
+
+export interface CreateActiveChallenge_createActiveChallenge_levelSlot {
+  subtype: string | null;
+  unit: string | null;
+  milestones: (CreateActiveChallenge_createActiveChallenge_levelSlot_milestones | null)[] | null;
+}
+
+export interface CreateActiveChallenge_createActiveChallenge {
+  challenge: CreateActiveChallenge_createActiveChallenge_challenge | null;
+  levelSlot: CreateActiveChallenge_createActiveChallenge_levelSlot | null;
+  nextLevelAvailableAt: string | null;
+}
+
+export interface CreateActiveChallenge {
+  createActiveChallenge: CreateActiveChallenge_createActiveChallenge | null;
+}
+
+export interface CreateActiveChallengeVariables {
+  levelSlotId: string;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetCurrentWorld
 // ====================================================
 
@@ -38,14 +85,77 @@ export interface GetCurrentWorld_getCurrentWorld {
   __typename: "Level";
   level: number | null;
   name: string | null;
-  isNext: boolean | null;
-  nextAvailable: number | null;
   rating: number | null;
   slots: (GetCurrentWorld_getCurrentWorld_slots | null)[] | null;
 }
 
 export interface GetCurrentWorld {
   getCurrentWorld: (GetCurrentWorld_getCurrentWorld | null)[] | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: UpdateActiveChallenge
+// ====================================================
+
+export interface UpdateActiveChallenge_updateActiveChallenge_challenge_incomingData {
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface UpdateActiveChallenge_updateActiveChallenge_challenge_milestoneLog_data {
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface UpdateActiveChallenge_updateActiveChallenge_challenge_milestoneLog {
+  data: UpdateActiveChallenge_updateActiveChallenge_challenge_milestoneLog_data | null;
+}
+
+export interface UpdateActiveChallenge_updateActiveChallenge_challenge {
+  levelSlotId: string | null;
+  status: string | null;
+  endDateTime: string | null;
+  incomingData: UpdateActiveChallenge_updateActiveChallenge_challenge_incomingData | null;
+  milestoneLog: (UpdateActiveChallenge_updateActiveChallenge_challenge_milestoneLog | null)[] | null;
+  yuCoinAwarded: number | null;
+  rating: number | null;
+}
+
+export interface UpdateActiveChallenge_updateActiveChallenge_levelSlot_milestones_target {
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface UpdateActiveChallenge_updateActiveChallenge_levelSlot_milestones {
+  id: string | null;
+  XP: number | null;
+  coins: number | null;
+  target: UpdateActiveChallenge_updateActiveChallenge_levelSlot_milestones_target | null;
+}
+
+export interface UpdateActiveChallenge_updateActiveChallenge_levelSlot {
+  subtype: string | null;
+  unit: string | null;
+  milestones: (UpdateActiveChallenge_updateActiveChallenge_levelSlot_milestones | null)[] | null;
+}
+
+export interface UpdateActiveChallenge_updateActiveChallenge {
+  challenge: UpdateActiveChallenge_updateActiveChallenge_challenge | null;
+  levelSlot: UpdateActiveChallenge_updateActiveChallenge_levelSlot | null;
+  nextLevelAvailableAt: string | null;
+}
+
+export interface UpdateActiveChallenge {
+  updateActiveChallenge: UpdateActiveChallenge_updateActiveChallenge | null;
+}
+
+export interface UpdateActiveChallengeVariables {
+  levelSlotId: string;
+  payload?: ChallengePayload | null;
 }
 
 
@@ -463,6 +573,75 @@ export interface GetActivityHistoryVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: GetCurrentUser
+// ====================================================
+
+export interface GetCurrentUser_getCurrentUser_userFeatures {
+  name: string | null;
+  value: boolean | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_mobileConsent {
+  mobileHealth: boolean | null;
+  marketing: boolean | null;
+  pushNotifications: boolean | null;
+  companyLeaderboard: boolean | null;
+  workspaceLeaderboard: boolean | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_coinLedger {
+  currentBalance: number | null;
+  currentLevel: number | null;
+  nextLevelAvailableAt: string | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge {
+  levelSlotId: string | null;
+  status: string | null;
+  endDateTime: string | null;
+  startDateTime: string | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milestones_target {
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milestones {
+  id: string | null;
+  XP: number | null;
+  coins: number | null;
+  target: GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milestones_target | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_activeChallenge_levelSlot {
+  subtype: string | null;
+  unit: string | null;
+  milestones: (GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milestones | null)[] | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_activeChallenge {
+  challenge: GetCurrentUser_getCurrentUser_activeChallenge_challenge | null;
+  levelSlot: GetCurrentUser_getCurrentUser_activeChallenge_levelSlot | null;
+}
+
+export interface GetCurrentUser_getCurrentUser {
+  __typename: "User";
+  userFeatures: (GetCurrentUser_getCurrentUser_userFeatures | null)[] | null;
+  mobileConsent: GetCurrentUser_getCurrentUser_mobileConsent | null;
+  coinLedger: GetCurrentUser_getCurrentUser_coinLedger | null;
+  activeChallenge: GetCurrentUser_getCurrentUser_activeChallenge | null;
+}
+
+export interface GetCurrentUser {
+  getCurrentUser: GetCurrentUser_getCurrentUser | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: LoginUser
 // ====================================================
 
@@ -608,6 +787,12 @@ export interface LoginUser_loginUser_user_mobileConsent {
   workspaceLeaderboard: boolean | null;
 }
 
+export interface LoginUser_loginUser_user_coinLedger {
+  currentBalance: number | null;
+  currentLevel: number | null;
+  nextLevelAvailableAt: string | null;
+}
+
 export interface LoginUser_loginUser_user {
   __typename: "User";
   id: string | null;
@@ -616,7 +801,7 @@ export interface LoginUser_loginUser_user {
   userFeatures: (LoginUser_loginUser_user_userFeatures | null)[] | null;
   mobileConsent: LoginUser_loginUser_user_mobileConsent | null;
   redeemedOnboarding: boolean | null;
-  currentBalance: number | null;
+  coinLedger: LoginUser_loginUser_user_coinLedger | null;
 }
 
 export interface LoginUser_loginUser {

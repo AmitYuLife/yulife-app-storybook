@@ -24,7 +24,11 @@ const loginSuccessFixture: LoginUser = {
         user: {
             __typename: "User",
             businessAccountId: "abcdefghijkl",
-            currentBalance: 15,
+            coinLedger: {
+                currentBalance: 15,
+                currentLevel: 1,
+                nextLevelAvailableAt: ""
+            },
             id: "1234567890",
             mobileConsent: {
                 companyLeaderboard: null,

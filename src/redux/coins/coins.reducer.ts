@@ -1,7 +1,7 @@
-import { LoginUser, UpsertPassiveChallenge } from "../../graphql/_core/schema";
+import { GetCurrentUser, LoginUser, UpsertPassiveChallenge } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { UPDATE_DAILY_STEPS_SUCCESS } from "../daily-steps/daily-steps.actions";
-import { LOGIN_USER_SUCCESS } from "../user/user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 
 export interface ICoinsStore {
     dailyChallengeEarned: number;   // number of coins earned in the current day through challenges
@@ -21,6 +21,8 @@ const coinsReducer = (state: ICoinsStore = initialState, action: SyncAction) => 
             return updateDailyStepsSuccess(state, action.payload);
         case LOGIN_USER_SUCCESS:
             return loginUserSuccess(state, action.payload);
+        case GET_USER_SUCCESS:
+            return getUserSuccess(state, action.payload);
         default:
             return state;
     }
@@ -43,8 +45,16 @@ const updateDailyStepsSuccess = (
 
 const loginUserSuccess = (
     state: ICoinsStore,
-    { loginUser: { user: { currentBalance }} }: LoginUser
+    { loginUser: { user: { coinLedger }} }: LoginUser
 ): ICoinsStore => ({
     ...state,
-    total: currentBalance
+    total: coinLedger.currentBalance
+});
+
+const getUserSuccess = (
+    state: ICoinsStore,
+    { getCurrentUser: { coinLedger } }: GetCurrentUser
+): ICoinsStore => ({
+    ...state,
+    total: coinLedger.currentBalance
 });

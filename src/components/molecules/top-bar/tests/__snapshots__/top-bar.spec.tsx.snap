@@ -2248,9 +2248,7 @@ ShallowWrapper {
                 "marginTop": 4,
               }
             }
-          >
-            11:58:00
-          </YuText>
+          />
         </Component>
         <Component
           style={
@@ -2344,9 +2342,7 @@ ShallowWrapper {
                   "marginTop": 4,
                 }
               }
-            >
-              11:58:00
-            </YuText>
+            />
           </Component>,
           <Component
             style={
@@ -2444,9 +2440,7 @@ ShallowWrapper {
                     "marginTop": 4,
                   }
                 }
-              >
-                11:58:00
-              </YuText>,
+              />,
             ],
             "style": Object {
               "flexDirection": "row",
@@ -2470,14 +2464,14 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "children": "11:58:00",
+                "children": null,
                 "style": Object {
                   "fontSize": 36,
                   "marginTop": 4,
                 },
               },
               "ref": null,
-              "rendered": "11:58:00",
+              "rendered": null,
               "type": [Function],
             },
           ],
@@ -2646,9 +2640,7 @@ ShallowWrapper {
                   "marginTop": 4,
                 }
               }
-            >
-              11:58:00
-            </YuText>
+            />
           </Component>
           <Component
             style={
@@ -2742,9 +2734,7 @@ ShallowWrapper {
                     "marginTop": 4,
                   }
                 }
-              >
-                11:58:00
-              </YuText>
+              />
             </Component>,
             <Component
               style={
@@ -2842,9 +2832,7 @@ ShallowWrapper {
                       "marginTop": 4,
                     }
                   }
-                >
-                  11:58:00
-                </YuText>,
+                />,
               ],
               "style": Object {
                 "flexDirection": "row",
@@ -2868,14 +2856,14 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "function",
                 "props": Object {
-                  "children": "11:58:00",
+                  "children": null,
                   "style": Object {
                     "fontSize": 36,
                     "marginTop": 4,
                   },
                 },
                 "ref": null,
-                "rendered": "11:58:00",
+                "rendered": null,
                 "type": [Function],
               },
             ],

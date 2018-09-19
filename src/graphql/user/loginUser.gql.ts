@@ -45,7 +45,11 @@ export const loginUserGql = gql`
                     workspaceLeaderboard
                 }
                 redeemedOnboarding
-                currentBalance
+                coinLedger {
+                    currentBalance
+                    currentLevel
+                    nextLevelAvailableAt
+                }
             }
         }
     }

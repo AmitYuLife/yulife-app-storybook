@@ -4,14 +4,11 @@ import { isIphoneX } from "react-native-iphone-x-helper";
 import { Navigation } from "react-native-navigation";
 import Swiper from "react-native-swiper";
 import { connect } from "react-redux";
-import {
-    DailyStepsContainer,
-    QuestsContainer,
-    RewardsContainer
-} from "..";
+import { DailyStepsContainer, QuestsContainer, RewardsContainer } from "..";
 import { ROUTES } from "../../../navigation/routes";
 import { IReduxState } from "../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../redux/coins/coins.selectors";
+import { activeLevelSelector, IActiveLevel } from "../../../redux/levels/levels.selectors";
 import { Style } from "../../../styles";
 import { ILabel, NavBar, TopBar } from "../../molecules";
 
@@ -21,6 +18,7 @@ interface IProps {
 }
 
 interface IConnectedState {
+    active: IActiveLevel;
     totalCoins: number;
 }
 
@@ -34,6 +32,12 @@ interface IState {
 type Props = IProps & IConnectedState;
 
 class MemberRootContainer extends PureComponent<Props, IState> {
+
+    public static getDerivedStateFromProps(props: Props, state: IState) {
+        const isQuestTab = state.currentIndex === 1;
+        const isModalVisible = isQuestTab && !!props.active.status;
+        return { isModalVisible };
+    }
     public state: IState = {
         currentIndex: 0,
         isModalVisible: false,
@@ -58,8 +62,17 @@ class MemberRootContainer extends PureComponent<Props, IState> {
     ];
 
     public render() {
-        const { totalCoins } = this.props;
+        const { active, totalCoins } = this.props;
         const { currentIndex, isModalVisible } = this.state;
+        const isQuestTab = currentIndex === 1;
+        const isRewardsTab = currentIndex === 2;
+
+        const showTimer = isQuestTab && !!active.levelSlotId && !active.status;
+        const topBarProps = {
+            coins: totalCoins,
+            menuLabel: showTimer ? active.subtype : null,
+            timer: showTimer ? active.endDateTime : null
+        };
 
         return (
             <>
@@ -72,7 +85,10 @@ class MemberRootContainer extends PureComponent<Props, IState> {
                     onIndexChanged={this.handleNavBarIndexChange}
                 >
                     <DailyStepsContainer onNavBarIndexChange={this.handleNavBarIndexChange} />
-                    <QuestsContainer onNavBarIndexChange={this.handleNavBarIndexChange} />
+                    <QuestsContainer
+                        challengeType={active.subtype}
+                        onNavBarIndexChange={this.handleNavBarIndexChange}
+                    />
                     <RewardsContainer />
                 </Swiper>
                 {!isModalVisible && (
@@ -80,14 +96,14 @@ class MemberRootContainer extends PureComponent<Props, IState> {
                         <View style={styles.navBarWrapper}>
                             <NavBar
                                 activeIndex={currentIndex}
-                                areIconsHidden={currentIndex === 2}
+                                areIconsHidden={isRewardsTab}
                                 hasNotification={false}
-                                colour={currentIndex === 2 ? NavBar.Colours.DARKER : NavBar.Colours.LIGHT}
+                                colour={isRewardsTab ? NavBar.Colours.DARKER : NavBar.Colours.LIGHT}
                                 labels={this.labels}
                             />
                         </View>
                         <View style={styles.topBarWrapper}>
-                            <TopBar coins={totalCoins} onPressLeftIcon={this.showMenu} />
+                            <TopBar {...topBarProps} onPressLeftIcon={this.showMenu} />
                         </View>
                     </>
                 )}
@@ -128,6 +144,7 @@ class MemberRootContainer extends PureComponent<Props, IState> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
+    active: activeLevelSelector(state),
     totalCoins: getTotalCoins(state)
 });
 

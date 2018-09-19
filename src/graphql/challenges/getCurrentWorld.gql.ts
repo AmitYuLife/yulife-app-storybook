@@ -9,8 +9,6 @@ export const getCurrentWorldGql = gql`
             __typename
             level
             name
-            isNext
-            nextAvailable
             rating
             slots {
                 id

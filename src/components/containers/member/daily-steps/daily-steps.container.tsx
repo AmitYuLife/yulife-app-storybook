@@ -56,7 +56,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     public componentDidUpdate(prevProps: Props) {
-        const { appState, lastUpdated } = this.props;
+        const { lastUpdated } = this.props;
 
         if (prevProps.lastUpdated !== this.props.lastUpdated) {
             const lastUpdatedMoment = moment(lastUpdated);
@@ -68,16 +68,6 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
             });
         } else {
             this.setState({ dailyStepsLoading: false });
-        }
-
-        // bringing app back from background
-        if (prevProps.appState.match(/inactive|background/) && appState === "active") {
-            this.props.startDailySteps();
-        }
-
-        // sending app back to background
-        if (prevProps.appState === "active" && appState.match(/inactive|background/)) {
-            this.props.stopDailySteps();
         }
     }
 
