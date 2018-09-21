@@ -5,6 +5,7 @@ import Config from "react-native-config";
 import { FitKitAuthoriseFunction, FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
+import { setAuthenticatedRoot } from "../../../../navigation/root";
 import { ROUTES } from "../../../../navigation/routes";
 import { SyncAction } from "../../../../redux/_core/types";
 import { fitKitConsentAuthorised } from "../../../../redux/user/user.actions";
@@ -14,6 +15,7 @@ import { FitKitConnectScreen } from "../../../screens";
 // TODO find where these props actually come from in RNN types
 interface IProps {
     componentId: string;
+    onboarded: boolean;
 }
 
 interface IConnectedDispatch {
@@ -24,11 +26,9 @@ interface IState {
     connecting: boolean;
 }
 
-type Props = IProps &
-    IConnectedDispatch;
+type Props = IProps & IConnectedDispatch;
 
 class FitKitConnectContainer extends PureComponent<Props, IState> {
-
     public state: IState = {
         connecting: false
     };
@@ -81,12 +81,16 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
     }
 
     private continue = async () => {
-        await Navigation.push(this.props.componentId, {
-            component: {
-                id: ROUTES.onboardingSignUpReward,
-                name: ROUTES.onboardingSignUpReward
-            }
-        });
+        if (!this.props.onboarded) {
+            await Navigation.push(this.props.componentId, {
+                component: {
+                    id: ROUTES.onboardingSignUpReward,
+                    name: ROUTES.onboardingSignUpReward
+                }
+            });
+        }
+
+        setAuthenticatedRoot();
     }
 }
 

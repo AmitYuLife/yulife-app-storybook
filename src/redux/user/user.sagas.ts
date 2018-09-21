@@ -2,6 +2,7 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import updateMemberConsentGql from "../../graphql/member/updateMemberConsent.gql";
 import getCurrentUserWithClient from "../../graphql/user/getCurrentUser.gql";
 import Logger from "../../services/logging/logger";
+import { getToken } from "../../services/storage";
 import {
     FITKIT_CONSENT_AUTHORISED,
     GET_USER_START,
@@ -29,9 +30,13 @@ function* loginUserSuccessSaga({ payload }: LoginUserSuccessAction) {
 
 export function* getUserData() {
     try {
-        const { data } = yield call(getCurrentUserWithClient);
+        const token = yield call(getToken);
 
-        yield put(getUserSuccess(data));
+        if (token) {
+            const { data } = yield call(getCurrentUserWithClient);
+
+            yield put(getUserSuccess(data));
+        }
     } catch (e) {
         // tslint:disable-next-line
         console.log(e);

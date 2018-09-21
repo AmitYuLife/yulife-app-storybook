@@ -1,5 +1,7 @@
 package com.yulife;
 
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.bugsnag.BugsnagReactNative;
 import com.cmcewen.blurview.BlurViewPackage;
 import com.facebook.soloader.SoLoader;
@@ -42,14 +44,16 @@ public class MainApplication extends NavigationApplication {
     @Override
     public List<ReactPackage> createAdditionalReactPackages() {
         return Arrays.<ReactPackage>asList(
-                new ReactNativeConfigPackage(),     // react-native
-                new BlurViewPackage(),              // react-native-blur
-                new SvgPackage(),                   // react-native-svg
-                new RNMixpanel(),                   // react-native-mixpanel
-                new IntercomPackage(),              // react-native-intercom
-                BugsnagReactNative.getPackage(),    // bugsnag-react-native
-                new RNDualPedometerPackage(),       // react-native-dual-pedometer
-                new RNFitKitPackage()               // react-native-fitkit
+                new ReactNativeConfigPackage(),             // react-native
+                new BlurViewPackage(),                      // react-native-blur
+                new SvgPackage(),                           // react-native-svg
+                new RNMixpanel(),                           // react-native-mixpanel
+                new RNDeviceInfo(),                         // react-native-device-info
+                new IntercomPackage(),                      // react-native-intercom
+                new ReactNativePushNotificationPackage(),   // react-native-push-notifications
+                BugsnagReactNative.getPackage(),            // bugsnag-react-native
+                new RNDualPedometerPackage(),               // react-native-dual-pedometer
+                new RNFitKitPackage()                       // react-native-fitkit
         );
     }
 }

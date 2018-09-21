@@ -15,7 +15,10 @@ export default StyleSheet.create({
     subheading: {
         color: "rgb(96,96,96)",
         fontSize: Style.SCALE_UP_AND_DOWN(16),
-        marginTop: Style.SCALE_UP_AND_DOWN(20)
+        marginLeft: Style.SCALE_UP_AND_DOWN(35),
+        marginRight: Style.SCALE_UP_AND_DOWN(35),
+        marginTop: Style.SCALE_UP_AND_DOWN(20),
+        textAlign: "center"
     } as TextStyle,
     wrapper: {
         alignItems: "center",

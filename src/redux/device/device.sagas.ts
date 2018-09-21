@@ -1,0 +1,232 @@
+import moment from "moment";
+import { Platform } from "react-native";
+import Intercom from "react-native-intercom";
+import PushNotification, {
+    PushNotification as IPushNotification,
+    PushNotificationPermissions
+} from "react-native-push-notification";
+import { call, put, select, take, takeEvery, takeLatest } from "redux-saga/effects";
+import updateMemberConsentWithClient from "../../graphql/member/updateMemberConsent.gql";
+import Logger from "../../services/logging/logger";
+import { appStateChannel } from "../app/app.channels";
+import {
+    UPDATE_DAILY_STEPS_SUCCESS,
+    updateDailyStepsNotification,
+    UpdateDailyStepsSuccessAction
+} from "../daily-steps/daily-steps.actions";
+import { dailyStepsNotificationSelector } from "../daily-steps/daily-steps.selectors";
+import { CHALLENGE_START_SUCCESS, ChallengeStartSuccessActionResult } from "../levels/levels.actions";
+import { LOGOUT, updateUserConsent } from "../user/user.actions";
+import { REQUIRE_PUSH_ENABLED } from "./device.actions";
+import {
+    ADD_DEVICE_TOKEN,
+    addDeviceToken,
+    AddDeviceTokenActionResult,
+    pushNotificationReceived,
+    SEND_TEST_LOCAL_PUSH,
+    setPushPermissions
+} from "./device.actions";
+import { createPushNotificationsChannel, createPushPermissionsChannel } from "./device.channels";
+import { pushNotificationsSelector, PushPermissions, PushPermissionsEnum } from "./device.selectors";
+
+const numericId = (id: string) => id.replace(/\D/g, "").substring(0, 9);
+
+function* registerIntercom({ payload }: AddDeviceTokenActionResult) {
+    if (Platform.OS === "android") {
+        yield call(() => Intercom.sendTokenToIntercom(payload.deviceToken));
+    }
+}
+
+function* checkPermissions() {
+    const perms = yield select(pushNotificationsSelector);
+    // android defaults to true
+    let status: PushPermissions = PushPermissionsEnum.enabled;
+
+    if (Platform.OS === "ios") {
+        const channel = yield call(createPushPermissionsChannel);
+        const permissions: PushNotificationPermissions = yield take(channel);
+
+        status = permissions.alert
+            ? PushPermissionsEnum.enabled
+            : perms.requested
+                ? PushPermissionsEnum.denied
+                : PushPermissionsEnum.notyet;
+        channel.close();
+    }
+
+    if (perms.status !== status) {
+        const { data } = yield call(updateMemberConsentWithClient, {
+            pushNotifications: status === PushPermissionsEnum.enabled
+        });
+        yield put(updateUserConsent(data));
+    }
+
+    yield put(setPushPermissions({ status }));
+}
+
+function* listenForPermissionsChange() {
+    const channel = yield call(appStateChannel);
+    yield call(checkPermissions);
+
+    while (true) {
+        const state = yield take(channel);
+
+        if (state === "active") {
+            yield call(checkPermissions);
+        }
+    }
+}
+
+function* registerPush() {
+    const channel = yield call(createPushNotificationsChannel);
+    let result: IPushNotification & { os: string; token: string };
+
+    while (true) {
+        result = yield take(channel);
+
+        if (result.token) {
+            yield put(
+                addDeviceToken({
+                    deviceToken: result.token
+                })
+            );
+        } else {
+            // allow other modules to respond to a push
+            yield put(pushNotificationReceived(result));
+            yield call(handleNotification, result);
+        }
+    }
+}
+
+function* handleNotification(notification: IPushNotification) {
+    const isChallengeCompleteNotification = /completed[\w\s]+challenge/.test((notification.message || "").toString());
+
+    if (isChallengeCompleteNotification) {
+        yield call(() => PushNotification.setApplicationIconBadgeNumber(Math.max(0, notification.badge - 1)));
+        return;
+    }
+}
+
+function* requestPush() {
+    const { status } = yield select(pushNotificationsSelector);
+
+    if (status !== "enabled") {
+        yield call(() => {
+            PushNotification.requestPermissions();
+        });
+    }
+}
+
+// function* cancelChallengeNotificationSaga({ payload }: CancelChallengeMutationAction) {
+//         exitChallenge: { challengeDetails },
+//     } = payload;
+
+//     yield call(() => PushNotification.cancelLocalNotifications({ id: numericId(challengeDetails.id) }));
+// }
+
+function* scheduleChallengeNotificationSaga({ payload: { createActiveChallenge } }: ChallengeStartSuccessActionResult) {
+    if (!createActiveChallenge.challenge) {
+        return null;
+    }
+
+    const { endDateTime, levelSlotId } = createActiveChallenge.challenge;
+    const fixedId = numericId(levelSlotId);
+
+    yield call(() =>
+        PushNotification.localNotificationSchedule({
+            autoCancel: true, // (optional) default: true
+            date: moment(endDateTime).toDate(),
+            group: "Yu Life Challenges", // (optional) add group to message
+            id: fixedId, // (optional)
+            largeIcon: "ic_launcher", // (optional) default: "ic_launcher"
+            message: "Time's up! Check how you did on your latest challenge.",
+            ongoing: false, // (optional) set whether this is an "ongoing" notification
+            playSound: false, // (optional) default: true
+            smallIcon: "ic_notification", // (optional) default: "ic_notification"
+            soundName: "default", // (optional) Sound to play when the notification is shown
+            tag: "challenge_complete", // (optional) add tag to message
+            title: "Challenge Completed", // (optional, for iOS this is only used in apple watch)
+            userInfo: Platform.OS === "ios" ? { id: fixedId } : null, // required to cancel iOS local notification
+            vibrate: true, // (optional) default: true
+            vibration: 300 // vibration length in milliseconds, ignored if vibrate=false, default: 1000
+        })
+    );
+}
+
+function* showDailyStepsNotification({ payload: { upsertPassiveChallenge } }: UpdateDailyStepsSuccessAction) {
+    if (!upsertPassiveChallenge.challenge) {
+        return null;
+    }
+
+    const {
+        challenge: {
+            yuCoinAwarded,
+            incomingData: { steps }
+        }
+    } = upsertPassiveChallenge;
+    const notifiedAt = yield select(dailyStepsNotificationSelector);
+    const notShowedYet = moment().format("YYYY-MM-DD") !== notifiedAt;
+    const enoughData = steps >= 12000;
+
+    if (notShowedYet && enoughData) {
+        yield call(() =>
+            PushNotification.localNotification({
+                group: "Yu Life Steps", // (optional) add group to message
+                message: `Well done! Congratulations, you've earned ${yuCoinAwarded} yucoin today.`,
+                soundName: "default", // (optional) Sound to play when the notification is shown
+                tag: "daily_steps_complete", // (optional) add tag to message
+                vibration: 300 // vibration length in milliseconds, ignored if vibrate=false, default: 1000
+            })
+        );
+        yield put(updateDailyStepsNotification());
+    }
+}
+
+function* sendTestPush() {
+    yield call(() =>
+        PushNotification.localNotificationSchedule({
+            autoCancel: true, // (optional) default: true
+            bigText: "My big text that will be shown when notification is expanded", // (optional)
+            color: "red", // (optional) default: system default
+            date: new Date(Date.now() + 5 * 1000),
+            group: "group", // (optional) add group to message
+            id: "0", // (optional)
+            largeIcon: "ic_launcher", // (optional) default: "ic_launcher"
+            message: "My Notification Message", // (required)
+            ongoing: false, // (optional) set whether this is an "ongoing" notification
+            playSound: false, // (optional) default: true
+            repeatType: "day",
+            smallIcon: "ic_notification", // (optional) default: "ic_notification"
+            soundName: "default", // (optional) Sound to play when the notification is shown
+            subText: "This is a subText", // (optional) default: none
+            tag: "some_tag", // (optional) add tag to message
+            ticker: "My Notification Ticker", // (optional)
+            title: "My Notification Title", // (optional, for iOS this is only used in apple watch)
+            vibration: 300 // vibration length in milliseconds, ignored if vibrate=false, default: 1000
+        })
+    );
+}
+
+function* unregisterPushNotifications() {
+    yield call(() => PushNotification.cancelAllLocalNotifications);
+    yield call(() => PushNotification.setApplicationIconBadgeNumber(0));
+    yield call(() => PushNotification.unregister);
+}
+
+function* onLogout() {
+    yield call(Logger.logEvent, "log_out");
+    yield call(() => Intercom.reset());
+}
+
+export default [
+    takeLatest("INIT", registerPush),
+    takeLatest("INIT", listenForPermissionsChange),
+    takeLatest(ADD_DEVICE_TOKEN, registerIntercom),
+    // takeEvery(CANCEL_CHALLENGE_SUCCESS, cancelChallengeNotificationSaga),
+    takeEvery(CHALLENGE_START_SUCCESS, scheduleChallengeNotificationSaga),
+    takeLatest(UPDATE_DAILY_STEPS_SUCCESS, showDailyStepsNotification),
+    takeLatest(LOGOUT, unregisterPushNotifications),
+    takeLatest(LOGOUT, onLogout),
+    takeEvery(REQUIRE_PUSH_ENABLED, requestPush),
+    takeEvery(SEND_TEST_LOCAL_PUSH, sendTestPush)
+];

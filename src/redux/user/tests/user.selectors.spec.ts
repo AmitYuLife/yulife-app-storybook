@@ -1,5 +1,5 @@
 import { initialState } from "../../_core/reducers";
-import { getUserConsent } from "../user.selectors";
+import { userConsentSelector } from "../user.selectors";
 
 describe ("Daily Steps Selectors", () => {
 
@@ -7,7 +7,7 @@ describe ("Daily Steps Selectors", () => {
 
         it ("returns the user's consent state", () => {
             const expected = initialState.user.consent;
-            const actual = getUserConsent(initialState);
+            const actual = userConsentSelector(initialState);
 
             expect(actual).toEqual(expected);
         });

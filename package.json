@@ -36,6 +36,7 @@
     "version-ios": "./scripts/set-ios-version.sh"
   },
   "dependencies": {
+    "@types/react-native-push-notification": "^3.0.2",
     "apollo-boost": "^0.1.15",
     "apollo-cache-persist": "^0.1.1",
     "apollo-codegen": "^0.20.2",
@@ -50,12 +51,14 @@
     "react-native": "0.56.0",
     "react-native-blur": "^3.2.2",
     "react-native-config": "^0.11.5",
+    "react-native-device-info": "^0.22.5",
     "react-native-dual-pedometer": "git+https://github.com/poppiestar/react-native-dual-pedometer.git",
     "react-native-fitkit": "ssh://git@gitlab.com:yu-life/react-native-fitkit.git",
     "react-native-intercom": "^12.0.0",
     "react-native-iphone-x-helper": "1.0.3",
     "react-native-mixpanel": "^1.1.1",
     "react-native-navigation": "2.0.2427",
+    "react-native-push-notification": "^3.1.1",
     "react-native-svg": "^6.5.2",
     "react-native-swiper": "^1.5.13",
     "react-redux": "^5.0.7",

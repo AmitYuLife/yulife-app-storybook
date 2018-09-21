@@ -1,6 +1,6 @@
 import moment from "moment";
-import { PureComponent } from "react";
 import React from "react";
+import { PureComponent } from "react";
 import { FitKitAvailable } from "react-native-fitkit";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
@@ -9,6 +9,7 @@ import { getAppState, getOfflineState } from "../../../../redux/app/app.selector
 import { getDailyEarnedCoins } from "../../../../redux/coins/coins.selectors";
 import { startDailySteps, stopDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
 import { getDailySteps, getLastUpdated } from "../../../../redux/daily-steps/daily-steps.selectors";
+import { sendTestPush, SendTestPushAction } from "../../../../redux/device/device.actions";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
 import { SideEffect } from "../../../../typings";
@@ -30,6 +31,7 @@ interface IConnectedDispatch {
     dailyStepsCoinClicked: () => SyncAction;
     startDailySteps: () => SyncAction;
     stopDailySteps: () => SyncAction;
+    sendTestPush: SendTestPushAction;
 }
 
 type Props = IProps &
@@ -106,7 +108,8 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     private onCta = () => {
-        this.props.onNavBarIndexChange(1);
+        this.props.sendTestPush();
+        // this.props.onNavBarIndexChange(1);
     }
 
     private onStreak = () => {
@@ -124,6 +127,7 @@ const mapStateToProps = (state: IReduxState) => ({
 
 const mapDispatchToProps = {
     dailyStepsCoinClicked,
+    sendTestPush,
     startDailySteps,
     stopDailySteps
 };

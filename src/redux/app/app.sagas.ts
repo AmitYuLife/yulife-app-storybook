@@ -1,6 +1,5 @@
 import { Alert, ConnectionInfo } from "react-native";
 import { call, put, take, takeLatest } from "redux-saga/effects";
-// import PushNotification from "react-native-push-notification";
 // import bugsnag from "../../utils/bugsnag";
 // import { SyncAction, AsyncAction } from "../_core/types";
 import { SHOW_MAINTENANCE, updateAppState, updateOfflineState } from "./app.actions";
@@ -23,18 +22,6 @@ function* listenToNetworkState() {
         yield put(updateOfflineState(network.type === "none"));
     }
 }
-
-// example of moving from reducer logic
-// function* unregisterPush() {
-//     yield call(
-//         PushNotification.cancelAllLocalNotifications.bind(PushNotification),
-//     );
-//     yield call(
-//         PushNotification.setApplicationIconBadgeNumber.bind(PushNotification),
-//         0,
-//     );
-//     yield call(PushNotification.unregister.bind(PushNotification));
-// }
 
 // function* logBreadcrumbs(action: SyncAction | AsyncAction) {
 //     try {
@@ -71,6 +58,5 @@ export default [
     takeLatest("INIT", listenToAppState),
     takeLatest("INIT", listenToNetworkState),
     // takeEvery("*", logBreadcrumbs),
-    // takeLatest(LOGOUT, unregisterPush),
     takeLatest(SHOW_MAINTENANCE, showMaintenance)
 ];

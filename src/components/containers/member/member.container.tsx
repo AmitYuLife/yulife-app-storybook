@@ -1,6 +1,6 @@
+import moment from "moment";
 import React, { PureComponent } from "react";
-import { Platform, StyleSheet, View, ViewStyle } from "react-native";
-import { isIphoneX } from "react-native-iphone-x-helper";
+import { Linking, View } from "react-native";
 import { Navigation } from "react-native-navigation";
 import Swiper from "react-native-swiper";
 import { connect } from "react-redux";
@@ -8,9 +8,17 @@ import { DailyStepsContainer, QuestsContainer, RewardsContainer } from "..";
 import { ROUTES } from "../../../navigation/routes";
 import { IReduxState } from "../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../redux/coins/coins.selectors";
+import {
+    requirePushEnabled,
+    RequirePushEnabledAction,
+    skipPushPermissions,
+    SkipPushPermissionsAction
+} from "../../../redux/device/device.actions";
+import { IPushNotification, pushNotificationsSelector } from "../../../redux/device/device.selectors";
 import { activeLevelSelector, IActiveLevel } from "../../../redux/levels/levels.selectors";
-import { Style } from "../../../styles";
+import { GenericModal } from "../../modals";
 import { ILabel, NavBar, TopBar } from "../../molecules";
+import { styles } from "./member.styles";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -19,7 +27,13 @@ interface IProps {
 
 interface IConnectedState {
     active: IActiveLevel;
+    pushNotifications: IPushNotification;
     totalCoins: number;
+}
+
+interface IConnectedDispatch {
+    requirePushEnabled: RequirePushEnabledAction;
+    skipPushPermissions: SkipPushPermissionsAction;
 }
 
 interface IState {
@@ -29,15 +43,15 @@ interface IState {
     isThirdPageLoaded: boolean;
 }
 
-type Props = IProps & IConnectedState;
+type Props = IProps & IConnectedState & IConnectedDispatch;
 
 class MemberRootContainer extends PureComponent<Props, IState> {
-
     public static getDerivedStateFromProps(props: Props, state: IState) {
         const isQuestTab = state.currentIndex === 1;
         const isModalVisible = isQuestTab && !!props.active.status;
         return { isModalVisible };
     }
+
     public state: IState = {
         currentIndex: 0,
         isModalVisible: false,
@@ -62,7 +76,11 @@ class MemberRootContainer extends PureComponent<Props, IState> {
     ];
 
     public render() {
-        const { active, totalCoins } = this.props;
+        const {
+            active,
+            totalCoins,
+            pushNotifications: { skipped, denied, requested, status }
+        } = this.props;
         const { currentIndex, isModalVisible } = this.state;
         const isQuestTab = currentIndex === 1;
         const isRewardsTab = currentIndex === 2;
@@ -73,6 +91,33 @@ class MemberRootContainer extends PureComponent<Props, IState> {
             menuLabel: showTimer ? active.subtype : null,
             timer: showTimer ? active.endDateTime : null
         };
+
+        if (
+            status !== "enabled" &&
+            (!skipped ||
+                (moment(skipped)
+                    .add(7, "days")
+                    .isBefore(moment()) &&
+                    !denied))
+        ) {
+            const toSettings = requested && skipped;
+            const data = {
+                ctaLabel: toSettings ? "go to settings" : "allow",
+                onPress: toSettings ? () => this.openSettings : this.props.requirePushEnabled,
+                subheading: toSettings
+                    ? "To get notifications, you need to go to the system settings and turn it on."
+                    : "Turn the notification on so we can notify you when there’s a response to your message."
+            };
+
+            return (
+                <GenericModal
+                    heading="notification"
+                    ctaLabelSecondary="skip"
+                    onPressSecondary={this.props.skipPushPermissions}
+                    {...data}
+                />
+            );
+        }
 
         return (
             <>
@@ -111,6 +156,15 @@ class MemberRootContainer extends PureComponent<Props, IState> {
         );
     }
 
+    private openSettings = async () => {
+        try {
+            await Linking.openURL("app-settings:");
+        } catch (e) {
+            // tslint:disable-next-line
+            console.log(e);
+        }
+    }
+
     private showMenu = () => {
         Navigation.mergeOptions(ROUTES.menu, {
             sideMenu: {
@@ -128,39 +182,20 @@ class MemberRootContainer extends PureComponent<Props, IState> {
             isThirdPageLoaded: isThirdPageLoaded || currentIndex === 2
         }));
     }
-
-    // private handleToggleModal = (isModalVisible: boolean) => {
-    //     this.setState({ isModalVisible });
-    // }
-
-    // TODO fix these
-    // private onCta = () => { };
-
-    // private onMenu = () => { };
-
-    // private onStreak = () => { };
-
-    // private onNavPress = (name: string) => { };
 }
 
 const mapStateToProps = (state: IReduxState) => ({
     active: activeLevelSelector(state),
+    pushNotifications: pushNotificationsSelector(state),
     totalCoins: getTotalCoins(state)
 });
 
-export default connect<IConnectedState>(mapStateToProps)(MemberRootContainer);
+const mapDispatchToProps = {
+    requirePushEnabled,
+    skipPushPermissions
+};
 
-const styles = StyleSheet.create({
-    navBarWrapper: {
-        alignItems: "center",
-        bottom: Style.SCALE_UP_AND_DOWN(17),
-        position: "absolute",
-        width: Style.DEVICE_WIDTH
-    } as ViewStyle,
-    topBarWrapper: {
-        left: 0,
-        position: "absolute",
-        right: 0,
-        top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 40 : Platform.OS === "android" ? 0 : 20)
-    } as ViewStyle
-});
+export default connect<IConnectedState, IConnectedDispatch>(
+    mapStateToProps,
+    mapDispatchToProps
+)(MemberRootContainer);

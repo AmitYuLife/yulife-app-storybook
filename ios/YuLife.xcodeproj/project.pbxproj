@@ -137,8 +137,10 @@
 		5A949CCFD5804B9BAF2770A2 /* libRNFitKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE7CE842D73D4912A39D1CF6 /* libRNFitKit.a */; };
 		5DD9F6AA5BA7418987C4008B /* Bariol-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58BDFA96FD7F4A21A586A35D /* Bariol-Light.otf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		6CD5C3E6AC854A25BF61D1BB /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C3838907B2431AB27CACE8 /* libRNDeviceInfo.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8470B5A883B14DAEB00B99CD /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8680205BCB6C46FEB6D2A697 /* libReactNativeConfig.a */; };
+		94DF73CA21538A1900E53652 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DF73C72153899D00E53652 /* libRCTPushNotification.a */; };
 		A3335D14F85D42C8A71DB717 /* libBugsnagReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 741B056F3798488EB651C6D6 /* libBugsnagReactNative.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		BE55738547FE45A793211840 /* libRNIntercom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAEEA81EB5F49559EB99517 /* libRNIntercom.a */; };
@@ -497,6 +499,34 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		94DF73BD215388F900E53652 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B518BC259B444B63AE8B3482 /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
+			remoteInfo = RNDeviceInfo;
+		};
+		94DF73BF215388F900E53652 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B518BC259B444B63AE8B3482 /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E72EC1401F7ABB5A0001BC90;
+			remoteInfo = "RNDeviceInfo-tvOS";
+		};
+		94DF73C62153899D00E53652 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94DF73C12153899D00E53652 /* RCTPushNotification.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTPushNotification;
+		};
+		94DF73C82153899D00E53652 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94DF73C12153899D00E53652 /* RCTPushNotification.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D05745F1DE6004600184BB4;
+			remoteInfo = "RCTPushNotification-tvOS";
+		};
 		ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -741,11 +771,14 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8680205BCB6C46FEB6D2A697 /* libReactNativeConfig.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeConfig.a; sourceTree = "<group>"; };
+		94DF73C12153899D00E53652 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		9903AC7FFDE9457B9E58F46A /* Bariol-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Bariol-Bold.otf"; path = "../assets/fonts/Bariol-Bold.otf"; sourceTree = "<group>"; };
 		A23499BFDAA5480F982F1227 /* BugsnagReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BugsnagReactNative.xcodeproj; path = "../node_modules/bugsnag-react-native/cocoa/BugsnagReactNative.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		B518BC259B444B63AE8B3482 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		C3FF90C857A2446193BAF74B /* libRNDualPedometer.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDualPedometer.a; sourceTree = "<group>"; };
 		D735CA38EBDC4E069BDE45DC /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
+		E1C3838907B2431AB27CACE8 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
 		E36B50194DAB4CBE82680CE6 /* RNFitKit.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFitKit.xcodeproj; path = "../node_modules/react-native-fitkit/ios/RNFitKit.xcodeproj"; sourceTree = "<group>"; };
 		ECAF7C7DE0AE4E27AF136FB8 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
 		FE7CE842D73D4912A39D1CF6 /* libRNFitKit.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFitKit.a; sourceTree = "<group>"; };
@@ -784,6 +817,7 @@
 				3A85BE302122D9CA0081B400 /* Intercom.framework in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
+				94DF73CA21538A1900E53652 /* libRCTPushNotification.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
@@ -798,6 +832,7 @@
 				361D6BD0B022419E81A2465F /* libz.tbd in Frameworks */,
 				09BBA0D09CD04BB0A158E1A6 /* libRNDualPedometer.a in Frameworks */,
 				5A949CCFD5804B9BAF2770A2 /* libRNFitKit.a in Frameworks */,
+				6CD5C3E6AC854A25BF61D1BB /* libRNDeviceInfo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1189,6 +1224,7 @@
 				741B056F3798488EB651C6D6 /* libBugsnagReactNative.a */,
 				C3FF90C857A2446193BAF74B /* libRNDualPedometer.a */,
 				FE7CE842D73D4912A39D1CF6 /* libRNFitKit.a */,
+				E1C3838907B2431AB27CACE8 /* libRNDeviceInfo.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1240,6 +1276,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				94DF73C12153899D00E53652 /* RCTPushNotification.xcodeproj */,
 				3A34E09E210A32FF0022EAAA /* ReactNativeNavigation.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -1261,6 +1298,7 @@
 				A23499BFDAA5480F982F1227 /* BugsnagReactNative.xcodeproj */,
 				776A2D8EEF894386BE0231B4 /* RNDualPedometer.xcodeproj */,
 				E36B50194DAB4CBE82680CE6 /* RNFitKit.xcodeproj */,
+				B518BC259B444B63AE8B3482 /* RNDeviceInfo.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1296,6 +1334,24 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* YuLife.app */,
 				00E356EE1AD99517003FC87E /* YuLifeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94DF73B9215388F900E53652 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94DF73BE215388F900E53652 /* libRNDeviceInfo.a */,
+				94DF73C0215388F900E53652 /* libRNDeviceInfo-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94DF73C22153899D00E53652 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94DF73C72153899D00E53652 /* libRCTPushNotification.a */,
+				94DF73C92153899D00E53652 /* libRCTPushNotification-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1431,6 +1487,10 @@
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
 				},
 				{
+					ProductGroup = 94DF73C22153899D00E53652 /* Products */;
+					ProjectRef = 94DF73C12153899D00E53652 /* RCTPushNotification.xcodeproj */;
+				},
+				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
 					ProjectRef = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
 				},
@@ -1461,6 +1521,10 @@
 				{
 					ProductGroup = 3AA682662120C2D90036CBD0 /* Products */;
 					ProjectRef = 67B634C5C9AB4C64921C5198 /* RNBlur.xcodeproj */;
+				},
+				{
+					ProductGroup = 94DF73B9215388F900E53652 /* Products */;
+					ProjectRef = B518BC259B444B63AE8B3482 /* RNDeviceInfo.xcodeproj */;
 				},
 				{
 					ProductGroup = 3A90FC352124228900202C5E /* Products */;
@@ -1835,6 +1899,34 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		94DF73BE215388F900E53652 /* libRNDeviceInfo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNDeviceInfo.a;
+			remoteRef = 94DF73BD215388F900E53652 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		94DF73C0215388F900E53652 /* libRNDeviceInfo-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNDeviceInfo-tvOS.a";
+			remoteRef = 94DF73BF215388F900E53652 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		94DF73C72153899D00E53652 /* libRCTPushNotification.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTPushNotification.a;
+			remoteRef = 94DF73C62153899D00E53652 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		94DF73C92153899D00E53652 /* libRCTPushNotification-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRCTPushNotification-tvOS.a";
+			remoteRef = 94DF73C82153899D00E53652 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2037,12 +2129,14 @@
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
 					"$(SRCROOT)/../node_modules/react-native-dual-pedometer/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fitkit/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 				);
 				INFOPLIST_FILE = YuLifeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2076,12 +2170,14 @@
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
 					"$(SRCROOT)/../node_modules/react-native-dual-pedometer/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fitkit/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 				);
 				INFOPLIST_FILE = YuLifeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2123,6 +2219,7 @@
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
 					"$(SRCROOT)/../node_modules/react-native-dual-pedometer/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fitkit/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 				);
 				INFOPLIST_FILE = YuLife/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
@@ -2163,6 +2260,7 @@
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
 					"$(SRCROOT)/../node_modules/react-native-dual-pedometer/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fitkit/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 				);
 				INFOPLIST_FILE = YuLife/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";

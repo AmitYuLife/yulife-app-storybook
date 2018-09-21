@@ -32,7 +32,6 @@ android {
         applicationId "com.yulife"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        multiDexEnabled true
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative56"
         multiDexEnabled true
         renderscriptTargetApi rootProject.ext.minSdkVersion
@@ -97,6 +96,8 @@ dependencies {
     def androidAppCompatVersion = safeExtGet("androidAppCompatVersion", "+")
     def reactNativeVersion = safeExtGet("reactNativeVersion", "+")
 
+    implementation project(':react-native-device-info')
+    implementation project(':react-native-push-notification')
     implementation project(':react-native-blur')
     implementation project(':react-native-config')
     implementation project(':react-native-navigation')

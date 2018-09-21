@@ -5,6 +5,7 @@ export const START_DAILY_STEPS = "START_DAILY_STEPS";
 export const STOP_DAILY_STEPS = "STOP_DAILY_STEPS";
 export const UPDATE_DAILY_STEPS_SUCCESS = "UPDATE_DAILY_STEPS_SUCCESS";
 export const UPDATE_DAILY_STEPS_FAILED = "UPDATE_DAILY_STEPS_FAILED";
+export const UPDATE_DAILY_STEPS_NOTIFICATION = "UPDATE_DAILY_STEPS_NOTIFICATION";
 
 export const startDailySteps = (): SyncAction => ({
     type: START_DAILY_STEPS
@@ -24,4 +25,8 @@ export type UpdateDailyStepsFailedAction = SyncAction<string>;
 export const updateDailyStepsFailed = (error: string): UpdateDailyStepsFailedAction => ({
     payload: error,
     type: UPDATE_DAILY_STEPS_FAILED
+});
+
+export const updateDailyStepsNotification = (): SyncAction => ({
+    type: UPDATE_DAILY_STEPS_NOTIFICATION
 });

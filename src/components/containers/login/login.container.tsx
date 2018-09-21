@@ -81,7 +81,10 @@ export class LoginContainer extends Component<Props, IState> {
             Navigation.push(this.props.componentId, {
                 component: {
                     id: route,
-                    name: route
+                    name: route,
+                    passProps: {
+                        onboarded
+                    }
                 }
             });
             return;
