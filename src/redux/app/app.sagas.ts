@@ -1,9 +1,10 @@
 import { Alert, ConnectionInfo } from "react-native";
 import { call, put, take, takeLatest } from "redux-saga/effects";
+import { ROUTES } from "../../navigation/routes";
 // import bugsnag from "../../utils/bugsnag";
 // import { SyncAction, AsyncAction } from "../_core/types";
-import { SHOW_MAINTENANCE, updateAppState, updateOfflineState } from "./app.actions";
-import { appNetworkChannel, appStateChannel } from "./app.channels";
+import { SHOW_MAINTENANCE, updateAppState, updateNavigationState, updateOfflineState } from "./app.actions";
+import { appNavigationChannel, appNetworkChannel, appStateChannel } from "./app.channels";
 
 function* listenToAppState() {
     const stateChannel = yield call(appStateChannel);
@@ -20,6 +21,19 @@ function* listenToNetworkState() {
     while (true) {
         const network: ConnectionInfo = yield take(networkChannel);
         yield put(updateOfflineState(network.type === "none"));
+    }
+}
+
+function* listenToBottomTabSelection() {
+    const navigationChannel = yield call(appNavigationChannel);
+
+    while (true) {
+        const { componentId } = yield take(navigationChannel);
+
+        // TODO: Add page_view logging
+        if (componentId !== ROUTES.menu) {
+            yield put(updateNavigationState(componentId));
+        }
     }
 }
 
@@ -57,6 +71,7 @@ function* showMaintenance() {
 export default [
     takeLatest("INIT", listenToAppState),
     takeLatest("INIT", listenToNetworkState),
+    takeLatest("INIT", listenToBottomTabSelection),
     // takeEvery("*", logBreadcrumbs),
     takeLatest(SHOW_MAINTENANCE, showMaintenance)
 ];

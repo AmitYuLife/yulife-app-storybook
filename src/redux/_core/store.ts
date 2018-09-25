@@ -8,6 +8,7 @@ import combinedReducers, { IReduxState } from "./reducers";
 import sagas from "./sagas";
 
 const persistConfig = {
+    blacklist: ["app"],
     key: "root",
     storage: AsyncStorage
 };

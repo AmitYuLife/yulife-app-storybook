@@ -7,7 +7,6 @@ import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { challengeStartAction, ChallengeStartAction } from "../../../../../redux/levels/levels.actions";
 import { currentLevelSelector } from "../../../../../redux/levels/levels.selectors";
-import { SideEffect } from "../../../../../typings";
 import { BlurProvider } from "../../../../atoms";
 import { ChallengeDetailsModal } from "../../../../modals";
 import { ILabel } from "../../../../molecules/nav-bar/nav-bar";
@@ -25,8 +24,8 @@ interface IConnectedDispatch {
 
 interface IProps {
     componentId: string;
+    labels: ILabel[];
     level: GetCurrentWorld_getCurrentWorld;
-    onNavBarIndexChange: SideEffect<number>;
 }
 
 type Props = IProps & IConnectedState & IConnectedDispatch;
@@ -54,32 +53,8 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
         }
     };
 
-    private labels: ILabel[] = [
-        {
-            name: "yucoin",
-            onPress: () => {
-                this.props.onNavBarIndexChange(0);
-                this.onNavPress();
-            }
-        },
-        {
-            name: "quest",
-            onPress: () => {
-                this.props.onNavBarIndexChange(1);
-                this.onNavPress();
-            }
-        },
-        {
-            name: "rewards",
-            onPress: () => {
-                this.props.onNavBarIndexChange(2);
-                this.onNavPress();
-            }
-        }
-    ];
-
     public render() {
-        const { currentLevel, level, totalCoins } = this.props;
+        const { currentLevel, labels, level, totalCoins } = this.props;
         const {
             slot: { challengeType, duration, milestones, unit }
         } = this.state;
@@ -106,7 +81,7 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
                                 onPress: isLocked ? () => ({}) : this.handleSlotPress(formattedSlot, showOverlay)
                             };
                         })}
-                        labels={this.labels}
+                        labels={labels}
                         name={`level ${level.level}`}
                         onPressLeftIcon={this.onNavPress}
                         totalCoins={totalCoins}

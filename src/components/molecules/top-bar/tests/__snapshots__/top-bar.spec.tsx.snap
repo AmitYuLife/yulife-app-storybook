@@ -30,7 +30,7 @@ ShallowWrapper {
               "alignItems": "center",
               "flexDirection": "row",
               "height": "100%",
-              "left": 30,
+              "left": 16,
               "paddingHorizontal": 16,
               "position": "absolute",
             }
@@ -86,6 +86,7 @@ ShallowWrapper {
       "style": Object {
         "alignItems": "center",
         "flexDirection": "row",
+        "height": 56,
         "justifyContent": "center",
         "marginTop": 8,
         "width": "100%",
@@ -106,7 +107,7 @@ ShallowWrapper {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
-                "left": 30,
+                "left": 16,
                 "paddingHorizontal": 16,
                 "position": "absolute",
               }
@@ -177,7 +178,7 @@ ShallowWrapper {
               "alignItems": "center",
               "flexDirection": "row",
               "height": "100%",
-              "left": 30,
+              "left": 16,
               "paddingHorizontal": 16,
               "position": "absolute",
             },
@@ -344,7 +345,7 @@ ShallowWrapper {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
-                "left": 30,
+                "left": 16,
                 "paddingHorizontal": 16,
                 "position": "absolute",
               }
@@ -400,6 +401,7 @@ ShallowWrapper {
         "style": Object {
           "alignItems": "center",
           "flexDirection": "row",
+          "height": 56,
           "justifyContent": "center",
           "marginTop": 8,
           "width": "100%",
@@ -420,7 +422,7 @@ ShallowWrapper {
                   "alignItems": "center",
                   "flexDirection": "row",
                   "height": "100%",
-                  "left": 30,
+                  "left": 16,
                   "paddingHorizontal": 16,
                   "position": "absolute",
                 }
@@ -491,7 +493,7 @@ ShallowWrapper {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
-                "left": 30,
+                "left": 16,
                 "paddingHorizontal": 16,
                 "position": "absolute",
               },
@@ -695,7 +697,7 @@ ShallowWrapper {
               "alignItems": "center",
               "flexDirection": "row",
               "height": "100%",
-              "left": 30,
+              "left": 16,
               "paddingHorizontal": 16,
               "position": "absolute",
             }
@@ -751,6 +753,7 @@ ShallowWrapper {
       "style": Object {
         "alignItems": "center",
         "flexDirection": "row",
+        "height": 56,
         "justifyContent": "center",
         "marginTop": 8,
         "width": "100%",
@@ -771,7 +774,7 @@ ShallowWrapper {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
-                "left": 30,
+                "left": 16,
                 "paddingHorizontal": 16,
                 "position": "absolute",
               }
@@ -842,7 +845,7 @@ ShallowWrapper {
               "alignItems": "center",
               "flexDirection": "row",
               "height": "100%",
-              "left": 30,
+              "left": 16,
               "paddingHorizontal": 16,
               "position": "absolute",
             },
@@ -1009,7 +1012,7 @@ ShallowWrapper {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
-                "left": 30,
+                "left": 16,
                 "paddingHorizontal": 16,
                 "position": "absolute",
               }
@@ -1065,6 +1068,7 @@ ShallowWrapper {
         "style": Object {
           "alignItems": "center",
           "flexDirection": "row",
+          "height": 56,
           "justifyContent": "center",
           "marginTop": 8,
           "width": "100%",
@@ -1085,7 +1089,7 @@ ShallowWrapper {
                   "alignItems": "center",
                   "flexDirection": "row",
                   "height": "100%",
-                  "left": 30,
+                  "left": 16,
                   "paddingHorizontal": 16,
                   "position": "absolute",
                 }
@@ -1156,7 +1160,7 @@ ShallowWrapper {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
-                "left": 30,
+                "left": 16,
                 "paddingHorizontal": 16,
                 "position": "absolute",
               },
@@ -1361,7 +1365,7 @@ ShallowWrapper {
               "alignItems": "center",
               "flexDirection": "row",
               "height": "100%",
-              "left": 30,
+              "left": 16,
               "paddingHorizontal": 16,
               "position": "absolute",
             }
@@ -1437,6 +1441,7 @@ ShallowWrapper {
       "style": Object {
         "alignItems": "center",
         "flexDirection": "row",
+        "height": 56,
         "justifyContent": "center",
         "marginTop": 8,
         "width": "100%",
@@ -1457,7 +1462,7 @@ ShallowWrapper {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
-                "left": 30,
+                "left": 16,
                 "paddingHorizontal": 16,
                 "position": "absolute",
               }
@@ -1567,7 +1572,7 @@ ShallowWrapper {
               "alignItems": "center",
               "flexDirection": "row",
               "height": "100%",
-              "left": 30,
+              "left": 16,
               "paddingHorizontal": 16,
               "position": "absolute",
             },
@@ -1773,7 +1778,7 @@ ShallowWrapper {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
-                "left": 30,
+                "left": 16,
                 "paddingHorizontal": 16,
                 "position": "absolute",
               }
@@ -1849,6 +1854,7 @@ ShallowWrapper {
         "style": Object {
           "alignItems": "center",
           "flexDirection": "row",
+          "height": 56,
           "justifyContent": "center",
           "marginTop": 8,
           "width": "100%",
@@ -1869,7 +1875,7 @@ ShallowWrapper {
                   "alignItems": "center",
                   "flexDirection": "row",
                   "height": "100%",
-                  "left": 30,
+                  "left": 16,
                   "paddingHorizontal": 16,
                   "position": "absolute",
                 }
@@ -1979,7 +1985,7 @@ ShallowWrapper {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
-                "left": 30,
+                "left": 16,
                 "paddingHorizontal": 16,
                 "position": "absolute",
               },
@@ -2223,7 +2229,7 @@ ShallowWrapper {
               "alignItems": "center",
               "flexDirection": "row",
               "height": "100%",
-              "left": 30,
+              "left": 16,
               "paddingHorizontal": 16,
               "position": "absolute",
             }
@@ -2234,9 +2240,11 @@ ShallowWrapper {
         <Component
           style={
             Object {
+              "alignItems": "center",
               "flexDirection": "row",
-              "marginBottom": -12,
-              "paddingLeft": 40,
+              "height": "100%",
+              "left": 355,
+              "position": "absolute",
             }
           }
         >
@@ -2246,6 +2254,7 @@ ShallowWrapper {
               Object {
                 "fontSize": 36,
                 "marginTop": 4,
+                "paddingLeft": 10,
               }
             }
           />
@@ -2297,6 +2306,7 @@ ShallowWrapper {
       "style": Object {
         "alignItems": "center",
         "flexDirection": "row",
+        "height": 56,
         "justifyContent": "center",
         "marginTop": 8,
         "width": "100%",
@@ -2317,7 +2327,7 @@ ShallowWrapper {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
-                "left": 30,
+                "left": 16,
                 "paddingHorizontal": 16,
                 "position": "absolute",
               }
@@ -2328,9 +2338,11 @@ ShallowWrapper {
           <Component
             style={
               Object {
+                "alignItems": "center",
                 "flexDirection": "row",
-                "marginBottom": -12,
-                "paddingLeft": 40,
+                "height": "100%",
+                "left": 355,
+                "position": "absolute",
               }
             }
           >
@@ -2340,6 +2352,7 @@ ShallowWrapper {
                 Object {
                   "fontSize": 36,
                   "marginTop": 4,
+                  "paddingLeft": 10,
                 }
               }
             />
@@ -2406,7 +2419,7 @@ ShallowWrapper {
               "alignItems": "center",
               "flexDirection": "row",
               "height": "100%",
-              "left": 30,
+              "left": 16,
               "paddingHorizontal": 16,
               "position": "absolute",
             },
@@ -2438,14 +2451,17 @@ ShallowWrapper {
                   Object {
                     "fontSize": 36,
                     "marginTop": 4,
+                    "paddingLeft": 10,
                   }
                 }
               />,
             ],
             "style": Object {
+              "alignItems": "center",
               "flexDirection": "row",
-              "marginBottom": -12,
-              "paddingLeft": 40,
+              "height": "100%",
+              "left": 355,
+              "position": "absolute",
             },
           },
           "ref": null,
@@ -2468,6 +2484,7 @@ ShallowWrapper {
                 "style": Object {
                   "fontSize": 36,
                   "marginTop": 4,
+                  "paddingLeft": 10,
                 },
               },
               "ref": null,
@@ -2615,7 +2632,7 @@ ShallowWrapper {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
-                "left": 30,
+                "left": 16,
                 "paddingHorizontal": 16,
                 "position": "absolute",
               }
@@ -2626,9 +2643,11 @@ ShallowWrapper {
           <Component
             style={
               Object {
+                "alignItems": "center",
                 "flexDirection": "row",
-                "marginBottom": -12,
-                "paddingLeft": 40,
+                "height": "100%",
+                "left": 355,
+                "position": "absolute",
               }
             }
           >
@@ -2638,6 +2657,7 @@ ShallowWrapper {
                 Object {
                   "fontSize": 36,
                   "marginTop": 4,
+                  "paddingLeft": 10,
                 }
               }
             />
@@ -2689,6 +2709,7 @@ ShallowWrapper {
         "style": Object {
           "alignItems": "center",
           "flexDirection": "row",
+          "height": 56,
           "justifyContent": "center",
           "marginTop": 8,
           "width": "100%",
@@ -2709,7 +2730,7 @@ ShallowWrapper {
                   "alignItems": "center",
                   "flexDirection": "row",
                   "height": "100%",
-                  "left": 30,
+                  "left": 16,
                   "paddingHorizontal": 16,
                   "position": "absolute",
                 }
@@ -2720,9 +2741,11 @@ ShallowWrapper {
             <Component
               style={
                 Object {
+                  "alignItems": "center",
                   "flexDirection": "row",
-                  "marginBottom": -12,
-                  "paddingLeft": 40,
+                  "height": "100%",
+                  "left": 355,
+                  "position": "absolute",
                 }
               }
             >
@@ -2732,6 +2755,7 @@ ShallowWrapper {
                   Object {
                     "fontSize": 36,
                     "marginTop": 4,
+                    "paddingLeft": 10,
                   }
                 }
               />
@@ -2798,7 +2822,7 @@ ShallowWrapper {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
-                "left": 30,
+                "left": 16,
                 "paddingHorizontal": 16,
                 "position": "absolute",
               },
@@ -2830,14 +2854,17 @@ ShallowWrapper {
                     Object {
                       "fontSize": 36,
                       "marginTop": 4,
+                      "paddingLeft": 10,
                     }
                   }
                 />,
               ],
               "style": Object {
+                "alignItems": "center",
                 "flexDirection": "row",
-                "marginBottom": -12,
-                "paddingLeft": 40,
+                "height": "100%",
+                "left": 355,
+                "position": "absolute",
               },
             },
             "ref": null,
@@ -2860,6 +2887,7 @@ ShallowWrapper {
                   "style": Object {
                     "fontSize": 36,
                     "marginTop": 4,
+                    "paddingLeft": 10,
                   },
                 },
                 "ref": null,

@@ -1,5 +1,6 @@
 import { shallow } from "enzyme";
 import * as React from "react";
+import { ILabel } from "../../../../../molecules";
 import RewardsPurchasedScreen from "../rewards-purchased.screen";
 
 const defaultProps = {
@@ -12,8 +13,11 @@ const defaultProps = {
         reward: "string",
         status: "pending"
     }],
+    labels: [] as ILabel[],
+    onLeftMenuPress: jest.fn(),
     onLeftTabPress: jest.fn(),
-    onRightTabPress: jest.fn()
+    onRightTabPress: jest.fn(),
+    totalCoins: 1234
 };
 
 describe("RewardsPurchasedScreen", () => {

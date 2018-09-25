@@ -1,6 +1,7 @@
 import * as React from "react";
 import { SFC } from "react";
 import { View } from "react-native";
+import { padNum } from "../../../../services/utils";
 import { StarInline, Text } from "../../../atoms";
 import styles from "./activity-history-levels.styles";
 
@@ -27,7 +28,7 @@ const Items: SFC<ItemProps> = ({ challenges, dayOfMonth, dayOfWeek, level, steps
                 <View style={styles.levelCircle}>
                     <View style={styles.levelTextWrapper}>
                         <Text bold={true} style={styles.levelTextTop}>LEVEL</Text>
-                        <Text bold={true} style={styles.levelTextBottom}>{level.toString().padStart(2, "0")}</Text>
+                        <Text bold={true} style={styles.levelTextBottom}>{padNum(level)}</Text>
                     </View>
                 </View>
             )}

@@ -22,7 +22,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         ...StyleSheet.absoluteFillObject
     } as ViewStyle,
+    navBarWrapper: {
+        alignItems: "center",
+        bottom: Style.SCALE_UP_AND_DOWN(17),
+        position: "absolute"
+    } as ViewStyle,
     wrapper: {
+        alignItems: "center",
         flex: 1,
         height: "100%"
     } as ViewStyle

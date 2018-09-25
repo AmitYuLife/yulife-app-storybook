@@ -1,6 +1,7 @@
 import { shallow } from "enzyme";
 import * as React from "react";
 import "react-native";
+import { ILabel } from "../../../../molecules";
 import DailyStepsScreen from "../daily-steps.screen";
 
 const defaultProps = {
@@ -11,13 +12,16 @@ const defaultProps = {
     isDoneToday: false,
     isLoading: false,
     isOnline: true,
+    labels: [] as ILabel[],
     lastUpdate: "thing",
     maxStreak: 4,
     onAuthoriseFitKitPress: jest.fn(),
     onCoinPress: jest.fn(),
     onCtaPress: jest.fn(),
+    onLeftMenuPress: jest.fn(),
     onStreakPress: jest.fn(),
-    steps: 0
+    steps: 0,
+    totalCoins: 1234
 };
 
 describe("DailyStepsScreen", () => {

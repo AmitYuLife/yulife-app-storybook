@@ -8,7 +8,7 @@ const defaultProps = {
     hasNotification: false,
     labels: [
         { name: "yucoin", onPress: jest.fn() },
-        { name: "quest", onPress: jest.fn() },
+        { name: "quests", onPress: jest.fn() },
         { name: "rewards", onPress: jest.fn() }
     ]
 };

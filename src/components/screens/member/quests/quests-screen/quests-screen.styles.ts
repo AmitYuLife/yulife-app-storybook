@@ -50,7 +50,7 @@ export default StyleSheet.create({
     platformAdjust: {
         bottom: isIphoneX() ? -20 : 0,
         position: "absolute",
-        top: isIphoneX() ? 0 : 10
+        top: isIphoneX() || Platform.OS === "android" ? 0 : 10
     } as ViewStyle,
     scrollViewWrapper: {
         bottom: 0,
@@ -61,12 +61,6 @@ export default StyleSheet.create({
             iPhoneX: isIphoneX(),
             platform: Platform.OS
         })
-    } as ViewStyle,
-    topBarWrapper: {
-        left: 0,
-        position: "absolute",
-        right: 0,
-        top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 30 : 20)
     } as ViewStyle,
     wrapper: {
         flex: 1,

@@ -14,7 +14,7 @@ ShallowWrapper {
           "onPress": [MockFunction],
         },
         Object {
-          "name": "quest",
+          "name": "quests",
           "onPress": [MockFunction],
         },
         Object {
@@ -145,7 +145,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  quest
+                  quests
                 </YuText>
               </Component>
             </Component>
@@ -382,7 +382,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>
@@ -579,7 +579,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>,
@@ -609,7 +609,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>,
                 "style": Object {
@@ -634,7 +634,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>,
                   "style": Object {
                     "marginRight": 8,
@@ -646,7 +646,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "function",
                   "props": Object {
-                    "children": "quest",
+                    "children": "quests",
                     "style": Object {
                       "color": "rgba(255,255,255,0.4)",
                       "fontSize": 32,
@@ -655,7 +655,7 @@ ShallowWrapper {
                     },
                   },
                   "ref": null,
-                  "rendered": "quest",
+                  "rendered": "quests",
                   "type": [Function],
                 },
                 "type": [Function],
@@ -900,7 +900,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>
@@ -1137,7 +1137,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>
                 </Component>
@@ -1334,7 +1334,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>
                 </Component>,
@@ -1364,7 +1364,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>,
                   "style": Object {
@@ -1389,7 +1389,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>,
                     "style": Object {
                       "marginRight": 8,
@@ -1401,7 +1401,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "function",
                     "props": Object {
-                      "children": "quest",
+                      "children": "quests",
                       "style": Object {
                         "color": "rgba(255,255,255,0.4)",
                         "fontSize": 32,
@@ -1410,7 +1410,7 @@ ShallowWrapper {
                       },
                     },
                     "ref": null,
-                    "rendered": "quest",
+                    "rendered": "quests",
                     "type": [Function],
                   },
                   "type": [Function],
@@ -1578,7 +1578,7 @@ ShallowWrapper {
           "onPress": [MockFunction],
         },
         Object {
-          "name": "quest",
+          "name": "quests",
           "onPress": [MockFunction],
         },
         Object {
@@ -1709,7 +1709,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  quest
+                  quests
                 </YuText>
               </Component>
             </Component>
@@ -1946,7 +1946,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>
@@ -2143,7 +2143,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>,
@@ -2173,7 +2173,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>,
                 "style": Object {
@@ -2198,7 +2198,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>,
                   "style": Object {
                     "marginRight": 8,
@@ -2210,7 +2210,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "function",
                   "props": Object {
-                    "children": "quest",
+                    "children": "quests",
                     "style": Object {
                       "color": "rgba(255,255,255,0.4)",
                       "fontSize": 32,
@@ -2219,7 +2219,7 @@ ShallowWrapper {
                     },
                   },
                   "ref": null,
-                  "rendered": "quest",
+                  "rendered": "quests",
                   "type": [Function],
                 },
                 "type": [Function],
@@ -2464,7 +2464,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>
@@ -2701,7 +2701,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>
                 </Component>
@@ -2898,7 +2898,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>
                 </Component>,
@@ -2928,7 +2928,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>,
                   "style": Object {
@@ -2953,7 +2953,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>,
                     "style": Object {
                       "marginRight": 8,
@@ -2965,7 +2965,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "function",
                     "props": Object {
-                      "children": "quest",
+                      "children": "quests",
                       "style": Object {
                         "color": "rgba(255,255,255,0.4)",
                         "fontSize": 32,
@@ -2974,7 +2974,7 @@ ShallowWrapper {
                       },
                     },
                     "ref": null,
-                    "rendered": "quest",
+                    "rendered": "quests",
                     "type": [Function],
                   },
                   "type": [Function],
@@ -3142,7 +3142,7 @@ ShallowWrapper {
           "onPress": [MockFunction],
         },
         Object {
-          "name": "quest",
+          "name": "quests",
           "onPress": [MockFunction],
         },
         Object {
@@ -3273,7 +3273,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  quest
+                  quests
                 </YuText>
               </Component>
             </Component>
@@ -3510,7 +3510,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>
@@ -3707,7 +3707,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>,
@@ -3737,7 +3737,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>,
                 "style": Object {
@@ -3762,7 +3762,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>,
                   "style": Object {
                     "marginRight": 8,
@@ -3774,7 +3774,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "function",
                   "props": Object {
-                    "children": "quest",
+                    "children": "quests",
                     "style": Object {
                       "color": "rgba(255,255,255,1)",
                       "fontSize": 32,
@@ -3783,7 +3783,7 @@ ShallowWrapper {
                     },
                   },
                   "ref": null,
-                  "rendered": "quest",
+                  "rendered": "quests",
                   "type": [Function],
                 },
                 "type": [Function],
@@ -4028,7 +4028,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>
@@ -4265,7 +4265,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>
                 </Component>
@@ -4462,7 +4462,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>
                 </Component>,
@@ -4492,7 +4492,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>,
                   "style": Object {
@@ -4517,7 +4517,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>,
                     "style": Object {
                       "marginRight": 8,
@@ -4529,7 +4529,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "function",
                     "props": Object {
-                      "children": "quest",
+                      "children": "quests",
                       "style": Object {
                         "color": "rgba(255,255,255,1)",
                         "fontSize": 32,
@@ -4538,7 +4538,7 @@ ShallowWrapper {
                       },
                     },
                     "ref": null,
-                    "rendered": "quest",
+                    "rendered": "quests",
                     "type": [Function],
                   },
                   "type": [Function],
@@ -4706,7 +4706,7 @@ ShallowWrapper {
           "onPress": [MockFunction],
         },
         Object {
-          "name": "quest",
+          "name": "quests",
           "onPress": [MockFunction],
         },
         Object {
@@ -4837,7 +4837,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  quest
+                  quests
                 </YuText>
               </Component>
             </Component>
@@ -5074,7 +5074,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>
@@ -5271,7 +5271,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>,
@@ -5301,7 +5301,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>,
                 "style": Object {
@@ -5326,7 +5326,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>,
                   "style": Object {
                     "marginRight": 8,
@@ -5338,7 +5338,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "function",
                   "props": Object {
-                    "children": "quest",
+                    "children": "quests",
                     "style": Object {
                       "color": "rgba(255,255,255,1)",
                       "fontSize": 32,
@@ -5347,7 +5347,7 @@ ShallowWrapper {
                     },
                   },
                   "ref": null,
-                  "rendered": "quest",
+                  "rendered": "quests",
                   "type": [Function],
                 },
                 "type": [Function],
@@ -5592,7 +5592,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>
@@ -5829,7 +5829,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>
                 </Component>
@@ -6026,7 +6026,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>
                 </Component>,
@@ -6056,7 +6056,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>,
                   "style": Object {
@@ -6081,7 +6081,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>,
                     "style": Object {
                       "marginRight": 8,
@@ -6093,7 +6093,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "function",
                     "props": Object {
-                      "children": "quest",
+                      "children": "quests",
                       "style": Object {
                         "color": "rgba(255,255,255,1)",
                         "fontSize": 32,
@@ -6102,7 +6102,7 @@ ShallowWrapper {
                       },
                     },
                     "ref": null,
-                    "rendered": "quest",
+                    "rendered": "quests",
                     "type": [Function],
                   },
                   "type": [Function],
@@ -6270,7 +6270,7 @@ ShallowWrapper {
           "onPress": [MockFunction],
         },
         Object {
-          "name": "quest",
+          "name": "quests",
           "onPress": [MockFunction],
         },
         Object {
@@ -6401,7 +6401,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  quest
+                  quests
                 </YuText>
               </Component>
             </Component>
@@ -6638,7 +6638,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>
@@ -6835,7 +6835,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>,
@@ -6865,7 +6865,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>,
                 "style": Object {
@@ -6890,7 +6890,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>,
                   "style": Object {
                     "marginRight": 8,
@@ -6902,7 +6902,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "function",
                   "props": Object {
-                    "children": "quest",
+                    "children": "quests",
                     "style": Object {
                       "color": "rgba(255,255,255,0.4)",
                       "fontSize": 32,
@@ -6911,7 +6911,7 @@ ShallowWrapper {
                     },
                   },
                   "ref": null,
-                  "rendered": "quest",
+                  "rendered": "quests",
                   "type": [Function],
                 },
                 "type": [Function],
@@ -7156,7 +7156,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>
@@ -7393,7 +7393,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>
                 </Component>
@@ -7590,7 +7590,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>
                 </Component>,
@@ -7620,7 +7620,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>,
                   "style": Object {
@@ -7645,7 +7645,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>,
                     "style": Object {
                       "marginRight": 8,
@@ -7657,7 +7657,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "function",
                     "props": Object {
-                      "children": "quest",
+                      "children": "quests",
                       "style": Object {
                         "color": "rgba(255,255,255,0.4)",
                         "fontSize": 32,
@@ -7666,7 +7666,7 @@ ShallowWrapper {
                       },
                     },
                     "ref": null,
-                    "rendered": "quest",
+                    "rendered": "quests",
                     "type": [Function],
                   },
                   "type": [Function],
@@ -7834,7 +7834,7 @@ ShallowWrapper {
           "onPress": [MockFunction],
         },
         Object {
-          "name": "quest",
+          "name": "quests",
           "onPress": [MockFunction],
         },
         Object {
@@ -7965,7 +7965,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  quest
+                  quests
                 </YuText>
               </Component>
             </Component>
@@ -8202,7 +8202,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>
@@ -8399,7 +8399,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>,
@@ -8429,7 +8429,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>,
                 "style": Object {
@@ -8454,7 +8454,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>,
                   "style": Object {
                     "marginRight": 8,
@@ -8466,7 +8466,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "function",
                   "props": Object {
-                    "children": "quest",
+                    "children": "quests",
                     "style": Object {
                       "color": "rgba(255,255,255,0.4)",
                       "fontSize": 32,
@@ -8475,7 +8475,7 @@ ShallowWrapper {
                     },
                   },
                   "ref": null,
-                  "rendered": "quest",
+                  "rendered": "quests",
                   "type": [Function],
                 },
                 "type": [Function],
@@ -8720,7 +8720,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    quest
+                    quests
                   </YuText>
                 </Component>
               </Component>
@@ -8957,7 +8957,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>
                 </Component>
@@ -9154,7 +9154,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>
                 </Component>,
@@ -9184,7 +9184,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>
                   </Component>,
                   "style": Object {
@@ -9209,7 +9209,7 @@ ShallowWrapper {
                         }
                       }
                     >
-                      quest
+                      quests
                     </YuText>,
                     "style": Object {
                       "marginRight": 8,
@@ -9221,7 +9221,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "function",
                     "props": Object {
-                      "children": "quest",
+                      "children": "quests",
                       "style": Object {
                         "color": "rgba(255,255,255,0.4)",
                         "fontSize": 32,
@@ -9230,7 +9230,7 @@ ShallowWrapper {
                       },
                     },
                     "ref": null,
-                    "rendered": "quest",
+                    "rendered": "quests",
                     "type": [Function],
                   },
                   "type": [Function],

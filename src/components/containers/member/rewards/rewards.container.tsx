@@ -1,27 +1,33 @@
 import moment from "moment";
-import * as React from "react";
 import { PureComponent } from "react";
+import * as React from "react";
 import { Text } from "react-native";
 import { Navigation } from "react-native-navigation";
+import { connect } from "react-redux";
 import { GetAllPurchases_getAllPurchases, GetRewards_getRewards } from "../../../../graphql/_core/schema";
 import GetAllPurchases, { getAllPurchasesGql } from "../../../../graphql/rewards/getAllPurchases.gql";
 import GetRewardsQuery, { getRewardsGql } from "../../../../graphql/rewards/getRewards.gql";
+import { IMainTabsProps } from "../../../../navigation/root";
 import { ROUTES } from "../../../../navigation/routes";
+import { IReduxState } from "../../../../redux/_core/reducers";
+import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { formatMoney } from "../../../../services/money";
 import { Loading } from "../../../atoms";
 import { PurchasedListScreen, RewardsListScreen } from "../../../screens";
 
 type Tab = "rewards" | "purchases";
 
-interface IProps {
-    isLoaded?: boolean;
+interface IConnectedState {
+    totalCoins: number;
 }
 
 interface IState {
     tab: Tab;
 }
 
-class RewardsContainer extends PureComponent<IProps, IState> {
+type Props = IMainTabsProps & IConnectedState;
+
+class RewardsContainer extends PureComponent<Props, IState> {
     public state: IState = {
         tab: "rewards"
     };
@@ -52,12 +58,17 @@ class RewardsContainer extends PureComponent<IProps, IState> {
                     return <Text> ERROR!!! </Text>;
                 }
 
+                const { labels, onLeftMenuPress, totalCoins } = this.props;
+
                 return (
                     <RewardsListScreen
                         data={data.getRewards}
+                        labels={labels}
+                        onItemPress={this.handleRewardDetailsItemPress}
+                        onLeftMenuPress={onLeftMenuPress}
                         onLeftTabPress={() => refetch()}
                         onRightTabPress={() => this.handleTabChange("purchases")}
-                        onItemPress={this.handleRewardDetailsItemPress}
+                        totalCoins={totalCoins}
                     />
                 );
             }}
@@ -77,7 +88,7 @@ class RewardsContainer extends PureComponent<IProps, IState> {
     private handleRewardDetailsItemPress = async (reward: GetRewards_getRewards) => {
         const route = this.getDetailsRoute(reward.rewardProviderId);
 
-        await Navigation.push(ROUTES.member, {
+        await Navigation.push(this.props.componentId, {
             component: {
                 id: route,
                 name: route,
@@ -101,13 +112,17 @@ class RewardsContainer extends PureComponent<IProps, IState> {
                     return <Text> ERROR!!! </Text>;
                 }
 
+                const { labels, onLeftMenuPress, totalCoins } = this.props;
                 const items = this.formatPuchaseItem(data.getAllPurchases);
 
                 return (
                     <PurchasedListScreen
                         data={items}
+                        labels={labels}
+                        onLeftMenuPress={onLeftMenuPress}
                         onLeftTabPress={() => this.handleTabChange("rewards")}
                         onRightTabPress={() => refetch()}
+                        totalCoins={totalCoins}
                     />
                 );
             }}
@@ -139,7 +154,7 @@ class RewardsContainer extends PureComponent<IProps, IState> {
                 id,
                 month,
                 onPress: async () => {
-                    await Navigation.push(ROUTES.member, {
+                    await Navigation.push(this.props.componentId, {
                         component: {
                             id: route,
                             name: route,
@@ -167,4 +182,8 @@ class RewardsContainer extends PureComponent<IProps, IState> {
     }
 }
 
-export default RewardsContainer;
+const mapStateToProps = (state: IReduxState) => ({
+    totalCoins: getTotalCoins(state)
+});
+
+export default connect<IConnectedState>(mapStateToProps)(RewardsContainer);

@@ -1,5 +1,4 @@
 import {
-    ImageStyle,
     Platform,
     StyleSheet,
     TextStyle,
@@ -35,14 +34,14 @@ export default StyleSheet.create({
         marginTop: Style.SCALE_UP_AND_DOWN(-4)
     } as TextStyle,
     menuLabelWrapper: {
-        marginBottom: Style.SCALE_UP_AND_DOWN(-6),
+        marginBottom: Style.SCALE_UP_AND_DOWN(Platform.OS === "ios" ? -6 : 0),
         marginLeft: Style.SCALE_UP_AND_DOWN(8)
     } as ViewStyle,
     menuWrapper: {
         alignItems: "center",
         flexDirection: "row",
         height: "100%",
-        left: Style.SCALE_UP_AND_DOWN(15),
+        left: Style.SCALE_UP_AND_DOWN(8),
         paddingHorizontal: Style.SCALE_UP_AND_DOWN(8),
         position: "absolute"
     } as ViewStyle,
@@ -52,23 +51,28 @@ export default StyleSheet.create({
     name: {
         fontSize: Style.SCALE_UP_AND_DOWN(20)
     } as TextStyle,
-    time: {
-        height: Style.SCALE_UP_AND_DOWN(25),
-        marginRight: Style.SCALE_UP_AND_DOWN(9),
-        width: Style.SCALE_UP_AND_DOWN(25)
-    } as ImageStyle,
+    textWrapper: {
+        alignItems: "center",
+        flexDirection: "row",
+        height: "100%",
+        position: "absolute"
+    } as ViewStyle,
     timer: {
         fontSize: Style.SCALE_UP_AND_DOWN(18),
-        marginTop: Style.SCALE_UP_AND_DOWN(Platform.OS === "android" ? -2 : 2)
+        marginTop: Style.SCALE_UP_AND_DOWN(Platform.OS === "android" ? -2 : 2),
+        paddingLeft: Style.SCALE_UP_AND_DOWN(5)
     } as TextStyle,
     timerWrapper: {
+        alignItems: "center",
         flexDirection: "row",
-        marginBottom: Style.SCALE_UP_AND_DOWN(-6),
-        paddingLeft: Style.SCALE_UP_AND_DOWN(20)
+        height: "100%",
+        left: Style.DEVICE_WIDTH / 2 - Style.SCALE_UP_AND_DOWN(10),
+        position: "absolute"
     } as ViewStyle,
     wrapper: {
         alignItems: "center",
         flexDirection: "row",
+        height: Style.SCALE_UP_AND_DOWN(28),
         justifyContent: "center",
         marginTop: Style.SCALE_UP_AND_DOWN(
             Platform.OS === "ios" ? 4 : 8

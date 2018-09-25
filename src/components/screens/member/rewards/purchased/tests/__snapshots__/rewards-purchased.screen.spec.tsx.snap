@@ -17,8 +17,11 @@ ShallowWrapper {
         },
       ]
     }
+    labels={Array []}
+    onLeftMenuPress={[MockFunction]}
     onLeftTabPress={[MockFunction]}
     onRightTabPress={[MockFunction]}
+    totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -34,8 +37,9 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Pad
-          height={40}
+        <TopBar
+          coins={1234}
+          onPressLeftIcon={[MockFunction]}
         />,
         <Component
           style={
@@ -86,9 +90,22 @@ ShallowWrapper {
             windowSize={21}
           />
         </Component>,
-        <Pad
-          height={80}
-        />,
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "marginBottom": 36,
+            }
+          }
+        >
+          <NavBar
+            activeIndex={2}
+            areIconsHidden={true}
+            colour="darker"
+            hasNotification={false}
+            labels={Array []}
+          />
+        </Component>,
       ],
       "style": Object {
         "flex": 1,
@@ -100,9 +117,10 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
-          "height": 40,
+          "coins": 1234,
+          "onPressLeftIcon": [MockFunction],
         },
         "ref": null,
         "rendered": null,
@@ -213,12 +231,36 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
-          "height": 80,
+          "children": <NavBar
+            activeIndex={2}
+            areIconsHidden={true}
+            colour="darker"
+            hasNotification={false}
+            labels={Array []}
+          />,
+          "style": Object {
+            "alignItems": "center",
+            "marginBottom": 36,
+          },
         },
         "ref": null,
-        "rendered": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeIndex": 2,
+            "areIconsHidden": true,
+            "colour": "darker",
+            "hasNotification": false,
+            "labels": Array [],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
         "type": [Function],
       },
     ],
@@ -231,8 +273,9 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Pad
-            height={40}
+          <TopBar
+            coins={1234}
+            onPressLeftIcon={[MockFunction]}
           />,
           <Component
             style={
@@ -283,9 +326,22 @@ ShallowWrapper {
               windowSize={21}
             />
           </Component>,
-          <Pad
-            height={80}
-          />,
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "marginBottom": 36,
+              }
+            }
+          >
+            <NavBar
+              activeIndex={2}
+              areIconsHidden={true}
+              colour="darker"
+              hasNotification={false}
+              labels={Array []}
+            />
+          </Component>,
         ],
         "style": Object {
           "flex": 1,
@@ -297,9 +353,10 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "height": 40,
+            "coins": 1234,
+            "onPressLeftIcon": [MockFunction],
           },
           "ref": null,
           "rendered": null,
@@ -410,12 +467,36 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "height": 80,
+            "children": <NavBar
+              activeIndex={2}
+              areIconsHidden={true}
+              colour="darker"
+              hasNotification={false}
+              labels={Array []}
+            />,
+            "style": Object {
+              "alignItems": "center",
+              "marginBottom": 36,
+            },
           },
           "ref": null,
-          "rendered": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeIndex": 2,
+              "areIconsHidden": true,
+              "colour": "darker",
+              "hasNotification": false,
+              "labels": Array [],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": [Function],
         },
       ],
@@ -449,8 +530,11 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <RewardsPurchasedScreen
     data={Array []}
+    labels={Array []}
+    onLeftMenuPress={[MockFunction]}
     onLeftTabPress={[MockFunction]}
     onRightTabPress={[MockFunction]}
+    totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -466,8 +550,9 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Pad
-          height={40}
+        <TopBar
+          coins={1234}
+          onPressLeftIcon={[MockFunction]}
         />,
         <Component
           style={
@@ -495,9 +580,22 @@ ShallowWrapper {
             onCtaPress={[MockFunction]}
           />
         </Component>,
-        <Pad
-          height={80}
-        />,
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "marginBottom": 36,
+            }
+          }
+        >
+          <NavBar
+            activeIndex={2}
+            areIconsHidden={true}
+            colour="darker"
+            hasNotification={false}
+            labels={Array []}
+          />
+        </Component>,
       ],
       "style": Object {
         "flex": 1,
@@ -509,9 +607,10 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
-          "height": 40,
+          "coins": 1234,
+          "onPressLeftIcon": [MockFunction],
         },
         "ref": null,
         "rendered": null,
@@ -578,12 +677,36 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
-          "height": 80,
+          "children": <NavBar
+            activeIndex={2}
+            areIconsHidden={true}
+            colour="darker"
+            hasNotification={false}
+            labels={Array []}
+          />,
+          "style": Object {
+            "alignItems": "center",
+            "marginBottom": 36,
+          },
         },
         "ref": null,
-        "rendered": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeIndex": 2,
+            "areIconsHidden": true,
+            "colour": "darker",
+            "hasNotification": false,
+            "labels": Array [],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
         "type": [Function],
       },
     ],
@@ -596,8 +719,9 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Pad
-            height={40}
+          <TopBar
+            coins={1234}
+            onPressLeftIcon={[MockFunction]}
           />,
           <Component
             style={
@@ -625,9 +749,22 @@ ShallowWrapper {
               onCtaPress={[MockFunction]}
             />
           </Component>,
-          <Pad
-            height={80}
-          />,
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "marginBottom": 36,
+              }
+            }
+          >
+            <NavBar
+              activeIndex={2}
+              areIconsHidden={true}
+              colour="darker"
+              hasNotification={false}
+              labels={Array []}
+            />
+          </Component>,
         ],
         "style": Object {
           "flex": 1,
@@ -639,9 +776,10 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "height": 40,
+            "coins": 1234,
+            "onPressLeftIcon": [MockFunction],
           },
           "ref": null,
           "rendered": null,
@@ -708,12 +846,36 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "height": 80,
+            "children": <NavBar
+              activeIndex={2}
+              areIconsHidden={true}
+              colour="darker"
+              hasNotification={false}
+              labels={Array []}
+            />,
+            "style": Object {
+              "alignItems": "center",
+              "marginBottom": 36,
+            },
           },
           "ref": null,
-          "rendered": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeIndex": 2,
+              "areIconsHidden": true,
+              "colour": "darker",
+              "hasNotification": false,
+              "labels": Array [],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": [Function],
         },
       ],

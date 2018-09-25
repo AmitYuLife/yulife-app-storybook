@@ -106,7 +106,7 @@ class Level extends PureComponent<IProps, IState> {
         const { isNext, nextAvailable, rating } = data;
         return (
             <G
-                onPress={onPress}
+                onPressIn={onPress}
             >
                 <Circle
                     fill={

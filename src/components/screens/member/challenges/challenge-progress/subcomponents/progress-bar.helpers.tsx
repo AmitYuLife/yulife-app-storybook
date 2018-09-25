@@ -1,5 +1,6 @@
 import React, { SFC } from "react";
 import { Text } from "react-native";
+import { padNum } from "../../../../../../services/utils";
 import Progress from "./progress";
 import { IProps } from "./progress-bar";
 import styles from "./progress-bar.styles";
@@ -63,12 +64,6 @@ export const renderProgressBar: SFC<IProps> = ({ type, amount, goals }) => {
     }
 };
 
-const padWithZero = (value: number | string) => {
-    return typeof value === "number"
-        ? value.toString().padStart(2, "0")
-        : value.padStart(2, "0");
-};
-
 export const renderProgressLabel = ({ amount, type }: Partial<IProps>): React.ReactNode => {
     switch (type) {
         case "steps":
@@ -84,13 +79,13 @@ export const renderProgressLabel = ({ amount, type }: Partial<IProps>): React.Re
             return (
                 <>
                     <Text style={styles.stepsText}>
-                        {padWithZero(minutes)}
+                        {padNum(minutes)}
                     </Text>
                     <Text style={styles.timeLabel}>
                         Min
                     </Text>
                     <Text style={styles.stepsText}>
-                        {padWithZero(seconds)}
+                        {padNum(seconds)}
                     </Text>
                     <Text style={styles.timeLabel}>
                         Sec

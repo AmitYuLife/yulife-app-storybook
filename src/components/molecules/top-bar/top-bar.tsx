@@ -80,7 +80,7 @@ class TopBar extends Component<IProps, IState> {
 
         if (name) {
             return (
-                <View style={styles.timerWrapper}>
+                <View style={styles.textWrapper}>
                     <Text style={styles.name}>{name}</Text>
                 </View>
             );

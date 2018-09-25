@@ -1,13 +1,13 @@
 import * as React from "react";
 import { SFC } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
-import { Pad } from "../../../../atoms";
-import { RewardTabs } from "../../../../molecules";
+import { IConnectedScreenProps } from "../../../../../typings";
+import { NavBar, RewardTabs, TopBar } from "../../../../molecules";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
 import PurchasesEmpty from "./purchases-empty/purchases-empty";
 import styles from "./rewards-purchased.screen.styles";
 
-interface IProps {
+interface IProps extends IConnectedScreenProps {
     data: RewardsPurchasedItemData[];
     onLeftTabPress: () => void;
     onRightTabPress: () => void;
@@ -17,9 +17,16 @@ type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
     id: string;
 };
 
-const RewardsPurchasedScreen: SFC<IProps> = ({ data, onLeftTabPress, onRightTabPress }) => (
+const RewardsPurchasedScreen: SFC<IProps> = ({
+    data,
+    labels,
+    onLeftTabPress,
+    onRightTabPress,
+    onLeftMenuPress,
+    totalCoins
+}) => (
     <SafeAreaView style={styles.wrapper}>
-        <Pad height={40} />
+        <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
         <View style={styles.rewardTabsWrapper}>
             <RewardTabs activeTabIndex={1} onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} />
         </View>
@@ -43,7 +50,15 @@ const RewardsPurchasedScreen: SFC<IProps> = ({ data, onLeftTabPress, onRightTabP
                 />
             )}
         </View>
-        <Pad height={80} />
+        <View style={styles.navBarWrapper}>
+            <NavBar
+                activeIndex={2}
+                areIconsHidden={true}
+                colour={NavBar.Colours.DARKER}
+                hasNotification={false}
+                labels={labels}
+            />
+        </View>
     </SafeAreaView>
 );
 

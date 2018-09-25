@@ -1,19 +1,25 @@
+import { padNum } from "../../../services/utils";
+
 export const formatSeconds = (secondsRemaining: number): string => {
     const days = Math.floor(secondsRemaining / 86400);
-    secondsRemaining = secondsRemaining % 86400;
-
-    const hours = Math.floor(secondsRemaining / 3600).toString().padStart(2, "0");
-    secondsRemaining = secondsRemaining % 3600;
-
-    const minutes = Math.floor(secondsRemaining / 60).toString().padStart(2, "0");
-    const seconds = (secondsRemaining % 60).toString().padStart(2, "0");
+    const hours = Math.floor(secondsRemaining / (60 * 60)) % 24;
+    const minutes = Math.floor(secondsRemaining / 60) % 60;
+    const seconds = secondsRemaining % 60;
 
     if (days) {
         return `> ${days} day${days > 1 ? "s" : ""}`;
-    } else if (hours !== "00") {
-        return `${hours}:${minutes}:${seconds}`;
-    } else if (seconds) {
-        return `${minutes}:${seconds}`;
+    }
+
+    const paddedHours = padNum(hours);
+    const paddedMinutes = padNum(minutes);
+    const paddedSeconds = padNum(seconds);
+
+    if (hours < 1) {
+        return `${paddedMinutes}:${paddedSeconds}`;
+    }
+
+    if (seconds) {
+        return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
     }
 
     return "--:--";

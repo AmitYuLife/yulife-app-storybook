@@ -1,5 +1,5 @@
 import { CreateActiveChallenge, GetCurrentUser, LoginUser, UpdateActiveChallenge } from "../../graphql/_core/schema";
-import { pathOr } from "../../services/pathOr";
+import { pathOr } from "../../services/utils";
 import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {
