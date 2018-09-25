@@ -5,6 +5,7 @@ import {
     View
 } from "react-native";
 import Svg, { Circle, Polygon } from "react-native-svg";
+import { padNum } from "../../../../../../services/utils";
 import { Text } from "../../../../../atoms";
 import styles from "./progress.styles";
 
@@ -111,8 +112,8 @@ class Progress extends Component<IProps, IState> {
 export default Progress;
 
 const convertToMinutesAndSeconds = (num: number) => {
-    const minutes = Math.floor(num / 60);
-    const seconds = (num % 60).toString().padStart(2, "0");
+    const minutes = padNum(Math.floor(num / 60));
+    const seconds = padNum(num % 60);
     return `${minutes}:${seconds}`;
 };
 

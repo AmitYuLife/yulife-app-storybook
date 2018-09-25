@@ -3,12 +3,15 @@ import {
     AviosRewardConfirmedContainer,
     AviosRewardDetailsContainer,
     ChallengesListContainer,
+    DailyStepsContainer,
     FitKitConnectContainer,
     LoginContainer,
     MemberRootContainer,
     MenuContainer,
+    QuestsContainer,
     ResetPasswordContainer,
     ResetPasswordSuccessContainer,
+    RewardsContainer,
     SignUpContainer,
     SignUpRewardContainer,
     WegiftRewardConfirmedContainer,
@@ -32,7 +35,10 @@ export const ROUTES = {
     // member screens
     menu: "yulife.menu",
     member: "yulife.member",
-    activityHistory: "yulife.member.activityHistory",
+    dailySteps: "yulife.member.DailySteps",
+    quests: "yulife.member.Quests",
+    rewards: "yulife.member.Rewards",
+    activityHistory: "yulife.member.ActivityHistory",
 
     // quests
     questsChallengesList: "yulife.quests.ChallengesList",
@@ -60,6 +66,9 @@ export default [
     // member screens
     { name: ROUTES.menu, component: MenuContainer },
     { name: ROUTES.member, component: MemberRootContainer },
+    { name: ROUTES.dailySteps, component: DailyStepsContainer },
+    { name: ROUTES.quests, component: QuestsContainer },
+    { name: ROUTES.rewards, component: RewardsContainer },
     { name: ROUTES.activityHistory, component: ActivityHistoryContainer },
 
     // quests screens

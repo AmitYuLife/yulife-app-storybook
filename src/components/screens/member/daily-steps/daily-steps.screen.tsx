@@ -1,16 +1,18 @@
 import * as React from "react";
 import { SFC } from "react";
-import { Platform, TouchableOpacity } from "react-native";
+import { Platform, TouchableOpacity, View } from "react-native";
+import { IConnectedScreenProps } from "../../../../typings";
 import { CentredScreen, Pad } from "../../../atoms";
-import { Streak } from "../../../molecules";
+import { COLOURS, NavBar, Streak, TopBar } from "../../../molecules";
 import YuCoin from "./assets/yu-coin";
 import DailyStepsFitKitAuthorise from "./daily-steps-fitkit-authorise";
 import DailyStepsFitKitUnavailable from "./daily-steps-fitkit-unavailable";
 import DailyStepsLoading from "./daily-steps-loading";
 import DailyStepsOffline, { IProps as IDailyStepsOfflineProps } from "./daily-steps-offline";
 import DailyStepsOnline, { IProps as IDailyStepsOnlineProps } from "./daily-steps-online";
+import styles from "./daily-steps.screen.styles";
 
-interface IProps {
+interface IProps extends IConnectedScreenProps {
     currentStreak?: number;
     displayStreak?: boolean;
     fitKitAvailable: boolean;
@@ -24,9 +26,7 @@ interface IProps {
     onStreakPress?: () => void;
 }
 
-type Props = IProps &
-    IDailyStepsOnlineProps &
-    IDailyStepsOfflineProps;
+type Props = IProps & IDailyStepsOnlineProps & IDailyStepsOfflineProps;
 
 const DailyStepsScreen: SFC<Props> = ({
     coinsToday,
@@ -37,54 +37,57 @@ const DailyStepsScreen: SFC<Props> = ({
     isDoneToday,
     isLoading,
     isOnline,
+    labels,
     lastUpdate,
     maxStreak,
     onAuthoriseFitKitPress,
     onCoinPress,
     onCtaPress,
+    onLeftMenuPress,
     onStreakPress,
-    steps
+    steps,
+    totalCoins
 }) => {
     return (
         <CentredScreen
             footerImage={
                 (isOnline || isLoading) && hasPermission
                     ? CentredScreen.FooterImages.LARGE_FOREST
-                    : CentredScreen.FooterImages.GRAY_FOREST}
-        >
-            <Pad height={Platform.OS === "ios" ? 60 : 80} />
-            <TouchableOpacity
-                onPress={onCoinPress}
-                activeOpacity={1}
-            >
-                <YuCoin
-                    isLoading={isLoading}
-                    isGrayScale={!hasPermission || (!isOnline && !isLoading)}
-                />
-            </TouchableOpacity>
-            {
-                isLoading ? (
-                    <DailyStepsLoading />
-                ) : !fitKitAvailable ? (
-                    <DailyStepsFitKitUnavailable />
-                ) : !hasPermission ? (
-                    <DailyStepsFitKitAuthorise onPress={onAuthoriseFitKitPress} />
-                ) : !isOnline ? (
-                    <DailyStepsOffline lastUpdate={lastUpdate} />
-                ) : (
-                    <DailyStepsOnline
-                        coinsToday={coinsToday}
-                        steps={steps}
-                        onCtaPress={onCtaPress}
-                    />
-                )
+                    : CentredScreen.FooterImages.GRAY_FOREST
             }
-            {displayStreak && <Streak
-                isFinished={isDoneToday}
-                onPress={onStreakPress}
-                currentStreak={currentStreak}
-                maxStreak={maxStreak}
-            />}
+        >
+            <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
+            <Pad height={Platform.OS === "ios" ? 60 : 80} />
+            <TouchableOpacity onPress={onCoinPress} activeOpacity={1}>
+                <YuCoin isLoading={isLoading} isGrayScale={!hasPermission || (!isOnline && !isLoading)} />
+            </TouchableOpacity>
+            {isLoading ? (
+                <DailyStepsLoading />
+            ) : !fitKitAvailable ? (
+                <DailyStepsFitKitUnavailable />
+            ) : !hasPermission ? (
+                <DailyStepsFitKitAuthorise onPress={onAuthoriseFitKitPress} />
+            ) : !isOnline ? (
+                <DailyStepsOffline lastUpdate={lastUpdate} />
+            ) : (
+                <DailyStepsOnline coinsToday={coinsToday} steps={steps} onCtaPress={onCtaPress} />
+            )}
+            {displayStreak && (
+                <Streak
+                    isFinished={isDoneToday}
+                    onPress={onStreakPress}
+                    currentStreak={currentStreak}
+                    maxStreak={maxStreak}
+                />
+            )}
+            <View style={styles.navBarWrapper}>
+                <NavBar
+                    activeIndex={0}
+                    colour={!fitKitAvailable || !hasPermission || !isOnline ? COLOURS.DARKER : COLOURS.LIGHT}
+                    hasNotification={false}
+                    labels={labels}
+                />
+            </View>
         </CentredScreen>
     );
 };

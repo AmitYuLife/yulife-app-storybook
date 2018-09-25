@@ -9,8 +9,14 @@ export default StyleSheet.create({
         right: 0,
         width: "100%"
     } as ImageStyle,
+    navBarWrapper: {
+        alignItems: "center",
+        bottom: Style.SCALE_UP_AND_DOWN(17),
+        position: "absolute",
+        width: Style.DEVICE_WIDTH
+    } as ViewStyle,
     progressBarWrapper: {
-        marginTop: Style.SCALE_UP_AND_DOWN(48)
+        marginTop: Style.SCALE_UP_AND_DOWN(6)
     } as ViewStyle,
     wrapper: {
         flex: 1

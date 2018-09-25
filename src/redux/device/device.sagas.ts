@@ -5,9 +5,11 @@ import PushNotification, {
     PushNotification as IPushNotification,
     PushNotificationPermissions
 } from "react-native-push-notification";
-import { call, put, select, take, takeEvery, takeLatest } from "redux-saga/effects";
+import { delay } from "redux-saga";
+import { call, put, race, select, take, takeEvery, takeLatest } from "redux-saga/effects";
 import updateMemberConsentWithClient from "../../graphql/member/updateMemberConsent.gql";
 import Logger from "../../services/logging/logger";
+import { getToken } from "../../services/storage";
 import { appStateChannel } from "../app/app.channels";
 import {
     UPDATE_DAILY_STEPS_SUCCESS,
@@ -55,10 +57,17 @@ function* checkPermissions() {
     }
 
     if (perms.status !== status) {
-        const { data } = yield call(updateMemberConsentWithClient, {
-            pushNotifications: status === PushPermissionsEnum.enabled
+        const { token } = yield race({
+            timeout: call(delay, 1000),
+            token: call(getToken)
         });
-        yield put(updateUserConsent(data));
+
+        if (token) {
+            const { data } = yield call(updateMemberConsentWithClient, {
+                pushNotifications: status === PushPermissionsEnum.enabled
+            });
+            yield put(updateUserConsent(data));
+        }
     }
 
     yield put(setPushPermissions({ status }));

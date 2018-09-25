@@ -10,6 +10,11 @@ Navigation.events().registerAppLaunchedListener(async () => {
     const token = await getToken();
 
     Navigation.setDefaultOptions({
+        bottomTabs: {
+            animated: true,
+            drawBehind: true,
+            visible: false
+        },
         layout: {
             backgroundColor: "white"
         },
@@ -24,10 +29,4 @@ Navigation.events().registerAppLaunchedListener(async () => {
     } else {
         setUnauthenticatedRoot();
     }
-});
-
-// TODO use this for logging?
-Navigation.events().registerComponentDidAppearListener(({ componentId, componentName }) => {
-    // tslint:disable-next-line
-    console.log(`Component Name -> ${componentName} -> ${componentId}`);
 });

@@ -9,3 +9,6 @@ export const getAppState = createSelector(reducer, appStateSelector);
 
 const isOfflineSelector = (state: IAppStore): boolean => state.isOffline;
 export const getOfflineState = createSelector(reducer, isOfflineSelector);
+
+const routeSelector = (state: IAppStore): string => state.currentRoute;
+export const getRouteState = createSelector(reducer, routeSelector);

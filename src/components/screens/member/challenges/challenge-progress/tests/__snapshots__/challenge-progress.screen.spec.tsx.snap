@@ -5,6 +5,9 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeProgressScreen
     challengeType="brisk walk"
+    endDateTime="2020-12-31T23:59:59"
+    labels={Array []}
+    onLeftMenuPress={[MockFunction]}
     progressTargets={
       Array [
         2000,
@@ -12,6 +15,7 @@ ShallowWrapper {
         6000,
       ]
     }
+    totalCoins={1234}
     unit="steps"
     userProgress={1000}
   />,
@@ -29,25 +33,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component
-          style={
-            Object {
-              "marginTop": 96,
-            }
-          }
-        >
-          <ProgressBar
-            amount={1000}
-            goals={
-              Array [
-                2000,
-                4000,
-                6000,
-              ]
-            }
-            type="steps"
-          />
-        </Component>,
         <Image
           resizeMethod="resize"
           resizeMode="cover"
@@ -67,6 +52,48 @@ ShallowWrapper {
             }
           }
         />,
+        <TopBar
+          coins={1234}
+          menuLabel="brisk walk"
+          onPressLeftIcon={[MockFunction]}
+          timer="2020-12-31T23:59:59"
+        />,
+        <Component
+          style={
+            Object {
+              "marginTop": 12,
+            }
+          }
+        >
+          <ProgressBar
+            amount={1000}
+            goals={
+              Array [
+                2000,
+                4000,
+                6000,
+              ]
+            }
+            type="steps"
+          />
+        </Component>,
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": 34,
+              "position": "absolute",
+              "width": 750,
+            }
+          }
+        >
+          <NavBar
+            activeIndex={1}
+            colour="light"
+            hasNotification={false}
+            labels={Array []}
+          />
+        </Component>,
       ],
       "style": Object {
         "flex": 1,
@@ -74,6 +101,43 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "resizeMethod": "resize",
+          "resizeMode": "cover",
+          "source": Object {
+            "testUri": "../../../assets/challenge-progress/brisk-walk.png",
+          },
+          "style": Object {
+            "bottom": 0,
+            "height": 900,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "coins": 1234,
+          "menuLabel": "brisk walk",
+          "onPressLeftIcon": [MockFunction],
+          "timer": "2020-12-31T23:59:59",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
       Object {
         "instance": null,
         "key": undefined,
@@ -91,7 +155,7 @@ ShallowWrapper {
             type="steps"
           />,
           "style": Object {
-            "marginTop": 96,
+            "marginTop": 12,
           },
         },
         "ref": null,
@@ -119,22 +183,34 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "resizeMethod": "resize",
-          "resizeMode": "cover",
-          "source": Object {
-            "testUri": "../../../assets/challenge-progress/brisk-walk.png",
-          },
+          "children": <NavBar
+            activeIndex={1}
+            colour="light"
+            hasNotification={false}
+            labels={Array []}
+          />,
           "style": Object {
-            "bottom": 0,
-            "height": 900,
-            "left": 0,
+            "alignItems": "center",
+            "bottom": 34,
             "position": "absolute",
-            "right": 0,
-            "width": "100%",
+            "width": 750,
           },
         },
         "ref": null,
-        "rendered": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeIndex": 1,
+            "colour": "light",
+            "hasNotification": false,
+            "labels": Array [],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
         "type": [Function],
       },
     ],
@@ -147,25 +223,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component
-            style={
-              Object {
-                "marginTop": 96,
-              }
-            }
-          >
-            <ProgressBar
-              amount={1000}
-              goals={
-                Array [
-                  2000,
-                  4000,
-                  6000,
-                ]
-              }
-              type="steps"
-            />
-          </Component>,
           <Image
             resizeMethod="resize"
             resizeMode="cover"
@@ -185,6 +242,48 @@ ShallowWrapper {
               }
             }
           />,
+          <TopBar
+            coins={1234}
+            menuLabel="brisk walk"
+            onPressLeftIcon={[MockFunction]}
+            timer="2020-12-31T23:59:59"
+          />,
+          <Component
+            style={
+              Object {
+                "marginTop": 12,
+              }
+            }
+          >
+            <ProgressBar
+              amount={1000}
+              goals={
+                Array [
+                  2000,
+                  4000,
+                  6000,
+                ]
+              }
+              type="steps"
+            />
+          </Component>,
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": 34,
+                "position": "absolute",
+                "width": 750,
+              }
+            }
+          >
+            <NavBar
+              activeIndex={1}
+              colour="light"
+              hasNotification={false}
+              labels={Array []}
+            />
+          </Component>,
         ],
         "style": Object {
           "flex": 1,
@@ -192,6 +291,43 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "resizeMethod": "resize",
+            "resizeMode": "cover",
+            "source": Object {
+              "testUri": "../../../assets/challenge-progress/brisk-walk.png",
+            },
+            "style": Object {
+              "bottom": 0,
+              "height": 900,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "coins": 1234,
+            "menuLabel": "brisk walk",
+            "onPressLeftIcon": [MockFunction],
+            "timer": "2020-12-31T23:59:59",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
         Object {
           "instance": null,
           "key": undefined,
@@ -209,7 +345,7 @@ ShallowWrapper {
               type="steps"
             />,
             "style": Object {
-              "marginTop": 96,
+              "marginTop": 12,
             },
           },
           "ref": null,
@@ -237,22 +373,34 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "resizeMethod": "resize",
-            "resizeMode": "cover",
-            "source": Object {
-              "testUri": "../../../assets/challenge-progress/brisk-walk.png",
-            },
+            "children": <NavBar
+              activeIndex={1}
+              colour="light"
+              hasNotification={false}
+              labels={Array []}
+            />,
             "style": Object {
-              "bottom": 0,
-              "height": 900,
-              "left": 0,
+              "alignItems": "center",
+              "bottom": 34,
               "position": "absolute",
-              "right": 0,
-              "width": "100%",
+              "width": 750,
             },
           },
           "ref": null,
-          "rendered": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeIndex": 1,
+              "colour": "light",
+              "hasNotification": false,
+              "labels": Array [],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": [Function],
         },
       ],

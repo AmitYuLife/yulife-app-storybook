@@ -115,9 +115,16 @@ storiesOf("Screens", module)
             onAuthoriseFitKitPress={action("on authorise fitkit press")}
             onCoinPress={action("on coin press")}
             onCtaPress={action("on cta press")}
+            onLeftMenuPress={action("on left menu press")}
             onStreakPress={action("on streak press")}
             steps={number("Steps", 1246, {
                 max: 35000,
+                min: 0,
+                range: true,
+                step: 1
+            }, "DailySteps")}
+            totalCoins={number("TotalCoins", 4, {
+                max: 999999,
                 min: 0,
                 range: true,
                 step: 1
@@ -158,7 +165,7 @@ storiesOf("Screens", module)
                     onPress: action("on first tab press")
                 },
                 {
-                    name: "quest",
+                    name: "quests",
                     onPress: action("on second tab press")
                 },
                 {
@@ -178,7 +185,9 @@ storiesOf("Screens", module)
     ))
     .add("8. Challenge Progress", () => (
         <ChallengeProgressScreen
+            endDateTime={moment().add(1, "hours").format()}
             userProgress={number("userProgress", 1000)}
+            onLeftMenuPress={action("on left menu press")}
             progressTargets={object("progressTargets", [2000, 4000, 6000])}
             unit={select("unit", ["steps", "minutes"], "steps")}
             challengeType={select("Challenge Type", [
@@ -187,6 +196,12 @@ storiesOf("Screens", module)
                 "long walk",
                 "meditation"
             ], "brisk walk", "ChallengeDetails")}
+            totalCoins={number("TotalCoins", 4, {
+                max: 999999,
+                min: 0,
+                range: true,
+                step: 1
+            }, "ChallengeDetails")}
         />
     ))
     .add("9. Challenge Success", () => (
@@ -345,11 +360,26 @@ storiesOf("Screens", module)
                     onPress: action(`@ pressed _${i + 1}`),
                     rating: 3
                 })).concat({ isNext: true, nextAvailable, onPress: action(`@ pressed next`) } as any)) as any}
+                onLeftMenuPress={action("on left menu press")}
+                totalCoins={number("TotalCoins", 4, {
+                    max: 999999,
+                    min: 0,
+                    range: true,
+                    step: 1
+                }, "QuestScreen")}
             />
         );
     })
     .add("14b. QuestScreenOffline", () => (
-        <QuestsScreenOffline />
+        <QuestsScreenOffline
+            onLeftMenuPress={action("on left menu press")}
+            totalCoins={number("TotalCoins", 4, {
+                max: 999999,
+                min: 0,
+                range: true,
+                step: 1
+            }, "QuestScreenOffline")}
+        />
     ))
     .add("14c. QuestsMovie", () => (
         <QuestsMovie />

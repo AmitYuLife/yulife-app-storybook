@@ -1,4 +1,5 @@
 import { AppState, NetInfo } from "react-native";
+import { Navigation } from "react-native-navigation";
 import { eventChannel } from "redux-saga";
 
 export function appStateChannel() {
@@ -22,5 +23,12 @@ export function appNetworkChannel() {
         };
 
         return unlisten;
+    });
+}
+
+export function appNavigationChannel() {
+    return eventChannel((emitter) => {
+        Navigation.events().registerComponentDidAppearListener(emitter);
+        return () => null;
     });
 }

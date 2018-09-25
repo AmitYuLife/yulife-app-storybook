@@ -1,3 +1,5 @@
+import { padNum } from "../../../../../../../../services/utils";
+
 export const getTime = (nextAvailable: number) => {
     const hours =
         Math.floor(nextAvailable / (60 * 60)) % 24;
@@ -6,13 +8,10 @@ export const getTime = (nextAvailable: number) => {
     if (hours < 1 && minutes < 1 && seconds < 1) {
         return null;
     }
-    const paddedHours = hours.toString().padStart(2, "0");
-    const paddedMinutes = minutes
-        .toString()
-        .padStart(2, "0");
-    const paddedSeconds = seconds
-        .toString()
-        .padStart(2, "0");
+
+    const paddedHours = padNum(hours);
+    const paddedMinutes = padNum(minutes);
+    const paddedSeconds = padNum(seconds);
 
     if (hours < 1 && minutes < 1) {
         return `:${paddedSeconds}`;

@@ -2,8 +2,11 @@ import * as React from "react";
 import { PureComponent } from "react";
 import Intercom from "react-native-intercom";
 import { Navigation } from "react-native-navigation";
+import { connect } from "react-redux";
 import { setUnauthenticatedRoot } from "../../../../navigation/root";
 import { ROUTES } from "../../../../navigation/routes";
+import { IReduxState } from "../../../../redux/_core/reducers";
+import { getRouteState } from "../../../../redux/app/app.selectors";
 import { clearToken } from "../../../../services/storage/token";
 import { clearUser } from "../../../../services/storage/user";
 import { MenuScreen } from "../../../screens";
@@ -11,7 +14,11 @@ import assets, { LINKS } from "./assets";
 
 export type Link = "debug" | "leaderboard" | "activity" | "chat" | "logout" | "member" | "play";
 
-export default class MenuContainer extends PureComponent {
+interface IConnectedState {
+    currentRoute: string;
+}
+
+class MenuContainer extends PureComponent<IConnectedState> {
     public render() {
         return (
             <MenuScreen
@@ -64,15 +71,16 @@ export default class MenuContainer extends PureComponent {
     }
 
     private handlePressLink = (link: Link) => (): null => {
+        const { currentRoute } = this.props;
         switch (link) {
             case LINKS.ACTIVITY:
-                Navigation.push(ROUTES.member, {
+                this.handleClose();
+                Navigation.push(currentRoute, {
                     component: {
                         id: ROUTES.activityHistory,
                         name: ROUTES.activityHistory
                     }
                 });
-                this.handleClose();
                 return null;
             case LINKS.CHAT:
                 Intercom.displayConversationsList();
@@ -93,10 +101,11 @@ export default class MenuContainer extends PureComponent {
         }
     }
 
-    private handleClose = () => {
+    private handleClose = async () => {
         Navigation.mergeOptions(ROUTES.menu, {
             sideMenu: {
                 left: {
+                    enabled: false,
                     visible: false
                 }
             }
@@ -109,3 +118,11 @@ export default class MenuContainer extends PureComponent {
         setUnauthenticatedRoot();
     }
 }
+
+const mapStateToProps = (state: IReduxState) => ({
+    currentRoute: getRouteState(state)
+});
+
+export default connect<IConnectedState>(
+    mapStateToProps
+)(MenuContainer);

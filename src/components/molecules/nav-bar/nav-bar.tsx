@@ -62,7 +62,7 @@ class NavBar extends PureComponent<IProps, IState> {
                 onPress: (): null => null
             },
             {
-                name: "challenges",
+                name: "quests",
                 onPress: (): null => null
             },
             {

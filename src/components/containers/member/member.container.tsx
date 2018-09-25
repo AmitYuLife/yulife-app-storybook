@@ -66,7 +66,7 @@ class MemberRootContainer extends PureComponent<Props, IState> {
             onPress: () => this.handleNavBarIndexChange(0)
         },
         {
-            name: "quest",
+            name: "quests",
             onPress: () => this.handleNavBarIndexChange(1)
         },
         {
@@ -118,7 +118,11 @@ class MemberRootContainer extends PureComponent<Props, IState> {
                 />
             );
         }
-
+        const props = {
+            componentId: this.props.componentId,
+            labels: this.labels,
+            onLeftMenuPress: this.showMenu
+        };
         return (
             <>
                 <Swiper
@@ -129,12 +133,9 @@ class MemberRootContainer extends PureComponent<Props, IState> {
                     showsButtons={false}
                     onIndexChanged={this.handleNavBarIndexChange}
                 >
-                    <DailyStepsContainer onNavBarIndexChange={this.handleNavBarIndexChange} />
-                    <QuestsContainer
-                        challengeType={active.subtype}
-                        onNavBarIndexChange={this.handleNavBarIndexChange}
-                    />
-                    <RewardsContainer />
+                    <DailyStepsContainer {...props} />
+                    <QuestsContainer {...props} />
+                    <RewardsContainer {...props} />
                 </Swiper>
                 {!isModalVisible && (
                     <>
