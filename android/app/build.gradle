@@ -64,9 +64,14 @@ android {
         local {
             initWith debug
         }
-        uat {
+        release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            applicationIdSuffix  ".release"
+            matchingFallbacks = ['release']
+        }
+        uat {
+            initWith release
             applicationIdSuffix ".uat"
             matchingFallbacks = ['release']
         }
