@@ -1,4 +1,3 @@
-export { default as AnimatedChest } from "./animated-chest/animated-chest";
 export { default as ChallengesList, IChallengesListProps } from "./challenges-list/challenges-list";
 export { default as ChallengeTile, IChallengeTileProps, Images, IMAGES } from "./challenge-tile/challenge-tile";
 export { default as Instruction } from "./instruction/instruction";

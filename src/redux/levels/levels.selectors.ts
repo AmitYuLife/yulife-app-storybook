@@ -2,6 +2,10 @@ import { CreateActiveChallenge_createActiveChallenge_levelSlot_milestones } from
 import { IReduxState } from "../_core/reducers";
 
 export interface IActiveLevel {
+    chest: {
+        type: string;
+        value: number;
+    };
     coins: number;
     endDateTime: string;
     levelSlotId: string;
@@ -12,6 +16,7 @@ export interface IActiveLevel {
     startDateTime: string;
     status: "failed" | "success";
     subtype: string;
+    timeUp: boolean;
     unit: string;
 }
 

@@ -32,10 +32,16 @@ export interface CreateActiveChallenge_createActiveChallenge_levelSlot {
   milestones: (CreateActiveChallenge_createActiveChallenge_levelSlot_milestones | null)[] | null;
 }
 
+export interface CreateActiveChallenge_createActiveChallenge_chest {
+  type: string | null;
+  value: number | null;
+}
+
 export interface CreateActiveChallenge_createActiveChallenge {
   challenge: CreateActiveChallenge_createActiveChallenge_challenge | null;
   levelSlot: CreateActiveChallenge_createActiveChallenge_levelSlot | null;
   nextLevelAvailableAt: string | null;
+  chest: CreateActiveChallenge_createActiveChallenge_chest | null;
 }
 
 export interface CreateActiveChallenge {
@@ -600,6 +606,7 @@ export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge {
   status: string | null;
   endDateTime: string | null;
   startDateTime: string | null;
+  rating: number | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milestones_target {

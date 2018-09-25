@@ -1966,6 +1966,18 @@
               "deprecationReason": null
             },
             {
+              "name": "topupQuote",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Quote",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "userStatus",
               "description": "",
               "args": [],
@@ -2000,6 +2012,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "MobileConsent",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "webConsent",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "WebConsent",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -2839,6 +2863,41 @@
         },
         {
           "kind": "OBJECT",
+          "name": "WebConsent",
+          "description": "",
+          "fields": [
+            {
+              "name": "companyLeaderboard",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "workspaceLeaderboard",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
           "name": "CoinLedger",
           "description": "",
           "fields": [
@@ -3595,54 +3654,6 @@
           "description": "",
           "fields": [
             {
-              "name": "total",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "standard",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "LineItem",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "premium",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "LineItem",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "prorated",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ProratedItems",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "date",
               "description": "",
               "args": [],
@@ -3655,12 +3666,194 @@
               "deprecationReason": null
             },
             {
+              "name": "amountDue",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "amountPaid",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "currency",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "customerId",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "discount",
               "description": "",
               "args": [],
               "type": {
                 "kind": "OBJECT",
                 "name": "Discount",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "lineItems",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "LineItem",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Discount",
+          "description": "",
+          "fields": [
+            {
+              "name": "coupon",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Coupon",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Coupon",
+          "description": "",
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "amountOff",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "created",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "duration",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "durationInMonths",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "percentOff",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "valid",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -3767,167 +3960,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "ProratedItems",
-          "description": "",
-          "fields": [
-            {
-              "name": "standard",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "LineItem",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "premium",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "LineItem",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "Discount",
-          "description": "",
-          "fields": [
-            {
-              "name": "coupon",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "Coupon",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "Coupon",
-          "description": "",
-          "fields": [
-            {
-              "name": "id",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "amount_off",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "created",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "duration",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "duration_in_months",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "percent_off",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "valid",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -7643,6 +7675,53 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "chest",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Chest",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Chest",
+          "description": "",
+          "fields": [
+            {
+              "name": "type",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "value",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -8777,6 +8856,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "topupOptionSelected",
+              "description": "",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
                 "ofType": null
               },
               "defaultValue": null
@@ -10661,9 +10750,9 @@
   "extensions": {
     "tracing": {
       "version": 1,
-      "startTime": "2018-09-19T08:11:55.826Z",
-      "endTime": "2018-09-19T08:11:55.968Z",
-      "duration": 141839273,
+      "startTime": "2018-09-25T13:14:31.163Z",
+      "endTime": "2018-09-25T13:14:31.334Z",
+      "duration": 171085595,
       "execution": {
         "resolvers": []
       }

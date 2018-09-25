@@ -1,4 +1,4 @@
-type PathOr = <T>(obj: { [x: string]: any }, key: string | string[], defaultValue?: T, p?: number) => unknown | T;
+type PathOr = <T>(obj: { [x: string]: any }, key: string | string[], defaultValue?: T, p?: number) => T | any;
 export const pathOr: PathOr = (obj, key, def, p) => {
     p = 0;
     key = Array.isArray(key) ? key : key.split(".");

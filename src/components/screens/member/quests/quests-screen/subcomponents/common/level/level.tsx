@@ -91,7 +91,7 @@ class Level extends PureComponent<IProps, IState> {
 
         if (!data || (!data.isDone && !data.isNext)) {
             return (
-                <G>
+                <G onPressIn={onPress}>
                     <Circle
                         fill={fill}
                         cx={cx}
@@ -105,9 +105,7 @@ class Level extends PureComponent<IProps, IState> {
 
         const { isNext, nextAvailable, rating } = data;
         return (
-            <G
-                onPressIn={onPress}
-            >
+            <G onPressIn={onPress} >
                 <Circle
                     fill={
                         isNext

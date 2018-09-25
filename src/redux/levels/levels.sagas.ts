@@ -1,20 +1,24 @@
 import moment from "moment";
 import { PedometerResponse } from "react-native-dual-pedometer";
+import { Navigation } from "react-native-navigation";
 import { delay } from "redux-saga";
 import { call, put, race, select, take, takeLatest } from "redux-saga/effects";
 import { ChallengePayload } from "../../graphql/_core/schema";
 import createActiveChallengeWithClient from "../../graphql/challenges/createActiveChallenge.gql";
 import updateActiveChallengeWithClient from "../../graphql/challenges/updateActiveChallenge.gql";
+import { ROUTES } from "../../navigation/routes";
+import { pathOr } from "../../services/utils";
 import { startDailySteps, stopDailySteps } from "../daily-steps/daily-steps.actions";
 import { GET_USER_SUCCESS, getUserStart } from "../user/user.actions";
 import {
-    CHALLENGE_CONTINUE,
+    CHALLENGE_END,
     CHALLENGE_START,
     challengeEndSuccessAction,
     ChallengeStartActionResult,
-    challengeStartSuccessAction
+    challengeStartSuccessAction,
+    challengeTimeUpAction,
+    challengeUpdateSuccessAction
 } from "./levels.actions";
-import { challengeUpdateSuccessAction } from "./levels.actions";
 import { activeStepsChannel } from "./levels.channels";
 import { activeLevelSelector } from "./levels.selectors";
 
@@ -49,7 +53,8 @@ export function* listenToSteps(levelSlotId: string, startDateTime: string, endDa
     }
 
     stepsChannel.close();
-    yield call(endChallenge, levelSlotId);
+    yield put(challengeTimeUpAction());
+    yield put(startDailySteps());
 }
 
 function* startChallenge({ payload }: ChallengeStartActionResult) {
@@ -71,14 +76,34 @@ function* startChallenge({ payload }: ChallengeStartActionResult) {
     }
 }
 
-function* endChallenge(levelSlotId: string) {
+function* endChallenge() {
     try {
-        yield call(delay, 2000);
-        const { data } = yield call(updateActiveChallengeWithClient, levelSlotId, {});
+        const active = yield select(activeLevelSelector);
+
+        const { data } = yield call(updateActiveChallengeWithClient, active.levelSlotId, {});
+        const milestoneLog = pathOr(data, "updateActiveChallenge.challenge.milestoneLog", []);
+
+        if (active.chest.value > 0 && milestoneLog.length > 0) {
+            yield call(() => {
+                Navigation.showModal({
+                    component: {
+                        id: ROUTES.modalChest,
+                        name: ROUTES.modalChest,
+                        passProps: {
+                            ctaLabel: "collect",
+                            heading: `you get ${active.chest.value} yucoin`,
+                            isLocked: false,
+                            onPressCta: () => {
+                                Navigation.dismissModal(ROUTES.modalChest);
+                            }
+                        }
+                    }
+                });
+            });
+        }
 
         yield put(challengeEndSuccessAction(data));
         yield put(getUserStart());
-        yield put(startDailySteps());
     } catch (e) {
         // tslint:disable-next-line
         console.log(e);
@@ -89,7 +114,7 @@ export function* continueChallenge() {
     try {
         const active = yield select(activeLevelSelector);
 
-        if (active.levelSlotId && !active.status) {
+        if (active.levelSlotId && !active.timeUp && !active.status) {
             yield call(listenToSteps, active.levelSlotId, active.startDateTime, active.endDateTime);
         }
     } catch (e) {
@@ -100,6 +125,6 @@ export function* continueChallenge() {
 
 export default [
     takeLatest(CHALLENGE_START, startChallenge),
-    takeLatest(CHALLENGE_CONTINUE, continueChallenge),
+    takeLatest(CHALLENGE_END, endChallenge),
     takeLatest(GET_USER_SUCCESS, continueChallenge)
 ];

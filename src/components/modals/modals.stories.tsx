@@ -1,8 +1,9 @@
 import { action } from "@storybook/addon-actions";
-import { object, select, text, withKnobs } from "@storybook/addon-knobs";
+import { boolean, object, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import {
+    AnimatedChest,
     ChallengeCompleteModal,
     ChallengeDetailsModal,
     CollectRewardModal,
@@ -55,5 +56,13 @@ storiesOf("Modals", module)
             heading={text("heading", "the voucher is not currently available")}
             subheading={text("subheading", "Please come back later.")}
             ctaLabel={text("ctaLabel", "check other rewards")}
+        />
+    ))
+    .add("5. Animated Chest", () => (
+        <AnimatedChest
+            isLocked={boolean("isLocked", false)}
+            onPressCta={action("pressed animated chest cta")}
+            heading={text("heading", "heading")}
+            ctaLabel={text("cta", "cta")}
         />
     ));

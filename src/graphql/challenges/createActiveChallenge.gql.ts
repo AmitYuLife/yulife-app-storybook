@@ -26,6 +26,10 @@ export const createActiveChallengeGql = gql`
                 }
             }
             nextLevelAvailableAt
+            chest {
+                type
+                value
+            }
         }
     }
 `;

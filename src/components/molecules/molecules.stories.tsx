@@ -3,7 +3,6 @@ import { boolean, number, object, select, text, withKnobs } from "@storybook/add
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import {
-    AnimatedChest,
     ChallengesList,
     ChallengeTile,
     NavBar,
@@ -98,16 +97,6 @@ storiesOf("Molecules", module)
                         reward: "0-3"
                     }
                 ], "Challenges")}
-            />
-        </CenterView>
-    ))
-    .add("6. Animated Chest", () => (
-        <CenterView>
-            <AnimatedChest
-                isLocked={boolean("isLocked", true)}
-                onPressCta={action("pressed animated chest cta")}
-                heading={text("heading", "heading")}
-                ctaLabel={text("cta", "cta")}
             />
         </CenterView>
     ));

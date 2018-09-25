@@ -46,7 +46,7 @@ export function* startDailySteps() {
         yield take(START_DAILY_STEPS);
         const active = yield select(activeLevelSelector);
 
-        if (active.levelSlotId && !active.status) {
+        if (active.levelSlotId && !active.timeUp && !active.status) {
             yield put(challengeContinueAction());
         } else {
             const dailyStepsTask = yield fork(listenToDailySteps);

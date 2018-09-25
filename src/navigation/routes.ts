@@ -18,6 +18,11 @@ import {
     WegiftRewardDetailsContainer,
     WelcomeContainer
 } from "../components/containers";
+import {
+    AnimatedChest,
+    ChallengeDetailsModal,
+    GenericModal
+} from "../components/modals";
 
 // tslint:disable:object-literal-sort-keys
 export const ROUTES = {
@@ -47,7 +52,12 @@ export const ROUTES = {
     wegiftDetails: "yulife.rewards.WegiftDetails",
     wegiftConfirmed: "yulife.rewards.WegiftConfirmed",
     aviosDetails: "yulife.rewards.AviosDetails",
-    aviosConfirmed: "yulife.rewards.AviosConfirmed"
+    aviosConfirmed: "yulife.rewards.AviosConfirmed",
+
+    // modals
+    modalGeneric: "yulife.modals.Generic",
+    modalChallengeDetails: "yulife.modals.ChallengeDetails",
+    modalChest: "yulife.modals.Chest"
 };
 // tslint:enable:object-literal-sort-keys
 
@@ -78,7 +88,12 @@ export default [
     { name: ROUTES.wegiftDetails, component: WegiftRewardDetailsContainer },
     { name: ROUTES.wegiftConfirmed, component: WegiftRewardConfirmedContainer },
     { name: ROUTES.aviosDetails, component: AviosRewardDetailsContainer },
-    { name: ROUTES.aviosConfirmed, component: AviosRewardConfirmedContainer }
+    { name: ROUTES.aviosConfirmed, component: AviosRewardConfirmedContainer },
     // { name: ROUTES.memberChallengesList, component: ChallengesListContainer },
     // { name: ROUTES.memberRewardsList, component: ChallengesListContainer },
+
+    // modals
+    { name: ROUTES.modalChallengeDetails, component: ChallengeDetailsModal },
+    { name: ROUTES.modalChest, component: AnimatedChest },
+    { name: ROUTES.modalGeneric, component: GenericModal }
 ];

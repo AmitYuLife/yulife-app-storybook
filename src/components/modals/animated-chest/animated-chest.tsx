@@ -53,7 +53,7 @@ export default class AnimatedChest extends PureComponent<IProps> {
             onPressCta
         } = this.props;
         return (
-            <>
+            <View style={styles.wrapper}>
                 <View style={styles.imageWrapper}>
                     {isLocked ?
                         <Image source={assets.chestLocked} />
@@ -106,7 +106,7 @@ export default class AnimatedChest extends PureComponent<IProps> {
                     label={ctaLabel}
                     onPress={onPressCta}
                 />
-            </>
+            </View>
         );
     }
 

@@ -9,6 +9,7 @@ export const CHALLENGE_START = "CHALLENGE_START";
 export const CHALLENGE_START_SUCCESS = "CHALLENGE_START_SUCCESS";
 export const CHALLENGE_UPDATE_SUCCESS = "CHALLENGE_UPDATE_SUCCESS";
 export const CHALLENGE_CONTINUE = "CHALLENGE_CONTINUE";
+export const CHALLENGE_TIME_UP = "CHALLENGE_TIME_UP";
 export const CHALLENGE_END = "CHALLENGE_END";
 export const CHALLENGE_END_SUCCESS = "CHALLENGE_END_SUCCESS";
 export const CHALLENGE_RESET = "CHALLENGE_RESET";
@@ -32,6 +33,11 @@ export type ChallengeUpdateSuccessAction = (payload: UpdateActiveChallenge) => C
 export const challengeUpdateSuccessAction: ChallengeUpdateSuccessAction = (payload) => ({
     payload,
     type: CHALLENGE_UPDATE_SUCCESS
+});
+
+export type ChallengeTimeUpAction = () => SyncAction;
+export const challengeTimeUpAction: ChallengeTimeUpAction = () => ({
+    type: CHALLENGE_TIME_UP
 });
 
 export type ChallengeContinueAction = () => SyncAction;

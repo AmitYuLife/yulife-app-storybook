@@ -24,13 +24,9 @@ class Episode extends PureComponent<IProps> {
     }
 
     public handlePressLevel = (level: IChallenge) => {
-        return (): null => {
-            if (level.isNext) {
+        return () => {
+            if (level.onPress) {
                 level.onPress();
-                return null;
-            } else {
-                // handle press locked level
-                return null;
             }
         };
     }
@@ -64,7 +60,7 @@ class Episode extends PureComponent<IProps> {
                             const levelData = data[index];
 
                             return <Level
-                                onPress={this.handlePressLevel(levelData)}
+                                onPress={(this.handlePressLevel(levelData))}
                                 key={index}
                                 data={levelData}
                                 lockIcon={getLevelLockIcon({ level, index, completedLevels: data.length })}

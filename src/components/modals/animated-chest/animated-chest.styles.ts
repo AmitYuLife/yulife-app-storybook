@@ -18,7 +18,9 @@ export default StyleSheet.create({
     } as ViewStyle,
     heading: {
         fontSize: Style.SCALE_UP_AND_DOWN(25),
-        marginBottom: Style.SCALE_UP_AND_DOWN(20)
+        marginBottom: Style.SCALE_UP_AND_DOWN(20),
+        marginHorizontal: Style.SCALE_UP_AND_DOWN(80),
+        textAlign: "center"
     } as TextStyle,
     imageWrapper: {
         alignItems: "center",
@@ -32,6 +34,8 @@ export default StyleSheet.create({
         position: "absolute"
     } as ViewStyle,
     wrapper: {
-        flex: 1
+        alignItems: "center",
+        flex: 1,
+        justifyContent: "center"
     } as ViewStyle
 });

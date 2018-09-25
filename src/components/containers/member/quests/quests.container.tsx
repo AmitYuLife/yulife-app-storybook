@@ -1,6 +1,6 @@
 import moment from "moment";
-import React from "react";
 import { PureComponent } from "react";
+import React from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../graphql/_core/schema";
@@ -10,7 +10,12 @@ import { ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
-import { ChallengeResetAction, challengeResetAction } from "../../../../redux/levels/levels.actions";
+import {
+    ChallengeEndAction,
+    challengeEndAction,
+    ChallengeResetAction,
+    challengeResetAction
+} from "../../../../redux/levels/levels.actions";
 import {
     activeLevelSelector,
     currentLevelSelector,
@@ -18,6 +23,7 @@ import {
     nextLevelAvailableAtSelector
 } from "../../../../redux/levels/levels.selectors";
 import Loading from "../../../atoms/loading/loading";
+import { ChallengeCompleteModal } from "../../../modals";
 import { ChallengeProgressScreen, ChallengeSuccessScreen, QuestsScreen, QuestsScreenOffline } from "../../../screens";
 import ChallengeFailedScreen from "../../../screens/member/challenges/challenge-failed/challenge-failed.screen";
 
@@ -30,6 +36,7 @@ interface IConnectedState {
 }
 
 interface IConnectedDispatch {
+    challengeEndAction: ChallengeEndAction;
     challengeResetAction: ChallengeResetAction;
 }
 
@@ -38,7 +45,7 @@ type Props = IMainTabsProps & IConnectedState & IConnectedDispatch;
 class QuestsContainer extends PureComponent<Props> {
     public render() {
         const {
-            activeLevel: { coins, endDateTime, milestones, rating, score, status, subtype, unit },
+            activeLevel: { coins, endDateTime, milestones, rating, score, status, subtype, timeUp, unit },
             labels,
             offline,
             onLeftMenuPress,
@@ -72,6 +79,10 @@ class QuestsContainer extends PureComponent<Props> {
                         );
                     }
 
+                    if (timeUp) {
+                        return <ChallengeCompleteModal onCtaPress={this.props.challengeEndAction} />;
+                    }
+
                     if (subtype) {
                         const progressTargets = milestones.map((item) => item.target.steps);
 
@@ -91,12 +102,7 @@ class QuestsContainer extends PureComponent<Props> {
                         return <Loading />;
                     }
 
-                    return (
-                        <QuestsScreen
-                            {...props}
-                            data={this.formatData(data.getCurrentWorld)}
-                        />
-                    );
+                    return <QuestsScreen {...props} data={this.formatData(data.getCurrentWorld)} />;
                 }}
             </GetCurrentWorld>
         );
@@ -112,26 +118,56 @@ class QuestsContainer extends PureComponent<Props> {
 
         const nextAvailable = !!nextLevelAvailableAt ? moment().diff(moment(nextLevelAvailableAt), "seconds") : null;
 
-        return data.map((level) => ({
-            ...level,
-            isDone: currentLevel > level.level,
-            isNext: currentLevel === level.level,
-            nextAvailable,
-            onPress: async () => {
-                if (!nextAvailable || nextAvailable > 0) {
-                    await Navigation.push(componentId, {
-                        component: {
-                            id: ROUTES.questsChallengesList,
-                            name: ROUTES.questsChallengesList,
-                            passProps: {
-                                labels,
-                                level
-                            }
+        return data.map((level) => {
+            const isNext = currentLevel === level.level;
+            const isDone = currentLevel > level.level;
+            const goToChallengesList = () => {
+                Navigation.push(componentId, {
+                    component: {
+                        id: ROUTES.questsChallengesList,
+                        name: ROUTES.questsChallengesList,
+                        passProps: {
+                            labels,
+                            level
                         }
-                    });
+                    }
+                });
+            };
+
+            return {
+                ...level,
+                isDone,
+                isNext,
+                nextAvailable,
+                onPress: () => {
+                    if (isDone) {
+                        // goToChallengesList(); TODO: go to challengesDoneList
+                    } else if (level.level % 7 === 0) {
+                        const passProps = {
+                            ctaLabel: isNext ? "let's do it" : "got it",
+                            heading: isNext ? "take a challenge to unlock the chest" : `unlock at level ${level.level}`,
+                            isLocked: true,
+                            onPressCta: () => {
+                                if (isNext) {
+                                    goToChallengesList();
+                                }
+                                Navigation.dismissModal(ROUTES.modalChest);
+                            }
+                        };
+
+                        Navigation.showModal({
+                            component: {
+                                id: ROUTES.modalChest,
+                                name: ROUTES.modalChest,
+                                passProps
+                            }
+                        });
+                    } else if (isNext) {
+                        goToChallengesList();
+                    }
                 }
-            }
-        }));
+            };
+        });
     }
 }
 
@@ -144,6 +180,7 @@ const mapStateToProps = (state: IReduxState) => ({
 });
 
 const mapDispatchToProps = {
+    challengeEndAction,
     challengeResetAction
 };
 

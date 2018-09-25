@@ -6,6 +6,7 @@ import {
     CHALLENGE_END_SUCCESS,
     CHALLENGE_RESET,
     CHALLENGE_START_SUCCESS,
+    CHALLENGE_TIME_UP,
     CHALLENGE_UPDATE_SUCCESS
 } from "./levels.actions";
 import { IActiveLevel } from "./levels.selectors";
@@ -18,6 +19,10 @@ export interface ILevelsStore {
 
 export const initialState: ILevelsStore = {
     active: {
+        chest: {
+            type: "yucoin",
+            value: null
+        },
         coins: 0,
         endDateTime: "",
         levelSlotId: "",
@@ -28,6 +33,7 @@ export const initialState: ILevelsStore = {
         startDateTime: "",
         status: null,
         subtype: "",
+        timeUp: false,
         unit: ""
     },
     level: 1,
@@ -51,6 +57,9 @@ const userReducer = (state: ILevelsStore = initialState, action: SyncAction): IL
         case CHALLENGE_END_SUCCESS:
             return challengeEndSuccess(state, action.payload);
 
+        case CHALLENGE_TIME_UP:
+            return challengeTimeUp(state);
+
         case CHALLENGE_RESET:
             return challengeReset(state);
 
@@ -68,13 +77,13 @@ const getUserSuccess = (
     ...state,
     active: {
         ...state.active,
-        endDateTime: pathOr(activeChallenge, "challenge.endDateTime", initialState.active.endDateTime) as string,
-        levelSlotId: pathOr(activeChallenge, "challenge.levelSlotId", initialState.active.levelSlotId) as string,
-        milestones: pathOr(activeChallenge, "levelSlot.milestones", initialState.active.milestones) as any[],
-        rating: pathOr(activeChallenge, "challenge.rating", initialState.active.rating) as number,
-        startDateTime: pathOr(activeChallenge, "challenge.startDateTime", initialState.active.startDateTime) as string,
-        subtype: pathOr(activeChallenge, "levelSlot.subtype", initialState.active.subtype) as string,
-        unit: pathOr(activeChallenge, "levelSlot.unit", initialState.active.unit) as string
+        endDateTime: pathOr<string>(activeChallenge, "challenge.endDateTime", initialState.active.endDateTime),
+        levelSlotId: pathOr<string>(activeChallenge, "challenge.levelSlotId", initialState.active.levelSlotId),
+        milestones: pathOr<any[]>(activeChallenge, "levelSlot.milestones", initialState.active.milestones),
+        rating: pathOr<number>(activeChallenge, "challenge.rating", initialState.active.rating),
+        startDateTime: pathOr<string>(activeChallenge, "challenge.startDateTime", initialState.active.startDateTime),
+        subtype: pathOr<string>(activeChallenge, "levelSlot.subtype", initialState.active.subtype),
+        unit: pathOr<string>(activeChallenge, "levelSlot.unit", initialState.active.unit)
     },
     level: coinLedger.currentLevel,
     nextLevelAvailableAt: coinLedger.nextLevelAvailableAt
@@ -95,11 +104,15 @@ const loginUserSuccess = (
 
 const challengeStartSuccess = (
     state: ILevelsStore,
-    { createActiveChallenge: { challenge, levelSlot, nextLevelAvailableAt } }: CreateActiveChallenge
+    { createActiveChallenge: { challenge, levelSlot, nextLevelAvailableAt, chest } }: CreateActiveChallenge
 ): ILevelsStore => ({
     ...state,
     active: {
         ...state.active,
+        chest: {
+            type: pathOr<string>(chest, "type", initialState.active.chest.type),
+            value: pathOr<number>(chest, "value", initialState.active.chest.value)
+        },
         endDateTime: challenge.endDateTime,
         levelSlotId: challenge.levelSlotId,
         milestones: levelSlot.milestones,
@@ -112,15 +125,15 @@ const challengeStartSuccess = (
 
 const challengeUpdateSuccess = (
     state: ILevelsStore,
-    { updateActiveChallenge: { challenge } }: UpdateActiveChallenge
+    { updateActiveChallenge: res }: UpdateActiveChallenge
 ): ILevelsStore => ({
     ...state,
     active: {
         ...state.active,
-        coins: pathOr(challenge, "yuCoinAwarded", initialState.active.coins) as number,
-        milestonesLog: pathOr(challenge, "milestoneLog", initialState.active.milestonesLog) as any[],
-        rating: pathOr(challenge, "rating", initialState.active.rating) as number,
-        score: pathOr(challenge, "incomingData.steps", initialState.active.score) as number
+        coins: pathOr<number>(res, "challenge.yuCoinAwarded", initialState.active.coins),
+        milestonesLog: pathOr<any[]>(res, "challenge.milestoneLog", initialState.active.milestonesLog),
+        rating: pathOr<number>(res, "challenge.rating", initialState.active.rating),
+        score: pathOr<number>(res, "challenge.incomingData.steps", initialState.active.score)
     }
 });
 
@@ -131,11 +144,20 @@ const challengeEndSuccess = (
     ...state,
     active: {
         ...state.active,
-        coins: pathOr(challenge, "yuCoinAwarded", initialState.active.coins) as number,
-        milestonesLog: pathOr(challenge, "milestoneLog", initialState.active.milestonesLog) as any[],
-        rating: pathOr(challenge, "rating", initialState.active.rating) as number,
-        score: pathOr(challenge, "incomingData.steps", initialState.active.score) as number,
-        status: (challenge.milestoneLog || []).length > 0 ? "success" : "failed"
+        coins: pathOr<number>(challenge, "yuCoinAwarded", initialState.active.coins),
+        milestonesLog: pathOr<any[]>(challenge, "milestoneLog", initialState.active.milestonesLog),
+        rating: pathOr<number>(challenge, "rating", initialState.active.rating),
+        score: pathOr<number>(challenge, "incomingData.steps", initialState.active.score),
+        status: (challenge.milestoneLog || []).length > 0 ? "success" : "failed",
+        timeUp: false
+    }
+});
+
+const challengeTimeUp = (state: ILevelsStore): ILevelsStore => ({
+    ...state,
+    active: {
+        ...state.active,
+        timeUp: true
     }
 });
 
