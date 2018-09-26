@@ -18,9 +18,10 @@ export interface ItemProps {
     dayOfWeek: string;
     level?: number;
     steps: number;
+    yucoin: number;
 }
 
-const Items: SFC<ItemProps> = ({ challenges, dayOfMonth, dayOfWeek, level, steps }) => (
+const Items: SFC<ItemProps> = ({ challenges, dayOfMonth, dayOfWeek, level, steps, yucoin }) => (
     <View style={styles.listItemWrapper}>
         <View style={styles.levelWrapper}>
             <View style={styles.divider} />
@@ -82,7 +83,7 @@ const Items: SFC<ItemProps> = ({ challenges, dayOfMonth, dayOfWeek, level, steps
                 </View>
                 <View style={styles.yuCoinEarnedColumn}>
                     <View style={styles.yuCoinEarnedWrapper}>
-                        <Text style={styles.yuCoinEarned}>{Math.floor(steps / 2000)}</Text>
+                        <Text style={styles.yuCoinEarned}>{yucoin}</Text>
                     </View>
                     {challenges.length ? null : (
                         <View style={styles.yuCoinEarnedWrapper}>

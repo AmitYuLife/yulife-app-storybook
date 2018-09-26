@@ -4,26 +4,19 @@ import { GetActivityHistory } from "../_core/schema";
 
 export const getActivityHistoryGql = gql`
     query GetActivityHistory($monthsAgo: Int) {
-        data: getActivityStats(monthsAgo: $monthsAgo) {
+        getActivityHistoryWithLevels(monthsAgo: $monthsAgo) {
             id
-            date
-            passive {
+            steps
+            yucoin
+            dayOfMonth
+            dayOfWeek
+            level
+            challenges {
                 id
-                data
-                yuCoinAwarded
-            }
-            challenge {
-                id
-                actions
-                data
-                yuCoinAwarded
-                milestoneLog {
-                    id
-                }
-                challengeTemplate {
-                    id
-                    subtype
-                }
+                earned
+                milestones
+                name
+                score
             }
         }
     }

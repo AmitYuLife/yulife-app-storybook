@@ -535,39 +535,26 @@ export interface RedeemRewardVariables {
 // GraphQL query operation: GetActivityHistory
 // ====================================================
 
-export interface GetActivityHistory_data_passive {
+export interface GetActivityHistory_getActivityHistoryWithLevels_challenges {
   id: string | null;
-  data: (number | null)[] | null;
-  yuCoinAwarded: number | null;
+  earned: number | null;
+  milestones: number | null;
+  name: string | null;
+  score: string | null;
 }
 
-export interface GetActivityHistory_data_challenge_milestoneLog {
+export interface GetActivityHistory_getActivityHistoryWithLevels {
   id: string | null;
-}
-
-export interface GetActivityHistory_data_challenge_challengeTemplate {
-  id: string | null;
-  subtype: string | null;
-}
-
-export interface GetActivityHistory_data_challenge {
-  id: string | null;
-  actions: (string | null)[] | null;
-  data: (number | null)[] | null;
-  yuCoinAwarded: number | null;
-  milestoneLog: (GetActivityHistory_data_challenge_milestoneLog | null)[] | null;
-  challengeTemplate: GetActivityHistory_data_challenge_challengeTemplate | null;
-}
-
-export interface GetActivityHistory_data {
-  id: string | null;
-  date: string | null;
-  passive: GetActivityHistory_data_passive | null;
-  challenge: GetActivityHistory_data_challenge | null;
+  steps: number | null;
+  yucoin: number | null;
+  dayOfMonth: string | null;
+  dayOfWeek: string | null;
+  level: number | null;
+  challenges: (GetActivityHistory_getActivityHistoryWithLevels_challenges | null)[] | null;
 }
 
 export interface GetActivityHistory {
-  data: (GetActivityHistory_data | null)[] | null;
+  getActivityHistoryWithLevels: (GetActivityHistory_getActivityHistoryWithLevels | null)[] | null;
 }
 
 export interface GetActivityHistoryVariables {

@@ -243,7 +243,8 @@ storiesOf("Screens", module)
                     challenges: [],
                     dayOfMonth: "14",
                     dayOfWeek: "SUN",
-                    steps: 10098
+                    steps: 10098,
+                    yucoin: 3
                 },
                 {
                     challenges: [
@@ -269,7 +270,8 @@ storiesOf("Screens", module)
                     dayOfMonth: "13",
                     dayOfWeek: "SAT",
                     level: 4,
-                    steps: 4098
+                    steps: 4098,
+                    yucoin: 3
                 },
                 {
                     challenges: [
@@ -289,13 +291,15 @@ storiesOf("Screens", module)
                     dayOfMonth: "12",
                     dayOfWeek: "FRI",
                     level: 3,
-                    steps: 6098
+                    steps: 6098,
+                    yucoin: 3
                 },
                 {
                     challenges: [],
                     dayOfMonth: "11",
                     dayOfWeek: "THU",
-                    steps: 10098
+                    steps: 10098,
+                    yucoin: 3
                 },
                 {
                     challenges: [
@@ -309,7 +313,8 @@ storiesOf("Screens", module)
                     dayOfMonth: "10",
                     dayOfWeek: "WED",
                     level: 2,
-                    steps: 10098
+                    steps: 10098,
+                    yucoin: 3
                 },
                 {
                     challenges: [
@@ -323,7 +328,8 @@ storiesOf("Screens", module)
                     dayOfMonth: "9",
                     dayOfWeek: "TUE",
                     level: 1,
-                    steps: 7890
+                    steps: 7890,
+                    yucoin: 3
                 }
             ], "Items")}
             onPressClose={action("on press close")}
