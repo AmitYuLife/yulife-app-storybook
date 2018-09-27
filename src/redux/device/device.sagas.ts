@@ -1,6 +1,7 @@
 import moment from "moment";
 import { Platform } from "react-native";
 import Intercom from "react-native-intercom";
+import { Navigation } from "react-native-navigation";
 import PushNotification, {
     PushNotification as IPushNotification,
     PushNotificationPermissions
@@ -8,9 +9,11 @@ import PushNotification, {
 import { delay } from "redux-saga";
 import { call, put, race, select, take, takeEvery, takeLatest } from "redux-saga/effects";
 import updateMemberConsentWithClient from "../../graphql/member/updateMemberConsent.gql";
+import { ROUTES } from "../../navigation/routes";
 import Logger from "../../services/logging/logger";
 import { getToken } from "../../services/storage";
 import { appStateChannel } from "../app/app.channels";
+import { getRouteState } from "../app/app.selectors";
 import {
     UPDATE_DAILY_STEPS_SUCCESS,
     updateDailyStepsNotification,
@@ -19,7 +22,6 @@ import {
 import { dailyStepsNotificationSelector } from "../daily-steps/daily-steps.selectors";
 import { CHALLENGE_START_SUCCESS, ChallengeStartSuccessActionResult } from "../levels/levels.actions";
 import { LOGOUT, updateUserConsent } from "../user/user.actions";
-import { REQUIRE_PUSH_ENABLED } from "./device.actions";
 import {
     ADD_DEVICE_TOKEN,
     addDeviceToken,
@@ -28,6 +30,7 @@ import {
     SEND_TEST_LOCAL_PUSH,
     setPushPermissions
 } from "./device.actions";
+import { REQUIRE_PUSH_ENABLED } from "./device.actions";
 import { createPushNotificationsChannel, createPushPermissionsChannel } from "./device.channels";
 import { pushNotificationsSelector, PushPermissions, PushPermissionsEnum } from "./device.selectors";
 
@@ -56,21 +59,47 @@ function* checkPermissions() {
         channel.close();
     }
 
-    if (perms.status !== status) {
-        const { token } = yield race({
-            timeout: call(delay, 1000),
-            token: call(getToken)
-        });
+    yield put(setPushPermissions({ status }));
 
-        if (token) {
-            const { data } = yield call(updateMemberConsentWithClient, {
-                pushNotifications: status === PushPermissionsEnum.enabled
-            });
-            yield put(updateUserConsent(data));
-        }
+    const { token } = yield race({
+        timeout: call(delay, 1000),
+        token: call(getToken)
+    });
+
+    // update mongo consent
+    if (token && perms.status !== status) {
+        const { data } = yield call(updateMemberConsentWithClient, {
+            pushNotifications: status === PushPermissionsEnum.enabled
+        });
+        yield put(updateUserConsent(data));
     }
 
-    yield put(setPushPermissions({ status }));
+    // pop up the modal
+    if (
+        token &&
+        status !== "enabled" &&
+        (!perms.skipped ||
+            (moment(perms.skipped)
+                .add(7, "days")
+                .isBefore(moment()) &&
+                !perms.denied))
+    ) {
+        const currentRoute = yield select(getRouteState);
+
+        if (currentRoute !== ROUTES.modalPushNotifications) {
+            yield call(async () =>
+                Navigation.showModal({
+                    component: {
+                        id: ROUTES.modalPushNotifications,
+                        name: ROUTES.modalPushNotifications,
+                        passProps: {
+                            permissions: perms
+                        }
+                    }
+                })
+            );
+        }
+    }
 }
 
 function* listenForPermissionsChange() {
