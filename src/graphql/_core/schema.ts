@@ -220,114 +220,6 @@ export interface UpsertPassiveChallengeVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: AddDailySteps
-// ====================================================
-
-export interface AddDailySteps_challengeAction_completedActiveChallenges_milestoneLog {
-  id: string | null;
-  completed: number | null;
-  completionData: (number | null)[] | null;
-  description: string | null;
-}
-
-export interface AddDailySteps_challengeAction_completedActiveChallenges {
-  id: string | null;
-  actions: (string | null)[] | null;
-  challengeTemplateId: string | null;
-  currentData: number | null;
-  currentTarget: number | null;
-  customerId: string | null;
-  data: (number | null)[] | null;
-  endTime: number | null;
-  milestoneLog: (AddDailySteps_challengeAction_completedActiveChallenges_milestoneLog | null)[] | null;
-  startTime: number | null;
-  status: string | null;
-  target: (number | null)[] | null;
-  updatedAt: number | null;
-  XPAwarded: number | null;
-  yuCoinAwarded: number | null;
-  __typename: "Challenge";
-}
-
-export interface AddDailySteps_challengeAction_currentPassiveChallenge_milestoneLog {
-  id: string | null;
-  completed: number | null;
-  completionData: (number | null)[] | null;
-  description: string | null;
-}
-
-export interface AddDailySteps_challengeAction_currentPassiveChallenge {
-  id: string | null;
-  actions: (string | null)[] | null;
-  challengeTemplateId: string | null;
-  currentData: number | null;
-  currentTarget: number | null;
-  customerId: string | null;
-  data: (number | null)[] | null;
-  endTime: number | null;
-  milestoneLog: (AddDailySteps_challengeAction_currentPassiveChallenge_milestoneLog | null)[] | null;
-  startTime: number | null;
-  status: string | null;
-  target: (number | null)[] | null;
-  updatedAt: number | null;
-  XPAwarded: number | null;
-  yuCoinAwarded: number | null;
-  __typename: "Challenge";
-}
-
-export interface AddDailySteps_challengeAction_userStatus {
-  totalCoins: number | null;
-}
-
-export interface AddDailySteps_challengeAction {
-  completedActiveChallenges: (AddDailySteps_challengeAction_completedActiveChallenges | null)[] | null;
-  currentPassiveChallenge: AddDailySteps_challengeAction_currentPassiveChallenge | null;
-  timestamp: number | null;
-  userStatus: AddDailySteps_challengeAction_userStatus | null;
-}
-
-export interface AddDailySteps {
-  challengeAction: AddDailySteps_challengeAction | null;
-}
-
-export interface AddDailyStepsVariables {
-  payload?: (ActionPayload | null)[] | null;
-}
-
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: ChallengesList
-// ====================================================
-
-export interface ChallengesList_getChallenges_milestones {
-  target: (number | null)[] | null;
-  coins: number | null;
-}
-
-export interface ChallengesList_getChallenges {
-  id: string | null;
-  subtype: string | null;
-  level: number | null;
-  target: (number | null)[] | null;
-  totalCoins: number | null;
-  timelimit: number | null;
-  unit: string | null;
-  milestones: (ChallengesList_getChallenges_milestones | null)[] | null;
-  __typename: "ChallengeTemplate";
-}
-
-export interface ChallengesList {
-  getChallenges: (ChallengesList_getChallenges | null)[] | null;
-}
-
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL mutation operation: UpdateMemberConsent
 // ====================================================
 
@@ -639,135 +531,6 @@ export interface GetCurrentUser {
 // GraphQL mutation operation: LoginUser
 // ====================================================
 
-export interface LoginUser_loginUser_user_userStatus_challenges_passive_milestoneLog {
-  id: string | null;
-  completed: number | null;
-  completionData: (number | null)[] | null;
-  description: string | null;
-}
-
-export interface LoginUser_loginUser_user_userStatus_challenges_passive_challengeTemplate_milestones {
-  id: string | null;
-  description: string | null;
-  unit: string | null;
-  target: (number | null)[] | null;
-  coins: number | null;
-  XP: number | null;
-}
-
-export interface LoginUser_loginUser_user_userStatus_challenges_passive_challengeTemplate {
-  id: string | null;
-  name: string | null;
-  description: string | null;
-  type: string | null;
-  subtype: string | null;
-  level: number | null;
-  passive: boolean | null;
-  actions: (string | null)[] | null;
-  target: (number | null)[] | null;
-  totalCoins: number | null;
-  totalXP: number | null;
-  timelimit: number | null;
-  successTitle: string | null;
-  successDescription: string | null;
-  failureTitle: string | null;
-  failureDescription: string | null;
-  challengeCompleteText: string | null;
-  unit: string | null;
-  milestones: (LoginUser_loginUser_user_userStatus_challenges_passive_challengeTemplate_milestones | null)[] | null;
-  __typename: "ChallengeTemplate";
-}
-
-export interface LoginUser_loginUser_user_userStatus_challenges_passive {
-  id: string | null;
-  actions: (string | null)[] | null;
-  challengeTemplateId: string | null;
-  currentData: number | null;
-  currentTarget: number | null;
-  customerId: string | null;
-  data: (number | null)[] | null;
-  endTime: number | null;
-  milestoneLog: (LoginUser_loginUser_user_userStatus_challenges_passive_milestoneLog | null)[] | null;
-  startTime: number | null;
-  status: string | null;
-  target: (number | null)[] | null;
-  updatedAt: number | null;
-  XPAwarded: number | null;
-  yuCoinAwarded: number | null;
-  __typename: "Challenge";
-  challengeTemplate: LoginUser_loginUser_user_userStatus_challenges_passive_challengeTemplate | null;
-}
-
-export interface LoginUser_loginUser_user_userStatus_challenges_active_milestoneLog {
-  id: string | null;
-  completed: number | null;
-  completionData: (number | null)[] | null;
-  description: string | null;
-}
-
-export interface LoginUser_loginUser_user_userStatus_challenges_active_challengeTemplate_milestones {
-  id: string | null;
-  description: string | null;
-  unit: string | null;
-  target: (number | null)[] | null;
-  coins: number | null;
-  XP: number | null;
-}
-
-export interface LoginUser_loginUser_user_userStatus_challenges_active_challengeTemplate {
-  id: string | null;
-  name: string | null;
-  description: string | null;
-  type: string | null;
-  subtype: string | null;
-  level: number | null;
-  passive: boolean | null;
-  actions: (string | null)[] | null;
-  target: (number | null)[] | null;
-  totalCoins: number | null;
-  totalXP: number | null;
-  timelimit: number | null;
-  successTitle: string | null;
-  successDescription: string | null;
-  failureTitle: string | null;
-  failureDescription: string | null;
-  challengeCompleteText: string | null;
-  unit: string | null;
-  milestones: (LoginUser_loginUser_user_userStatus_challenges_active_challengeTemplate_milestones | null)[] | null;
-  __typename: "ChallengeTemplate";
-}
-
-export interface LoginUser_loginUser_user_userStatus_challenges_active {
-  id: string | null;
-  actions: (string | null)[] | null;
-  challengeTemplateId: string | null;
-  currentData: number | null;
-  currentTarget: number | null;
-  customerId: string | null;
-  data: (number | null)[] | null;
-  endTime: number | null;
-  milestoneLog: (LoginUser_loginUser_user_userStatus_challenges_active_milestoneLog | null)[] | null;
-  startTime: number | null;
-  status: string | null;
-  target: (number | null)[] | null;
-  updatedAt: number | null;
-  XPAwarded: number | null;
-  yuCoinAwarded: number | null;
-  __typename: "Challenge";
-  challengeTemplate: LoginUser_loginUser_user_userStatus_challenges_active_challengeTemplate | null;
-}
-
-export interface LoginUser_loginUser_user_userStatus_challenges {
-  passive: LoginUser_loginUser_user_userStatus_challenges_passive | null;
-  nextActiveAvailable: number | null;
-  active: LoginUser_loginUser_user_userStatus_challenges_active | null;
-}
-
-export interface LoginUser_loginUser_user_userStatus {
-  totalCoins: number | null;
-  challenges: LoginUser_loginUser_user_userStatus_challenges | null;
-}
-
 export interface LoginUser_loginUser_user_userFeatures {
   name: string | null;
   value: boolean | null;
@@ -791,7 +554,6 @@ export interface LoginUser_loginUser_user {
   __typename: "User";
   id: string | null;
   businessAccountId: string | null;
-  userStatus: LoginUser_loginUser_user_userStatus | null;
   userFeatures: (LoginUser_loginUser_user_userFeatures | null)[] | null;
   mobileConsent: LoginUser_loginUser_user_mobileConsent | null;
   redeemedOnboarding: boolean | null;
@@ -1010,13 +772,6 @@ export enum LoginMethod {
 export interface ChallengePayload {
   startDateTime?: string | null;
   endDateTime?: string | null;
-  value?: number | null;
-}
-
-// 
-export interface ActionPayload {
-  startTime?: number | null;
-  endTime?: number | null;
   value?: number | null;
 }
 

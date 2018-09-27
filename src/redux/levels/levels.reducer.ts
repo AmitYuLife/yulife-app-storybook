@@ -89,17 +89,14 @@ const getUserSuccess = (
     nextLevelAvailableAt: coinLedger.nextLevelAvailableAt
 });
 
-const loginUserSuccess = (
-    state: ILevelsStore,
-    {
-        loginUser: {
-            user: { coinLedger }
-        }
-    }: LoginUser
-): ILevelsStore => ({
+const loginUserSuccess = (state: ILevelsStore, { loginUser }: LoginUser): ILevelsStore => ({
     ...state,
-    level: coinLedger.currentLevel,
-    nextLevelAvailableAt: coinLedger.nextLevelAvailableAt
+    level: pathOr<number>(loginUser, "user.coinLedger.currentLevel", initialState.level),
+    nextLevelAvailableAt: pathOr<string>(
+        loginUser,
+        "user.coinLedger.nextLevelAvailableAt",
+        initialState.nextLevelAvailableAt
+    )
 });
 
 const challengeStartSuccess = (

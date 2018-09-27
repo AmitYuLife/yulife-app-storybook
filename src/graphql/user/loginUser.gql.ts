@@ -15,24 +15,6 @@ export const loginUserGql = gql`
                 __typename
                 id
                 businessAccountId
-                userStatus {
-                    totalCoins
-                    challenges {
-                        passive {
-                            ...Challenge
-                            challengeTemplate {
-                                ...ChallengeTemplate
-                            }
-                        }
-                        nextActiveAvailable
-                        active {
-                            ...Challenge
-                            challengeTemplate {
-                                ...ChallengeTemplate
-                            }
-                        }
-                    }
-                }
                 userFeatures {
                     name
                     value

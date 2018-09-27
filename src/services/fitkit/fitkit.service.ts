@@ -5,7 +5,7 @@ import RNFitKit, {
     // FitKitAuthOptions,
     SampleQueryResult
 } from "react-native-fitkit";
-import { ActionPayload } from "../../graphql/_core/schema";
+import { ChallengePayload } from "../../graphql/_core/schema";
 
 // const transformQueryResultToPayload = (item: AggregateQueryResult): ActionPayload => ({
 //     startTime: Math.round(item.startTime),
@@ -13,10 +13,10 @@ import { ActionPayload } from "../../graphql/_core/schema";
 //     value: Math.round(item.steps),
 // });
 
-const transformSampleResultToPayload = (item: SampleQueryResult): ActionPayload => ({
-    endTime: moment(item.endTime).unix(),
-    startTime: moment(item.startTime).unix()
-    // value: Math.round(item.endTime - item.startTime),
+const transformSampleResultToPayload = (item: SampleQueryResult): ChallengePayload => ({
+    endDateTime: moment(item.endTime).format(),
+    startDateTime: moment(item.startTime).format(),
+    value: item.value
 });
 
 // export const isFitKitAvailable = async (): Promise<boolean> => {
@@ -95,7 +95,7 @@ const transformSampleResultToPayload = (item: SampleQueryResult): ActionPayload 
 //     }
 // };
 
-export const queryMindfulSessions = async (startTime: string): Promise<ActionPayload[]> => {
+export const queryMindfulSessions = async (startTime: string): Promise<ChallengePayload[]> => {
     try {
         const authorised = await RNFitKit.authorise({
             read: [

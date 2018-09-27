@@ -38,11 +38,7 @@ const loginSuccessFixture: LoginUser = {
                 workspaceLeaderboard: null
             },
             redeemedOnboarding: false,
-            userFeatures: [],
-            userStatus: {
-                challenges: null,
-                totalCoins: 15
-            }
+            userFeatures: []
         }
     }
 };

@@ -1,12 +1,13 @@
 import { GetCurrentUser, LoginUser, UpsertPassiveChallenge } from "../../graphql/_core/schema";
+import { pathOr } from "../../services/utils";
 import { SyncAction } from "../_core/types";
 import { UPDATE_DAILY_STEPS_SUCCESS } from "../daily-steps/daily-steps.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 
 export interface ICoinsStore {
-    dailyChallengeEarned: number;   // number of coins earned in the current day through challenges
-    dailyStepsEarned: number;       // number of coins earned in the current day through daily steps
-    total: number;                  // total coins the user has earned
+    dailyChallengeEarned: number; // number of coins earned in the current day through challenges
+    dailyStepsEarned: number; // number of coins earned in the current day through daily steps
+    total: number; // total coins the user has earned
 }
 
 export const initialState: ICoinsStore = {
@@ -35,26 +36,20 @@ export default coinsReducer;
 
 const updateDailyStepsSuccess = (
     state: ICoinsStore,
-    { upsertPassiveChallenge: { challenge, totalCoins } }: UpsertPassiveChallenge
+    { upsertPassiveChallenge }: UpsertPassiveChallenge
 ): ICoinsStore => ({
     ...state,
     // dailyChallengeEarned: sumCompletedChallenges(challengeAction.completedActiveChallenges),
-    dailyStepsEarned: challenge.yuCoinAwarded,
-    total: totalCoins
+    dailyStepsEarned: pathOr<number>(upsertPassiveChallenge, "challenge.yuCoinAwarded", initialState.dailyStepsEarned),
+    total: pathOr<number>(upsertPassiveChallenge, "totalCoins", initialState.total)
 });
 
-const loginUserSuccess = (
-    state: ICoinsStore,
-    { loginUser: { user: { coinLedger }} }: LoginUser
-): ICoinsStore => ({
+const loginUserSuccess = (state: ICoinsStore, { loginUser }: LoginUser): ICoinsStore => ({
     ...state,
-    total: coinLedger.currentBalance
+    total: pathOr<number>(loginUser, "user.coinLedger.currentBalance", initialState.total)
 });
 
-const getUserSuccess = (
-    state: ICoinsStore,
-    { getCurrentUser: { coinLedger } }: GetCurrentUser
-): ICoinsStore => ({
+const getUserSuccess = (state: ICoinsStore, { getCurrentUser }: GetCurrentUser): ICoinsStore => ({
     ...state,
-    total: coinLedger.currentBalance
+    total: pathOr<number>(getCurrentUser, "coinLedger.currentBalance", initialState.total)
 });
