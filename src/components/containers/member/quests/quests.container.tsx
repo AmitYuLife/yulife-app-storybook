@@ -113,26 +113,55 @@ class QuestsContainer extends PureComponent<Props> {
         this.props.challengeResetAction();
     }
 
+    private dismissChestModal = () => {
+        Navigation.dismissModal(ROUTES.modalChest);
+    }
+
+    private showChestModal = (level: GetCurrentWorld_getCurrentWorld, isNext: boolean) => {
+        const passProps = {
+            ctaLabel: isNext ? "let's do it" : "got it",
+            heading: isNext ? "take a challenge to unlock the chest" : `unlock at level ${level.level}`,
+            isLocked: true,
+            onPressCta: () => {
+                if (isNext) {
+                    this.goToChallengesList(level);
+                }
+                this.dismissChestModal();
+            },
+            onPressCtaSecondary: this.dismissChestModal
+        };
+
+        Navigation.showModal({
+            component: {
+                id: ROUTES.modalChest,
+                name: ROUTES.modalChest,
+                passProps
+            }
+        });
+    }
+
+    private goToChallengesList = (level: GetCurrentWorld_getCurrentWorld) => {
+        const { componentId, labels } = this.props;
+        Navigation.push(componentId, {
+            component: {
+                id: ROUTES.questsChallengesList,
+                name: ROUTES.questsChallengesList,
+                passProps: {
+                    labels,
+                    level
+                }
+            }
+        });
+    }
+
     private formatData = (data: GetCurrentWorld_getCurrentWorld[] = []) => {
-        const { componentId, labels, currentLevel, nextLevelAvailableAt } = this.props;
+        const { currentLevel, nextLevelAvailableAt } = this.props;
 
         const nextAvailable = !!nextLevelAvailableAt ? moment().diff(moment(nextLevelAvailableAt), "seconds") : null;
 
         return data.map((level) => {
             const isNext = currentLevel === level.level;
             const isDone = currentLevel > level.level;
-            const goToChallengesList = () => {
-                Navigation.push(componentId, {
-                    component: {
-                        id: ROUTES.questsChallengesList,
-                        name: ROUTES.questsChallengesList,
-                        passProps: {
-                            labels,
-                            level
-                        }
-                    }
-                });
-            };
 
             return {
                 ...level,
@@ -143,27 +172,9 @@ class QuestsContainer extends PureComponent<Props> {
                     if (isDone) {
                         // goToChallengesList(); TODO: go to challengesDoneList
                     } else if (level.level % 7 === 0) {
-                        const passProps = {
-                            ctaLabel: isNext ? "let's do it" : "got it",
-                            heading: isNext ? "take a challenge to unlock the chest" : `unlock at level ${level.level}`,
-                            isLocked: true,
-                            onPressCta: () => {
-                                if (isNext) {
-                                    goToChallengesList();
-                                }
-                                Navigation.dismissModal(ROUTES.modalChest);
-                            }
-                        };
-
-                        Navigation.showModal({
-                            component: {
-                                id: ROUTES.modalChest,
-                                name: ROUTES.modalChest,
-                                passProps
-                            }
-                        });
+                        this.showChestModal(level, isNext);
                     } else if (isNext) {
-                        goToChallengesList();
+                        this.goToChallengesList(level);
                     }
                 }
             };

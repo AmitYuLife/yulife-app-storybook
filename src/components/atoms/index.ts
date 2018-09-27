@@ -1,3 +1,4 @@
+export { default as Back } from "./back/back";
 export { default as Blurb } from "./blurb/blurb";
 export { default as BlurProvider } from "./blur/blur-provider";
 export { default as Button } from "./button/button";

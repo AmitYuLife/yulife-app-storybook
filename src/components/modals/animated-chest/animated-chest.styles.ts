@@ -33,6 +33,11 @@ export default StyleSheet.create({
         bottom: 0,
         position: "absolute"
     } as ViewStyle,
+    secondaryCtaWrapper: {
+        alignItems: "center",
+        alignSelf: "center",
+        marginTop: Style.SCALE_UP_AND_DOWN(8)
+    } as ViewStyle,
     wrapper: {
         alignItems: "center",
         flex: 1,

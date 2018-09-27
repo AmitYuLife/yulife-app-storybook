@@ -3,6 +3,7 @@ import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
+import { ROUTES } from "../../../../../navigation/routes";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { challengeStartAction, ChallengeStartAction } from "../../../../../redux/levels/levels.actions";
@@ -96,11 +97,26 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
                         onPressClose={() => {
                             hideOverlay();
                         }}
+                        onPressSetUp={challengeType === "meditation" ? this.showMeditationSetUpModal : null}
                         unit={unit}
                     />
                 )}
             />
         );
+    }
+
+    private showMeditationSetUpModal = () => {
+        Navigation.showModal({
+            component: {
+                id: ROUTES.modalMeditationSetUp,
+                name: ROUTES.modalMeditationSetUp,
+                passProps: {
+                    onPressClose: () => {
+                        Navigation.dismissModal(ROUTES.modalMeditationSetUp);
+                    }
+                }
+            }
+        });
     }
 
     private handleSubmitChallenge = async () => {

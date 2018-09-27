@@ -21,7 +21,8 @@ import {
 import {
     AnimatedChest,
     ChallengeDetailsModal,
-    GenericModal
+    GenericModal,
+    MeditationSetUpModal
 } from "../components/modals";
 
 // tslint:disable:object-literal-sort-keys
@@ -57,7 +58,8 @@ export const ROUTES = {
     // modals
     modalGeneric: "yulife.modals.Generic",
     modalChallengeDetails: "yulife.modals.ChallengeDetails",
-    modalChest: "yulife.modals.Chest"
+    modalChest: "yulife.modals.Chest",
+    modalMeditationSetUp: "yulife.modals.MeditationSetUp"
 };
 // tslint:enable:object-literal-sort-keys
 
@@ -95,5 +97,6 @@ export default [
     // modals
     { name: ROUTES.modalChallengeDetails, component: ChallengeDetailsModal },
     { name: ROUTES.modalChest, component: AnimatedChest },
-    { name: ROUTES.modalGeneric, component: GenericModal }
+    { name: ROUTES.modalGeneric, component: GenericModal },
+    { name: ROUTES.modalMeditationSetUp, component: MeditationSetUpModal }
 ];

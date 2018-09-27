@@ -10,10 +10,10 @@ interface IProps {
     heading: string;
     isLocked?: boolean;
     onPressCta: () => void;
+    onPressCtaSecondary?: () => void;
 }
 
 export default class AnimatedChest extends PureComponent<IProps> {
-
     private animationDelay: NodeJS.Timer;
     private lidYOffset = new Animated.Value(-35);
     private coinYOffset = new Animated.Value(500);
@@ -39,73 +39,66 @@ export default class AnimatedChest extends PureComponent<IProps> {
             return null;
         }
 
-        this.animationDelay = global.setTimeout(
-            this.animate,
-            500
-        );
+        this.animationDelay = global.setTimeout(this.animate, 500);
     }
 
     public render() {
-        const {
-            ctaLabel,
-            heading,
-            isLocked,
-            onPressCta
-        } = this.props;
+        const { ctaLabel, heading, isLocked, onPressCta, onPressCtaSecondary } = this.props;
         return (
             <View style={styles.wrapper}>
                 <View style={styles.imageWrapper}>
-                    {isLocked ?
+                    {isLocked ? (
                         <Image source={assets.chestLocked} />
-                        : (
-                            <>
-                                <Animated.Image
-                                    style={{
-                                        opacity: this.confettiOpacity,
-                                        transform: [{
+                    ) : (
+                        <>
+                            <Animated.Image
+                                style={{
+                                    opacity: this.confettiOpacity,
+                                    transform: [
+                                        {
                                             scale: this.confettiScale
-                                        }]
-                                    }}
-                                    resizeMode="contain"
-                                    source={assets.chestBackground}
-                                />
-                                <View style={styles.chestWrapper}>
-                                    <Animated.View
-                                        style={StyleSheet.flatten([
-                                            styles.lidWrapper,
-                                            { transform: [{ translateY: this.lidYOffset }] }
-                                        ] as ViewStyle)}
-                                    >
-                                        <Image source={assets.chestLid} />
-                                    </Animated.View>
-                                    <Animated.View
-                                        style={StyleSheet.flatten([
-                                            styles.chestCoinWrapper,
-                                            { transform: [{ translateY: this.coinYOffset }] }
-                                        ] as ViewStyle)}
-                                    >
-                                        <ChestCoin />
-                                    </Animated.View>
-                                    <View
-                                        style={styles.chestBaseWrapper}
-                                    >
-                                        <Image source={assets.chestBase} />
-                                    </View>
+                                        }
+                                    ]
+                                }}
+                                resizeMode="contain"
+                                source={assets.chestBackground}
+                            />
+                            <View style={styles.chestWrapper}>
+                                <Animated.View
+                                    style={StyleSheet.flatten([
+                                        styles.lidWrapper,
+                                        { transform: [{ translateY: this.lidYOffset }] }
+                                    ] as ViewStyle)}
+                                >
+                                    <Image source={assets.chestLid} />
+                                </Animated.View>
+                                <Animated.View
+                                    style={StyleSheet.flatten([
+                                        styles.chestCoinWrapper,
+                                        { transform: [{ translateY: this.coinYOffset }] }
+                                    ] as ViewStyle)}
+                                >
+                                    <ChestCoin />
+                                </Animated.View>
+                                <View style={styles.chestBaseWrapper}>
+                                    <Image source={assets.chestBase} />
                                 </View>
-                            </>
-                        )}
+                            </View>
+                        </>
+                    )}
                 </View>
-                <Text
-                    bold={true}
-                    style={styles.heading}
-                >
+                <Text bold={true} style={styles.heading}>
                     {heading}
                 </Text>
-                <Button
-                    type={Button.Types.PRIMARY_MEDIUM}
-                    label={ctaLabel}
-                    onPress={onPressCta}
-                />
+                <Button type={Button.Types.PRIMARY_MEDIUM} label={ctaLabel} onPress={onPressCta} />
+                {onPressCtaSecondary && (
+                    <Button
+                        wrapperStyle={styles.secondaryCtaWrapper}
+                        type={Button.Types.LINK}
+                        onPress={onPressCtaSecondary}
+                        label="later"
+                    />
+                )}
             </View>
         );
     }
@@ -131,15 +124,8 @@ export default class AnimatedChest extends PureComponent<IProps> {
             useNativeDriver: true
         });
 
-        const sequenceTwo = Animated.parallel([
-            raiseCoin,
-            expandConfetti,
-            showConfetti
-        ]);
+        const sequenceTwo = Animated.parallel([raiseCoin, expandConfetti, showConfetti]);
 
-        Animated.sequence([
-            sequenceOne,
-            sequenceTwo
-        ]).start();
+        Animated.sequence([sequenceOne, sequenceTwo]).start();
     }
 }
