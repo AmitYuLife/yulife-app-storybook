@@ -37,3 +37,7 @@ export const updateUserConsent = (payload: MobileConsentInput): MobileConsentAct
     payload,
     type: UPDATE_USER_CONSENT
 });
+
+export const logOut = (): SyncAction => ({
+    type: LOGOUT
+});

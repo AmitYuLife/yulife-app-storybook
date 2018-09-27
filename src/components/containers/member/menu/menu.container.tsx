@@ -3,12 +3,10 @@ import { PureComponent } from "react";
 import Intercom from "react-native-intercom";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { setUnauthenticatedRoot } from "../../../../navigation/root";
 import { ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getRouteState } from "../../../../redux/app/app.selectors";
-import { clearToken } from "../../../../services/storage/token";
-import { clearUser } from "../../../../services/storage/user";
+import { logOut } from "../../../../redux/user/user.actions";
 import { MenuScreen } from "../../../screens";
 import assets, { LINKS } from "./assets";
 
@@ -18,7 +16,13 @@ interface IConnectedState {
     currentRoute: string;
 }
 
-class MenuContainer extends PureComponent<IConnectedState> {
+interface IConnectedDipatch {
+    logOut: () => void;
+}
+
+type Props = IConnectedState & IConnectedDipatch;
+
+class MenuContainer extends PureComponent<Props> {
     public render() {
         return (
             <MenuScreen
@@ -90,7 +94,7 @@ class MenuContainer extends PureComponent<IConnectedState> {
             case LINKS.LEADERBOARD:
                 return null;
             case LINKS.LOGOUT:
-                this.handleLogout();
+                this.props.logOut();
                 return null;
             case LINKS.MEMBER:
                 return null;
@@ -111,18 +115,17 @@ class MenuContainer extends PureComponent<IConnectedState> {
             }
         });
     }
-
-    private handleLogout = async () => {
-        await clearToken();
-        await clearUser();
-        setUnauthenticatedRoot();
-    }
 }
 
 const mapStateToProps = (state: IReduxState) => ({
     currentRoute: getRouteState(state)
 });
 
+const mapDispatchToProps = {
+    logOut
+};
+
 export default connect<IConnectedState>(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(MenuContainer);
