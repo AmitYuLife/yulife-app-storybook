@@ -2,8 +2,6 @@ import gql from "graphql-tag";
 import { Mutation, MutationFn, MutationResult } from "react-apollo";
 
 import { LoginUser, LoginUserVariables } from "../_core/schema";
-import { challengeFragmentGql } from "../_fragments/challenge.gql";
-import { challengeTemplateFragmentGql } from "../_fragments/challengeTemplate.gql";
 
 export const loginUserGql = gql`
     mutation LoginUser($email: String!, $password: String!, $method: LoginMethod, $tokenExpiration: Int) {
@@ -35,8 +33,6 @@ export const loginUserGql = gql`
             }
         }
     }
-    ${challengeFragmentGql}
-    ${challengeTemplateFragmentGql}
 `;
 
 export type LoginUserResultType = MutationResult<LoginUser>;

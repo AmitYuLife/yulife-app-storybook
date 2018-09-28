@@ -27,7 +27,6 @@ import {
     ResetPasswordScreen,
     ResetPasswordSuccessScreen,
     SignUpRewardScreen,
-    StreaksScreen,
     TodayYucoin,
     WelcomeScreen
 } from "./index";
@@ -338,26 +337,7 @@ storiesOf("Screens", module)
     .add("12. Intro", () => (
         <IntroScreen />
     ))
-    .add("13. Streaks", () => (
-        <StreaksScreen
-            streakCompleted={number("streakCompleted", 0, {
-                max: 5,
-                min: 0,
-                range: true,
-                step: 1
-            })}
-            streakMax={number("streakMax", 1, {
-                max: 5,
-                min: 1,
-                range: true,
-                step: 1
-            })}
-            isTodayDone={boolean("isTodayDone", true)}
-            onPressCtaPrimary={action("pressed streak cta primary")}
-            onPressCtaSecondary={action("pressed streak cta secondary")}
-        />
-    ))
-    .add("14a. QuestScreen", () => {
+    .add("13a. QuestScreen", () => {
         const nextAvailable = moment().unix();
         return (
             <QuestsScreen
@@ -376,7 +356,7 @@ storiesOf("Screens", module)
             />
         );
     })
-    .add("14b. QuestScreenOffline", () => (
+    .add("13b. QuestScreenOffline", () => (
         <QuestsScreenOffline
             onLeftMenuPress={action("on left menu press")}
             totalCoins={number("TotalCoins", 4, {
@@ -387,10 +367,10 @@ storiesOf("Screens", module)
             }, "QuestScreenOffline")}
         />
     ))
-    .add("14c. QuestsMovie", () => (
+    .add("13c. QuestsMovie", () => (
         <QuestsMovie />
     ))
-    .add("15. Today Yucoin", () => (
+    .add("14. Today Yucoin", () => (
         <TodayYucoin
             showStars={boolean("showStars", false)}
             steps={number("steps", 0)}

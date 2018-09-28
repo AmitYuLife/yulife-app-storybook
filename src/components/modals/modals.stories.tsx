@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { boolean, object, select, text, withKnobs } from "@storybook/addon-knobs";
+import { boolean, number, object, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import {
@@ -7,7 +7,8 @@ import {
     ChallengeCompleteModal,
     ChallengeDetailsModal,
     CollectRewardModal,
-    GenericModal
+    GenericModal,
+    StreaksModal
 } from "./index";
 
 storiesOf("Modals", module)
@@ -64,5 +65,24 @@ storiesOf("Modals", module)
             onPressCta={action("pressed animated chest cta")}
             heading={text("heading", "heading")}
             ctaLabel={text("cta", "cta")}
+        />
+    ))
+    .add("6. Streaks", () => (
+        <StreaksModal
+            streakCompleted={number("streakCompleted", 0, {
+                max: 5,
+                min: 0,
+                range: true,
+                step: 1
+            })}
+            streakMax={number("streakMax", 1, {
+                max: 5,
+                min: 1,
+                range: true,
+                step: 1
+            })}
+            isTodayDone={boolean("isTodayDone", true)}
+            onPressCtaPrimary={action("pressed streak cta primary")}
+            onPressCtaSecondary={action("pressed streak cta secondary")}
         />
     ));

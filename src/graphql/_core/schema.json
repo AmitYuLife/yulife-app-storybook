@@ -466,6 +466,33 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "getIntercomHash",
+              "description": "",
+              "args": [
+                {
+                  "name": "method",
+                  "description": "",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "IntercomHashMethod",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -4874,7 +4901,7 @@
           "description": "",
           "fields": [
             {
-              "name": "version",
+              "name": "policy",
               "description": "",
               "args": [],
               "type": {
@@ -4890,7 +4917,7 @@
               "deprecationReason": null
             },
             {
-              "name": "policy",
+              "name": "policyVersion",
               "description": "",
               "args": [],
               "type": {
@@ -4922,7 +4949,39 @@
               "deprecationReason": null
             },
             {
+              "name": "rewardsVersion",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "termsAndConditions",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "termsAndConditionsVersion",
               "description": "",
               "args": [],
               "type": {
@@ -5700,6 +5759,35 @@
           "inputFields": null,
           "interfaces": [],
           "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "IntercomHashMethod",
+          "description": "",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "ios",
+              "description": "",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "android",
+              "description": "",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "web",
+              "description": "",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
           "possibleTypes": null
         },
         {
@@ -6696,6 +6784,16 @@
                     }
                   },
                   "defaultValue": null
+                },
+                {
+                  "name": "intercomHashMethod",
+                  "description": "",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "IntercomHashMethod",
+                    "ofType": null
+                  },
+                  "defaultValue": null
                 }
               ],
               "type": {
@@ -6988,6 +7086,16 @@
                   "type": {
                     "kind": "SCALAR",
                     "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "intercomHashMethod",
+                  "description": "",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "IntercomHashMethod",
                     "ofType": null
                   },
                   "defaultValue": null
@@ -9653,6 +9761,18 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "intercomHash",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -10947,9 +11067,9 @@
   "extensions": {
     "tracing": {
       "version": 1,
-      "startTime": "2018-09-26T08:40:38.694Z",
-      "endTime": "2018-09-26T08:40:38.836Z",
-      "duration": 141239346,
+      "startTime": "2018-09-27T17:45:40.047Z",
+      "endTime": "2018-09-27T17:45:40.213Z",
+      "duration": 165542279,
       "execution": {
         "resolvers": []
       }

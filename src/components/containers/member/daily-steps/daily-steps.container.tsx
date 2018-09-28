@@ -1,9 +1,11 @@
 import moment from "moment";
-import { PureComponent } from "react";
 import React from "react";
+import { PureComponent } from "react";
 import { FitKitAvailable } from "react-native-fitkit";
+import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IMainTabsProps } from "../../../../navigation/root";
+import { ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { SyncAction } from "../../../../redux/_core/types";
 import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
@@ -11,6 +13,7 @@ import { getDailyEarnedCoins, getTotalCoins } from "../../../../redux/coins/coin
 import { startDailySteps, stopDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
 import { getDailySteps, getLastUpdated } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
+import { IStreak, userStreakSelector } from "../../../../redux/user/user.selectors";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
 import { DailyStepsScreen } from "../../../screens";
 
@@ -20,6 +23,7 @@ interface IConnectedState {
     dailySteps: number;
     lastUpdated: string;
     offline: boolean;
+    streaks: IStreak;
     totalCoins: number;
 }
 
@@ -29,9 +33,7 @@ interface IConnectedDispatch {
     stopDailySteps: () => SyncAction;
 }
 
-type Props = IMainTabsProps &
-    IConnectedState &
-    IConnectedDispatch;
+type Props = IMainTabsProps & IConnectedState & IConnectedDispatch;
 
 interface IState {
     dailyStepsLoading: boolean;
@@ -68,8 +70,14 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     public render() {
-        const { dailyEarnedCoins, dailySteps, labels, offline, onLeftMenuPress, totalCoins } = this.props;
+        const { dailyEarnedCoins, dailySteps, labels, offline, onLeftMenuPress, streaks, totalCoins } = this.props;
         const { dailyStepsLoading, lastUpdate } = this.state;
+        const isStreakDoneToday =
+            moment()
+                .add(1, "day")
+                .startOf("day")
+                .format()
+                .slice(0, -6) === streaks.nextStreakAvailableAt;
 
         return (
             <FitKitAvailable>
@@ -77,10 +85,11 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                     return (
                         <DailyStepsScreen
                             coinsToday={dailyEarnedCoins}
-                            currentStreak={2}
+                            currentStreak={streaks.streak}
+                            displayStreak={true}
                             fitKitAvailable={available}
                             hasPermission={authorised}
-                            isDoneToday={false}
+                            isDoneToday={isStreakDoneToday}
                             isLoading={loading || dailyStepsLoading}
                             isOnline={!offline}
                             labels={labels}
@@ -109,7 +118,37 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     private onStreak = () => {
-        // console.log("");
+        const { streaks, labels } = this.props;
+        const modalName = ROUTES.modalStreaks;
+        const isTodayDone =
+            moment()
+                .add(1, "day")
+                .startOf("day")
+                .format()
+                .slice(0, -6) === streaks.nextStreakAvailableAt;
+
+        Navigation.showModal({
+            component: {
+                id: modalName,
+                name: modalName,
+                passProps: {
+                    isTodayDone,
+                    onPressCtaPrimary: () => {
+                        if (!isTodayDone) {
+                            labels[1].onPress();
+                        }
+                        Navigation.dismissModal(modalName);
+                    },
+                    onPressCtaSecondary: isTodayDone
+                        ? null
+                        : () => {
+                              Navigation.dismissModal(modalName);
+                          },
+                    streakCompleted: streaks.streak,
+                    streakMax: 4
+                }
+            }
+        });
     }
 }
 
@@ -119,6 +158,7 @@ const mapStateToProps = (state: IReduxState) => ({
     dailySteps: getDailySteps(state),
     lastUpdated: getLastUpdated(state),
     offline: getOfflineState(state),
+    streaks: userStreakSelector(state),
     totalCoins: getTotalCoins(state)
 });
 

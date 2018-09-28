@@ -14,7 +14,6 @@ export { default as IntroScreen } from "./onboarding/intro/intro.screen";
 export { default as MenuScreen, IMenuLink } from "./member/menu/menu.screen";
 export { default as ActivityHistoryLevels } from "./member/activity-history-levels/activity-history-levels";
 export { default as DailyStepsScreen } from "./member/daily-steps/daily-steps.screen";
-export { default as StreaksScreen } from "./member/streaks/streaks.screen";
 
 // quests screens
 export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";

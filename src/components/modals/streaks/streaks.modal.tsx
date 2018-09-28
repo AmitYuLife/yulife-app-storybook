@@ -6,9 +6,9 @@ import {
     StyleSheet,
     View
 } from "react-native";
-import { Button, Text } from "../../../atoms";
+import { Button, Text } from "../../atoms";
 import assets from "./assets";
-import styles from "./streaks.screen.styles";
+import styles from "./streaks.modal.styles";
 
 interface IProps {
     isTodayDone: boolean;
@@ -18,7 +18,7 @@ interface IProps {
     streakMax: number;
 }
 
-class StreakScreen extends PureComponent<IProps> {
+class StreaksModal extends PureComponent<IProps> {
     public render() {
         const {
             onPressCtaPrimary,
@@ -156,4 +156,4 @@ class StreakScreen extends PureComponent<IProps> {
     }
 }
 
-export default StreakScreen;
+export default StreaksModal;

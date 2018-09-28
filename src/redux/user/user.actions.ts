@@ -1,14 +1,12 @@
-import {
-    GetCurrentUser,
-    LoginUser,
-    MobileConsentInput
-} from "../../graphql/_core/schema";
+import { GetCurrentUser, LoginUser, MobileConsentInput } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
+import { IStreak } from "./user.selectors";
 
 export const FITKIT_CONSENT_AUTHORISED = "FITKIT_CONSENT_AUTHORISED";
 export const GET_USER_START = "GET_USER_START";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
+export const UPDATE_STREAK = "UPDATE_STREAK";
 export const UPDATE_USER_CONSENT = "UPDATE_USER_CONSENT";
 export const LOGOUT = "LOGOUT";
 
@@ -36,6 +34,13 @@ export type MobileConsentAction = SyncAction<MobileConsentInput>;
 export const updateUserConsent = (payload: MobileConsentInput): MobileConsentAction => ({
     payload,
     type: UPDATE_USER_CONSENT
+});
+
+export type UpdateStreakAction = (payload: IStreak) => UpdateStreakActionResult;
+export type UpdateStreakActionResult = SyncAction<IStreak>;
+export const updateStreakAction: UpdateStreakAction = (payload) => ({
+    payload,
+    type: UPDATE_STREAK
 });
 
 export const logOut = (): SyncAction => ({
