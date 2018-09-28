@@ -1,6 +1,6 @@
 import moment from "moment";
-import React from "react";
 import { PureComponent } from "react";
+import React from "react";
 import { FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
@@ -13,7 +13,7 @@ import { getDailyEarnedCoins, getTotalCoins } from "../../../../redux/coins/coin
 import { startDailySteps, stopDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
 import { getDailySteps, getLastUpdated } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
-import { IStreak, userStreakSelector } from "../../../../redux/user/user.selectors";
+import { IStreak, userFeaturesSelector, userStreakSelector } from "../../../../redux/user/user.selectors";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
 import { DailyStepsScreen } from "../../../screens";
 
@@ -21,6 +21,7 @@ interface IConnectedState {
     appState: string;
     dailyEarnedCoins: number;
     dailySteps: number;
+    features: { [x: string]: boolean };
     lastUpdated: string;
     offline: boolean;
     streaks: IStreak;
@@ -70,7 +71,16 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     public render() {
-        const { dailyEarnedCoins, dailySteps, labels, offline, onLeftMenuPress, streaks, totalCoins } = this.props;
+        const {
+            dailyEarnedCoins,
+            dailySteps,
+            features = {},
+            labels,
+            offline,
+            onLeftMenuPress,
+            streaks,
+            totalCoins
+        } = this.props;
         const { dailyStepsLoading, lastUpdate } = this.state;
         const isStreakDoneToday =
             moment()
@@ -86,7 +96,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                         <DailyStepsScreen
                             coinsToday={dailyEarnedCoins}
                             currentStreak={streaks.streak}
-                            displayStreak={true}
+                            displayStreak={features.showStreaks}
                             fitKitAvailable={available}
                             hasPermission={authorised}
                             isDoneToday={isStreakDoneToday}
@@ -156,6 +166,7 @@ const mapStateToProps = (state: IReduxState) => ({
     appState: getAppState(state),
     dailyEarnedCoins: getDailyEarnedCoins(state),
     dailySteps: getDailySteps(state),
+    features: userFeaturesSelector(state),
     lastUpdated: getLastUpdated(state),
     offline: getOfflineState(state),
     streaks: userStreakSelector(state),

@@ -7,6 +7,7 @@ import { ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getRouteState } from "../../../../redux/app/app.selectors";
 import { logOut } from "../../../../redux/user/user.actions";
+import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
 import { MenuScreen } from "../../../screens";
 import assets, { LINKS } from "./assets";
 
@@ -14,6 +15,7 @@ export type Link = "debug" | "leaderboard" | "activity" | "chat" | "logout" | "m
 
 interface IConnectedState {
     currentRoute: string;
+    features: { [x: string]: boolean };
 }
 
 interface IConnectedDipatch {
@@ -24,29 +26,31 @@ type Props = IConnectedState & IConnectedDipatch;
 
 class MenuContainer extends PureComponent<Props> {
     public render() {
+        const { features = {} } = this.props;
+
         return (
             <MenuScreen
                 onPressClose={this.handleClose}
                 links={[
                     {
-                        condition: true,
+                        condition: features.showDebug,
                         label: "debug",
                         onPress: this.handlePressLink(LINKS.DEBUG)
                     },
                     {
-                        condition: true,
+                        condition: features.showActivity,
                         label: "activity history",
                         onPress: this.handlePressLink(LINKS.ACTIVITY),
                         source: assets[LINKS.ACTIVITY]
                     },
                     {
-                        condition: true,
+                        condition: features.showLeaderboard,
                         label: "leaderboard",
                         onPress: this.handlePressLink(LINKS.LEADERBOARD),
                         source: assets[LINKS.MEMBER]
                     },
                     {
-                        condition: true,
+                        condition: features.showMember,
                         label: "member zone",
                         onPress: this.handlePressLink(LINKS.MEMBER),
                         source: assets[LINKS.MEMBER]
@@ -75,7 +79,7 @@ class MenuContainer extends PureComponent<Props> {
     }
 
     private handlePressLink = (link: Link) => (): null => {
-        const { currentRoute } = this.props;
+        const { currentRoute, logOut: handleLogOut } = this.props;
         switch (link) {
             case LINKS.ACTIVITY:
                 this.handleClose();
@@ -94,7 +98,7 @@ class MenuContainer extends PureComponent<Props> {
             case LINKS.LEADERBOARD:
                 return null;
             case LINKS.LOGOUT:
-                this.props.logOut();
+                handleLogOut();
                 return null;
             case LINKS.MEMBER:
                 return null;
@@ -118,7 +122,8 @@ class MenuContainer extends PureComponent<Props> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    currentRoute: getRouteState(state)
+    currentRoute: getRouteState(state),
+    features: userFeaturesSelector(state)
 });
 
 const mapDispatchToProps = {

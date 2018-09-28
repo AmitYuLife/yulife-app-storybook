@@ -6,6 +6,7 @@ export interface IStreak {
 }
 
 export const userConsentSelector = (state: IReduxState) => state.user.consent;
+export const userFeaturesSelector = (state: IReduxState) => state.user.features;
 export const userStreakSelector = ({ user: { nextStreakAvailableAt, streak } }: IReduxState) => ({
     nextStreakAvailableAt,
     streak

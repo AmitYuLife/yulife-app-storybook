@@ -173,7 +173,7 @@ class QuestsContainer extends PureComponent<Props> {
                         // goToChallengesList(); TODO: go to challengesDoneList
                     } else if (level.level % 7 === 0) {
                         this.showChestModal(level, isNext);
-                    } else if (isNext) {
+                    } else if (isNext && !nextAvailable) {
                         this.goToChallengesList(level);
                     }
                 }

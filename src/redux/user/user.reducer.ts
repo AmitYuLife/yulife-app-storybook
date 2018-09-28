@@ -6,15 +6,22 @@ import {
     UPDATE_STREAK
     // UPDATE_USER_CONSENT
 } from "./user.actions";
+import { reduceUserFeatures } from "./user.helpers";
+
+interface IFeature {
+    [x: string]: boolean;
+}
 
 export interface IUserStore {
     consent: MobileConsentInput;
+    features: IFeature;
     nextStreakAvailableAt: string;
     streak: number;
 }
 
 export const initialState: IUserStore = {
     consent: {},
+    features: {},
     nextStreakAvailableAt: "",
     streak: 0
 };
@@ -40,25 +47,30 @@ const userReducer = (state: IUserStore = initialState, action: SyncAction): IUse
 
 export default userReducer;
 
-const getUserSuccess = (state: IUserStore, { getCurrentUser: { mobileConsent } }: GetCurrentUser): IUserStore => ({
+const getUserSuccess = (
+    state: IUserStore,
+    { getCurrentUser: { mobileConsent, userFeatures } }: GetCurrentUser
+): IUserStore => ({
     ...state,
     consent: {
         ...mobileConsent
-    }
+    },
+    features: (userFeatures || []).reduce(reduceUserFeatures, {})
 });
 
 const loginUserSuccess = (
     state: IUserStore,
     {
         loginUser: {
-            user: { mobileConsent }
+            user: { mobileConsent, userFeatures }
         }
     }: LoginUser
 ): IUserStore => ({
     ...state,
     consent: {
         ...mobileConsent
-    }
+    },
+    features: (userFeatures || []).reduce(reduceUserFeatures, {})
 });
 
 const updateStreak = (state: IUserStore, { streak, nextStreakAvailableAt }: Partial<IUserStore>): IUserStore => ({
