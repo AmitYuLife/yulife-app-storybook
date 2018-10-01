@@ -128,7 +128,7 @@ class QuestsContainer extends PureComponent<Props> {
                 }
                 this.dismissChestModal();
             },
-            onPressCtaSecondary: this.dismissChestModal
+            onPressCtaSecondary: isNext ? this.dismissChestModal : null
         };
 
         Navigation.showModal({

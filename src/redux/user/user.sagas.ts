@@ -9,7 +9,7 @@ import { getToken } from "../../services/storage";
 import { clearToken } from "../../services/storage/token";
 import { pathOr } from "../../services/utils";
 import { persistor } from "../_core/store";
-import { CHALLENGE_END_SUCCESS, ChallengeEndSuccessActionResult } from "../levels/levels.actions";
+import { CHALLENGE_END_SUCCESS, CHALLENGE_RESET, ChallengeEndSuccessActionResult } from "../levels/levels.actions";
 import {
     FITKIT_CONSENT_AUTHORISED,
     GET_USER_START,
@@ -91,7 +91,7 @@ export default [
     takeLatest(GET_USER_START, getUserData),
     takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
     takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
-    takeLatest(CHALLENGE_END_SUCCESS, getUserData),
+    takeLatest(CHALLENGE_RESET, getUserData),
     takeLatest(CHALLENGE_END_SUCCESS, updateUserStreak),
     takeLatest(LOGOUT, logOut)
 ];

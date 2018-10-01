@@ -147,13 +147,13 @@ const challengeEndSuccess = (
     ...state,
     active: {
         ...state.active,
-        coins: pathOr<number>(challenge, "yuCoinAwarded", initialState.active.coins),
-        milestonesLog: pathOr<any[]>(challenge, "milestoneLog", initialState.active.milestonesLog),
-        rating: pathOr<number>(challenge, "rating", initialState.active.rating),
+        coins: pathOr<number>(challenge, "yuCoinAwarded", state.active.coins),
+        milestonesLog: pathOr<any[]>(challenge, "milestoneLog", state.active.milestonesLog),
+        rating: pathOr<number>(challenge, "rating", state.active.rating),
         score: pathOr<number>(
             challenge,
-            state.active.subtype ? "incomingData.meditation" : "incomingData.steps",
-            initialState.active.score
+            state.active.subtype === "meditation" ? "incomingData.meditation" : "incomingData.steps",
+            state.active.score
         ),
         status: (challenge.milestoneLog || []).length > 0 ? "success" : "failed",
         timeUp: false
