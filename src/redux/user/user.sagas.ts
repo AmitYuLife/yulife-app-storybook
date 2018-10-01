@@ -91,6 +91,7 @@ export default [
     takeLatest(GET_USER_START, getUserData),
     takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
     takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
+    takeLatest(CHALLENGE_END_SUCCESS, getUserData),
     takeLatest(CHALLENGE_END_SUCCESS, updateUserStreak),
     takeLatest(LOGOUT, logOut)
 ];

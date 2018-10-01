@@ -20,7 +20,7 @@ const ChallengeSet: SFC<IChallengesListProps> = ({ challenges }) => (
     <View style={styles.wrapper}>
         <View>
             {challenges
-                .slice(0, 2)
+                .filter(({ challengeType }) => !["short stroll", "meditation"].includes(challengeType))
                 .map((challenge, index) => (
                     <ChallengeTile
                         {...challenge}
@@ -31,7 +31,7 @@ const ChallengeSet: SFC<IChallengesListProps> = ({ challenges }) => (
         </View>
         <View style={styles.rightColumnWrapper}>
             {challenges
-                .slice(2, 4)
+                .filter(({ challengeType }) => ["short stroll", "meditation"].includes(challengeType))
                 .map((challenge, index) => (
                     <ChallengeTile
                         {...challenge}

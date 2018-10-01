@@ -157,7 +157,7 @@ class QuestsContainer extends PureComponent<Props> {
     private formatData = (data: GetCurrentWorld_getCurrentWorld[] = []) => {
         const { currentLevel, nextLevelAvailableAt } = this.props;
 
-        const nextAvailable = !!nextLevelAvailableAt ? moment().diff(moment(nextLevelAvailableAt), "seconds") : null;
+        const nextAvailable = !!nextLevelAvailableAt ? moment().diff(moment(nextLevelAvailableAt), "seconds") : 0;
 
         return data.map((level) => {
             const isNext = currentLevel === level.level;
@@ -173,7 +173,7 @@ class QuestsContainer extends PureComponent<Props> {
                         // goToChallengesList(); TODO: go to challengesDoneList
                     } else if (level.level % 7 === 0) {
                         this.showChestModal(level, isNext);
-                    } else if (isNext && !nextAvailable) {
+                    } else if (isNext && nextAvailable >= 0) {
                         this.goToChallengesList(level);
                     }
                 }

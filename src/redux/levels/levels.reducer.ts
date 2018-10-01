@@ -130,7 +130,13 @@ const challengeUpdateSuccess = (
         coins: pathOr<number>(res, "challenge.yuCoinAwarded", initialState.active.coins),
         milestonesLog: pathOr<any[]>(res, "challenge.milestoneLog", initialState.active.milestonesLog),
         rating: pathOr<number>(res, "challenge.rating", initialState.active.rating),
-        score: pathOr<number>(res, "challenge.incomingData.steps", initialState.active.score)
+        score: pathOr<number>(
+            res,
+            state.active.subtype === "meditation"
+                ? "challenge.incomingData.meditation"
+                : "challenge.incomingData.steps",
+            initialState.active.score
+        )
     }
 });
 
@@ -144,7 +150,11 @@ const challengeEndSuccess = (
         coins: pathOr<number>(challenge, "yuCoinAwarded", initialState.active.coins),
         milestonesLog: pathOr<any[]>(challenge, "milestoneLog", initialState.active.milestonesLog),
         rating: pathOr<number>(challenge, "rating", initialState.active.rating),
-        score: pathOr<number>(challenge, "incomingData.steps", initialState.active.score),
+        score: pathOr<number>(
+            challenge,
+            state.active.subtype ? "incomingData.meditation" : "incomingData.steps",
+            initialState.active.score
+        ),
         status: (challenge.milestoneLog || []).length > 0 ? "success" : "failed",
         timeUp: false
     }

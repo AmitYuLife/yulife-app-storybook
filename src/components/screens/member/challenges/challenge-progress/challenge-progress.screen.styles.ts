@@ -1,4 +1,4 @@
-import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../../../styles";
 
 export default StyleSheet.create({
@@ -9,6 +9,16 @@ export default StyleSheet.create({
         right: 0,
         width: "100%"
     } as ImageStyle,
+    instruction: {
+        color: "rgb(136,136,136)",
+        fontSize: Style.SCALE_UP_AND_DOWN(15),
+        lineHeight: Style.SCALE_UP_AND_DOWN(20)
+    } as TextStyle,
+    instructionWrapper: {
+        marginLeft: Style.SCALE_UP_AND_DOWN(16),
+        marginTop: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() ? -24 : -34),
+        width: Style.SCALE_UP_AND_DOWN(280)
+    } as ViewStyle,
     navBarWrapper: {
         alignItems: "center",
         bottom: Style.SCALE_UP_AND_DOWN(17),

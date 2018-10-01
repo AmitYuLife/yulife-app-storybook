@@ -13,10 +13,10 @@ import { ChallengePayload } from "../../graphql/_core/schema";
 //     value: Math.round(item.steps),
 // });
 
-const transformSampleResultToPayload = (item: SampleQueryResult): ChallengePayload => ({
+const transformSampleResultToPayload = (item: SampleQueryResult & { duration: number }): ChallengePayload => ({
     endDateTime: moment(item.endTime).format(),
     startDateTime: moment(item.startTime).format(),
-    value: item.value
+    value: item.duration
 });
 
 // export const isFitKitAvailable = async (): Promise<boolean> => {

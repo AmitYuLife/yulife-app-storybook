@@ -483,6 +483,18 @@ ShallowWrapper {
             isLocked={true}
             minimumLevel={4}
           />
+          <ChallengeTile
+            image="elephant"
+            isImageBackgroundFlipped={false}
+            isLocked={true}
+            minimumLevel={2}
+          />
+          <ChallengeTile
+            image="bird"
+            isImageBackgroundFlipped={true}
+            isLocked={true}
+            minimumLevel={10}
+          />
         </Component>,
         <Component
           style={
@@ -491,20 +503,7 @@ ShallowWrapper {
               "marginTop": 74,
             }
           }
-        >
-          <ChallengeTile
-            image="elephant"
-            isImageBackgroundFlipped={true}
-            isLocked={true}
-            minimumLevel={2}
-          />
-          <ChallengeTile
-            image="bird"
-            isImageBackgroundFlipped={false}
-            isLocked={true}
-            minimumLevel={10}
-          />
-        </Component>,
+        />,
       ],
       "style": Object {
         "flexDirection": "row",
@@ -537,6 +536,18 @@ ShallowWrapper {
               isImageBackgroundFlipped={true}
               isLocked={true}
               minimumLevel={4}
+            />,
+            <ChallengeTile
+              image="elephant"
+              isImageBackgroundFlipped={false}
+              isLocked={true}
+              minimumLevel={2}
+            />,
+            <ChallengeTile
+              image="bird"
+              isImageBackgroundFlipped={true}
+              isLocked={true}
+              minimumLevel={10}
             />,
           ],
         },
@@ -571,42 +582,13 @@ ShallowWrapper {
             "rendered": null,
             "type": [Function],
           },
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <ChallengeTile
-              image="elephant"
-              isImageBackgroundFlipped={true}
-              isLocked={true}
-              minimumLevel={2}
-            />,
-            <ChallengeTile
-              image="bird"
-              isImageBackgroundFlipped={false}
-              isLocked={true}
-              minimumLevel={10}
-            />,
-          ],
-          "style": Object {
-            "marginLeft": "auto",
-            "marginTop": 74,
-          },
-        },
-        "ref": null,
-        "rendered": Array [
           Object {
             "instance": null,
-            "key": "0",
+            "key": "2",
             "nodeType": "class",
             "props": Object {
               "image": "elephant",
-              "isImageBackgroundFlipped": true,
+              "isImageBackgroundFlipped": false,
               "isLocked": true,
               "minimumLevel": 2,
             },
@@ -616,11 +598,11 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": "1",
+            "key": "3",
             "nodeType": "class",
             "props": Object {
               "image": "bird",
-              "isImageBackgroundFlipped": false,
+              "isImageBackgroundFlipped": true,
               "isLocked": true,
               "minimumLevel": 10,
             },
@@ -629,6 +611,21 @@ ShallowWrapper {
             "type": [Function],
           },
         ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [],
+          "style": Object {
+            "marginLeft": "auto",
+            "marginTop": 74,
+          },
+        },
+        "ref": null,
+        "rendered": Array [],
         "type": [Function],
       },
     ],
@@ -655,6 +652,18 @@ ShallowWrapper {
               isLocked={true}
               minimumLevel={4}
             />
+            <ChallengeTile
+              image="elephant"
+              isImageBackgroundFlipped={false}
+              isLocked={true}
+              minimumLevel={2}
+            />
+            <ChallengeTile
+              image="bird"
+              isImageBackgroundFlipped={true}
+              isLocked={true}
+              minimumLevel={10}
+            />
           </Component>,
           <Component
             style={
@@ -663,20 +672,7 @@ ShallowWrapper {
                 "marginTop": 74,
               }
             }
-          >
-            <ChallengeTile
-              image="elephant"
-              isImageBackgroundFlipped={true}
-              isLocked={true}
-              minimumLevel={2}
-            />
-            <ChallengeTile
-              image="bird"
-              isImageBackgroundFlipped={false}
-              isLocked={true}
-              minimumLevel={10}
-            />
-          </Component>,
+          />,
         ],
         "style": Object {
           "flexDirection": "row",
@@ -709,6 +705,18 @@ ShallowWrapper {
                 isImageBackgroundFlipped={true}
                 isLocked={true}
                 minimumLevel={4}
+              />,
+              <ChallengeTile
+                image="elephant"
+                isImageBackgroundFlipped={false}
+                isLocked={true}
+                minimumLevel={2}
+              />,
+              <ChallengeTile
+                image="bird"
+                isImageBackgroundFlipped={true}
+                isLocked={true}
+                minimumLevel={10}
               />,
             ],
           },
@@ -743,42 +751,13 @@ ShallowWrapper {
               "rendered": null,
               "type": [Function],
             },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <ChallengeTile
-                image="elephant"
-                isImageBackgroundFlipped={true}
-                isLocked={true}
-                minimumLevel={2}
-              />,
-              <ChallengeTile
-                image="bird"
-                isImageBackgroundFlipped={false}
-                isLocked={true}
-                minimumLevel={10}
-              />,
-            ],
-            "style": Object {
-              "marginLeft": "auto",
-              "marginTop": 74,
-            },
-          },
-          "ref": null,
-          "rendered": Array [
             Object {
               "instance": null,
-              "key": "0",
+              "key": "2",
               "nodeType": "class",
               "props": Object {
                 "image": "elephant",
-                "isImageBackgroundFlipped": true,
+                "isImageBackgroundFlipped": false,
                 "isLocked": true,
                 "minimumLevel": 2,
               },
@@ -788,11 +767,11 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "1",
+              "key": "3",
               "nodeType": "class",
               "props": Object {
                 "image": "bird",
-                "isImageBackgroundFlipped": false,
+                "isImageBackgroundFlipped": true,
                 "isLocked": true,
                 "minimumLevel": 10,
               },
@@ -801,6 +780,21 @@ ShallowWrapper {
               "type": [Function],
             },
           ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [],
+            "style": Object {
+              "marginLeft": "auto",
+              "marginTop": 74,
+            },
+          },
+          "ref": null,
+          "rendered": Array [],
           "type": [Function],
         },
       ],

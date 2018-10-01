@@ -7,9 +7,10 @@ import { ChallengePayload } from "../../graphql/_core/schema";
 import createActiveChallengeWithClient from "../../graphql/challenges/createActiveChallenge.gql";
 import updateActiveChallengeWithClient from "../../graphql/challenges/updateActiveChallenge.gql";
 import { ROUTES } from "../../navigation/routes";
+import { queryMindfulSessions } from "../../services/fitkit/fitkit.service";
 import { pathOr } from "../../services/utils";
 import { startDailySteps, stopDailySteps } from "../daily-steps/daily-steps.actions";
-import { GET_USER_SUCCESS, getUserStart } from "../user/user.actions";
+import { GET_USER_SUCCESS } from "../user/user.actions";
 import {
     CHALLENGE_END,
     CHALLENGE_START,
@@ -28,7 +29,46 @@ const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
     value: results.steps
 });
 
-export function* listenToSteps(levelSlotId: string, startDateTime: string, endDateTime: string) {
+function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, endDateTime: string) {
+    const start = moment.parseZone(startDateTime).toISOString();
+    const end = moment(endDateTime);
+
+    while (moment().isBefore(end)) {
+        try {
+            const active = yield select(activeLevelSelector);
+            let results = yield call(queryMindfulSessions, start);
+
+            if (results.length > 0) {
+                results = {
+                    endDateTime,
+                    startDateTime,
+                    value: Math.floor(
+                        results.reduce(
+                            (accumulator: number, session: any) => accumulator + session.value, // tslint:disable-line
+                            0
+                        )
+                    )
+                };
+            } else {
+                results = {
+                    endDateTime,
+                    startDateTime,
+                    value: active.score
+                };
+            }
+            const { data } = yield call(updateActiveChallengeWithClient, levelSlotId, results);
+
+            yield put(challengeUpdateSuccessAction(data));
+            yield call(delay, 15000);
+        } catch (e) {
+            yield call(delay, 30000);
+        }
+    }
+
+    yield put(challengeTimeUpAction());
+}
+
+export function* startActiveStepsTracking(levelSlotId: string, startDateTime: string, endDateTime: string) {
     const end = moment(endDateTime);
     const stepsChannel = yield call(activeStepsChannel, moment(startDateTime).toISOString());
 
@@ -48,7 +88,7 @@ export function* listenToSteps(levelSlotId: string, startDateTime: string, endDa
             }
         } catch (e) {
             // tslint:disable-next-line
-            console.log("@listenToSteps ... error ... ", e);
+            console.log("@startActiveStepsTracking ... error ... ", e);
         }
     }
 
@@ -62,14 +102,22 @@ function* startChallenge({ payload }: ChallengeStartActionResult) {
         const { levelSlotId } = payload;
         const { data } = yield call(createActiveChallengeWithClient(levelSlotId));
         yield put(challengeStartSuccessAction(data));
-        yield put(stopDailySteps());
 
-        yield call(
-            listenToSteps,
-            levelSlotId,
-            data.createActiveChallenge.challenge.startDateTime,
-            data.createActiveChallenge.challenge.endDateTime
-        );
+        const {
+            challenge: { startDateTime, endDateTime },
+            levelSlot: { subtype }
+        } = data.createActiveChallenge;
+
+        if (startDateTime && endDateTime && subtype) {
+            if (pathOr(data, "createActiveChallenge.levelSlot.subtype", "") === "meditation") {
+                // start meditation
+                yield call(startMindfulnessTracking, levelSlotId, startDateTime, endDateTime);
+            } else {
+                // start active steps
+                yield put(stopDailySteps());
+                yield call(startActiveStepsTracking, levelSlotId, startDateTime, endDateTime);
+            }
+        }
     } catch (e) {
         // tslint:disable-next-line
         console.log(e);
@@ -103,7 +151,6 @@ function* endChallenge() {
         }
 
         yield put(challengeEndSuccessAction(data));
-        yield put(getUserStart());
     } catch (e) {
         // tslint:disable-next-line
         console.log(e);
@@ -112,10 +159,15 @@ function* endChallenge() {
 
 export function* continueChallenge() {
     try {
-        const active = yield select(activeLevelSelector);
+        const { endDateTime, levelSlotId, startDateTime, status, subtype, timeUp } = yield select(activeLevelSelector);
 
-        if (active.levelSlotId && !active.timeUp && !active.status) {
-            yield call(listenToSteps, active.levelSlotId, active.startDateTime, active.endDateTime);
+        if (levelSlotId && !timeUp && !status) {
+            if (subtype === "meditation") {
+                // start meditation
+                yield call(startMindfulnessTracking, levelSlotId, startDateTime, endDateTime);
+            } else {
+                yield call(startActiveStepsTracking, levelSlotId, startDateTime, endDateTime);
+            }
         }
     } catch (e) {
         // tslint:disable-next-line
