@@ -11,6 +11,7 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
     onLeftTabPress: () => void;
     onRightTabPress: () => void;
     onItemPress: (item: GetRewards_getRewards) => void;
+    refreshing: boolean;
 }
 
 const RewardsListScreen: SFC<IRewardsListScreenProps> = ({
@@ -20,6 +21,7 @@ const RewardsListScreen: SFC<IRewardsListScreenProps> = ({
     onRightTabPress,
     onItemPress,
     onLeftMenuPress,
+    refreshing,
     totalCoins
 }) => (
     <SafeAreaView style={styles.wrapper}>
@@ -29,7 +31,7 @@ const RewardsListScreen: SFC<IRewardsListScreenProps> = ({
             <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={0} />
         </View>
         <View style={styles.listWrapper}>
-            <RewardsList data={data} onItemPress={onItemPress} />
+            <RewardsList data={data} onItemPress={onItemPress} refreshing={refreshing} onRefresh={onLeftTabPress} />
         </View>
         <View style={styles.navBarWrapper}>
             <NavBar

@@ -17,7 +17,9 @@ const defaultProps = {
     onItemPress: jest.fn(),
     onLeftMenuPress: jest.fn(),
     onLeftTabPress: jest.fn(),
+    onRefresh: jest.fn(),
     onRightTabPress: jest.fn(),
+    refreshing: false,
     totalCoins: 1234
 };
 

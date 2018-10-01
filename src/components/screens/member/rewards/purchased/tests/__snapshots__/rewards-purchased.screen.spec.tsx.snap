@@ -21,6 +21,7 @@ ShallowWrapper {
     onLeftMenuPress={[MockFunction]}
     onLeftTabPress={[MockFunction]}
     onRightTabPress={[MockFunction]}
+    refreshing={false}
     totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -84,6 +85,8 @@ ShallowWrapper {
             maxToRenderPerBatch={10}
             numColumns={1}
             onEndReachedThreshold={2}
+            onRefresh={[MockFunction]}
+            refreshing={false}
             renderItem={[Function]}
             scrollEventThrottle={50}
             updateCellsBatchingPeriod={50}
@@ -183,6 +186,8 @@ ShallowWrapper {
             maxToRenderPerBatch={10}
             numColumns={1}
             onEndReachedThreshold={2}
+            onRefresh={[MockFunction]}
+            refreshing={false}
             renderItem={[Function]}
             scrollEventThrottle={50}
             updateCellsBatchingPeriod={50}
@@ -217,6 +222,8 @@ ShallowWrapper {
             "maxToRenderPerBatch": 10,
             "numColumns": 1,
             "onEndReachedThreshold": 2,
+            "onRefresh": [MockFunction],
+            "refreshing": false,
             "renderItem": [Function],
             "scrollEventThrottle": 50,
             "updateCellsBatchingPeriod": 50,
@@ -320,6 +327,8 @@ ShallowWrapper {
               maxToRenderPerBatch={10}
               numColumns={1}
               onEndReachedThreshold={2}
+              onRefresh={[MockFunction]}
+              refreshing={false}
               renderItem={[Function]}
               scrollEventThrottle={50}
               updateCellsBatchingPeriod={50}
@@ -419,6 +428,8 @@ ShallowWrapper {
               maxToRenderPerBatch={10}
               numColumns={1}
               onEndReachedThreshold={2}
+              onRefresh={[MockFunction]}
+              refreshing={false}
               renderItem={[Function]}
               scrollEventThrottle={50}
               updateCellsBatchingPeriod={50}
@@ -453,6 +464,8 @@ ShallowWrapper {
               "maxToRenderPerBatch": 10,
               "numColumns": 1,
               "onEndReachedThreshold": 2,
+              "onRefresh": [MockFunction],
+              "refreshing": false,
               "renderItem": [Function],
               "scrollEventThrottle": 50,
               "updateCellsBatchingPeriod": 50,
@@ -534,6 +547,7 @@ ShallowWrapper {
     onLeftMenuPress={[MockFunction]}
     onLeftTabPress={[MockFunction]}
     onRightTabPress={[MockFunction]}
+    refreshing={false}
     totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {

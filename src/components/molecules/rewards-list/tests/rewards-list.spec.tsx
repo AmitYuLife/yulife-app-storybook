@@ -4,7 +4,9 @@ import RewardsList from "../rewards-list";
 
 const defaultProps = {
     data: [{}],
-    onItemPress: jest.fn()
+    onItemPress: jest.fn(),
+    onRefresh: jest.fn(),
+    refreshing: false
 };
 
 describe("RewardsList", () => {

@@ -10,6 +10,8 @@ ShallowWrapper {
       ]
     }
     onItemPress={[MockFunction]}
+    onRefresh={[MockFunction]}
+    refreshing={false}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -34,6 +36,8 @@ ShallowWrapper {
       "maxToRenderPerBatch": 10,
       "numColumns": 1,
       "onEndReachedThreshold": 2,
+      "onRefresh": [MockFunction],
+      "refreshing": false,
       "renderItem": [Function],
       "scrollEventThrottle": 50,
       "updateCellsBatchingPeriod": 50,
@@ -59,6 +63,8 @@ ShallowWrapper {
         "maxToRenderPerBatch": 10,
         "numColumns": 1,
         "onEndReachedThreshold": 2,
+        "onRefresh": [MockFunction],
+        "refreshing": false,
         "renderItem": [Function],
         "scrollEventThrottle": 50,
         "updateCellsBatchingPeriod": 50,

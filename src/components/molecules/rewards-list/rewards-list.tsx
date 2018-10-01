@@ -7,6 +7,8 @@ import RewardsListItem from "./rewards-list-item/rewards-list-item";
 interface IProps {
     data: Array<Partial<GetRewards_getRewards>>;
     onItemPress: RenderItem;
+    onRefresh: () => void;
+    refreshing: boolean;
 }
 
 type RenderItem = (item: Item) => void;
@@ -42,10 +44,18 @@ const handleRenderItem = (onPress: RenderItem) => ({ item, index }: IRenderItemA
 
 const keyExtractor = (item: GetRewards_getRewards) => item.code;
 
-const RewardsList: SFC<IProps> = ({ data, onItemPress }) => {
+const RewardsList: SFC<IProps> = ({ data, onItemPress, onRefresh, refreshing }) => {
     const renderItem = handleRenderItem(onItemPress);
 
-    return <FlatList renderItem={renderItem} keyExtractor={keyExtractor} data={data} />;
+    return (
+        <FlatList
+            renderItem={renderItem}
+            keyExtractor={keyExtractor}
+            data={data}
+            onRefresh={onRefresh}
+            refreshing={refreshing}
+        />
+    );
 };
 
 export default RewardsList;

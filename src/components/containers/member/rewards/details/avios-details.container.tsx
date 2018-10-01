@@ -11,6 +11,7 @@ import RedeemRewardMutation, {
 } from "../../../../../graphql/rewards/redeemReward.gql";
 import { ROUTES } from "../../../../../navigation/routes";
 import { IReduxState } from "../../../../../redux/_core/reducers";
+import { getOfflineState } from "../../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { BlurProvider, Loading } from "../../../../atoms";
 import { ListPicker } from "../../../../molecules";
@@ -43,6 +44,7 @@ interface IProps {
 }
 
 interface IConnectedState {
+    offline: boolean;
     totalCoins: number;
 }
 
@@ -286,7 +288,7 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
     }
 
     private handleRewardPurchase = (redeemReward: RedeemRewardMutationType) => {
-        const { reward } = this.props;
+        const { offline, reward, totalCoins } = this.props;
         const {
             forename: firstName,
             surname: lastName,
@@ -311,16 +313,46 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
             },
             {
                 onPress: async () => {
-                    const result = await redeemReward({ variables: { id: reward.code, amount: Number(id), metadata } });
-                    if ((result as { data: RedeemReward }).data.redeemReward) {
-                        await Navigation.push(ROUTES.member, {
-                            component: {
-                                id: ROUTES.aviosConfirmed,
-                                name: ROUTES.aviosConfirmed,
-                                passProps: {
-                                    onTabChange: this.props.onTabChange,
-                                    purchase: (result as { data: RedeemReward }).data.redeemReward
+                    try {
+                        const result = await redeemReward({
+                            variables: { id: reward.code, amount: Number(id), metadata }
+                        });
+
+                        if ((result as { data: RedeemReward }).data.redeemReward) {
+                            await Navigation.push(ROUTES.member, {
+                                component: {
+                                    id: ROUTES.aviosConfirmed,
+                                    name: ROUTES.aviosConfirmed,
+                                    passProps: {
+                                        onTabChange: this.props.onTabChange,
+                                        purchase: (result as { data: RedeemReward }).data.redeemReward
+                                    }
                                 }
+                            });
+                        }
+                    } catch (e) {
+                        const passProps = {
+                            ctaLabel: "check other rewards",
+                            heading: "the voucher is not currently available",
+                            onPress: () => Navigation.dismissModal(ROUTES.modalGeneric),
+                            subheading: "Please come back later."
+                        };
+
+                        if (offline) {
+                            passProps.ctaLabel = "got it";
+                            passProps.heading = "you're offline";
+                            passProps.subheading = "check your internet connection";
+                        } else if (totalCoins < Number(id)) {
+                            passProps.ctaLabel = "got it";
+                            passProps.heading = "not enough coin";
+                            passProps.subheading = "Earn more and come back later!";
+                        }
+
+                        await Navigation.showModal({
+                            component: {
+                                id: ROUTES.modalGeneric,
+                                name: ROUTES.modalGeneric,
+                                passProps
                             }
                         });
                     }
@@ -332,6 +364,7 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
+    offline: getOfflineState(state),
     totalCoins: getTotalCoins(state)
 });
 

@@ -11,6 +11,7 @@ interface IProps extends IConnectedScreenProps {
     data: RewardsPurchasedItemData[];
     onLeftTabPress: () => void;
     onRightTabPress: () => void;
+    refreshing: boolean;
 }
 
 type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
@@ -23,6 +24,7 @@ const RewardsPurchasedScreen: SFC<IProps> = ({
     onLeftTabPress,
     onRightTabPress,
     onLeftMenuPress,
+    refreshing,
     totalCoins
 }) => (
     <SafeAreaView style={styles.wrapper}>
@@ -37,6 +39,8 @@ const RewardsPurchasedScreen: SFC<IProps> = ({
                 <FlatList
                     data={data}
                     keyExtractor={(item) => item.id}
+                    onRefresh={onRightTabPress}
+                    refreshing={refreshing}
                     renderItem={({ item: { day, month, reward, cost, status, onPress } }) => (
                         <RewardsPurchasedItem
                             day={day}

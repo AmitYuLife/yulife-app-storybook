@@ -1,7 +1,6 @@
 import moment from "moment";
 import { PureComponent } from "react";
 import * as React from "react";
-import { Text } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetAllPurchases_getAllPurchases, GetRewards_getRewards } from "../../../../graphql/_core/schema";
@@ -12,7 +11,6 @@ import { ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { formatMoney } from "../../../../services/money";
-import { Loading } from "../../../atoms";
 import { PurchasedListScreen, RewardsListScreen } from "../../../screens";
 
 type Tab = "rewards" | "purchases";
@@ -49,15 +47,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
     // all related to the rewards tab
     private renderRewards = () => (
         <GetRewardsQuery query={getRewardsGql} fetchPolicy="cache-first">
-            {({ error, loading, data, refetch }) => {
-                if (loading) {
-                    return <Loading />;
-                }
-
-                if (error) {
-                    return <Text> ERROR!!! </Text>;
-                }
-
+            {({ loading, data, refetch }) => {
                 const { labels, onLeftMenuPress, totalCoins } = this.props;
 
                 return (
@@ -68,6 +58,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
                         onLeftMenuPress={onLeftMenuPress}
                         onLeftTabPress={() => refetch()}
                         onRightTabPress={() => this.handleTabChange("purchases")}
+                        refreshing={loading}
                         totalCoins={totalCoins}
                     />
                 );
@@ -86,32 +77,39 @@ class RewardsContainer extends PureComponent<Props, IState> {
     }
 
     private handleRewardDetailsItemPress = async (reward: GetRewards_getRewards) => {
-        const route = this.getDetailsRoute(reward.rewardProviderId);
-
-        await Navigation.push(this.props.componentId, {
-            component: {
-                id: route,
-                name: route,
-                passProps: {
-                    onTabChange: this.handleTabChange,
-                    reward
+        if (!reward.available_denominations.length) {
+            await Navigation.showModal({
+                component: {
+                    id: ROUTES.modalGeneric,
+                    name: ROUTES.modalGeneric,
+                    passProps: {
+                        ctaLabel: "check other rewards",
+                        heading: "the voucher is locked",
+                        onPress: () => Navigation.dismissModal(ROUTES.modalGeneric),
+                        subheading: "You'll be able to process it when you progress further."
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            const route = this.getDetailsRoute(reward.rewardProviderId);
+
+            await Navigation.push(this.props.componentId, {
+                component: {
+                    id: route,
+                    name: route,
+                    passProps: {
+                        onTabChange: this.handleTabChange,
+                        reward
+                    }
+                }
+            });
+        }
     }
 
     // all related to the purchases tab
     private renderPurchases = () => (
         <GetAllPurchases query={getAllPurchasesGql} fetchPolicy="cache-and-network">
-            {({ error, loading, data, refetch }) => {
-                if (loading) {
-                    return <Loading />;
-                }
-
-                if (error) {
-                    return <Text> ERROR!!! </Text>;
-                }
-
+            {({ loading, data, refetch }) => {
                 const { labels, onLeftMenuPress, totalCoins } = this.props;
                 const items = this.formatPuchaseItem(data.getAllPurchases);
 
@@ -122,6 +120,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
                         onLeftMenuPress={onLeftMenuPress}
                         onLeftTabPress={() => this.handleTabChange("rewards")}
                         onRightTabPress={() => refetch()}
+                        refreshing={loading}
                         totalCoins={totalCoins}
                     />
                 );
