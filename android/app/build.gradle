@@ -78,7 +78,7 @@ android {
         }
         uat {
             initWith release
-            applicationIdSuffix ".uat"
+            applicationIdSuffix ".release"
             matchingFallbacks = ['release']
         }
         production {
