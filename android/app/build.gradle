@@ -15,7 +15,13 @@ apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.grad
 import com.android.build.OutputFile
 
 project.ext.react = [
-        entryFile: "index.android.js"
+        entryFile: "index.android.js",
+        bundleInRelease: true,
+        bundleInUat: true,
+        bundleInProduction: true,
+        devDisabledInRelease: true,
+        devDisabledInUat: true,
+        devDisabledInProduction: true,
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
