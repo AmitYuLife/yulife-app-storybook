@@ -1,6 +1,6 @@
 import moment from "moment";
-import { Component } from "react";
 import * as React from "react";
+import { Component } from "react";
 import { Alert, Linking } from "react-native";
 import { Config } from "react-native-config";
 import Intercom from "react-native-intercom";
@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { GetAllPurchases_getAllPurchases } from "../../../../../graphql/_core/schema";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
+import Logger from "../../../../../services/logging/logger";
 import { AviosRewardConfirmedScreen } from "../../../../screens";
 
 interface IProps {
@@ -25,6 +26,13 @@ type Props = IProps & IConnectedState;
 class AviosRewardConfirmedContainer extends Component<Props> {
     public componentDidMount() {
         const { purchase } = this.props;
+        // TODO: Move to sagas
+        Logger.logEvent("reward_exchanged", {
+            reward_amount: purchase.amount,
+            reward_code: purchase.code,
+            reward_name: purchase.name,
+            reward_yucoin_spent: purchase.yuCoinsSpent
+        });
 
         if (purchase.status === "pending") {
             this.showPendingAlert(purchase.amount);

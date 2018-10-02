@@ -1,12 +1,13 @@
 import moment from "moment";
-import * as React from "react";
 import { Component } from "react";
+import * as React from "react";
 import { Clipboard, Linking } from "react-native";
 import { Config } from "react-native-config";
 import { connect } from "react-redux";
 import { GetAllPurchases_getAllPurchases } from "../../../../../graphql/_core/schema";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
+import Logger from "../../../../../services/logging/logger";
 import { WegiftRewardConfirmedScreen } from "../../../../screens";
 
 interface IProps {
@@ -22,6 +23,17 @@ interface IConnectedState {
 type Props = IProps & IConnectedState;
 
 class WegiftRewardConfirmedContainer extends Component<Props> {
+    public componentDidMount() {
+        const { purchase } = this.props;
+        // TODO: Move to sagas
+        Logger.logEvent("reward_exchanged", {
+            reward_amount: purchase.amount,
+            reward_code: purchase.code,
+            reward_name: purchase.name,
+            reward_yucoin_spent: purchase.yuCoinsSpent
+        });
+    }
+
     public render() {
         const {
             totalCoins,

@@ -13,6 +13,7 @@ import { ROUTES } from "../../../../../navigation/routes";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
+import Logger from "../../../../../services/logging/logger";
 import { Loading } from "../../../../atoms";
 import { WegiftRewardDetailsScreen } from "../../../../screens";
 
@@ -30,6 +31,18 @@ interface IConnectedState {
 type Props = IProps & IConnectedState;
 
 class WegiftRewardDetailsContainer extends Component<Props> {
+    public componentDidMount() {
+        const { reward } = this.props;
+        // TODO: Move to sagas
+        Logger.logEvent("reward_viewed", {
+            reward_availability: reward.availability,
+            reward_available_denominations: reward.available_denominations,
+            reward_best_sticker: reward.reward_sticker,
+            reward_code: reward.code,
+            reward_name: reward.name
+        });
+    }
+
     public render() {
         const {
             totalCoins,
