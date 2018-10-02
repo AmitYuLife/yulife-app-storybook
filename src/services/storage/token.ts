@@ -30,3 +30,20 @@ export async function clearToken(): Promise<void> {
         return null;
     }
 }
+
+export async function migrateOldAppVersionToken(): Promise<void> {
+    const OLD_KEY = "reduxPersist:user";
+    const oldUserStore = await AsyncStorage.getItem(OLD_KEY);
+    if (!oldUserStore) {
+        return;
+    }
+    try {
+        const token = JSON.parse(oldUserStore).token;
+        if (token) {
+            await setToken(token);
+        }
+    } catch (e) {
+        console.log(e);
+    }
+    await AsyncStorage.removeItem(OLD_KEY);
+}
