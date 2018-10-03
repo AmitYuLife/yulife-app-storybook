@@ -2,7 +2,7 @@ import moment from "moment";
 import * as React from "react";
 import { Component } from "react";
 import { Alert, Linking } from "react-native";
-import { Config } from "react-native-config";
+import Config from "react-native-config";
 import Intercom from "react-native-intercom";
 import { connect } from "react-redux";
 import { GetAllPurchases_getAllPurchases } from "../../../../../graphql/_core/schema";
@@ -87,7 +87,7 @@ class AviosRewardConfirmedContainer extends Component<Props> {
     }
 
     public openRewardsPolicy = async () => {
-        const url = `${Config.FRONTEND_URL}/static/rewardsPolicy.pdf`;
+        const url = `${Config.API_URL}/docs/rewards-policy.pdf`;
         const supported = await Linking.canOpenURL(url);
 
         if (supported) {
