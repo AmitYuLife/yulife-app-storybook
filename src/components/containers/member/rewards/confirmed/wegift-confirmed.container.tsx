@@ -2,7 +2,7 @@ import moment from "moment";
 import { Component } from "react";
 import * as React from "react";
 import { Clipboard, Linking } from "react-native";
-import { Config } from "react-native-config";
+import Config from "react-native-config";
 import { connect } from "react-redux";
 import { GetAllPurchases_getAllPurchases } from "../../../../../graphql/_core/schema";
 import { IReduxState } from "../../../../../redux/_core/reducers";

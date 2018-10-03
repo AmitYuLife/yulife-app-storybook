@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Component } from "react";
 import { Alert, Linking } from "react-native";
-import { Config } from "react-native-config";
+import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetRewards_getRewards, RedeemReward } from "../../../../../graphql/_core/schema";
@@ -211,10 +211,10 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
                 url = "https://www.avios.com/gb/en_gb/my-account/log-into-avios";
                 break;
             case "aviosTerms":
-                url = `${Config.FRONTEND_URL}/static/aviosTerms.pdf`;
+                url = `${Config.API_URL}/docs/avios-terms.pdf`;
                 break;
             default:
-                url = `${Config.FRONTEND_URL}/static/rewardsPolicy.pdf`;
+                url = `${Config.API_URL}/docs/rewards-policy.pdf`;
         }
         const supported = await Linking.canOpenURL(url);
 

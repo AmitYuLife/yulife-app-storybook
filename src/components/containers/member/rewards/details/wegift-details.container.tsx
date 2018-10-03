@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Component } from "react";
 import { Alert, Linking } from "react-native";
-import { Config } from "react-native-config";
+import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetRewards_getRewards, RedeemReward } from "../../../../../graphql/_core/schema";
@@ -104,7 +104,7 @@ class WegiftRewardDetailsContainer extends Component<Props> {
     private openPDFs = (pdf: "policy" | "terms") => async () => {
         const { reward } = this.props;
         const url =
-            pdf === "policy" ? `${Config.FRONTEND_URL}/static/rewardsPolicy.pdf` : reward.terms_and_conditions_url;
+            pdf === "policy" ? `${Config.API_URL}/docs/rewards-policy.pdf` : reward.terms_and_conditions_url;
 
         const supported = await Linking.canOpenURL(url);
 
