@@ -2,8 +2,7 @@ import { GetCurrentUser, LoginUser, MobileConsentInput } from "../../graphql/_co
 import { SyncAction } from "../_core/types";
 import {
     GET_USER_SUCCESS,
-    LOGIN_USER_SUCCESS,
-    UPDATE_STREAK
+    LOGIN_USER_SUCCESS
     // UPDATE_USER_CONSENT
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
@@ -15,15 +14,11 @@ interface IFeature {
 export interface IUserStore {
     consent: MobileConsentInput;
     features: IFeature;
-    nextStreakAvailableAt: string;
-    streak: number;
 }
 
 export const initialState: IUserStore = {
     consent: {},
-    features: {},
-    nextStreakAvailableAt: "",
-    streak: 0
+    features: {}
 };
 
 const userReducer = (state: IUserStore = initialState, action: SyncAction): IUserStore => {
@@ -33,9 +28,6 @@ const userReducer = (state: IUserStore = initialState, action: SyncAction): IUse
 
         case LOGIN_USER_SUCCESS:
             return loginUserSuccess(state, action.payload);
-
-        case UPDATE_STREAK:
-            return updateStreak(state, action.payload);
 
         // case UPDATE_USER_CONSENT:
         //     return updateUserConsent(state, action.payload);
@@ -71,12 +63,6 @@ const loginUserSuccess = (
         ...mobileConsent
     },
     features: (userFeatures || []).reduce(reduceUserFeatures, {})
-});
-
-const updateStreak = (state: IUserStore, { streak, nextStreakAvailableAt }: Partial<IUserStore>): IUserStore => ({
-    ...state,
-    nextStreakAvailableAt,
-    streak
 });
 
 // const updateUserConsent = (state: IUserStore, { upsertMobileConsent }: UpdateMemberConsent): IUserStore => ({

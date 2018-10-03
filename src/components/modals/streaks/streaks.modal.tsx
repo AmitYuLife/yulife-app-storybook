@@ -1,18 +1,14 @@
 import * as React from "react";
 import { PureComponent } from "react";
-import {
-    Image,
-    ImageRequireSource,
-    StyleSheet,
-    View
-} from "react-native";
+import { Image, ImageRequireSource, StyleSheet, View } from "react-native";
 import { Button, Text } from "../../atoms";
 import assets from "./assets";
 import styles from "./streaks.modal.styles";
 
 interface IProps {
-    isTodayDone: boolean;
+    isDoneToday: boolean;
     onPressCtaPrimary: () => void;
+    reward: string;
     onPressCtaSecondary: (() => void) | null;
     streakCompleted: number;
     streakMax: number;
@@ -20,12 +16,7 @@ interface IProps {
 
 class StreaksModal extends PureComponent<IProps> {
     public render() {
-        const {
-            onPressCtaPrimary,
-            onPressCtaSecondary,
-            streakCompleted,
-            streakMax
-        } = this.props;
+        const { onPressCtaPrimary, onPressCtaSecondary, reward, streakCompleted, streakMax } = this.props;
 
         return (
             <View style={styles.wrapper}>
@@ -33,7 +24,9 @@ class StreaksModal extends PureComponent<IProps> {
                     <Image source={this.getImage()} />
                 </View>
                 <View style={styles.headingWrapper}>
-                    <Text bold={true} style={styles.heading}>{this.getHeading()}</Text>
+                    <Text bold={true} style={styles.heading}>
+                        {this.getHeading()}
+                    </Text>
                 </View>
                 <View style={styles.subHeadingWrapper}>
                     <Text style={styles.subHeading}>{this.getSubHeading()}</Text>
@@ -44,34 +37,23 @@ class StreaksModal extends PureComponent<IProps> {
                             key={index}
                             style={StyleSheet.flatten([
                                 styles.streakWrapper,
-                                index === streakMax
-                                    ? styles.streakWrapperLast
-                                    : null
+                                index === streakMax ? styles.streakWrapperLast : null
                             ])}
                         >
                             <Image
                                 style={styles.streak}
-                                source={index < streakCompleted
-                                    ? assets.streakFilled
-                                    : assets.streakEmpty}
+                                source={index < streakCompleted ? assets.streakFilled : assets.streakEmpty}
                             />
-                            {index < streakCompleted ?
-                                null : (
-                                    <Text
-                                        style={StyleSheet.flatten([
-                                            styles.streakLabel,
-                                            index < (streakMax - 1)
-                                                ? styles.null
-                                                : styles.streakLabelLast
-                                        ])}
-                                    >
-                                        {index < (streakMax - 1) ?
-                                            `${index + 1}` :
-                                            `250 yucoin`
-                                        }
-                                    </Text>
-                                )
-                            }
+                            {index < streakCompleted ? null : (
+                                <Text
+                                    style={StyleSheet.flatten([
+                                        styles.streakLabel,
+                                        index < streakMax - 1 ? styles.null : styles.streakLabelLast
+                                    ])}
+                                >
+                                    {index < streakMax - 1 ? `${index + 1}` : reward}
+                                </Text>
+                            )}
                         </View>
                     ))}
                 </View>
@@ -112,11 +94,11 @@ class StreaksModal extends PureComponent<IProps> {
     }
 
     private getLabelCtaPrimary = () => {
-        const { streakCompleted, streakMax, isTodayDone } = this.props;
+        const { streakCompleted, streakMax, isDoneToday, reward } = this.props;
 
         if (streakCompleted === streakMax) {
-            return "collect 250 yucoin";
-        } else if (isTodayDone) {
+            return `collect ${reward}`;
+        } else if (isDoneToday) {
             return "done";
         } else {
             return "take a challenge";
@@ -124,31 +106,23 @@ class StreaksModal extends PureComponent<IProps> {
     }
 
     private getSubHeading = () => {
-        const {
-            isTodayDone,
-            streakCompleted,
-            streakMax
-        } = this.props;
+        const { isDoneToday, streakCompleted, streakMax, reward } = this.props;
 
         if (streakCompleted === streakMax) {
             return "You did it!";
-        } else if (isTodayDone) {
+        } else if (isDoneToday) {
             return "Come back tomorrow to carry on.";
         } else {
-            return `Do ${streakMax} challenges in a row to earn 250 yucoin.`;
+            return `Do ${streakMax} challenges in a row to earn ${reward}.`;
         }
     }
 
     private getHeading = () => {
-        const {
-            isTodayDone,
-            streakCompleted,
-            streakMax
-        } = this.props;
+        const { isDoneToday, streakCompleted, streakMax } = this.props;
 
         if (streakCompleted === streakMax) {
             return "Streak completed";
-        } else if (isTodayDone) {
+        } else if (isDoneToday) {
             return `Completed streak day ${streakCompleted}`;
         } else {
             return `Start your day ${streakCompleted + 1} of streak`;

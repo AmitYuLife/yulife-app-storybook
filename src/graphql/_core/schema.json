@@ -2118,6 +2118,18 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "activeStreak",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ActiveStreak",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -2980,7 +2992,31 @@
               "deprecationReason": null
             },
             {
+              "name": "currentStreak",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "nextLevelAvailableAt",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "nextStreakAvailableAt",
               "description": "",
               "args": [],
               "type": {
@@ -3021,6 +3057,65 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "LevelSlot",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ActiveStreak",
+          "description": "",
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "type",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "value",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "maxStreak",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -3818,18 +3913,6 @@
           "name": "PreviousInvoice",
           "description": "",
           "fields": [
-            {
-              "name": "members",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
             {
               "name": "date",
               "description": "",
@@ -6179,6 +6262,16 @@
               "args": [
                 {
                   "name": "quoteId",
+                  "description": "",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "stripeToken",
                   "description": "",
                   "type": {
                     "kind": "SCALAR",
@@ -11067,9 +11160,9 @@
   "extensions": {
     "tracing": {
       "version": 1,
-      "startTime": "2018-09-27T17:45:40.047Z",
-      "endTime": "2018-09-27T17:45:40.213Z",
-      "duration": 165542279,
+      "startTime": "2018-10-03T11:20:33.567Z",
+      "endTime": "2018-10-03T11:20:33.713Z",
+      "duration": 146304469,
       "execution": {
         "resolvers": []
       }

@@ -81,8 +81,9 @@ storiesOf("Modals", module)
                 range: true,
                 step: 1
             })}
-            isTodayDone={boolean("isTodayDone", true)}
+            isDoneToday={boolean("isTodayDone", true)}
             onPressCtaPrimary={action("pressed streak cta primary")}
             onPressCtaSecondary={action("pressed streak cta secondary")}
+            reward="250 yucoin"
         />
     ));

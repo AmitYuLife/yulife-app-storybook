@@ -21,7 +21,9 @@ export const getCurrentUserGql = gql`
             coinLedger {
                 currentBalance
                 currentLevel
+                currentStreak
                 nextLevelAvailableAt
+                nextStreakAvailableAt
             }
             activeChallenge {
                 challenge {
@@ -44,6 +46,12 @@ export const getCurrentUserGql = gql`
                         }
                     }
                 }
+            }
+            activeStreak {
+                id
+                type
+                value
+                maxStreak
             }
         }
     }

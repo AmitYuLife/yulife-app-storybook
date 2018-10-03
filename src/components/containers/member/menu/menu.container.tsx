@@ -11,7 +11,7 @@ import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
 import { MenuScreen } from "../../../screens";
 import assets, { LINKS } from "./assets";
 
-export type Link = "debug" | "leaderboard" | "activity" | "chat" | "logout" | "member" | "play";
+export type Link = "debug" | "leaderboard" | "activity" | "chat" | "logout" | "member" | "play" | "settings";
 
 interface IConnectedState {
     currentRoute: string;
@@ -44,16 +44,22 @@ class MenuContainer extends PureComponent<Props> {
                         source: assets[LINKS.ACTIVITY]
                     },
                     {
-                        condition: features.showLeaderboard,
-                        label: "leaderboard",
-                        onPress: this.handlePressLink(LINKS.LEADERBOARD),
-                        source: assets[LINKS.MEMBER]
-                    },
-                    {
                         condition: features.showMember,
                         label: "member zone",
                         onPress: this.handlePressLink(LINKS.MEMBER),
                         source: assets[LINKS.MEMBER]
+                    },
+                    {
+                        condition: features.showLeaderboard,
+                        label: "leaderboard",
+                        onPress: this.handlePressLink(LINKS.LEADERBOARD),
+                        source: assets[LINKS.LEADERBOARD]
+                    },
+                    {
+                        condition: features.showSettings,
+                        label: "settings",
+                        onPress: this.handlePressLink(LINKS.SETTINGS),
+                        source: assets[LINKS.SETTINGS]
                     },
                     {
                         condition: false,

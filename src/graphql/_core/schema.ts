@@ -477,7 +477,9 @@ export interface GetCurrentUser_getCurrentUser_mobileConsent {
 export interface GetCurrentUser_getCurrentUser_coinLedger {
   currentBalance: number | null;
   currentLevel: number | null;
+  currentStreak: number | null;
   nextLevelAvailableAt: string | null;
+  nextStreakAvailableAt: string | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge {
@@ -511,12 +513,20 @@ export interface GetCurrentUser_getCurrentUser_activeChallenge {
   levelSlot: GetCurrentUser_getCurrentUser_activeChallenge_levelSlot | null;
 }
 
+export interface GetCurrentUser_getCurrentUser_activeStreak {
+  id: string | null;
+  type: string | null;
+  value: number | null;
+  maxStreak: number | null;
+}
+
 export interface GetCurrentUser_getCurrentUser {
   __typename: "User";
   userFeatures: (GetCurrentUser_getCurrentUser_userFeatures | null)[] | null;
   mobileConsent: GetCurrentUser_getCurrentUser_mobileConsent | null;
   coinLedger: GetCurrentUser_getCurrentUser_coinLedger | null;
   activeChallenge: GetCurrentUser_getCurrentUser_activeChallenge | null;
+  activeStreak: GetCurrentUser_getCurrentUser_activeStreak | null;
 }
 
 export interface GetCurrentUser {
@@ -547,7 +557,16 @@ export interface LoginUser_loginUser_user_mobileConsent {
 export interface LoginUser_loginUser_user_coinLedger {
   currentBalance: number | null;
   currentLevel: number | null;
+  currentStreak: number | null;
   nextLevelAvailableAt: string | null;
+  nextStreakAvailableAt: string | null;
+}
+
+export interface LoginUser_loginUser_user_activeStreak {
+  id: string | null;
+  type: string | null;
+  value: number | null;
+  maxStreak: number | null;
 }
 
 export interface LoginUser_loginUser_user {
@@ -558,6 +577,7 @@ export interface LoginUser_loginUser_user {
   mobileConsent: LoginUser_loginUser_user_mobileConsent | null;
   redeemedOnboarding: boolean | null;
   coinLedger: LoginUser_loginUser_user_coinLedger | null;
+  activeStreak: LoginUser_loginUser_user_activeStreak | null;
 }
 
 export interface LoginUser_loginUser {

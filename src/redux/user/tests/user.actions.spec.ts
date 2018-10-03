@@ -23,11 +23,19 @@ const loginSuccessFixture: LoginUser = {
         token: "abcdefg1234567",
         user: {
             __typename: "User",
+            activeStreak: {
+                id: "YU_STREAK_test",
+                maxStreak: 4,
+                type: "yucoin",
+                value: 250
+            },
             businessAccountId: "abcdefghijkl",
             coinLedger: {
                 currentBalance: 15,
                 currentLevel: 1,
-                nextLevelAvailableAt: ""
+                currentStreak: 0,
+                nextLevelAvailableAt: "",
+                nextStreakAvailableAt: ""
             },
             id: "1234567890",
             mobileConsent: {

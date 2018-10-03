@@ -1,6 +1,6 @@
 import moment from "moment";
-import { PureComponent } from "react";
 import React from "react";
+import { PureComponent } from "react";
 import { FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
@@ -13,7 +13,8 @@ import { getDailyEarnedCoins, getTotalCoins } from "../../../../redux/coins/coin
 import { startDailySteps, stopDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
 import { getDailySteps, getLastUpdated } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
-import { IStreak, userFeaturesSelector, userStreakSelector } from "../../../../redux/user/user.selectors";
+import { IStreaks, streaksSelector } from "../../../../redux/streaks/streaks.selectors";
+import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
 import { DailyStepsScreen } from "../../../screens";
 
@@ -24,7 +25,7 @@ interface IConnectedState {
     features: { [x: string]: boolean };
     lastUpdated: string;
     offline: boolean;
-    streaks: IStreak;
+    streaks: IStreaks;
     totalCoins: number;
 }
 
@@ -82,12 +83,8 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
             totalCoins
         } = this.props;
         const { dailyStepsLoading, lastUpdate } = this.state;
-        const isStreakDoneToday =
-            moment()
-                .add(1, "day")
-                .startOf("day")
-                .format()
-                .slice(0, -6) === streaks.nextStreakAvailableAt;
+
+        const displayStreak = features.showStreaks && streaks.displayStreak;
 
         return (
             <FitKitAvailable>
@@ -95,16 +92,16 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                     return (
                         <DailyStepsScreen
                             coinsToday={dailyEarnedCoins}
-                            currentStreak={streaks.streak}
-                            displayStreak={features.showStreaks}
+                            currentStreak={streaks.currentStreak}
+                            displayStreak={displayStreak}
                             fitKitAvailable={available}
                             hasPermission={authorised}
-                            isDoneToday={isStreakDoneToday}
+                            isDoneToday={streaks.isDoneToday}
                             isLoading={loading || dailyStepsLoading}
                             isOnline={!offline}
                             labels={labels}
                             lastUpdate={lastUpdate}
-                            maxStreak={4}
+                            maxStreak={streaks.maxStreak}
                             onAuthoriseFitKitPress={() => authorise(FitKitPermissions)}
                             onCoinPress={this.onCoinPress}
                             onCtaPress={this.onCta}
@@ -128,34 +125,32 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     private onStreak = () => {
-        const { streaks, labels } = this.props;
+        const {
+            streaks: { currentStreak, isDoneToday, maxStreak, reward },
+            labels
+        } = this.props;
         const modalName = ROUTES.modalStreaks;
-        const isTodayDone =
-            moment()
-                .add(1, "day")
-                .startOf("day")
-                .format()
-                .slice(0, -6) === streaks.nextStreakAvailableAt;
 
         Navigation.showModal({
             component: {
                 id: modalName,
                 name: modalName,
                 passProps: {
-                    isTodayDone,
+                    isDoneToday,
                     onPressCtaPrimary: () => {
-                        if (!isTodayDone) {
+                        if (!isDoneToday) {
                             labels[1].onPress();
                         }
                         Navigation.dismissModal(modalName);
                     },
-                    onPressCtaSecondary: isTodayDone
+                    onPressCtaSecondary: isDoneToday
                         ? null
                         : () => {
                               Navigation.dismissModal(modalName);
                           },
-                    streakCompleted: streaks.streak,
-                    streakMax: 4
+                    reward,
+                    streakCompleted: currentStreak,
+                    streakMax: maxStreak
                 }
             }
         });
@@ -169,7 +164,7 @@ const mapStateToProps = (state: IReduxState) => ({
     features: userFeaturesSelector(state),
     lastUpdated: getLastUpdated(state),
     offline: getOfflineState(state),
-    streaks: userStreakSelector(state),
+    streaks: streaksSelector(state),
     totalCoins: getTotalCoins(state)
 });
 

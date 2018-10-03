@@ -28,7 +28,15 @@ export const loginUserGql = gql`
                 coinLedger {
                     currentBalance
                     currentLevel
+                    currentStreak
                     nextLevelAvailableAt
+                    nextStreakAvailableAt
+                }
+                activeStreak {
+                    id
+                    type
+                    value
+                    maxStreak
                 }
             }
         }

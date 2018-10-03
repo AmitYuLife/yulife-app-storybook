@@ -8,6 +8,7 @@ import dailyStepsReducer, {
 } from "../daily-steps/daily-steps.reducer";
 import deviceReducer, { IDeviceStore, initialState as initialDeviceState } from "../device/device.reducer";
 import levelsReducer, { ILevelsStore, initialState as initialLevelsState } from "../levels/levels.reducer";
+import streaksReducer, { initialState as initialStreaksState, IStreaksStore } from "../streaks/streaks.reducer";
 import userReducer, { initialState as initialUserState, IUserStore } from "../user/user.reducer";
 
 export interface IReduxState {
@@ -16,6 +17,7 @@ export interface IReduxState {
     dailySteps: IDailyStepsStore;
     device: IDeviceStore;
     levels: ILevelsStore;
+    streaks: IStreaksStore;
     user: IUserStore;
 }
 
@@ -25,6 +27,7 @@ export const initialState: IReduxState = {
     dailySteps: initialDailyStepsState,
     device: initialDeviceState,
     levels: initialLevelsState,
+    streaks: initialStreaksState,
     user: initialUserState
 };
 
@@ -34,6 +37,7 @@ const combinedReducers = combineReducers({
     dailySteps: dailyStepsReducer,
     device: deviceReducer,
     levels: levelsReducer,
+    streaks: streaksReducer,
     user: userReducer
 });
 
