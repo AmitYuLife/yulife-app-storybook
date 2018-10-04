@@ -1,10 +1,6 @@
-import { GetCurrentUser, LoginUser, MobileConsentInput } from "../../graphql/_core/schema";
+import { GetCurrentUser, LoginUser, MobileConsentInput, UpdateMemberConsent } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
-import {
-    GET_USER_SUCCESS,
-    LOGIN_USER_SUCCESS
-    // UPDATE_USER_CONSENT
-} from "./user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, UPDATE_USER_CONSENT_SUCCESS } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
 
 interface IFeature {
@@ -29,8 +25,8 @@ const userReducer = (state: IUserStore = initialState, action: SyncAction): IUse
         case LOGIN_USER_SUCCESS:
             return loginUserSuccess(state, action.payload);
 
-        // case UPDATE_USER_CONSENT:
-        //     return updateUserConsent(state, action.payload);
+        case UPDATE_USER_CONSENT_SUCCESS:
+            return updateUserConsentSuccess(state, action.payload);
 
         default:
             return state;
@@ -65,9 +61,9 @@ const loginUserSuccess = (
     features: (userFeatures || []).reduce(reduceUserFeatures, {})
 });
 
-// const updateUserConsent = (state: IUserStore, { upsertMobileConsent }: UpdateMemberConsent): IUserStore => ({
-//     ...state,
-//     consent: {
-//         ...upsertMobileConsent
-//     }
-// });
+const updateUserConsentSuccess = (state: IUserStore, { upsertMobileConsent }: UpdateMemberConsent): IUserStore => ({
+    ...state,
+    consent: {
+        ...upsertMobileConsent
+    }
+});

@@ -9,7 +9,7 @@ import RedeemRewardMutation, {
     redeemRewardGql,
     RedeemRewardMutationType
 } from "../../../../../graphql/rewards/redeemReward.gql";
-import { ROUTES } from "../../../../../navigation/routes";
+import { MODALS, ROUTES } from "../../../../../navigation/routes";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
@@ -328,7 +328,7 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
                         });
 
                         if ((result as { data: RedeemReward }).data.redeemReward) {
-                            await Navigation.push(ROUTES.member, {
+                            await Navigation.push(ROUTES.rewards, {
                                 component: {
                                     id: ROUTES.aviosConfirmed,
                                     name: ROUTES.aviosConfirmed,
@@ -343,7 +343,7 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
                         const passProps = {
                             ctaLabel: "check other rewards",
                             heading: "the voucher is not currently available",
-                            onPress: () => Navigation.dismissModal(ROUTES.modalGeneric),
+                            onPress: () => Navigation.dismissModal(MODALS.rewards),
                             subheading: "Please come back later."
                         };
 
@@ -359,8 +359,8 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
 
                         await Navigation.showModal({
                             component: {
-                                id: ROUTES.modalGeneric,
-                                name: ROUTES.modalGeneric,
+                                id: MODALS.rewards,
+                                name: MODALS.rewards,
                                 passProps
                             }
                         });

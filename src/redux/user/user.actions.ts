@@ -1,4 +1,4 @@
-import { GetCurrentUser, LoginUser, MobileConsentInput } from "../../graphql/_core/schema";
+import { GetCurrentUser, LoginUser, MobileConsentInput, UpdateMemberConsent } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 
 export const FITKIT_CONSENT_AUTHORISED = "FITKIT_CONSENT_AUTHORISED";
@@ -6,6 +6,7 @@ export const GET_USER_START = "GET_USER_START";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const UPDATE_USER_CONSENT = "UPDATE_USER_CONSENT";
+export const UPDATE_USER_CONSENT_SUCCESS = "UPDATE_USER_CONSENT_SUCCESS";
 export const LOGOUT = "LOGOUT";
 
 export const fitKitConsentAuthorised = (): SyncAction => ({
@@ -28,10 +29,18 @@ export const loginUserSuccess = (payload: LoginUser): LoginUserSuccessAction => 
     type: LOGIN_USER_SUCCESS
 });
 
-export type MobileConsentAction = SyncAction<MobileConsentInput>;
-export const updateUserConsent = (payload: MobileConsentInput): MobileConsentAction => ({
+export type UpdateUserConsentActionResult = SyncAction<MobileConsentInput>;
+export type UpdateUserConsentAction = (payload: MobileConsentInput) => UpdateUserConsentActionResult;
+export const updateUserConsent: UpdateUserConsentAction = (payload) => ({
     payload,
     type: UPDATE_USER_CONSENT
+});
+
+export type UpdateUserConsentSuccessActionResult = SyncAction<UpdateMemberConsent>;
+export type UpdateUserConsentSuccessAction = (payload: UpdateMemberConsent) => UpdateUserConsentSuccessActionResult;
+export const updateUserConsentSuccess: UpdateUserConsentSuccessAction = (payload) => ({
+    payload,
+    type: UPDATE_USER_CONSENT_SUCCESS
 });
 
 export const logOut = (): SyncAction => ({

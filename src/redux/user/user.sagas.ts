@@ -15,13 +15,25 @@ import {
     LOGIN_USER_SUCCESS,
     LoginUserSuccessAction,
     LOGOUT,
-    updateUserConsent
+    UPDATE_USER_CONSENT,
+    UpdateUserConsentActionResult,
+    updateUserConsentSuccess
 } from "./user.actions";
+
+function* updateUserConsentSaga({ payload }: UpdateUserConsentActionResult) {
+    try {
+        const { data } = yield call(updateMemberConsentGql, payload);
+        yield put(updateUserConsentSuccess(data));
+    } catch (e) {
+        // tslint:disable-next-line
+        console.log(e);
+    }
+}
 
 function* fitKitConsentAuthorisedSaga() {
     try {
         const { data } = yield call(updateMemberConsentGql, { mobileHealth: true });
-        yield put(updateUserConsent(data));
+        yield put(updateUserConsentSuccess(data));
     } catch (e) {
         // tslint:disable-next-line
         console.log(e);
@@ -62,5 +74,6 @@ export default [
     takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
     takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
     takeLatest(CHALLENGE_RESET, getUserData),
+    takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
     takeLatest(LOGOUT, logOut)
 ];

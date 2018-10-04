@@ -8,8 +8,7 @@ import PushNotification, {
 } from "react-native-push-notification";
 import { delay } from "redux-saga";
 import { call, put, race, select, take, takeEvery, takeLatest } from "redux-saga/effects";
-import updateMemberConsentWithClient from "../../graphql/member/updateMemberConsent.gql";
-import { ROUTES } from "../../navigation/routes";
+import { MODALS } from "../../navigation/routes";
 import Logger from "../../services/logging/logger";
 import { getToken } from "../../services/storage";
 import { appStateChannel } from "../app/app.channels";
@@ -68,10 +67,7 @@ function* checkPermissions() {
 
     // update mongo consent
     if (token && perms.status !== status) {
-        const { data } = yield call(updateMemberConsentWithClient, {
-            pushNotifications: status === PushPermissionsEnum.enabled
-        });
-        yield put(updateUserConsent(data));
+        yield put(updateUserConsent({ pushNotifications: status === PushPermissionsEnum.enabled }));
     }
 
     // pop up the modal
@@ -86,12 +82,12 @@ function* checkPermissions() {
     ) {
         const currentRoute = yield select(getRouteState);
 
-        if (currentRoute !== ROUTES.modalPushNotifications) {
+        if (currentRoute !== MODALS.pushNotifications) {
             yield call(async () =>
                 Navigation.showModal({
                     component: {
-                        id: ROUTES.modalPushNotifications,
-                        name: ROUTES.modalPushNotifications,
+                        id: MODALS.pushNotifications,
+                        name: MODALS.pushNotifications,
                         passProps: {
                             permissions: perms
                         }

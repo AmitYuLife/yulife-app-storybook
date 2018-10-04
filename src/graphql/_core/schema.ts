@@ -220,6 +220,31 @@ export interface UpsertPassiveChallengeVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: GetLeaderboard
+// ====================================================
+
+export interface GetLeaderboard_getLeaderboard {
+  id: string | null;
+  firstName: string | null;
+  lastName: string | null;
+  name: string | null;
+  coins: number | null;
+  steps: number | null;
+}
+
+export interface GetLeaderboard {
+  getLeaderboard: (GetLeaderboard_getLeaderboard | null)[] | null;
+}
+
+export interface GetLeaderboardVariables {
+  sortBy?: string | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: UpdateMemberConsent
 // ====================================================
 

@@ -18,3 +18,4 @@ export { default as Text } from "./text/text";
 export { default as TextInput } from "./text-input/text-input";
 export { default as TextInputError } from "./text-input/text-input-error";
 export { default as GenericHeading } from "./generic-heading/generic-heading";
+export { default as LeaderboardPosition } from "./leaderboard-position/leaderboard-position";

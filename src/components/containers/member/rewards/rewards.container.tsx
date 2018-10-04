@@ -7,7 +7,7 @@ import { GetAllPurchases_getAllPurchases, GetRewards_getRewards } from "../../..
 import GetAllPurchases, { getAllPurchasesGql } from "../../../../graphql/rewards/getAllPurchases.gql";
 import GetRewardsQuery, { getRewardsGql } from "../../../../graphql/rewards/getRewards.gql";
 import { IMainTabsProps } from "../../../../navigation/root";
-import { ROUTES } from "../../../../navigation/routes";
+import { MODALS, ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { formatMoney } from "../../../../services/money";
@@ -80,12 +80,12 @@ class RewardsContainer extends PureComponent<Props, IState> {
         if (!reward.available_denominations.length) {
             await Navigation.showModal({
                 component: {
-                    id: ROUTES.modalGeneric,
-                    name: ROUTES.modalGeneric,
+                    id: MODALS.rewards,
+                    name: MODALS.rewards,
                     passProps: {
                         ctaLabel: "check other rewards",
                         heading: "the voucher is locked",
-                        onPress: () => Navigation.dismissModal(ROUTES.modalGeneric),
+                        onPress: () => Navigation.dismissModal(MODALS.rewards),
                         subheading: "You'll be able to process it when you progress further."
                     }
                 }

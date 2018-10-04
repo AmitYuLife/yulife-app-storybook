@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../graphql/_core/schema";
 import GetCurrentWorld, { getCurrentWorldGql } from "../../../../graphql/challenges/getCurrentWorld.gql";
 import { IMainTabsProps } from "../../../../navigation/root";
-import { ROUTES } from "../../../../navigation/routes";
+import { MODALS, ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
@@ -46,6 +46,8 @@ class QuestsContainer extends PureComponent<Props> {
     public render() {
         const {
             activeLevel: { coins, endDateTime, milestones, rating, score, status, subtype, timeUp, unit },
+            componentId,
+            currentLevel,
             labels,
             offline,
             onLeftMenuPress,
@@ -53,6 +55,8 @@ class QuestsContainer extends PureComponent<Props> {
         } = this.props;
 
         const props = {
+            componentId,
+            currentLevel,
             labels,
             onLeftMenuPress,
             totalCoins
@@ -114,7 +118,7 @@ class QuestsContainer extends PureComponent<Props> {
     }
 
     private dismissChestModal = () => {
-        Navigation.dismissModal(ROUTES.modalChest);
+        Navigation.dismissModal(MODALS.chest);
     }
 
     private showChestModal = (level: GetCurrentWorld_getCurrentWorld, isNext: boolean) => {
@@ -133,8 +137,8 @@ class QuestsContainer extends PureComponent<Props> {
 
         Navigation.showModal({
             component: {
-                id: ROUTES.modalChest,
-                name: ROUTES.modalChest,
+                id: MODALS.chest,
+                name: MODALS.chest,
                 passProps
             }
         });

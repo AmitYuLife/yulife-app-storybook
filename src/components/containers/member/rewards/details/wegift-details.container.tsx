@@ -9,7 +9,7 @@ import RedeemRewardMutation, {
     redeemRewardGql,
     RedeemRewardMutationType
 } from "../../../../../graphql/rewards/redeemReward.gql";
-import { ROUTES } from "../../../../../navigation/routes";
+import { MODALS, ROUTES } from "../../../../../navigation/routes";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
@@ -128,7 +128,7 @@ class WegiftRewardDetailsContainer extends Component<Props> {
                             const result = await redeemReward({ variables: { id: reward.code, amount: value } });
 
                             if ((result as { data: RedeemReward }).data.redeemReward) {
-                                await Navigation.push(ROUTES.member, {
+                                await Navigation.push(ROUTES.rewards, {
                                     component: {
                                         id: ROUTES.wegiftConfirmed,
                                         name: ROUTES.wegiftConfirmed,
@@ -143,7 +143,7 @@ class WegiftRewardDetailsContainer extends Component<Props> {
                             const passProps = {
                                 ctaLabel: "check other rewards",
                                 heading: "the voucher is not currently available",
-                                onPress: () => Navigation.dismissModal(ROUTES.modalGeneric),
+                                onPress: () => Navigation.dismissModal(MODALS.rewards),
                                 subheading: "Please come back later."
                             };
 
@@ -159,8 +159,8 @@ class WegiftRewardDetailsContainer extends Component<Props> {
 
                             await Navigation.showModal({
                                 component: {
-                                    id: ROUTES.modalGeneric,
-                                    name: ROUTES.modalGeneric,
+                                    id: MODALS.rewards,
+                                    name: MODALS.rewards,
                                     passProps
                                 }
                             });

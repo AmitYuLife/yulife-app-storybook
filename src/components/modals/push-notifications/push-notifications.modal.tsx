@@ -3,7 +3,6 @@ import { PureComponent } from "react";
 import { Linking } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { ROUTES } from "../../../navigation/routes";
 import {
     requirePushEnabled,
     RequirePushEnabledAction,
@@ -19,6 +18,7 @@ interface IConnectedDispatch {
 }
 
 interface IProps {
+    componentId?: string;
     permissions: IPushNotification;
 }
 
@@ -48,7 +48,7 @@ class PushNotificationsModal extends PureComponent<Props> {
     }
 
     private dismissModal = async () => {
-        Navigation.dismissModal(ROUTES.modalPushNotifications);
+        Navigation.dismissModal(this.props.componentId);
     }
 
     private handleAgree = () => {

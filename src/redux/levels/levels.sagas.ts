@@ -6,7 +6,7 @@ import { call, put, race, select, take, takeLatest } from "redux-saga/effects";
 import { ChallengePayload } from "../../graphql/_core/schema";
 import createActiveChallengeWithClient from "../../graphql/challenges/createActiveChallenge.gql";
 import updateActiveChallengeWithClient from "../../graphql/challenges/updateActiveChallenge.gql";
-import { ROUTES } from "../../navigation/routes";
+import { MODALS } from "../../navigation/routes";
 import { queryMindfulSessions } from "../../services/fitkit/fitkit.service";
 import { pathOr } from "../../services/utils";
 import { startDailySteps, stopDailySteps } from "../daily-steps/daily-steps.actions";
@@ -135,14 +135,14 @@ function* endChallenge() {
             yield call(() => {
                 Navigation.showModal({
                     component: {
-                        id: ROUTES.modalChest,
-                        name: ROUTES.modalChest,
+                        id: MODALS.chest,
+                        name: MODALS.chest,
                         passProps: {
                             ctaLabel: "collect",
                             heading: `you get ${active.chest.value} yucoin`,
                             isLocked: false,
                             onPressCta: () => {
-                                Navigation.dismissModal(ROUTES.modalChest);
+                                Navigation.dismissModal(MODALS.chest);
                             }
                         }
                     }

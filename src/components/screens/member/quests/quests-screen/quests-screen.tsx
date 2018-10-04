@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { PanResponder, SafeAreaView, ScrollView, StatusBar, View } from "react-native";
+import { Navigation } from "react-native-navigation";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { Style } from "../../../../../styles";
 import { IConnectedScreenProps } from "../../../../../typings";
@@ -21,6 +22,7 @@ interface ISwipeCallback {
 }
 
 interface IProps extends IConnectedScreenProps {
+    currentLevel: number;
     data: IChallenge[];
 }
 
@@ -41,14 +43,13 @@ interface IState {
 }
 
 class QuestsScreen extends PureComponent<IProps, IState> {
-    public scrollTimer: NodeJS.Timer;
+    public hasDarkNavBar = [6, 5, 4, 3, 1, 0];
     public unityLocker: UnityLockerImage;
     public animateInDelay: NodeJS.Timer;
     public animateOutDelay: NodeJS.Timer;
     public indices = calculateIndices(this.props.data.length);
-    public activeIndex = this.indices.length - Math.ceil(this.props.data.length / 7);
     public state = {
-        activeIndex: 7,
+        activeIndex: 0,
         colour: COLOURS.LIGHT,
         hasInitialized: false,
         isAnimatingUnity: false,
@@ -64,21 +65,26 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         onStartShouldSetPanResponder
     });
 
-    public componentWillUnmount() {
+    public constructor(props: IProps) {
+        super(props);
+        Navigation.events().bindComponent(this);
+    }
+
+    public componentDidMount() {
+        this.scrollToCurrentLevel();
+    }
+
+    public componentDidAppear() {
+        this.scrollToCurrentLevel();
+    }
+
+    public componentDidDissappear() {
         if (this.animateOutDelay) {
             clearTimeout(this.animateOutDelay);
         }
         if (this.animateInDelay) {
             clearTimeout(this.animateInDelay);
         }
-    }
-
-    public componentDidMount() {
-        this.scrollTimer = global.setTimeout(() => {
-            this.scrollView.scrollTo({
-                y: this.indices[this.state.activeIndex]
-            });
-        }, 500);
     }
 
     public render() {
@@ -116,6 +122,23 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                 <AnimatedNavBar activeIndex={1} colour={this.state.colour} labels={labels} hasNotification={false} />
                 <TopBar onPressLeftIcon={onLeftMenuPress} coins={totalCoins} />
             </SafeAreaView>
+        );
+    }
+
+    public scrollToCurrentLevel = () => {
+        const activeIndex = this.indices.length - Math.ceil(this.props.currentLevel / 7);
+        this.setState(
+            {
+                activeIndex,
+                colour: this.hasDarkNavBar.indexOf(activeIndex) !== -1 ? COLOURS.DARKER : COLOURS.LIGHT
+            },
+            () => {
+                global.setTimeout(() => {
+                    this.scrollView.scrollTo({
+                        y: this.indices[activeIndex]
+                    });
+                }, 250);
+            }
         );
     }
 
@@ -164,9 +187,8 @@ class QuestsScreen extends PureComponent<IProps, IState> {
             this.scrollView.scrollTo({
                 y: this.indices[this.state.activeIndex]
             });
-            const hasDarkNavBar = [6, 5, 4, 3, 1, 0];
             this.setState({
-                colour: hasDarkNavBar.indexOf(this.state.activeIndex) !== -1 ? COLOURS.DARKER : COLOURS.LIGHT
+                colour: this.hasDarkNavBar.indexOf(this.state.activeIndex) !== -1 ? COLOURS.DARKER : COLOURS.LIGHT
             });
         }
     }

@@ -18,6 +18,11 @@ export default {
     divider: "rgb(96,96,96)",
     gray: "rgb(96,96,96)",
     heavyPink: "rgb(232, 49, 129)",
+    leaderboards: {
+        first: "rgb(244,186,0)",
+        second: "rgb(204,204,204)",
+        third: "rgb(245,172,171)"
+    },
     lightGray: "rgb(170,170,170)",
     lightRed: "rgb(255,102,102)",
     navBar: {

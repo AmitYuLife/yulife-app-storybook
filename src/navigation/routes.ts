@@ -5,6 +5,7 @@ import {
     ChallengesListContainer,
     DailyStepsContainer,
     FitKitConnectContainer,
+    LeaderboardsContainer,
     LoginContainer,
     MemberRootContainer,
     MenuContainer,
@@ -47,6 +48,7 @@ export const ROUTES = {
     quests: "yulife.member.Quests",
     rewards: "yulife.member.Rewards",
     activityHistory: "yulife.member.ActivityHistory",
+    leaderboards: "yulife.member.Leaderboards",
 
     // quests
     questsChallengesList: "yulife.quests.ChallengesList",
@@ -55,15 +57,18 @@ export const ROUTES = {
     wegiftDetails: "yulife.rewards.WegiftDetails",
     wegiftConfirmed: "yulife.rewards.WegiftConfirmed",
     aviosDetails: "yulife.rewards.AviosDetails",
-    aviosConfirmed: "yulife.rewards.AviosConfirmed",
+    aviosConfirmed: "yulife.rewards.AviosConfirmed"
+};
 
-    // modals
-    modalGeneric: "yulife.modals.Generic",
-    modalChallengeDetails: "yulife.modals.ChallengeDetails",
-    modalChest: "yulife.modals.Chest",
-    modalMeditationSetUp: "yulife.modals.MeditationSetUp",
-    modalPushNotifications: "yulife.modals.PushNotifications",
-    modalStreaks: "yulife.modals.Streaks"
+export const MODALS = {
+    generic: "yulife.modals.Generic",
+    challengeDetails: "yulife.modals.ChallengeDetails",
+    chest: "yulife.modals.Chest",
+    meditationSetUp: "yulife.modals.MeditationSetUp",
+    pushNotifications: "yulife.modals.PushNotifications",
+    streaks: "yulife.modals.Streaks",
+    leaderboards: "yulife.modals.Leaderboards",
+    rewards: "yulife.modals.Rewards"
 };
 // tslint:enable:object-literal-sort-keys
 
@@ -86,6 +91,7 @@ export default [
     { name: ROUTES.quests, component: QuestsContainer },
     { name: ROUTES.rewards, component: RewardsContainer },
     { name: ROUTES.activityHistory, component: ActivityHistoryContainer },
+    { name: ROUTES.leaderboards, component: LeaderboardsContainer },
 
     // quests screens
     { name: ROUTES.questsChallengesList, component: ChallengesListContainer },
@@ -99,10 +105,12 @@ export default [
     // { name: ROUTES.memberRewardsList, component: ChallengesListContainer },
 
     // modals
-    { name: ROUTES.modalChallengeDetails, component: ChallengeDetailsModal },
-    { name: ROUTES.modalChest, component: AnimatedChest },
-    { name: ROUTES.modalGeneric, component: GenericModal },
-    { name: ROUTES.modalMeditationSetUp, component: MeditationSetUpModal },
-    { name: ROUTES.modalPushNotifications, component: PushNotificationsModal },
-    { name: ROUTES.modalStreaks, component: StreaksModal }
+    { name: MODALS.challengeDetails, component: ChallengeDetailsModal },
+    { name: MODALS.chest, component: AnimatedChest },
+    { name: MODALS.generic, component: GenericModal },
+    { name: MODALS.meditationSetUp, component: MeditationSetUpModal },
+    { name: MODALS.pushNotifications, component: PushNotificationsModal },
+    { name: MODALS.streaks, component: StreaksModal },
+    { name: MODALS.leaderboards, component: GenericModal },
+    { name: MODALS.rewards, component: GenericModal }
 ];

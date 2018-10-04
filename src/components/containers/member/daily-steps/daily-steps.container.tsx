@@ -5,7 +5,7 @@ import { FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IMainTabsProps } from "../../../../navigation/root";
-import { ROUTES } from "../../../../navigation/routes";
+import { MODALS } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { SyncAction } from "../../../../redux/_core/types";
 import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
@@ -129,7 +129,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
             streaks: { currentStreak, isDoneToday, maxStreak, reward },
             labels
         } = this.props;
-        const modalName = ROUTES.modalStreaks;
+        const modalName = MODALS.streaks;
 
         Navigation.showModal({
             component: {

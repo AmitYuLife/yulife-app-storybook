@@ -4,12 +4,13 @@ import {
     NativeSyntheticEvent,
     ScrollView
 } from "react-native";
+import { Navigation } from "react-native-navigation";
 import { Style } from "../../../styles";
 import assets from "./assets";
 import MeditationSetUpScreen from "./meditation-set-up.screen";
 
 interface IProps {
-    onPressClose: () => void;
+    componentId?: string;
 }
 
 interface IState {
@@ -49,12 +50,11 @@ class MeditationSetUpContainer extends PureComponent<IProps, IState> {
     private scrollView: ScrollView;
 
     public render() {
-        const { onPressClose } = this.props;
         return (
             <MeditationSetUpScreen
                 scrollViewRef={this.setScrollViewRef}
                 onPressBack={this.handlePressBack}
-                onPressClose={onPressClose}
+                onPressClose={this.dismissModal}
                 onPressCta={this.handlePressCta}
                 onMomentumScrollEnd={this.handleMomentumScrollEnd}
                 screens={screens}
@@ -68,9 +68,8 @@ class MeditationSetUpContainer extends PureComponent<IProps, IState> {
     }
 
     private handlePressBack = () => {
-        const { onPressClose } = this.props;
         if (this.state.activeIndex === 0) {
-            onPressClose();
+            this.dismissModal();
         } else {
             this.setState(
                 ({ activeIndex }) => ({ activeIndex: activeIndex - 1 }),
@@ -80,9 +79,8 @@ class MeditationSetUpContainer extends PureComponent<IProps, IState> {
     }
 
     private handlePressCta = () => {
-        const { onPressClose } = this.props;
         if (this.state.activeIndex + 1 === indices.length) {
-            onPressClose();
+            this.dismissModal();
         } else {
             this.setState(
                 ({ activeIndex }) => ({ activeIndex: activeIndex + 1 }),
@@ -100,6 +98,10 @@ class MeditationSetUpContainer extends PureComponent<IProps, IState> {
     }: NativeSyntheticEvent<NativeScrollEvent>) => {
         const activeIndex = indices.findIndex((offset) => offset === x);
         this.setState({ activeIndex });
+    }
+
+    private dismissModal = () => {
+        Navigation.dismissModal(this.props.componentId);
     }
 }
 

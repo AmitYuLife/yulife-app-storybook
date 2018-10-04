@@ -1,5 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Style } from "../../../styles";
+import { Colours, Style } from "../../../styles";
 
 const styles = StyleSheet.create({
     heading: {
@@ -9,11 +9,20 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderBottomColor: "rgb(233,233,233)",
         borderBottomWidth: StyleSheet.hairlineWidth,
-        paddingBottom: Style.SCALE_UP_AND_DOWN(13),
         paddingTop: Style.SCALE_UP_AND_DOWN(17)
     } as ViewStyle,
-    padding: {
+    paddingBottom: {
+        paddingBottom: Style.SCALE_UP_AND_DOWN(13)
+    },
+    paddingHorizontal: {
         paddingHorizontal: Style.SCALE_UP_AND_DOWN(15)
+    } as ViewStyle,
+    subheading: {
+        color: Colours.darkGray,
+        fontSize: Style.SCALE_UP_AND_DOWN(12)
+    } as TextStyle,
+    subheadingWrapper: {
+        alignItems: "center"
     } as ViewStyle
 });
 

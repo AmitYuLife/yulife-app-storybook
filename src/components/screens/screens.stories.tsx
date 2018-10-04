@@ -341,6 +341,12 @@ storiesOf("Screens", module)
         const nextAvailable = moment().unix();
         return (
             <QuestsScreen
+                currentLevel={number("CurrentLevel", 4, {
+                    max: 99,
+                    min: 0,
+                    range: true,
+                    step: 1
+                }, "QuestScreen")}
                 data={object("data", Array.from({ length: 7 }).map((_, i) => ({
                     id: `_${i + 1}`,
                     onPress: action(`@ pressed _${i + 1}`),

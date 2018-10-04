@@ -1,36 +1,34 @@
-import React, { PureComponent } from "react";
+import * as React from "react";
+import { SFC } from "react";
 import { StyleSheet, View } from "react-native";
 import { Text } from "../";
 import styles from "./generic-heading.styles";
 
 interface IProps {
     heading: string;
+    subheading?: string;
     hidesBorder?: boolean;
 }
 
-class GenericHeading extends PureComponent<IProps> {
-    public render() {
-        return (
-            <View style={styles.padding}>
-                <View
-                    style={
-                        StyleSheet.flatten([
-                            styles.headingWrapper,
-                            this.props.hidesBorder
-                                ? { borderBottomWidth: 0 }
-                                : null
-                        ])}
-                >
-                    <Text
-                        bold={true}
-                        style={styles.heading}
-                    >
-                        {this.props.heading}
-                    </Text>
-                </View>
+const GenericHeading: SFC<IProps> = ({ heading, hidesBorder, subheading }) => (
+    <View style={styles.paddingHorizontal}>
+        <View
+            style={StyleSheet.flatten([
+                styles.headingWrapper,
+                hidesBorder ? { borderBottomWidth: 0 } : null,
+                subheading ? null : styles.paddingBottom
+            ])}
+        >
+            <Text bold={true} style={styles.heading}>
+                {heading}
+            </Text>
+        </View>
+        {subheading && (
+            <View style={StyleSheet.flatten([styles.subheadingWrapper, styles.paddingBottom])}>
+                <Text style={styles.subheading}>{subheading}</Text>
             </View>
-        );
-    }
-}
+        )}
+    </View>
+);
 
 export default GenericHeading;

@@ -50,7 +50,7 @@ class MenuContainer extends PureComponent<Props> {
                         source: assets[LINKS.MEMBER]
                     },
                     {
-                        condition: features.showLeaderboard,
+                        condition: true,
                         label: "leaderboard",
                         onPress: this.handlePressLink(LINKS.LEADERBOARD),
                         source: assets[LINKS.LEADERBOARD]
@@ -102,6 +102,13 @@ class MenuContainer extends PureComponent<Props> {
             case LINKS.DEBUG:
                 return null;
             case LINKS.LEADERBOARD:
+                this.handleClose();
+                Navigation.push(currentRoute, {
+                    component: {
+                        id: ROUTES.leaderboards,
+                        name: ROUTES.leaderboards
+                    }
+                });
                 return null;
             case LINKS.LOGOUT:
                 handleLogOut();
