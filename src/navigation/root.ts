@@ -172,8 +172,8 @@ export const setUnauthenticatedRoot = async () =>
                 children: [
                     {
                         component: {
-                            id: ROUTES.welcome,
-                            name: ROUTES.welcome
+                            id: ROUTES.login,
+                            name: ROUTES.login
                         }
                     }
                 ]

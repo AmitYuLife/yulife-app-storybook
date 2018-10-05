@@ -4,7 +4,7 @@ import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {
     CHALLENGE_END_SUCCESS,
-    CHALLENGE_RESET,
+    CHALLENGE_RESET_SUCCESS,
     CHALLENGE_START_SUCCESS,
     CHALLENGE_TIME_UP,
     CHALLENGE_UPDATE_SUCCESS
@@ -60,7 +60,7 @@ const userReducer = (state: ILevelsStore = initialState, action: SyncAction): IL
         case CHALLENGE_TIME_UP:
             return challengeTimeUp(state);
 
-        case CHALLENGE_RESET:
+        case CHALLENGE_RESET_SUCCESS:
             return challengeReset(state);
 
         default:
@@ -86,7 +86,7 @@ const getUserSuccess = (
         unit: pathOr<string>(activeChallenge, "levelSlot.unit", initialState.active.unit)
     },
     level: coinLedger.currentLevel,
-    nextLevelAvailableAt: coinLedger.nextLevelAvailableAt
+    nextLevelAvailableAt: coinLedger.nextLevelAvailableAt || ""
 });
 
 const loginUserSuccess = (state: ILevelsStore, { loginUser }: LoginUser): ILevelsStore => ({
@@ -101,7 +101,7 @@ const loginUserSuccess = (state: ILevelsStore, { loginUser }: LoginUser): ILevel
 
 const challengeStartSuccess = (
     state: ILevelsStore,
-    { createActiveChallenge: { challenge, levelSlot, nextLevelAvailableAt, chest } }: CreateActiveChallenge
+    { createActiveChallenge: { challenge, levelSlot, chest } }: CreateActiveChallenge
 ): ILevelsStore => ({
     ...state,
     active: {
@@ -116,8 +116,7 @@ const challengeStartSuccess = (
         startDateTime: challenge.startDateTime,
         subtype: levelSlot.subtype,
         unit: levelSlot.unit
-    },
-    nextLevelAvailableAt
+    }
 });
 
 const challengeUpdateSuccess = (

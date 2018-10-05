@@ -2,7 +2,6 @@ import * as React from "react";
 import { PureComponent } from "react";
 import { NativeSyntheticEvent, WebViewMessageEventData } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { ROUTES } from "../../../navigation/routes";
 import { SignUpScreen } from "../../screens";
 
 // TODO find where these props actually come from in RNN types
@@ -65,12 +64,7 @@ class SignUpContainer extends PureComponent<IProps, IState> {
 
     private onMessage = (event: NativeSyntheticEvent<WebViewMessageEventData>) => {
         if (event.nativeEvent.data === "signedup") {
-            Navigation.setStackRoot(this.props.componentId, {
-                component: {
-                    id: ROUTES.login,
-                    name: ROUTES.login
-                }
-            });
+            Navigation.popToRoot(this.props.componentId);
         }
     }
 }

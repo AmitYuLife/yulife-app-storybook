@@ -4,6 +4,7 @@ import { Platform } from "react-native";
 import LoginScreen, { IProps } from "../login.screen";
 
 const defaultProps = {
+    disabled: false,
     email: "",
     emailError: "",
     isLoggingIn: false,

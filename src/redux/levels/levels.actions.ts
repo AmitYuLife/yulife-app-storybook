@@ -13,6 +13,7 @@ export const CHALLENGE_TIME_UP = "CHALLENGE_TIME_UP";
 export const CHALLENGE_END = "CHALLENGE_END";
 export const CHALLENGE_END_SUCCESS = "CHALLENGE_END_SUCCESS";
 export const CHALLENGE_RESET = "CHALLENGE_RESET";
+export const CHALLENGE_RESET_SUCCESS = "CHALLENGE_RESET_SUCCESS";
 
 export type ChallengeStartActionResult = SyncAction<CreateActiveChallengeVariables>;
 export type ChallengeStartAction = (payload: CreateActiveChallengeVariables) => ChallengeStartActionResult;
@@ -60,4 +61,9 @@ export const challengeEndSuccessAction: ChallengeEndSuccessAction = (payload) =>
 export type ChallengeResetAction = () => SyncAction;
 export const challengeResetAction: ChallengeResetAction = () => ({
     type: CHALLENGE_RESET
+});
+
+export type ChallengeResetSuccessAction = () => SyncAction;
+export const challengeResetSuccessAction: ChallengeResetSuccessAction = () => ({
+    type: CHALLENGE_RESET_SUCCESS
 });

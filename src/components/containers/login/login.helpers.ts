@@ -12,5 +12,9 @@ export const validatePassword = (password: string): string => {
         return "Please enter a password";
     }
 
+    // if (password.length < 6) {
+    //     return "Please enter a password";
+    // }
+
     return "";
 };

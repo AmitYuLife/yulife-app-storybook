@@ -1,6 +1,7 @@
 export default {
-    heading: "log in",
+    heading: "welcome!",
     isLoggingIn: "logging in ...",
     logInCta: "log in",
-    signUpCta: "sign up"
+    signUpCta: "sign up",
+    subheading: "Let's begin the journey of making you the best of yu!"
 };

@@ -55,6 +55,7 @@ export class LoginContainer extends Component<Props, IState> {
                         {(loginUser, { error, loading }) => {
                             return (
                                 <LoginScreen
+                                    disabled={!this.isFormValid()}
                                     email={email}
                                     emailError={emailError}
                                     isLoggingIn={loading}
@@ -112,7 +113,7 @@ export class LoginContainer extends Component<Props, IState> {
             try {
                 const results = await loginUser({
                     variables: {
-                        email,
+                        email: email.toLowerCase(),
                         method: LoginMethod.PASSWORD,
                         password,
                         tokenExpiration: TOKEN_EXPIRATION

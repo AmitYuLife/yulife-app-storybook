@@ -8,6 +8,7 @@ import {
     View
 } from "react-native";
 import {
+    Blurb,
     Button,
     CentredScreen,
     Heading,
@@ -20,6 +21,7 @@ import data from "./login.screen.data";
 import styles from "./login.screen.styles";
 
 export interface IProps {
+    disabled: boolean;
     email: string;
     emailError: string;
     isLoggingIn: boolean;
@@ -68,6 +70,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
 
     public render() {
         const {
+            disabled,
             email,
             emailError,
             isLoggingIn,
@@ -94,6 +97,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
                                 label={data.heading}
                                 size={Heading.Sizes.LARGE}
                             />
+                            <Blurb label={data.subheading} />
                         </View>
                     )}
                     <Pad height={44} />
@@ -117,7 +121,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
                     )}
                     <Pad height={44} />
                     <Button
-                        disabled={isLoggingIn}
+                        disabled={isLoggingIn || disabled}
                         label={isLoggingIn ? data.isLoggingIn : data.logInCta}
                         onPress={onLogInPress}
                         type={Button.Types.PRIMARY}

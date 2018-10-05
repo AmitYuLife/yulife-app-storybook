@@ -57,7 +57,7 @@ ShallowWrapper {
             }
           }
         >
-          You can try again tomorrow.
+          Try again.
         </YuText>,
         <Button
           label="got it"
@@ -120,7 +120,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "You can try again tomorrow.",
+          "children": "Try again.",
           "style": Object {
             "color": "rgb(170,170,170)",
             "fontSize": 30,
@@ -132,7 +132,7 @@ ShallowWrapper {
           },
         },
         "ref": null,
-        "rendered": "You can try again tomorrow.",
+        "rendered": "Try again.",
         "type": [Function],
       },
       Object {
@@ -195,7 +195,7 @@ ShallowWrapper {
               }
             }
           >
-            You can try again tomorrow.
+            Try again.
           </YuText>,
           <Button
             label="got it"
@@ -258,7 +258,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "You can try again tomorrow.",
+            "children": "Try again.",
             "style": Object {
               "color": "rgb(170,170,170)",
               "fontSize": 30,
@@ -270,7 +270,7 @@ ShallowWrapper {
             },
           },
           "ref": null,
-          "rendered": "You can try again tomorrow.",
+          "rendered": "Try again.",
           "type": [Function],
         },
         Object {

@@ -7,7 +7,7 @@ import Logger from "../../services/logging/logger";
 import { getToken } from "../../services/storage";
 import { clearToken } from "../../services/storage/token";
 import { persistor } from "../_core/store";
-import { CHALLENGE_RESET } from "../levels/levels.actions";
+import { CHALLENGE_RESET_SUCCESS } from "../levels/levels.actions";
 import {
     FITKIT_CONSENT_AUTHORISED,
     GET_USER_START,
@@ -73,7 +73,7 @@ export default [
     takeLatest(GET_USER_START, getUserData),
     takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
     takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
-    takeLatest(CHALLENGE_RESET, getUserData),
+    takeLatest(CHALLENGE_RESET_SUCCESS, getUserData),
     takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
     takeLatest(LOGOUT, logOut)
 ];

@@ -41,6 +41,7 @@ storiesOf("Screens", module)
     ))
     .add("2. Login", () => (
         <LoginScreen
+            disabled={false}
             email=""
             emailError=""
             isLoggingIn={false}

@@ -13,8 +13,10 @@ import { startDailySteps, stopDailySteps } from "../daily-steps/daily-steps.acti
 import { GET_USER_SUCCESS } from "../user/user.actions";
 import {
     CHALLENGE_END,
+    CHALLENGE_RESET,
     CHALLENGE_START,
     challengeEndSuccessAction,
+    challengeResetSuccessAction,
     ChallengeStartActionResult,
     challengeStartSuccessAction,
     challengeTimeUpAction,
@@ -128,33 +130,41 @@ function* endChallenge() {
     try {
         const active = yield select(activeLevelSelector);
 
-        const { data } = yield call(updateActiveChallengeWithClient, active.levelSlotId, {});
-        const milestoneLog = pathOr(data, "updateActiveChallenge.challenge.milestoneLog", []);
-
-        if (active.chest.value > 0 && milestoneLog.length > 0) {
-            yield call(() => {
-                Navigation.showModal({
-                    component: {
-                        id: MODALS.chest,
-                        name: MODALS.chest,
-                        passProps: {
-                            ctaLabel: "collect",
-                            heading: `you get ${active.chest.value} yucoin`,
-                            isLocked: false,
-                            onPressCta: () => {
-                                Navigation.dismissModal(MODALS.chest);
-                            }
-                        }
-                    }
-                });
-            });
+        if (active.levelSlotId) {
+            const { data } = yield call(updateActiveChallengeWithClient, active.levelSlotId, {});
+            yield put(challengeEndSuccessAction(data));
+        } else {
+            yield put(challengeResetSuccessAction());
         }
-
-        yield put(challengeEndSuccessAction(data));
     } catch (e) {
         // tslint:disable-next-line
         console.log(e);
     }
+}
+
+export function* resetChallenge() {
+    const active = yield select(activeLevelSelector);
+
+    if (active.chest.value > 0 && active.status === "success") {
+        yield call(() => {
+            Navigation.showModal({
+                component: {
+                    id: MODALS.chest,
+                    name: MODALS.chest,
+                    passProps: {
+                        ctaLabel: "collect",
+                        heading: `you get ${active.chest.value} yucoin`,
+                        isLocked: false,
+                        onPressCta: () => {
+                            Navigation.dismissModal(MODALS.chest);
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    yield put(challengeResetSuccessAction());
 }
 
 export function* continueChallenge() {
@@ -178,5 +188,6 @@ export function* continueChallenge() {
 export default [
     takeLatest(CHALLENGE_START, startChallenge),
     takeLatest(CHALLENGE_END, endChallenge),
+    takeLatest(CHALLENGE_RESET, resetChallenge),
     takeLatest(GET_USER_SUCCESS, continueChallenge)
 ];

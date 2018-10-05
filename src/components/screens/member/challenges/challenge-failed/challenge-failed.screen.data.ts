@@ -1,5 +1,5 @@
 export default {
     cta: "got it",
-    footer: "You can try again tomorrow.",
+    footer: "Try again.",
     heading: "you didn’t make it"
 };
