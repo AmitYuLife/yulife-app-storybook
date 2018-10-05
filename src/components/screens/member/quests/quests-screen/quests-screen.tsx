@@ -134,9 +134,11 @@ class QuestsScreen extends PureComponent<IProps, IState> {
             },
             () => {
                 global.setTimeout(() => {
-                    this.scrollView.scrollTo({
-                        y: this.indices[activeIndex]
-                    });
+                    if (this.scrollView) {
+                        this.scrollView.scrollTo({
+                            y: this.indices[activeIndex]
+                        });
+                    }
                 }, 250);
             }
         );
@@ -159,9 +161,11 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                     this.unityLocker.animateIn();
                     this.animateInDelay = global.setTimeout(() => {
                         this.setState({ isSwipeDisabled: false });
-                        this.scrollView.scrollTo({
-                            y: this.indices[this.state.activeIndex]
-                        });
+                        if (this.scrollView) {
+                            this.scrollView.scrollTo({
+                                y: this.indices[this.state.activeIndex]
+                            });
+                        }
                     }, 150);
                 }
             );
@@ -172,9 +176,11 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                 },
                 () => {
                     this.setState({ isSwipeDisabled: true }, () => {
-                        this.scrollView.scrollTo({
-                            y: this.indices[this.state.activeIndex]
-                        });
+                        if (this.scrollView) {
+                            this.scrollView.scrollTo({
+                                y: this.indices[this.state.activeIndex]
+                            });
+                        }
                     });
                     this.animateOutDelay = global.setTimeout(() => {
                         this.unityLocker.animateOut(() => {
@@ -184,9 +190,11 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                 }
             );
         } else {
-            this.scrollView.scrollTo({
-                y: this.indices[this.state.activeIndex]
-            });
+            if (this.scrollView) {
+                this.scrollView.scrollTo({
+                    y: this.indices[this.state.activeIndex]
+                });
+            }
             this.setState({
                 colour: this.hasDarkNavBar.indexOf(this.state.activeIndex) !== -1 ? COLOURS.DARKER : COLOURS.LIGHT
             });
