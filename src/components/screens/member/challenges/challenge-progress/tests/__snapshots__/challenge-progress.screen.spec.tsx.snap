@@ -7,6 +7,7 @@ ShallowWrapper {
     challengeType="brisk walk"
     endDateTime="2020-12-31T23:59:59"
     labels={Array []}
+    onDismissPress={[MockFunction]}
     onLeftMenuPress={[MockFunction]}
     progressTargets={
       Array [
@@ -93,6 +94,7 @@ ShallowWrapper {
             colour="light"
             hasNotification={false}
             labels={Array []}
+            onDismissPress={[MockFunction]}
           />
         </Component>,
       ],
@@ -190,6 +192,7 @@ ShallowWrapper {
             colour="light"
             hasNotification={false}
             labels={Array []}
+            onDismissPress={[MockFunction]}
           />,
           "style": Object {
             "alignItems": "center",
@@ -208,6 +211,7 @@ ShallowWrapper {
             "colour": "light",
             "hasNotification": false,
             "labels": Array [],
+            "onDismissPress": [MockFunction],
           },
           "ref": null,
           "rendered": null,
@@ -285,6 +289,7 @@ ShallowWrapper {
               colour="light"
               hasNotification={false}
               labels={Array []}
+              onDismissPress={[MockFunction]}
             />
           </Component>,
         ],
@@ -382,6 +387,7 @@ ShallowWrapper {
               colour="light"
               hasNotification={false}
               labels={Array []}
+              onDismissPress={[MockFunction]}
             />,
             "style": Object {
               "alignItems": "center",
@@ -400,6 +406,7 @@ ShallowWrapper {
               "colour": "light",
               "hasNotification": false,
               "labels": Array [],
+              "onDismissPress": [MockFunction],
             },
             "ref": null,
             "rendered": null,

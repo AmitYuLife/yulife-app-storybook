@@ -1,6 +1,6 @@
 import moment from "moment";
-import { PureComponent } from "react";
 import React from "react";
+import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../graphql/_core/schema";
@@ -11,6 +11,8 @@ import { IReduxState } from "../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import {
+    ChallengeCancelAction,
+    challengeCancelAction,
     ChallengeEndAction,
     challengeEndAction,
     ChallengeResetAction,
@@ -36,6 +38,7 @@ interface IConnectedState {
 }
 
 interface IConnectedDispatch {
+    challengeCancelAction: ChallengeCancelAction;
     challengeEndAction: ChallengeEndAction;
     challengeResetAction: ChallengeResetAction;
 }
@@ -94,6 +97,7 @@ class QuestsContainer extends PureComponent<Props> {
                             <ChallengeProgressScreen
                                 {...props}
                                 challengeType={subtype as any}
+                                onDismissPress={this.props.challengeCancelAction}
                                 endDateTime={endDateTime}
                                 userProgress={score}
                                 progressTargets={progressTargets}
@@ -195,6 +199,7 @@ const mapStateToProps = (state: IReduxState) => ({
 });
 
 const mapDispatchToProps = {
+    challengeCancelAction,
     challengeEndAction,
     challengeResetAction
 };

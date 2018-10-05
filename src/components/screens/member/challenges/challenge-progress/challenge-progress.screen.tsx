@@ -15,12 +15,14 @@ interface IProps extends IConnectedScreenProps {
     userProgress: number;
     progressTargets: number[];
     unit: "steps" | "minutes";
+    onDismissPress: () => void;
 }
 
 const ChallengeProgressScreen: SFC<IProps> = ({
     challengeType,
     endDateTime,
     labels,
+    onDismissPress,
     onLeftMenuPress,
     progressTargets,
     unit,
@@ -51,7 +53,7 @@ const ChallengeProgressScreen: SFC<IProps> = ({
             </View>
         )}
         <View style={styles.navBarWrapper}>
-            <NavBar activeIndex={1} hasNotification={false} labels={labels} />
+            <NavBar activeIndex={1} hasNotification={false} onDismissPress={onDismissPress} labels={labels} />
         </View>
     </SafeAreaView>
 );

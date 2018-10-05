@@ -38,38 +38,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Svg
-          height={62}
-          preserveAspectRatio="xMidYMid meet"
-          viewBox="0 0 457 124"
-          width={228}
-        >
-          <Lines
-            colour="light"
-            isExtended={false}
-          />
-          <Giraffe
-            colour="light"
-            isActive={true}
-            isPressed={false}
-          />
-          <Scroll
-            colour="light"
-            isActive={false}
-            isPressed={false}
-          />
-          <Treasure
-            colour="light"
-            isActive={false}
-            isPressed={false}
-          />
-          <Notification
-            colour="light"
-            isActive={false}
-            isPressed={false}
-            isVisible={true}
-          />
-        </Svg>,
         <Component
           style={
             Object {
@@ -186,6 +154,38 @@ ShallowWrapper {
             </Component>
           </TouchableWithoutFeedback>
         </Component>,
+        <Svg
+          height={62}
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 457 124"
+          width={228}
+        >
+          <Lines
+            colour="light"
+            isExtended={false}
+          />
+          <Giraffe
+            colour="light"
+            isActive={true}
+            isPressed={false}
+          />
+          <Scroll
+            colour="light"
+            isActive={false}
+            isPressed={false}
+          />
+          <Treasure
+            colour="light"
+            isActive={false}
+            isPressed={false}
+          />
+          <Notification
+            colour="light"
+            isActive={false}
+            isPressed={false}
+            isVisible={true}
+          />
+        </Svg>,
       ],
       "style": Object {
         "alignItems": "center",
@@ -196,121 +196,6 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <Lines
-              colour="light"
-              isExtended={false}
-            />,
-            Array [
-              <Giraffe
-                colour="light"
-                isActive={true}
-                isPressed={false}
-              />,
-              <Scroll
-                colour="light"
-                isActive={false}
-                isPressed={false}
-              />,
-              <Treasure
-                colour="light"
-                isActive={false}
-                isPressed={false}
-              />,
-            ],
-            <Notification
-              colour="light"
-              isActive={false}
-              isPressed={false}
-              isVisible={true}
-            />,
-          ],
-          "height": 62,
-          "preserveAspectRatio": "xMidYMid meet",
-          "viewBox": "0 0 457 124",
-          "width": 228,
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "isExtended": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "0",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": true,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "1",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": false,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "2",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": false,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "isActive": false,
-              "isPressed": false,
-              "isVisible": true,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
       Object {
         "instance": null,
         "key": undefined,
@@ -783,6 +668,121 @@ ShallowWrapper {
         ],
         "type": [Function],
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Lines
+              colour="light"
+              isExtended={false}
+            />,
+            Array [
+              <Giraffe
+                colour="light"
+                isActive={true}
+                isPressed={false}
+              />,
+              <Scroll
+                colour="light"
+                isActive={false}
+                isPressed={false}
+              />,
+              <Treasure
+                colour="light"
+                isActive={false}
+                isPressed={false}
+              />,
+            ],
+            <Notification
+              colour="light"
+              isActive={false}
+              isPressed={false}
+              isVisible={true}
+            />,
+          ],
+          "height": 62,
+          "preserveAspectRatio": "xMidYMid meet",
+          "viewBox": "0 0 457 124",
+          "width": 228,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isExtended": false,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": true,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isPressed": false,
+              "isVisible": true,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
     ],
     "type": [Function],
   },
@@ -793,38 +793,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Svg
-            height={62}
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 457 124"
-            width={228}
-          >
-            <Lines
-              colour="light"
-              isExtended={false}
-            />
-            <Giraffe
-              colour="light"
-              isActive={true}
-              isPressed={false}
-            />
-            <Scroll
-              colour="light"
-              isActive={false}
-              isPressed={false}
-            />
-            <Treasure
-              colour="light"
-              isActive={false}
-              isPressed={false}
-            />
-            <Notification
-              colour="light"
-              isActive={false}
-              isPressed={false}
-              isVisible={true}
-            />
-          </Svg>,
           <Component
             style={
               Object {
@@ -941,6 +909,38 @@ ShallowWrapper {
               </Component>
             </TouchableWithoutFeedback>
           </Component>,
+          <Svg
+            height={62}
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 457 124"
+            width={228}
+          >
+            <Lines
+              colour="light"
+              isExtended={false}
+            />
+            <Giraffe
+              colour="light"
+              isActive={true}
+              isPressed={false}
+            />
+            <Scroll
+              colour="light"
+              isActive={false}
+              isPressed={false}
+            />
+            <Treasure
+              colour="light"
+              isActive={false}
+              isPressed={false}
+            />
+            <Notification
+              colour="light"
+              isActive={false}
+              isPressed={false}
+              isVisible={true}
+            />
+          </Svg>,
         ],
         "style": Object {
           "alignItems": "center",
@@ -951,121 +951,6 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <Lines
-                colour="light"
-                isExtended={false}
-              />,
-              Array [
-                <Giraffe
-                  colour="light"
-                  isActive={true}
-                  isPressed={false}
-                />,
-                <Scroll
-                  colour="light"
-                  isActive={false}
-                  isPressed={false}
-                />,
-                <Treasure
-                  colour="light"
-                  isActive={false}
-                  isPressed={false}
-                />,
-              ],
-              <Notification
-                colour="light"
-                isActive={false}
-                isPressed={false}
-                isVisible={true}
-              />,
-            ],
-            "height": 62,
-            "preserveAspectRatio": "xMidYMid meet",
-            "viewBox": "0 0 457 124",
-            "width": 228,
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "isExtended": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "0",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": true,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "1",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": false,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "2",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": false,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "isActive": false,
-                "isPressed": false,
-                "isVisible": true,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
         Object {
           "instance": null,
           "key": undefined,
@@ -1533,6 +1418,121 @@ ShallowWrapper {
                 },
                 "type": [Function],
               },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Lines
+                colour="light"
+                isExtended={false}
+              />,
+              Array [
+                <Giraffe
+                  colour="light"
+                  isActive={true}
+                  isPressed={false}
+                />,
+                <Scroll
+                  colour="light"
+                  isActive={false}
+                  isPressed={false}
+                />,
+                <Treasure
+                  colour="light"
+                  isActive={false}
+                  isPressed={false}
+                />,
+              ],
+              <Notification
+                colour="light"
+                isActive={false}
+                isPressed={false}
+                isVisible={true}
+              />,
+            ],
+            "height": 62,
+            "preserveAspectRatio": "xMidYMid meet",
+            "viewBox": "0 0 457 124",
+            "width": 228,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isExtended": false,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": true,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "2",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isPressed": false,
+                "isVisible": true,
+              },
+              "ref": null,
+              "rendered": null,
               "type": [Function],
             },
           ],
@@ -1602,38 +1602,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Svg
-          height={62}
-          preserveAspectRatio="xMidYMid meet"
-          viewBox="0 0 457 124"
-          width={228}
-        >
-          <Lines
-            colour="light"
-            isExtended={true}
-          />
-          <Giraffe
-            colour="light"
-            isActive={true}
-            isPressed={false}
-          />
-          <Scroll
-            colour="light"
-            isActive={false}
-            isPressed={false}
-          />
-          <Treasure
-            colour="light"
-            isActive={false}
-            isPressed={false}
-          />
-          <Notification
-            colour="light"
-            isActive={false}
-            isPressed={false}
-            isVisible={false}
-          />
-        </Svg>,
         <Component
           style={
             Object {
@@ -1750,6 +1718,38 @@ ShallowWrapper {
             </Component>
           </TouchableWithoutFeedback>
         </Component>,
+        <Svg
+          height={62}
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 457 124"
+          width={228}
+        >
+          <Lines
+            colour="light"
+            isExtended={true}
+          />
+          <Giraffe
+            colour="light"
+            isActive={true}
+            isPressed={false}
+          />
+          <Scroll
+            colour="light"
+            isActive={false}
+            isPressed={false}
+          />
+          <Treasure
+            colour="light"
+            isActive={false}
+            isPressed={false}
+          />
+          <Notification
+            colour="light"
+            isActive={false}
+            isPressed={false}
+            isVisible={false}
+          />
+        </Svg>,
       ],
       "style": Object {
         "alignItems": "center",
@@ -1760,121 +1760,6 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <Lines
-              colour="light"
-              isExtended={true}
-            />,
-            Array [
-              <Giraffe
-                colour="light"
-                isActive={true}
-                isPressed={false}
-              />,
-              <Scroll
-                colour="light"
-                isActive={false}
-                isPressed={false}
-              />,
-              <Treasure
-                colour="light"
-                isActive={false}
-                isPressed={false}
-              />,
-            ],
-            <Notification
-              colour="light"
-              isActive={false}
-              isPressed={false}
-              isVisible={false}
-            />,
-          ],
-          "height": 62,
-          "preserveAspectRatio": "xMidYMid meet",
-          "viewBox": "0 0 457 124",
-          "width": 228,
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "isExtended": true,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "0",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": true,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "1",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": false,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "2",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": false,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "isActive": false,
-              "isPressed": false,
-              "isVisible": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
       Object {
         "instance": null,
         "key": undefined,
@@ -2347,6 +2232,121 @@ ShallowWrapper {
         ],
         "type": [Function],
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Lines
+              colour="light"
+              isExtended={true}
+            />,
+            Array [
+              <Giraffe
+                colour="light"
+                isActive={true}
+                isPressed={false}
+              />,
+              <Scroll
+                colour="light"
+                isActive={false}
+                isPressed={false}
+              />,
+              <Treasure
+                colour="light"
+                isActive={false}
+                isPressed={false}
+              />,
+            ],
+            <Notification
+              colour="light"
+              isActive={false}
+              isPressed={false}
+              isVisible={false}
+            />,
+          ],
+          "height": 62,
+          "preserveAspectRatio": "xMidYMid meet",
+          "viewBox": "0 0 457 124",
+          "width": 228,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isExtended": true,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": true,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isPressed": false,
+              "isVisible": false,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
     ],
     "type": [Function],
   },
@@ -2357,38 +2357,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Svg
-            height={62}
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 457 124"
-            width={228}
-          >
-            <Lines
-              colour="light"
-              isExtended={true}
-            />
-            <Giraffe
-              colour="light"
-              isActive={true}
-              isPressed={false}
-            />
-            <Scroll
-              colour="light"
-              isActive={false}
-              isPressed={false}
-            />
-            <Treasure
-              colour="light"
-              isActive={false}
-              isPressed={false}
-            />
-            <Notification
-              colour="light"
-              isActive={false}
-              isPressed={false}
-              isVisible={false}
-            />
-          </Svg>,
           <Component
             style={
               Object {
@@ -2505,6 +2473,38 @@ ShallowWrapper {
               </Component>
             </TouchableWithoutFeedback>
           </Component>,
+          <Svg
+            height={62}
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 457 124"
+            width={228}
+          >
+            <Lines
+              colour="light"
+              isExtended={true}
+            />
+            <Giraffe
+              colour="light"
+              isActive={true}
+              isPressed={false}
+            />
+            <Scroll
+              colour="light"
+              isActive={false}
+              isPressed={false}
+            />
+            <Treasure
+              colour="light"
+              isActive={false}
+              isPressed={false}
+            />
+            <Notification
+              colour="light"
+              isActive={false}
+              isPressed={false}
+              isVisible={false}
+            />
+          </Svg>,
         ],
         "style": Object {
           "alignItems": "center",
@@ -2515,121 +2515,6 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <Lines
-                colour="light"
-                isExtended={true}
-              />,
-              Array [
-                <Giraffe
-                  colour="light"
-                  isActive={true}
-                  isPressed={false}
-                />,
-                <Scroll
-                  colour="light"
-                  isActive={false}
-                  isPressed={false}
-                />,
-                <Treasure
-                  colour="light"
-                  isActive={false}
-                  isPressed={false}
-                />,
-              ],
-              <Notification
-                colour="light"
-                isActive={false}
-                isPressed={false}
-                isVisible={false}
-              />,
-            ],
-            "height": 62,
-            "preserveAspectRatio": "xMidYMid meet",
-            "viewBox": "0 0 457 124",
-            "width": 228,
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "isExtended": true,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "0",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": true,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "1",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": false,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "2",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": false,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "isActive": false,
-                "isPressed": false,
-                "isVisible": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
         Object {
           "instance": null,
           "key": undefined,
@@ -3097,6 +2982,121 @@ ShallowWrapper {
                 },
                 "type": [Function],
               },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Lines
+                colour="light"
+                isExtended={true}
+              />,
+              Array [
+                <Giraffe
+                  colour="light"
+                  isActive={true}
+                  isPressed={false}
+                />,
+                <Scroll
+                  colour="light"
+                  isActive={false}
+                  isPressed={false}
+                />,
+                <Treasure
+                  colour="light"
+                  isActive={false}
+                  isPressed={false}
+                />,
+              ],
+              <Notification
+                colour="light"
+                isActive={false}
+                isPressed={false}
+                isVisible={false}
+              />,
+            ],
+            "height": 62,
+            "preserveAspectRatio": "xMidYMid meet",
+            "viewBox": "0 0 457 124",
+            "width": 228,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isExtended": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": true,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "2",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isPressed": false,
+                "isVisible": false,
+              },
+              "ref": null,
+              "rendered": null,
               "type": [Function],
             },
           ],
@@ -3166,38 +3166,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Svg
-          height={62}
-          preserveAspectRatio="xMidYMid meet"
-          viewBox="0 0 457 124"
-          width={228}
-        >
-          <Lines
-            colour="light"
-            isExtended={false}
-          />
-          <Giraffe
-            colour="light"
-            isActive={false}
-            isPressed={false}
-          />
-          <Scroll
-            colour="light"
-            isActive={true}
-            isPressed={false}
-          />
-          <Treasure
-            colour="light"
-            isActive={false}
-            isPressed={false}
-          />
-          <Notification
-            colour="light"
-            isActive={true}
-            isPressed={false}
-            isVisible={true}
-          />
-        </Svg>,
         <Component
           style={
             Object {
@@ -3314,6 +3282,38 @@ ShallowWrapper {
             </Component>
           </TouchableWithoutFeedback>
         </Component>,
+        <Svg
+          height={62}
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 457 124"
+          width={228}
+        >
+          <Lines
+            colour="light"
+            isExtended={false}
+          />
+          <Giraffe
+            colour="light"
+            isActive={false}
+            isPressed={false}
+          />
+          <Scroll
+            colour="light"
+            isActive={true}
+            isPressed={false}
+          />
+          <Treasure
+            colour="light"
+            isActive={false}
+            isPressed={false}
+          />
+          <Notification
+            colour="light"
+            isActive={true}
+            isPressed={false}
+            isVisible={true}
+          />
+        </Svg>,
       ],
       "style": Object {
         "alignItems": "center",
@@ -3324,121 +3324,6 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <Lines
-              colour="light"
-              isExtended={false}
-            />,
-            Array [
-              <Giraffe
-                colour="light"
-                isActive={false}
-                isPressed={false}
-              />,
-              <Scroll
-                colour="light"
-                isActive={true}
-                isPressed={false}
-              />,
-              <Treasure
-                colour="light"
-                isActive={false}
-                isPressed={false}
-              />,
-            ],
-            <Notification
-              colour="light"
-              isActive={true}
-              isPressed={false}
-              isVisible={true}
-            />,
-          ],
-          "height": 62,
-          "preserveAspectRatio": "xMidYMid meet",
-          "viewBox": "0 0 457 124",
-          "width": 228,
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "isExtended": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "0",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": false,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "1",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": true,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "2",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": false,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "isActive": true,
-              "isPressed": false,
-              "isVisible": true,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
       Object {
         "instance": null,
         "key": undefined,
@@ -3911,6 +3796,121 @@ ShallowWrapper {
         ],
         "type": [Function],
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Lines
+              colour="light"
+              isExtended={false}
+            />,
+            Array [
+              <Giraffe
+                colour="light"
+                isActive={false}
+                isPressed={false}
+              />,
+              <Scroll
+                colour="light"
+                isActive={true}
+                isPressed={false}
+              />,
+              <Treasure
+                colour="light"
+                isActive={false}
+                isPressed={false}
+              />,
+            ],
+            <Notification
+              colour="light"
+              isActive={true}
+              isPressed={false}
+              isVisible={true}
+            />,
+          ],
+          "height": 62,
+          "preserveAspectRatio": "xMidYMid meet",
+          "viewBox": "0 0 457 124",
+          "width": 228,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isExtended": false,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": true,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": true,
+              "isPressed": false,
+              "isVisible": true,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
     ],
     "type": [Function],
   },
@@ -3921,38 +3921,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Svg
-            height={62}
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 457 124"
-            width={228}
-          >
-            <Lines
-              colour="light"
-              isExtended={false}
-            />
-            <Giraffe
-              colour="light"
-              isActive={false}
-              isPressed={false}
-            />
-            <Scroll
-              colour="light"
-              isActive={true}
-              isPressed={false}
-            />
-            <Treasure
-              colour="light"
-              isActive={false}
-              isPressed={false}
-            />
-            <Notification
-              colour="light"
-              isActive={true}
-              isPressed={false}
-              isVisible={true}
-            />
-          </Svg>,
           <Component
             style={
               Object {
@@ -4069,6 +4037,38 @@ ShallowWrapper {
               </Component>
             </TouchableWithoutFeedback>
           </Component>,
+          <Svg
+            height={62}
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 457 124"
+            width={228}
+          >
+            <Lines
+              colour="light"
+              isExtended={false}
+            />
+            <Giraffe
+              colour="light"
+              isActive={false}
+              isPressed={false}
+            />
+            <Scroll
+              colour="light"
+              isActive={true}
+              isPressed={false}
+            />
+            <Treasure
+              colour="light"
+              isActive={false}
+              isPressed={false}
+            />
+            <Notification
+              colour="light"
+              isActive={true}
+              isPressed={false}
+              isVisible={true}
+            />
+          </Svg>,
         ],
         "style": Object {
           "alignItems": "center",
@@ -4079,121 +4079,6 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <Lines
-                colour="light"
-                isExtended={false}
-              />,
-              Array [
-                <Giraffe
-                  colour="light"
-                  isActive={false}
-                  isPressed={false}
-                />,
-                <Scroll
-                  colour="light"
-                  isActive={true}
-                  isPressed={false}
-                />,
-                <Treasure
-                  colour="light"
-                  isActive={false}
-                  isPressed={false}
-                />,
-              ],
-              <Notification
-                colour="light"
-                isActive={true}
-                isPressed={false}
-                isVisible={true}
-              />,
-            ],
-            "height": 62,
-            "preserveAspectRatio": "xMidYMid meet",
-            "viewBox": "0 0 457 124",
-            "width": 228,
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "isExtended": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "0",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": false,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "1",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": true,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "2",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": false,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "isActive": true,
-                "isPressed": false,
-                "isVisible": true,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
         Object {
           "instance": null,
           "key": undefined,
@@ -4661,6 +4546,121 @@ ShallowWrapper {
                 },
                 "type": [Function],
               },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Lines
+                colour="light"
+                isExtended={false}
+              />,
+              Array [
+                <Giraffe
+                  colour="light"
+                  isActive={false}
+                  isPressed={false}
+                />,
+                <Scroll
+                  colour="light"
+                  isActive={true}
+                  isPressed={false}
+                />,
+                <Treasure
+                  colour="light"
+                  isActive={false}
+                  isPressed={false}
+                />,
+              ],
+              <Notification
+                colour="light"
+                isActive={true}
+                isPressed={false}
+                isVisible={true}
+              />,
+            ],
+            "height": 62,
+            "preserveAspectRatio": "xMidYMid meet",
+            "viewBox": "0 0 457 124",
+            "width": 228,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isExtended": false,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": true,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "2",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": true,
+                "isPressed": false,
+                "isVisible": true,
+              },
+              "ref": null,
+              "rendered": null,
               "type": [Function],
             },
           ],
@@ -4730,38 +4730,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Svg
-          height={62}
-          preserveAspectRatio="xMidYMid meet"
-          viewBox="0 0 457 124"
-          width={228}
-        >
-          <Lines
-            colour="light"
-            isExtended={true}
-          />
-          <Giraffe
-            colour="light"
-            isActive={false}
-            isPressed={false}
-          />
-          <Scroll
-            colour="light"
-            isActive={true}
-            isPressed={false}
-          />
-          <Treasure
-            colour="light"
-            isActive={false}
-            isPressed={false}
-          />
-          <Notification
-            colour="light"
-            isActive={true}
-            isPressed={false}
-            isVisible={false}
-          />
-        </Svg>,
         <Component
           style={
             Object {
@@ -4878,6 +4846,38 @@ ShallowWrapper {
             </Component>
           </TouchableWithoutFeedback>
         </Component>,
+        <Svg
+          height={62}
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 457 124"
+          width={228}
+        >
+          <Lines
+            colour="light"
+            isExtended={true}
+          />
+          <Giraffe
+            colour="light"
+            isActive={false}
+            isPressed={false}
+          />
+          <Scroll
+            colour="light"
+            isActive={true}
+            isPressed={false}
+          />
+          <Treasure
+            colour="light"
+            isActive={false}
+            isPressed={false}
+          />
+          <Notification
+            colour="light"
+            isActive={true}
+            isPressed={false}
+            isVisible={false}
+          />
+        </Svg>,
       ],
       "style": Object {
         "alignItems": "center",
@@ -4888,121 +4888,6 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <Lines
-              colour="light"
-              isExtended={true}
-            />,
-            Array [
-              <Giraffe
-                colour="light"
-                isActive={false}
-                isPressed={false}
-              />,
-              <Scroll
-                colour="light"
-                isActive={true}
-                isPressed={false}
-              />,
-              <Treasure
-                colour="light"
-                isActive={false}
-                isPressed={false}
-              />,
-            ],
-            <Notification
-              colour="light"
-              isActive={true}
-              isPressed={false}
-              isVisible={false}
-            />,
-          ],
-          "height": 62,
-          "preserveAspectRatio": "xMidYMid meet",
-          "viewBox": "0 0 457 124",
-          "width": 228,
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "isExtended": true,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "0",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": false,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "1",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": true,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "2",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": false,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "isActive": true,
-              "isPressed": false,
-              "isVisible": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
       Object {
         "instance": null,
         "key": undefined,
@@ -5475,6 +5360,121 @@ ShallowWrapper {
         ],
         "type": [Function],
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Lines
+              colour="light"
+              isExtended={true}
+            />,
+            Array [
+              <Giraffe
+                colour="light"
+                isActive={false}
+                isPressed={false}
+              />,
+              <Scroll
+                colour="light"
+                isActive={true}
+                isPressed={false}
+              />,
+              <Treasure
+                colour="light"
+                isActive={false}
+                isPressed={false}
+              />,
+            ],
+            <Notification
+              colour="light"
+              isActive={true}
+              isPressed={false}
+              isVisible={false}
+            />,
+          ],
+          "height": 62,
+          "preserveAspectRatio": "xMidYMid meet",
+          "viewBox": "0 0 457 124",
+          "width": 228,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isExtended": true,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": true,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": true,
+              "isPressed": false,
+              "isVisible": false,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
     ],
     "type": [Function],
   },
@@ -5485,38 +5485,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Svg
-            height={62}
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 457 124"
-            width={228}
-          >
-            <Lines
-              colour="light"
-              isExtended={true}
-            />
-            <Giraffe
-              colour="light"
-              isActive={false}
-              isPressed={false}
-            />
-            <Scroll
-              colour="light"
-              isActive={true}
-              isPressed={false}
-            />
-            <Treasure
-              colour="light"
-              isActive={false}
-              isPressed={false}
-            />
-            <Notification
-              colour="light"
-              isActive={true}
-              isPressed={false}
-              isVisible={false}
-            />
-          </Svg>,
           <Component
             style={
               Object {
@@ -5633,6 +5601,38 @@ ShallowWrapper {
               </Component>
             </TouchableWithoutFeedback>
           </Component>,
+          <Svg
+            height={62}
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 457 124"
+            width={228}
+          >
+            <Lines
+              colour="light"
+              isExtended={true}
+            />
+            <Giraffe
+              colour="light"
+              isActive={false}
+              isPressed={false}
+            />
+            <Scroll
+              colour="light"
+              isActive={true}
+              isPressed={false}
+            />
+            <Treasure
+              colour="light"
+              isActive={false}
+              isPressed={false}
+            />
+            <Notification
+              colour="light"
+              isActive={true}
+              isPressed={false}
+              isVisible={false}
+            />
+          </Svg>,
         ],
         "style": Object {
           "alignItems": "center",
@@ -5643,121 +5643,6 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <Lines
-                colour="light"
-                isExtended={true}
-              />,
-              Array [
-                <Giraffe
-                  colour="light"
-                  isActive={false}
-                  isPressed={false}
-                />,
-                <Scroll
-                  colour="light"
-                  isActive={true}
-                  isPressed={false}
-                />,
-                <Treasure
-                  colour="light"
-                  isActive={false}
-                  isPressed={false}
-                />,
-              ],
-              <Notification
-                colour="light"
-                isActive={true}
-                isPressed={false}
-                isVisible={false}
-              />,
-            ],
-            "height": 62,
-            "preserveAspectRatio": "xMidYMid meet",
-            "viewBox": "0 0 457 124",
-            "width": 228,
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "isExtended": true,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "0",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": false,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "1",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": true,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "2",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": false,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "isActive": true,
-                "isPressed": false,
-                "isVisible": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
         Object {
           "instance": null,
           "key": undefined,
@@ -6225,6 +6110,121 @@ ShallowWrapper {
                 },
                 "type": [Function],
               },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Lines
+                colour="light"
+                isExtended={true}
+              />,
+              Array [
+                <Giraffe
+                  colour="light"
+                  isActive={false}
+                  isPressed={false}
+                />,
+                <Scroll
+                  colour="light"
+                  isActive={true}
+                  isPressed={false}
+                />,
+                <Treasure
+                  colour="light"
+                  isActive={false}
+                  isPressed={false}
+                />,
+              ],
+              <Notification
+                colour="light"
+                isActive={true}
+                isPressed={false}
+                isVisible={false}
+              />,
+            ],
+            "height": 62,
+            "preserveAspectRatio": "xMidYMid meet",
+            "viewBox": "0 0 457 124",
+            "width": 228,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isExtended": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": true,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "2",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": true,
+                "isPressed": false,
+                "isVisible": false,
+              },
+              "ref": null,
+              "rendered": null,
               "type": [Function],
             },
           ],
@@ -6294,38 +6294,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Svg
-          height={62}
-          preserveAspectRatio="xMidYMid meet"
-          viewBox="0 0 457 124"
-          width={228}
-        >
-          <Lines
-            colour="light"
-            isExtended={false}
-          />
-          <Giraffe
-            colour="light"
-            isActive={false}
-            isPressed={false}
-          />
-          <Scroll
-            colour="light"
-            isActive={false}
-            isPressed={false}
-          />
-          <Treasure
-            colour="light"
-            isActive={true}
-            isPressed={false}
-          />
-          <Notification
-            colour="light"
-            isActive={false}
-            isPressed={false}
-            isVisible={true}
-          />
-        </Svg>,
         <Component
           style={
             Object {
@@ -6442,6 +6410,38 @@ ShallowWrapper {
             </Component>
           </TouchableWithoutFeedback>
         </Component>,
+        <Svg
+          height={62}
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 457 124"
+          width={228}
+        >
+          <Lines
+            colour="light"
+            isExtended={false}
+          />
+          <Giraffe
+            colour="light"
+            isActive={false}
+            isPressed={false}
+          />
+          <Scroll
+            colour="light"
+            isActive={false}
+            isPressed={false}
+          />
+          <Treasure
+            colour="light"
+            isActive={true}
+            isPressed={false}
+          />
+          <Notification
+            colour="light"
+            isActive={false}
+            isPressed={false}
+            isVisible={true}
+          />
+        </Svg>,
       ],
       "style": Object {
         "alignItems": "center",
@@ -6452,121 +6452,6 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <Lines
-              colour="light"
-              isExtended={false}
-            />,
-            Array [
-              <Giraffe
-                colour="light"
-                isActive={false}
-                isPressed={false}
-              />,
-              <Scroll
-                colour="light"
-                isActive={false}
-                isPressed={false}
-              />,
-              <Treasure
-                colour="light"
-                isActive={true}
-                isPressed={false}
-              />,
-            ],
-            <Notification
-              colour="light"
-              isActive={false}
-              isPressed={false}
-              isVisible={true}
-            />,
-          ],
-          "height": 62,
-          "preserveAspectRatio": "xMidYMid meet",
-          "viewBox": "0 0 457 124",
-          "width": 228,
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "isExtended": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "0",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": false,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "1",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": false,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "2",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": true,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "isActive": false,
-              "isPressed": false,
-              "isVisible": true,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
       Object {
         "instance": null,
         "key": undefined,
@@ -7039,6 +6924,121 @@ ShallowWrapper {
         ],
         "type": [Function],
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Lines
+              colour="light"
+              isExtended={false}
+            />,
+            Array [
+              <Giraffe
+                colour="light"
+                isActive={false}
+                isPressed={false}
+              />,
+              <Scroll
+                colour="light"
+                isActive={false}
+                isPressed={false}
+              />,
+              <Treasure
+                colour="light"
+                isActive={true}
+                isPressed={false}
+              />,
+            ],
+            <Notification
+              colour="light"
+              isActive={false}
+              isPressed={false}
+              isVisible={true}
+            />,
+          ],
+          "height": 62,
+          "preserveAspectRatio": "xMidYMid meet",
+          "viewBox": "0 0 457 124",
+          "width": 228,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isExtended": false,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": true,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isPressed": false,
+              "isVisible": true,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
     ],
     "type": [Function],
   },
@@ -7049,38 +7049,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Svg
-            height={62}
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 457 124"
-            width={228}
-          >
-            <Lines
-              colour="light"
-              isExtended={false}
-            />
-            <Giraffe
-              colour="light"
-              isActive={false}
-              isPressed={false}
-            />
-            <Scroll
-              colour="light"
-              isActive={false}
-              isPressed={false}
-            />
-            <Treasure
-              colour="light"
-              isActive={true}
-              isPressed={false}
-            />
-            <Notification
-              colour="light"
-              isActive={false}
-              isPressed={false}
-              isVisible={true}
-            />
-          </Svg>,
           <Component
             style={
               Object {
@@ -7197,6 +7165,38 @@ ShallowWrapper {
               </Component>
             </TouchableWithoutFeedback>
           </Component>,
+          <Svg
+            height={62}
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 457 124"
+            width={228}
+          >
+            <Lines
+              colour="light"
+              isExtended={false}
+            />
+            <Giraffe
+              colour="light"
+              isActive={false}
+              isPressed={false}
+            />
+            <Scroll
+              colour="light"
+              isActive={false}
+              isPressed={false}
+            />
+            <Treasure
+              colour="light"
+              isActive={true}
+              isPressed={false}
+            />
+            <Notification
+              colour="light"
+              isActive={false}
+              isPressed={false}
+              isVisible={true}
+            />
+          </Svg>,
         ],
         "style": Object {
           "alignItems": "center",
@@ -7207,121 +7207,6 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <Lines
-                colour="light"
-                isExtended={false}
-              />,
-              Array [
-                <Giraffe
-                  colour="light"
-                  isActive={false}
-                  isPressed={false}
-                />,
-                <Scroll
-                  colour="light"
-                  isActive={false}
-                  isPressed={false}
-                />,
-                <Treasure
-                  colour="light"
-                  isActive={true}
-                  isPressed={false}
-                />,
-              ],
-              <Notification
-                colour="light"
-                isActive={false}
-                isPressed={false}
-                isVisible={true}
-              />,
-            ],
-            "height": 62,
-            "preserveAspectRatio": "xMidYMid meet",
-            "viewBox": "0 0 457 124",
-            "width": 228,
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "isExtended": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "0",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": false,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "1",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": false,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "2",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": true,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "isActive": false,
-                "isPressed": false,
-                "isVisible": true,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
         Object {
           "instance": null,
           "key": undefined,
@@ -7789,6 +7674,121 @@ ShallowWrapper {
                 },
                 "type": [Function],
               },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Lines
+                colour="light"
+                isExtended={false}
+              />,
+              Array [
+                <Giraffe
+                  colour="light"
+                  isActive={false}
+                  isPressed={false}
+                />,
+                <Scroll
+                  colour="light"
+                  isActive={false}
+                  isPressed={false}
+                />,
+                <Treasure
+                  colour="light"
+                  isActive={true}
+                  isPressed={false}
+                />,
+              ],
+              <Notification
+                colour="light"
+                isActive={false}
+                isPressed={false}
+                isVisible={true}
+              />,
+            ],
+            "height": 62,
+            "preserveAspectRatio": "xMidYMid meet",
+            "viewBox": "0 0 457 124",
+            "width": 228,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isExtended": false,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "2",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": true,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isPressed": false,
+                "isVisible": true,
+              },
+              "ref": null,
+              "rendered": null,
               "type": [Function],
             },
           ],
@@ -7858,38 +7858,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Svg
-          height={62}
-          preserveAspectRatio="xMidYMid meet"
-          viewBox="0 0 457 124"
-          width={228}
-        >
-          <Lines
-            colour="light"
-            isExtended={true}
-          />
-          <Giraffe
-            colour="light"
-            isActive={false}
-            isPressed={false}
-          />
-          <Scroll
-            colour="light"
-            isActive={false}
-            isPressed={false}
-          />
-          <Treasure
-            colour="light"
-            isActive={true}
-            isPressed={false}
-          />
-          <Notification
-            colour="light"
-            isActive={false}
-            isPressed={false}
-            isVisible={false}
-          />
-        </Svg>,
         <Component
           style={
             Object {
@@ -8006,6 +7974,38 @@ ShallowWrapper {
             </Component>
           </TouchableWithoutFeedback>
         </Component>,
+        <Svg
+          height={62}
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 457 124"
+          width={228}
+        >
+          <Lines
+            colour="light"
+            isExtended={true}
+          />
+          <Giraffe
+            colour="light"
+            isActive={false}
+            isPressed={false}
+          />
+          <Scroll
+            colour="light"
+            isActive={false}
+            isPressed={false}
+          />
+          <Treasure
+            colour="light"
+            isActive={true}
+            isPressed={false}
+          />
+          <Notification
+            colour="light"
+            isActive={false}
+            isPressed={false}
+            isVisible={false}
+          />
+        </Svg>,
       ],
       "style": Object {
         "alignItems": "center",
@@ -8016,121 +8016,6 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <Lines
-              colour="light"
-              isExtended={true}
-            />,
-            Array [
-              <Giraffe
-                colour="light"
-                isActive={false}
-                isPressed={false}
-              />,
-              <Scroll
-                colour="light"
-                isActive={false}
-                isPressed={false}
-              />,
-              <Treasure
-                colour="light"
-                isActive={true}
-                isPressed={false}
-              />,
-            ],
-            <Notification
-              colour="light"
-              isActive={false}
-              isPressed={false}
-              isVisible={false}
-            />,
-          ],
-          "height": 62,
-          "preserveAspectRatio": "xMidYMid meet",
-          "viewBox": "0 0 457 124",
-          "width": 228,
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "isExtended": true,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "0",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": false,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "1",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": false,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "2",
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "hasDismiss": undefined,
-              "isActive": true,
-              "isIconHidden": undefined,
-              "isPressed": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "colour": "light",
-              "isActive": false,
-              "isPressed": false,
-              "isVisible": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
       Object {
         "instance": null,
         "key": undefined,
@@ -8603,6 +8488,121 @@ ShallowWrapper {
         ],
         "type": [Function],
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Lines
+              colour="light"
+              isExtended={true}
+            />,
+            Array [
+              <Giraffe
+                colour="light"
+                isActive={false}
+                isPressed={false}
+              />,
+              <Scroll
+                colour="light"
+                isActive={false}
+                isPressed={false}
+              />,
+              <Treasure
+                colour="light"
+                isActive={true}
+                isPressed={false}
+              />,
+            ],
+            <Notification
+              colour="light"
+              isActive={false}
+              isPressed={false}
+              isVisible={false}
+            />,
+          ],
+          "height": 62,
+          "preserveAspectRatio": "xMidYMid meet",
+          "viewBox": "0 0 457 124",
+          "width": 228,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isExtended": true,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": true,
+              "isIconHidden": undefined,
+              "isPressed": false,
+              "onDismissPress": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "colour": "light",
+              "isActive": false,
+              "isPressed": false,
+              "isVisible": false,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
     ],
     "type": [Function],
   },
@@ -8613,38 +8613,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Svg
-            height={62}
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 457 124"
-            width={228}
-          >
-            <Lines
-              colour="light"
-              isExtended={true}
-            />
-            <Giraffe
-              colour="light"
-              isActive={false}
-              isPressed={false}
-            />
-            <Scroll
-              colour="light"
-              isActive={false}
-              isPressed={false}
-            />
-            <Treasure
-              colour="light"
-              isActive={true}
-              isPressed={false}
-            />
-            <Notification
-              colour="light"
-              isActive={false}
-              isPressed={false}
-              isVisible={false}
-            />
-          </Svg>,
           <Component
             style={
               Object {
@@ -8761,6 +8729,38 @@ ShallowWrapper {
               </Component>
             </TouchableWithoutFeedback>
           </Component>,
+          <Svg
+            height={62}
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 457 124"
+            width={228}
+          >
+            <Lines
+              colour="light"
+              isExtended={true}
+            />
+            <Giraffe
+              colour="light"
+              isActive={false}
+              isPressed={false}
+            />
+            <Scroll
+              colour="light"
+              isActive={false}
+              isPressed={false}
+            />
+            <Treasure
+              colour="light"
+              isActive={true}
+              isPressed={false}
+            />
+            <Notification
+              colour="light"
+              isActive={false}
+              isPressed={false}
+              isVisible={false}
+            />
+          </Svg>,
         ],
         "style": Object {
           "alignItems": "center",
@@ -8771,121 +8771,6 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <Lines
-                colour="light"
-                isExtended={true}
-              />,
-              Array [
-                <Giraffe
-                  colour="light"
-                  isActive={false}
-                  isPressed={false}
-                />,
-                <Scroll
-                  colour="light"
-                  isActive={false}
-                  isPressed={false}
-                />,
-                <Treasure
-                  colour="light"
-                  isActive={true}
-                  isPressed={false}
-                />,
-              ],
-              <Notification
-                colour="light"
-                isActive={false}
-                isPressed={false}
-                isVisible={false}
-              />,
-            ],
-            "height": 62,
-            "preserveAspectRatio": "xMidYMid meet",
-            "viewBox": "0 0 457 124",
-            "width": 228,
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "isExtended": true,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "0",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": false,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "1",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": false,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "2",
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "hasDismiss": undefined,
-                "isActive": true,
-                "isIconHidden": undefined,
-                "isPressed": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "colour": "light",
-                "isActive": false,
-                "isPressed": false,
-                "isVisible": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
         Object {
           "instance": null,
           "key": undefined,
@@ -9353,6 +9238,121 @@ ShallowWrapper {
                 },
                 "type": [Function],
               },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Lines
+                colour="light"
+                isExtended={true}
+              />,
+              Array [
+                <Giraffe
+                  colour="light"
+                  isActive={false}
+                  isPressed={false}
+                />,
+                <Scroll
+                  colour="light"
+                  isActive={false}
+                  isPressed={false}
+                />,
+                <Treasure
+                  colour="light"
+                  isActive={true}
+                  isPressed={false}
+                />,
+              ],
+              <Notification
+                colour="light"
+                isActive={false}
+                isPressed={false}
+                isVisible={false}
+              />,
+            ],
+            "height": 62,
+            "preserveAspectRatio": "xMidYMid meet",
+            "viewBox": "0 0 457 124",
+            "width": 228,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isExtended": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "2",
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": true,
+                "isIconHidden": undefined,
+                "isPressed": false,
+                "onDismissPress": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "colour": "light",
+                "isActive": false,
+                "isPressed": false,
+                "isVisible": false,
+              },
+              "ref": null,
+              "rendered": null,
               "type": [Function],
             },
           ],

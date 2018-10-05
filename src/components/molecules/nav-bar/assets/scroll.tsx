@@ -8,10 +8,10 @@ import { IconProps } from "./icon.model";
 
 const Scroll: SFC<IconProps> = ({
     colour = COLOURS.LIGHT,
-    hasDismiss,
     isActive,
     isIconHidden,
-    isPressed
+    isPressed,
+    onDismissPress
 }) => (
     <G>
         {
@@ -62,7 +62,7 @@ const Scroll: SFC<IconProps> = ({
             )
         }
         {
-            !hasDismiss ? (
+            !onDismissPress ? (
                 <Circle
                     fill={getIconFill({
                         colour,
@@ -74,7 +74,7 @@ const Scroll: SFC<IconProps> = ({
                     r="10"
                 />
             ) : (
-                    <G x={52} y={-28}>
+                    <G x={52} y={-28} onPressIn={onDismissPress}>
                         <Path
                             scale={0.75}
                             fill={getIconFill({

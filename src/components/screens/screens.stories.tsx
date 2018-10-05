@@ -185,6 +185,7 @@ storiesOf("Screens", module)
     ))
     .add("8. Challenge Progress", () => (
         <ChallengeProgressScreen
+            onDismissPress={action("on dismiss press")}
             endDateTime={moment().add(1, "hours").format()}
             userProgress={number("userProgress", 1000)}
             onLeftMenuPress={action("on left menu press")}

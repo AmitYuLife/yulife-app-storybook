@@ -8,6 +8,7 @@ const defaultProps = {
     challengeType: "brisk walk" as ChallengeType,
     endDateTime: "2020-12-31T23:59:59",
     labels: [] as ILabel[],
+    onDismissPress: jest.fn(),
     onLeftMenuPress: jest.fn(),
     progressTargets: [2000, 4000, 6000],
     totalCoins: 1234,

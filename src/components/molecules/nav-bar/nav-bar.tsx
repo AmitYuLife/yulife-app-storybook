@@ -1,25 +1,13 @@
 import * as React from "react";
 import { StatelessComponent } from "react";
 import { PureComponent } from "react";
-import {
-    StyleSheet,
-    TouchableWithoutFeedback,
-    View
-} from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import Svg from "react-native-svg";
 import { Text } from "../../atoms";
-import {
-    Giraffe,
-    Lines,
-    Notification,
-    Scroll,
-    Treasure
-} from "./assets";
+import { Giraffe, Lines, Notification, Scroll, Treasure } from "./assets";
 import { IconProps } from "./assets/icon.model";
 import { getTextStyle } from "./nav-bar.helpers";
-import styles, {
-    getLabelAdjustment
-} from "./nav-bar.styles";
+import styles, { getLabelAdjustment } from "./nav-bar.styles";
 
 export interface ILabel {
     name: string;
@@ -39,11 +27,10 @@ export type IColours = "dark" | "darker" | "light" | "pink";
 interface IProps {
     activeIndex: number;
     hasNotification?: boolean;
-    hasDismiss?: boolean;
     labels?: ILabel[];
     colour?: IColours;
     areIconsHidden?: boolean;
-    onCancelPress?: () => void;
+    onDismissPress?: () => void;
 }
 
 interface IState {
@@ -51,7 +38,6 @@ interface IState {
 }
 
 class NavBar extends PureComponent<IProps, IState> {
-
     public static Colours = COLOURS;
 
     public static defaultProps = {
@@ -80,10 +66,10 @@ class NavBar extends PureComponent<IProps, IState> {
         const {
             colour = COLOURS.LIGHT,
             areIconsHidden,
-            hasDismiss,
             activeIndex,
             hasNotification,
-            labels
+            labels,
+            onDismissPress
         } = this.props;
         const { pressed } = this.state;
         const icons: Array<StatelessComponent<IconProps>> = [Giraffe, Scroll, Treasure];
@@ -92,27 +78,46 @@ class NavBar extends PureComponent<IProps, IState> {
             <View
                 style={{
                     alignItems: "center",
-                    height: (85 * (!areIconsHidden ? 1 : 0.55)),
+                    height: 85 * (!areIconsHidden ? 1 : 0.55),
                     justifyContent: "flex-start",
                     width: 280
                 }}
             >
-                <Svg
-                    width={228}
-                    height={62}
-                    viewBox="0 0 457 124"
-                >
-                    <Lines
-                        colour={colour}
-                        isExtended={!hasDismiss && !hasNotification}
-                    />
+                <View style={styles.labelsWrapper}>
+                    {labels.map(({ name, onPress }, index) => (
+                        <TouchableWithoutFeedback
+                            key={index}
+                            onPressIn={this.handlePressIn(index)}
+                            onPressOut={this.handlePressOut(onPress)}
+                        >
+                            <View style={styles.textWrapper}>
+                                <View style={getLabelAdjustment(index)}>
+                                    <Text
+                                        style={StyleSheet.flatten([
+                                            styles.text,
+                                            getTextStyle({
+                                                colour,
+                                                isActive: activeIndex === index,
+                                                isPressed: pressed === index
+                                            })
+                                        ])}
+                                    >
+                                        {name}
+                                    </Text>
+                                </View>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    ))}
+                </View>
+                <Svg width={228} height={62} viewBox="0 0 457 124">
+                    <Lines colour={colour} isExtended={!onDismissPress && !hasNotification} />
                     {icons.map((Icon, index) => (
                         <Icon
                             key={index}
                             isPressed={pressed === index}
                             isActive={activeIndex === index}
                             colour={colour}
-                            hasDismiss={hasDismiss && index === 1}
+                            onDismissPress={onDismissPress}
                             isIconHidden={areIconsHidden}
                         />
                     ))}
@@ -123,35 +128,7 @@ class NavBar extends PureComponent<IProps, IState> {
                         isActive={activeIndex === 1}
                     />
                 </Svg>
-                <View style={styles.labelsWrapper}>
-                    {labels.map(
-                        ({ name, onPress }, index) => (
-                            <TouchableWithoutFeedback
-                                key={index}
-                                onPressIn={this.handlePressIn(index)}
-                                onPressOut={this.handlePressOut(onPress)}
-                            >
-                                <View style={styles.textWrapper}>
-                                    <View style={getLabelAdjustment(index)}>
-                                        <Text
-                                            style={StyleSheet.flatten([
-                                                styles.text,
-                                                getTextStyle({
-                                                    colour,
-                                                    isActive: activeIndex === index,
-                                                    isPressed: pressed === index
-                                                })
-                                            ])}
-                                        >
-                                            {name}
-                                        </Text>
-                                    </View>
-                                </View>
-                            </TouchableWithoutFeedback>
-                        )
-                    )}
-                </View>
-            </View >
+            </View>
         );
     }
 
@@ -160,8 +137,7 @@ class NavBar extends PureComponent<IProps, IState> {
     }
 
     private handlePressOut = (onPress: () => void) => {
-        return () =>
-            this.setState({ pressed: null }, onPress);
+        return () => this.setState({ pressed: null }, onPress);
     }
 }
 
