@@ -56,7 +56,7 @@ class MenuContainer extends PureComponent<Props> {
                         source: assets[LINKS.LEADERBOARD]
                     },
                     {
-                        condition: features.showSettings,
+                        condition: true || features.showSettings,
                         label: "settings",
                         onPress: this.handlePressLink(LINKS.SETTINGS),
                         source: assets[LINKS.SETTINGS]
@@ -88,6 +88,9 @@ class MenuContainer extends PureComponent<Props> {
         switch (link) {
             case LINKS.ACTIVITY:
                 this.handlePush(ROUTES.activityHistory);
+                return null;
+            case LINKS.SETTINGS:
+                this.handlePush(ROUTES.settings);
                 return null;
             case LINKS.CHAT:
                 Intercom.displayConversationsList();

@@ -11,6 +11,7 @@ export { default as SignUpRewardContainer } from "./onboarding/signup-reward/sig
 
 // member containers
 export { default as MenuContainer } from "./member/menu/menu.container";
+export { default as SettingsContainer } from "./member/settings/settings.container";
 export { default as ActivityHistoryContainer } from "./member/activity-history/activity-history.container";
 export { default as LeaderboardsContainer } from "./member/leaderboards/leaderboards.container";
 export { default as MemberZoneContainer } from "./member/member-zone/member-zone.container";

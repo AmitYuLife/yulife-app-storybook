@@ -13,6 +13,7 @@ import {
     ResetPasswordContainer,
     ResetPasswordSuccessContainer,
     RewardsContainer,
+    SettingsContainer,
     SignUpContainer,
     SignUpRewardContainer,
     WegiftRewardConfirmedContainer,
@@ -44,6 +45,7 @@ export const ROUTES = {
 
     // member screens
     menu: "yulife.menu",
+    settings: "yulife.member.Settings",
     memberZone: "yulife.member.Zone",
     dailySteps: "yulife.member.DailySteps",
     quests: "yulife.member.Quests",
@@ -88,6 +90,7 @@ export default [
 
     // member screens
     { name: ROUTES.menu, component: MenuContainer },
+    { name: ROUTES.settings, component: SettingsContainer },
     { name: ROUTES.memberZone, component: MemberZoneContainer },
     { name: ROUTES.dailySteps, component: DailyStepsContainer },
     { name: ROUTES.quests, component: QuestsContainer },
