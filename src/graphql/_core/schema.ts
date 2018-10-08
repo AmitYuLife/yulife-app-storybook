@@ -528,12 +528,18 @@ export interface GetCurrentUser_getCurrentUser_coinLedger {
   nextStreakAvailableAt: string | null;
 }
 
+export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge_incomingData {
+  steps: number | null;
+  meditation: number | null;
+}
+
 export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge {
   levelSlotId: string | null;
   status: string | null;
   endDateTime: string | null;
   startDateTime: string | null;
   rating: number | null;
+  incomingData: GetCurrentUser_getCurrentUser_activeChallenge_challenge_incomingData | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milestones_target {
@@ -566,6 +572,18 @@ export interface GetCurrentUser_getCurrentUser_activeStreak {
   maxStreak: number | null;
 }
 
+export interface GetCurrentUser_getCurrentUser_challengesToday_incomingData {
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_challengesToday {
+  yuCoinAwarded: number | null;
+  rating: number | null;
+  subtype: string | null;
+  incomingData: GetCurrentUser_getCurrentUser_challengesToday_incomingData | null;
+}
+
 export interface GetCurrentUser_getCurrentUser {
   __typename: "User";
   userFeatures: (GetCurrentUser_getCurrentUser_userFeatures | null)[] | null;
@@ -573,6 +591,7 @@ export interface GetCurrentUser_getCurrentUser {
   coinLedger: GetCurrentUser_getCurrentUser_coinLedger | null;
   activeChallenge: GetCurrentUser_getCurrentUser_activeChallenge | null;
   activeStreak: GetCurrentUser_getCurrentUser_activeStreak | null;
+  challengesToday: (GetCurrentUser_getCurrentUser_challengesToday | null)[] | null;
 }
 
 export interface GetCurrentUser {
@@ -615,6 +634,18 @@ export interface LoginUser_loginUser_user_activeStreak {
   maxStreak: number | null;
 }
 
+export interface LoginUser_loginUser_user_challengesToday_incomingData {
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface LoginUser_loginUser_user_challengesToday {
+  yuCoinAwarded: number | null;
+  rating: number | null;
+  subtype: string | null;
+  incomingData: LoginUser_loginUser_user_challengesToday_incomingData | null;
+}
+
 export interface LoginUser_loginUser_user {
   __typename: "User";
   id: string | null;
@@ -624,6 +655,7 @@ export interface LoginUser_loginUser_user {
   redeemedOnboarding: boolean | null;
   coinLedger: LoginUser_loginUser_user_coinLedger | null;
   activeStreak: LoginUser_loginUser_user_activeStreak | null;
+  challengesToday: (LoginUser_loginUser_user_challengesToday | null)[] | null;
 }
 
 export interface LoginUser_loginUser {

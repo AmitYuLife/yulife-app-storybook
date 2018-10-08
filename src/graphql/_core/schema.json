@@ -976,6 +976,18 @@
               "deprecationReason": null
             },
             {
+              "name": "levelSlotTemplateId",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "milestoneId",
               "description": "",
               "args": [],
@@ -1042,6 +1054,18 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "subtype",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -2127,6 +2151,22 @@
                 "kind": "OBJECT",
                 "name": "ActiveStreak",
                 "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "challengesToday",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Challenge",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -11177,9 +11217,9 @@
   "extensions": {
     "tracing": {
       "version": 1,
-      "startTime": "2018-10-05T08:45:31.454Z",
-      "endTime": "2018-10-05T08:45:31.629Z",
-      "duration": 175862606,
+      "startTime": "2018-10-05T21:27:40.136Z",
+      "endTime": "2018-10-05T21:27:40.310Z",
+      "duration": 173730358,
       "execution": {
         "resolvers": []
       }

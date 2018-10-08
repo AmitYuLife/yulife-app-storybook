@@ -15,6 +15,7 @@ export { default as MenuScreen, IMenuLink } from "./member/menu/menu.screen";
 export { default as ActivityHistoryLevels } from "./member/activity-history-levels/activity-history-levels";
 export { default as LeaderboardsScreen } from "./member/leaderboards/leaderboards.screen";
 export { default as DailyStepsScreen } from "./member/daily-steps/daily-steps.screen";
+export { default as TodayYucoinScreen } from "./member/today-yucoin/today-yucoin.screen";
 
 // quests screens
 export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";
@@ -32,5 +33,3 @@ export { default as RewardsListScreen } from "./member/rewards/list/rewards-list
 export { default as WegiftRewardDetailsScreen } from "./member/rewards/details/wegift-details.screen";
 export { default as WegiftRewardConfirmedScreen } from "./member/rewards/confirmed/wegift-confirmed.screen";
 export { default as AviosRewardDetailsScreen } from "./member/rewards/details/avios-details.screen";
-
-export { default as TodayYucoin } from "./member/today-yucoin/today-yucoin";

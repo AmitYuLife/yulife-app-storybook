@@ -4,7 +4,6 @@ import {
     number,
     object,
     select,
-    text,
     withKnobs
 } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
@@ -27,7 +26,7 @@ import {
     ResetPasswordScreen,
     ResetPasswordSuccessScreen,
     SignUpRewardScreen,
-    TodayYucoin,
+    TodayYucoinScreen,
     WelcomeScreen
 } from "./index";
 
@@ -379,13 +378,11 @@ storiesOf("Screens", module)
         <QuestsMovie />
     ))
     .add("14. Today Yucoin", () => (
-        <TodayYucoin
-            showStars={boolean("showStars", false)}
-            steps={number("steps", 0)}
-            activeChallengeEarnings={number("activeChallengeEarnings", 0)}
-            activeChallengeLabel={text("activeChallengeLabel", "brisk walk / 1299 steps")}
-            activeChallengeRating={number("activeChallengeRating", 3)}
-            showCta={boolean("showCta", false)}
+        <TodayYucoinScreen
+            steps={number("steps", 6543)}
+            dailyStepsEarned={number("dailyStepsEarned", 3)}
+            challenges={[]}
+            activeChallenge={null}
             onPressCta={action("pressed cta")}
             onPressClose={action("pressed close")}
         />

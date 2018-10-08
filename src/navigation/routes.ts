@@ -25,7 +25,8 @@ import {
     GenericModal,
     MeditationSetUpModal,
     PushNotificationsModal,
-    StreaksModal
+    StreaksModal,
+    TodayYucoinModal
 } from "../components/modals";
 
 // tslint:disable:object-literal-sort-keys
@@ -68,7 +69,8 @@ export const MODALS = {
     pushNotifications: "yulife.modals.PushNotifications",
     streaks: "yulife.modals.Streaks",
     leaderboards: "yulife.modals.Leaderboards",
-    rewards: "yulife.modals.Rewards"
+    rewards: "yulife.modals.Rewards",
+    todayYucoin: "yulife.modals.todayYucoin"
 };
 // tslint:enable:object-literal-sort-keys
 
@@ -112,5 +114,6 @@ export default [
     { name: MODALS.pushNotifications, component: PushNotificationsModal },
     { name: MODALS.streaks, component: StreaksModal },
     { name: MODALS.leaderboards, component: GenericModal },
-    { name: MODALS.rewards, component: GenericModal }
+    { name: MODALS.rewards, component: GenericModal },
+    { name: MODALS.todayYucoin, component: TodayYucoinModal }
 ];

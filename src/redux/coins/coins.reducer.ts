@@ -1,4 +1,9 @@
-import { GetCurrentUser, LoginUser, UpsertPassiveChallenge } from "../../graphql/_core/schema";
+import {
+    GetCurrentUser,
+    GetCurrentUser_getCurrentUser_challengesToday,
+    LoginUser,
+    UpsertPassiveChallenge
+} from "../../graphql/_core/schema";
 import { pathOr } from "../../services/utils";
 import { SyncAction } from "../_core/types";
 import { UPDATE_DAILY_STEPS_SUCCESS } from "../daily-steps/daily-steps.actions";
@@ -31,25 +36,26 @@ const coinsReducer = (state: ICoinsStore = initialState, action: SyncAction) => 
 
 export default coinsReducer;
 
-// const sumCompletedChallenges = (challenges: Challenge[]): number =>
-//     challenges.reduce((prev, challenge) => prev + challenge.yuCoinAwarded, 0);
+const sumCompletedChallenges = (challenges: GetCurrentUser_getCurrentUser_challengesToday[] = []): number =>
+    challenges.reduce((prev, challenge) => prev + challenge.yuCoinAwarded, 0);
 
 const updateDailyStepsSuccess = (
     state: ICoinsStore,
     { upsertPassiveChallenge }: UpsertPassiveChallenge
 ): ICoinsStore => ({
     ...state,
-    // dailyChallengeEarned: sumCompletedChallenges(challengeAction.completedActiveChallenges),
     dailyStepsEarned: pathOr<number>(upsertPassiveChallenge, "challenge.yuCoinAwarded", initialState.dailyStepsEarned),
     total: pathOr<number>(upsertPassiveChallenge, "totalCoins", initialState.total)
 });
 
 const loginUserSuccess = (state: ICoinsStore, { loginUser }: LoginUser): ICoinsStore => ({
     ...state,
+    dailyChallengeEarned: sumCompletedChallenges(loginUser.user.challengesToday),
     total: pathOr<number>(loginUser, "user.coinLedger.currentBalance", initialState.total)
 });
 
 const getUserSuccess = (state: ICoinsStore, { getCurrentUser }: GetCurrentUser): ICoinsStore => ({
     ...state,
+    dailyChallengeEarned: sumCompletedChallenges(getCurrentUser.challengesToday),
     total: pathOr<number>(getCurrentUser, "coinLedger.currentBalance", initialState.total)
 });

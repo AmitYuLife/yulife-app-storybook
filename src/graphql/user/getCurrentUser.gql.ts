@@ -32,6 +32,11 @@ export const getCurrentUserGql = gql`
                     endDateTime
                     startDateTime
                     rating
+                    subtype
+                    incomingData {
+                        steps
+                        meditation
+                    }
                 }
                 levelSlot {
                     subtype
@@ -52,6 +57,15 @@ export const getCurrentUserGql = gql`
                 type
                 value
                 maxStreak
+            }
+            challengesToday {
+                yuCoinAwarded
+                rating
+                subtype
+                incomingData {
+                    steps
+                    meditation
+                }
             }
         }
     }

@@ -117,7 +117,20 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     private onCoinPress = () => {
-        this.props.dailyStepsCoinClicked();
+        const { features = {}, dailyStepsCoinClicked: clickDailySteps } = this.props;
+        clickDailySteps();
+
+        if (features.showTodayYucoin) {
+            Navigation.showModal({
+                component: {
+                    id: MODALS.todayYucoin,
+                    name: MODALS.todayYucoin,
+                    passProps: {
+                        onCtaPress: this.onCta
+                    }
+                }
+            });
+        }
     }
 
     private onCta = () => {

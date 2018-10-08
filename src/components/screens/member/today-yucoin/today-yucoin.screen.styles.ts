@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     } as ViewStyle,
     activeChallengeWrapper: {
         flexDirection: "row",
-        marginTop: Style.SCALE_UP_AND_DOWN(30)
+        marginTop: Style.SCALE_UP_AND_DOWN(10)
     } as ViewStyle,
     challengesWrapper: {
         backgroundColor: "white",

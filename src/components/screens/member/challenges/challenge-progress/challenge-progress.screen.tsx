@@ -40,7 +40,7 @@ const ChallengeProgressScreen: SFC<IProps> = ({
             coins={totalCoins}
             menuLabel={challengeType}
             onPressLeftIcon={onLeftMenuPress}
-            timer={challengeType === "meditation" ? null : endDateTime}
+            timer={endDateTime}
         />
         <View style={styles.progressBarWrapper}>
             <ProgressBar amount={userProgress} goals={progressTargets} type={unit} />

@@ -38,6 +38,15 @@ export const loginUserGql = gql`
                     value
                     maxStreak
                 }
+                challengesToday {
+                    yuCoinAwarded
+                    rating
+                    subtype
+                    incomingData {
+                        steps
+                        meditation
+                    }
+                }
             }
         }
     }

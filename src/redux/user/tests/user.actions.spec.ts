@@ -30,6 +30,7 @@ const loginSuccessFixture: LoginUser = {
                 value: 250
             },
             businessAccountId: "abcdefghijkl",
+            challengesToday: [],
             coinLedger: {
                 currentBalance: 15,
                 currentLevel: 1,
