@@ -7,7 +7,7 @@ import {
     FitKitConnectContainer,
     LeaderboardsContainer,
     LoginContainer,
-    MemberRootContainer,
+    MemberZoneContainer,
     MenuContainer,
     QuestsContainer,
     ResetPasswordContainer,
@@ -44,7 +44,7 @@ export const ROUTES = {
 
     // member screens
     menu: "yulife.menu",
-    member: "yulife.member",
+    memberZone: "yulife.member.Zone",
     dailySteps: "yulife.member.DailySteps",
     quests: "yulife.member.Quests",
     rewards: "yulife.member.Rewards",
@@ -88,7 +88,7 @@ export default [
 
     // member screens
     { name: ROUTES.menu, component: MenuContainer },
-    { name: ROUTES.member, component: MemberRootContainer },
+    { name: ROUTES.memberZone, component: MemberZoneContainer },
     { name: ROUTES.dailySteps, component: DailyStepsContainer },
     { name: ROUTES.quests, component: QuestsContainer },
     { name: ROUTES.rewards, component: RewardsContainer },

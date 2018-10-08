@@ -16,6 +16,7 @@ export { default as ActivityHistoryLevels } from "./member/activity-history-leve
 export { default as LeaderboardsScreen } from "./member/leaderboards/leaderboards.screen";
 export { default as DailyStepsScreen } from "./member/daily-steps/daily-steps.screen";
 export { default as TodayYucoinScreen } from "./member/today-yucoin/today-yucoin.screen";
+export { default as MemberZoneScreen } from "./member/member-zone/member-zone.screen";
 
 // quests screens
 export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";

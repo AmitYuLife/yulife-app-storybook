@@ -13,8 +13,8 @@ export { default as SignUpRewardContainer } from "./onboarding/signup-reward/sig
 export { default as MenuContainer } from "./member/menu/menu.container";
 export { default as ActivityHistoryContainer } from "./member/activity-history/activity-history.container";
 export { default as LeaderboardsContainer } from "./member/leaderboards/leaderboards.container";
+export { default as MemberZoneContainer } from "./member/member-zone/member-zone.container";
 
-export { default as MemberRootContainer } from "./member/member.container";
 export { default as QuestsContainer } from "./member/quests/quests.container";
 export { default as ChallengesListContainer } from "./member/quests/challenges-list/challenges-list.container";
 export { default as DailyStepsContainer } from "./member/daily-steps/daily-steps.container";

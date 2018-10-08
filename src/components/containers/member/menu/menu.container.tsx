@@ -44,7 +44,7 @@ class MenuContainer extends PureComponent<Props> {
                         source: assets[LINKS.ACTIVITY]
                     },
                     {
-                        condition: features.showMember,
+                        condition: true,
                         label: "member zone",
                         onPress: this.handlePressLink(LINKS.MEMBER),
                         source: assets[LINKS.MEMBER]
@@ -85,16 +85,9 @@ class MenuContainer extends PureComponent<Props> {
     }
 
     private handlePressLink = (link: Link) => (): null => {
-        const { currentRoute, logOut: handleLogOut } = this.props;
         switch (link) {
             case LINKS.ACTIVITY:
-                this.handleClose();
-                Navigation.push(currentRoute, {
-                    component: {
-                        id: ROUTES.activityHistory,
-                        name: ROUTES.activityHistory
-                    }
-                });
+                this.handlePush(ROUTES.activityHistory);
                 return null;
             case LINKS.CHAT:
                 Intercom.displayConversationsList();
@@ -102,24 +95,29 @@ class MenuContainer extends PureComponent<Props> {
             case LINKS.DEBUG:
                 return null;
             case LINKS.LEADERBOARD:
-                this.handleClose();
-                Navigation.push(currentRoute, {
-                    component: {
-                        id: ROUTES.leaderboards,
-                        name: ROUTES.leaderboards
-                    }
-                });
+                this.handlePush(ROUTES.leaderboards);
                 return null;
             case LINKS.LOGOUT:
-                handleLogOut();
+                this.props.logOut();
                 return null;
             case LINKS.MEMBER:
+                this.handlePush(ROUTES.memberZone);
                 return null;
             case LINKS.PLAY:
                 return null;
             default:
                 return null;
         }
+    }
+
+    private handlePush = (route: string) => {
+        this.handleClose();
+        Navigation.push(this.props.currentRoute, {
+            component: {
+                id: route,
+                name: route
+            }
+        });
     }
 
     private handleClose = async () => {

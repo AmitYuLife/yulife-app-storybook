@@ -539,6 +539,7 @@ export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge {
   endDateTime: string | null;
   startDateTime: string | null;
   rating: number | null;
+  subtype: string | null;
   incomingData: GetCurrentUser_getCurrentUser_activeChallenge_challenge_incomingData | null;
 }
 
@@ -596,6 +597,18 @@ export interface GetCurrentUser_getCurrentUser {
 
 export interface GetCurrentUser {
   getCurrentUser: GetCurrentUser_getCurrentUser | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetMagicLink
+// ====================================================
+
+export interface GetMagicLink {
+  getMagicLink: string | null;
 }
 
 
