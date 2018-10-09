@@ -43,28 +43,31 @@ interface IState {
 }
 
 class DailyStepsContainer extends PureComponent<Props, IState> {
+
     public state: IState = {
         dailyStepsLoading: true
     };
 
-    public componentDidMount() {
+    constructor(props: Props) {
+        super(props);
+        Navigation.events().bindComponent(this);
+    }
+
+    public componentDidAppear() {
         this.props.startDailySteps();
     }
 
-    public componentWillUnmount() {
+    public componentDidDisappear() {
         this.props.stopDailySteps();
     }
 
     public componentDidUpdate(prevProps: Props) {
         const { lastUpdated } = this.props;
 
-        if (prevProps.lastUpdated !== this.props.lastUpdated) {
-            const lastUpdatedMoment = moment(lastUpdated);
-            const startOfDay = moment().startOf("day");
-
+        if (prevProps.lastUpdated !== lastUpdated) {
             this.setState({
-                dailyStepsLoading: lastUpdatedMoment.isBefore(startOfDay),
-                lastUpdate: lastUpdatedMoment.format("ddd D MMM, HH:mm")
+                dailyStepsLoading: false,
+                lastUpdate: moment(lastUpdated).format("ddd D MMM, HH:mm")
             });
         } else {
             this.setState({ dailyStepsLoading: false });

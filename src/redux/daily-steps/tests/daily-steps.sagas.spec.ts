@@ -1,7 +1,6 @@
 // tslint:disable:no-any
-import { cancel, fork, select, take } from "redux-saga/effects";
+import { cancel, fork, take } from "redux-saga/effects";
 import { createMockTask } from "redux-saga/utils";
-import { activeLevelSelector } from "../../levels/levels.selectors";
 import {
     START_DAILY_STEPS,
     STOP_DAILY_STEPS
@@ -22,12 +21,6 @@ describe("Daily Steps sagas", () => {
         expect(actual.done).toEqual(false);
 
         actual = testSaga.next();
-        expected = select(activeLevelSelector);
-
-        expect(actual.value).toEqual(expected);
-        expect(actual.done).toEqual(false);
-
-        actual = testSaga.next({ levelSlotId: null,  status: null });
         expected = fork(listenToDailySteps);
 
         expect(actual.value).toEqual(expected);
