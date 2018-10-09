@@ -11,7 +11,12 @@ export default StyleSheet.create({
     } as ImageStyle,
     instruction: {
         color: "rgb(136,136,136)",
-        fontSize: Style.SCALE_UP_AND_DOWN(15),
+        fontSize: Style.SCALE_UP_AND_DOWN(13),
+        lineHeight: Style.SCALE_UP_AND_DOWN(20)
+    } as TextStyle,
+    instructionBold: {
+        color: "rgb(51,51,51)",
+        fontSize: Style.SCALE_UP_AND_DOWN(13),
         lineHeight: Style.SCALE_UP_AND_DOWN(20)
     } as TextStyle,
     instructionWrapper: {

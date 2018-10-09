@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SFC } from "react";
-import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Image, Platform, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { NavBar, TopBar } from "../../../../molecules";
 import { getBackgroundImage, getBackgroundImageHeight } from "./challenge-progress.screen.helpers";
@@ -15,14 +15,18 @@ interface IProps extends IConnectedScreenProps {
     userProgress: number;
     progressTargets: number[];
     unit: "steps" | "minutes";
+    onCalmPress?: () => void;
     onDismissPress: () => void;
+    onHeadspacePress?: () => void;
 }
 
 const ChallengeProgressScreen: SFC<IProps> = ({
     challengeType,
     endDateTime,
     labels,
+    onCalmPress,
     onDismissPress,
+    onHeadspacePress,
     onLeftMenuPress,
     progressTargets,
     unit,
@@ -36,19 +40,28 @@ const ChallengeProgressScreen: SFC<IProps> = ({
             source={getBackgroundImage(challengeType)}
             style={StyleSheet.flatten([styles.backgroundImage, { height: getBackgroundImageHeight(challengeType) }])}
         />
-        <TopBar
-            coins={totalCoins}
-            menuLabel={challengeType}
-            onPressLeftIcon={onLeftMenuPress}
-            timer={endDateTime}
-        />
+        <TopBar coins={totalCoins} menuLabel={challengeType} onPressLeftIcon={onLeftMenuPress} timer={endDateTime} />
         <View style={styles.progressBarWrapper}>
             <ProgressBar amount={userProgress} goals={progressTargets} type={unit} />
         </View>
         {challengeType !== "meditation" ? null : (
             <View style={styles.instructionWrapper}>
+                <View style={{ flexDirection: "row" }}>
+                    <Text style={styles.instruction}>Complete a meditation session with</Text>
+                    <TouchableOpacity onPress={onCalmPress} style={{ paddingLeft: 4 }}>
+                        <Text style={styles.instructionBold}>Calm</Text>
+                    </TouchableOpacity>
+                    <Text style={styles.instruction}>,</Text>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                    <TouchableOpacity onPress={onHeadspacePress} style={{ paddingRight: 4 }}>
+                        <Text style={styles.instructionBold}>Headspace</Text>
+                    </TouchableOpacity>
+                    <Text style={styles.instruction}>or any other meditation app</Text>
+                </View>
                 <Text style={styles.instruction}>
-                    Complete a meditation session with Calm before midnight. Results will be shown here.
+                    that integrates with {Platform.OS === "ios" ? "apple health" : "google fit"}, within the next
+                    hour. Results will be shown here.
                 </Text>
             </View>
         )}

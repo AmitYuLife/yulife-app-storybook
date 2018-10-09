@@ -1,6 +1,6 @@
 import moment from "moment";
-import React from "react";
 import { PureComponent } from "react";
+import React from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../graphql/_core/schema";
@@ -24,6 +24,7 @@ import {
     IActiveLevel,
     nextLevelAvailableAtSelector
 } from "../../../../redux/levels/levels.selectors";
+import { openCalm, openHeadspace } from "../../../../services/app-link";
 import Loading from "../../../atoms/loading/loading";
 import { ChallengeCompleteModal } from "../../../modals";
 import { ChallengeProgressScreen, ChallengeSuccessScreen, QuestsScreen, QuestsScreenOffline } from "../../../screens";
@@ -97,7 +98,9 @@ class QuestsContainer extends PureComponent<Props> {
                             <ChallengeProgressScreen
                                 {...props}
                                 challengeType={subtype as any}
+                                onCalmPress={openCalm}
                                 onDismissPress={this.props.challengeCancelAction}
+                                onHeadspacePress={openHeadspace}
                                 endDateTime={endDateTime}
                                 userProgress={score}
                                 progressTargets={progressTargets}
