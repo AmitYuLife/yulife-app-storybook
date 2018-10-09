@@ -17,7 +17,8 @@ Navigation.events().registerAppLaunchedListener(async () => {
             visible: false
         },
         layout: {
-            backgroundColor: "white"
+            backgroundColor: "white",
+            orientation: ["portrait"]
         },
         topBar: {
             drawBehind: true,
