@@ -587,6 +587,7 @@ export interface GetCurrentUser_getCurrentUser_challengesToday {
 
 export interface GetCurrentUser_getCurrentUser {
   __typename: "User";
+  id: string | null;
   userFeatures: (GetCurrentUser_getCurrentUser_userFeatures | null)[] | null;
   mobileConsent: GetCurrentUser_getCurrentUser_mobileConsent | null;
   coinLedger: GetCurrentUser_getCurrentUser_coinLedger | null;
@@ -596,7 +597,12 @@ export interface GetCurrentUser_getCurrentUser {
 }
 
 export interface GetCurrentUser {
+  getIntercomHash: string | null;
   getCurrentUser: GetCurrentUser_getCurrentUser | null;
+}
+
+export interface GetCurrentUserVariables {
+  intercomHashMethod: IntercomHashMethod;
 }
 
 
@@ -675,6 +681,7 @@ export interface LoginUser_loginUser {
   token: string | null;
   expiresAt: number | null;
   message: string | null;
+  intercomHash: string | null;
   user: LoginUser_loginUser_user | null;
 }
 
@@ -687,6 +694,7 @@ export interface LoginUserVariables {
   password: string;
   method?: LoginMethod | null;
   tokenExpiration?: number | null;
+  intercomHashMethod?: IntercomHashMethod | null;
 }
 
 
@@ -872,6 +880,12 @@ export interface UserStatus {
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+export enum IntercomHashMethod {
+  android = "android",
+  ios = "ios",
+  web = "web",
+}
 
 export enum LoginMethod {
   FACEBOOK = "FACEBOOK",

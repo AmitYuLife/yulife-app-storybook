@@ -13,6 +13,10 @@ class LoggerInstance {
         this.bugsnag = bugsnag();
     }
 
+    public setIntercomHash = async (hash: string) => {
+        return Intercom.setUserHash(hash);
+    }
+
     public setUserId = (userId: string) => {
         Intercom.registerIdentifiedUser({ userId });
         Mixpanel.identify(userId);

@@ -61,3 +61,5 @@ buck-out/
 
 # test coverage
 coverage/
+android/*.jks
+android/app/release
