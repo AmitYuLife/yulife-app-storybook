@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { Platform } from "react-native";
 import { FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { LoginMethod, LoginUser } from "../../../graphql/_core/schema";
+import { IntercomHashMethod, LoginMethod, LoginUser } from "../../../graphql/_core/schema";
 import LoginUserMutation, { loginUserGql, LoginUserMutationFunction } from "../../../graphql/user/loginUser.gql";
 import { setAuthenticatedRoot } from "../../../navigation/root";
 import { ROUTES } from "../../../navigation/routes";
@@ -114,6 +115,7 @@ export class LoginContainer extends Component<Props, IState> {
                 const results = await loginUser({
                     variables: {
                         email: email.toLowerCase(),
+                        intercomHashMethod: Platform.OS as IntercomHashMethod,
                         method: LoginMethod.PASSWORD,
                         password,
                         tokenExpiration: TOKEN_EXPIRATION

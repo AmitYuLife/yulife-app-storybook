@@ -19,6 +19,7 @@ const updateUserConsentFixture: MobileConsentInput = {
 const loginSuccessFixture: LoginUser = {
     loginUser: {
         expiresAt: 987654321,
+        intercomHash: null,
         message: "in a bottle",
         token: "abcdefg1234567",
         user: {

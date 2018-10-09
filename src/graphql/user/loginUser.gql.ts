@@ -4,11 +4,24 @@ import { Mutation, MutationFn, MutationResult } from "react-apollo";
 import { LoginUser, LoginUserVariables } from "../_core/schema";
 
 export const loginUserGql = gql`
-    mutation LoginUser($email: String!, $password: String!, $method: LoginMethod, $tokenExpiration: Int) {
-        loginUser(email: $email, password: $password, method: $method, tokenExpiration: $tokenExpiration) {
+    mutation LoginUser(
+        $email: String!,
+        $password: String!,
+        $method: LoginMethod,
+        $tokenExpiration: Int,
+        $intercomHashMethod: IntercomHashMethod
+    ) {
+        loginUser(
+            email: $email,
+            password: $password,
+            method: $method,
+            tokenExpiration: $tokenExpiration,
+            intercomHashMethod: $intercomHashMethod
+        ) {
             token
             expiresAt
             message
+            intercomHash
             user {
                 __typename
                 id
@@ -55,4 +68,4 @@ export const loginUserGql = gql`
 export type LoginUserResultType = MutationResult<LoginUser>;
 export type LoginUserMutationFunction = MutationFn<LoginUser, LoginUserVariables>;
 
-export default class LoginUserMutation extends Mutation<LoginUser, LoginUserVariables> {}
+export default class LoginUserMutation extends Mutation<LoginUser, LoginUserVariables> { }

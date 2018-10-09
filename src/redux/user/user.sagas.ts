@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call, put, spawn, takeLatest } from "redux-saga/effects";
 import client from "../../graphql/_core/client";
 import updateMemberConsentGql from "../../graphql/member/updateMemberConsent.gql";
 import getCurrentUserWithClient from "../../graphql/user/getCurrentUser.gql";
@@ -41,9 +41,8 @@ function* fitKitConsentAuthorisedSaga() {
 }
 
 function* loginUserSuccessSaga({ payload }: LoginUserSuccessAction) {
-    const { user } = payload.loginUser;
-
-    yield call(Logger.setUserId, user.id);
+    const { user, intercomHash } = payload.loginUser;
+    yield call(setLoggerIdentity, user.id, intercomHash);
 }
 
 function* getUserData() {
@@ -52,13 +51,20 @@ function* getUserData() {
 
         if (token) {
             const { data } = yield call(getCurrentUserWithClient);
-
+            yield spawn(setLoggerIdentity, data.getCurrentUser.id, data.getIntercomHash);
             yield put(getUserSuccess(data));
         }
     } catch (e) {
         // tslint:disable-next-line
         console.log(e);
     }
+}
+
+function* setLoggerIdentity(userId: string, hash?: string) {
+    if (hash) {
+        yield call(Logger.setIntercomHash, hash);
+    }
+    yield call(Logger.setUserId, userId);
 }
 
 function* logOut() {
