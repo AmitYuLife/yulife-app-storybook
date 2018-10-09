@@ -1,13 +1,15 @@
 import moment from "moment";
 import { Platform } from "react-native";
+import Config from "react-native-config";
 import Intercom from "react-native-intercom";
+import Mixpanel from "react-native-mixpanel";
 import { Navigation } from "react-native-navigation";
 import PushNotification, {
     PushNotification as IPushNotification,
     PushNotificationPermissions
 } from "react-native-push-notification";
 import { delay } from "redux-saga";
-import { call, put, race, select, take, takeEvery, takeLatest } from "redux-saga/effects";
+import { call, put, race, select, spawn, take, takeEvery, takeLatest } from "redux-saga/effects";
 import { MODALS } from "../../navigation/routes";
 import Logger from "../../services/logging/logger";
 import { getToken } from "../../services/storage";
@@ -37,9 +39,8 @@ import { pushNotificationsSelector, PushPermissions, PushPermissionsEnum } from 
 const numericId = (id: string) => id.replace(/\D/g, "").substring(0, 9);
 
 function* registerIntercom({ payload }: AddDeviceTokenActionResult) {
-    if (Platform.OS === "android") {
-        yield call(() => Intercom.sendTokenToIntercom(payload.deviceToken));
-    }
+    yield spawn(() => Intercom.sendTokenToIntercom(payload.deviceToken));
+    yield spawn(() => Mixpanel.addPushDeviceToken(payload.deviceToken));
 }
 
 function* checkPermissions() {
@@ -115,6 +116,10 @@ function* listenForPermissionsChange() {
 function* registerPush() {
     const channel = yield call(createPushNotificationsChannel);
     let result: IPushNotification & { os: string; token: string };
+
+    if (Platform.OS === "android") {
+        yield spawn(() => Mixpanel.initPushHandling(Config.GCM_SENDER_ID));
+    }
 
     while (true) {
         result = yield take(channel);
