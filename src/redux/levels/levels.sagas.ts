@@ -9,6 +9,7 @@ import createActiveChallengeWithClient from "../../graphql/challenges/createActi
 import updateActiveChallengeWithClient from "../../graphql/challenges/updateActiveChallenge.gql";
 import { MODALS } from "../../navigation/routes";
 import { queryMindfulSessions } from "../../services/fitkit/fitkit.service";
+import Logger from "../../services/logging/logger";
 import { startDailySteps, stopDailySteps } from "../daily-steps/daily-steps.actions";
 import { GET_USER_SUCCESS } from "../user/user.actions";
 import {
@@ -91,6 +92,7 @@ export function* startActiveStepsTracking(levelSlotId: string, startDateTime: st
             });
 
             if (results) {
+                yield call(() => Logger.logMixpanelEvent("raw_steps_results_active", results));
                 const { data } = yield call(updateActiveChallengeWithClient, levelSlotId, mapPedometerResults(results));
 
                 if (data.updateActiveChallenge) {
@@ -140,6 +142,26 @@ export function* resetChallenge() {
     yield put(challengeResetSuccessAction());
 }
 
+function* endChallenge() {
+    const active = yield select(activeLevelSelector);
+
+    if (active.levelSlotId) {
+        try {
+            const { data } = yield call(updateActiveChallengeWithClient, active.levelSlotId, {});
+
+            if (data.updateActiveChallenge) {
+                yield put(challengeEndSuccessAction(data));
+            } else {
+                yield put(challengeResetSuccessAction());
+            }
+        } catch (e) {
+            // console.log(e);
+        }
+    } else {
+        yield put(challengeResetSuccessAction());
+    }
+}
+
 function* startChallenge({ isMeditation, levelSlotId, startDateTime, endDateTime }: any) {
     if (!isMeditation) {
         yield put(stopDailySteps());
@@ -152,22 +174,26 @@ function* startChallenge({ isMeditation, levelSlotId, startDateTime, endDateTime
         endDateTime
     );
 
-    const { challengeCancelled } = yield race({
-        challengeCancelled: take(CHALLENGE_CANCEL),
-        challengeEnded: take(CHALLENGE_END)
-    });
+    let inProgress = true;
+    while (inProgress) {
+        const momentMilliseconds = moment(endDateTime).diff(moment(), "milliseconds");
+        const milliseconds = momentMilliseconds >= 1000 ? momentMilliseconds : 1000;
 
-    if (challengeCancelled) {
-        yield call(cancelActiveChallengeWithClient, levelSlotId);
-        yield cancel(challengeTask);
-        yield put(challengeResetSuccessAction());
-    } else {
-        const { data } = yield call(updateActiveChallengeWithClient, levelSlotId, {});
-
-        if (data.updateActiveChallenge) {
-            yield put(challengeEndSuccessAction(data));
+        const { challengeCancelled } = yield race({
+            challengeCancelled: take(CHALLENGE_CANCEL),
+            challengeEnded: delay(milliseconds)
+        });
+        if (challengeCancelled) {
+            try {
+                yield call(cancelActiveChallengeWithClient, levelSlotId);
+                yield cancel(challengeTask);
+                yield put(challengeResetSuccessAction());
+                inProgress = false;
+            } catch (e) {
+                // console.log(e);
+            }
         } else {
-            yield put(challengeResetSuccessAction());
+            inProgress = false;
         }
     }
 }
@@ -216,4 +242,8 @@ export function* startChallenges() {
     }
 }
 
-export default [startChallenges(), takeLatest(CHALLENGE_RESET, resetChallenge)];
+export default [
+    startChallenges(),
+    takeLatest(CHALLENGE_RESET, resetChallenge),
+    takeLatest(CHALLENGE_END, endChallenge)
+];

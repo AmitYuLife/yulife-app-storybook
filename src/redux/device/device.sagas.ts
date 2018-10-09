@@ -19,7 +19,8 @@ import {
     UpdateDailyStepsSuccessAction
 } from "../daily-steps/daily-steps.actions";
 import { dailyStepsNotificationSelector } from "../daily-steps/daily-steps.selectors";
-import { CHALLENGE_START_SUCCESS, ChallengeStartSuccessActionResult } from "../levels/levels.actions";
+import { CHALLENGE_CANCEL, CHALLENGE_START_SUCCESS, ChallengeStartSuccessActionResult } from "../levels/levels.actions";
+import { activeLevelSelector } from "../levels/levels.selectors";
 import { LOGOUT, updateUserConsent } from "../user/user.actions";
 import {
     ADD_DEVICE_TOKEN,
@@ -151,12 +152,13 @@ function* requestPush() {
     }
 }
 
-// function* cancelChallengeNotificationSaga({ payload }: CancelChallengeMutationAction) {
-//         exitChallenge: { challengeDetails },
-//     } = payload;
+function* cancelChallengeNotificationSaga() {
+    const active = yield select(activeLevelSelector);
 
-//     yield call(() => PushNotification.cancelLocalNotifications({ id: numericId(challengeDetails.id) }));
-// }
+    if (active.levelSlotId) {
+        yield call(() => PushNotification.cancelLocalNotifications({ id: numericId(active.levelSlotId) }));
+    }
+}
 
 function* scheduleChallengeNotificationSaga({ payload: { createActiveChallenge } }: ChallengeStartSuccessActionResult) {
     if (!createActiveChallenge.challenge) {
@@ -256,7 +258,7 @@ export default [
     takeLatest("INIT", registerPush),
     takeLatest("INIT", listenForPermissionsChange),
     takeLatest(ADD_DEVICE_TOKEN, registerIntercom),
-    // takeEvery(CANCEL_CHALLENGE_SUCCESS, cancelChallengeNotificationSaga),
+    takeEvery(CHALLENGE_CANCEL, cancelChallengeNotificationSaga),
     takeEvery(CHALLENGE_START_SUCCESS, scheduleChallengeNotificationSaga),
     takeLatest(UPDATE_DAILY_STEPS_SUCCESS, showDailyStepsNotification),
     takeLatest(LOGOUT, unregisterPushNotifications),

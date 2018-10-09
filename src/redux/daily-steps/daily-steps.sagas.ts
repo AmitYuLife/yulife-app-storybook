@@ -3,6 +3,7 @@ import { PedometerResponse } from "react-native-dual-pedometer";
 import { call, cancel, cancelled, fork, put, select, take } from "redux-saga/effects";
 import { ChallengePayload } from "../../graphql/_core/schema";
 import upsertStepsChallenge from "../../graphql/challenges/upsertStepsChallenge.gql";
+import Logger from "../../services/logging/logger";
 import { challengeContinueAction } from "../levels/levels.actions";
 import { activeLevelSelector } from "../levels/levels.selectors";
 import {
@@ -28,6 +29,7 @@ export function* listenToDailySteps() {
     while (true) {
         try {
             const results = yield take(stepsChannel);
+            yield call(() => Logger.logMixpanelEvent("raw_steps_results_passive", results));
             const { data } = yield call(upsertStepsChallenge, [mapPedometerResults(results)]);
 
             yield put(updateDailyStepsSuccess(data));
