@@ -42,7 +42,7 @@ class ActivityHistoryLevels extends PureComponent<IProps> {
                     <View style={styles.dividerLeft} />
                     <View style={styles.dividerRight}>
                         <View style={styles.dividerRightLabelWrapper}>
-                            <Text style={styles.dividerRightLabel} bold={true}>SEP</Text>
+                            <Text style={styles.dividerRightLabel} bold={true}>last 30 days</Text>
                         </View>
                     </View>
                 </View>

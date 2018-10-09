@@ -1,5 +1,6 @@
 import * as React from "react";
 import { PureComponent } from "react";
+import { Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import {
@@ -33,7 +34,11 @@ class TodayYucoinContainer extends PureComponent<Props> {
         const { dailyStepsEarned, steps } = this.props;
 
         return (
-            <GetCurrentUserQuery query={getCurrentUserGql} fetchPolicy="network-only">
+            <GetCurrentUserQuery
+                query={getCurrentUserGql}
+                fetchPolicy="network-only"
+                variables={{ intercomHashMethod: Platform.OS }}
+            >
                 {({ loading, data }) => {
                     if (loading) {
                         return <Loading />;
