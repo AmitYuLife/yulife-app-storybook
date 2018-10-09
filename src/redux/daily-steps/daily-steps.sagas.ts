@@ -1,11 +1,9 @@
 import moment from "moment";
 import { PedometerResponse } from "react-native-dual-pedometer";
-import { call, cancel, cancelled, fork, put, select, take } from "redux-saga/effects";
+import { call, cancel, cancelled, fork, put, take } from "redux-saga/effects";
 import { ChallengePayload } from "../../graphql/_core/schema";
 import upsertStepsChallenge from "../../graphql/challenges/upsertStepsChallenge.gql";
 import Logger from "../../services/logging/logger";
-import { challengeContinueAction } from "../levels/levels.actions";
-import { activeLevelSelector } from "../levels/levels.selectors";
 import {
     START_DAILY_STEPS,
     STOP_DAILY_STEPS,
@@ -21,9 +19,7 @@ const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
 });
 
 export function* listenToDailySteps() {
-    const startOfDay = moment()
-        .startOf("day")
-        .toISOString();
+    const startOfDay = moment().startOf("day").toISOString();
     const stepsChannel = yield call(dailyStepsChannel, startOfDay);
 
     while (true) {
@@ -46,15 +42,9 @@ export function* listenToDailySteps() {
 export function* startDailySteps() {
     while (true) {
         yield take(START_DAILY_STEPS);
-        const active = yield select(activeLevelSelector);
-
-        if (active.levelSlotId && !active.timeUp && !active.status) {
-            yield put(challengeContinueAction());
-        } else {
-            const dailyStepsTask = yield fork(listenToDailySteps);
-            yield take(STOP_DAILY_STEPS);
-            yield cancel(dailyStepsTask);
-        }
+        const dailyStepsTask = yield fork(listenToDailySteps);
+        yield take(STOP_DAILY_STEPS);
+        yield cancel(dailyStepsTask);
     }
 }
 
