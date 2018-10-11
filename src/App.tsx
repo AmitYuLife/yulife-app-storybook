@@ -20,6 +20,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
             backgroundColor: "white",
             orientation: ["portrait"]
         },
+        popGesture: false,
         topBar: {
             drawBehind: true,
             visible: false
