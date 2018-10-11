@@ -138,7 +138,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
         }
     }
 
-    private formatPuchaseItem = (data: GetAllPurchases_getAllPurchases[]) => {
+    private formatPuchaseItem = (data: GetAllPurchases_getAllPurchases[] = []) => {
         return data.map((purchase) => {
             const { id, amount, currency_code, name, status, createdAt, yuCoinsSpent } = purchase;
             const [day, month] = moment(new Date(createdAt).toISOString())
