@@ -31,7 +31,7 @@ type Props = IConnectedState & IConnectedDispatch & IProps;
 
 class LeaderboardsContainer extends PureComponent<Props, IState> {
     public state = {
-        sortBy: "coins"
+        sortBy: "steps"
     };
 
     public render() {

@@ -67,13 +67,14 @@ export default StyleSheet.create({
     } as ViewStyle,
     dividerRightLabel: {
         color: "white",
-        lineHeight: dividerHeight
+        lineHeight: dividerHeight,
+        paddingLeft: Style.SCALE_UP_AND_DOWN(10)
     } as TextStyle,
     dividerRightLabelWrapper: {
-        alignItems: "center",
+        alignItems: "flex-start",
         height: "100%",
         justifyContent: "center",
-        width: headerTwoWidth
+        width: Style.SCALE_UP_AND_DOWN(160)
     } as ViewStyle,
     dividerWrappers: {
         flexDirection: "row",

@@ -24,7 +24,7 @@ interface IProps {
     sortBy: string;
 }
 
-const LeaderboardScreen: SFC<IProps> = ({ onCoinPress, onPressClose, onStepsPress, items, sortBy = "yucoin" }) => (
+const LeaderboardScreen: SFC<IProps> = ({ onCoinPress, onPressClose, onStepsPress, items, sortBy = "steps" }) => (
     <SafeAreaView style={styles.wrapper}>
         <View style={styles.backgroundImageWrapper}>
             <Image resizeMode="cover" style={styles.backgroundImageBase} source={assets.background} />

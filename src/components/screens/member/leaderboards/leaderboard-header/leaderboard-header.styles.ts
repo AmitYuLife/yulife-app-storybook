@@ -43,6 +43,6 @@ export default StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
         justifyContent: "flex-end",
-        width: Style.SCALE_UP_AND_DOWN(50)
+        width: Style.SCALE_UP_AND_DOWN(65)
     } as ViewStyle
 });

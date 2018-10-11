@@ -8,8 +8,8 @@ export default StyleSheet.create({
         textAlign: "center"
     } as TextStyle,
     first: {
-        left: Style.DEVICE_WIDTH / 2 - 50,
-        top: Style.SCALE_UP_AND_DOWN(120)
+        left: Style.DEVICE_WIDTH / 2 - Style.SCALE_UP_AND_DOWN(50),
+        top: Style.SCALE_UP_AND_DOWN(100)
     } as ViewStyle,
     image: {
         height: Style.SCALE_UP_AND_DOWN(55),
@@ -24,11 +24,11 @@ export default StyleSheet.create({
     } as TextStyle,
     second: {
         left: Style.SCALE_UP_AND_DOWN(50),
-        top: Style.SCALE_UP_AND_DOWN(172)
+        top: Style.SCALE_UP_AND_DOWN(152)
     } as ViewStyle,
     third: {
         right: Style.SCALE_UP_AND_DOWN(50),
-        top: Style.SCALE_UP_AND_DOWN(172)
+        top: Style.SCALE_UP_AND_DOWN(152)
     } as ViewStyle,
     wrapper: {
         alignItems: "center",

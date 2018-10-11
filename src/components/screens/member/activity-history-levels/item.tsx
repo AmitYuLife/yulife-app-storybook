@@ -64,7 +64,7 @@ const Items: SFC<ItemProps> = ({ challenges, dayOfMonth, dayOfWeek, level, steps
                                 numberOfLines={1}
                                 style={styles.activityLabel}
                             >
-                                {`${name} / ${score}`}
+                                {name === "challenge completed" ? name : `${name} / ${score}`}
                             </Text>
                         </View>
                     ))}
