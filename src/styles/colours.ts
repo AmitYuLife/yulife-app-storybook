@@ -27,9 +27,9 @@ export default {
     lightRed: "rgb(255,102,102)",
     navBar: {
         dark: {
-            active: "rgba(0,0,0,0.4)",
-            inactive: "rgba(0,0,0,0.2)",
-            pressed: "rgba(0,0,0,0.1)"
+            active: "rgba(64,98,94,1)",
+            inactive: "rgba(71,108,104,0.5)",
+            pressed: "rgba(71,108,104,0.75)"
         },
         darker: {
             active: "rgb(0,0,0)"

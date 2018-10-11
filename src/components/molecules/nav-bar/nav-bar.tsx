@@ -73,13 +73,12 @@ class NavBar extends PureComponent<IProps, IState> {
         } = this.props;
         const { pressed } = this.state;
         const icons: Array<StatelessComponent<IconProps>> = [Giraffe, Scroll, Treasure];
-        const height = 85 * (!areIconsHidden ? 1 : 0.55);
 
         return (
             <View
                 style={{
                     alignItems: "center",
-                    height,
+                    height: 85 * (!areIconsHidden ? 1 : 0.55),
                     justifyContent: "flex-start",
                     width: 280
                 }}
@@ -92,7 +91,7 @@ class NavBar extends PureComponent<IProps, IState> {
                             isPressed={pressed === index}
                             isActive={activeIndex === index}
                             colour={colour}
-                            onDismissPress={onDismissPress}
+                            hasDismiss={!!onDismissPress}
                             isIconHidden={areIconsHidden}
                         />
                     ))}
@@ -103,20 +102,14 @@ class NavBar extends PureComponent<IProps, IState> {
                         isActive={activeIndex === 1}
                     />
                 </Svg>
-                <View
-                    style={StyleSheet.flatten([
-                        styles.labelsWrapper,
-                        {
-                            height: height - 20,
-                            marginTop: 20
-                        }
-                    ])}
-                >
+                <View style={StyleSheet.flatten(styles.labelsWrapper)}>
                     {labels.map(({ name, onPress }, index) => (
                         <TouchableWithoutFeedback
                             key={index}
                             onPressIn={this.handlePressIn(index)}
-                            onPressOut={this.handlePressOut(onPress)}
+                            onPressOut={this.handlePressOut(
+                                activeIndex === 1 && index === 1 ? onDismissPress : onPress
+                            )}
                         >
                             <View style={styles.textWrapper}>
                                 <View style={getLabelAdjustment(index)}>

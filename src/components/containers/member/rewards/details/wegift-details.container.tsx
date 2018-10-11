@@ -119,7 +119,7 @@ class WegiftRewardDetailsContainer extends Component<Props> {
         const [{ value, yuCoin }] = reward.available_denominations;
         Alert.alert(
             "Confirm purchase",
-            `You'll purchase ${reward.name} £${value.toFixed(2)} voucher with ${yuCoin} yu coin.`,
+            `You'll purchase ${reward.name} £${value.toFixed(2)} voucher with ${yuCoin} yucoin.`,
             [
                 { text: "Cancel", style: "cancel" },
                 {

@@ -30,6 +30,6 @@ exports[`getBackgroundImageHeight should return null for an undefined input 2`] 
 
 exports[`getBackgroundImageHeight should return null for an undefined input 3`] = `900`;
 
-exports[`getBackgroundImageHeight should return null for an undefined input 4`] = `900`;
+exports[`getBackgroundImageHeight should return null for an undefined input 4`] = `1100`;
 
 exports[`getBackgroundImageHeight should return null for an undefined input 5`] = `1000`;

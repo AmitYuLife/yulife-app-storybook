@@ -8,6 +8,7 @@ import { Style } from "../../../styles";
 const styles = StyleSheet.create({
     labelsWrapper: {
         flexDirection: "row",
+        height: "100%",
         position: "absolute",
         width: "100%"
     } as ViewStyle,

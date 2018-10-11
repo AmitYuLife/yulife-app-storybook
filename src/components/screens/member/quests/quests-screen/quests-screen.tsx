@@ -130,7 +130,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         this.setState(
             {
                 activeIndex,
-                colour: this.hasDarkNavBar.indexOf(activeIndex) !== -1 ? COLOURS.DARKER : COLOURS.LIGHT
+                colour: this.hasDarkNavBar.indexOf(activeIndex) !== -1 ? COLOURS.DARK : COLOURS.LIGHT
             },
             () => {
                 global.setTimeout(() => {
@@ -196,7 +196,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                 });
             }
             this.setState({
-                colour: this.hasDarkNavBar.indexOf(this.state.activeIndex) !== -1 ? COLOURS.DARKER : COLOURS.LIGHT
+                colour: this.hasDarkNavBar.indexOf(this.state.activeIndex) !== -1 ? COLOURS.DARK : COLOURS.LIGHT
             });
         }
     }

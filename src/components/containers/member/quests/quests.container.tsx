@@ -1,6 +1,6 @@
 import moment from "moment";
-import { PureComponent } from "react";
 import React from "react";
+import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../graphql/_core/schema";
@@ -25,8 +25,9 @@ import {
     nextLevelAvailableAtSelector
 } from "../../../../redux/levels/levels.selectors";
 import { openCalm, openHeadspace } from "../../../../services/app-link";
+import BlurProvider from "../../../atoms/blur/blur-provider";
 import Loading from "../../../atoms/loading/loading";
-import { ChallengeCompleteModal } from "../../../modals";
+import { ChallengeCompleteModal, GenericModal } from "../../../modals";
 import { ChallengeProgressScreen, ChallengeSuccessScreen, QuestsScreen, QuestsScreenOffline } from "../../../screens";
 import ChallengeFailedScreen from "../../../screens/member/challenges/challenge-failed/challenge-failed.screen";
 
@@ -95,16 +96,31 @@ class QuestsContainer extends PureComponent<Props> {
                         const progressTargets = milestones.map((item) => item.target.steps);
 
                         return (
-                            <ChallengeProgressScreen
-                                {...props}
-                                challengeType={subtype as any}
-                                onCalmPress={openCalm}
-                                onDismissPress={this.props.challengeCancelAction}
-                                onHeadspacePress={openHeadspace}
-                                endDateTime={endDateTime}
-                                userProgress={score}
-                                progressTargets={progressTargets}
-                                unit={unit as any}
+                            <BlurProvider
+                                render={({ showOverlay }) => (
+                                    <ChallengeProgressScreen
+                                        {...props}
+                                        challengeType={subtype as any}
+                                        onCalmPress={openCalm}
+                                        onDismissPress={showOverlay}
+                                        onHeadspacePress={openHeadspace}
+                                        endDateTime={endDateTime}
+                                        userProgress={score}
+                                        progressTargets={progressTargets}
+                                        unit={unit as any}
+                                    />
+                                )}
+                                renderOverlay={({ hideOverlay }) => (
+                                    <GenericModal
+                                        onPress={hideOverlay}
+                                        heading="exit challenge?"
+                                        subheading="You won’t be able to come back to it."
+                                        ctaLabel="no way!"
+                                        onPressSecondary={this.props.challengeCancelAction}
+                                        ctaLabelSecondary="exit"
+                                    />
+                                )}
+                                type="dark"
                             />
                         );
                     }

@@ -41,7 +41,7 @@ describe("Scroll", () => {
     it("should render when it has a notification", () => {
         const actual = shallow(
             <Scroll
-                onDismissPress={() => ({})}
+                hasDismiss={true}
             />
         );
 

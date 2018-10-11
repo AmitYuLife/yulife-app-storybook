@@ -9,6 +9,10 @@ const SCALE_UP_AND_DOWN = (val: number) => PixelRatio.roundToNearestPixel(scaled
 
 const pixelRatio = PixelRatio.get();
 
+const isAndroid = () => {
+    return Platform.OS === "android";
+};
+
 const isShortAndroid = () => {
     return Platform.OS === "android" && pixelRatio < 3 && y < 700;
 };
@@ -44,6 +48,7 @@ const Style = {
     PIXEL_RATIO: pixelRatio,
     SCALE_UP_AND_DOWN,
     TOTAL_WIDTH,
+    isAndroid,
     isShortAndWideAndroid,
     isShortAndroid,
     isShortToMediumAndroid,

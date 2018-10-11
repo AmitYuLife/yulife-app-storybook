@@ -1267,7 +1267,7 @@ exports[`Scroll should render when it has a notification 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Scroll
-    onDismissPress={[Function]}
+    hasDismiss={true}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1317,7 +1317,6 @@ ShallowWrapper {
           />
         </React.Fragment>,
         <G
-          onPressIn={[Function]}
           x={52}
           y={-28}
         >
@@ -1460,7 +1459,6 @@ ShallowWrapper {
               scale={0.75}
             />,
           ],
-          "onPressIn": [Function],
           "x": 52,
           "y": -28,
         },
@@ -1539,7 +1537,6 @@ ShallowWrapper {
             />
           </React.Fragment>,
           <G
-            onPressIn={[Function]}
             x={52}
             y={-28}
           >
@@ -1682,7 +1679,6 @@ ShallowWrapper {
                 scale={0.75}
               />,
             ],
-            "onPressIn": [Function],
             "x": 52,
             "y": -28,
           },

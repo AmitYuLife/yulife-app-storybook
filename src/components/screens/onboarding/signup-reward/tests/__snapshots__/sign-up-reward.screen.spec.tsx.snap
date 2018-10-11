@@ -39,7 +39,7 @@ ShallowWrapper {
           height={10}
         />,
         <Blurb
-          label="You can exchange your yu coin for AVIOS points and gift cards from Amazon, Decathlon, Nike and more!"
+          label="You can exchange your yucoin for AVIOS points and gift cards from Amazon, Decathlon, Nike and more!"
           wrapperStyle={
             Object {
               "paddingHorizontal": 88,
@@ -111,7 +111,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "label": "You can exchange your yu coin for AVIOS points and gift cards from Amazon, Decathlon, Nike and more!",
+          "label": "You can exchange your yucoin for AVIOS points and gift cards from Amazon, Decathlon, Nike and more!",
           "wrapperStyle": Object {
             "paddingHorizontal": 88,
           },
@@ -172,7 +172,7 @@ ShallowWrapper {
             height={10}
           />,
           <Blurb
-            label="You can exchange your yu coin for AVIOS points and gift cards from Amazon, Decathlon, Nike and more!"
+            label="You can exchange your yucoin for AVIOS points and gift cards from Amazon, Decathlon, Nike and more!"
             wrapperStyle={
               Object {
                 "paddingHorizontal": 88,
@@ -244,7 +244,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "label": "You can exchange your yu coin for AVIOS points and gift cards from Amazon, Decathlon, Nike and more!",
+            "label": "You can exchange your yucoin for AVIOS points and gift cards from Amazon, Decathlon, Nike and more!",
             "wrapperStyle": Object {
               "paddingHorizontal": 88,
             },

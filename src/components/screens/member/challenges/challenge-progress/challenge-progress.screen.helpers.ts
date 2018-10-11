@@ -21,8 +21,9 @@ export const getBackgroundImageHeight = (challengeType: ChallengeType) => {
     switch (challengeType) {
         case "brisk walk":
         case "short stroll":
-        case "meditation":
             return Style.SCALE_UP_AND_DOWN(450);
+        case "meditation":
+            return Style.SCALE_UP_AND_DOWN(550);
         case "long walk":
             return Style.SCALE_UP_AND_DOWN(500);
         default:

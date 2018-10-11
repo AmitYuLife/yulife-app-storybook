@@ -21,7 +21,7 @@ export default StyleSheet.create({
     } as TextStyle,
     instructionWrapper: {
         marginLeft: Style.SCALE_UP_AND_DOWN(16),
-        marginTop: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() ? -24 : -34),
+        marginTop: Style.SCALE_UP_AND_DOWN(Style.isAndroid() ? -24 : -34),
         width: Style.SCALE_UP_AND_DOWN(280)
     } as ViewStyle,
     navBarWrapper: {

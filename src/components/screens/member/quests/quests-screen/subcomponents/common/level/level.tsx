@@ -112,7 +112,7 @@ class Level extends PureComponent<IProps, IState> {
                             ? nextAvailable < 0
                                 ? "rgb(145,0,76)"
                                 : "rgb(226,1,119)"
-                            : "rgb(131,178,71)"
+                            : "rgb(112,221,205)"
                     }
                     cx={cx}
                     cy={cy}
