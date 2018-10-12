@@ -45,6 +45,39 @@ export const loginUserGql = gql`
                     nextLevelAvailableAt
                     nextStreakAvailableAt
                 }
+                passiveChallenge {
+                    exchange {
+                        yucoin
+                        steps
+                    }
+                }
+                activeChallenge {
+                    challenge {
+                        levelSlotId
+                        status
+                        endDateTime
+                        startDateTime
+                        rating
+                        subtype
+                        incomingData {
+                            steps
+                            meditation
+                        }
+                    }
+                    levelSlot {
+                        subtype
+                        unit
+                        milestones {
+                            id
+                            XP
+                            coins
+                            target {
+                                steps
+                                meditation
+                            }
+                        }
+                    }
+                }
                 activeStreak {
                     id
                     type

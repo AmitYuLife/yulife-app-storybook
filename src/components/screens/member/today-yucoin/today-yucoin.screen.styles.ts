@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         marginTop: Style.SCALE_UP_AND_DOWN(10)
     } as ViewStyle,
     wrapper: {
-        backgroundColor: "rgba(255,255,255,0.5)",
+        backgroundColor: "rgba(255,255,255,0.9)",
         flex: 1
     } as ViewStyle,
     yucoinsEarned: {

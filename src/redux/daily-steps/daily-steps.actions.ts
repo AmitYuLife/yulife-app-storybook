@@ -26,7 +26,3 @@ export const updateDailyStepsFailed = (error: string): UpdateDailyStepsFailedAct
     payload: error,
     type: UPDATE_DAILY_STEPS_FAILED
 });
-
-export const updateDailyStepsNotification = (): SyncAction => ({
-    type: UPDATE_DAILY_STEPS_NOTIFICATION
-});

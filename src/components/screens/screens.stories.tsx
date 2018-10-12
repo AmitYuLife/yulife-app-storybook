@@ -381,6 +381,7 @@ storiesOf("Screens", module)
         <TodayYucoinScreen
             steps={number("steps", 6543)}
             dailyStepsEarned={number("dailyStepsEarned", 3)}
+            exchangeRate={{ steps: 2000, yucoin: 1}}
             challenges={[]}
             activeChallenge={null}
             onPressCta={action("pressed cta")}

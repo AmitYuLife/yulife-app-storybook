@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import { Image, SafeAreaView, View } from "react-native";
 import Svg, { Rect } from "react-native-svg";
 import { GetCurrentUser_getCurrentUser_challengesToday } from "../../../../graphql/_core/schema";
+import { ExchangeRate } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { Button, ChestCoin, Close, GenericHeading, Pad, StarInline, Text } from "../../../atoms";
 import { Glow } from "../daily-steps/assets/yu-coin-subcomponents";
 import styles from "./today-yucoin.screen.styles";
@@ -13,6 +14,7 @@ interface IProps {
     activeChallenge: GetCurrentUser_getCurrentUser_challengesToday;
     challenges: GetCurrentUser_getCurrentUser_challengesToday[];
     dailyStepsEarned: number;
+    exchangeRate: ExchangeRate;
 }
 
 const images = {
@@ -30,7 +32,15 @@ const getLabel = (challenge: GetCurrentUser_getCurrentUser_challengesToday) => {
 
 class TodayYucoinScreen extends PureComponent<IProps> {
     public render() {
-        const { activeChallenge, challenges, steps = 0, onPressCta, onPressClose, dailyStepsEarned } = this.props;
+        const {
+            activeChallenge,
+            challenges,
+            dailyStepsEarned,
+            exchangeRate = { steps: 2000, yucoin: 1 },
+            onPressCta,
+            onPressClose,
+            steps = 0
+        } = this.props;
         const showCta = !challenges.length && !activeChallenge;
 
         return (
@@ -59,7 +69,9 @@ class TodayYucoinScreen extends PureComponent<IProps> {
                             <Text style={styles.yucoinsEarned}>{dailyStepsEarned}</Text>
                         </View>
                         <View style={styles.passiveChallengeInstructionsWrapper}>
-                            <Text style={styles.passiveChallengeInstructions}>1 yucoin for 2000 steps</Text>
+                            <Text style={styles.passiveChallengeInstructions}>
+                                {`${exchangeRate.yucoin} yucoin for ${exchangeRate.steps} steps`}
+                            </Text>
                         </View>
                         <View style={styles.progressWrapper}>
                             <Svg width="305" height="15" style={styles.svg}>

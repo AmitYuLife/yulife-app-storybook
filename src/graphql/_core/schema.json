@@ -2217,6 +2217,18 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
+              "name": "passiveChallenge",
+              "type": {
+                "kind": "OBJECT",
+                "name": "PassiveChallenge",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
               "name": "activeChallenge",
               "type": {
                 "kind": "OBJECT",
@@ -3169,6 +3181,76 @@
           "interfaces": [],
           "kind": "OBJECT",
           "name": "CoinLedger",
+          "possibleTypes": null
+        },
+        {
+          "description": "",
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "exchange",
+              "type": {
+                "kind": "OBJECT",
+                "name": "PassiveStepsExchange",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "levelSlot",
+              "type": {
+                "kind": "OBJECT",
+                "name": "LevelSlot",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "PassiveChallenge",
+          "possibleTypes": null
+        },
+        {
+          "description": "",
+          "enumValues": null,
+          "fields": [
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "yucoin",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "steps",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "kind": "OBJECT",
+          "name": "PassiveStepsExchange",
           "possibleTypes": null
         },
         {

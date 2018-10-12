@@ -28,6 +28,12 @@ export const getCurrentUserGql = gql`
                 nextLevelAvailableAt
                 nextStreakAvailableAt
             }
+            passiveChallenge {
+                exchange {
+                    yucoin
+                    steps
+                }
+            }
             activeChallenge {
                 challenge {
                     levelSlotId

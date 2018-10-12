@@ -24,6 +24,7 @@ const loginSuccessFixture: LoginUser = {
         token: "abcdefg1234567",
         user: {
             __typename: "User",
+            activeChallenge: null,
             activeStreak: {
                 id: "YU_STREAK_test",
                 maxStreak: 4,
@@ -48,6 +49,7 @@ const loginSuccessFixture: LoginUser = {
                 pushNotifications: null,
                 workspaceLeaderboard: null
             },
+            passiveChallenge: null,
             redeemedOnboarding: false,
             userFeatures: []
         }

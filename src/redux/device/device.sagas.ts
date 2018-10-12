@@ -15,12 +15,6 @@ import Logger from "../../services/logging/logger";
 import { getToken } from "../../services/storage";
 import { appStateChannel } from "../app/app.channels";
 import { getRouteState } from "../app/app.selectors";
-import {
-    UPDATE_DAILY_STEPS_SUCCESS,
-    updateDailyStepsNotification,
-    UpdateDailyStepsSuccessAction
-} from "../daily-steps/daily-steps.actions";
-import { dailyStepsNotificationSelector } from "../daily-steps/daily-steps.selectors";
 import { CHALLENGE_CANCEL, CHALLENGE_START_SUCCESS, ChallengeStartSuccessActionResult } from "../levels/levels.actions";
 import { activeLevelSelector } from "../levels/levels.selectors";
 import { LOGOUT, updateUserConsent } from "../user/user.actions";
@@ -194,35 +188,6 @@ function* scheduleChallengeNotificationSaga({ payload: { createActiveChallenge }
     );
 }
 
-function* showDailyStepsNotification({ payload: { upsertPassiveChallenge } }: UpdateDailyStepsSuccessAction) {
-    if (!upsertPassiveChallenge.challenge) {
-        return null;
-    }
-
-    const {
-        challenge: {
-            yuCoinAwarded,
-            incomingData: { steps }
-        }
-    } = upsertPassiveChallenge;
-    const notifiedAt = yield select(dailyStepsNotificationSelector);
-    const notShowedYet = moment().format("YYYY-MM-DD") !== notifiedAt;
-    const enoughData = steps >= 12000;
-
-    if (notShowedYet && enoughData) {
-        yield call(() =>
-            PushNotification.localNotification({
-                group: "Yu Life Steps", // (optional) add group to message
-                message: `Well done! Congratulations, you've earned ${yuCoinAwarded} yucoin today.`,
-                soundName: "default", // (optional) Sound to play when the notification is shown
-                tag: "daily_steps_complete", // (optional) add tag to message
-                vibration: 300 // vibration length in milliseconds, ignored if vibrate=false, default: 1000
-            })
-        );
-        yield put(updateDailyStepsNotification());
-    }
-}
-
 function* sendTestPush() {
     yield call(() =>
         PushNotification.localNotificationSchedule({
@@ -265,7 +230,6 @@ export default [
     takeLatest(ADD_DEVICE_TOKEN, registerIntercom),
     takeEvery(CHALLENGE_CANCEL, cancelChallengeNotificationSaga),
     takeEvery(CHALLENGE_START_SUCCESS, scheduleChallengeNotificationSaga),
-    takeLatest(UPDATE_DAILY_STEPS_SUCCESS, showDailyStepsNotification),
     takeLatest(LOGOUT, unregisterPushNotifications),
     takeLatest(LOGOUT, onLogout),
     takeEvery(REQUIRE_PUSH_ENABLED, requestPush),

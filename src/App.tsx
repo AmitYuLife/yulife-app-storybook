@@ -20,7 +20,12 @@ Navigation.events().registerAppLaunchedListener(async () => {
             backgroundColor: "white",
             orientation: ["portrait"]
         },
+        // modalPresentationStyle: "overCurrentContext",
         popGesture: false,
+        // statusBar: {
+        //     // drawBehind: true,
+        //     visible: true,
+        // },
         topBar: {
             drawBehind: true,
             visible: false

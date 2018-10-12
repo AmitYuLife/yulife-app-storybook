@@ -551,6 +551,15 @@ export interface GetCurrentUser_getCurrentUser_coinLedger {
   nextStreakAvailableAt: string | null;
 }
 
+export interface GetCurrentUser_getCurrentUser_passiveChallenge_exchange {
+  yucoin: number | null;
+  steps: number | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_passiveChallenge {
+  exchange: GetCurrentUser_getCurrentUser_passiveChallenge_exchange | null;
+}
+
 export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge_incomingData {
   steps: number | null;
   meditation: number | null;
@@ -620,6 +629,7 @@ export interface GetCurrentUser_getCurrentUser {
   userFeatures: (GetCurrentUser_getCurrentUser_userFeatures | null)[] | null;
   mobileConsent: GetCurrentUser_getCurrentUser_mobileConsent | null;
   coinLedger: GetCurrentUser_getCurrentUser_coinLedger | null;
+  passiveChallenge: GetCurrentUser_getCurrentUser_passiveChallenge | null;
   activeChallenge: GetCurrentUser_getCurrentUser_activeChallenge | null;
   activeStreak: GetCurrentUser_getCurrentUser_activeStreak | null;
   challengesToday: (GetCurrentUser_getCurrentUser_challengesToday | null)[] | null;
@@ -676,6 +686,53 @@ export interface LoginUser_loginUser_user_coinLedger {
   nextStreakAvailableAt: string | null;
 }
 
+export interface LoginUser_loginUser_user_passiveChallenge_exchange {
+  yucoin: number | null;
+  steps: number | null;
+}
+
+export interface LoginUser_loginUser_user_passiveChallenge {
+  exchange: LoginUser_loginUser_user_passiveChallenge_exchange | null;
+}
+
+export interface LoginUser_loginUser_user_activeChallenge_challenge_incomingData {
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface LoginUser_loginUser_user_activeChallenge_challenge {
+  levelSlotId: string | null;
+  status: string | null;
+  endDateTime: string | null;
+  startDateTime: string | null;
+  rating: number | null;
+  subtype: string | null;
+  incomingData: LoginUser_loginUser_user_activeChallenge_challenge_incomingData | null;
+}
+
+export interface LoginUser_loginUser_user_activeChallenge_levelSlot_milestones_target {
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface LoginUser_loginUser_user_activeChallenge_levelSlot_milestones {
+  id: string | null;
+  XP: number | null;
+  coins: number | null;
+  target: LoginUser_loginUser_user_activeChallenge_levelSlot_milestones_target | null;
+}
+
+export interface LoginUser_loginUser_user_activeChallenge_levelSlot {
+  subtype: string | null;
+  unit: string | null;
+  milestones: (LoginUser_loginUser_user_activeChallenge_levelSlot_milestones | null)[] | null;
+}
+
+export interface LoginUser_loginUser_user_activeChallenge {
+  challenge: LoginUser_loginUser_user_activeChallenge_challenge | null;
+  levelSlot: LoginUser_loginUser_user_activeChallenge_levelSlot | null;
+}
+
 export interface LoginUser_loginUser_user_activeStreak {
   id: string | null;
   type: string | null;
@@ -709,6 +766,8 @@ export interface LoginUser_loginUser_user {
   mobileConsent: LoginUser_loginUser_user_mobileConsent | null;
   redeemedOnboarding: boolean | null;
   coinLedger: LoginUser_loginUser_user_coinLedger | null;
+  passiveChallenge: LoginUser_loginUser_user_passiveChallenge | null;
+  activeChallenge: LoginUser_loginUser_user_activeChallenge | null;
   activeStreak: LoginUser_loginUser_user_activeStreak | null;
   challengesToday: (LoginUser_loginUser_user_challengesToday | null)[] | null;
   leaderboards: (LoginUser_loginUser_user_leaderboards | null)[] | null;
