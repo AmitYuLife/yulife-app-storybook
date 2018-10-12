@@ -2,21 +2,21 @@ import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { GetLeaderboardVariables, MobileConsentInput } from "../../../../graphql/_core/schema";
+import { GetLeaderboardVariables } from "../../../../graphql/_core/schema";
 import GetLeaderboardQuery, { getLeaderboardGql } from "../../../../graphql/member/getLeaderboard.gql";
 import { IReduxState } from "../../../../redux/_core/reducers";
-import { updateUserConsent, UpdateUserConsentAction } from "../../../../redux/user/user.actions";
-import { userConsentSelector } from "../../../../redux/user/user.selectors";
+import { updateLeaderboardConsent, UpdateLeaderboardConsentAction } from "../../../../redux/user/user.actions";
+import { Leaderboard, leaderboardsSelector } from "../../../../redux/user/user.selectors";
 import { Loading } from "../../../atoms";
 import { GenericModal } from "../../../modals";
 import { LeaderboardsScreen } from "../../../screens";
 
 interface IConnectedState {
-    consent: MobileConsentInput;
+    leaderboards: Leaderboard[];
 }
 
 interface IConnectedDispatch {
-    updateUserConsent: UpdateUserConsentAction;
+    updateLeaderboardConsent: UpdateLeaderboardConsentAction;
 }
 
 interface IProps {
@@ -24,6 +24,7 @@ interface IProps {
 }
 
 interface IState {
+    isLoading: boolean;
     sortBy: string;
 }
 
@@ -31,20 +32,36 @@ type Props = IConnectedState & IConnectedDispatch & IProps;
 
 class LeaderboardsContainer extends PureComponent<Props, IState> {
     public state = {
+        isLoading: true,
         sortBy: "steps"
     };
 
+    public componentDidMount() {
+        setTimeout(() => this.setState({ isLoading: false }), 250);
+    }
+
     public render() {
         const { sortBy } = this.state;
-        const { consent } = this.props;
+        const { leaderboards = [] } = this.props;
 
-        if (!consent.companyLeaderboard) {
-            const handleOnPress = () => this.props.updateUserConsent({ companyLeaderboard: true });
+        if (!leaderboards.length) {
+            return (
+                <GenericModal
+                    onPress={this.handleClose}
+                    heading="no leaderboards!"
+                    subheading="Sorry. There are no leaderboards you belong to."
+                    ctaLabel="back"
+                />
+            );
+        }
 
+        const companyLeaderboard = leaderboards[0];
+
+        if (!companyLeaderboard.consent) {
             /* tslint:disable:max-line-length */
             return (
                 <GenericModal
-                    onPress={handleOnPress}
+                    onPress={this.allowLeaderboard}
                     heading="turn on leaderboard?"
                     subheading="We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings."
                     ctaLabel="give me leaderboards"
@@ -57,7 +74,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 
         return (
             <GetLeaderboardQuery query={getLeaderboardGql} fetchPolicy="network-only" variables={{ sortBy }}>
-                {({ loading, data, refetch }) => {
+                {({ loading, data = { getLeaderboard: [] }, refetch }) => {
                     if (loading) {
                         return <Loading />;
                     }
@@ -67,7 +84,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 
                     return (
                         <LeaderboardsScreen
-                            items={data.getLeaderboard || []}
+                            items={data.getLeaderboard}
                             onCoinPress={onCoinPress}
                             onPressClose={this.handleClose}
                             onStepsPress={onStepsPress}
@@ -86,14 +103,20 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
     private handleRefetch = (refetch: (variables: GetLeaderboardVariables) => void, sortBy: string) => () => {
         this.setState({ sortBy }, () => refetch({ sortBy }));
     }
+
+    private allowLeaderboard = () => {
+        const { leaderboards, updateLeaderboardConsent: updateConsent } = this.props;
+        const company = leaderboards[0];
+        updateConsent({ leaderboardId: company.leaderboardId, consent: true });
+    }
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    consent: userConsentSelector(state)
+    leaderboards: leaderboardsSelector(state)
 });
 
 const mapDispatchToProps = {
-    updateUserConsent
+    updateLeaderboardConsent
 };
 
 export default connect<IConnectedState, IConnectedDispatch>(

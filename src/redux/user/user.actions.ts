@@ -1,10 +1,17 @@
-import { GetCurrentUser, LoginUser, MobileConsentInput, UpdateMemberConsent } from "../../graphql/_core/schema";
+import {
+    GetCurrentUser,
+    LoginUser,
+    MobileConsentInput,
+    UpdateLeaderboardConsentVariables,
+    UpdateMemberConsent
+} from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 
 export const FITKIT_CONSENT_AUTHORISED = "FITKIT_CONSENT_AUTHORISED";
 export const GET_USER_START = "GET_USER_START";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
+export const UPDATE_LEADERBOARD_CONSENT = "UPDATE_LEADERBOARD_CONSENT";
 export const UPDATE_USER_CONSENT = "UPDATE_USER_CONSENT";
 export const UPDATE_USER_CONSENT_SUCCESS = "UPDATE_USER_CONSENT_SUCCESS";
 export const LOGOUT = "LOGOUT";
@@ -27,6 +34,15 @@ export type LoginUserSuccessAction = SyncAction<LoginUser>;
 export const loginUserSuccess = (payload: LoginUser): LoginUserSuccessAction => ({
     payload,
     type: LOGIN_USER_SUCCESS
+});
+
+export type UpdateLeaderboardConsentActionResult = SyncAction<UpdateLeaderboardConsentVariables>;
+export type UpdateLeaderboardConsentAction = (
+    payload: UpdateLeaderboardConsentVariables
+) => UpdateLeaderboardConsentActionResult;
+export const updateLeaderboardConsent: UpdateLeaderboardConsentAction = (payload) => ({
+    payload,
+    type: UPDATE_LEADERBOARD_CONSENT
 });
 
 export type UpdateUserConsentActionResult = SyncAction<MobileConsentInput>;

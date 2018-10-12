@@ -1,4 +1,10 @@
-import { GetCurrentUser, LoginUser, MobileConsentInput, UpdateMemberConsent } from "../../graphql/_core/schema";
+import {
+    GetCurrentUser,
+    GetCurrentUser_getCurrentUser_leaderboards,
+    LoginUser,
+    MobileConsentInput,
+    UpdateMemberConsent
+} from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, UPDATE_USER_CONSENT_SUCCESS } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
@@ -7,14 +13,18 @@ interface IFeature {
     [x: string]: boolean;
 }
 
+type Leaderboard = GetCurrentUser_getCurrentUser_leaderboards;
+
 export interface IUserStore {
     consent: MobileConsentInput;
     features: IFeature;
+    leaderboards: Leaderboard[];
 }
 
 export const initialState: IUserStore = {
     consent: {},
-    features: {}
+    features: {},
+    leaderboards: []
 };
 
 const userReducer = (state: IUserStore = initialState, action: SyncAction): IUserStore => {
@@ -37,20 +47,21 @@ export default userReducer;
 
 const getUserSuccess = (
     state: IUserStore,
-    { getCurrentUser: { mobileConsent, userFeatures } }: GetCurrentUser
+    { getCurrentUser: { leaderboards = [], mobileConsent, userFeatures = [] } }: GetCurrentUser
 ): IUserStore => ({
     ...state,
     consent: {
         ...mobileConsent
     },
-    features: (userFeatures || []).reduce(reduceUserFeatures, {})
+    features: userFeatures.reduce(reduceUserFeatures, {}),
+    leaderboards
 });
 
 const loginUserSuccess = (
     state: IUserStore,
     {
         loginUser: {
-            user: { mobileConsent, userFeatures }
+            user: { leaderboards = [], mobileConsent, userFeatures = [] }
         }
     }: LoginUser
 ): IUserStore => ({
@@ -58,7 +69,8 @@ const loginUserSuccess = (
     consent: {
         ...mobileConsent
     },
-    features: (userFeatures || []).reduce(reduceUserFeatures, {})
+    features: userFeatures.reduce(reduceUserFeatures, {}),
+    leaderboards
 });
 
 const updateUserConsentSuccess = (state: IUserStore, { upsertMobileConsent }: UpdateMemberConsent): IUserStore => ({

@@ -70,6 +70,11 @@ export const getCurrentUserGql = gql`
                     meditation
                 }
             }
+            leaderboards {
+                leaderboardId
+                name
+                consent
+            }
         }
     }
 `;

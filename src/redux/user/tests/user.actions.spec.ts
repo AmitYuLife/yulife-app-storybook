@@ -40,6 +40,7 @@ const loginSuccessFixture: LoginUser = {
                 nextStreakAvailableAt: ""
             },
             id: "1234567890",
+            leaderboards: [],
             mobileConsent: {
                 companyLeaderboard: null,
                 marketing: null,

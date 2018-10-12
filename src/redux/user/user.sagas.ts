@@ -1,5 +1,6 @@
-import { call, put, spawn, takeLatest } from "redux-saga/effects";
+import { call, put, spawn, take, takeLatest } from "redux-saga/effects";
 import client from "../../graphql/_core/client";
+import updateLeaderboardConsentGql from "../../graphql/member/updateLeaderboardConsent.gql";
 import updateMemberConsentGql from "../../graphql/member/updateMemberConsent.gql";
 import getCurrentUserWithClient from "../../graphql/user/getCurrentUser.gql";
 import { setUnauthenticatedRoot } from "../../navigation/root";
@@ -7,6 +8,7 @@ import Logger from "../../services/logging/logger";
 import { getToken } from "../../services/storage";
 import { clearToken } from "../../services/storage/token";
 import { persistor } from "../_core/store";
+import { appStateChannel } from "../app/app.channels";
 import { CHALLENGE_RESET_SUCCESS } from "../levels/levels.actions";
 import {
     FITKIT_CONSENT_AUTHORISED,
@@ -15,10 +17,22 @@ import {
     LOGIN_USER_SUCCESS,
     LoginUserSuccessAction,
     LOGOUT,
+    UPDATE_LEADERBOARD_CONSENT,
     UPDATE_USER_CONSENT,
+    UpdateLeaderboardConsentActionResult,
     UpdateUserConsentActionResult,
     updateUserConsentSuccess
 } from "./user.actions";
+
+function* updateLeaderboardConsentSaga({ payload }: UpdateLeaderboardConsentActionResult) {
+    try {
+        yield call(updateLeaderboardConsentGql, payload);
+        yield call(getUserData);
+    } catch (e) {
+        // tslint:disable-next-line
+        console.log(e);
+    }
+}
 
 function* updateUserConsentSaga({ payload }: UpdateUserConsentActionResult) {
     try {
@@ -43,6 +57,18 @@ function* fitKitConsentAuthorisedSaga() {
 function* loginUserSuccessSaga({ payload }: LoginUserSuccessAction) {
     const { user, intercomHash } = payload.loginUser;
     yield call(setLoggerIdentity, user.id, intercomHash);
+}
+
+function* fetchUserOnAppStateChange() {
+    const appState = yield call(appStateChannel);
+
+    while (true) {
+        const state = yield take(appState);
+
+        if (state === "active") {
+            yield call(getUserData);
+        }
+    }
 }
 
 function* getUserData() {
@@ -75,11 +101,12 @@ function* logOut() {
 }
 
 export default [
-    takeLatest("INIT", getUserData),
+    takeLatest("INIT", fetchUserOnAppStateChange),
     takeLatest(GET_USER_START, getUserData),
     takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
     takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
     takeLatest(CHALLENGE_RESET_SUCCESS, getUserData),
+    takeLatest(UPDATE_LEADERBOARD_CONSENT, updateLeaderboardConsentSaga),
     takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
     takeLatest(LOGOUT, logOut)
 ];

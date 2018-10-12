@@ -266,6 +266,29 @@ export interface GetLeaderboardVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: UpdateLeaderboardConsent
+// ====================================================
+
+export interface UpdateLeaderboardConsent_updateLeaderboardConsent {
+  leaderboardId: string | null;
+  name: string | null;
+  consent: boolean | null;
+}
+
+export interface UpdateLeaderboardConsent {
+  updateLeaderboardConsent: UpdateLeaderboardConsent_updateLeaderboardConsent | null;
+}
+
+export interface UpdateLeaderboardConsentVariables {
+  leaderboardId?: string | null;
+  consent?: boolean | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: UpdateMemberConsent
 // ====================================================
 
@@ -585,6 +608,12 @@ export interface GetCurrentUser_getCurrentUser_challengesToday {
   incomingData: GetCurrentUser_getCurrentUser_challengesToday_incomingData | null;
 }
 
+export interface GetCurrentUser_getCurrentUser_leaderboards {
+  leaderboardId: string | null;
+  name: string | null;
+  consent: boolean | null;
+}
+
 export interface GetCurrentUser_getCurrentUser {
   __typename: "User";
   id: string | null;
@@ -594,6 +623,7 @@ export interface GetCurrentUser_getCurrentUser {
   activeChallenge: GetCurrentUser_getCurrentUser_activeChallenge | null;
   activeStreak: GetCurrentUser_getCurrentUser_activeStreak | null;
   challengesToday: (GetCurrentUser_getCurrentUser_challengesToday | null)[] | null;
+  leaderboards: (GetCurrentUser_getCurrentUser_leaderboards | null)[] | null;
 }
 
 export interface GetCurrentUser {
@@ -665,6 +695,12 @@ export interface LoginUser_loginUser_user_challengesToday {
   incomingData: LoginUser_loginUser_user_challengesToday_incomingData | null;
 }
 
+export interface LoginUser_loginUser_user_leaderboards {
+  leaderboardId: string | null;
+  name: string | null;
+  consent: boolean | null;
+}
+
 export interface LoginUser_loginUser_user {
   __typename: "User";
   id: string | null;
@@ -675,6 +711,7 @@ export interface LoginUser_loginUser_user {
   coinLedger: LoginUser_loginUser_user_coinLedger | null;
   activeStreak: LoginUser_loginUser_user_activeStreak | null;
   challengesToday: (LoginUser_loginUser_user_challengesToday | null)[] | null;
+  leaderboards: (LoginUser_loginUser_user_leaderboards | null)[] | null;
 }
 
 export interface LoginUser_loginUser {

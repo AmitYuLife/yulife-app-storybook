@@ -60,6 +60,11 @@ export const loginUserGql = gql`
                         meditation
                     }
                 }
+                leaderboards {
+                    leaderboardId
+                    name
+                    consent
+                }
             }
         }
     }
