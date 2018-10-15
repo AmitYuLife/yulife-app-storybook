@@ -206,6 +206,12 @@ storiesOf("Screens", module)
     ))
     .add("9. Challenge Success", () => (
         <ChallengeSuccessScreen
+            level={number("Level", 1, {
+                max: 49,
+                min: 1,
+                range: true,
+                step: 1
+            }, "ChallengeSuccess")}
             onPressCta={action("on cta press")}
             score={number("Score", 246, {
                 max: 35000,
@@ -233,6 +239,12 @@ storiesOf("Screens", module)
     ))
     .add("10. Challenge Failed", () => (
         <ChallengeFailedScreen
+            level={number("Level", 1, {
+                max: 49,
+                min: 1,
+                range: true,
+                step: 1
+            }, "ChallengeFailed")}
             onPress={action("on press")}
         />
     ))
@@ -336,7 +348,7 @@ storiesOf("Screens", module)
         />
     ))
     .add("12. Intro", () => (
-        <IntroScreen />
+        <IntroScreen onPressLastCta={action("on press last press")} />
     ))
     .add("13a. QuestScreen", () => {
         const nextAvailable = moment().unix();

@@ -26,7 +26,7 @@ export default StyleSheet.create({
     } as ViewStyle,
     navBarWrapper: {
         alignItems: "center",
-        bottom: Style.SCALE_UP_AND_DOWN(17),
+        bottom: Style.SCALE_UP_AND_DOWN(19),
         position: "absolute",
         width: Style.DEVICE_WIDTH
     } as ViewStyle,

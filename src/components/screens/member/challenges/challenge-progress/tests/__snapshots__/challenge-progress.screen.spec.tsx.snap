@@ -83,7 +83,7 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "bottom": 34,
+              "bottom": 38,
               "position": "absolute",
               "width": 750,
             }
@@ -196,7 +196,7 @@ ShallowWrapper {
           />,
           "style": Object {
             "alignItems": "center",
-            "bottom": 34,
+            "bottom": 38,
             "position": "absolute",
             "width": 750,
           },
@@ -278,7 +278,7 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "bottom": 34,
+                "bottom": 38,
                 "position": "absolute",
                 "width": 750,
               }
@@ -391,7 +391,7 @@ ShallowWrapper {
             />,
             "style": Object {
               "alignItems": "center",
-              "bottom": 34,
+              "bottom": 38,
               "position": "absolute",
               "width": 750,
             },

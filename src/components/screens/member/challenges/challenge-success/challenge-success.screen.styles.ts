@@ -13,6 +13,16 @@ export default StyleSheet.create({
     footerWrapper: {
         marginTop: Style.SCALE_UP_AND_DOWN(10)
     } as ViewStyle,
+    level: {
+        color: "rgb(168, 105, 22)",
+        fontSize: Style.SCALE_UP_AND_DOWN(14),
+        marginTop: Style.SCALE_UP_AND_DOWN(-10),
+        textAlign: "center"
+    } as TextStyle,
+    levelWrapper: {
+        alignItems: "center",
+        marginBottom: Style.SCALE_UP_AND_DOWN(20)
+    } as ViewStyle,
     plusPointsWrapper: {
         alignItems: "center",
         marginBottom: Style.SCALE_UP_AND_DOWN(-8)

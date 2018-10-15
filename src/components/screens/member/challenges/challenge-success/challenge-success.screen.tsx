@@ -8,6 +8,7 @@ import styles from "./challenge-success.screen.styles";
 
 interface IProps {
     onPressCta: () => void;
+    level?: number;
     rating: number;
     reward: number;
     score: number;
@@ -24,13 +25,19 @@ const getScoreByUnit = (score: number, unit: string) => {
     }
 };
 
-const ChallengeSuccessScreen: SFC<IProps> = ({ onPressCta, rating, reward, score, unit }) => (
+const ChallengeSuccessScreen: SFC<IProps> = ({ level, onPressCta, rating, reward, score, unit }) => (
     <View style={styles.wrapper}>
         <Stars
             isLeftHighlighted={rating > 0}
             isMidHighlighted={rating > 1}
             isRightHighlighted={rating > 2}
         />
+        <View style={styles.levelWrapper}>
+            <Image source={Assets.levelLine} />
+            <Text style={styles.level}>
+                {`level ${level}`}
+            </Text>
+        </View>
         <View>
             <View style={styles.plusPointsWrapper}>
                 <PlusPoints coins={reward} />

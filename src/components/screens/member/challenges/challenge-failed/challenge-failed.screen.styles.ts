@@ -18,6 +18,16 @@ export default StyleSheet.create({
         color: "rgb(51,51,51)",
         fontSize: Style.SCALE_UP_AND_DOWN(40)
     } as TextStyle,
+    level: {
+        color: "rgb(201, 201, 201)",
+        fontSize: Style.SCALE_UP_AND_DOWN(14),
+        marginTop: Style.SCALE_UP_AND_DOWN(-10),
+        textAlign: "center"
+    } as TextStyle,
+    levelWrapper: {
+        alignItems: "center",
+        marginBottom: Style.SCALE_UP_AND_DOWN(24)
+    } as ViewStyle,
     wrapper: {
         alignItems: "center",
         flex: 1,

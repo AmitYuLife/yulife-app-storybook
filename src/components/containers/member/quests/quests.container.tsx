@@ -77,6 +77,7 @@ class QuestsContainer extends PureComponent<Props> {
                     if (status) {
                         return status === "success" ? (
                             <ChallengeSuccessScreen
+                                level={currentLevel}
                                 onPressCta={this.handleResetChallenge(refetch)}
                                 rating={rating}
                                 reward={coins}
@@ -84,7 +85,10 @@ class QuestsContainer extends PureComponent<Props> {
                                 unit={unit as any}
                             />
                         ) : (
-                            <ChallengeFailedScreen onPress={this.handleResetChallenge(refetch)} />
+                            <ChallengeFailedScreen
+                                level={currentLevel}
+                                onPress={this.handleResetChallenge(refetch)}
+                            />
                         );
                     }
 

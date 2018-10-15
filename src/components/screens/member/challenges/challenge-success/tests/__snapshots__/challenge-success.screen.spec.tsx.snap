@@ -29,6 +29,34 @@ ShallowWrapper {
           isMidHighlighted={true}
           isRightHighlighted={false}
         />,
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "marginBottom": 40,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-success/levelLine.png",
+              }
+            }
+          />
+          <YuText
+            style={
+              Object {
+                "color": "rgb(168, 105, 22)",
+                "fontSize": 28,
+                "marginTop": -20,
+                "textAlign": "center",
+              }
+            }
+          >
+            level undefined
+          </YuText>
+        </Component>,
         <Component>
           <Component
             style={
@@ -116,6 +144,72 @@ again tomorrow.
         },
         "ref": null,
         "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-success/levelLine.png",
+                }
+              }
+            />,
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(168, 105, 22)",
+                  "fontSize": 28,
+                  "marginTop": -20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              level undefined
+            </YuText>,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "marginBottom": 40,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../assets/challenge-success/levelLine.png",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "level undefined",
+              "style": Object {
+                "color": "rgb(168, 105, 22)",
+                "fontSize": 28,
+                "marginTop": -20,
+                "textAlign": "center",
+              },
+            },
+            "ref": null,
+            "rendered": "level undefined",
+            "type": [Function],
+          },
+        ],
         "type": [Function],
       },
       Object {
@@ -300,6 +394,34 @@ again tomorrow.",
             isMidHighlighted={true}
             isRightHighlighted={false}
           />,
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "marginBottom": 40,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-success/levelLine.png",
+                }
+              }
+            />
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(168, 105, 22)",
+                  "fontSize": 28,
+                  "marginTop": -20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              level undefined
+            </YuText>
+          </Component>,
           <Component>
             <Component
               style={
@@ -387,6 +509,72 @@ again tomorrow.
           },
           "ref": null,
           "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../assets/challenge-success/levelLine.png",
+                  }
+                }
+              />,
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 28,
+                    "marginTop": -20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                level undefined
+              </YuText>,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "marginBottom": 40,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../assets/challenge-success/levelLine.png",
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "level undefined",
+                "style": Object {
+                  "color": "rgb(168, 105, 22)",
+                  "fontSize": 28,
+                  "marginTop": -20,
+                  "textAlign": "center",
+                },
+              },
+              "ref": null,
+              "rendered": "level undefined",
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
         Object {
@@ -611,6 +799,34 @@ ShallowWrapper {
           isMidHighlighted={true}
           isRightHighlighted={false}
         />,
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "marginBottom": 40,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-success/levelLine.png",
+              }
+            }
+          />
+          <YuText
+            style={
+              Object {
+                "color": "rgb(168, 105, 22)",
+                "fontSize": 28,
+                "marginTop": -20,
+                "textAlign": "center",
+              }
+            }
+          >
+            level undefined
+          </YuText>
+        </Component>,
         <Component>
           <Component
             style={
@@ -698,6 +914,72 @@ again tomorrow.
         },
         "ref": null,
         "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-success/levelLine.png",
+                }
+              }
+            />,
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(168, 105, 22)",
+                  "fontSize": 28,
+                  "marginTop": -20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              level undefined
+            </YuText>,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "marginBottom": 40,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../assets/challenge-success/levelLine.png",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "level undefined",
+              "style": Object {
+                "color": "rgb(168, 105, 22)",
+                "fontSize": 28,
+                "marginTop": -20,
+                "textAlign": "center",
+              },
+            },
+            "ref": null,
+            "rendered": "level undefined",
+            "type": [Function],
+          },
+        ],
         "type": [Function],
       },
       Object {
@@ -882,6 +1164,34 @@ again tomorrow.",
             isMidHighlighted={true}
             isRightHighlighted={false}
           />,
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "marginBottom": 40,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-success/levelLine.png",
+                }
+              }
+            />
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(168, 105, 22)",
+                  "fontSize": 28,
+                  "marginTop": -20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              level undefined
+            </YuText>
+          </Component>,
           <Component>
             <Component
               style={
@@ -969,6 +1279,72 @@ again tomorrow.
           },
           "ref": null,
           "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../assets/challenge-success/levelLine.png",
+                  }
+                }
+              />,
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 28,
+                    "marginTop": -20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                level undefined
+              </YuText>,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "marginBottom": 40,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../assets/challenge-success/levelLine.png",
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "level undefined",
+                "style": Object {
+                  "color": "rgb(168, 105, 22)",
+                  "fontSize": 28,
+                  "marginTop": -20,
+                  "textAlign": "center",
+                },
+              },
+              "ref": null,
+              "rendered": "level undefined",
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
         Object {

@@ -10,7 +10,7 @@ export default StyleSheet.create({
         flexDirection: "row",
         height: Style.SCALE_UP_AND_DOWN(60),
         justifyContent: "space-around",
-        marginBottom: Style.SCALE_UP_AND_DOWN(16),
+        marginBottom: Style.SCALE_UP_AND_DOWN(4),
         width: Style.SCALE_UP_AND_DOWN(180)
     } as ViewStyle
 });
