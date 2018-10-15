@@ -25,11 +25,11 @@ const config = [
     },
     {
         isShowingTopBar: false,
-        navBarIndex: 0
+        navBarIndex: 1
     },
     {
         isShowingTopBar: false,
-        navBarIndex: 1
+        navBarIndex: 0
     },
     {
         isShowingTopBar: true,
@@ -39,11 +39,15 @@ const config = [
 
 const indices = Array.from({ length: 5 }).map((_, i) => i * Style.DEVICE_WIDTH);
 
+interface IProps {
+    onPressLastCta: () => void;
+}
+
 interface IState {
     activeIndex: number;
 }
 
-export default class IntroScreenController extends PureComponent<{}, IState> {
+export default class IntroScreenController extends PureComponent<IProps, IState> {
     public scrollView: ScrollView;
     public state = {
         activeIndex: 0
@@ -86,8 +90,7 @@ export default class IntroScreenController extends PureComponent<{}, IState> {
 
     private handlePressNext = () => {
         if (this.state.activeIndex + 1 === indices.length) {
-            // finished
-            return {};
+            this.props.onPressLastCta();
         } else {
             this.setState(
                 ({ activeIndex }) => ({ activeIndex: activeIndex + 1 }),

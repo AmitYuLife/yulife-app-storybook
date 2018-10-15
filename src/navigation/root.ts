@@ -1,7 +1,8 @@
 import { Navigation } from "react-native-navigation";
 import { ILabel } from "../components/molecules";
+import { getIntro } from "../services/storage";
 import { Style } from "../styles";
-import { ROUTES } from "./routes";
+import { MODALS, ROUTES } from "./routes";
 
 // tslint:disable-next-line
 const icon = require("../../assets/clock/clock.png");
@@ -65,7 +66,8 @@ const labels = [
     }
 ];
 
-export const setAuthenticatedRoot = async () =>
+export const setAuthenticatedRoot = async () => {
+    const hasSeenIntro = await getIntro();
     await Navigation.setRoot({
         root: {
             sideMenu: {
@@ -164,6 +166,16 @@ export const setAuthenticatedRoot = async () =>
             }
         }
     });
+
+    if (!hasSeenIntro) {
+        await Navigation.showModal({
+            component: {
+                id: MODALS.intro,
+                name: MODALS.intro
+            }
+        });
+    }
+};
 
 export const setUnauthenticatedRoot = async () =>
     await Navigation.setRoot({

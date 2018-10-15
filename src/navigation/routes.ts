@@ -24,6 +24,7 @@ import {
     AnimatedChest,
     ChallengeDetailsModal,
     GenericModal,
+    IntroModal,
     MeditationSetUpModal,
     PushNotificationsModal,
     StreaksModal,
@@ -64,14 +65,15 @@ export const ROUTES = {
 };
 
 export const MODALS = {
-    generic: "yulife.modals.Generic",
     challengeDetails: "yulife.modals.ChallengeDetails",
     chest: "yulife.modals.Chest",
+    generic: "yulife.modals.Generic",
+    intro: "yulife.modals.Intro",
+    leaderboards: "yulife.modals.Leaderboards",
     meditationSetUp: "yulife.modals.MeditationSetUp",
     pushNotifications: "yulife.modals.PushNotifications",
-    streaks: "yulife.modals.Streaks",
-    leaderboards: "yulife.modals.Leaderboards",
     rewards: "yulife.modals.Rewards",
+    streaks: "yulife.modals.Streaks",
     todayYucoin: "yulife.modals.todayYucoin"
 };
 // tslint:enable:object-literal-sort-keys
@@ -113,6 +115,7 @@ export default [
     { name: MODALS.challengeDetails, component: ChallengeDetailsModal },
     { name: MODALS.chest, component: AnimatedChest },
     { name: MODALS.generic, component: GenericModal },
+    { name: MODALS.intro, component: IntroModal },
     { name: MODALS.meditationSetUp, component: MeditationSetUpModal },
     { name: MODALS.pushNotifications, component: PushNotificationsModal },
     { name: MODALS.streaks, component: StreaksModal },

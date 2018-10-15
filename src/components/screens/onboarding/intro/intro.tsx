@@ -1,11 +1,5 @@
 import React, { PureComponent } from "react";
-import {
-    NativeScrollEvent,
-    NativeSyntheticEvent,
-    SafeAreaView,
-    ScrollView,
-    View
-} from "react-native";
+import { NativeScrollEvent, NativeSyntheticEvent, SafeAreaView, ScrollView, View } from "react-native";
 import { NavBar, TopBar } from "../../../molecules";
 import styles from "./intro.styles";
 
@@ -46,26 +40,19 @@ class IntroScreen extends PureComponent<IProps> {
                     style={styles.scrollView}
                     horizontal={true}
                 >
-                    <OnboardingScreenOne {...control}/>
-                    <OnboardingScreenTwo {...control}/>
-                    <OnboardingScreenThree {...control}/>
-                    <OnboardingScreenFour {...control}/>
+                    <OnboardingScreenOne {...control} />
+                    <OnboardingScreenTwo {...control} />
+                    <OnboardingScreenThree {...control} />
+                    <OnboardingScreenFour {...control} />
                     <OnboardingScreenFive {...control} />
                 </ScrollView>
-                {
-                    !isShowingTopBar ? null : (
-                        <View style={styles.topBarWrapper}>
-                            <TopBar
-                                isDemo={true}
-                            />
-                        </View>
-                    )
-                }
+                {!isShowingTopBar ? null : (
+                    <View style={styles.topBarWrapper}>
+                        <TopBar isDemo={true} />
+                    </View>
+                )}
                 <View style={styles.navBarWrapper}>
-                    <NavBar
-                        colour={NavBar.Colours.PINK}
-                        activeIndex={navBarIndex}
-                    />
+                    <NavBar colour={NavBar.Colours.DARK} activeIndex={navBarIndex} />
                 </View>
             </SafeAreaView>
         );

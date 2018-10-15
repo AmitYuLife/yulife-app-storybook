@@ -22,7 +22,7 @@ export default StyleSheet.create({
     itemWrapper: {
         alignItems: "center",
         flexDirection: "row",
-        height: Style.SCALE_UP_AND_DOWN(62)
+        height: Style.SCALE_UP_AND_DOWN(58)
     } as ViewStyle,
     logo: {} as ImageStyle,
     logoWrapper: {
@@ -43,6 +43,6 @@ export default StyleSheet.create({
         backgroundColor: "white",
         flex: 1,
         paddingLeft: Style.SCALE_UP_AND_DOWN(105),
-        paddingTop: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 150 : 110)
+        paddingTop: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 130 : 90)
     } as ViewStyle
 });

@@ -5,7 +5,7 @@ import updateMemberConsentGql from "../../graphql/member/updateMemberConsent.gql
 import getCurrentUserWithClient from "../../graphql/user/getCurrentUser.gql";
 import { setUnauthenticatedRoot } from "../../navigation/root";
 import Logger from "../../services/logging/logger";
-import { getToken } from "../../services/storage";
+import { clearIntro, getToken } from "../../services/storage";
 import { clearToken } from "../../services/storage/token";
 import { persistor } from "../_core/store";
 import { appStateChannel } from "../app/app.channels";
@@ -94,10 +94,11 @@ function* setLoggerIdentity(userId: string, hash?: string) {
 }
 
 function* logOut() {
-    yield call(clearToken);
-    yield call(setUnauthenticatedRoot);
-    yield call(() => client.resetStore());
-    yield call(() => persistor.purge());
+    yield spawn(clearIntro);
+    yield spawn(clearToken);
+    yield spawn(setUnauthenticatedRoot);
+    yield spawn(() => client.resetStore());
+    yield spawn(() => persistor.purge());
 }
 
 export default [
