@@ -8,6 +8,7 @@ import styles from "./rewards-list.screen.styles";
 
 export interface IRewardsListScreenProps extends IConnectedScreenProps {
     data: Array<Partial<GetRewards_getRewards>>;
+    hasNotification?: boolean;
     onLeftTabPress: () => void;
     onRightTabPress: () => void;
     onItemPress: (item: GetRewards_getRewards) => void;
@@ -16,6 +17,7 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
 
 const RewardsListScreen: SFC<IRewardsListScreenProps> = ({
     data,
+    hasNotification = false,
     labels,
     onLeftTabPress,
     onRightTabPress,
@@ -38,7 +40,7 @@ const RewardsListScreen: SFC<IRewardsListScreenProps> = ({
                 activeIndex={2}
                 areIconsHidden={true}
                 colour={NavBar.Colours.DARKER}
-                hasNotification={false}
+                hasNotification={hasNotification}
                 labels={labels}
             />
         </View>

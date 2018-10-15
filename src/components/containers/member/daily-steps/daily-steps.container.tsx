@@ -1,6 +1,6 @@
 import moment from "moment";
-import React from "react";
 import { PureComponent } from "react";
+import React from "react";
 import { FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
@@ -12,6 +12,7 @@ import { getAppState, getOfflineState } from "../../../../redux/app/app.selector
 import { getDailyEarnedCoins, getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { startDailySteps, stopDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
 import { getDailySteps, getLastUpdated } from "../../../../redux/daily-steps/daily-steps.selectors";
+import { hasNotificationSelector } from "../../../../redux/levels/levels.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
 import { IStreaks, streaksSelector } from "../../../../redux/streaks/streaks.selectors";
 import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
@@ -23,6 +24,7 @@ interface IConnectedState {
     dailyEarnedCoins: number;
     dailySteps: number;
     features: { [x: string]: boolean };
+    hasNotification: boolean;
     lastUpdated: string;
     offline: boolean;
     streaks: IStreaks;
@@ -79,6 +81,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
             dailyEarnedCoins,
             dailySteps,
             features = {},
+            hasNotification,
             labels,
             offline,
             onLeftMenuPress,
@@ -98,6 +101,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                             currentStreak={streaks.currentStreak}
                             displayStreak={displayStreak}
                             fitKitAvailable={available}
+                            hasNotification={hasNotification}
                             hasPermission={authorised}
                             isDoneToday={streaks.isDoneToday}
                             isLoading={loading || dailyStepsLoading}
@@ -178,6 +182,7 @@ const mapStateToProps = (state: IReduxState) => ({
     dailyEarnedCoins: getDailyEarnedCoins(state),
     dailySteps: getDailySteps(state),
     features: userFeaturesSelector(state),
+    hasNotification: hasNotificationSelector(state),
     lastUpdated: getLastUpdated(state),
     offline: getOfflineState(state),
     streaks: streaksSelector(state),

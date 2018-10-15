@@ -1,6 +1,6 @@
 import moment from "moment";
-import { PureComponent } from "react";
 import * as React from "react";
+import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetAllPurchases_getAllPurchases, GetRewards_getRewards } from "../../../../graphql/_core/schema";
@@ -10,12 +10,14 @@ import { IMainTabsProps } from "../../../../navigation/root";
 import { MODALS, ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
+import { hasNotificationSelector } from "../../../../redux/levels/levels.selectors";
 import { formatMoney } from "../../../../services/money";
 import { PurchasedListScreen, RewardsListScreen } from "../../../screens";
 
 type Tab = "rewards" | "purchases";
 
 interface IConnectedState {
+    hasNotification: boolean;
     totalCoins: number;
 }
 
@@ -48,11 +50,12 @@ class RewardsContainer extends PureComponent<Props, IState> {
     private renderRewards = () => (
         <GetRewardsQuery query={getRewardsGql} fetchPolicy="cache-first">
             {({ loading, data, refetch }) => {
-                const { labels, onLeftMenuPress, totalCoins } = this.props;
+                const { hasNotification, labels, onLeftMenuPress, totalCoins } = this.props;
 
                 return (
                     <RewardsListScreen
                         data={data.getRewards}
+                        hasNotification={hasNotification}
                         labels={labels}
                         onItemPress={this.handleRewardDetailsItemPress}
                         onLeftMenuPress={onLeftMenuPress}
@@ -110,12 +113,13 @@ class RewardsContainer extends PureComponent<Props, IState> {
     private renderPurchases = () => (
         <GetAllPurchases query={getAllPurchasesGql} fetchPolicy="cache-and-network">
             {({ loading, data, refetch }) => {
-                const { labels, onLeftMenuPress, totalCoins } = this.props;
+                const { hasNotification, labels, onLeftMenuPress, totalCoins } = this.props;
                 const items = this.formatPuchaseItem(data.getAllPurchases);
 
                 return (
                     <PurchasedListScreen
                         data={items}
+                        hasNotification={hasNotification}
                         labels={labels}
                         onLeftMenuPress={onLeftMenuPress}
                         onLeftTabPress={() => this.handleTabChange("rewards")}
@@ -182,6 +186,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
+    hasNotification: hasNotificationSelector(state),
     totalCoins: getTotalCoins(state)
 });
 

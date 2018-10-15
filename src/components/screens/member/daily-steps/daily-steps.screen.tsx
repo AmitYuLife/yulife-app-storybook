@@ -16,6 +16,7 @@ interface IProps extends IConnectedScreenProps {
     currentStreak?: number;
     displayStreak?: boolean;
     fitKitAvailable: boolean;
+    hasNotification?: boolean;
     hasPermission: boolean;
     isDoneToday?: boolean;
     isLoading: boolean;
@@ -33,6 +34,7 @@ const DailyStepsScreen: SFC<Props> = ({
     currentStreak,
     displayStreak = false,
     fitKitAvailable,
+    hasNotification = false,
     hasPermission,
     isDoneToday,
     isLoading,
@@ -84,7 +86,7 @@ const DailyStepsScreen: SFC<Props> = ({
                 <NavBar
                     activeIndex={0}
                     colour={!fitKitAvailable || !hasPermission || !isOnline ? COLOURS.DARKER : COLOURS.LIGHT}
-                    hasNotification={false}
+                    hasNotification={hasNotification}
                     labels={labels}
                 />
             </View>

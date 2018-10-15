@@ -74,9 +74,9 @@ const Scroll: SFC<IconProps> = ({
                     r="10"
                 />
             ) : (
-                    <G x={52} y={-28}>
+                    <G x={41} y={-32}>
                         <Path
-                            scale={0.75}
+                            scale={0.80}
                             fill={getIconFill({
                                 colour,
                                 isActive,
@@ -85,7 +85,7 @@ const Scroll: SFC<IconProps> = ({
                             d="M228.5,41c-11.6,0-21,9.4-21,21s9.4,21,21,21s21-9.4,21-21S240.1,41,228.5,41z M228.5,80c-9.9,0-18-8.1-18-18s8.1-18,18-18s18,8.1,18,18S238.4,80,228.5,80z"
                         />
                         <Polygon
-                            scale={0.75}
+                            scale={0.80}
                             fill={getIconFill({
                                 colour,
                                 isActive,

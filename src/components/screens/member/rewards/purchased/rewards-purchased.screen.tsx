@@ -9,6 +9,7 @@ import styles from "./rewards-purchased.screen.styles";
 
 interface IProps extends IConnectedScreenProps {
     data: RewardsPurchasedItemData[];
+    hasNotification?: boolean;
     onLeftTabPress: () => void;
     onRightTabPress: () => void;
     refreshing: boolean;
@@ -20,6 +21,7 @@ type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
 
 const RewardsPurchasedScreen: SFC<IProps> = ({
     data,
+    hasNotification = false,
     labels,
     onLeftTabPress,
     onRightTabPress,
@@ -59,7 +61,7 @@ const RewardsPurchasedScreen: SFC<IProps> = ({
                 activeIndex={2}
                 areIconsHidden={true}
                 colour={NavBar.Colours.DARKER}
-                hasNotification={false}
+                hasNotification={hasNotification}
                 labels={labels}
             />
         </View>
