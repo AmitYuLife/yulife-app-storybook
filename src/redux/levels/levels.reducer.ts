@@ -1,6 +1,8 @@
-import { CreateActiveChallenge, GetCurrentUser, LoginUser, UpdateActiveChallenge } from "../../graphql/_core/schema";
+import { PedometerResponse } from "react-native-dual-pedometer";
+import { GetCurrentUser, LoginUser, UpdateActiveChallenge } from "../../graphql/_core/schema";
 import { pathOr } from "../../services/utils";
 import { SyncAction } from "../_core/types";
+import { PEDOMETER_UPDATE } from "../pedometer/pedometer.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {
     CHALLENGE_END_SUCCESS,
@@ -9,6 +11,7 @@ import {
     CHALLENGE_TIME_UP,
     CHALLENGE_UPDATE_SUCCESS
 } from "./levels.actions";
+import { ChallengeStartPayload } from "./levels.actions";
 import { IActiveLevel } from "./levels.selectors";
 
 export interface ILevelsStore {
@@ -25,6 +28,7 @@ export const initialState: ILevelsStore = {
         },
         coins: 0,
         endDateTime: "",
+        initialPedometerResult: 0,
         levelSlotId: "",
         milestones: [],
         milestonesLog: [],
@@ -62,6 +66,9 @@ const userReducer = (state: ILevelsStore = initialState, action: SyncAction): IL
 
         case CHALLENGE_RESET_SUCCESS:
             return challengeReset(state);
+
+        case PEDOMETER_UPDATE:
+            return pedometerUpdate(state, action.payload);
 
         default:
             return state;
@@ -101,7 +108,7 @@ const loginUserSuccess = (state: ILevelsStore, { loginUser }: LoginUser): ILevel
 
 const challengeStartSuccess = (
     state: ILevelsStore,
-    { createActiveChallenge: { challenge, levelSlot, chest } }: CreateActiveChallenge
+    { createActiveChallenge: { challenge, levelSlot, chest }, initialPedometerResult = 0 }: ChallengeStartPayload
 ): ILevelsStore => ({
     ...state,
     active: {
@@ -111,6 +118,7 @@ const challengeStartSuccess = (
             value: pathOr<number>(chest, "value", initialState.active.chest.value)
         },
         endDateTime: challenge.endDateTime,
+        initialPedometerResult,
         levelSlotId: challenge.levelSlotId,
         milestones: levelSlot.milestones,
         startDateTime: challenge.startDateTime,
@@ -141,20 +149,26 @@ const challengeUpdateSuccess = (
 
 const challengeEndSuccess = (
     state: ILevelsStore,
-    { updateActiveChallenge: { challenge } }: UpdateActiveChallenge
+    res: UpdateActiveChallenge
+    // { updateActiveChallenge: { challenge } }: UpdateActiveChallenge
 ): ILevelsStore => ({
     ...state,
     active: {
         ...state.active,
-        coins: pathOr<number>(challenge, "yuCoinAwarded", state.active.coins),
-        milestonesLog: pathOr<any[]>(challenge, "milestoneLog", state.active.milestonesLog),
-        rating: pathOr<number>(challenge, "rating", state.active.rating),
+        coins: pathOr<number>(res, "updateActiveChallenge.challenge.yuCoinAwarded", state.active.coins),
+        milestonesLog: pathOr<any[]>(res, "updateActiveChallenge.challenge.milestoneLog", state.active.milestonesLog),
+        rating: pathOr<number>(res, "updateActiveChallenge.challenge.rating", state.active.rating),
         score: pathOr<number>(
-            challenge,
-            state.active.subtype === "meditation" ? "incomingData.meditation" : "incomingData.steps",
+            res,
+            state.active.subtype === "meditation"
+                ? "updateActiveChallenge.challenge.incomingData.meditation"
+                : "updateActiveChallenge.challenge.incomingData.steps",
             state.active.score
         ),
-        status: (challenge.milestoneLog || []).length > 0 ? "success" : "failed",
+        status:
+            pathOr<any[]>(res, "updateActiveChallenge.challenge.milestoneLog", state.active.milestonesLog).length > 0
+                ? "success"
+                : "failed",
         timeUp: false
     }
 });
@@ -173,3 +187,22 @@ const challengeReset = (state: ILevelsStore): ILevelsStore => ({
         ...initialState.active
     }
 });
+
+const pedometerUpdate = (state: ILevelsStore, { steps }: PedometerResponse): ILevelsStore => {
+    if (state.active.subtype === "meditation") {
+        return state;
+    }
+
+    const isChallengeActive = !!state.active.levelSlotId && !state.active.timeUp;
+    const current = steps - state.active.initialPedometerResult;
+    const currentScore = current > state.active.score ? current : state.active.score;
+    const score = isChallengeActive ? currentScore : state.active.score;
+
+    return {
+        ...state,
+        active: {
+            ...state.active,
+            score
+        }
+    };
+};

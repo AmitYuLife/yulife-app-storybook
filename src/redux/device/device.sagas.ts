@@ -26,7 +26,7 @@ import {
     SEND_TEST_LOCAL_PUSH,
     setPushPermissions
 } from "./device.actions";
-import { REQUIRE_PUSH_ENABLED } from "./device.actions";
+import { CANCEL_LOCAL_PUSH, REQUIRE_PUSH_ENABLED } from "./device.actions";
 import { createPushNotificationsChannel, createPushPermissionsChannel } from "./device.channels";
 import { pushNotificationsSelector, PushPermissions, PushPermissionsEnum } from "./device.selectors";
 
@@ -79,6 +79,7 @@ function* checkPermissions() {
         const currentRoute = yield select(getRouteState);
 
         if (currentRoute !== MODALS.pushNotifications) {
+            yield call(delay, 3000);
             yield call(async () =>
                 Navigation.showModal({
                     component: {
@@ -112,7 +113,13 @@ function* registerPush() {
     let result: IPushNotification & { os: string; token: string };
 
     if (Platform.OS === "android") {
-        yield spawn(() => Mixpanel.initPushHandling(Config.GCM_SENDER_ID));
+        yield spawn(() => {
+            try {
+                Mixpanel.initPushHandling(Config.GCM_SENDER_ID);
+            } catch (e) {
+                // console.log(e);
+            }
+        });
     }
 
     while (true) {
@@ -229,6 +236,7 @@ export default [
     takeLatest("INIT", listenForPermissionsChange),
     takeLatest(ADD_DEVICE_TOKEN, registerIntercom),
     takeEvery(CHALLENGE_CANCEL, cancelChallengeNotificationSaga),
+    takeEvery(CANCEL_LOCAL_PUSH, cancelChallengeNotificationSaga),
     takeEvery(CHALLENGE_START_SUCCESS, scheduleChallengeNotificationSaga),
     takeLatest(LOGOUT, unregisterPushNotifications),
     takeLatest(LOGOUT, onLogout),

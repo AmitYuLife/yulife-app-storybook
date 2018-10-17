@@ -76,7 +76,15 @@ class TodayYucoinScreen extends PureComponent<IProps> {
                         <View style={styles.progressWrapper}>
                             <Svg width="305" height="15" style={styles.svg}>
                                 <Rect y="4" width="305" height="4" fill="rgb(233,233,233)" />
-                                <Rect y="4" width={steps / 44.5} height="4" fill="black" />
+                                <Rect
+                                    y="4"
+                                    width={
+                                        (steps < 2000 ? (steps * 18) / 2000 : 18) +
+                                        (steps * 305) / (exchangeRate.steps * 7)
+                                    }
+                                    height="4"
+                                    fill="black"
+                                />
                             </Svg>
                             <View style={styles.checksWrapper}>
                                 {Array.from({ length: 6 }).map((_, index) => (

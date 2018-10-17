@@ -23,8 +23,9 @@ export const challengeStartAction: ChallengeStartAction = (payload) => ({
     type: CHALLENGE_START
 });
 
-export type ChallengeStartSuccessActionResult = SyncAction<CreateActiveChallenge>;
-export type ChallengeStartSuccessAction = (payload: CreateActiveChallenge) => ChallengeStartSuccessActionResult;
+export type ChallengeStartPayload = CreateActiveChallenge & { initialPedometerResult: number };
+export type ChallengeStartSuccessActionResult = SyncAction<ChallengeStartPayload>;
+export type ChallengeStartSuccessAction = (payload: ChallengeStartPayload) => ChallengeStartSuccessActionResult;
 export const challengeStartSuccessAction: ChallengeStartSuccessAction = (payload) => ({
     payload,
     type: CHALLENGE_START_SUCCESS

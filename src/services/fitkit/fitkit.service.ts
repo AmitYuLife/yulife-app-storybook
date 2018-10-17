@@ -95,7 +95,7 @@ const transformSampleResultToPayload = (item: SampleQueryResult & { duration: nu
 //     }
 // };
 
-export const queryMindfulSessions = async (startTime: string): Promise<ChallengePayload[]> => {
+export const queryMindfulSessions = async (startTime: string, endTime: string): Promise<ChallengePayload[]> => {
     try {
         const authorised = await RNFitKit.authorise({
             read: [
@@ -104,7 +104,6 @@ export const queryMindfulSessions = async (startTime: string): Promise<Challenge
         });
 
         if (authorised) {
-            const endTime = moment().endOf("day").toISOString();
             const results = await RNFitKit.sampleQuery({
                 endTime,
                 sampleType: FitKitTypes.Types.Mindfulness,

@@ -1,16 +1,15 @@
 import moment from "moment";
-import { PedometerResponse } from "react-native-dual-pedometer";
 import { Navigation } from "react-native-navigation";
 import { delay } from "redux-saga";
 import { call, cancel, cancelled, fork, put, race, select, take, takeLatest } from "redux-saga/effects";
-import { ChallengePayload } from "../../graphql/_core/schema";
 import cancelActiveChallengeWithClient from "../../graphql/challenges/cancelActiveChallenge.gql";
 import createActiveChallengeWithClient from "../../graphql/challenges/createActiveChallenge.gql";
 import updateActiveChallengeWithClient from "../../graphql/challenges/updateActiveChallenge.gql";
 import { MODALS } from "../../navigation/routes";
 import { queryMindfulSessions } from "../../services/fitkit/fitkit.service";
-import Logger from "../../services/logging/logger";
-import { startDailySteps, stopDailySteps } from "../daily-steps/daily-steps.actions";
+import { pathOr } from "../../services/utils";
+import { cancelLocalPush } from "../device/device.actions";
+import { stepsSelector } from "../pedometer/pedometer.selectors";
 import { GET_USER_SUCCESS } from "../user/user.actions";
 import {
     CHALLENGE_CANCEL,
@@ -24,97 +23,62 @@ import {
     challengeTimeUpAction,
     challengeUpdateSuccessAction
 } from "./levels.actions";
-import { activeStepsChannel } from "./levels.channels";
+import { CHALLENGE_TIME_UP } from "./levels.actions";
+import { getEndResult } from "./levels.helpers";
 import { activeLevelSelector } from "./levels.selectors";
 
-const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
-    endDateTime: moment(results.endTime).format(),
-    startDateTime: moment(results.startTime).format(),
-    value: results.steps
-});
-
 function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, endDateTime: string) {
-    const start = moment.parseZone(startDateTime).toISOString();
+    const start = moment(startDateTime).format();
     const end = moment(endDateTime);
-    let inProgress = true;
 
-    while (inProgress && moment().isBefore(end)) {
+    while (moment().isBefore(end)) {
+        if (yield cancelled()) {
+            return;
+        }
+
         try {
-            const active = yield select(activeLevelSelector);
-            let results = yield call(queryMindfulSessions, start);
+            const resultsQuery = yield call(queryMindfulSessions, start, end.format());
 
-            if (results.length > 0) {
-                results = {
+            if (resultsQuery.length > 0) {
+                const results = {
                     endDateTime,
                     startDateTime,
                     value: Math.floor(
-                        results.reduce(
+                        resultsQuery.reduce(
                             (accumulator: number, session: any) => accumulator + session.value, // tslint:disable-line
                             0
                         )
                     )
                 };
-            } else {
-                results = {
-                    endDateTime,
-                    startDateTime,
-                    value: active.score
-                };
-            }
-            const { data } = yield call(updateActiveChallengeWithClient, levelSlotId, results);
 
-            yield put(challengeUpdateSuccessAction(data));
+                const { data } = yield call(updateActiveChallengeWithClient, levelSlotId, results);
+                yield put(challengeUpdateSuccessAction(data));
+
+                if (pathOr<string>(data, "updateActiveChallenge.challenge.status", "") === "completed") {
+                    yield put(cancelLocalPush());
+                    yield put(challengeTimeUpAction());
+                    return;
+                }
+            }
+
             yield call(delay, 15000);
         } catch (e) {
             yield call(delay, 30000);
-        } finally {
-            if (yield cancelled()) {
-                inProgress = false;
-            }
         }
     }
 
-    if (inProgress) {
-        yield put(challengeTimeUpAction());
-    }
+    yield put(challengeTimeUpAction());
 }
 
-export function* startActiveStepsTracking(levelSlotId: string, startDateTime: string, endDateTime: string) {
+// android doesn't like big delays: Improvise. Adapt. Overcome.
+function* startStepsTracking(endDateTime: string) {
     const end = moment(endDateTime);
-    const stepsChannel = yield call(activeStepsChannel, moment(startDateTime).toISOString());
-    let inProgress = true;
 
-    while (inProgress && moment().isBefore(end)) {
-        try {
-            const { results } = yield race({
-                results: take(stepsChannel),
-                timeout: call(delay, 1000)
-            });
-
-            if (results) {
-                yield call(() => Logger.logMixpanelEvent("raw_steps_results_active", results));
-                const { data } = yield call(updateActiveChallengeWithClient, levelSlotId, mapPedometerResults(results));
-
-                if (data.updateActiveChallenge) {
-                    yield put(challengeUpdateSuccessAction(data));
-                }
-            }
-        } catch (e) {
-            // tslint:disable-next-line
-            console.log("@startActiveStepsTracking ... error ... ", e);
-        } finally {
-            if (yield cancelled()) {
-                inProgress = false;
-            }
-        }
+    while (moment().isBefore(end)) {
+        yield call(delay, 1000);
     }
 
-    stepsChannel.close();
-
-    if (inProgress) {
-        yield put(challengeTimeUpAction());
-        yield put(startDailySteps());
-    }
+    yield put(challengeTimeUpAction());
 }
 
 export function* resetChallenge() {
@@ -146,16 +110,21 @@ function* endChallenge() {
     const active = yield select(activeLevelSelector);
 
     if (active.levelSlotId) {
-        try {
-            const { data } = yield call(updateActiveChallengeWithClient, active.levelSlotId, {});
+        if (active.subtype === "meditation") {
+            yield put(challengeEndSuccessAction({ updateActiveChallenge: null }));
+        } else {
+            try {
+                const result = yield call(getEndResult, active);
+                const { data } = yield call(updateActiveChallengeWithClient, active.levelSlotId, result);
 
-            if (data.updateActiveChallenge) {
-                yield put(challengeEndSuccessAction(data));
-            } else {
-                yield put(challengeResetSuccessAction());
+                if (data.updateActiveChallenge) {
+                    yield put(challengeEndSuccessAction(data));
+                } else {
+                    yield put(challengeResetSuccessAction());
+                }
+            } catch (e) {
+                // console.log(e);
             }
-        } catch (e) {
-            // console.log(e);
         }
     } else {
         yield put(challengeResetSuccessAction());
@@ -163,37 +132,33 @@ function* endChallenge() {
 }
 
 function* startChallenge({ isMeditation, levelSlotId, startDateTime, endDateTime }: any) {
-    if (!isMeditation) {
-        yield put(stopDailySteps());
-    }
-
-    const challengeTask = yield fork(
-        isMeditation ? startMindfulnessTracking : startActiveStepsTracking,
-        levelSlotId,
-        startDateTime,
-        endDateTime
-    );
+    const challengeTask = isMeditation
+        ? yield fork(startMindfulnessTracking, levelSlotId, startDateTime, endDateTime)
+        : yield fork(startStepsTracking, endDateTime);
 
     let inProgress = true;
     while (inProgress) {
-        const momentMilliseconds = moment(endDateTime).diff(moment(), "milliseconds");
-        const milliseconds = momentMilliseconds >= 1000 ? momentMilliseconds : 1000;
-
-        const { challengeCancelled } = yield race({
+        const { challengeCancelled, challengeTimeUp } = yield race({
             challengeCancelled: take(CHALLENGE_CANCEL),
-            challengeEnded: delay(milliseconds)
+            challengeTimeUp: take(CHALLENGE_TIME_UP)
         });
+
         if (challengeCancelled) {
             try {
                 yield call(cancelActiveChallengeWithClient, levelSlotId);
-                yield cancel(challengeTask);
+
+                if (challengeTask) {
+                    yield cancel(challengeTask);
+                }
+
                 yield put(challengeResetSuccessAction());
                 inProgress = false;
             } catch (e) {
                 // console.log(e);
             }
-        } else {
+        } else if (challengeTimeUp) {
             inProgress = false;
+            return;
         }
     }
 }
@@ -209,8 +174,9 @@ export function* startChallenges() {
             const { payload }: ChallengeStartActionResult = challengeStarted;
 
             const { levelSlotId } = payload;
+            const initialPedometerResult = yield select(stepsSelector);
             const { data } = yield call(createActiveChallengeWithClient, levelSlotId);
-            yield put(challengeStartSuccessAction(data));
+            yield put(challengeStartSuccessAction({ ...data, initialPedometerResult }));
 
             const {
                 challenge: { startDateTime, endDateTime },
