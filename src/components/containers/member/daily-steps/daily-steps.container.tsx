@@ -10,7 +10,7 @@ import { IReduxState } from "../../../../redux/_core/reducers";
 import { SyncAction } from "../../../../redux/_core/types";
 import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
 import { getDailyEarnedCoins, getTotalCoins } from "../../../../redux/coins/coins.selectors";
-import { startDailySteps, stopDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
+import { startDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
 import { getDailySteps, getLastUpdated } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { hasNotificationSelector } from "../../../../redux/levels/levels.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
@@ -34,7 +34,6 @@ interface IConnectedState {
 interface IConnectedDispatch {
     dailyStepsCoinClicked: () => SyncAction;
     startDailySteps: () => SyncAction;
-    stopDailySteps: () => SyncAction;
 }
 
 type Props = IMainTabsProps & IConnectedState & IConnectedDispatch;
@@ -57,10 +56,6 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
 
     public componentDidAppear() {
         this.props.startDailySteps();
-    }
-
-    public componentDidDisappear() {
-        this.props.stopDailySteps();
     }
 
     public componentDidUpdate(prevProps: Props) {
@@ -191,8 +186,7 @@ const mapStateToProps = (state: IReduxState) => ({
 
 const mapDispatchToProps = {
     dailyStepsCoinClicked,
-    startDailySteps,
-    stopDailySteps
+    startDailySteps
 };
 
 export default connect<IConnectedState, IConnectedDispatch>(

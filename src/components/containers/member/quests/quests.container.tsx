@@ -97,7 +97,9 @@ class QuestsContainer extends PureComponent<Props> {
                     }
 
                     if (subtype) {
-                        const progressTargets = milestones.map((item) => item.target.steps);
+                        const progressTargets = milestones.map(
+                            (item) => item.target[subtype === "meditation" ? "meditation" : "steps"]
+                        );
 
                         return (
                             <BlurProvider

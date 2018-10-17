@@ -1,17 +1,11 @@
 import moment from "moment";
 import { PedometerResponse } from "react-native-dual-pedometer";
 import RNFitKit, { FitKitTypes } from "react-native-fitkit";
-import { call, cancel, cancelled, fork, put, select, take } from "redux-saga/effects";
+import { call, put, select, takeLatest } from "redux-saga/effects";
 import { ChallengePayload } from "../../graphql/_core/schema";
 import upsertStepsChallenge from "../../graphql/challenges/upsertStepsChallenge.gql";
-import Logger from "../../services/logging/logger";
-import {
-    START_DAILY_STEPS,
-    STOP_DAILY_STEPS,
-    updateDailyStepsFailed,
-    updateDailyStepsSuccess
-} from "./daily-steps.actions";
-import { dailyStepsChannel } from "./daily-steps.channels";
+import { PEDOMETER_START, PEDOMETER_UPDATE, UpdatePedometerActionResult } from "../pedometer/pedometer.actions";
+import { updateDailyStepsFailed, updateDailyStepsSuccess } from "./daily-steps.actions";
 import { getLastUpdated } from "./daily-steps.selectors";
 
 const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
@@ -20,20 +14,23 @@ const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
     value: Math.floor(results.steps)
 });
 
-export function* listenToDailySteps() {
+export function* oldDaysUpdate() {
     const lastUpdated = yield select(getLastUpdated);
+    // const lastUpdated = moment().subtract(2, "days"); // for tests
     const startOfDay = moment().startOf("day");
-    let previousResults = [];
 
     if (moment(lastUpdated).isBefore(startOfDay)) {
         // get steps from start of last updated date until the end of previous day
-        const startTime = moment(lastUpdated).startOf("day").toISOString();
-        const endTime = moment().subtract(1, "days").endOf("day").toISOString();
+        const startTime = moment(lastUpdated)
+            .startOf("day")
+            .format();
+        const endTime = moment()
+            .subtract(1, "days")
+            .endOf("day")
+            .format();
 
         const authorised = yield call(RNFitKit.authorise, {
-            read: [
-                FitKitTypes.Types.Steps
-            ]
+            read: [FitKitTypes.Types.Steps]
         });
 
         if (authorised) {
@@ -47,38 +44,20 @@ export function* listenToDailySteps() {
                 startTime
             });
 
-            previousResults = results.map(mapPedometerResults);
-        }
-    }
-
-    const stepsChannel = yield call(dailyStepsChannel, startOfDay.toISOString());
-
-    while (true) {
-        try {
-            const results = yield take(stepsChannel);
-            yield call(() => Logger.logMixpanelEvent("raw_steps_results_passive", results));
-            const { data } = yield call(upsertStepsChallenge, [...previousResults, mapPedometerResults(results)]);
-
-            yield put(updateDailyStepsSuccess(data));
-        } catch (e) {
-            yield put(updateDailyStepsFailed(e.message));
-        } finally {
-            if (yield cancelled()) {
-                stepsChannel.close();
-            }
+            yield call(upsertStepsChallenge, results.map(mapPedometerResults));
+            // TODO: show modal collect yucoin
         }
     }
 }
 
-export function* startDailySteps() {
-    while (true) {
-        yield take(START_DAILY_STEPS);
-        const dailyStepsTask = yield fork(listenToDailySteps);
-        yield take(STOP_DAILY_STEPS);
-        yield cancel(dailyStepsTask);
+function* dailyStepsUpdate({ payload }: UpdatePedometerActionResult) {
+    try {
+        const { data } = yield call(upsertStepsChallenge, [mapPedometerResults(payload)]);
+
+        yield put(updateDailyStepsSuccess(data));
+    } catch (e) {
+        yield put(updateDailyStepsFailed(e.message));
     }
 }
 
-export default [
-    startDailySteps()
-];
+export default [takeLatest(PEDOMETER_START, oldDaysUpdate), takeLatest(PEDOMETER_UPDATE, dailyStepsUpdate)];
