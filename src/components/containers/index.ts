@@ -8,6 +8,7 @@ export { default as WelcomeContainer } from "./welcome/welcome.container";
 // onboarding containers
 export { default as FitKitConnectContainer } from "./onboarding/fitkit-connect/fitkit-connect.container";
 export { default as SignUpRewardContainer } from "./onboarding/signup-reward/signup-reward.container";
+export { default as IntroContainer } from "./onboarding/intro/intro.container";
 
 // member containers
 export { default as MenuContainer } from "./member/menu/menu.container";

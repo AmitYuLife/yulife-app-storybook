@@ -1,6 +1,7 @@
 import moment from "moment";
-import { PureComponent } from "react";
 import React from "react";
+import { PureComponent } from "react";
+import { BackHandler, NativeEventSubscription } from "react-native";
 import { FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
@@ -48,6 +49,8 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     public state: IState = {
         dailyStepsLoading: true
     };
+    private backHandler: NativeEventSubscription;
+    private backPressed: number = 0;
 
     constructor(props: Props) {
         super(props);
@@ -55,7 +58,20 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     public componentDidAppear() {
+        this.backPressed = 0;
+        this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
+            if (this.backPressed > 0) {
+                return false;
+            }
+
+            this.backPressed += 1;
+            return true;
+        });
         this.props.startDailySteps();
+    }
+
+    public componentDidDisappear() {
+        this.backHandler.remove();
     }
 
     public componentDidUpdate(prevProps: Props) {

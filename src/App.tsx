@@ -1,6 +1,6 @@
 import { Navigation } from "react-native-navigation";
 import registerScreens from "./navigation";
-import { setAuthenticatedRoot, setUnauthenticatedRoot } from "./navigation/root";
+import { setNextRoot, setUnauthenticatedRoot } from "./navigation/root";
 import { getToken, migrateOldAppVersionToken } from "./services/storage";
 
 // register all the screens
@@ -33,7 +33,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
     });
 
     if (token) {
-        setAuthenticatedRoot();
+        setNextRoot();
     } else {
         setUnauthenticatedRoot();
     }

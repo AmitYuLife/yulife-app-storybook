@@ -1,6 +1,7 @@
 import moment from "moment";
-import React from "react";
 import { PureComponent } from "react";
+import React from "react";
+import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../graphql/_core/schema";
@@ -48,6 +49,30 @@ interface IConnectedDispatch {
 type Props = IMainTabsProps & IConnectedState & IConnectedDispatch;
 
 class QuestsContainer extends PureComponent<Props> {
+    private backHandler: NativeEventSubscription;
+    private backPressed: number = 0;
+
+    constructor(props: Props) {
+        super(props);
+        Navigation.events().bindComponent(this);
+    }
+
+    public componentDidAppear() {
+        this.backPressed = 0;
+        this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
+            if (this.backPressed > 0) {
+                return false;
+            }
+
+            this.backPressed += 1;
+            return true;
+        });
+    }
+
+    public componentDidDisappear() {
+        this.backHandler.remove();
+    }
+
     public render() {
         const {
             activeLevel: { coins, endDateTime, milestones, rating, score, status, subtype, timeUp, unit },

@@ -5,7 +5,7 @@ import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IntercomHashMethod, LoginMethod, LoginUser } from "../../../graphql/_core/schema";
 import LoginUserMutation, { loginUserGql, LoginUserMutationFunction } from "../../../graphql/user/loginUser.gql";
-import { setAuthenticatedRoot } from "../../../navigation/root";
+import { setNextRoot } from "../../../navigation/root";
 import { ROUTES } from "../../../navigation/routes";
 import { loginUserSuccess, LoginUserSuccessAction } from "../../../redux/user/user.actions";
 import { setToken } from "../../../services/storage";
@@ -78,33 +78,37 @@ export class LoginContainer extends Component<Props, IState> {
     }
 
     private navigateToNext = async (authorised: boolean, onboarded: boolean) => {
+        const { componentId } = this.props;
+        const navigateToNext = () => {
+            if (!onboarded) {
+                const route = ROUTES.onboardingSignUpReward;
+                Navigation.push(componentId, {
+                    component: {
+                        id: route,
+                        name: route
+                    }
+                });
+                return;
+            }
+
+            setNextRoot();
+        };
+
         if (!authorised) {
             const route = ROUTES.onboardingFitKitConnect;
-            Navigation.push(this.props.componentId, {
+            Navigation.push(componentId, {
                 component: {
                     id: route,
                     name: route,
                     passProps: {
-                        onboarded
+                        navigateToNext
                     }
                 }
             });
             return;
         }
 
-        if (!onboarded) {
-            const route = ROUTES.onboardingSignUpReward;
-            Navigation.push(this.props.componentId, {
-                component: {
-                    id: route,
-                    name: route
-                }
-            });
-            return;
-        }
-
-        setAuthenticatedRoot();
-        return;
+        navigateToNext();
     }
 
     private onLogIn = async (loginUser: LoginUserMutationFunction, authorised: boolean) => {
