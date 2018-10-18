@@ -5,6 +5,7 @@ import {
     ChallengesListContainer,
     DailyStepsContainer,
     FitKitConnectContainer,
+    IntroContainer,
     LeaderboardsContainer,
     LoginContainer,
     MemberZoneContainer,
@@ -24,7 +25,6 @@ import {
     AnimatedChest,
     ChallengeDetailsModal,
     GenericModal,
-    IntroModal,
     MeditationSetUpModal,
     PushNotificationsModal,
     StreaksModal,
@@ -43,6 +43,7 @@ export const ROUTES = {
     // onboarding screens
     onboardingFitKitConnect: "yulife.onboarding.FitKitConnect",
     onboardingSignUpReward: "yulife.onboarding.SignUpReward",
+    onboardingIntro: "yulife.onboarding.Intro",
 
     // member screens
     menu: "yulife.menu",
@@ -68,7 +69,6 @@ export const MODALS = {
     challengeDetails: "yulife.modals.ChallengeDetails",
     chest: "yulife.modals.Chest",
     generic: "yulife.modals.Generic",
-    intro: "yulife.modals.Intro",
     leaderboards: "yulife.modals.Leaderboards",
     meditationSetUp: "yulife.modals.MeditationSetUp",
     pushNotifications: "yulife.modals.PushNotifications",
@@ -89,6 +89,7 @@ export default [
     // onboarding screens
     { name: ROUTES.onboardingSignUpReward, component: SignUpRewardContainer },
     { name: ROUTES.onboardingFitKitConnect, component: FitKitConnectContainer },
+    { name: ROUTES.onboardingIntro, component: IntroContainer },
 
     // member screens
     { name: ROUTES.menu, component: MenuContainer },
@@ -115,7 +116,6 @@ export default [
     { name: MODALS.challengeDetails, component: ChallengeDetailsModal },
     { name: MODALS.chest, component: AnimatedChest },
     { name: MODALS.generic, component: GenericModal },
-    { name: MODALS.intro, component: IntroModal },
     { name: MODALS.meditationSetUp, component: MeditationSetUpModal },
     { name: MODALS.pushNotifications, component: PushNotificationsModal },
     { name: MODALS.streaks, component: StreaksModal },

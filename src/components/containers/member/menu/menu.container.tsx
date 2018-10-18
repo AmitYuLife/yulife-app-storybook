@@ -3,7 +3,8 @@ import { PureComponent } from "react";
 import Intercom from "react-native-intercom";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { MODALS, ROUTES } from "../../../../navigation/routes";
+import { setIntroRoot } from "../../../../navigation/root";
+import { ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getRouteState } from "../../../../redux/app/app.selectors";
 import { logOut } from "../../../../redux/user/user.actions";
@@ -107,22 +108,22 @@ class MenuContainer extends PureComponent<Props> {
                 this.handlePush(ROUTES.memberZone);
                 return null;
             case LINKS.PLAY:
-                this.handleModal(MODALS.intro);
+                setIntroRoot();
                 return null;
             default:
                 return null;
         }
     }
 
-    private handleModal = (name: string) => {
-        Navigation.showModal({
-            component: {
-                id: name,
-                name
-            }
-        });
-        setTimeout(this.handleClose, 1000);
-    }
+    // private handleModal = (name: string) => {
+    //     Navigation.showModal({
+    //         component: {
+    //             id: name,
+    //             name
+    //         }
+    //     });
+    //     setTimeout(this.handleClose, 1000);
+    // }
 
     private handlePush = (route: string) => {
         this.handleClose();

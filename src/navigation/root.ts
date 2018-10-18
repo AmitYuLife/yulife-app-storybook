@@ -2,7 +2,7 @@ import { Navigation } from "react-native-navigation";
 import { ILabel } from "../components/molecules";
 import { getIntro } from "../services/storage";
 import { Style } from "../styles";
-import { MODALS, ROUTES } from "./routes";
+import { ROUTES } from "./routes";
 
 // tslint:disable-next-line
 const icon = require("../../assets/clock/clock.png");
@@ -66,9 +66,8 @@ const labels = [
     }
 ];
 
-export const setAuthenticatedRoot = async () => {
-    const hasSeenIntro = await getIntro();
-    await Navigation.setRoot({
+export const setAuthenticatedRoot = async () =>
+    Navigation.setRoot({
         root: {
             sideMenu: {
                 center: {
@@ -167,18 +166,8 @@ export const setAuthenticatedRoot = async () => {
         }
     });
 
-    if (!hasSeenIntro) {
-        await Navigation.showModal({
-            component: {
-                id: MODALS.intro,
-                name: MODALS.intro
-            }
-        });
-    }
-};
-
 export const setUnauthenticatedRoot = async () =>
-    await Navigation.setRoot({
+    Navigation.setRoot({
         root: {
             stack: {
                 children: [
@@ -192,3 +181,29 @@ export const setUnauthenticatedRoot = async () =>
             }
         }
     });
+
+export const setIntroRoot = async () =>
+    Navigation.setRoot({
+        root: {
+            stack: {
+                children: [
+                    {
+                        component: {
+                            id: ROUTES.onboardingIntro,
+                            name: ROUTES.onboardingIntro
+                        }
+                    }
+                ]
+            }
+        }
+    });
+
+export const setNextRoot = async () => {
+    const hasSeenIntro = await getIntro();
+
+    if (hasSeenIntro) {
+        setAuthenticatedRoot();
+    } else {
+        setIntroRoot();
+    }
+};

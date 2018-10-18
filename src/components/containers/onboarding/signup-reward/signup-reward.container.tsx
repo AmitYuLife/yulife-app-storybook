@@ -1,11 +1,13 @@
 import * as React from "react";
 import { PureComponent } from "react";
+import { BackHandler, NativeEventSubscription } from "react-native";
+import { Navigation } from "react-native-navigation";
 import UpsertOnboardingChallengeMutation, {
     upsertOnboardingChallengeGql,
     UpsertOnboardingChallengeMutationType,
     UpsertOnboardingChallengeStateType
 } from "../../../../graphql/challenges/upsertOnboardingChallenge.gql";
-import { setAuthenticatedRoot } from "../../../../navigation/root";
+import { setNextRoot } from "../../../../navigation/root";
 import { Loading } from "../../../atoms";
 import { SignUpRewardScreen } from "../../../screens";
 
@@ -18,17 +20,21 @@ interface IChildProps extends UpsertOnboardingChallengeStateType, IProps {
     upsertOnboardingChallenge: UpsertOnboardingChallengeMutationType;
 }
 
-interface IState {
-    coins: number;
-}
+class SignUpRewardContainerChild extends PureComponent<IChildProps> {
+    private backHandler: NativeEventSubscription;
 
-class SignUpRewardContainerChild extends PureComponent<IChildProps, IState> {
-    public state: IState = {
-        coins: null
-    };
+    constructor(props: IChildProps) {
+        super(props);
+        Navigation.events().bindComponent(this);
+    }
 
-    public async componentDidMount() {
-        await this.props.upsertOnboardingChallenge();
+    public componentDidAppear() {
+        this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => true);
+        this.props.upsertOnboardingChallenge();
+    }
+
+    public componentDidDisappear() {
+        this.backHandler.remove();
     }
 
     public render() {
@@ -52,7 +58,7 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps, IState> {
     }
 
     private onCollect = () => {
-        setAuthenticatedRoot();
+        setNextRoot();
     }
 }
 

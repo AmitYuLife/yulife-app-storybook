@@ -1,12 +1,10 @@
 import * as React from "react";
 import { PureComponent } from "react";
-import { Linking } from "react-native";
+import { BackHandler, Linking, NativeEventSubscription } from "react-native";
 import Config from "react-native-config";
 import { FitKitAuthoriseFunction, FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { setAuthenticatedRoot } from "../../../../navigation/root";
-import { ROUTES } from "../../../../navigation/routes";
 import { SyncAction } from "../../../../redux/_core/types";
 import { fitKitConsentAuthorised } from "../../../../redux/user/user.actions";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
@@ -15,7 +13,7 @@ import { FitKitConnectScreen } from "../../../screens";
 // TODO find where these props actually come from in RNN types
 interface IProps {
     componentId: string;
-    onboarded: boolean;
+    navigateToNext: () => void;
 }
 
 interface IConnectedDispatch {
@@ -29,12 +27,28 @@ interface IState {
 type Props = IProps & IConnectedDispatch;
 
 class FitKitConnectContainer extends PureComponent<Props, IState> {
+
     public state: IState = {
         connecting: false
     };
+    private backHandler: NativeEventSubscription;
+
+    constructor(props: Props) {
+        super(props);
+        Navigation.events().bindComponent(this);
+    }
+
+    public componentDidAppear() {
+        this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => true);
+    }
+
+    public componentDidDisappear() {
+        this.backHandler.remove();
+    }
 
     public render() {
         const { connecting } = this.state;
+        const { navigateToNext } = this.props;
 
         return (
             <FitKitAvailable>
@@ -42,7 +56,7 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
                     if (authorised) {
                         // ensure authorised when coming back to app
                         // authorise(FitKitPermissions);
-                        this.continue();
+                        navigateToNext();
                     }
 
                     return (
@@ -52,7 +66,7 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
                             fitKitAvailable={available}
                             onConnectPress={() => this.onConnect(authorise)}
                             onPrivacyPolicyPress={this.onPrivacyPolicy}
-                            onSkipPress={this.onSkip}
+                            onSkipPress={navigateToNext}
                         />
                     );
                 }}
@@ -74,23 +88,6 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
             // tslint:disable-next-line
             console.log("Unable to open privacy policy link:", e);
         }
-    }
-
-    private onSkip = async () => {
-        this.continue();
-    }
-
-    private continue = async () => {
-        if (!this.props.onboarded) {
-            await Navigation.push(this.props.componentId, {
-                component: {
-                    id: ROUTES.onboardingSignUpReward,
-                    name: ROUTES.onboardingSignUpReward
-                }
-            });
-        }
-
-        setAuthenticatedRoot();
     }
 }
 

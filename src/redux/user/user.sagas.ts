@@ -94,10 +94,10 @@ function* setLoggerIdentity(userId: string, hash?: string) {
 }
 
 function* logOut() {
-    yield spawn(clearToken);
-    yield spawn(setUnauthenticatedRoot);
-    yield spawn(() => client.resetStore());
-    yield spawn(() => persistor.purge());
+    yield call(clearToken);
+    yield call(setUnauthenticatedRoot);
+    yield call(() => client.resetStore());
+    yield call(() => persistor.purge());
 }
 
 export default [

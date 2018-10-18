@@ -1,6 +1,7 @@
 import moment from "moment";
-import * as React from "react";
 import { PureComponent } from "react";
+import * as React from "react";
+import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetAllPurchases_getAllPurchases, GetRewards_getRewards } from "../../../../graphql/_core/schema";
@@ -31,6 +32,29 @@ class RewardsContainer extends PureComponent<Props, IState> {
     public state: IState = {
         tab: "rewards"
     };
+    private backHandler: NativeEventSubscription;
+    private backPressed: number = 0;
+
+    constructor(props: Props) {
+        super(props);
+        Navigation.events().bindComponent(this);
+    }
+
+    public componentDidAppear() {
+        this.backPressed = 0;
+        this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
+            if (this.backPressed > 0) {
+                return false;
+            }
+
+            this.backPressed += 1;
+            return true;
+        });
+    }
+
+    public componentDidDisappear() {
+        this.backHandler.remove();
+    }
 
     public render() {
         const { tab } = this.state;
