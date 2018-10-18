@@ -2,12 +2,14 @@ import * as React from "react";
 import { PureComponent } from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
+import { connect } from "react-redux";
 import UpsertOnboardingChallengeMutation, {
     upsertOnboardingChallengeGql,
     UpsertOnboardingChallengeMutationType,
     UpsertOnboardingChallengeStateType
 } from "../../../../graphql/challenges/upsertOnboardingChallenge.gql";
 import { setNextRoot } from "../../../../navigation/root";
+import { getUserStart } from "../../../../redux/user/user.actions";
 import { Loading } from "../../../atoms";
 import { SignUpRewardScreen } from "../../../screens";
 
@@ -16,7 +18,11 @@ interface IProps {
     componentId: string;
 }
 
-interface IChildProps extends UpsertOnboardingChallengeStateType, IProps {
+interface IConnectedDispatch {
+    getUserStart: () => void;
+}
+
+interface IChildProps extends UpsertOnboardingChallengeStateType, IConnectedDispatch, IProps {
     upsertOnboardingChallenge: UpsertOnboardingChallengeMutationType;
 }
 
@@ -31,6 +37,7 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps> {
     public componentDidAppear() {
         this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => true);
         this.props.upsertOnboardingChallenge();
+        this.props.getUserStart();
     }
 
     public componentDidDisappear() {
@@ -62,7 +69,7 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps> {
     }
 }
 
-const SignUpRewardContainer = (props: IProps) => (
+const SignUpRewardContainer = (props: IProps & IConnectedDispatch) => (
     <UpsertOnboardingChallengeMutation mutation={upsertOnboardingChallengeGql}>
         {(upsertOnboardingChallenge, args) => {
             return (
@@ -76,4 +83,11 @@ const SignUpRewardContainer = (props: IProps) => (
     </UpsertOnboardingChallengeMutation>
 );
 
-export default SignUpRewardContainer;
+const mapDispatchToProps = {
+    getUserStart
+};
+
+export default connect<{}, IConnectedDispatch>(
+    null,
+    mapDispatchToProps
+)(SignUpRewardContainer);
