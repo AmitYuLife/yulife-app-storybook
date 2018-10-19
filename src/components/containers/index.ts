@@ -23,6 +23,7 @@ export { default as DailyStepsContainer } from "./member/daily-steps/daily-steps
 export { default as RewardsContainer } from "./member/rewards/rewards.container";
 
 // reward containers
+export { default as LinkRewardDetailsContainer } from "./member/rewards/details/link-details.container";
 export { default as WegiftRewardDetailsContainer } from "./member/rewards/details/wegift-details.container";
 export { default as WegiftRewardConfirmedContainer } from "./member/rewards/confirmed/wegift-confirmed.container";
 export { default as AviosRewardDetailsContainer } from "./member/rewards/details/avios-details.container";

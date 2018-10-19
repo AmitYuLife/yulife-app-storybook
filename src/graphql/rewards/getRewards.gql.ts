@@ -38,6 +38,11 @@ export const getRewardsGql = gql`
                 __typename
                 logoWidth
                 logoHeight
+                ctaLabel
+                alertHeading
+                alertSubheading
+                alertCancelLabel
+                alertOkLabel
             }
         }
     }

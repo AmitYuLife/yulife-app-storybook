@@ -72,7 +72,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
 
     // all related to the rewards tab
     private renderRewards = () => (
-        <GetRewardsQuery query={getRewardsGql} fetchPolicy="cache-first">
+        <GetRewardsQuery query={getRewardsGql} fetchPolicy="cache-and-network">
             {({ loading, data, refetch }) => {
                 const { hasNotification, labels, onLeftMenuPress, totalCoins } = this.props;
 
@@ -97,6 +97,8 @@ class RewardsContainer extends PureComponent<Props, IState> {
         switch (rewardProviderId) {
             case "avios":
                 return ROUTES.aviosDetails;
+            case "link":
+                return ROUTES.linkDetails;
             case "wegift":
             default:
                 return ROUTES.wegiftDetails;

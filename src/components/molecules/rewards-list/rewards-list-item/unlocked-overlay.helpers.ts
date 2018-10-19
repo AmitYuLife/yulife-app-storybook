@@ -18,7 +18,7 @@ export const renderExchange = (num: number, currencyType: string) => {
         case "AVIOS":
             return `yucoin x ${num} up`;
         case "LINK":
-            return `yucoin x 0`;
+            return "";
         default:
             return `yucoin x ${num}`;
     }

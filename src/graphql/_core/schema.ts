@@ -394,6 +394,11 @@ export interface GetRewards_getRewards_uiSettings {
   __typename: "RewardUiSettings";
   logoWidth: number | null;
   logoHeight: number | null;
+  ctaLabel: string | null;
+  alertHeading: string | null;
+  alertSubheading: string | null;
+  alertCancelLabel: string | null;
+  alertOkLabel: string | null;
 }
 
 export interface GetRewards_getRewards {

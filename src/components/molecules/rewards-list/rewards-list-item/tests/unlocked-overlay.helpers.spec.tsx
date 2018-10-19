@@ -32,7 +32,7 @@ describe("renderExchange", () => {
     it("should return a value for Link", () => {
         const actual = renderExchange(151, "LINK");
 
-        expect(actual).toBe("yucoin x 0");
+        expect(actual).toBe("");
     });
 
     it("should return a value for other types", () => {

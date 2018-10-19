@@ -7,6 +7,7 @@ import {
     FitKitConnectContainer,
     IntroContainer,
     LeaderboardsContainer,
+    LinkRewardDetailsContainer,
     LoginContainer,
     MemberZoneContainer,
     MenuContainer,
@@ -59,6 +60,7 @@ export const ROUTES = {
     questsChallengesList: "yulife.quests.ChallengesList",
 
     // rewards screens
+    linkDetails: "yulife.rewards.LinkDetails",
     wegiftDetails: "yulife.rewards.WegiftDetails",
     wegiftConfirmed: "yulife.rewards.WegiftConfirmed",
     aviosDetails: "yulife.rewards.AviosDetails",
@@ -105,6 +107,7 @@ export default [
     { name: ROUTES.questsChallengesList, component: ChallengesListContainer },
 
     // rewards screens
+    { name: ROUTES.linkDetails, component: LinkRewardDetailsContainer },
     { name: ROUTES.wegiftDetails, component: WegiftRewardDetailsContainer },
     { name: ROUTES.wegiftConfirmed, component: WegiftRewardConfirmedContainer },
     { name: ROUTES.aviosDetails, component: AviosRewardDetailsContainer },

@@ -25,6 +25,11 @@ describe("LockedOverlay", () => {
                 {...defaultProps}
                 settings={{
                     __typename: "RewardUiSettings",
+                    alertCancelLabel: null,
+                    alertHeading: null,
+                    alertOkLabel: null,
+                    alertSubheading: null,
+                    ctaLabel: null,
                     logoHeight: 1234,
                     logoWidth: 1234
                 }}
