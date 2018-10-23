@@ -1,4 +1,5 @@
 import moment from "moment";
+import Pedometer from "react-native-dual-pedometer";
 import { call, cancel, cancelled, fork, put, race, select, spawn, take } from "redux-saga/effects";
 import Logger from "../../services/logging/logger";
 import { getToken } from "../../services/storage";
@@ -12,6 +13,9 @@ function* listenToSteps() {
     const momentStartDay = moment().startOf("day");
     const startOfDay = momentStartDay.format();
     const channel = yield call(stepsChannel, startOfDay);
+
+    const firstQuery = yield call(Pedometer.queryPedometerFromDate, startOfDay, moment().format());
+    yield put(updatePedometerAction(firstQuery));
 
     while (true) {
         try {
