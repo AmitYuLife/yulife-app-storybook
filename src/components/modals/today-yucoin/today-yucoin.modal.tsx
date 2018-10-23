@@ -5,7 +5,8 @@ import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import {
     GetCurrentUser_getCurrentUser_activeChallenge,
-    GetCurrentUser_getCurrentUser_challengesToday
+    GetCurrentUser_getCurrentUser_activityToday_challenges,
+    GetCurrentUser_getCurrentUser_activityToday_chest
 } from "../../../graphql/_core/schema";
 import { getCurrentUserGql, GetCurrentUserQuery } from "../../../graphql/user/getCurrentUser.gql";
 import { IReduxState } from "../../../redux/_core/reducers";
@@ -27,7 +28,8 @@ interface IConnectedState {
 }
 
 type ActiveChallenge = GetCurrentUser_getCurrentUser_activeChallenge;
-type ChallengesToday = GetCurrentUser_getCurrentUser_challengesToday;
+type ChallengesToday = GetCurrentUser_getCurrentUser_activityToday_challenges;
+type ChestToday = GetCurrentUser_getCurrentUser_activityToday_chest;
 type Props = IProps & IConnectedState;
 
 class TodayYucoinContainer extends PureComponent<Props> {
@@ -45,7 +47,12 @@ class TodayYucoinContainer extends PureComponent<Props> {
                         return <Loading />;
                     }
 
-                    const challengesToday = pathOr<ChallengesToday[]>(data, "getCurrentUser.challengesToday", []);
+                    const chest = pathOr<ChestToday>(data, "getCurrentUser.activityToday.chest", null);
+                    const challengesToday = pathOr<ChallengesToday[]>(
+                        data,
+                        "getCurrentUser.activityToday.challenges",
+                        []
+                    );
                     const { challenge, levelSlot } = pathOr<ActiveChallenge>(data, "getCurrentUser.activeChallenge", {
                         challenge: null,
                         levelSlot: null
@@ -64,6 +71,7 @@ class TodayYucoinContainer extends PureComponent<Props> {
                         <TodayYucoinScreen
                             activeChallenge={activeChallenge}
                             challenges={challengesToday}
+                            chest={chest}
                             dailyStepsEarned={dailyStepsEarned}
                             exchangeRate={exchangeRate}
                             steps={steps}

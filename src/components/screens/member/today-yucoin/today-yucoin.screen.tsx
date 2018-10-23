@@ -1,7 +1,10 @@
 import React, { PureComponent } from "react";
 import { Image, SafeAreaView, View } from "react-native";
 import Svg, { Rect } from "react-native-svg";
-import { GetCurrentUser_getCurrentUser_challengesToday } from "../../../../graphql/_core/schema";
+import {
+    GetCurrentUser_getCurrentUser_activityToday_challenges,
+    GetCurrentUser_getCurrentUser_activityToday_chest
+} from "../../../../graphql/_core/schema";
 import { ExchangeRate } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { Button, ChestCoin, Close, GenericHeading, Pad, StarInline, Text } from "../../../atoms";
 import { Glow } from "../daily-steps/assets/yu-coin-subcomponents";
@@ -11,8 +14,9 @@ interface IProps {
     onPressCta: () => void;
     onPressClose: () => void;
     steps: number;
-    activeChallenge: GetCurrentUser_getCurrentUser_challengesToday;
-    challenges: GetCurrentUser_getCurrentUser_challengesToday[];
+    activeChallenge: GetCurrentUser_getCurrentUser_activityToday_challenges;
+    chest: GetCurrentUser_getCurrentUser_activityToday_chest;
+    challenges: GetCurrentUser_getCurrentUser_activityToday_challenges[];
     dailyStepsEarned: number;
     exchangeRate: ExchangeRate;
 }
@@ -22,7 +26,7 @@ const images = {
     checkFilled: require("../../../../../assets/today-yucoin/check-filled.png")
 };
 
-const getLabel = (challenge: GetCurrentUser_getCurrentUser_challengesToday) => {
+const getLabel = (challenge: GetCurrentUser_getCurrentUser_activityToday_challenges) => {
     const isMeditation = challenge.subtype === "meditation";
     const dataType = isMeditation ? "meditation" : "steps";
     const unitType = isMeditation ? "seconds" : "steps";
@@ -35,6 +39,7 @@ class TodayYucoinScreen extends PureComponent<IProps> {
         const {
             activeChallenge,
             challenges,
+            chest,
             dailyStepsEarned,
             exchangeRate = { steps: 2000, yucoin: 1 },
             onPressCta,
@@ -103,6 +108,15 @@ class TodayYucoinScreen extends PureComponent<IProps> {
                                 <Text style={styles.steps}>quests / you haven’t done any today</Text>
                                 <View style={styles.starsWrapper} />
                                 <Text style={styles.yucoinsEarned}>0</Text>
+                            </View>
+                        )}
+                        {chest && (
+                            <View style={styles.activeChallengeWrapper}>
+                                <Text style={styles.steps}>
+                                    {chest.type === "yucoin" ? "chest" : `chest / ${chest.value} ${chest.type}`}
+                                </Text>
+                                <View style={styles.starsWrapper} />
+                                <Text style={styles.yucoinsEarned}>{chest.type === "yucoin" ? chest.value : 0}</Text>
                             </View>
                         )}
                         {activeChallenge && (

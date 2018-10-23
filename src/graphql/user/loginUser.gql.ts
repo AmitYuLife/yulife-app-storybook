@@ -5,17 +5,17 @@ import { LoginUser, LoginUserVariables } from "../_core/schema";
 
 export const loginUserGql = gql`
     mutation LoginUser(
-        $email: String!,
-        $password: String!,
-        $method: LoginMethod,
-        $tokenExpiration: Int,
+        $email: String!
+        $password: String!
+        $method: LoginMethod
+        $tokenExpiration: Int
         $intercomHashMethod: IntercomHashMethod
     ) {
         loginUser(
-            email: $email,
-            password: $password,
-            method: $method,
-            tokenExpiration: $tokenExpiration,
+            email: $email
+            password: $password
+            method: $method
+            tokenExpiration: $tokenExpiration
             intercomHashMethod: $intercomHashMethod
         ) {
             token
@@ -84,13 +84,19 @@ export const loginUserGql = gql`
                     value
                     maxStreak
                 }
-                challengesToday {
-                    yuCoinAwarded
-                    rating
-                    subtype
-                    incomingData {
-                        steps
-                        meditation
+                activityToday {
+                    challenges {
+                        yuCoinAwarded
+                        rating
+                        subtype
+                        incomingData {
+                            steps
+                            meditation
+                        }
+                    }
+                    chest {
+                        type
+                        value
                     }
                 }
                 leaderboards {
@@ -106,4 +112,4 @@ export const loginUserGql = gql`
 export type LoginUserResultType = MutationResult<LoginUser>;
 export type LoginUserMutationFunction = MutationFn<LoginUser, LoginUserVariables>;
 
-export default class LoginUserMutation extends Mutation<LoginUser, LoginUserVariables> { }
+export default class LoginUserMutation extends Mutation<LoginUser, LoginUserVariables> {}

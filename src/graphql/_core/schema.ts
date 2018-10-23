@@ -610,16 +610,26 @@ export interface GetCurrentUser_getCurrentUser_activeStreak {
   maxStreak: number | null;
 }
 
-export interface GetCurrentUser_getCurrentUser_challengesToday_incomingData {
+export interface GetCurrentUser_getCurrentUser_activityToday_challenges_incomingData {
   steps: number | null;
   meditation: number | null;
 }
 
-export interface GetCurrentUser_getCurrentUser_challengesToday {
+export interface GetCurrentUser_getCurrentUser_activityToday_challenges {
   yuCoinAwarded: number | null;
   rating: number | null;
   subtype: string | null;
-  incomingData: GetCurrentUser_getCurrentUser_challengesToday_incomingData | null;
+  incomingData: GetCurrentUser_getCurrentUser_activityToday_challenges_incomingData | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_activityToday_chest {
+  type: string | null;
+  value: number | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_activityToday {
+  challenges: (GetCurrentUser_getCurrentUser_activityToday_challenges | null)[] | null;
+  chest: GetCurrentUser_getCurrentUser_activityToday_chest | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_leaderboards {
@@ -637,7 +647,7 @@ export interface GetCurrentUser_getCurrentUser {
   passiveChallenge: GetCurrentUser_getCurrentUser_passiveChallenge | null;
   activeChallenge: GetCurrentUser_getCurrentUser_activeChallenge | null;
   activeStreak: GetCurrentUser_getCurrentUser_activeStreak | null;
-  challengesToday: (GetCurrentUser_getCurrentUser_challengesToday | null)[] | null;
+  activityToday: GetCurrentUser_getCurrentUser_activityToday | null;
   leaderboards: (GetCurrentUser_getCurrentUser_leaderboards | null)[] | null;
 }
 
@@ -745,16 +755,26 @@ export interface LoginUser_loginUser_user_activeStreak {
   maxStreak: number | null;
 }
 
-export interface LoginUser_loginUser_user_challengesToday_incomingData {
+export interface LoginUser_loginUser_user_activityToday_challenges_incomingData {
   steps: number | null;
   meditation: number | null;
 }
 
-export interface LoginUser_loginUser_user_challengesToday {
+export interface LoginUser_loginUser_user_activityToday_challenges {
   yuCoinAwarded: number | null;
   rating: number | null;
   subtype: string | null;
-  incomingData: LoginUser_loginUser_user_challengesToday_incomingData | null;
+  incomingData: LoginUser_loginUser_user_activityToday_challenges_incomingData | null;
+}
+
+export interface LoginUser_loginUser_user_activityToday_chest {
+  type: string | null;
+  value: number | null;
+}
+
+export interface LoginUser_loginUser_user_activityToday {
+  challenges: (LoginUser_loginUser_user_activityToday_challenges | null)[] | null;
+  chest: LoginUser_loginUser_user_activityToday_chest | null;
 }
 
 export interface LoginUser_loginUser_user_leaderboards {
@@ -774,7 +794,7 @@ export interface LoginUser_loginUser_user {
   passiveChallenge: LoginUser_loginUser_user_passiveChallenge | null;
   activeChallenge: LoginUser_loginUser_user_activeChallenge | null;
   activeStreak: LoginUser_loginUser_user_activeStreak | null;
-  challengesToday: (LoginUser_loginUser_user_challengesToday | null)[] | null;
+  activityToday: LoginUser_loginUser_user_activityToday | null;
   leaderboards: (LoginUser_loginUser_user_leaderboards | null)[] | null;
 }
 

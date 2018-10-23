@@ -67,13 +67,19 @@ export const getCurrentUserGql = gql`
                 value
                 maxStreak
             }
-            challengesToday {
-                yuCoinAwarded
-                rating
-                subtype
-                incomingData {
-                    steps
-                    meditation
+            activityToday {
+                challenges {
+                    yuCoinAwarded
+                    rating
+                    subtype
+                    incomingData {
+                        steps
+                        meditation
+                    }
+                }
+                chest {
+                    type
+                    value
                 }
             }
             leaderboards {
@@ -87,7 +93,7 @@ export const getCurrentUserGql = gql`
 
 export type GetCurrentUserResultType = QueryResult<GetCurrentUser>;
 
-export class GetCurrentUserQuery extends Query<GetCurrentUser> { }
+export class GetCurrentUserQuery extends Query<GetCurrentUser> {}
 
 const getCurrentUserWithClient = () =>
     client.query<GetCurrentUser>({

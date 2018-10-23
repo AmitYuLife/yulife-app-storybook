@@ -11,6 +11,7 @@ import {
     LoginContainer,
     MemberZoneContainer,
     MenuContainer,
+    NoAccessContainer,
     QuestsContainer,
     ResetPasswordContainer,
     ResetPasswordSuccessContainer,
@@ -35,6 +36,7 @@ import {
 // tslint:disable:object-literal-sort-keys
 export const ROUTES = {
     // root screens
+    noAccess: "yulife.NoAccess",
     login: "yulife.Login",
     resetPassword: "yulife.ResetPassword",
     resetPasswordSuccess: "yulife.ResetPasswordSuccess",
@@ -82,6 +84,7 @@ export const MODALS = {
 
 export default [
     // root screens
+    { name: ROUTES.noAccess, component: NoAccessContainer },
     { name: ROUTES.welcome, component: WelcomeContainer },
     { name: ROUTES.login, component: LoginContainer },
     { name: ROUTES.resetPassword, component: ResetPasswordContainer },

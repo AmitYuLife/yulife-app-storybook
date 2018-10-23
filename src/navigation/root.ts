@@ -30,7 +30,7 @@ const labels = [
         onPress: () => {
             Navigation.mergeOptions(ROUTES.dailySteps, {
                 bottomTabs: {
-                    animate: true,
+                    animate: false,
                     currentTabIndex: 0,
                     drawBehind: true,
                     visible: false
@@ -43,7 +43,7 @@ const labels = [
         onPress: () => {
             Navigation.mergeOptions(ROUTES.quests, {
                 bottomTabs: {
-                    animate: true,
+                    animate: false,
                     currentTabIndex: 1,
                     drawBehind: true,
                     visible: false
@@ -56,7 +56,7 @@ const labels = [
         onPress: () => {
             Navigation.mergeOptions(ROUTES.rewards, {
                 bottomTabs: {
-                    animate: true,
+                    animate: false,
                     currentTabIndex: 2,
                     drawBehind: true,
                     visible: false
@@ -147,7 +147,6 @@ export const setAuthenticatedRoot = async () =>
                 },
                 options: {
                     bottomTabs: {
-                        animate: true,
                         drawBehind: true,
                         visible: false
                     },

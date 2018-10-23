@@ -12,7 +12,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
 
     Navigation.setDefaultOptions({
         bottomTabs: {
-            animated: true,
+            animate: false,
             drawBehind: true,
             visible: false
         },
@@ -27,6 +27,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
         //     visible: true,
         // },
         topBar: {
+            animate: false,
             drawBehind: true,
             visible: false
         }

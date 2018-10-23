@@ -193,7 +193,7 @@ const pedometerUpdate = (state: ILevelsStore, { steps }: PedometerResponse): ILe
         return state;
     }
 
-    const isChallengeActive = !!state.active.levelSlotId && !state.active.timeUp;
+    const isChallengeActive = !!state.active.levelSlotId && !state.active.timeUp && !state.active.status;
     const current = steps - state.active.initialPedometerResult;
     const currentScore = current > state.active.score ? current : state.active.score;
     const score = isChallengeActive ? currentScore : state.active.score;
