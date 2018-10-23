@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import { G, Circle } from "react-native-svg";
 import { LevelContent } from "./";
 import { IChallenge } from "../../../quests-screen";
+import moment from 'moment';
 
 interface LockIconProps {
     x: string;
@@ -35,8 +36,8 @@ class Level extends PureComponent<IProps, IState> {
 
     private setPulse = (timeout?: number) => {
         const { pulseSize } = this.state;
-        const { nextAvailable } = this.props.data;
-        const multiplier = nextAvailable < 0 ? 1 : 2
+        const { nextAvailableAt } = this.props.data;
+        const multiplier = moment().diff(moment(nextAvailableAt), "seconds") < 0 ? 1 : 2
         this.pulseTimeout = global.setTimeout(
             () => this.setState(({
                 pulseSize,
@@ -103,13 +104,13 @@ class Level extends PureComponent<IProps, IState> {
             )
         }
 
-        const { isNext, nextAvailable, rating } = data;
+        const { isNext, nextAvailableAt, rating } = data;
         return (
             <G onPressIn={onPress} >
                 <Circle
                     fill={
                         isNext
-                            ? nextAvailable < 0
+                            ? moment().diff(moment(nextAvailableAt), "seconds") < 0
                                 ? "rgb(145,0,76)"
                                 : "rgb(226,1,119)"
                             : "rgb(112,221,205)"
@@ -132,7 +133,7 @@ class Level extends PureComponent<IProps, IState> {
 
                 <LevelContent
                     isNext={isNext}
-                    nextAvailable={nextAvailable}
+                    nextAvailableAt={nextAvailableAt}
                     level={level}
                     x={+cx}
                     y={+cy}

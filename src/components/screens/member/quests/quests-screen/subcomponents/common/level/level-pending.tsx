@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { PureComponent } from "react";
 import { G, Text } from "react-native-svg";
 import { Style } from "../../../../../../../../styles";
@@ -5,7 +6,7 @@ import data from "./level-pending.data";
 import { getTime } from "./level-pending.helpers";
 
 interface IProps {
-    nextAvailable: number;
+    nextAvailableAt: string;
 }
 
 interface IState {
@@ -13,19 +14,13 @@ interface IState {
 }
 
 class LevelPending extends PureComponent<IProps, IState> {
-    public state = {
+    public state: IState = {
         nextAvailable: null
-    } as IState;
+    };
     private interval: NodeJS.Timer;
 
     public componentDidMount() {
-        const { nextAvailable } = this.props;
-        this.setState({ nextAvailable }, () => {
-            this.interval = global.setInterval(
-                this.handleUpdateNextAvailable,
-                1000
-            );
-        });
+        global.setInterval(this.handleUpdateNextAvailable, 1000);
     }
 
     public componentWillUnmount() {
@@ -34,9 +29,8 @@ class LevelPending extends PureComponent<IProps, IState> {
 
     public render() {
         const { nextAvailable } = this.state;
-        const nextAvailableFormatted = getTime(
-            nextAvailable
-        );
+        const nextAvailableFormatted = getTime(nextAvailable);
+
         return (
             <G>
                 <Text
@@ -44,9 +38,7 @@ class LevelPending extends PureComponent<IProps, IState> {
                     textAnchor="middle"
                     fill="white"
                     fontSize={24}
-                    fontFamily={
-                        Style.FONT_FAMILY_PRIMARY_BOLD
-                    }
+                    fontFamily={Style.FONT_FAMILY_PRIMARY_BOLD}
                     fontWeight="700"
                 >
                     {data.prefix}
@@ -56,9 +48,7 @@ class LevelPending extends PureComponent<IProps, IState> {
                     textAnchor="middle"
                     fill="white"
                     fontSize={24}
-                    fontFamily={
-                        Style.FONT_FAMILY_PRIMARY_BOLD
-                    }
+                    fontFamily={Style.FONT_FAMILY_PRIMARY_BOLD}
                     fontWeight="700"
                 >
                     {nextAvailableFormatted}
@@ -67,9 +57,8 @@ class LevelPending extends PureComponent<IProps, IState> {
         );
     }
     private handleUpdateNextAvailable = () => {
-        this.setState(({ nextAvailable }) => ({
-            nextAvailable: Math.abs(nextAvailable) - 1
-        }));
+        const nextAvailable = Math.abs(moment().diff(moment(this.props.nextAvailableAt), "seconds"));
+        this.setState({ nextAvailable });
     }
 }
 

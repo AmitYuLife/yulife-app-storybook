@@ -12,7 +12,7 @@ import { Episode, UnityLockerImage, UnityLockerLabel } from "./subcomponents";
 export interface IChallenge extends GetCurrentWorld_getCurrentWorld {
     isDone?: boolean;
     isNext?: boolean;
-    nextAvailable?: number;
+    nextAvailableAt?: string;
     onPress?: () => void;
 }
 
