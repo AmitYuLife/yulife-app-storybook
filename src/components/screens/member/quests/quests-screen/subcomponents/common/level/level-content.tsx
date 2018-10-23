@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { SFC } from "react";
 import { G } from "react-native-svg";
 import LevelComplete from "./level-complete";
@@ -5,7 +6,7 @@ import LevelNext from "./level-next";
 import LevelPending from "./level-pending";
 
 interface IProps {
-    nextAvailable: number;
+    nextAvailableAt: string;
     level: number;
     x: number;
     y: number;
@@ -13,12 +14,12 @@ interface IProps {
     isNext: boolean;
 }
 
-const LevelContent: SFC<IProps> = ({ isNext, nextAvailable, level, x, y, rating }) => (
+const LevelContent: SFC<IProps> = ({ isNext, nextAvailableAt, level, x, y, rating }) => (
     <G x={x} y={y}>
         {
             isNext
-                ? nextAvailable < 0
-                    ? <LevelPending nextAvailable={nextAvailable} />
+                ? moment().diff(moment(nextAvailableAt), "seconds") < 0
+                    ? <LevelPending nextAvailableAt={nextAvailableAt} />
                     : <LevelNext level={level} />
                 : <LevelComplete level={level} rating={rating} />
         }

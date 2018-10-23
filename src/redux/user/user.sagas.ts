@@ -1,4 +1,4 @@
-import { call, put, spawn, take, takeLatest } from "redux-saga/effects";
+import { call, put, select, spawn, take, takeLatest } from "redux-saga/effects";
 import client from "../../graphql/_core/client";
 import updateLeaderboardConsentGql from "../../graphql/member/updateLeaderboardConsent.gql";
 import updateMemberConsentGql from "../../graphql/member/updateMemberConsent.gql";
@@ -10,6 +10,7 @@ import { clearToken } from "../../services/storage/token";
 import { persistor } from "../_core/store";
 import { appStateChannel } from "../app/app.channels";
 import { CHALLENGE_RESET_SUCCESS } from "../levels/levels.actions";
+import { activeLevelSelector } from "../levels/levels.selectors";
 import {
     FITKIT_CONSENT_AUTHORISED,
     GET_USER_START,
@@ -64,8 +65,9 @@ function* fetchUserOnAppStateChange() {
 
     while (true) {
         const state = yield take(appState);
+        const active = yield select(activeLevelSelector);
 
-        if (state === "active") {
+        if (state === "active" && !active.levelSlotId) {
             yield call(getUserData);
         }
     }
