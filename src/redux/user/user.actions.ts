@@ -8,6 +8,7 @@ import {
 import { SyncAction } from "../_core/types";
 
 export const FITKIT_CONSENT_AUTHORISED = "FITKIT_CONSENT_AUTHORISED";
+export const SET_USER_NO_ACCESS = "SET_USER_NO_ACCESS";
 export const GET_USER_START = "GET_USER_START";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
@@ -18,6 +19,10 @@ export const LOGOUT = "LOGOUT";
 
 export const fitKitConsentAuthorised = (): SyncAction => ({
     type: FITKIT_CONSENT_AUTHORISED
+});
+
+export const setUserNoAccessAction = (): SyncAction => ({
+    type: SET_USER_NO_ACCESS
 });
 
 export const getUserStart = (): SyncAction => ({

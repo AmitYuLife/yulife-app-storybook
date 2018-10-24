@@ -6,7 +6,7 @@ import {
     UpdateMemberConsent
 } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, UPDATE_USER_CONSENT_SUCCESS } from "./user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, SET_USER_NO_ACCESS, UPDATE_USER_CONSENT_SUCCESS } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
 
 interface IFeature {
@@ -16,12 +16,14 @@ interface IFeature {
 type Leaderboard = GetCurrentUser_getCurrentUser_leaderboards;
 
 export interface IUserStore {
+    archived: boolean;
     consent: MobileConsentInput;
     features: IFeature;
     leaderboards: Leaderboard[];
 }
 
 export const initialState: IUserStore = {
+    archived: false,
     consent: {},
     features: {},
     leaderboards: []
@@ -29,6 +31,9 @@ export const initialState: IUserStore = {
 
 const userReducer = (state: IUserStore = initialState, action: SyncAction): IUserStore => {
     switch (action.type) {
+        case SET_USER_NO_ACCESS:
+            return { ...state, archived: true };
+
         case GET_USER_SUCCESS:
             return getUserSuccess(state, action.payload);
 
@@ -50,6 +55,7 @@ const getUserSuccess = (
     { getCurrentUser: { leaderboards = [], mobileConsent, userFeatures = [] } }: GetCurrentUser
 ): IUserStore => ({
     ...state,
+    archived: false,
     consent: {
         ...mobileConsent
     },

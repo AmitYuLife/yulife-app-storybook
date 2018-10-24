@@ -25,6 +25,7 @@ export const loginUserGql = gql`
             user {
                 __typename
                 id
+                archived
                 businessAccountId
                 userFeatures {
                     name

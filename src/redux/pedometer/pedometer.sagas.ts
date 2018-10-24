@@ -5,7 +5,13 @@ import Logger from "../../services/logging/logger";
 import { getToken } from "../../services/storage";
 import { UPDATE_APP_STATE } from "../app/app.actions";
 import { START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
-import { startPedometerUpdates, updatePedometerStartAction, updatePedometerSuccessAction } from "./pedometer.actions";
+import { isUserArchivedSelector } from "../user/user.selectors";
+import {
+    PEDOMETER_STOP,
+    startPedometerUpdates,
+    updatePedometerStartAction,
+    updatePedometerSuccessAction
+} from "./pedometer.actions";
 import { stepsChannel } from "./pedometer.channels";
 import { stepsSelector } from "./pedometer.selectors";
 
@@ -48,11 +54,15 @@ function* startPedometer() {
             dailySteps: take(START_DAILY_STEPS)
         });
         const token = yield call(getToken);
+        const isArchived = yield select(isUserArchivedSelector);
 
-        if (token && (dailySteps || appStart || (appUpdated && appUpdated.payload === "active"))) {
+        if (token && !isArchived && (dailySteps || appStart || (appUpdated && appUpdated.payload === "active"))) {
             yield put(startPedometerUpdates());
             const stepsTask = yield fork(listenToSteps);
-            yield take(UPDATE_APP_STATE);
+            yield race({
+                appUpdated: take(UPDATE_APP_STATE),
+                dailySteps: take(PEDOMETER_STOP)
+            });
             yield cancel(stepsTask);
         }
     }

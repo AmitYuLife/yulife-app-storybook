@@ -10,6 +10,7 @@ export const getCurrentUserGql = gql`
         getCurrentUser {
             __typename
             id
+            archived
             userFeatures {
                 name
                 value

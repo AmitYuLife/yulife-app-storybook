@@ -32,6 +32,7 @@ const loginSuccessFixture: LoginUser = {
                 value: 250
             },
             activityToday: null,
+            archived: false,
             businessAccountId: "abcdefghijkl",
             coinLedger: {
                 currentBalance: 15,

@@ -642,6 +642,7 @@ export interface GetCurrentUser_getCurrentUser_leaderboards {
 export interface GetCurrentUser_getCurrentUser {
   __typename: "User";
   id: string | null;
+  archived: boolean | null;
   userFeatures: (GetCurrentUser_getCurrentUser_userFeatures | null)[] | null;
   mobileConsent: GetCurrentUser_getCurrentUser_mobileConsent | null;
   coinLedger: GetCurrentUser_getCurrentUser_coinLedger | null;
@@ -787,6 +788,7 @@ export interface LoginUser_loginUser_user_leaderboards {
 export interface LoginUser_loginUser_user {
   __typename: "User";
   id: string | null;
+  archived: boolean | null;
   businessAccountId: string | null;
   userFeatures: (LoginUser_loginUser_user_userFeatures | null)[] | null;
   mobileConsent: LoginUser_loginUser_user_mobileConsent | null;

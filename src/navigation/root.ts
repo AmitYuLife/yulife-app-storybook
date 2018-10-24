@@ -197,6 +197,16 @@ export const setIntroRoot = async () =>
         }
     });
 
+export const setNoAccessRoot = async () =>
+    Navigation.setRoot({
+        root: {
+            component: {
+                id: ROUTES.noAccess,
+                name: ROUTES.noAccess
+            }
+        }
+    });
+
 export const setNextRoot = async () => {
     const hasSeenIntro = await getIntro();
 
