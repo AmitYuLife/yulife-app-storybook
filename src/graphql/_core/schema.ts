@@ -417,6 +417,7 @@ export interface GetRewards_getRewards {
   description: string | null;
   e_code_usage_type: string | null;
   expiry_date_policy: string | null;
+  link_type: string | null;
   maximum_value: number | null;
   minimum_value: number | null;
   name: string | null;
