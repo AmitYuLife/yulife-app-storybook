@@ -59,13 +59,13 @@ const updateDailyStepsSuccess = (
     state: IDailyStepsStore,
     { upsertPassiveChallenge: { challenge } }: UpsertPassiveChallenge
 ) => {
-    const lastUpdated = moment.unix(challenge.updatedAt).toISOString();
+    const lastUpdated = moment.unix(challenge.updatedAt).format();
 
     return {
         ...state,
         dailySteps: challenge.incomingData.steps,
         isFetching: false,
-        lastUpdated: lastUpdated === state.lastUpdated ? moment().toISOString() : lastUpdated
+        lastUpdated: lastUpdated === state.lastUpdated ? moment().format() : lastUpdated
     };
 };
 

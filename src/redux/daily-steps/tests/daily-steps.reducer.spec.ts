@@ -1,3 +1,4 @@
+import moment from "moment";
 import { UpsertPassiveChallenge } from "../../../graphql/_core/schema";
 import { updateDailyStepsFailed, updateDailyStepsSuccess } from "../daily-steps.actions";
 import stepsReducer, { IDailyStepsStore, initialState } from "../daily-steps.reducer";
@@ -20,7 +21,7 @@ describe("Daily Steps Reducer", () => {
             ...initialState,
             dailySteps: 4321,
             isFetching: false,
-            lastUpdated: "2018-04-08T23:00:40.000Z"
+            lastUpdated: moment.unix(localData.upsertPassiveChallenge.challenge.updatedAt).format()
         };
         const actual = stepsReducer(initialState, updateDailyStepsSuccess(localData));
 

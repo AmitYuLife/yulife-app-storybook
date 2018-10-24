@@ -31,7 +31,6 @@ function* listenToSteps() {
             // console.log("PEDOMETER RESULTS: ", results, currentSteps);
 
             if (results.steps !== currentSteps) {
-                yield put(updatePedometerStartAction());
                 yield spawn(() => Logger.logMixpanelEvent("raw_steps_results_passive", results));
                 yield put(updatePedometerSuccessAction(results));
             }
