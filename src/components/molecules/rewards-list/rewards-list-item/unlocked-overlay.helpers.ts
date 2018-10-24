@@ -2,6 +2,10 @@ const formatMoney = (amount: number) => {
     return amount % 1 === 0 ? String(amount) : amount.toFixed(2);
 };
 
+export const renderLinkType = (linkType?: string) => {
+    return linkType ? linkType : "free trial";
+};
+
 export const renderValue = (num: number, currencyType: string) => {
     switch (currencyType) {
         case "AVIOS":

@@ -7,6 +7,7 @@ ShallowWrapper {
     code="abcdefg"
     cost={20}
     isLocked={false}
+    linkType=""
     onPress={[MockFunction]}
     rewardCurrency="GBP"
     rewardValue={10}
@@ -81,6 +82,7 @@ ShallowWrapper {
           <UnlockedOverlay
             code="abcdefg"
             cost={20}
+            linkType=""
             rewardCurrency="GBP"
             rewardValue={10}
             settings={
@@ -168,6 +170,7 @@ ShallowWrapper {
             <UnlockedOverlay
               code="abcdefg"
               cost={20}
+              linkType=""
               rewardCurrency="GBP"
               rewardValue={10}
               settings={
@@ -251,6 +254,7 @@ ShallowWrapper {
             "children": <UnlockedOverlay
               code="abcdefg"
               cost={20}
+              linkType=""
               rewardCurrency="GBP"
               rewardValue={10}
               settings={
@@ -273,6 +277,7 @@ ShallowWrapper {
             "props": Object {
               "code": "abcdefg",
               "cost": 20,
+              "linkType": "",
               "rewardCurrency": "GBP",
               "rewardValue": 10,
               "settings": Object {
@@ -366,6 +371,7 @@ ShallowWrapper {
             <UnlockedOverlay
               code="abcdefg"
               cost={20}
+              linkType=""
               rewardCurrency="GBP"
               rewardValue={10}
               settings={
@@ -453,6 +459,7 @@ ShallowWrapper {
               <UnlockedOverlay
                 code="abcdefg"
                 cost={20}
+                linkType=""
                 rewardCurrency="GBP"
                 rewardValue={10}
                 settings={
@@ -536,6 +543,7 @@ ShallowWrapper {
               "children": <UnlockedOverlay
                 code="abcdefg"
                 cost={20}
+                linkType=""
                 rewardCurrency="GBP"
                 rewardValue={10}
                 settings={
@@ -558,6 +566,7 @@ ShallowWrapper {
               "props": Object {
                 "code": "abcdefg",
                 "cost": 20,
+                "linkType": "",
                 "rewardCurrency": "GBP",
                 "rewardValue": 10,
                 "settings": Object {

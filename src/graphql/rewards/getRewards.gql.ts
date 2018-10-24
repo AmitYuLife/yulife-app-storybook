@@ -25,6 +25,7 @@ export const getRewardsGql = gql`
             description
             e_code_usage_type
             expiry_date_policy
+            link_type
             maximum_value
             minimum_value
             name

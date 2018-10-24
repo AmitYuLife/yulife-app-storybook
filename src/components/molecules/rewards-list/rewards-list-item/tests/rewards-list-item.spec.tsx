@@ -8,6 +8,7 @@ const defaultProps = {
     code: "abcdefg",
     cost: 20,
     isLocked: false,
+    linkType: "",
     onPress: jest.fn(),
     rewardCurrency: "GBP",
     rewardValue: 10,

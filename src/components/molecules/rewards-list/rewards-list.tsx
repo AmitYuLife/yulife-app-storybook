@@ -21,7 +21,7 @@ interface IRenderItemArgs {
 }
 
 const handleRenderItem = (onPress: RenderItem) => ({ item, index }: IRenderItemArgs) => {
-    const { code, currency_code, available_denominations, uiSettings } = item;
+    const { available_denominations, code, currency_code, link_type, uiSettings } = item;
     const isLocked = !available_denominations.length;
     const { yuCoin = 0, value = 0 } = available_denominations[0] || {};
     const handlePress = () => {
@@ -35,6 +35,7 @@ const handleRenderItem = (onPress: RenderItem) => ({ item, index }: IRenderItemA
             code={code}
             settings={uiSettings}
             cost={isLocked ? 0 : yuCoin}
+            linkType={link_type}
             rewardValue={isLocked ? 0 : value}
             rewardCurrency={currency_code}
             isLocked={isLocked}

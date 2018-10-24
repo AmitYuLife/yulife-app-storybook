@@ -11,6 +11,7 @@ interface IProps {
     code: string;
     cost: number;
     isLocked?: boolean;
+    linkType?: string;
     onPress?: () => void;
     rewardCurrency: string;
     rewardValue: number;
@@ -28,7 +29,7 @@ class RewardsListItem extends PureComponent<IProps, IState> {
     };
 
     public render() {
-        const { code, onPress, isLocked, cost, rewardValue, rewardCurrency, settings } = this.props;
+        const { code, cost, onPress, isLocked, linkType, rewardValue, rewardCurrency, settings } = this.props;
         const { hasLoaded } = this.state;
 
         return (
@@ -63,11 +64,12 @@ class RewardsListItem extends PureComponent<IProps, IState> {
                             <LockedOverlay code={code} settings={settings} />
                         ) : (
                             <UnlockedOverlay
-                                settings={settings}
+                                code={code}
                                 cost={cost}
+                                linkType={linkType}
                                 rewardValue={rewardValue}
                                 rewardCurrency={rewardCurrency}
-                                code={code}
+                                settings={settings}
                             />
                         )}
                     </View>
