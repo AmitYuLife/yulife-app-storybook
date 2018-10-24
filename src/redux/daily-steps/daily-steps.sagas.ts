@@ -4,7 +4,11 @@ import RNFitKit, { FitKitTypes } from "react-native-fitkit";
 import { call, put, select, takeLatest } from "redux-saga/effects";
 import { ChallengePayload } from "../../graphql/_core/schema";
 import upsertStepsChallenge from "../../graphql/challenges/upsertStepsChallenge.gql";
-import { PEDOMETER_START, PEDOMETER_UPDATE, UpdatePedometerActionResult } from "../pedometer/pedometer.actions";
+import {
+    PEDOMETER_START,
+    PEDOMETER_UPDATES_SUCCESS,
+    UpdatePedometerSuccessActionResult
+} from "../pedometer/pedometer.actions";
 import { updateDailyStepsFailed, updateDailyStepsSuccess } from "./daily-steps.actions";
 import { getLastUpdated } from "./daily-steps.selectors";
 
@@ -50,7 +54,7 @@ export function* oldDaysUpdate() {
     }
 }
 
-function* dailyStepsUpdate({ payload }: UpdatePedometerActionResult) {
+function* dailyStepsUpdate({ payload }: UpdatePedometerSuccessActionResult) {
     try {
         const { data } = yield call(upsertStepsChallenge, [mapPedometerResults(payload)]);
 
@@ -60,4 +64,4 @@ function* dailyStepsUpdate({ payload }: UpdatePedometerActionResult) {
     }
 }
 
-export default [takeLatest(PEDOMETER_START, oldDaysUpdate), takeLatest(PEDOMETER_UPDATE, dailyStepsUpdate)];
+export default [takeLatest(PEDOMETER_START, oldDaysUpdate), takeLatest(PEDOMETER_UPDATES_SUCCESS, dailyStepsUpdate)];

@@ -6,14 +6,16 @@ import {
 } from "../../graphql/_core/schema";
 import { LoginUser } from "../../graphql/_core/schema";
 import { pathOr } from "../../services/utils";
+import { PEDOMETER_UPDATES_START } from "../pedometer/pedometer.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
-import { UPDATE_DAILY_STEPS_SUCCESS } from "./daily-steps.actions";
+import { UPDATE_DAILY_STEPS_FAILED, UPDATE_DAILY_STEPS_SUCCESS } from "./daily-steps.actions";
 
 type ExchangeRate = GetCurrentUser_getCurrentUser_passiveChallenge_exchange;
 
 export interface IDailyStepsStore {
     dailySteps: number;
     exchangeRate: ExchangeRate;
+    isFetching: boolean;
     lastUpdated: string;
 }
 
@@ -23,15 +25,22 @@ export const initialState: IDailyStepsStore = {
         steps: 2000,
         yucoin: 1
     },
+    isFetching: true,
     lastUpdated: moment()
         .startOf("day")
-        .toISOString()
+        .format()
 };
 
 const dailyStepsReducer = (state: IDailyStepsStore = initialState, action: any): IDailyStepsStore => {
     switch (action.type) {
+        case PEDOMETER_UPDATES_START:
+            return { ...state, isFetching: true };
+
         case UPDATE_DAILY_STEPS_SUCCESS:
             return updateDailyStepsSuccess(state, action.payload);
+
+        case UPDATE_DAILY_STEPS_FAILED:
+            return { ...state, isFetching: false };
 
         case GET_USER_SUCCESS:
             return getUserSuccess(state, action.payload);
@@ -55,6 +64,7 @@ const updateDailyStepsSuccess = (
     return {
         ...state,
         dailySteps: challenge.incomingData.steps,
+        isFetching: false,
         lastUpdated: lastUpdated === state.lastUpdated ? moment().toISOString() : lastUpdated
     };
 };

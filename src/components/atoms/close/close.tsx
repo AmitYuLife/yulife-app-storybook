@@ -13,20 +13,21 @@ import { Style } from "../../../styles";
 
 const getTop = () => {
     if (isIphoneX()) {
-        return 65;
+        return 55;
     }
 
     if (Platform.OS === "ios") {
-        return 40;
+        return 30;
     }
 
-    return 25;
+    return 15;
 };
 
 const styles = StyleSheet.create({
     wrapper: {
+        padding: Style.SCALE_UP_AND_DOWN(10),
         position: "absolute",
-        right: Style.SCALE_UP_AND_DOWN(15),
+        right: Style.SCALE_UP_AND_DOWN(5),
         top: Style.SCALE_UP_AND_DOWN(getTop())
     } as ViewStyle
 });

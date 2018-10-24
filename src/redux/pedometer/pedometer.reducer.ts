@@ -1,6 +1,6 @@
 import moment from "moment";
 import { PedometerResponse } from "react-native-dual-pedometer";
-import { PEDOMETER_UPDATE } from "./pedometer.actions";
+import { PEDOMETER_UPDATES_SUCCESS } from "./pedometer.actions";
 
 export interface IPedometerStore {
     lastUpdated: string;
@@ -11,16 +11,16 @@ export interface IPedometerStore {
 export const initialState: IPedometerStore = {
     lastUpdated: moment()
         .startOf("day")
-        .toISOString(),
+        .format(),
     startTime: moment()
         .startOf("day")
-        .toISOString(),
+        .format(),
     steps: 0
 };
 
 const pedometerReducer = (state: IPedometerStore = initialState, action: any): IPedometerStore => {
     switch (action.type) {
-        case PEDOMETER_UPDATE:
+        case PEDOMETER_UPDATES_SUCCESS:
             return updatePedometer(state, action.payload);
         default:
             return state;

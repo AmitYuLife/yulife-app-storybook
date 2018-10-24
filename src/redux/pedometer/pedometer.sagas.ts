@@ -5,7 +5,7 @@ import Logger from "../../services/logging/logger";
 import { getToken } from "../../services/storage";
 import { UPDATE_APP_STATE } from "../app/app.actions";
 import { START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
-import { startPedometerUpdates, updatePedometerAction } from "./pedometer.actions";
+import { startPedometerUpdates, updatePedometerStartAction, updatePedometerSuccessAction } from "./pedometer.actions";
 import { stepsChannel } from "./pedometer.channels";
 import { stepsSelector } from "./pedometer.selectors";
 
@@ -14,8 +14,9 @@ function* listenToSteps() {
     const startOfDay = momentStartDay.format();
     const channel = yield call(stepsChannel, startOfDay);
 
+    yield put(updatePedometerStartAction());
     const firstQuery = yield call(Pedometer.queryPedometerFromDate, startOfDay, moment().format());
-    yield put(updatePedometerAction(firstQuery));
+    yield put(updatePedometerSuccessAction(firstQuery));
 
     while (true) {
         try {
@@ -24,8 +25,9 @@ function* listenToSteps() {
             // console.log("PEDOMETER RESULTS: ", results, currentSteps);
 
             if (results.steps !== currentSteps) {
+                yield put(updatePedometerStartAction());
                 yield spawn(() => Logger.logMixpanelEvent("raw_steps_results_passive", results));
-                yield put(updatePedometerAction(results));
+                yield put(updatePedometerSuccessAction(results));
             }
         } catch (e) {
             // console.log(e);

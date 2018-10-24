@@ -2,7 +2,7 @@ import { PedometerResponse } from "react-native-dual-pedometer";
 import { GetCurrentUser, LoginUser, UpdateActiveChallenge } from "../../graphql/_core/schema";
 import { pathOr } from "../../services/utils";
 import { SyncAction } from "../_core/types";
-import { PEDOMETER_UPDATE } from "../pedometer/pedometer.actions";
+import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {
     CHALLENGE_END_SUCCESS,
@@ -67,7 +67,7 @@ const userReducer = (state: ILevelsStore = initialState, action: SyncAction): IL
         case CHALLENGE_RESET_SUCCESS:
             return challengeReset(state);
 
-        case PEDOMETER_UPDATE:
+        case PEDOMETER_UPDATES_SUCCESS:
             return pedometerUpdate(state, action.payload);
 
         default:

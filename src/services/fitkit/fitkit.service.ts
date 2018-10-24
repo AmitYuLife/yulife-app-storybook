@@ -6,6 +6,7 @@ import RNFitKit, {
     SampleQueryResult
 } from "react-native-fitkit";
 import { ChallengePayload } from "../../graphql/_core/schema";
+import Logger from "../logging/logger";
 
 // const transformQueryResultToPayload = (item: AggregateQueryResult): ActionPayload => ({
 //     startTime: Math.round(item.startTime),
@@ -109,6 +110,14 @@ export const queryMindfulSessions = async (startTime: string, endTime: string): 
                 sampleType: FitKitTypes.Types.Mindfulness,
                 startTime
             });
+
+            // TODO: remove this ugly sheit
+            try {
+                Logger.logMixpanelEvent("raw_meditation_results", results);
+            } catch (e) {
+                // console.log(e);
+            }
+            // FINISH REMOVE
 
             return results.map(transformSampleResultToPayload);
         }

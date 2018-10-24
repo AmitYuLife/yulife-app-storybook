@@ -12,7 +12,11 @@ import { SyncAction } from "../../../../redux/_core/types";
 import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
 import { getDailyEarnedCoins, getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { startDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
-import { getDailySteps, getLastUpdated } from "../../../../redux/daily-steps/daily-steps.selectors";
+import {
+    getDailySteps,
+    getLastUpdated,
+    isFetchingDailyStepsSelector
+} from "../../../../redux/daily-steps/daily-steps.selectors";
 import { hasNotificationSelector } from "../../../../redux/levels/levels.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
 import { IStreaks, streaksSelector } from "../../../../redux/streaks/streaks.selectors";
@@ -26,6 +30,7 @@ interface IConnectedState {
     dailySteps: number;
     features: { [x: string]: boolean };
     hasNotification: boolean;
+    isFetching: boolean;
     lastUpdated: string;
     offline: boolean;
     streaks: IStreaks;
@@ -45,7 +50,6 @@ interface IState {
 }
 
 class DailyStepsContainer extends PureComponent<Props, IState> {
-
     public state: IState = {
         dailyStepsLoading: true
     };
@@ -77,14 +81,13 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     public componentDidUpdate(prevProps: Props) {
         const { lastUpdated } = this.props;
 
-        if (prevProps.lastUpdated !== lastUpdated) {
-            this.setState({
-                dailyStepsLoading: false,
-                lastUpdate: moment(lastUpdated).format("ddd D MMM, HH:mm")
-            });
-        } else {
-            this.setState({ dailyStepsLoading: false });
-        }
+        this.setState((state) => ({
+            dailyStepsLoading: false,
+            lastUpdate:
+                prevProps.lastUpdated !== lastUpdated
+                    ? moment(lastUpdated).format("ddd D MMM, HH:mm")
+                    : state.lastUpdate
+        }));
     }
 
     public render() {
@@ -93,6 +96,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
             dailySteps,
             features = {},
             hasNotification,
+            isFetching,
             labels,
             offline,
             onLeftMenuPress,
@@ -115,7 +119,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                             hasNotification={hasNotification}
                             hasPermission={authorised}
                             isDoneToday={streaks.isDoneToday}
-                            isLoading={loading || dailyStepsLoading}
+                            isLoading={isFetching || loading || dailyStepsLoading}
                             isOnline={!offline}
                             labels={labels}
                             lastUpdate={lastUpdate}
@@ -194,6 +198,7 @@ const mapStateToProps = (state: IReduxState) => ({
     dailySteps: getDailySteps(state),
     features: userFeaturesSelector(state),
     hasNotification: hasNotificationSelector(state),
+    isFetching: isFetchingDailyStepsSelector(state),
     lastUpdated: getLastUpdated(state),
     offline: getOfflineState(state),
     streaks: streaksSelector(state),

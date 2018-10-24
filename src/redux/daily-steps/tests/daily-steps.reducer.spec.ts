@@ -19,6 +19,7 @@ describe("Daily Steps Reducer", () => {
         const expected: IDailyStepsStore = {
             ...initialState,
             dailySteps: 4321,
+            isFetching: false,
             lastUpdated: "2018-04-08T23:00:40.000Z"
         };
         const actual = stepsReducer(initialState, updateDailyStepsSuccess(localData));
@@ -29,6 +30,10 @@ describe("Daily Steps Reducer", () => {
     it("updates the store when the daily steps have failed", () => {
         const actual = stepsReducer(initialState, updateDailyStepsFailed("Message of Errorness"));
 
-        expect(actual).toEqual(initialState);
+        const expected: IDailyStepsStore = {
+            ...initialState,
+            isFetching: false
+        };
+        expect(actual).toEqual(expected);
     });
 });
