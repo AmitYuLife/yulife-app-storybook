@@ -14,16 +14,21 @@ interface IProps {
     isNext: boolean;
 }
 
-const LevelContent: SFC<IProps> = ({ isNext, nextAvailableAt, level, x, y, rating }) => (
-    <G x={x} y={y}>
-        {
-            isNext
-                ? moment().diff(moment(nextAvailableAt), "seconds") < 0
-                    ? <LevelPending nextAvailableAt={nextAvailableAt} />
-                    : <LevelNext level={level} />
-                : <LevelComplete level={level} rating={rating} />
-        }
-    </G>
-);
+const LevelContent: SFC<IProps> = ({ isNext, nextAvailableAt, level, x, y, rating }) => {
+    const nextAvailable = !!nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
+    return (
+        <G x={x} y={y}>
+            {isNext ? (
+                nextAvailable < 0 ? (
+                    <LevelPending nextAvailableAt={nextAvailableAt} />
+                ) : (
+                    <LevelNext level={level} />
+                )
+            ) : (
+                <LevelComplete level={level} rating={rating} />
+            )}
+        </G>
+    );
+};
 
 export default LevelContent;

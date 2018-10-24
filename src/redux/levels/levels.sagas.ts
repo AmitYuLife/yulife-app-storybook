@@ -176,20 +176,23 @@ export function* startChallenges() {
             const { levelSlotId } = payload;
             const initialPedometerResult = yield select(stepsSelector);
             const { data } = yield call(createActiveChallengeWithClient, levelSlotId);
-            yield put(challengeStartSuccessAction({ ...data, initialPedometerResult }));
 
-            const {
-                challenge: { startDateTime, endDateTime },
-                levelSlot: { subtype }
-            } = data.createActiveChallenge;
+            if (data && data.createActiveChallenge) {
+                yield put(challengeStartSuccessAction({ ...data, initialPedometerResult }));
 
-            if (startDateTime && endDateTime && subtype) {
-                yield call(startChallenge, {
-                    endDateTime,
-                    isMeditation: subtype === "meditation",
-                    levelSlotId,
-                    startDateTime
-                });
+                const {
+                    challenge: { startDateTime, endDateTime },
+                    levelSlot: { subtype }
+                } = data.createActiveChallenge;
+
+                if (startDateTime && endDateTime && subtype) {
+                    yield call(startChallenge, {
+                        endDateTime,
+                        isMeditation: subtype === "meditation",
+                        levelSlotId,
+                        startDateTime
+                    });
+                }
             }
         } else {
             const { endDateTime, levelSlotId, startDateTime, status, subtype, timeUp } = yield select(

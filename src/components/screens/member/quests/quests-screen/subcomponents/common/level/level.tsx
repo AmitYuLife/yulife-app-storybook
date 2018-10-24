@@ -37,7 +37,8 @@ class Level extends PureComponent<IProps, IState> {
     private setPulse = (timeout?: number) => {
         const { pulseSize } = this.state;
         const { nextAvailableAt } = this.props.data;
-        const multiplier = moment().diff(moment(nextAvailableAt), "seconds") < 0 ? 1 : 2
+        const nextAvailable = !!nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
+        const multiplier = nextAvailable < 0 ? 1 : 2
         this.pulseTimeout = global.setTimeout(
             () => this.setState(({
                 pulseSize,
@@ -105,12 +106,13 @@ class Level extends PureComponent<IProps, IState> {
         }
 
         const { isNext, nextAvailableAt, rating } = data;
+        const nextAvailable = !!nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
         return (
             <G onPressIn={onPress} >
                 <Circle
                     fill={
                         isNext
-                            ? moment().diff(moment(nextAvailableAt), "seconds") < 0
+                            ? nextAvailable < 0
                                 ? "rgb(145,0,76)"
                                 : "rgb(226,1,119)"
                             : "rgb(112,221,205)"

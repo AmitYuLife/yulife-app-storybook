@@ -225,11 +225,13 @@ class QuestsContainer extends PureComponent<Props> {
                 isNext,
                 nextAvailableAt,
                 onPress: () => {
+                    const nextAvailable = !!nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
+
                     if (isDone) {
                         // goToChallengesList(); TODO: go to challengesDoneList
                     } else if (level.level % 7 === 0) {
                         this.showChestModal(level, isNext);
-                    } else if (isNext && moment().diff(moment(nextAvailableAt), "seconds") >= 0) {
+                    } else if (isNext && nextAvailable >= 0) {
                         this.goToChallengesList(level);
                     }
                 }
