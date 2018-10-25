@@ -15,6 +15,7 @@ export const redeemRewardGql = gql`
             expiry_date
             name
             yuCoinsSpent
+            delivery_url
             updatedAt
             createdAt
             metadata {

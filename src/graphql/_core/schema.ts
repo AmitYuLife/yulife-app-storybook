@@ -479,6 +479,7 @@ export interface RedeemReward_redeemReward {
   expiry_date: string | null;
   name: string | null;
   yuCoinsSpent: number | null;
+  delivery_url: string | null;
   updatedAt: string | null;
   createdAt: string | null;
   metadata: RedeemReward_redeemReward_metadata | null;
