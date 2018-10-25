@@ -33,6 +33,7 @@ describe("UnlockedOverlay", () => {
                     alertOkLabel: null,
                     alertSubheading: null,
                     ctaLabel: null,
+                    id: "TEST_ID",
                     logoHeight: 1234,
                     logoWidth: 1234
                 }}

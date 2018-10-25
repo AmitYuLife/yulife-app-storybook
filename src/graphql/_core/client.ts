@@ -31,7 +31,7 @@ const dataIdFromObject = (object: any) => {
         case "Reward":
             return `${object.__typename}-${object.code}`;
         case "RewardUiSettings":
-            return `${object.__typename}-${object.logoWidth}-${object.logoHeight}`;
+            return `${object.__typename}-${object.id}-${object.logoWidth}-${object.logoHeight}`;
         case "RedeemSteps":
             return `${object.__typename}-${object.info}`;
         case "Denomination":

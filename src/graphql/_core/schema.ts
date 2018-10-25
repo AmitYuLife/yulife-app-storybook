@@ -392,6 +392,7 @@ export interface GetRewards_getRewards_redeem_steps {
 
 export interface GetRewards_getRewards_uiSettings {
   __typename: "RewardUiSettings";
+  id: string | null;
   logoWidth: number | null;
   logoHeight: number | null;
   ctaLabel: string | null;
