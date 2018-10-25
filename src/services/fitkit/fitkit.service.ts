@@ -6,7 +6,6 @@ import RNFitKit, {
     SampleQueryResult
 } from "react-native-fitkit";
 import { ChallengePayload } from "../../graphql/_core/schema";
-import Logger from "../logging/logger";
 
 // const transformQueryResultToPayload = (item: AggregateQueryResult): ActionPayload => ({
 //     startTime: Math.round(item.startTime),
@@ -14,7 +13,7 @@ import Logger from "../logging/logger";
 //     value: Math.round(item.steps),
 // });
 
-const transformSampleResultToPayload = (item: SampleQueryResult & { duration: number }): ChallengePayload => ({
+export const transformSampleResultToPayload = (item: SampleQueryResult & { duration: number }): ChallengePayload => ({
     endDateTime: moment(item.endTime).format(),
     startDateTime: moment(item.startTime).format(),
     value: item.duration
@@ -96,7 +95,7 @@ const transformSampleResultToPayload = (item: SampleQueryResult & { duration: nu
 //     }
 // };
 
-export const queryMindfulSessions = async (startTime: string, endTime: string): Promise<ChallengePayload[]> => {
+export const queryMindfulSessions = async (startTime: string, endTime: string): Promise<SampleQueryResult[]> => {
     try {
         const authorised = await RNFitKit.authorise({
             read: [
@@ -111,15 +110,7 @@ export const queryMindfulSessions = async (startTime: string, endTime: string): 
                 startTime
             });
 
-            // TODO: remove this ugly sheit
-            try {
-                Logger.logMixpanelEvent("raw_meditation_results", results);
-            } catch (e) {
-                // console.log(e);
-            }
-            // FINISH REMOVE
-
-            return results.map(transformSampleResultToPayload);
+            return results;
         }
     } catch (e) {
         // tslint:disable-next-line

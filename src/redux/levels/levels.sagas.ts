@@ -1,12 +1,13 @@
 import moment from "moment";
 import { Navigation } from "react-native-navigation";
 import { delay } from "redux-saga";
-import { call, cancel, cancelled, fork, put, race, select, take, takeLatest } from "redux-saga/effects";
+import { call, cancel, cancelled, fork, put, race, select, spawn, take, takeLatest } from "redux-saga/effects";
 import cancelActiveChallengeWithClient from "../../graphql/challenges/cancelActiveChallenge.gql";
 import createActiveChallengeWithClient from "../../graphql/challenges/createActiveChallenge.gql";
 import updateActiveChallengeWithClient from "../../graphql/challenges/updateActiveChallenge.gql";
 import { MODALS } from "../../navigation/routes";
-import { queryMindfulSessions } from "../../services/fitkit/fitkit.service";
+import { queryMindfulSessions, transformSampleResultToPayload } from "../../services/fitkit/fitkit.service";
+import Logger from "../../services/logging/logger";
 import { pathOr } from "../../services/utils";
 import { cancelLocalPush } from "../device/device.actions";
 import { stepsSelector } from "../pedometer/pedometer.selectors";
@@ -38,13 +39,16 @@ function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, e
 
         try {
             const resultsQuery = yield call(queryMindfulSessions, start, end.format());
+            yield spawn(() => Logger.logMixpanelEvent("raw_meditation_results", resultsQuery));
+            const resultTransformedQuery = yield call(transformSampleResultToPayload, resultsQuery);
+            yield spawn(() => Logger.logMixpanelEvent("transformed_meditation_results", resultTransformedQuery));
 
-            if (resultsQuery.length > 0) {
+            if (resultTransformedQuery.length > 0) {
                 const results = {
                     endDateTime,
                     startDateTime,
                     value: Math.floor(
-                        resultsQuery.reduce(
+                        resultTransformedQuery.reduce(
                             (accumulator: number, session: any) => accumulator + session.value, // tslint:disable-line
                             0
                         )
