@@ -37,6 +37,7 @@ export const getRewardsGql = gql`
             terms_and_conditions_url
             uiSettings {
                 __typename
+                id
                 logoWidth
                 logoHeight
                 ctaLabel

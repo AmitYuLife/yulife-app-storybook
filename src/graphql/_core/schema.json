@@ -5086,6 +5086,18 @@
           "description": "",
           "fields": [
             {
+              "name": "id",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "logoWidth",
               "description": "",
               "args": [],
@@ -11690,9 +11702,9 @@
   "extensions": {
     "tracing": {
       "version": 1,
-      "startTime": "2018-10-24T12:27:02.101Z",
-      "endTime": "2018-10-24T12:27:02.220Z",
-      "duration": 119192774,
+      "startTime": "2018-10-25T09:56:36.175Z",
+      "endTime": "2018-10-25T09:56:36.359Z",
+      "duration": 184416129,
       "execution": {
         "resolvers": []
       }
