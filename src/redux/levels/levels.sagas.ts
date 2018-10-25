@@ -39,9 +39,13 @@ function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, e
 
         try {
             const resultsQuery = yield call(queryMindfulSessions, start, end.format());
-            yield spawn(() => Logger.logMixpanelEvent("raw_meditation_results", resultsQuery));
-            const resultTransformedQuery = yield call(transformSampleResultToPayload, resultsQuery);
-            yield spawn(() => Logger.logMixpanelEvent("transformed_meditation_results", resultTransformedQuery));
+            yield spawn(Logger.logMixpanelEvent, "raw_meditation_results", {
+                resultsQuery: JSON.stringify(resultsQuery)
+            });
+            const resultTransformedQuery = resultsQuery.map(transformSampleResultToPayload);
+            yield spawn(Logger.logMixpanelEvent, "transformed_meditation_results", {
+                resultTransformedQuery: JSON.stringify(resultTransformedQuery)
+            });
 
             if (resultTransformedQuery.length > 0) {
                 const results = {
