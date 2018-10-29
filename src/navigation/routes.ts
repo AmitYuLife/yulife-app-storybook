@@ -9,7 +9,6 @@ import {
     LeaderboardsContainer,
     LinkRewardDetailsContainer,
     LoginContainer,
-    MemberZoneContainer,
     MenuContainer,
     NoAccessContainer,
     QuestsContainer,
@@ -99,7 +98,6 @@ export default [
     // member screens
     { name: ROUTES.menu, component: MenuContainer },
     { name: ROUTES.settings, component: SettingsContainer },
-    { name: ROUTES.memberZone, component: MemberZoneContainer },
     { name: ROUTES.dailySteps, component: DailyStepsContainer },
     { name: ROUTES.quests, component: QuestsContainer },
     { name: ROUTES.rewards, component: RewardsContainer },

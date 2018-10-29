@@ -16,6 +16,7 @@ export const UPDATE_LEADERBOARD_CONSENT = "UPDATE_LEADERBOARD_CONSENT";
 export const UPDATE_USER_CONSENT = "UPDATE_USER_CONSENT";
 export const UPDATE_USER_CONSENT_SUCCESS = "UPDATE_USER_CONSENT_SUCCESS";
 export const LOGOUT = "LOGOUT";
+export const OPEN_MEMBER_ZONE = "OPEN_MEMBER_ZONE";
 
 export const fitKitConsentAuthorised = (): SyncAction => ({
     type: FITKIT_CONSENT_AUTHORISED
@@ -66,4 +67,8 @@ export const updateUserConsentSuccess: UpdateUserConsentSuccessAction = (payload
 
 export const logOut = (): SyncAction => ({
     type: LOGOUT
+});
+
+export const openMemberZone = (): SyncAction => ({
+    type: OPEN_MEMBER_ZONE
 });
