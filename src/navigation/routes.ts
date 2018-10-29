@@ -26,6 +26,7 @@ import {
 import {
     AnimatedChest,
     ChallengeDetailsModal,
+    CollectRewardModal,
     GenericModal,
     MeditationSetUpModal,
     PushNotificationsModal,
@@ -72,6 +73,7 @@ export const ROUTES = {
 export const MODALS = {
     challengeDetails: "yulife.modals.ChallengeDetails",
     chest: "yulife.modals.Chest",
+    collectReward: "yulife.modals.CollectReward",
     generic: "yulife.modals.Generic",
     leaderboards: "yulife.modals.Leaderboards",
     meditationSetUp: "yulife.modals.MeditationSetUp",
@@ -121,6 +123,7 @@ export default [
     // modals
     { name: MODALS.challengeDetails, component: ChallengeDetailsModal },
     { name: MODALS.chest, component: AnimatedChest },
+    { name: MODALS.collectReward, component: CollectRewardModal },
     { name: MODALS.generic, component: GenericModal },
     { name: MODALS.meditationSetUp, component: MeditationSetUpModal },
     { name: MODALS.pushNotifications, component: PushNotificationsModal },

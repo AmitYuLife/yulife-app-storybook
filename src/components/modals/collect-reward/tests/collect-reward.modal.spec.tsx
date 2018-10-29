@@ -8,7 +8,7 @@ describe("CollectReward", () => {
 
     it("should render on iOS", () => {
         const actual = shallow(
-            <CollectReward onPress={jest.fn()} />
+            <CollectReward onPress={jest.fn()} yucoin={20} />
         );
 
         expect(actual).toMatchSnapshot();
@@ -17,7 +17,7 @@ describe("CollectReward", () => {
     it("should render on Android", () => {
         Platform.OS = "android";
         const actual = shallow(
-            <CollectReward onPress={jest.fn()} />
+            <CollectReward onPress={jest.fn()} yucoin={20} />
         );
 
         expect(actual).toMatchSnapshot();
@@ -28,6 +28,7 @@ describe("CollectReward", () => {
             <CollectReward
                 onPress={jest.fn()}
                 date="12-15 Blerguary"
+                yucoin={20}
             />
         );
 

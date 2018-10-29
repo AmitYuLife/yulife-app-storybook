@@ -1,9 +1,14 @@
 import moment from "moment";
 import { PedometerResponse } from "react-native-dual-pedometer";
 import RNFitKit, { FitKitTypes } from "react-native-fitkit";
+import { Navigation } from "react-native-navigation";
 import { call, put, select, takeLatest } from "redux-saga/effects";
-import { ChallengePayload } from "../../graphql/_core/schema";
+import { AddHistoricalSteps_addHistoricalSteps, ChallengePayload } from "../../graphql/_core/schema";
+import addHistoricalSteps from "../../graphql/challenges/addHistoricalSteps.gql";
 import upsertStepsChallenge from "../../graphql/challenges/upsertStepsChallenge.gql";
+import { MODALS } from "../../navigation/routes";
+import { pathOr } from "../../services/utils";
+import { getRouteState } from "../app/app.selectors";
 import {
     PEDOMETER_START,
     PEDOMETER_UPDATES_SUCCESS,
@@ -11,6 +16,8 @@ import {
 } from "../pedometer/pedometer.actions";
 import { updateDailyStepsFailed, updateDailyStepsSuccess } from "./daily-steps.actions";
 import { getLastUpdated } from "./daily-steps.selectors";
+
+type HistoricalSteps = AddHistoricalSteps_addHistoricalSteps;
 
 const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
     endDateTime: moment(results.endTime).format(),
@@ -20,7 +27,7 @@ const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
 
 export function* oldDaysUpdate() {
     const lastUpdated = yield select(getLastUpdated);
-    // const lastUpdated = moment().subtract(2, "days"); // for tests
+    // const lastUpdated = moment().subtract(1, "days"); // for tests
     const startOfDay = moment().startOf("day");
 
     if (moment(lastUpdated).isBefore(startOfDay)) {
@@ -48,8 +55,35 @@ export function* oldDaysUpdate() {
                 startTime
             });
 
-            yield call(upsertStepsChallenge, results.map(mapPedometerResults));
-            // TODO: show modal collect yucoin
+            const res = yield call(addHistoricalSteps, results.map(mapPedometerResults), true);
+            const response: HistoricalSteps = pathOr<HistoricalSteps>(res, "data.addHistoricalSteps", {
+                endDateTime: "",
+                startDateTime: "",
+                yucoin: 0
+            });
+
+            if (response.yucoin > 0) {
+                const route = yield select(getRouteState);
+                if (route !== MODALS.collectReward) {
+                    const firstDay = moment(response.startDateTime).format("DD MMM");
+                    const lastDay = moment(response.endDateTime).format("DD MMM");
+                    const date = firstDay !== lastDay ? `${firstDay} - ${lastDay}` : "";
+
+                    yield call(() => {
+                        Navigation.showModal({
+                            component: {
+                                id: MODALS.collectReward,
+                                name: MODALS.collectReward,
+                                passProps: {
+                                    date,
+                                    onPress: () => Navigation.dismissModal(MODALS.collectReward),
+                                    yucoin: response.yucoin
+                                }
+                            }
+                        });
+                    });
+                }
+            }
         }
     }
 }
