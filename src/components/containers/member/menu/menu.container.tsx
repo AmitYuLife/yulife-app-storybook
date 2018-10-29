@@ -6,8 +6,9 @@ import { connect } from "react-redux";
 import { setIntroRoot } from "../../../../navigation/root";
 import { ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
+import { SyncAction } from "../../../../redux/_core/types";
 import { getRouteState } from "../../../../redux/app/app.selectors";
-import { logOut } from "../../../../redux/user/user.actions";
+import { logOut, openMemberZone } from "../../../../redux/user/user.actions";
 import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
 import { MenuScreen } from "../../../screens";
 import assets, { LINKS } from "./assets";
@@ -21,6 +22,7 @@ interface IConnectedState {
 
 interface IConnectedDipatch {
     logOut: () => void;
+    openMemberZone: () => SyncAction;
 }
 
 type Props = IConnectedState & IConnectedDipatch;
@@ -105,7 +107,7 @@ class MenuContainer extends PureComponent<Props> {
                 this.props.logOut();
                 return null;
             case LINKS.MEMBER:
-                this.handlePush(ROUTES.memberZone);
+                this.handleMemberZone();
                 return null;
             case LINKS.PLAY:
                 setIntroRoot();
@@ -124,6 +126,11 @@ class MenuContainer extends PureComponent<Props> {
     //     });
     //     setTimeout(this.handleClose, 1000);
     // }
+
+    private handleMemberZone = () => {
+        this.handleClose();
+        this.props.openMemberZone();
+    }
 
     private handlePush = (route: string) => {
         this.handleClose();
@@ -153,7 +160,8 @@ const mapStateToProps = (state: IReduxState) => ({
 });
 
 const mapDispatchToProps = {
-    logOut
+    logOut,
+    openMemberZone
 };
 
 export default connect<IConnectedState>(

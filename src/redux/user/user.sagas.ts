@@ -1,8 +1,10 @@
+import { Linking } from "react-native";
 import { call, put, select, spawn, take, takeLatest } from "redux-saga/effects";
 import client from "../../graphql/_core/client";
 import updateLeaderboardConsentGql from "../../graphql/member/updateLeaderboardConsent.gql";
 import updateMemberConsentGql from "../../graphql/member/updateMemberConsent.gql";
 import getCurrentUserWithClient from "../../graphql/user/getCurrentUser.gql";
+import getMagicLinkWithClient from "../../graphql/user/getMagicLink.gql";
 import { setNoAccessRoot, setUnauthenticatedRoot } from "../../navigation/root";
 import { ROUTES } from "../../navigation/routes";
 import Logger from "../../services/logging/logger";
@@ -22,6 +24,7 @@ import {
     LOGIN_USER_SUCCESS,
     LoginUserSuccessAction,
     LOGOUT,
+    OPEN_MEMBER_ZONE,
     SET_USER_NO_ACCESS,
     UPDATE_LEADERBOARD_CONSENT,
     UPDATE_USER_CONSENT,
@@ -130,6 +133,16 @@ function* logOut() {
     yield call(() => persistor.purge());
 }
 
+function* openMemberZone() {
+    try {
+        const { data } = yield call(getMagicLinkWithClient);
+        yield call(() => Linking.openURL(data.getMagicLink));
+    } catch (e) {
+        // tslint:disable-next-line
+        yield call(console.log, "failed opening member zone");
+    }
+}
+
 export default [
     takeLatest("INIT", fetchUserOnAppStateChange),
     takeLatest(GET_USER_START, getUserData),
@@ -139,5 +152,6 @@ export default [
     takeLatest(CHALLENGE_RESET_SUCCESS, getUserData),
     takeLatest(UPDATE_LEADERBOARD_CONSENT, updateLeaderboardConsentSaga),
     takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
-    takeLatest(LOGOUT, logOut)
+    takeLatest(LOGOUT, logOut),
+    takeLatest(OPEN_MEMBER_ZONE, openMemberZone)
 ];
