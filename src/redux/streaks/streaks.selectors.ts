@@ -16,8 +16,7 @@ export const streaksSelector = ({ streaks }: IReduxState): IStreaks => ({
         moment()
             .add(1, "day")
             .startOf("day")
-            .format()
-            .slice(0, -6) === streaks.nextStreakAvailableAt,
+            .format("YYYY-MM-DDTHH:mm:ss") === streaks.nextStreakAvailableAt,
     maxStreak: streaks.maxStreak,
     reward: `${streaks.value} ${streaks.type}`
 });

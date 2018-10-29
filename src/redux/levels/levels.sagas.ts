@@ -110,21 +110,17 @@ function* endChallenge() {
     const active = yield select(activeLevelSelector);
 
     if (active.levelSlotId) {
-        if (active.subtype === "meditation") {
-            yield put(challengeEndSuccessAction({ updateActiveChallenge: null }));
-        } else {
-            try {
-                const result = yield call(getEndResult, active);
-                const { data } = yield call(updateActiveChallengeWithClient, active.levelSlotId, result);
+        try {
+            const result = yield call(getEndResult, active);
+            const { data } = yield call(updateActiveChallengeWithClient, active.levelSlotId, result);
 
-                if (data.updateActiveChallenge) {
-                    yield put(challengeEndSuccessAction(data));
-                } else {
-                    yield put(challengeResetSuccessAction());
-                }
-            } catch (e) {
-                // console.log(e);
+            if (data.updateActiveChallenge) {
+                yield put(challengeEndSuccessAction(data));
+            } else {
+                yield put(challengeResetSuccessAction());
             }
+        } catch (e) {
+            // console.log(e);
         }
     } else {
         yield put(challengeResetSuccessAction());
