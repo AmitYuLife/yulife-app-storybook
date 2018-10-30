@@ -50,6 +50,7 @@ storiesOf("Modals", module)
         <CollectRewardModal
             date={text("Date", "", "CollectReward")}
             onPress={action("on press")}
+            yucoin={20}
         />
     ))
     .add("4. Generic Modal", () => (

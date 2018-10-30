@@ -5,6 +5,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <CollectReward
     onPress={[MockFunction]}
+    yucoin={20}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -27,7 +28,7 @@ ShallowWrapper {
         }
       >
         <CoinConfetti
-          coins={1}
+          coins={20}
           isExpanded={true}
         />
         <Pad
@@ -68,7 +69,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <CoinConfetti
-            coins={1}
+            coins={20}
             isExpanded={true}
           />,
           <Pad
@@ -104,7 +105,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "coins": 1,
+            "coins": 20,
             "isExpanded": true,
           },
           "ref": null,
@@ -190,7 +191,7 @@ ShallowWrapper {
           }
         >
           <CoinConfetti
-            coins={1}
+            coins={20}
             isExpanded={true}
           />
           <Pad
@@ -231,7 +232,7 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <CoinConfetti
-              coins={1}
+              coins={20}
               isExpanded={true}
             />,
             <Pad
@@ -267,7 +268,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "coins": 1,
+              "coins": 20,
               "isExpanded": true,
             },
             "ref": null,
@@ -367,6 +368,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <CollectReward
     onPress={[MockFunction]}
+    yucoin={20}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -389,7 +391,7 @@ ShallowWrapper {
         }
       >
         <CoinConfetti
-          coins={1}
+          coins={20}
           isExpanded={true}
         />
         <Pad
@@ -430,7 +432,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <CoinConfetti
-            coins={1}
+            coins={20}
             isExpanded={true}
           />,
           <Pad
@@ -466,7 +468,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "coins": 1,
+            "coins": 20,
             "isExpanded": true,
           },
           "ref": null,
@@ -552,7 +554,7 @@ ShallowWrapper {
           }
         >
           <CoinConfetti
-            coins={1}
+            coins={20}
             isExpanded={true}
           />
           <Pad
@@ -593,7 +595,7 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <CoinConfetti
-              coins={1}
+              coins={20}
               isExpanded={true}
             />,
             <Pad
@@ -629,7 +631,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "coins": 1,
+              "coins": 20,
               "isExpanded": true,
             },
             "ref": null,
@@ -730,6 +732,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <CollectReward
     date="12-15 Blerguary"
     onPress={[MockFunction]}
+    yucoin={20}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -752,7 +755,7 @@ ShallowWrapper {
         }
       >
         <CoinConfetti
-          coins={1}
+          coins={20}
           isExpanded={true}
         />
         <Pad
@@ -799,7 +802,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <CoinConfetti
-            coins={1}
+            coins={20}
             isExpanded={true}
           />,
           <Pad
@@ -841,7 +844,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "coins": 1,
+            "coins": 20,
             "isExpanded": true,
           },
           "ref": null,
@@ -943,7 +946,7 @@ ShallowWrapper {
           }
         >
           <CoinConfetti
-            coins={1}
+            coins={20}
             isExpanded={true}
           />
           <Pad
@@ -990,7 +993,7 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <CoinConfetti
-              coins={1}
+              coins={20}
               isExpanded={true}
             />,
             <Pad
@@ -1032,7 +1035,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "coins": 1,
+              "coins": 20,
               "isExpanded": true,
             },
             "ref": null,

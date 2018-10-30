@@ -13,12 +13,13 @@ import styles from "./collect-reward.modal.styles";
 interface IProps {
     date?: string;
     onPress: () => void;
+    yucoin: number;
 }
 
-const CollectReward: SFC<IProps> = ({ onPress, date }) => (
+const CollectReward: SFC<IProps> = ({ onPress, date, yucoin }) => (
     <View style={StyleSheet.absoluteFill}>
         <CentredScreen style={styles.centredScreen}>
-            <CoinConfetti isExpanded={true} coins={1} />
+            <CoinConfetti isExpanded={true} coins={yucoin} />
             <Pad height={8} />
             <View style={styles.dateWrapper}>
                 {!date ? null : (
