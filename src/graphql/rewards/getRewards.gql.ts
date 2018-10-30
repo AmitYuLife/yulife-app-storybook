@@ -31,6 +31,7 @@ export const getRewardsGql = gql`
             name
             redeem_steps {
                 __typename
+                id
                 info
                 steps
             }
@@ -52,4 +53,4 @@ export const getRewardsGql = gql`
 
 export type GetRewardsResultType = QueryResult<GetRewards>;
 
-export default class GetRewardsQuery extends Query<GetRewards> {}
+export default class GetRewardsQuery extends Query<GetRewards> { }
