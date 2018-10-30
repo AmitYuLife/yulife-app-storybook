@@ -6,18 +6,19 @@ import assets from "./assets";
 import styles from "./menu.screen.styles";
 
 export interface IMenuLink {
-    source?: ImageRequireSource;
-    onPress: () => void;
-    label: string;
     condition?: boolean;
+    label: string;
+    onPress: () => void;
+    source?: ImageRequireSource;
 }
 
 interface IProps {
     links: IMenuLink[];
     onPressClose: () => void;
+    version: string;
 }
 
-const MenuScreen: SFC<IProps> = ({ onPressClose, links }) => (
+const MenuScreen: SFC<IProps> = ({ onPressClose, links, version }) => (
     <>
         <StatusBar />
         <View style={styles.wrapper}>
@@ -44,6 +45,9 @@ const MenuScreen: SFC<IProps> = ({ onPressClose, links }) => (
                               </TouchableOpacity>
                           )
                   )}
+        </View>
+        <View style={styles.versionTextWrapper}>
+            <Text style={styles.versionText}>{version}</Text>
         </View>
     </>
 );

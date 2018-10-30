@@ -28,6 +28,7 @@ ShallowWrapper {
       ]
     }
     onPressClose={[MockFunction]}
+    version="1.0.0"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -185,6 +186,29 @@ ShallowWrapper {
               </YuText>
             </Component>
           </TouchableOpacity>
+        </Component>,
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": 20,
+              "justifyContent": "center",
+              "position": "absolute",
+              "width": "100%",
+            }
+          }
+        >
+          <YuText
+            style={
+              Object {
+                "color": "rgb(201,201,201)",
+                "fontSize": 20,
+                "textAlign": "center",
+              }
+            }
+          >
+            1.0.0
+          </YuText>
         </Component>,
       ],
     },
@@ -660,6 +684,49 @@ ShallowWrapper {
         ],
         "type": [Function],
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <YuText
+            style={
+              Object {
+                "color": "rgb(201,201,201)",
+                "fontSize": 20,
+                "textAlign": "center",
+              }
+            }
+          >
+            1.0.0
+          </YuText>,
+          "style": Object {
+            "alignItems": "center",
+            "bottom": 20,
+            "justifyContent": "center",
+            "position": "absolute",
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "1.0.0",
+            "style": Object {
+              "color": "rgb(201,201,201)",
+              "fontSize": 20,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "1.0.0",
+          "type": [Function],
+        },
+        "type": [Function],
+      },
     ],
     "type": Symbol(react.fragment),
   },
@@ -812,6 +879,29 @@ ShallowWrapper {
                 </YuText>
               </Component>
             </TouchableOpacity>
+          </Component>,
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": 20,
+                "justifyContent": "center",
+                "position": "absolute",
+                "width": "100%",
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(201,201,201)",
+                  "fontSize": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              1.0.0
+            </YuText>
           </Component>,
         ],
       },
@@ -1287,6 +1377,49 @@ ShallowWrapper {
           ],
           "type": [Function],
         },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <YuText
+              style={
+                Object {
+                  "color": "rgb(201,201,201)",
+                  "fontSize": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              1.0.0
+            </YuText>,
+            "style": Object {
+              "alignItems": "center",
+              "bottom": 20,
+              "justifyContent": "center",
+              "position": "absolute",
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "1.0.0",
+              "style": Object {
+                "color": "rgb(201,201,201)",
+                "fontSize": 20,
+                "textAlign": "center",
+              },
+            },
+            "ref": null,
+            "rendered": "1.0.0",
+            "type": [Function],
+          },
+          "type": [Function],
+        },
       ],
       "type": Symbol(react.fragment),
     },
@@ -1319,6 +1452,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <MenuScreen
     links={null}
     onPressClose={[MockFunction]}
+    version="1.0.0"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1396,6 +1530,29 @@ ShallowWrapper {
               style={Object {}}
             />
           </Component>
+        </Component>,
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": 20,
+              "justifyContent": "center",
+              "position": "absolute",
+              "width": "100%",
+            }
+          }
+        >
+          <YuText
+            style={
+              Object {
+                "color": "rgb(201,201,201)",
+                "fontSize": 20,
+                "textAlign": "center",
+              }
+            }
+          >
+            1.0.0
+          </YuText>
         </Component>,
       ],
     },
@@ -1571,6 +1728,49 @@ ShallowWrapper {
         ],
         "type": [Function],
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <YuText
+            style={
+              Object {
+                "color": "rgb(201,201,201)",
+                "fontSize": 20,
+                "textAlign": "center",
+              }
+            }
+          >
+            1.0.0
+          </YuText>,
+          "style": Object {
+            "alignItems": "center",
+            "bottom": 20,
+            "justifyContent": "center",
+            "position": "absolute",
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "1.0.0",
+            "style": Object {
+              "color": "rgb(201,201,201)",
+              "fontSize": 20,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "1.0.0",
+          "type": [Function],
+        },
+        "type": [Function],
+      },
     ],
     "type": Symbol(react.fragment),
   },
@@ -1643,6 +1843,29 @@ ShallowWrapper {
                 style={Object {}}
               />
             </Component>
+          </Component>,
+          <Component
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": 20,
+                "justifyContent": "center",
+                "position": "absolute",
+                "width": "100%",
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(201,201,201)",
+                  "fontSize": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              1.0.0
+            </YuText>
           </Component>,
         ],
       },
@@ -1816,6 +2039,49 @@ ShallowWrapper {
             },
             null,
           ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <YuText
+              style={
+                Object {
+                  "color": "rgb(201,201,201)",
+                  "fontSize": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              1.0.0
+            </YuText>,
+            "style": Object {
+              "alignItems": "center",
+              "bottom": 20,
+              "justifyContent": "center",
+              "position": "absolute",
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "1.0.0",
+              "style": Object {
+                "color": "rgb(201,201,201)",
+                "fontSize": 20,
+                "textAlign": "center",
+              },
+            },
+            "ref": null,
+            "rendered": "1.0.0",
+            "type": [Function],
+          },
           "type": [Function],
         },
       ],

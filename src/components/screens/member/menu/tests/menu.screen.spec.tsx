@@ -25,7 +25,8 @@ const defaultProps = {
             label: "member zone",
             onPress: jest.fn()
         }],
-        onPressClose: jest.fn()
+        onPressClose: jest.fn(),
+        version: "1.0.0"
 };
 
 describe("MenuScreen", () => {

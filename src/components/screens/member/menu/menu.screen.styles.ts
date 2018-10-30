@@ -39,6 +39,18 @@ export default StyleSheet.create({
     textWrapper: {
         paddingRight: Style.SCALE_UP_AND_DOWN(8)
     } as ViewStyle,
+    versionText: {
+        color: "rgb(201,201,201)",
+        fontSize: Style.SCALE_UP_AND_DOWN(10),
+        textAlign: "center"
+    } as TextStyle,
+    versionTextWrapper: {
+        alignItems: "center",
+        bottom: Style.SCALE_UP_AND_DOWN(10),
+        justifyContent: "center",
+        position: "absolute",
+        width: "100%"
+    } as ViewStyle,
     wrapper: {
         backgroundColor: "white",
         flex: 1,

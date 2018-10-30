@@ -1,5 +1,6 @@
 import * as React from "react";
 import { PureComponent } from "react";
+import DeviceInfo from "react-native-device-info";
 import Intercom from "react-native-intercom";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
@@ -30,6 +31,7 @@ type Props = IConnectedState & IConnectedDipatch;
 class MenuContainer extends PureComponent<Props> {
     public render() {
         const { features = {} } = this.props;
+        const version = DeviceInfo.getVersion();
 
         return (
             <MenuScreen
@@ -83,6 +85,7 @@ class MenuContainer extends PureComponent<Props> {
                         source: assets[LINKS.LOGOUT]
                     }
                 ]}
+                version={version}
             />
         );
     }

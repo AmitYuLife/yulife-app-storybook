@@ -110,10 +110,7 @@ class QuestsContainer extends PureComponent<Props> {
                                 unit={unit as any}
                             />
                         ) : (
-                            <ChallengeFailedScreen
-                                level={currentLevel}
-                                onPress={this.handleResetChallenge(refetch)}
-                            />
+                            <ChallengeFailedScreen level={currentLevel} onPress={this.handleResetChallenge(refetch)} />
                         );
                     }
 
@@ -229,8 +226,10 @@ class QuestsContainer extends PureComponent<Props> {
 
                     if (isDone) {
                         // goToChallengesList(); TODO: go to challengesDoneList
-                    } else if (level.level % 7 === 0 && !isNext) {
-                        this.showChestModal(level, isNext);
+                    } else if (level.level % 7 === 0) {
+                        if (!isNext || (isNext && nextAvailable >= 0)) {
+                            this.showChestModal(level, isNext);
+                        }
                     } else if (isNext && nextAvailable >= 0) {
                         this.goToChallengesList(level);
                     }
