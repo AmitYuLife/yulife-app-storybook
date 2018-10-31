@@ -409,6 +409,7 @@ export interface GetRewards_getRewards_available_denominations {
 
 export interface GetRewards_getRewards_redeem_steps {
   __typename: "RedeemSteps";
+  id: string | null;
   info: string | null;
   steps: (string | null)[] | null;
 }
