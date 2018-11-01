@@ -110,17 +110,21 @@ function* endChallenge() {
     const active = yield select(activeLevelSelector);
 
     if (active.levelSlotId) {
-        try {
-            const result = yield call(getEndResult, active);
-            const { data } = yield call(updateActiveChallengeWithClient, active.levelSlotId, result);
+        if (active.isCompleted) {
+            yield put(challengeEndSuccessAction({ updateActiveChallenge: null }));
+        } else {
+            try {
+                const result = yield call(getEndResult, active);
+                const { data } = yield call(updateActiveChallengeWithClient, active.levelSlotId, result);
 
-            if (data.updateActiveChallenge) {
-                yield put(challengeEndSuccessAction(data));
-            } else {
-                yield put(challengeResetSuccessAction());
+                if (data.updateActiveChallenge) {
+                    yield put(challengeEndSuccessAction(data));
+                } else {
+                    yield put(challengeResetSuccessAction());
+                }
+            } catch (e) {
+                // console.log(e);
             }
-        } catch (e) {
-            // console.log(e);
         }
     } else {
         yield put(challengeResetSuccessAction());

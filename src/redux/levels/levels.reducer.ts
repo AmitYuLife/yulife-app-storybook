@@ -29,6 +29,7 @@ export const initialState: ILevelsStore = {
         coins: 0,
         endDateTime: "",
         initialPedometerResult: 0,
+        isCompleted: false, // for meditation, when goal reached
         levelSlotId: "",
         milestones: [],
         milestonesLog: [],
@@ -135,6 +136,7 @@ const challengeUpdateSuccess = (
     active: {
         ...state.active,
         coins: pathOr<number>(res, "challenge.yuCoinAwarded", initialState.active.coins),
+        isCompleted: pathOr<string>(res, "challenge.status", "") === "completed",
         milestonesLog: pathOr<any[]>(res, "challenge.milestoneLog", initialState.active.milestonesLog),
         rating: pathOr<number>(res, "challenge.rating", initialState.active.rating),
         score: pathOr<number>(
@@ -147,11 +149,7 @@ const challengeUpdateSuccess = (
     }
 });
 
-const challengeEndSuccess = (
-    state: ILevelsStore,
-    res: UpdateActiveChallenge
-    // { updateActiveChallenge: { challenge } }: UpdateActiveChallenge
-): ILevelsStore => ({
+const challengeEndSuccess = (state: ILevelsStore, res: UpdateActiveChallenge): ILevelsStore => ({
     ...state,
     active: {
         ...state.active,

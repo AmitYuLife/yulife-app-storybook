@@ -9,6 +9,7 @@ export interface IActiveLevel {
     coins: number;
     endDateTime: string;
     initialPedometerResult: number;
+    isCompleted: boolean;
     levelSlotId: string;
     milestones: CreateActiveChallenge_createActiveChallenge_levelSlot_milestones[];
     milestonesLog: any;
