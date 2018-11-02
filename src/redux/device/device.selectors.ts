@@ -9,10 +9,8 @@ export enum PushPermissionsEnum {
 }
 
 export interface IPushNotification {
-    denied: boolean;
     requested: boolean;
     status: PushPermissions;
-    skipped: string;
 }
 
 export const deviceTokenSelector = (state: IReduxState): string => state.device.deviceToken;

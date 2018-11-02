@@ -5,10 +5,11 @@ import Intercom from "react-native-intercom";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { setIntroRoot } from "../../../../navigation/root";
-import { ROUTES } from "../../../../navigation/routes";
+import { MODALS, ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { SyncAction } from "../../../../redux/_core/types";
 import { getRouteState } from "../../../../redux/app/app.selectors";
+import { IPushNotification, pushNotificationsSelector } from "../../../../redux/device/device.selectors";
 import { logOut, openMemberZone } from "../../../../redux/user/user.actions";
 import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
 import { MenuScreen } from "../../../screens";
@@ -19,6 +20,7 @@ export type Link = "debug" | "leaderboard" | "activity" | "chat" | "logout" | "m
 interface IConnectedState {
     currentRoute: string;
     features: { [x: string]: boolean };
+    permissions: IPushNotification;
 }
 
 interface IConnectedDipatch {
@@ -99,7 +101,7 @@ class MenuContainer extends PureComponent<Props> {
                 this.handlePush(ROUTES.settings);
                 return null;
             case LINKS.CHAT:
-                Intercom.displayConversationsList();
+                this.handleIntercom();
                 return null;
             case LINKS.DEBUG:
                 return null;
@@ -135,17 +137,17 @@ class MenuContainer extends PureComponent<Props> {
         this.props.openMemberZone();
     }
 
-    private handlePush = (route: string) => {
-        this.handleClose();
+    private handlePush = async (route: string) => {
         Navigation.push(this.props.currentRoute, {
             component: {
                 id: route,
                 name: route
             }
         });
+        setTimeout(this.handleClose, 1000);
     }
 
-    private handleClose = async () => {
+    private handleClose = () => {
         Navigation.mergeOptions(ROUTES.menu, {
             sideMenu: {
                 left: {
@@ -155,11 +157,32 @@ class MenuContainer extends PureComponent<Props> {
             }
         });
     }
+
+    private handleIntercom = () => {
+        const { permissions } = this.props;
+        const callback = () => Intercom.displayConversationsList();
+
+        if (permissions.status !== "enabled") {
+            Navigation.showModal({
+                component: {
+                    id: MODALS.pushNotifications,
+                    name: MODALS.pushNotifications,
+                    passProps: {
+                        callback,
+                        permissions
+                    }
+                }
+            });
+        } else {
+            callback();
+        }
+    }
 }
 
 const mapStateToProps = (state: IReduxState) => ({
     currentRoute: getRouteState(state),
-    features: userFeaturesSelector(state)
+    features: userFeaturesSelector(state),
+    permissions: pushNotificationsSelector(state)
 });
 
 const mapDispatchToProps = {

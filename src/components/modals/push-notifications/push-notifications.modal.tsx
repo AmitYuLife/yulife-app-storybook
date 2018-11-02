@@ -3,22 +3,18 @@ import { PureComponent } from "react";
 import { Linking } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import {
-    requirePushEnabled,
-    RequirePushEnabledAction,
-    skipPushPermissions,
-    SkipPushPermissionsAction
-} from "../../../redux/device/device.actions";
+import { requirePushEnabled, RequirePushEnabledAction } from "../../../redux/device/device.actions";
 import { IPushNotification } from "../../../redux/device/device.selectors";
 import GenericModal from "../generic-modal/generic-modal";
 
 interface IConnectedDispatch {
     requirePushEnabled: RequirePushEnabledAction;
-    skipPushPermissions: SkipPushPermissionsAction;
 }
 
 interface IProps {
+    callback?: () => void;
     componentId?: string;
+    fromChallenge?: boolean;
     permissions: IPushNotification;
 }
 
@@ -26,38 +22,25 @@ type Props = IConnectedDispatch & IProps;
 
 class PushNotificationsModal extends PureComponent<Props> {
     public render() {
-        const {
-            permissions: { requested, skipped }
-        } = this.props;
-        const toSettings = requested && skipped;
-        const data = {
-            ctaLabel: toSettings ? "go to settings" : "allow",
-            onPress: toSettings ? () => this.openSettings : this.handleAgree,
-            subheading: toSettings
-                ? "To get notifications, you need to go to the system settings and turn it on."
-                : "Turn the notification on so we can notify you when there’s a response to your message."
-        };
-        return (
-            <GenericModal
-                heading="notification"
-                ctaLabelSecondary="skip"
-                onPressSecondary={this.handleSkip}
-                {...data}
-            />
-        );
+        const { fromChallenge, permissions: { status } } = this.props;
+        const toSettings = status === "denied";
+        const data = this.getProps(toSettings, fromChallenge);
+
+        return <GenericModal {...data} />;
     }
 
     private dismissModal = async () => {
-        Navigation.dismissModal(this.props.componentId);
+        const { callback, componentId } = this.props;
+
+        if (callback) {
+            callback();
+        }
+
+        Navigation.dismissModal(componentId);
     }
 
     private handleAgree = () => {
         this.props.requirePushEnabled();
-        this.dismissModal();
-    }
-
-    private handleSkip = () => {
-        this.props.skipPushPermissions();
         this.dismissModal();
     }
 
@@ -70,11 +53,41 @@ class PushNotificationsModal extends PureComponent<Props> {
         }
         this.dismissModal();
     }
+
+    private getProps = (toSettings: boolean, fromChallenge?: boolean) => {
+        if (toSettings) {
+            return {
+                ctaLabel: "go to settings",
+                ctaLabelSecondary: "skip",
+                heading: "notification",
+                onPress: this.openSettings,
+                onPressSecondary: this.dismissModal,
+                subheading: "To get notifications, you need to go to the system settings and turn it on."
+            };
+        }
+        if (fromChallenge) {
+            return {
+                ctaLabel: "of course",
+                ctaLabelSecondary: "maybe later",
+                heading: "don't miss out",
+                onPress: this.handleAgree,
+                onPressSecondary: this.dismissModal,
+                subheading: "Do you want us to give you a shout when you finish a challenge?"
+            };
+        }
+        return {
+            ctaLabel: "allow",
+            ctaLabelSecondary: "skip",
+            heading: "notification",
+            onPress: this.handleAgree,
+            onPressSecondary: this.dismissModal,
+            subheading: "Turn the notification on so we can notify you when there’s a response to your message."
+        };
+    }
 }
 
 const mapDispatchToProps = {
-    requirePushEnabled,
-    skipPushPermissions
+    requirePushEnabled
 };
 
 export default connect<{}, IConnectedDispatch>(

@@ -9,7 +9,6 @@ export const REQUIRE_PUSH_ENABLED = "REQUIRE_PUSH_ENABLED";
 export const CANCEL_LOCAL_PUSH = "CANCEL_LOCAL_PUSH";
 export const SEND_TEST_LOCAL_PUSH = "SEND_TEST_LOCAL_PUSH";
 export const SET_PUSH_PERMISSIONS = "SET_PUSH_PERMISSIONS";
-export const SKIP_PUSH_PERMISSIONS = "SKIP_PUSH_PERMISSIONS";
 
 export type AddDeviceTokenActionResult = SyncAction<Partial<IDeviceStore>>;
 export type AddDeviceTokenAction = (payload: Partial<IDeviceStore>) => AddDeviceTokenActionResult;
@@ -23,11 +22,6 @@ export type PushNotificationReceivedAction = (payload: PushNotification) => Push
 export const pushNotificationReceived: PushNotificationReceivedAction = (payload) => ({
     payload,
     type: PUSH_NOTIFICATION_RECEIVED
-});
-
-export type SkipPushPermissionsAction = () => SyncAction;
-export const skipPushPermissions: SkipPushPermissionsAction = () => ({
-    type: SKIP_PUSH_PERMISSIONS
 });
 
 export type RequirePushEnabledAction = () => SyncAction;

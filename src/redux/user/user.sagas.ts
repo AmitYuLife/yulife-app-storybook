@@ -127,6 +127,7 @@ function* setUserNoAccess() {
 }
 
 function* logOut() {
+    yield call(Logger.logEvent, "log_out");
     yield call(clearToken);
     yield call(setUnauthenticatedRoot);
     yield call(() => client.resetStore());
