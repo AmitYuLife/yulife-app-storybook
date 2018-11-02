@@ -8,6 +8,10 @@ import dailyStepsReducer, {
 } from "../daily-steps/daily-steps.reducer";
 import deviceReducer, { IDeviceStore, initialState as initialDeviceState } from "../device/device.reducer";
 import levelsReducer, { ILevelsStore, initialState as initialLevelsState } from "../levels/levels.reducer";
+import notificationsReducer, {
+    initialState as initialNotificationsState,
+    INotificationsStore
+} from "../notifications/notifications.reducer";
 import pedometerReducer, {
     initialState as initialPedometerState,
     IPedometerStore
@@ -21,6 +25,7 @@ export interface IReduxState {
     dailySteps: IDailyStepsStore;
     device: IDeviceStore;
     levels: ILevelsStore;
+    notifications: INotificationsStore;
     pedometer: IPedometerStore;
     streaks: IStreaksStore;
     user: IUserStore;
@@ -32,6 +37,7 @@ export const initialState: IReduxState = {
     dailySteps: initialDailyStepsState,
     device: initialDeviceState,
     levels: initialLevelsState,
+    notifications: initialNotificationsState,
     pedometer: initialPedometerState,
     streaks: initialStreaksState,
     user: initialUserState
@@ -43,6 +49,7 @@ const combinedReducers = combineReducers({
     dailySteps: dailyStepsReducer,
     device: deviceReducer,
     levels: levelsReducer,
+    notifications: notificationsReducer,
     pedometer: pedometerReducer,
     streaks: streaksReducer,
     user: userReducer

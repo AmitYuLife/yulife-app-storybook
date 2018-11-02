@@ -1,7 +1,6 @@
-import moment from "moment";
 import { Platform } from "react-native";
 import DeviceInfo from "react-native-device-info";
-import { ADD_DEVICE_TOKEN, REQUIRE_PUSH_ENABLED, SET_PUSH_PERMISSIONS, SKIP_PUSH_PERMISSIONS } from "./device.actions";
+import { ADD_DEVICE_TOKEN, REQUIRE_PUSH_ENABLED, SET_PUSH_PERMISSIONS } from "./device.actions";
 import { IPushNotification } from "./device.selectors";
 
 export interface IDeviceStore {
@@ -16,9 +15,7 @@ export const initialState: IDeviceStore = {
     deviceToken: "",
     os: Platform.OS,
     pushNotifications: {
-        denied: false,
         requested: false,
-        skipped: null,
         status: "notyet"
     }
 };
@@ -33,9 +30,6 @@ const deviceReducer = (state: IDeviceStore = initialState, action: any): IDevice
 
         case SET_PUSH_PERMISSIONS:
             return setPushPermissions(state, action.payload);
-
-        case SKIP_PUSH_PERMISSIONS:
-            return skipPushPermisions(state);
 
         default:
             return state;
@@ -66,14 +60,5 @@ const setPushPermissions = (state: IDeviceStore, pushPermissions: Partial<IPushN
     pushNotifications: {
         ...state.pushNotifications,
         ...pushPermissions
-    }
-});
-
-const skipPushPermisions = (state: IDeviceStore) => ({
-    ...state,
-    pushNotifications: {
-        ...state.pushNotifications,
-        denied: !!state.pushNotifications.skipped, // second time
-        skipped: state.pushNotifications.skipped || moment().format()
     }
 });

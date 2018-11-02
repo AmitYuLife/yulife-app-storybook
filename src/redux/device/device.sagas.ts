@@ -1,4 +1,3 @@
-import moment from "moment";
 import { Platform } from "react-native";
 import Config from "react-native-config";
 import Intercom from "react-native-intercom";
@@ -11,26 +10,21 @@ import PushNotification, {
 import { delay } from "redux-saga";
 import { call, put, race, select, spawn, take, takeEvery, takeLatest } from "redux-saga/effects";
 import { MODALS } from "../../navigation/routes";
-import Logger from "../../services/logging/logger";
 import { getToken } from "../../services/storage";
 import { appStateChannel } from "../app/app.channels";
 import { getRouteState } from "../app/app.selectors";
-import { CHALLENGE_CANCEL, CHALLENGE_START_SUCCESS, ChallengeStartSuccessActionResult } from "../levels/levels.actions";
-import { activeLevelSelector } from "../levels/levels.selectors";
+import { CHALLENGE_START_SUCCESS } from "../levels/levels.actions";
 import { LOGOUT, updateUserConsent } from "../user/user.actions";
 import {
     ADD_DEVICE_TOKEN,
     addDeviceToken,
     AddDeviceTokenActionResult,
     pushNotificationReceived,
-    SEND_TEST_LOCAL_PUSH,
     setPushPermissions
 } from "./device.actions";
-import { CANCEL_LOCAL_PUSH, REQUIRE_PUSH_ENABLED } from "./device.actions";
+import { REQUIRE_PUSH_ENABLED } from "./device.actions";
 import { createPushNotificationsChannel, createPushPermissionsChannel } from "./device.channels";
 import { pushNotificationsSelector, PushPermissions, PushPermissionsEnum } from "./device.selectors";
-
-const numericId = (id: string) => id.replace(/\D/g, "").substring(0, 9);
 
 function* registerIntercom({ payload }: AddDeviceTokenActionResult) {
     yield spawn(() => Intercom.sendTokenToIntercom(payload.deviceToken));
@@ -45,7 +39,6 @@ function* checkPermissions() {
     if (Platform.OS === "ios") {
         const channel = yield call(createPushPermissionsChannel);
         const permissions: PushNotificationPermissions = yield take(channel);
-
         status = permissions.alert
             ? PushPermissionsEnum.enabled
             : perms.requested
@@ -65,28 +58,23 @@ function* checkPermissions() {
     if (token && perms.status !== status) {
         yield put(updateUserConsent({ pushNotifications: status === PushPermissionsEnum.enabled }));
     }
+}
 
-    // pop up the modal
-    if (
-        token &&
-        status !== "enabled" &&
-        (!perms.skipped ||
-            (moment(perms.skipped)
-                .add(7, "days")
-                .isBefore(moment()) &&
-                !perms.denied))
-    ) {
+function* showPushNotificationModal() {
+    const permissions = yield select(pushNotificationsSelector);
+
+    if (permissions.status !== "enabled") {
         const currentRoute = yield select(getRouteState);
 
         if (currentRoute !== MODALS.pushNotifications) {
-            yield call(delay, 3000);
-            yield call(async () =>
+            yield call(() =>
                 Navigation.showModal({
                     component: {
                         id: MODALS.pushNotifications,
                         name: MODALS.pushNotifications,
                         passProps: {
-                            permissions: perms
+                            fromChallenge: true,
+                            permissions
                         }
                     }
                 })
@@ -148,6 +136,16 @@ function* handleNotification(notification: IPushNotification) {
     }
 }
 
+function* unregisterPushNotifications() {
+    yield call(() => PushNotification.cancelAllLocalNotifications);
+    yield call(() => PushNotification.setApplicationIconBadgeNumber(0));
+    yield call(() => PushNotification.unregister);
+}
+
+function* onLogout() {
+    yield call(() => Intercom.reset());
+}
+
 function* requestPush() {
     const { status } = yield select(pushNotificationsSelector);
 
@@ -158,88 +156,12 @@ function* requestPush() {
     }
 }
 
-function* cancelChallengeNotificationSaga() {
-    const active = yield select(activeLevelSelector);
-
-    if (active.levelSlotId) {
-        yield call(() => PushNotification.cancelLocalNotifications({ id: numericId(active.levelSlotId) }));
-    }
-}
-
-function* scheduleChallengeNotificationSaga({ payload: { createActiveChallenge } }: ChallengeStartSuccessActionResult) {
-    if (!createActiveChallenge.challenge) {
-        return null;
-    }
-
-    const { endDateTime, levelSlotId } = createActiveChallenge.challenge;
-    const fixedId = numericId(levelSlotId);
-
-    yield call(() =>
-        PushNotification.localNotificationSchedule({
-            autoCancel: true, // (optional) default: true
-            date: moment(endDateTime).toDate(),
-            group: "Yu Life Challenges", // (optional) add group to message
-            id: fixedId, // (optional)
-            largeIcon: "ic_launcher", // (optional) default: "ic_launcher"
-            message: "Time's up! Check how you did on your latest challenge.",
-            ongoing: false, // (optional) set whether this is an "ongoing" notification
-            playSound: false, // (optional) default: true
-            smallIcon: "ic_notification", // (optional) default: "ic_notification"
-            soundName: "default", // (optional) Sound to play when the notification is shown
-            tag: "challenge_complete", // (optional) add tag to message
-            title: "Challenge Completed", // (optional, for iOS this is only used in apple watch)
-            userInfo: Platform.OS === "ios" ? { id: fixedId } : null, // required to cancel iOS local notification
-            vibrate: true, // (optional) default: true
-            vibration: 300 // vibration length in milliseconds, ignored if vibrate=false, default: 1000
-        })
-    );
-}
-
-function* sendTestPush() {
-    yield call(() =>
-        PushNotification.localNotificationSchedule({
-            autoCancel: true, // (optional) default: true
-            bigText: "My big text that will be shown when notification is expanded", // (optional)
-            color: "red", // (optional) default: system default
-            date: new Date(Date.now() + 5 * 1000),
-            group: "group", // (optional) add group to message
-            id: "0", // (optional)
-            largeIcon: "ic_launcher", // (optional) default: "ic_launcher"
-            message: "My Notification Message", // (required)
-            ongoing: false, // (optional) set whether this is an "ongoing" notification
-            playSound: false, // (optional) default: true
-            repeatType: "day",
-            smallIcon: "ic_notification", // (optional) default: "ic_notification"
-            soundName: "default", // (optional) Sound to play when the notification is shown
-            subText: "This is a subText", // (optional) default: none
-            tag: "some_tag", // (optional) add tag to message
-            ticker: "My Notification Ticker", // (optional)
-            title: "My Notification Title", // (optional, for iOS this is only used in apple watch)
-            vibration: 300 // vibration length in milliseconds, ignored if vibrate=false, default: 1000
-        })
-    );
-}
-
-function* unregisterPushNotifications() {
-    yield call(() => PushNotification.cancelAllLocalNotifications);
-    yield call(() => PushNotification.setApplicationIconBadgeNumber(0));
-    yield call(() => PushNotification.unregister);
-}
-
-function* onLogout() {
-    yield call(Logger.logEvent, "log_out");
-    yield call(() => Intercom.reset());
-}
-
 export default [
     takeLatest("INIT", registerPush),
     takeLatest("INIT", listenForPermissionsChange),
     takeLatest(ADD_DEVICE_TOKEN, registerIntercom),
-    takeEvery(CHALLENGE_CANCEL, cancelChallengeNotificationSaga),
-    takeEvery(CANCEL_LOCAL_PUSH, cancelChallengeNotificationSaga),
-    takeEvery(CHALLENGE_START_SUCCESS, scheduleChallengeNotificationSaga),
+    takeLatest(CHALLENGE_START_SUCCESS, showPushNotificationModal),
     takeLatest(LOGOUT, unregisterPushNotifications),
     takeLatest(LOGOUT, onLogout),
-    takeEvery(REQUIRE_PUSH_ENABLED, requestPush),
-    takeEvery(SEND_TEST_LOCAL_PUSH, sendTestPush)
+    takeEvery(REQUIRE_PUSH_ENABLED, requestPush)
 ];
