@@ -29,7 +29,7 @@ import { getEndResult } from "./levels.helpers";
 import { activeLevelSelector } from "./levels.selectors";
 
 function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, endDateTime: string) {
-    const start = moment(startDateTime).format();
+    const start = moment(startDateTime).startOf("day").format();
     const end = moment(endDateTime);
 
     while (moment().isBefore(end)) {
