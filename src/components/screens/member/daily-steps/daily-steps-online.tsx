@@ -2,6 +2,7 @@ import * as React from "react";
 import { SFC } from "react";
 import { View } from "react-native";
 import { Button, Pad, Text } from "../../../atoms";
+import Counter from "../../../molecules/counter/counter";
 import styles from "./daily-steps.screen.styles";
 
 export interface IProps {
@@ -12,19 +13,15 @@ export interface IProps {
 
 const DailyStepsOnline: SFC<IProps> = ({ coinsToday, onCtaPress, steps }) => (
     <View style={styles.dailyStepsOnlineWrapper}>
-        <Text>{steps} steps</Text>
+        <Counter value={steps} text="steps" time={2000} />
         <Pad height={8} />
         <Text>
-            <Text
-                style={styles.heading}
-            >
-                {`${coinsToday} `}
-            </Text>
+            <Counter style={styles.heading} value={coinsToday} />
             <Text
                 style={styles.heading}
                 bold={true}
             >
-                yu
+                {` yu`}
             </Text>
             <Text
                 style={styles.heading}

@@ -57,7 +57,8 @@ ShallowWrapper {
               }
             }
           >
-            <YuText
+            <Counter
+              digits={0}
               style={
                 Object {
                   "fontSize": 36,
@@ -65,9 +66,9 @@ ShallowWrapper {
                   "marginRight": 16,
                 }
               }
-            >
-              1234
-            </YuText>
+              time={2000}
+              value={1234}
+            />
           </Component>
           <Component
             style={
@@ -134,7 +135,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
+              <Counter
+                digits={0}
                 style={
                   Object {
                     "fontSize": 36,
@@ -142,9 +144,9 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                time={2000}
+                value={1234}
+              />
             </Component>
             <Component
               style={
@@ -221,7 +223,8 @@ ShallowWrapper {
                   }
                 }
               >
-                <YuText
+                <Counter
+                  digits={0}
                   style={
                     Object {
                       "fontSize": 36,
@@ -229,9 +232,9 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>
+                  time={2000}
+                  value={1234}
+                />
               </Component>,
               <Component
                 style={
@@ -260,7 +263,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <YuText
+                "children": <Counter
+                  digits={0}
                   style={
                     Object {
                       "fontSize": 36,
@@ -268,9 +272,9 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>,
+                  time={2000}
+                  value={1234}
+                />,
                 "style": Object {
                   "height": "100%",
                   "justifyContent": "center",
@@ -280,17 +284,19 @@ ShallowWrapper {
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "function",
+                "nodeType": "class",
                 "props": Object {
-                  "children": 1234,
+                  "digits": 0,
                   "style": Object {
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
                   },
+                  "time": 2000,
+                  "value": 1234,
                 },
                 "ref": null,
-                "rendered": 1234,
+                "rendered": null,
                 "type": [Function],
               },
               "type": [Function],
@@ -372,7 +378,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
+              <Counter
+                digits={0}
                 style={
                   Object {
                     "fontSize": 36,
@@ -380,9 +387,9 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                time={2000}
+                value={1234}
+              />
             </Component>
             <Component
               style={
@@ -449,7 +456,8 @@ ShallowWrapper {
                   }
                 }
               >
-                <YuText
+                <Counter
+                  digits={0}
                   style={
                     Object {
                       "fontSize": 36,
@@ -457,9 +465,9 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>
+                  time={2000}
+                  value={1234}
+                />
               </Component>
               <Component
                 style={
@@ -536,7 +544,8 @@ ShallowWrapper {
                     }
                   }
                 >
-                  <YuText
+                  <Counter
+                    digits={0}
                     style={
                       Object {
                         "fontSize": 36,
@@ -544,9 +553,9 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                  >
-                    1234
-                  </YuText>
+                    time={2000}
+                    value={1234}
+                  />
                 </Component>,
                 <Component
                   style={
@@ -575,7 +584,8 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": <YuText
+                  "children": <Counter
+                    digits={0}
                     style={
                       Object {
                         "fontSize": 36,
@@ -583,9 +593,9 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                  >
-                    1234
-                  </YuText>,
+                    time={2000}
+                    value={1234}
+                  />,
                   "style": Object {
                     "height": "100%",
                     "justifyContent": "center",
@@ -595,17 +605,19 @@ ShallowWrapper {
                 "rendered": Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "function",
+                  "nodeType": "class",
                   "props": Object {
-                    "children": 1234,
+                    "digits": 0,
                     "style": Object {
                       "fontSize": 36,
                       "marginBottom": -8,
                       "marginRight": 16,
                     },
+                    "time": 2000,
+                    "value": 1234,
                   },
                   "ref": null,
-                  "rendered": 1234,
+                  "rendered": null,
                   "type": [Function],
                 },
                 "type": [Function],
@@ -724,7 +736,8 @@ ShallowWrapper {
               }
             }
           >
-            <YuText
+            <Counter
+              digits={0}
               style={
                 Object {
                   "fontSize": 36,
@@ -732,9 +745,9 @@ ShallowWrapper {
                   "marginRight": 16,
                 }
               }
-            >
-              1234
-            </YuText>
+              time={2000}
+              value={1234}
+            />
           </Component>
           <Component
             style={
@@ -801,7 +814,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
+              <Counter
+                digits={0}
                 style={
                   Object {
                     "fontSize": 36,
@@ -809,9 +823,9 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                time={2000}
+                value={1234}
+              />
             </Component>
             <Component
               style={
@@ -888,7 +902,8 @@ ShallowWrapper {
                   }
                 }
               >
-                <YuText
+                <Counter
+                  digits={0}
                   style={
                     Object {
                       "fontSize": 36,
@@ -896,9 +911,9 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>
+                  time={2000}
+                  value={1234}
+                />
               </Component>,
               <Component
                 style={
@@ -927,7 +942,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <YuText
+                "children": <Counter
+                  digits={0}
                   style={
                     Object {
                       "fontSize": 36,
@@ -935,9 +951,9 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>,
+                  time={2000}
+                  value={1234}
+                />,
                 "style": Object {
                   "height": "100%",
                   "justifyContent": "center",
@@ -947,17 +963,19 @@ ShallowWrapper {
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "function",
+                "nodeType": "class",
                 "props": Object {
-                  "children": 1234,
+                  "digits": 0,
                   "style": Object {
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
                   },
+                  "time": 2000,
+                  "value": 1234,
                 },
                 "ref": null,
-                "rendered": 1234,
+                "rendered": null,
                 "type": [Function],
               },
               "type": [Function],
@@ -1039,7 +1057,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
+              <Counter
+                digits={0}
                 style={
                   Object {
                     "fontSize": 36,
@@ -1047,9 +1066,9 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                time={2000}
+                value={1234}
+              />
             </Component>
             <Component
               style={
@@ -1116,7 +1135,8 @@ ShallowWrapper {
                   }
                 }
               >
-                <YuText
+                <Counter
+                  digits={0}
                   style={
                     Object {
                       "fontSize": 36,
@@ -1124,9 +1144,9 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>
+                  time={2000}
+                  value={1234}
+                />
               </Component>
               <Component
                 style={
@@ -1203,7 +1223,8 @@ ShallowWrapper {
                     }
                   }
                 >
-                  <YuText
+                  <Counter
+                    digits={0}
                     style={
                       Object {
                         "fontSize": 36,
@@ -1211,9 +1232,9 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                  >
-                    1234
-                  </YuText>
+                    time={2000}
+                    value={1234}
+                  />
                 </Component>,
                 <Component
                   style={
@@ -1242,7 +1263,8 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": <YuText
+                  "children": <Counter
+                    digits={0}
                     style={
                       Object {
                         "fontSize": 36,
@@ -1250,9 +1272,9 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                  >
-                    1234
-                  </YuText>,
+                    time={2000}
+                    value={1234}
+                  />,
                   "style": Object {
                     "height": "100%",
                     "justifyContent": "center",
@@ -1262,17 +1284,19 @@ ShallowWrapper {
                 "rendered": Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "function",
+                  "nodeType": "class",
                   "props": Object {
-                    "children": 1234,
+                    "digits": 0,
                     "style": Object {
                       "fontSize": 36,
                       "marginBottom": -8,
                       "marginRight": 16,
                     },
+                    "time": 2000,
+                    "value": 1234,
                   },
                   "ref": null,
-                  "rendered": 1234,
+                  "rendered": null,
                   "type": [Function],
                 },
                 "type": [Function],
@@ -1412,7 +1436,8 @@ ShallowWrapper {
               }
             }
           >
-            <YuText
+            <Counter
+              digits={0}
               style={
                 Object {
                   "fontSize": 36,
@@ -1420,9 +1445,9 @@ ShallowWrapper {
                   "marginRight": 16,
                 }
               }
-            >
-              1234
-            </YuText>
+              time={2000}
+              value={1234}
+            />
           </Component>
           <Component
             style={
@@ -1509,7 +1534,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
+              <Counter
+                digits={0}
                 style={
                   Object {
                     "fontSize": 36,
@@ -1517,9 +1543,9 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                time={2000}
+                value={1234}
+              />
             </Component>
             <Component
               style={
@@ -1654,7 +1680,8 @@ ShallowWrapper {
                   }
                 }
               >
-                <YuText
+                <Counter
+                  digits={0}
                   style={
                     Object {
                       "fontSize": 36,
@@ -1662,9 +1689,9 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>
+                  time={2000}
+                  value={1234}
+                />
               </Component>,
               <Component
                 style={
@@ -1693,7 +1720,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <YuText
+                "children": <Counter
+                  digits={0}
                   style={
                     Object {
                       "fontSize": 36,
@@ -1701,9 +1729,9 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>,
+                  time={2000}
+                  value={1234}
+                />,
                 "style": Object {
                   "height": "100%",
                   "justifyContent": "center",
@@ -1713,17 +1741,19 @@ ShallowWrapper {
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "function",
+                "nodeType": "class",
                 "props": Object {
-                  "children": 1234,
+                  "digits": 0,
                   "style": Object {
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
                   },
+                  "time": 2000,
+                  "value": 1234,
                 },
                 "ref": null,
-                "rendered": 1234,
+                "rendered": null,
                 "type": [Function],
               },
               "type": [Function],
@@ -1825,7 +1855,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
+              <Counter
+                digits={0}
                 style={
                   Object {
                     "fontSize": 36,
@@ -1833,9 +1864,9 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                time={2000}
+                value={1234}
+              />
             </Component>
             <Component
               style={
@@ -1922,7 +1953,8 @@ ShallowWrapper {
                   }
                 }
               >
-                <YuText
+                <Counter
+                  digits={0}
                   style={
                     Object {
                       "fontSize": 36,
@@ -1930,9 +1962,9 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>
+                  time={2000}
+                  value={1234}
+                />
               </Component>
               <Component
                 style={
@@ -2067,7 +2099,8 @@ ShallowWrapper {
                     }
                   }
                 >
-                  <YuText
+                  <Counter
+                    digits={0}
                     style={
                       Object {
                         "fontSize": 36,
@@ -2075,9 +2108,9 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                  >
-                    1234
-                  </YuText>
+                    time={2000}
+                    value={1234}
+                  />
                 </Component>,
                 <Component
                   style={
@@ -2106,7 +2139,8 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": <YuText
+                  "children": <Counter
+                    digits={0}
                     style={
                       Object {
                         "fontSize": 36,
@@ -2114,9 +2148,9 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                  >
-                    1234
-                  </YuText>,
+                    time={2000}
+                    value={1234}
+                  />,
                   "style": Object {
                     "height": "100%",
                     "justifyContent": "center",
@@ -2126,17 +2160,19 @@ ShallowWrapper {
                 "rendered": Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "function",
+                  "nodeType": "class",
                   "props": Object {
-                    "children": 1234,
+                    "digits": 0,
                     "style": Object {
                       "fontSize": 36,
                       "marginBottom": -8,
                       "marginRight": 16,
                     },
+                    "time": 2000,
+                    "value": 1234,
                   },
                   "ref": null,
-                  "rendered": 1234,
+                  "rendered": null,
                   "type": [Function],
                 },
                 "type": [Function],
@@ -2277,7 +2313,8 @@ ShallowWrapper {
               }
             }
           >
-            <YuText
+            <Counter
+              digits={0}
               style={
                 Object {
                   "fontSize": 36,
@@ -2285,9 +2322,9 @@ ShallowWrapper {
                   "marginRight": 16,
                 }
               }
-            >
-              1234
-            </YuText>
+              time={2000}
+              value={1234}
+            />
           </Component>
           <Component
             style={
@@ -2375,7 +2412,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
+              <Counter
+                digits={0}
                 style={
                   Object {
                     "fontSize": 36,
@@ -2383,9 +2421,9 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                time={2000}
+                value={1234}
+              />
             </Component>
             <Component
               style={
@@ -2508,7 +2546,8 @@ ShallowWrapper {
                   }
                 }
               >
-                <YuText
+                <Counter
+                  digits={0}
                   style={
                     Object {
                       "fontSize": 36,
@@ -2516,9 +2555,9 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>
+                  time={2000}
+                  value={1234}
+                />
               </Component>,
               <Component
                 style={
@@ -2547,7 +2586,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <YuText
+                "children": <Counter
+                  digits={0}
                   style={
                     Object {
                       "fontSize": 36,
@@ -2555,9 +2595,9 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>,
+                  time={2000}
+                  value={1234}
+                />,
                 "style": Object {
                   "height": "100%",
                   "justifyContent": "center",
@@ -2567,17 +2607,19 @@ ShallowWrapper {
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "function",
+                "nodeType": "class",
                 "props": Object {
-                  "children": 1234,
+                  "digits": 0,
                   "style": Object {
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
                   },
+                  "time": 2000,
+                  "value": 1234,
                 },
                 "ref": null,
-                "rendered": 1234,
+                "rendered": null,
                 "type": [Function],
               },
               "type": [Function],
@@ -2680,7 +2722,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
+              <Counter
+                digits={0}
                 style={
                   Object {
                     "fontSize": 36,
@@ -2688,9 +2731,9 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                time={2000}
+                value={1234}
+              />
             </Component>
             <Component
               style={
@@ -2778,7 +2821,8 @@ ShallowWrapper {
                   }
                 }
               >
-                <YuText
+                <Counter
+                  digits={0}
                   style={
                     Object {
                       "fontSize": 36,
@@ -2786,9 +2830,9 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>
+                  time={2000}
+                  value={1234}
+                />
               </Component>
               <Component
                 style={
@@ -2911,7 +2955,8 @@ ShallowWrapper {
                     }
                   }
                 >
-                  <YuText
+                  <Counter
+                    digits={0}
                     style={
                       Object {
                         "fontSize": 36,
@@ -2919,9 +2964,9 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                  >
-                    1234
-                  </YuText>
+                    time={2000}
+                    value={1234}
+                  />
                 </Component>,
                 <Component
                   style={
@@ -2950,7 +2995,8 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": <YuText
+                  "children": <Counter
+                    digits={0}
                     style={
                       Object {
                         "fontSize": 36,
@@ -2958,9 +3004,9 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                  >
-                    1234
-                  </YuText>,
+                    time={2000}
+                    value={1234}
+                  />,
                   "style": Object {
                     "height": "100%",
                     "justifyContent": "center",
@@ -2970,17 +3016,19 @@ ShallowWrapper {
                 "rendered": Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "function",
+                  "nodeType": "class",
                   "props": Object {
-                    "children": 1234,
+                    "digits": 0,
                     "style": Object {
                       "fontSize": 36,
                       "marginBottom": -8,
                       "marginRight": 16,
                     },
+                    "time": 2000,
+                    "value": 1234,
                   },
                   "ref": null,
-                  "rendered": 1234,
+                  "rendered": null,
                   "type": [Function],
                 },
                 "type": [Function],

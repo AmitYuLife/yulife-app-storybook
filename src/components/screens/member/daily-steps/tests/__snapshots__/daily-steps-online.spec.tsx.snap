@@ -22,23 +22,26 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <YuText>
-          123456
-           steps
-        </YuText>,
+        <Counter
+          digits={0}
+          text="steps"
+          time={2000}
+          value={123456}
+        />,
         <Pad
           height={8}
         />,
         <YuText>
-          <YuText
+          <Counter
+            digits={0}
             style={
               Object {
                 "fontSize": 70,
               }
             }
-          >
-            5 
-          </YuText>
+            time={1000}
+            value={5}
+          />
           <YuText
             bold={true}
             style={
@@ -47,7 +50,7 @@ ShallowWrapper {
               }
             }
           >
-            yu
+             yu
           </YuText>
           <YuText
             style={
@@ -87,18 +90,15 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
-          "children": Array [
-            123456,
-            " steps",
-          ],
+          "digits": 0,
+          "text": "steps",
+          "time": 2000,
+          "value": 123456,
         },
         "ref": null,
-        "rendered": Array [
-          123456,
-          " steps",
-        ],
+        "rendered": null,
         "type": [Function],
       },
       Object {
@@ -118,15 +118,16 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": Array [
-            <YuText
+            <Counter
+              digits={0}
               style={
                 Object {
                   "fontSize": 70,
                 }
               }
-            >
-              5 
-            </YuText>,
+              time={1000}
+              value={5}
+            />,
             <YuText
               bold={true}
               style={
@@ -135,7 +136,7 @@ ShallowWrapper {
                 }
               }
             >
-              yu
+               yu
             </YuText>,
             <YuText
               style={
@@ -162,15 +163,17 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "function",
+            "nodeType": "class",
             "props": Object {
-              "children": "5 ",
+              "digits": 0,
               "style": Object {
                 "fontSize": 70,
               },
+              "time": 1000,
+              "value": 5,
             },
             "ref": null,
-            "rendered": "5 ",
+            "rendered": null,
             "type": [Function],
           },
           Object {
@@ -179,13 +182,13 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "bold": true,
-              "children": "yu",
+              "children": " yu",
               "style": Object {
                 "fontSize": 70,
               },
             },
             "ref": null,
-            "rendered": "yu",
+            "rendered": " yu",
             "type": [Function],
           },
           Object {
@@ -253,23 +256,26 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <YuText>
-            123456
-             steps
-          </YuText>,
+          <Counter
+            digits={0}
+            text="steps"
+            time={2000}
+            value={123456}
+          />,
           <Pad
             height={8}
           />,
           <YuText>
-            <YuText
+            <Counter
+              digits={0}
               style={
                 Object {
                   "fontSize": 70,
                 }
               }
-            >
-              5 
-            </YuText>
+              time={1000}
+              value={5}
+            />
             <YuText
               bold={true}
               style={
@@ -278,7 +284,7 @@ ShallowWrapper {
                 }
               }
             >
-              yu
+               yu
             </YuText>
             <YuText
               style={
@@ -318,18 +324,15 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "children": Array [
-              123456,
-              " steps",
-            ],
+            "digits": 0,
+            "text": "steps",
+            "time": 2000,
+            "value": 123456,
           },
           "ref": null,
-          "rendered": Array [
-            123456,
-            " steps",
-          ],
+          "rendered": null,
           "type": [Function],
         },
         Object {
@@ -349,15 +352,16 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "children": Array [
-              <YuText
+              <Counter
+                digits={0}
                 style={
                   Object {
                     "fontSize": 70,
                   }
                 }
-              >
-                5 
-              </YuText>,
+                time={1000}
+                value={5}
+              />,
               <YuText
                 bold={true}
                 style={
@@ -366,7 +370,7 @@ ShallowWrapper {
                   }
                 }
               >
-                yu
+                 yu
               </YuText>,
               <YuText
                 style={
@@ -393,15 +397,17 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "function",
+              "nodeType": "class",
               "props": Object {
-                "children": "5 ",
+                "digits": 0,
                 "style": Object {
                   "fontSize": 70,
                 },
+                "time": 1000,
+                "value": 5,
               },
               "ref": null,
-              "rendered": "5 ",
+              "rendered": null,
               "type": [Function],
             },
             Object {
@@ -410,13 +416,13 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "bold": true,
-                "children": "yu",
+                "children": " yu",
                 "style": Object {
                   "fontSize": 70,
                 },
               },
               "ref": null,
-              "rendered": "yu",
+              "rendered": " yu",
               "type": [Function],
             },
             Object {

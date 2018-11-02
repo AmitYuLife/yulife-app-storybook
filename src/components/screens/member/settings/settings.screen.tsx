@@ -40,6 +40,8 @@ export default class SettingsScreen extends PureComponent<IProps> {
         switch (section.name) {
             case "leaderboard":
                 return this.renderLeaderboard(section, index);
+            // case "notifications":
+            //     return this.renderLeaderboard(section, index);
             default:
                 return null;
         }
