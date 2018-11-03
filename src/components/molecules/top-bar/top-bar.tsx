@@ -131,7 +131,7 @@ class TopBar extends Component<IProps, IState> {
                         {this.renderCenter()}
                         <View style={styles.coinsWrapper}>
                             <View style={styles.coinsTextWrapper}>
-                                <Counter style={styles.coinsText} value={coins || 0} time={2000} />
+                                <Counter style={styles.coinsText} value={coins || 0} />
                             </View>
                             <View style={styles.coinsLogoWrapper}>
                                 <Coins scale={0.5} />

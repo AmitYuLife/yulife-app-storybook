@@ -25,23 +25,22 @@ ShallowWrapper {
         <Counter
           digits={0}
           text="steps"
-          time={2000}
+          time={1000}
           value={123456}
         />,
         <Pad
           height={8}
         />,
         <YuText>
-          <Counter
-            digits={0}
+          <YuText
             style={
               Object {
                 "fontSize": 70,
               }
             }
-            time={1000}
-            value={5}
-          />
+          >
+            5 
+          </YuText>
           <YuText
             bold={true}
             style={
@@ -50,7 +49,7 @@ ShallowWrapper {
               }
             }
           >
-             yu
+            yu
           </YuText>
           <YuText
             style={
@@ -94,7 +93,7 @@ ShallowWrapper {
         "props": Object {
           "digits": 0,
           "text": "steps",
-          "time": 2000,
+          "time": 1000,
           "value": 123456,
         },
         "ref": null,
@@ -118,16 +117,15 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": Array [
-            <Counter
-              digits={0}
+            <YuText
               style={
                 Object {
                   "fontSize": 70,
                 }
               }
-              time={1000}
-              value={5}
-            />,
+            >
+              5 
+            </YuText>,
             <YuText
               bold={true}
               style={
@@ -136,7 +134,7 @@ ShallowWrapper {
                 }
               }
             >
-               yu
+              yu
             </YuText>,
             <YuText
               style={
@@ -163,17 +161,15 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "function",
             "props": Object {
-              "digits": 0,
+              "children": "5 ",
               "style": Object {
                 "fontSize": 70,
               },
-              "time": 1000,
-              "value": 5,
             },
             "ref": null,
-            "rendered": null,
+            "rendered": "5 ",
             "type": [Function],
           },
           Object {
@@ -182,13 +178,13 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "bold": true,
-              "children": " yu",
+              "children": "yu",
               "style": Object {
                 "fontSize": 70,
               },
             },
             "ref": null,
-            "rendered": " yu",
+            "rendered": "yu",
             "type": [Function],
           },
           Object {
@@ -259,23 +255,22 @@ ShallowWrapper {
           <Counter
             digits={0}
             text="steps"
-            time={2000}
+            time={1000}
             value={123456}
           />,
           <Pad
             height={8}
           />,
           <YuText>
-            <Counter
-              digits={0}
+            <YuText
               style={
                 Object {
                   "fontSize": 70,
                 }
               }
-              time={1000}
-              value={5}
-            />
+            >
+              5 
+            </YuText>
             <YuText
               bold={true}
               style={
@@ -284,7 +279,7 @@ ShallowWrapper {
                 }
               }
             >
-               yu
+              yu
             </YuText>
             <YuText
               style={
@@ -328,7 +323,7 @@ ShallowWrapper {
           "props": Object {
             "digits": 0,
             "text": "steps",
-            "time": 2000,
+            "time": 1000,
             "value": 123456,
           },
           "ref": null,
@@ -352,16 +347,15 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "children": Array [
-              <Counter
-                digits={0}
+              <YuText
                 style={
                   Object {
                     "fontSize": 70,
                   }
                 }
-                time={1000}
-                value={5}
-              />,
+              >
+                5 
+              </YuText>,
               <YuText
                 bold={true}
                 style={
@@ -370,7 +364,7 @@ ShallowWrapper {
                   }
                 }
               >
-                 yu
+                yu
               </YuText>,
               <YuText
                 style={
@@ -397,17 +391,15 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "digits": 0,
+                "children": "5 ",
                 "style": Object {
                   "fontSize": 70,
                 },
-                "time": 1000,
-                "value": 5,
               },
               "ref": null,
-              "rendered": null,
+              "rendered": "5 ",
               "type": [Function],
             },
             Object {
@@ -416,13 +408,13 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "bold": true,
-                "children": " yu",
+                "children": "yu",
                 "style": Object {
                   "fontSize": 70,
                 },
               },
               "ref": null,
-              "rendered": " yu",
+              "rendered": "yu",
               "type": [Function],
             },
             Object {

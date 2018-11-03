@@ -66,7 +66,7 @@ ShallowWrapper {
                   "marginRight": 16,
                 }
               }
-              time={2000}
+              time={1000}
               value={1234}
             />
           </Component>
@@ -144,7 +144,7 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-                time={2000}
+                time={1000}
                 value={1234}
               />
             </Component>
@@ -232,7 +232,7 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                  time={2000}
+                  time={1000}
                   value={1234}
                 />
               </Component>,
@@ -272,7 +272,7 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                  time={2000}
+                  time={1000}
                   value={1234}
                 />,
                 "style": Object {
@@ -292,7 +292,7 @@ ShallowWrapper {
                     "marginBottom": -8,
                     "marginRight": 16,
                   },
-                  "time": 2000,
+                  "time": 1000,
                   "value": 1234,
                 },
                 "ref": null,
@@ -387,7 +387,7 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-                time={2000}
+                time={1000}
                 value={1234}
               />
             </Component>
@@ -465,7 +465,7 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                  time={2000}
+                  time={1000}
                   value={1234}
                 />
               </Component>
@@ -553,7 +553,7 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                    time={2000}
+                    time={1000}
                     value={1234}
                   />
                 </Component>,
@@ -593,7 +593,7 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                    time={2000}
+                    time={1000}
                     value={1234}
                   />,
                   "style": Object {
@@ -613,7 +613,7 @@ ShallowWrapper {
                       "marginBottom": -8,
                       "marginRight": 16,
                     },
-                    "time": 2000,
+                    "time": 1000,
                     "value": 1234,
                   },
                   "ref": null,
@@ -745,7 +745,7 @@ ShallowWrapper {
                   "marginRight": 16,
                 }
               }
-              time={2000}
+              time={1000}
               value={1234}
             />
           </Component>
@@ -823,7 +823,7 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-                time={2000}
+                time={1000}
                 value={1234}
               />
             </Component>
@@ -911,7 +911,7 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                  time={2000}
+                  time={1000}
                   value={1234}
                 />
               </Component>,
@@ -951,7 +951,7 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                  time={2000}
+                  time={1000}
                   value={1234}
                 />,
                 "style": Object {
@@ -971,7 +971,7 @@ ShallowWrapper {
                     "marginBottom": -8,
                     "marginRight": 16,
                   },
-                  "time": 2000,
+                  "time": 1000,
                   "value": 1234,
                 },
                 "ref": null,
@@ -1066,7 +1066,7 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-                time={2000}
+                time={1000}
                 value={1234}
               />
             </Component>
@@ -1144,7 +1144,7 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                  time={2000}
+                  time={1000}
                   value={1234}
                 />
               </Component>
@@ -1232,7 +1232,7 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                    time={2000}
+                    time={1000}
                     value={1234}
                   />
                 </Component>,
@@ -1272,7 +1272,7 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                    time={2000}
+                    time={1000}
                     value={1234}
                   />,
                   "style": Object {
@@ -1292,7 +1292,7 @@ ShallowWrapper {
                       "marginBottom": -8,
                       "marginRight": 16,
                     },
-                    "time": 2000,
+                    "time": 1000,
                     "value": 1234,
                   },
                   "ref": null,
@@ -1445,7 +1445,7 @@ ShallowWrapper {
                   "marginRight": 16,
                 }
               }
-              time={2000}
+              time={1000}
               value={1234}
             />
           </Component>
@@ -1543,7 +1543,7 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-                time={2000}
+                time={1000}
                 value={1234}
               />
             </Component>
@@ -1689,7 +1689,7 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                  time={2000}
+                  time={1000}
                   value={1234}
                 />
               </Component>,
@@ -1729,7 +1729,7 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                  time={2000}
+                  time={1000}
                   value={1234}
                 />,
                 "style": Object {
@@ -1749,7 +1749,7 @@ ShallowWrapper {
                     "marginBottom": -8,
                     "marginRight": 16,
                   },
-                  "time": 2000,
+                  "time": 1000,
                   "value": 1234,
                 },
                 "ref": null,
@@ -1864,7 +1864,7 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-                time={2000}
+                time={1000}
                 value={1234}
               />
             </Component>
@@ -1962,7 +1962,7 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                  time={2000}
+                  time={1000}
                   value={1234}
                 />
               </Component>
@@ -2108,7 +2108,7 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                    time={2000}
+                    time={1000}
                     value={1234}
                   />
                 </Component>,
@@ -2148,7 +2148,7 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                    time={2000}
+                    time={1000}
                     value={1234}
                   />,
                   "style": Object {
@@ -2168,7 +2168,7 @@ ShallowWrapper {
                       "marginBottom": -8,
                       "marginRight": 16,
                     },
-                    "time": 2000,
+                    "time": 1000,
                     "value": 1234,
                   },
                   "ref": null,
@@ -2322,7 +2322,7 @@ ShallowWrapper {
                   "marginRight": 16,
                 }
               }
-              time={2000}
+              time={1000}
               value={1234}
             />
           </Component>
@@ -2421,7 +2421,7 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-                time={2000}
+                time={1000}
                 value={1234}
               />
             </Component>
@@ -2555,7 +2555,7 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                  time={2000}
+                  time={1000}
                   value={1234}
                 />
               </Component>,
@@ -2595,7 +2595,7 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                  time={2000}
+                  time={1000}
                   value={1234}
                 />,
                 "style": Object {
@@ -2615,7 +2615,7 @@ ShallowWrapper {
                     "marginBottom": -8,
                     "marginRight": 16,
                   },
-                  "time": 2000,
+                  "time": 1000,
                   "value": 1234,
                 },
                 "ref": null,
@@ -2731,7 +2731,7 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-                time={2000}
+                time={1000}
                 value={1234}
               />
             </Component>
@@ -2830,7 +2830,7 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                  time={2000}
+                  time={1000}
                   value={1234}
                 />
               </Component>
@@ -2964,7 +2964,7 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                    time={2000}
+                    time={1000}
                     value={1234}
                   />
                 </Component>,
@@ -3004,7 +3004,7 @@ ShallowWrapper {
                         "marginRight": 16,
                       }
                     }
-                    time={2000}
+                    time={1000}
                     value={1234}
                   />,
                   "style": Object {
@@ -3024,7 +3024,7 @@ ShallowWrapper {
                       "marginBottom": -8,
                       "marginRight": 16,
                     },
-                    "time": 2000,
+                    "time": 1000,
                     "value": 1234,
                   },
                   "ref": null,

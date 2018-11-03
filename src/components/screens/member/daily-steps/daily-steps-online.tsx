@@ -13,15 +13,19 @@ export interface IProps {
 
 const DailyStepsOnline: SFC<IProps> = ({ coinsToday, onCtaPress, steps }) => (
     <View style={styles.dailyStepsOnlineWrapper}>
-        <Counter value={steps} text="steps" time={2000} />
+        <Counter value={steps} text="steps" />
         <Pad height={8} />
         <Text>
-            <Counter style={styles.heading} value={coinsToday} />
+            <Text
+                style={styles.heading}
+            >
+                {`${coinsToday} `}
+            </Text>
             <Text
                 style={styles.heading}
                 bold={true}
             >
-                {` yu`}
+                yu
             </Text>
             <Text
                 style={styles.heading}
