@@ -31,13 +31,6 @@ export default class Counter extends Component<IProps, IState> {
         value: 0
     };
 
-    public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
-        if (nextProps.value !== prevState.value) {
-            return { end: nextProps.value };
-        }
-        return null;
-    }
-
     public state: IState = {
         end: this.props.value, // no initial count
         value: this.props.value // no initial count
@@ -46,12 +39,12 @@ export default class Counter extends Component<IProps, IState> {
     private startTime: number;
     private stop: boolean;
 
-    public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
-        return nextProps.value !== this.state.end || nextState.value !== this.state.end;
-    }
-
-    public componentDidUpdate() {
-        this.startAnimation();
+    public componentWillReceiveProps(nextProps: IProps) {
+        if (nextProps.value !== this.state.value) {
+            this.setState({ end: nextProps.value }, () => {
+                this.startAnimation();
+            });
+        }
     }
 
     public render() {

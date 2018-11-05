@@ -137,14 +137,14 @@ class MenuContainer extends PureComponent<Props> {
         this.props.openMemberZone();
     }
 
-    private handlePush = async (route: string) => {
+    private handlePush = (route: string) => {
+        this.handleClose();
         Navigation.push(this.props.currentRoute, {
             component: {
                 id: route,
                 name: route
             }
         });
-        setTimeout(this.handleClose, 1000);
     }
 
     private handleClose = () => {
