@@ -250,6 +250,7 @@ ShallowWrapper {
             "props": Object {
               "code": "1234",
               "cost": 1234,
+              "linkType": undefined,
               "rewardCurrency": "AVIOS",
               "rewardValue": 123,
               "settings": Object {
@@ -522,6 +523,7 @@ ShallowWrapper {
               "props": Object {
                 "code": "1234",
                 "cost": 1234,
+                "linkType": undefined,
                 "rewardCurrency": "AVIOS",
                 "rewardValue": 123,
                 "settings": Object {
