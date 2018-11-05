@@ -16,6 +16,7 @@ interface IProps {
     instructions: string[];
     onPressCtaPrimary: () => void;
     labelCtaPrimary: string;
+    linkType?: string;
     onPressTerms: () => void;
     onPressPolicy: () => void;
     coins: number;
@@ -34,6 +35,7 @@ const WegiftDetailsScreen: SFC<IProps> = ({
     instructions,
     onPressCtaPrimary,
     labelCtaPrimary,
+    linkType,
     onPressTerms,
     onPressPolicy,
     onPressTopBar,
@@ -52,6 +54,7 @@ const WegiftDetailsScreen: SFC<IProps> = ({
             <RewardsListItem
                 settings={uiSettings}
                 cost={cost}
+                linkType={linkType}
                 rewardValue={rewardValue}
                 rewardCurrency={rewardCurrency}
                 code={code}

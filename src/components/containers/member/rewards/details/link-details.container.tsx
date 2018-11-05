@@ -44,7 +44,8 @@ class LinkRewardDetailsContainer extends Component<Props> {
                 currency_code,
                 description,
                 redeem_steps: { steps },
-                uiSettings
+                uiSettings,
+                link_type
             }
         } = this.props;
         const labelCtaPrimary = uiSettings.ctaLabel || "claim reward";
@@ -53,6 +54,7 @@ class LinkRewardDetailsContainer extends Component<Props> {
             <WegiftRewardDetailsScreen
                 uiSettings={uiSettings}
                 code={code}
+                linkType={link_type}
                 cost={0}
                 rewardValue={0}
                 rewardCurrency={currency_code}
