@@ -1,6 +1,7 @@
+import validator from "email-validator";
 
 export const validateEmail = (email: string): string => {
-    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+    if (!validator.validate(email)) {
         return "Please enter a valid email address.";
     }
 
