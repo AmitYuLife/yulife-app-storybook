@@ -67,7 +67,7 @@ export function* oldDaysUpdate() {
                 if (route !== MODALS.collectReward) {
                     const firstDay = moment(response.startDateTime).format("DD MMM");
                     const lastDay = moment(response.endDateTime).format("DD MMM");
-                    const date = firstDay !== lastDay ? `${firstDay} - ${lastDay}` : "";
+                    const date = firstDay !== lastDay ? `${firstDay} - ${lastDay}` : firstDay;
 
                     yield call(() => {
                         Navigation.showModal({

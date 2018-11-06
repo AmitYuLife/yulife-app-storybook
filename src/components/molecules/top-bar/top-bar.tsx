@@ -4,7 +4,6 @@ import { Component } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Colours } from "../../../styles";
 import { Clock, Dim, Text } from "../../atoms";
-import Counter from "../counter/counter";
 import { Back, Coins, Logo, Menu } from "./assets";
 import { formatSeconds } from "./top-bar.helpers";
 import styles from "./top-bar.styles";
@@ -131,7 +130,7 @@ class TopBar extends Component<IProps, IState> {
                         {this.renderCenter()}
                         <View style={styles.coinsWrapper}>
                             <View style={styles.coinsTextWrapper}>
-                                <Counter style={styles.coinsText} value={coins || 0} />
+                                <Text style={styles.coinsText}>{coins || 0}</Text>
                             </View>
                             <View style={styles.coinsLogoWrapper}>
                                 <Coins scale={0.5} />
