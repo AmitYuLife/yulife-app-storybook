@@ -24,10 +24,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <StatusBar
-          animated={false}
-          showHideTransition="fade"
-        />,
         <SafeAreaView
           style={
             Object {
@@ -91,18 +87,6 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "animated": false,
-          "showHideTransition": "fade",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
       Object {
         "instance": null,
         "key": undefined,
@@ -222,10 +206,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <StatusBar
-            animated={false}
-            showHideTransition="fade"
-          />,
           <SafeAreaView
             style={
               Object {
@@ -289,18 +269,6 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "animated": false,
-            "showHideTransition": "fade",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
         Object {
           "instance": null,
           "key": undefined,
@@ -460,10 +428,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <StatusBar
-          animated={false}
-          showHideTransition="fade"
-        />,
         <SafeAreaView
           style={
             Object {
@@ -542,18 +506,6 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "animated": false,
-          "showHideTransition": "fade",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
       Object {
         "instance": null,
         "key": undefined,
@@ -699,10 +651,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <StatusBar
-            animated={false}
-            showHideTransition="fade"
-          />,
           <SafeAreaView
             style={
               Object {
@@ -781,18 +729,6 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "animated": false,
-            "showHideTransition": "fade",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
         Object {
           "instance": null,
           "key": undefined,

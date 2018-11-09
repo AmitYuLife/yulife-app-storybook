@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SFC } from "react";
-import { Image, Platform, SafeAreaView, StatusBar, View } from "react-native";
+import { Image, Platform, SafeAreaView, View } from "react-native";
 import { ChallengesList, IChallengesListProps, TopBar } from "../../../../molecules";
 import NavBar from "../../../../molecules/nav-bar/nav-bar";
 import { ILabel } from "../../../../molecules/nav-bar/nav-bar";
@@ -16,7 +16,6 @@ interface IProps extends IChallengesListProps {
 
 const ChallengesListScreen: SFC<IProps> = ({ challenges, labels, onPressLeftIcon, totalCoins, name }) => (
     <SafeAreaView style={styles.wrapper}>
-        <StatusBar />
         <SafeAreaView style={styles.backgroundWrapper}>
             {Platform.OS === "ios" ? (
                 <ChallengesListBackground />

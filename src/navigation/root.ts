@@ -20,6 +20,10 @@ const onLeftMenuPress = () => {
                 enabled: true,
                 visible: true
             }
+        },
+        statusBar: {
+            drawBehind: false,
+            visible: true
         }
     });
 };
@@ -34,6 +38,10 @@ const labels = [
                     currentTabIndex: 0,
                     drawBehind: true,
                     visible: false
+                },
+                statusBar: {
+                    drawBehind: false,
+                    visible: true
                 }
             });
         }
@@ -47,6 +55,10 @@ const labels = [
                     currentTabIndex: 1,
                     drawBehind: true,
                     visible: false
+                },
+                statusBar: {
+                    drawBehind: false,
+                    visible: true
                 }
             });
         }
@@ -60,6 +72,10 @@ const labels = [
                     currentTabIndex: 2,
                     drawBehind: true,
                     visible: false
+                },
+                statusBar: {
+                    drawBehind: false,
+                    visible: true
                 }
             });
         }
@@ -163,7 +179,7 @@ export const setAuthenticatedRoot = async () =>
                 }
             }
         }
-    });
+    } as any);
 
 export const setUnauthenticatedRoot = async () =>
     Navigation.setRoot({

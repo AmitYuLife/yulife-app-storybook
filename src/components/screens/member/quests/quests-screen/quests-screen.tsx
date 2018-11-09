@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { PanResponder, SafeAreaView, ScrollView, StatusBar, View } from "react-native";
+import { PanResponder, Platform, SafeAreaView, ScrollView, StatusBar, View } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { Style } from "../../../../../styles";
@@ -93,7 +93,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
 
         return (
             <SafeAreaView style={styles.wrapper}>
-                <StatusBar translucent={true} />
+                {Platform.OS === "ios" && <StatusBar translucent={true} />}
                 <View {...this.panResponder.panHandlers} style={styles.scrollViewWrapper}>
                     <ScrollView
                         scrollEnabled={false}

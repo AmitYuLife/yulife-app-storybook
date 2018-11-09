@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SFC } from "react";
-import { SafeAreaView, StatusBar, View } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { NavBar, RewardsList, RewardTabs, TopBar } from "../../../../molecules";
@@ -27,7 +27,6 @@ const RewardsListScreen: SFC<IRewardsListScreenProps> = ({
     totalCoins
 }) => (
     <SafeAreaView style={styles.wrapper}>
-        <StatusBar />
         <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
         <View style={styles.rewardTabsWrapper}>
             <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={0} />

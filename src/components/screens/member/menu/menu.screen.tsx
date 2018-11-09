@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SFC } from "react";
-import { Image, ImageRequireSource, StatusBar, TouchableOpacity, View } from "react-native";
+import { Image, ImageRequireSource, TouchableOpacity, View } from "react-native";
 import { Text } from "../../../atoms";
 import assets from "./assets";
 import styles from "./menu.screen.styles";
@@ -20,7 +20,6 @@ interface IProps {
 
 const MenuScreen: SFC<IProps> = ({ onPressClose, links, version }) => (
     <>
-        <StatusBar />
         <View style={styles.wrapper}>
             <TouchableOpacity style={styles.closeWrapper} onPress={onPressClose}>
                 <Image resizeMode="contain" style={styles.close} source={assets.close} />

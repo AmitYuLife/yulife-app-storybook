@@ -46,7 +46,7 @@ class TopBar extends Component<IProps, IState> {
     public state: IState = {
         endsIn: null
     };
-    private interval: number = null;
+    private interval: NodeJS.Timer = null;
 
     public shouldComponentUpdate(nextProps: IProps) {
         if (nextProps.timer && !this.interval) {
