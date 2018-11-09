@@ -6,9 +6,7 @@ import { SendMagicLink, SendMagicLinkVariables } from "../_core/schema";
 export const sendMagicLinkGql = gql`
     mutation SendMagicLink($email: String!) {
         sendMagicLink(email: $email) {
-            exists
             message
-            member
         }
     }
 `;

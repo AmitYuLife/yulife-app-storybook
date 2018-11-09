@@ -38,3 +38,7 @@ jest.mock("../src/graphql/challenges/upsertStepsChallenge.gql", () => ({
 jest.mock("../src/graphql/user/getCurrentUser.gql", () => ({
     getCurrentUserGql: jest.fn(),
 }));
+
+jest.mock("../src/graphql/member/collectAward.gql", () => ({
+    collectAwardWithClient: jest.fn(),
+}));

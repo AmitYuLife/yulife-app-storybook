@@ -6,6 +6,7 @@ import levelsSagas from "../levels/levels.sagas";
 import loggingSagas from "../logging/logging.sagas";
 import notificationsSagas from "../notifications/notifications.sagas";
 import pedometerSagas from "../pedometer/pedometer.sagas";
+import streaksSagas from "../streaks/streaks.sagas";
 import userSagas from "../user/user.sagas";
 
 export default function* allSagas() {
@@ -17,6 +18,7 @@ export default function* allSagas() {
         ...loggingSagas,
         ...notificationsSagas,
         ...pedometerSagas,
+        ...streaksSagas,
         ...userSagas
     ]);
 }

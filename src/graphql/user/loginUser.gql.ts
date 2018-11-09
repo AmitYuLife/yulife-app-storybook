@@ -84,6 +84,7 @@ export const loginUserGql = gql`
                     type
                     value
                     maxStreak
+                    streakAwardId
                 }
                 activityToday {
                     challenges {

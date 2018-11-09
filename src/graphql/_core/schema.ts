@@ -264,6 +264,22 @@ export interface UpsertPassiveChallengeVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: CollectAward
+// ====================================================
+
+export interface CollectAward {
+  collectAward: boolean | null;
+}
+
+export interface CollectAwardVariables {
+  awardId: string;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetLeaderboard
 // ====================================================
 
@@ -635,6 +651,7 @@ export interface GetCurrentUser_getCurrentUser_activeStreak {
   type: string | null;
   value: number | null;
   maxStreak: number | null;
+  streakAwardId: string | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_activityToday_challenges_incomingData {
@@ -781,6 +798,7 @@ export interface LoginUser_loginUser_user_activeStreak {
   type: string | null;
   value: number | null;
   maxStreak: number | null;
+  streakAwardId: string | null;
 }
 
 export interface LoginUser_loginUser_user_activityToday_challenges_incomingData {
@@ -856,9 +874,7 @@ export interface LoginUserVariables {
 // ====================================================
 
 export interface SendMagicLink_sendMagicLink {
-  exists: boolean | null;
   message: string | null;
-  member: boolean | null;
 }
 
 export interface SendMagicLink {

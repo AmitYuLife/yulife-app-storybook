@@ -105,7 +105,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
         } = this.props;
         const { dailyStepsLoading, lastUpdate } = this.state;
 
-        const displayStreak = features.showStreaks && streaks.displayStreak;
+        const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
 
         return (
             <FitKitAvailable>

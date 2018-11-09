@@ -1,9 +1,21 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import { Image, ImageRequireSource, StyleSheet, View } from "react-native";
+import { connect } from "react-redux";
+import CollectAwardMutation, { collectAwardGql } from "../../../graphql/member/collectAward.gql";
+import { IReduxState } from "../../../redux/_core/reducers";
+import { redeemStreakAction } from "../../../redux/streaks/streaks.actions";
+import { streakAwardIdSelector } from "../../../redux/streaks/streaks.selectors";
 import { Button, Text } from "../../atoms";
 import assets from "./assets";
 import styles from "./streaks.modal.styles";
+
+interface IConnectedState {
+    streakAwardId: string;
+}
+interface IConnectedDispatch {
+    redeemStreakAction: () => void;
+}
 
 interface IProps {
     isDoneToday: boolean;
@@ -14,66 +26,103 @@ interface IProps {
     streakMax: number;
 }
 
-class StreaksModal extends PureComponent<IProps> {
+type Props = IProps & IConnectedDispatch & IConnectedState;
+
+class StreaksModal extends PureComponent<Props> {
     public render() {
-        const { onPressCtaPrimary, onPressCtaSecondary, reward, streakCompleted, streakMax } = this.props;
+        const {
+            onPressCtaPrimary,
+            onPressCtaSecondary,
+            reward,
+            streakAwardId,
+            streakCompleted,
+            streakMax
+        } = this.props;
 
         return (
-            <View style={styles.wrapper}>
-                <View>
-                    <Image source={this.getImage()} />
-                </View>
-                <View style={styles.headingWrapper}>
-                    <Text bold={true} style={styles.heading}>
-                        {this.getHeading()}
-                    </Text>
-                </View>
-                <View style={styles.subHeadingWrapper}>
-                    <Text style={styles.subHeading}>{this.getSubHeading()}</Text>
-                </View>
-                <View style={styles.streaksWrapper}>
-                    {Array.from({ length: streakMax }).map((_, index) => (
-                        <View
-                            key={index}
-                            style={StyleSheet.flatten([
-                                styles.streakWrapper,
-                                index === streakMax ? styles.streakWrapperLast : null
-                            ])}
-                        >
-                            <Image
-                                style={styles.streak}
-                                source={index < streakCompleted ? assets.streakFilled : assets.streakEmpty}
-                            />
-                            {index < streakCompleted ? null : (
-                                <Text
-                                    style={StyleSheet.flatten([
-                                        styles.streakLabel,
-                                        index < streakMax - 1 ? styles.null : styles.streakLabelLast
-                                    ])}
-                                >
-                                    {index < streakMax - 1 ? `${index + 1}` : reward}
+            <CollectAwardMutation mutation={collectAwardGql}>
+                {(collectAward) => {
+                    const onSubmit =
+                        streakCompleted === streakMax && streakAwardId
+                            ? async () => {
+                                  try {
+                                      const result = await collectAward({
+                                          variables: {
+                                              awardId: streakAwardId
+                                          }
+                                      });
+
+                                      if (result && result.data && result.data.collectAward) {
+                                          this.props.redeemStreakAction();
+                                      }
+
+                                      onPressCtaPrimary();
+                                  } catch (e) {
+                                      onPressCtaPrimary();
+                                  }
+                              }
+                            : onPressCtaPrimary;
+
+                    return (
+                        <View style={styles.wrapper}>
+                            <View>
+                                <Image source={this.getImage()} />
+                            </View>
+                            <View style={styles.headingWrapper}>
+                                <Text bold={true} style={styles.heading}>
+                                    {this.getHeading()}
                                 </Text>
+                            </View>
+                            <View style={styles.subHeadingWrapper}>
+                                <Text style={styles.subHeading}>{this.getSubHeading()}</Text>
+                            </View>
+                            <View style={styles.streaksWrapper}>
+                                {Array.from({ length: streakMax }).map((_, index) => (
+                                    <View
+                                        key={index}
+                                        style={StyleSheet.flatten([
+                                            styles.streakWrapper,
+                                            index === streakMax ? styles.streakWrapperLast : null
+                                        ])}
+                                    >
+                                        <Image
+                                            style={styles.streak}
+                                            source={index < streakCompleted ? assets.streakFilled : assets.streakEmpty}
+                                        />
+                                        {index < streakCompleted ? null : (
+                                            <Text
+                                                style={StyleSheet.flatten([
+                                                    styles.streakLabel,
+                                                    index < streakMax - 1 ? styles.null : styles.streakLabelLast
+                                                ])}
+                                            >
+                                                {index < streakMax - 1 ? `${index + 1}` : reward}
+                                            </Text>
+                                        )}
+                                    </View>
+                                ))}
+                            </View>
+                            <Button
+                                wrapperStyle={styles.buttonPrimaryWrapper}
+                                type={Button.Types.PRIMARY}
+                                onPress={onSubmit}
+                                label={this.getLabelCtaPrimary()}
+                            />
+                            {!onPressCtaSecondary ? null : (
+                                <Button
+                                    wrapperStyle={styles.buttonSecondaryWrapper}
+                                    type={Button.Types.LINK}
+                                    onPress={onPressCtaSecondary}
+                                    label={"later"}
+                                />
                             )}
                         </View>
-                    ))}
-                </View>
-                <Button
-                    wrapperStyle={styles.buttonPrimaryWrapper}
-                    type={Button.Types.PRIMARY}
-                    onPress={onPressCtaPrimary}
-                    label={this.getLabelCtaPrimary()}
-                />
-                {!onPressCtaSecondary ? null : (
-                    <Button
-                        wrapperStyle={styles.buttonSecondaryWrapper}
-                        type={Button.Types.LINK}
-                        onPress={onPressCtaSecondary}
-                        label={"later"}
-                    />
-                )}
-            </View>
+                    );
+                }}
+            </CollectAwardMutation>
         );
     }
+
     private getImage(): ImageRequireSource {
         const { streakCompleted, streakMax } = this.props;
         const ratio = streakCompleted / streakMax;
@@ -130,4 +179,15 @@ class StreaksModal extends PureComponent<IProps> {
     }
 }
 
-export default StreaksModal;
+const mapStateToProps = (state: IReduxState) => ({
+    streakAwardId: streakAwardIdSelector(state)
+});
+
+const mapDispatchToProps = {
+    redeemStreakAction
+};
+
+export default connect<IConnectedState, IConnectedDispatch>(
+    mapStateToProps,
+    mapDispatchToProps
+)(StreaksModal);

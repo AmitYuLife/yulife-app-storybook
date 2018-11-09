@@ -1,0 +1,86 @@
+import { Navigation } from "react-native-navigation";
+import { call, put, select, take, takeLatest } from "redux-saga/effects";
+import { MODALS, ROUTES } from "../../navigation/routes";
+import { getRouteState } from "../app/app.selectors";
+import { START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
+import { GET_USER_SUCCESS } from "../user/user.actions";
+import { DISPLAY_STREAKS_COMPLETED, displayStreaksFirstAction } from "./streaks.actions";
+import { streaksSelector } from "./streaks.selectors";
+
+function* showFirstStreakModal() {
+    const streaks = yield select(streaksSelector);
+    const currentRoute = yield select(getRouteState);
+
+    if (
+        !streaks.displayStreak &&
+        streaks.isAvailable &&
+        currentRoute !== MODALS.streaks
+    ) {
+        yield call(() =>
+            Navigation.showModal({
+                component: {
+                    id: MODALS.streaks,
+                    name: MODALS.streaks,
+                    passProps: {
+                        isDoneToday: false,
+                        onPressCtaPrimary: () => {
+                            Navigation.mergeOptions(ROUTES.quests, {
+                                bottomTabs: {
+                                    animate: false,
+                                    currentTabIndex: 1,
+                                    drawBehind: true,
+                                    visible: false
+                                },
+                                statusBar: {
+                                    drawBehind: false,
+                                    visible: true
+                                }
+                            });
+                            Navigation.dismissModal(MODALS.streaks);
+                        },
+                        onPressCtaSecondary: () => {
+                            Navigation.dismissModal(MODALS.streaks);
+                        },
+                        reward: streaks.reward,
+                        streakCompleted: 0,
+                        streakMax: streaks.maxStreak
+                    }
+                }
+            })
+        );
+        yield put(displayStreaksFirstAction());
+    }
+}
+
+function* showOnChallengeComplete() {
+    yield take(GET_USER_SUCCESS);
+
+    const streaks = yield select(streaksSelector);
+    const currentRoute = yield select(getRouteState);
+
+    if (streaks.isAvailable && currentRoute !== MODALS.streaks) {
+        yield call(() =>
+        Navigation.showModal({
+            component: {
+                id: MODALS.streaks,
+                name: MODALS.streaks,
+                passProps: {
+                    isDoneToday: true,
+                    onPressCtaPrimary: () => {
+                        Navigation.dismissModal(MODALS.streaks);
+                    },
+                    onPressCtaSecondary: null,
+                    reward: streaks.reward,
+                    streakCompleted: streaks.currentStreak,
+                    streakMax: streaks.maxStreak
+                }
+            }
+        })
+        );
+    }
+}
+
+export default [
+    takeLatest(START_DAILY_STEPS, showFirstStreakModal),
+    takeLatest(DISPLAY_STREAKS_COMPLETED, showOnChallengeComplete)
+];

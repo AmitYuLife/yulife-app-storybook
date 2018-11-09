@@ -25,6 +25,7 @@ import {
     IActiveLevel,
     nextLevelAvailableAtSelector
 } from "../../../../redux/levels/levels.selectors";
+import { displayStreaksCompletedAction } from "../../../../redux/streaks/streaks.actions";
 import { openCalm, openHeadspace } from "../../../../services/app-link";
 import BlurProvider from "../../../atoms/blur/blur-provider";
 import Loading from "../../../atoms/loading/loading";
@@ -44,6 +45,7 @@ interface IConnectedDispatch {
     challengeCancelAction: ChallengeCancelAction;
     challengeEndAction: ChallengeEndAction;
     challengeResetAction: ChallengeResetAction;
+    displayStreaksCompletedAction: () => void;
 }
 
 type Props = IMainTabsProps & IConnectedState & IConnectedDispatch;
@@ -103,7 +105,7 @@ class QuestsContainer extends PureComponent<Props> {
                         return status === "success" ? (
                             <ChallengeSuccessScreen
                                 level={currentLevel}
-                                onPressCta={this.handleResetChallenge(refetch)}
+                                onPressCta={this.handleResetChallenge(refetch, true)}
                                 rating={rating}
                                 reward={coins}
                                 score={score}
@@ -163,7 +165,10 @@ class QuestsContainer extends PureComponent<Props> {
         );
     }
 
-    private handleResetChallenge = (refetch: () => void) => () => {
+    private handleResetChallenge = (refetch: () => void, showStreakComplete?: boolean) => () => {
+        if (showStreakComplete) {
+            this.props.displayStreaksCompletedAction();
+        }
         refetch();
         this.props.challengeResetAction();
     }
@@ -250,7 +255,8 @@ const mapStateToProps = (state: IReduxState) => ({
 const mapDispatchToProps = {
     challengeCancelAction,
     challengeEndAction,
-    challengeResetAction
+    challengeResetAction,
+    displayStreaksCompletedAction
 };
 
 export default connect<IConnectedState, IConnectedDispatch>(

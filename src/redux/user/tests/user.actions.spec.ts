@@ -28,6 +28,7 @@ const loginSuccessFixture: LoginUser = {
             activeStreak: {
                 id: "YU_STREAK_test",
                 maxStreak: 4,
+                streakAwardId: null,
                 type: "yucoin",
                 value: 250
             },
