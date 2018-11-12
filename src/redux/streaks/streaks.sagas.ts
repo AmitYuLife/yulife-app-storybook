@@ -4,18 +4,16 @@ import { MODALS, ROUTES } from "../../navigation/routes";
 import { getRouteState } from "../app/app.selectors";
 import { START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
 import { GET_USER_SUCCESS } from "../user/user.actions";
+import { userFeaturesSelector } from "../user/user.selectors";
 import { DISPLAY_STREAKS_COMPLETED, displayStreaksFirstAction } from "./streaks.actions";
 import { streaksSelector } from "./streaks.selectors";
 
 function* showFirstStreakModal() {
     const streaks = yield select(streaksSelector);
     const currentRoute = yield select(getRouteState);
+    const features = yield select(userFeaturesSelector);
 
-    if (
-        !streaks.displayStreak &&
-        streaks.isAvailable &&
-        currentRoute !== MODALS.streaks
-    ) {
+    if (features.showStreaks && !streaks.displayStreak && streaks.isAvailable && currentRoute !== MODALS.streaks) {
         yield call(() =>
             Navigation.showModal({
                 component: {
@@ -57,25 +55,26 @@ function* showOnChallengeComplete() {
 
     const streaks = yield select(streaksSelector);
     const currentRoute = yield select(getRouteState);
+    const features = yield select(userFeaturesSelector);
 
-    if (streaks.isAvailable && currentRoute !== MODALS.streaks) {
+    if (features.showStreaks && streaks.isAvailable && currentRoute !== MODALS.streaks) {
         yield call(() =>
-        Navigation.showModal({
-            component: {
-                id: MODALS.streaks,
-                name: MODALS.streaks,
-                passProps: {
-                    isDoneToday: true,
-                    onPressCtaPrimary: () => {
-                        Navigation.dismissModal(MODALS.streaks);
-                    },
-                    onPressCtaSecondary: null,
-                    reward: streaks.reward,
-                    streakCompleted: streaks.currentStreak,
-                    streakMax: streaks.maxStreak
+            Navigation.showModal({
+                component: {
+                    id: MODALS.streaks,
+                    name: MODALS.streaks,
+                    passProps: {
+                        isDoneToday: true,
+                        onPressCtaPrimary: () => {
+                            Navigation.dismissModal(MODALS.streaks);
+                        },
+                        onPressCtaSecondary: null,
+                        reward: streaks.reward,
+                        streakCompleted: streaks.currentStreak,
+                        streakMax: streaks.maxStreak
+                    }
                 }
-            }
-        })
+            })
         );
     }
 }
