@@ -48,6 +48,16 @@ interface IConnectedDispatch {
     displayStreaksCompletedAction: () => void;
 }
 
+function isChestLevel(level: number): boolean {
+    return level % 7 === 0;
+}
+
+function isAvailable(nextAvailableAt: string): boolean {
+    const nextAvailable = !!nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
+
+    return nextAvailable >= 0;
+}
+
 type Props = IMainTabsProps & IConnectedState & IConnectedDispatch;
 
 class QuestsContainer extends PureComponent<Props> {
@@ -177,6 +187,14 @@ class QuestsContainer extends PureComponent<Props> {
         Navigation.dismissModal(MODALS.chest);
     }
 
+    private dismissChallengeUnavailableModal = () => {
+        Navigation.dismissModal(MODALS.challengeUnavailable);
+    }
+
+    private dismissLevelUnavailableModal = () => {
+        Navigation.dismissModal(MODALS.levelUnavailable);
+    }
+
     private showChestModal = (level: GetCurrentWorld_getCurrentWorld, isNext: boolean) => {
         const passProps = {
             ctaLabel: isNext ? "let's do it" : "got it",
@@ -195,6 +213,40 @@ class QuestsContainer extends PureComponent<Props> {
             component: {
                 id: MODALS.chest,
                 name: MODALS.chest,
+                passProps
+            }
+        });
+    }
+
+    private showChallengeUnavailableModal = (nextAvailableAt: string) => {
+        const passProps = {
+            nextAvailableAt,
+            onPressCta: () => {
+                this.dismissChallengeUnavailableModal();
+            }
+        };
+
+        Navigation.showModal({
+            component: {
+                id: MODALS.challengeUnavailable,
+                name: MODALS.challengeUnavailable,
+                passProps
+            }
+        });
+    }
+
+    private showLevelUnavailableModal = (level: number) => {
+        const passProps = {
+            level,
+            onPressCta: () => {
+                this.dismissLevelUnavailableModal();
+            }
+        };
+
+        Navigation.showModal({
+            component: {
+                id: MODALS.levelUnavailable,
+                name: MODALS.levelUnavailable,
                 passProps
             }
         });
@@ -227,16 +279,30 @@ class QuestsContainer extends PureComponent<Props> {
                 isNext,
                 nextAvailableAt,
                 onPress: () => {
-                    const nextAvailable = !!nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
+                    const levelAvailable = isAvailable(nextAvailableAt);
+                    const chestLevel = isChestLevel(level.level);
 
+                    // This logic makes me want to kill myself
                     if (isDone) {
                         // goToChallengesList(); TODO: go to challengesDoneList
-                    } else if (level.level % 7 === 0) {
-                        if (!isNext || (isNext && nextAvailable >= 0)) {
-                            this.showChestModal(level, isNext);
+                        // console.log("SHOW LEVEL COMPLETE SCREEN");
+                    } else if (isNext) {
+                        if (levelAvailable) {
+                            if (chestLevel) {
+                                this.showChestModal(level, true);
+                            } else {
+                                this.goToChallengesList(level);
+                            }
+                        } else {
+                            this.showChallengeUnavailableModal(nextAvailableAt);
                         }
-                    } else if (isNext && nextAvailable >= 0) {
-                        this.goToChallengesList(level);
+                    } else {
+                        // selected isn't the next available
+                        if (chestLevel) {
+                            this.showChestModal(level, false);
+                        } else {
+                            this.showLevelUnavailableModal(level.level);
+                        }
                     }
                 }
             };

@@ -1,8 +1,10 @@
 export { default as AnimatedChest } from "./animated-chest/animated-chest";
 export { default as ChallengeCompleteModal } from "./challenge-complete/challenge-complete.modal";
 export { default as ChallengeDetailsModal } from "./challenge-details/challenge-details.modal";
+export { default as ChallengeUnavailableModal } from "./challenge-unavailable/challenge-unavailable.modal";
 export { default as CollectRewardModal } from "./collect-reward/collect-reward.modal";
 export { default as GenericModal } from "./generic-modal/generic-modal";
+export { default as LevelUnavailableModal } from "./level-unavailable/level-unavailable.modal";
 export { default as MeditationSetUpModal } from "./meditation-set-up/meditation-set-up.modal";
 export { default as PushNotificationsModal } from "./push-notifications/push-notifications.modal";
 export { default as StreaksModal } from "./streaks/streaks.modal";
