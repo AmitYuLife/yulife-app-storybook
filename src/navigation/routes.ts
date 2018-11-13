@@ -25,8 +25,10 @@ import {
 import {
     AnimatedChest,
     ChallengeDetailsModal,
+    ChallengeUnavailableModal,
     CollectRewardModal,
     GenericModal,
+    LevelUnavailableModal,
     MeditationSetUpModal,
     PushNotificationsModal,
     StreaksModal,
@@ -71,10 +73,12 @@ export const ROUTES = {
 
 export const MODALS = {
     challengeDetails: "yulife.modals.ChallengeDetails",
+    challengeUnavailable: "yulife.modals.ChallengeUnavailable",
     chest: "yulife.modals.Chest",
     collectReward: "yulife.modals.CollectReward",
     generic: "yulife.modals.Generic",
     leaderboards: "yulife.modals.Leaderboards",
+    levelUnavailable: "yulife.modals.LevelUnavailable",
     meditationSetUp: "yulife.modals.MeditationSetUp",
     pushNotifications: "yulife.modals.PushNotifications",
     rewards: "yulife.modals.Rewards",
@@ -120,9 +124,11 @@ export default [
 
     // modals
     { name: MODALS.challengeDetails, component: ChallengeDetailsModal },
+    { name: MODALS.challengeUnavailable, component: ChallengeUnavailableModal },
     { name: MODALS.chest, component: AnimatedChest },
     { name: MODALS.collectReward, component: CollectRewardModal },
     { name: MODALS.generic, component: GenericModal },
+    { name: MODALS.levelUnavailable, component: LevelUnavailableModal },
     { name: MODALS.meditationSetUp, component: MeditationSetUpModal },
     { name: MODALS.pushNotifications, component: PushNotificationsModal },
     { name: MODALS.streaks, component: StreaksModal },
