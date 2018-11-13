@@ -78,7 +78,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
 
                 return (
                     <RewardsListScreen
-                        data={data.getRewards}
+                        data={data.getRewards || []}
                         hasNotification={hasNotification}
                         labels={labels}
                         onItemPress={this.handleRewardDetailsItemPress}

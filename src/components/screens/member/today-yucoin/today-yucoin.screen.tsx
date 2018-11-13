@@ -1,22 +1,20 @@
 import React, { PureComponent } from "react";
 import { Image, SafeAreaView, View } from "react-native";
 import Svg, { Rect } from "react-native-svg";
-import {
-    GetCurrentUser_getCurrentUser_activityToday_challenges,
-    GetCurrentUser_getCurrentUser_activityToday_chest
-} from "../../../../graphql/_core/schema";
+import { GetCurrentUser_getCurrentUser_todayActivity } from "../../../../graphql/_core/schema";
 import { ExchangeRate } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { Button, ChestCoin, Close, GenericHeading, Pad, StarInline, Text } from "../../../atoms";
 import { Glow } from "../daily-steps/assets/yu-coin-subcomponents";
 import styles from "./today-yucoin.screen.styles";
 
+type ChallengeToday = GetCurrentUser_getCurrentUser_todayActivity;
+
 interface IProps {
     onPressCta: () => void;
     onPressClose: () => void;
     steps: number;
-    activeChallenge: GetCurrentUser_getCurrentUser_activityToday_challenges;
-    chest: GetCurrentUser_getCurrentUser_activityToday_chest;
-    challenges: GetCurrentUser_getCurrentUser_activityToday_challenges[];
+    activeChallenge: ChallengeToday;
+    challenges: ChallengeToday[];
     dailyStepsEarned: number;
     exchangeRate: ExchangeRate;
 }
@@ -26,20 +24,23 @@ const images = {
     checkFilled: require("../../../../../assets/today-yucoin/check-filled.png")
 };
 
-const getLabel = (challenge: GetCurrentUser_getCurrentUser_activityToday_challenges) => {
-    const isMeditation = challenge.subtype === "meditation";
-    const dataType = isMeditation ? "meditation" : "steps";
-    const unitType = isMeditation ? "seconds" : "steps";
+const getLabel = (challenge: ChallengeToday) => {
+    let result = `${challenge.name}`;
 
-    return `${challenge.subtype} / ${challenge.incomingData[dataType]} ${unitType}`;
+    if (!!challenge.score) {
+        result += ` / ${challenge.score}`;
+    }
+
+    return result;
 };
+
+const showRating = (challenge: ChallengeToday) => !["streak", "chest", "bonus yucoin"].includes(challenge.name);
 
 class TodayYucoinScreen extends PureComponent<IProps> {
     public render() {
         const {
             activeChallenge,
             challenges,
-            chest,
             dailyStepsEarned,
             exchangeRate = { steps: 2000, yucoin: 1 },
             onPressCta,
@@ -110,39 +111,30 @@ class TodayYucoinScreen extends PureComponent<IProps> {
                                 <Text style={styles.yucoinsEarned}>0</Text>
                             </View>
                         )}
-                        {chest && (
-                            <View style={styles.activeChallengeWrapper}>
-                                <Text style={styles.steps}>
-                                    {chest.type === "yucoin" ? "chest" : `chest / ${chest.value} ${chest.type}`}
-                                </Text>
-                                <View style={styles.starsWrapper} />
-                                <Text style={styles.yucoinsEarned}>{chest.type === "yucoin" ? chest.value : 0}</Text>
-                            </View>
-                        )}
                         {activeChallenge && (
                             <View style={styles.activeChallengeWrapper}>
                                 <Text style={styles.steps}>{getLabel(activeChallenge)}</Text>
                                 <View style={styles.starsWrapper}>
                                     {Array.from({ length: 3 }).map((_, index) => (
                                         <View key={index} style={styles.starWrapper}>
-                                            <StarInline filled={activeChallenge.rating > index} />
+                                            <StarInline filled={activeChallenge.milestones > index} />
                                         </View>
                                     ))}
                                 </View>
-                                <Text style={styles.yucoinsEarned}>{activeChallenge.yuCoinAwarded}</Text>
+                                <Text style={styles.yucoinsEarned}>{activeChallenge.earned}</Text>
                             </View>
                         )}
                         {challenges.map((challenge, i) => (
                             <View key={i} style={styles.activeChallengeWrapper}>
                                 <Text style={styles.steps}>{getLabel(challenge)}</Text>
                                 <View style={styles.starsWrapper}>
-                                    {Array.from({ length: 3 }).map((_, index) => (
+                                    {showRating(challenge) && Array.from({ length: 3 }).map((_, index) => (
                                         <View key={index} style={styles.starWrapper}>
-                                            <StarInline filled={challenge.rating > index} />
+                                            <StarInline filled={challenge.milestones > index} />
                                         </View>
                                     ))}
                                 </View>
-                                <Text style={styles.yucoinsEarned}>{challenge.yuCoinAwarded}</Text>
+                                <Text style={styles.yucoinsEarned}>{challenge.earned}</Text>
                             </View>
                         ))}
                     </View>

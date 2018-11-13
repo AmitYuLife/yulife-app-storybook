@@ -32,7 +32,6 @@ const loginSuccessFixture: LoginUser = {
                 type: "yucoin",
                 value: 250
             },
-            activityToday: null,
             archived: false,
             businessAccountId: "abcdefghijkl",
             coinLedger: {
@@ -53,6 +52,7 @@ const loginSuccessFixture: LoginUser = {
             },
             passiveChallenge: null,
             redeemedOnboarding: false,
+            todayActivity: null,
             userFeatures: []
         }
     }

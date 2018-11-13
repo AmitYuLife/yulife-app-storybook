@@ -86,20 +86,12 @@ export const loginUserGql = gql`
                     maxStreak
                     streakAwardId
                 }
-                activityToday {
-                    challenges {
-                        yuCoinAwarded
-                        rating
-                        subtype
-                        incomingData {
-                            steps
-                            meditation
-                        }
-                    }
-                    chest {
-                        type
-                        value
-                    }
+                todayActivity {
+                    id
+                    earned
+                    milestones
+                    name
+                    score
                 }
                 leaderboards {
                     leaderboardId

@@ -393,7 +393,6 @@ storiesOf("Screens", module)
     .add("14. Today Yucoin", () => (
         <TodayYucoinScreen
             steps={number("steps", 6543)}
-            chest={null}
             dailyStepsEarned={number("dailyStepsEarned", 3)}
             exchangeRate={{ steps: 2000, yucoin: 1}}
             challenges={[]}

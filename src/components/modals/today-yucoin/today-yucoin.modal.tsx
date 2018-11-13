@@ -5,8 +5,7 @@ import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import {
     GetCurrentUser_getCurrentUser_activeChallenge,
-    GetCurrentUser_getCurrentUser_activityToday_challenges,
-    GetCurrentUser_getCurrentUser_activityToday_chest
+    GetCurrentUser_getCurrentUser_todayActivity
 } from "../../../graphql/_core/schema";
 import { getCurrentUserGql, GetCurrentUserQuery } from "../../../graphql/user/getCurrentUser.gql";
 import { IReduxState } from "../../../redux/_core/reducers";
@@ -28,8 +27,7 @@ interface IConnectedState {
 }
 
 type ActiveChallenge = GetCurrentUser_getCurrentUser_activeChallenge;
-type ChallengesToday = GetCurrentUser_getCurrentUser_activityToday_challenges;
-type ChestToday = GetCurrentUser_getCurrentUser_activityToday_chest;
+type ChallengeToday = GetCurrentUser_getCurrentUser_todayActivity;
 type Props = IProps & IConnectedState;
 
 class TodayYucoinContainer extends PureComponent<Props> {
@@ -47,31 +45,26 @@ class TodayYucoinContainer extends PureComponent<Props> {
                         return <Loading />;
                     }
 
-                    const chest = pathOr<ChestToday>(data, "getCurrentUser.activityToday.chest", null);
-                    const challengesToday = pathOr<ChallengesToday[]>(
-                        data,
-                        "getCurrentUser.activityToday.challenges",
-                        []
-                    );
+                    const todayActivity = pathOr<ChallengeToday[]>(data, "getCurrentUser.todayActivity", []);
                     const { challenge, levelSlot } = pathOr<ActiveChallenge>(data, "getCurrentUser.activeChallenge", {
                         challenge: null,
                         levelSlot: null
                     });
-                    const activeChallenge: ChallengesToday =
+                    const activeChallenge: ChallengeToday =
                         challenge && challenge.incomingData
                             ? {
-                                  incomingData: challenge.incomingData,
-                                  rating: challenge.rating,
-                                  subtype: challenge.subtype || levelSlot.subtype,
-                                  yuCoinAwarded: challenge.yuCoinAwarded
+                                  earned: challenge.yuCoinAwarded,
+                                  id: challenge.id,
+                                  milestones: challenge.rating,
+                                  name: challenge.subtype || levelSlot.subtype,
+                                  score: challenge.incomingData
                               }
                             : null;
 
                     return (
                         <TodayYucoinScreen
                             activeChallenge={activeChallenge}
-                            challenges={challengesToday}
-                            chest={chest}
+                            challenges={todayActivity}
                             dailyStepsEarned={dailyStepsEarned}
                             exchangeRate={exchangeRate}
                             steps={steps}
