@@ -1,9 +1,5 @@
 import React, { PureComponent } from "react";
-import {
-    NativeScrollEvent,
-    NativeSyntheticEvent,
-    ScrollView
-} from "react-native";
+import { NativeScrollEvent, NativeSyntheticEvent, Platform, ScrollView } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { Style } from "../../../styles";
 import assets from "./assets";
@@ -23,17 +19,20 @@ const screens = [
     {
         backgroundImage: assets[0],
         heading: "1. download calm",
-        subheading: "First, download Calm and tap profile icon"
+        subheading: "First, download Calm and tap more icon"
     },
     {
         backgroundImage: assets[1],
-        heading: "2. tap settings",
-        subheading: "Scroll down and tap settings"
+        heading: "2. tap profile > settings",
+        subheading: "You’ll find settings in Profile page"
     },
     {
         backgroundImage: assets[2],
         heading: "3. connect",
-        subheading: "Switch on the “Google Fit” settings"
+        subheading: Platform.select({
+            android: "Switch on the “Google Fit” settings",
+            ios: "Switch on the “Apple Health” settings"
+        })
     },
     {
         backgroundImage: assets[3],
@@ -43,7 +42,6 @@ const screens = [
 ];
 
 class MeditationSetUpContainer extends PureComponent<IProps, IState> {
-
     public state = {
         activeIndex: 0
     };
@@ -91,9 +89,7 @@ class MeditationSetUpContainer extends PureComponent<IProps, IState> {
 
     private handleMomentumScrollEnd = ({
         nativeEvent: {
-            contentOffset: {
-                x
-            }
+            contentOffset: { x }
         }
     }: NativeSyntheticEvent<NativeScrollEvent>) => {
         const activeIndex = indices.findIndex((offset) => offset === x);

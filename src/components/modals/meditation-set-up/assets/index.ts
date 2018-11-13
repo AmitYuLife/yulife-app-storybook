@@ -1,7 +1,7 @@
 /* tslint:disable */
 import { Platform } from "react-native";
 
-export const close = require("../../../../../assets/close/close.png")
+export const close = require("../../../../../assets/close/close.png");
 
 const ios = [
     require("../../../../../assets/meditation-set-up/ios1.png"),
@@ -17,6 +17,6 @@ const android = [
     require("../../../../../assets/meditation-set-up/android4.png"),
 ];
 
-const assets = Platform.OS === "android" ? android : ios;
+const assets = Platform.select({ android, ios });
 
 export default assets;
