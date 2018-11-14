@@ -2,6 +2,20 @@ import { ImageStyle, Platform, StyleSheet, TextStyle, ViewStyle } from "react-na
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../styles";
 
+const getBackgroundImageBottom = () => {
+    if (Platform.OS === "android") {
+        if (Style.isShortAndroid()) {
+            return -50;
+        }
+
+        if (Style.isShortToMediumAndroid()) {
+            return -25;
+        }
+    }
+
+    return 0;
+};
+
 export default StyleSheet.create({
     backWrapper: {
         flex: 1,
@@ -15,7 +29,7 @@ export default StyleSheet.create({
     } as ImageStyle,
     backgroundImageWrapper: {
         ...StyleSheet.absoluteFillObject,
-        bottom: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() ? -50 : 0),
+        bottom: getBackgroundImageBottom(),
         justifyContent: "flex-end"
     } as ViewStyle,
     closeWrapper: {
