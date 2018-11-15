@@ -88,6 +88,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
     }
 
     public render() {
+        const { activeIndex } = this.state;
         const { data, labels, onLeftMenuPress, totalCoins } = this.props;
         const isLockedLastLevel = this.props.data.length < 50;
 
@@ -107,12 +108,14 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                             const sliceFrom = (this.indices.length - index - 1) * 7;
                             const sliceTo = (this.indices.length - index) * 7;
                             const items = data.slice(sliceFrom, sliceTo);
+
                             return (
                                 <Episode
+                                    isLoading={!([activeIndex - 1, activeIndex, activeIndex + 1].includes(index))}
                                     isLockedLastLevel={isLockedLastLevel}
                                     setUnityLockerRef={this.setUnityLockerRef}
                                     key={index}
-                                    level={index}
+                                    episodeNumber={index}
                                     data={!index && isLockedLastLevel ? [] : items}
                                 />
                             );

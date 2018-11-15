@@ -1,7 +1,5 @@
 import React, { PureComponent } from "react";
-import {
-    View
-} from "react-native";
+import { View } from "react-native";
 import Svg from "react-native-svg";
 import { UnityLockerImage } from "../";
 import { IChallenge } from "../../quests-screen";
@@ -12,15 +10,16 @@ import styles, { height, width } from "./episode.styles";
 import levels from "./levels";
 
 interface IProps {
+    isLoading: boolean;
     isLockedLastLevel: boolean;
     data: IChallenge[];
-    level: number;
+    episodeNumber: number;
     setUnityLockerRef: (ref: UnityLockerImage) => void;
 }
 
 class Episode extends PureComponent<IProps> {
     public getLevel = (index: number) => {
-        return (index + 1) + (42 - (7 * (this.props.level - 1)));
+        return index + 1 + (42 - 7 * (this.props.episodeNumber - 1));
     }
 
     public handlePressLevel = (level: IChallenge) => {
@@ -32,51 +31,48 @@ class Episode extends PureComponent<IProps> {
     }
 
     public render() {
-        const {
-            data,
-            level,
-            setUnityLockerRef,
-            isLockedLastLevel
-        } = this.props;
-        const Background = backgrounds(isLockedLastLevel)[level];
+        const { data, episodeNumber, setUnityLockerRef, isLoading, isLockedLastLevel } = this.props;
+
+        if (isLoading) {
+            return <View style={styles.wrapper} />;
+        }
+
+        const Background = backgrounds(isLockedLastLevel)[episodeNumber];
+
         if (!Background) {
             return null;
         }
 
-        const backgroundLevels = levels[level];
+        const backgroundLevels = levels[episodeNumber];
+
         return (
-            <View
-                style={styles.wrapper}
-            >
-                <Svg
-                    style={styles.svg}
-                    height={height}
-                    width={width}
-                    viewBox="0 0 750 1334"
-                >
+            <View style={styles.wrapper}>
+                <Svg style={styles.svg} height={height} width={width} viewBox="0 0 750 1334">
                     <Background>
                         {backgroundLevels.map((points, index) => {
                             const { x, y } = points;
                             const levelData = data[index];
 
-                            return <Level
-                                onPress={(this.handlePressLevel(levelData))}
-                                key={index}
-                                data={levelData}
-                                lockIcon={getLevelLockIcon({ level, index, completedLevels: data.length })}
-                                level={this.getLevel(index)}
-                                fill={getLevelFill(level)}
-                                cx={x}
-                                cy={y}
-                            />;
+                            return (
+                                <Level
+                                    onPress={this.handlePressLevel(levelData)}
+                                    key={index}
+                                    data={levelData}
+                                    lockIcon={getLevelLockIcon({
+                                        completedLevels: data.length,
+                                        index,
+                                        level: episodeNumber
+                                    })}
+                                    level={this.getLevel(index)}
+                                    fill={getLevelFill(episodeNumber)}
+                                    cx={x}
+                                    cy={y}
+                                />
+                            );
                         })}
                     </Background>
-                </Svg >
-                {
-                    level !== 1 ? null : (
-                        <UnityLockerImage ref={setUnityLockerRef} />
-                    )
-                }
+                </Svg>
+                {episodeNumber !== 1 ? null : <UnityLockerImage ref={setUnityLockerRef} />}
             </View>
         );
     }

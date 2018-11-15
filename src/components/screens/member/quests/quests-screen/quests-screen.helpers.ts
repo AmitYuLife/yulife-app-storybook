@@ -6,7 +6,7 @@ export const handlePanResponderGrant = (component: QuestScreen) => () =>
 
 export const handlePanResponderMove = (component: QuestScreen) => (
     _: GestureResponderEvent,
-    { dy, vy }: PanResponderGestureState
+    { vy: verticalSwipeVelocity }: PanResponderGestureState
 ): null => {
     const isBlockingFurtherSwipes =
         component.activeIndexOnPanResponderGrant !== component.state.activeIndex || component.state.isSwipeDisabled;
@@ -15,21 +15,13 @@ export const handlePanResponderMove = (component: QuestScreen) => (
         return null;
     }
 
-    const distance = Platform.OS === "android" ? 60 : 10;
-    const swipeVelocityThreshold = 0.4;
-    const hasSwipedUp = dy < -distance && vy < swipeVelocityThreshold * -1;
-    // const hasSwipedRight = dx > distance && vx > swipeVelocityThreshold;
-    const hasSwipedDown = dy > distance && vy > swipeVelocityThreshold;
-    // const hasSwipedLeft = dx < -distance && vx < swipeVelocityThreshold * -1;
+    const verticalSwipeVelocityThreshold = 0.4;
+    const hasSwipedUp = verticalSwipeVelocity < verticalSwipeVelocityThreshold * -1;
+    const hasSwipedDown = verticalSwipeVelocity > verticalSwipeVelocityThreshold;
 
     if (hasSwipedUp || hasSwipedDown) {
         component.handleSwipe(hasSwipedUp ? "up" : "down");
     }
-    // else if (hasSwipedRight) {
-    //     component.props.labels[0].onPress();
-    // } else if (hasSwipedLeft) {
-    //     component.props.labels[2].onPress();
-    // }
 
     return null;
 };
