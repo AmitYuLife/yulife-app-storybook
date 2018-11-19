@@ -10,6 +10,8 @@ import com.facebook.react.ReactPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.reactnativenavigation.NavigationApplication;
+import com.reactnativenavigation.react.NavigationReactNativeHost;
+import com.reactnativenavigation.react.ReactGateway;
 import com.robinpowered.react.Intercom.IntercomPackage;
 import com.kevinejohn.RNMixpanel.RNMixpanel;
 import com.wwdrew.reactnative.RNDualPedometerPackage;
@@ -21,6 +23,17 @@ import java.util.List;
 import io.intercom.android.sdk.Intercom;
 
 public class MainApplication extends NavigationApplication {
+    @Override
+    protected ReactGateway createReactGateway() {
+        NavigationReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), createAdditionalReactPackages()) {
+            @Override
+            protected String getJSMainModuleName() {
+                return "index.android";
+            }
+        };
+        return new ReactGateway(this, isDebug(), host);
+    }
+
     @Override
     public boolean isDebug() {
         return BuildConfig.DEBUG;
