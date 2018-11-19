@@ -84,7 +84,7 @@ const getUserSuccess = (state: IStreaksStore, data: GetCurrentUser): IStreaksSto
 const loginUserSuccess = (state: IStreaksStore, data: LoginUser): IStreaksStore => {
     const id = pathOr<string>(data, "loginUser.user.activeStreak.id", "");
     const nextStreakAvailableAt = pathOr<string>(data, "loginUser.user.coinLedger.nextStreakAvailableAt", "");
-    const streak = pathOr<number>(data, "getCurrentUser.coinLedger.currentStreak", 0);
+    const streak = pathOr<number>(data, "loginUser.user.coinLedger.currentStreak", 0);
     const isAvailable = !!id;
 
     if (id !== state.id) {
