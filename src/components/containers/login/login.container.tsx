@@ -126,7 +126,7 @@ export class LoginContainer extends Component<Props, IState> {
                     }
                 });
 
-                if (results && results.data) {
+                if (results && results.data && results.data.loginUser && results.data.loginUser.token) {
                     await setToken(results.data.loginUser.token);
                     this.props.loginUserSuccess(results.data);
 

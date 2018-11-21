@@ -39,8 +39,10 @@ export async function migrateOldAppVersionToken(): Promise<void> {
     }
     try {
         const token = JSON.parse(oldUserStore).token;
-        if (token) {
+        if (token && !!token.length) {
             await setToken(token);
+        } else if (token && token.token && !!token.token.length) {
+            await setToken(token.token);
         }
     } catch (e) {
         console.log(e);
