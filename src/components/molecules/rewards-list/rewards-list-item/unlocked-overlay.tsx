@@ -4,7 +4,7 @@ import { Image, View } from "react-native";
 import { GetRewards_getRewards_uiSettings } from "../../../../graphql/_core/schema";
 import { getCloudinaryUrl } from "../../../../services/cloudinary/index";
 import { Text } from "../../../atoms";
-import { renderExchange, renderLinkType, renderValue } from "./unlocked-overlay.helpers";
+import { renderExchange, renderValue } from "./unlocked-overlay.helpers";
 import styles from "./unlocked-overlay.styles";
 
 interface IProps {
@@ -30,9 +30,13 @@ const UnlockedOverlay: SFC<IProps> = ({ code, cost, linkType, rewardCurrency, re
             })}
         />
         <Text bold={true} style={styles.voucherText}>
-            {rewardCurrency === "LINK" ? renderLinkType(linkType) : renderValue(rewardValue, rewardCurrency)}
+            {settings && settings.offerHeading
+                ? settings.offerHeading
+                : renderValue(rewardValue, rewardCurrency, linkType)}
         </Text>
-        <Text style={styles.costText}>{renderExchange(cost, rewardCurrency)}</Text>
+        <Text style={styles.costText}>
+            {settings && settings.offerSubheading ? settings.offerSubheading : renderExchange(cost, rewardCurrency)}
+        </Text>
     </View>
 );
 

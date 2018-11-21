@@ -5269,6 +5269,30 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "offerHeading",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "offerSubheading",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -11804,9 +11828,9 @@
   "extensions": {
     "tracing": {
       "version": 1,
-      "startTime": "2018-11-19T13:29:32.688Z",
-      "endTime": "2018-11-19T13:29:32.858Z",
-      "duration": 170148096,
+      "startTime": "2018-11-21T10:11:57.206Z",
+      "endTime": "2018-11-21T10:11:57.336Z",
+      "duration": 130040421,
       "execution": {
         "resolvers": []
       }

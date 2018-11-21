@@ -35,7 +35,9 @@ describe("UnlockedOverlay", () => {
                     ctaLabel: null,
                     id: "TEST_ID",
                     logoHeight: 1234,
-                    logoWidth: 1234
+                    logoWidth: 1234,
+                    offerHeading: null,
+                    offerSubheading: null
                 }}
             />
         );

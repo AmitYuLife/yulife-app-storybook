@@ -442,6 +442,8 @@ export interface GetRewards_getRewards_uiSettings {
   alertSubheading: string | null;
   alertCancelLabel: string | null;
   alertOkLabel: string | null;
+  offerHeading: string | null;
+  offerSubheading: string | null;
 }
 
 export interface GetRewards_getRewards {

@@ -46,6 +46,8 @@ export const getRewardsGql = gql`
                 alertSubheading
                 alertCancelLabel
                 alertOkLabel
+                offerHeading
+                offerSubheading
             }
         }
     }
