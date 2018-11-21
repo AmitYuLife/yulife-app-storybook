@@ -1,4 +1,5 @@
 import { Linking } from "react-native";
+import DeviceInfo from "react-native-device-info";
 import { call, put, select, spawn, take, takeLatest } from "redux-saga/effects";
 import client from "../../graphql/_core/client";
 import updateLeaderboardConsentGql from "../../graphql/member/updateLeaderboardConsent.gql";
@@ -95,7 +96,12 @@ function* getUserData() {
         if (token) {
             const { data } = yield call(getCurrentUserWithClient);
 
-            yield spawn(setLoggerIdentity, data.getCurrentUser.id, data.getIntercomHash);
+            yield spawn(
+                setLoggerIdentity,
+                data.getCurrentUser.id,
+                data.getCurrentUser.membershipType,
+                data.getIntercomHash
+            );
 
             const isArchived = pathOr<boolean>(data, "getCurrentUser.archived", false);
 
@@ -111,11 +117,12 @@ function* getUserData() {
     }
 }
 
-function* setLoggerIdentity(userId: string, hash?: string) {
+function* setLoggerIdentity(userId: string, membershipType: string, hash?: string) {
     if (hash) {
         yield call(Logger.setIntercomHash, hash);
     }
     yield call(Logger.setUserId, userId);
+    yield call(Logger.setUserProperties, { app_version: DeviceInfo.getVersion(), membershipType }, true);
 }
 
 function* setUserNoAccess() {

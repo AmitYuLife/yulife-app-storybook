@@ -5,7 +5,6 @@ import Mixpanel from "react-native-mixpanel";
 import bugsnag from "../bugsnag";
 
 class LoggerInstance {
-
     private bugsnag: Client;
 
     constructor() {
@@ -49,8 +48,12 @@ class LoggerInstance {
         }
     }
 
-    public setUserProperties(props: {}) {
-        Intercom.updateUser(props as any);// tslint:disable-line
+    public setUserProperties(props: {}, customAttrs = false) {
+        if (customAttrs) {
+            Intercom.updateUser({ custom_attributes: props });
+        } else {
+            Intercom.updateUser(props);
+        }
         Mixpanel.set(props);
     }
 

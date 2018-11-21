@@ -676,6 +676,7 @@ export interface GetCurrentUser_getCurrentUser {
   __typename: "User";
   id: string | null;
   archived: boolean | null;
+  membershipType: string | null;
   userFeatures: (GetCurrentUser_getCurrentUser_userFeatures | null)[] | null;
   mobileConsent: GetCurrentUser_getCurrentUser_mobileConsent | null;
   coinLedger: GetCurrentUser_getCurrentUser_coinLedger | null;

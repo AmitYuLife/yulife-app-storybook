@@ -8,6 +8,7 @@ import { createHttpLink } from "apollo-link-http";
 import moment from "moment";
 import { AsyncStorage } from "react-native";
 import Config from "react-native-config";
+import DeviceInfo from "react-native-device-info";
 import { getToken } from "../../services/storage";
 
 const httpLink = createHttpLink({
@@ -50,6 +51,11 @@ persistCache({
     storage: AsyncStorage
 });
 
+const defaultHeaders = {
+    app_version: DeviceInfo.getVersion(),
+    device_id: DeviceInfo.getUniqueID()
+};
+
 const authMiddleware = setContext(async (_, { headers }) => {
     // get the authentication token from async storage if it exists
     const token = await getToken();
@@ -58,6 +64,7 @@ const authMiddleware = setContext(async (_, { headers }) => {
     return {
         headers: {
             ...headers,
+            ...defaultHeaders,
             authorization: token ? `Bearer ${token}` : "",
             date: moment().format()
         }

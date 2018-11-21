@@ -106,7 +106,7 @@ class LinkRewardDetailsContainer extends Component<Props> {
                         const supported = await Linking.canOpenURL(availability);
 
                         if (supported) {
-                            Logger.logEvent("reward_link_pressed", {
+                            Logger.logEvent("reward_redeem_pressed", {
                                 reward_amount: 0,
                                 reward_code: code,
                                 reward_name: name,
