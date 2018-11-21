@@ -195,6 +195,10 @@ class QuestsContainer extends PureComponent<Props> {
         Navigation.dismissModal(MODALS.levelUnavailable);
     }
 
+    private dismissLevelCompleteModal = () => {
+        Navigation.dismissModal(MODALS.levelComplete);
+    }
+
     private showChestModal = (level: GetCurrentWorld_getCurrentWorld, isNext: boolean) => {
         const passProps = {
             ctaLabel: isNext ? "let's do it" : "got it",
@@ -252,8 +256,41 @@ class QuestsContainer extends PureComponent<Props> {
         });
     }
 
+    private showLevelCompleteModal = (level: GetCurrentWorld_getCurrentWorld) => {
+        const { componentId, labels } = this.props;
+
+        const passProps = {
+            level,
+            onPressActivityHistory: () => {
+                this.dismissLevelCompleteModal();
+                Navigation.push(componentId, {
+                    component: {
+                        id: ROUTES.activityHistory,
+                        name: ROUTES.activityHistory,
+                        passProps: {
+                            labels,
+                            level
+                        }
+                    }
+                });
+            },
+            onPressCta: () => {
+                this.dismissLevelCompleteModal();
+            }
+        };
+
+        Navigation.showModal({
+            component: {
+                id: MODALS.levelComplete,
+                name: MODALS.levelComplete,
+                passProps
+            }
+        });
+    }
+
     private goToChallengesList = (level: GetCurrentWorld_getCurrentWorld) => {
         const { componentId, labels } = this.props;
+
         Navigation.push(componentId, {
             component: {
                 id: ROUTES.questsChallengesList,
@@ -284,8 +321,7 @@ class QuestsContainer extends PureComponent<Props> {
 
                     // This logic makes me want to kill myself
                     if (isDone) {
-                        // goToChallengesList(); TODO: go to challengesDoneList
-                        // console.log("SHOW LEVEL COMPLETE SCREEN");
+                        this.showLevelCompleteModal(level);
                     } else if (isNext) {
                         if (levelAvailable) {
                             if (chestLevel) {

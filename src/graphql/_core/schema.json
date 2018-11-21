@@ -27,6 +27,33 @@
               "deprecationReason": null
             },
             {
+              "name": "getMagicLinkForAutomation",
+              "description": "",
+              "args": [
+                {
+                  "name": "userId",
+                  "description": "",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "getCurrentWorld",
               "description": "",
               "args": [],
@@ -542,6 +569,16 @@
           "possibleTypes": null
         },
         {
+          "kind": "SCALAR",
+          "name": "String",
+          "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "OBJECT",
           "name": "Level",
           "description": "",
@@ -613,16 +650,6 @@
           ],
           "inputFields": null,
           "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "String",
-          "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -727,6 +754,30 @@
                   "name": "LevelSlotMilestone",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rating",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "yuCoinAwarded",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -6422,6 +6473,43 @@
               "deprecationReason": null
             },
             {
+              "name": "resetData",
+              "description": "",
+              "args": [
+                {
+                  "name": "code",
+                  "description": "",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "type",
+                  "description": "",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "upsertPassiveChallenge",
               "description": "",
               "args": [
@@ -7094,43 +7182,6 @@
                       "name": "String",
                       "ofType": null
                     }
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "resetData",
-              "description": "",
-              "args": [
-                {
-                  "name": "code",
-                  "description": "",
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "type",
-                  "description": "",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
                   },
                   "defaultValue": null
                 }
@@ -11753,9 +11804,9 @@
   "extensions": {
     "tracing": {
       "version": 1,
-      "startTime": "2018-11-08T16:28:25.254Z",
-      "endTime": "2018-11-08T16:28:25.479Z",
-      "duration": 224668595,
+      "startTime": "2018-11-19T13:29:32.688Z",
+      "endTime": "2018-11-19T13:29:32.858Z",
+      "duration": 170148096,
       "execution": {
         "resolvers": []
       }
