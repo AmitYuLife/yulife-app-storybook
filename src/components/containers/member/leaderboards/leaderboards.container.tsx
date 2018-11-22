@@ -74,16 +74,20 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 
         return (
             <GetLeaderboardQuery query={getLeaderboardGql} fetchPolicy="network-only" variables={{ sortBy }}>
-                {({ loading, data = { getLeaderboard: [] }, refetch }) => {
+                {({ loading, data = { getLeaderboard: [], getCurrentUser: { id: null } }, refetch }) => {
                     if (loading) {
                         return <Loading />;
                     }
 
                     const onCoinPress = this.handleRefetch(refetch, "coins");
                     const onStepsPress = this.handleRefetch(refetch, "steps");
+                    const initialScrollIndex = (data.getLeaderboard as any).findIndex(
+                        (item: any) => item.id === `lead_${data.getCurrentUser.id}`
+                    );
 
                     return (
                         <LeaderboardsScreen
+                            initialScrollIndex={initialScrollIndex}
                             items={data.getLeaderboard}
                             onCoinPress={onCoinPress}
                             onPressClose={this.handleClose}
