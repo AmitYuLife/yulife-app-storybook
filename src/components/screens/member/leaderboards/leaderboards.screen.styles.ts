@@ -1,5 +1,18 @@
-import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
+import { ImageStyle, Platform, StyleSheet, ViewStyle } from "react-native";
+import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../styles";
+
+const getTop = () => {
+    if (isIphoneX()) {
+        return 40;
+    }
+
+    if (Platform.OS === "ios") {
+        return 15;
+    }
+
+    return 0;
+};
 
 export default StyleSheet.create({
     arrowImageWrapper: {
@@ -25,6 +38,11 @@ export default StyleSheet.create({
         justifyContent: "flex-end",
         paddingRight: Style.SCALE_UP_AND_DOWN(15),
         position: "relative",
+        width: "100%"
+    } as ViewStyle,
+    header: {
+        position: "absolute",
+        top: getTop(),
         width: "100%"
     } as ViewStyle,
     scrollView1: {

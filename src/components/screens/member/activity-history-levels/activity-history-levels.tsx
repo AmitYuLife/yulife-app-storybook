@@ -1,6 +1,6 @@
 import * as React from "react";
 import { PureComponent } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
 import { Close, GenericHeading, Text } from "../../../atoms";
 import data from "./activity-history-levels.data";
 import styles from "./activity-history-levels.styles";
@@ -25,7 +25,9 @@ class ActivityHistoryLevels extends PureComponent<IProps> {
                 <GenericHeading heading={data.heading} />
                 <View style={styles.headersWrapper}>
                     <View style={StyleSheet.flatten([styles.headerBase, styles.headerOneWrapper])}>
-                        <Text style={styles.headerSpecial} bold={true}>level</Text>
+                        <Text style={styles.headerSpecial} bold={true}>
+                            level
+                        </Text>
                     </View>
                     <View style={StyleSheet.flatten([styles.headerBase, styles.headerTwoWrapper])}>
                         <Text style={styles.headerDefault}>date</Text>
@@ -42,19 +44,19 @@ class ActivityHistoryLevels extends PureComponent<IProps> {
                     <View style={styles.dividerLeft} />
                     <View style={styles.dividerRight}>
                         <View style={styles.dividerRightLabelWrapper}>
-                            <Text style={styles.dividerRightLabel} bold={true}>last 30 days</Text>
+                            <Text style={styles.dividerRightLabel} bold={true}>
+                                last 30 days
+                            </Text>
                         </View>
                     </View>
                 </View>
-                <ScrollView
-                    style={styles.scrollView}
-                >
-                    {
-                        items.map((item, index) => (
-                            <Item key={index} {...item} />
-                        ))
-                    }
-                </ScrollView>
+                <View style={styles.scrollView}>
+                    <FlatList
+                        data={items}
+                        keyExtractor={(item) => item.id}
+                        renderItem={({ item, index }) => <Item key={index} {...item} />}
+                    />
+                </View>
                 <Close onPress={onPressClose} />
             </SafeAreaView>
         );

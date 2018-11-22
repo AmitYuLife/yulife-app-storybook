@@ -13,6 +13,7 @@ export interface IChallenge {
 }
 
 export interface ItemProps {
+    id?: string;
     challenges: IChallenge[];
     dayOfMonth: string;
     dayOfWeek: string;

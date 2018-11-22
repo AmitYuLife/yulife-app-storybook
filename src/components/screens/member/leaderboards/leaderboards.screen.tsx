@@ -77,7 +77,7 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                     </View>
                     <LeaderboardHeader sortBy={sortBy} onCoinPress={onCoinPress} onStepsPress={onStepsPress} />
                 </Animated.View>
-                <View style={{ position: "absolute", top: 0, width: "100%" }}>
+                <View style={styles.header}>
                     <GenericHeading heading={data.heading} hidesBorder={true} subheading={data.subheading} />
                 </View>
                 <Close onPress={onPressClose} />
