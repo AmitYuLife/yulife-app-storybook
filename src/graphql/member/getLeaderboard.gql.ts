@@ -5,12 +5,17 @@ import { GetLeaderboard, GetLeaderboardVariables } from "../_core/schema";
 export const getLeaderboardGql = gql`
     query GetLeaderboard($sortBy: String) {
         getLeaderboard(sortBy: $sortBy) {
+            __typename
             id
             firstName
             lastName
             name
             coins
             steps
+        }
+        getCurrentUser {
+            __typename
+            id
         }
     }
 `;

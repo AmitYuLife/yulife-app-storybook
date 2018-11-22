@@ -1,5 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Style } from "../../../../../styles";
+import { Colours, Style } from "../../../../../styles";
 
 export default StyleSheet.create({
     nameWrapper: {
@@ -18,6 +18,10 @@ export default StyleSheet.create({
         fontFamily: Style.FONT_FAMILY_PRIMARY,
         fontSize: Style.SCALE_UP_AND_DOWN(16)
     } as TextStyle,
+    textHighlighted: {
+        color: Colours.heavyPink,
+        fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD
+    } as ViewStyle,
     textRight: {
         textAlign: "right"
     } as TextStyle,
