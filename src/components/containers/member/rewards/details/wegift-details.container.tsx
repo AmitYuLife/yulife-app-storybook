@@ -13,6 +13,7 @@ import { MODALS, ROUTES } from "../../../../../navigation/routes";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
+import { getUserStart } from "../../../../../redux/user/user.actions";
 import Logger from "../../../../../services/logging/logger";
 import { Loading } from "../../../../atoms";
 import { WegiftRewardDetailsScreen } from "../../../../screens";
@@ -28,7 +29,11 @@ interface IConnectedState {
     totalCoins: number;
 }
 
-type Props = IProps & IConnectedState;
+interface IConnectedDispatch {
+    getUserStart: () => void;
+}
+
+type Props = IProps & IConnectedState & IConnectedDispatch;
 
 class WegiftRewardDetailsContainer extends Component<Props> {
     public componentDidMount() {
@@ -128,6 +133,7 @@ class WegiftRewardDetailsContainer extends Component<Props> {
                             const result = await redeemReward({ variables: { id: reward.code, amount: value } });
 
                             if ((result as { data: RedeemReward }).data.redeemReward) {
+                                this.props.getUserStart();
                                 await Navigation.push(ROUTES.rewards, {
                                     component: {
                                         id: ROUTES.wegiftConfirmed,
@@ -178,4 +184,11 @@ const mapStateToProps = (state: IReduxState) => ({
     totalCoins: getTotalCoins(state)
 });
 
-export default connect<IConnectedState>(mapStateToProps)(WegiftRewardDetailsContainer);
+const mapDispatchToProps = {
+    getUserStart
+};
+
+export default connect<IConnectedState, IConnectedDispatch>(
+    mapStateToProps,
+    mapDispatchToProps
+)(WegiftRewardDetailsContainer);

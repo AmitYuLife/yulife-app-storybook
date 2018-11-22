@@ -13,6 +13,7 @@ import { MODALS, ROUTES } from "../../../../../navigation/routes";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
+import { getUserStart } from "../../../../../redux/user/user.actions";
 import Logger from "../../../../../services/logging/logger";
 import { BlurProvider, Loading } from "../../../../atoms";
 import { ListPicker } from "../../../../molecules";
@@ -49,7 +50,11 @@ interface IConnectedState {
     totalCoins: number;
 }
 
-type Props = IProps & IConnectedState;
+interface IConnectedDispatch {
+    getUserStart: () => void;
+}
+
+type Props = IProps & IConnectedState & IConnectedDispatch;
 
 interface IState {
     loyalty?: IProgrammesItem;
@@ -328,6 +333,7 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
                         });
 
                         if ((result as { data: RedeemReward }).data.redeemReward) {
+                            this.props.getUserStart();
                             await Navigation.push(ROUTES.rewards, {
                                 component: {
                                     id: ROUTES.aviosConfirmed,
@@ -377,4 +383,11 @@ const mapStateToProps = (state: IReduxState) => ({
     totalCoins: getTotalCoins(state)
 });
 
-export default connect<IConnectedState>(mapStateToProps)(AviosRewardDetailsContainer);
+const mapDispatchToProps = {
+    getUserStart
+};
+
+export default connect<IConnectedState, IConnectedDispatch>(
+    mapStateToProps,
+    mapDispatchToProps
+)(AviosRewardDetailsContainer);
