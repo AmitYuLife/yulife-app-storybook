@@ -3,7 +3,7 @@ import { Style } from "../../../styles";
 
 export default StyleSheet.create({
     heading: {
-        fontSize: Style.SCALE_UP_AND_DOWN(25),
+        fontSize: Style.SCALE_UP_AND_DOWN(22),
         marginBottom: Style.SCALE_UP_AND_DOWN(20),
         marginHorizontal: Style.SCALE_UP_AND_DOWN(70),
         textAlign: "center"

@@ -26,6 +26,7 @@ import {
     nextLevelAvailableAtSelector
 } from "../../../../redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "../../../../redux/streaks/streaks.actions";
+import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
 import { openCalm, openHeadspace } from "../../../../services/app-link";
 import BlurProvider from "../../../atoms/blur/blur-provider";
 import Loading from "../../../atoms/loading/loading";
@@ -36,6 +37,7 @@ import ChallengeFailedScreen from "../../../screens/member/challenges/challenge-
 interface IConnectedState {
     activeLevel: IActiveLevel;
     currentLevel: number;
+    features: { [x: string]: boolean };
     nextLevelAvailableAt: string;
     offline: boolean;
     totalCoins: number;
@@ -304,7 +306,7 @@ class QuestsContainer extends PureComponent<Props> {
     }
 
     private formatData = (data: GetCurrentWorld_getCurrentWorld[] = []) => {
-        const { currentLevel, nextLevelAvailableAt: nextAvailableAt } = this.props;
+        const { currentLevel, features, nextLevelAvailableAt: nextAvailableAt } = this.props;
 
         return data.map((level) => {
             const isNext = currentLevel === level.level;
@@ -321,7 +323,9 @@ class QuestsContainer extends PureComponent<Props> {
 
                     // This logic makes me want to kill myself
                     if (isDone) {
-                        this.showLevelCompleteModal(level);
+                        if (features.showCompletedLevel) {
+                            this.showLevelCompleteModal(level);
+                        }
                     } else if (isNext) {
                         if (levelAvailable) {
                             if (chestLevel) {
@@ -349,6 +353,7 @@ class QuestsContainer extends PureComponent<Props> {
 const mapStateToProps = (state: IReduxState) => ({
     activeLevel: activeLevelSelector(state),
     currentLevel: currentLevelSelector(state),
+    features: userFeaturesSelector(state),
     nextLevelAvailableAt: nextLevelAvailableAtSelector(state),
     offline: getOfflineState(state),
     totalCoins: getTotalCoins(state)
