@@ -109,7 +109,7 @@ class WegiftRewardDetailsContainer extends Component<Props> {
     private openPDFs = (pdf: "policy" | "terms") => async () => {
         const { reward } = this.props;
         const url =
-            pdf === "policy" ? `${Config.API_URL}/docs/rewards-policy.pdf` : reward.terms_and_conditions_url;
+            pdf === "policy" ? Config.REWARDS_POLICY_URL : reward.terms_and_conditions_url;
 
         const supported = await Linking.canOpenURL(url);
 

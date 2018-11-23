@@ -64,7 +64,7 @@ class WegiftRewardConfirmedContainer extends Component<Props> {
     public openPDFs = (pdf: "policy" | "terms") => async () => {
         const url =
             pdf === "policy"
-                ? `${Config.FRONTEND_URL}/static/rewardsPolicy.pdf`
+                ? Config.REWARDS_POLICY_URL
                 : this.props.purchase.reward.terms_and_conditions_url;
         const supported = await Linking.canOpenURL(url);
 
