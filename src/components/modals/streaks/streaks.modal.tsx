@@ -89,16 +89,7 @@ class StreaksModal extends PureComponent<Props> {
                                             style={styles.streak}
                                             source={index < streakCompleted ? assets.streakFilled : assets.streakEmpty}
                                         />
-                                        {index < streakCompleted ? null : (
-                                            <Text
-                                                style={StyleSheet.flatten([
-                                                    styles.streakLabel,
-                                                    index < streakMax - 1 ? styles.null : styles.streakLabelLast
-                                                ])}
-                                            >
-                                                {index < streakMax - 1 ? `${index + 1}` : reward}
-                                            </Text>
-                                        )}
+                                        {this.renderStreakText(index, streakCompleted, streakMax, reward)}
                                     </View>
                                 ))}
                             </View>
@@ -121,6 +112,18 @@ class StreaksModal extends PureComponent<Props> {
                 }}
             </CollectAwardMutation>
         );
+    }
+
+    private renderStreakText = (index: number, streakCompleted: number, streakMax: number, reward: string) => {
+        if (index < streakCompleted) {
+            return null;
+        }
+
+        if (index < streakMax - 1) {
+            return <Text style={styles.streakLabel}>{`${index + 1}`}</Text>;
+        }
+
+        return <Text style={StyleSheet.flatten([styles.streakLabel, styles.streakLabelLast])}>{reward}</Text>;
     }
 
     private getImage(): ImageRequireSource {

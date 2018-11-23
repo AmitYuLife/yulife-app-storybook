@@ -21,14 +21,8 @@ export default StyleSheet.create({
     streakLabel: {
         fontSize: Style.SCALE_UP_AND_DOWN(15),
         lineHeight: Style.SCALE_UP_AND_DOWN(15),
-        marginLeft: Platform.OS === "android"
-            ? Style.isShortAndroid()
-                ? -3
-                : 2
-            : 0,
-        marginTop: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() ? 0 : 4),
         textAlign: "center",
-        width: Style.SCALE_UP_AND_DOWN(41)
+        width: Platform.select({ android: Style.SCALE_UP_AND_DOWN(37), ios: Style.SCALE_UP_AND_DOWN(41) })
     } as TextStyle,
     streakLabelLast: {
         fontSize: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() ? 11 : 12),
@@ -36,7 +30,7 @@ export default StyleSheet.create({
         marginTop: 0
     } as TextStyle,
     streakWrapper: {
-        alignItems: "center",
+        alignItems: "flex-start",
         height: Style.SCALE_UP_AND_DOWN(41),
         justifyContent: "center",
         marginRight: Style.SCALE_UP_AND_DOWN(10),
