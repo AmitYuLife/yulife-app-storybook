@@ -47,7 +47,7 @@ class Episode extends PureComponent<IProps> {
 
         return (
             <View style={styles.wrapper}>
-                <Svg style={styles.svg} height={height} width={width} viewBox="0 0 750 1334">
+                <Svg style={styles.svg} height={String(height)} width={String(width)} viewBox="0 0 750 1334">
                     <Background>
                         {backgroundLevels.map((points, index) => {
                             const { x, y } = points;

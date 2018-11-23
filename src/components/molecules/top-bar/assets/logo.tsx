@@ -8,8 +8,8 @@ interface IProps {
 
 const Logo: SFC<IProps> = ({ scale = 0.5 }) => (
     <Svg
-        height={74 * scale}
-        width={74 * scale}
+        height={String(74 * scale)}
+        width={String(74 * scale)}
         viewBox="0 0 74 74"
     >
         <Path

@@ -62,7 +62,7 @@ class DailyStepsLoading extends PureComponent<{}, IState> {
         const AnimationState = animationStates[animationStateIndex];
 
         return (
-            <Svg style={{ marginTop: 50 }} height={50} width={100} viewBox="0 0 50 100">
+            <Svg style={{ marginTop: 50 }} height="50" width="100" viewBox="0 0 50 100">
                 <AnimationState />
             </Svg>
         );

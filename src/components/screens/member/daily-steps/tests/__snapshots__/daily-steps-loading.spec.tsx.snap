@@ -18,13 +18,13 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": <First />,
-      "height": 50,
+      "height": "50",
       "preserveAspectRatio": "xMidYMid meet",
       "style": Object {
         "marginTop": 50,
       },
       "viewBox": "0 0 50 100",
-      "width": 100,
+      "width": "100",
     },
     "ref": null,
     "rendered": Object {
@@ -45,13 +45,13 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": <First />,
-        "height": 50,
+        "height": "50",
         "preserveAspectRatio": "xMidYMid meet",
         "style": Object {
           "marginTop": 50,
         },
         "viewBox": "0 0 50 100",
-        "width": 100,
+        "width": "100",
       },
       "ref": null,
       "rendered": Object {

@@ -10,8 +10,8 @@ interface Props {
 
 const Card: SFC<Props> = ({ scale = 1, colour }) => (
     <Svg
-        width={55 * scale}
-        height={55 * scale}
+        width={String(55 * scale)}
+        height={String(55 * scale)}
         viewBox="0 0 55 55">
         <Path
             fill={colour || Colours.textInput.inactive}

@@ -43,7 +43,7 @@ ShallowWrapper {
             }
           >
             <Svg
-              height={109}
+              height="109"
               preserveAspectRatio="xMidYMid meet"
               style={
                 Object {
@@ -54,7 +54,7 @@ ShallowWrapper {
                 }
               }
               viewBox="0 0 212 218"
-              width={106}
+              width="106"
             >
               <Static />
               <Unknown />
@@ -95,7 +95,7 @@ ShallowWrapper {
             }
           >
             <Svg
-              height={109}
+              height="109"
               preserveAspectRatio="xMidYMid meet"
               style={
                 Object {
@@ -106,7 +106,7 @@ ShallowWrapper {
                 }
               }
               viewBox="0 0 212 218"
-              width={106}
+              width="106"
             >
               <Static />
               <Unknown />
@@ -131,7 +131,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height={109}
+                height="109"
                 preserveAspectRatio="xMidYMid meet"
                 style={
                   Object {
@@ -142,7 +142,7 @@ ShallowWrapper {
                   }
                 }
                 viewBox="0 0 212 218"
-                width={106}
+                width="106"
               >
                 <Static />
                 <Unknown />
@@ -167,7 +167,7 @@ ShallowWrapper {
                   <Static />,
                   <Unknown />,
                 ],
-                "height": 109,
+                "height": "109",
                 "preserveAspectRatio": "xMidYMid meet",
                 "style": Object {
                   "alignItems": "center",
@@ -176,7 +176,7 @@ ShallowWrapper {
                   "overflow": "hidden",
                 },
                 "viewBox": "0 0 212 218",
-                "width": 106,
+                "width": "106",
               },
               "ref": null,
               "rendered": Array [
@@ -254,7 +254,7 @@ ShallowWrapper {
               }
             >
               <Svg
-                height={109}
+                height="109"
                 preserveAspectRatio="xMidYMid meet"
                 style={
                   Object {
@@ -265,7 +265,7 @@ ShallowWrapper {
                   }
                 }
                 viewBox="0 0 212 218"
-                width={106}
+                width="106"
               >
                 <Static />
                 <Unknown />
@@ -306,7 +306,7 @@ ShallowWrapper {
               }
             >
               <Svg
-                height={109}
+                height="109"
                 preserveAspectRatio="xMidYMid meet"
                 style={
                   Object {
@@ -317,7 +317,7 @@ ShallowWrapper {
                   }
                 }
                 viewBox="0 0 212 218"
-                width={106}
+                width="106"
               >
                 <Static />
                 <Unknown />
@@ -342,7 +342,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <Svg
-                  height={109}
+                  height="109"
                   preserveAspectRatio="xMidYMid meet"
                   style={
                     Object {
@@ -353,7 +353,7 @@ ShallowWrapper {
                     }
                   }
                   viewBox="0 0 212 218"
-                  width={106}
+                  width="106"
                 >
                   <Static />
                   <Unknown />
@@ -378,7 +378,7 @@ ShallowWrapper {
                     <Static />,
                     <Unknown />,
                   ],
-                  "height": 109,
+                  "height": "109",
                   "preserveAspectRatio": "xMidYMid meet",
                   "style": Object {
                     "alignItems": "center",
@@ -387,7 +387,7 @@ ShallowWrapper {
                     "overflow": "hidden",
                   },
                   "viewBox": "0 0 212 218",
-                  "width": 106,
+                  "width": "106",
                 },
                 "ref": null,
                 "rendered": Array [
@@ -501,7 +501,7 @@ ShallowWrapper {
             }
           >
             <Svg
-              height={109}
+              height="109"
               preserveAspectRatio="xMidYMid meet"
               style={
                 Object {
@@ -512,7 +512,7 @@ ShallowWrapper {
                 }
               }
               viewBox="0 0 212 218"
-              width={106}
+              width="106"
             >
               <Static
                 isGrayScale={true}
@@ -548,7 +548,7 @@ ShallowWrapper {
             }
           >
             <Svg
-              height={109}
+              height="109"
               preserveAspectRatio="xMidYMid meet"
               style={
                 Object {
@@ -559,7 +559,7 @@ ShallowWrapper {
                 }
               }
               viewBox="0 0 212 218"
-              width={106}
+              width="106"
             >
               <Static
                 isGrayScale={true}
@@ -587,7 +587,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height={109}
+                height="109"
                 preserveAspectRatio="xMidYMid meet"
                 style={
                   Object {
@@ -598,7 +598,7 @@ ShallowWrapper {
                   }
                 }
                 viewBox="0 0 212 218"
-                width={106}
+                width="106"
               >
                 <Static
                   isGrayScale={true}
@@ -631,7 +631,7 @@ ShallowWrapper {
                     isGrayScale={true}
                   />,
                 ],
-                "height": 109,
+                "height": "109",
                 "preserveAspectRatio": "xMidYMid meet",
                 "style": Object {
                   "alignItems": "center",
@@ -640,7 +640,7 @@ ShallowWrapper {
                   "overflow": "hidden",
                 },
                 "viewBox": "0 0 212 218",
-                "width": 106,
+                "width": "106",
               },
               "ref": null,
               "rendered": Array [
@@ -710,7 +710,7 @@ ShallowWrapper {
               }
             >
               <Svg
-                height={109}
+                height="109"
                 preserveAspectRatio="xMidYMid meet"
                 style={
                   Object {
@@ -721,7 +721,7 @@ ShallowWrapper {
                   }
                 }
                 viewBox="0 0 212 218"
-                width={106}
+                width="106"
               >
                 <Static
                   isGrayScale={true}
@@ -757,7 +757,7 @@ ShallowWrapper {
               }
             >
               <Svg
-                height={109}
+                height="109"
                 preserveAspectRatio="xMidYMid meet"
                 style={
                   Object {
@@ -768,7 +768,7 @@ ShallowWrapper {
                   }
                 }
                 viewBox="0 0 212 218"
-                width={106}
+                width="106"
               >
                 <Static
                   isGrayScale={true}
@@ -796,7 +796,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <Svg
-                  height={109}
+                  height="109"
                   preserveAspectRatio="xMidYMid meet"
                   style={
                     Object {
@@ -807,7 +807,7 @@ ShallowWrapper {
                     }
                   }
                   viewBox="0 0 212 218"
-                  width={106}
+                  width="106"
                 >
                   <Static
                     isGrayScale={true}
@@ -840,7 +840,7 @@ ShallowWrapper {
                       isGrayScale={true}
                     />,
                   ],
-                  "height": 109,
+                  "height": "109",
                   "preserveAspectRatio": "xMidYMid meet",
                   "style": Object {
                     "alignItems": "center",
@@ -849,7 +849,7 @@ ShallowWrapper {
                     "overflow": "hidden",
                   },
                   "viewBox": "0 0 212 218",
-                  "width": 106,
+                  "width": "106",
                 },
                 "ref": null,
                 "rendered": Array [
@@ -955,7 +955,7 @@ ShallowWrapper {
             }
           >
             <Svg
-              height={109}
+              height="109"
               preserveAspectRatio="xMidYMid meet"
               style={
                 Object {
@@ -966,7 +966,7 @@ ShallowWrapper {
                 }
               }
               viewBox="0 0 212 218"
-              width={106}
+              width="106"
             >
               <Static />
               <Giraffe />
@@ -1006,7 +1006,7 @@ ShallowWrapper {
             }
           >
             <Svg
-              height={109}
+              height="109"
               preserveAspectRatio="xMidYMid meet"
               style={
                 Object {
@@ -1017,7 +1017,7 @@ ShallowWrapper {
                 }
               }
               viewBox="0 0 212 218"
-              width={106}
+              width="106"
             >
               <Static />
               <Giraffe />
@@ -1041,7 +1041,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height={109}
+                height="109"
                 preserveAspectRatio="xMidYMid meet"
                 style={
                   Object {
@@ -1052,7 +1052,7 @@ ShallowWrapper {
                   }
                 }
                 viewBox="0 0 212 218"
-                width={106}
+                width="106"
               >
                 <Static />
                 <Giraffe />
@@ -1077,7 +1077,7 @@ ShallowWrapper {
                   <Static />,
                   <Giraffe />,
                 ],
-                "height": 109,
+                "height": "109",
                 "preserveAspectRatio": "xMidYMid meet",
                 "style": Object {
                   "alignItems": "center",
@@ -1086,7 +1086,7 @@ ShallowWrapper {
                   "overflow": "hidden",
                 },
                 "viewBox": "0 0 212 218",
-                "width": 106,
+                "width": "106",
               },
               "ref": null,
               "rendered": Array [
@@ -1154,7 +1154,7 @@ ShallowWrapper {
               }
             >
               <Svg
-                height={109}
+                height="109"
                 preserveAspectRatio="xMidYMid meet"
                 style={
                   Object {
@@ -1165,7 +1165,7 @@ ShallowWrapper {
                   }
                 }
                 viewBox="0 0 212 218"
-                width={106}
+                width="106"
               >
                 <Static />
                 <Giraffe />
@@ -1205,7 +1205,7 @@ ShallowWrapper {
               }
             >
               <Svg
-                height={109}
+                height="109"
                 preserveAspectRatio="xMidYMid meet"
                 style={
                   Object {
@@ -1216,7 +1216,7 @@ ShallowWrapper {
                   }
                 }
                 viewBox="0 0 212 218"
-                width={106}
+                width="106"
               >
                 <Static />
                 <Giraffe />
@@ -1240,7 +1240,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <Svg
-                  height={109}
+                  height="109"
                   preserveAspectRatio="xMidYMid meet"
                   style={
                     Object {
@@ -1251,7 +1251,7 @@ ShallowWrapper {
                     }
                   }
                   viewBox="0 0 212 218"
-                  width={106}
+                  width="106"
                 >
                   <Static />
                   <Giraffe />
@@ -1276,7 +1276,7 @@ ShallowWrapper {
                     <Static />,
                     <Giraffe />,
                   ],
-                  "height": 109,
+                  "height": "109",
                   "preserveAspectRatio": "xMidYMid meet",
                   "style": Object {
                     "alignItems": "center",
@@ -1285,7 +1285,7 @@ ShallowWrapper {
                     "overflow": "hidden",
                   },
                   "viewBox": "0 0 212 218",
-                  "width": 106,
+                  "width": "106",
                 },
                 "ref": null,
                 "rendered": Array [

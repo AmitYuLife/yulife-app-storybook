@@ -37,8 +37,8 @@ class QuestsMovie extends React.PureComponent<{}, IState> {
         return (
             <Svg
                 style={styles.svg}
-                height={height}
-                width={width}
+                height={String(height)}
+                width={String(width)}
                 viewBox="0 0 750 1334"
             >
                 <Background />

@@ -26,7 +26,7 @@ ShallowWrapper {
           height="3"
           rx={0}
           ry={0}
-          width={161}
+          width="161"
           x="46.1"
           y="16.5"
         />,
@@ -36,8 +36,8 @@ ShallowWrapper {
           rx={0}
           ry={0}
           transform="matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)"
-          width={161}
-          x={239.9}
+          width="161"
+          x="239.9"
           y="16.5"
         />,
       ],
@@ -53,7 +53,7 @@ ShallowWrapper {
           "height": "3",
           "rx": 0,
           "ry": 0,
-          "width": 161,
+          "width": "161",
           "x": "46.1",
           "y": "16.5",
         },
@@ -71,8 +71,8 @@ ShallowWrapper {
           "rx": 0,
           "ry": 0,
           "transform": "matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)",
-          "width": 161,
-          "x": 239.9,
+          "width": "161",
+          "x": "239.9",
           "y": "16.5",
         },
         "ref": null,
@@ -94,7 +94,7 @@ ShallowWrapper {
             height="3"
             rx={0}
             ry={0}
-            width={161}
+            width="161"
             x="46.1"
             y="16.5"
           />,
@@ -104,8 +104,8 @@ ShallowWrapper {
             rx={0}
             ry={0}
             transform="matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)"
-            width={161}
-            x={239.9}
+            width="161"
+            x="239.9"
             y="16.5"
           />,
         ],
@@ -121,7 +121,7 @@ ShallowWrapper {
             "height": "3",
             "rx": 0,
             "ry": 0,
-            "width": 161,
+            "width": "161",
             "x": "46.1",
             "y": "16.5",
           },
@@ -139,8 +139,8 @@ ShallowWrapper {
             "rx": 0,
             "ry": 0,
             "transform": "matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)",
-            "width": 161,
-            "x": 239.9,
+            "width": "161",
+            "x": "239.9",
             "y": "16.5",
           },
           "ref": null,
@@ -198,7 +198,7 @@ ShallowWrapper {
           height="3"
           rx={0}
           ry={0}
-          width={168}
+          width="168"
           x="46.1"
           y="16.5"
         />,
@@ -208,8 +208,8 @@ ShallowWrapper {
           rx={0}
           ry={0}
           transform="matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)"
-          width={168}
-          x={239.9}
+          width="168"
+          x="239.9"
           y="16.5"
         />,
       ],
@@ -225,7 +225,7 @@ ShallowWrapper {
           "height": "3",
           "rx": 0,
           "ry": 0,
-          "width": 168,
+          "width": "168",
           "x": "46.1",
           "y": "16.5",
         },
@@ -243,8 +243,8 @@ ShallowWrapper {
           "rx": 0,
           "ry": 0,
           "transform": "matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)",
-          "width": 168,
-          "x": 239.9,
+          "width": "168",
+          "x": "239.9",
           "y": "16.5",
         },
         "ref": null,
@@ -266,7 +266,7 @@ ShallowWrapper {
             height="3"
             rx={0}
             ry={0}
-            width={168}
+            width="168"
             x="46.1"
             y="16.5"
           />,
@@ -276,8 +276,8 @@ ShallowWrapper {
             rx={0}
             ry={0}
             transform="matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)"
-            width={168}
-            x={239.9}
+            width="168"
+            x="239.9"
             y="16.5"
           />,
         ],
@@ -293,7 +293,7 @@ ShallowWrapper {
             "height": "3",
             "rx": 0,
             "ry": 0,
-            "width": 168,
+            "width": "168",
             "x": "46.1",
             "y": "16.5",
           },
@@ -311,8 +311,8 @@ ShallowWrapper {
             "rx": 0,
             "ry": 0,
             "transform": "matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)",
-            "width": 168,
-            "x": 239.9,
+            "width": "168",
+            "x": "239.9",
             "y": "16.5",
           },
           "ref": null,
@@ -370,7 +370,7 @@ ShallowWrapper {
           height="3"
           rx={0}
           ry={0}
-          width={161}
+          width="161"
           x="46.1"
           y="16.5"
         />,
@@ -380,8 +380,8 @@ ShallowWrapper {
           rx={0}
           ry={0}
           transform="matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)"
-          width={161}
-          x={239.9}
+          width="161"
+          x="239.9"
           y="16.5"
         />,
       ],
@@ -397,7 +397,7 @@ ShallowWrapper {
           "height": "3",
           "rx": 0,
           "ry": 0,
-          "width": 161,
+          "width": "161",
           "x": "46.1",
           "y": "16.5",
         },
@@ -415,8 +415,8 @@ ShallowWrapper {
           "rx": 0,
           "ry": 0,
           "transform": "matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)",
-          "width": 161,
-          "x": 239.9,
+          "width": "161",
+          "x": "239.9",
           "y": "16.5",
         },
         "ref": null,
@@ -438,7 +438,7 @@ ShallowWrapper {
             height="3"
             rx={0}
             ry={0}
-            width={161}
+            width="161"
             x="46.1"
             y="16.5"
           />,
@@ -448,8 +448,8 @@ ShallowWrapper {
             rx={0}
             ry={0}
             transform="matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)"
-            width={161}
-            x={239.9}
+            width="161"
+            x="239.9"
             y="16.5"
           />,
         ],
@@ -465,7 +465,7 @@ ShallowWrapper {
             "height": "3",
             "rx": 0,
             "ry": 0,
-            "width": 161,
+            "width": "161",
             "x": "46.1",
             "y": "16.5",
           },
@@ -483,8 +483,8 @@ ShallowWrapper {
             "rx": 0,
             "ry": 0,
             "transform": "matrix(-1 -4.489887e-11 4.489887e-11 -1 640.7099 36)",
-            "width": 161,
-            "x": 239.9,
+            "width": "161",
+            "x": "239.9",
             "y": "16.5",
           },
           "ref": null,

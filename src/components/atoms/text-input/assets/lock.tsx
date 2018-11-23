@@ -10,8 +10,8 @@ interface IProps {
 
 const Lock: SFC<IProps> = ({ scale = 1, colour }) => (
     <Svg
-        width={52 * scale}
-        height={54 * scale}
+        width={String(52 * scale)}
+        height={String(54 * scale)}
         viewBox="0 0 52 54"
     >
         <G>

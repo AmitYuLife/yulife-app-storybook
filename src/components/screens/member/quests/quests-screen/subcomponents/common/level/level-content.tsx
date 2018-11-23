@@ -17,7 +17,7 @@ interface IProps {
 const LevelContent: SFC<IProps> = ({ isNext, nextAvailableAt, level, x, y, rating }) => {
     const nextAvailable = !!nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
     return (
-        <G x={x} y={y}>
+        <G x={String(x)} y={String(y)}>
             {isNext ? (
                 nextAvailable < 0 ? (
                     <LevelPending nextAvailableAt={nextAvailableAt} />

@@ -34,20 +34,20 @@ class LevelPending extends PureComponent<IProps, IState> {
         return (
             <G>
                 <Text
-                    y={-16}
+                    y="-16"
                     textAnchor="middle"
                     fill="white"
-                    fontSize={24}
+                    fontSize="24"
                     fontFamily={Style.FONT_FAMILY_PRIMARY_BOLD}
                     fontWeight="700"
                 >
                     {data.prefix}
                 </Text>
                 <Text
-                    y={13}
+                    y="13"
                     textAnchor="middle"
                     fill="white"
-                    fontSize={24}
+                    fontSize="24"
                     fontFamily={Style.FONT_FAMILY_PRIMARY_BOLD}
                     fontWeight="700"
                 >

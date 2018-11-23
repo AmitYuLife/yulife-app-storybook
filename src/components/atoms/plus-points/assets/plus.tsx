@@ -14,8 +14,8 @@ const path =
 
 const Plus: SFC<IProps> = ({ scale = 1, colour }) => (
     <Svg
-        width={19 * scale}
-        height={19 * scale}
+        width={String(19 * scale)}
+        height={String(19 * scale)}
         viewBox="0 0 19 19"
     >
         <Path

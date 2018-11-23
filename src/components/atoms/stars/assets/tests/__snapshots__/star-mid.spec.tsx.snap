@@ -26,19 +26,19 @@ ShallowWrapper {
         />,
         <Polygon
           fill="#E59E00"
-          fillOpacity={0.59}
+          fillOpacity="0.59"
           points="0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	"
         />,
         <Polygon
           fill="#E59E00"
-          fillOpacity={0.59}
+          fillOpacity="0.59"
           points="86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	"
         />,
       ],
-      "height": 42,
+      "height": "42",
       "preserveAspectRatio": "xMidYMid meet",
       "viewBox": "0 0 87 84",
-      "width": 43.5,
+      "width": "43.5",
     },
     "ref": null,
     "rendered": Array [
@@ -60,7 +60,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "fill": "#E59E00",
-          "fillOpacity": 0.59,
+          "fillOpacity": "0.59",
           "points": "0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	",
         },
         "ref": null,
@@ -73,7 +73,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "fill": "#E59E00",
-          "fillOpacity": 0.59,
+          "fillOpacity": "0.59",
           "points": "86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	",
         },
         "ref": null,
@@ -96,19 +96,19 @@ ShallowWrapper {
           />,
           <Polygon
             fill="#E59E00"
-            fillOpacity={0.59}
+            fillOpacity="0.59"
             points="0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	"
           />,
           <Polygon
             fill="#E59E00"
-            fillOpacity={0.59}
+            fillOpacity="0.59"
             points="86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	"
           />,
         ],
-        "height": 42,
+        "height": "42",
         "preserveAspectRatio": "xMidYMid meet",
         "viewBox": "0 0 87 84",
-        "width": 43.5,
+        "width": "43.5",
       },
       "ref": null,
       "rendered": Array [
@@ -130,7 +130,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "fill": "#E59E00",
-            "fillOpacity": 0.59,
+            "fillOpacity": "0.59",
             "points": "0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	",
           },
           "ref": null,
@@ -143,7 +143,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "fill": "#E59E00",
-            "fillOpacity": 0.59,
+            "fillOpacity": "0.59",
             "points": "86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	",
           },
           "ref": null,
@@ -202,19 +202,19 @@ ShallowWrapper {
         />,
         <Polygon
           fill="#C4C4C4"
-          fillOpacity={0.59}
+          fillOpacity="0.59"
           points="0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	"
         />,
         <Polygon
           fill="#C4C4C4"
-          fillOpacity={0.59}
+          fillOpacity="0.59"
           points="86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	"
         />,
       ],
-      "height": 42,
+      "height": "42",
       "preserveAspectRatio": "xMidYMid meet",
       "viewBox": "0 0 87 84",
-      "width": 43.5,
+      "width": "43.5",
     },
     "ref": null,
     "rendered": Array [
@@ -236,7 +236,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "fill": "#C4C4C4",
-          "fillOpacity": 0.59,
+          "fillOpacity": "0.59",
           "points": "0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	",
         },
         "ref": null,
@@ -249,7 +249,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "fill": "#C4C4C4",
-          "fillOpacity": 0.59,
+          "fillOpacity": "0.59",
           "points": "86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	",
         },
         "ref": null,
@@ -272,19 +272,19 @@ ShallowWrapper {
           />,
           <Polygon
             fill="#C4C4C4"
-            fillOpacity={0.59}
+            fillOpacity="0.59"
             points="0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	"
           />,
           <Polygon
             fill="#C4C4C4"
-            fillOpacity={0.59}
+            fillOpacity="0.59"
             points="86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	"
           />,
         ],
-        "height": 42,
+        "height": "42",
         "preserveAspectRatio": "xMidYMid meet",
         "viewBox": "0 0 87 84",
-        "width": 43.5,
+        "width": "43.5",
       },
       "ref": null,
       "rendered": Array [
@@ -306,7 +306,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "fill": "#C4C4C4",
-            "fillOpacity": 0.59,
+            "fillOpacity": "0.59",
             "points": "0.4,31.8 30.6,48.8 16.8,82.5 27.1,51.2 	",
           },
           "ref": null,
@@ -319,7 +319,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "fill": "#C4C4C4",
-            "fillOpacity": 0.59,
+            "fillOpacity": "0.59",
             "points": "86.6,31.8 56.4,48.8 70.2,82.5 59.9,51.2 	",
           },
           "ref": null,

@@ -27,8 +27,8 @@ const getIcon = (status: IProps["status"]) => {
                     <Polyline
                         fill="none"
                         stroke="white"
-                        strokeWidth={5}
-                        strokeMiterlimit={10}
+                        strokeWidth="5"
+                        strokeMiterlimit="10"
                         points="38.4,51.8 51.6,65 71.6,45"
                     />
                 </G>
@@ -39,8 +39,8 @@ const getIcon = (status: IProps["status"]) => {
                     <Line
                         fill="none"
                         stroke="white"
-                        strokeWidth={5}
-                        strokeMiterlimit={10}
+                        strokeWidth="5"
+                        strokeMiterlimit="10"
                         x1="45.1"
                         y1="64.9"
                         x2="64.9"
@@ -49,8 +49,8 @@ const getIcon = (status: IProps["status"]) => {
                     <Line
                         fill="none"
                         stroke="white"
-                        strokeWidth={5}
-                        strokeMiterlimit={10}
+                        strokeWidth="5"
+                        strokeMiterlimit="10"
                         x1="64.9"
                         y1="64.9"
                         x2="45.1"
@@ -64,8 +64,8 @@ const getIcon = (status: IProps["status"]) => {
                     <Line
                         fill="none"
                         stroke="white"
-                        strokeWidth={5}
-                        strokeMiterlimit={10}
+                        strokeWidth="5"
+                        strokeMiterlimit="10"
                         x1="41"
                         y1="55"
                         x2="69"
@@ -74,8 +74,8 @@ const getIcon = (status: IProps["status"]) => {
                     <Line
                         fill="none"
                         stroke="white"
-                        strokeWidth={5}
-                        strokeMiterlimit={10}
+                        strokeWidth="5"
+                        strokeMiterlimit="10"
                         x1="55"
                         y1="69"
                         x2="55"
@@ -89,7 +89,7 @@ const getIcon = (status: IProps["status"]) => {
 };
 
 const LeaderboardCircle: SFC<IProps> = ({ status }) => (
-    <Svg width={55} height={55} viewBox="0 0 110 110">
+    <Svg width="55" height="55" viewBox="0 0 110 110">
         <Circle fill={getColour(status)} cx="55" cy="55" r="55" />
         {getIcon(status)}
     </Svg>

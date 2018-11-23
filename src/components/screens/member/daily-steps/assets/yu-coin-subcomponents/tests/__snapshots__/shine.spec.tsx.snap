@@ -18,8 +18,8 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": <G
-        fillOpacity={0.5}
-        x={-500}
+        fillOpacity="0.5"
+        x="-500"
       >
         <Polygon
           fill="#FFF"
@@ -30,7 +30,7 @@ ShallowWrapper {
           points="141.6,277.7 419,0.3 471.5,0.3 194.1,277.7"
         />
       </G>,
-      "height": 109,
+      "height": "109",
       "preserveAspectRatio": "xMidYMid meet",
       "style": Object {
         "alignItems": "center",
@@ -44,7 +44,7 @@ ShallowWrapper {
         "top": 0,
       },
       "viewBox": "0 0 212 218",
-      "width": 106,
+      "width": "106",
     },
     "ref": null,
     "rendered": Object {
@@ -62,8 +62,8 @@ ShallowWrapper {
             points="141.6,277.7 419,0.3 471.5,0.3 194.1,277.7"
           />,
         ],
-        "fillOpacity": 0.5,
-        "x": -500,
+        "fillOpacity": "0.5",
+        "x": "-500",
       },
       "ref": null,
       "rendered": Array [
@@ -103,8 +103,8 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": <G
-          fillOpacity={0.5}
-          x={-500}
+          fillOpacity="0.5"
+          x="-500"
         >
           <Polygon
             fill="#FFF"
@@ -115,7 +115,7 @@ ShallowWrapper {
             points="141.6,277.7 419,0.3 471.5,0.3 194.1,277.7"
           />
         </G>,
-        "height": 109,
+        "height": "109",
         "preserveAspectRatio": "xMidYMid meet",
         "style": Object {
           "alignItems": "center",
@@ -129,7 +129,7 @@ ShallowWrapper {
           "top": 0,
         },
         "viewBox": "0 0 212 218",
-        "width": 106,
+        "width": "106",
       },
       "ref": null,
       "rendered": Object {
@@ -147,8 +147,8 @@ ShallowWrapper {
               points="141.6,277.7 419,0.3 471.5,0.3 194.1,277.7"
             />,
           ],
-          "fillOpacity": 0.5,
-          "x": -500,
+          "fillOpacity": "0.5",
+          "x": "-500",
         },
         "ref": null,
         "rendered": Array [

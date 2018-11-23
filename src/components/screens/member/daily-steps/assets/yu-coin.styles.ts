@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 });
 
 export const svgSpecs = {
-    height: 109,
+    height: "109",
     style: {
         alignItems: "center",
         borderRadius: (106) / 2,
@@ -27,7 +27,7 @@ export const svgSpecs = {
         overflow: "hidden"
     } as ViewStyle,
     viewBox: "0 0 212 218",
-    width: 106
+    width: "106"
 };
 
 export default styles;

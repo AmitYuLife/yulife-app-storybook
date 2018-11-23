@@ -43,8 +43,8 @@ const Calendar: SFC<IProps> = ({
 }) => (
     <Svg
         style={style}
-        height={size * scale}
-        width={size * scale}
+        height={String(size * scale)}
+        width={String(size * scale)}
         viewBox="0 0 74 74"
     >
         <Path
@@ -53,15 +53,15 @@ const Calendar: SFC<IProps> = ({
             fill={"rgba(255,255,255,1)"}
         />
         <Circle
-            cx={size / 2}
-            cy={size / 2}
-            r={size / 2}
+            cx={String(size / 2)}
+            cy={String(size / 2)}
+            r={String(size / 2)}
             fill={"rgba(255,255,255,0.2)"}
         />
         <Circle
-            cx={size / 2}
-            cy={size / 2}
-            r={size / 2 - 3}
+            cx={String(size / 2)}
+            cy={String(size / 2)}
+            r={String(size / 2 - 3)}
             fill={backgroundColor}
         />
         <Path

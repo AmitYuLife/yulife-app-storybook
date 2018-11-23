@@ -49,8 +49,8 @@ class Shine extends PureComponent<{}, IState> {
         return (
             <Svg {...svgSpecs} style={StyleSheet.flatten([svgSpecs.style, StyleSheet.absoluteFill])}>
                 <G
-                    x={this.state.x}
-                    fillOpacity={0.5}
+                    x={String(this.state.x)}
+                    fillOpacity="0.5"
                 >
                     <Polygon
                         fill="#FFF"

@@ -59,14 +59,14 @@ ShallowWrapper {
           points="0,1092.6 750,1075.7 750,1334 0,1334 "
         />,
       ],
-      "height": 1334,
+      "height": "1334",
       "preserveAspectRatio": "xMidYMid meet",
       "style": Object {
         "left": 0,
         "top": -20,
       },
       "viewBox": "0 0 750 1334",
-      "width": 750,
+      "width": "750",
     },
     "ref": null,
     "rendered": Array [
@@ -229,14 +229,14 @@ ShallowWrapper {
             points="0,1092.6 750,1075.7 750,1334 0,1334 "
           />,
         ],
-        "height": 1334,
+        "height": "1334",
         "preserveAspectRatio": "xMidYMid meet",
         "style": Object {
           "left": 0,
           "top": -20,
         },
         "viewBox": "0 0 750 1334",
-        "width": 750,
+        "width": "750",
       },
       "ref": null,
       "rendered": Array [
@@ -433,14 +433,14 @@ ShallowWrapper {
           points="0,1092.6 750,1075.7 750,1334 0,1334 "
         />,
       ],
-      "height": 1334,
+      "height": "1334",
       "preserveAspectRatio": "xMidYMid meet",
       "style": Object {
         "left": 0,
         "top": -20,
       },
       "viewBox": "0 0 750 1334",
-      "width": 750,
+      "width": "750",
     },
     "ref": null,
     "rendered": Array [
@@ -603,14 +603,14 @@ ShallowWrapper {
             points="0,1092.6 750,1075.7 750,1334 0,1334 "
           />,
         ],
-        "height": 1334,
+        "height": "1334",
         "preserveAspectRatio": "xMidYMid meet",
         "style": Object {
           "left": 0,
           "top": -20,
         },
         "viewBox": "0 0 750 1334",
-        "width": 750,
+        "width": "750",
       },
       "ref": null,
       "rendered": Array [

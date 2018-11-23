@@ -15,8 +15,8 @@ const ChallengeSetBackground = () => (
     <Svg
         style={styles.wrapper}
         viewBox="0 0 750 1334"
-        width={width}
-        height={height}
+        width={String(width)}
+        height={String(height)}
     >
         <LinearGradient
             id="SVGID_1_"

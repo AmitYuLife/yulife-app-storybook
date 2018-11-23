@@ -18,10 +18,10 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": <Svg
-        height={205}
+        height="205"
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 410 410"
-        width={205}
+        width="205"
       >
         <RadialGradient
           cx="205"
@@ -88,10 +88,10 @@ ShallowWrapper {
             fill="url(#SVGID_1_)"
           />,
         ],
-        "height": 205,
+        "height": "205",
         "preserveAspectRatio": "xMidYMid meet",
         "viewBox": "0 0 410 410",
-        "width": 205,
+        "width": "205",
       },
       "ref": null,
       "rendered": Array [
@@ -174,10 +174,10 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": <Svg
-          height={205}
+          height="205"
           preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 410 410"
-          width={205}
+          width="205"
         >
           <RadialGradient
             cx="205"
@@ -244,10 +244,10 @@ ShallowWrapper {
               fill="url(#SVGID_1_)"
             />,
           ],
-          "height": 205,
+          "height": "205",
           "preserveAspectRatio": "xMidYMid meet",
           "viewBox": "0 0 410 410",
-          "width": 205,
+          "width": "205",
         },
         "ref": null,
         "rendered": Array [

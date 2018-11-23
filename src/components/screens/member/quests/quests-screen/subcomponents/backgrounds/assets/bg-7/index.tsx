@@ -30,19 +30,19 @@ const BackgroundImage = () => (
         {/* CLOUDS END */}
 
         {/* FOREST/SOIL START */}
-        <G fillOpacity={0.7}>
+        <G fillOpacity="0.7">
             <Circle fill="#D4FCF4" cx="688" cy="1045.4" r="28.1" />
             <Polygon fill="#CEDDCE" points="688,1054.8 684.4,1094 691.6,1094" />
         </G>
-        <G fillOpacity={0.7}>
+        <G fillOpacity="0.7">
             <Circle fill="#C4F7EE" cx="153" cy="1033.6" r="30" />
             <Polygon fill="#CEDDCE" points="153,1043.6 149.2,1085.4 156.9,1085.4" />
         </G>
-        <G fillOpacity={0.7}>
+        <G fillOpacity="0.7">
             <Circle fill="#D4FCF4" cx="123.7" cy="1049.5" r="23.2" />
             <Polygon fill="#CEDDCE" points="123.7,1057.2 120.8,1089.5 126.7,1089.5" />
         </G>
-        <G fillOpacity={0.7}>
+        <G fillOpacity="0.7">
             <Circle fill="#C4F7EE" cx="718" cy="1054.3" r="25.1" />
             <Polygon fill="#CEDDCE" points="718,1062.7 714.8,1097.7 721.2,1097.7" />
         </G>
@@ -58,19 +58,19 @@ const BackgroundImage = () => (
         </G>
         <Path fillRule="evenodd" clipRule="evenodd" fill="#FFDE14" d="M433,1078.1c-5.4,1.1-12.8,0.5-12.8,0.5c-2.5,0-4.6-2.1-4.6-4.6l0,0c0-2.5,2.1-4.6,4.6-4.6h5.4c6,0,10.9-4.9,10.9-10.9v-21.1c0-14.2,11.6-26.2,25.8-26.1c14,0.1,25.4,11.4,25.5,25.5c0.1,14.2-11.9,25.8-26.1,25.8h-7.6c-3.7,0-7.2,1.9-9.2,5.1C441.8,1072.6,438.8,1076.9,433,1078.1z" />
         <Circle fillRule="evenodd" clipRule="evenodd" fill="#FFDE14" cx="476.2" cy="1025.2" r="21.7" />
-        <Circle fillOpacity={0.35} fillRule="evenodd" clipRule="evenodd" fill="#CCC7B2" cx="476.2" cy="1025.1" r="21.7" />
+        <Circle fillOpacity="0.35" fillRule="evenodd" clipRule="evenodd" fill="#CCC7B2" cx="476.2" cy="1025.1" r="21.7" />
         <Ellipse fillRule="evenodd" clipRule="evenodd" fill="#FFDE14" cx="474.3" cy="1025.2" rx="19.8" ry="21.7" />
 
         <Circle fillRule="evenodd" clipRule="evenodd" fill="#3D3D3D" cx="449" cy="1036.2" r="3.3" />
         <Circle fillRule="evenodd" clipRule="evenodd" fill="#FFFFFF" cx="447.9" cy="1035.1" r="1.2" />
 
-        <G fillOpacity={0.35}>
+        <G fillOpacity="0.35">
             <Path fillRule="evenodd" clipRule="evenodd" fill="#CCC7B2" d="M438.5,1061.7c-0.7-0.2-1.5-0.5-2.3-0.8c-0.1,0.4-0.2,0.8-0.3,1.2c0.9,0.1,1.7,0.3,2.4,0.4C438.8,1062.5,439,1061.9,438.5,1061.7z" />
             <Path fillRule="evenodd" clipRule="evenodd" fill="#CCC7B2" d="M437.2,1065c-0.6-0.4-1.3-0.9-2-1.3c-0.2,0.4-0.4,0.7-0.6,1c0.8,0.3,1.5,0.7,2.2,1C437.3,1065.8,437.6,1065.2,437.2,1065z" />
             <Path fillRule="evenodd" clipRule="evenodd" fill="#CCC7B2" d="M439,1058.3c-0.8,0-1.6-0.1-2.4-0.2v0.5c0,0.3,0,0.5,0,0.8c0.9-0.1,1.7-0.2,2.5-0.3C439.5,1059,439.4,1058.3,439,1058.3z" />
             <Path fillRule="evenodd" clipRule="evenodd" fill="#CCC7B2" d="M435.1,1067.7c-0.5-0.5-1-1.1-1.6-1.8c-0.3,0.3-0.6,0.6-0.9,0.8c0.7,0.5,1.3,1,1.9,1.5C435,1068.6,435.4,1068.1,435.1,1067.7z" />
         </G>
-        <Path fillOpacity={0.35} fillRule="evenodd" clipRule="evenodd" fill="#CCC7B2" d="M464.9,1055.7c-2.7,3.5-6.7,5.8-10.9,6.9c0,0,0.1,0,0.1,0h7.6c0.2,0,0.4,0,0.7,0c1.9-1.2,3.5-2.7,4.9-4.5C468.6,1056.4,466.2,1054,464.9,1055.7z" />
+        <Path fillOpacity="0.35" fillRule="evenodd" clipRule="evenodd" fill="#CCC7B2" d="M464.9,1055.7c-2.7,3.5-6.7,5.8-10.9,6.9c0,0,0.1,0,0.1,0h7.6c0.2,0,0.4,0,0.7,0c1.9-1.2,3.5-2.7,4.9-4.5C468.6,1056.4,466.2,1054,464.9,1055.7z" />
         <Path fill="#FCF0B4" d="M451,1053.2c1,1.6,1.8,3.3,2.5,5.1c-3.2,1.2-6.7,1.9-10.4,2.1c-9.6,0.4-18.4-3.3-24.8-9.5c5.7,3.7,12.5,5.7,19.8,5.4C442.7,1056.1,447.1,1055,451,1053.2z" />
 
         <LinearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="375" y1="1098" x2="375" y2="1314.0834">

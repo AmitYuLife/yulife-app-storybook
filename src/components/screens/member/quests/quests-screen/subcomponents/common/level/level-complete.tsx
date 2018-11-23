@@ -11,10 +11,10 @@ interface IProps {
 const LevelComplete: SFC<IProps> = ({ level, rating }) => (
     <G>
         <Text
-            y={5}
+            y="5"
             textAnchor="middle"
             fill="white"
-            fontSize={22 * 2}
+            fontSize={String(22 * 2)}
             fontFamily={Style.FONT_FAMILY_PRIMARY}
             fontWeight="normal"
         >

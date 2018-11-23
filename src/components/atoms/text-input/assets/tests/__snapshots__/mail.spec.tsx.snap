@@ -33,10 +33,10 @@ ShallowWrapper {
           strokeWidth={1}
         />,
       ],
-      "height": 38,
+      "height": "38",
       "preserveAspectRatio": "xMidYMid meet",
       "viewBox": "0 0 52 38",
-      "width": 52,
+      "width": "52",
     },
     "ref": null,
     "rendered": Array [
@@ -108,10 +108,10 @@ ShallowWrapper {
             strokeWidth={1}
           />,
         ],
-        "height": 38,
+        "height": "38",
         "preserveAspectRatio": "xMidYMid meet",
         "viewBox": "0 0 52 38",
-        "width": 52,
+        "width": "52",
       },
       "ref": null,
       "rendered": Array [

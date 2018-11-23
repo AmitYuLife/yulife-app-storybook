@@ -39,10 +39,10 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Svg
-          height={62}
+          height="62"
           preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 457 124"
-          width={228}
+          width="228"
         >
           <Lines
             colour="light"
@@ -236,10 +236,10 @@ ShallowWrapper {
               isVisible={true}
             />,
           ],
-          "height": 62,
+          "height": "62",
           "preserveAspectRatio": "xMidYMid meet",
           "viewBox": "0 0 457 124",
-          "width": 228,
+          "width": "228",
         },
         "ref": null,
         "rendered": Array [
@@ -800,10 +800,10 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Svg
-            height={62}
+            height="62"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 457 124"
-            width={228}
+            width="228"
           >
             <Lines
               colour="light"
@@ -997,10 +997,10 @@ ShallowWrapper {
                 isVisible={true}
               />,
             ],
-            "height": 62,
+            "height": "62",
             "preserveAspectRatio": "xMidYMid meet",
             "viewBox": "0 0 457 124",
-            "width": 228,
+            "width": "228",
           },
           "ref": null,
           "rendered": Array [
@@ -1615,10 +1615,10 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Svg
-          height={62}
+          height="62"
           preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 457 124"
-          width={228}
+          width="228"
         >
           <Lines
             colour="light"
@@ -1812,10 +1812,10 @@ ShallowWrapper {
               isVisible={false}
             />,
           ],
-          "height": 62,
+          "height": "62",
           "preserveAspectRatio": "xMidYMid meet",
           "viewBox": "0 0 457 124",
-          "width": 228,
+          "width": "228",
         },
         "ref": null,
         "rendered": Array [
@@ -2376,10 +2376,10 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Svg
-            height={62}
+            height="62"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 457 124"
-            width={228}
+            width="228"
           >
             <Lines
               colour="light"
@@ -2573,10 +2573,10 @@ ShallowWrapper {
                 isVisible={false}
               />,
             ],
-            "height": 62,
+            "height": "62",
             "preserveAspectRatio": "xMidYMid meet",
             "viewBox": "0 0 457 124",
-            "width": 228,
+            "width": "228",
           },
           "ref": null,
           "rendered": Array [
@@ -3191,10 +3191,10 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Svg
-          height={62}
+          height="62"
           preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 457 124"
-          width={228}
+          width="228"
         >
           <Lines
             colour="light"
@@ -3388,10 +3388,10 @@ ShallowWrapper {
               isVisible={true}
             />,
           ],
-          "height": 62,
+          "height": "62",
           "preserveAspectRatio": "xMidYMid meet",
           "viewBox": "0 0 457 124",
-          "width": 228,
+          "width": "228",
         },
         "ref": null,
         "rendered": Array [
@@ -3952,10 +3952,10 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Svg
-            height={62}
+            height="62"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 457 124"
-            width={228}
+            width="228"
           >
             <Lines
               colour="light"
@@ -4149,10 +4149,10 @@ ShallowWrapper {
                 isVisible={true}
               />,
             ],
-            "height": 62,
+            "height": "62",
             "preserveAspectRatio": "xMidYMid meet",
             "viewBox": "0 0 457 124",
-            "width": 228,
+            "width": "228",
           },
           "ref": null,
           "rendered": Array [
@@ -4767,10 +4767,10 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Svg
-          height={62}
+          height="62"
           preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 457 124"
-          width={228}
+          width="228"
         >
           <Lines
             colour="light"
@@ -4964,10 +4964,10 @@ ShallowWrapper {
               isVisible={false}
             />,
           ],
-          "height": 62,
+          "height": "62",
           "preserveAspectRatio": "xMidYMid meet",
           "viewBox": "0 0 457 124",
-          "width": 228,
+          "width": "228",
         },
         "ref": null,
         "rendered": Array [
@@ -5528,10 +5528,10 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Svg
-            height={62}
+            height="62"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 457 124"
-            width={228}
+            width="228"
           >
             <Lines
               colour="light"
@@ -5725,10 +5725,10 @@ ShallowWrapper {
                 isVisible={false}
               />,
             ],
-            "height": 62,
+            "height": "62",
             "preserveAspectRatio": "xMidYMid meet",
             "viewBox": "0 0 457 124",
-            "width": 228,
+            "width": "228",
           },
           "ref": null,
           "rendered": Array [
@@ -6343,10 +6343,10 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Svg
-          height={62}
+          height="62"
           preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 457 124"
-          width={228}
+          width="228"
         >
           <Lines
             colour="light"
@@ -6540,10 +6540,10 @@ ShallowWrapper {
               isVisible={true}
             />,
           ],
-          "height": 62,
+          "height": "62",
           "preserveAspectRatio": "xMidYMid meet",
           "viewBox": "0 0 457 124",
-          "width": 228,
+          "width": "228",
         },
         "ref": null,
         "rendered": Array [
@@ -7104,10 +7104,10 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Svg
-            height={62}
+            height="62"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 457 124"
-            width={228}
+            width="228"
           >
             <Lines
               colour="light"
@@ -7301,10 +7301,10 @@ ShallowWrapper {
                 isVisible={true}
               />,
             ],
-            "height": 62,
+            "height": "62",
             "preserveAspectRatio": "xMidYMid meet",
             "viewBox": "0 0 457 124",
-            "width": 228,
+            "width": "228",
           },
           "ref": null,
           "rendered": Array [
@@ -7919,10 +7919,10 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Svg
-          height={62}
+          height="62"
           preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 457 124"
-          width={228}
+          width="228"
         >
           <Lines
             colour="light"
@@ -8116,10 +8116,10 @@ ShallowWrapper {
               isVisible={false}
             />,
           ],
-          "height": 62,
+          "height": "62",
           "preserveAspectRatio": "xMidYMid meet",
           "viewBox": "0 0 457 124",
-          "width": 228,
+          "width": "228",
         },
         "ref": null,
         "rendered": Array [
@@ -8680,10 +8680,10 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Svg
-            height={62}
+            height="62"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 457 124"
-            width={228}
+            width="228"
           >
             <Lines
               colour="light"
@@ -8877,10 +8877,10 @@ ShallowWrapper {
                 isVisible={false}
               />,
             ],
-            "height": 62,
+            "height": "62",
             "preserveAspectRatio": "xMidYMid meet",
             "viewBox": "0 0 457 124",
-            "width": 228,
+            "width": "228",
           },
           "ref": null,
           "rendered": Array [

@@ -9,7 +9,7 @@ interface IProps {
 }
 
 const Coupon: SFC<IProps> = ({ hasCheckmark, fill }) => (
-    <Svg width={73 * 0.5} height={43 * 0.5} viewBox="0 0 73 43">
+    <Svg width={String(73 * 0.5)} height={String(43 * 0.5)} viewBox="0 0 73 43">
         <Path fill={fill} d="M71.5,14H73V0H10v6H0v14h1.5C4,20,6,22,6,24.5S4,29,1.5,29H0v14h67v-6h6V23h-1.5C69,23,67,21,67,18.5S69,14,71.5,14z M64,40H3v-8.2c3.4-0.7,6-3.7,6-7.3s-2.6-6.7-6-7.3V9h61v8.2c-3.4,0.7-6,3.7-6,7.3s2.6,6.7,6,7.3V40z M70,25.8V34h-3v-5h-1.5C63,29,61,27,61,24.5c0-2,1.4-3.7,3.2-4.3C64.9,23,67.1,25.3,70,25.8z M27,6V3h-3v3H13V3h57v8.2c-1.1,0.2-2.1,0.7-3,1.4V6H27z"/>
         <Rect x="52" y="9" fill={fill} width="3" height="2.5" />
         <Rect x="52" y="29.8" fill={fill} width="3" height="4.8" />

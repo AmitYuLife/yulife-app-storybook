@@ -98,7 +98,7 @@ class Level extends PureComponent<IProps, IState> {
                         fill={fill}
                         cx={cx}
                         cy={cy}
-                        r={50}
+                        r="50"
                     />
                     <LockIcon x={cx} y={cy} />
                 </G>

@@ -31,10 +31,10 @@ ShallowWrapper {
           fill="#E20177"
         />,
       ],
-      "height": 37,
+      "height": "37",
       "preserveAspectRatio": "xMidYMid meet",
       "viewBox": "0 0 74 74",
-      "width": 37,
+      "width": "37",
     },
     "ref": null,
     "rendered": Array [
@@ -97,10 +97,10 @@ ShallowWrapper {
             fill="#E20177"
           />,
         ],
-        "height": 37,
+        "height": "37",
         "preserveAspectRatio": "xMidYMid meet",
         "viewBox": "0 0 74 74",
-        "width": 37,
+        "width": "37",
       },
       "ref": null,
       "rendered": Array [

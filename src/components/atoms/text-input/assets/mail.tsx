@@ -10,8 +10,8 @@ interface IProps {
 
 const Mail: SFC<IProps> = ({ scale = 1, colour }) => (
     <Svg
-        width={52 * scale}
-        height={38 * scale}
+        width={String(52 * scale)}
+        height={String(38 * scale)}
         viewBox="0 0 52 38"
     >
         <G>

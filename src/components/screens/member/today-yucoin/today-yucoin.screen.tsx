@@ -84,10 +84,10 @@ class TodayYucoinScreen extends PureComponent<IProps> {
                                 <Rect y="4" width="305" height="4" fill="rgb(233,233,233)" />
                                 <Rect
                                     y="4"
-                                    width={
+                                    width={String(
                                         (steps < 2000 ? (steps * 18) / 2000 : 18) +
-                                        (steps * 305) / (exchangeRate.steps * 7)
-                                    }
+                                            (steps * 305) / (exchangeRate.steps * 7)
+                                    )}
                                     height="4"
                                     fill="black"
                                 />

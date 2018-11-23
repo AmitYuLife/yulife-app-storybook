@@ -83,7 +83,7 @@ class NavBar extends PureComponent<IProps, IState> {
                     width: 280
                 }}
             >
-                <Svg width={228} height={62} viewBox="0 0 457 124">
+                <Svg width="228" height="62" viewBox="0 0 457 124">
                     <Lines colour={colour} isExtended={!onDismissPress && !hasNotification} />
                     {icons.map((Icon, index) => (
                         <Icon

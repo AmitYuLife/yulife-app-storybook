@@ -29,10 +29,10 @@ ShallowWrapper {
           stroke="rgb(204,204,204)"
         />
       </G>,
-      "height": 54,
+      "height": "54",
       "preserveAspectRatio": "xMidYMid meet",
       "viewBox": "0 0 52 54",
-      "width": 52,
+      "width": "52",
     },
     "ref": null,
     "rendered": Object {
@@ -104,10 +104,10 @@ ShallowWrapper {
             stroke="rgb(204,204,204)"
           />
         </G>,
-        "height": 54,
+        "height": "54",
         "preserveAspectRatio": "xMidYMid meet",
         "viewBox": "0 0 52 54",
-        "width": 52,
+        "width": "52",
       },
       "ref": null,
       "rendered": Object {

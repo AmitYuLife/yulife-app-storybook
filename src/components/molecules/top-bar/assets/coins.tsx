@@ -12,22 +12,22 @@ interface IProps {
 const Coins: SFC<IProps> = ({ scale = 0.5, style, color }) => (
     <Svg
         style={style}
-        height={61 * scale}
-        width={73 * scale}
+        height={String(61 * scale)}
+        width={String(73 * scale)}
         viewBox="0 0 73 61"
     >
         <Path
             fill="none"
             stroke={color || "#333"}
-            strokeWidth={3}
-            strokeMiterlimit={10}
+            strokeWidth="3"
+            strokeMiterlimit="10"
             d="M47.7,51.8"
         />
         <Path
             fill="none"
             stroke={color || "#333"}
-            strokeWidth={3}
-            strokeMiterlimit={10}
+            strokeWidth="3"
+            strokeMiterlimit="10"
             d="M47.7,42.7"
         />
         <Path
@@ -39,30 +39,30 @@ const Coins: SFC<IProps> = ({ scale = 0.5, style, color }) => (
             x="31.7"
             y="0.9"
             fill={color || "#333"}
-            width={6 * scale}
-            height={18 * scale}
+            width={String(6 * scale)}
+            height={String(18 * scale)}
         />
         <Rect
             x="18.5"
             y="4.4"
             transform="matrix(0.866 -0.5 0.5 0.866 -1.8019 11.1796)"
             fill={color || "#333"}
-            width={6 * scale}
-            height={18 * scale}
+            width={String(6 * scale)}
+            height={String(18 * scale)}
         />
         <Rect
             x="8.7"
             y="14.1"
             transform="matrix(0.5 -0.8661 0.8661 0.5 -11.0388 18.2095)"
             fill={color || "#333"}
-            width={6 * scale}
-            height={18 * scale}
+            width={String(6 * scale)}
+            height={String(18 * scale)}
         />
         <Path
             fill="none"
             stroke={color || "#333"}
-            strokeWidth={3}
-            strokeMiterlimit={10}
+            strokeWidth="3"
+            strokeMiterlimit="10"
             d="M25.1,51.8"
         />
     </Svg>

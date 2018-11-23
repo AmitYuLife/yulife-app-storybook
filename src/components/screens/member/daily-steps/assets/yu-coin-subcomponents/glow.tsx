@@ -13,8 +13,8 @@ const Glow = () => (
         }}
     >
         <Svg
-            height={205}
-            width={205}
+            height="205"
+            width="205"
             viewBox="0 0 410 410"
         >
             <RadialGradient

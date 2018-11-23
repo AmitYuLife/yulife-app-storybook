@@ -9,10 +9,10 @@ interface IProps {
 const LevelNext: SFC<IProps> = ({ level }) => (
     <G>
         <Text
-            y={13}
+            y="13"
             textAnchor="middle"
             fill="white"
-            fontSize={44}
+            fontSize="44"
             fontFamily={Style.FONT_FAMILY_PRIMARY_BOLD}
             fontWeight="bold"
         >
