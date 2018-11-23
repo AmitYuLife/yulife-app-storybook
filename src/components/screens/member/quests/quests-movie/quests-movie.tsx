@@ -1,6 +1,4 @@
 import React from "react";
-import Svg from "react-native-svg";
-import styles, { height, width } from "../quests-screen/subcomponents/backgrounds/episode.styles";
 import frames from "./frames";
 
 interface IState {
@@ -18,10 +16,7 @@ class QuestsMovie extends React.PureComponent<{}, IState> {
     }
 
     public startAnimation = () => {
-        this.frameInterval = global.setInterval(
-            this.goToNextFrame,
-            150
-        );
+        this.frameInterval = global.setInterval(this.goToNextFrame, 150);
     }
 
     public componentWillUnmount() {
@@ -34,16 +29,7 @@ class QuestsMovie extends React.PureComponent<{}, IState> {
 
     public render() {
         const Background = frames[this.state.activeFrame];
-        return (
-            <Svg
-                style={styles.svg}
-                height={String(height)}
-                width={String(width)}
-                viewBox="0 0 750 1334"
-            >
-                <Background />
-            </Svg >
-        );
+        return <Background />;
     }
 }
 
