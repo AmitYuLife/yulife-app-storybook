@@ -22,7 +22,7 @@ import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions
 import { IStreaks, streaksSelector } from "../../../../redux/streaks/streaks.selectors";
 import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
-import { DailyStepsScreen, QuestsMovie } from "../../../screens";
+import { DailyStepsScreen } from "../../../screens";
 
 interface IConnectedState {
     appState: string;
@@ -47,13 +47,11 @@ type Props = IMainTabsProps & IConnectedState & IConnectedDispatch;
 interface IState {
     dailyStepsLoading: boolean;
     lastUpdate?: string;
-    huinea?: boolean;
 }
 
 class DailyStepsContainer extends PureComponent<Props, IState> {
     public state: IState = {
-        dailyStepsLoading: true,
-        huinea: false
+        dailyStepsLoading: true
     };
     private backHandler: NativeEventSubscription;
     private backPressed: number = 0;
@@ -105,13 +103,10 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
             streaks,
             totalCoins
         } = this.props;
-        const { dailyStepsLoading, lastUpdate, huinea } = this.state;
+        const { dailyStepsLoading, lastUpdate } = this.state;
 
         const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
 
-        if (huinea) {
-            return (<QuestsMovie />);
-        }
         return (
             <FitKitAvailable>
                 {({ available, authorised, authorise, loading }) => {
@@ -161,8 +156,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     private onCta = () => {
-        // this.props.labels[1].onPress();
-        this.setState({ huinea: true });
+        this.props.labels[1].onPress();
     }
 
     private onStreak = () => {
