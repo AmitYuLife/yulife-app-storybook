@@ -79,7 +79,7 @@ class AviosRewardConfirmedContainer extends Component<Props> {
     }
 
     public openRewardsPolicy = async () => {
-        const url = `${Config.API_URL}/docs/rewards-policy.pdf`;
+        const url = Config.REWARDS_POLICY_URL;
         const supported = await Linking.canOpenURL(url);
 
         if (supported) {

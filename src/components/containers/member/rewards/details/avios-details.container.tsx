@@ -219,7 +219,7 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
                 url = `${Config.API_URL}/docs/avios-terms.pdf`;
                 break;
             default:
-                url = `${Config.API_URL}/docs/rewards-policy.pdf`;
+                url = Config.REWARDS_POLICY_URL;
         }
         const supported = await Linking.canOpenURL(url);
 
