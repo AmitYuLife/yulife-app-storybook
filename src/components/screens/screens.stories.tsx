@@ -14,6 +14,7 @@ import {
     ActivityHistoryLevels,
     ChallengeFailedScreen,
     ChallengeProgressScreen,
+    ChallengesHistoryScreen,
     ChallengesListScreen,
     ChallengeSuccessScreen,
     DailyStepsScreen,
@@ -405,4 +406,132 @@ storiesOf("Screens", module)
     ))
     .add("15. NoAccessScreen", () => (
         <NoAccessScreen />
+    ))
+    .add("16. Challenges List Completed", () => (
+        <ChallengesHistoryScreen
+            onLeftMenuPress={() => null}
+            totalCoins={604}
+            level={{
+                __typename: "Level",
+                id: "aasqweq",
+                level: 1,
+                name: "name",
+                rating: 2,
+                slots: [
+                    {
+                        __typename: "LevelSlot",
+                        availableAtLevel: 1,
+                        id: "asda2",
+                        milestones: [
+                            {
+                                XP: 100,
+                                __typename: "LevelSlotMilestone",
+                                coins: 123,
+                                id: "dsadas",
+                                target: {
+                                    __typename: "MilestoneTarget",
+                                    meditation: 0,
+                                    steps: 0
+                                }
+                            }
+                        ],
+                        passive: true,
+                        rating: 1,
+                        subtype: "brisk walk",
+                        timeLimit: 600,
+                        type: "asdas",
+                        unit: "ssda",
+                        yuCoinAwarded: 3
+                    },
+                    {
+                        __typename: "LevelSlot",
+                        availableAtLevel: 1,
+                        id: "asda3",
+                        milestones: [
+                            {
+                                XP: 100,
+                                __typename: "LevelSlotMilestone",
+                                coins: 123,
+                                id: "dsadas",
+                                target: {
+                                    __typename: "MilestoneTarget",
+                                    meditation: 0,
+                                    steps: 0
+                                }
+                            }
+                        ],
+                        passive: true,
+                        rating: 3,
+                        subtype: "short stroll",
+                        timeLimit: 300,
+                        type: "asdas",
+                        unit: "ssda",
+                        yuCoinAwarded: 1
+                    },
+                    {
+                        __typename: "LevelSlot",
+                        availableAtLevel: 1,
+                        id: "asda4",
+                        milestones: [
+                            {
+                                XP: 100,
+                                __typename: "LevelSlotMilestone",
+                                coins: 123,
+                                id: "dsadas",
+                                target: {
+                                    __typename: "MilestoneTarget",
+                                    meditation: 0,
+                                    steps: 0
+                                }
+                            }
+                        ],
+                        passive: true,
+                        rating: null,
+                        subtype: "long walk",
+                        timeLimit: 1800,
+                        type: "asdas",
+                        unit: "ssda",
+                        yuCoinAwarded: 1
+                    },
+                    {
+                        __typename: "LevelSlot",
+                        availableAtLevel: 1,
+                        id: "asda5",
+                        milestones: [
+                            {
+                                XP: 100,
+                                __typename: "LevelSlotMilestone",
+                                coins: 123,
+                                id: "dsadas",
+                                target: {
+                                    __typename: "MilestoneTarget",
+                                    meditation: 180,
+                                    steps: 0
+                                }
+                            },
+                            {
+                                XP: 100,
+                                __typename: "LevelSlotMilestone",
+                                coins: 123,
+                                id: "dsadas",
+                                target: {
+                                    __typename: "MilestoneTarget",
+                                    meditation: 600,
+                                    steps: 0
+                                }
+                            }
+                        ],
+                        passive: true,
+                        rating: 0,
+                        subtype: "meditation",
+                        timeLimit: 1800,
+                        type: "asdas",
+                        unit: "ssda",
+                        yuCoinAwarded: 0
+                    }
+                ]
+            }}
+            onPressActivityHistory={() => null}
+            onPressCta={() => null}
+        />
     ));

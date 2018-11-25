@@ -2,12 +2,12 @@ import {
     ActivityHistoryContainer,
     AviosRewardConfirmedContainer,
     AviosRewardDetailsContainer,
+    ChallengesHistoryContainer,
     ChallengesListContainer,
     DailyStepsContainer,
     FitKitConnectContainer,
     IntroContainer,
     LeaderboardsContainer,
-    LevelCompleteContainer,
     LinkRewardDetailsContainer,
     LoginContainer,
     MenuContainer,
@@ -63,6 +63,7 @@ export const ROUTES = {
 
     // quests
     questsChallengesList: "yulife.quests.ChallengesList",
+    questsChallengesHistory: "yulife.quests.ChallengesHistory",
 
     // rewards screens
     linkDetails: "yulife.rewards.LinkDetails",
@@ -79,7 +80,6 @@ export const MODALS = {
     collectReward: "yulife.modals.CollectReward",
     generic: "yulife.modals.Generic",
     leaderboards: "yulife.modals.Leaderboards",
-    levelComplete: "yulife.quests.LevelComplete",
     levelUnavailable: "yulife.modals.LevelUnavailable",
     meditationSetUp: "yulife.modals.MeditationSetUp",
     pushNotifications: "yulife.modals.PushNotifications",
@@ -114,6 +114,7 @@ export default [
 
     // quests screens
     { name: ROUTES.questsChallengesList, component: ChallengesListContainer },
+    { name: ROUTES.questsChallengesHistory, component: ChallengesHistoryContainer },
 
     // rewards screens
     { name: ROUTES.linkDetails, component: LinkRewardDetailsContainer },
@@ -130,7 +131,6 @@ export default [
     { name: MODALS.chest, component: AnimatedChest },
     { name: MODALS.collectReward, component: CollectRewardModal },
     { name: MODALS.generic, component: GenericModal },
-    { name: MODALS.levelComplete, component: LevelCompleteContainer },
     { name: MODALS.levelUnavailable, component: LevelUnavailableModal },
     { name: MODALS.meditationSetUp, component: MeditationSetUpModal },
     { name: MODALS.pushNotifications, component: PushNotificationsModal },

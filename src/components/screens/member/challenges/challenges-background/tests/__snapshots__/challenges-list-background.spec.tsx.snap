@@ -3,7 +3,7 @@
 exports[`ChallengeChallengesListBackgroundsListScreen should render 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ChallengeSetBackground />,
+  Symbol(enzyme.__unrendered__): <ChallengesBackground />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -377,7 +377,7 @@ ShallowWrapper {
 exports[`ChallengeChallengesListBackgroundsListScreen should render as Android 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ChallengeSetBackground />,
+  Symbol(enzyme.__unrendered__): <ChallengesBackground />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],

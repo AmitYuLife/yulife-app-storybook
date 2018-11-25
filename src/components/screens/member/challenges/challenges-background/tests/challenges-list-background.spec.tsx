@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
 import * as React from "react";
 import { Platform } from "react-native";
-import ChallengesListBackground from "../challenges-list-background";
+import ChallengesListBackground from "../challenges-background";
 
 describe("ChallengeChallengesListBackgroundsListScreen", () => {
 
