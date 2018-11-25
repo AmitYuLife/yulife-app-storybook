@@ -197,10 +197,6 @@ class QuestsContainer extends PureComponent<Props> {
         Navigation.dismissModal(MODALS.levelUnavailable);
     }
 
-    private dismissLevelCompleteModal = () => {
-        Navigation.dismissModal(MODALS.levelComplete);
-    }
-
     private showChestModal = (level: GetCurrentWorld_getCurrentWorld, isNext: boolean) => {
         const passProps = {
             ctaLabel: isNext ? "let's do it" : "got it",
@@ -262,29 +258,22 @@ class QuestsContainer extends PureComponent<Props> {
         const { componentId, labels } = this.props;
 
         const passProps = {
+            labels,
             level,
             onPressActivityHistory: () => {
-                this.dismissLevelCompleteModal();
                 Navigation.push(componentId, {
                     component: {
                         id: ROUTES.activityHistory,
-                        name: ROUTES.activityHistory,
-                        passProps: {
-                            labels,
-                            level
-                        }
+                        name: ROUTES.activityHistory
                     }
                 });
-            },
-            onPressCta: () => {
-                this.dismissLevelCompleteModal();
             }
         };
 
-        Navigation.showModal({
+        Navigation.push(componentId, {
             component: {
-                id: MODALS.levelComplete,
-                name: MODALS.levelComplete,
+                id: ROUTES.questsChallengesHistory,
+                name: ROUTES.questsChallengesHistory,
                 passProps
             }
         });

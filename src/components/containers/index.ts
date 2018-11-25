@@ -18,8 +18,8 @@ export { default as ActivityHistoryContainer } from "./member/activity-history/a
 export { default as LeaderboardsContainer } from "./member/leaderboards/leaderboards.container";
 
 export { default as QuestsContainer } from "./member/quests/quests.container";
-export { default as LevelCompleteContainer } from "./member/quests/level-complete/level-complete.container";
 export { default as ChallengesListContainer } from "./member/quests/challenges-list/challenges-list.container";
+export { default as ChallengesHistoryContainer } from "./member/quests/challenges-history/challenges-history.container";
 export { default as DailyStepsContainer } from "./member/daily-steps/daily-steps.container";
 export { default as RewardsContainer } from "./member/rewards/rewards.container";
 

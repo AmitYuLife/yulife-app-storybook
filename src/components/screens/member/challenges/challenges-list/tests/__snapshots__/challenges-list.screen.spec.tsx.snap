@@ -35,7 +35,7 @@ ShallowWrapper {
             }
           }
         >
-          <ChallengeSetBackground />
+          <ChallengesBackground />
         </SafeAreaView>,
         <Component
           style={
@@ -92,7 +92,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <ChallengeSetBackground />,
+          "children": <ChallengesBackground />,
           "style": Object {
             "bottom": 0,
             "left": 0,
@@ -217,7 +217,7 @@ ShallowWrapper {
               }
             }
           >
-            <ChallengeSetBackground />
+            <ChallengesBackground />
           </SafeAreaView>,
           <Component
             style={
@@ -274,7 +274,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <ChallengeSetBackground />,
+            "children": <ChallengesBackground />,
             "style": Object {
               "bottom": 0,
               "left": 0,
@@ -444,7 +444,7 @@ ShallowWrapper {
             resizeMode="contain"
             source={
               Object {
-                "testUri": "../../../assets/challenges-list/challenges-list-background.png",
+                "testUri": "../../../assets/challenges/challenges-background.png",
               }
             }
             style={
@@ -516,7 +516,7 @@ ShallowWrapper {
             resizeMode="contain"
             source={
               Object {
-                "testUri": "../../../assets/challenges-list/challenges-list-background.png",
+                "testUri": "../../../assets/challenges/challenges-background.png",
               }
             }
             style={
@@ -544,7 +544,7 @@ ShallowWrapper {
             "resizeMethod": "scale",
             "resizeMode": "contain",
             "source": Object {
-              "testUri": "../../../assets/challenges-list/challenges-list-background.png",
+              "testUri": "../../../assets/challenges/challenges-background.png",
             },
             "style": Object {
               "borderColor": "transparent",
@@ -667,7 +667,7 @@ ShallowWrapper {
               resizeMode="contain"
               source={
                 Object {
-                  "testUri": "../../../assets/challenges-list/challenges-list-background.png",
+                  "testUri": "../../../assets/challenges/challenges-background.png",
                 }
               }
               style={
@@ -739,7 +739,7 @@ ShallowWrapper {
               resizeMode="contain"
               source={
                 Object {
-                  "testUri": "../../../assets/challenges-list/challenges-list-background.png",
+                  "testUri": "../../../assets/challenges/challenges-background.png",
                 }
               }
               style={
@@ -767,7 +767,7 @@ ShallowWrapper {
               "resizeMethod": "scale",
               "resizeMode": "contain",
               "source": Object {
-                "testUri": "../../../assets/challenges-list/challenges-list-background.png",
+                "testUri": "../../../assets/challenges/challenges-background.png",
               },
               "style": Object {
                 "borderColor": "transparent",

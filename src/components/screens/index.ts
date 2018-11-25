@@ -27,6 +27,7 @@ export { default as ChallengeFailedScreen } from "./member/challenges/challenge-
 export { default as ChallengeProgressScreen } from "./member/challenges/challenge-progress/challenge-progress.screen";
 export { default as ChallengeSuccessScreen } from "./member/challenges/challenge-success/challenge-success.screen";
 export { default as ChallengesListScreen } from "./member/challenges/challenges-list/challenges-list.screen";
+export { default as ChallengesHistoryScreen } from "./member/challenges/challenges-history/challenges-history.screen";
 
 // rewards screens
 export { default as AviosRewardConfirmedScreen } from "./member/rewards/confirmed/avios-confirmed.screen";

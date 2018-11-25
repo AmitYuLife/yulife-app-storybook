@@ -9,9 +9,9 @@ import Svg, {
 import styles, {
     height,
     width
-} from "./challenges-list-background.styles";
+} from "./challenges-background.styles";
 
-const ChallengeSetBackground = () => (
+const ChallengesBackground = () => (
     <Svg
         style={styles.wrapper}
         viewBox="0 0 750 1334"
@@ -49,4 +49,4 @@ const ChallengeSetBackground = () => (
     </Svg>
 );
 
-export default ChallengeSetBackground;
+export default ChallengesBackground;

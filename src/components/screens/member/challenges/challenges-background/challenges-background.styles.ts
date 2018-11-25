@@ -4,7 +4,7 @@ import {
     ViewStyle
 } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { Style } from "../../../../../../styles";
+import { Style } from "../../../../../styles";
 
 interface IGetHeightAdjust {
     adjustHeight: number;
