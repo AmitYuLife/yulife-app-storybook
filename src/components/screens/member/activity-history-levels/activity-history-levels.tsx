@@ -11,14 +11,16 @@ export interface IServerProps {
 }
 
 export interface IOwnProps {
+    loading: boolean;
     onPressClose: () => void;
+    onRefresh: () => Promise<void>;
 }
 
 type IProps = IOwnProps & IServerProps;
 
 class ActivityHistoryLevels extends PureComponent<IProps> {
     public render() {
-        const { onPressClose, items } = this.props;
+        const { items, loading, onPressClose, onRefresh } = this.props;
 
         return (
             <SafeAreaView style={styles.wrapper}>
@@ -54,6 +56,8 @@ class ActivityHistoryLevels extends PureComponent<IProps> {
                     <FlatList
                         data={items}
                         keyExtractor={(item) => item.id}
+                        onRefresh={onRefresh}
+                        refreshing={loading}
                         renderItem={({ item, index }) => <Item key={index} {...item} />}
                     />
                 </View>

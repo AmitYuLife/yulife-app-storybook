@@ -346,6 +346,8 @@ storiesOf("Screens", module)
                 }
             ], "Items")}
             onPressClose={action("on press close")}
+            onRefresh={action("on refresh")}
+            loading={boolean("Loading?", false, "Items")}
         />
     ))
     .add("12. Intro", () => (

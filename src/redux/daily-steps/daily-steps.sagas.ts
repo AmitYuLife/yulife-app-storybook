@@ -19,7 +19,7 @@ import { getLastUpdated } from "./daily-steps.selectors";
 
 type HistoricalSteps = AddHistoricalSteps_addHistoricalSteps;
 
-const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
+export const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
     endDateTime: moment(results.endTime).format(),
     startDateTime: moment(results.startTime).format(),
     value: Math.floor(results.steps)
