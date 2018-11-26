@@ -26,11 +26,11 @@ interface IProps extends IConnectedScreenProps {
     data: IChallenge[];
 }
 
-const calculateIndices = (levelsCompleted: number) => {
+const calculateIndices = (currentLevel: number) => {
     return Array.from({ length: 8 }).map((_, i) => {
         const episodeHeight = i * Style.DEVICE_HEIGHT;
         const lockHeight = Style.DEVICE_HEIGHT / 1.5;
-        return !i ? (levelsCompleted < 50 ? lockHeight : episodeHeight) : episodeHeight;
+        return !i ? (currentLevel < 50 ? lockHeight : episodeHeight) : episodeHeight;
     });
 };
 
@@ -47,7 +47,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
     public unityLocker: UnityLockerImage;
     public animateInDelay: NodeJS.Timer;
     public animateOutDelay: NodeJS.Timer;
-    public indices = calculateIndices(this.props.data.length);
+    public indices = calculateIndices(this.props.currentLevel);
     public state = {
         activeIndex: 0,
         colour: COLOURS.LIGHT,
@@ -90,7 +90,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
     public render() {
         const { activeIndex } = this.state;
         const { data, labels, onLeftMenuPress, totalCoins } = this.props;
-        const isLockedLastLevel = this.props.data.length < 50;
+        const isLockedLastLevel = this.props.currentLevel < 50;
 
         return (
             <SafeAreaView style={styles.wrapper}>
@@ -152,7 +152,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
     }
 
     public swipeCallback = ({ prevIndex, currIndex }: ISwipeCallback) => {
-        const isLockedLastLevel = this.props.data.length < 50;
+        const isLockedLastLevel = this.props.currentLevel < 50;
         const toUnity = isLockedLastLevel && prevIndex === 1 && currIndex === 0;
         const fromUnity = isLockedLastLevel && prevIndex === 0 && currIndex === 1;
         if (toUnity) {
