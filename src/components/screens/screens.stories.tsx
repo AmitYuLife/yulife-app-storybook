@@ -23,6 +23,7 @@ import {
     LoginScreen,
     NoAccessScreen,
     QuestsMovie,
+    QuestsNextEpisode,
     QuestsScreen,
     QuestsScreenOffline,
     ResetPasswordScreen,
@@ -407,7 +408,12 @@ storiesOf("Screens", module)
     .add("15. NoAccessScreen", () => (
         <NoAccessScreen />
     ))
-    .add("16. Challenges List Completed", () => (
+    .add("16. QuestsNextEpisode", () => (
+        <QuestsNextEpisode
+            onSkip={action("pressed skip")}
+        />
+    ))
+    .add("17. Challenges List Completed", () => (
         <ChallengesHistoryScreen
             onLeftMenuPress={() => null}
             totalCoins={604}
