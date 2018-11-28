@@ -23,6 +23,7 @@ export { default as TodayYucoinScreen } from "./member/today-yucoin/today-yucoin
 export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";
 export { default as QuestsScreen, IChallenge } from "./member/quests/quests-screen/quests-screen";
 export { default as QuestsMovie } from "./member/quests/quests-movie/quests-movie";
+export { default as QuestsNextEpisode } from "./member/quests/quests-next-episode/quests-next-episode";
 export { default as ChallengeFailedScreen } from "./member/challenges/challenge-failed/challenge-failed.screen";
 export { default as ChallengeProgressScreen } from "./member/challenges/challenge-progress/challenge-progress.screen";
 export { default as ChallengeSuccessScreen } from "./member/challenges/challenge-success/challenge-success.screen";
