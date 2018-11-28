@@ -43,9 +43,7 @@ const BackgroundTwo: React.SFC<React.ReactNode> = ({ children }) => (
         <BackgroundImage2 />
         <G {...episode2PathPlatformAdjustments}>
             <Progress2 />
-            <G y="-10">
-                {children}
-            </G>
+            <G y="-10">{children}</G>
         </G>
     </G>
 );
@@ -86,9 +84,7 @@ const BackgroundSix: React.SFC<React.ReactNode> = ({ children }) => (
         <G {...episode6PathPlatformAdjustments}>
             <Progress6 />
             {/* <G y={-90}> */}
-            <G y={Platform.OS === "ios" ? -84 : -90}>
-                {children}
-            </G>
+            <G y={Platform.OS === "ios" ? -84 : -90}>{children}</G>
         </G>
     </G>
 );
@@ -106,9 +102,7 @@ const BackgroundSeven: React.SFC<React.ReactNode> = ({ children }) => (
 const BackgroundEight: React.SFC<React.ReactNode> = ({ children }) => (
     <G>
         <BackgroundImage8 />
-        <G>
-            {children}
-        </G>
+        <G>{children}</G>
     </G>
 );
 
@@ -118,17 +112,21 @@ const UnityLevelLocker: React.SFC<React.ReactNode> = () => (
     </G>
 );
 
-const getBackgrounds = (isLockedLastLevel: boolean) => {
-    return [
-        isLockedLastLevel ? UnityLevelLocker : BackgroundEight,
-        BackgroundSeven,
-        BackgroundSix,
-        BackgroundFive,
-        BackgroundFour,
-        BackgroundThree,
-        BackgroundTwo,
-        BackgroundOne
-    ];
+const getBackgrounds = (currentWorldNumber: number, isLockedLastLevel: boolean) => {
+    switch (currentWorldNumber) {
+        case 0:
+        default:
+            return [
+                isLockedLastLevel ? UnityLevelLocker : BackgroundEight,
+                BackgroundSeven,
+                BackgroundSix,
+                BackgroundFive,
+                BackgroundFour,
+                BackgroundThree,
+                BackgroundTwo,
+                BackgroundOne
+            ];
+    }
 };
 
 export default getBackgrounds;

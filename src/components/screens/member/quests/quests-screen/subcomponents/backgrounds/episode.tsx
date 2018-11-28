@@ -15,35 +15,41 @@ interface IProps {
     data: IChallenge[];
     episodeNumber: number;
     setUnityLockerRef: (ref: UnityLockerImage) => void;
+    firstLevelNumber: number;
+    worldNumber: number;
 }
 
 class Episode extends PureComponent<IProps> {
-    public getLevel = (index: number) => {
-        return index + 1 + (42 - 7 * (this.props.episodeNumber - 1));
-    }
-
     public handlePressLevel = (level: IChallenge) => {
         return () => {
-            if (level.onPress) {
+            if (level && level.onPress) {
                 level.onPress();
             }
         };
     }
 
     public render() {
-        const { data, episodeNumber, setUnityLockerRef, isLoading, isLockedLastLevel } = this.props;
+        const {
+            data,
+            episodeNumber,
+            firstLevelNumber,
+            isLoading,
+            isLockedLastLevel,
+            setUnityLockerRef,
+            worldNumber
+        } = this.props;
 
         if (isLoading) {
             return <View style={styles.wrapper} />;
         }
 
-        const Background = backgrounds(isLockedLastLevel)[episodeNumber];
+        const Background = backgrounds(worldNumber, isLockedLastLevel)[episodeNumber];
 
         if (!Background) {
             return null;
         }
 
-        const backgroundLevels = levels[episodeNumber];
+        const backgroundLevels = levels[worldNumber][episodeNumber];
 
         return (
             <View style={styles.wrapper}>
@@ -63,7 +69,7 @@ class Episode extends PureComponent<IProps> {
                                         index,
                                         level: episodeNumber
                                     })}
-                                    level={this.getLevel(index)}
+                                    level={firstLevelNumber + index + 1}
                                     fill={getLevelFill(episodeNumber)}
                                     cx={x}
                                     cy={y}
