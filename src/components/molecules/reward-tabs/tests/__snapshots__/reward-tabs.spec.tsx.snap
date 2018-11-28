@@ -22,7 +22,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component
+        <View
           style={
             Object {
               "borderColor": "rgba(150,150,150,0.5)",
@@ -39,14 +39,14 @@ ShallowWrapper {
           label="rewards"
           onPress={[MockFunction]}
         />,
-        <Component
+        <View
           style={
             Object {
               "paddingBottom": 32,
             }
           }
         >
-          <Component
+          <View
             style={
               Object {
                 "borderColor": "rgb(96,96,96)",
@@ -55,7 +55,7 @@ ShallowWrapper {
               }
             }
           />
-        </Component>,
+        </View>,
         <RewardTab
           isActive={false}
           isFlipped={true}
@@ -108,7 +108,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Component
+          "children": <View
             style={
               Object {
                 "borderColor": "rgb(96,96,96)",
@@ -163,7 +163,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component
+          <View
             style={
               Object {
                 "borderColor": "rgba(150,150,150,0.5)",
@@ -180,14 +180,14 @@ ShallowWrapper {
             label="rewards"
             onPress={[MockFunction]}
           />,
-          <Component
+          <View
             style={
               Object {
                 "paddingBottom": 32,
               }
             }
           >
-            <Component
+            <View
               style={
                 Object {
                   "borderColor": "rgb(96,96,96)",
@@ -196,7 +196,7 @@ ShallowWrapper {
                 }
               }
             />
-          </Component>,
+          </View>,
           <RewardTab
             isActive={false}
             isFlipped={true}
@@ -249,7 +249,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Component
+            "children": <View
               style={
                 Object {
                   "borderColor": "rgb(96,96,96)",
@@ -342,7 +342,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component
+        <View
           style={
             Object {
               "borderColor": "rgba(150,150,150,0.5)",
@@ -359,14 +359,14 @@ ShallowWrapper {
           label="rewards"
           onPress={[MockFunction]}
         />,
-        <Component
+        <View
           style={
             Object {
               "paddingBottom": 32,
             }
           }
         >
-          <Component
+          <View
             style={
               Object {
                 "borderColor": "rgb(96,96,96)",
@@ -375,7 +375,7 @@ ShallowWrapper {
               }
             }
           />
-        </Component>,
+        </View>,
         <RewardTab
           isActive={true}
           isFlipped={true}
@@ -428,7 +428,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Component
+          "children": <View
             style={
               Object {
                 "borderColor": "rgb(96,96,96)",
@@ -483,7 +483,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component
+          <View
             style={
               Object {
                 "borderColor": "rgba(150,150,150,0.5)",
@@ -500,14 +500,14 @@ ShallowWrapper {
             label="rewards"
             onPress={[MockFunction]}
           />,
-          <Component
+          <View
             style={
               Object {
                 "paddingBottom": 32,
               }
             }
           >
-            <Component
+            <View
               style={
                 Object {
                   "borderColor": "rgb(96,96,96)",
@@ -516,7 +516,7 @@ ShallowWrapper {
                 }
               }
             />
-          </Component>,
+          </View>,
           <RewardTab
             isActive={true}
             isFlipped={true}
@@ -569,7 +569,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Component
+            "children": <View
               style={
                 Object {
                   "borderColor": "rgb(96,96,96)",

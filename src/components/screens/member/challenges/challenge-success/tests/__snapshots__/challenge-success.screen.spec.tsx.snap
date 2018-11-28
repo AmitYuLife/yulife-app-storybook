@@ -29,7 +29,7 @@ ShallowWrapper {
           isMidHighlighted={true}
           isRightHighlighted={false}
         />,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -37,7 +37,7 @@ ShallowWrapper {
             }
           }
         >
-          <Image
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -56,9 +56,9 @@ ShallowWrapper {
           >
             level undefined
           </YuText>
-        </Component>,
-        <Component>
-          <Component
+        </View>,
+        <View>
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -69,8 +69,8 @@ ShallowWrapper {
             <PlusPoints
               coins={2}
             />
-          </Component>
-          <Image
+          </View>
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-success/challenge-success.png",
@@ -93,8 +93,8 @@ ShallowWrapper {
           >
             6 minutes
           </YuText>
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "marginTop": 20,
@@ -113,7 +113,7 @@ ShallowWrapper {
             You can take a challenge
 again tomorrow.
           </YuText>
-        </Component>,
+        </View>,
         <Button
           label="collect"
           onPress={[MockFunction]}
@@ -152,7 +152,7 @@ again tomorrow.
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Image
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -218,7 +218,7 @@ again tomorrow.
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component
+            <View
               style={
                 Object {
                   "alignItems": "center",
@@ -229,8 +229,8 @@ again tomorrow.
               <PlusPoints
                 coins={2}
               />
-            </Component>,
-            <Image
+            </View>,
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/challenge-success.png",
@@ -394,7 +394,7 @@ again tomorrow.",
             isMidHighlighted={true}
             isRightHighlighted={false}
           />,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -402,7 +402,7 @@ again tomorrow.",
               }
             }
           >
-            <Image
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -421,9 +421,9 @@ again tomorrow.",
             >
               level undefined
             </YuText>
-          </Component>,
-          <Component>
-            <Component
+          </View>,
+          <View>
+            <View
               style={
                 Object {
                   "alignItems": "center",
@@ -434,8 +434,8 @@ again tomorrow.",
               <PlusPoints
                 coins={2}
               />
-            </Component>
-            <Image
+            </View>
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/challenge-success.png",
@@ -458,8 +458,8 @@ again tomorrow.",
             >
               6 minutes
             </YuText>
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "marginTop": 20,
@@ -478,7 +478,7 @@ again tomorrow.",
               You can take a challenge
 again tomorrow.
             </YuText>
-          </Component>,
+          </View>,
           <Button
             label="collect"
             onPress={[MockFunction]}
@@ -517,7 +517,7 @@ again tomorrow.
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -583,7 +583,7 @@ again tomorrow.
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Component
+              <View
                 style={
                   Object {
                     "alignItems": "center",
@@ -594,8 +594,8 @@ again tomorrow.
                 <PlusPoints
                   coins={2}
                 />
-              </Component>,
-              <Image
+              </View>,
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-success/challenge-success.png",
@@ -799,7 +799,7 @@ ShallowWrapper {
           isMidHighlighted={true}
           isRightHighlighted={false}
         />,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -807,7 +807,7 @@ ShallowWrapper {
             }
           }
         >
-          <Image
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -826,9 +826,9 @@ ShallowWrapper {
           >
             level undefined
           </YuText>
-        </Component>,
-        <Component>
-          <Component
+        </View>,
+        <View>
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -839,8 +839,8 @@ ShallowWrapper {
             <PlusPoints
               coins={2}
             />
-          </Component>
-          <Image
+          </View>
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-success/challenge-success.png",
@@ -863,8 +863,8 @@ ShallowWrapper {
           >
             1180 steps
           </YuText>
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "marginTop": 20,
@@ -883,7 +883,7 @@ ShallowWrapper {
             You can take a challenge
 again tomorrow.
           </YuText>
-        </Component>,
+        </View>,
         <Button
           label="collect"
           onPress={[MockFunction]}
@@ -922,7 +922,7 @@ again tomorrow.
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Image
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -988,7 +988,7 @@ again tomorrow.
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component
+            <View
               style={
                 Object {
                   "alignItems": "center",
@@ -999,8 +999,8 @@ again tomorrow.
               <PlusPoints
                 coins={2}
               />
-            </Component>,
-            <Image
+            </View>,
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/challenge-success.png",
@@ -1164,7 +1164,7 @@ again tomorrow.",
             isMidHighlighted={true}
             isRightHighlighted={false}
           />,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -1172,7 +1172,7 @@ again tomorrow.",
               }
             }
           >
-            <Image
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -1191,9 +1191,9 @@ again tomorrow.",
             >
               level undefined
             </YuText>
-          </Component>,
-          <Component>
-            <Component
+          </View>,
+          <View>
+            <View
               style={
                 Object {
                   "alignItems": "center",
@@ -1204,8 +1204,8 @@ again tomorrow.",
               <PlusPoints
                 coins={2}
               />
-            </Component>
-            <Image
+            </View>
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/challenge-success.png",
@@ -1228,8 +1228,8 @@ again tomorrow.",
             >
               1180 steps
             </YuText>
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "marginTop": 20,
@@ -1248,7 +1248,7 @@ again tomorrow.",
               You can take a challenge
 again tomorrow.
             </YuText>
-          </Component>,
+          </View>,
           <Button
             label="collect"
             onPress={[MockFunction]}
@@ -1287,7 +1287,7 @@ again tomorrow.
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -1353,7 +1353,7 @@ again tomorrow.
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Component
+              <View
                 style={
                   Object {
                     "alignItems": "center",
@@ -1364,8 +1364,8 @@ again tomorrow.
                 <PlusPoints
                   coins={2}
                 />
-              </Component>,
-              <Image
+              </View>,
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-success/challenge-success.png",

@@ -19,7 +19,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <Component
+      "children": <Text
         style={
           Object {
             "color": "rgb(255,102,102)",
@@ -30,7 +30,7 @@ ShallowWrapper {
         }
       >
         Testing Error Message
-      </Component>,
+      </Text>,
       "style": Object {
         "marginTop": 22,
       },
@@ -61,7 +61,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": <Component
+        "children": <Text
           style={
             Object {
               "color": "rgb(255,102,102)",
@@ -72,7 +72,7 @@ ShallowWrapper {
           }
         >
           Testing Error Message
-        </Component>,
+        </Text>,
         "style": Object {
           "marginTop": 22,
         },

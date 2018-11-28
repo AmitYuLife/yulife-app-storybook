@@ -18,6 +18,8 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "animating": true,
+      "color": "#999999",
+      "hidesWhenStopped": true,
       "size": "large",
       "style": Object {
         "alignItems": "center",
@@ -37,6 +39,8 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "animating": true,
+        "color": "#999999",
+        "hidesWhenStopped": true,
         "size": "large",
         "style": Object {
           "alignItems": "center",

@@ -44,7 +44,7 @@ ShallowWrapper {
           coins={1234}
           onPressLeftIcon={[MockFunction]}
         />,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -57,8 +57,8 @@ ShallowWrapper {
             onLeftTabPress={[MockFunction]}
             onRightTabPress={[MockFunction]}
           />
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "flex": 1,
@@ -83,8 +83,8 @@ ShallowWrapper {
             onRefresh={[MockFunction]}
             refreshing={false}
           />
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -101,7 +101,7 @@ ShallowWrapper {
             hasNotification={false}
             labels={Array []}
           />
-        </Component>,
+        </View>,
       ],
       "style": Object {
         "flex": 1,
@@ -257,7 +257,7 @@ ShallowWrapper {
             coins={1234}
             onPressLeftIcon={[MockFunction]}
           />,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -270,8 +270,8 @@ ShallowWrapper {
               onLeftTabPress={[MockFunction]}
               onRightTabPress={[MockFunction]}
             />
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "flex": 1,
@@ -296,8 +296,8 @@ ShallowWrapper {
               onRefresh={[MockFunction]}
               refreshing={false}
             />
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -314,7 +314,7 @@ ShallowWrapper {
               hasNotification={false}
               labels={Array []}
             />
-          </Component>,
+          </View>,
         ],
         "style": Object {
           "flex": 1,
@@ -514,7 +514,7 @@ ShallowWrapper {
           coins={1234}
           onPressLeftIcon={[MockFunction]}
         />,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -527,8 +527,8 @@ ShallowWrapper {
             onLeftTabPress={[MockFunction]}
             onRightTabPress={[MockFunction]}
           />
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "flex": 1,
@@ -541,8 +541,8 @@ ShallowWrapper {
             onRefresh={[MockFunction]}
             refreshing={false}
           />
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -559,7 +559,7 @@ ShallowWrapper {
             hasNotification={false}
             labels={Array []}
           />
-        </Component>,
+        </View>,
       ],
       "style": Object {
         "flex": 1,
@@ -693,7 +693,7 @@ ShallowWrapper {
             coins={1234}
             onPressLeftIcon={[MockFunction]}
           />,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -706,8 +706,8 @@ ShallowWrapper {
               onLeftTabPress={[MockFunction]}
               onRightTabPress={[MockFunction]}
             />
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "flex": 1,
@@ -720,8 +720,8 @@ ShallowWrapper {
               onRefresh={[MockFunction]}
               refreshing={false}
             />
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -738,7 +738,7 @@ ShallowWrapper {
               hasNotification={false}
               labels={Array []}
             />
-          </Component>,
+          </View>,
         ],
         "style": Object {
           "flex": 1,

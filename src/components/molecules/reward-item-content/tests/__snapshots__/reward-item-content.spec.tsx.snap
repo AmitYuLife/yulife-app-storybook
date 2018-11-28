@@ -30,8 +30,8 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component>
-          <Component
+        <View>
+          <View
             style={
               Object {
                 "marginTop": 110,
@@ -49,8 +49,8 @@ ShallowWrapper {
             >
               Description
             </YuText>
-          </Component>
-          <Component
+          </View>
+          <View
             style={
               Object {
                 "marginTop": 32,
@@ -68,10 +68,10 @@ ShallowWrapper {
             >
               This is a description
             </YuText>
-          </Component>
-        </Component>,
+          </View>
+        </View>,
         <React.Fragment>
-          <Component
+          <View
             style={
               Object {
                 "marginTop": 64,
@@ -89,8 +89,8 @@ ShallowWrapper {
             >
               How to redeem
             </YuText>
-          </Component>
-          <Component
+          </View>
+          <View
             style={
               Object {
                 "marginTop": 40,
@@ -114,7 +114,7 @@ ShallowWrapper {
               bullet={4}
               instruction="instructions"
             />
-          </Component>
+          </View>
         </React.Fragment>,
         <Button
           label="Label 1"
@@ -156,7 +156,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component
+            <View
               style={
                 Object {
                   "marginTop": 110,
@@ -174,8 +174,8 @@ ShallowWrapper {
               >
                 Description
               </YuText>
-            </Component>,
-            <Component
+            </View>,
+            <View
               style={
                 Object {
                   "marginTop": 32,
@@ -193,7 +193,7 @@ ShallowWrapper {
               >
                 This is a description
               </YuText>
-            </Component>,
+            </View>,
           ],
         },
         "ref": null,
@@ -283,7 +283,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": Array [
-            <Component
+            <View
               style={
                 Object {
                   "marginTop": 64,
@@ -301,8 +301,8 @@ ShallowWrapper {
               >
                 How to redeem
               </YuText>
-            </Component>,
-            <Component
+            </View>,
+            <View
               style={
                 Object {
                   "marginTop": 40,
@@ -326,7 +326,7 @@ ShallowWrapper {
                 bullet={4}
                 instruction="instructions"
               />
-            </Component>,
+            </View>,
           ],
         },
         "ref": null,
@@ -502,8 +502,8 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component>
-            <Component
+          <View>
+            <View
               style={
                 Object {
                   "marginTop": 110,
@@ -521,8 +521,8 @@ ShallowWrapper {
               >
                 Description
               </YuText>
-            </Component>
-            <Component
+            </View>
+            <View
               style={
                 Object {
                   "marginTop": 32,
@@ -540,10 +540,10 @@ ShallowWrapper {
               >
                 This is a description
               </YuText>
-            </Component>
-          </Component>,
+            </View>
+          </View>,
           <React.Fragment>
-            <Component
+            <View
               style={
                 Object {
                   "marginTop": 64,
@@ -561,8 +561,8 @@ ShallowWrapper {
               >
                 How to redeem
               </YuText>
-            </Component>
-            <Component
+            </View>
+            <View
               style={
                 Object {
                   "marginTop": 40,
@@ -586,7 +586,7 @@ ShallowWrapper {
                 bullet={4}
                 instruction="instructions"
               />
-            </Component>
+            </View>
           </React.Fragment>,
           <Button
             label="Label 1"
@@ -628,7 +628,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Component
+              <View
                 style={
                   Object {
                     "marginTop": 110,
@@ -646,8 +646,8 @@ ShallowWrapper {
                 >
                   Description
                 </YuText>
-              </Component>,
-              <Component
+              </View>,
+              <View
                 style={
                   Object {
                     "marginTop": 32,
@@ -665,7 +665,7 @@ ShallowWrapper {
                 >
                   This is a description
                 </YuText>
-              </Component>,
+              </View>,
             ],
           },
           "ref": null,
@@ -755,7 +755,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "children": Array [
-              <Component
+              <View
                 style={
                   Object {
                     "marginTop": 64,
@@ -773,8 +773,8 @@ ShallowWrapper {
                 >
                   How to redeem
                 </YuText>
-              </Component>,
-              <Component
+              </View>,
+              <View
                 style={
                   Object {
                     "marginTop": 40,
@@ -798,7 +798,7 @@ ShallowWrapper {
                   bullet={4}
                   instruction="instructions"
                 />
-              </Component>,
+              </View>,
             ],
           },
           "ref": null,

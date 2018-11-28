@@ -36,7 +36,7 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -45,7 +45,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <View
             style={
               Object {
                 "paddingVertical": 12,
@@ -56,8 +56,8 @@ ShallowWrapper {
             <YuText>
               2 mins
             </YuText>
-          </Component>
-          <Image
+          </View>
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -70,7 +70,7 @@ ShallowWrapper {
               }
             }
           />
-          <Component
+          <View
             style={
               Object {
                 "marginLeft": "auto",
@@ -81,8 +81,8 @@ ShallowWrapper {
             <YuText>
               1 x
             </YuText>
-          </Component>
-          <Image
+          </View>
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -94,8 +94,8 @@ ShallowWrapper {
               }
             }
           />
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -104,7 +104,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <View
             style={
               Object {
                 "paddingVertical": 12,
@@ -115,21 +115,8 @@ ShallowWrapper {
             <YuText>
               4 mins
             </YuText>
-          </Component>
-          <Image
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-details/star.png",
-              }
-            }
-            style={
-              Object {
-                "marginRight": 6,
-                "marginTop": -8,
-              }
-            }
-          />
-          <Image
+          </View>
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -143,6 +130,19 @@ ShallowWrapper {
             }
           />
           <Component
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-details/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <View
             style={
               Object {
                 "marginLeft": "auto",
@@ -153,8 +153,8 @@ ShallowWrapper {
             <YuText>
               2 x
             </YuText>
-          </Component>
-          <Image
+          </View>
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -166,8 +166,8 @@ ShallowWrapper {
               }
             }
           />
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -176,7 +176,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <View
             style={
               Object {
                 "paddingVertical": 12,
@@ -187,34 +187,8 @@ ShallowWrapper {
             <YuText>
               8 mins
             </YuText>
-          </Component>
-          <Image
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-details/star.png",
-              }
-            }
-            style={
-              Object {
-                "marginRight": 6,
-                "marginTop": -8,
-              }
-            }
-          />
-          <Image
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-details/star.png",
-              }
-            }
-            style={
-              Object {
-                "marginRight": 6,
-                "marginTop": -8,
-              }
-            }
-          />
-          <Image
+          </View>
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -228,6 +202,32 @@ ShallowWrapper {
             }
           />
           <Component
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-details/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <Component
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-details/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <View
             style={
               Object {
                 "marginLeft": "auto",
@@ -238,8 +238,8 @@ ShallowWrapper {
             <YuText>
               3 x
             </YuText>
-          </Component>
-          <Image
+          </View>
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -251,7 +251,7 @@ ShallowWrapper {
               }
             }
           />
-        </Component>,
+        </View>,
       ],
     },
     "ref": null,
@@ -262,7 +262,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component
+            <View
               style={
                 Object {
                   "paddingVertical": 12,
@@ -273,9 +273,9 @@ ShallowWrapper {
               <YuText>
                 2 mins
               </YuText>
-            </Component>,
+            </View>,
             Array [
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -289,7 +289,7 @@ ShallowWrapper {
                 }
               />,
             ],
-            <Component
+            <View
               style={
                 Object {
                   "marginLeft": "auto",
@@ -300,8 +300,8 @@ ShallowWrapper {
               <YuText>
                 1 x
               </YuText>
-            </Component>,
-            <Image
+            </View>,
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -418,7 +418,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component
+            <View
               style={
                 Object {
                   "paddingVertical": 12,
@@ -429,9 +429,9 @@ ShallowWrapper {
               <YuText>
                 4 mins
               </YuText>
-            </Component>,
+            </View>,
             Array [
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -444,7 +444,7 @@ ShallowWrapper {
                   }
                 }
               />,
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -458,7 +458,7 @@ ShallowWrapper {
                 }
               />,
             ],
-            <Component
+            <View
               style={
                 Object {
                   "marginLeft": "auto",
@@ -469,8 +469,8 @@ ShallowWrapper {
               <YuText>
                 2 x
               </YuText>
-            </Component>,
-            <Image
+            </View>,
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -604,7 +604,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component
+            <View
               style={
                 Object {
                   "paddingVertical": 12,
@@ -615,9 +615,9 @@ ShallowWrapper {
               <YuText>
                 8 mins
               </YuText>
-            </Component>,
+            </View>,
             Array [
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -630,7 +630,7 @@ ShallowWrapper {
                   }
                 }
               />,
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -643,7 +643,7 @@ ShallowWrapper {
                   }
                 }
               />,
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -657,7 +657,7 @@ ShallowWrapper {
                 }
               />,
             ],
-            <Component
+            <View
               style={
                 Object {
                   "marginLeft": "auto",
@@ -668,8 +668,8 @@ ShallowWrapper {
               <YuText>
                 3 x
               </YuText>
-            </Component>,
-            <Image
+            </View>,
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -824,7 +824,7 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -833,7 +833,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <View
               style={
                 Object {
                   "paddingVertical": 12,
@@ -844,8 +844,8 @@ ShallowWrapper {
               <YuText>
                 2 mins
               </YuText>
-            </Component>
-            <Image
+            </View>
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -858,7 +858,7 @@ ShallowWrapper {
                 }
               }
             />
-            <Component
+            <View
               style={
                 Object {
                   "marginLeft": "auto",
@@ -869,8 +869,8 @@ ShallowWrapper {
               <YuText>
                 1 x
               </YuText>
-            </Component>
-            <Image
+            </View>
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -882,8 +882,8 @@ ShallowWrapper {
                 }
               }
             />
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -892,7 +892,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <View
               style={
                 Object {
                   "paddingVertical": 12,
@@ -903,21 +903,8 @@ ShallowWrapper {
               <YuText>
                 4 mins
               </YuText>
-            </Component>
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-details/star.png",
-                }
-              }
-              style={
-                Object {
-                  "marginRight": 6,
-                  "marginTop": -8,
-                }
-              }
-            />
-            <Image
+            </View>
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -931,6 +918,19 @@ ShallowWrapper {
               }
             />
             <Component
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-details/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <View
               style={
                 Object {
                   "marginLeft": "auto",
@@ -941,8 +941,8 @@ ShallowWrapper {
               <YuText>
                 2 x
               </YuText>
-            </Component>
-            <Image
+            </View>
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -954,8 +954,8 @@ ShallowWrapper {
                 }
               }
             />
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -964,7 +964,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <View
               style={
                 Object {
                   "paddingVertical": 12,
@@ -975,34 +975,8 @@ ShallowWrapper {
               <YuText>
                 8 mins
               </YuText>
-            </Component>
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-details/star.png",
-                }
-              }
-              style={
-                Object {
-                  "marginRight": 6,
-                  "marginTop": -8,
-                }
-              }
-            />
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-details/star.png",
-                }
-              }
-              style={
-                Object {
-                  "marginRight": 6,
-                  "marginTop": -8,
-                }
-              }
-            />
-            <Image
+            </View>
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -1016,6 +990,32 @@ ShallowWrapper {
               }
             />
             <Component
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-details/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <Component
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-details/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <View
               style={
                 Object {
                   "marginLeft": "auto",
@@ -1026,8 +1026,8 @@ ShallowWrapper {
               <YuText>
                 3 x
               </YuText>
-            </Component>
-            <Image
+            </View>
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -1039,7 +1039,7 @@ ShallowWrapper {
                 }
               }
             />
-          </Component>,
+          </View>,
         ],
       },
       "ref": null,
@@ -1050,7 +1050,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Component
+              <View
                 style={
                   Object {
                     "paddingVertical": 12,
@@ -1061,9 +1061,9 @@ ShallowWrapper {
                 <YuText>
                   2 mins
                 </YuText>
-              </Component>,
+              </View>,
               Array [
-                <Image
+                <Component
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -1077,7 +1077,7 @@ ShallowWrapper {
                   }
                 />,
               ],
-              <Component
+              <View
                 style={
                   Object {
                     "marginLeft": "auto",
@@ -1088,8 +1088,8 @@ ShallowWrapper {
                 <YuText>
                   1 x
                 </YuText>
-              </Component>,
-              <Image
+              </View>,
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -1206,7 +1206,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Component
+              <View
                 style={
                   Object {
                     "paddingVertical": 12,
@@ -1217,9 +1217,9 @@ ShallowWrapper {
                 <YuText>
                   4 mins
                 </YuText>
-              </Component>,
+              </View>,
               Array [
-                <Image
+                <Component
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -1232,7 +1232,7 @@ ShallowWrapper {
                     }
                   }
                 />,
-                <Image
+                <Component
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -1246,7 +1246,7 @@ ShallowWrapper {
                   }
                 />,
               ],
-              <Component
+              <View
                 style={
                   Object {
                     "marginLeft": "auto",
@@ -1257,8 +1257,8 @@ ShallowWrapper {
                 <YuText>
                   2 x
                 </YuText>
-              </Component>,
-              <Image
+              </View>,
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -1392,7 +1392,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Component
+              <View
                 style={
                   Object {
                     "paddingVertical": 12,
@@ -1403,9 +1403,9 @@ ShallowWrapper {
                 <YuText>
                   8 mins
                 </YuText>
-              </Component>,
+              </View>,
               Array [
-                <Image
+                <Component
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -1418,7 +1418,7 @@ ShallowWrapper {
                     }
                   }
                 />,
-                <Image
+                <Component
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -1431,7 +1431,7 @@ ShallowWrapper {
                     }
                   }
                 />,
-                <Image
+                <Component
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -1445,7 +1445,7 @@ ShallowWrapper {
                   }
                 />,
               ],
-              <Component
+              <View
                 style={
                   Object {
                     "marginLeft": "auto",
@@ -1456,8 +1456,8 @@ ShallowWrapper {
                 <YuText>
                   3 x
                 </YuText>
-              </Component>,
-              <Image
+              </View>,
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -1664,7 +1664,7 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -1673,7 +1673,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <View
             style={
               Object {
                 "paddingVertical": 12,
@@ -1684,8 +1684,8 @@ ShallowWrapper {
             <YuText>
               1000 steps
             </YuText>
-          </Component>
-          <Image
+          </View>
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -1698,7 +1698,7 @@ ShallowWrapper {
               }
             }
           />
-          <Component
+          <View
             style={
               Object {
                 "marginLeft": "auto",
@@ -1709,8 +1709,8 @@ ShallowWrapper {
             <YuText>
               1 x
             </YuText>
-          </Component>
-          <Image
+          </View>
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -1722,8 +1722,8 @@ ShallowWrapper {
               }
             }
           />
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -1732,7 +1732,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <View
             style={
               Object {
                 "paddingVertical": 12,
@@ -1743,21 +1743,8 @@ ShallowWrapper {
             <YuText>
               2000 steps
             </YuText>
-          </Component>
-          <Image
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-details/star.png",
-              }
-            }
-            style={
-              Object {
-                "marginRight": 6,
-                "marginTop": -8,
-              }
-            }
-          />
-          <Image
+          </View>
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -1771,6 +1758,19 @@ ShallowWrapper {
             }
           />
           <Component
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-details/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <View
             style={
               Object {
                 "marginLeft": "auto",
@@ -1781,8 +1781,8 @@ ShallowWrapper {
             <YuText>
               2 x
             </YuText>
-          </Component>
-          <Image
+          </View>
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -1794,8 +1794,8 @@ ShallowWrapper {
               }
             }
           />
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -1804,7 +1804,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <View
             style={
               Object {
                 "paddingVertical": 12,
@@ -1815,34 +1815,8 @@ ShallowWrapper {
             <YuText>
               3000 steps
             </YuText>
-          </Component>
-          <Image
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-details/star.png",
-              }
-            }
-            style={
-              Object {
-                "marginRight": 6,
-                "marginTop": -8,
-              }
-            }
-          />
-          <Image
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-details/star.png",
-              }
-            }
-            style={
-              Object {
-                "marginRight": 6,
-                "marginTop": -8,
-              }
-            }
-          />
-          <Image
+          </View>
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -1856,6 +1830,32 @@ ShallowWrapper {
             }
           />
           <Component
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-details/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <Component
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-details/star.png",
+              }
+            }
+            style={
+              Object {
+                "marginRight": 6,
+                "marginTop": -8,
+              }
+            }
+          />
+          <View
             style={
               Object {
                 "marginLeft": "auto",
@@ -1866,8 +1866,8 @@ ShallowWrapper {
             <YuText>
               3 x
             </YuText>
-          </Component>
-          <Image
+          </View>
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -1879,7 +1879,7 @@ ShallowWrapper {
               }
             }
           />
-        </Component>,
+        </View>,
       ],
     },
     "ref": null,
@@ -1890,7 +1890,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component
+            <View
               style={
                 Object {
                   "paddingVertical": 12,
@@ -1901,9 +1901,9 @@ ShallowWrapper {
               <YuText>
                 1000 steps
               </YuText>
-            </Component>,
+            </View>,
             Array [
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -1917,7 +1917,7 @@ ShallowWrapper {
                 }
               />,
             ],
-            <Component
+            <View
               style={
                 Object {
                   "marginLeft": "auto",
@@ -1928,8 +1928,8 @@ ShallowWrapper {
               <YuText>
                 1 x
               </YuText>
-            </Component>,
-            <Image
+            </View>,
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -2046,7 +2046,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component
+            <View
               style={
                 Object {
                   "paddingVertical": 12,
@@ -2057,9 +2057,9 @@ ShallowWrapper {
               <YuText>
                 2000 steps
               </YuText>
-            </Component>,
+            </View>,
             Array [
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -2072,7 +2072,7 @@ ShallowWrapper {
                   }
                 }
               />,
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -2086,7 +2086,7 @@ ShallowWrapper {
                 }
               />,
             ],
-            <Component
+            <View
               style={
                 Object {
                   "marginLeft": "auto",
@@ -2097,8 +2097,8 @@ ShallowWrapper {
               <YuText>
                 2 x
               </YuText>
-            </Component>,
-            <Image
+            </View>,
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -2232,7 +2232,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component
+            <View
               style={
                 Object {
                   "paddingVertical": 12,
@@ -2243,9 +2243,9 @@ ShallowWrapper {
               <YuText>
                 3000 steps
               </YuText>
-            </Component>,
+            </View>,
             Array [
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -2258,7 +2258,7 @@ ShallowWrapper {
                   }
                 }
               />,
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -2271,7 +2271,7 @@ ShallowWrapper {
                   }
                 }
               />,
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -2285,7 +2285,7 @@ ShallowWrapper {
                 }
               />,
             ],
-            <Component
+            <View
               style={
                 Object {
                   "marginLeft": "auto",
@@ -2296,8 +2296,8 @@ ShallowWrapper {
               <YuText>
                 3 x
               </YuText>
-            </Component>,
-            <Image
+            </View>,
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -2452,7 +2452,7 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -2461,7 +2461,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <View
               style={
                 Object {
                   "paddingVertical": 12,
@@ -2472,8 +2472,8 @@ ShallowWrapper {
               <YuText>
                 1000 steps
               </YuText>
-            </Component>
-            <Image
+            </View>
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -2486,7 +2486,7 @@ ShallowWrapper {
                 }
               }
             />
-            <Component
+            <View
               style={
                 Object {
                   "marginLeft": "auto",
@@ -2497,8 +2497,8 @@ ShallowWrapper {
               <YuText>
                 1 x
               </YuText>
-            </Component>
-            <Image
+            </View>
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -2510,8 +2510,8 @@ ShallowWrapper {
                 }
               }
             />
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -2520,7 +2520,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <View
               style={
                 Object {
                   "paddingVertical": 12,
@@ -2531,21 +2531,8 @@ ShallowWrapper {
               <YuText>
                 2000 steps
               </YuText>
-            </Component>
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-details/star.png",
-                }
-              }
-              style={
-                Object {
-                  "marginRight": 6,
-                  "marginTop": -8,
-                }
-              }
-            />
-            <Image
+            </View>
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -2559,6 +2546,19 @@ ShallowWrapper {
               }
             />
             <Component
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-details/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <View
               style={
                 Object {
                   "marginLeft": "auto",
@@ -2569,8 +2569,8 @@ ShallowWrapper {
               <YuText>
                 2 x
               </YuText>
-            </Component>
-            <Image
+            </View>
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -2582,8 +2582,8 @@ ShallowWrapper {
                 }
               }
             />
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -2592,7 +2592,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <View
               style={
                 Object {
                   "paddingVertical": 12,
@@ -2603,34 +2603,8 @@ ShallowWrapper {
               <YuText>
                 3000 steps
               </YuText>
-            </Component>
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-details/star.png",
-                }
-              }
-              style={
-                Object {
-                  "marginRight": 6,
-                  "marginTop": -8,
-                }
-              }
-            />
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-details/star.png",
-                }
-              }
-              style={
-                Object {
-                  "marginRight": 6,
-                  "marginTop": -8,
-                }
-              }
-            />
-            <Image
+            </View>
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -2644,6 +2618,32 @@ ShallowWrapper {
               }
             />
             <Component
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-details/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <Component
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-details/star.png",
+                }
+              }
+              style={
+                Object {
+                  "marginRight": 6,
+                  "marginTop": -8,
+                }
+              }
+            />
+            <View
               style={
                 Object {
                   "marginLeft": "auto",
@@ -2654,8 +2654,8 @@ ShallowWrapper {
               <YuText>
                 3 x
               </YuText>
-            </Component>
-            <Image
+            </View>
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -2667,7 +2667,7 @@ ShallowWrapper {
                 }
               }
             />
-          </Component>,
+          </View>,
         ],
       },
       "ref": null,
@@ -2678,7 +2678,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Component
+              <View
                 style={
                   Object {
                     "paddingVertical": 12,
@@ -2689,9 +2689,9 @@ ShallowWrapper {
                 <YuText>
                   1000 steps
                 </YuText>
-              </Component>,
+              </View>,
               Array [
-                <Image
+                <Component
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -2705,7 +2705,7 @@ ShallowWrapper {
                   }
                 />,
               ],
-              <Component
+              <View
                 style={
                   Object {
                     "marginLeft": "auto",
@@ -2716,8 +2716,8 @@ ShallowWrapper {
                 <YuText>
                   1 x
                 </YuText>
-              </Component>,
-              <Image
+              </View>,
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -2834,7 +2834,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Component
+              <View
                 style={
                   Object {
                     "paddingVertical": 12,
@@ -2845,9 +2845,9 @@ ShallowWrapper {
                 <YuText>
                   2000 steps
                 </YuText>
-              </Component>,
+              </View>,
               Array [
-                <Image
+                <Component
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -2860,7 +2860,7 @@ ShallowWrapper {
                     }
                   }
                 />,
-                <Image
+                <Component
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -2874,7 +2874,7 @@ ShallowWrapper {
                   }
                 />,
               ],
-              <Component
+              <View
                 style={
                   Object {
                     "marginLeft": "auto",
@@ -2885,8 +2885,8 @@ ShallowWrapper {
                 <YuText>
                   2 x
                 </YuText>
-              </Component>,
-              <Image
+              </View>,
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -3020,7 +3020,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Component
+              <View
                 style={
                   Object {
                     "paddingVertical": 12,
@@ -3031,9 +3031,9 @@ ShallowWrapper {
                 <YuText>
                   3000 steps
                 </YuText>
-              </Component>,
+              </View>,
               Array [
-                <Image
+                <Component
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -3046,7 +3046,7 @@ ShallowWrapper {
                     }
                   }
                 />,
-                <Image
+                <Component
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -3059,7 +3059,7 @@ ShallowWrapper {
                     }
                   }
                 />,
-                <Image
+                <Component
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -3073,7 +3073,7 @@ ShallowWrapper {
                   }
                 />,
               ],
-              <Component
+              <View
                 style={
                   Object {
                     "marginLeft": "auto",
@@ -3084,8 +3084,8 @@ ShallowWrapper {
                 <YuText>
                   3 x
                 </YuText>
-              </Component>,
-              <Image
+              </View>,
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/yucoin.png",

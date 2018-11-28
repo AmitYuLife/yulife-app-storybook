@@ -23,7 +23,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Image
+        <Component
           resizeMethod="resize"
           resizeMode="contain"
           source={
@@ -138,7 +138,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Image
+          <Component
             resizeMethod="resize"
             resizeMode="contain"
             source={
@@ -307,7 +307,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Image
+        <Component
           resizeMethod="resize"
           resizeMode="contain"
           source={
@@ -422,7 +422,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Image
+          <Component
             resizeMethod="resize"
             resizeMode="contain"
             source={

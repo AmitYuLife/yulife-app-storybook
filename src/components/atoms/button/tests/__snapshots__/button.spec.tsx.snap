@@ -22,7 +22,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "activeOpacity": 0.2,
-      "children": <Component
+      "children": <Text
         style={
           Object {
             "color": "rgb(232, 49, 129)",
@@ -34,7 +34,7 @@ ShallowWrapper {
         }
       >
         test
-      </Component>,
+      </Text>,
       "disabled": undefined,
       "onPress": [MockFunction],
       "style": Object {
@@ -72,7 +72,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "activeOpacity": 0.2,
-        "children": <Component
+        "children": <Text
           style={
             Object {
               "color": "rgb(232, 49, 129)",
@@ -84,7 +84,7 @@ ShallowWrapper {
           }
         >
           test
-        </Component>,
+        </Text>,
         "disabled": undefined,
         "onPress": [MockFunction],
         "style": Object {
@@ -160,7 +160,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component
+        <View
           style={
             Object {
               "backgroundColor": "#95012b",
@@ -178,7 +178,7 @@ ShallowWrapper {
           onPressIn={[Function]}
           onPressOut={[Function]}
         >
-          <Component
+          <View
             style={
               Object {
                 "backgroundColor": "#e20177",
@@ -191,7 +191,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <Text
               style={
                 Object {
                   "color": "white",
@@ -203,8 +203,8 @@ ShallowWrapper {
               }
             >
               test
-            </Component>
-          </Component>
+            </Text>
+          </View>
         </TouchableWithoutFeedback>,
         null,
       ],
@@ -237,7 +237,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Component
+          "children": <View
             style={
               Object {
                 "backgroundColor": "#e20177",
@@ -250,7 +250,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <Text
               style={
                 Object {
                   "color": "white",
@@ -262,8 +262,8 @@ ShallowWrapper {
               }
             >
               test
-            </Component>
-          </Component>,
+            </Text>
+          </View>,
           "disabled": undefined,
           "onPressIn": [Function],
           "onPressOut": [Function],
@@ -274,7 +274,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Component
+            "children": <Text
               style={
                 Object {
                   "color": "white",
@@ -286,7 +286,7 @@ ShallowWrapper {
               }
             >
               test
-            </Component>,
+            </Text>,
             "style": Object {
               "backgroundColor": "#e20177",
               "borderColor": "#e20177",
@@ -331,7 +331,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component
+          <View
             style={
               Object {
                 "backgroundColor": "#95012b",
@@ -349,7 +349,7 @@ ShallowWrapper {
             onPressIn={[Function]}
             onPressOut={[Function]}
           >
-            <Component
+            <View
               style={
                 Object {
                   "backgroundColor": "#e20177",
@@ -362,7 +362,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Component
+              <Text
                 style={
                   Object {
                     "color": "white",
@@ -374,8 +374,8 @@ ShallowWrapper {
                 }
               >
                 test
-              </Component>
-            </Component>
+              </Text>
+            </View>
           </TouchableWithoutFeedback>,
           null,
         ],
@@ -408,7 +408,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Component
+            "children": <View
               style={
                 Object {
                   "backgroundColor": "#e20177",
@@ -421,7 +421,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Component
+              <Text
                 style={
                   Object {
                     "color": "white",
@@ -433,8 +433,8 @@ ShallowWrapper {
                 }
               >
                 test
-              </Component>
-            </Component>,
+              </Text>
+            </View>,
             "disabled": undefined,
             "onPressIn": [Function],
             "onPressOut": [Function],
@@ -445,7 +445,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <Component
+              "children": <Text
                 style={
                   Object {
                     "color": "white",
@@ -457,7 +457,7 @@ ShallowWrapper {
                 }
               >
                 test
-              </Component>,
+              </Text>,
               "style": Object {
                 "backgroundColor": "#e20177",
                 "borderColor": "#e20177",
@@ -541,7 +541,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component
+        <View
           style={
             Object {
               "backgroundColor": "#95012b",
@@ -560,7 +560,7 @@ ShallowWrapper {
           onPressIn={[Function]}
           onPressOut={[Function]}
         >
-          <Component
+          <View
             style={
               Object {
                 "backgroundColor": "#e20177",
@@ -573,7 +573,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <Text
               style={
                 Object {
                   "color": "white",
@@ -585,10 +585,10 @@ ShallowWrapper {
               }
             >
               test
-            </Component>
-          </Component>
+            </Text>
+          </View>
         </TouchableWithoutFeedback>,
-        <Component
+        <View
           style={
             Object {
               "backgroundColor": "rgba(255,255,255,0.8)",
@@ -633,7 +633,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Component
+          "children": <View
             style={
               Object {
                 "backgroundColor": "#e20177",
@@ -646,7 +646,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <Text
               style={
                 Object {
                   "color": "white",
@@ -658,8 +658,8 @@ ShallowWrapper {
               }
             >
               test
-            </Component>
-          </Component>,
+            </Text>
+          </View>,
           "disabled": true,
           "onPressIn": [Function],
           "onPressOut": [Function],
@@ -670,7 +670,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Component
+            "children": <Text
               style={
                 Object {
                   "color": "white",
@@ -682,7 +682,7 @@ ShallowWrapper {
               }
             >
               test
-            </Component>,
+            </Text>,
             "style": Object {
               "backgroundColor": "#e20177",
               "borderColor": "#e20177",
@@ -747,7 +747,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component
+          <View
             style={
               Object {
                 "backgroundColor": "#95012b",
@@ -766,7 +766,7 @@ ShallowWrapper {
             onPressIn={[Function]}
             onPressOut={[Function]}
           >
-            <Component
+            <View
               style={
                 Object {
                   "backgroundColor": "#e20177",
@@ -779,7 +779,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Component
+              <Text
                 style={
                   Object {
                     "color": "white",
@@ -791,10 +791,10 @@ ShallowWrapper {
                 }
               >
                 test
-              </Component>
-            </Component>
+              </Text>
+            </View>
           </TouchableWithoutFeedback>,
-          <Component
+          <View
             style={
               Object {
                 "backgroundColor": "rgba(255,255,255,0.8)",
@@ -839,7 +839,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Component
+            "children": <View
               style={
                 Object {
                   "backgroundColor": "#e20177",
@@ -852,7 +852,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Component
+              <Text
                 style={
                   Object {
                     "color": "white",
@@ -864,8 +864,8 @@ ShallowWrapper {
                 }
               >
                 test
-              </Component>
-            </Component>,
+              </Text>
+            </View>,
             "disabled": true,
             "onPressIn": [Function],
             "onPressOut": [Function],
@@ -876,7 +876,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <Component
+              "children": <Text
                 style={
                   Object {
                     "color": "white",
@@ -888,7 +888,7 @@ ShallowWrapper {
                 }
               >
                 test
-              </Component>,
+              </Text>,
               "style": Object {
                 "backgroundColor": "#e20177",
                 "borderColor": "#e20177",
@@ -991,7 +991,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component
+        <View
           style={
             Object {
               "backgroundColor": "#95012b",
@@ -1009,7 +1009,7 @@ ShallowWrapper {
           onPressIn={[Function]}
           onPressOut={[Function]}
         >
-          <Component
+          <View
             style={
               Object {
                 "backgroundColor": "#e20177",
@@ -1022,7 +1022,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <Text
               style={
                 Object {
                   "color": "white",
@@ -1034,8 +1034,8 @@ ShallowWrapper {
               }
             >
               test
-            </Component>
-          </Component>
+            </Text>
+          </View>
         </TouchableWithoutFeedback>,
         null,
       ],
@@ -1068,7 +1068,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Component
+          "children": <View
             style={
               Object {
                 "backgroundColor": "#e20177",
@@ -1081,7 +1081,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <Text
               style={
                 Object {
                   "color": "white",
@@ -1093,8 +1093,8 @@ ShallowWrapper {
               }
             >
               test
-            </Component>
-          </Component>,
+            </Text>
+          </View>,
           "disabled": undefined,
           "onPressIn": [Function],
           "onPressOut": [Function],
@@ -1105,7 +1105,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Component
+            "children": <Text
               style={
                 Object {
                   "color": "white",
@@ -1117,7 +1117,7 @@ ShallowWrapper {
               }
             >
               test
-            </Component>,
+            </Text>,
             "style": Object {
               "backgroundColor": "#e20177",
               "borderColor": "#e20177",
@@ -1162,7 +1162,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component
+          <View
             style={
               Object {
                 "backgroundColor": "#95012b",
@@ -1180,7 +1180,7 @@ ShallowWrapper {
             onPressIn={[Function]}
             onPressOut={[Function]}
           >
-            <Component
+            <View
               style={
                 Object {
                   "backgroundColor": "#e20177",
@@ -1193,7 +1193,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Component
+              <Text
                 style={
                   Object {
                     "color": "white",
@@ -1205,8 +1205,8 @@ ShallowWrapper {
                 }
               >
                 test
-              </Component>
-            </Component>
+              </Text>
+            </View>
           </TouchableWithoutFeedback>,
           null,
         ],
@@ -1239,7 +1239,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Component
+            "children": <View
               style={
                 Object {
                   "backgroundColor": "#e20177",
@@ -1252,7 +1252,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Component
+              <Text
                 style={
                   Object {
                     "color": "white",
@@ -1264,8 +1264,8 @@ ShallowWrapper {
                 }
               >
                 test
-              </Component>
-            </Component>,
+              </Text>
+            </View>,
             "disabled": undefined,
             "onPressIn": [Function],
             "onPressOut": [Function],
@@ -1276,7 +1276,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <Component
+              "children": <Text
                 style={
                   Object {
                     "color": "white",
@@ -1288,7 +1288,7 @@ ShallowWrapper {
                 }
               >
                 test
-              </Component>,
+              </Text>,
               "style": Object {
                 "backgroundColor": "#e20177",
                 "borderColor": "#e20177",
@@ -1371,7 +1371,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "activeOpacity": 0.2,
-      "children": <Component
+      "children": <Text
         style={
           Object {
             "color": "rgb(226,1,119)",
@@ -1383,7 +1383,7 @@ ShallowWrapper {
         }
       >
         test
-      </Component>,
+      </Text>,
       "disabled": undefined,
       "onPress": [MockFunction],
       "style": Object {
@@ -1423,7 +1423,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "activeOpacity": 0.2,
-        "children": <Component
+        "children": <Text
           style={
             Object {
               "color": "rgb(226,1,119)",
@@ -1435,7 +1435,7 @@ ShallowWrapper {
           }
         >
           test
-        </Component>,
+        </Text>,
         "disabled": undefined,
         "onPress": [MockFunction],
         "style": Object {

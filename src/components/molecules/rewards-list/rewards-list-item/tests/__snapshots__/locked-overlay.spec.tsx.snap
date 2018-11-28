@@ -19,7 +19,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <Component
+      "children": <View
         style={
           Object {
             "backgroundColor": "#bebebe",
@@ -30,7 +30,7 @@ ShallowWrapper {
           }
         }
       >
-        <Image
+        <Component
           resizeMethod="resize"
           resizeMode="contain"
           source={
@@ -57,7 +57,7 @@ ShallowWrapper {
         >
           locked
         </YuText>
-      </Component>,
+      </View>,
       "style": Object {
         "flexDirection": "row",
         "justifyContent": "space-between",
@@ -72,7 +72,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Image
+          <Component
             resizeMethod="resize"
             resizeMode="contain"
             source={
@@ -157,7 +157,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": <Component
+        "children": <View
           style={
             Object {
               "backgroundColor": "#bebebe",
@@ -168,7 +168,7 @@ ShallowWrapper {
             }
           }
         >
-          <Image
+          <Component
             resizeMethod="resize"
             resizeMode="contain"
             source={
@@ -195,7 +195,7 @@ ShallowWrapper {
           >
             locked
           </YuText>
-        </Component>,
+        </View>,
         "style": Object {
           "flexDirection": "row",
           "justifyContent": "space-between",
@@ -210,7 +210,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Image
+            <Component
               resizeMethod="resize"
               resizeMode="contain"
               source={
@@ -346,7 +346,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <Component
+      "children": <View
         style={
           Object {
             "backgroundColor": "#bebebe",
@@ -357,7 +357,7 @@ ShallowWrapper {
           }
         }
       >
-        <Image
+        <Component
           resizeMethod="resize"
           resizeMode="contain"
           source={
@@ -384,7 +384,7 @@ ShallowWrapper {
         >
           locked
         </YuText>
-      </Component>,
+      </View>,
       "style": Object {
         "flexDirection": "row",
         "justifyContent": "space-between",
@@ -399,7 +399,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Image
+          <Component
             resizeMethod="resize"
             resizeMode="contain"
             source={
@@ -484,7 +484,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": <Component
+        "children": <View
           style={
             Object {
               "backgroundColor": "#bebebe",
@@ -495,7 +495,7 @@ ShallowWrapper {
             }
           }
         >
-          <Image
+          <Component
             resizeMethod="resize"
             resizeMode="contain"
             source={
@@ -522,7 +522,7 @@ ShallowWrapper {
           >
             locked
           </YuText>
-        </Component>,
+        </View>,
         "style": Object {
           "flexDirection": "row",
           "justifyContent": "space-between",
@@ -537,7 +537,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Image
+            <Component
               resizeMethod="resize"
               resizeMode="contain"
               source={

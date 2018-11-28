@@ -47,7 +47,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component>
+        <View>
           <ChallengeTile
             challengeType="brisk walk"
             duration="10"
@@ -62,8 +62,8 @@ ShallowWrapper {
             isImageBackgroundFlipped={true}
             reward="0-6"
           />
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "marginLeft": "auto",
@@ -85,7 +85,7 @@ ShallowWrapper {
             isImageBackgroundFlipped={false}
             reward="0-3"
           />
-        </Component>,
+        </View>,
       ],
       "style": Object {
         "flexDirection": "row",
@@ -228,7 +228,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component>
+          <View>
             <ChallengeTile
               challengeType="brisk walk"
               duration="10"
@@ -243,8 +243,8 @@ ShallowWrapper {
               isImageBackgroundFlipped={true}
               reward="0-6"
             />
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "marginLeft": "auto",
@@ -266,7 +266,7 @@ ShallowWrapper {
               isImageBackgroundFlipped={false}
               reward="0-3"
             />
-          </Component>,
+          </View>,
         ],
         "style": Object {
           "flexDirection": "row",
@@ -469,7 +469,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component>
+        <View>
           <ChallengeTile
             challengeType="brisk walk"
             duration="10"
@@ -495,8 +495,8 @@ ShallowWrapper {
             isLocked={true}
             minimumLevel={10}
           />
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "marginLeft": "auto",
@@ -638,7 +638,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component>
+          <View>
             <ChallengeTile
               challengeType="brisk walk"
               duration="10"
@@ -664,8 +664,8 @@ ShallowWrapper {
               isLocked={true}
               minimumLevel={10}
             />
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "marginLeft": "auto",

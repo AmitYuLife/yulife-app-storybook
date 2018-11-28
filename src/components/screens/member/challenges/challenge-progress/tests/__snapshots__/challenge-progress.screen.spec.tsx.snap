@@ -34,7 +34,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Image
+        <Component
           resizeMethod="resize"
           resizeMode="cover"
           source={
@@ -59,7 +59,7 @@ ShallowWrapper {
           onPressLeftIcon={[MockFunction]}
           timer="2020-12-31T23:59:59"
         />,
-        <Component
+        <View
           style={
             Object {
               "marginTop": 12,
@@ -77,9 +77,9 @@ ShallowWrapper {
             }
             type="steps"
           />
-        </Component>,
+        </View>,
         null,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -96,7 +96,7 @@ ShallowWrapper {
             labels={Array []}
             onDismissPress={[MockFunction]}
           />
-        </Component>,
+        </View>,
       ],
       "style": Object {
         "flex": 1,
@@ -229,7 +229,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Image
+          <Component
             resizeMethod="resize"
             resizeMode="cover"
             source={
@@ -254,7 +254,7 @@ ShallowWrapper {
             onPressLeftIcon={[MockFunction]}
             timer="2020-12-31T23:59:59"
           />,
-          <Component
+          <View
             style={
               Object {
                 "marginTop": 12,
@@ -272,9 +272,9 @@ ShallowWrapper {
               }
               type="steps"
             />
-          </Component>,
+          </View>,
           null,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -291,7 +291,7 @@ ShallowWrapper {
               labels={Array []}
               onDismissPress={[MockFunction]}
             />
-          </Component>,
+          </View>,
         ],
         "style": Object {
           "flex": 1,

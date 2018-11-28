@@ -20,7 +20,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Image
+        <Component
           source={
             Object {
               "testUri": "../../../assets/purchases-empty/rewards-empty.png",
@@ -32,7 +32,7 @@ ShallowWrapper {
             }
           }
         />,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -61,7 +61,7 @@ ShallowWrapper {
           >
             Buy a voucher and it will appear here
           </YuText>
-        </Component>,
+        </View>,
         <Button
           label="check rewards"
           onPress={[MockFunction]}
@@ -183,7 +183,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Image
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/purchases-empty/rewards-empty.png",
@@ -195,7 +195,7 @@ ShallowWrapper {
               }
             }
           />,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -224,7 +224,7 @@ ShallowWrapper {
             >
               Buy a voucher and it will appear here
             </YuText>
-          </Component>,
+          </View>,
           <Button
             label="check rewards"
             onPress={[MockFunction]}

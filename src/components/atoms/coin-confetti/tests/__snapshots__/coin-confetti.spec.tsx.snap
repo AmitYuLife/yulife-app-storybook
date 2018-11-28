@@ -20,14 +20,14 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Image
+        <Component
           source={
             Object {
               "testUri": "../../../assets/coin-confetti/coin.png",
             }
           }
         />,
-        <Component
+        <View
           style={
             Object {
               "bottom": 0,
@@ -39,7 +39,7 @@ ShallowWrapper {
             }
           }
         >
-          <Image
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/coin-confetti/confetti.png",
@@ -53,7 +53,7 @@ ShallowWrapper {
               }
             }
           />
-        </Component>,
+        </View>,
         null,
       ],
       "style": Object {
@@ -83,7 +83,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Image
+          "children": <Component
             source={
               Object {
                 "testUri": "../../../assets/coin-confetti/confetti.png",
@@ -138,14 +138,14 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Image
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/coin-confetti/coin.png",
               }
             }
           />,
-          <Component
+          <View
             style={
               Object {
                 "bottom": 0,
@@ -157,7 +157,7 @@ ShallowWrapper {
               }
             }
           >
-            <Image
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/coin-confetti/confetti.png",
@@ -171,7 +171,7 @@ ShallowWrapper {
                 }
               }
             />
-          </Component>,
+          </View>,
           null,
         ],
         "style": Object {
@@ -201,7 +201,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Image
+            "children": <Component
               source={
                 Object {
                   "testUri": "../../../assets/coin-confetti/confetti.png",
@@ -292,14 +292,14 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Image
+        <Component
           source={
             Object {
               "testUri": "../../../assets/coin-confetti/coin.png",
             }
           }
         />,
-        <Component
+        <View
           style={
             Object {
               "bottom": 0,
@@ -311,7 +311,7 @@ ShallowWrapper {
             }
           }
         >
-          <Image
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/coin-confetti/confetti.png",
@@ -323,7 +323,7 @@ ShallowWrapper {
               }
             }
           />
-        </Component>,
+        </View>,
         <PlusPoints
           coins={2000}
         />,
@@ -354,7 +354,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Image
+          "children": <Component
             source={
               Object {
                 "testUri": "../../../assets/coin-confetti/confetti.png",
@@ -415,14 +415,14 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Image
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/coin-confetti/coin.png",
               }
             }
           />,
-          <Component
+          <View
             style={
               Object {
                 "bottom": 0,
@@ -434,7 +434,7 @@ ShallowWrapper {
               }
             }
           >
-            <Image
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/coin-confetti/confetti.png",
@@ -446,7 +446,7 @@ ShallowWrapper {
                 }
               }
             />
-          </Component>,
+          </View>,
           <PlusPoints
             coins={2000}
           />,
@@ -477,7 +477,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Image
+            "children": <Component
               source={
                 Object {
                   "testUri": "../../../assets/coin-confetti/confetti.png",
@@ -572,14 +572,14 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Image
+        <Component
           source={
             Object {
               "testUri": "../../../assets/coin-confetti/coin.png",
             }
           }
         />,
-        <Component
+        <View
           style={
             Object {
               "bottom": 0,
@@ -591,7 +591,7 @@ ShallowWrapper {
             }
           }
         >
-          <Image
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/coin-confetti/confetti.png",
@@ -603,7 +603,7 @@ ShallowWrapper {
               }
             }
           />
-        </Component>,
+        </View>,
         null,
       ],
       "style": Object {
@@ -632,7 +632,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Image
+          "children": <Component
             source={
               Object {
                 "testUri": "../../../assets/coin-confetti/confetti.png",
@@ -683,14 +683,14 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Image
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/coin-confetti/coin.png",
               }
             }
           />,
-          <Component
+          <View
             style={
               Object {
                 "bottom": 0,
@@ -702,7 +702,7 @@ ShallowWrapper {
               }
             }
           >
-            <Image
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/coin-confetti/confetti.png",
@@ -714,7 +714,7 @@ ShallowWrapper {
                 }
               }
             />
-          </Component>,
+          </View>,
           null,
         ],
         "style": Object {
@@ -743,7 +743,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Image
+            "children": <Component
               source={
                 Object {
                   "testUri": "../../../assets/coin-confetti/confetti.png",

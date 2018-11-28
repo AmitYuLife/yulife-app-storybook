@@ -25,7 +25,7 @@ ShallowWrapper {
         <StarLeft
           isHighlighted={true}
         />,
-        <Component
+        <View
           style={
             Object {
               "marginTop": -8,
@@ -35,7 +35,7 @@ ShallowWrapper {
           <StarMid
             isHighlighted={true}
           />
-        </Component>,
+        </View>,
         <StarRight
           isHighlighted={true}
         />,
@@ -112,7 +112,7 @@ ShallowWrapper {
           <StarLeft
             isHighlighted={true}
           />,
-          <Component
+          <View
             style={
               Object {
                 "marginTop": -8,
@@ -122,7 +122,7 @@ ShallowWrapper {
             <StarMid
               isHighlighted={true}
             />
-          </Component>,
+          </View>,
           <StarRight
             isHighlighted={true}
           />,
@@ -231,7 +231,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <StarLeft />,
-        <Component
+        <View
           style={
             Object {
               "marginTop": -8,
@@ -239,7 +239,7 @@ ShallowWrapper {
           }
         >
           <StarMid />
-        </Component>,
+        </View>,
         <StarRight />,
       ],
       "style": Object {
@@ -310,7 +310,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <StarLeft />,
-          <Component
+          <View
             style={
               Object {
                 "marginTop": -8,
@@ -318,7 +318,7 @@ ShallowWrapper {
             }
           >
             <StarMid />
-          </Component>,
+          </View>,
           <StarRight />,
         ],
         "style": Object {
@@ -429,7 +429,7 @@ ShallowWrapper {
         <StarLeft
           isHighlighted={false}
         />,
-        <Component
+        <View
           style={
             Object {
               "marginTop": -8,
@@ -439,7 +439,7 @@ ShallowWrapper {
           <StarMid
             isHighlighted={true}
           />
-        </Component>,
+        </View>,
         <StarRight
           isHighlighted={false}
         />,
@@ -516,7 +516,7 @@ ShallowWrapper {
           <StarLeft
             isHighlighted={false}
           />,
-          <Component
+          <View
             style={
               Object {
                 "marginTop": -8,
@@ -526,7 +526,7 @@ ShallowWrapper {
             <StarMid
               isHighlighted={true}
             />
-          </Component>,
+          </View>,
           <StarRight
             isHighlighted={false}
           />,

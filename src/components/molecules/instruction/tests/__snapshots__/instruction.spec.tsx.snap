@@ -21,7 +21,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component
+        <View
           style={
             Object {
               "width": 50,
@@ -31,12 +31,12 @@ ShallowWrapper {
           <YuText>
             5.
           </YuText>
-        </Component>,
-        <Component>
+        </View>,
+        <View>
           <YuText>
             This is an instruction
           </YuText>
-        </Component>,
+        </View>,
       ],
       "style": Object {
         "flex": 1,
@@ -106,7 +106,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component
+          <View
             style={
               Object {
                 "width": 50,
@@ -116,12 +116,12 @@ ShallowWrapper {
             <YuText>
               5.
             </YuText>
-          </Component>,
-          <Component>
+          </View>,
+          <View>
             <YuText>
               This is an instruction
             </YuText>
-          </Component>,
+          </View>,
         ],
         "style": Object {
           "flex": 1,

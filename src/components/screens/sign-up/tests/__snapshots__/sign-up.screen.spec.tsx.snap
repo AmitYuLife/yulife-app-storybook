@@ -241,9 +241,9 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         false,
-        <Component>
+        <Text>
           ERROR!!
-        </Component>,
+        </Text>,
         <WebView
           injectedJavaScript="
     window.postMessage = window.originalPostMessage || window.postMessage;
@@ -339,9 +339,9 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           false,
-          <Component>
+          <Text>
             ERROR!!
-          </Component>,
+          </Text>,
           <WebView
             injectedJavaScript="
     window.postMessage = window.originalPostMessage || window.postMessage;
@@ -478,9 +478,9 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <Component>
+        <Text>
           LOADING
-        </Component>,
+        </Text>,
         "",
         <WebView
           injectedJavaScript="
@@ -578,9 +578,9 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <Component>
+          <Text>
             LOADING
-          </Component>,
+          </Text>,
           "",
           <WebView
             injectedJavaScript="

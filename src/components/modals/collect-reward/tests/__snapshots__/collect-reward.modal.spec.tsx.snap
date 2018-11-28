@@ -34,7 +34,7 @@ ShallowWrapper {
         <Pad
           height={8}
         />
-        <Component
+        <View
           style={
             Object {
               "height": 50,
@@ -75,7 +75,7 @@ ShallowWrapper {
           <Pad
             height={8}
           />,
-          <Component
+          <View
             style={
               Object {
                 "height": 50,
@@ -197,7 +197,7 @@ ShallowWrapper {
           <Pad
             height={8}
           />
-          <Component
+          <View
             style={
               Object {
                 "height": 50,
@@ -238,7 +238,7 @@ ShallowWrapper {
             <Pad
               height={8}
             />,
-            <Component
+            <View
               style={
                 Object {
                   "height": 50,
@@ -397,7 +397,7 @@ ShallowWrapper {
         <Pad
           height={8}
         />
-        <Component
+        <View
           style={
             Object {
               "height": 50,
@@ -438,7 +438,7 @@ ShallowWrapper {
           <Pad
             height={8}
           />,
-          <Component
+          <View
             style={
               Object {
                 "height": 50,
@@ -560,7 +560,7 @@ ShallowWrapper {
           <Pad
             height={8}
           />
-          <Component
+          <View
             style={
               Object {
                 "height": 50,
@@ -601,7 +601,7 @@ ShallowWrapper {
             <Pad
               height={8}
             />,
-            <Component
+            <View
               style={
                 Object {
                   "height": 50,
@@ -761,7 +761,7 @@ ShallowWrapper {
         <Pad
           height={8}
         />
-        <Component
+        <View
           style={
             Object {
               "height": 50,
@@ -773,7 +773,7 @@ ShallowWrapper {
             label="12-15 Blerguary"
             size="small"
           />
-        </Component>
+        </View>
         <Pad
           height={14}
         />
@@ -808,7 +808,7 @@ ShallowWrapper {
           <Pad
             height={8}
           />,
-          <Component
+          <View
             style={
               Object {
                 "height": 50,
@@ -820,7 +820,7 @@ ShallowWrapper {
               label="12-15 Blerguary"
               size="small"
             />
-          </Component>,
+          </View>,
           <Pad
             height={14}
           />,
@@ -952,7 +952,7 @@ ShallowWrapper {
           <Pad
             height={8}
           />
-          <Component
+          <View
             style={
               Object {
                 "height": 50,
@@ -964,7 +964,7 @@ ShallowWrapper {
               label="12-15 Blerguary"
               size="small"
             />
-          </Component>
+          </View>
           <Pad
             height={14}
           />
@@ -999,7 +999,7 @@ ShallowWrapper {
             <Pad
               height={8}
             />,
-            <Component
+            <View
               style={
                 Object {
                   "height": 50,
@@ -1011,7 +1011,7 @@ ShallowWrapper {
                 label="12-15 Blerguary"
                 size="small"
               />
-            </Component>,
+            </View>,
             <Pad
               height={14}
             />,

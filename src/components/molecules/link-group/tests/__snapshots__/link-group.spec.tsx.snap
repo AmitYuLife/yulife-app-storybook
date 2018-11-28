@@ -31,7 +31,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -51,8 +51,8 @@ ShallowWrapper {
               }
             }
           />
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -72,7 +72,7 @@ ShallowWrapper {
               }
             }
           />
-          <Component
+          <View
             style={
               Object {
                 "backgroundColor": "rgb(96,96,96)",
@@ -81,7 +81,7 @@ ShallowWrapper {
               }
             }
           />
-        </Component>,
+        </View>,
       ],
       "style": Object {
         "alignItems": "center",
@@ -157,7 +157,7 @@ ShallowWrapper {
                 }
               }
             />,
-            <Component
+            <View
               style={
                 Object {
                   "backgroundColor": "rgb(96,96,96)",
@@ -220,7 +220,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -240,8 +240,8 @@ ShallowWrapper {
                 }
               }
             />
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -261,7 +261,7 @@ ShallowWrapper {
                 }
               }
             />
-            <Component
+            <View
               style={
                 Object {
                   "backgroundColor": "rgb(96,96,96)",
@@ -270,7 +270,7 @@ ShallowWrapper {
                 }
               }
             />
-          </Component>,
+          </View>,
         ],
         "style": Object {
           "alignItems": "center",
@@ -346,7 +346,7 @@ ShallowWrapper {
                   }
                 }
               />,
-              <Component
+              <View
                 style={
                   Object {
                     "backgroundColor": "rgb(96,96,96)",

@@ -37,7 +37,7 @@ ShallowWrapper {
         >
           <ChallengesBackground />
         </SafeAreaView>,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -53,7 +53,7 @@ ShallowWrapper {
           <ChallengeSet
             challenges={Array []}
           />
-        </Component>,
+        </View>,
         <TopBar
           coins={1234}
           leftIcon="Back"
@@ -61,7 +61,7 @@ ShallowWrapper {
           name="level 1"
           onPressLeftIcon={[Function]}
         />,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -79,7 +79,7 @@ ShallowWrapper {
             colour="light"
             labels={Array []}
           />
-        </Component>,
+        </View>,
       ],
       "style": Object {
         "flex": 1,
@@ -219,7 +219,7 @@ ShallowWrapper {
           >
             <ChallengesBackground />
           </SafeAreaView>,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -235,7 +235,7 @@ ShallowWrapper {
             <ChallengeSet
               challenges={Array []}
             />
-          </Component>,
+          </View>,
           <TopBar
             coins={1234}
             leftIcon="Back"
@@ -243,7 +243,7 @@ ShallowWrapper {
             name="level 1"
             onPressLeftIcon={[Function]}
           />,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -261,7 +261,7 @@ ShallowWrapper {
               colour="light"
               labels={Array []}
             />
-          </Component>,
+          </View>,
         ],
         "style": Object {
           "flex": 1,
@@ -439,7 +439,7 @@ ShallowWrapper {
             }
           }
         >
-          <Image
+          <Component
             resizeMethod="scale"
             resizeMode="contain"
             source={
@@ -456,7 +456,7 @@ ShallowWrapper {
             }
           />
         </SafeAreaView>,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -472,7 +472,7 @@ ShallowWrapper {
           <ChallengeSet
             challenges={Array []}
           />
-        </Component>,
+        </View>,
         <TopBar
           coins={1234}
           leftIcon="Back"
@@ -480,7 +480,7 @@ ShallowWrapper {
           name="level 1"
           onPressLeftIcon={[Function]}
         />,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -498,7 +498,7 @@ ShallowWrapper {
             colour="light"
             labels={Array []}
           />
-        </Component>,
+        </View>,
       ],
       "style": Object {
         "flex": 1,
@@ -511,7 +511,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Image
+          "children": <Component
             resizeMethod="scale"
             resizeMode="contain"
             source={
@@ -662,7 +662,7 @@ ShallowWrapper {
               }
             }
           >
-            <Image
+            <Component
               resizeMethod="scale"
               resizeMode="contain"
               source={
@@ -679,7 +679,7 @@ ShallowWrapper {
               }
             />
           </SafeAreaView>,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -695,7 +695,7 @@ ShallowWrapper {
             <ChallengeSet
               challenges={Array []}
             />
-          </Component>,
+          </View>,
           <TopBar
             coins={1234}
             leftIcon="Back"
@@ -703,7 +703,7 @@ ShallowWrapper {
             name="level 1"
             onPressLeftIcon={[Function]}
           />,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -721,7 +721,7 @@ ShallowWrapper {
               colour="light"
               labels={Array []}
             />
-          </Component>,
+          </View>,
         ],
         "style": Object {
           "flex": 1,
@@ -734,7 +734,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Image
+            "children": <Component
               resizeMethod="scale"
               resizeMode="contain"
               source={

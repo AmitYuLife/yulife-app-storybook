@@ -56,7 +56,7 @@ ShallowWrapper {
           onPress={[MockFunction]}
         />,
         false,
-        <Component
+        <View
           style={
             Object {
               "bottom": 34,
@@ -70,7 +70,7 @@ ShallowWrapper {
             hasNotification={false}
             labels={Array []}
           />
-        </Component>,
+        </View>,
       ],
       "footerImage": "gray_forest",
     },
@@ -201,7 +201,7 @@ ShallowWrapper {
             onPress={[MockFunction]}
           />,
           false,
-          <Component
+          <View
             style={
               Object {
                 "bottom": 34,
@@ -215,7 +215,7 @@ ShallowWrapper {
               hasNotification={false}
               labels={Array []}
             />
-          </Component>,
+          </View>,
         ],
         "footerImage": "gray_forest",
       },
@@ -396,7 +396,7 @@ ShallowWrapper {
         </TouchableOpacity>,
         <DailyStepsFitKitUnavailable />,
         false,
-        <Component
+        <View
           style={
             Object {
               "bottom": 34,
@@ -410,7 +410,7 @@ ShallowWrapper {
             hasNotification={false}
             labels={Array []}
           />
-        </Component>,
+        </View>,
       ],
       "footerImage": "large_forest",
     },
@@ -537,7 +537,7 @@ ShallowWrapper {
           </TouchableOpacity>,
           <DailyStepsFitKitUnavailable />,
           false,
-          <Component
+          <View
             style={
               Object {
                 "bottom": 34,
@@ -551,7 +551,7 @@ ShallowWrapper {
               hasNotification={false}
               labels={Array []}
             />
-          </Component>,
+          </View>,
         ],
         "footerImage": "large_forest",
       },
@@ -740,7 +740,7 @@ ShallowWrapper {
           maxStreak={4}
           onPress={[MockFunction]}
         />,
-        <Component
+        <View
           style={
             Object {
               "bottom": 34,
@@ -754,7 +754,7 @@ ShallowWrapper {
             hasNotification={false}
             labels={Array []}
           />
-        </Component>,
+        </View>,
       ],
       "footerImage": "large_forest",
     },
@@ -907,7 +907,7 @@ ShallowWrapper {
             maxStreak={4}
             onPress={[MockFunction]}
           />,
-          <Component
+          <View
             style={
               Object {
                 "bottom": 34,
@@ -921,7 +921,7 @@ ShallowWrapper {
               hasNotification={false}
               labels={Array []}
             />
-          </Component>,
+          </View>,
         ],
         "footerImage": "large_forest",
       },
@@ -1121,7 +1121,7 @@ ShallowWrapper {
           steps={0}
         />,
         false,
-        <Component
+        <View
           style={
             Object {
               "bottom": 34,
@@ -1135,7 +1135,7 @@ ShallowWrapper {
             hasNotification={false}
             labels={Array []}
           />
-        </Component>,
+        </View>,
       ],
       "footerImage": "large_forest",
     },
@@ -1270,7 +1270,7 @@ ShallowWrapper {
             steps={0}
           />,
           false,
-          <Component
+          <View
             style={
               Object {
                 "bottom": 34,
@@ -1284,7 +1284,7 @@ ShallowWrapper {
               hasNotification={false}
               labels={Array []}
             />
-          </Component>,
+          </View>,
         ],
         "footerImage": "large_forest",
       },
@@ -1467,7 +1467,7 @@ ShallowWrapper {
         </TouchableOpacity>,
         <DailyStepsLoading />,
         false,
-        <Component
+        <View
           style={
             Object {
               "bottom": 34,
@@ -1481,7 +1481,7 @@ ShallowWrapper {
             hasNotification={false}
             labels={Array []}
           />
-        </Component>,
+        </View>,
       ],
       "footerImage": "large_forest",
     },
@@ -1608,7 +1608,7 @@ ShallowWrapper {
           </TouchableOpacity>,
           <DailyStepsLoading />,
           false,
-          <Component
+          <View
             style={
               Object {
                 "bottom": 34,
@@ -1622,7 +1622,7 @@ ShallowWrapper {
               hasNotification={false}
               labels={Array []}
             />
-          </Component>,
+          </View>,
         ],
         "footerImage": "large_forest",
       },
@@ -1803,7 +1803,7 @@ ShallowWrapper {
           lastUpdate="thing"
         />,
         false,
-        <Component
+        <View
           style={
             Object {
               "bottom": 34,
@@ -1817,7 +1817,7 @@ ShallowWrapper {
             hasNotification={false}
             labels={Array []}
           />
-        </Component>,
+        </View>,
       ],
       "footerImage": "gray_forest",
     },
@@ -1948,7 +1948,7 @@ ShallowWrapper {
             lastUpdate="thing"
           />,
           false,
-          <Component
+          <View
             style={
               Object {
                 "bottom": 34,
@@ -1962,7 +1962,7 @@ ShallowWrapper {
               hasNotification={false}
               labels={Array []}
             />
-          </Component>,
+          </View>,
         ],
         "footerImage": "gray_forest",
       },

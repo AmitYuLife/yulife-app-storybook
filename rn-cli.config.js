@@ -1,15 +1,11 @@
-const blacklist = require('metro/src/blacklist');
+const blacklist = require("metro-config/src/defaults/blacklist");
 
 module.exports = {
-    getTransformModulePath() {
-        return require.resolve('react-native-typescript-transformer');
+    resolver: {
+        blacklistRE: blacklist([/coverage\/.*/]),
+        sourceExts: ["ts", "tsx", "js", "jsx"]
     },
-    getSourceExts() {
-        return ['ts', 'tsx','js', 'jsx'];
-    },
-    getBlacklistRE(platform) {
-        return blacklist([
-            /coverage\/.*/
-        ]);
+    transformer: {
+        babelTransformerPath: require.resolve("react-native-typescript-transformer")
     }
 };

@@ -60,14 +60,14 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component>
+        <View>
           <TopBar
             coins={123}
             leftIcon="Back"
             onPressLeftIcon={[MockFunction]}
           />
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -80,7 +80,7 @@ ShallowWrapper {
             onLeftTabPress={[MockFunction]}
             onRightTabPress={[MockFunction]}
           />
-        </Component>,
+        </View>,
         <ScrollView
           style={
             Object {
@@ -101,7 +101,7 @@ ShallowWrapper {
               }
             }
           />
-          <Component
+          <View
             style={
               Object {
                 "paddingHorizontal": 30,
@@ -122,7 +122,7 @@ ShallowWrapper {
               onPressPolicy={[MockFunction]}
               onPressTerms={[MockFunction]}
             />
-          </Component>
+          </View>
           <Pad
             height={50}
           />
@@ -211,7 +211,7 @@ ShallowWrapper {
                 }
               }
             />,
-            <Component
+            <View
               style={
                 Object {
                   "paddingHorizontal": 30,
@@ -232,7 +232,7 @@ ShallowWrapper {
                 onPressPolicy={[MockFunction]}
                 onPressTerms={[MockFunction]}
               />
-            </Component>,
+            </View>,
             <Pad
               height={50}
             />,
@@ -333,14 +333,14 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component>
+          <View>
             <TopBar
               coins={123}
               leftIcon="Back"
               onPressLeftIcon={[MockFunction]}
             />
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -353,7 +353,7 @@ ShallowWrapper {
               onLeftTabPress={[MockFunction]}
               onRightTabPress={[MockFunction]}
             />
-          </Component>,
+          </View>,
           <ScrollView
             style={
               Object {
@@ -374,7 +374,7 @@ ShallowWrapper {
                 }
               }
             />
-            <Component
+            <View
               style={
                 Object {
                   "paddingHorizontal": 30,
@@ -395,7 +395,7 @@ ShallowWrapper {
                 onPressPolicy={[MockFunction]}
                 onPressTerms={[MockFunction]}
               />
-            </Component>
+            </View>
             <Pad
               height={50}
             />
@@ -484,7 +484,7 @@ ShallowWrapper {
                   }
                 }
               />,
-              <Component
+              <View
                 style={
                   Object {
                     "paddingHorizontal": 30,
@@ -505,7 +505,7 @@ ShallowWrapper {
                   onPressPolicy={[MockFunction]}
                   onPressTerms={[MockFunction]}
                 />
-              </Component>,
+              </View>,
               <Pad
                 height={50}
               />,

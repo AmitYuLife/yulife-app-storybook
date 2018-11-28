@@ -44,7 +44,7 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <Component
+        <View
           style={
             Object {
               "backgroundColor": "white",
@@ -69,7 +69,7 @@ ShallowWrapper {
               }
             }
           >
-            <Image
+            <Component
               resizeMode="contain"
               source={
                 Object {
@@ -84,7 +84,7 @@ ShallowWrapper {
               }
             />
           </TouchableOpacity>
-          <Component
+          <View
             style={
               Object {
                 "marginBottom": 68,
@@ -92,7 +92,7 @@ ShallowWrapper {
               }
             }
           >
-            <Image
+            <Component
               resizeMode="contain"
               source={
                 Object {
@@ -101,7 +101,7 @@ ShallowWrapper {
               }
               style={Object {}}
             />
-          </Component>
+          </View>
           <TouchableOpacity
             activeOpacity={0.2}
             onPress={[MockFunction]}
@@ -113,19 +113,19 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <View
               style={
                 Object {
                   "width": 112,
                 }
               }
             >
-              <Image
+              <Component
                 source={1234}
                 style={Object {}}
               />
-            </Component>
-            <Component
+            </View>
+            <View
               style={
                 Object {
                   "paddingRight": 16,
@@ -146,7 +146,7 @@ ShallowWrapper {
               >
                 debug  
               </YuText>
-            </Component>
+            </View>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.2}
@@ -159,7 +159,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <View
               style={
                 Object {
                   "paddingRight": 16,
@@ -180,10 +180,10 @@ ShallowWrapper {
               >
                 leaderboard  
               </YuText>
-            </Component>
+            </View>
           </TouchableOpacity>
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -205,7 +205,7 @@ ShallowWrapper {
           >
             1.0.0
           </YuText>
-        </Component>,
+        </View>,
       ],
     },
     "ref": null,
@@ -231,7 +231,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
+              <Component
                 resizeMode="contain"
                 source={
                   Object {
@@ -246,7 +246,7 @@ ShallowWrapper {
                 }
               />
             </TouchableOpacity>,
-            <Component
+            <View
               style={
                 Object {
                   "marginBottom": 68,
@@ -254,7 +254,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
+              <Component
                 resizeMode="contain"
                 source={
                   Object {
@@ -263,7 +263,7 @@ ShallowWrapper {
                 }
                 style={Object {}}
               />
-            </Component>,
+            </View>,
             Array [
               <TouchableOpacity
                 activeOpacity={0.2}
@@ -276,19 +276,19 @@ ShallowWrapper {
                   }
                 }
               >
-                <Component
+                <View
                   style={
                     Object {
                       "width": 112,
                     }
                   }
                 >
-                  <Image
+                  <Component
                     source={1234}
                     style={Object {}}
                   />
-                </Component>
-                <Component
+                </View>
+                <View
                   style={
                     Object {
                       "paddingRight": 16,
@@ -309,7 +309,7 @@ ShallowWrapper {
                   >
                     debug  
                   </YuText>
-                </Component>
+                </View>
               </TouchableOpacity>,
               null,
               <TouchableOpacity
@@ -323,7 +323,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <Component
+                <View
                   style={
                     Object {
                       "paddingRight": 16,
@@ -344,7 +344,7 @@ ShallowWrapper {
                   >
                     leaderboard  
                   </YuText>
-                </Component>
+                </View>
               </TouchableOpacity>,
               null,
             ],
@@ -364,7 +364,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeOpacity": 0.2,
-              "children": <Image
+              "children": <Component
                 resizeMode="contain"
                 source={
                   Object {
@@ -415,7 +415,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <Image
+              "children": <Component
                 resizeMode="contain"
                 source={
                   Object {
@@ -454,19 +454,19 @@ ShallowWrapper {
             "props": Object {
               "activeOpacity": 0.2,
               "children": Array [
-                <Component
+                <View
                   style={
                     Object {
                       "width": 112,
                     }
                   }
                 >
-                  <Image
+                  <Component
                     source={1234}
                     style={Object {}}
                   />
-                </Component>,
-                <Component
+                </View>,
+                <View
                   style={
                     Object {
                       "paddingRight": 16,
@@ -487,7 +487,7 @@ ShallowWrapper {
                   >
                     debug  
                   </YuText>
-                </Component>,
+                </View>,
               ],
               "onPress": [MockFunction],
               "style": Object {
@@ -503,7 +503,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": <Image
+                  "children": <Component
                     source={1234}
                     style={Object {}}
                   />,
@@ -583,7 +583,7 @@ ShallowWrapper {
               "activeOpacity": 0.2,
               "children": Array [
                 undefined,
-                <Component
+                <View
                   style={
                     Object {
                       "paddingRight": 16,
@@ -604,7 +604,7 @@ ShallowWrapper {
                   >
                     leaderboard  
                   </YuText>
-                </Component>,
+                </View>,
               ],
               "onPress": [MockFunction],
               "style": Object {
@@ -721,7 +721,7 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <Component
+          <View
             style={
               Object {
                 "backgroundColor": "white",
@@ -746,7 +746,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
+              <Component
                 resizeMode="contain"
                 source={
                   Object {
@@ -761,7 +761,7 @@ ShallowWrapper {
                 }
               />
             </TouchableOpacity>
-            <Component
+            <View
               style={
                 Object {
                   "marginBottom": 68,
@@ -769,7 +769,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
+              <Component
                 resizeMode="contain"
                 source={
                   Object {
@@ -778,7 +778,7 @@ ShallowWrapper {
                 }
                 style={Object {}}
               />
-            </Component>
+            </View>
             <TouchableOpacity
               activeOpacity={0.2}
               onPress={[MockFunction]}
@@ -790,19 +790,19 @@ ShallowWrapper {
                 }
               }
             >
-              <Component
+              <View
                 style={
                   Object {
                     "width": 112,
                   }
                 }
               >
-                <Image
+                <Component
                   source={1234}
                   style={Object {}}
                 />
-              </Component>
-              <Component
+              </View>
+              <View
                 style={
                   Object {
                     "paddingRight": 16,
@@ -823,7 +823,7 @@ ShallowWrapper {
                 >
                   debug  
                 </YuText>
-              </Component>
+              </View>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.2}
@@ -836,7 +836,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Component
+              <View
                 style={
                   Object {
                     "paddingRight": 16,
@@ -857,10 +857,10 @@ ShallowWrapper {
                 >
                   leaderboard  
                 </YuText>
-              </Component>
+              </View>
             </TouchableOpacity>
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -882,7 +882,7 @@ ShallowWrapper {
             >
               1.0.0
             </YuText>
-          </Component>,
+          </View>,
         ],
       },
       "ref": null,
@@ -908,7 +908,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <Image
+                <Component
                   resizeMode="contain"
                   source={
                     Object {
@@ -923,7 +923,7 @@ ShallowWrapper {
                   }
                 />
               </TouchableOpacity>,
-              <Component
+              <View
                 style={
                   Object {
                     "marginBottom": 68,
@@ -931,7 +931,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <Image
+                <Component
                   resizeMode="contain"
                   source={
                     Object {
@@ -940,7 +940,7 @@ ShallowWrapper {
                   }
                   style={Object {}}
                 />
-              </Component>,
+              </View>,
               Array [
                 <TouchableOpacity
                   activeOpacity={0.2}
@@ -953,19 +953,19 @@ ShallowWrapper {
                     }
                   }
                 >
-                  <Component
+                  <View
                     style={
                       Object {
                         "width": 112,
                       }
                     }
                   >
-                    <Image
+                    <Component
                       source={1234}
                       style={Object {}}
                     />
-                  </Component>
-                  <Component
+                  </View>
+                  <View
                     style={
                       Object {
                         "paddingRight": 16,
@@ -986,7 +986,7 @@ ShallowWrapper {
                     >
                       debug  
                     </YuText>
-                  </Component>
+                  </View>
                 </TouchableOpacity>,
                 null,
                 <TouchableOpacity
@@ -1000,7 +1000,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  <Component
+                  <View
                     style={
                       Object {
                         "paddingRight": 16,
@@ -1021,7 +1021,7 @@ ShallowWrapper {
                     >
                       leaderboard  
                     </YuText>
-                  </Component>
+                  </View>
                 </TouchableOpacity>,
                 null,
               ],
@@ -1041,7 +1041,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "activeOpacity": 0.2,
-                "children": <Image
+                "children": <Component
                   resizeMode="contain"
                   source={
                     Object {
@@ -1092,7 +1092,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <Image
+                "children": <Component
                   resizeMode="contain"
                   source={
                     Object {
@@ -1131,19 +1131,19 @@ ShallowWrapper {
               "props": Object {
                 "activeOpacity": 0.2,
                 "children": Array [
-                  <Component
+                  <View
                     style={
                       Object {
                         "width": 112,
                       }
                     }
                   >
-                    <Image
+                    <Component
                       source={1234}
                       style={Object {}}
                     />
-                  </Component>,
-                  <Component
+                  </View>,
+                  <View
                     style={
                       Object {
                         "paddingRight": 16,
@@ -1164,7 +1164,7 @@ ShallowWrapper {
                     >
                       debug  
                     </YuText>
-                  </Component>,
+                  </View>,
                 ],
                 "onPress": [MockFunction],
                 "style": Object {
@@ -1180,7 +1180,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": <Image
+                    "children": <Component
                       source={1234}
                       style={Object {}}
                     />,
@@ -1260,7 +1260,7 @@ ShallowWrapper {
                 "activeOpacity": 0.2,
                 "children": Array [
                   undefined,
-                  <Component
+                  <View
                     style={
                       Object {
                         "paddingRight": 16,
@@ -1281,7 +1281,7 @@ ShallowWrapper {
                     >
                       leaderboard  
                     </YuText>
-                  </Component>,
+                  </View>,
                 ],
                 "onPress": [MockFunction],
                 "style": Object {
@@ -1436,7 +1436,7 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <Component
+        <View
           style={
             Object {
               "backgroundColor": "white",
@@ -1461,7 +1461,7 @@ ShallowWrapper {
               }
             }
           >
-            <Image
+            <Component
               resizeMode="contain"
               source={
                 Object {
@@ -1476,7 +1476,7 @@ ShallowWrapper {
               }
             />
           </TouchableOpacity>
-          <Component
+          <View
             style={
               Object {
                 "marginBottom": 68,
@@ -1484,7 +1484,7 @@ ShallowWrapper {
               }
             }
           >
-            <Image
+            <Component
               resizeMode="contain"
               source={
                 Object {
@@ -1493,9 +1493,9 @@ ShallowWrapper {
               }
               style={Object {}}
             />
-          </Component>
-        </Component>,
-        <Component
+          </View>
+        </View>,
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -1517,7 +1517,7 @@ ShallowWrapper {
           >
             1.0.0
           </YuText>
-        </Component>,
+        </View>,
       ],
     },
     "ref": null,
@@ -1543,7 +1543,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
+              <Component
                 resizeMode="contain"
                 source={
                   Object {
@@ -1558,7 +1558,7 @@ ShallowWrapper {
                 }
               />
             </TouchableOpacity>,
-            <Component
+            <View
               style={
                 Object {
                   "marginBottom": 68,
@@ -1566,7 +1566,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
+              <Component
                 resizeMode="contain"
                 source={
                   Object {
@@ -1575,7 +1575,7 @@ ShallowWrapper {
                 }
                 style={Object {}}
               />
-            </Component>,
+            </View>,
             null,
           ],
           "style": Object {
@@ -1593,7 +1593,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeOpacity": 0.2,
-              "children": <Image
+              "children": <Component
                 resizeMode="contain"
                 source={
                   Object {
@@ -1644,7 +1644,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <Image
+              "children": <Component
                 resizeMode="contain"
                 source={
                   Object {
@@ -1733,7 +1733,7 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <Component
+          <View
             style={
               Object {
                 "backgroundColor": "white",
@@ -1758,7 +1758,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
+              <Component
                 resizeMode="contain"
                 source={
                   Object {
@@ -1773,7 +1773,7 @@ ShallowWrapper {
                 }
               />
             </TouchableOpacity>
-            <Component
+            <View
               style={
                 Object {
                   "marginBottom": 68,
@@ -1781,7 +1781,7 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
+              <Component
                 resizeMode="contain"
                 source={
                   Object {
@@ -1790,9 +1790,9 @@ ShallowWrapper {
                 }
                 style={Object {}}
               />
-            </Component>
-          </Component>,
-          <Component
+            </View>
+          </View>,
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -1814,7 +1814,7 @@ ShallowWrapper {
             >
               1.0.0
             </YuText>
-          </Component>,
+          </View>,
         ],
       },
       "ref": null,
@@ -1840,7 +1840,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <Image
+                <Component
                   resizeMode="contain"
                   source={
                     Object {
@@ -1855,7 +1855,7 @@ ShallowWrapper {
                   }
                 />
               </TouchableOpacity>,
-              <Component
+              <View
                 style={
                   Object {
                     "marginBottom": 68,
@@ -1863,7 +1863,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <Image
+                <Component
                   resizeMode="contain"
                   source={
                     Object {
@@ -1872,7 +1872,7 @@ ShallowWrapper {
                   }
                   style={Object {}}
                 />
-              </Component>,
+              </View>,
               null,
             ],
             "style": Object {
@@ -1890,7 +1890,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "activeOpacity": 0.2,
-                "children": <Image
+                "children": <Component
                   resizeMode="contain"
                   source={
                     Object {
@@ -1941,7 +1941,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <Image
+                "children": <Component
                   resizeMode="contain"
                   source={
                     Object {

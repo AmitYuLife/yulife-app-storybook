@@ -20,7 +20,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component
+        <View
           style={
             Object {
               "marginRight": 12,
@@ -30,7 +30,7 @@ ShallowWrapper {
           <Plus
             scale={0.5}
           />
-        </Component>,
+        </View>,
         <YuText
           style={
             Object {
@@ -111,7 +111,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component
+          <View
             style={
               Object {
                 "marginRight": 12,
@@ -121,7 +121,7 @@ ShallowWrapper {
             <Plus
               scale={0.5}
             />
-          </Component>,
+          </View>,
           <YuText
             style={
               Object {

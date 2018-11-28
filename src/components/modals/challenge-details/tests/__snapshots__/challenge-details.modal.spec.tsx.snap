@@ -36,7 +36,7 @@ ShallowWrapper {
         <Close
           onPress={[MockFunction]}
         />,
-        <Image
+        <Component
           source={
             Object {
               "testUri": "../../../assets/challenge-details/squirrel.png",
@@ -48,7 +48,7 @@ ShallowWrapper {
             }
           }
         />,
-        <Component
+        <View
           style={
             Object {
               "backgroundColor": "rgb(237, 251, 248)",
@@ -80,7 +80,7 @@ ShallowWrapper {
             }
             unit="steps"
           />
-        </Component>,
+        </View>,
         <Button
           label="take challenge"
           onPress={[MockFunction]}
@@ -257,7 +257,7 @@ ShallowWrapper {
           <Close
             onPress={[MockFunction]}
           />,
-          <Image
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/squirrel.png",
@@ -269,7 +269,7 @@ ShallowWrapper {
               }
             }
           />,
-          <Component
+          <View
             style={
               Object {
                 "backgroundColor": "rgb(237, 251, 248)",
@@ -301,7 +301,7 @@ ShallowWrapper {
               }
               unit="steps"
             />
-          </Component>,
+          </View>,
           <Button
             label="take challenge"
             onPress={[MockFunction]}
@@ -526,7 +526,7 @@ ShallowWrapper {
         <Close
           onPress={[MockFunction]}
         />,
-        <Image
+        <Component
           source={
             Object {
               "testUri": "../../../assets/challenge-details/squirrel.png",
@@ -538,7 +538,7 @@ ShallowWrapper {
             }
           }
         />,
-        <Component
+        <View
           style={
             Object {
               "backgroundColor": "rgb(237, 251, 248)",
@@ -570,7 +570,7 @@ ShallowWrapper {
             }
             unit="steps"
           />
-        </Component>,
+        </View>,
         <Button
           label="take challenge"
           onPress={[MockFunction]}
@@ -748,7 +748,7 @@ ShallowWrapper {
           <Close
             onPress={[MockFunction]}
           />,
-          <Image
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/squirrel.png",
@@ -760,7 +760,7 @@ ShallowWrapper {
               }
             }
           />,
-          <Component
+          <View
             style={
               Object {
                 "backgroundColor": "rgb(237, 251, 248)",
@@ -792,7 +792,7 @@ ShallowWrapper {
               }
               unit="steps"
             />
-          </Component>,
+          </View>,
           <Button
             label="take challenge"
             onPress={[MockFunction]}

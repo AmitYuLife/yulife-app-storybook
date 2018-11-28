@@ -19,7 +19,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <Component
+      "children": <Text
         style={
           Object {
             "color": "rgb(96,96,96)",
@@ -31,7 +31,7 @@ ShallowWrapper {
         }
       >
         test
-      </Component>,
+      </Text>,
       "style": Object {
         "paddingHorizontal": 170,
       },
@@ -63,7 +63,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": <Component
+        "children": <Text
           style={
             Object {
               "color": "rgb(96,96,96)",
@@ -75,7 +75,7 @@ ShallowWrapper {
           }
         >
           test
-        </Component>,
+        </Text>,
         "style": Object {
           "paddingHorizontal": 170,
         },

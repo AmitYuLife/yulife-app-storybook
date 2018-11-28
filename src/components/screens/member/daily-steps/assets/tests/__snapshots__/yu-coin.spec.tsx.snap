@@ -19,7 +19,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Glow />,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -32,7 +32,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <View
             style={
               Object {
                 "borderRadius": 53,
@@ -60,8 +60,8 @@ ShallowWrapper {
               <Unknown />
             </Svg>
             <Shine />
-          </Component>
-        </Component>,
+          </View>
+        </View>,
       ],
       "style": Object {
         "height": 200,
@@ -84,7 +84,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Component
+          "children": <View
             style={
               Object {
                 "borderRadius": 53,
@@ -112,7 +112,7 @@ ShallowWrapper {
               <Unknown />
             </Svg>
             <Shine />
-          </Component>,
+          </View>,
           "style": Object {
             "alignItems": "center",
             "bottom": 0,
@@ -230,7 +230,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Glow />,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -243,7 +243,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <View
               style={
                 Object {
                   "borderRadius": 53,
@@ -271,8 +271,8 @@ ShallowWrapper {
                 <Unknown />
               </Svg>
               <Shine />
-            </Component>
-          </Component>,
+            </View>
+          </View>,
         ],
         "style": Object {
           "height": 200,
@@ -295,7 +295,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Component
+            "children": <View
               style={
                 Object {
                   "borderRadius": 53,
@@ -323,7 +323,7 @@ ShallowWrapper {
                 <Unknown />
               </Svg>
               <Shine />
-            </Component>,
+            </View>,
             "style": Object {
               "alignItems": "center",
               "bottom": 0,
@@ -477,7 +477,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         null,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -490,7 +490,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <View
             style={
               Object {
                 "borderRadius": 53,
@@ -521,8 +521,8 @@ ShallowWrapper {
                 isGrayScale={true}
               />
             </Svg>
-          </Component>
-        </Component>,
+          </View>
+        </View>,
       ],
       "style": Object {
         "height": 200,
@@ -537,7 +537,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Component
+          "children": <View
             style={
               Object {
                 "borderRadius": 53,
@@ -568,7 +568,7 @@ ShallowWrapper {
                 isGrayScale={true}
               />
             </Svg>
-          </Component>,
+          </View>,
           "style": Object {
             "alignItems": "center",
             "bottom": 0,
@@ -686,7 +686,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           null,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -699,7 +699,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <View
               style={
                 Object {
                   "borderRadius": 53,
@@ -730,8 +730,8 @@ ShallowWrapper {
                   isGrayScale={true}
                 />
               </Svg>
-            </Component>
-          </Component>,
+            </View>
+          </View>,
         ],
         "style": Object {
           "height": 200,
@@ -746,7 +746,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Component
+            "children": <View
               style={
                 Object {
                   "borderRadius": 53,
@@ -777,7 +777,7 @@ ShallowWrapper {
                   isGrayScale={true}
                 />
               </Svg>
-            </Component>,
+            </View>,
             "style": Object {
               "alignItems": "center",
               "bottom": 0,
@@ -931,7 +931,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Glow />,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -944,7 +944,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <View
             style={
               Object {
                 "borderRadius": 53,
@@ -971,8 +971,8 @@ ShallowWrapper {
               <Static />
               <Giraffe />
             </Svg>
-          </Component>
-        </Component>,
+          </View>
+        </View>,
       ],
       "style": Object {
         "height": 200,
@@ -995,7 +995,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Component
+          "children": <View
             style={
               Object {
                 "borderRadius": 53,
@@ -1022,7 +1022,7 @@ ShallowWrapper {
               <Static />
               <Giraffe />
             </Svg>
-          </Component>,
+          </View>,
           "style": Object {
             "alignItems": "center",
             "bottom": 0,
@@ -1130,7 +1130,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Glow />,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -1143,7 +1143,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <View
               style={
                 Object {
                   "borderRadius": 53,
@@ -1170,8 +1170,8 @@ ShallowWrapper {
                 <Static />
                 <Giraffe />
               </Svg>
-            </Component>
-          </Component>,
+            </View>
+          </View>,
         ],
         "style": Object {
           "height": 200,
@@ -1194,7 +1194,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Component
+            "children": <View
               style={
                 Object {
                   "borderRadius": 53,
@@ -1221,7 +1221,7 @@ ShallowWrapper {
                 <Static />
                 <Giraffe />
               </Svg>
-            </Component>,
+            </View>,
             "style": Object {
               "alignItems": "center",
               "bottom": 0,

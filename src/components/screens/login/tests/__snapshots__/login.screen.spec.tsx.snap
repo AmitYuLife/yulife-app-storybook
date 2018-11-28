@@ -35,7 +35,7 @@ ShallowWrapper {
       "children": <CenteredScreen
         footerImage="forest"
       >
-        <Component>
+        <View>
           <Pad
             height={100}
           />
@@ -46,7 +46,7 @@ ShallowWrapper {
           <Blurb
             label="Let's begin the journey of making you the best of yu!"
           />
-        </Component>
+        </View>
         <Pad
           height={44}
         />
@@ -107,7 +107,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component>
+          <View>
             <Pad
               height={100}
             />
@@ -118,7 +118,7 @@ ShallowWrapper {
             <Blurb
               label="Let's begin the journey of making you the best of yu!"
             />
-          </Component>,
+          </View>,
           <Pad
             height={44}
           />,
@@ -352,7 +352,7 @@ ShallowWrapper {
         "children": <CenteredScreen
           footerImage="forest"
         >
-          <Component>
+          <View>
             <Pad
               height={100}
             />
@@ -363,7 +363,7 @@ ShallowWrapper {
             <Blurb
               label="Let's begin the journey of making you the best of yu!"
             />
-          </Component>
+          </View>
           <Pad
             height={44}
           />
@@ -424,7 +424,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component>
+            <View>
               <Pad
                 height={100}
               />
@@ -435,7 +435,7 @@ ShallowWrapper {
               <Blurb
                 label="Let's begin the journey of making you the best of yu!"
               />
-            </Component>,
+            </View>,
             <Pad
               height={44}
             />,
@@ -717,7 +717,7 @@ ShallowWrapper {
       "children": <CenteredScreen
         footerImage="forest"
       >
-        <Component>
+        <View>
           <Pad
             height={100}
           />
@@ -728,7 +728,7 @@ ShallowWrapper {
           <Blurb
             label="Let's begin the journey of making you the best of yu!"
           />
-        </Component>
+        </View>
         <Pad
           height={44}
         />
@@ -789,7 +789,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component>
+          <View>
             <Pad
               height={100}
             />
@@ -800,7 +800,7 @@ ShallowWrapper {
             <Blurb
               label="Let's begin the journey of making you the best of yu!"
             />
-          </Component>,
+          </View>,
           <Pad
             height={44}
           />,
@@ -1034,7 +1034,7 @@ ShallowWrapper {
         "children": <CenteredScreen
           footerImage="forest"
         >
-          <Component>
+          <View>
             <Pad
               height={100}
             />
@@ -1045,7 +1045,7 @@ ShallowWrapper {
             <Blurb
               label="Let's begin the journey of making you the best of yu!"
             />
-          </Component>
+          </View>
           <Pad
             height={44}
           />
@@ -1106,7 +1106,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component>
+            <View>
               <Pad
                 height={100}
               />
@@ -1117,7 +1117,7 @@ ShallowWrapper {
               <Blurb
                 label="Let's begin the journey of making you the best of yu!"
               />
-            </Component>,
+            </View>,
             <Pad
               height={44}
             />,
@@ -1399,7 +1399,7 @@ ShallowWrapper {
       "children": <CenteredScreen
         footerImage="forest"
       >
-        <Component>
+        <View>
           <Pad
             height={100}
           />
@@ -1410,7 +1410,7 @@ ShallowWrapper {
           <Blurb
             label="Let's begin the journey of making you the best of yu!"
           />
-        </Component>
+        </View>
         <Pad
           height={44}
         />
@@ -1471,7 +1471,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component>
+          <View>
             <Pad
               height={100}
             />
@@ -1482,7 +1482,7 @@ ShallowWrapper {
             <Blurb
               label="Let's begin the journey of making you the best of yu!"
             />
-          </Component>,
+          </View>,
           <Pad
             height={44}
           />,
@@ -1716,7 +1716,7 @@ ShallowWrapper {
         "children": <CenteredScreen
           footerImage="forest"
         >
-          <Component>
+          <View>
             <Pad
               height={100}
             />
@@ -1727,7 +1727,7 @@ ShallowWrapper {
             <Blurb
               label="Let's begin the journey of making you the best of yu!"
             />
-          </Component>
+          </View>
           <Pad
             height={44}
           />
@@ -1788,7 +1788,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component>
+            <View>
               <Pad
                 height={100}
               />
@@ -1799,7 +1799,7 @@ ShallowWrapper {
               <Blurb
                 label="Let's begin the journey of making you the best of yu!"
               />
-            </Component>,
+            </View>,
             <Pad
               height={44}
             />,
@@ -2605,7 +2605,7 @@ ShallowWrapper {
       "children": <CenteredScreen
         footerImage="forest"
       >
-        <Component>
+        <View>
           <Pad
             height={100}
           />
@@ -2616,7 +2616,7 @@ ShallowWrapper {
           <Blurb
             label="Let's begin the journey of making you the best of yu!"
           />
-        </Component>
+        </View>
         <Pad
           height={44}
         />
@@ -2680,7 +2680,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component>
+          <View>
             <Pad
               height={100}
             />
@@ -2691,7 +2691,7 @@ ShallowWrapper {
             <Blurb
               label="Let's begin the journey of making you the best of yu!"
             />
-          </Component>,
+          </View>,
           <Pad
             height={44}
           />,
@@ -2937,7 +2937,7 @@ ShallowWrapper {
         "children": <CenteredScreen
           footerImage="forest"
         >
-          <Component>
+          <View>
             <Pad
               height={100}
             />
@@ -2948,7 +2948,7 @@ ShallowWrapper {
             <Blurb
               label="Let's begin the journey of making you the best of yu!"
             />
-          </Component>
+          </View>
           <Pad
             height={44}
           />
@@ -3012,7 +3012,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component>
+            <View>
               <Pad
                 height={100}
               />
@@ -3023,7 +3023,7 @@ ShallowWrapper {
               <Blurb
                 label="Let's begin the journey of making you the best of yu!"
               />
-            </Component>,
+            </View>,
             <Pad
               height={44}
             />,

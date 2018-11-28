@@ -22,7 +22,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <Component
+      "children": <View
         style={
           Object {
             "alignItems": "center",
@@ -61,7 +61,7 @@ ShallowWrapper {
         <Pad
           width={15}
         />
-      </Component>,
+      </View>,
       "onPressIn": [Function],
       "onPressOut": [Function],
     },
@@ -174,7 +174,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": <Component
+        "children": <View
           style={
             Object {
               "alignItems": "center",
@@ -213,7 +213,7 @@ ShallowWrapper {
           <Pad
             width={15}
           />
-        </Component>,
+        </View>,
         "onPressIn": [Function],
         "onPressOut": [Function],
       },
@@ -365,7 +365,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <Component
+      "children": <View
         style={
           Object {
             "alignItems": "center",
@@ -404,7 +404,7 @@ ShallowWrapper {
         <Pad
           width={15}
         />
-      </Component>,
+      </View>,
       "onPressIn": [Function],
       "onPressOut": [Function],
     },
@@ -517,7 +517,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": <Component
+        "children": <View
           style={
             Object {
               "alignItems": "center",
@@ -556,7 +556,7 @@ ShallowWrapper {
           <Pad
             width={15}
           />
-        </Component>,
+        </View>,
         "onPressIn": [Function],
         "onPressOut": [Function],
       },
@@ -708,7 +708,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <Component
+      "children": <View
         style={
           Object {
             "alignItems": "center",
@@ -747,7 +747,7 @@ ShallowWrapper {
         <Pad
           width={15}
         />
-      </Component>,
+      </View>,
       "onPressIn": [Function],
       "onPressOut": [Function],
     },
@@ -860,7 +860,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": <Component
+        "children": <View
           style={
             Object {
               "alignItems": "center",
@@ -899,7 +899,7 @@ ShallowWrapper {
           <Pad
             width={15}
           />
-        </Component>,
+        </View>,
         "onPressIn": [Function],
         "onPressOut": [Function],
       },
@@ -1051,7 +1051,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <Component
+      "children": <View
         style={
           Object {
             "alignItems": "center",
@@ -1090,7 +1090,7 @@ ShallowWrapper {
         <Pad
           width={15}
         />
-      </Component>,
+      </View>,
       "onPressIn": [Function],
       "onPressOut": [Function],
     },
@@ -1203,7 +1203,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": <Component
+        "children": <View
           style={
             Object {
               "alignItems": "center",
@@ -1242,7 +1242,7 @@ ShallowWrapper {
           <Pad
             width={15}
           />
-        </Component>,
+        </View>,
         "onPressIn": [Function],
         "onPressOut": [Function],
       },
@@ -1394,7 +1394,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <Component
+      "children": <View
         style={
           Object {
             "alignItems": "center",
@@ -1433,7 +1433,7 @@ ShallowWrapper {
         <Pad
           width={15}
         />
-      </Component>,
+      </View>,
       "onPressIn": [Function],
       "onPressOut": [Function],
     },
@@ -1546,7 +1546,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": <Component
+        "children": <View
           style={
             Object {
               "alignItems": "center",
@@ -1585,7 +1585,7 @@ ShallowWrapper {
           <Pad
             width={15}
           />
-        </Component>,
+        </View>,
         "onPressIn": [Function],
         "onPressOut": [Function],
       },

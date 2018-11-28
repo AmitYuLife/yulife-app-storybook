@@ -21,7 +21,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Stars />,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -29,7 +29,7 @@ ShallowWrapper {
             }
           }
         >
-          <Image
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-failed/levelLine.png",
@@ -48,7 +48,7 @@ ShallowWrapper {
           >
             level undefined
           </YuText>
-        </Component>,
+        </View>,
         <YuText
           bold={true}
           style={
@@ -60,7 +60,7 @@ ShallowWrapper {
         >
           you didn’t make it
         </YuText>,
-        <Image
+        <Component
           source={
             Object {
               "testUri": "../../../assets/challenge-failed/face.png",
@@ -117,7 +117,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Image
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-failed/levelLine.png",
@@ -253,7 +253,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Stars />,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -261,7 +261,7 @@ ShallowWrapper {
               }
             }
           >
-            <Image
+            <Component
               source={
                 Object {
                   "testUri": "../../../assets/challenge-failed/levelLine.png",
@@ -280,7 +280,7 @@ ShallowWrapper {
             >
               level undefined
             </YuText>
-          </Component>,
+          </View>,
           <YuText
             bold={true}
             style={
@@ -292,7 +292,7 @@ ShallowWrapper {
           >
             you didn’t make it
           </YuText>,
-          <Image
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-failed/face.png",
@@ -349,7 +349,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Image
+              <Component
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-failed/levelLine.png",

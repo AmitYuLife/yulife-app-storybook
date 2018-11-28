@@ -20,14 +20,14 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Image
+        <Component
           source={
             Object {
               "testUri": "../../../assets/challenge-complete/timeup.png",
             }
           }
         />,
-        <Component
+        <View
           style={
             Object {
               "marginTop": 38,
@@ -44,7 +44,7 @@ ShallowWrapper {
           >
             time’s up!
           </YuText>
-        </Component>,
+        </View>,
         <Button
           label="see result"
           onPress={[MockFunction]}
@@ -140,14 +140,14 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Image
+          <Component
             source={
               Object {
                 "testUri": "../../../assets/challenge-complete/timeup.png",
               }
             }
           />,
-          <Component
+          <View
             style={
               Object {
                 "marginTop": 38,
@@ -164,7 +164,7 @@ ShallowWrapper {
             >
               time’s up!
             </YuText>
-          </Component>,
+          </View>,
           <Button
             label="see result"
             onPress={[MockFunction]}
