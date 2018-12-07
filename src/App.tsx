@@ -1,14 +1,15 @@
 import { Navigation } from "react-native-navigation";
 import registerScreens from "./navigation";
-import { setNextRoot, setUnauthenticatedRoot } from "./navigation/root";
-import { getToken, migrateOldAppVersionToken } from "./services/storage";
+import { setLoadingRoot } from "./navigation/root";
+import { migrateOldAppVersionToken } from "./services/storage";
 
 // register all the screens
 registerScreens();
 
 Navigation.events().registerAppLaunchedListener(async () => {
     await migrateOldAppVersionToken();
-    const token = await getToken();
+
+    setLoadingRoot();
 
     Navigation.setDefaultOptions({
         bottomTabs: {
@@ -33,9 +34,4 @@ Navigation.events().registerAppLaunchedListener(async () => {
         }
     });
 
-    if (token) {
-        setNextRoot();
-    } else {
-        setUnauthenticatedRoot();
-    }
 });

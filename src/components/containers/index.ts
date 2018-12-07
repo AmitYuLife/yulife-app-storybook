@@ -1,4 +1,5 @@
 // root containers
+export { default as AppLoadingContainer } from "./app-loading/app-loading.container";
 export { default as LoginContainer } from "./login/login.container";
 export { default as ResetPasswordContainer } from "./reset-password/reset-password.container";
 export { default as ResetPasswordSuccessContainer } from "./reset-password/reset-password-success.container";

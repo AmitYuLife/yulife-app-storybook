@@ -28,7 +28,7 @@ const onLeftMenuPress = () => {
     });
 };
 
-const labels = [
+export const labels = [
     {
         name: "yucoin",
         onPress: () => {
@@ -219,6 +219,16 @@ export const setNoAccessRoot = async () =>
             component: {
                 id: ROUTES.noAccess,
                 name: ROUTES.noAccess
+            }
+        }
+    });
+
+export const setLoadingRoot = async () =>
+    Navigation.setRoot({
+        root: {
+            component: {
+                id: ROUTES.loading,
+                name: ROUTES.loading
             }
         }
     });

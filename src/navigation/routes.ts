@@ -1,5 +1,6 @@
 import {
     ActivityHistoryContainer,
+    AppLoadingContainer,
     AviosRewardConfirmedContainer,
     AviosRewardDetailsContainer,
     ChallengesHistoryContainer,
@@ -39,6 +40,7 @@ import {
 // tslint:disable:object-literal-sort-keys
 export const ROUTES = {
     // root screens
+    loading: "yulife.Loading",
     noAccess: "yulife.NoAccess",
     login: "yulife.Login",
     resetPassword: "yulife.ResetPassword",
@@ -91,6 +93,7 @@ export const MODALS = {
 
 export default [
     // root screens
+    { name: ROUTES.loading, component: AppLoadingContainer },
     { name: ROUTES.noAccess, component: NoAccessContainer },
     { name: ROUTES.welcome, component: WelcomeContainer },
     { name: ROUTES.login, component: LoginContainer },
