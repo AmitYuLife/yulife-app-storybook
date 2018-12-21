@@ -1,48 +1,27 @@
-import { getImage, getImageStyle } from "../challenge-details.modal.helpers";
+import { getImageAndStyle } from "../challenge-details.modal.helpers";
 
 describe("ChallengeDetails helpers", () => {
 
-    describe("getImage helper", () => {
+    describe("getImageAndStyle helper", () => {
 
         it("should return an image for each challenge type", () => {
 
-            let actual = getImage("brisk walk");
+            let actual = getImageAndStyle("brisk walk");
             expect(actual).toMatchSnapshot();
 
-            actual = getImage("long walk");
+            actual = getImageAndStyle("long walk");
             expect(actual).toMatchSnapshot();
 
-            actual = getImage("meditation");
+            actual = getImageAndStyle("meditation");
             expect(actual).toMatchSnapshot();
 
-            actual = getImage("short stroll");
+            actual = getImageAndStyle("short stroll");
             expect(actual).toMatchSnapshot();
 
-            actual = getImage("day walk");
+            actual = getImageAndStyle("day walk");
             expect(actual).toMatchSnapshot();
 
-            actual = getImage("nothing");
-            expect(actual).toMatchSnapshot();
-        });
-    });
-
-    describe("getImageStyle helper", () => {
-
-        it("should return a view style for each challenge type", () => {
-
-            let actual = getImageStyle("brisk walk");
-            expect(actual).toMatchSnapshot();
-
-            actual = getImageStyle("long walk");
-            expect(actual).toMatchSnapshot();
-
-            actual = getImageStyle("meditation");
-            expect(actual).toMatchSnapshot();
-
-            actual = getImageStyle("short stroll");
-            expect(actual).toMatchSnapshot();
-
-            actual = getImageStyle("day walk");
+            actual = getImageAndStyle("nothing");
             expect(actual).toMatchSnapshot();
         });
     });

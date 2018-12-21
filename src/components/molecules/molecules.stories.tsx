@@ -55,12 +55,17 @@ storiesOf("Molecules", module)
             })}
             maxStreak={4}
             isFinished={boolean("Is Finished?", false)}
+            type={select("type", [
+                "forest",
+                "ocean"
+            ], "forest")}
         />
     ))
     .add("4. Challenge Tile", () => (
         <CenterView background="dark">
             <ChallengeTile
                 challengeType={text("Challenge Type", "brisk walk", "ChallengeTile")}
+                currentWorld={number("Current world", 0, { max: 1, min: 0, range: true, step: 1})}
                 duration={text("Duration", "3-10 mins", "ChallengeTile")}
                 image={select("Image", ["bird", "squirrel", "elephant", "ostrich"], "squirrel", "ChallengeTile")}
                 onPress={action("on press")}
@@ -74,26 +79,26 @@ storiesOf("Molecules", module)
                 challenges={object("Challenges", [
                     {
                         challengeType: "brisk walk",
+                        currentWorld: 0,
                         duration: "10",
-                        image: ChallengeTile.Images.SQUIRREL,
                         reward: "0-3"
                     },
                     {
                         challengeType: "long walk",
+                        currentWorld: 0,
                         duration: "30",
-                        image: ChallengeTile.Images.OSTRICH,
                         reward: "0-6"
                     },
                     {
                         challengeType: "short stroll",
+                        currentWorld: 0,
                         duration: "5",
-                        image: ChallengeTile.Images.ELEPHANT,
                         reward: "0-1"
                     },
                     {
                         challengeType: "meditation",
+                        currentWorld: 0,
                         duration: "3-10",
-                        image: ChallengeTile.Images.BIRD,
                         reward: "0-3"
                     }
                 ], "Challenges")}

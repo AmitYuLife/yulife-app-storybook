@@ -68,7 +68,7 @@ function* fitKitConsentAuthorisedSaga() {
 
 function* loginUserSuccessSaga({ payload }: LoginUserSuccessAction) {
     const { user, intercomHash } = payload.loginUser;
-    yield call(setLoggerIdentity, user.id, intercomHash);
+    yield call(setLoggerIdentity, user.id, user.membershipType, intercomHash);
 }
 
 function* fetchUserOnAppStateChange() {

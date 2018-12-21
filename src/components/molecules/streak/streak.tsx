@@ -10,11 +10,12 @@ import { Pad, Text } from "../../atoms";
 import { Calendar } from "./assets";
 import styles, { getColour } from "./streak.styles";
 
-interface IProps {
+export interface IProps {
     currentStreak: number;
     isFinished: boolean;
     maxStreak: number;
     onPress: () => void;
+    type: "forest" | "ocean";
 }
 
 interface IState {
@@ -31,10 +32,12 @@ class Streak extends PureComponent<IProps, IState> {
         const {
             isFinished,
             currentStreak,
-            maxStreak
+            maxStreak,
+            type
         } = this.props;
         const { isPressed } = this.state;
         const backgroundColor = getColour(
+            type,
             isFinished,
             isPressed
         );

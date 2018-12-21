@@ -3,18 +3,18 @@ import { getColour } from "../streak.styles";
 describe("getColour", () => {
 
     it("should be defined when unfinished and not pressed", () => {
-        expect(getColour(false, false));
+        expect(getColour("forest", false, false));
     });
 
     it("should be defined when finished and pressed", () => {
-        expect(getColour(true, true));
+        expect(getColour("forest", true, true));
     });
 
     it("should be defined when finished and not pressed", () => {
-        expect(getColour(true, false));
+        expect(getColour("forest", true, false));
     });
 
     it("should be defined when unfinished and pressed", () => {
-        expect(getColour(false, true));
+        expect(getColour("forest", false, true));
     });
 });

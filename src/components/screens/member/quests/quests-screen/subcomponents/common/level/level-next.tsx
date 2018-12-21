@@ -6,7 +6,7 @@ interface IProps {
     level: number;
 }
 
-const LevelNext: SFC<IProps> = ({ level }) => (
+const LevelNext: SFC<IProps> = ({ level }) => !level ? null : (
     <G>
         <Text
             y="13"

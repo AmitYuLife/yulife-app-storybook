@@ -18,7 +18,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
             visible: false
         },
         layout: {
-            backgroundColor: "white",
+            backgroundColor: "white", // "transparent"
             orientation: ["portrait"]
         },
         // modalPresentationStyle: OptionsModalPresentationStyle.overFullScreen,
@@ -33,5 +33,4 @@ Navigation.events().registerAppLaunchedListener(async () => {
             visible: false
         }
     });
-
 });

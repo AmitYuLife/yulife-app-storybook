@@ -1,5 +1,5 @@
 import NavBar from "../../nav-bar";
-import { getIconFill, getNotificationFill } from "../helpers";
+import { getColour } from "../helpers";
 
 const defaultValues = {
     colour: NavBar.Colours.LIGHT,
@@ -14,7 +14,7 @@ describe("helpers", () => {
         describe("when neither active or pressed", () => {
 
             it("returns when colour is light", () => {
-                const actual = getIconFill({
+                const actual = getColour({
                     ...defaultValues
                 });
 
@@ -22,7 +22,7 @@ describe("helpers", () => {
             });
 
             it("returns when colour is dark", () => {
-                const actual = getIconFill({
+                const actual = getColour({
                     ...defaultValues,
                     colour: NavBar.Colours.DARK
                 });
@@ -34,7 +34,7 @@ describe("helpers", () => {
         describe("when active", () => {
 
             it("returns when colour is light", () => {
-                const actual = getIconFill({
+                const actual = getColour({
                     ...defaultValues,
                     isActive: true
                 });
@@ -43,7 +43,7 @@ describe("helpers", () => {
             });
 
             it("returns when colour is darker", () => {
-                const actual = getIconFill({
+                const actual = getColour({
                     ...defaultValues,
                     colour: NavBar.Colours.DARKER,
                     isActive: true
@@ -53,7 +53,7 @@ describe("helpers", () => {
             });
 
             it("returns when colour is dark", () => {
-                const actual = getIconFill({
+                const actual = getColour({
                     ...defaultValues,
                     colour: NavBar.Colours.DARK,
                     isActive: true
@@ -66,7 +66,7 @@ describe("helpers", () => {
         describe("when pressed", () => {
 
             it("returns when colour is light", () => {
-                const actual = getIconFill({
+                const actual = getColour({
                     ...defaultValues,
                     isPressed: true
                 });
@@ -75,7 +75,7 @@ describe("helpers", () => {
             });
 
             it("returns when colour is darker", () => {
-                const actual = getIconFill({
+                const actual = getColour({
                     ...defaultValues,
                     colour: NavBar.Colours.DARKER,
                     isPressed: true
@@ -91,7 +91,7 @@ describe("helpers", () => {
         describe("when neither active or pressed", () => {
 
             it("returns when colour is light", () => {
-                const actual = getNotificationFill({
+                const actual = getColour({
                     ...defaultValues
                 });
 
@@ -99,7 +99,7 @@ describe("helpers", () => {
             });
 
             it("returns when colour is dark", () => {
-                const actual = getNotificationFill({
+                const actual = getColour({
                     ...defaultValues,
                     colour: NavBar.Colours.DARK
                 });
@@ -111,7 +111,7 @@ describe("helpers", () => {
         describe("when active", () => {
 
             it("returns when colour is light", () => {
-                const actual = getNotificationFill({
+                const actual = getColour({
                     ...defaultValues,
                     isActive: true
                 });
@@ -120,7 +120,7 @@ describe("helpers", () => {
             });
 
             it("returns when colour is dark", () => {
-                const actual = getNotificationFill({
+                const actual = getColour({
                     ...defaultValues,
                     colour: NavBar.Colours.DARK,
                     isActive: true
@@ -133,7 +133,7 @@ describe("helpers", () => {
         describe("when pressed", () => {
 
             it("returns when colour is light", () => {
-                const actual = getNotificationFill({
+                const actual = getColour({
                     ...defaultValues,
                     isPressed: true
                 });
@@ -142,7 +142,7 @@ describe("helpers", () => {
             });
 
             it("returns when colour is dark", () => {
-                const actual = getNotificationFill({
+                const actual = getColour({
                     ...defaultValues,
                     colour: NavBar.Colours.DARK,
                     isPressed: true

@@ -5,6 +5,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <DailyStepsOnline
     coinsToday={5}
+    hasWhiteText={false}
     onCtaPress={[MockFunction]}
     steps={123456}
   />,
@@ -22,7 +23,9 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <YuText>
+        <YuText
+          style={Object {}}
+        >
           123456
            steps
         </YuText>,
@@ -93,6 +96,7 @@ ShallowWrapper {
             123456,
             " steps",
           ],
+          "style": Object {},
         },
         "ref": null,
         "rendered": Array [
@@ -253,7 +257,9 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <YuText>
+          <YuText
+            style={Object {}}
+          >
             123456
              steps
           </YuText>,
@@ -324,6 +330,7 @@ ShallowWrapper {
               123456,
               " steps",
             ],
+            "style": Object {},
           },
           "ref": null,
           "rendered": Array [

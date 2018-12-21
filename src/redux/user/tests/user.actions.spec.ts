@@ -43,6 +43,7 @@ const loginSuccessFixture: LoginUser = {
             },
             id: "1234567890",
             leaderboards: [],
+            membershipType: "yulife",
             mobileConsent: {
                 companyLeaderboard: null,
                 marketing: null,

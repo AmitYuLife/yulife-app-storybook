@@ -1,61 +1,32 @@
 import * as React from "react";
-import { PureComponent } from "react";
-import {
-    Image,
-    SafeAreaView,
-    StyleSheet,
-    View,
-    ViewStyle
-} from "react-native";
-import {
-    getImage,
-    getImageStyle
-} from "./centred-screen.helpers";
+import { SFC } from "react";
+import { Image, SafeAreaView, StyleSheet, View, ViewStyle } from "react-native";
+import { getImageAndStyle } from "./centred-screen.helpers";
 import styles from "./centred-screen.styles";
 
 interface IProps {
-    footerImage?: Images;
+    footerImage?: CenteredScreenImages;
     style?: ViewStyle;
 }
 
-export enum IMAGES {
-    FOREST = "forest",
-    LARGE_FOREST = "large_forest",
-    MOUNTAINS = "mountains",
-    GRAY_FOREST = "gray_forest"
-}
+export type CenteredScreenImages =
+    | "forest"
+    | "large_forest"
+    | "gray_forest"
+    | "challenge_failed_forest"
+    | "ocean"
+    | "gray_ocean"
+    | "challenge_failed_ocean";
 
-type Images = "forest" | "large_forest" | "mountains" | "gray_forest";
-
-class CenteredScreen extends PureComponent<IProps> {
-
-    public static FooterImages = IMAGES;
-
-    public render() {
-        const { children, footerImage, style } = this.props;
-
-        return (
-            <SafeAreaView
-                style={StyleSheet.flatten([
-                    styles.wrapper,
-                    style
-                ])}
-            >
-                {!footerImage ? null : (
-                    <View style={styles.imageWrapper}>
-                        <Image
-                            resizeMode="cover"
-                            style={getImageStyle(
-                                footerImage
-                            )}
-                            source={getImage(footerImage)}
-                        />
-                    </View>
-                )}
-                {children}
-            </SafeAreaView>
-        );
-    }
-}
+const CenteredScreen: SFC<IProps> = ({ children, footerImage, style }) => (
+    <SafeAreaView style={StyleSheet.flatten([styles.wrapper, style])}>
+        {!footerImage ? null : (
+            <View style={styles.imageWrapper}>
+                <Image resizeMode="cover" {...getImageAndStyle(footerImage)} />
+            </View>
+        )}
+        {children}
+    </SafeAreaView>
+);
 
 export default CenteredScreen;

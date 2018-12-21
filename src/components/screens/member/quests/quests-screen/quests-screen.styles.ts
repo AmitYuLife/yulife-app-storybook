@@ -20,7 +20,7 @@ function getScrollViewWrapperTopValue({
     } else if (platform === "android") {
         return 0;
     } else {
-        return Style.SCALE_UP_AND_DOWN(-11);
+        return Style.SCALE_Y_UP_AND_DOWN(-9.5);
     }
 }
 

@@ -8,6 +8,7 @@ export const getCurrentWorldGql = gql`
             id
             __typename
             level
+            levelChestId
             name
             rating
             slots {

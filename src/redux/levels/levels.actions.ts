@@ -1,10 +1,12 @@
 import {
     CreateActiveChallenge,
     CreateActiveChallengeVariables,
+    SubmitUnityVariables,
     UpdateActiveChallenge
 } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 
+export const CHALLENGE_SUBMIT_UNITY = "CHALLENGE_SUBMIT_UNITY";
 export const CHALLENGE_START = "CHALLENGE_START";
 export const CHALLENGE_START_SUCCESS = "CHALLENGE_START_SUCCESS";
 export const CHALLENGE_UPDATE_SUCCESS = "CHALLENGE_UPDATE_SUCCESS";
@@ -15,6 +17,13 @@ export const CHALLENGE_END_SUCCESS = "CHALLENGE_END_SUCCESS";
 export const CHALLENGE_RESET = "CHALLENGE_RESET";
 export const CHALLENGE_RESET_SUCCESS = "CHALLENGE_RESET_SUCCESS";
 export const CHALLENGE_CANCEL = "CHALLENGE_CANCEL";
+
+export type SubmitUnityActionResult = SyncAction<SubmitUnityVariables>;
+export type SubmitUnityAction = (payload: SubmitUnityVariables) => SubmitUnityActionResult;
+export const submitUnityAction: SubmitUnityAction = (payload) => ({
+    payload,
+    type: CHALLENGE_SUBMIT_UNITY
+});
 
 export type ChallengeStartActionResult = SyncAction<CreateActiveChallengeVariables>;
 export type ChallengeStartAction = (payload: CreateActiveChallengeVariables) => ChallengeStartActionResult;

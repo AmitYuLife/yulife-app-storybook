@@ -3,8 +3,8 @@ import * as React from "react";
 import { Component } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Colours } from "../../../styles";
-import { Clock, Dim, Text } from "../../atoms";
-import { Back, Coins, Logo, Menu } from "./assets";
+import { Dim, Text } from "../../atoms";
+import { Back, Clock, Coins, Logo, Menu } from "./assets";
 import { formatSeconds } from "./top-bar.helpers";
 import styles from "./top-bar.styles";
 
@@ -16,6 +16,7 @@ interface IProps {
     menuLabel?: string;
     leftIcon?: LeftIconTypes;
     isDemo?: boolean;
+    isLight?: boolean;
     middleLabel?: string;
 }
 
@@ -26,12 +27,12 @@ export enum LEFT_ICON_TYPES {
 
 export type LeftIconTypes = "Menu" | "Back";
 
-const renderLeftIcon = (leftIcon: LeftIconTypes) => {
+const renderLeftIcon = (leftIcon: LeftIconTypes, isLight = false) => {
     switch (leftIcon) {
         case "Menu":
-            return <Menu />;
+            return <Menu color={isLight ? "#FFFFFF" : "#333333"} />;
         case "Back":
-            return <Back />;
+            return <Back color={isLight ? "#FFFFFF" : "#333333"} />;
         default:
             return null;
     }
@@ -66,14 +67,14 @@ class TopBar extends Component<IProps, IState> {
     }
 
     public renderCenter = () => {
-        const { timer, name } = this.props;
+        const { isLight = false, name, timer } = this.props;
         const { endsIn } = this.state;
 
         if (timer) {
             return (
                 <View style={styles.timerWrapper}>
-                    <Clock />
-                    <Text style={styles.timer}>{endsIn}</Text>
+                    <Clock color={isLight ? "#FFFFFF" : "#333333"} />
+                    <Text style={StyleSheet.flatten([styles.timer, isLight ? styles.textWhite : {}])}>{endsIn}</Text>
                 </View>
             );
         }
@@ -81,63 +82,72 @@ class TopBar extends Component<IProps, IState> {
         if (name) {
             return (
                 <View style={styles.textWrapper}>
-                    <Text style={styles.name}>{name}</Text>
+                    <Text style={StyleSheet.flatten([styles.name, isLight ? styles.textWhite : {}])}>{name}</Text>
                 </View>
             );
         }
 
-        return <Logo />;
+        return <Logo color={isLight ? "#FFFFFF" : "#E20177"} />;
     }
 
     public render() {
-        const { onPressLeftIcon, coins, leftIcon = "Menu", menuLabel, isDemo } = this.props;
+        const { coins, isDemo, isLight = false, leftIcon = "Menu", menuLabel, onPressLeftIcon } = this.props;
+
+        if (isDemo) {
+            this.renderDemo();
+        }
+
         return (
             <View style={styles.wrapper}>
-                {isDemo ? (
-                    <>
-                        <View style={styles.menuWrapper}>
-                            <Menu />
-                            <Dim />
-                        </View>
-                        <View>
-                            <Logo />
-                            <Dim />
-                        </View>
-                        <View style={styles.coinsWrapper}>
-                            <Text
-                                style={StyleSheet.flatten([
-                                    styles.coinsText,
-                                    {
-                                        color: Colours.darkHotPink
-                                    }
-                                ])}
-                            >
-                                {`200`}
+                <TouchableOpacity style={styles.menuWrapper} onPress={onPressLeftIcon}>
+                    {renderLeftIcon(leftIcon, isLight)}
+                    {!menuLabel ? null : (
+                        <View style={styles.menuLabelWrapper}>
+                            <Text style={StyleSheet.flatten([styles.menuLabel, isLight ? styles.textWhite : {}])}>
+                                {menuLabel}
                             </Text>
-                            <Coins color={Colours.darkHotPink} />
                         </View>
-                    </>
-                ) : (
-                    <>
-                        <TouchableOpacity style={styles.menuWrapper} onPress={onPressLeftIcon}>
-                            {renderLeftIcon(leftIcon)}
-                            {!menuLabel ? null : (
-                                <View style={styles.menuLabelWrapper}>
-                                    <Text style={styles.menuLabel}>{menuLabel}</Text>
-                                </View>
-                            )}
-                        </TouchableOpacity>
-                        {this.renderCenter()}
-                        <View style={styles.coinsWrapper}>
-                            <View style={styles.coinsTextWrapper}>
-                                <Text style={styles.coinsText}>{coins || 0}</Text>
-                            </View>
-                            <View style={styles.coinsLogoWrapper}>
-                                <Coins scale={0.5} />
-                            </View>
-                        </View>
-                    </>
-                )}
+                    )}
+                </TouchableOpacity>
+                {this.renderCenter()}
+                <View style={styles.coinsWrapper}>
+                    <View style={styles.coinsTextWrapper}>
+                        <Text style={StyleSheet.flatten([styles.coinsText, isLight ? styles.textWhite : {}])}>
+                            {coins || 0}
+                        </Text>
+                    </View>
+                    <View style={styles.coinsLogoWrapper}>
+                        <Coins color={isLight ? "#FFFFFF" : "#333333"} scale={0.5} />
+                    </View>
+                </View>
+            </View>
+        );
+    }
+
+    private renderDemo = () => {
+        return (
+            <View style={styles.wrapper}>
+                <View style={styles.menuWrapper}>
+                    <Menu />
+                    <Dim />
+                </View>
+                <View>
+                    <Logo />
+                    <Dim />
+                </View>
+                <View style={styles.coinsWrapper}>
+                    <Text
+                        style={StyleSheet.flatten([
+                            styles.coinsText,
+                            {
+                                color: Colours.darkHotPink
+                            }
+                        ])}
+                    >
+                        {`200`}
+                    </Text>
+                    <Coins color={Colours.darkHotPink} />
+                </View>
             </View>
         );
     }

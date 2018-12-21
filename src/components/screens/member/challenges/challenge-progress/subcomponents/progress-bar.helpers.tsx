@@ -1,33 +1,24 @@
 import React, { SFC } from "react";
-import { Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { padNum } from "../../../../../../services/utils";
 import Progress from "./progress";
 import { IProps } from "./progress-bar";
 import styles from "./progress-bar.styles";
 
-export const renderProgressBar: SFC<IProps> = ({ type, amount, goals }) => {
+export const renderProgressBar: SFC<IProps> = ({ amount, goals, styleType, type }) => {
     switch (goals.length) {
         case 1:
-            return (
-                <Progress
-                    amount={amount}
-                    goal={goals[0]}
-                    type={type}
-                />
-            );
+            return <Progress amount={amount} goal={goals[0]} styleType={styleType} type={type} />;
 
         case 2:
             return (
                 <>
-                    <Progress
-                        type={type}
-                        amount={amount}
-                        goal={goals[0]}
-                    />
+                    <Progress type={type} amount={amount} goal={goals[0]} styleType={styleType} />
                     <Progress
                         type={type}
                         amount={amount}
                         goal={goals[1]}
+                        styleType={styleType}
                         previousGoal={goals[0]}
                         width={50}
                     />
@@ -37,15 +28,12 @@ export const renderProgressBar: SFC<IProps> = ({ type, amount, goals }) => {
         case 3:
             return (
                 <>
-                    <Progress
-                        type={type}
-                        amount={amount}
-                        goal={goals[0]}
-                    />
+                    <Progress type={type} amount={amount} goal={goals[0]} styleType={styleType} />
                     <Progress
                         type={type}
                         amount={amount}
                         goal={goals[1]}
+                        styleType={styleType}
                         previousGoal={goals[0]}
                         width={50}
                     />
@@ -53,6 +41,7 @@ export const renderProgressBar: SFC<IProps> = ({ type, amount, goals }) => {
                         type={type}
                         amount={amount}
                         goal={goals[2]}
+                        styleType={styleType}
                         previousGoal={goals[1]}
                         width={50}
                     />
@@ -64,37 +53,27 @@ export const renderProgressBar: SFC<IProps> = ({ type, amount, goals }) => {
     }
 };
 
-export const renderProgressLabel = ({ amount, type }: Partial<IProps>): React.ReactNode => {
+export const renderProgressLabel = ({ amount, styleType = "black", type }: Partial<IProps>): React.ReactNode => {
+    const textColorStyle = getProgressLabelTextColor(styleType);
+
     switch (type) {
         case "steps":
-            return (
-                <Text style={styles.stepsText}>
-                    {`${amount} ${type}`}
-                </Text>
-            );
+            return <Text style={StyleSheet.flatten([styles.stepsText, textColorStyle])}>{`${amount} ${type}`}</Text>;
 
         case "minutes":
             const { minutes, seconds } = displaySecondsAsMinutes(amount);
 
             return (
                 <>
-                    <Text style={styles.stepsText}>
-                        {padNum(minutes)}
-                    </Text>
-                    <Text style={styles.timeLabel}>
-                        Min
-                    </Text>
-                    <Text style={styles.stepsText}>
-                        {padNum(seconds)}
-                    </Text>
-                    <Text style={styles.timeLabel}>
-                        Sec
-                    </Text>
+                    <Text style={StyleSheet.flatten([styles.stepsText, textColorStyle])}>{padNum(minutes)}</Text>
+                    <Text style={StyleSheet.flatten([styles.timeLabel, textColorStyle])}>Min</Text>
+                    <Text style={StyleSheet.flatten([styles.stepsText, textColorStyle])}>{padNum(seconds)}</Text>
+                    <Text style={StyleSheet.flatten([styles.timeLabel, textColorStyle])}>Sec</Text>
                 </>
             );
 
         default:
-            return "No type!";
+            return null;
     }
 };
 
@@ -106,4 +85,15 @@ const displaySecondsAsMinutes = (amount: number): { minutes: number; seconds: nu
         minutes,
         seconds
     };
+};
+
+const getProgressLabelTextColor = (styleType: IProps["styleType"]) => {
+    switch (styleType) {
+        case "ocean-white":
+            return styles.stepsTextWhite;
+        case "ocean-black":
+        case "black":
+        default:
+            return styles.stepsTextBlack;
+    }
 };

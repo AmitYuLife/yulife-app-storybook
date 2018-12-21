@@ -1,6 +1,5 @@
 import { shallow } from "enzyme";
 import * as React from "react";
-import { ChallengeTile } from "../..";
 import ChallengesList from "../challenges-list";
 
 describe("ChallengesList", () => {
@@ -11,22 +10,22 @@ describe("ChallengesList", () => {
                 challenges={[
                     {
                         challengeType: "brisk walk",
+                        currentWorld: 0,
                         duration: "10",
-                        image: ChallengeTile.Images.SQUIRREL,
                         reward: "0-3"
                     },
                     {
-                        image: ChallengeTile.Images.SQUIRREL,
+                        currentWorld: 0,
                         isLocked: true,
                         minimumLevel: 4
                     },
                     {
-                        image: ChallengeTile.Images.ELEPHANT,
+                        currentWorld: 0,
                         isLocked: true,
                         minimumLevel: 2
                     },
                     {
-                        image: ChallengeTile.Images.BIRD,
+                        currentWorld: 0,
                         isLocked: true,
                         minimumLevel: 10
                     }
@@ -43,26 +42,26 @@ describe("ChallengesList", () => {
                 challenges={[
                     {
                         challengeType: "brisk walk",
+                        currentWorld: 0,
                         duration: "10",
-                        image: ChallengeTile.Images.SQUIRREL,
                         reward: "0-3"
                     },
                     {
                         challengeType: "long walk",
+                        currentWorld: 0,
                         duration: "30",
-                        image: ChallengeTile.Images.OSTRICH,
                         reward: "0-6"
                     },
                     {
                         challengeType: "short stroll",
+                        currentWorld: 0,
                         duration: "5",
-                        image: ChallengeTile.Images.ELEPHANT,
                         reward: "0-1"
                     },
                     {
                         challengeType: "meditation",
+                        currentWorld: 0,
                         duration: "3-10",
-                        image: ChallengeTile.Images.BIRD,
                         reward: "0-3"
                     }
                 ]}

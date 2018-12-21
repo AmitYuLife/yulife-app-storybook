@@ -9,7 +9,6 @@ import {
 import { storiesOf } from "@storybook/react-native";
 import moment from "moment";
 import React from "react";
-import { ChallengeTile } from "../molecules";
 import {
     ActivityHistoryLevels,
     ChallengeFailedScreen,
@@ -138,26 +137,26 @@ storiesOf("Screens", module)
             challenges={object("Challenges", [
                 {
                     challengeType: "brisk walk",
+                    currentWorld: 0,
                     duration: "10 mins",
-                    image: ChallengeTile.Images.SQUIRREL,
                     reward: "0-3"
                 },
                 {
                     challengeType: "long walk",
+                    currentWorld: 0,
                     duration: "30 mins",
-                    image: ChallengeTile.Images.OSTRICH,
                     reward: "0-6"
                 },
                 {
                     challengeType: "short stroll",
+                    currentWorld: 0,
                     duration: "5 mins",
-                    image: ChallengeTile.Images.ELEPHANT,
                     reward: "0-1"
                 },
                 {
                     challengeType: "meditation",
+                    currentWorld: 0,
                     duration: "3-10 mins",
-                    image: ChallengeTile.Images.BIRD,
                     reward: "0-3"
                 }
             ], "ChallengesList")}
@@ -382,6 +381,12 @@ storiesOf("Screens", module)
     })
     .add("13b. QuestScreenOffline", () => (
         <QuestsScreenOffline
+            currentLevel={number("CurrentLevel", 41, {
+                max: 99,
+                min: 0,
+                range: true,
+                step: 1
+            }, "QuestScreenOffline")}
             onLeftMenuPress={action("on left menu press")}
             totalCoins={number("TotalCoins", 4, {
                 max: 999999,
@@ -410,6 +415,7 @@ storiesOf("Screens", module)
     ))
     .add("16. QuestsNextEpisode", () => (
         <QuestsNextEpisode
+            data={null}
             onSkip={action("pressed skip")}
         />
     ))
@@ -421,6 +427,7 @@ storiesOf("Screens", module)
                 __typename: "Level",
                 id: "aasqweq",
                 level: 1,
+                levelChestId: null,
                 name: "name",
                 rating: 2,
                 slots: [

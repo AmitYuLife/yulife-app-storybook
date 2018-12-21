@@ -1,21 +1,7 @@
 import * as React from "react";
 import { PureComponent } from "react";
-import {
-    EmitterSubscription,
-    Keyboard,
-    KeyboardAvoidingView,
-    Platform,
-    View
-} from "react-native";
-import {
-    Blurb,
-    Button,
-    CentredScreen,
-    Heading,
-    Pad,
-    TextInput,
-    TextInputError
-} from "../../atoms";
+import { EmitterSubscription, Keyboard, KeyboardAvoidingView, Platform, View } from "react-native";
+import { Blurb, Button, CentredScreen, Heading, Pad, TextInput, TextInputError } from "../../atoms";
 import { LinkGroup } from "../../molecules";
 import data from "./login.screen.data";
 import styles from "./login.screen.styles";
@@ -40,7 +26,6 @@ interface IState {
 }
 
 class LoginScreen extends PureComponent<IProps, IState> {
-
     public state: IState = {
         isShowingKeyboard: false
     };
@@ -55,15 +40,11 @@ class LoginScreen extends PureComponent<IProps, IState> {
 
     public componentDidMount() {
         this.keyboardDidShowListener = Keyboard.addListener(
-            Platform.OS === "ios"
-                ? "keyboardWillShow"
-                : "keyboardDidShow",
+            Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow",
             this.keyboardDidShow(true)
         );
         this.keyboardDidHideListener = Keyboard.addListener(
-            Platform.OS === "ios"
-                ? "keyboardWillHide"
-                : "keyboardDidHide",
+            Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide",
             this.keyboardDidShow(false)
         );
     }
@@ -80,23 +61,15 @@ class LoginScreen extends PureComponent<IProps, IState> {
             onPasswordChange,
             password,
             passwordError
-         } = this.props;
+        } = this.props;
 
         return (
-            <KeyboardAvoidingView
-                behavior="padding"
-                style={styles.kAV}
-            >
-                <CentredScreen
-                    footerImage={CentredScreen.FooterImages.FOREST}
-                >
+            <KeyboardAvoidingView behavior="padding" style={styles.kAV}>
+                <CentredScreen footerImage="forest">
                     {this.state.isShowingKeyboard ? null : (
                         <View>
                             <Pad height={100} />
-                            <Heading
-                                label={data.heading}
-                                size={Heading.Sizes.LARGE}
-                            />
+                            <Heading label={data.heading} size={Heading.Sizes.LARGE} />
                             <Blurb label={data.subheading} />
                         </View>
                     )}
@@ -116,9 +89,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
                         value={password}
                         type={TextInput.Types.PASSWORD}
                     />
-                    {!!loginError && (
-                        <TextInputError>{loginError}</TextInputError>
-                    )}
+                    {!!loginError && <TextInputError>{loginError}</TextInputError>}
                     <Pad height={44} />
                     <Button
                         disabled={isLoggingIn || disabled}

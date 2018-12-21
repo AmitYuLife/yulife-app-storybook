@@ -21,17 +21,19 @@ const Glow = () => (
                 id="SVGID_1_"
                 cx="205"
                 cy="205"
+                fx="205"
+                fy="205"
                 r="204.9995"
             >
                 <Stop
                     offset="0"
                     stopColor="#FFEC25"
-                    stopOpacity={"0.3"}
+                    stopOpacity="0.3"
                 />
                 <Stop
                     offset="1"
                     stopColor="#FFFFFF"
-                    stopOpacity={"0.3"}
+                    stopOpacity="0"
                 />
             </RadialGradient>
             <Path

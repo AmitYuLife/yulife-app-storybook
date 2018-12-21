@@ -6,6 +6,7 @@ import styles from "./challenges-list.styles";
 
 export interface IChallengesListTileProps {
     challengeType: string;
+    currentWorld: number;
     duration: string;
     isLocked?: boolean;
     minimumLevel?: number;
@@ -16,11 +17,13 @@ export interface IChallengesListProps {
     challenges: IChallengeTileProps[];
 }
 
+const list = ["short stroll", "meditation"];
+
 const ChallengeSet: SFC<IChallengesListProps> = ({ challenges }) => (
     <View style={styles.wrapper}>
         <View>
             {challenges
-                .filter(({ challengeType }) => !["short stroll", "meditation"].includes(challengeType))
+                .filter(({ challengeType }) => !list.includes(challengeType))
                 .map((challenge, index) => (
                     <ChallengeTile
                         {...challenge}
@@ -31,7 +34,7 @@ const ChallengeSet: SFC<IChallengesListProps> = ({ challenges }) => (
         </View>
         <View style={styles.rightColumnWrapper}>
             {challenges
-                .filter(({ challengeType }) => ["short stroll", "meditation"].includes(challengeType))
+                .filter(({ challengeType }) => list.includes(challengeType))
                 .map((challenge, index) => (
                     <ChallengeTile
                         {...challenge}

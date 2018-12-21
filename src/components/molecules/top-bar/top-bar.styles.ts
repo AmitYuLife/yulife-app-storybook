@@ -51,6 +51,9 @@ export default StyleSheet.create({
     name: {
         fontSize: Style.SCALE_UP_AND_DOWN(20)
     } as TextStyle,
+    textWhite: {
+        color: "#FFFFFF"
+    },
     textWrapper: {
         alignItems: "center",
         flexDirection: "row",

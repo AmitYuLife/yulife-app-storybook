@@ -1,29 +1,35 @@
-import Assets from "./assets/";
+import assets from "./assets/";
 import styles from "./challenge-details.modal.styles";
 
-export const getImage = (challengeType: string) => {
+const BRISK_WALK = [
+    { source: assets.squirrel, style: styles.image },
+    { source: assets.otter, style: styles.image }
+];
+const SHORT_STROLL = [
+    { source: assets.elephant, style: styles.image },
+    { source: assets.tortoise, style: styles.image }
+];
+const LONG_WALK = [
+    { source: assets.ostrich, style: styles.imageLongWalk },
+    { source: assets.whale, style: styles.imageLongWalk }
+];
+const MEDITATION = [
+    { source: assets.bird, style: styles.image },
+    { source: assets.dolphin, style: styles.image }
+];
+
+export const getImageAndStyle = (challengeType: string, currentWorld = 0) => {
     switch (challengeType) {
         case "brisk walk":
-            return Assets.squirrel;
+            return BRISK_WALK[currentWorld];
         case "day walk":
         case "short stroll":
-            return Assets.elephant;
+            return SHORT_STROLL[currentWorld];
         case "long walk":
-            return Assets.ostrich;
+            return LONG_WALK[currentWorld];
         case "meditation":
-            return Assets.bird;
+            return MEDITATION[currentWorld];
         default:
-            return null;
-    }
-};
-
-export const getImageStyle = (challengeType: string) => {
-    switch (challengeType) {
-        case "meditation":
-            return styles.imageMeditation;
-        case "long walk":
-            return styles.imageLongWalk;
-        default:
-            return styles.image;
+            return { source: null, style: styles.image };
     }
 };

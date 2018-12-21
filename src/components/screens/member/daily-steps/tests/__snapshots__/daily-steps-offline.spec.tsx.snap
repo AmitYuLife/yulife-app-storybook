@@ -26,7 +26,7 @@ ShallowWrapper {
             }
           }
         >
-          You’re offline
+          you’re offline
         </YuText>,
         <YuText
           style={
@@ -52,13 +52,13 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "bold": true,
-          "children": "You’re offline",
+          "children": "you’re offline",
           "style": Object {
             "fontSize": 50,
           },
         },
         "ref": null,
-        "rendered": "You’re offline",
+        "rendered": "you’re offline",
         "type": [Function],
       },
       Object {
@@ -98,7 +98,7 @@ ShallowWrapper {
               }
             }
           >
-            You’re offline
+            you’re offline
           </YuText>,
           <YuText
             style={
@@ -124,13 +124,13 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "bold": true,
-            "children": "You’re offline",
+            "children": "you’re offline",
             "style": Object {
               "fontSize": 50,
             },
           },
           "ref": null,
-          "rendered": "You’re offline",
+          "rendered": "you’re offline",
           "type": [Function],
         },
         Object {

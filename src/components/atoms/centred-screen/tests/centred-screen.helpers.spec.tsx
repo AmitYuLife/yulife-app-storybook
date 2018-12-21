@@ -1,60 +1,32 @@
 import "react-native";
-import { IMAGES } from "../centred-screen";
-import {
-    getImage,
-    getImageStyle
-} from "../centred-screen.helpers";
+import { getImageAndStyle } from "../centred-screen.helpers";
 
-describe("getImage", () => {
-
+describe("getImageAndStyle", () => {
     it("should return null with an undefined argument", () => {
-        const actual = getImage(undefined);
+        const actual = getImageAndStyle(undefined);
 
-        expect(actual).toBeNull();
+        expect(actual.source).toBeNull();
+        expect(actual.style).toBeNull();
     });
 
     it("should return a mocked image for forest", () => {
-        const actual = getImage(IMAGES.FOREST);
+        const actual = getImageAndStyle("forest");
 
-        expect(actual).toBeDefined();
+        expect(actual.source).toBeDefined();
+        expect(actual.style).toBeDefined();
     });
 
     it("should return a mocked image for large forest", () => {
-        const actual = getImage(IMAGES.LARGE_FOREST);
+        const actual = getImageAndStyle("large_forest");
 
-        expect(actual).toBeDefined();
+        expect(actual.source).toBeDefined();
+        expect(actual.style).toBeDefined();
     });
 
     it("should return a mocked image for mountains", () => {
-        const actual = getImage(IMAGES.MOUNTAINS);
+        const actual = getImageAndStyle("challenge_failed_forest");
 
-        expect(actual).toBeDefined();
-    });
-});
-
-describe("getImageStyle", () => {
-
-    it("should return null with an undefined argument", () => {
-        const actual = getImageStyle(undefined);
-
-        expect(actual).toBeNull();
-    });
-
-    it("should be defined for a known argument", () => {
-        const actual = getImageStyle(IMAGES.FOREST);
-
-        expect(actual).toBeDefined();
-    });
-
-    it("should be defined for a known argument", () => {
-        const actual = getImageStyle(IMAGES.LARGE_FOREST);
-
-        expect(actual).toBeDefined();
-    });
-
-    it("should be defined for a known argument", () => {
-        const actual = getImageStyle(IMAGES.MOUNTAINS);
-
-        expect(actual).toBeDefined();
+        expect(actual.source).toBeDefined();
+        expect(actual.style).toBeDefined();
     });
 });

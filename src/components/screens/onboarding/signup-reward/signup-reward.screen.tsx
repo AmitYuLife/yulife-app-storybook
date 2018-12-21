@@ -1,13 +1,6 @@
 import * as React from "react";
 import { SFC } from "react";
-import {
-    Blurb,
-    Button,
-    CentredScreen,
-    CoinConfetti,
-    Heading,
-    Pad
-} from "../../../atoms";
+import { Blurb, Button, CentredScreen, CoinConfetti, Heading, Pad } from "../../../atoms";
 import data from "./signup-reward.screen.data";
 import styles from "./signup-reward.screen.styles";
 
@@ -17,26 +10,14 @@ interface IProps {
 }
 
 const SignUpRewardScreen: SFC<IProps> = ({ onCollectPress, reward }) => (
-    <CentredScreen
-        footerImage={CentredScreen.FooterImages.FOREST}
-    >
+    <CentredScreen footerImage="forest">
         <Pad height={74} />
         <CoinConfetti coins={reward} />
-        <Heading
-            style={styles.heading}
-            label={data.heading}
-        />
+        <Heading style={styles.heading} label={data.heading} />
         <Pad height={10} />
-        <Blurb
-            wrapperStyle={styles.blurbWrapper}
-            label={data.blurb}
-        />
+        <Blurb wrapperStyle={styles.blurbWrapper} label={data.blurb} />
         <Pad height={26} />
-        <Button
-            type={Button.Types.PRIMARY_SMALL}
-            label={data.buttonLabel}
-            onPress={onCollectPress}
-        />
+        <Button type={Button.Types.PRIMARY_SMALL} label={data.buttonLabel} onPress={onCollectPress} />
     </CentredScreen>
 );
 

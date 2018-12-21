@@ -3,7 +3,6 @@ export { default as Blurb } from "./blurb/blurb";
 export { default as BlurProvider } from "./blur/blur-provider";
 export { default as Button } from "./button/button";
 export { default as CentredScreen } from "./centred-screen/centred-screen";
-export { default as Clock } from "./clock/clock";
 export { default as Close } from "./close/close";
 export { default as ChestCoin } from "./chest-coin/chest-coin";
 export { default as CoinConfetti } from "./coin-confetti/coin-confetti";

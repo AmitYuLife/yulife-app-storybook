@@ -27,6 +27,7 @@ export const loginUserGql = gql`
                 id
                 archived
                 businessAccountId
+                membershipType
                 userFeatures {
                     name
                     value

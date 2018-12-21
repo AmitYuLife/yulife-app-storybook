@@ -14,6 +14,7 @@ import styles from "./daily-steps.screen.styles";
 
 interface IProps extends IConnectedScreenProps {
     currentStreak?: number;
+    currentWorld?: number;
     displayStreak?: boolean;
     fitKitAvailable: boolean;
     hasNotification?: boolean;
@@ -32,6 +33,7 @@ type Props = IProps & IDailyStepsOnlineProps & IDailyStepsOfflineProps;
 const DailyStepsScreen: SFC<Props> = ({
     coinsToday,
     currentStreak,
+    currentWorld = 0,
     displayStreak = false,
     fitKitAvailable,
     hasNotification = false,
@@ -50,15 +52,16 @@ const DailyStepsScreen: SFC<Props> = ({
     steps,
     totalCoins
 }) => {
+    const { centredScreen, hasWhiteText, isTopBarLight, navBar, streakType } = getStyle(currentWorld) as any;
+
     return (
         <CentredScreen
             footerImage={
-                (isOnline || isLoading) && hasPermission
-                    ? CentredScreen.FooterImages.LARGE_FOREST
-                    : CentredScreen.FooterImages.GRAY_FOREST
+                !isOnline || !hasPermission ? centredScreen.offline.image : centredScreen.online.image
             }
+            style={isOnline ? centredScreen.online.style : centredScreen.offline.style}
         >
-            <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
+            <TopBar coins={totalCoins} isLight={isTopBarLight} onPressLeftIcon={onLeftMenuPress} />
             <Pad height={Platform.OS === "ios" ? 60 : 80} />
             <TouchableOpacity onPress={onCoinPress} activeOpacity={1}>
                 <YuCoin isLoading={isLoading} isGrayScale={!hasPermission || (!isOnline && !isLoading)} />
@@ -70,9 +73,14 @@ const DailyStepsScreen: SFC<Props> = ({
             ) : !hasPermission ? (
                 <DailyStepsFitKitAuthorise onPress={onAuthoriseFitKitPress} />
             ) : !isOnline ? (
-                <DailyStepsOffline lastUpdate={lastUpdate} />
+                <DailyStepsOffline hasWhiteText={hasWhiteText} lastUpdate={lastUpdate} />
             ) : (
-                <DailyStepsOnline coinsToday={coinsToday} steps={steps} onCtaPress={onCtaPress} />
+                <DailyStepsOnline
+                    coinsToday={coinsToday}
+                    hasWhiteText={hasWhiteText}
+                    steps={steps}
+                    onCtaPress={onCtaPress}
+                />
             )}
             {displayStreak && (
                 <Streak
@@ -80,12 +88,13 @@ const DailyStepsScreen: SFC<Props> = ({
                     onPress={onStreakPress}
                     currentStreak={currentStreak}
                     maxStreak={maxStreak}
+                    type={streakType}
                 />
             )}
             <View style={styles.navBarWrapper}>
                 <NavBar
                     activeIndex={0}
-                    colour={!fitKitAvailable || !hasPermission || !isOnline ? COLOURS.DARKER : COLOURS.LIGHT}
+                    colour={!fitKitAvailable || !hasPermission || !isOnline ? navBar.offline : navBar.online}
                     hasNotification={hasNotification}
                     labels={labels}
                 />
@@ -95,3 +104,37 @@ const DailyStepsScreen: SFC<Props> = ({
 };
 
 export default DailyStepsScreen;
+
+const getStyle = (currentWorld: number) => {
+    switch (currentWorld) {
+        case 1:
+            return {
+                centredScreen: {
+                    offline: { image: "gray_ocean", style: { backgroundColor: "#747474" } },
+                    online: { image: "ocean", style: { backgroundColor: "rgb(1,62,116)" } }
+                },
+                hasWhiteText: true,
+                isTopBarLight: true,
+                navBar: {
+                    offline: COLOURS.LIGHT,
+                    online: COLOURS.LIGHT
+                },
+                streakType: "ocean"
+            };
+        case 0:
+        default:
+            return {
+                centredScreen: {
+                    offline: { image: "gray_forest", style: { backgroundColor: "#FFF" } },
+                    online: { image: "large_forest", style: { backgroundColor: "#FFF" } }
+                },
+                hasWhiteText: false,
+                isTopBarLight: false,
+                navBar: {
+                    offline: COLOURS.DARKER,
+                    online: COLOURS.LIGHT
+                },
+                streakType: "forest"
+            };
+    }
+};

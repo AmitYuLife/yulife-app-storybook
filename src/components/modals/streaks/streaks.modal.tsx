@@ -177,7 +177,7 @@ class StreaksModal extends PureComponent<Props> {
         } else if (isDoneToday) {
             return `Completed streak day ${streakCompleted}`;
         } else {
-            return `Start your day ${streakCompleted + 1} of streak`;
+            return `Start streak day ${streakCompleted + 1}`;
         }
     }
 }

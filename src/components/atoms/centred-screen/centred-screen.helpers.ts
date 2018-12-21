@@ -1,38 +1,45 @@
 import { StyleSheet } from "react-native";
-import { IMAGES } from "./centred-screen";
+import { CenteredScreenImages } from "./centred-screen";
 import styles from "./centred-screen.styles";
 
-export const getImage = (image: string) => {
+export const getImageAndStyle = (image: CenteredScreenImages) => {
     switch (image) {
-        case IMAGES.FOREST:
-            return require("../../../../assets/centred-screen/forestBackground.png");
-        case IMAGES.LARGE_FOREST:
-            return require("../../../../assets/centred-screen/largeForest.png");
-        case IMAGES.MOUNTAINS:
-            return require("../../../../assets/centred-screen/mountains.png");
+        case "forest":
+            return {
+                source: require("../../../../assets/centred-screen/forestBackground.png"),
+                style: StyleSheet.flatten([styles.imageBase, styles.imageForest])
+            };
+        case "large_forest":
+            return {
+                source: require("../../../../assets/centred-screen/largeForest.png"),
+                style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
+            };
+        case "gray_forest":
+            return {
+                source: require("../../../../assets/centred-screen/gray-forest.png"),
+                style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
+            };
+        case "challenge_failed_forest":
+            return {
+                source: require("../../../../assets/centred-screen/challenge_failed_forest.png"),
+                style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
+            };
+        case "ocean":
+            return {
+                source: require("../../../../assets/centred-screen/ocean.png"),
+                style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
+            };
+        case "gray_ocean":
+            return {
+                source: require("../../../../assets/centred-screen/gray-ocean.png"),
+                style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
+            };
+        case "challenge_failed_ocean":
+            return {
+                source: require("../../../../assets/centred-screen/challenge_failed_ocean.png"),
+                style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
+            };
         default:
-            return null;
-    }
-};
-
-export const getImageStyle = (image: string) => {
-    switch (image) {
-        case IMAGES.FOREST:
-            return StyleSheet.flatten([
-                styles.imageBase,
-                styles.imageForest
-            ]);
-        case IMAGES.LARGE_FOREST:
-            return StyleSheet.flatten([
-                styles.imageBase,
-                styles.imageLargeForest
-            ]);
-        case IMAGES.MOUNTAINS:
-            return StyleSheet.flatten([
-                styles.imageBase,
-                styles.imageLargeForest
-            ]);
-        default:
-            return null;
+            return { source: null, style: null };
     }
 };

@@ -5,14 +5,16 @@ import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/sc
 import { IConnectedScreenProps } from "../../../../../typings";
 import { AnimatedNavBar, COLOURS, IColours, TopBar } from "../../../../molecules";
 import {
+    calculateIndexOfLevel,
     calculateIndices,
     calculateSlicing,
+    checkIfIsLastWorld,
+    checkIfIsLockedLastLevel,
     handlePanResponderGrant,
     handlePanResponderMove,
-    isLockedLastLevelFunc,
-    onStartShouldSetPanResponder
+    onStartShouldSetPanResponder,
+    questScreenUI
 } from "./quests-screen.helpers";
-import { calculateLastWorldIndex } from "./quests-screen.helpers";
 import styles from "./quests-screen.styles";
 import { Episode, UnityLockerImage, UnityLockerLabel } from "./subcomponents";
 export interface IChallenge extends GetCurrentWorld_getCurrentWorld {
@@ -26,23 +28,29 @@ interface IProps extends IConnectedScreenProps {
     data: IChallenge[];
 }
 interface IState {
+    UI: {
+        isTopBarLight: boolean;
+        navBarColour: IColours;
+    };
     activeIndex: number;
     activeWorldIndex: number;
-    colour: IColours;
     hasInitialized: boolean;
     isAnimatingUnity: boolean;
     isSwipeDisabled: boolean;
 }
+
 class QuestsScreen extends PureComponent<IProps, IState> {
-    public hasDarkNavBar = [[6, 5, 4, 3, 1, 0], [6, 5, 4, 3, 1, 0]];
     public unityLocker: UnityLockerImage;
     public animateInDelay: NodeJS.Timer;
     public animateOutDelay: NodeJS.Timer;
     public indices = calculateIndices(this.props.currentLevel, true);
     public state = {
+        UI: {
+            isTopBarLight: false,
+            navBarColour: COLOURS.LIGHT
+        },
         activeIndex: 7,
         activeWorldIndex: 0,
-        colour: COLOURS.LIGHT,
         hasInitialized: false,
         isAnimatingUnity: false,
         isSwipeDisabled: false
@@ -55,16 +63,20 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         onPanResponderMove: handlePanResponderMove(this),
         onStartShouldSetPanResponder
     });
+
     public constructor(props: IProps) {
         super(props);
         Navigation.events().bindComponent(this);
     }
+
     public componentDidMount() {
         this.scrollToCurrentLevel();
     }
+
     public componentDidAppear() {
         this.scrollToCurrentLevel();
     }
+
     public componentDidDissappear() {
         if (this.animateOutDelay) {
             clearTimeout(this.animateOutDelay);
@@ -73,11 +85,12 @@ class QuestsScreen extends PureComponent<IProps, IState> {
             clearTimeout(this.animateInDelay);
         }
     }
+
     public render() {
-        const { activeIndex, activeWorldIndex } = this.state;
+        const { activeIndex, activeWorldIndex, UI } = this.state;
         const { currentLevel, data, labels, onLeftMenuPress, totalCoins } = this.props;
-        const isLastWorld = activeWorldIndex === calculateLastWorldIndex(currentLevel);
-        const isLockedLastLevel = isLastWorld && isLockedLastLevelFunc(currentLevel);
+        const isLastWorld = checkIfIsLastWorld(activeWorldIndex, currentLevel);
+        const isLockedLastLevel = isLastWorld && checkIfIsLockedLastLevel(currentLevel);
 
         return (
             <SafeAreaView style={styles.wrapper}>
@@ -90,12 +103,13 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                         style={styles.platformAdjust}
                         ref={(ref) => (this.scrollView = ref)}
                     >
-                        {!isLockedLastLevel ? null : <UnityLockerLabel />}
+                        {!isLockedLastLevel ? null : <UnityLockerLabel currentLevel={currentLevel} />}
                         {this.indices.map((_, index) => {
                             const { sliceFrom, sliceTo } = calculateSlicing(activeWorldIndex, index);
                             const items = data.slice(sliceFrom, sliceTo);
                             return (
                                 <Episode
+                                    currentLevel={currentLevel}
                                     isLoading={![activeIndex - 1, activeIndex, activeIndex + 1].includes(index)}
                                     isLockedLastLevel={isLockedLastLevel}
                                     setUnityLockerRef={index !== 1 ? null : this.setUnityLockerRef}
@@ -104,29 +118,39 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                                     data={items}
                                     firstLevelNumber={sliceFrom}
                                     worldNumber={activeWorldIndex}
+                                    onScrollToCurrentLevel={this.scrollToCurrentLevel}
+                                    hasActivePulse={activeIndex === index}
                                 />
                             );
                         })}
                     </ScrollView>
                 </View>
-                <AnimatedNavBar activeIndex={1} colour={this.state.colour} labels={labels} hasNotification={false} />
-                <TopBar onPressLeftIcon={onLeftMenuPress} coins={totalCoins} />
+                {!activeIndex ? null : (
+                    <>
+                        <AnimatedNavBar
+                            activeIndex={1}
+                            colour={UI.navBarColour}
+                            labels={labels}
+                            hasNotification={false}
+                        />
+                        <TopBar isLight={UI.isTopBarLight} onPressLeftIcon={onLeftMenuPress} coins={totalCoins} />
+                    </>
+                )}
             </SafeAreaView>
         );
     }
 
     public scrollToCurrentLevel = () => {
         const { currentLevel } = this.props;
-        const activeIndex = this.indices.length - Math.ceil((currentLevel % 50) / 7);
+        const activeWorldIndex = Math.floor((currentLevel - 1) / 50);
+        const activeIndex = calculateIndexOfLevel(currentLevel);
+
         this.indices = calculateIndices(currentLevel, true);
         this.setState(
             {
+                UI: questScreenUI[activeWorldIndex][activeIndex],
                 activeIndex,
-                activeWorldIndex: Math.floor(currentLevel / 50),
-                colour:
-                    this.hasDarkNavBar[this.state.activeWorldIndex].indexOf(activeIndex) !== -1
-                        ? COLOURS.DARK
-                        : COLOURS.LIGHT
+                activeWorldIndex
             },
             () => {
                 global.setTimeout(() => {
@@ -150,7 +174,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         const lastIndice = this.indices.length - 1;
         const isCurrentWorldTopEdge = activeIndex === 0 && direction === "down";
         const isCurrentWorldBottomEdge = activeIndex === lastIndice && direction === "up";
-        const isLastWorld = activeWorldIndex === calculateLastWorldIndex(currentLevel);
+        const isLastWorld = checkIfIsLastWorld(activeWorldIndex, currentLevel);
         const isFirstWorld = activeWorldIndex === 0;
 
         if ((isLastWorld && isCurrentWorldTopEdge) || (isFirstWorld && isCurrentWorldBottomEdge)) {
@@ -160,18 +184,12 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         if (isCurrentWorldTopEdge || isCurrentWorldBottomEdge) {
             const nextActiveWorldIndex = activeWorldIndex + (direction === "up" ? -1 : 1);
             const nextActiveIndex = direction === "up" ? 0 : lastIndice;
-            this.indices = calculateIndices(
-                currentLevel,
-                nextActiveWorldIndex === calculateLastWorldIndex(currentLevel)
-            );
+            this.indices = calculateIndices(currentLevel, checkIfIsLastWorld(nextActiveWorldIndex, currentLevel));
             this.setState(
                 {
+                    UI: questScreenUI[nextActiveWorldIndex][nextActiveIndex],
                     activeIndex: nextActiveIndex,
-                    activeWorldIndex: nextActiveWorldIndex,
-                    colour:
-                        this.hasDarkNavBar[nextActiveWorldIndex].indexOf(nextActiveIndex) !== -1
-                            ? COLOURS.DARK
-                            : COLOURS.LIGHT
+                    activeWorldIndex: nextActiveWorldIndex
                 },
                 () => {
                     if (this.scrollView) {
@@ -185,7 +203,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
             return null;
         }
 
-        const isLockedLastLevel = isLastWorld && isLockedLastLevelFunc(currentLevel);
+        const isLockedLastLevel = isLastWorld && checkIfIsLockedLastLevel(currentLevel);
         const prevIndex = activeIndex;
         const nextIndex = activeIndex + (direction === "up" ? 1 : -1);
         const toUnity = isLockedLastLevel && prevIndex === 1 && nextIndex === 0;
@@ -226,10 +244,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                         });
                     }
                     this.setState({
-                        colour:
-                            this.hasDarkNavBar[this.state.activeWorldIndex].indexOf(this.state.activeIndex) !== -1
-                                ? COLOURS.DARK
-                                : COLOURS.LIGHT
+                        UI: questScreenUI[this.state.activeWorldIndex][this.state.activeIndex]
                     });
                 }
             }

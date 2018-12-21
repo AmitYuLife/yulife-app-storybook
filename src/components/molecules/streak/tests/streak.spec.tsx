@@ -14,7 +14,7 @@ describe("Streak", () => {
 
     it("should render unfinished state", () => {
         const actual = shallow(
-            <Streak isFinished={false} {...allFillers} />
+            <Streak isFinished={false} {...allFillers} type="forest" />
         );
 
         expect(actual).toMatchSnapshot();
@@ -22,7 +22,7 @@ describe("Streak", () => {
 
     it("should render finished state", () => {
         const actual = shallow(
-            <Streak isFinished={false} {...allFillers} />
+            <Streak isFinished={false} {...allFillers} type="forest" />
         );
 
         expect(actual).toMatchSnapshot();
@@ -35,6 +35,7 @@ describe("Streak", () => {
                 {...onPressFiller}
                 currentStreak={0}
                 maxStreak={1}
+                type="forest"
             />
         );
 
@@ -48,6 +49,7 @@ describe("Streak", () => {
                 {...onPressFiller}
                 currentStreak={1}
                 maxStreak={1}
+                type="forest"
             />
         );
 
@@ -61,6 +63,7 @@ describe("Streak", () => {
                 {...onPressFiller}
                 currentStreak={1}
                 maxStreak={2}
+                type="forest"
             />
         );
 

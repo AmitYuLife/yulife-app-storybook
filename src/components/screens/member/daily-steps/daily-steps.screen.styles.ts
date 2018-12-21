@@ -30,5 +30,8 @@ export default StyleSheet.create({
         marginBottom: Style.SCALE_UP_AND_DOWN(20),
         textAlign: "center",
         width: Style.SCALE_UP_AND_DOWN(300)
+    } as TextStyle,
+    whiteText: {
+        color: "#FFF"
     } as TextStyle
 });
