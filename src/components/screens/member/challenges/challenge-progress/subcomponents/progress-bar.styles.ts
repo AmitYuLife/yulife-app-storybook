@@ -1,9 +1,4 @@
-import {
-    Platform,
-    StyleSheet,
-    TextStyle,
-    ViewStyle
-} from "react-native";
+import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../../../../styles";
 
 const styles = StyleSheet.create({
@@ -21,16 +16,18 @@ const styles = StyleSheet.create({
         top: Style.SCALE_UP_AND_DOWN(15)
     },
     stepsText: {
-        color: Colours.progressBar.heading,
         fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
         fontSize: Style.SCALE_UP_AND_DOWN(40),
         textAlign: "center"
     } as TextStyle,
+    stepsTextBlack: {
+        color: Colours.progressBar.black.heading
+    },
+    stepsTextWhite: {
+        color: Colours.progressBar.oceanWhite.heading
+    },
     timeLabel: {
-        lineHeight:
-            Platform.OS === "ios"
-                ? Style.SCALE_UP_AND_DOWN(20)
-                : Style.SCALE_UP_AND_DOWN(35),
+        lineHeight: Platform.OS === "ios" ? Style.SCALE_UP_AND_DOWN(20) : Style.SCALE_UP_AND_DOWN(35),
         marginHorizontal: Style.SCALE_UP_AND_DOWN(5)
     }
 });

@@ -37,6 +37,45 @@ ShallowWrapper {
             stopOpacity={1}
           />
         </LinearGradient>,
+        <LinearGradient
+          gradientUnits="userSpaceOnUse"
+          id="SVGID_2_"
+          x1="375"
+          x2="375"
+          y1="20"
+          y2="1130.218"
+        >
+          <Stop
+            offset="4.451122e-02"
+            stopColor="#579BC1"
+            stopOpacity={1}
+          />
+          <Stop
+            offset="0.2005"
+            stopColor="#3F7FAC"
+            stopOpacity={1}
+          />
+          <Stop
+            offset="0.3802"
+            stopColor="#2B6699"
+            stopOpacity={1}
+          />
+          <Stop
+            offset="0.5681"
+            stopColor="#1C548C"
+            stopOpacity={1}
+          />
+          <Stop
+            offset="0.7674"
+            stopColor="#134984"
+            stopOpacity={1}
+          />
+          <Stop
+            offset="0.9973"
+            stopColor="#104681"
+            stopOpacity={1}
+          />
+        </LinearGradient>,
         <Rect
           fill="url(#SVGID_1_)"
           height="1072"
@@ -51,11 +90,11 @@ ShallowWrapper {
           points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
         />,
         <Polyline
-          fill="#337C78"
+          fill="#3B6D68"
           points="0,1068.2 0,1334 750,1334 750,1075.7 "
         />,
         <Polygon
-          fill="#3B6D68"
+          fill="#337C78"
           points="0,1092.6 750,1075.7 750,1334 0,1334 "
         />,
       ],
@@ -130,6 +169,133 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "children": Array [
+            <Stop
+              offset="4.451122e-02"
+              stopColor="#579BC1"
+              stopOpacity={1}
+            />,
+            <Stop
+              offset="0.2005"
+              stopColor="#3F7FAC"
+              stopOpacity={1}
+            />,
+            <Stop
+              offset="0.3802"
+              stopColor="#2B6699"
+              stopOpacity={1}
+            />,
+            <Stop
+              offset="0.5681"
+              stopColor="#1C548C"
+              stopOpacity={1}
+            />,
+            <Stop
+              offset="0.7674"
+              stopColor="#134984"
+              stopOpacity={1}
+            />,
+            <Stop
+              offset="0.9973"
+              stopColor="#104681"
+              stopOpacity={1}
+            />,
+          ],
+          "gradientUnits": "userSpaceOnUse",
+          "id": "SVGID_2_",
+          "x1": "375",
+          "x2": "375",
+          "y1": "20",
+          "y2": "1130.218",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "offset": "4.451122e-02",
+              "stopColor": "#579BC1",
+              "stopOpacity": 1,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "offset": "0.2005",
+              "stopColor": "#3F7FAC",
+              "stopOpacity": 1,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "offset": "0.3802",
+              "stopColor": "#2B6699",
+              "stopOpacity": 1,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "offset": "0.5681",
+              "stopColor": "#1C548C",
+              "stopOpacity": 1,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "offset": "0.7674",
+              "stopColor": "#134984",
+              "stopOpacity": 1,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "offset": "0.9973",
+              "stopColor": "#104681",
+              "stopOpacity": 1,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
           "fill": "url(#SVGID_1_)",
           "height": "1072",
           "rx": 0,
@@ -159,7 +325,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "fill": "#337C78",
+          "fill": "#3B6D68",
           "points": "0,1068.2 0,1334 750,1334 750,1075.7 ",
         },
         "ref": null,
@@ -171,7 +337,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "fill": "#3B6D68",
+          "fill": "#337C78",
           "points": "0,1092.6 750,1075.7 750,1334 0,1334 ",
         },
         "ref": null,
@@ -207,6 +373,45 @@ ShallowWrapper {
               stopOpacity={1}
             />
           </LinearGradient>,
+          <LinearGradient
+            gradientUnits="userSpaceOnUse"
+            id="SVGID_2_"
+            x1="375"
+            x2="375"
+            y1="20"
+            y2="1130.218"
+          >
+            <Stop
+              offset="4.451122e-02"
+              stopColor="#579BC1"
+              stopOpacity={1}
+            />
+            <Stop
+              offset="0.2005"
+              stopColor="#3F7FAC"
+              stopOpacity={1}
+            />
+            <Stop
+              offset="0.3802"
+              stopColor="#2B6699"
+              stopOpacity={1}
+            />
+            <Stop
+              offset="0.5681"
+              stopColor="#1C548C"
+              stopOpacity={1}
+            />
+            <Stop
+              offset="0.7674"
+              stopColor="#134984"
+              stopOpacity={1}
+            />
+            <Stop
+              offset="0.9973"
+              stopColor="#104681"
+              stopOpacity={1}
+            />
+          </LinearGradient>,
           <Rect
             fill="url(#SVGID_1_)"
             height="1072"
@@ -221,11 +426,11 @@ ShallowWrapper {
             points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
           />,
           <Polyline
-            fill="#337C78"
+            fill="#3B6D68"
             points="0,1068.2 0,1334 750,1334 750,1075.7 "
           />,
           <Polygon
-            fill="#3B6D68"
+            fill="#337C78"
             points="0,1092.6 750,1075.7 750,1334 0,1334 "
           />,
         ],
@@ -300,6 +505,133 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "children": Array [
+              <Stop
+                offset="4.451122e-02"
+                stopColor="#579BC1"
+                stopOpacity={1}
+              />,
+              <Stop
+                offset="0.2005"
+                stopColor="#3F7FAC"
+                stopOpacity={1}
+              />,
+              <Stop
+                offset="0.3802"
+                stopColor="#2B6699"
+                stopOpacity={1}
+              />,
+              <Stop
+                offset="0.5681"
+                stopColor="#1C548C"
+                stopOpacity={1}
+              />,
+              <Stop
+                offset="0.7674"
+                stopColor="#134984"
+                stopOpacity={1}
+              />,
+              <Stop
+                offset="0.9973"
+                stopColor="#104681"
+                stopOpacity={1}
+              />,
+            ],
+            "gradientUnits": "userSpaceOnUse",
+            "id": "SVGID_2_",
+            "x1": "375",
+            "x2": "375",
+            "y1": "20",
+            "y2": "1130.218",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "offset": "4.451122e-02",
+                "stopColor": "#579BC1",
+                "stopOpacity": 1,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "offset": "0.2005",
+                "stopColor": "#3F7FAC",
+                "stopOpacity": 1,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "offset": "0.3802",
+                "stopColor": "#2B6699",
+                "stopOpacity": 1,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "offset": "0.5681",
+                "stopColor": "#1C548C",
+                "stopOpacity": 1,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "offset": "0.7674",
+                "stopColor": "#134984",
+                "stopOpacity": 1,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "offset": "0.9973",
+                "stopColor": "#104681",
+                "stopOpacity": 1,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
             "fill": "url(#SVGID_1_)",
             "height": "1072",
             "rx": 0,
@@ -329,7 +661,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "fill": "#337C78",
+            "fill": "#3B6D68",
             "points": "0,1068.2 0,1334 750,1334 750,1075.7 ",
           },
           "ref": null,
@@ -341,7 +673,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "fill": "#3B6D68",
+            "fill": "#337C78",
             "points": "0,1092.6 750,1075.7 750,1334 0,1334 ",
           },
           "ref": null,
@@ -411,6 +743,45 @@ ShallowWrapper {
             stopOpacity={1}
           />
         </LinearGradient>,
+        <LinearGradient
+          gradientUnits="userSpaceOnUse"
+          id="SVGID_2_"
+          x1="375"
+          x2="375"
+          y1="20"
+          y2="1130.218"
+        >
+          <Stop
+            offset="4.451122e-02"
+            stopColor="#579BC1"
+            stopOpacity={1}
+          />
+          <Stop
+            offset="0.2005"
+            stopColor="#3F7FAC"
+            stopOpacity={1}
+          />
+          <Stop
+            offset="0.3802"
+            stopColor="#2B6699"
+            stopOpacity={1}
+          />
+          <Stop
+            offset="0.5681"
+            stopColor="#1C548C"
+            stopOpacity={1}
+          />
+          <Stop
+            offset="0.7674"
+            stopColor="#134984"
+            stopOpacity={1}
+          />
+          <Stop
+            offset="0.9973"
+            stopColor="#104681"
+            stopOpacity={1}
+          />
+        </LinearGradient>,
         <Rect
           fill="url(#SVGID_1_)"
           height="1072"
@@ -425,11 +796,11 @@ ShallowWrapper {
           points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
         />,
         <Polyline
-          fill="#337C78"
+          fill="#3B6D68"
           points="0,1068.2 0,1334 750,1334 750,1075.7 "
         />,
         <Polygon
-          fill="#3B6D68"
+          fill="#337C78"
           points="0,1092.6 750,1075.7 750,1334 0,1334 "
         />,
       ],
@@ -504,6 +875,133 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "children": Array [
+            <Stop
+              offset="4.451122e-02"
+              stopColor="#579BC1"
+              stopOpacity={1}
+            />,
+            <Stop
+              offset="0.2005"
+              stopColor="#3F7FAC"
+              stopOpacity={1}
+            />,
+            <Stop
+              offset="0.3802"
+              stopColor="#2B6699"
+              stopOpacity={1}
+            />,
+            <Stop
+              offset="0.5681"
+              stopColor="#1C548C"
+              stopOpacity={1}
+            />,
+            <Stop
+              offset="0.7674"
+              stopColor="#134984"
+              stopOpacity={1}
+            />,
+            <Stop
+              offset="0.9973"
+              stopColor="#104681"
+              stopOpacity={1}
+            />,
+          ],
+          "gradientUnits": "userSpaceOnUse",
+          "id": "SVGID_2_",
+          "x1": "375",
+          "x2": "375",
+          "y1": "20",
+          "y2": "1130.218",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "offset": "4.451122e-02",
+              "stopColor": "#579BC1",
+              "stopOpacity": 1,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "offset": "0.2005",
+              "stopColor": "#3F7FAC",
+              "stopOpacity": 1,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "offset": "0.3802",
+              "stopColor": "#2B6699",
+              "stopOpacity": 1,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "offset": "0.5681",
+              "stopColor": "#1C548C",
+              "stopOpacity": 1,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "offset": "0.7674",
+              "stopColor": "#134984",
+              "stopOpacity": 1,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "offset": "0.9973",
+              "stopColor": "#104681",
+              "stopOpacity": 1,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
           "fill": "url(#SVGID_1_)",
           "height": "1072",
           "rx": 0,
@@ -533,7 +1031,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "fill": "#337C78",
+          "fill": "#3B6D68",
           "points": "0,1068.2 0,1334 750,1334 750,1075.7 ",
         },
         "ref": null,
@@ -545,7 +1043,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "fill": "#3B6D68",
+          "fill": "#337C78",
           "points": "0,1092.6 750,1075.7 750,1334 0,1334 ",
         },
         "ref": null,
@@ -581,6 +1079,45 @@ ShallowWrapper {
               stopOpacity={1}
             />
           </LinearGradient>,
+          <LinearGradient
+            gradientUnits="userSpaceOnUse"
+            id="SVGID_2_"
+            x1="375"
+            x2="375"
+            y1="20"
+            y2="1130.218"
+          >
+            <Stop
+              offset="4.451122e-02"
+              stopColor="#579BC1"
+              stopOpacity={1}
+            />
+            <Stop
+              offset="0.2005"
+              stopColor="#3F7FAC"
+              stopOpacity={1}
+            />
+            <Stop
+              offset="0.3802"
+              stopColor="#2B6699"
+              stopOpacity={1}
+            />
+            <Stop
+              offset="0.5681"
+              stopColor="#1C548C"
+              stopOpacity={1}
+            />
+            <Stop
+              offset="0.7674"
+              stopColor="#134984"
+              stopOpacity={1}
+            />
+            <Stop
+              offset="0.9973"
+              stopColor="#104681"
+              stopOpacity={1}
+            />
+          </LinearGradient>,
           <Rect
             fill="url(#SVGID_1_)"
             height="1072"
@@ -595,11 +1132,11 @@ ShallowWrapper {
             points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
           />,
           <Polyline
-            fill="#337C78"
+            fill="#3B6D68"
             points="0,1068.2 0,1334 750,1334 750,1075.7 "
           />,
           <Polygon
-            fill="#3B6D68"
+            fill="#337C78"
             points="0,1092.6 750,1075.7 750,1334 0,1334 "
           />,
         ],
@@ -674,6 +1211,133 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "children": Array [
+              <Stop
+                offset="4.451122e-02"
+                stopColor="#579BC1"
+                stopOpacity={1}
+              />,
+              <Stop
+                offset="0.2005"
+                stopColor="#3F7FAC"
+                stopOpacity={1}
+              />,
+              <Stop
+                offset="0.3802"
+                stopColor="#2B6699"
+                stopOpacity={1}
+              />,
+              <Stop
+                offset="0.5681"
+                stopColor="#1C548C"
+                stopOpacity={1}
+              />,
+              <Stop
+                offset="0.7674"
+                stopColor="#134984"
+                stopOpacity={1}
+              />,
+              <Stop
+                offset="0.9973"
+                stopColor="#104681"
+                stopOpacity={1}
+              />,
+            ],
+            "gradientUnits": "userSpaceOnUse",
+            "id": "SVGID_2_",
+            "x1": "375",
+            "x2": "375",
+            "y1": "20",
+            "y2": "1130.218",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "offset": "4.451122e-02",
+                "stopColor": "#579BC1",
+                "stopOpacity": 1,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "offset": "0.2005",
+                "stopColor": "#3F7FAC",
+                "stopOpacity": 1,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "offset": "0.3802",
+                "stopColor": "#2B6699",
+                "stopOpacity": 1,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "offset": "0.5681",
+                "stopColor": "#1C548C",
+                "stopOpacity": 1,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "offset": "0.7674",
+                "stopColor": "#134984",
+                "stopOpacity": 1,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "offset": "0.9973",
+                "stopColor": "#104681",
+                "stopOpacity": 1,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
             "fill": "url(#SVGID_1_)",
             "height": "1072",
             "rx": 0,
@@ -703,7 +1367,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "fill": "#337C78",
+            "fill": "#3B6D68",
             "points": "0,1068.2 0,1334 750,1334 750,1075.7 ",
           },
           "ref": null,
@@ -715,7 +1379,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "fill": "#3B6D68",
+            "fill": "#337C78",
             "points": "0,1092.6 750,1075.7 750,1334 0,1334 ",
           },
           "ref": null,

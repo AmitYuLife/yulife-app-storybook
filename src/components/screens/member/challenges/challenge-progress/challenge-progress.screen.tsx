@@ -3,7 +3,12 @@ import { SFC } from "react";
 import { Image, Platform, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { NavBar, TopBar } from "../../../../molecules";
-import { getBackgroundImage, getBackgroundImageHeight } from "./challenge-progress.screen.helpers";
+import {
+    getBackgroundColor,
+    getBackgroundImageAndStyle,
+    getProgressBarType,
+    hasLightTopBar
+} from "./challenge-progress.screen.helpers";
 import styles from "./challenge-progress.screen.styles";
 import ProgressBar from "./subcomponents/progress-bar";
 
@@ -11,6 +16,7 @@ export type ChallengeType = "short stroll" | "meditation" | "day walk" | "long w
 
 interface IProps extends IConnectedScreenProps {
     challengeType: ChallengeType;
+    currentWorld?: number;
     endDateTime: string;
     userProgress: number;
     progressTargets: number[];
@@ -22,6 +28,7 @@ interface IProps extends IConnectedScreenProps {
 
 const ChallengeProgressScreen: SFC<IProps> = ({
     challengeType,
+    currentWorld = 0,
     endDateTime,
     labels,
     onCalmPress,
@@ -33,16 +40,27 @@ const ChallengeProgressScreen: SFC<IProps> = ({
     userProgress,
     totalCoins
 }) => (
-    <SafeAreaView style={styles.wrapper}>
-        <Image
-            resizeMethod="resize"
-            resizeMode="cover"
-            source={getBackgroundImage(challengeType)}
-            style={StyleSheet.flatten([styles.backgroundImage, { height: getBackgroundImageHeight(challengeType) }])}
+    <SafeAreaView
+        style={StyleSheet.flatten([
+            styles.wrapper,
+            { backgroundColor: getBackgroundColor(challengeType, currentWorld) }
+        ])}
+    >
+        <Image resizeMethod="resize" resizeMode="cover" {...getBackgroundImageAndStyle(challengeType, currentWorld)} />
+        <TopBar
+            coins={totalCoins}
+            isLight={hasLightTopBar(challengeType, currentWorld)}
+            menuLabel={challengeType}
+            onPressLeftIcon={onLeftMenuPress}
+            timer={endDateTime}
         />
-        <TopBar coins={totalCoins} menuLabel={challengeType} onPressLeftIcon={onLeftMenuPress} timer={endDateTime} />
         <View style={styles.progressBarWrapper}>
-            <ProgressBar amount={userProgress} goals={progressTargets} type={unit} />
+            <ProgressBar
+                amount={userProgress}
+                goals={progressTargets}
+                styleType={getProgressBarType(challengeType, currentWorld)}
+                type={unit}
+            />
         </View>
         {challengeType !== "meditation" ? null : (
             <View style={styles.instructionWrapper}>
@@ -60,8 +78,8 @@ const ChallengeProgressScreen: SFC<IProps> = ({
                     <Text style={styles.instruction}>or any other meditation app</Text>
                 </View>
                 <Text style={styles.instruction}>
-                    that integrates with {Platform.OS === "ios" ? "apple health" : "google fit"}, within the next
-                    hour. Results will be shown here.
+                    that integrates with {Platform.OS === "ios" ? "apple health" : "google fit"}, within the next hour.
+                    Results will be shown here.
                 </Text>
             </View>
         )}

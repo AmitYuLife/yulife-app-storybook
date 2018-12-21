@@ -8,6 +8,7 @@ ShallowWrapper {
     isFinished={false}
     maxStreak={1}
     onPress={[MockFunction]}
+    type="forest"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -351,6 +352,7 @@ ShallowWrapper {
     isFinished={false}
     maxStreak={2}
     onPress={[MockFunction]}
+    type="forest"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -694,6 +696,7 @@ ShallowWrapper {
     isFinished={false}
     maxStreak={1}
     onPress={[MockFunction]}
+    type="forest"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1037,6 +1040,7 @@ ShallowWrapper {
     isFinished={false}
     maxStreak={0}
     onPress={[MockFunction]}
+    type="forest"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1380,6 +1384,7 @@ ShallowWrapper {
     isFinished={false}
     maxStreak={0}
     onPress={[MockFunction]}
+    type="forest"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],

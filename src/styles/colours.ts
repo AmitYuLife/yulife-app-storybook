@@ -26,13 +26,20 @@ export default {
     lightGray: "rgb(170,170,170)",
     lightRed: "rgb(255,102,102)",
     navBar: {
+        blue: {
+            active: "rgba(29,100,163,1)",
+            inactive: "rgba(29,100,163,0.4)",
+            pressed: "rgba(29,100,163,0.6)"
+        },
         dark: {
             active: "rgba(64,98,94,1)",
             inactive: "rgba(71,108,104,0.5)",
             pressed: "rgba(71,108,104,0.75)"
         },
         darker: {
-            active: "rgb(0,0,0)"
+            active: "rgb(0,0,0)",
+            inactive: "rgba(71,108,104,0.5)",
+            pressed: "rgba(71,108,104,0.75)"
         },
         light: {
             active: "rgba(255,255,255,1)",
@@ -40,7 +47,9 @@ export default {
             pressed: "rgba(255,255,255,0.2)"
         },
         pink: {
-            active: "rgb(232, 49, 129)"
+            active: "rgb(232,49,129)",
+            inactive: "rgba(232,49,129,0.4)",
+            pressed: "rgba(232,49,129,0.6)"
         }
     },
     picker: {
@@ -48,9 +57,21 @@ export default {
         filled: "rgb(106,106,106)"
     },
     progressBar: {
-        background: "black",
-        heading: "black",
-        shadow: "rgb(233, 233, 233)"
+        black: {
+            background: "black",
+            heading: "black",
+            shadow: "rgb(233, 233, 233)"
+        },
+        oceanBlack: {
+            background: "black",
+            heading: "black",
+            shadow: "rgb(80, 142, 205)"
+        },
+        oceanWhite: {
+            background: "white",
+            heading: "white",
+            shadow: "rgb(80, 142, 205)"
+        }
     },
     rewardsTabs: {
         active: "rgb(226,1,119)",
@@ -60,8 +81,14 @@ export default {
     },
     streak: {
         finished: {
-            pressed: "#81d1c4",
-            unpressed: "#99ded3"
+            forest: {
+                pressed: "#81d1c4",
+                unpressed: "#99ded3"
+            },
+            ocean: {
+                pressed: "#0E66A1",
+                unpressed: "#0E66A1"
+            }
         },
         unfinished: {
             pressed: "#cb016b",

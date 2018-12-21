@@ -4,6 +4,7 @@ exports[`ChallengeTile should render default props 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeTile
+    currentWorld={0}
     image="bird"
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -14,121 +15,9 @@ ShallowWrapper {
     "simulateEvent": [Function],
     "unmount": [Function],
   },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "activeOpacity": 0.2,
-      "children": Array [
-        <AnimalImage
-          image="elephant"
-          isImageBackgroundFlipped={false}
-          isLocked={false}
-        />,
-        <ContentWrapper
-          challengeType=""
-          duration=""
-          reward=""
-        />,
-      ],
-      "onPress": [Function],
-      "style": Object {
-        "height": 448,
-        "justifyContent": "flex-end",
-        "marginTop": 14,
-        "width": 330,
-      },
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "image": "elephant",
-          "isImageBackgroundFlipped": false,
-          "isLocked": false,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "challengeType": "",
-          "duration": "",
-          "reward": "",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
+  Symbol(enzyme.__node__): null,
   Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "activeOpacity": 0.2,
-        "children": Array [
-          <AnimalImage
-            image="elephant"
-            isImageBackgroundFlipped={false}
-            isLocked={false}
-          />,
-          <ContentWrapper
-            challengeType=""
-            duration=""
-            reward=""
-          />,
-        ],
-        "onPress": [Function],
-        "style": Object {
-          "height": 448,
-          "justifyContent": "flex-end",
-          "marginTop": 14,
-          "width": 330,
-        },
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "image": "elephant",
-            "isImageBackgroundFlipped": false,
-            "isLocked": false,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "challengeType": "",
-            "duration": "",
-            "reward": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
-    },
+    null,
   ],
   Symbol(enzyme.__options__): Object {
     "adapter": ReactSixteenAdapter {
@@ -156,6 +45,7 @@ exports[`ChallengeTile should render when flipped 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeTile
+    currentWorld={0}
     image="bird"
     isImageBackgroundFlipped={true}
   />,
@@ -167,121 +57,9 @@ ShallowWrapper {
     "simulateEvent": [Function],
     "unmount": [Function],
   },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "activeOpacity": 0.2,
-      "children": Array [
-        <AnimalImage
-          image="elephant"
-          isImageBackgroundFlipped={true}
-          isLocked={false}
-        />,
-        <ContentWrapper
-          challengeType=""
-          duration=""
-          reward=""
-        />,
-      ],
-      "onPress": [Function],
-      "style": Object {
-        "height": 448,
-        "justifyContent": "flex-end",
-        "marginTop": 14,
-        "width": 330,
-      },
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "image": "elephant",
-          "isImageBackgroundFlipped": true,
-          "isLocked": false,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "challengeType": "",
-          "duration": "",
-          "reward": "",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
+  Symbol(enzyme.__node__): null,
   Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "activeOpacity": 0.2,
-        "children": Array [
-          <AnimalImage
-            image="elephant"
-            isImageBackgroundFlipped={true}
-            isLocked={false}
-          />,
-          <ContentWrapper
-            challengeType=""
-            duration=""
-            reward=""
-          />,
-        ],
-        "onPress": [Function],
-        "style": Object {
-          "height": 448,
-          "justifyContent": "flex-end",
-          "marginTop": 14,
-          "width": 330,
-        },
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "image": "elephant",
-            "isImageBackgroundFlipped": true,
-            "isLocked": false,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "challengeType": "",
-            "duration": "",
-            "reward": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
-    },
+    null,
   ],
   Symbol(enzyme.__options__): Object {
     "adapter": ReactSixteenAdapter {
@@ -309,6 +87,7 @@ exports[`ChallengeTile should render when locked 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeTile
+    currentWorld={0}
     image="bird"
     isLocked={true}
     minimumLevel={5}
@@ -321,117 +100,9 @@ ShallowWrapper {
     "simulateEvent": [Function],
     "unmount": [Function],
   },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "activeOpacity": 0.2,
-      "children": Array [
-        <AnimalImage
-          image="elephant"
-          isImageBackgroundFlipped={false}
-          isLocked={true}
-        />,
-        <LockedOverlay
-          isImageBackgroundFlipped={false}
-          minimumLevel={5}
-        />,
-      ],
-      "onPress": [Function],
-      "style": Object {
-        "height": 448,
-        "justifyContent": "flex-end",
-        "marginTop": 14,
-        "width": 330,
-      },
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "image": "elephant",
-          "isImageBackgroundFlipped": false,
-          "isLocked": true,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "isImageBackgroundFlipped": false,
-          "minimumLevel": 5,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
+  Symbol(enzyme.__node__): null,
   Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "activeOpacity": 0.2,
-        "children": Array [
-          <AnimalImage
-            image="elephant"
-            isImageBackgroundFlipped={false}
-            isLocked={true}
-          />,
-          <LockedOverlay
-            isImageBackgroundFlipped={false}
-            minimumLevel={5}
-          />,
-        ],
-        "onPress": [Function],
-        "style": Object {
-          "height": 448,
-          "justifyContent": "flex-end",
-          "marginTop": 14,
-          "width": 330,
-        },
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "image": "elephant",
-            "isImageBackgroundFlipped": false,
-            "isLocked": true,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "isImageBackgroundFlipped": false,
-            "minimumLevel": 5,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
-    },
+    null,
   ],
   Symbol(enzyme.__options__): Object {
     "adapter": ReactSixteenAdapter {

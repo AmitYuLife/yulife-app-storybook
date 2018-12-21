@@ -19,6 +19,7 @@ import {
     ChallengeResetAction,
     challengeResetAction
 } from "../../../../redux/levels/levels.actions";
+import { submitUnityAction, SubmitUnityAction } from "../../../../redux/levels/levels.actions";
 import {
     activeLevelSelector,
     currentLevelSelector,
@@ -48,10 +49,7 @@ interface IConnectedDispatch {
     challengeEndAction: ChallengeEndAction;
     challengeResetAction: ChallengeResetAction;
     displayStreaksCompletedAction: () => void;
-}
-
-function isChestLevel(level: number): boolean {
-    return level % 7 === 0;
+    submitUnityAction: SubmitUnityAction;
 }
 
 function isAvailable(nextAvailableAt: string): boolean {
@@ -84,7 +82,9 @@ class QuestsContainer extends PureComponent<Props> {
     }
 
     public componentDidDisappear() {
-        this.backHandler.remove();
+        if (this.backHandler) {
+            this.backHandler.remove();
+        }
     }
 
     public render() {
@@ -143,6 +143,7 @@ class QuestsContainer extends PureComponent<Props> {
                                     <ChallengeProgressScreen
                                         {...props}
                                         challengeType={subtype as any}
+                                        currentWorld={Math.floor(currentLevel / 50)}
                                         onCalmPress={openCalm}
                                         onDismissPress={showOverlay}
                                         onHeadspacePress={openHeadspace}
@@ -300,6 +301,7 @@ class QuestsContainer extends PureComponent<Props> {
         return data.map((level) => {
             const isNext = currentLevel === level.level;
             const isDone = currentLevel > level.level;
+            const isChestLevel = !!level.levelChestId;
 
             return {
                 ...level,
@@ -308,16 +310,21 @@ class QuestsContainer extends PureComponent<Props> {
                 nextAvailableAt,
                 onPress: () => {
                     const levelAvailable = isAvailable(nextAvailableAt);
-                    const chestLevel = isChestLevel(level.level);
 
                     // This logic makes me want to kill myself
-                    if (isDone) {
+                    // Please increment the next number if you agree
+                    // +2
+
+                    if (level.level % 50 === 0) {
+                        // is unity level
+                        this.props.submitUnityAction({ levelId: level.id });
+                    } else if (isDone) {
                         if (features.showCompletedLevel) {
                             this.showLevelCompleteModal(level);
                         }
                     } else if (isNext) {
                         if (levelAvailable) {
-                            if (chestLevel) {
+                            if (isChestLevel) {
                                 this.showChestModal(level, true);
                             } else {
                                 this.goToChallengesList(level);
@@ -327,7 +334,7 @@ class QuestsContainer extends PureComponent<Props> {
                         }
                     } else {
                         // selected isn't the next available
-                        if (chestLevel) {
+                        if (isChestLevel) {
                             this.showChestModal(level, false);
                         } else {
                             this.showLevelUnavailableModal(level.level);
@@ -352,7 +359,8 @@ const mapDispatchToProps = {
     challengeCancelAction,
     challengeEndAction,
     challengeResetAction,
-    displayStreaksCompletedAction
+    displayStreaksCompletedAction,
+    submitUnityAction
 };
 
 export default connect<IConnectedState, IConnectedDispatch>(

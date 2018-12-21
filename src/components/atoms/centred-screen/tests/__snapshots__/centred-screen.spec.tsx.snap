@@ -261,8 +261,18 @@ ShallowWrapper {
         >
           <Component
             resizeMode="cover"
-            source={null}
-            style={null}
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/gray-forest.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
           />
         </View>,
         undefined,
@@ -283,8 +293,18 @@ ShallowWrapper {
         "props": Object {
           "children": <Component
             resizeMode="cover"
-            source={null}
-            style={null}
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/gray-forest.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
           />,
           "style": Object {
             "bottom": 0,
@@ -301,8 +321,14 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "resizeMode": "cover",
-            "source": null,
-            "style": null,
+            "source": Object {
+              "testUri": "../../../assets/centred-screen/gray-forest.png",
+            },
+            "style": Object {
+              "height": 600,
+              "marginBottom": 0,
+              "width": "100%",
+            },
           },
           "ref": null,
           "rendered": null,
@@ -334,8 +360,18 @@ ShallowWrapper {
           >
             <Component
               resizeMode="cover"
-              source={null}
-              style={null}
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/gray-forest.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
             />
           </View>,
           undefined,
@@ -356,8 +392,18 @@ ShallowWrapper {
           "props": Object {
             "children": <Component
               resizeMode="cover"
-              source={null}
-              style={null}
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/gray-forest.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
             />,
             "style": Object {
               "bottom": 0,
@@ -374,8 +420,14 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "resizeMode": "cover",
-              "source": null,
-              "style": null,
+              "source": Object {
+                "testUri": "../../../assets/centred-screen/gray-forest.png",
+              },
+              "style": Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              },
             },
             "ref": null,
             "rendered": null,
@@ -648,7 +700,7 @@ exports[`CentredScreen should render with a mountain footer image 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <CenteredScreen
-    footerImage="mountains"
+    footerImage="challenge_failed_forest"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -679,7 +731,7 @@ ShallowWrapper {
             resizeMode="cover"
             source={
               Object {
-                "testUri": "../../../assets/centred-screen/mountains.png",
+                "testUri": "../../../assets/centred-screen/challenge_failed_forest.png",
               }
             }
             style={
@@ -711,7 +763,7 @@ ShallowWrapper {
             resizeMode="cover"
             source={
               Object {
-                "testUri": "../../../assets/centred-screen/mountains.png",
+                "testUri": "../../../assets/centred-screen/challenge_failed_forest.png",
               }
             }
             style={
@@ -738,7 +790,7 @@ ShallowWrapper {
           "props": Object {
             "resizeMode": "cover",
             "source": Object {
-              "testUri": "../../../assets/centred-screen/mountains.png",
+              "testUri": "../../../assets/centred-screen/challenge_failed_forest.png",
             },
             "style": Object {
               "height": 600,
@@ -778,7 +830,7 @@ ShallowWrapper {
               resizeMode="cover"
               source={
                 Object {
-                  "testUri": "../../../assets/centred-screen/mountains.png",
+                  "testUri": "../../../assets/centred-screen/challenge_failed_forest.png",
                 }
               }
               style={
@@ -810,7 +862,7 @@ ShallowWrapper {
               resizeMode="cover"
               source={
                 Object {
-                  "testUri": "../../../assets/centred-screen/mountains.png",
+                  "testUri": "../../../assets/centred-screen/challenge_failed_forest.png",
                 }
               }
               style={
@@ -837,7 +889,7 @@ ShallowWrapper {
             "props": Object {
               "resizeMode": "cover",
               "source": Object {
-                "testUri": "../../../assets/centred-screen/mountains.png",
+                "testUri": "../../../assets/centred-screen/challenge_failed_forest.png",
               },
               "style": Object {
                 "height": 600,

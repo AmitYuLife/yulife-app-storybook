@@ -1,22 +1,24 @@
 import moment from "moment";
 import { Navigation } from "react-native-navigation";
 import { delay } from "redux-saga";
-import { call, cancel, cancelled, fork, put, race, select, spawn, take, takeLatest } from "redux-saga/effects";
+import { call, cancel, cancelled, fork, put, race, select, take, takeLatest } from "redux-saga/effects";
 import cancelActiveChallengeWithClient from "../../graphql/challenges/cancelActiveChallenge.gql";
 import createActiveChallengeWithClient from "../../graphql/challenges/createActiveChallenge.gql";
+import submitUnityChallengeWithClient from "../../graphql/challenges/submitUnity.gql";
 import updateActiveChallengeWithClient from "../../graphql/challenges/updateActiveChallenge.gql";
 import { MODALS } from "../../navigation/routes";
-import { queryMindfulSessions, transformSampleResultToPayload } from "../../services/fitkit/fitkit.service";
-import Logger from "../../services/logging/logger";
+import { queryMindfulSessions } from "../../services/fitkit/fitkit.service";
 import { pathOr } from "../../services/utils";
 import { cancelLocalPush } from "../device/device.actions";
 import { stepsSelector } from "../pedometer/pedometer.selectors";
-import { GET_USER_SUCCESS } from "../user/user.actions";
+import { GET_USER_SUCCESS, getUserStart } from "../user/user.actions";
 import {
     CHALLENGE_CANCEL,
     CHALLENGE_END,
     CHALLENGE_RESET,
     CHALLENGE_START,
+    CHALLENGE_SUBMIT_UNITY,
+    CHALLENGE_TIME_UP,
     challengeEndSuccessAction,
     challengeResetSuccessAction,
     ChallengeStartActionResult,
@@ -24,7 +26,7 @@ import {
     challengeTimeUpAction,
     challengeUpdateSuccessAction
 } from "./levels.actions";
-import { CHALLENGE_TIME_UP } from "./levels.actions";
+import { SubmitUnityActionResult } from "./levels.actions";
 import { getEndResult } from "./levels.helpers";
 import { activeLevelSelector } from "./levels.selectors";
 
@@ -38,24 +40,14 @@ function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, e
         }
 
         try {
-            const resultsQuery = yield call(queryMindfulSessions, start, end.format());
-            yield spawn(Logger.logMixpanelEvent, "raw_meditation_results", {
-                resultsQuery: JSON.stringify(resultsQuery)
-            });
-            const resultTransformedQuery = resultsQuery.map(transformSampleResultToPayload);
-            yield spawn(Logger.logMixpanelEvent, "transformed_meditation_results", {
-                resultTransformedQuery: JSON.stringify(resultTransformedQuery)
-            });
+            const queryResult = yield call(queryMindfulSessions, start, end.format());
 
-            if (resultTransformedQuery.length > 0) {
+            if (queryResult.length > 0) {
                 const results = {
                     endDateTime,
                     startDateTime,
                     value: Math.floor(
-                        resultTransformedQuery.reduce(
-                            (accumulator: number, session: any) => accumulator + session.value, // tslint:disable-line
-                            0
-                        )
+                        queryResult.reduce((accumulator: number, session: any) => accumulator + session.value, 0)
                     )
                 };
 
@@ -186,7 +178,12 @@ export function* startChallenges() {
             const { data } = yield call(createActiveChallengeWithClient, levelSlotId);
 
             if (data && data.createActiveChallenge) {
-                yield put(challengeStartSuccessAction({ ...data, initialPedometerResult }));
+                yield put(
+                    challengeStartSuccessAction({
+                        ...data,
+                        initialPedometerResult
+                    })
+                );
 
                 const {
                     challenge: { startDateTime, endDateTime },
@@ -219,8 +216,18 @@ export function* startChallenges() {
     }
 }
 
+function* submitUnity({ payload }: SubmitUnityActionResult) {
+    try {
+        yield call(submitUnityChallengeWithClient, payload.levelId);
+        yield put(getUserStart());
+    } catch (e) {
+        // console.log(e);
+    }
+}
+
 export default [
     startChallenges(),
     takeLatest(CHALLENGE_RESET, resetChallenge),
-    takeLatest(CHALLENGE_END, endChallenge)
+    takeLatest(CHALLENGE_END, endChallenge),
+    takeLatest(CHALLENGE_SUBMIT_UNITY, submitUnity)
 ];

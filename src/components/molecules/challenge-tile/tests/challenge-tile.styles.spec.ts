@@ -2,7 +2,7 @@ import { IMAGES } from "../challenge-tile";
 import {
     getImage,
     getImageStyle
-} from "../challenge-tile.styles";
+} from "../challenge-tile.helpers";
 
 describe("Challenge Tile styles", () => {
 

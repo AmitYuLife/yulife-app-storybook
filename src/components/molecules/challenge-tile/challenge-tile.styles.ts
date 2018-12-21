@@ -1,61 +1,5 @@
-import {
-    ImageStyle,
-    StyleSheet,
-    TextStyle,
-    ViewStyle
-} from "react-native";
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../styles";
-import { Images, IMAGES } from "./challenge-tile";
-
-export const getImageStyle = (image: Images): ImageStyle => {
-    let top;
-    let right;
-    const topAdjust = Style.isShortAndroid() || Style.isXShortAndroid() ? 0 : 0;
-
-    switch (image) {
-        case IMAGES.SQUIRREL:
-            top = Style.SCALE_UP_AND_DOWN(7 + topAdjust);
-            right = Style.SCALE_UP_AND_DOWN(15);
-            break;
-        case IMAGES.OSTRICH:
-            top = 0 + topAdjust;
-            right = Style.SCALE_UP_AND_DOWN(27);
-            break;
-        case IMAGES.ELEPHANT:
-            top = Style.SCALE_UP_AND_DOWN(7 + topAdjust);
-            right = Style.SCALE_UP_AND_DOWN(9);
-            break;
-        case IMAGES.BIRD:
-            top = Style.SCALE_UP_AND_DOWN(17 + topAdjust);
-            right = Style.SCALE_UP_AND_DOWN(10);
-            break;
-        default:
-            top = 0;
-            right = 0;
-    }
-    return StyleSheet.flatten([
-        {
-            position: "absolute",
-            right,
-            top
-        } as ImageStyle
-    ]);
-};
-
-export const getImage = (image: Images) => {
-    switch (image) {
-        case IMAGES.SQUIRREL:
-            return require("../../../../assets/challenge-tile/squirrel.png");
-        case IMAGES.ELEPHANT:
-            return require("../../../../assets/challenge-tile/elephant.png");
-        case IMAGES.OSTRICH:
-            return require("../../../../assets/challenge-tile/ostrich.png");
-        case IMAGES.BIRD:
-            return require("../../../../assets/challenge-tile/bird.png");
-        default:
-            return null;
-    }
-};
 
 const styles = StyleSheet.create({
     contentDurationWrapper: {} as ViewStyle,
@@ -68,17 +12,13 @@ const styles = StyleSheet.create({
     } as ViewStyle,
     contentTitle: {
         color: "rgb(51,51,51)",
-        fontSize: Style.SCALE_UP_AND_DOWN(
-            Style.isShortAndroid() ? 13 : 17
-        )
+        fontSize: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() ? 13 : 17)
     } as TextStyle,
     contentTitleWrapper: {} as ViewStyle,
     contentWrapper: {
         flex: 1,
         paddingLeft: Style.SCALE_UP_AND_DOWN(15),
-        paddingTop: Style.SCALE_UP_AND_DOWN(
-            Style.isShortAndroid() ? 4 : 11
-        )
+        paddingTop: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() ? 4 : 11)
     } as ViewStyle,
     imageBackground: {
         backgroundColor: "rgba(255,255,255,0.5)",

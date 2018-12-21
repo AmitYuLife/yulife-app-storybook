@@ -8,26 +8,26 @@ ShallowWrapper {
       Array [
         Object {
           "challengeType": "brisk walk",
+          "currentWorld": 0,
           "duration": "10",
-          "image": "squirrel",
           "reward": "0-3",
         },
         Object {
           "challengeType": "long walk",
+          "currentWorld": 0,
           "duration": "30",
-          "image": "ostrich",
           "reward": "0-6",
         },
         Object {
           "challengeType": "short stroll",
+          "currentWorld": 0,
           "duration": "5",
-          "image": "elephant",
           "reward": "0-1",
         },
         Object {
           "challengeType": "meditation",
+          "currentWorld": 0,
           "duration": "3-10",
-          "image": "bird",
           "reward": "0-3",
         },
       ]
@@ -50,15 +50,15 @@ ShallowWrapper {
         <View>
           <ChallengeTile
             challengeType="brisk walk"
+            currentWorld={0}
             duration="10"
-            image="squirrel"
             isImageBackgroundFlipped={false}
             reward="0-3"
           />
           <ChallengeTile
             challengeType="long walk"
+            currentWorld={0}
             duration="30"
-            image="ostrich"
             isImageBackgroundFlipped={true}
             reward="0-6"
           />
@@ -73,15 +73,15 @@ ShallowWrapper {
         >
           <ChallengeTile
             challengeType="short stroll"
+            currentWorld={0}
             duration="5"
-            image="elephant"
             isImageBackgroundFlipped={true}
             reward="0-1"
           />
           <ChallengeTile
             challengeType="meditation"
+            currentWorld={0}
             duration="3-10"
-            image="bird"
             isImageBackgroundFlipped={false}
             reward="0-3"
           />
@@ -108,15 +108,15 @@ ShallowWrapper {
           "children": Array [
             <ChallengeTile
               challengeType="brisk walk"
+              currentWorld={0}
               duration="10"
-              image="squirrel"
               isImageBackgroundFlipped={false}
               reward="0-3"
             />,
             <ChallengeTile
               challengeType="long walk"
+              currentWorld={0}
               duration="30"
-              image="ostrich"
               isImageBackgroundFlipped={true}
               reward="0-6"
             />,
@@ -130,8 +130,8 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "challengeType": "brisk walk",
+              "currentWorld": 0,
               "duration": "10",
-              "image": "squirrel",
               "isImageBackgroundFlipped": false,
               "reward": "0-3",
             },
@@ -145,8 +145,8 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "challengeType": "long walk",
+              "currentWorld": 0,
               "duration": "30",
-              "image": "ostrich",
               "isImageBackgroundFlipped": true,
               "reward": "0-6",
             },
@@ -165,15 +165,15 @@ ShallowWrapper {
           "children": Array [
             <ChallengeTile
               challengeType="short stroll"
+              currentWorld={0}
               duration="5"
-              image="elephant"
               isImageBackgroundFlipped={true}
               reward="0-1"
             />,
             <ChallengeTile
               challengeType="meditation"
+              currentWorld={0}
               duration="3-10"
-              image="bird"
               isImageBackgroundFlipped={false}
               reward="0-3"
             />,
@@ -191,8 +191,8 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "challengeType": "short stroll",
+              "currentWorld": 0,
               "duration": "5",
-              "image": "elephant",
               "isImageBackgroundFlipped": true,
               "reward": "0-1",
             },
@@ -206,8 +206,8 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "challengeType": "meditation",
+              "currentWorld": 0,
               "duration": "3-10",
-              "image": "bird",
               "isImageBackgroundFlipped": false,
               "reward": "0-3",
             },
@@ -231,15 +231,15 @@ ShallowWrapper {
           <View>
             <ChallengeTile
               challengeType="brisk walk"
+              currentWorld={0}
               duration="10"
-              image="squirrel"
               isImageBackgroundFlipped={false}
               reward="0-3"
             />
             <ChallengeTile
               challengeType="long walk"
+              currentWorld={0}
               duration="30"
-              image="ostrich"
               isImageBackgroundFlipped={true}
               reward="0-6"
             />
@@ -254,15 +254,15 @@ ShallowWrapper {
           >
             <ChallengeTile
               challengeType="short stroll"
+              currentWorld={0}
               duration="5"
-              image="elephant"
               isImageBackgroundFlipped={true}
               reward="0-1"
             />
             <ChallengeTile
               challengeType="meditation"
+              currentWorld={0}
               duration="3-10"
-              image="bird"
               isImageBackgroundFlipped={false}
               reward="0-3"
             />
@@ -289,15 +289,15 @@ ShallowWrapper {
             "children": Array [
               <ChallengeTile
                 challengeType="brisk walk"
+                currentWorld={0}
                 duration="10"
-                image="squirrel"
                 isImageBackgroundFlipped={false}
                 reward="0-3"
               />,
               <ChallengeTile
                 challengeType="long walk"
+                currentWorld={0}
                 duration="30"
-                image="ostrich"
                 isImageBackgroundFlipped={true}
                 reward="0-6"
               />,
@@ -311,8 +311,8 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "challengeType": "brisk walk",
+                "currentWorld": 0,
                 "duration": "10",
-                "image": "squirrel",
                 "isImageBackgroundFlipped": false,
                 "reward": "0-3",
               },
@@ -326,8 +326,8 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "challengeType": "long walk",
+                "currentWorld": 0,
                 "duration": "30",
-                "image": "ostrich",
                 "isImageBackgroundFlipped": true,
                 "reward": "0-6",
               },
@@ -346,15 +346,15 @@ ShallowWrapper {
             "children": Array [
               <ChallengeTile
                 challengeType="short stroll"
+                currentWorld={0}
                 duration="5"
-                image="elephant"
                 isImageBackgroundFlipped={true}
                 reward="0-1"
               />,
               <ChallengeTile
                 challengeType="meditation"
+                currentWorld={0}
                 duration="3-10"
-                image="bird"
                 isImageBackgroundFlipped={false}
                 reward="0-3"
               />,
@@ -372,8 +372,8 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "challengeType": "short stroll",
+                "currentWorld": 0,
                 "duration": "5",
-                "image": "elephant",
                 "isImageBackgroundFlipped": true,
                 "reward": "0-1",
               },
@@ -387,8 +387,8 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "challengeType": "meditation",
+                "currentWorld": 0,
                 "duration": "3-10",
-                "image": "bird",
                 "isImageBackgroundFlipped": false,
                 "reward": "0-3",
               },
@@ -433,22 +433,22 @@ ShallowWrapper {
       Array [
         Object {
           "challengeType": "brisk walk",
+          "currentWorld": 0,
           "duration": "10",
-          "image": "squirrel",
           "reward": "0-3",
         },
         Object {
-          "image": "squirrel",
+          "currentWorld": 0,
           "isLocked": true,
           "minimumLevel": 4,
         },
         Object {
-          "image": "elephant",
+          "currentWorld": 0,
           "isLocked": true,
           "minimumLevel": 2,
         },
         Object {
-          "image": "bird",
+          "currentWorld": 0,
           "isLocked": true,
           "minimumLevel": 10,
         },
@@ -472,25 +472,25 @@ ShallowWrapper {
         <View>
           <ChallengeTile
             challengeType="brisk walk"
+            currentWorld={0}
             duration="10"
-            image="squirrel"
             isImageBackgroundFlipped={false}
             reward="0-3"
           />
           <ChallengeTile
-            image="squirrel"
+            currentWorld={0}
             isImageBackgroundFlipped={true}
             isLocked={true}
             minimumLevel={4}
           />
           <ChallengeTile
-            image="elephant"
+            currentWorld={0}
             isImageBackgroundFlipped={false}
             isLocked={true}
             minimumLevel={2}
           />
           <ChallengeTile
-            image="bird"
+            currentWorld={0}
             isImageBackgroundFlipped={true}
             isLocked={true}
             minimumLevel={10}
@@ -526,25 +526,25 @@ ShallowWrapper {
           "children": Array [
             <ChallengeTile
               challengeType="brisk walk"
+              currentWorld={0}
               duration="10"
-              image="squirrel"
               isImageBackgroundFlipped={false}
               reward="0-3"
             />,
             <ChallengeTile
-              image="squirrel"
+              currentWorld={0}
               isImageBackgroundFlipped={true}
               isLocked={true}
               minimumLevel={4}
             />,
             <ChallengeTile
-              image="elephant"
+              currentWorld={0}
               isImageBackgroundFlipped={false}
               isLocked={true}
               minimumLevel={2}
             />,
             <ChallengeTile
-              image="bird"
+              currentWorld={0}
               isImageBackgroundFlipped={true}
               isLocked={true}
               minimumLevel={10}
@@ -559,8 +559,8 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "challengeType": "brisk walk",
+              "currentWorld": 0,
               "duration": "10",
-              "image": "squirrel",
               "isImageBackgroundFlipped": false,
               "reward": "0-3",
             },
@@ -573,7 +573,7 @@ ShallowWrapper {
             "key": "1",
             "nodeType": "class",
             "props": Object {
-              "image": "squirrel",
+              "currentWorld": 0,
               "isImageBackgroundFlipped": true,
               "isLocked": true,
               "minimumLevel": 4,
@@ -587,7 +587,7 @@ ShallowWrapper {
             "key": "2",
             "nodeType": "class",
             "props": Object {
-              "image": "elephant",
+              "currentWorld": 0,
               "isImageBackgroundFlipped": false,
               "isLocked": true,
               "minimumLevel": 2,
@@ -601,7 +601,7 @@ ShallowWrapper {
             "key": "3",
             "nodeType": "class",
             "props": Object {
-              "image": "bird",
+              "currentWorld": 0,
               "isImageBackgroundFlipped": true,
               "isLocked": true,
               "minimumLevel": 10,
@@ -641,25 +641,25 @@ ShallowWrapper {
           <View>
             <ChallengeTile
               challengeType="brisk walk"
+              currentWorld={0}
               duration="10"
-              image="squirrel"
               isImageBackgroundFlipped={false}
               reward="0-3"
             />
             <ChallengeTile
-              image="squirrel"
+              currentWorld={0}
               isImageBackgroundFlipped={true}
               isLocked={true}
               minimumLevel={4}
             />
             <ChallengeTile
-              image="elephant"
+              currentWorld={0}
               isImageBackgroundFlipped={false}
               isLocked={true}
               minimumLevel={2}
             />
             <ChallengeTile
-              image="bird"
+              currentWorld={0}
               isImageBackgroundFlipped={true}
               isLocked={true}
               minimumLevel={10}
@@ -695,25 +695,25 @@ ShallowWrapper {
             "children": Array [
               <ChallengeTile
                 challengeType="brisk walk"
+                currentWorld={0}
                 duration="10"
-                image="squirrel"
                 isImageBackgroundFlipped={false}
                 reward="0-3"
               />,
               <ChallengeTile
-                image="squirrel"
+                currentWorld={0}
                 isImageBackgroundFlipped={true}
                 isLocked={true}
                 minimumLevel={4}
               />,
               <ChallengeTile
-                image="elephant"
+                currentWorld={0}
                 isImageBackgroundFlipped={false}
                 isLocked={true}
                 minimumLevel={2}
               />,
               <ChallengeTile
-                image="bird"
+                currentWorld={0}
                 isImageBackgroundFlipped={true}
                 isLocked={true}
                 minimumLevel={10}
@@ -728,8 +728,8 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "challengeType": "brisk walk",
+                "currentWorld": 0,
                 "duration": "10",
-                "image": "squirrel",
                 "isImageBackgroundFlipped": false,
                 "reward": "0-3",
               },
@@ -742,7 +742,7 @@ ShallowWrapper {
               "key": "1",
               "nodeType": "class",
               "props": Object {
-                "image": "squirrel",
+                "currentWorld": 0,
                 "isImageBackgroundFlipped": true,
                 "isLocked": true,
                 "minimumLevel": 4,
@@ -756,7 +756,7 @@ ShallowWrapper {
               "key": "2",
               "nodeType": "class",
               "props": Object {
-                "image": "elephant",
+                "currentWorld": 0,
                 "isImageBackgroundFlipped": false,
                 "isLocked": true,
                 "minimumLevel": 2,
@@ -770,7 +770,7 @@ ShallowWrapper {
               "key": "3",
               "nodeType": "class",
               "props": Object {
-                "image": "bird",
+                "currentWorld": 0,
                 "isImageBackgroundFlipped": true,
                 "isLocked": true,
                 "minimumLevel": 10,

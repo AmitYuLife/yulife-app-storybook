@@ -5,6 +5,7 @@ import DailyStepsOnline from "../daily-steps-online";
 
 const defaultProps = {
     coinsToday: 5,
+    hasWhiteText: false,
     onCtaPress: jest.fn(),
     steps: 123456
 };

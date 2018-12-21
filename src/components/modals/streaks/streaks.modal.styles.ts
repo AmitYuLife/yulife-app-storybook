@@ -52,7 +52,7 @@ export default StyleSheet.create({
     } as ViewStyle,
     wrapper: {
         alignItems: "center",
-        backgroundColor: "rgba(255,255,255,0.4)",
+        backgroundColor: "rgba(255,255,255,0.9)",
         flex: 1,
         justifyContent: "center"
     } as ViewStyle

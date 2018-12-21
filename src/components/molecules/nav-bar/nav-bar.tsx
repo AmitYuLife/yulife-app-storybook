@@ -16,13 +16,14 @@ export interface ILabel {
 }
 
 export enum COLOURS {
+    BLUE = "blue",
     DARK = "dark",
     DARKER = "darker",
     LIGHT = "light",
     PINK = "pink"
 }
 
-export type IColours = "dark" | "darker" | "light" | "pink";
+export type IColours = "blue" | "dark" | "darker" | "light" | "pink";
 
 interface IProps {
     activeIndex: number;

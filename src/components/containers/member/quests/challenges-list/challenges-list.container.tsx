@@ -59,6 +59,7 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
         const {
             slot: { challengeType, duration, milestones, unit }
         } = this.state;
+        const currentWorld = Math.floor(currentLevel / 50);
 
         return (
             <BlurProvider
@@ -77,11 +78,13 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
 
                             return {
                                 ...formattedSlot,
+                                currentWorld,
                                 isLocked,
                                 minimumLevel: slot.availableAtLevel || 0,
                                 onPress: isLocked ? () => ({}) : this.handleSlotPress(formattedSlot, showOverlay)
                             };
                         })}
+                        currentWorld={currentWorld}
                         labels={labels}
                         name={`level ${level.level}`}
                         onPressLeftIcon={this.onNavPress}
@@ -91,6 +94,7 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
                 renderOverlay={({ hideOverlay }) => (
                     <ChallengeDetailsModal
                         challengeType={challengeType}
+                        currentWorld={currentWorld}
                         duration={duration}
                         milestones={milestones}
                         onPressCta={this.handleSubmitChallenge}

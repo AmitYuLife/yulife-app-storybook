@@ -53,7 +53,9 @@ class RewardsContainer extends PureComponent<Props, IState> {
     }
 
     public componentDidDisappear() {
-        this.backHandler.remove();
+        if (this.backHandler) {
+            this.backHandler.remove();
+        }
     }
 
     public render() {

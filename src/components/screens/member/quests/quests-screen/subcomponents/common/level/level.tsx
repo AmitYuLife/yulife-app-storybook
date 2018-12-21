@@ -13,7 +13,8 @@ interface LockIconProps {
 interface IProps {
     cx: string;
     cy: string;
-    level: number;
+    hasActivePulse: boolean;
+    level?: number;
     fill: string;
     data: IChallenge;
     lockIcon: React.StatelessComponent<LockIconProps>;
@@ -71,7 +72,7 @@ class Level extends PureComponent<IProps, IState> {
     }
 
     public componentDidMount() {
-        if (this.props.data && this.props.data.isNext) {
+        if (this.props.hasActivePulse && this.props.data && this.props.data.isNext) {
             this.setPulse();
         }
     }

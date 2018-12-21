@@ -136,6 +136,7 @@ export interface GetCurrentWorld_getCurrentWorld {
   id: string | null;
   __typename: "Level";
   level: number | null;
+  levelChestId: string | null;
   name: string | null;
   rating: number | null;
   slots: (GetCurrentWorld_getCurrentWorld_slots | null)[] | null;
@@ -143,6 +144,22 @@ export interface GetCurrentWorld_getCurrentWorld {
 
 export interface GetCurrentWorld {
   getCurrentWorld: (GetCurrentWorld_getCurrentWorld | null)[] | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: SubmitUnity
+// ====================================================
+
+export interface SubmitUnity {
+  submitUnity: boolean | null;
+}
+
+export interface SubmitUnityVariables {
+  levelId: string;
 }
 
 
@@ -818,6 +835,7 @@ export interface LoginUser_loginUser_user {
   id: string | null;
   archived: boolean | null;
   businessAccountId: string | null;
+  membershipType: string | null;
   userFeatures: (LoginUser_loginUser_user_userFeatures | null)[] | null;
   mobileConsent: LoginUser_loginUser_user_mobileConsent | null;
   redeemedOnboarding: boolean | null;

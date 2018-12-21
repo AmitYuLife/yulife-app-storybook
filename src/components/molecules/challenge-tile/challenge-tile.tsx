@@ -2,10 +2,13 @@ import * as React from "react";
 import { PureComponent, SFC } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "../../atoms";
-import styles, { getImage, getImageStyle } from "./challenge-tile.styles";
+import assets from "./assets";
+import { getImage, getImageStyle } from "./challenge-tile.helpers";
+import styles from "./challenge-tile.styles";
 
 export interface IChallengeTileProps {
     challengeType?: string;
+    currentWorld: number;
     duration?: string;
     image?: Images;
     isImageBackgroundFlipped?: boolean;
@@ -16,36 +19,48 @@ export interface IChallengeTileProps {
 }
 
 export enum IMAGES {
+    DOLPHIN = "dolphin",
     SQUIRREL = "squirrel",
     ELEPHANT = "elephant",
     BIRD = "bird",
-    OSTRICH = "ostrich"
+    OSTRICH = "ostrich",
+    OTTER = "otter",
+    TORTOISE = "tortoise",
+    WHALE = "whale"
 }
 
-export type Images = "squirrel" | "elephant" | "bird" | "ostrich";
+export type Images = "dolphin" | "squirrel" | "elephant" | "bird" | "ostrich" | "otter" | "tortoise" | "whale";
+
+const challengeTileSettings = {
+    briskWalk: [IMAGES.SQUIRREL, IMAGES.OTTER],
+    longWalk: [IMAGES.OSTRICH, IMAGES.WHALE],
+    meditation: [IMAGES.BIRD, IMAGES.DOLPHIN],
+    shortStroll: [IMAGES.ELEPHANT, IMAGES.TORTOISE]
+};
 
 type Props = IChallengeTileProps;
 
 class ChallengeTile extends PureComponent<Props> {
     public static Images = IMAGES;
 
-    public getImage = (challengeType: string): Images => {
+    public getImage = (challengeType: string, currentWorld: number): Images => {
         switch (challengeType) {
             case "meditation":
-                return IMAGES.BIRD;
+                return challengeTileSettings.meditation[currentWorld || 0];
             case "long walk":
-                return IMAGES.OSTRICH;
+                return challengeTileSettings.longWalk[currentWorld || 0];
             case "brisk walk":
-                return IMAGES.SQUIRREL;
+                return challengeTileSettings.briskWalk[currentWorld || 0];
             case "short stroll":
             default:
-                return IMAGES.ELEPHANT;
+                return challengeTileSettings.shortStroll[currentWorld || 0];
         }
     }
 
     public render() {
         const {
             challengeType = "",
+            currentWorld,
             duration = "",
             isImageBackgroundFlipped = false,
             isLocked = false,
@@ -54,10 +69,10 @@ class ChallengeTile extends PureComponent<Props> {
             reward = ""
         } = this.props;
 
-        return (
+        return !challengeType ? null : (
             <TouchableOpacity onPress={onPress} style={styles.wrapper}>
                 <AnimalImage
-                    image={this.getImage(challengeType)}
+                    image={this.getImage(challengeType, currentWorld)}
                     isLocked={isLocked}
                     isImageBackgroundFlipped={isImageBackgroundFlipped}
                 />
@@ -80,11 +95,7 @@ const LockedOverlay: SFC<Partial<Props>> = ({ isImageBackgroundFlipped, minimumL
             isImageBackgroundFlipped ? styles.lockedOverlayFlipped : null
         ])}
     >
-        <Image
-            resizeMode="contain"
-            style={styles.lockedImage}
-            source={require("../../../../assets/challenge-tile/lock.png")}
-        />
+        <Image resizeMode="contain" style={styles.lockedImage} source={assets.lock} />
         <Text style={styles.lockedLabel} bold={true}>
             {`level ${minimumLevel}`}
         </Text>
@@ -108,11 +119,7 @@ const ContentWrapper: SFC<Partial<Props>> = ({ challengeType, duration, reward }
     <View style={styles.sectionBottomWrapper}>
         <Content challengeType={challengeType} duration={duration} reward={reward} />
         <View style={styles.imageWrapperNext}>
-            <Image
-                source={require("../../../../assets/challenge-tile/next.png")}
-                resizeMode="contain"
-                style={styles.imageNext}
-            />
+            <Image source={assets.next} resizeMode="contain" style={styles.imageNext} />
         </View>
     </View>
 );

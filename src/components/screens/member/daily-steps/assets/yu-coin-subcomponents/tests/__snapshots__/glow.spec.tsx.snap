@@ -26,8 +26,8 @@ ShallowWrapper {
         <RadialGradient
           cx="205"
           cy="205"
-          fx="50%"
-          fy="50%"
+          fx="205"
+          fy="205"
           id="SVGID_1_"
           r="204.9995"
         >
@@ -39,7 +39,7 @@ ShallowWrapper {
           <Stop
             offset="1"
             stopColor="#FFFFFF"
-            stopOpacity="0.3"
+            stopOpacity="0"
           />
         </RadialGradient>
         <Path
@@ -67,8 +67,8 @@ ShallowWrapper {
           <RadialGradient
             cx="205"
             cy="205"
-            fx="50%"
-            fy="50%"
+            fx="205"
+            fy="205"
             id="SVGID_1_"
             r="204.9995"
           >
@@ -80,7 +80,7 @@ ShallowWrapper {
             <Stop
               offset="1"
               stopColor="#FFFFFF"
-              stopOpacity="0.3"
+              stopOpacity="0"
             />
           </RadialGradient>,
           <Path
@@ -109,13 +109,13 @@ ShallowWrapper {
               <Stop
                 offset="1"
                 stopColor="#FFFFFF"
-                stopOpacity="0.3"
+                stopOpacity="0"
               />,
             ],
             "cx": "205",
             "cy": "205",
-            "fx": "50%",
-            "fy": "50%",
+            "fx": "205",
+            "fy": "205",
             "id": "SVGID_1_",
             "r": "204.9995",
           },
@@ -141,7 +141,7 @@ ShallowWrapper {
               "props": Object {
                 "offset": "1",
                 "stopColor": "#FFFFFF",
-                "stopOpacity": "0.3",
+                "stopOpacity": "0",
               },
               "ref": null,
               "rendered": null,
@@ -182,8 +182,8 @@ ShallowWrapper {
           <RadialGradient
             cx="205"
             cy="205"
-            fx="50%"
-            fy="50%"
+            fx="205"
+            fy="205"
             id="SVGID_1_"
             r="204.9995"
           >
@@ -195,7 +195,7 @@ ShallowWrapper {
             <Stop
               offset="1"
               stopColor="#FFFFFF"
-              stopOpacity="0.3"
+              stopOpacity="0"
             />
           </RadialGradient>
           <Path
@@ -223,8 +223,8 @@ ShallowWrapper {
             <RadialGradient
               cx="205"
               cy="205"
-              fx="50%"
-              fy="50%"
+              fx="205"
+              fy="205"
               id="SVGID_1_"
               r="204.9995"
             >
@@ -236,7 +236,7 @@ ShallowWrapper {
               <Stop
                 offset="1"
                 stopColor="#FFFFFF"
-                stopOpacity="0.3"
+                stopOpacity="0"
               />
             </RadialGradient>,
             <Path
@@ -265,13 +265,13 @@ ShallowWrapper {
                 <Stop
                   offset="1"
                   stopColor="#FFFFFF"
-                  stopOpacity="0.3"
+                  stopOpacity="0"
                 />,
               ],
               "cx": "205",
               "cy": "205",
-              "fx": "50%",
-              "fy": "50%",
+              "fx": "205",
+              "fy": "205",
               "id": "SVGID_1_",
               "r": "204.9995",
             },
@@ -297,7 +297,7 @@ ShallowWrapper {
                 "props": Object {
                   "offset": "1",
                   "stopColor": "#FFFFFF",
-                  "stopOpacity": "0.3",
+                  "stopOpacity": "0",
                 },
                 "ref": null,
                 "rendered": null,

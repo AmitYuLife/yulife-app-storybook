@@ -24,15 +24,10 @@ const FitKitConnectScreen: SFC<IProps> = ({
 }) => (
     <>
         {!loading ? (
-            <CentredScreen
-                footerImage={CentredScreen.FooterImages.FOREST}
-            >
+            <CentredScreen footerImage="forest">
                 <Pad height={120} />
                 {fitKitAvailable ? (
-                    <FitKitAvailable
-                        connecting={connecting}
-                        onConnectPress={onConnectPress}
-                    />
+                    <FitKitAvailable connecting={connecting} onConnectPress={onConnectPress} />
                 ) : (
                     <FitKitUnavailable />
                 )}
@@ -44,11 +39,7 @@ const FitKitConnectScreen: SFC<IProps> = ({
                     type={Button.Types.SECONDARY}
                 />
                 <Pad height={10} />
-                <Button
-                    label={data.linkButtonLabel}
-                    onPress={onPrivacyPolicyPress}
-                    type={Button.Types.LINK}
-                />
+                <Button label={data.linkButtonLabel} onPress={onPrivacyPolicyPress} type={Button.Types.LINK} />
             </CentredScreen>
         ) : (
             <Loading />

@@ -6,19 +6,33 @@ import { IActiveLevel } from "./levels.selectors";
 export async function getEndResult({ startDateTime, endDateTime, subtype, score }: IActiveLevel) {
     if (subtype === "meditation") {
         try {
-            const start = moment(startDateTime)
-                .startOf("day")
-                .format();
-            const end = moment(endDateTime).add(2, "hours").format();
+            const start = moment(startDateTime).format();
+            const end = moment(endDateTime).format();
             const queryResult = await queryMindfulSessions(start, end);
-            return {
-                value: Math.floor(
-                    (queryResult || []).reduce(
-                        (accumulator: number, session: any) => accumulator + session.value, // tslint:disable-line
-                        0
-                    )
-                )
-            };
+
+            if (queryResult.length > 0) {
+                return {
+                    value: Math.floor(queryResult.reduce((acc: number, item: any) => acc + item.value, 0))
+                };
+            } else {
+                const startOfDay = moment(startDateTime)
+                    .startOf("day")
+                    .format();
+                const endLater = moment(endDateTime)
+                    .add(2, "hours")
+                    .format();
+                const queryResultAllDay = await queryMindfulSessions(startOfDay, endLater);
+
+                if (queryResultAllDay.length > 0) {
+                    return {
+                        value: Math.floor(queryResultAllDay.reduce((acc: number, item: any) => acc + item.value, 0))
+                    };
+                } else {
+                    return {
+                        value: 0
+                    };
+                }
+            }
         } catch (e) {
             return {
                 value: 0

@@ -1,28 +1,40 @@
 import { GestureResponderEvent, PanResponderGestureState, Platform } from "react-native";
 import { Style } from "../../../../../styles";
+import { COLOURS } from "../../../../molecules";
 import QuestScreen from "./quests-screen";
 
 const SCREENS_PER_WORLD = 8;
 const LEVELS_PER_WORLD = 50;
 const LEVELS_PER_EPISODE = 7;
 
-export const isLockedLastLevelFunc = (currentLevel: number) =>
+export const checkIfIsLockedLastLevel = (currentLevel: number) =>
     currentLevel % LEVELS_PER_WORLD !== 0 &&
     currentLevel >= Math.floor(currentLevel / LEVELS_PER_WORLD) * LEVELS_PER_WORLD;
 
-export const calculateLastWorldIndex = (currentLevel: number) => Math.floor(currentLevel / LEVELS_PER_WORLD);
+export const checkIfIsLastWorld = (activeWorldNumber: number, currentLevel: number) =>
+    Math.floor((currentLevel - 1) / LEVELS_PER_WORLD) === activeWorldNumber;
 
 export const calculateIndices = (currentLevel: number, isLastWorld: boolean) => {
     return Array.from({ length: 8 }).map((_, i) => {
         const episodeHeight = i * Style.DEVICE_HEIGHT;
         const lockHeight = Style.DEVICE_HEIGHT / 1.5;
 
-        if (!i && isLockedLastLevelFunc(currentLevel) && isLastWorld) {
+        if (!i && checkIfIsLockedLastLevel(currentLevel) && isLastWorld) {
             return lockHeight;
         }
 
         return episodeHeight;
     });
+};
+
+export const calculateIndexOfLevel = (currentLevel: number) => {
+    const level = currentLevel % LEVELS_PER_WORLD;
+
+    if (level === 0) {
+        return 0;
+    }
+
+    return SCREENS_PER_WORLD - Math.ceil(level / 7);
 };
 
 export const calculateSlicing = (activeWorldNumber: number, curentIndex: number) => {
@@ -67,3 +79,28 @@ export const handlePanResponderMove = (component: QuestScreen) => (
 };
 
 export const onStartShouldSetPanResponder = () => Platform.OS === "ios";
+
+export const questScreenUI = [
+    [
+        // world 1
+        { isTopBarLight: false, navBarColour: COLOURS.DARK },   // ep. 8
+        { isTopBarLight: false, navBarColour: COLOURS.DARK },   // ep. 7
+        { isTopBarLight: false, navBarColour: COLOURS.LIGHT },  // ep. 6
+        { isTopBarLight: false, navBarColour: COLOURS.DARK },   // ep. 5
+        { isTopBarLight: false, navBarColour: COLOURS.DARK },   // ep. 4
+        { isTopBarLight: false, navBarColour: COLOURS.DARK },   // ep. 3
+        { isTopBarLight: false, navBarColour: COLOURS.DARK },   // ep. 2
+        { isTopBarLight: false, navBarColour: COLOURS.LIGHT }  // ep. 1
+    ],
+    [
+        // world 2
+        { isTopBarLight: true, navBarColour: COLOURS.BLUE },   // ep. 8
+        { isTopBarLight: false, navBarColour: COLOURS.LIGHT },  // ep. 7
+        { isTopBarLight: true, navBarColour: COLOURS.LIGHT },   // ep. 6
+        { isTopBarLight: true, navBarColour: COLOURS.LIGHT },    // ep. 5
+        { isTopBarLight: true, navBarColour: COLOURS.BLUE },   // ep. 4
+        { isTopBarLight: false, navBarColour: COLOURS.BLUE },  // ep. 3
+        { isTopBarLight: false, navBarColour: COLOURS.LIGHT },  // ep. 2
+        { isTopBarLight: true, navBarColour: COLOURS.LIGHT }   // ep. 1
+    ]
+];

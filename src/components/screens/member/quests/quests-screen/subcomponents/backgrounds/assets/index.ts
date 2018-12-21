@@ -1,15 +1,2 @@
-export { default as BackgroundImage1 } from "./bg-1/background-image";
-export { default as Progress1 } from "./bg-1/progress";
-export { default as BackgroundImage2 } from "./bg-2/background-image";
-export { default as Progress2 } from "./bg-2/progress";
-export { default as BackgroundImage3 } from "./bg-3/";
-export { default as Progress3 } from "./bg-3/progress";
-export { default as BackgroundImage4 } from "./bg-4/";
-export { default as Progress4 } from "./bg-4/progress";
-export { default as BackgroundImage5 } from "./bg-5/";
-export { default as Progress5 } from "./bg-5/progress";
-export { default as BackgroundImage6 } from "./bg-6/";
-export { default as Progress6 } from "./bg-6/progress";
-export { default as BackgroundImage7 } from "./bg-7/";
-export { default as Progress7 } from "./bg-7/progress";
-export { default as BackgroundImage8 } from "./bg-8";
+export { default as World1 } from "./wd-1";
+export { default as World2 } from "./wd-2";

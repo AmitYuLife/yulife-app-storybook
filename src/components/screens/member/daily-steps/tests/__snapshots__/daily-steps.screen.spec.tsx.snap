@@ -33,11 +33,12 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
         <TopBar
           coins={1234}
+          isLight={false}
           onPressLeftIcon={[MockFunction]}
         />,
         <Pad
@@ -73,6 +74,9 @@ ShallowWrapper {
         </View>,
       ],
       "footerImage": "gray_forest",
+      "style": Object {
+        "backgroundColor": "#FFF",
+      },
     },
     "ref": null,
     "rendered": Array [
@@ -82,6 +86,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "coins": 1234,
+          "isLight": false,
           "onPressLeftIcon": [MockFunction],
         },
         "ref": null,
@@ -178,11 +183,12 @@ ShallowWrapper {
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <TopBar
             coins={1234}
+            isLight={false}
             onPressLeftIcon={[MockFunction]}
           />,
           <Pad
@@ -218,6 +224,9 @@ ShallowWrapper {
           </View>,
         ],
         "footerImage": "gray_forest",
+        "style": Object {
+          "backgroundColor": "#FFF",
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -227,6 +236,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "coins": 1234,
+            "isLight": false,
             "onPressLeftIcon": [MockFunction],
           },
           "ref": null,
@@ -375,11 +385,12 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
         <TopBar
           coins={1234}
+          isLight={false}
           onPressLeftIcon={[MockFunction]}
         />,
         <Pad
@@ -413,6 +424,9 @@ ShallowWrapper {
         </View>,
       ],
       "footerImage": "large_forest",
+      "style": Object {
+        "backgroundColor": "#FFF",
+      },
     },
     "ref": null,
     "rendered": Array [
@@ -422,6 +436,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "coins": 1234,
+          "isLight": false,
           "onPressLeftIcon": [MockFunction],
         },
         "ref": null,
@@ -516,11 +531,12 @@ ShallowWrapper {
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <TopBar
             coins={1234}
+            isLight={false}
             onPressLeftIcon={[MockFunction]}
           />,
           <Pad
@@ -554,6 +570,9 @@ ShallowWrapper {
           </View>,
         ],
         "footerImage": "large_forest",
+        "style": Object {
+          "backgroundColor": "#FFF",
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -563,6 +582,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "coins": 1234,
+            "isLight": false,
             "onPressLeftIcon": [MockFunction],
           },
           "ref": null,
@@ -710,11 +730,12 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
         <TopBar
           coins={1234}
+          isLight={false}
           onPressLeftIcon={[MockFunction]}
         />,
         <Pad
@@ -731,6 +752,7 @@ ShallowWrapper {
         </TouchableOpacity>,
         <DailyStepsOnline
           coinsToday={0}
+          hasWhiteText={false}
           onCtaPress={[MockFunction]}
           steps={0}
         />,
@@ -739,6 +761,7 @@ ShallowWrapper {
           isFinished={false}
           maxStreak={4}
           onPress={[MockFunction]}
+          type="forest"
         />,
         <View
           style={
@@ -757,6 +780,9 @@ ShallowWrapper {
         </View>,
       ],
       "footerImage": "large_forest",
+      "style": Object {
+        "backgroundColor": "#FFF",
+      },
     },
     "ref": null,
     "rendered": Array [
@@ -766,6 +792,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "coins": 1234,
+          "isLight": false,
           "onPressLeftIcon": [MockFunction],
         },
         "ref": null,
@@ -816,6 +843,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "coinsToday": 0,
+          "hasWhiteText": false,
           "onCtaPress": [MockFunction],
           "steps": 0,
         },
@@ -832,6 +860,7 @@ ShallowWrapper {
           "isFinished": false,
           "maxStreak": 4,
           "onPress": [MockFunction],
+          "type": "forest",
         },
         "ref": null,
         "rendered": null,
@@ -877,11 +906,12 @@ ShallowWrapper {
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <TopBar
             coins={1234}
+            isLight={false}
             onPressLeftIcon={[MockFunction]}
           />,
           <Pad
@@ -898,6 +928,7 @@ ShallowWrapper {
           </TouchableOpacity>,
           <DailyStepsOnline
             coinsToday={0}
+            hasWhiteText={false}
             onCtaPress={[MockFunction]}
             steps={0}
           />,
@@ -906,6 +937,7 @@ ShallowWrapper {
             isFinished={false}
             maxStreak={4}
             onPress={[MockFunction]}
+            type="forest"
           />,
           <View
             style={
@@ -924,6 +956,9 @@ ShallowWrapper {
           </View>,
         ],
         "footerImage": "large_forest",
+        "style": Object {
+          "backgroundColor": "#FFF",
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -933,6 +968,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "coins": 1234,
+            "isLight": false,
             "onPressLeftIcon": [MockFunction],
           },
           "ref": null,
@@ -983,6 +1019,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "coinsToday": 0,
+            "hasWhiteText": false,
             "onCtaPress": [MockFunction],
             "steps": 0,
           },
@@ -999,6 +1036,7 @@ ShallowWrapper {
             "isFinished": false,
             "maxStreak": 4,
             "onPress": [MockFunction],
+            "type": "forest",
           },
           "ref": null,
           "rendered": null,
@@ -1096,11 +1134,12 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
         <TopBar
           coins={1234}
+          isLight={false}
           onPressLeftIcon={[MockFunction]}
         />,
         <Pad
@@ -1117,6 +1156,7 @@ ShallowWrapper {
         </TouchableOpacity>,
         <DailyStepsOnline
           coinsToday={0}
+          hasWhiteText={false}
           onCtaPress={[MockFunction]}
           steps={0}
         />,
@@ -1138,6 +1178,9 @@ ShallowWrapper {
         </View>,
       ],
       "footerImage": "large_forest",
+      "style": Object {
+        "backgroundColor": "#FFF",
+      },
     },
     "ref": null,
     "rendered": Array [
@@ -1147,6 +1190,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "coins": 1234,
+          "isLight": false,
           "onPressLeftIcon": [MockFunction],
         },
         "ref": null,
@@ -1197,6 +1241,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "coinsToday": 0,
+          "hasWhiteText": false,
           "onCtaPress": [MockFunction],
           "steps": 0,
         },
@@ -1245,11 +1290,12 @@ ShallowWrapper {
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <TopBar
             coins={1234}
+            isLight={false}
             onPressLeftIcon={[MockFunction]}
           />,
           <Pad
@@ -1266,6 +1312,7 @@ ShallowWrapper {
           </TouchableOpacity>,
           <DailyStepsOnline
             coinsToday={0}
+            hasWhiteText={false}
             onCtaPress={[MockFunction]}
             steps={0}
           />,
@@ -1287,6 +1334,9 @@ ShallowWrapper {
           </View>,
         ],
         "footerImage": "large_forest",
+        "style": Object {
+          "backgroundColor": "#FFF",
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -1296,6 +1346,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "coins": 1234,
+            "isLight": false,
             "onPressLeftIcon": [MockFunction],
           },
           "ref": null,
@@ -1346,6 +1397,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "coinsToday": 0,
+            "hasWhiteText": false,
             "onCtaPress": [MockFunction],
             "steps": 0,
           },
@@ -1446,11 +1498,12 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
         <TopBar
           coins={1234}
+          isLight={false}
           onPressLeftIcon={[MockFunction]}
         />,
         <Pad
@@ -1484,6 +1537,9 @@ ShallowWrapper {
         </View>,
       ],
       "footerImage": "large_forest",
+      "style": Object {
+        "backgroundColor": "#FFF",
+      },
     },
     "ref": null,
     "rendered": Array [
@@ -1493,6 +1549,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "coins": 1234,
+          "isLight": false,
           "onPressLeftIcon": [MockFunction],
         },
         "ref": null,
@@ -1587,11 +1644,12 @@ ShallowWrapper {
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <TopBar
             coins={1234}
+            isLight={false}
             onPressLeftIcon={[MockFunction]}
           />,
           <Pad
@@ -1625,6 +1683,9 @@ ShallowWrapper {
           </View>,
         ],
         "footerImage": "large_forest",
+        "style": Object {
+          "backgroundColor": "#FFF",
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -1634,6 +1695,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "coins": 1234,
+            "isLight": false,
             "onPressLeftIcon": [MockFunction],
           },
           "ref": null,
@@ -1780,11 +1842,12 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
         <TopBar
           coins={1234}
+          isLight={false}
           onPressLeftIcon={[MockFunction]}
         />,
         <Pad
@@ -1800,6 +1863,7 @@ ShallowWrapper {
           />
         </TouchableOpacity>,
         <DailyStepsOffline
+          hasWhiteText={false}
           lastUpdate="thing"
         />,
         false,
@@ -1820,6 +1884,9 @@ ShallowWrapper {
         </View>,
       ],
       "footerImage": "gray_forest",
+      "style": Object {
+        "backgroundColor": "#FFF",
+      },
     },
     "ref": null,
     "rendered": Array [
@@ -1829,6 +1896,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "coins": 1234,
+          "isLight": false,
           "onPressLeftIcon": [MockFunction],
         },
         "ref": null,
@@ -1878,6 +1946,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
+          "hasWhiteText": false,
           "lastUpdate": "thing",
         },
         "ref": null,
@@ -1925,11 +1994,12 @@ ShallowWrapper {
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <TopBar
             coins={1234}
+            isLight={false}
             onPressLeftIcon={[MockFunction]}
           />,
           <Pad
@@ -1945,6 +2015,7 @@ ShallowWrapper {
             />
           </TouchableOpacity>,
           <DailyStepsOffline
+            hasWhiteText={false}
             lastUpdate="thing"
           />,
           false,
@@ -1965,6 +2036,9 @@ ShallowWrapper {
           </View>,
         ],
         "footerImage": "gray_forest",
+        "style": Object {
+          "backgroundColor": "#FFF",
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -1974,6 +2048,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "coins": 1234,
+            "isLight": false,
             "onPressLeftIcon": [MockFunction],
           },
           "ref": null,
@@ -2023,6 +2098,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "hasWhiteText": false,
             "lastUpdate": "thing",
           },
           "ref": null,

@@ -1,63 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 1`] = `
+exports[`ChallengeDetails helpers getImageAndStyle helper should return an image for each challenge type 1`] = `
 Object {
-  "testUri": "../../../assets/challenge-details/squirrel.png",
+  "source": Object {
+    "testUri": "../../../assets/challenge-details/squirrel.png",
+  },
+  "style": Object {
+    "marginTop": -100,
+  },
 }
 `;
 
-exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 2`] = `
+exports[`ChallengeDetails helpers getImageAndStyle helper should return an image for each challenge type 2`] = `
 Object {
-  "testUri": "../../../assets/challenge-details/ostrich.png",
+  "source": Object {
+    "testUri": "../../../assets/challenge-details/ostrich.png",
+  },
+  "style": Object {
+    "marginTop": -200,
+  },
 }
 `;
 
-exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 3`] = `
+exports[`ChallengeDetails helpers getImageAndStyle helper should return an image for each challenge type 3`] = `
 Object {
-  "testUri": "../../../assets/challenge-details/bird.png",
+  "source": Object {
+    "testUri": "../../../assets/challenge-details/bird.png",
+  },
+  "style": Object {
+    "marginTop": -100,
+  },
 }
 `;
 
-exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 4`] = `
+exports[`ChallengeDetails helpers getImageAndStyle helper should return an image for each challenge type 4`] = `
 Object {
-  "testUri": "../../../assets/challenge-details/elephant.png",
+  "source": Object {
+    "testUri": "../../../assets/challenge-details/elephant.png",
+  },
+  "style": Object {
+    "marginTop": -100,
+  },
 }
 `;
 
-exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 5`] = `
+exports[`ChallengeDetails helpers getImageAndStyle helper should return an image for each challenge type 5`] = `
 Object {
-  "testUri": "../../../assets/challenge-details/elephant.png",
+  "source": Object {
+    "testUri": "../../../assets/challenge-details/elephant.png",
+  },
+  "style": Object {
+    "marginTop": -100,
+  },
 }
 `;
 
-exports[`ChallengeDetails helpers getImage helper should return an image for each challenge type 6`] = `null`;
-
-exports[`ChallengeDetails helpers getImageStyle helper should return a view style for each challenge type 1`] = `
+exports[`ChallengeDetails helpers getImageAndStyle helper should return an image for each challenge type 6`] = `
 Object {
-  "marginTop": 200,
-}
-`;
-
-exports[`ChallengeDetails helpers getImageStyle helper should return a view style for each challenge type 2`] = `
-Object {
-  "marginTop": 200,
-}
-`;
-
-exports[`ChallengeDetails helpers getImageStyle helper should return a view style for each challenge type 3`] = `
-Object {
-  "marginTop": 100,
-}
-`;
-
-exports[`ChallengeDetails helpers getImageStyle helper should return a view style for each challenge type 4`] = `
-Object {
-  "marginTop": 200,
-}
-`;
-
-exports[`ChallengeDetails helpers getImageStyle helper should return a view style for each challenge type 5`] = `
-Object {
-  "marginTop": 200,
+  "source": null,
+  "style": Object {
+    "marginTop": -100,
+  },
 }
 `;

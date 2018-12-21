@@ -35,12 +35,7 @@ storiesOf("Atoms", module)
                     <Text>Transparent background</Text>
                 </TouchableOpacity>
             )}
-            render={({ toggleOverlay }) => (
-                <SignUpRewardScreen
-                    onCollectPress={toggleOverlay}
-                    reward={200}
-                />
-            )}
+            render={({ toggleOverlay }) => <SignUpRewardScreen onCollectPress={toggleOverlay} reward={200} />}
         />
     ))
     .add("2. Blurb", () => (
@@ -65,23 +60,12 @@ storiesOf("Atoms", module)
             />
         </CenterView>
     ))
-    .add("4a. Centred Screen - Forest", () => (
-        <CentredScreen
-            footerImage={CentredScreen.FooterImages.FOREST}
-        />
-    ))
-    .add("4b. Centred Screen - Large Forest", () => (
-        <CentredScreen
-            footerImage={CentredScreen.FooterImages.LARGE_FOREST}
-        />
-    ))
+    .add("4a. Centred Screen - Forest", () => <CentredScreen footerImage="forest" />)
+    .add("4b. Centred Screen - Large Forest", () => <CentredScreen footerImage="large_forest" />)
     .add("5. Heading", () => (
         <CenterView>
             <Heading label={text("Default Label", "Default heading", "DEFAULT")} />
-            <Heading
-                size={Heading.Sizes.LARGE}
-                label={text("Large Label", "Large heading", "LARGE")}
-            />
+            <Heading size={Heading.Sizes.LARGE} label={text("Large Label", "Large heading", "LARGE")} />
         </CenterView>
     ))
     .add("6. TextInput", () => (
@@ -135,9 +119,7 @@ storiesOf("Atoms", module)
     ))
     .add("9. StarInline", () => (
         <CenterView>
-            <StarInline
-                filled={boolean("filled?", true, "StarInline")}
-            />
+            <StarInline filled={boolean("filled?", true, "StarInline")} />
         </CenterView>
     ))
     .add("10. Close", () => (

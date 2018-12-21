@@ -1,25 +1,20 @@
 import * as React from "react";
 import { SFC } from "react";
 import { Path } from "react-native-svg";
-import NavBar from "../nav-bar";
-import { getNotificationFill } from "./helpers";
+import { COLOURS, IColours } from "../nav-bar";
+import { getColour } from "./helpers";
 
 interface IProps {
     isVisible: boolean;
     isActive: boolean;
     isPressed: boolean;
-    colour?: string;
+    colour?: IColours;
 }
 
-const Notification: SFC<IProps> = ({
-    isVisible,
-    isActive,
-    isPressed,
-    colour = NavBar.Colours.LIGHT
-}) =>
+const Notification: SFC<IProps> = ({ isVisible, isActive, isPressed, colour = COLOURS.LIGHT }) =>
     !isVisible ? null : (
         <Path
-            fill={getNotificationFill({
+            fill={getColour({
                 colour,
                 isActive,
                 isPressed

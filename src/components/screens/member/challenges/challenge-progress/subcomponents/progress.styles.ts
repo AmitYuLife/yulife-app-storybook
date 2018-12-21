@@ -3,10 +3,18 @@ import { Colours, Style } from "../../../../../../styles";
 
 const styles = StyleSheet.create({
     bar: {
-        backgroundColor: Colours.progressBar.shadow,
         height: Style.PIXEL * 4,
         marginRight: 3,
         marginTop: 5
+    },
+    barColorBlack: {
+        backgroundColor: Colours.progressBar.black.shadow
+    },
+    barColorOceanBlack: {
+        backgroundColor: Colours.progressBar.oceanBlack.shadow
+    },
+    barColorOceanWhite: {
+        backgroundColor: Colours.progressBar.oceanWhite.shadow
     },
     goal: {
         alignItems: "flex-end",
@@ -15,16 +23,32 @@ const styles = StyleSheet.create({
         width: Style.PIXEL * 50
     },
     goalText: {
-        color: Colours.progressBar.shadow,
         fontFamily: Style.FONT_FAMILY_PRIMARY,
         fontSize: Style.SCALE_UP_AND_DOWN(13),
         marginTop: Style.SCALE_UP_AND_DOWN(14.5),
         textAlign: "center"
     },
+    goalTextColorBlack: {
+        color: Colours.progressBar.black.shadow
+    },
+    goalTextColorOceanBlack: {
+        color: Colours.progressBar.oceanBlack.shadow
+    },
+    goalTextColorOceanWhite: {
+        color: Colours.progressBar.oceanWhite.shadow
+    },
     progress: {
-        backgroundColor: Colours.progressBar.background,
         flex: 1,
         height: Style.PIXEL * 4
+    },
+    progressColorBlack: {
+        backgroundColor: Colours.progressBar.black.background
+    },
+    progressColorOceanBlack: {
+        backgroundColor: Colours.progressBar.oceanBlack.background
+    },
+    progressColorOceanWhite: {
+        backgroundColor: Colours.progressBar.oceanWhite.background
     },
     star: {
         position: "absolute",
@@ -33,8 +57,8 @@ const styles = StyleSheet.create({
     },
     starBackground: {
         position: "absolute",
-        right: 0,
-        top: 2
+        right: -1,
+        top: 1
     },
     stepsGoals: {
         left: 0,
@@ -47,6 +71,9 @@ const styles = StyleSheet.create({
         alignSelf: "stretch",
         flexDirection: "row",
         justifyContent: "flex-end"
+    },
+    textWhite: {
+        color: "white"
     }
 });
 

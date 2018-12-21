@@ -17,7 +17,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <G>
+      "children": Array [
         <Rect
           fill="#333"
           height="3"
@@ -26,7 +26,7 @@ ShallowWrapper {
           width="52"
           x={0}
           y="12"
-        />
+        />,
         <Rect
           fill="#333"
           height="3"
@@ -35,7 +35,7 @@ ShallowWrapper {
           width="52"
           x={0}
           y={0}
-        />
+        />,
         <Rect
           fill="#333"
           height="3"
@@ -44,15 +44,71 @@ ShallowWrapper {
           width="52"
           x={0}
           y="24"
-        />
-      </G>,
+        />,
+      ],
       "height": "52",
       "preserveAspectRatio": "xMidYMid meet",
       "viewBox": "0 0 52 27",
       "width": "27",
     },
     "ref": null,
-    "rendered": Object {
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "#333",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "52",
+          "x": 0,
+          "y": "12",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "#333",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "52",
+          "x": 0,
+          "y": 0,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "#333",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "52",
+          "x": 0,
+          "y": "24",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
       "instance": null,
       "key": undefined,
       "nodeType": "class",
@@ -86,6 +142,10 @@ ShallowWrapper {
             y="24"
           />,
         ],
+        "height": "52",
+        "preserveAspectRatio": "xMidYMid meet",
+        "viewBox": "0 0 52 27",
+        "width": "27",
       },
       "ref": null,
       "rendered": Array [
@@ -141,142 +201,6 @@ ShallowWrapper {
           "type": [Function],
         },
       ],
-      "type": [Function],
-    },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": <G>
-          <Rect
-            fill="#333"
-            height="3"
-            rx={0}
-            ry={0}
-            width="52"
-            x={0}
-            y="12"
-          />
-          <Rect
-            fill="#333"
-            height="3"
-            rx={0}
-            ry={0}
-            width="52"
-            x={0}
-            y={0}
-          />
-          <Rect
-            fill="#333"
-            height="3"
-            rx={0}
-            ry={0}
-            width="52"
-            x={0}
-            y="24"
-          />
-        </G>,
-        "height": "52",
-        "preserveAspectRatio": "xMidYMid meet",
-        "viewBox": "0 0 52 27",
-        "width": "27",
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <Rect
-              fill="#333"
-              height="3"
-              rx={0}
-              ry={0}
-              width="52"
-              x={0}
-              y="12"
-            />,
-            <Rect
-              fill="#333"
-              height="3"
-              rx={0}
-              ry={0}
-              width="52"
-              x={0}
-              y={0}
-            />,
-            <Rect
-              fill="#333"
-              height="3"
-              rx={0}
-              ry={0}
-              width="52"
-              x={0}
-              y="24"
-            />,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "fill": "#333",
-              "height": "3",
-              "rx": 0,
-              "ry": 0,
-              "width": "52",
-              "x": 0,
-              "y": "12",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "fill": "#333",
-              "height": "3",
-              "rx": 0,
-              "ry": 0,
-              "width": "52",
-              "x": 0,
-              "y": 0,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "fill": "#333",
-              "height": "3",
-              "rx": 0,
-              "ry": 0,
-              "width": "52",
-              "x": 0,
-              "y": "24",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
       "type": [Function],
     },
   ],

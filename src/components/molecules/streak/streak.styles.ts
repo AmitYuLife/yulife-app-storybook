@@ -6,13 +6,14 @@ import {
 } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Colours, Style } from "../../../styles";
+import { IProps } from "./streak";
 
-export function getColour(isFinished: boolean, isPressed: boolean) {
+export function getColour(type: IProps["type"], isFinished: boolean, isPressed: boolean) {
     if (isFinished) {
         if (isPressed) {
-            return Colours.streak.finished.pressed;
+            return Colours.streak.finished[type].pressed;
         } else {
-            return Colours.streak.finished.unpressed;
+            return Colours.streak.finished[type].unpressed;
         }
     } else {
         if (isPressed) {

@@ -19,28 +19,18 @@ interface IProps {
 
 const YuCoin: SFC<IProps> = ({ isGrayScale, isLoading }) => (
     <View style={styles.wrapper}>
-        {
-            isGrayScale ? null : <Glow />
-        }
-        <View
-            style={styles.innerWrapper}
-        >
-            <View
-                style={styles.svgWrapper}
-            >
+        {isGrayScale ? null : <Glow />}
+        <View style={styles.innerWrapper}>
+            <View style={styles.svgWrapper}>
                 <Svg {...svgSpecs}>
                     <Static isGrayScale={isGrayScale} />
-                    {
-                        isLoading && !isGrayScale ? (
-                            <GiraffeAnimated />
-                        ) : (
-                                <GiraffeStatic isGrayScale={isGrayScale} />
-                            )
-                    }
+                    {isLoading && !isGrayScale ? (
+                        <GiraffeAnimated />
+                    ) : (
+                        <GiraffeStatic isGrayScale={isGrayScale} />
+                    )}
                 </Svg>
-                {
-                    isLoading || isGrayScale ? null : <Shine />
-                }
+                {isLoading || isGrayScale ? null : <Shine />}
             </View>
         </View>
     </View>

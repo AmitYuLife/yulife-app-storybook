@@ -1,6 +1,6 @@
 import moment from "moment";
-import React from "react";
 import { PureComponent } from "react";
+import React from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
 import { FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
@@ -17,7 +17,7 @@ import {
     getLastUpdated,
     isFetchingDailyStepsSelector
 } from "../../../../redux/daily-steps/daily-steps.selectors";
-import { hasNotificationSelector } from "../../../../redux/levels/levels.selectors";
+import { currentLevelSelector, hasNotificationSelector } from "../../../../redux/levels/levels.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
 import { IStreaks, streaksSelector } from "../../../../redux/streaks/streaks.selectors";
 import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
@@ -26,6 +26,7 @@ import { DailyStepsScreen } from "../../../screens";
 
 interface IConnectedState {
     appState: string;
+    currentLevel: number;
     dailyEarnedCoins: number;
     dailySteps: number;
     features: { [x: string]: boolean };
@@ -75,7 +76,9 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     public componentDidDisappear() {
-        this.backHandler.remove();
+        if (this.backHandler) {
+            this.backHandler.remove();
+        }
     }
 
     public componentDidUpdate(prevProps: Props) {
@@ -92,6 +95,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
 
     public render() {
         const {
+            currentLevel,
             dailyEarnedCoins,
             dailySteps,
             features = {},
@@ -104,7 +108,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
             totalCoins
         } = this.props;
         const { dailyStepsLoading, lastUpdate } = this.state;
-
+        const currentWorld = Math.floor(currentLevel / 50);
         const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
 
         return (
@@ -114,6 +118,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                         <DailyStepsScreen
                             coinsToday={dailyEarnedCoins}
                             currentStreak={streaks.currentStreak}
+                            currentWorld={currentWorld}
                             displayStreak={displayStreak}
                             fitKitAvailable={available}
                             hasNotification={hasNotification}
@@ -194,6 +199,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
 
 const mapStateToProps = (state: IReduxState) => ({
     appState: getAppState(state),
+    currentLevel: currentLevelSelector(state),
     dailyEarnedCoins: getDailyEarnedCoins(state),
     dailySteps: getDailySteps(state),
     features: userFeaturesSelector(state),

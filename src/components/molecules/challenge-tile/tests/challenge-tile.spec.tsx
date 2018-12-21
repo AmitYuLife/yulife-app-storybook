@@ -3,6 +3,7 @@ import * as React from "react";
 import ChallengeTile, { IMAGES } from "../challenge-tile";
 
 const defaultProps = {
+    currentWorld: 0,
     image: IMAGES.BIRD
 };
 
