@@ -21,8 +21,13 @@ function* listenToSteps() {
     const channel = yield call(stepsChannel, startOfDay);
 
     yield put(updatePedometerStartAction());
-    const firstQuery = yield call(Pedometer.queryPedometerFromDate, startOfDay, moment().format());
-    yield put(updatePedometerSuccessAction(firstQuery));
+
+    try {
+        const firstQuery = yield call(Pedometer.queryPedometerFromDate, startOfDay, moment().format());
+        yield put(updatePedometerSuccessAction(firstQuery));
+    } catch (e) {
+        yield spawn(() => Logger.logMixpanelError(e, "pedometer.sagas.@29"));
+    }
 
     while (true) {
         try {
@@ -35,7 +40,7 @@ function* listenToSteps() {
                 yield put(updatePedometerSuccessAction(results));
             }
         } catch (e) {
-            // console.log(e);
+            yield spawn(() => Logger.logMixpanelError(e, "pedometer.sagas.@29"));
         } finally {
             if (yield cancelled()) {
                 channel.close();

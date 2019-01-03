@@ -9,8 +9,6 @@ interface IProps {
 
 const Coins: SFC<IProps> = ({ scale = 1, style }) => (
     <Svg style={style} height={String(61 * scale)} width={String(73 * scale)} viewBox="0 0 73 61">
-        <Path fill="none" stroke="#333" strokeWidth="3" strokeMiterlimit="10" d="M47.7,51.8" />
-        <Path fill="none" stroke="#333" strokeWidth="3" strokeMiterlimit="10" d="M47.7,42.7" />
         <Path
             fill="#333"
             /*tslint:disable-next-line*/
@@ -33,7 +31,6 @@ const Coins: SFC<IProps> = ({ scale = 1, style }) => (
             width={String(6 * scale)}
             height={String(18 * scale)}
         />
-        <Path fill="none" stroke="#333" strokeWidth="3" strokeMiterlimit="10" d="M25.1,51.8" />
     </Svg>
 );
 

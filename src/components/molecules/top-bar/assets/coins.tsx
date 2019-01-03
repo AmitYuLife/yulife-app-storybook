@@ -9,44 +9,19 @@ interface IProps {
     color?: string;
 }
 
-const Coins: SFC<IProps> = ({ scale = 0.5, style, color }) => (
-    <Svg
-        style={style}
-        height={String(61 * scale)}
-        width={String(73 * scale)}
-        viewBox="0 0 73 61"
-    >
+const Coins: SFC<IProps> = ({ scale = 0.5, style, color = "#333" }) => (
+    <Svg style={style} height={String(61 * scale)} width={String(73 * scale)} viewBox="0 0 73 61">
         <Path
-            fill="none"
-            stroke={color || "#333"}
-            strokeWidth="3"
-            strokeMiterlimit="10"
-            d="M47.7,51.8"
-        />
-        <Path
-            fill="none"
-            stroke={color || "#333"}
-            strokeWidth="3"
-            strokeMiterlimit="10"
-            d="M47.7,42.7"
-        />
-        <Path
-            fill={color || "#333"}
+            fill={color}
             /*tslint:disable-next-line*/
             d="M46.7,15.1c-12.8,0-26.3,3.7-26.3,10.5c0,0.9,0.2,2,1.1,3.2C10.3,29.6,0,33.2,0,39.2v11.3 C0,57.3,13.6,61,26.3,61c5.9,0,12.1-0.8,16.9-2.3c1.1,0.1,2.3,0.1,3.4,0.1c12.8,0,26.3-3.7,26.3-10.5V36.9V25.6 C73,18.8,59.4,15.1,46.7,15.1z M25,31.7l0.2,0c0.4,0,0.8,0,1.1,0c0.5,0,1,0,1.4,0c0.1,0,0.3,0,0.4,0c0.3,0,0.7,0,1,0 c0.2,0,0.3,0,0.5,0c0.3,0,0.7,0,1,0.1c0.1,0,0.3,0,0.4,0c0.4,0,0.8,0.1,1.2,0.1c0.3,0,0.6,0.1,0.9,0.1c0.1,0,0.2,0,0.3,0 c4.4,0.5,8.1,1.4,10.9,2.6c0.3,0.1,0.5,0.2,0.8,0.3c0,0,0,0,0,0c0.6,0.3,1.2,0.6,1.7,0.9l0.4,0.2l0,0c1.4,1,2.3,2,2.3,3 c0,3.6-10,7.5-23.3,7.5S3,42.7,3,39.2C3,35.7,12.3,31.9,25,31.7z M3,50.5v-6.2c4.7,3.6,14.2,5.4,23.3,5.4s18.6-1.9,23.3-5.4v6.2 c0,3.6-10,7.5-23.3,7.5S3,54,3,50.5z M70,48.2c0,3.3-8.6,7-20.5,7.5c2-1.5,3.2-3.2,3.2-5.2v-3.3c6.9-0.6,13.6-2.3,17.3-5.2V48.2z M70,36.9c0,2.8-6.6,6.3-17.3,7.2v-5c0-1.2-0.4-2.2-1.1-3.2c7.5-0.5,14.6-2.3,18.4-5.3V36.9z M48.2,33.1c-0.3-0.2-0.6-0.3-0.9-0.5 c0,0-0.1,0-0.1-0.1c-0.2-0.1-0.5-0.2-0.7-0.4c-0.1-0.1-0.2-0.1-0.4-0.2C46.1,32,46,32,45.9,32c-4.3-1.9-10.3-3-16.9-3.3 c-0.1,0-0.3,0-0.4,0c-0.2,0-0.5,0-0.8,0c-0.5,0-0.9,0-1.4,0c-0.2,0-0.5,0-0.7,0c-1.5-1-2.3-2.1-2.3-3c0-3.6,10-7.5,23.3-7.5 c13.4,0,23.3,4,23.3,7.5C70,29,61.1,32.8,48.2,33.1z"
         />
-        <Rect
-            x="31.7"
-            y="0.9"
-            fill={color || "#333"}
-            width={String(6 * scale)}
-            height={String(18 * scale)}
-        />
+        <Rect x="31.7" y="0.9" fill={color} width={String(6 * scale)} height={String(18 * scale)} />
         <Rect
             x="18.5"
             y="4.4"
             transform="matrix(0.866 -0.5 0.5 0.866 -1.8019 11.1796)"
-            fill={color || "#333"}
+            fill={color}
             width={String(6 * scale)}
             height={String(18 * scale)}
         />
@@ -54,16 +29,9 @@ const Coins: SFC<IProps> = ({ scale = 0.5, style, color }) => (
             x="8.7"
             y="14.1"
             transform="matrix(0.5 -0.8661 0.8661 0.5 -11.0388 18.2095)"
-            fill={color || "#333"}
+            fill={color}
             width={String(6 * scale)}
             height={String(18 * scale)}
-        />
-        <Path
-            fill="none"
-            stroke={color || "#333"}
-            strokeWidth="3"
-            strokeMiterlimit="10"
-            d="M25.1,51.8"
         />
     </Svg>
 );

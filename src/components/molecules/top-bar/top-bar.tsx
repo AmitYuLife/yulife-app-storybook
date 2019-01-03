@@ -117,7 +117,7 @@ class TopBar extends Component<IProps, IState> {
                         </Text>
                     </View>
                     <View style={styles.coinsLogoWrapper}>
-                        <Coins color={isLight ? "#FFFFFF" : "#333333"} scale={0.5} />
+                        <Coins color={isLight ? "#FFFFFF" : "#333333"} />
                     </View>
                 </View>
             </View>

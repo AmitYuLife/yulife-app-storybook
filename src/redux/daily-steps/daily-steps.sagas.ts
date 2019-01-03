@@ -3,11 +3,12 @@ import { PedometerResponse } from "react-native-dual-pedometer";
 import RNFitKit, { FitKitTypes } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { delay } from "redux-saga";
-import { call, put, select, takeLatest } from "redux-saga/effects";
+import { call, put, select, spawn, takeLatest } from "redux-saga/effects";
 import { AddHistoricalSteps_addHistoricalSteps, ChallengePayload } from "../../graphql/_core/schema";
 import addHistoricalSteps from "../../graphql/challenges/addHistoricalSteps.gql";
 import upsertStepsChallenge from "../../graphql/challenges/upsertStepsChallenge.gql";
 import { MODALS } from "../../navigation/routes";
+import Logger from "../../services/logging/logger";
 import { pathOr } from "../../services/utils";
 import { getRouteState } from "../app/app.selectors";
 import {
@@ -91,6 +92,7 @@ export function* oldDaysUpdate() {
 
                     isUpdated = true;
                 } catch (e) {
+                    yield spawn(() => Logger.logMixpanelError(e, "daily-steps.sagas.@95"));
                     yield call(delay, 15000);
                 }
             }
@@ -104,6 +106,7 @@ function* dailyStepsUpdate({ payload }: UpdatePedometerSuccessActionResult) {
 
         yield put(updateDailyStepsSuccess(data));
     } catch (e) {
+        yield spawn(() => Logger.logMixpanelError(e, "daily-steps.sagas.@108"));
         yield put(updateDailyStepsFailed(e.message));
     }
 }

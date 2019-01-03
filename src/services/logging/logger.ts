@@ -63,6 +63,10 @@ class LoggerInstance {
             receipt
         });
     }
+
+    public logMixpanelError(e: Error, where: string) {
+        this.logMixpanelEvent("app_catched_error", { message: e.message, where });
+    }
 }
 
 const Logger = new LoggerInstance();
