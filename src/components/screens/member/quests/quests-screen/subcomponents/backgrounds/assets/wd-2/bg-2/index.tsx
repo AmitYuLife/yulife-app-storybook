@@ -11,9 +11,11 @@ import {
     Stop,
 } from "react-native-svg";
 import { platformAdjustments, LinearGradientWithProps } from "../../helpers";
+import { Style } from "../../../../../../../../../../styles";
 
 const pathPlatformAdjustments = {
-    translateX: -4,
+    translateX: Style.isShortAndroid() || Style.isShortAndWideAndroid() ? -12 : -4,
+    translateY: Style.isShortAndroid() || Style.isShortAndWideAndroid() ? -150 : 0
 };
 
 const BackgroundImage: React.SFC<React.ReactNode> = ({ children }) => (

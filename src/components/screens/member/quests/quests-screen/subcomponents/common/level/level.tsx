@@ -13,7 +13,6 @@ interface LockIconProps {
 interface IProps {
     cx: string;
     cy: string;
-    hasActivePulse: boolean;
     level?: number;
     fill: string;
     data: IChallenge;
@@ -72,7 +71,7 @@ class Level extends PureComponent<IProps, IState> {
     }
 
     public componentDidMount() {
-        if (this.props.hasActivePulse && this.props.data && this.props.data.isNext) {
+        if (this.props.data && this.props.data.isNext) {
             this.setPulse();
         }
     }

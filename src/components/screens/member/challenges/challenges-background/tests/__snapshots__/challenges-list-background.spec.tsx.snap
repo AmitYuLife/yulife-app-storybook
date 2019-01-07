@@ -76,33 +76,43 @@ ShallowWrapper {
             stopOpacity={1}
           />
         </LinearGradient>,
-        <Rect
-          fill="url(#SVGID_1_)"
-          height="1072"
-          rx={0}
-          ry={0}
-          width="750"
-          x={0}
-          y={0}
-        />,
-        <Polygon
-          fill="#449997"
-          points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
-        />,
-        <Polyline
-          fill="#3B6D68"
-          points="0,1068.2 0,1334 750,1334 750,1075.7 "
-        />,
-        <Polygon
-          fill="#337C78"
-          points="0,1092.6 750,1075.7 750,1334 0,1334 "
-        />,
+        <G
+          scale={1}
+          translateX={0}
+          translateY={0}
+        >
+          <Rect
+            fill="url(#SVGID_1_)"
+            height="1072"
+            rx={0}
+            ry={0}
+            width="750"
+            x={0}
+            y={0}
+          />
+          <Polygon
+            fill="#449997"
+            points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
+          />
+          <Polyline
+            fill="#3B6D68"
+            points="0,1068.2 0,1334 750,1334 750,1075.7 "
+          />
+          <Polygon
+            fill="#337C78"
+            points="0,1092.6 750,1075.7 750,1334 0,1334 "
+          />
+        </G>,
       ],
       "height": "1334",
       "preserveAspectRatio": "xMidYMid meet",
       "style": Object {
+        "alignItems": "stretch",
+        "height": 1334,
+        "justifyContent": "center",
         "left": 0,
         "top": -20,
+        "width": 750,
       },
       "viewBox": "0 0 750 1334",
       "width": "750",
@@ -296,52 +306,89 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "fill": "url(#SVGID_1_)",
-          "height": "1072",
-          "rx": 0,
-          "ry": 0,
-          "width": "750",
-          "x": 0,
-          "y": 0,
+          "children": Array [
+            <Rect
+              fill="url(#SVGID_1_)"
+              height="1072"
+              rx={0}
+              ry={0}
+              width="750"
+              x={0}
+              y={0}
+            />,
+            <Polygon
+              fill="#449997"
+              points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
+            />,
+            <Polyline
+              fill="#3B6D68"
+              points="0,1068.2 0,1334 750,1334 750,1075.7 "
+            />,
+            <Polygon
+              fill="#337C78"
+              points="0,1092.6 750,1075.7 750,1334 0,1334 "
+            />,
+          ],
+          "scale": 1,
+          "translateX": 0,
+          "translateY": 0,
         },
         "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "fill": "#449997",
-          "points": "0,1052.5 750,1046.4 749.6,1334 0,1334 ",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "fill": "#3B6D68",
-          "points": "0,1068.2 0,1334 750,1334 750,1075.7 ",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "fill": "#337C78",
-          "points": "0,1092.6 750,1075.7 750,1334 0,1334 ",
-        },
-        "ref": null,
-        "rendered": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "fill": "url(#SVGID_1_)",
+              "height": "1072",
+              "rx": 0,
+              "ry": 0,
+              "width": "750",
+              "x": 0,
+              "y": 0,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "fill": "#449997",
+              "points": "0,1052.5 750,1046.4 749.6,1334 0,1334 ",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "fill": "#3B6D68",
+              "points": "0,1068.2 0,1334 750,1334 750,1075.7 ",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "fill": "#337C78",
+              "points": "0,1092.6 750,1075.7 750,1334 0,1334 ",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
         "type": [Function],
       },
     ],
@@ -412,33 +459,43 @@ ShallowWrapper {
               stopOpacity={1}
             />
           </LinearGradient>,
-          <Rect
-            fill="url(#SVGID_1_)"
-            height="1072"
-            rx={0}
-            ry={0}
-            width="750"
-            x={0}
-            y={0}
-          />,
-          <Polygon
-            fill="#449997"
-            points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
-          />,
-          <Polyline
-            fill="#3B6D68"
-            points="0,1068.2 0,1334 750,1334 750,1075.7 "
-          />,
-          <Polygon
-            fill="#337C78"
-            points="0,1092.6 750,1075.7 750,1334 0,1334 "
-          />,
+          <G
+            scale={1}
+            translateX={0}
+            translateY={0}
+          >
+            <Rect
+              fill="url(#SVGID_1_)"
+              height="1072"
+              rx={0}
+              ry={0}
+              width="750"
+              x={0}
+              y={0}
+            />
+            <Polygon
+              fill="#449997"
+              points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
+            />
+            <Polyline
+              fill="#3B6D68"
+              points="0,1068.2 0,1334 750,1334 750,1075.7 "
+            />
+            <Polygon
+              fill="#337C78"
+              points="0,1092.6 750,1075.7 750,1334 0,1334 "
+            />
+          </G>,
         ],
         "height": "1334",
         "preserveAspectRatio": "xMidYMid meet",
         "style": Object {
+          "alignItems": "stretch",
+          "height": 1334,
+          "justifyContent": "center",
           "left": 0,
           "top": -20,
+          "width": 750,
         },
         "viewBox": "0 0 750 1334",
         "width": "750",
@@ -632,52 +689,89 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "fill": "url(#SVGID_1_)",
-            "height": "1072",
-            "rx": 0,
-            "ry": 0,
-            "width": "750",
-            "x": 0,
-            "y": 0,
+            "children": Array [
+              <Rect
+                fill="url(#SVGID_1_)"
+                height="1072"
+                rx={0}
+                ry={0}
+                width="750"
+                x={0}
+                y={0}
+              />,
+              <Polygon
+                fill="#449997"
+                points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
+              />,
+              <Polyline
+                fill="#3B6D68"
+                points="0,1068.2 0,1334 750,1334 750,1075.7 "
+              />,
+              <Polygon
+                fill="#337C78"
+                points="0,1092.6 750,1075.7 750,1334 0,1334 "
+              />,
+            ],
+            "scale": 1,
+            "translateX": 0,
+            "translateY": 0,
           },
           "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "fill": "#449997",
-            "points": "0,1052.5 750,1046.4 749.6,1334 0,1334 ",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "fill": "#3B6D68",
-            "points": "0,1068.2 0,1334 750,1334 750,1075.7 ",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "fill": "#337C78",
-            "points": "0,1092.6 750,1075.7 750,1334 0,1334 ",
-          },
-          "ref": null,
-          "rendered": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "fill": "url(#SVGID_1_)",
+                "height": "1072",
+                "rx": 0,
+                "ry": 0,
+                "width": "750",
+                "x": 0,
+                "y": 0,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "fill": "#449997",
+                "points": "0,1052.5 750,1046.4 749.6,1334 0,1334 ",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "fill": "#3B6D68",
+                "points": "0,1068.2 0,1334 750,1334 750,1075.7 ",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "fill": "#337C78",
+                "points": "0,1092.6 750,1075.7 750,1334 0,1334 ",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
       ],
@@ -782,33 +876,43 @@ ShallowWrapper {
             stopOpacity={1}
           />
         </LinearGradient>,
-        <Rect
-          fill="url(#SVGID_1_)"
-          height="1072"
-          rx={0}
-          ry={0}
-          width="750"
-          x={0}
-          y={0}
-        />,
-        <Polygon
-          fill="#449997"
-          points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
-        />,
-        <Polyline
-          fill="#3B6D68"
-          points="0,1068.2 0,1334 750,1334 750,1075.7 "
-        />,
-        <Polygon
-          fill="#337C78"
-          points="0,1092.6 750,1075.7 750,1334 0,1334 "
-        />,
+        <G
+          scale={1}
+          translateX={0}
+          translateY={0}
+        >
+          <Rect
+            fill="url(#SVGID_1_)"
+            height="1072"
+            rx={0}
+            ry={0}
+            width="750"
+            x={0}
+            y={0}
+          />
+          <Polygon
+            fill="#449997"
+            points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
+          />
+          <Polyline
+            fill="#3B6D68"
+            points="0,1068.2 0,1334 750,1334 750,1075.7 "
+          />
+          <Polygon
+            fill="#337C78"
+            points="0,1092.6 750,1075.7 750,1334 0,1334 "
+          />
+        </G>,
       ],
       "height": "1334",
       "preserveAspectRatio": "xMidYMid meet",
       "style": Object {
+        "alignItems": "stretch",
+        "height": 1334,
+        "justifyContent": "center",
         "left": 0,
         "top": -20,
+        "width": 750,
       },
       "viewBox": "0 0 750 1334",
       "width": "750",
@@ -1002,52 +1106,89 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "fill": "url(#SVGID_1_)",
-          "height": "1072",
-          "rx": 0,
-          "ry": 0,
-          "width": "750",
-          "x": 0,
-          "y": 0,
+          "children": Array [
+            <Rect
+              fill="url(#SVGID_1_)"
+              height="1072"
+              rx={0}
+              ry={0}
+              width="750"
+              x={0}
+              y={0}
+            />,
+            <Polygon
+              fill="#449997"
+              points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
+            />,
+            <Polyline
+              fill="#3B6D68"
+              points="0,1068.2 0,1334 750,1334 750,1075.7 "
+            />,
+            <Polygon
+              fill="#337C78"
+              points="0,1092.6 750,1075.7 750,1334 0,1334 "
+            />,
+          ],
+          "scale": 1,
+          "translateX": 0,
+          "translateY": 0,
         },
         "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "fill": "#449997",
-          "points": "0,1052.5 750,1046.4 749.6,1334 0,1334 ",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "fill": "#3B6D68",
-          "points": "0,1068.2 0,1334 750,1334 750,1075.7 ",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "fill": "#337C78",
-          "points": "0,1092.6 750,1075.7 750,1334 0,1334 ",
-        },
-        "ref": null,
-        "rendered": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "fill": "url(#SVGID_1_)",
+              "height": "1072",
+              "rx": 0,
+              "ry": 0,
+              "width": "750",
+              "x": 0,
+              "y": 0,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "fill": "#449997",
+              "points": "0,1052.5 750,1046.4 749.6,1334 0,1334 ",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "fill": "#3B6D68",
+              "points": "0,1068.2 0,1334 750,1334 750,1075.7 ",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "fill": "#337C78",
+              "points": "0,1092.6 750,1075.7 750,1334 0,1334 ",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
         "type": [Function],
       },
     ],
@@ -1118,33 +1259,43 @@ ShallowWrapper {
               stopOpacity={1}
             />
           </LinearGradient>,
-          <Rect
-            fill="url(#SVGID_1_)"
-            height="1072"
-            rx={0}
-            ry={0}
-            width="750"
-            x={0}
-            y={0}
-          />,
-          <Polygon
-            fill="#449997"
-            points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
-          />,
-          <Polyline
-            fill="#3B6D68"
-            points="0,1068.2 0,1334 750,1334 750,1075.7 "
-          />,
-          <Polygon
-            fill="#337C78"
-            points="0,1092.6 750,1075.7 750,1334 0,1334 "
-          />,
+          <G
+            scale={1}
+            translateX={0}
+            translateY={0}
+          >
+            <Rect
+              fill="url(#SVGID_1_)"
+              height="1072"
+              rx={0}
+              ry={0}
+              width="750"
+              x={0}
+              y={0}
+            />
+            <Polygon
+              fill="#449997"
+              points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
+            />
+            <Polyline
+              fill="#3B6D68"
+              points="0,1068.2 0,1334 750,1334 750,1075.7 "
+            />
+            <Polygon
+              fill="#337C78"
+              points="0,1092.6 750,1075.7 750,1334 0,1334 "
+            />
+          </G>,
         ],
         "height": "1334",
         "preserveAspectRatio": "xMidYMid meet",
         "style": Object {
+          "alignItems": "stretch",
+          "height": 1334,
+          "justifyContent": "center",
           "left": 0,
           "top": -20,
+          "width": 750,
         },
         "viewBox": "0 0 750 1334",
         "width": "750",
@@ -1338,52 +1489,89 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "fill": "url(#SVGID_1_)",
-            "height": "1072",
-            "rx": 0,
-            "ry": 0,
-            "width": "750",
-            "x": 0,
-            "y": 0,
+            "children": Array [
+              <Rect
+                fill="url(#SVGID_1_)"
+                height="1072"
+                rx={0}
+                ry={0}
+                width="750"
+                x={0}
+                y={0}
+              />,
+              <Polygon
+                fill="#449997"
+                points="0,1052.5 750,1046.4 749.6,1334 0,1334 "
+              />,
+              <Polyline
+                fill="#3B6D68"
+                points="0,1068.2 0,1334 750,1334 750,1075.7 "
+              />,
+              <Polygon
+                fill="#337C78"
+                points="0,1092.6 750,1075.7 750,1334 0,1334 "
+              />,
+            ],
+            "scale": 1,
+            "translateX": 0,
+            "translateY": 0,
           },
           "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "fill": "#449997",
-            "points": "0,1052.5 750,1046.4 749.6,1334 0,1334 ",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "fill": "#3B6D68",
-            "points": "0,1068.2 0,1334 750,1334 750,1075.7 ",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "fill": "#337C78",
-            "points": "0,1092.6 750,1075.7 750,1334 0,1334 ",
-          },
-          "ref": null,
-          "rendered": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "fill": "url(#SVGID_1_)",
+                "height": "1072",
+                "rx": 0,
+                "ry": 0,
+                "width": "750",
+                "x": 0,
+                "y": 0,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "fill": "#449997",
+                "points": "0,1052.5 750,1046.4 749.6,1334 0,1334 ",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "fill": "#3B6D68",
+                "points": "0,1068.2 0,1334 750,1334 750,1075.7 ",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "fill": "#337C78",
+                "points": "0,1092.6 750,1075.7 750,1334 0,1334 ",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
       ],

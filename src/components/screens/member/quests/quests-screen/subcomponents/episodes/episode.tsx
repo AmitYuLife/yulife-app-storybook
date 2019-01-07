@@ -32,7 +32,6 @@ class Episode extends PureComponent<IProps> {
             data,
             episodeNumber,
             firstLevelNumber,
-            hasActivePulse,
             isLoading,
             isLockedLastLevel,
             setUnityLockerRef,
@@ -73,7 +72,6 @@ class Episode extends PureComponent<IProps> {
 
                             return (
                                 <Level
-                                    hasActivePulse={hasActivePulse}
                                     onPress={
                                         levelData && levelData.onPress ? levelData.onPress : this.handlePressLevelNull
                                     }

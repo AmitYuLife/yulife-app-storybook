@@ -9,10 +9,20 @@ const getWidthAdjust = (isX: boolean, isAndroid: boolean) => (isX || isAndroid ?
 export const width = Style.DEVICE_WIDTH + getWidthAdjust(isIphoneX(), Platform.OS === "android");
 export const height = Style.DEVICE_HEIGHT;
 
+export const platformAdjustments = {
+    scale: Style.isShortAndroid() || Style.isShortAndWideAndroid() ? 1.1 : 1,
+    translateX: Style.isShortAndroid() || Style.isShortAndWideAndroid() ? -30 : 0,
+    translateY: Style.isShortAndroid() || Style.isShortAndWideAndroid() ? -75 : 0
+};
+
 const styles = StyleSheet.create({
     wrapper: {
+        alignItems: "stretch",
+        height: Style.DEVICE_HEIGHT,
+        justifyContent: "center",
         left: getLeftAdjust(isIphoneX(), Platform.OS === "android"),
-        top: getTopAdjust(isIphoneX())
+        top: getTopAdjust(isIphoneX()),
+        width
     } as ViewStyle
 });
 

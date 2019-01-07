@@ -5,9 +5,8 @@ import { Style } from "../../../../../../../../../../styles";
 import { platformAdjustments, LinearGradientWithProps } from "../../helpers";
 
 const pathPlatformAdjustments = {
-    scale: Style.isShortAndroid() || Style.isShortAndWideAndroid() ? 1.1 : 1,
-    translateX: Style.isShortAndroid() || Style.isShortAndWideAndroid() ? -42 : -4,
-    translateY: Style.isShortAndroid() || Style.isShortAndWideAndroid() ? -120 : 0
+    translateX: Style.isShortAndroid() || Style.isShortAndWideAndroid() ? -12 : -4,
+    translateY: Style.isShortAndroid() || Style.isShortAndWideAndroid() ? -150 : 0
 };
 
 const BackgroundImage: React.SFC<React.ReactNode> = ({ children }) => (

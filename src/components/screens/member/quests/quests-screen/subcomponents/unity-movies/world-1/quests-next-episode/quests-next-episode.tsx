@@ -104,9 +104,9 @@ class QuestsNextEpisode extends React.PureComponent<IProps, IState> {
                         };
                         return (
                             <Level
-                                hasActivePulse={true}
                                 onPress={onPress}
                                 key={index}
+                                level={50}
                                 data={{ ...data, isDone: false, isNext: true, nextAvailableAt: "" }}
                                 lockIcon={Lock}
                                 fill="rgb(255,255,255)"

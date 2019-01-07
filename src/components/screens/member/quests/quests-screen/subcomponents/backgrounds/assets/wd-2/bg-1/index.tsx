@@ -2,13 +2,18 @@
 import React from "react";
 import { Circle, Defs, Ellipse, G, LinearGradient, Path, RadialGradient, Rect, Stop } from "react-native-svg";
 import { platformAdjustments } from "../../helpers";
+import { Style } from "../../../../../../../../../../styles";
 
 const pathPlatformAdjustments = {
-    translateX: -4
+    translateX: Style.isShortAndroid() || Style.isShortAndWideAndroid() ? -12 : -4,
 };
 
+const specificPlatformAdjustments = {
+    translateY: Style.isShortAndroid() || Style.isShortAndWideAndroid() ? -150 : 0
+}
+
 const BackgroundImage: React.SFC<React.ReactNode> = ({ children }) => (
-    <G {...platformAdjustments}>
+    <G {...platformAdjustments} {...specificPlatformAdjustments}>
         <Defs>
             <LinearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="375" y1="6.9507" x2="375" y2="1107.8956">
                 <Stop offset="1.733291e-02" stopColor="#042872" />

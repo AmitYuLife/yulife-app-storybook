@@ -2,9 +2,10 @@
 import React from "react";
 import { Circle, Defs, Ellipse, G, Path, Polyline, Rect, Stop } from "react-native-svg";
 import { platformAdjustments, LinearGradientWithProps } from "../../helpers";
+import { Style } from "../../../../../../../../../../styles";
 
 const pathPlatformAdjustments = {
-    translateX: -4
+    translateX: Style.isShortAndroid() || Style.isShortAndWideAndroid() ? -12 : -4,
 };
 
 const BackgroundImage: React.SFC<React.ReactNode> = ({ children }) => (
