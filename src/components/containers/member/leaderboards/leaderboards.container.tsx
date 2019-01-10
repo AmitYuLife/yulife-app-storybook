@@ -9,6 +9,7 @@ import { updateLeaderboardConsent, UpdateLeaderboardConsentAction } from "../../
 import { Leaderboard, leaderboardsSelector } from "../../../../redux/user/user.selectors";
 import { Loading } from "../../../atoms";
 import { GenericModal } from "../../../modals";
+import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-error-modal";
 import { LeaderboardsScreen } from "../../../screens";
 
 interface IConnectedState {
@@ -74,9 +75,13 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 
         return (
             <GetLeaderboardQuery query={getLeaderboardGql} fetchPolicy="network-only" variables={{ sortBy }}>
-                {({ loading, data = { getLeaderboard: [], getCurrentUser: { id: null } }, refetch }) => {
+                {({ error, loading, data = { getLeaderboard: [], getCurrentUser: { id: null } }, refetch }) => {
                     if (loading) {
                         return <Loading />;
+                    }
+
+                    if (error) {
+                        return <GenericConnectionErrorModal onPress={this.handleClose} />;
                     }
 
                     const onCoinPress = this.handleRefetch(refetch, "coins");

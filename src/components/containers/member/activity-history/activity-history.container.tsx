@@ -16,6 +16,7 @@ import { getUserStart } from "../../../../redux/user/user.actions";
 import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
 import Logger from "../../../../services/logging/logger";
 import Loading from "../../../atoms/loading/loading";
+import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-error-modal";
 import { ActivityHistoryLevels } from "../../../screens";
 
 interface IProps {
@@ -38,9 +39,13 @@ class ActivityHistoryContainer extends PureComponent<Props> {
             <AddHistoricalStepsMutation mutation={addHistoricalStepsGql}>
                 {(addHistoricalSteps) => (
                     <GetActivityHistoryQuery query={getActivityHistoryGql} fetchPolicy="network-only">
-                        {({ loading, data, refetch }) => {
+                        {({ loading, data, refetch, error }) => {
                             if (loading) {
                                 return <Loading />;
+                            }
+
+                            if (error) {
+                                return <GenericConnectionErrorModal onPress={this.handleClose} />;
                             }
 
                             const onRefresh = async () => {
