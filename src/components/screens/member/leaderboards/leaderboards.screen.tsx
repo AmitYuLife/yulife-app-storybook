@@ -16,6 +16,7 @@ import { Close, GenericHeading, LeaderboardPosition, Pad } from "../../../atoms"
 import assets from "./assets";
 import LeaderboardHeader from "./leaderboard-header/leaderboard-header";
 import LeaderboardItem from "./leaderboard-item/leaderboard-item";
+import { LEADERBOARD_ITEM_HEIGHT } from "./leaderboard-item/leaderboard-item.styles";
 import data from "./leaderboards.data";
 import styles from "./leaderboards.screen.styles";
 
@@ -91,6 +92,11 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                         data={items}
                         initialScrollIndex={initialScrollIndex}
                         keyExtractor={(item) => item.id}
+                        getItemLayout={(_, index) => ({
+                            index,
+                            length: LEADERBOARD_ITEM_HEIGHT,
+                            offset: LEADERBOARD_ITEM_HEIGHT * index
+                        })}
                         renderItem={({ item, index }) => (
                             <LeaderboardItem
                                 key={index}

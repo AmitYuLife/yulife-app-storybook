@@ -1,6 +1,8 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../../../styles";
 
+export const LEADERBOARD_ITEM_HEIGHT = Style.SCALE_Y_UP_AND_DOWN(40);
+
 export default StyleSheet.create({
     nameWrapper: {
         flex: 1,
@@ -34,6 +36,7 @@ export default StyleSheet.create({
         borderBottomColor: "rgb(244,237,140)",
         borderBottomWidth: StyleSheet.hairlineWidth,
         flexDirection: "row",
+        height: LEADERBOARD_ITEM_HEIGHT,
         paddingVertical: Style.SCALE_UP_AND_DOWN(14)
     } as ViewStyle,
     yucoinWrapper: {
