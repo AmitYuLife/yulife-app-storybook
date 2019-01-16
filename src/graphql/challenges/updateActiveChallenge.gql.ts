@@ -7,6 +7,7 @@ export const updateActiveChallengeGql = gql`
     mutation UpdateActiveChallenge($levelSlotId: String!, $payload: ChallengePayload) {
         updateActiveChallenge(levelSlotId: $levelSlotId, payload: $payload) {
             challenge {
+                level
                 levelSlotId
                 status
                 endDateTime

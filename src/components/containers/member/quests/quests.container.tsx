@@ -22,8 +22,10 @@ import {
 import { submitUnityAction, SubmitUnityAction } from "../../../../redux/levels/levels.actions";
 import {
     activeLevelSelector,
+    challengesStatusSelector,
     currentLevelSelector,
     IActiveLevel,
+    ITodayChallengesStatus,
     nextLevelAvailableAtSelector
 } from "../../../../redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "../../../../redux/streaks/streaks.actions";
@@ -37,6 +39,7 @@ import ChallengeFailedScreen from "../../../screens/member/challenges/challenge-
 
 interface IConnectedState {
     activeLevel: IActiveLevel;
+    challengesStatus: ITodayChallengesStatus;
     currentLevel: number;
     features: { [x: string]: boolean };
     nextLevelAvailableAt: string;
@@ -56,6 +59,43 @@ function isAvailable(nextAvailableAt: string): boolean {
     const nextAvailable = !!nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
 
     return nextAvailable >= 0;
+}
+
+function getLevelStatus(
+    challengesStatus: ITodayChallengesStatus,
+    currentLevel: number,
+    level: number,
+    nextAvailableAt: string
+) {
+    const { hasDone: hasDoneChallenge, isAvailable: isChallengeAvailable } = challengesStatus;
+
+    if (currentLevel === level) {
+        return {
+            isActive: hasDoneChallenge ? !isChallengeAvailable : true,
+            isDone: false,
+            isNext: true,
+            isPrevious: false,
+            nextAvailableAt
+        };
+    }
+
+    if (currentLevel - 1 === level) {
+        const previousAvailable = hasDoneChallenge && isChallengeAvailable;
+        return {
+            isActive: previousAvailable,
+            isDone: true,
+            isNext: previousAvailable,
+            isPrevious: true,
+            nextAvailableAt: ""
+        };
+    }
+
+    return {
+        isDone: currentLevel > level,
+        isNext: false,
+        isPrevious: false,
+        nextAvailableAt: ""
+    };
 }
 
 type Props = IMainTabsProps & IConnectedState & IConnectedDispatch;
@@ -89,7 +129,7 @@ class QuestsContainer extends PureComponent<Props> {
 
     public render() {
         const {
-            activeLevel: { coins, endDateTime, milestones, rating, score, status, subtype, timeUp, unit },
+            activeLevel: { coins, endDateTime, level, milestones, rating, score, status, subtype, timeUp, unit },
             componentId,
             currentLevel,
             labels,
@@ -116,7 +156,7 @@ class QuestsContainer extends PureComponent<Props> {
                     if (status) {
                         return status === "success" ? (
                             <ChallengeSuccessScreen
-                                level={currentLevel}
+                                level={level}
                                 onPressCta={this.handleResetChallenge(refetch, true)}
                                 rating={rating}
                                 reward={coins}
@@ -124,7 +164,7 @@ class QuestsContainer extends PureComponent<Props> {
                                 unit={unit as any}
                             />
                         ) : (
-                            <ChallengeFailedScreen level={currentLevel} onPress={this.handleResetChallenge(refetch)} />
+                            <ChallengeFailedScreen level={level} onPress={this.handleResetChallenge(refetch)} />
                         );
                     }
 
@@ -296,33 +336,32 @@ class QuestsContainer extends PureComponent<Props> {
     }
 
     private formatData = (data: GetCurrentWorld_getCurrentWorld[] = []) => {
-        const { currentLevel, features, nextLevelAvailableAt: nextAvailableAt } = this.props;
+        const { challengesStatus, currentLevel, features, nextLevelAvailableAt: nextAvailableAt } = this.props;
 
         return data.map((level) => {
-            const isNext = currentLevel === level.level;
-            const isDone = currentLevel > level.level;
+            const status = getLevelStatus(challengesStatus, currentLevel, level.level, nextAvailableAt);
             const isChestLevel = !!level.levelChestId;
 
             return {
                 ...level,
-                isDone,
-                isNext,
-                nextAvailableAt,
+                ...status,
                 onPress: () => {
                     const levelAvailable = isAvailable(nextAvailableAt);
 
                     // This logic makes me want to kill myself
                     // Please increment the next number if you agree
-                    // +2
+                    // +3
 
                     if (level.level % 50 === 0) {
                         // is unity level
                         this.props.submitUnityAction({ levelId: level.id });
-                    } else if (isDone) {
-                        if (features.showCompletedLevel) {
+                    } else if (status.isDone) {
+                        if (status.isPrevious && challengesStatus.hasDone && challengesStatus.isAvailable) {
+                            this.goToChallengesList(level);
+                        } else if (features.showCompletedLevel) {
                             this.showLevelCompleteModal(level);
                         }
-                    } else if (isNext) {
+                    } else if (status.isNext) {
                         if (levelAvailable) {
                             if (isChestLevel) {
                                 this.showChestModal(level, true);
@@ -348,6 +387,7 @@ class QuestsContainer extends PureComponent<Props> {
 
 const mapStateToProps = (state: IReduxState) => ({
     activeLevel: activeLevelSelector(state),
+    challengesStatus: challengesStatusSelector(state),
     currentLevel: currentLevelSelector(state),
     features: userFeaturesSelector(state),
     nextLevelAvailableAt: nextLevelAvailableAtSelector(state),

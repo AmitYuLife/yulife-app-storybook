@@ -16,6 +16,7 @@ import { IActiveLevel } from "./levels.selectors";
 
 export interface ILevelsStore {
     active: IActiveLevel;
+    challengesDoneToday: number;
     level: number;
     nextLevelAvailableAt: string;
 }
@@ -30,6 +31,7 @@ export const initialState: ILevelsStore = {
         endDateTime: "",
         initialPedometerResult: 0,
         isCompleted: false, // for meditation, when goal reached
+        level: null,
         levelSlotId: "",
         milestones: [],
         milestonesLog: [],
@@ -41,6 +43,7 @@ export const initialState: ILevelsStore = {
         timeUp: false,
         unit: ""
     },
+    challengesDoneToday: 0,
     level: 1,
     nextLevelAvailableAt: ""
 };
@@ -78,31 +81,46 @@ const userReducer = (state: ILevelsStore = initialState, action: SyncAction): IL
 
 export default userReducer;
 
-const getUserSuccess = (
-    state: ILevelsStore,
-    { getCurrentUser: { coinLedger, activeChallenge } }: GetCurrentUser
-): ILevelsStore => ({
+const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore => ({
     ...state,
     active: {
         ...state.active,
-        endDateTime: pathOr<string>(activeChallenge, "challenge.endDateTime", initialState.active.endDateTime),
-        levelSlotId: pathOr<string>(activeChallenge, "challenge.levelSlotId", initialState.active.levelSlotId),
-        milestones: pathOr<any[]>(activeChallenge, "levelSlot.milestones", initialState.active.milestones),
-        rating: pathOr<number>(activeChallenge, "challenge.rating", initialState.active.rating),
-        startDateTime: pathOr<string>(activeChallenge, "challenge.startDateTime", initialState.active.startDateTime),
-        subtype: pathOr<string>(activeChallenge, "levelSlot.subtype", initialState.active.subtype),
-        unit: pathOr<string>(activeChallenge, "levelSlot.unit", initialState.active.unit)
+        endDateTime: pathOr<string>(
+            data,
+            "getCurrentUser.activeChallenge.challenge.endDateTime",
+            initialState.active.endDateTime
+        ),
+        levelSlotId: pathOr<string>(
+            data,
+            "getCurrentUser.activeChallenge.challenge.levelSlotId",
+            initialState.active.levelSlotId
+        ),
+        milestones: pathOr<any[]>(
+            data,
+            "getCurrentUser.activeChallenge.levelSlot.milestones",
+            initialState.active.milestones
+        ),
+        rating: pathOr<number>(data, "getCurrentUser.activeChallenge.challenge.rating", initialState.active.rating),
+        startDateTime: pathOr<string>(
+            data,
+            "getCurrentUser.activeChallenge.challenge.startDateTime",
+            initialState.active.startDateTime
+        ),
+        subtype: pathOr<string>(data, "getCurrentUser.activeChallenge.levelSlot.subtype", initialState.active.subtype),
+        unit: pathOr<string>(data, "getCurrentUser.activeChallenge.levelSlot.unit", initialState.active.unit)
     },
-    level: coinLedger.currentLevel,
-    nextLevelAvailableAt: coinLedger.nextLevelAvailableAt || ""
+    challengesDoneToday: pathOr<number>(data, "getCurrentUser.challengesDoneToday", 0),
+    level: pathOr<number>(data, "getCurrentUser.coinLedger.currentLevel", 1),
+    nextLevelAvailableAt: pathOr<string>(data, "getCurrentUser.coinLedger.nextLevelAvailableAt", "")
 });
 
-const loginUserSuccess = (state: ILevelsStore, { loginUser }: LoginUser): ILevelsStore => ({
+const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore => ({
     ...state,
-    level: pathOr<number>(loginUser, "user.coinLedger.currentLevel", initialState.level),
+    challengesDoneToday: pathOr<number>(data, "loginUser.user.challengesDoneToday", 0),
+    level: pathOr<number>(data, "loginUser.user.coinLedger.currentLevel", initialState.level),
     nextLevelAvailableAt: pathOr<string>(
-        loginUser,
-        "user.coinLedger.nextLevelAvailableAt",
+        data,
+        "loginUser.user.coinLedger.nextLevelAvailableAt",
         initialState.nextLevelAvailableAt
     )
 });
@@ -120,6 +138,7 @@ const challengeStartSuccess = (
         },
         endDateTime: challenge.endDateTime,
         initialPedometerResult,
+        level: challenge.level,
         levelSlotId: challenge.levelSlotId,
         milestones: levelSlot.milestones,
         startDateTime: challenge.startDateTime,

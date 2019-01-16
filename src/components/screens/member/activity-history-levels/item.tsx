@@ -22,6 +22,19 @@ export interface ItemProps {
     yucoin: number;
 }
 
+const getLabel = (challenge: IChallenge) => {
+    let result = `${challenge.name}`;
+
+    if (!!challenge.score) {
+        result += ` / ${challenge.score}`;
+    }
+
+    return result;
+};
+
+const showRating = (challenge: IChallenge) =>
+    !["streak", "streak completed", "chest", "bonus yucoin"].includes(challenge.name);
+
 const Items: SFC<ItemProps> = ({ challenges, dayOfMonth, dayOfWeek, level, steps, yucoin }) => (
     <View style={styles.listItemWrapper}>
         <View style={styles.levelWrapper}>
@@ -29,8 +42,12 @@ const Items: SFC<ItemProps> = ({ challenges, dayOfMonth, dayOfWeek, level, steps
             {!level ? null : (
                 <View style={styles.levelCircle}>
                     <View style={styles.levelTextWrapper}>
-                        <Text bold={true} style={styles.levelTextTop}>LEVEL</Text>
-                        <Text bold={true} style={styles.levelTextBottom}>{padNum(level)}</Text>
+                        <Text bold={true} style={styles.levelTextTop}>
+                            LEVEL
+                        </Text>
+                        <Text bold={true} style={styles.levelTextBottom}>
+                            {padNum(level)}
+                        </Text>
                     </View>
                 </View>
             )}
@@ -43,42 +60,36 @@ const Items: SFC<ItemProps> = ({ challenges, dayOfMonth, dayOfWeek, level, steps
                 </View>
                 <View style={styles.activityLabelsWrapper}>
                     <View style={styles.activityLabelWrapper}>
-                        <Text
-                            numberOfLines={1}
-                            style={styles.activityLabel}
-                        >
+                        <Text numberOfLines={1} style={styles.activityLabel}>
                             {`${steps} steps`}
                         </Text>
                     </View>
                     {!challenges.length ? (
                         <View style={styles.activityLabelWrapper}>
-                            <Text
-                                numberOfLines={1}
-                                style={styles.activityLabel}
-                            >
+                            <Text numberOfLines={1} style={styles.activityLabel}>
                                 {`--`}
                             </Text>
                         </View>
-                    ) : challenges.map(({ name, score }, index) => (
-                        <View key={index} style={styles.activityLabelWrapper}>
-                            <Text
-                                numberOfLines={1}
-                                style={styles.activityLabel}
-                            >
-                                {name === "challenge completed" ? name : `${name} / ${score}`}
-                            </Text>
-                        </View>
-                    ))}
+                    ) : (
+                        challenges.map((challenge, index) => (
+                            <View key={index} style={styles.activityLabelWrapper}>
+                                <Text numberOfLines={1} style={styles.activityLabel}>
+                                    {getLabel(challenge)}
+                                </Text>
+                            </View>
+                        ))
+                    )}
                 </View>
                 <View style={styles.starsColumn}>
                     <View style={styles.starsWrapper} />
-                    {challenges.map(({ milestones }, key) => (
+                    {challenges.map((challenge, key) => (
                         <View style={styles.starsWrapper} key={key}>
-                            {Array.from({ length: 3 }).map((_, index) => (
-                                <View key={index} style={styles.starWrapper}>
-                                    <StarInline filled={index < milestones} />
-                                </View>
-                            ))}
+                            {showRating(challenge) &&
+                                Array.from({ length: 3 }).map((_, index) => (
+                                    <View key={index} style={styles.starWrapper}>
+                                        <StarInline filled={index < challenge.milestones} />
+                                    </View>
+                                ))}
                         </View>
                     ))}
                 </View>
@@ -90,8 +101,7 @@ const Items: SFC<ItemProps> = ({ challenges, dayOfMonth, dayOfWeek, level, steps
                         <View style={styles.yuCoinEarnedWrapper}>
                             <Text style={styles.yuCoinEarned}>0</Text>
                         </View>
-                    )
-                    }
+                    )}
                     {challenges.map(({ earned }, index) => (
                         <View style={styles.yuCoinEarnedWrapper} key={index}>
                             <Text style={styles.yuCoinEarned}>{earned}</Text>

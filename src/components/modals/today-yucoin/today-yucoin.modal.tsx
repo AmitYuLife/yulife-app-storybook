@@ -11,6 +11,7 @@ import { getCurrentUserGql, GetCurrentUserQuery } from "../../../graphql/user/ge
 import { IReduxState } from "../../../redux/_core/reducers";
 import { getDailyStepsCoins } from "../../../redux/coins/coins.selectors";
 import { ExchangeRate, exchangeRateSelector, getDailySteps } from "../../../redux/daily-steps/daily-steps.selectors";
+import { challengesStatusSelector, ITodayChallengesStatus } from "../../../redux/levels/levels.selectors";
 import { pathOr } from "../../../services/utils";
 import Loading from "../../atoms/loading/loading";
 import { TodayYucoinScreen } from "../../screens";
@@ -21,6 +22,7 @@ interface IProps {
 }
 
 interface IConnectedState {
+    challengesStatus: ITodayChallengesStatus;
     dailyStepsEarned: number;
     exchangeRate: ExchangeRate;
     steps: number;
@@ -32,7 +34,7 @@ type Props = IProps & IConnectedState;
 
 class TodayYucoinContainer extends PureComponent<Props> {
     public render() {
-        const { dailyStepsEarned, exchangeRate, steps } = this.props;
+        const { challengesStatus, dailyStepsEarned, exchangeRate, steps } = this.props;
 
         return (
             <GetCurrentUserQuery
@@ -70,6 +72,8 @@ class TodayYucoinContainer extends PureComponent<Props> {
                             steps={steps}
                             onPressCta={this.handleCtaPress}
                             onPressClose={this.handleClose}
+                            showCta={challengesStatus.isAvailable}
+                            ctaLabel={challengesStatus.done > 0 ? "take another challenge" : "take a challenge"}
                         />
                     );
                 }}
@@ -88,6 +92,7 @@ class TodayYucoinContainer extends PureComponent<Props> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
+    challengesStatus: challengesStatusSelector(state),
     dailyStepsEarned: getDailyStepsCoins(state),
     exchangeRate: exchangeRateSelector(state),
     steps: getDailySteps(state)

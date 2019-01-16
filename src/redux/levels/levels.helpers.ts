@@ -3,6 +3,8 @@ import Pedometer from "react-native-dual-pedometer";
 import { queryMindfulSessions } from "../../services/fitkit/fitkit.service";
 import { IActiveLevel } from "./levels.selectors";
 
+const MAX_AVAILABLE = 4;
+
 export async function getEndResult({ startDateTime, endDateTime, subtype, score }: IActiveLevel) {
     if (subtype === "meditation") {
         try {
@@ -54,4 +56,9 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
             value: score
         };
     }
+}
+
+export function getChallengesAmountAvailable(level: number) {
+    const available = Math.floor((level - 1) / 50) + 1;
+    return available > MAX_AVAILABLE ? MAX_AVAILABLE : available;
 }

@@ -592,7 +592,7 @@ ShallowWrapper {
             }
           }
         >
-          You can only complete one challenge a day
+          
         </YuText>,
       ],
       "style": Object {
@@ -727,7 +727,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "You can only complete one challenge a day",
+          "children": "",
           "style": Object {
             "color": "rgb(170,170,170)",
             "fontSize": 32,
@@ -735,7 +735,7 @@ ShallowWrapper {
           },
         },
         "ref": null,
-        "rendered": "You can only complete one challenge a day",
+        "rendered": "",
         "type": [Function],
       },
     ],
@@ -815,7 +815,7 @@ ShallowWrapper {
               }
             }
           >
-            You can only complete one challenge a day
+            
           </YuText>,
         ],
         "style": Object {
@@ -950,7 +950,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "You can only complete one challenge a day",
+            "children": "",
             "style": Object {
               "color": "rgb(170,170,170)",
               "fontSize": 32,
@@ -958,7 +958,7 @@ ShallowWrapper {
             },
           },
           "ref": null,
-          "rendered": "You can only complete one challenge a day",
+          "rendered": "",
           "type": [Function],
         },
       ],

@@ -52,6 +52,7 @@ export interface CancelActiveChallengeVariables {
 // ====================================================
 
 export interface CreateActiveChallenge_createActiveChallenge_challenge {
+  level: number | null;
   levelSlotId: string | null;
   status: string | null;
   startDateTime: string | null;
@@ -185,6 +186,7 @@ export interface UpdateActiveChallenge_updateActiveChallenge_challenge_milestone
 }
 
 export interface UpdateActiveChallenge_updateActiveChallenge_challenge {
+  level: number | null;
   levelSlotId: string | null;
   status: string | null;
   endDateTime: string | null;
@@ -642,6 +644,7 @@ export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge_incomin
 }
 
 export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge {
+  level: number | null;
   levelSlotId: string | null;
   status: string | null;
   endDateTime: string | null;
@@ -701,6 +704,7 @@ export interface GetCurrentUser_getCurrentUser {
   id: string | null;
   archived: boolean | null;
   membershipType: string | null;
+  challengesDoneToday: number | null;
   userFeatures: (GetCurrentUser_getCurrentUser_userFeatures | null)[] | null;
   mobileConsent: GetCurrentUser_getCurrentUser_mobileConsent | null;
   coinLedger: GetCurrentUser_getCurrentUser_coinLedger | null;
@@ -836,6 +840,7 @@ export interface LoginUser_loginUser_user {
   archived: boolean | null;
   businessAccountId: string | null;
   membershipType: string | null;
+  challengesDoneToday: number | null;
   userFeatures: (LoginUser_loginUser_user_userFeatures | null)[] | null;
   mobileConsent: LoginUser_loginUser_user_mobileConsent | null;
   redeemedOnboarding: boolean | null;
