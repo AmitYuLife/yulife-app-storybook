@@ -12,6 +12,7 @@ export const getCurrentUserGql = gql`
             id
             archived
             membershipType
+            challengesDoneToday
             userFeatures {
                 name
                 value
@@ -38,6 +39,7 @@ export const getCurrentUserGql = gql`
             }
             activeChallenge {
                 challenge {
+                    level
                     levelSlotId
                     status
                     endDateTime

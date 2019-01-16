@@ -3,6 +3,7 @@ import { call, put, select, take, takeLatest } from "redux-saga/effects";
 import { MODALS, ROUTES } from "../../navigation/routes";
 import { getRouteState } from "../app/app.selectors";
 import { START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
+import { challengesStatusSelector } from "../levels/levels.selectors";
 import { GET_USER_SUCCESS } from "../user/user.actions";
 import { userFeaturesSelector } from "../user/user.selectors";
 import { DISPLAY_STREAKS_COMPLETED, displayStreaksFirstAction } from "./streaks.actions";
@@ -58,8 +59,9 @@ function* showOnChallengeComplete() {
     const streaks = yield select(streaksSelector);
     const currentRoute = yield select(getRouteState);
     const features = yield select(userFeaturesSelector);
+    const { done } = yield select(challengesStatusSelector);
 
-    if (features.showStreaks && streaks.isAvailable && currentRoute !== MODALS.streaks) {
+    if (done === 1 && features.showStreaks && streaks.isAvailable && currentRoute !== MODALS.streaks) {
         yield call(() =>
             Navigation.showModal({
                 component: {

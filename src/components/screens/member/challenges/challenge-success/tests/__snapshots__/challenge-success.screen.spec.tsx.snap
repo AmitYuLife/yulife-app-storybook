@@ -110,8 +110,7 @@ ShallowWrapper {
               }
             }
           >
-            You can take a challenge
-again tomorrow.
+            Well done!
           </YuText>
         </View>,
         <Button
@@ -335,8 +334,7 @@ again tomorrow.
               }
             }
           >
-            You can take a challenge
-again tomorrow.
+            Well done!
           </YuText>,
           "style": Object {
             "marginTop": 20,
@@ -348,8 +346,7 @@ again tomorrow.
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "You can take a challenge
-again tomorrow.",
+            "children": "Well done!",
             "style": Object {
               "color": "rgb(170,170,170)",
               "fontSize": 30,
@@ -357,8 +354,7 @@ again tomorrow.",
             },
           },
           "ref": null,
-          "rendered": "You can take a challenge
-again tomorrow.",
+          "rendered": "Well done!",
           "type": [Function],
         },
         "type": [Function],
@@ -475,8 +471,7 @@ again tomorrow.",
                 }
               }
             >
-              You can take a challenge
-again tomorrow.
+              Well done!
             </YuText>
           </View>,
           <Button
@@ -700,8 +695,7 @@ again tomorrow.
                 }
               }
             >
-              You can take a challenge
-again tomorrow.
+              Well done!
             </YuText>,
             "style": Object {
               "marginTop": 20,
@@ -713,8 +707,7 @@ again tomorrow.
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": "You can take a challenge
-again tomorrow.",
+              "children": "Well done!",
               "style": Object {
                 "color": "rgb(170,170,170)",
                 "fontSize": 30,
@@ -722,8 +715,7 @@ again tomorrow.",
               },
             },
             "ref": null,
-            "rendered": "You can take a challenge
-again tomorrow.",
+            "rendered": "Well done!",
             "type": [Function],
           },
           "type": [Function],
@@ -880,8 +872,7 @@ ShallowWrapper {
               }
             }
           >
-            You can take a challenge
-again tomorrow.
+            Well done!
           </YuText>
         </View>,
         <Button
@@ -1105,8 +1096,7 @@ again tomorrow.
               }
             }
           >
-            You can take a challenge
-again tomorrow.
+            Well done!
           </YuText>,
           "style": Object {
             "marginTop": 20,
@@ -1118,8 +1108,7 @@ again tomorrow.
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "You can take a challenge
-again tomorrow.",
+            "children": "Well done!",
             "style": Object {
               "color": "rgb(170,170,170)",
               "fontSize": 30,
@@ -1127,8 +1116,7 @@ again tomorrow.",
             },
           },
           "ref": null,
-          "rendered": "You can take a challenge
-again tomorrow.",
+          "rendered": "Well done!",
           "type": [Function],
         },
         "type": [Function],
@@ -1245,8 +1233,7 @@ again tomorrow.",
                 }
               }
             >
-              You can take a challenge
-again tomorrow.
+              Well done!
             </YuText>
           </View>,
           <Button
@@ -1470,8 +1457,7 @@ again tomorrow.
                 }
               }
             >
-              You can take a challenge
-again tomorrow.
+              Well done!
             </YuText>,
             "style": Object {
               "marginTop": 20,
@@ -1483,8 +1469,7 @@ again tomorrow.
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": "You can take a challenge
-again tomorrow.",
+              "children": "Well done!",
               "style": Object {
                 "color": "rgb(170,170,170)",
                 "fontSize": 30,
@@ -1492,8 +1477,7 @@ again tomorrow.",
               },
             },
             "ref": null,
-            "rendered": "You can take a challenge
-again tomorrow.",
+            "rendered": "Well done!",
             "type": [Function],
           },
           "type": [Function],

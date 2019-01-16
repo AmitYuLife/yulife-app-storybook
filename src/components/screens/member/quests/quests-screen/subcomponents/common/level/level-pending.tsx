@@ -7,6 +7,7 @@ import { getTime } from "./level-pending.helpers";
 
 interface IProps {
     nextAvailableAt: string;
+    textFill?: string;
 }
 
 interface IState {
@@ -28,6 +29,7 @@ class LevelPending extends PureComponent<IProps, IState> {
     }
 
     public render() {
+        const { textFill = "white" } = this.props;
         const { nextAvailable } = this.state;
         const nextAvailableFormatted = getTime(nextAvailable);
 
@@ -36,7 +38,7 @@ class LevelPending extends PureComponent<IProps, IState> {
                 <Text
                     y="-16"
                     textAnchor="middle"
-                    fill="white"
+                    fill={textFill}
                     fontSize="24"
                     fontFamily={Style.FONT_FAMILY_PRIMARY_BOLD}
                     fontWeight="700"
@@ -46,7 +48,7 @@ class LevelPending extends PureComponent<IProps, IState> {
                 <Text
                     y="13"
                     textAnchor="middle"
-                    fill="white"
+                    fill={textFill}
                     fontSize="24"
                     fontFamily={Style.FONT_FAMILY_PRIMARY_BOLD}
                     fontWeight="700"

@@ -18,6 +18,7 @@ import {
 import styles from "./quests-screen.styles";
 import { Episode, UnityLockerImage, UnityLockerLabel } from "./subcomponents";
 export interface IChallenge extends GetCurrentWorld_getCurrentWorld {
+    isActive?: boolean;
     isDone?: boolean;
     isNext?: boolean;
     nextAvailableAt?: string;

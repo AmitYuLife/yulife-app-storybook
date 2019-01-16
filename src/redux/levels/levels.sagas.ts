@@ -28,7 +28,7 @@ import {
 } from "./levels.actions";
 import { SubmitUnityActionResult } from "./levels.actions";
 import { getEndResult } from "./levels.helpers";
-import { activeLevelSelector } from "./levels.selectors";
+import { activeLevelSelector, challengesStatusSelector } from "./levels.selectors";
 
 function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, endDateTime: string) {
     const start = moment(startDateTime).format();
@@ -82,9 +82,10 @@ function* startStepsTracking(endDateTime: string) {
 }
 
 export function* resetChallenge() {
+    const { done } = yield select(challengesStatusSelector);
     const active = yield select(activeLevelSelector);
 
-    if (active.chest.value > 0 && active.status === "success") {
+    if (done < 1 && active.chest.value > 0 && active.status === "success") {
         yield call(() => {
             Navigation.showModal({
                 component: {

@@ -14,6 +14,8 @@ interface IProps {
     onPressClose: () => void;
     steps: number;
     activeChallenge: ChallengeToday;
+    showCta: boolean;
+    ctaLabel: string;
     challenges: ChallengeToday[];
     dailyStepsEarned: number;
     exchangeRate: ExchangeRate;
@@ -43,7 +45,6 @@ class TodayYucoinScreen extends PureComponent<IProps> {
             challenges,
             dailyStepsEarned,
             exchangeRate = { steps: 2000, yucoin: 1 },
-            onPressCta,
             onPressClose,
             steps = 0
         } = this.props;
@@ -128,25 +129,36 @@ class TodayYucoinScreen extends PureComponent<IProps> {
                             <View key={i} style={styles.activeChallengeWrapper}>
                                 <Text style={styles.steps}>{getLabel(challenge)}</Text>
                                 <View style={styles.starsWrapper}>
-                                    {showRating(challenge) && Array.from({ length: 3 }).map((_, index) => (
-                                        <View key={index} style={styles.starWrapper}>
-                                            <StarInline filled={challenge.milestones > index} />
-                                        </View>
-                                    ))}
+                                    {showRating(challenge) &&
+                                        Array.from({ length: 3 }).map((_, index) => (
+                                            <View key={index} style={styles.starWrapper}>
+                                                <StarInline filled={challenge.milestones > index} />
+                                            </View>
+                                        ))}
                                 </View>
                                 <Text style={styles.yucoinsEarned}>{challenge.earned}</Text>
                             </View>
                         ))}
                     </View>
                 </View>
-                {showCta && (
-                    <View style={styles.ctaWrapper}>
-                        <Button onPress={onPressCta} label="take a challenge" type={Button.Types.PRIMARY} />
-                    </View>
-                )}
+                {this.renderCta()}
                 <Close onPress={onPressClose} />
             </SafeAreaView>
         );
+    }
+
+    private renderCta = () => {
+        const { showCta, ctaLabel, onPressCta } = this.props;
+
+        if (showCta) {
+            return (
+                <View style={styles.ctaWrapper}>
+                    <Button onPress={onPressCta} label={ctaLabel} type={Button.Types.PRIMARY} />
+                </View>
+            );
+        }
+
+        return null;
     }
 }
 

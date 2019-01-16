@@ -107,7 +107,7 @@ class QuestsNextEpisode extends React.PureComponent<IProps, IState> {
                                 onPress={onPress}
                                 key={index}
                                 level={50}
-                                data={{ ...data, isDone: false, isNext: true, nextAvailableAt: "" }}
+                                data={{ ...data, isDone: false, isNext: true, nextAvailableAt: "", isActive: true }}
                                 lockIcon={Lock}
                                 fill="rgb(255,255,255)"
                                 cx={x}
