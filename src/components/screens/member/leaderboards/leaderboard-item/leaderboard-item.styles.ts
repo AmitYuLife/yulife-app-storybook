@@ -1,7 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../../../styles";
 
-export const LEADERBOARD_ITEM_HEIGHT = Style.SCALE_Y_UP_AND_DOWN(40);
+export const LEADERBOARD_ITEM_HEIGHT = Style.SCALE_Y_UP_AND_DOWN(50);
 
 export default StyleSheet.create({
     nameWrapper: {
