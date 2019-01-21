@@ -21,6 +21,7 @@ interface IProps {
     onBlur?: (value: string) => void;
     placeholder?: string;
     style?: ViewStyle;
+    testID?: string;
 }
 
 export enum TEXT_INPUT_TYPES {
@@ -66,6 +67,7 @@ class TextInput extends React.PureComponent<IProps> {
                         }
                     </View>
                     <Input
+                        testID={this.props.testID}
                         onFocus={this.handleFocus(true)}
                         onBlur={this.handleFocus(false)}
                         onChangeText={onChange}

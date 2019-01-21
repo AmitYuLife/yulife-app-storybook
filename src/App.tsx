@@ -1,6 +1,6 @@
+import registerScreens from "@navigation";
+import { setLoadingRoot } from "@navigation/root";
 import { Navigation } from "react-native-navigation";
-import registerScreens from "./navigation";
-import { setLoadingRoot } from "./navigation/root";
 import { migrateOldAppVersionToken } from "./services/storage";
 
 // register all the screens

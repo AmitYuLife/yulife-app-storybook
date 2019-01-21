@@ -21,6 +21,7 @@ interface IProps {
     label: string;
     wrapperStyle?: ViewStyle;
     disabled?: boolean;
+    testID?: string;
 }
 
 export enum BUTTON_TYPES {
@@ -60,7 +61,8 @@ class Button extends PureComponent<IProps, IState> {
             type,
             onPress,
             wrapperStyle,
-            disabled
+            disabled,
+            testID
         } = this.props;
         const {
             pressedIn
@@ -72,6 +74,8 @@ class Button extends PureComponent<IProps, IState> {
                 <View style={wrapperStyle}>
                     <View style={getShadowStyle({ type, pressedIn })} />
                     <TouchableWithoutFeedback
+                        testID={testID}
+                        accessibilityLabel={disabled ? "disabled" : "enabled"}
                         disabled={disabled}
                         onPressIn={this.handlePressIn}
                         onPressOut={this.handlePressOut}

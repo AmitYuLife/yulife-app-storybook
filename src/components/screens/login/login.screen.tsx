@@ -1,3 +1,4 @@
+import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
 import * as React from "react";
 import { PureComponent } from "react";
 import { EmitterSubscription, Keyboard, KeyboardAvoidingView, Platform, View } from "react-native";
@@ -75,6 +76,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
                     )}
                     <Pad height={44} />
                     <TextInput
+                        testID={INPUT_LOGIN_EMAIL}
                         errorMessage={emailError}
                         hasError={!!emailError}
                         onChange={onEmailChange}
@@ -83,6 +85,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
                     />
                     <Pad height={12} />
                     <TextInput
+                        testID={INPUT_LOGIN_PASSWORD}
                         errorMessage={passwordError}
                         hasError={!!passwordError}
                         onChange={onPasswordChange}
@@ -92,6 +95,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
                     {!!loginError && <TextInputError>{loginError}</TextInputError>}
                     <Pad height={44} />
                     <Button
+                        testID={BUTTON_LOGIN}
                         disabled={isLoggingIn || disabled}
                         label={isLoggingIn ? data.isLoggingIn : data.logInCta}
                         onPress={onLogInPress}
