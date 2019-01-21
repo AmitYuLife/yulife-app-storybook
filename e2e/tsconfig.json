@@ -1,0 +1,38 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "es2017",
+            "dom",
+            "esnext.asynciterable"
+        ],
+        "module": "commonjs",
+        "target": "es2017",
+        "experimentalDecorators": true,
+        "noImplicitAny": false,
+        "moduleResolution": "node",
+        "typeRoots": [
+            "node_modules/@types",
+            "../node_modules/@types"
+        ],
+        "types": [
+            "mocha",
+            "detox",
+            "node"
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "@app/*": [
+                "../src/*"
+            ],
+            "@bdd": [
+                "./_utils/bdd/index"
+            ],
+            "@navigation": [
+                "./_utils/navigation/index"
+            ],
+            "@ids": [
+                "./_utils/navigation/ids"
+            ]
+        }
+    }
+}

@@ -238,3 +238,9 @@ The YuLife project follows the [atomic design](http://atomicdesign.bradfrost.com
 |   ├── styles
 ├── storybook
 ```
+
+## Gotchas
+
+### Disappearing packages
+Problem: `npm install some-package --save-dev` deletes git dependencies in package.json.
+Solution: Re-run `npm install` after

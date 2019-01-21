@@ -1,4 +1,28 @@
 {
   "presets": ["module:metro-react-native-babel-preset"],
-  "sourceMaps": "inline"
+  "sourceMaps": "inline",
+  "plugins": [
+    [
+        "module-resolver",
+        {
+            "root": [
+                "./"
+            ],
+            "extensions": [
+                ".ts",
+                ".tsx"
+            ],
+            "alias": {
+                "@components": "./src/components",
+                "@graphql": "./src/graphql",
+                "@navigation": "./src/navigation",
+                "@redux": "./src/redux",
+                "@services": "./src/services",
+                "@styles": "./src/styles",
+                "@e2e": "./e2e",
+                "@ids": "./e2e/_utils/navigation/ids"
+            }
+        }
+    ]
+  ],
 }
