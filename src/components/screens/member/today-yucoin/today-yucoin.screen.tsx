@@ -26,10 +26,12 @@ const images = {
     checkFilled: require("../../../../../assets/today-yucoin/check-filled.png")
 };
 
-const getLabel = (challenge: ChallengeToday) => {
+const getLabel = (challenge: ChallengeToday, isActive: boolean = false) => {
     let result = `${challenge.name}`;
 
-    if (!!challenge.score) {
+    if (isActive) {
+        result += " / in progress...";
+    } else if (!!challenge.score) {
         result += ` / ${challenge.score}`;
     }
 
@@ -114,14 +116,7 @@ class TodayYucoinScreen extends PureComponent<IProps> {
                         )}
                         {activeChallenge && (
                             <View style={styles.activeChallengeWrapper}>
-                                <Text style={styles.steps}>{getLabel(activeChallenge)}</Text>
-                                <View style={styles.starsWrapper}>
-                                    {Array.from({ length: 3 }).map((_, index) => (
-                                        <View key={index} style={styles.starWrapper}>
-                                            <StarInline filled={activeChallenge.milestones > index} />
-                                        </View>
-                                    ))}
-                                </View>
+                                <Text style={styles.steps}>{getLabel(activeChallenge, true)}</Text>
                                 <Text style={styles.yucoinsEarned}>{activeChallenge.earned}</Text>
                             </View>
                         )}
