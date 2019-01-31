@@ -7,6 +7,7 @@ import { call, put, select, spawn, takeLatest } from "redux-saga/effects";
 import { AddHistoricalSteps_addHistoricalSteps, ChallengePayload } from "../../graphql/_core/schema";
 import addHistoricalSteps from "../../graphql/challenges/addHistoricalSteps.gql";
 import upsertStepsChallenge from "../../graphql/challenges/upsertStepsChallenge.gql";
+import getCurrentUserWithClient from "../../graphql/user/getCurrentUser.gql";
 import { MODALS } from "../../navigation/routes";
 import Logger from "../../services/logging/logger";
 import { pathOr } from "../../services/utils";
@@ -16,7 +17,7 @@ import {
     PEDOMETER_UPDATES_SUCCESS,
     UpdatePedometerSuccessActionResult
 } from "../pedometer/pedometer.actions";
-import { updateDailyStepsFailed, updateDailyStepsSuccess } from "./daily-steps.actions";
+import { GET_HISTORICAL_DATA, updateDailyStepsFailed, updateDailyStepsSuccess } from "./daily-steps.actions";
 import { getLastUpdated } from "./daily-steps.selectors";
 
 type HistoricalSteps = AddHistoricalSteps_addHistoricalSteps;
@@ -111,4 +112,49 @@ function* dailyStepsUpdate({ payload }: UpdatePedometerSuccessActionResult) {
     }
 }
 
-export default [takeLatest(PEDOMETER_START, oldDaysUpdate), takeLatest(PEDOMETER_UPDATES_SUCCESS, dailyStepsUpdate)];
+function* getHistoricalData() {
+    try {
+        const res = yield call(getCurrentUserWithClient);
+        const onboardingDate = pathOr<string>(res, "data.getCurrentUser.onboardingDate", "");
+
+        if (onboardingDate && onboardingDate.length === 19) {
+            const startTime = moment(onboardingDate)
+                .subtract(60, "days")
+                .startOf("day")
+                .format();
+            const endTime = moment(onboardingDate)
+                .subtract(1, "days")
+                .endOf("day")
+                .format();
+
+            const authorised = yield call(RNFitKit.authorise, {
+                read: [FitKitTypes.Types.Steps]
+            });
+
+            if (authorised) {
+                const results = yield call(RNFitKit.aggregateQuery, {
+                    aggregateBy: {
+                        bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
+                        type: FitKitTypes.AggregateType.Time
+                    },
+                    endTime,
+                    sampleType: FitKitTypes.Types.Steps,
+                    startTime
+                });
+
+                if (!!results.length) {
+                    yield call(addHistoricalSteps, results.map(mapPedometerResults), false);
+                }
+            }
+        }
+    } catch (e) {
+        yield spawn(() => Logger.logMixpanelError(e, "daily-steps.sagas.@118"));
+        yield spawn(() => Logger.logIntercomEvent("historical_steps_sync_failed", { message: e.message }));
+    }
+}
+
+export default [
+    takeLatest(PEDOMETER_START, oldDaysUpdate),
+    takeLatest(PEDOMETER_UPDATES_SUCCESS, dailyStepsUpdate),
+    takeLatest(GET_HISTORICAL_DATA, getHistoricalData)
+];

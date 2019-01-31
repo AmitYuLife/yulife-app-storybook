@@ -85,7 +85,7 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps> {
 
             if (authorised) {
                 const startTime = moment()
-                    .subtract(30, "days")
+                    .subtract(60, "days")
                     .startOf("day")
                     .format();
                 const endTime = moment()

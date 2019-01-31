@@ -1,90 +1,62 @@
-// This is a custom version of react-native-counter
-// The npm module was out of date and broken
-// Changes:
-// - Converted to TypeScript
-// - Fixed broken proptypes
-// - Removed easing library
-// - Reanimate on props change
-
-import React, { Component } from "react";
-import { TextStyle } from "react-native";
-import { Text } from "../../atoms";
+import * as React from "react";
+import { Animated } from "react-native";
 
 interface IProps {
-    digits?: number; // Number of digits after the comma
-    onComplete?: () => void; // Callback when the counter is completed
-    style?: TextStyle;
-    text?: string; // Text to write after value
-    time?: number; // Duration (in ms) of the counter
+    initialValue?: number;
     value: number;
+    renderValue: (value: number) => React.ReactNode;
 }
 
 interface IState {
-    end: number; // end value of the counter
-    value: number; // current value of the counter
+    value: number;
 }
 
-export default class Counter extends Component<IProps, IState> {
-    public static defaultProps: Partial<IProps> = {
-        digits: 0,
-        time: 1000,
-        value: 0
-    };
+class Counter extends React.PureComponent<IProps, IState> {
+    private animatedValue: Animated.Value;
+    constructor(props: IProps) {
+        super(props);
 
-    public state: IState = {
-        end: this.props.value, // no initial count
-        value: this.props.value // no initial count
-    };
+        const { initialValue } = props;
+        const firstValue = initialValue !== null ? initialValue : props.value;
 
-    private startTime: number;
-    private stop: boolean;
+        this.animatedValue = new Animated.Value(firstValue);
+        this.animatedValue.addListener(this.onValueChanged);
+
+        this.state = {
+            value: firstValue
+        };
+    }
 
     public componentWillReceiveProps(nextProps: IProps) {
-        if (nextProps.value !== this.state.value) {
-            this.setState({ end: nextProps.value }, () => {
-                this.startAnimation();
-            });
+        const { value } = this.props;
+
+        if (value !== nextProps.value) {
+            this.move(nextProps);
         }
     }
 
     public render() {
-        const { digits, style, text } = this.props;
+        const { renderValue } = this.props;
         const { value } = this.state;
 
-        return <Text style={style}>{`${value.toFixed(digits)}${text ? ` ${text}` : ""}`}</Text>;
+        return renderValue(value);
     }
 
-    private startAnimation() {
-        this.stop = false;
-        this.startTime = Date.now();
-        requestAnimationFrame(this.animate.bind(this));
+    private onValueChanged = (e: Partial<IProps>) => {
+        this.setState({
+            value: e.value
+        });
     }
 
-    private animate() {
-        const { onComplete } = this.props;
+    private move = (props: Partial<IProps>) => {
+        const { value } = props;
 
-        if (this.stop) {
-            if (onComplete) {
-                onComplete();
-            }
-
-            return;
-        }
-
-        requestAnimationFrame(this.animate.bind(this));
-        this.draw();
-    }
-
-    private draw() {
-        const { time } = this.props;
-        const now = Date.now();
-
-        if (now - this.startTime >= time) {
-            this.stop = true;
-        }
-
-        const percentage = Math.min((now - this.startTime) / time, 1);
-
-        this.setState((state) => ({ value: state.value + (state.end - state.value) * percentage }));
+        Animated.timing(this.animatedValue, {
+            duration: 150,
+            toValue: value,
+            useNativeDriver: true
+        }).start();
     }
 }
+
+export default Counter;

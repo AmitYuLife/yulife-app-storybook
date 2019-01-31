@@ -7,6 +7,10 @@ const SCREENS_PER_WORLD = 8;
 const LEVELS_PER_WORLD = 50;
 const LEVELS_PER_EPISODE = 7;
 
+export function getLevelSlice(currentLevel: number): number {
+    return currentLevel - 1;
+}
+
 export const checkIfIsLockedLastLevel = (currentLevel: number) =>
     currentLevel % LEVELS_PER_WORLD !== 0 &&
     currentLevel >= Math.floor(currentLevel / LEVELS_PER_WORLD) * LEVELS_PER_WORLD;

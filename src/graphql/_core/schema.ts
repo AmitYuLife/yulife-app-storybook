@@ -703,6 +703,7 @@ export interface GetCurrentUser_getCurrentUser {
   __typename: "User";
   id: string | null;
   archived: boolean | null;
+  onboardingDate: string | null;
   membershipType: string | null;
   challengesDoneToday: number | null;
   userFeatures: (GetCurrentUser_getCurrentUser_userFeatures | null)[] | null;

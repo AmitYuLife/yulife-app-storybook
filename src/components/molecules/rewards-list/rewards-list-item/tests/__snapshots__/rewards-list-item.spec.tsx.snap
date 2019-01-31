@@ -94,7 +94,7 @@ ShallowWrapper {
             }
           />
         </View>
-        <Component
+        <ActivityIndicator
           animating={true}
           color="#999999"
           hidesWhenStopped={true}
@@ -185,7 +185,7 @@ ShallowWrapper {
               }
             />
           </View>,
-          <Component
+          <ActivityIndicator
             animating={true}
             color="#999999"
             hidesWhenStopped={true}
@@ -392,7 +392,7 @@ ShallowWrapper {
               }
             />
           </View>
-          <Component
+          <ActivityIndicator
             animating={true}
             color="#999999"
             hidesWhenStopped={true}
@@ -483,7 +483,7 @@ ShallowWrapper {
                 }
               />
             </View>,
-            <Component
+            <ActivityIndicator
               animating={true}
               color="#999999"
               hidesWhenStopped={true}
