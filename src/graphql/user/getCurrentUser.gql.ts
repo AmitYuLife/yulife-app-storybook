@@ -11,6 +11,7 @@ export const getCurrentUserGql = gql`
             __typename
             id
             archived
+            onboardingDate
             membershipType
             challengesDoneToday
             userFeatures {

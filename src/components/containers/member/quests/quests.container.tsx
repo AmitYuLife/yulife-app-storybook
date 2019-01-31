@@ -34,7 +34,13 @@ import { openCalm, openHeadspace } from "../../../../services/app-link";
 import BlurProvider from "../../../atoms/blur/blur-provider";
 import Loading from "../../../atoms/loading/loading";
 import { ChallengeCompleteModal, GenericModal } from "../../../modals";
-import { ChallengeProgressScreen, ChallengeSuccessScreen, QuestsScreen, QuestsScreenOffline } from "../../../screens";
+import {
+    ChallengeProgressScreen,
+    ChallengeSuccessScreen,
+    QuestsScreen,
+    QuestsScreenOffline,
+    QuestsScrollScreen
+} from "../../../screens";
 import ChallengeFailedScreen from "../../../screens/member/challenges/challenge-failed/challenge-failed.screen";
 
 interface IConnectedState {
@@ -100,7 +106,14 @@ function getLevelStatus(
 
 type Props = IMainTabsProps & IConnectedState & IConnectedDispatch;
 
-class QuestsContainer extends PureComponent<Props> {
+interface IState {
+    showUnity: boolean;
+}
+
+class QuestsContainer extends PureComponent<Props, IState> {
+    public state = {
+        showUnity: false
+    };
     private backHandler: NativeEventSubscription;
     private backPressed: number = 0;
 
@@ -128,6 +141,7 @@ class QuestsContainer extends PureComponent<Props> {
     }
 
     public render() {
+        const { showUnity } = this.state;
         const {
             activeLevel: { coins, endDateTime, level, milestones, rating, score, status, subtype, timeUp, unit },
             componentId,
@@ -212,10 +226,22 @@ class QuestsContainer extends PureComponent<Props> {
                         return <Loading />;
                     }
 
-                    return <QuestsScreen {...props} data={this.formatData(data.getCurrentWorld)} />;
+                    return true ? (
+                        <QuestsScrollScreen
+                            {...props}
+                            data={this.formatData(data.getCurrentWorld)}
+                            hideUnity={showUnity ? this.hideUnity : null}
+                        />
+                    ) : (
+                        <QuestsScreen {...props} data={this.formatData(data.getCurrentWorld)} />
+                    );
                 }}
             </GetCurrentWorld>
         );
+    }
+
+    private hideUnity = () => {
+        this.setState({ showUnity: false });
     }
 
     private handleResetChallenge = (refetch: () => void, showStreakComplete?: boolean) => () => {
@@ -345,6 +371,7 @@ class QuestsContainer extends PureComponent<Props> {
             return {
                 ...level,
                 ...status,
+                isChestLevel,
                 onPress: () => {
                     const levelAvailable = isAvailable(nextAvailableAt);
 
@@ -354,7 +381,9 @@ class QuestsContainer extends PureComponent<Props> {
 
                     if (level.level % 50 === 0) {
                         // is unity level
-                        this.props.submitUnityAction({ levelId: level.id });
+                        this.setState({ showUnity: true }, () => {
+                            this.props.submitUnityAction({ levelId: level.id });
+                        });
                     } else if (status.isDone) {
                         if (status.isPrevious && challengesStatus.hasDone && challengesStatus.isAvailable) {
                             this.goToChallengesList(level);

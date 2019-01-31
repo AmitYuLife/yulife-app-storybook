@@ -1,7 +1,9 @@
 import registerScreens from "@navigation";
-import { setLoadingRoot } from "@navigation/root";
+import handleDeepLink from "@navigation/handleDeepLink";
+import { setLoadingRoot, setNextRoot, setUnauthenticatedRoot } from "@navigation/root";
+import { getToken, migrateOldAppVersionToken } from "@services/storage";
+import { Linking, Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { migrateOldAppVersionToken } from "./services/storage";
 
 // register all the screens
 registerScreens();
@@ -9,8 +11,34 @@ registerScreens();
 Navigation.events().registerAppLaunchedListener(async () => {
     await migrateOldAppVersionToken();
 
+    setDefaultOptions();
+
     setLoadingRoot();
 
+    const token = await getToken();
+
+    if (token) {
+        await setNextRoot();
+
+        if (Platform.OS === "android") {
+            try {
+                const url = await Linking.getInitialURL();
+
+                if (url) {
+                    handleDeepLink(url);
+                }
+            } catch (e) {
+                // console.log(e.message);
+            }
+        } else {
+            Linking.addEventListener("url", ({ url }) => handleDeepLink(url));
+        }
+    } else {
+        await setUnauthenticatedRoot();
+    }
+});
+
+function setDefaultOptions() {
     Navigation.setDefaultOptions({
         bottomTabs: {
             animate: false,
@@ -33,4 +61,4 @@ Navigation.events().registerAppLaunchedListener(async () => {
             visible: false
         }
     });
-});
+}
