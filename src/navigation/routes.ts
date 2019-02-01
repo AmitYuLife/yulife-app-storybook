@@ -36,6 +36,7 @@ import {
     StreaksModal,
     TodayYucoinModal
 } from "../components/modals";
+import FeedbackModalContainer from "../components/modals/feedback/feedback.container";
 
 // tslint:disable:object-literal-sort-keys
 export const ROUTES = {
@@ -80,6 +81,7 @@ export const MODALS = {
     challengeUnavailable: "yulife.modals.ChallengeUnavailable",
     chest: "yulife.modals.Chest",
     collectReward: "yulife.modals.CollectReward",
+    feedback: "yulife.modals.Feedback",
     generic: "yulife.modals.Generic",
     leaderboards: "yulife.modals.Leaderboards",
     levelUnavailable: "yulife.modals.LevelUnavailable",
@@ -133,6 +135,7 @@ export default [
     { name: MODALS.challengeUnavailable, component: ChallengeUnavailableModal },
     { name: MODALS.chest, component: AnimatedChest },
     { name: MODALS.collectReward, component: CollectRewardModal },
+    { name: MODALS.feedback, component: FeedbackModalContainer }, // TODO: fix this
     { name: MODALS.generic, component: GenericModal },
     { name: MODALS.levelUnavailable, component: LevelUnavailableModal },
     { name: MODALS.meditationSetUp, component: MeditationSetUpModal },
