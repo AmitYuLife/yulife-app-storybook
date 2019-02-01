@@ -6,7 +6,12 @@ import {
     UpdateMemberConsent
 } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, SET_USER_NO_ACCESS, UPDATE_USER_CONSENT_SUCCESS } from "./user.actions";
+import {
+    GET_USER_SUCCESS,
+    LOGIN_USER_SUCCESS,
+    SET_USER_NO_ACCESS,
+    UPDATE_USER_CONSENT_SUCCESS
+} from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
 
 interface IFeature {
