@@ -1,6 +1,7 @@
 import { COLOURS, IColours } from "../../../../../molecules/nav-bar/nav-bar";
 
 interface IMapSliceSlot {
+    bottom?: number;
     index: number; // level - 1
     left: number;
 }
@@ -296,9 +297,17 @@ const WorldSlices: IMapSlice[] = [
         slots: [{ index: 48, left: 188 }]
     },
     {
-        height: 622,
+        height: 426,
         id: "MAP_SLICE_W01E35",
         image: require("../../../../../../../assets/quest-slices/w1s35.png"),
+        isTopBarLight: false,
+        navBarColour: COLOURS.DARK,
+        slots: []
+    },
+    {
+        height: 196,
+        id: "MAP_SLICE_W01E36",
+        image: require("../../../../../../../assets/quest-slices/w1s36.png"),
         isTopBarLight: false,
         navBarColour: COLOURS.DARK,
         slots: [{ index: 49, left: 188 }]
@@ -582,15 +591,23 @@ const WorldSlices: IMapSlice[] = [
         isTopBarLight: true,
         navBarColour: COLOURS.DARK,
         slots: [{ index: 98, left: 188 }]
+    },
+    {
+        height: 498,
+        id: "MAP_SLICE_W02E35",
+        image: require("../../../../../../../assets/quest-slices/w2s35.png"),
+        isTopBarLight: true,
+        navBarColour: COLOURS.DARK,
+        slots: []
+    },
+    {
+        height: 158,
+        id: "MAP_SLICE_W02E36",
+        image: require("../../../../../../../assets/quest-slices/w2s36.png"),
+        isTopBarLight: true,
+        navBarColour: COLOURS.DARK,
+        slots: [{ index: 99, left: 188 }]
     }
-    // {
-    //     height: 656,
-    //     id: "MAP_SLICE_W02E35",
-    //     image: require("../../../../../../../assets/quest-slices/w2s35.png"),
-    //     isTopBarLight: false,
-    //     navBarColour: COLOURS.DARK,
-    //     slots: [{ index: 99, left: 188}]
-    // }
 ];
 
 export default WorldSlices;

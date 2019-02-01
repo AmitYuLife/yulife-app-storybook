@@ -29,7 +29,8 @@ class ScrollyQuest extends Component<IProps> {
                 <FlatList
                     data={data}
                     inverted={true}
-                    initialNumToRender={20}
+                    initialNumToRender={10}
+                    maxToRenderPerBatch={10}
                     keyExtractor={(level) => level.id}
                     showsVerticalScrollIndicator={false}
                     ref={setFlatListRef}
