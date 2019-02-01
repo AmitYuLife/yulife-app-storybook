@@ -21,7 +21,7 @@ interface IProps {
 
 const FeedbackModal: SFC<IProps> = ({ isSubmitting, onCancel, onRatingSelect, onSubmit, rating }) => (
     <View style={StyleSheet.absoluteFill}>
-        <CentredScreen style={styles.centredScreen}>
+        <CentredScreen style={styles.centredScreen} footerImage="forest">
             <Heading
                 size={Heading.Sizes.LARGE}
                 label="feedback"
