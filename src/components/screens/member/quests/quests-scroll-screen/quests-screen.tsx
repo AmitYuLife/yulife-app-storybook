@@ -128,10 +128,10 @@ class QuestsScreen extends PureComponent<IProps, IState> {
 
         switch (currentWorld) {
             case 1:
-                return mapSlices.slice(0, 70);
+                return mapSlices;
             case 0:
             default:
-                return mapSlices.slice(0, 36);
+                return mapSlices.slice(0, 37);
         }
     }
 }

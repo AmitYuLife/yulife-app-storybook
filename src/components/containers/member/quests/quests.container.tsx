@@ -379,19 +379,22 @@ class QuestsContainer extends PureComponent<Props, IState> {
                     // Please increment the next number if you agree
                     // +3
 
-                    if (level.level % 50 === 0) {
-                        // is unity level
-                        this.setState({ showUnity: true }, () => {
-                            this.props.submitUnityAction({ levelId: level.id });
-                        });
-                    } else if (status.isDone) {
-                        if (status.isPrevious && challengesStatus.hasDone && challengesStatus.isAvailable) {
+                    if (status.isDone) {
+                        if (level.level % 50 === 0) {
+                            // is unity level
+                            this.setState({ showUnity: true });
+                        } else if (status.isPrevious && challengesStatus.hasDone && challengesStatus.isAvailable) {
                             this.goToChallengesList(level);
                         } else if (features.showCompletedLevel) {
                             this.showLevelCompleteModal(level);
                         }
                     } else if (status.isNext) {
-                        if (levelAvailable) {
+                        if (level.level % 50 === 0) {
+                            // is unity level
+                            this.setState({ showUnity: true }, () => {
+                                this.props.submitUnityAction({ levelId: level.id });
+                            });
+                        } else if (levelAvailable) {
                             if (isChestLevel) {
                                 this.showChestModal(level, true);
                             } else {
