@@ -17,8 +17,8 @@ const getLevelLockIcon = (currentLevel: number, level: IChallenge) => {
     switch (true) {
         case level.level === 20 && currentLevel < 18:
         case level.level === 41 && currentLevel < 39:
-        case level.level === 46 && currentLevel < 44:
-        case level.level === 49 && currentLevel < 47:
+        case level.level === 45 && currentLevel < 43:
+        case level.level === 48 && currentLevel < 46:
         case level.level === 56 && currentLevel < 54:
         case level.level === 70 && currentLevel < 68:
         case level.level === 91 && currentLevel < 89:
