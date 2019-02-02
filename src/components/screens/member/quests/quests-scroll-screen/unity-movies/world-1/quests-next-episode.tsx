@@ -1,4 +1,4 @@
-import { Text } from "@components/atoms";
+import { Text } from "@atoms/index";
 import React from "react";
 import { Animated, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import frames from "./frames";

@@ -1,6 +1,6 @@
+import { store } from "@redux/_core/store";
+import { GET_HISTORICAL_DATA } from "@redux/daily-steps/daily-steps.actions";
 import { Navigation } from "react-native-navigation";
-import { store } from "../redux/_core/store";
-import { GET_HISTORICAL_DATA } from "../redux/daily-steps/daily-steps.actions";
 import { labels } from "./root";
 import { MODALS } from "./routes";
 

@@ -12,40 +12,21 @@
         "skipLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@app/*": [
-                "./src/*"
-            ],
-            "@components/*": [
-                "./src/components/*"
-            ],
-            "@graphql/*": [
-                "./src/graphql/*"
-            ],
-            "@navigation/*": [
-                "./src/navigation/*"
-            ],
-            "@navigation": [
-                "./src/navigation/index"
-            ],
-            "@redux/*": [
-                "./src/redux/*"
-            ],
-            "@services/*": [
-                "./src/services/*"
-            ],
-            "@styles/*": [
-                "./src/styles/*"
-            ],
-            "@e2e/*": [
-                "./src/e2e/*"
-            ],
-            "@ids": [
-                "./e2e/_utils/navigation/ids"
-            ],
+            "@app/*": ["./src/*"],
+            "@atoms/*": ["./src/components/atoms/*"],
+            "@containers/*": ["./src/components/containers/*"],
+            "@modals/*": ["./src/components/modals/*"],
+            "@molecules/*": ["./src/components/molecules/*"],
+            "@screens/*": ["./src/components/screens/*"],
+            "@graphql/*": ["./src/graphql/*"],
+            "@navigation/*": ["./src/navigation/*"],
+            "@navigation": ["./src/navigation/index"],
+            "@redux/*": ["./src/redux/*"],
+            "@services/*": ["./src/services/*"],
+            "@styles/*": ["./src/styles/*"],
+            "@e2e/*": ["./src/e2e/*"],
+            "@ids": ["./e2e/_utils/navigation/ids"]
         }
     },
-    "exclude": [
-        "e2e",
-        "node_modules"
-    ]
+    "exclude": ["e2e", "node_modules"]
 }
