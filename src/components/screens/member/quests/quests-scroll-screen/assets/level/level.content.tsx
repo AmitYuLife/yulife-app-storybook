@@ -53,7 +53,7 @@ export default function getLevelButton(nextAvailable: number, currentLevel: numb
         return (
             <View style={{ flexDirection: "column" }}>
                 <Text style={StyleSheet.flatten([styles.text, { textAlign: "center" }])}>{level.level}</Text>
-                <View style={{ flexDirection: "row" }}>
+                <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
                     {Array.from({ length: 3 }).map((_, i) => (
                         <Image
                             key={`${level.id}_${i}`}
