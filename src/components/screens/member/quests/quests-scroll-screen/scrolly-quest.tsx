@@ -53,7 +53,7 @@ class ScrollyQuest extends Component<IProps> {
         }
 
         return result;
-    }
+    };
 }
 
 export default ScrollyQuest;

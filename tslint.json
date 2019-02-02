@@ -3,6 +3,7 @@
     "extends": ["tslint:recommended", "tslint-react"],
     "jsRules": {},
     "rules": {
+        "semicolon": [true, "always", "ignore-bound-class-methods"],
         "trailing-comma": [true, { "multiline": "never", "singleline": "never" }],
         "jsx-no-multiline-js": false,
         "jsx-no-lambda": false,

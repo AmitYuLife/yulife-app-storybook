@@ -20,13 +20,7 @@ const MapSlice: SFC<IProps> = ({ currentLevel, levels, slice }) => (
         />
         <View style={styles.levelButtonWrapper}>
             {levels.map((level, index) => (
-                <LevelBubble
-                    currentLevel={currentLevel}
-                    index={index}
-                    key={level.id}
-                    level={level}
-                    slice={slice}
-                />
+                <LevelBubble currentLevel={currentLevel} index={index} key={level.id} level={level} slice={slice} />
             ))}
         </View>
     </View>
