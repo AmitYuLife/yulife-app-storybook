@@ -30,9 +30,11 @@ class ResetPasswordContainer extends PureComponent<IProps, IState> {
             <SendMagicLinkMutation mutation={sendMagicLinkGql}>
                 {(sendMagicLink, { loading }) => {
                     const { email, emailError } = this.state;
+                    const disableSubmit = email === "" || emailError !== "";
 
                     return (
                         <ResetPasswordScreen
+                            disableSubmit={disableSubmit}
                             email={email}
                             emailError={emailError}
                             isSubmitting={loading}

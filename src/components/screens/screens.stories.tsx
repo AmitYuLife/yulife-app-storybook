@@ -58,6 +58,7 @@ storiesOf("Screens", module)
     ))
     .add("3a. Reset Password", () => (
         <ResetPasswordScreen
+            disableSubmit={boolean("Submit disabled?", false)}
             email=""
             emailError=""
             isSubmitting={boolean("Is Submitting?", false, "ResetPassword")}

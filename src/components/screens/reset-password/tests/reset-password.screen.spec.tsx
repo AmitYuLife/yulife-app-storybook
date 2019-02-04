@@ -4,6 +4,7 @@ import "react-native";
 import ResetPassword from "../reset-password.screen";
 
 const defaultProps = {
+    disableSubmit: false,
     email: "",
     emailError: "",
     isSubmitting: false,
@@ -29,6 +30,17 @@ describe("ResetPassword", () => {
             <ResetPassword
                 {...defaultProps}
                 isSubmitting={true}
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render as submit button is disabled", () => {
+        const actual = shallow(
+            <ResetPassword
+                {...defaultProps}
+                disableSubmit={true}
             />
         );
 
