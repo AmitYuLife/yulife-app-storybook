@@ -1,6 +1,7 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import {
+    RegisteredStyle,
     StyleSheet,
     Text,
     TouchableOpacity,
@@ -8,18 +9,13 @@ import {
     View,
     ViewStyle
 } from "react-native";
-import {
-    getShadowStyle,
-    getTextStyle,
-    getWrapperOverlayStyle,
-    getWrapperStyle
-} from "./button.helpers";
+import { getShadowStyle, getTextStyle, getWrapperOverlayStyle, getWrapperStyle } from "./button.helpers";
 
 interface IProps {
     type: Types;
     onPress: () => void;
     label: string;
-    wrapperStyle?: ViewStyle;
+    wrapperStyle?: RegisteredStyle<ViewStyle>;
     disabled?: boolean;
     testID?: string;
 }
@@ -48,7 +44,6 @@ interface IState {
 }
 
 class Button extends PureComponent<IProps, IState> {
-
     public static Types = BUTTON_TYPES;
 
     public state = {
@@ -56,20 +51,9 @@ class Button extends PureComponent<IProps, IState> {
     };
 
     public render() {
-        const {
-            label,
-            type,
-            onPress,
-            wrapperStyle,
-            disabled,
-            testID
-        } = this.props;
-        const {
-            pressedIn
-        } = this.state;
-        if (
-            type.startsWith(BUTTON_TYPES.PRIMARY)
-        ) {
+        const { label, type, onPress, wrapperStyle, disabled, testID } = this.props;
+        const { pressedIn } = this.state;
+        if (type.startsWith(BUTTON_TYPES.PRIMARY)) {
             return (
                 <View style={wrapperStyle}>
                     <View style={getShadowStyle({ type, pressedIn })} />
@@ -81,16 +65,10 @@ class Button extends PureComponent<IProps, IState> {
                         onPressOut={this.handlePressOut}
                     >
                         <View style={getWrapperStyle({ type, pressedIn })}>
-                            <Text style={getTextStyle(type)}>
-                                {label}
-                            </Text>
+                            <Text style={getTextStyle(type)}>{label}</Text>
                         </View>
                     </TouchableWithoutFeedback>
-                    {
-                        !disabled ? null : (
-                            <View style={getWrapperOverlayStyle({ disabled })} />
-                        )
-                    }
+                    {!disabled ? null : <View style={getWrapperOverlayStyle({ disabled })} />}
                 </View>
             );
         } else {
@@ -98,14 +76,9 @@ class Button extends PureComponent<IProps, IState> {
                 <TouchableOpacity
                     disabled={disabled}
                     onPress={onPress}
-                    style={StyleSheet.flatten([
-                        getWrapperStyle({ type }),
-                        wrapperStyle
-                    ])}
+                    style={StyleSheet.flatten([getWrapperStyle({ type }), wrapperStyle])}
                 >
-                    <Text style={getTextStyle(type)}>
-                        {label}
-                    </Text>
+                    <Text style={getTextStyle(type)}>{label}</Text>
                 </TouchableOpacity>
             );
         }
@@ -113,12 +86,12 @@ class Button extends PureComponent<IProps, IState> {
 
     private handlePressIn = () => {
         this.setState({ pressedIn: true });
-    }
+    };
 
     private handlePressOut = () => {
         const { onPress } = this.props;
         this.setState({ pressedIn: false }, onPress);
-    }
+    };
 }
 
 export default Button;

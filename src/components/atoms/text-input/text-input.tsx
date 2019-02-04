@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, TextInput as Input, View, ViewStyle } from "react-native";
+import { RegisteredStyle, StyleSheet, TextInput as Input, View, ViewStyle } from "react-native";
 import TextInputError from "./text-input-error";
 import {
     getColour,
@@ -20,7 +20,7 @@ interface IProps {
     type: Types;
     onBlur?: (value: string) => void;
     placeholder?: string;
-    style?: ViewStyle;
+    style?: RegisteredStyle<ViewStyle>;
     testID?: string;
 }
 
@@ -91,7 +91,7 @@ class TextInput extends React.PureComponent<IProps> {
         return () => {
             this.setState({ isFocused });
         };
-    }
+    };
 }
 
 export default TextInput;

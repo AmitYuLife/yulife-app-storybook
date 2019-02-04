@@ -1,13 +1,13 @@
 import * as React from "react";
 import { PureComponent } from "react";
-import { StyleSheet, Text, TextStyle } from "react-native";
+import { RegisteredStyle, StyleSheet, Text, TextStyle } from "react-native";
 import styles from "./heading.styles";
 
 interface IProps {
     bold?: boolean;
     label: string;
     size?: Sizes;
-    style?: TextStyle;
+    style?: RegisteredStyle<TextStyle>;
 }
 enum SIZES {
     DEFAULT = "default",

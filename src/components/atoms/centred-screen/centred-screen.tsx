@@ -1,12 +1,12 @@
 import * as React from "react";
 import { SFC } from "react";
-import { Image, SafeAreaView, StyleSheet, View, ViewStyle } from "react-native";
+import { Image, RegisteredStyle, SafeAreaView, StyleSheet, View, ViewStyle } from "react-native";
 import { getImageAndStyle } from "./centred-screen.helpers";
 import styles from "./centred-screen.styles";
 
 interface IProps {
     footerImage?: CenteredScreenImages;
-    style?: ViewStyle;
+    style?: RegisteredStyle<ViewStyle>;
 }
 
 export type CenteredScreenImages =
