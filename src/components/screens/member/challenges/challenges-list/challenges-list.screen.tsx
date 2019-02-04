@@ -1,9 +1,7 @@
+import { ChallengesList, IChallengesListProps, ILabel, NavBar, TopBar } from "@molecules/index";
 import * as React from "react";
 import { SFC } from "react";
 import { SafeAreaView, View } from "react-native";
-import { ChallengesList, IChallengesListProps, TopBar } from "../../../../molecules";
-import NavBar from "../../../../molecules/nav-bar/nav-bar";
-import { ILabel } from "../../../../molecules/nav-bar/nav-bar";
 import ChallengesBackground from "../challenges-background/challenges-background";
 import styles from "./challenges-list.screen.styles";
 

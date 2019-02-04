@@ -101,7 +101,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
 
     private setFlatListRef = (ref: any) => {
         this.flatList = ref;
-    }
+    };
 
     private scrollToCurrentLevel = () => {
         const { currentLevel } = this.props;
@@ -115,11 +115,12 @@ class QuestsScreen extends PureComponent<IProps, IState> {
             { level: 1, offset: 0 }
         );
 
-        global.setTimeout(
-            () => this.flatList.scrollToOffset({ animated: true, offset: offset - Style.DEVICE_HEIGHT / 2 }),
-            1000
-        );
-    }
+        global.setTimeout(() => {
+            if (this.flatList) {
+                this.flatList.scrollToOffset({ animated: true, offset: offset - Style.DEVICE_HEIGHT / 2 });
+            }
+        }, 2000);
+    };
 
     private handleViewableItemsChanged: ViewabilityConfigCallbackPair["onViewableItemsChanged"] = ({
         viewableItems
@@ -130,7 +131,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         if (first && last) {
             this.setState({ UI: { isTopBarLight: last.item.isTopBarLight, navBarColour: first.item.navBarColour } });
         }
-    }
+    };
 
     private getSlices = () => {
         const { currentLevel } = this.props;
@@ -143,6 +144,6 @@ class QuestsScreen extends PureComponent<IProps, IState> {
             default:
                 return mapSlices.slice(0, 37);
         }
-    }
+    };
 }
 export default QuestsScreen;

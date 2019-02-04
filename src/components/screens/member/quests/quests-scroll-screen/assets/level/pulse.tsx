@@ -18,6 +18,7 @@ export default class Pulse extends React.PureComponent<IProps, IState> {
     public state: IState = {
         value: 0
     };
+    private pulseInterval: NodeJS.Timer = null;
     private anim = new Animated.Value(0);
     private interpolations = {
         backwards: {
@@ -31,7 +32,7 @@ export default class Pulse extends React.PureComponent<IProps, IState> {
     };
 
     public componentDidMount() {
-        global.setInterval(() => {
+        this.pulseInterval = global.setInterval(() => {
             this.setState(
                 ({ value }) => ({ value: value ? 0 : 1 }),
                 () => {
@@ -43,6 +44,12 @@ export default class Pulse extends React.PureComponent<IProps, IState> {
                 }
             );
         }, 1000);
+    }
+
+    public componentWillUnmount() {
+        if (this.pulseInterval) {
+            global.clearInterval(this.pulseInterval);
+        }
     }
 
     public render() {

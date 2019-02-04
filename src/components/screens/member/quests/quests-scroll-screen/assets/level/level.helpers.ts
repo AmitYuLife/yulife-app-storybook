@@ -50,35 +50,35 @@ const worldBubbleColours: IBubbleColours = {
     1: {
         0: {
             available: "white",
-            notAvailable: "rgb(131, 178, 71)"
+            notAvailable: "rgb(66, 120, 165)"
         },
         1: {
             available: "white",
-            notAvailable: "rgb(131, 178, 71)"
+            notAvailable: "rgb(66, 120, 165)"
         },
         2: {
             available: "rgb(253, 233, 57)",
-            notAvailable: "rgb(131, 178, 71)"
+            notAvailable: "rgb(66, 120, 165)"
         },
         3: {
             available: "white",
-            notAvailable: "rgb(131, 178, 71)"
+            notAvailable: "rgb(66, 120, 165)"
         },
         4: {
             available: "white",
-            notAvailable: "rgb(131, 178, 71)"
+            notAvailable: "rgb(66, 120, 165)"
         },
         5: {
             available: "white",
-            notAvailable: "rgb(131, 178, 71)"
+            notAvailable: "rgb(66, 120, 165)"
         },
         6: {
             available: "white",
-            notAvailable: "rgb(131, 178, 71)"
+            notAvailable: "rgb(66, 120, 165)"
         },
         7: {
             available: "white",
-            notAvailable: "rgb(131, 178, 71)"
+            notAvailable: "rgb(66, 120, 165)"
         }
     }
 };
