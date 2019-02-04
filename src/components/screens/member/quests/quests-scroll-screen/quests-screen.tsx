@@ -2,6 +2,7 @@ import { Style } from "@styles/index";
 import * as React from "react";
 import { PureComponent } from "react";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
+import { Navigation } from "react-native-navigation";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { COLOURS, IColours, NavBar, TopBar } from "../../../../molecules";
@@ -40,6 +41,15 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         }
     };
     public flatList: FlatList<IMapSlice>;
+
+    public constructor(props: IProps) {
+        super(props);
+        Navigation.events().bindComponent(this);
+    }
+
+    public componentDidAppear() {
+        this.scrollToCurrentLevel();
+    }
 
     public componentDidMount() {
         this.scrollToCurrentLevel();
