@@ -5,7 +5,9 @@ import { call, select, takeEvery } from "redux-saga/effects";
 import { CANCEL_LOCAL_PUSH, SEND_TEST_LOCAL_PUSH } from "../device/device.actions";
 import { CHALLENGE_CANCEL, CHALLENGE_START_SUCCESS, ChallengeStartSuccessActionResult } from "../levels/levels.actions";
 import { activeLevelSelector } from "../levels/levels.selectors";
-import { numericId } from "./notifications.helpers";
+import { UPDATE_NOTIFICATION_SETTINGS, UpdateNotificationSettingsActionResult } from "./notifications.actions";
+import { defaultNotificationSettings, getNotificationTitleAndMessage, numericId } from "./notifications.helpers";
+import { challengeCompletionSelector } from "./notifications.selectors";
 
 function* cancelChallengeNotificationSaga() {
     const active = yield select(activeLevelSelector);
@@ -20,58 +22,77 @@ function* scheduleChallengeNotificationSaga({ payload: { createActiveChallenge }
         return null;
     }
 
-    const { endDateTime, levelSlotId } = createActiveChallenge.challenge;
-    const fixedId = numericId(levelSlotId);
+    const challengeCompletion = yield select(challengeCompletionSelector);
 
-    yield call(() =>
-        PushNotification.localNotificationSchedule({
-            autoCancel: true, // (optional) default: true
-            date: moment(endDateTime).toDate(),
-            group: "Yu Life Challenges", // (optional) add group to message
-            id: fixedId, // (optional)
-            largeIcon: "ic_launcher", // (optional) default: "ic_launcher"
-            message: "Time's up! Check how you did on your latest challenge.",
-            ongoing: false, // (optional) set whether this is an "ongoing" notification
-            playSound: false, // (optional) default: true
-            smallIcon: "ic_notification", // (optional) default: "ic_notification"
-            soundName: "default", // (optional) Sound to play when the notification is shown
-            tag: "challenge_complete", // (optional) add tag to message
-            title: "Challenge Completed", // (optional, for iOS this is only used in apple watch)
-            userInfo: Platform.OS === "ios" ? { id: fixedId } : null, // required to cancel iOS local notification
-            vibrate: true, // (optional) default: true
-            vibration: 300 // vibration length in milliseconds, ignored if vibrate=false, default: 1000
-        })
-    );
+    if (challengeCompletion.active) {
+        const { endDateTime, levelSlotId } = createActiveChallenge.challenge;
+        const fixedId = numericId(levelSlotId);
+        const details = getNotificationTitleAndMessage(challengeCompletion.id);
+
+        yield call(() =>
+            PushNotification.localNotificationSchedule({
+                ...defaultNotificationSettings,
+                date: moment(endDateTime).toDate(),
+                group: "Yu Life Challenges", // (optional) add group to message
+                id: fixedId, // (optional)
+                tag: "challenge_complete", // (optional) add tag to message
+                userInfo: Platform.OS === "ios" ? { id: fixedId } : null, // required to cancel iOS local notification
+                ...details
+            })
+        );
+    }
 }
 
 function* sendTestPush() {
     yield call(() =>
         PushNotification.localNotificationSchedule({
-            autoCancel: true, // (optional) default: true
+            ...defaultNotificationSettings,
             bigText: "My big text that will be shown when notification is expanded", // (optional)
             color: "red", // (optional) default: system default
-            date: new Date(Date.now() + 5 * 1000),
+            date: moment()
+                .add(5, "seconds")
+                .toDate(),
             group: "group", // (optional) add group to message
             id: "0", // (optional)
-            largeIcon: "ic_launcher", // (optional) default: "ic_launcher"
             message: "My Notification Message", // (required)
-            ongoing: false, // (optional) set whether this is an "ongoing" notification
-            playSound: false, // (optional) default: true
             repeatType: "day",
-            smallIcon: "ic_notification", // (optional) default: "ic_notification"
-            soundName: "default", // (optional) Sound to play when the notification is shown
             subText: "This is a subText", // (optional) default: none
             tag: "some_tag", // (optional) add tag to message
             ticker: "My Notification Ticker", // (optional)
-            title: "My Notification Title", // (optional, for iOS this is only used in apple watch)
-            vibration: 300 // vibration length in milliseconds, ignored if vibrate=false, default: 1000
+            title: "My Notification Title" // (optional, for iOS this is only used in apple watch)
         })
     );
+}
+
+function* updateNotificationSettings({ payload }: UpdateNotificationSettingsActionResult) {
+    if (["dailyChallengeReminder", "streakSaver"].includes(payload.key)) {
+        if (payload.active) {
+            const today = moment().format("YYYY-MM-DD");
+            const dateStr = today + " " + payload.time;
+
+            const details = getNotificationTitleAndMessage(payload.id);
+
+            yield call(() =>
+                PushNotification.localNotificationSchedule({
+                    ...defaultNotificationSettings,
+                    date: moment(dateStr, "YYYY-MM-DD HH:mm").toDate(),
+                    group: "yulife notifications", // (optional) add group to message
+                    id: payload.id, // (optional)
+                    repeatType: "day",
+                    userInfo: Platform.OS === "ios" ? { id: payload.id } : null,
+                    ...details
+                })
+            );
+        } else {
+            yield call(() => PushNotification.cancelLocalNotifications({ id: payload.id }));
+        }
+    }
 }
 
 export default [
     takeEvery(CHALLENGE_CANCEL, cancelChallengeNotificationSaga),
     takeEvery(CANCEL_LOCAL_PUSH, cancelChallengeNotificationSaga),
     takeEvery(CHALLENGE_START_SUCCESS, scheduleChallengeNotificationSaga),
-    takeEvery(SEND_TEST_LOCAL_PUSH, sendTestPush)
+    takeEvery(SEND_TEST_LOCAL_PUSH, sendTestPush),
+    takeEvery(UPDATE_NOTIFICATION_SETTINGS, updateNotificationSettings)
 ];

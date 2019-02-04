@@ -1,18 +1,28 @@
+import { MODALS } from "@navigation/routes";
+import { IReduxState } from "@redux/_core/reducers";
+import {
+    UpdateNofiticationPayload,
+    updateNotificationSettings,
+    UpdateNotificationSettingsAction
+} from "@redux/notifications/notifications.actions";
+import { INotificationsStore } from "@redux/notifications/notifications.reducer";
+import { notificationsSelector } from "@redux/notifications/notifications.selectors";
+import { updateLeaderboardConsent, UpdateLeaderboardConsentAction } from "@redux/user/user.actions";
+import { Leaderboard, leaderboardsSelector, userFeaturesSelector } from "@redux/user/user.selectors";
+import { SettingsScreen } from "@screens/index";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { MODALS } from "../../../../navigation/routes";
-import { IReduxState } from "../../../../redux/_core/reducers";
-import { updateLeaderboardConsent, UpdateLeaderboardConsentAction } from "../../../../redux/user/user.actions";
-import { Leaderboard, leaderboardsSelector } from "../../../../redux/user/user.selectors";
-import { SettingsScreen } from "../../../screens";
 
 interface IConnectedState {
+    features: { [x: string]: boolean };
     leaderboards: Leaderboard[];
+    notifications: INotificationsStore;
 }
 
 interface IConnectedDispatch {
+    updateNotificationSettings: UpdateNotificationSettingsAction;
     updateLeaderboardConsent: UpdateLeaderboardConsentAction;
 }
 
@@ -24,8 +34,9 @@ type IProps = IOwnProps & IConnectedState & IConnectedDispatch;
 
 class SettingsContainer extends PureComponent<IProps> {
     public render() {
-        const { leaderboards = [] } = this.props;
+        const { features, leaderboards = [], notifications = {} as any } = this.props;
         const leaderboard = {
+            isVisible: true,
             items: leaderboards.map((l) => ({
                 name: l.name,
                 onPress: this.handleUpdateLeaderboardConsent(l),
@@ -33,8 +44,17 @@ class SettingsContainer extends PureComponent<IProps> {
             })),
             name: "leaderboard"
         } as any;
+        const notification = {
+            isVisible: features.showNotifications,
+            items: Object.keys(notifications).map((key) => ({
+                ...notifications[key],
+                key,
+                onPress: this.handleNotificationPress({ ...notifications[key], key })
+            })),
+            name: "notifications"
+        } as any;
 
-        return <SettingsScreen onPressClose={this.handleClose} sections={[leaderboard]} />;
+        return <SettingsScreen onPressClose={this.handleClose} sections={[notification, leaderboard]} />;
     }
 
     private handleUpdateLeaderboardConsent = (l: Leaderboard) => () => {
@@ -53,8 +73,8 @@ class SettingsContainer extends PureComponent<IProps> {
                       dismissModal();
                   },
                   subheading:
-                  /* tslint:disable-next-line */
-                      "This means you won’t be able to see how well you’re doing compared to others in your business or workspace.",
+                      /* tslint:disable-next-line */
+                      "This means you won’t be able to see how well you’re doing compared to others in your business or workspace."
               }
             : {
                   ctaLabel: "give me leaderboards",
@@ -69,8 +89,8 @@ class SettingsContainer extends PureComponent<IProps> {
                   },
                   onPressSecondary: dismissModal,
                   subheading:
-                  /* tslint:disable-next-line */
-                      "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+                      /* tslint:disable-next-line */
+                      "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings."
               };
 
         Navigation.showModal({
@@ -80,19 +100,29 @@ class SettingsContainer extends PureComponent<IProps> {
                 passProps
             }
         });
-    }
+    };
+
+    private handleNotificationPress = (n: UpdateNofiticationPayload) => () => {
+        if (n.time) {
+            // open a screen with setup
+        }
+        this.props.updateNotificationSettings({ ...n, active: !n.active });
+    };
 
     private handleClose = () => {
         Navigation.popToRoot(this.props.componentId);
-    }
+    };
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    leaderboards: leaderboardsSelector(state)
+    features: userFeaturesSelector(state),
+    leaderboards: leaderboardsSelector(state),
+    notifications: notificationsSelector(state)
 });
 
 const mapDispatchToProps = {
-    updateLeaderboardConsent
+    updateLeaderboardConsent,
+    updateNotificationSettings
 };
 
 export default connect<IConnectedState, IConnectedDispatch>(

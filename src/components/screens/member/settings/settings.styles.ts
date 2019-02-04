@@ -8,6 +8,12 @@ export default StyleSheet.create({
         marginTop: Style.SCALE_UP_AND_DOWN(15),
         width: "100%"
     } as ViewStyle,
+    notificationsItemsWrapper: {
+        flexDirection: "column",
+        justifyContent: "center",
+        marginHorizontal: Style.SCALE_UP_AND_DOWN(15),
+        marginTop: Style.SCALE_UP_AND_DOWN(15)
+    } as ViewStyle,
     scrollView: {
         flex: 1
     } as ViewStyle,
