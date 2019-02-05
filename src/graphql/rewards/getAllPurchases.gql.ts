@@ -33,6 +33,7 @@ export const getAllPurchasesGql = gql`
             reward {
                 __typename
                 name
+                code
                 description
                 card_image_url
                 terms_and_conditions_url
