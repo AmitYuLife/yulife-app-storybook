@@ -1,5 +1,4 @@
 import * as React from "react";
-import { SFC } from "react";
 import { Animated, Platform, StyleSheet } from "react-native";
 import { BlurView } from "react-native-blur";
 
@@ -9,8 +8,8 @@ interface IProps {
     wrapperPosition: Animated.Value;
 }
 
-const Blur: SFC<IProps> = ({ blurRef, wrapperOpacity, wrapperPosition }) =>
-    Platform.OS === "ios" ? (
+export default function Blur({ blurRef, wrapperOpacity, wrapperPosition }: IProps) {
+    return Platform.OS === "ios" ? (
         <Animated.View
             style={{
                 ...StyleSheet.absoluteFillObject,
@@ -22,7 +21,7 @@ const Blur: SFC<IProps> = ({ blurRef, wrapperOpacity, wrapperPosition }) =>
                 ]
             }}
         >
-            <BlurView blurAmount={50} blurType="light" style={StyleSheet.absoluteFill} />
+            <BlurView blurAmount={15} blurType="light" style={StyleSheet.absoluteFill} />
         </Animated.View>
     ) : (
         <Animated.View
@@ -37,8 +36,7 @@ const Blur: SFC<IProps> = ({ blurRef, wrapperOpacity, wrapperPosition }) =>
                 ]
             }}
         >
-            <BlurView viewRef={blurRef} blurAmount={50} blurType="light" style={StyleSheet.absoluteFill} />
+            <BlurView viewRef={blurRef} blurAmount={15} blurType="light" style={StyleSheet.absoluteFill} />
         </Animated.View>
     );
-
-export default Blur;
+}

@@ -22,7 +22,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": <BlurView
-        blurAmount={50}
+        blurAmount={15}
         blurType="light"
         style={
           Object {
@@ -56,7 +56,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "blurAmount": 50,
+        "blurAmount": 15,
         "blurType": "light",
         "style": Object {
           "bottom": 0,
@@ -80,7 +80,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": <BlurView
-          blurAmount={50}
+          blurAmount={15}
           blurType="light"
           style={
             Object {
@@ -114,7 +114,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "blurAmount": 50,
+          "blurAmount": 15,
           "blurType": "light",
           "style": Object {
             "bottom": 0,
@@ -176,7 +176,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": <BlurView
-        blurAmount={50}
+        blurAmount={15}
         blurType="light"
         style={
           Object {
@@ -208,7 +208,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "blurAmount": 50,
+        "blurAmount": 15,
         "blurType": "light",
         "style": Object {
           "bottom": 0,
@@ -231,7 +231,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": <BlurView
-          blurAmount={50}
+          blurAmount={15}
           blurType="light"
           style={
             Object {
@@ -263,7 +263,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "blurAmount": 50,
+          "blurAmount": 15,
           "blurType": "light",
           "style": Object {
             "bottom": 0,

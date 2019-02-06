@@ -16,7 +16,10 @@ interface IProps {
 }
 
 interface IState {
-    bubbleLeftPosition: number;
+    style: {
+        bottom: number;
+        left: number;
+    };
     pulseValue: number;
 }
 
@@ -24,14 +27,14 @@ export default class LevelBubble extends React.PureComponent<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {
-            bubbleLeftPosition: getButtonPosition(props.slice, props.index),
-            pulseValue: 50
+            pulseValue: 50,
+            style: getButtonPosition(props.slice, props.index)
         };
     }
 
     public render() {
         const { currentLevel, level } = this.props;
-        const { bubbleLeftPosition } = this.state;
+        const { style } = this.state;
         const nextAvailable = !!level.nextAvailableAt ? moment().diff(moment(level.nextAvailableAt), "seconds") : 0;
         const bubbleBackgroundColor = getBackgroundColor(nextAvailable, level);
 
@@ -43,7 +46,7 @@ export default class LevelBubble extends React.PureComponent<IProps, IState> {
                         pulseMaxSize={66}
                         interval={nextAvailable < 0 ? 1250 : 750}
                         backgroundColor="rgb(145,0,76)"
-                        style={{ left: bubbleLeftPosition }}
+                        style={style}
                     />
                 )}
                 <TouchableOpacity
@@ -52,7 +55,7 @@ export default class LevelBubble extends React.PureComponent<IProps, IState> {
                         styles.bubble,
                         {
                             backgroundColor: bubbleBackgroundColor,
-                            left: bubbleLeftPosition
+                            ...style
                         }
                     ])}
                 >

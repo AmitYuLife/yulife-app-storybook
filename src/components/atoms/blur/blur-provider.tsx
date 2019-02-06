@@ -1,10 +1,5 @@
 import * as React from "react";
-import {
-    Animated,
-    findNodeHandle,
-    StyleSheet,
-    View
-} from "react-native";
+import { Animated, findNodeHandle, StyleSheet, View } from "react-native";
 import Blur from "./blur";
 import styles from "./blur-provider.styles";
 
@@ -46,7 +41,7 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
 
     public setRef = (ref: View) => {
         this.viewRef = ref;
-    }
+    };
 
     // tslint:disable:variable-name
     public componentDidUpdate(_prevProps: IProps, prevState: IState) {
@@ -56,25 +51,16 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
     }
 
     public showOverlay = () => {
-        this.setState(
-            () => ({ isVisible: true }),
-            this.animate(this.state.isVisible)
-        );
-    }
+        this.setState(() => ({ isVisible: true }), this.animate(this.state.isVisible));
+    };
 
     public hideOverlay = () => {
-        this.setState(
-            () => ({ isVisible: false }),
-            this.animate(this.state.isVisible)
-        );
-    }
+        this.setState(() => ({ isVisible: false }), this.animate(this.state.isVisible));
+    };
 
     public toggleOverlay = () => {
-        this.setState(
-            (state) => ({ isVisible: !state.isVisible }),
-            this.animate(this.state.isVisible)
-        );
-    }
+        this.setState((state) => ({ isVisible: !state.isVisible }), this.animate(this.state.isVisible));
+    };
 
     public render() {
         const { viewRef } = this.state;
@@ -82,21 +68,16 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
 
         return (
             <View style={styles.wrapper}>
-                <View
-                    ref={this.setRef}
-                    onLayout={this.handleLayout}
-                    style={styles.flex}
-                >
+                <View ref={this.setRef} onLayout={this.handleLayout} style={styles.flex}>
                     {!render
                         ? null
                         : render({
-                            hideOverlay: this.hideOverlay,
-                            showOverlay: this.showOverlay,
-                            toggleOverlay: this.toggleOverlay
-                        })
-                    }
+                              hideOverlay: this.hideOverlay,
+                              showOverlay: this.showOverlay,
+                              toggleOverlay: this.toggleOverlay
+                          })}
                 </View>
-                {viewRef && type === "default" ? (
+                {viewRef ? (
                     <Blur
                         blurRef={viewRef}
                         wrapperOpacity={this.animatedWrapperOpacity}
@@ -118,55 +99,42 @@ class BlurProvider extends React.PureComponent<IProps, IState> {
                     {!renderOverlay
                         ? null
                         : renderOverlay({
-                            hideOverlay: this.hideOverlay,
-                            showOverlay: this.showOverlay,
-                            toggleOverlay: this.toggleOverlay
-                        })
-                    }
+                              hideOverlay: this.hideOverlay,
+                              showOverlay: this.showOverlay,
+                              toggleOverlay: this.toggleOverlay
+                          })}
                 </Animated.View>
             </View>
         );
     }
 
     private animate = (isVisible: boolean) => {
-        const animateOpacity = Animated.timing(
-            this.animatedWrapperOpacity,
-            {
-                duration: 300,
-                toValue: isVisible ? 0 : 1,
-                useNativeDriver: true
-            }
-        );
-        const animatePosition = Animated.timing(
-            this.animatedWrapperPosition,
-            {
-                duration: 0,
-                toValue: isVisible ? -1000 : 0,
-                useNativeDriver: true
-            }
-        );
+        const animateOpacity = Animated.timing(this.animatedWrapperOpacity, {
+            duration: 300,
+            toValue: isVisible ? 0 : 1,
+            useNativeDriver: true
+        });
+        const animatePosition = Animated.timing(this.animatedWrapperPosition, {
+            duration: 0,
+            toValue: isVisible ? -1000 : 0,
+            useNativeDriver: true
+        });
         let sequence: Animated.CompositeAnimation;
 
         if (isVisible) {
-            sequence = Animated.sequence([
-                animateOpacity,
-                animatePosition
-            ]);
+            sequence = Animated.sequence([animateOpacity, animatePosition]);
         } else {
-            sequence = Animated.sequence([
-                animatePosition,
-                animateOpacity
-            ]);
+            sequence = Animated.sequence([animatePosition, animateOpacity]);
         }
 
         return () => sequence.start();
-    }
+    };
 
     private handleLayout = () => {
         this.setState({
             viewRef: findNodeHandle(this.viewRef)
         });
-    }
+    };
 }
 
 export default BlurProvider;

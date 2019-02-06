@@ -590,7 +590,7 @@ const WorldSlices: IMapSlice[] = [
         image: require("../../../../../../../assets/quest-slices/w2s34.png"),
         isTopBarLight: true,
         navBarColour: COLOURS.DARK,
-        slots: [{ index: 98, left: 188 }]
+        slots: [{ bottom: 6, index: 98, left: 188 }]
     },
     {
         height: 498,

@@ -103,8 +103,13 @@ export function getBackgroundColor(nextAvailable: number, level: IChallenge): st
     }
 }
 
-export function getButtonPosition(slice: IMapSlice, index: number): number {
-    return Style.SCALE_UP_AND_DOWN(slice.slots[index].left);
+export function getButtonPosition(slice: IMapSlice, index: number) {
+    const record = slice.slots[index];
+
+    return {
+        bottom: record.bottom ? Style.SCALE_UP_AND_DOWN(record.bottom) : 0,
+        left: Style.SCALE_UP_AND_DOWN(record.left)
+    };
 }
 
 export const getTime = (nextAvailable: number) => {
