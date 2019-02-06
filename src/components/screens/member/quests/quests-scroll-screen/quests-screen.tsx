@@ -117,7 +117,10 @@ class QuestsScreen extends PureComponent<IProps, IState> {
 
         global.setTimeout(() => {
             if (this.flatList) {
-                this.flatList.scrollToOffset({ animated: true, offset: offset - Style.DEVICE_HEIGHT / 2 });
+                this.flatList.scrollToOffset({
+                    animated: true,
+                    offset: Style.SCALE_UP_AND_DOWN(offset) - Style.DEVICE_HEIGHT / 2
+                });
             }
         }, 2000);
     };

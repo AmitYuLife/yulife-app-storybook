@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Component } from "react";
-import { FlatList, View } from "react-native";
+import { FlatList, ListRenderItem, View } from "react-native";
 import { IMapSlice } from "./assets";
 import MapSlice from "./map-slice";
 import { IChallenge } from "./quests-screen";
@@ -22,7 +22,7 @@ class ScrollyQuest extends Component<IProps> {
     };
 
     public render() {
-        const { currentLevel, data, onViewableItemsChanged, setFlatListRef } = this.props;
+        const { data, onViewableItemsChanged, setFlatListRef } = this.props;
 
         return (
             <View style={styles.scrollViewWrapper}>
@@ -31,18 +31,24 @@ class ScrollyQuest extends Component<IProps> {
                     inverted={true}
                     initialNumToRender={10}
                     maxToRenderPerBatch={10}
-                    keyExtractor={(level) => level.id}
+                    updateCellsBatchingPeriod={150}
+                    keyExtractor={this.keyExtractor}
                     showsVerticalScrollIndicator={false}
                     ref={setFlatListRef}
-                    renderItem={({ item }) => (
-                        <MapSlice currentLevel={currentLevel} levels={this.getSlicedLevels(item)} slice={item} />
-                    )}
+                    removeClippedSubviews={true}
+                    renderItem={this.renderItem}
                     onViewableItemsChanged={onViewableItemsChanged}
                     viewabilityConfig={this.viewabilityConfig}
                 />
             </View>
         );
     }
+
+    private keyExtractor = (level: IMapSlice) => level.id;
+
+    private renderItem: ListRenderItem<IMapSlice> = ({ item }) => (
+        <MapSlice currentLevel={this.props.currentLevel} levels={this.getSlicedLevels(item)} slice={item} />
+    );
 
     private getSlicedLevels = ({ slots }: IMapSlice) => {
         const { levels } = this.props;
