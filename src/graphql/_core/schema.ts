@@ -405,6 +405,7 @@ export interface GetAllPurchases_getAllPurchases_reward_redeem_steps {
 export interface GetAllPurchases_getAllPurchases_reward {
   __typename: "Reward";
   name: string | null;
+  code: string | null;
   description: string | null;
   card_image_url: string | null;
   terms_and_conditions_url: string | null;
