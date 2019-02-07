@@ -26,7 +26,7 @@ const images = {
     checkFilled: require("../../../../../assets/today-yucoin/check-filled.png")
 };
 
-const getLabel = (challenge: ChallengeToday, isActive: boolean = false) => {
+function getLabel(challenge: ChallengeToday, isActive: boolean = false) {
     let result = `${challenge.name}`;
 
     if (isActive) {
@@ -36,9 +36,11 @@ const getLabel = (challenge: ChallengeToday, isActive: boolean = false) => {
     }
 
     return result;
-};
+}
 
-const showRating = (challenge: ChallengeToday) => !["streak", "chest", "bonus yucoin"].includes(challenge.name);
+function showRating(challenge: ChallengeToday) {
+    return !["streak", "chest", "bonus yucoin"].includes(challenge.name);
+}
 
 class TodayYucoinScreen extends PureComponent<IProps> {
     public render() {
@@ -83,14 +85,11 @@ class TodayYucoinScreen extends PureComponent<IProps> {
                             </Text>
                         </View>
                         <View style={styles.progressWrapper}>
-                            <Svg width="305" height="15" style={styles.svg}>
-                                <Rect y="4" width="305" height="4" fill="rgb(233,233,233)" />
+                            <Svg width="264" height="15" style={styles.svg}>
+                                <Rect y="4" width="264" height="4" fill="rgb(233,233,233)" />
                                 <Rect
                                     y="4"
-                                    width={String(
-                                        (steps < 2000 ? (steps * 18) / 2000 : 18) +
-                                            (steps * 305) / (exchangeRate.steps * 7)
-                                    )}
+                                    width={String(Math.floor((steps * 260) / (exchangeRate.steps * 6)))}
                                     height="4"
                                     fill="black"
                                 />
@@ -107,14 +106,14 @@ class TodayYucoinScreen extends PureComponent<IProps> {
                             </View>
                         </View>
                         <Pad height={20} />
-                        {showCta && (
+                        {!showCta ? null : (
                             <View style={styles.activeChallengeWrapper}>
                                 <Text style={styles.steps}>quests / you haven’t done any today</Text>
                                 <View style={styles.starsWrapper} />
                                 <Text style={styles.yucoinsEarned}>0</Text>
                             </View>
                         )}
-                        {activeChallenge && (
+                        {!activeChallenge ? null : (
                             <View style={styles.activeChallengeWrapper}>
                                 <Text style={styles.steps}>{getLabel(activeChallenge, true)}</Text>
                                 <Text style={styles.yucoinsEarned}>{activeChallenge.earned}</Text>
@@ -154,7 +153,7 @@ class TodayYucoinScreen extends PureComponent<IProps> {
         }
 
         return null;
-    }
+    };
 }
 
 export default TodayYucoinScreen;

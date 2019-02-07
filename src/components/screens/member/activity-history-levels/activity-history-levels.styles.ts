@@ -1,5 +1,5 @@
+import { Style } from "@styles/index";
 import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Style } from "../../../../styles";
 
 const headerTwoWidth = Style.SCALE_UP_AND_DOWN(56);
 const rowHeight = Style.SCALE_UP_AND_DOWN(23);
@@ -117,13 +117,7 @@ export default StyleSheet.create({
         height: Style.SCALE_UP_AND_DOWN(45),
         justifyContent: "center",
         position: "absolute",
-        right: Platform.OS === "ios"
-            ? Style.DEVICE_WIDTH > 400
-                ? 5
-                : 3
-            : Style.isShortAndroid()
-                ? 4
-                : 2,
+        right: Platform.OS === "ios" ? (Style.DEVICE_WIDTH > 400 ? 5 : 3) : Style.isShortAndroid() ? 4 : 2,
         top: 15,
         width: Style.SCALE_UP_AND_DOWN(45)
     } as ViewStyle,

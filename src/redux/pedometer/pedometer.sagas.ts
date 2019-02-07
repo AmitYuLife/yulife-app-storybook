@@ -5,7 +5,7 @@ import Logger from "../../services/logging/logger";
 import { getToken } from "../../services/storage";
 import { UPDATE_APP_STATE } from "../app/app.actions";
 import { START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
-import { isUserArchivedSelector } from "../user/user.selectors";
+import { isUserArchivedSelector, userFeaturesSelector } from "../user/user.selectors";
 import {
     PEDOMETER_STOP,
     startPedometerUpdates,
@@ -16,6 +16,7 @@ import { stepsChannel } from "./pedometer.channels";
 import { stepsSelector } from "./pedometer.selectors";
 
 function* listenToSteps() {
+    const features = yield select(userFeaturesSelector);
     const momentStartDay = moment().startOf("day");
     const startOfDay = momentStartDay.format();
     const channel = yield call(stepsChannel, startOfDay);
@@ -25,6 +26,10 @@ function* listenToSteps() {
     try {
         const firstQuery = yield call(Pedometer.queryPedometerFromDate, startOfDay, moment().format());
         yield put(updatePedometerSuccessAction(firstQuery));
+
+        if (features.loggingEnabled) {
+            yield spawn(() => Logger.logMixpanelEvent("raw_steps_results_passive", firstQuery));
+        }
     } catch (e) {
         yield spawn(() => Logger.logMixpanelError(e, "pedometer.sagas.@29"));
     }
@@ -33,10 +38,12 @@ function* listenToSteps() {
         try {
             const results = yield take(channel);
             const currentSteps = yield select(stepsSelector);
-            // console.log("PEDOMETER RESULTS: ", results, currentSteps);
+
+            if (features.loggingEnabled) {
+                yield spawn(() => Logger.logMixpanelEvent("raw_steps_results_passive", results));
+            }
 
             if (results.steps !== currentSteps) {
-                yield spawn(() => Logger.logMixpanelEvent("raw_steps_results_passive", results));
                 yield put(updatePedometerSuccessAction(results));
             }
         } catch (e) {
