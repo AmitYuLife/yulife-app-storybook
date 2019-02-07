@@ -3,11 +3,12 @@ import {
     GetCurrentWorld_getCurrentWorld_slots_milestones
 } from "../../../../../graphql/_core/schema";
 
-export const reduceMilestones = (milestones: GetCurrentWorld_getCurrentWorld_slots_milestones[] = []) =>
-    (milestones || []).reduce((sum, milestone) => sum + milestone.coins, 0);
+export function reduceMilestones(milestones: GetCurrentWorld_getCurrentWorld_slots_milestones[] = []) {
+    return (milestones || []).reduce((sum, milestone) => sum + milestone.coins, 0);
+}
 
-export const formatMilestones = (milestones: GetCurrentWorld_getCurrentWorld_slots_milestones[], subtype: string) =>
-    (milestones || []).reduce(
+export function formatMilestones(milestones: GetCurrentWorld_getCurrentWorld_slots_milestones[], subtype: string) {
+    return (milestones || []).reduce(
         (acc, milestone) => {
             const reward = acc.sum + milestone.coins;
 
@@ -21,10 +22,13 @@ export const formatMilestones = (milestones: GetCurrentWorld_getCurrentWorld_slo
         },
         { sum: 0, result: [] }
     ).result;
+}
 
-export const secondsToMinutes = (seconds: number) => Math.floor(seconds / 60);
+export function secondsToMinutes(seconds: number) {
+    return Math.floor(seconds / 60);
+}
 
-export const getSlotDuration = ({ subtype, milestones, timeLimit }: GetCurrentWorld_getCurrentWorld_slots) => {
+export function getSlotDuration({ subtype, milestones, timeLimit }: GetCurrentWorld_getCurrentWorld_slots) {
     switch (subtype) {
         case "meditation":
             if (milestones) {
@@ -48,4 +52,4 @@ export const getSlotDuration = ({ subtype, milestones, timeLimit }: GetCurrentWo
             const defaultTime = secondsToMinutes(timeLimit);
             return `${defaultTime} min${defaultTime > 1 ? "s" : ""}`;
     }
-};
+}

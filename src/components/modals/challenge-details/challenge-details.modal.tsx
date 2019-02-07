@@ -1,5 +1,4 @@
 import * as React from "react";
-import { SFC } from "react";
 import { Image, View } from "react-native";
 import { Button, Close, Text } from "../../atoms";
 import data from "./challenge-details.modal.data";
@@ -18,7 +17,7 @@ interface IOwnProps {
 
 type Props = IOwnProps & MilestoneProps;
 
-const ChallengeDetails: SFC<Props> = ({
+export default function ChallengeDetails({
     challengeType,
     currentWorld = 0,
     duration,
@@ -27,33 +26,33 @@ const ChallengeDetails: SFC<Props> = ({
     onPressCta,
     onPressSetUp = null,
     unit
-}) => (
-    <View style={styles.wrapper}>
-        <Close onPress={onPressClose} />
-        <Image {...getImageAndStyle(challengeType, currentWorld)} />
-        <View style={styles.contentWrapper}>
-            <Text bold={true} style={styles.heading}>
-                {`${challengeType} / ${duration}`}
-            </Text>
-            <Milestones milestones={milestones} unit={unit} />
-        </View>
-        <Button
-            label={data.ctaLabel}
-            onPress={onPressCta}
-            type={Button.Types.PRIMARY}
-            wrapperStyle={styles.ctaButton}
-        />
-        {!onPressSetUp ? (
-            <Text style={styles.footer}>{data.footer}</Text>
-        ) : (
+}: Props) {
+    return (
+        <View style={styles.wrapper}>
+            <Close onPress={onPressClose} />
+            <Image {...getImageAndStyle(challengeType, currentWorld)} />
+            <View style={styles.contentWrapper}>
+                <Text bold={true} style={styles.heading}>
+                    {`${challengeType} / ${duration}`}
+                </Text>
+                <Milestones milestones={milestones} unit={unit} />
+            </View>
             <Button
-                label={data.setUpLabel}
-                onPress={onPressSetUp}
-                type={Button.Types.SECONDARY}
-                wrapperStyle={styles.setUp}
+                label={data.ctaLabel}
+                onPress={onPressCta}
+                type={Button.Types.PRIMARY}
+                wrapperStyle={styles.ctaButton}
             />
-        )}
-    </View>
-);
-
-export default ChallengeDetails;
+            {!onPressSetUp ? (
+                <Text style={styles.footer}>{data.footer}</Text>
+            ) : (
+                <Button
+                    label={data.setUpLabel}
+                    onPress={onPressSetUp}
+                    type={Button.Types.SECONDARY}
+                    wrapperStyle={styles.setUp}
+                />
+            )}
+        </View>
+    );
+}

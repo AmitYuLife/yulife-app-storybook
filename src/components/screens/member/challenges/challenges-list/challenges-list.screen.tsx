@@ -1,25 +1,31 @@
 import { ChallengesList, IChallengesListProps, ILabel, NavBar, TopBar } from "@molecules/index";
 import * as React from "react";
-import { SFC } from "react";
 import { SafeAreaView, View } from "react-native";
 import ChallengesBackground from "../challenges-background/challenges-background";
 import styles from "./challenges-list.screen.styles";
 
 interface IProps extends IChallengesListProps {
-    currentWorld?: number;
+    currentLevel?: number;
     labels: ILabel[];
     name: string;
     onPressLeftIcon: () => void;
     totalCoins: number;
 }
 
-const ChallengesListScreen: SFC<IProps> = ({ challenges, currentWorld, labels, onPressLeftIcon, totalCoins, name }) => {
-    const worldStyle = getWorldStyle(currentWorld);
+export default function ChallengesListScreen({
+    challenges,
+    currentLevel,
+    labels,
+    onPressLeftIcon,
+    totalCoins,
+    name
+}: IProps) {
+    const worldStyle = getWorldStyle(currentLevel);
 
     return (
         <SafeAreaView style={styles.wrapper}>
             <SafeAreaView style={styles.backgroundWrapper}>
-                <ChallengesBackground currentWorld={currentWorld} />
+                <ChallengesBackground currentLevel={currentLevel} />
             </SafeAreaView>
             <View style={styles.challengeSetWrapper}>
                 <ChallengesList challenges={challenges} />
@@ -37,20 +43,18 @@ const ChallengesListScreen: SFC<IProps> = ({ challenges, currentWorld, labels, o
             </View>
         </SafeAreaView>
     );
-};
+}
 
-export default ChallengesListScreen;
-
-const getWorldStyle = (currentWorld: number) => {
-    switch (currentWorld) {
-        case 1:
+function getWorldStyle(currentLevel: number) {
+    switch (true) {
+        case currentLevel > 50:
             return {
                 isTopBarLight: true
             };
-        case 0:
+        case currentLevel > 0:
         default:
             return {
                 isTopBarLight: false
             };
     }
-};
+}

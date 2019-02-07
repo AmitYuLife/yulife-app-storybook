@@ -2,8 +2,8 @@ import * as React from "react";
 import Svg, { G, LinearGradient, Polygon, Polyline, Rect, Stop } from "react-native-svg";
 import styles, { height, platformAdjustments, width } from "./challenges-background.styles";
 
-const ChallengesBackground = ({ currentWorld }: any) => {
-    const worldStyle = getWorldStyle(currentWorld);
+export default function ChallengesBackground({ currentLevel }: any) {
+    const worldStyle = getWorldStyle(currentLevel);
 
     return (
         <Svg style={styles.wrapper} viewBox="0 0 750 1334" width={String(width)} height={String(height)}>
@@ -27,20 +27,18 @@ const ChallengesBackground = ({ currentWorld }: any) => {
             </G>
         </Svg>
     );
-};
+}
 
-export default ChallengesBackground;
-
-const getWorldStyle = (currentWorld: number) => {
-    switch (currentWorld) {
-        case 1:
+function getWorldStyle(currentLevel: number) {
+    switch (true) {
+        case currentLevel > 50:
             return {
                 polygon1: "#1A6090",
                 polygon2: "#023A63",
                 polyline: "#023D73",
                 rect: "url(#SVGID_2_)"
             };
-        case 0:
+        case currentLevel > 0:
         default:
             return {
                 polygon1: "#449997",
@@ -49,4 +47,4 @@ const getWorldStyle = (currentWorld: number) => {
                 rect: "url(#SVGID_1_)"
             };
     }
-};
+}

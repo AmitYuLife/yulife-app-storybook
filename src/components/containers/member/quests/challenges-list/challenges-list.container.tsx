@@ -8,7 +8,7 @@ import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { challengeStartAction, ChallengeStartAction } from "../../../../../redux/levels/levels.actions";
 import { currentLevelSelector } from "../../../../../redux/levels/levels.selectors";
-import { BlurProvider } from "../../../../atoms";
+import { BlurProvider, IToggleBlur } from "../../../../atoms";
 import { ChallengeDetailsModal } from "../../../../modals";
 import { ILabel } from "../../../../molecules/nav-bar/nav-bar";
 import { ChallengesListScreen } from "../../../../screens";
@@ -55,59 +55,62 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
     };
 
     public render() {
+        return <BlurProvider render={this.renderScreen} renderOverlay={this.renderOverlay} />;
+    }
+
+    private renderScreen = ({ showOverlay }: IToggleBlur) => {
         const { currentLevel, labels, level, totalCoins } = this.props;
+        const currentWorld = Math.floor((currentLevel - 1) / 50);
+
+        return (
+            <ChallengesListScreen
+                challenges={level.slots.map((slot) => {
+                    const formattedSlot = {
+                        challengeType: slot.subtype,
+                        duration: getSlotDuration(slot),
+                        id: slot.id,
+                        milestones: formatMilestones(slot.milestones, slot.subtype),
+                        reward: `0-${reduceMilestones(slot.milestones)}`,
+                        unit: slot.unit
+                    };
+                    const isLocked = currentLevel < slot.availableAtLevel;
+
+                    return {
+                        ...formattedSlot,
+                        currentWorld,
+                        isLocked,
+                        minimumLevel: slot.availableAtLevel || 0,
+                        onPress: isLocked ? () => ({}) : this.handleSlotPress(formattedSlot, showOverlay)
+                    };
+                })}
+                currentLevel={currentLevel}
+                labels={labels}
+                name={`level ${level.level}`}
+                onPressLeftIcon={this.onNavPress}
+                totalCoins={totalCoins}
+            />
+        );
+    };
+
+    private renderOverlay = ({ hideOverlay }: IToggleBlur) => {
         const {
             slot: { challengeType, duration, milestones, unit }
         } = this.state;
-        const currentWorld = Math.floor(currentLevel / 50);
+        const currentWorld = Math.floor((this.props.currentLevel - 1) / 50);
 
         return (
-            <BlurProvider
-                render={({ showOverlay }) => (
-                    <ChallengesListScreen
-                        challenges={level.slots.map((slot) => {
-                            const formattedSlot = {
-                                challengeType: slot.subtype,
-                                duration: getSlotDuration(slot),
-                                id: slot.id,
-                                milestones: formatMilestones(slot.milestones, slot.subtype),
-                                reward: `0-${reduceMilestones(slot.milestones)}`,
-                                unit: slot.unit
-                            };
-                            const isLocked = currentLevel < slot.availableAtLevel;
-
-                            return {
-                                ...formattedSlot,
-                                currentWorld,
-                                isLocked,
-                                minimumLevel: slot.availableAtLevel || 0,
-                                onPress: isLocked ? () => ({}) : this.handleSlotPress(formattedSlot, showOverlay)
-                            };
-                        })}
-                        currentWorld={currentWorld}
-                        labels={labels}
-                        name={`level ${level.level}`}
-                        onPressLeftIcon={this.onNavPress}
-                        totalCoins={totalCoins}
-                    />
-                )}
-                renderOverlay={({ hideOverlay }) => (
-                    <ChallengeDetailsModal
-                        challengeType={challengeType}
-                        currentWorld={currentWorld}
-                        duration={duration}
-                        milestones={milestones}
-                        onPressCta={this.handleSubmitChallenge}
-                        onPressClose={() => {
-                            hideOverlay();
-                        }}
-                        onPressSetUp={challengeType === "meditation" ? this.showMeditationSetUpModal : null}
-                        unit={unit}
-                    />
-                )}
+            <ChallengeDetailsModal
+                challengeType={challengeType}
+                currentWorld={currentWorld}
+                duration={duration}
+                milestones={milestones}
+                onPressCta={this.handleSubmitChallenge}
+                onPressClose={hideOverlay}
+                onPressSetUp={challengeType === "meditation" ? this.showMeditationSetUpModal : null}
+                unit={unit}
             />
         );
-    }
+    };
 
     private showMeditationSetUpModal = () => {
         Navigation.showModal({
@@ -116,21 +119,21 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
                 name: MODALS.meditationSetUp
             }
         });
-    }
+    };
 
     private handleSubmitChallenge = async () => {
         const { id: levelSlotId } = this.state.slot;
         this.props.challengeStartAction({ levelSlotId });
         await this.onNavPress();
-    }
+    };
 
     private handleSlotPress = (slot: any, showOverlay: () => void) => () => {
         this.setState({ slot }, showOverlay);
-    }
+    };
 
     private onNavPress = async () => {
         await Navigation.popToRoot(this.props.componentId);
-    }
+    };
 }
 
 const mapStateToProps = (state: IReduxState) => ({
