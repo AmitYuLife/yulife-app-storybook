@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { ActivityIndicator, Image, ScrollView, View } from "react-native";
+import { ActivityIndicator, Image, SafeAreaView, ScrollView, View } from "react-native";
 import { Pad, Text } from "../../../../atoms";
 import { RewardItemContent, TopBar } from "../../../../molecules";
 import styles from "./wegift-confirmed.screen.styles";
@@ -50,7 +50,9 @@ class WegiftRewardsConfirmed extends PureComponent<Props, IState> {
         } = this.props;
         const { hasLoaded } = this.state;
         return (
-            <>
+            <SafeAreaView style={styles.wrapper}>
+                <TopBar leftIcon={TopBar.LeftIcon.BACK} onPressLeftIcon={onPressTopBar} coins={coins} />
+                <Pad height={10} />
                 <ScrollView style={styles.wrapper} contentContainerStyle={styles.contentWrapper}>
                     <View style={styles.imageWrapper}>
                         <Image onLoad={this.handleLoadImage} style={styles.image} source={{ uri: imageUrl }} />
@@ -90,16 +92,13 @@ class WegiftRewardsConfirmed extends PureComponent<Props, IState> {
                     />
                     <Pad height={50} />
                 </ScrollView>
-                <View style={styles.topBarWrapper}>
-                    <TopBar coins={coins} leftIcon={TopBar.LeftIcon.BACK} onPressLeftIcon={onPressTopBar} />
-                </View>
-            </>
+            </SafeAreaView>
         );
     }
 
     private handleLoadImage = () => {
         this.setState({ hasLoaded: true });
-    }
+    };
 }
 
 export default WegiftRewardsConfirmed;

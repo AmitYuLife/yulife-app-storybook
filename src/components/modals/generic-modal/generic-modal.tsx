@@ -1,4 +1,4 @@
-import React, { SFC } from "react";
+import * as React from "react";
 import { View } from "react-native";
 import { Button, Text } from "../../atoms";
 import styles from "./generic-modal.styles";
@@ -12,16 +12,19 @@ interface IProps {
     ctaLabelSecondary?: string;
 }
 
-const GenericModal: SFC<IProps> = ({
+export default function GenericModal({
     heading,
     subheading,
     ctaLabel,
     onPress,
     onPressSecondary,
     ctaLabelSecondary
-}) => (
+}: IProps) {
+    return (
         <View style={styles.wrapper}>
-            <Text style={styles.heading} bold={true}>{heading}</Text>
+            <Text style={styles.heading} bold={true}>
+                {heading}
+            </Text>
             <Text style={styles.subheading}>{subheading}</Text>
             <Button
                 wrapperStyle={styles.buttonWrapper}
@@ -29,17 +32,14 @@ const GenericModal: SFC<IProps> = ({
                 onPress={onPress || (() => null)}
                 type={Button.Types.PRIMARY}
             />
-            {
-                !(onPressSecondary && ctaLabelSecondary) ? null : (
-                    <Button
-                        wrapperStyle={styles.buttonWrapperSecondary}
-                        label={ctaLabelSecondary}
-                        onPress={onPressSecondary || (() => null)}
-                        type={Button.Types.SECONDARY}
-                    />
-                )
-            }
+            {!(onPressSecondary && ctaLabelSecondary) ? null : (
+                <Button
+                    wrapperStyle={styles.buttonWrapperSecondary}
+                    label={ctaLabelSecondary}
+                    onPress={onPressSecondary || (() => null)}
+                    type={Button.Types.SECONDARY}
+                />
+            )}
         </View>
     );
-
-export default GenericModal;
+}

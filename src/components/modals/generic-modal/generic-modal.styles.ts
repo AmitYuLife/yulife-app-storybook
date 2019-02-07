@@ -10,7 +10,8 @@ export default StyleSheet.create({
     } as ViewStyle,
     heading: {
         color: "rgb(51,51,51)",
-        fontSize: Style.SCALE_UP_AND_DOWN(35)
+        fontSize: Style.SCALE_UP_AND_DOWN(35),
+        textAlign: "center"
     } as TextStyle,
     subheading: {
         color: "rgb(96,96,96)",
