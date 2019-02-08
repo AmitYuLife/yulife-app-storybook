@@ -1,8 +1,7 @@
+import { Text } from "@atoms/index";
+import { numberWithCommas, padNum } from "@services/utils";
 import * as React from "react";
-import { SFC } from "react";
 import { StyleSheet, View } from "react-native";
-import { padNum } from "../../../../../services/utils";
-import { Text } from "../../../../atoms";
 import styles from "./leaderboard-item.styles";
 
 export interface ILeaderboardItemProps {
@@ -13,43 +12,47 @@ export interface ILeaderboardItemProps {
     steps: number;
 }
 
-const LeaderboardItem: SFC<ILeaderboardItemProps> = ({ isCurrentUser, rank, name, steps, coins }) => (
-    <View style={styles.wrapper}>
-        <View style={styles.rankWrapper}>
-            <Text
-                style={StyleSheet.flatten([styles.text, styles.textRight, isCurrentUser ? styles.textHighlighted : {}])}
-            >
-                {padNum(rank)}
-            </Text>
+export default function LeaderboardItem({ isCurrentUser, rank, name, steps, coins }: ILeaderboardItemProps) {
+    return (
+        <View style={styles.wrapper}>
+            <View style={styles.rankWrapper}>
+                <Text
+                    style={StyleSheet.flatten([
+                        styles.text,
+                        styles.textRight,
+                        isCurrentUser ? styles.textHighlighted : {}
+                    ])}
+                >
+                    {padNum(rank)}
+                </Text>
+            </View>
+            <View style={styles.nameWrapper}>
+                <Text style={StyleSheet.flatten([styles.text, isCurrentUser ? styles.textHighlighted : {}])}>
+                    {name}
+                </Text>
+            </View>
+            <View style={styles.yucoinWrapper}>
+                <Text
+                    style={StyleSheet.flatten([
+                        styles.textOpenSans,
+                        styles.textRight,
+                        isCurrentUser ? styles.textHighlightedOpenSans : {}
+                    ])}
+                >
+                    {numberWithCommas(coins)}
+                </Text>
+            </View>
+            <View style={styles.stepsWrapper}>
+                <Text
+                    style={StyleSheet.flatten([
+                        styles.textOpenSans,
+                        styles.textRight,
+                        isCurrentUser ? styles.textHighlightedOpenSans : {}
+                    ])}
+                >
+                    {numberWithCommas(steps)}
+                </Text>
+            </View>
         </View>
-        <View style={styles.nameWrapper}>
-            <Text style={StyleSheet.flatten([styles.text, isCurrentUser ? styles.textHighlighted : {}])}>{name}</Text>
-        </View>
-        <View style={styles.yucoinWrapper}>
-            <Text
-                style={StyleSheet.flatten([
-                    styles.text,
-                    styles.textSmall,
-                    styles.textRight,
-                    isCurrentUser ? styles.textHighlighted : {}
-                ])}
-            >
-                {coins}
-            </Text>
-        </View>
-        <View style={styles.stepsWrapper}>
-            <Text
-                style={StyleSheet.flatten([
-                    styles.text,
-                    styles.textSmall,
-                    styles.textRight,
-                    isCurrentUser ? styles.textHighlighted : {}
-                ])}
-            >
-                {steps}
-            </Text>
-        </View>
-    </View>
-);
-
-export default LeaderboardItem;
+    );
+}

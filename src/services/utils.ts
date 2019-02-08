@@ -8,5 +8,10 @@ export const pathOr: PathOr = (obj, key, def, p) => {
     return obj === undefined || p < key.length ? def : obj;
 };
 
-type PadNum = (num: number) => string;
-export const padNum: PadNum = (num) => (`0${num}`).slice(-2);
+export function padNum(x: number) {
+    return `0${x}`.slice(-2);
+}
+
+export function numberWithCommas(x: number) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}

@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -146,6 +145,9 @@
 		BE55738547FE45A793211840 /* libRNIntercom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAEEA81EB5F49559EB99517 /* libRNIntercom.a */; };
 		EBAA9B26F42B473A81BB43A3 /* Bariol-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 63DDB257B8034DF18D1D01CA /* Bariol-Regular.otf */; };
 		F7C6483916D3450C8AD04253 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D735CA38EBDC4E069BDE45DC /* libRNBlur.a */; };
+		626D821749E2410E8A7A0AA6 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C1D49D004D347FA95FF1B84 /* OpenSans-Bold.ttf */; };
+		155BF0EE0BAD46AC976BA3CF /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CEA0C1210E94195AB404DCF /* OpenSans-Light.ttf */; };
+		96ACEAB1A8F2402ABD8CC95C /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C16438F77A940059B8ACB7A /* OpenSans-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -782,6 +784,9 @@
 		E36B50194DAB4CBE82680CE6 /* RNFitKit.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFitKit.xcodeproj; path = "../node_modules/react-native-fitkit/ios/RNFitKit.xcodeproj"; sourceTree = "<group>"; };
 		ECAF7C7DE0AE4E27AF136FB8 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
 		FE7CE842D73D4912A39D1CF6 /* libRNFitKit.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFitKit.a; sourceTree = "<group>"; };
+		7C1D49D004D347FA95FF1B84 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; name = "OpenSans-Bold.ttf"; path = "../assets/fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9CEA0C1210E94195AB404DCF /* OpenSans-Light.ttf */ = {isa = PBXFileReference; name = "OpenSans-Light.ttf"; path = "../assets/fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7C16438F77A940059B8ACB7A /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; name = "OpenSans-Regular.ttf"; path = "../assets/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1371,6 +1376,9 @@
 				9903AC7FFDE9457B9E58F46A /* Bariol-Bold.otf */,
 				58BDFA96FD7F4A21A586A35D /* Bariol-Light.otf */,
 				63DDB257B8034DF18D1D01CA /* Bariol-Regular.otf */,
+				7C1D49D004D347FA95FF1B84 /* OpenSans-Bold.ttf */,
+				9CEA0C1210E94195AB404DCF /* OpenSans-Light.ttf */,
+				7C16438F77A940059B8ACB7A /* OpenSans-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1974,6 +1982,9 @@
 				3A70162E212308CE007BE538 /* MPCheckmark@2x.png in Resources */,
 				3A70163A212308CE007BE538 /* MPLogo@2x.png in Resources */,
 				3A701633212308CE007BE538 /* MPDismissKeyboard@2x.png in Resources */,
+				626D821749E2410E8A7A0AA6 /* OpenSans-Bold.ttf in Resources */,
+				155BF0EE0BAD46AC976BA3CF /* OpenSans-Light.ttf in Resources */,
+				96ACEAB1A8F2402ABD8CC95C /* OpenSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

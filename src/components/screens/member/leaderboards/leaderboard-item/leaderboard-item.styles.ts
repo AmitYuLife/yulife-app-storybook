@@ -24,6 +24,15 @@ export default StyleSheet.create({
         color: Colours.heavyPink,
         fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD
     } as ViewStyle,
+    textHighlightedOpenSans: {
+        color: Colours.heavyPink,
+        fontFamily: Style.FONT_FAMILY_SECONDARY_BOLD
+    } as ViewStyle,
+    textOpenSans: {
+        fontFamily: Style.FONT_FAMILY_SECONDARY,
+        fontSize: Style.SCALE_UP_AND_DOWN(13),
+        lineHeight: Style.SCALE_UP_AND_DOWN(13)
+    } as TextStyle,
     textRight: {
         textAlign: "right"
     } as TextStyle,

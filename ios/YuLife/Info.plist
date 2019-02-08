@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string></string>
+			<string/>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>yulifeapp</string>
@@ -36,7 +36,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationCategoryType</key>
-	<string></string>
+	<string/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -57,7 +57,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Need the ability to access your location movement for step tracking challenges</string>
 	<key>NSMotionUsageDescription</key>
-	<string>We use your pedometer to track how many steps you&apos;ve taken during the day.</string>
+	<string>We use your pedometer to track how many steps you've taken during the day.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Send photos to resolve app issues</string>
 	<key>UIAppFonts</key>
@@ -65,6 +65,9 @@
 		<string>Bariol-Bold.otf</string>
 		<string>Bariol-Light.otf</string>
 		<string>Bariol-Regular.otf</string>
+		<string>OpenSans-Bold.ttf</string>
+		<string>OpenSans-Light.ttf</string>
+		<string>OpenSans-Regular.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

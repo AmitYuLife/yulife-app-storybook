@@ -12,6 +12,7 @@ import {
     // ViewToken,
     ViewStyle
 } from "react-native";
+import { ListRenderItemInfo } from "react-native";
 import { Close, GenericHeading, LeaderboardPosition, Pad } from "../../../atoms";
 import assets from "./assets";
 import LeaderboardHeader from "./leaderboard-header/leaderboard-header";
@@ -65,10 +66,7 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                     <View style={styles.backgroundImageWrapper}>
                         <Image style={styles.backgroundImageBase} source={assets.background} />
                     </View>
-                    {!isTopHidden &&
-                        items
-                            .slice(0, 3)
-                            .map((item, i) => <LeaderboardPosition key={i} name={item.firstName} position={i + 1} />)}
+                    {!isTopHidden && items.slice(0, 3).map(this.renderTop)}
                     <Pad height={275} />
                     <View style={styles.giraffeImageWrapper}>
                         <Image source={assets.giraffe} />
@@ -91,21 +89,9 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                     <FlatList
                         data={items}
                         initialScrollIndex={initialScrollIndex}
-                        keyExtractor={(item) => item.id}
-                        getItemLayout={(_, index) => ({
-                            index,
-                            length: LEADERBOARD_ITEM_HEIGHT,
-                            offset: LEADERBOARD_ITEM_HEIGHT * index
-                        })}
-                        renderItem={({ item, index }) => (
-                            <LeaderboardItem
-                                key={index}
-                                {...item}
-                                isCurrentUser={index === initialScrollIndex}
-                                rank={index + 1}
-                            />
-                        )}
-                        // onViewableItemsChanged={this.handleOnScroll}
+                        keyExtractor={this.keyExtractor}
+                        getItemLayout={this.getItemLayout}
+                        renderItem={this.renderItem}
                         viewabilityConfig={this.viewabilityConfig}
                     />
                 </Animated.View>
@@ -113,27 +99,36 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
         );
     }
 
+    private renderTop = (item: IItem, i: number) => (
+        <LeaderboardPosition key={`top-3-${item.id}`} name={item.firstName} position={i + 1} />
+    );
+
+    private renderItem = ({ item, index }: ListRenderItemInfo<IItem>) => (
+        <LeaderboardItem
+            key={item.id}
+            {...item}
+            isCurrentUser={index === this.props.initialScrollIndex}
+            rank={index + 1}
+        />
+    );
+
+    private keyExtractor = (item: IItem) => item.id;
+
+    private getItemLayout = (_: any, index: number) => ({
+        index,
+        length: LEADERBOARD_ITEM_HEIGHT,
+        offset: LEADERBOARD_ITEM_HEIGHT * index
+    });
+
     private handlePressImage = () => {
         const { isTopHidden } = this.state;
         this.setState({ isScrolling: true, isTopHidden: !isTopHidden }, this.animate(isTopHidden ? 0 : -250));
-    }
-
-    // private handleOnScroll = (info: { viewableItems: ViewToken[]; changed: ViewToken[] }) => {
-    //     const { isScrolling, isTopHidden } = this.state;
-
-    //     if (!isScrolling) {
-    //         if (isTopHidden && info.viewableItems.some(item => item.index === 0)) {
-    //             this.setState({ isScrolling: true, isTopHidden: false }, this.animate(0));
-    //         } else if (!isTopHidden && !info.viewableItems.some(item => item.index === 0)) {
-    //             this.setState({ isScrolling: true, isTopHidden: true }, this.animate(-300));
-    //         }
-    //     }
-    // };
+    };
 
     private animate = (toValue: number) => () => {
         Animated.spring(this.top3Y, {
             toValue,
             useNativeDriver: true
         }).start(() => this.setState({ isScrolling: false }));
-    }
+    };
 }

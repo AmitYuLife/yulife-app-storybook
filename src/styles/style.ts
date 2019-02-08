@@ -56,6 +56,8 @@ const Style = {
     DEVICE_WIDTH: x,
     FONT_FAMILY_PRIMARY: "Bariol-Regular",
     FONT_FAMILY_PRIMARY_BOLD: "Bariol-Bold",
+    FONT_FAMILY_SECONDARY: "OpenSans-Regular",
+    FONT_FAMILY_SECONDARY_BOLD: "OpenSans-Bold",
     PIXEL: scaledPixel,
     PIXEL_RATIO: pixelRatio,
     SCALE_UP_AND_DOWN,
