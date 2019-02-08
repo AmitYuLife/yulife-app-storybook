@@ -28,5 +28,6 @@
             "@ids": ["./e2e/_utils/navigation/ids"]
         }
     },
-    "exclude": ["e2e", "node_modules"]
+    "exclude": ["e2e", "node_modules"],
+    "typeRoots": ["src/declarations.d.ts"]
 }
