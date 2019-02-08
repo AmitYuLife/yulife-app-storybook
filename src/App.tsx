@@ -3,7 +3,13 @@ import handleDeepLink from "@navigation/handleDeepLink";
 import { setLoadingRoot, setNextRoot, setUnauthenticatedRoot } from "@navigation/root";
 import { getToken, migrateOldAppVersionToken } from "@services/storage";
 import { Linking, Platform } from "react-native";
+import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
+import TestFairy from "react-native-testfairy";
+
+if (Config.TESTFAIRY_ENABLED === "yes") {
+    TestFairy.begin(Config.TESTFAIRY_KEY);
+}
 
 // register all the screens
 registerScreens();

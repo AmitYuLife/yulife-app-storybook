@@ -14,6 +14,7 @@ import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
 import com.robinpowered.react.Intercom.IntercomPackage;
 import com.kevinejohn.RNMixpanel.RNMixpanel;
+import com.testfairy.react.TestFairyPackage;
 import com.wwdrew.reactnative.RNDualPedometerPackage;
 import com.yulife.reactnative.fitkit.RNFitKitPackage;
 
@@ -66,7 +67,8 @@ public class MainApplication extends NavigationApplication {
                 new ReactNativePushNotificationPackage(),   // react-native-push-notifications
                 BugsnagReactNative.getPackage(),            // bugsnag-react-native
                 new RNDualPedometerPackage(),               // react-native-dual-pedometer
-                new RNFitKitPackage()                       // react-native-fitkit
+                new RNFitKitPackage(),                      // react-native-fitkit
+                new TestFairyPackage()                      // react-native-testfairy
         );
     }
 }
