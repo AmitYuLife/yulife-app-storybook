@@ -13,45 +13,23 @@ export interface ILeaderboardItemProps {
 }
 
 export default function LeaderboardItem({ isCurrentUser, rank, name, steps, coins }: ILeaderboardItemProps) {
+    const currentUserStyle = isCurrentUser ? styles.textHighlighted : {};
+    const textStyle = StyleSheet.flatten([styles.text, currentUserStyle]);
+    const textStyleRight = StyleSheet.flatten([styles.text, styles.textRight, currentUserStyle]);
+
     return (
         <View style={styles.wrapper}>
             <View style={styles.rankWrapper}>
-                <Text
-                    style={StyleSheet.flatten([
-                        styles.text,
-                        styles.textRight,
-                        isCurrentUser ? styles.textHighlighted : {}
-                    ])}
-                >
-                    {padNum(rank)}
-                </Text>
+                <Text style={textStyleRight}>{padNum(rank)}</Text>
             </View>
             <View style={styles.nameWrapper}>
-                <Text style={StyleSheet.flatten([styles.text, isCurrentUser ? styles.textHighlighted : {}])}>
-                    {name}
-                </Text>
+                <Text style={textStyle}>{name}</Text>
             </View>
             <View style={styles.yucoinWrapper}>
-                <Text
-                    style={StyleSheet.flatten([
-                        styles.textOpenSans,
-                        styles.textRight,
-                        isCurrentUser ? styles.textHighlightedOpenSans : {}
-                    ])}
-                >
-                    {numberWithCommas(coins)}
-                </Text>
+                <Text style={textStyleRight}>{numberWithCommas(coins)}</Text>
             </View>
             <View style={styles.stepsWrapper}>
-                <Text
-                    style={StyleSheet.flatten([
-                        styles.textOpenSans,
-                        styles.textRight,
-                        isCurrentUser ? styles.textHighlightedOpenSans : {}
-                    ])}
-                >
-                    {numberWithCommas(steps)}
-                </Text>
+                <Text style={textStyleRight}>{numberWithCommas(steps)}</Text>
             </View>
         </View>
     );
