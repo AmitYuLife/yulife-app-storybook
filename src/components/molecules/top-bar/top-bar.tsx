@@ -51,7 +51,7 @@ class TopBar extends Component<IProps, IState> {
 
     public shouldComponentUpdate(nextProps: IProps) {
         if (nextProps.timer && !this.interval) {
-            this.interval = setInterval(() => {
+            this.interval = global.setInterval(() => {
                 const duration = moment(nextProps.timer).diff(moment(), "seconds");
 
                 if (duration > 0) {
@@ -64,6 +64,12 @@ class TopBar extends Component<IProps, IState> {
         }
 
         return true;
+    }
+
+    public componentWillUnmount() {
+        if (this.interval) {
+            global.clearInterval(this.interval);
+        }
     }
 
     public renderCenter = () => {
@@ -88,7 +94,7 @@ class TopBar extends Component<IProps, IState> {
         }
 
         return <Logo color={isLight ? "#FFFFFF" : "#E20177"} />;
-    }
+    };
 
     public render() {
         const { coins, isDemo, isLight = false, leftIcon = "Menu", menuLabel, onPressLeftIcon } = this.props;
@@ -150,7 +156,7 @@ class TopBar extends Component<IProps, IState> {
                 </View>
             </View>
         );
-    }
+    };
 }
 
 export default TopBar;
