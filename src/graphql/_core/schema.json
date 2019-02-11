@@ -141,6 +141,18 @@
               }
             },
             {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "getCurrentLevel",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Level",
+                "ofType": null
+              }
+            },
+            {
               "args": [
                 {
                   "defaultValue": null,
@@ -4560,6 +4572,18 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
+              "name": "amount",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
               "name": "relationship",
               "type": {
                 "kind": "SCALAR",
@@ -6627,7 +6651,7 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-              "name": "isGroup",
+              "name": "isWellbeingAccess",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -7251,6 +7275,83 @@
                 "kind": "SCALAR",
                 "name": "Boolean",
                 "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": "",
+                  "name": "beneficiary",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "BeneficiaryInput",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "addBeneficiary",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Beneficiary",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": "",
+                  "name": "beneficiary",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "BeneficiaryInput",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "editBeneficiary",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Beneficiary",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": "",
+                  "name": "id",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "deleteBeneficiary",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Beneficiary",
+                  "ofType": null
+                }
               }
             },
             {
@@ -9455,6 +9556,16 @@
             {
               "defaultValue": null,
               "description": "",
+              "name": "id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": "",
               "name": "beneficiaryFirstName",
               "type": {
                 "kind": "SCALAR",
@@ -9469,16 +9580,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            {
-              "defaultValue": null,
-              "description": "",
-              "name": "percentage",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
                 "ofType": null
               }
             },
@@ -10983,7 +11084,7 @@
             {
               "defaultValue": null,
               "description": "",
-              "name": "group",
+              "name": "wellbeingAccess",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",

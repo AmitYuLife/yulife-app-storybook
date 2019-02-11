@@ -1,4 +1,5 @@
 import {
+    ImageStyle,
     StyleSheet,
     TextStyle,
     ViewStyle
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
     background: {
         height: Style.DEVICE_HEIGHT,
         width: Style.DEVICE_WIDTH
-    } as ViewStyle,
+    } as ImageStyle,
     backgroundWrapper: {
         ...StyleSheet.absoluteFillObject
     } as ViewStyle,

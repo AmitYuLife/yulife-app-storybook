@@ -5,7 +5,10 @@ import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../graphql/_core/schema";
-import GetCurrentWorld, { getCurrentWorldGql } from "../../../../graphql/challenges/getCurrentWorld.gql";
+import GetCurrentWorld, {
+    getCurrentWorldGql,
+    GetCurrentWorldResultType
+} from "../../../../graphql/challenges/getCurrentWorld.gql";
 import { IMainTabsProps } from "../../../../navigation/root";
 import { MODALS, ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
@@ -141,13 +144,33 @@ class QuestsContainer extends PureComponent<Props, IState> {
     }
 
     public render() {
+        const { currentLevel, labels, offline, onLeftMenuPress, totalCoins } = this.props;
+
+        if (offline) {
+            return (
+                <QuestsScreenOffline
+                    currentLevel={currentLevel}
+                    totalCoins={totalCoins}
+                    labels={labels}
+                    onLeftMenuPress={onLeftMenuPress}
+                />
+            );
+        }
+
+        return (
+            <GetCurrentWorld query={getCurrentWorldGql} fetchPolicy="network-only">
+                {this.renderCurrentWorld}
+            </GetCurrentWorld>
+        );
+    }
+
+    private renderCurrentWorld = ({ loading, data, refetch }: GetCurrentWorldResultType) => {
         const { showUnity } = this.state;
         const {
             activeLevel: { coins, endDateTime, level, milestones, rating, score, status, subtype, timeUp, unit },
             componentId,
             currentLevel,
             labels,
-            offline,
             onLeftMenuPress,
             totalCoins
         } = this.props;
@@ -160,89 +183,78 @@ class QuestsContainer extends PureComponent<Props, IState> {
             totalCoins
         };
 
-        return (
-            <GetCurrentWorld query={getCurrentWorldGql} fetchPolicy="network-only">
-                {({ loading, data, refetch }) => {
-                    if (offline) {
-                        return <QuestsScreenOffline {...props} />;
-                    }
+        if (status) {
+            return status === "success" ? (
+                <ChallengeSuccessScreen
+                    level={level}
+                    onPressCta={this.handleResetChallenge(refetch, true)}
+                    rating={rating}
+                    reward={coins}
+                    score={score}
+                    unit={unit as any}
+                />
+            ) : (
+                <ChallengeFailedScreen level={level} onPress={this.handleResetChallenge(refetch)} />
+            );
+        }
 
-                    if (status) {
-                        return status === "success" ? (
-                            <ChallengeSuccessScreen
-                                level={level}
-                                onPressCta={this.handleResetChallenge(refetch, true)}
-                                rating={rating}
-                                reward={coins}
-                                score={score}
-                                unit={unit as any}
-                            />
-                        ) : (
-                            <ChallengeFailedScreen level={level} onPress={this.handleResetChallenge(refetch)} />
-                        );
-                    }
+        if (timeUp) {
+            return <ChallengeCompleteModal onCtaPress={this.props.challengeEndAction} />;
+        }
 
-                    if (timeUp) {
-                        return <ChallengeCompleteModal onCtaPress={this.props.challengeEndAction} />;
-                    }
+        if (subtype) {
+            const progressTargets = milestones.map(
+                (item) => item.target[subtype === "meditation" ? "meditation" : "steps"]
+            );
 
-                    if (subtype) {
-                        const progressTargets = milestones.map(
-                            (item) => item.target[subtype === "meditation" ? "meditation" : "steps"]
-                        );
-
-                        return (
-                            <BlurProvider
-                                render={({ showOverlay }) => (
-                                    <ChallengeProgressScreen
-                                        {...props}
-                                        challengeType={subtype as any}
-                                        currentWorld={Math.floor(currentLevel / 50)}
-                                        onCalmPress={openCalm}
-                                        onDismissPress={showOverlay}
-                                        onHeadspacePress={openHeadspace}
-                                        endDateTime={endDateTime}
-                                        userProgress={score}
-                                        progressTargets={progressTargets}
-                                        unit={unit as any}
-                                    />
-                                )}
-                                renderOverlay={({ hideOverlay }) => (
-                                    <GenericModal
-                                        onPress={hideOverlay}
-                                        heading="exit challenge?"
-                                        subheading="You won’t be able to come back to it."
-                                        ctaLabel="no way!"
-                                        onPressSecondary={this.props.challengeCancelAction}
-                                        ctaLabelSecondary="exit"
-                                    />
-                                )}
-                                type="dark"
-                            />
-                        );
-                    }
-
-                    if (loading) {
-                        return <Loading />;
-                    }
-
-                    return true ? (
-                        <QuestsScrollScreen
+            return (
+                <BlurProvider
+                    render={({ showOverlay }) => (
+                        <ChallengeProgressScreen
                             {...props}
-                            data={this.formatData(data.getCurrentWorld)}
-                            hideUnity={showUnity ? this.hideUnity : null}
+                            challengeType={subtype as any}
+                            currentWorld={Math.floor((currentLevel - 1) / 50)}
+                            onCalmPress={openCalm}
+                            onDismissPress={showOverlay}
+                            onHeadspacePress={openHeadspace}
+                            endDateTime={endDateTime}
+                            userProgress={score}
+                            progressTargets={progressTargets}
+                            unit={unit as any}
                         />
-                    ) : (
-                        <QuestsScreen {...props} data={this.formatData(data.getCurrentWorld)} />
-                    );
-                }}
-            </GetCurrentWorld>
+                    )}
+                    renderOverlay={({ hideOverlay }) => (
+                        <GenericModal
+                            onPress={hideOverlay}
+                            heading="exit challenge?"
+                            subheading="You won’t be able to come back to it."
+                            ctaLabel="no way!"
+                            onPressSecondary={this.props.challengeCancelAction}
+                            ctaLabelSecondary="exit"
+                        />
+                    )}
+                />
+            );
+        }
+
+        if (loading) {
+            return <Loading />;
+        }
+
+        return true ? (
+            <QuestsScrollScreen
+                {...props}
+                data={this.formatData(data.getCurrentWorld)}
+                hideUnity={showUnity ? this.hideUnity : null}
+            />
+        ) : (
+            <QuestsScreen {...props} data={this.formatData(data.getCurrentWorld)} />
         );
-    }
+    };
 
     private hideUnity = () => {
         this.setState({ showUnity: false });
-    }
+    };
 
     private handleResetChallenge = (refetch: () => void, showStreakComplete?: boolean) => () => {
         if (showStreakComplete) {
@@ -250,19 +262,19 @@ class QuestsContainer extends PureComponent<Props, IState> {
         }
         refetch();
         this.props.challengeResetAction();
-    }
+    };
 
     private dismissChestModal = () => {
         Navigation.dismissModal(MODALS.chest);
-    }
+    };
 
     private dismissChallengeUnavailableModal = () => {
         Navigation.dismissModal(MODALS.challengeUnavailable);
-    }
+    };
 
     private dismissLevelUnavailableModal = () => {
         Navigation.dismissModal(MODALS.levelUnavailable);
-    }
+    };
 
     private showChestModal = (level: GetCurrentWorld_getCurrentWorld, isNext: boolean) => {
         const passProps = {
@@ -285,7 +297,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                 passProps
             }
         });
-    }
+    };
 
     private showChallengeUnavailableModal = (nextAvailableAt: string) => {
         const passProps = {
@@ -302,7 +314,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                 passProps
             }
         });
-    }
+    };
 
     private showLevelUnavailableModal = (level: number) => {
         const passProps = {
@@ -319,7 +331,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                 passProps
             }
         });
-    }
+    };
 
     private showLevelCompleteModal = (level: GetCurrentWorld_getCurrentWorld) => {
         const { componentId, labels } = this.props;
@@ -344,7 +356,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                 passProps
             }
         });
-    }
+    };
 
     private goToChallengesList = (level: GetCurrentWorld_getCurrentWorld) => {
         const { componentId, labels } = this.props;
@@ -359,7 +371,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                 }
             }
         });
-    }
+    };
 
     private formatData = (data: GetCurrentWorld_getCurrentWorld[] = []) => {
         const { challengesStatus, currentLevel, features, nextLevelAvailableAt: nextAvailableAt } = this.props;
@@ -414,7 +426,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                 }
             };
         });
-    }
+    };
 }
 
 const mapStateToProps = (state: IReduxState) => ({

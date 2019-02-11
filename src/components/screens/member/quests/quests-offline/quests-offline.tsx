@@ -1,17 +1,14 @@
-import React, { SFC } from "react";
+import * as React from "react";
 import { Image, SafeAreaView, View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { Pad, Text } from "../../../../atoms";
 import { NavBar, TopBar } from "../../../../molecules";
 import styles from "./quests-offline.styles";
 
-const QuestsScreenOffline: SFC<IConnectedScreenProps & { currentLevel: number }> = ({
-    currentLevel,
-    totalCoins,
-    labels,
-    onLeftMenuPress
-}) => {
-    const worldStyle = getWorldStyle(currentLevel);
+type Props = IConnectedScreenProps & { currentLevel: number };
+
+export default function QuestsScreenOffline({ currentLevel, totalCoins, labels, onLeftMenuPress }: Props) {
+    const worldStyle = getStyle(currentLevel);
 
     return (
         <SafeAreaView style={styles.wrapper}>
@@ -33,21 +30,18 @@ const QuestsScreenOffline: SFC<IConnectedScreenProps & { currentLevel: number }>
             </View>
         </SafeAreaView>
     );
-};
+}
 
-export default QuestsScreenOffline;
-
-const getWorldStyle = (currentLevel: number) => {
-    const currentWorld = Math.floor(currentLevel / 50);
-    switch (currentWorld) {
-        case 1:
+function getStyle(currentLevel: number) {
+    switch (true) {
+        case currentLevel > 50:
             return {
                 image: require("../../../../../../assets/quests-offline/ocean.png")
             };
-        case 0:
+        case currentLevel > 0:
         default:
             return {
                 image: require("../../../../../../assets/quests-offline/forest.png")
             };
     }
-};
+}
