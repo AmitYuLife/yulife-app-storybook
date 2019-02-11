@@ -17,12 +17,12 @@ export default StyleSheet.create({
         width: Style.SCALE_UP_AND_DOWN(80)
     } as ViewStyle,
     text: {
-        fontFamily: Style.FONT_FAMILY_SECONDARY,
+        fontFamily: Style.FONT_FAMILY_PRIMARY,
         fontSize: Style.SCALE_UP_AND_DOWN(14)
     } as TextStyle,
     textHighlighted: {
         color: Colours.heavyPink,
-        fontFamily: Style.FONT_FAMILY_SECONDARY_BOLD
+        fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD
     } as ViewStyle,
     textRight: {
         textAlign: "right"

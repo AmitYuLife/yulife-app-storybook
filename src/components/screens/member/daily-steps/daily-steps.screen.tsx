@@ -1,6 +1,7 @@
+import { Style } from "@styles/index";
 import * as React from "react";
-import { SFC } from "react";
 import { Platform, TouchableOpacity, View } from "react-native";
+import { isIphoneX } from "react-native-iphone-x-helper";
 import { IConnectedScreenProps } from "../../../../typings";
 import { CentredScreen, Pad } from "../../../atoms";
 import { COLOURS, NavBar, Streak, TopBar } from "../../../molecules";
@@ -30,7 +31,7 @@ interface IProps extends IConnectedScreenProps {
 
 type Props = IProps & IDailyStepsOnlineProps & IDailyStepsOfflineProps;
 
-const DailyStepsScreen: SFC<Props> = ({
+export default function DailyStepsScreen({
     coinsToday,
     currentStreak,
     currentWorld = 0,
@@ -51,18 +52,16 @@ const DailyStepsScreen: SFC<Props> = ({
     onStreakPress,
     steps,
     totalCoins
-}) => {
-    const { centredScreen, hasWhiteText, isTopBarLight, navBar, streakType } = getStyle(currentWorld) as any;
+}: Props) {
+    const { centredScreen, isLight, isTopBarLight, navBar, streakType } = getStyle(currentWorld) as any;
 
     return (
         <CentredScreen
-            footerImage={
-                !isOnline || !hasPermission ? centredScreen.offline.image : centredScreen.online.image
-            }
+            footerImage={!isOnline || !hasPermission ? centredScreen.offline.image : centredScreen.online.image}
             style={isOnline ? centredScreen.online.style : centredScreen.offline.style}
         >
             <TopBar coins={totalCoins} isLight={isTopBarLight} onPressLeftIcon={onLeftMenuPress} />
-            <Pad height={Platform.OS === "ios" ? 60 : 80} />
+            <Pad height={getPadHeight(displayStreak)} />
             <TouchableOpacity onPress={onCoinPress} activeOpacity={1}>
                 <YuCoin isLoading={isLoading} isGrayScale={!hasPermission || (!isOnline && !isLoading)} />
             </TouchableOpacity>
@@ -73,13 +72,13 @@ const DailyStepsScreen: SFC<Props> = ({
             ) : !hasPermission ? (
                 <DailyStepsFitKitAuthorise onPress={onAuthoriseFitKitPress} />
             ) : !isOnline ? (
-                <DailyStepsOffline hasWhiteText={hasWhiteText} lastUpdate={lastUpdate} />
+                <DailyStepsOffline isLight={isLight} lastUpdate={lastUpdate} />
             ) : (
                 <DailyStepsOnline
                     coinsToday={coinsToday}
-                    hasWhiteText={hasWhiteText}
+                    isLight={isLight}
                     steps={steps}
-                    onCtaPress={onCtaPress}
+                    onCtaPress={displayStreak ? null : onCtaPress}
                 />
             )}
             {displayStreak && (
@@ -101,11 +100,9 @@ const DailyStepsScreen: SFC<Props> = ({
             </View>
         </CentredScreen>
     );
-};
+}
 
-export default DailyStepsScreen;
-
-const getStyle = (currentWorld: number) => {
+function getStyle(currentWorld: number) {
     switch (currentWorld) {
         case 1:
             return {
@@ -113,7 +110,7 @@ const getStyle = (currentWorld: number) => {
                     offline: { image: "gray_ocean", style: { backgroundColor: "#747474" } },
                     online: { image: "ocean", style: { backgroundColor: "rgb(1,62,116)" } }
                 },
-                hasWhiteText: true,
+                isLight: true,
                 isTopBarLight: true,
                 navBar: {
                     offline: COLOURS.LIGHT,
@@ -128,7 +125,7 @@ const getStyle = (currentWorld: number) => {
                     offline: { image: "gray_forest", style: { backgroundColor: "#FFF" } },
                     online: { image: "large_forest", style: { backgroundColor: "#FFF" } }
                 },
-                hasWhiteText: false,
+                isLight: false,
                 isTopBarLight: false,
                 navBar: {
                     offline: COLOURS.DARKER,
@@ -137,4 +134,17 @@ const getStyle = (currentWorld: number) => {
                 streakType: "forest"
             };
     }
-};
+}
+
+function getPadHeight(displayStreak: boolean) {
+    if (isIphoneX()) {
+        return displayStreak ? 120 : 100;
+    }
+    if (Platform.OS === "ios") {
+        return displayStreak ? 80 : 60;
+    }
+    if (Style.isShortToMediumAndroid()) {
+        return displayStreak ? 60 : 40;
+    }
+    return displayStreak ? 100 : 80;
+}

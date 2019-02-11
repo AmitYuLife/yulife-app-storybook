@@ -1,4 +1,5 @@
 import { SyncAction } from "../_core/types";
+import { GET_USER_SUCCESS } from "../user/user.actions";
 import { UPDATE_NOTIFICATION_SETTINGS, UpdateNofiticationPayload } from "./notifications.actions";
 import { IYulifeNotification } from "./notifications.selectors";
 
@@ -47,6 +48,13 @@ export const initialState: INotificationsStore = {
 
 const notificationsReducer = (state: INotificationsStore = initialState, action: SyncAction): INotificationsStore => {
     switch (action.type) {
+        case GET_USER_SUCCESS:
+            // there was definied already a reducer with different structure. this is to update it.
+            // TODO: delete after a while. HO HO HO!
+            if (state.dailyChallengeReminder && state.dailyChallengeReminder.id !== "99999902") {
+                return initialState;
+            }
+            return state;
         case UPDATE_NOTIFICATION_SETTINGS:
             return updateNotificationSettings(state, action.payload);
 

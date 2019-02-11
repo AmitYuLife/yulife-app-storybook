@@ -739,7 +739,7 @@ ShallowWrapper {
           onPressLeftIcon={[MockFunction]}
         />,
         <Pad
-          height={60}
+          height={80}
         />,
         <TouchableOpacity
           activeOpacity={1}
@@ -752,8 +752,8 @@ ShallowWrapper {
         </TouchableOpacity>,
         <DailyStepsOnline
           coinsToday={0}
-          hasWhiteText={false}
-          onCtaPress={[MockFunction]}
+          isLight={false}
+          onCtaPress={null}
           steps={0}
         />,
         <Streak
@@ -804,7 +804,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 60,
+          "height": 80,
         },
         "ref": null,
         "rendered": null,
@@ -843,8 +843,8 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "coinsToday": 0,
-          "hasWhiteText": false,
-          "onCtaPress": [MockFunction],
+          "isLight": false,
+          "onCtaPress": null,
           "steps": 0,
         },
         "ref": null,
@@ -915,7 +915,7 @@ ShallowWrapper {
             onPressLeftIcon={[MockFunction]}
           />,
           <Pad
-            height={60}
+            height={80}
           />,
           <TouchableOpacity
             activeOpacity={1}
@@ -928,8 +928,8 @@ ShallowWrapper {
           </TouchableOpacity>,
           <DailyStepsOnline
             coinsToday={0}
-            hasWhiteText={false}
-            onCtaPress={[MockFunction]}
+            isLight={false}
+            onCtaPress={null}
             steps={0}
           />,
           <Streak
@@ -980,7 +980,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 60,
+            "height": 80,
           },
           "ref": null,
           "rendered": null,
@@ -1019,8 +1019,8 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "coinsToday": 0,
-            "hasWhiteText": false,
-            "onCtaPress": [MockFunction],
+            "isLight": false,
+            "onCtaPress": null,
             "steps": 0,
           },
           "ref": null,
@@ -1156,7 +1156,7 @@ ShallowWrapper {
         </TouchableOpacity>,
         <DailyStepsOnline
           coinsToday={0}
-          hasWhiteText={false}
+          isLight={false}
           onCtaPress={[MockFunction]}
           steps={0}
         />,
@@ -1241,7 +1241,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "coinsToday": 0,
-          "hasWhiteText": false,
+          "isLight": false,
           "onCtaPress": [MockFunction],
           "steps": 0,
         },
@@ -1312,7 +1312,7 @@ ShallowWrapper {
           </TouchableOpacity>,
           <DailyStepsOnline
             coinsToday={0}
-            hasWhiteText={false}
+            isLight={false}
             onCtaPress={[MockFunction]}
             steps={0}
           />,
@@ -1397,7 +1397,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "coinsToday": 0,
-            "hasWhiteText": false,
+            "isLight": false,
             "onCtaPress": [MockFunction],
             "steps": 0,
           },
@@ -1863,7 +1863,7 @@ ShallowWrapper {
           />
         </TouchableOpacity>,
         <DailyStepsOffline
-          hasWhiteText={false}
+          isLight={false}
           lastUpdate="thing"
         />,
         false,
@@ -1946,7 +1946,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "hasWhiteText": false,
+          "isLight": false,
           "lastUpdate": "thing",
         },
         "ref": null,
@@ -2015,7 +2015,7 @@ ShallowWrapper {
             />
           </TouchableOpacity>,
           <DailyStepsOffline
-            hasWhiteText={false}
+            isLight={false}
             lastUpdate="thing"
           />,
           false,
@@ -2098,7 +2098,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "hasWhiteText": false,
+            "isLight": false,
             "lastUpdate": "thing",
           },
           "ref": null,
