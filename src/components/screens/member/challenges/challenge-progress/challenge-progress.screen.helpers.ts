@@ -1,3 +1,4 @@
+import { IColours } from "@molecules/index";
 import { TopBarTypes } from "@molecules/top-bar/top-bar";
 import { StyleSheet } from "react-native";
 import { Style } from "../../../../../styles";
@@ -10,6 +11,7 @@ interface IStyleSet {
     backgroundColour: string;
     instructionTextColour?: string;
     topBarType: TopBarTypes;
+    navBarType: IColours;
     progressBarType: ProgressBarTypes;
     source: any;
     style: any;
@@ -18,6 +20,7 @@ interface IStyleSet {
 const BRISK_WALK: IStyleSet[] = [
     {
         backgroundColour: "rgb(255,255,255)",
+        navBarType: "light",
         progressBarType: "black",
         source: assets.squirrel,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(450) }]),
@@ -25,6 +28,7 @@ const BRISK_WALK: IStyleSet[] = [
     },
     {
         backgroundColour: "rgb(0,81,143)",
+        navBarType: "light",
         progressBarType: "ocean-white",
         source: assets.otter,
         style: StyleSheet.flatten([styles.backgroundImage, { height: "100%" }]),
@@ -32,6 +36,7 @@ const BRISK_WALK: IStyleSet[] = [
     },
     {
         backgroundColour: "#fffbcd",
+        navBarType: "desert",
         progressBarType: "desert-brown",
         source: assets.meerkat,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
@@ -41,6 +46,7 @@ const BRISK_WALK: IStyleSet[] = [
 const SHORT_STROLL: IStyleSet[] = [
     {
         backgroundColour: "rgb(255,255,255)",
+        navBarType: "light",
         progressBarType: "black",
         source: assets.elephant,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(450) }]),
@@ -48,6 +54,7 @@ const SHORT_STROLL: IStyleSet[] = [
     },
     {
         backgroundColour: "rgb(255,255,255)",
+        navBarType: "light",
         progressBarType: "black",
         source: assets.tortoise,
         style: StyleSheet.flatten([styles.backgroundImage, { height: "100%" }]),
@@ -55,6 +62,7 @@ const SHORT_STROLL: IStyleSet[] = [
     },
     {
         backgroundColour: "#fffbcd",
+        navBarType: "desert",
         progressBarType: "desert-brown",
         source: assets.bighornSheep,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
@@ -64,6 +72,7 @@ const SHORT_STROLL: IStyleSet[] = [
 const LONG_WALK: IStyleSet[] = [
     {
         backgroundColour: "rgb(255,255,255)",
+        navBarType: "light",
         progressBarType: "black",
         source: assets.ostrich,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
@@ -71,6 +80,7 @@ const LONG_WALK: IStyleSet[] = [
     },
     {
         backgroundColour: "rgb(124,215,237)",
+        navBarType: "light",
         progressBarType: "ocean-black",
         source: assets.whale,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(650) }]),
@@ -78,6 +88,7 @@ const LONG_WALK: IStyleSet[] = [
     },
     {
         backgroundColour: "#425f81",
+        navBarType: "desert",
         progressBarType: "ocean-white",
         source: assets.desertFox,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
@@ -88,6 +99,7 @@ const MEDITATION: IStyleSet[] = [
     {
         backgroundColour: "rgb(255,255,255)",
         instructionTextColour: "rgb(136,136,136)",
+        navBarType: "light",
         progressBarType: "black",
         source: assets.bird,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
@@ -96,6 +108,7 @@ const MEDITATION: IStyleSet[] = [
     {
         backgroundColour: "rgb(255,255,255)",
         instructionTextColour: "rgb(136,136,136)",
+        navBarType: "light",
         progressBarType: "black",
         source: assets.dolphin,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(650) }]),
@@ -104,6 +117,7 @@ const MEDITATION: IStyleSet[] = [
     {
         backgroundColour: "#aedaec",
         instructionTextColour: "rgb(80,142,205)",
+        navBarType: "desert",
         progressBarType: "ocean-black",
         source: assets.camel,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
@@ -125,6 +139,7 @@ export function getWorldStyle(challengeType: ChallengeType, currentWorld = 0): I
         default:
             return {
                 backgroundColour: "rgb(255,255,255)",
+                navBarType: "light",
                 progressBarType: "black",
                 source: null,
                 style: StyleSheet.flatten([styles.backgroundImage, { height: "auto" }]),

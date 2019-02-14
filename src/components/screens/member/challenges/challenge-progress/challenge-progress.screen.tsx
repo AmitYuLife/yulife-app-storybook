@@ -34,10 +34,15 @@ export default function ChallengeProgressScreen({
     userProgress,
     totalCoins
 }: IProps) {
-    const { backgroundColour, instructionTextColour, progressBarType, source, style, topBarType } = getWorldStyle(
-        challengeType,
-        currentWorld
-    );
+    const {
+        backgroundColour,
+        instructionTextColour,
+        navBarType,
+        progressBarType,
+        source,
+        style,
+        topBarType
+    } = getWorldStyle(challengeType, currentWorld);
 
     return (
         <SafeAreaView style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}>
@@ -80,7 +85,13 @@ export default function ChallengeProgressScreen({
                 </View>
             )}
             <View style={styles.navBarWrapper}>
-                <NavBar activeIndex={1} hasNotification={false} onDismissPress={onDismissPress} labels={labels} />
+                <NavBar
+                    colour={navBarType}
+                    activeIndex={1}
+                    hasNotification={false}
+                    onDismissPress={onDismissPress}
+                    labels={labels}
+                />
             </View>
         </SafeAreaView>
     );

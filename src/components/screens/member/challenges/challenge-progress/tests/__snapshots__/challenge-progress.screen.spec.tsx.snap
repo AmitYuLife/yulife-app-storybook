@@ -93,7 +93,7 @@ ShallowWrapper {
         >
           <NavBar
             activeIndex={1}
-            colour="darker"
+            colour="light"
             hasNotification={false}
             labels={Array []}
             onDismissPress={[MockFunction]}
@@ -195,7 +195,7 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={1}
-            colour="darker"
+            colour="light"
             hasNotification={false}
             labels={Array []}
             onDismissPress={[MockFunction]}
@@ -214,7 +214,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 1,
-            "colour": "darker",
+            "colour": "light",
             "hasNotification": false,
             "labels": Array [],
             "onDismissPress": [MockFunction],
@@ -294,7 +294,7 @@ ShallowWrapper {
           >
             <NavBar
               activeIndex={1}
-              colour="darker"
+              colour="light"
               hasNotification={false}
               labels={Array []}
               onDismissPress={[MockFunction]}
@@ -396,7 +396,7 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={1}
-              colour="darker"
+              colour="light"
               hasNotification={false}
               labels={Array []}
               onDismissPress={[MockFunction]}
@@ -415,7 +415,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 1,
-              "colour": "darker",
+              "colour": "light",
               "hasNotification": false,
               "labels": Array [],
               "onDismissPress": [MockFunction],

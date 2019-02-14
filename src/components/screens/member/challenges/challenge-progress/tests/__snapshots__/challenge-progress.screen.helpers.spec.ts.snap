@@ -3,6 +3,7 @@
 exports[`getWorldStyle should return null for an undefined input 1`] = `
 Object {
   "backgroundColour": "rgb(255,255,255)",
+  "navBarType": "light",
   "progressBarType": "black",
   "source": Object {
     "testUri": "../../../assets/challenge-progress/squirrel.png",
@@ -22,6 +23,7 @@ Object {
 exports[`getWorldStyle should return null for an undefined input 2`] = `
 Object {
   "backgroundColour": "rgb(255,255,255)",
+  "navBarType": "light",
   "progressBarType": "black",
   "source": Object {
     "testUri": "../../../assets/challenge-progress/elephant.png",
@@ -42,6 +44,7 @@ exports[`getWorldStyle should return null for an undefined input 3`] = `
 Object {
   "backgroundColour": "rgb(255,255,255)",
   "instructionTextColour": "rgb(136,136,136)",
+  "navBarType": "light",
   "progressBarType": "black",
   "source": Object {
     "testUri": "../../../assets/challenge-progress/bird.png",
@@ -61,6 +64,7 @@ Object {
 exports[`getWorldStyle should return null for an undefined input 4`] = `
 Object {
   "backgroundColour": "rgb(255,255,255)",
+  "navBarType": "light",
   "progressBarType": "black",
   "source": Object {
     "testUri": "../../../assets/challenge-progress/ostrich.png",
