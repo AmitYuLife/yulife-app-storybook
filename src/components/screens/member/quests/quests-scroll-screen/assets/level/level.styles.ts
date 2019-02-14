@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
     bubble: {
         alignItems: "center",
         borderRadius: CIRCLE_SIZE,
-        bottom: 0,
         height: CIRCLE_SIZE,
         justifyContent: "center",
         marginLeft: -CIRCLE_SIZE / 2,
@@ -16,8 +15,8 @@ const styles = StyleSheet.create({
     },
     text: {
         color: "#ffffff",
-        fontSize: Style.SCALE_UP_AND_DOWN(22),
-        lineHeight: Style.SCALE_UP_AND_DOWN(22)
+        fontSize: Style.SCALE_UP_AND_DOWN(19),
+        lineHeight: Style.SCALE_UP_AND_DOWN(19)
     }
 });
 

@@ -3,7 +3,7 @@ import { SFC } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { Style } from "../../../../../styles";
 import { IChallenge } from "../quests-screen/quests-screen";
-import { IMapSlice, LevelBubble } from "./assets";
+import { IMapSlice, LevelBubble, MAP_SLICE_HEIGHT } from "./assets";
 
 interface IProps {
     currentLevel: number;
@@ -13,10 +13,10 @@ interface IProps {
 }
 
 const MapSlice: SFC<IProps> = ({ currentLevel, levels, slice }) => (
-    <View style={{ height: Style.SCALE_UP_AND_DOWN(slice.height) }}>
+    <View style={{ height: MAP_SLICE_HEIGHT, overflow: "visible" }}>
         <Image
             source={slice.image}
-            style={StyleSheet.flatten([styles.image, { height: Style.SCALE_UP_AND_DOWN(slice.height) }]) as any}
+            style={StyleSheet.flatten([styles.image, { height: MAP_SLICE_HEIGHT }]) as any}
         />
         <View style={styles.levelButtonWrapper}>
             {levels.map((level, index) => (

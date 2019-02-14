@@ -17,8 +17,9 @@ interface IProps {
 
 interface IState {
     style: {
-        bottom: number;
+        bottom?: number;
         left: number;
+        top?: number;
     };
     pulseValue: number;
 }

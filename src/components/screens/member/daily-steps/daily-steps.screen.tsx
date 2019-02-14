@@ -53,17 +53,23 @@ export default function DailyStepsScreen({
     steps,
     totalCoins
 }: Props) {
-    const { centredScreen, isLight, isTopBarLight, navBar, streakType } = getStyle(currentWorld) as any;
+    const { centredScreen, hasWhiteGlow, isLight, topBarType, navBar, streakType, textStyle } = getStyle(
+        currentWorld
+    ) as any;
 
     return (
         <CentredScreen
             footerImage={!isOnline || !hasPermission ? centredScreen.offline.image : centredScreen.online.image}
             style={isOnline ? centredScreen.online.style : centredScreen.offline.style}
         >
-            <TopBar coins={totalCoins} isLight={isTopBarLight} onPressLeftIcon={onLeftMenuPress} />
+            <TopBar coins={totalCoins} type={topBarType} onPressLeftIcon={onLeftMenuPress} />
             <Pad height={getPadHeight(displayStreak)} />
             <TouchableOpacity onPress={onCoinPress} activeOpacity={1}>
-                <YuCoin isLoading={isLoading} isGrayScale={!hasPermission || (!isOnline && !isLoading)} />
+                <YuCoin
+                    hasWhiteGlow={hasWhiteGlow}
+                    isLoading={isLoading}
+                    isGrayScale={!hasPermission || (!isOnline && !isLoading)}
+                />
             </TouchableOpacity>
             {isLoading ? (
                 <DailyStepsLoading />
@@ -76,14 +82,15 @@ export default function DailyStepsScreen({
             ) : (
                 <DailyStepsOnline
                     coinsToday={coinsToday}
-                    isLight={isLight}
                     steps={steps}
                     onCtaPress={displayStreak ? null : onCtaPress}
+                    textStyle={textStyle}
                 />
             )}
             {displayStreak && (
                 <Streak
                     isFinished={isDoneToday}
+                    isOnline={isOnline}
                     onPress={onStreakPress}
                     currentStreak={currentStreak}
                     maxStreak={maxStreak}
@@ -104,19 +111,37 @@ export default function DailyStepsScreen({
 
 function getStyle(currentWorld: number) {
     switch (currentWorld) {
+        case 2:
+            return {
+                centredScreen: {
+                    offline: { image: "gray_desert", style: { backgroundColor: "rgb(235,235,235)" } },
+                    online: { image: "desert", style: { backgroundColor: "rgb(255,249,225)" } }
+                },
+                hasWhiteGlow: true,
+                isLight: false,
+                navBar: {
+                    offline: COLOURS.DARKER,
+                    online: COLOURS.DESERT
+                },
+                streakType: "desert",
+                textStyle: { color: "rgb(108,59,38)" },
+                topBarType: "desert"
+            };
         case 1:
             return {
                 centredScreen: {
                     offline: { image: "gray_ocean", style: { backgroundColor: "#747474" } },
                     online: { image: "ocean", style: { backgroundColor: "rgb(1,62,116)" } }
                 },
+                hasWhiteGlow: false,
                 isLight: true,
-                isTopBarLight: true,
                 navBar: {
                     offline: COLOURS.LIGHT,
                     online: COLOURS.LIGHT
                 },
-                streakType: "ocean"
+                streakType: "ocean",
+                textStyle: { color: "white" },
+                topBarType: "white"
             };
         case 0:
         default:
@@ -125,13 +150,15 @@ function getStyle(currentWorld: number) {
                     offline: { image: "gray_forest", style: { backgroundColor: "#FFF" } },
                     online: { image: "large_forest", style: { backgroundColor: "#FFF" } }
                 },
+                hasWhiteGlow: false,
                 isLight: false,
-                isTopBarLight: false,
                 navBar: {
                     offline: COLOURS.DARKER,
                     online: COLOURS.LIGHT
                 },
-                streakType: "forest"
+                streakType: "forest",
+                textStyle: { color: "#333333" },
+                topBarType: "default"
             };
     }
 }

@@ -41,6 +41,11 @@ export default {
             inactive: "rgba(71,108,104,0.5)",
             pressed: "rgba(71,108,104,0.75)"
         },
+        desert: {
+            active: "rgba(84,12,0,1)",
+            inactive: "rgba(84,12,0,0.4)",
+            pressed: "rgba(84,12,0,0.6)"
+        },
         light: {
             active: "rgba(255,255,255,1)",
             inactive: "rgba(255,255,255,0.4)",
@@ -81,6 +86,10 @@ export default {
     },
     streak: {
         finished: {
+            desert: {
+                pressed: "rgb(238,216,107)",
+                unpressed: "rgb(238,216,107)"
+            },
             forest: {
                 pressed: "#81d1c4",
                 unpressed: "#99ded3"
@@ -90,6 +99,7 @@ export default {
                 unpressed: "#0E66A1"
             }
         },
+        offline: "rgb(153,153,153)",
         unfinished: {
             pressed: "#cb016b",
             unpressed: "#e20177"

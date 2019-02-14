@@ -80,6 +80,40 @@ const worldBubbleColours: IBubbleColours = {
             available: "white",
             notAvailable: "rgb(66, 120, 165)"
         }
+    },
+    2: {
+        0: {
+            available: "white",
+            notAvailable: "rgb(252,178,113)"
+        },
+        1: {
+            available: "white",
+            notAvailable: "rgb(252,178,113)"
+        },
+        2: {
+            available: "white",
+            notAvailable: "rgb(252,178,113)"
+        },
+        3: {
+            available: "white",
+            notAvailable: "rgb(252,178,113)"
+        },
+        4: {
+            available: "white",
+            notAvailable: "rgb(252,178,113)"
+        },
+        5: {
+            available: "white",
+            notAvailable: "rgb(252,178,113)"
+        },
+        6: {
+            available: "white",
+            notAvailable: "rgb(252,178,113)"
+        },
+        7: {
+            available: "white",
+            notAvailable: "rgb(252,178,113)"
+        }
     }
 };
 
@@ -87,7 +121,7 @@ export function getBackgroundColor(nextAvailable: number, level: IChallenge): st
     // time for more of that fucking awful logic
 
     if (level.level % 50 === 0) {
-        return level.isDone || level.isActive ? "rgb(226, 1, 119)" : "white";
+        return level.isDone || level.isActive || level.isNext ? "rgb(226, 1, 119)" : "white";
     } else if (level.isActive) {
         // current level colour is always the same
         return nextAvailable < 0 ? "rgb(145,0,76)" : "rgb(226, 1, 119)";
@@ -105,14 +139,22 @@ export function getBackgroundColor(nextAvailable: number, level: IChallenge): st
 
 export function getButtonPosition(slice: IMapSlice, index: number) {
     const record = slice.slots[index];
-
-    return {
-        bottom: record.bottom ? Style.SCALE_UP_AND_DOWN(record.bottom) : 0,
+    const style: any = {
         left: Style.SCALE_UP_AND_DOWN(record.left)
     };
+
+    if (typeof record.bottom !== "undefined") {
+        style.bottom = Style.SCALE_UP_AND_DOWN(record.bottom);
+    } else if (typeof record.top !== "undefined") {
+        style.top = Style.SCALE_UP_AND_DOWN(record.top);
+    } else {
+        style.bottom = 0;
+    }
+
+    return style;
 }
 
-export const getTime = (nextAvailable: number) => {
+export function getTime(nextAvailable: number) {
     const hours = Math.floor(nextAvailable / (60 * 60)) % 24;
     const minutes = Math.floor(nextAvailable / 60) % 60;
     const seconds = nextAvailable % 60;
@@ -131,4 +173,4 @@ export const getTime = (nextAvailable: number) => {
     } else {
         return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
     }
-};
+}

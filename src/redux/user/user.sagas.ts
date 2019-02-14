@@ -1,5 +1,7 @@
 import { Linking } from "react-native";
+import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
+import TestFairy from "react-native-testfairy";
 import { call, put, select, spawn, take, takeLatest } from "redux-saga/effects";
 import client from "../../graphql/_core/client";
 import updateLeaderboardConsentGql from "../../graphql/member/updateLeaderboardConsent.gql";
@@ -68,6 +70,7 @@ function* fitKitConsentAuthorisedSaga() {
 
 function* loginUserSuccessSaga({ payload }: LoginUserSuccessAction) {
     const { user, intercomHash } = payload.loginUser;
+    yield spawn(setTestFairyId, user.id);
     yield call(setLoggerIdentity, user.id, user.membershipType, intercomHash);
 }
 
@@ -96,6 +99,7 @@ function* getUserData() {
         if (token) {
             const { data } = yield call(getCurrentUserWithClient);
 
+            yield spawn(setTestFairyId, data.getCurrentUser.id);
             yield spawn(
                 setLoggerIdentity,
                 data.getCurrentUser.id,
@@ -149,6 +153,12 @@ function* openMemberZone() {
     } catch (e) {
         // tslint:disable-next-line
         yield call(console.log, "failed opening member zone");
+    }
+}
+
+function* setTestFairyId(id: string) {
+    if (Config.TESTFAIRY_ENABLED === "yes") {
+        yield call(TestFairy.setUserId, id);
     }
 }
 

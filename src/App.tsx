@@ -7,14 +7,15 @@ import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import TestFairy from "react-native-testfairy";
 
-if (Config.TESTFAIRY_ENABLED === "yes") {
-    TestFairy.begin(Config.TESTFAIRY_KEY);
-}
-
 // register all the screens
 registerScreens();
 
 Navigation.events().registerAppLaunchedListener(async () => {
+    // initialize TestFairy
+    if (Config.TESTFAIRY_ENABLED === "yes") {
+        TestFairy.begin(Config.TESTFAIRY_KEY);
+    }
+
     await migrateOldAppVersionToken();
 
     setDefaultOptions();

@@ -18,7 +18,7 @@ export default StyleSheet.create({
     } as ViewStyle,
     text: {
         fontFamily: Style.FONT_FAMILY_PRIMARY,
-        fontSize: Style.SCALE_UP_AND_DOWN(14)
+        fontSize: Style.SCALE_UP_AND_DOWN(16)
     } as TextStyle,
     textHighlighted: {
         color: Colours.heavyPink,
@@ -26,6 +26,9 @@ export default StyleSheet.create({
     } as ViewStyle,
     textRight: {
         textAlign: "right"
+    } as TextStyle,
+    textSmall: {
+        fontSize: Style.SCALE_UP_AND_DOWN(14)
     } as TextStyle,
     wrapper: {
         alignItems: "center",

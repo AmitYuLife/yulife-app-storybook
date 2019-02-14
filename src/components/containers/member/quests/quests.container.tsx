@@ -1,3 +1,4 @@
+import { getCurrentWorld } from "@services/utils";
 import moment from "moment";
 import { PureComponent } from "react";
 import React from "react";
@@ -88,7 +89,9 @@ function getLevelStatus(
         };
     }
 
-    if (currentLevel - 1 === level) {
+    // previous level = currentLevel - 1
+    // previous level for unity = currentLevel - 2
+    if (currentLevel - 1 === level || (currentLevel % 50 === 1 && currentLevel - 2 === level)) {
         const previousAvailable = hasDoneChallenge && isChallengeAvailable;
         return {
             isActive: previousAvailable,
@@ -110,12 +113,12 @@ function getLevelStatus(
 type Props = IMainTabsProps & IConnectedState & IConnectedDispatch;
 
 interface IState {
-    showUnity: boolean;
+    unity: number;
 }
 
 class QuestsContainer extends PureComponent<Props, IState> {
-    public state = {
-        showUnity: false
+    public state: IState = {
+        unity: null
     };
     private backHandler: NativeEventSubscription;
     private backPressed: number = 0;
@@ -165,7 +168,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
     }
 
     private renderCurrentWorld = ({ loading, data, refetch }: GetCurrentWorldResultType) => {
-        const { showUnity } = this.state;
+        const { unity } = this.state;
         const {
             activeLevel: { coins, endDateTime, level, milestones, rating, score, status, subtype, timeUp, unit },
             componentId,
@@ -213,7 +216,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                         <ChallengeProgressScreen
                             {...props}
                             challengeType={subtype as any}
-                            currentWorld={Math.floor((currentLevel - 1) / 50)}
+                            currentWorld={getCurrentWorld(currentLevel)}
                             onCalmPress={openCalm}
                             onDismissPress={showOverlay}
                             onHeadspacePress={openHeadspace}
@@ -245,7 +248,8 @@ class QuestsContainer extends PureComponent<Props, IState> {
             <QuestsScrollScreen
                 {...props}
                 data={this.formatData(data.getCurrentWorld)}
-                hideUnity={showUnity ? this.hideUnity : null}
+                hideUnity={this.hideUnity}
+                unity={unity}
             />
         ) : (
             <QuestsScreen {...props} data={this.formatData(data.getCurrentWorld)} />
@@ -253,7 +257,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
     };
 
     private hideUnity = () => {
-        this.setState({ showUnity: false });
+        this.setState({ unity: null });
     };
 
     private handleResetChallenge = (refetch: () => void, showStreakComplete?: boolean) => () => {
@@ -394,7 +398,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                     if (status.isDone) {
                         if (level.level % 50 === 0) {
                             // is unity level
-                            this.setState({ showUnity: true });
+                            this.setState({ unity: level.level });
                         } else if (status.isPrevious && challengesStatus.hasDone && challengesStatus.isAvailable) {
                             this.goToChallengesList(level);
                         } else if (features.showCompletedLevel) {
@@ -403,7 +407,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                     } else if (status.isNext) {
                         if (level.level % 50 === 0) {
                             // is unity level
-                            this.setState({ showUnity: true }, () => {
+                            this.setState({ unity: level.level }, () => {
                                 this.props.submitUnityAction({ levelId: level.id });
                             });
                         } else if (levelAvailable) {

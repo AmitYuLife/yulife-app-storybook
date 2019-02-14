@@ -9,13 +9,9 @@ import { Style } from "../../../../../styles";
 
 export default StyleSheet.create({
     background: {
-        borderColor: "transparent",
-        borderWidth: 1,
-        height: "100%"
+        height: Style.DEVICE_HEIGHT,
+        width: Style.DEVICE_WIDTH
     } as ImageStyle,
-    backgroundWrapper: {
-        ...StyleSheet.absoluteFillObject
-    } as ViewStyle,
     challengeSetWrapper: {
         alignItems: "center",
         justifyContent: "center",

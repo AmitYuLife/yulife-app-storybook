@@ -1,3 +1,4 @@
+import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
@@ -60,7 +61,7 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
 
     private renderScreen = ({ showOverlay }: IToggleBlur) => {
         const { currentLevel, labels, level, totalCoins } = this.props;
-        const currentWorld = Math.floor((currentLevel - 1) / 50);
+        const currentWorld = getCurrentWorld(level.level);
 
         return (
             <ChallengesListScreen
@@ -83,7 +84,7 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
                         onPress: isLocked ? () => ({}) : this.handleSlotPress(formattedSlot, showOverlay)
                     };
                 })}
-                currentLevel={currentLevel}
+                currentLevel={level.level}
                 labels={labels}
                 name={`level ${level.level}`}
                 onPressLeftIcon={this.onNavPress}
@@ -96,7 +97,7 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
         const {
             slot: { challengeType, duration, milestones, unit }
         } = this.state;
-        const currentWorld = Math.floor((this.props.currentLevel - 1) / 50);
+        const currentWorld = getCurrentWorld(this.props.level.level);
 
         return (
             <ChallengeDetailsModal

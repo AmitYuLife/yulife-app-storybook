@@ -26,17 +26,31 @@ export enum IMAGES {
     OSTRICH = "ostrich",
     OTTER = "otter",
     TORTOISE = "tortoise",
-    WHALE = "whale"
+    WHALE = "whale",
+    BIGHORN_SHEEP = "bighornSheep",
+    CAMEL = "camel",
+    DESERT_FOX = "desertFox",
+    MEERKAT = "meerkat"
 }
 
-export type Images = "dolphin" | "squirrel" | "elephant" | "bird" | "ostrich" | "otter" | "tortoise" | "whale";
+export type Images =
+    | "dolphin"
+    | "squirrel"
+    | "elephant"
+    | "bird"
+    | "ostrich"
+    | "otter"
+    | "tortoise"
+    | "whale"
+    | "bighornSheep"
+    | "camel"
+    | "desertFox"
+    | "meerkat";
 
-const challengeTileSettings = {
-    briskWalk: [IMAGES.SQUIRREL, IMAGES.OTTER],
-    longWalk: [IMAGES.OSTRICH, IMAGES.WHALE],
-    meditation: [IMAGES.BIRD, IMAGES.DOLPHIN],
-    shortStroll: [IMAGES.ELEPHANT, IMAGES.TORTOISE]
-};
+const BRISK_WALK = [IMAGES.SQUIRREL, IMAGES.OTTER, IMAGES.MEERKAT];
+const LONG_WALK = [IMAGES.OSTRICH, IMAGES.WHALE, IMAGES.DESERT_FOX];
+const MEDITATION = [IMAGES.BIRD, IMAGES.DOLPHIN, IMAGES.CAMEL];
+const SHORT_STROLL = [IMAGES.ELEPHANT, IMAGES.TORTOISE, IMAGES.BIGHORN_SHEEP];
 
 type Props = IChallengeTileProps;
 
@@ -46,16 +60,16 @@ class ChallengeTile extends PureComponent<Props> {
     public getImage = (challengeType: string, currentWorld: number): Images => {
         switch (challengeType) {
             case "meditation":
-                return challengeTileSettings.meditation[currentWorld || 0];
+                return MEDITATION[currentWorld] || MEDITATION[0];
             case "long walk":
-                return challengeTileSettings.longWalk[currentWorld || 0];
+                return LONG_WALK[currentWorld] || LONG_WALK[0];
             case "brisk walk":
-                return challengeTileSettings.briskWalk[currentWorld || 0];
+                return BRISK_WALK[currentWorld] || BRISK_WALK[0];
             case "short stroll":
             default:
-                return challengeTileSettings.shortStroll[currentWorld || 0];
+                return SHORT_STROLL[currentWorld] || SHORT_STROLL[0];
         }
-    }
+    };
 
     public render() {
         const {

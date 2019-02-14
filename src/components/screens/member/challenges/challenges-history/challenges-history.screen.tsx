@@ -1,19 +1,14 @@
+import { Button, Text } from "@atoms/index";
+import { getSlotDuration } from "@containers/member/quests/challenges-list/challenges-list.helpers";
+import { GetCurrentWorld_getCurrentWorld } from "@graphql/_core/schema";
+import { NavBar, TopBar } from "@molecules/index";
+import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
-import { SFC } from "react";
-import { Image, ImageStyle, Platform, SafeAreaView, TouchableOpacity, View } from "react-native";
+import { Image, SafeAreaView, StyleSheet, TouchableOpacity, View } from "react-native";
 import AutoHeightImage from "react-native-auto-height-image";
-import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
-import { Button, Text } from "../../../../atoms";
-import { getSlotDuration } from "../../../../containers/member/quests/challenges-list/challenges-list.helpers";
-import { NavBar, TopBar } from "../../../../molecules";
-import ChallengesBackground from "../challenges-background/challenges-background";
 import ChallengesHistorySlot from "./challenges-history-slot";
-import {
-    getImage,
-    getImageStyle,
-    getImageWidth
-} from "./challenges-history.helpers";
+import { getSlotImageProps } from "./challenges-history.helpers";
 import styles from "./challenges-history.screen.styles";
 
 interface IProps extends IConnectedScreenProps {
@@ -22,26 +17,22 @@ interface IProps extends IConnectedScreenProps {
     onPressCta: () => void;
 }
 
-const ChallengesHistory: SFC<IProps> = ({
+export default function ChallengesHistory({
     level,
     onPressActivityHistory,
     onPressCta,
     totalCoins,
     labels,
     onLeftMenuPress
-}) => (
+}: IProps) {
+    const { backgroundWrapperStyle, backgroundImage, historyLinkColor, navBarType, topBarType } = getWorldStyle(
+        level.level
+    ) as any;
+
+    return (
         <SafeAreaView style={styles.wrapper}>
-            <SafeAreaView style={styles.backgroundWrapper}>
-                {Platform.OS === "ios" ? (
-                    <ChallengesBackground />
-                ) : (
-                        <Image
-                            resizeMethod="scale"
-                            resizeMode="contain"
-                            source={require("../../../../../../assets/challenges/challenges-background.png")}
-                            style={styles.background}
-                        />
-                    )}
+            <SafeAreaView style={backgroundWrapperStyle}>
+                <Image resizeMode="cover" style={styles.background} source={backgroundImage} />
             </SafeAreaView>
             <TopBar
                 leftIcon="Back"
@@ -49,6 +40,7 @@ const ChallengesHistory: SFC<IProps> = ({
                 name={`level ${level.level}`}
                 coins={totalCoins}
                 onPressLeftIcon={onLeftMenuPress}
+                type={topBarType}
             />
             <View style={styles.challengeSetWrapper}>
                 {level.slots.map((slot) => (
@@ -65,34 +57,59 @@ const ChallengesHistory: SFC<IProps> = ({
             </View>
             <View style={styles.imagesWrapper}>
                 {level.slots.map(({ subtype }, index) => (
-                    <AutoHeightImage
-                        key={index}
-                        style={getImageStyle(subtype) as ImageStyle}
-                        source={getImage(subtype)}
-                        width={getImageWidth(subtype)}
-                    />
+                    <AutoHeightImage key={index} {...getSlotImageProps(subtype, getCurrentWorld(level.level))} />
                 ))}
             </View>
             <View style={styles.buttonsWrapper}>
-                <Button
-                    type={Button.Types.PRIMARY}
-                    onPress={onPressCta}
-                    label="back"
-                />
-                <TouchableOpacity
-                    onPress={onPressActivityHistory}
-                >
-                    <Text style={styles.historyLink}>full history</Text>
+                <Button type={Button.Types.PRIMARY} onPress={onPressCta} label="back" />
+                <TouchableOpacity onPress={onPressActivityHistory}>
+                    <Text style={StyleSheet.flatten([styles.historyLink, { color: historyLinkColor }])}>
+                        full history
+                    </Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.navBarWrapper}>
-                <NavBar
-                    activeIndex={1}
-                    hasNotification={false}
-                    labels={labels}
-                />
+                <NavBar activeIndex={1} colour={navBarType} hasNotification={false} labels={labels} />
             </View>
         </SafeAreaView>
     );
+}
 
-export default ChallengesHistory;
+function getWorldStyle(currentLevel: number) {
+    switch (getCurrentWorld(currentLevel)) {
+        case 2:
+            return {
+                backgroundImage: require("../../../../../../assets/challenges/desert.png"),
+                backgroundWrapperStyle: StyleSheet.flatten([
+                    StyleSheet.absoluteFillObject,
+                    { backgroundColor: "rgb(254,251,205)" }
+                ]),
+                historyLinkColor: "rgba(226, 1, 119, 1)",
+                navBarType: NavBar.Colours.DESERT,
+                topBarType: "desert"
+            };
+        case 1:
+            return {
+                backgroundImage: require("../../../../../../assets/challenges/ocean.png"),
+                backgroundWrapperStyle: StyleSheet.flatten([
+                    StyleSheet.absoluteFillObject,
+                    { backgroundColor: "rgb(87,155,193)" }
+                ]),
+                historyLinkColor: "white",
+                navBarType: NavBar.Colours.LIGHT,
+                topBarType: "white"
+            };
+        case 0:
+        default:
+            return {
+                backgroundImage: require("../../../../../../assets/challenges/forest.png"),
+                backgroundWrapperStyle: StyleSheet.flatten([
+                    StyleSheet.absoluteFillObject,
+                    { backgroundColor: "rgb(154, 231, 216)" }
+                ]),
+                historyLinkColor: "rgba(226, 1, 119, 1)",
+                navBarType: NavBar.Colours.LIGHT,
+                topBarType: "default"
+            };
+    }
+}

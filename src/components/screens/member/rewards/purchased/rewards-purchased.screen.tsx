@@ -1,6 +1,5 @@
 import * as React from "react";
-import { SFC } from "react";
-import { FlatList, SafeAreaView, View } from "react-native";
+import { FlatList, ListRenderItemInfo, SafeAreaView, View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { NavBar, RewardTabs, TopBar } from "../../../../molecules";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
@@ -19,7 +18,15 @@ type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
     id: string;
 };
 
-const RewardsPurchasedScreen: SFC<IProps> = ({
+function renderItem({
+    item: { day, month, reward, cost, status, onPress }
+}: ListRenderItemInfo<RewardsPurchasedItemData>) {
+    return (
+        <RewardsPurchasedItem day={day} month={month} reward={reward} cost={cost} status={status} onPress={onPress} />
+    );
+}
+
+export default function RewardsPurchasedScreen({
     data,
     hasNotification = false,
     labels,
@@ -28,44 +35,36 @@ const RewardsPurchasedScreen: SFC<IProps> = ({
     onLeftMenuPress,
     refreshing,
     totalCoins
-}) => (
-    <SafeAreaView style={styles.wrapper}>
-        <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
-        <View style={styles.rewardTabsWrapper}>
-            <RewardTabs activeTabIndex={1} onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} />
-        </View>
-        <View style={styles.listWrapper}>
-            {!data.length ? (
-                <PurchasesEmpty onCtaPress={onLeftTabPress} />
-            ) : (
-                <FlatList
-                    data={data}
-                    keyExtractor={(item) => item.id}
-                    onRefresh={onRightTabPress}
-                    refreshing={refreshing}
-                    renderItem={({ item: { day, month, reward, cost, status, onPress } }) => (
-                        <RewardsPurchasedItem
-                            day={day}
-                            month={month}
-                            reward={reward}
-                            cost={cost}
-                            status={status}
-                            onPress={onPress}
-                        />
-                    )}
+}: IProps) {
+    return (
+        <SafeAreaView style={styles.wrapper}>
+            <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
+            <View style={styles.rewardTabsWrapper}>
+                <RewardTabs activeTabIndex={1} onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} />
+            </View>
+            <View style={styles.listWrapper}>
+                {!data.length ? (
+                    <PurchasesEmpty onCtaPress={onLeftTabPress} />
+                ) : (
+                    <FlatList
+                        data={data}
+                        keyExtractor={(item) => item.id}
+                        onRefresh={onRightTabPress}
+                        refreshing={refreshing}
+                        renderItem={renderItem}
+                    />
+                )}
+            </View>
+            <View style={styles.navBarWrapper}>
+                <NavBar
+                    activeIndex={2}
+                    areIconsHidden={true}
+                    colour={NavBar.Colours.DARKER}
+                    hasNotification={hasNotification}
+                    hasWhiteBackground={true}
+                    labels={labels}
                 />
-            )}
-        </View>
-        <View style={styles.navBarWrapper}>
-            <NavBar
-                activeIndex={2}
-                areIconsHidden={true}
-                colour={NavBar.Colours.DARKER}
-                hasNotification={hasNotification}
-                labels={labels}
-            />
-        </View>
-    </SafeAreaView>
-);
-
-export default RewardsPurchasedScreen;
+            </View>
+        </SafeAreaView>
+    );
+}

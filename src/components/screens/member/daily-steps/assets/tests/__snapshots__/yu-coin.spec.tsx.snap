@@ -74,7 +74,9 @@ ShallowWrapper {
         "instance": null,
         "key": undefined,
         "nodeType": "function",
-        "props": Object {},
+        "props": Object {
+          "hasWhiteGlow": undefined,
+        },
         "ref": null,
         "rendered": null,
         "type": [Function],
@@ -285,7 +287,9 @@ ShallowWrapper {
           "instance": null,
           "key": undefined,
           "nodeType": "function",
-          "props": Object {},
+          "props": Object {
+            "hasWhiteGlow": undefined,
+          },
           "ref": null,
           "rendered": null,
           "type": [Function],
@@ -985,7 +989,9 @@ ShallowWrapper {
         "instance": null,
         "key": undefined,
         "nodeType": "function",
-        "props": Object {},
+        "props": Object {
+          "hasWhiteGlow": undefined,
+        },
         "ref": null,
         "rendered": null,
         "type": [Function],
@@ -1184,7 +1190,9 @@ ShallowWrapper {
           "instance": null,
           "key": undefined,
           "nodeType": "function",
-          "props": Object {},
+          "props": Object {
+            "hasWhiteGlow": undefined,
+          },
           "ref": null,
           "rendered": null,
           "type": [Function],

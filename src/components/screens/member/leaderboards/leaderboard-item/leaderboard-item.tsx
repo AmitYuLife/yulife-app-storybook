@@ -14,22 +14,23 @@ export interface ILeaderboardItemProps {
 
 export default function LeaderboardItem({ isCurrentUser, rank, name, steps, coins }: ILeaderboardItemProps) {
     const currentUserStyle = isCurrentUser ? styles.textHighlighted : {};
-    const textStyle = StyleSheet.flatten([styles.text, currentUserStyle]);
-    const textStyleRight = StyleSheet.flatten([styles.text, styles.textRight, currentUserStyle]);
+    const textStyleRightSmall = StyleSheet.flatten([styles.text, styles.textRight, styles.textSmall, currentUserStyle]);
 
     return (
         <View style={styles.wrapper}>
             <View style={styles.rankWrapper}>
-                <Text style={textStyleRight}>{padNum(rank)}</Text>
+                <Text style={StyleSheet.flatten([styles.text, styles.textRight, currentUserStyle])}>
+                    {padNum(rank)}
+                </Text>
             </View>
             <View style={styles.nameWrapper}>
-                <Text style={textStyle}>{name}</Text>
+                <Text style={StyleSheet.flatten([styles.text, currentUserStyle])}>{name}</Text>
             </View>
             <View style={styles.yucoinWrapper}>
-                <Text style={textStyleRight}>{numberWithCommas(coins)}</Text>
+                <Text style={textStyleRightSmall}>{numberWithCommas(coins)}</Text>
             </View>
             <View style={styles.stepsWrapper}>
-                <Text style={textStyleRight}>{numberWithCommas(steps)}</Text>
+                <Text style={textStyleRightSmall}>{numberWithCommas(steps)}</Text>
             </View>
         </View>
     );

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getBackgroundImageAndStyle should return null for an undefined input 1`] = `
+exports[`getWorldStyle should return null for an undefined input 1`] = `
 Object {
+  "backgroundColour": "rgb(255,255,255)",
+  "progressBarType": "black",
   "source": Object {
     "testUri": "../../../assets/challenge-progress/squirrel.png",
   },
@@ -13,11 +15,14 @@ Object {
     "right": 0,
     "width": "100%",
   },
+  "topBarType": "default",
 }
 `;
 
-exports[`getBackgroundImageAndStyle should return null for an undefined input 2`] = `
+exports[`getWorldStyle should return null for an undefined input 2`] = `
 Object {
+  "backgroundColour": "rgb(255,255,255)",
+  "progressBarType": "black",
   "source": Object {
     "testUri": "../../../assets/challenge-progress/elephant.png",
   },
@@ -29,11 +34,15 @@ Object {
     "right": 0,
     "width": "100%",
   },
+  "topBarType": "default",
 }
 `;
 
-exports[`getBackgroundImageAndStyle should return null for an undefined input 3`] = `
+exports[`getWorldStyle should return null for an undefined input 3`] = `
 Object {
+  "backgroundColour": "rgb(255,255,255)",
+  "instructionTextColour": "rgb(136,136,136)",
+  "progressBarType": "black",
   "source": Object {
     "testUri": "../../../assets/challenge-progress/bird.png",
   },
@@ -45,11 +54,14 @@ Object {
     "right": 0,
     "width": "100%",
   },
+  "topBarType": "default",
 }
 `;
 
-exports[`getBackgroundImageAndStyle should return null for an undefined input 4`] = `
+exports[`getWorldStyle should return null for an undefined input 4`] = `
 Object {
+  "backgroundColour": "rgb(255,255,255)",
+  "progressBarType": "black",
   "source": Object {
     "testUri": "../../../assets/challenge-progress/ostrich.png",
   },
@@ -61,5 +73,6 @@ Object {
     "right": 0,
     "width": "100%",
   },
+  "topBarType": "default",
 }
 `;

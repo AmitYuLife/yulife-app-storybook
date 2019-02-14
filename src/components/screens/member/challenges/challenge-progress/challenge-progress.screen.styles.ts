@@ -10,7 +10,6 @@ export default StyleSheet.create({
         width: "100%"
     } as ImageStyle,
     instruction: {
-        color: "rgb(136,136,136)",
         fontSize: Style.SCALE_UP_AND_DOWN(13),
         lineHeight: Style.SCALE_UP_AND_DOWN(20)
     } as TextStyle,

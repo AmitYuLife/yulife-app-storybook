@@ -23,9 +23,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <YuText
-          style={Object {}}
-        >
+        <YuText>
           123456
            steps
         </YuText>,
@@ -96,7 +94,7 @@ ShallowWrapper {
             123456,
             " steps",
           ],
-          "style": Object {},
+          "style": undefined,
         },
         "ref": null,
         "rendered": Array [
@@ -257,9 +255,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <YuText
-            style={Object {}}
-          >
+          <YuText>
             123456
              steps
           </YuText>,
@@ -330,7 +326,7 @@ ShallowWrapper {
               123456,
               " steps",
             ],
-            "style": Object {},
+            "style": undefined,
           },
           "ref": null,
           "rendered": Array [

@@ -3,14 +3,14 @@ import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import Svg, { Circle, Polygon } from "react-native-svg";
 import { padNum } from "../../../../../../services/utils";
 import { Text } from "../../../../../atoms";
-import { IProps as IProgressBarProps } from "./progress-bar";
+import { ProgressBarTypes } from "./progress-bar";
 import styles from "./progress.styles";
 
 interface IProps {
     amount: number;
     goal: number;
     previousGoal?: number;
-    styleType?: IProgressBarProps["styleType"];
+    styleType?: ProgressBarTypes;
     type: "steps" | "minute" | string;
     width?: number;
 }
@@ -39,13 +39,13 @@ class Progress extends Component<IProps, IState> {
         if (!this.state.widthDefined) {
             this.setState({ progressWidth: width });
         }
-    }
+    };
 
     public render() {
         const { progressWidth } = this.state;
         const { type, goal, amount, styleType, width, previousGoal = 0 } = this.props;
         const progressGoal = calculateProgress(previousGoal, goal, amount);
-        const styled = getStyle(styleType);
+        const worldStyle = getStyle(styleType);
 
         return (
             <View
@@ -56,14 +56,14 @@ class Progress extends Component<IProps, IState> {
                 }}
                 onLayout={this.onLayout}
             >
-                <View style={StyleSheet.flatten([styles.bar, styled.barColor])}>
+                <View style={StyleSheet.flatten([styles.bar, worldStyle.barColor])}>
                     <View
                         style={StyleSheet.flatten([
                             styles.progress,
                             {
                                 width: progressWidth * progressGoal
                             },
-                            styled.progressColor
+                            worldStyle.progressColor
                         ])}
                     />
                 </View>
@@ -74,18 +74,26 @@ class Progress extends Component<IProps, IState> {
                                 <Circle
                                     cx="13"
                                     cy="13"
-                                    fill={progressGoal === 1 ? styled.progressGoalFilled : styled.progressGoalEmpty}
+                                    fill={
+                                        progressGoal === 1
+                                            ? worldStyle.progressGoalFilled
+                                            : worldStyle.progressGoalEmpty
+                                    }
                                     r="13"
                                 />
                             </Svg>
                             <Svg style={styles.star} width="8" height="8" viewBox="0 0 26 26">
                                 <Polygon
-                                    fill={progressGoal === 1 ? styled.progressStarFilled : styled.progressStarEmpty}
+                                    fill={
+                                        progressGoal === 1
+                                            ? worldStyle.progressStarFilled
+                                            : worldStyle.progressStarEmpty
+                                    }
                                     /* tslint:disable-next-line */
                                     points="16.1,8.9 25.5,8.9 18.1,14.7 21,23.7 13.2,18.5 5.5,24 8.1,14.9 0.5,9.3 9.9,9 12.8,0 "
                                 />
                             </Svg>
-                            <Text style={StyleSheet.flatten([styles.goalText, styled.goalTextColor])} bold={true}>
+                            <Text style={StyleSheet.flatten([styles.goalText, worldStyle.goalTextColor])} bold={true}>
                                 {adjustGoalValue(type, goal)}
                             </Text>
                         </View>
@@ -124,8 +132,18 @@ const adjustGoalValue = (type: "steps" | "minutes" | string, goal: number): stri
     }
 };
 
-const getStyle = (styleType: IProgressBarProps["styleType"]) => {
+const getStyle = (styleType: ProgressBarTypes) => {
     switch (styleType) {
+        case "desert-brown":
+            return {
+                barColor: styles.barColorDesertBrown,
+                goalTextColor: styles.goalTextColorDesertBrown,
+                progressColor: styles.progressColorBlack,
+                progressGoalEmpty: "rgb(252,194,116)",
+                progressGoalFilled: "#000",
+                progressStarEmpty: "#FFF",
+                progressStarFilled: "#F1AF00"
+            };
         case "ocean-black":
             return {
                 barColor: styles.barColorOceanBlack,

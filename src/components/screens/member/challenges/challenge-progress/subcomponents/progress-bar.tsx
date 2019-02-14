@@ -1,22 +1,22 @@
-import React, { SFC } from "react";
+import * as React from "react";
 import { View } from "react-native";
 import { renderProgressBar, renderProgressLabel } from "./progress-bar.helpers";
 import styles from "./progress-bar.styles";
 
+export type ProgressBarTypes = "black" | "ocean-white" | "ocean-black" | "desert-brown";
+
 export interface IProps {
     amount: number;
     goals: number[];
-    styleType?: "black" | "ocean-white" | "ocean-black";
+    styleType?: ProgressBarTypes;
     type: "steps" | "minutes" | string;
 }
 
-const ProgressBar: SFC<IProps> = ({ amount, goals, styleType, type }) => (
-    <View style={styles.container}>
-        {renderProgressBar({ type, amount, goals, styleType })}
-        <View style={styles.counterPosition}>
-            {renderProgressLabel({ amount, type, styleType })}
+export default function ProgressBar({ amount, goals, styleType, type }: IProps) {
+    return (
+        <View style={styles.container}>
+            {renderProgressBar({ type, amount, goals, styleType })}
+            <View style={styles.counterPosition}>{renderProgressLabel({ amount, type, styleType })}</View>
         </View>
-    </View>
-);
-
-export default ProgressBar;
+    );
+}

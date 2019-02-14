@@ -64,6 +64,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
+                  "color": "#333333",
                   "fontSize": 36,
                   "marginBottom": -8,
                   "marginRight": 16,
@@ -165,6 +166,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -204,6 +206,7 @@ ShallowWrapper {
               "children": <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -225,6 +228,7 @@ ShallowWrapper {
               "props": Object {
                 "children": 1234,
                 "style": Object {
+                  "color": "#333333",
                   "fontSize": 36,
                   "marginBottom": -8,
                   "marginRight": 16,
@@ -318,6 +322,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -419,6 +424,7 @@ ShallowWrapper {
                 <YuText
                   style={
                     Object {
+                      "color": "#333333",
                       "fontSize": 36,
                       "marginBottom": -8,
                       "marginRight": 16,
@@ -458,6 +464,7 @@ ShallowWrapper {
                 "children": <YuText
                   style={
                     Object {
+                      "color": "#333333",
                       "fontSize": 36,
                       "marginBottom": -8,
                       "marginRight": 16,
@@ -479,6 +486,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": 1234,
                   "style": Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -609,6 +617,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
+                  "color": "#333333",
                   "fontSize": 36,
                   "marginBottom": -8,
                   "marginRight": 16,
@@ -710,6 +719,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -749,6 +759,7 @@ ShallowWrapper {
               "children": <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -770,6 +781,7 @@ ShallowWrapper {
               "props": Object {
                 "children": 1234,
                 "style": Object {
+                  "color": "#333333",
                   "fontSize": 36,
                   "marginBottom": -8,
                   "marginRight": 16,
@@ -863,6 +875,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -964,6 +977,7 @@ ShallowWrapper {
                 <YuText
                   style={
                     Object {
+                      "color": "#333333",
                       "fontSize": 36,
                       "marginBottom": -8,
                       "marginRight": 16,
@@ -1003,6 +1017,7 @@ ShallowWrapper {
                 "children": <YuText
                   style={
                     Object {
+                      "color": "#333333",
                       "fontSize": 36,
                       "marginBottom": -8,
                       "marginRight": 16,
@@ -1024,6 +1039,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": 1234,
                   "style": Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -1141,6 +1157,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
+                  "color": "#333333",
                   "fontSize": 40,
                   "marginLeft": 8,
                   "marginTop": -8,
@@ -1175,6 +1192,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
+                  "color": "#333333",
                   "fontSize": 36,
                   "marginBottom": -8,
                   "marginRight": 16,
@@ -1230,6 +1248,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 40,
                     "marginLeft": 8,
                     "marginTop": -8,
@@ -1271,6 +1290,7 @@ ShallowWrapper {
               "children": <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 40,
                     "marginLeft": 8,
                     "marginTop": -8,
@@ -1292,6 +1312,7 @@ ShallowWrapper {
               "props": Object {
                 "children": "Menu Label",
                 "style": Object {
+                  "color": "#333333",
                   "fontSize": 40,
                   "marginLeft": 8,
                   "marginTop": -8,
@@ -1334,6 +1355,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -1373,6 +1395,7 @@ ShallowWrapper {
               "children": <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -1394,6 +1417,7 @@ ShallowWrapper {
               "props": Object {
                 "children": 1234,
                 "style": Object {
+                  "color": "#333333",
                   "fontSize": 36,
                   "marginBottom": -8,
                   "marginRight": 16,
@@ -1473,6 +1497,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 40,
                     "marginLeft": 8,
                     "marginTop": -8,
@@ -1507,6 +1532,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -1562,6 +1588,7 @@ ShallowWrapper {
                 <YuText
                   style={
                     Object {
+                      "color": "#333333",
                       "fontSize": 40,
                       "marginLeft": 8,
                       "marginTop": -8,
@@ -1603,6 +1630,7 @@ ShallowWrapper {
                 "children": <YuText
                   style={
                     Object {
+                      "color": "#333333",
                       "fontSize": 40,
                       "marginLeft": 8,
                       "marginTop": -8,
@@ -1624,6 +1652,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": "Menu Label",
                   "style": Object {
+                    "color": "#333333",
                     "fontSize": 40,
                     "marginLeft": 8,
                     "marginTop": -8,
@@ -1666,6 +1695,7 @@ ShallowWrapper {
                 <YuText
                   style={
                     Object {
+                      "color": "#333333",
                       "fontSize": 36,
                       "marginBottom": -8,
                       "marginRight": 16,
@@ -1705,6 +1735,7 @@ ShallowWrapper {
                 "children": <YuText
                   style={
                     Object {
+                      "color": "#333333",
                       "fontSize": 36,
                       "marginBottom": -8,
                       "marginRight": 16,
@@ -1726,6 +1757,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": 1234,
                   "style": Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -1850,6 +1882,7 @@ ShallowWrapper {
           <YuText
             style={
               Object {
+                "color": "#333333",
                 "fontSize": 36,
                 "marginTop": 4,
                 "paddingLeft": 10,
@@ -1878,6 +1911,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
+                  "color": "#333333",
                   "fontSize": 36,
                   "marginBottom": -8,
                   "marginRight": 16,
@@ -1963,6 +1997,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
+                  "color": "#333333",
                   "fontSize": 36,
                   "marginTop": 4,
                   "paddingLeft": 10,
@@ -1998,6 +2033,7 @@ ShallowWrapper {
             "props": Object {
               "children": null,
               "style": Object {
+                "color": "#333333",
                 "fontSize": 36,
                 "marginTop": 4,
                 "paddingLeft": 10,
@@ -2027,6 +2063,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -2066,6 +2103,7 @@ ShallowWrapper {
               "children": <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -2087,6 +2125,7 @@ ShallowWrapper {
               "props": Object {
                 "children": 1234,
                 "style": Object {
+                  "color": "#333333",
                   "fontSize": 36,
                   "marginBottom": -8,
                   "marginRight": 16,
@@ -2173,6 +2212,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
+                  "color": "#333333",
                   "fontSize": 36,
                   "marginTop": 4,
                   "paddingLeft": 10,
@@ -2201,6 +2241,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
@@ -2286,6 +2327,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginTop": 4,
                     "paddingLeft": 10,
@@ -2321,6 +2363,7 @@ ShallowWrapper {
               "props": Object {
                 "children": null,
                 "style": Object {
+                  "color": "#333333",
                   "fontSize": 36,
                   "marginTop": 4,
                   "paddingLeft": 10,
@@ -2350,6 +2393,7 @@ ShallowWrapper {
                 <YuText
                   style={
                     Object {
+                      "color": "#333333",
                       "fontSize": 36,
                       "marginBottom": -8,
                       "marginRight": 16,
@@ -2389,6 +2433,7 @@ ShallowWrapper {
                 "children": <YuText
                   style={
                     Object {
+                      "color": "#333333",
                       "fontSize": 36,
                       "marginBottom": -8,
                       "marginRight": 16,
@@ -2410,6 +2455,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": 1234,
                   "style": Object {
+                    "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,

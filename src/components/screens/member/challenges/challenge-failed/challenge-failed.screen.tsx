@@ -1,7 +1,7 @@
+import { Button, CentredScreen, Stars, Text } from "@atoms/index";
+import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
-import { SFC } from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { Button, CentredScreen, Stars, Text } from "../../../../atoms";
 import Assets from "./assets";
 import data from "./challenge-failed.screen.data";
 import styles from "./challenge-failed.screen.styles";
@@ -11,11 +11,14 @@ interface IProps {
     onPress: () => void;
 }
 
-const ChallengeFailedScreen: SFC<IProps> = ({ level, onPress }) => {
-    const style = getStyle(level);
+export default function ChallengeFailedScreen({ level, onPress }: IProps) {
+    const { backgroundImage, backgroundStyle, footerStyle } = getStyle(level);
 
     return (
-        <CentredScreen style={styles.wrapper} footerImage={style.backgroundImage}>
+        <CentredScreen
+            style={StyleSheet.flatten([styles.wrapper, backgroundStyle]) as any}
+            footerImage={backgroundImage}
+        >
             <Stars />
             <View style={styles.levelWrapper}>
                 <Image source={Assets.levelLine} />
@@ -25,21 +28,32 @@ const ChallengeFailedScreen: SFC<IProps> = ({ level, onPress }) => {
                 {data.heading}
             </Text>
             <Image style={styles.face} source={Assets.face} />
-            <Text style={StyleSheet.flatten([styles.footer, style.footerStyle])}>{data.footer}</Text>
+            <Text style={StyleSheet.flatten([styles.footer, footerStyle])}>{data.footer}</Text>
             <Button onPress={onPress} label={data.cta} type={Button.Types.PRIMARY_GREYSCALE_SMALL} />
         </CentredScreen>
     );
-};
+}
 
-export default ChallengeFailedScreen;
-
-const getStyle = (level: number): any => {
-    const world = Math.floor(level / 50);
-    switch (world) {
+function getStyle(currentLevel: number): any {
+    switch (getCurrentWorld(currentLevel)) {
+        case 2:
+            return {
+                backgroundImage: "challenge_failed_desert",
+                backgroundStyle: { backgroundColor: "#fffbcd" },
+                footerStyle: styles.footerGray
+            };
         case 1:
-            return { backgroundImage: "challenge_failed_ocean", footerStyle: styles.footerWhite };
+            return {
+                backgroundImage: "challenge_failed_ocean",
+                backgroundStyle: null,
+                footerStyle: styles.footerWhite
+            };
         case 0:
         default:
-            return { backgroundImage: "challenge_failed_forest", footerStyle: styles.footerGray };
+            return {
+                backgroundImage: "challenge_failed_forest",
+                backgroundStyle: null,
+                footerStyle: styles.footerGray
+            };
     }
-};
+}
