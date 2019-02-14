@@ -5,10 +5,11 @@ export function stepsChannel(startTime: string) {
     return eventChannel((emitter) => {
         const { PEDOMETER_UPDATE } = Pedometer.constants;
 
-        Pedometer.addListener(PEDOMETER_UPDATE, emitter);
+        const subscriber = Pedometer.addListener(PEDOMETER_UPDATE, emitter);
         Pedometer.startPedometerUpdatesFromDate(startTime);
 
         const unlisten = () => {
+            subscriber.remove();
             Pedometer.stopPedometerUpdates();
         };
 
