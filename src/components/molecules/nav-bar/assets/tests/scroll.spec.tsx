@@ -3,57 +3,35 @@ import * as React from "react";
 import "react-native";
 import Scroll from "../scroll";
 
-describe("Scroll", () => {
+const defaultProps = {
+    colourScheme: { active: "#FFFFFF", inactive: "#DDDDDD", pressed: "#EEEEEE" },
+    hasDismiss: false,
+    hasHiddenIcons: false,
+    isActive: false,
+    isPressed: false
+};
 
+describe("Scroll", () => {
     it("should render when inactive and not pressed", () => {
-        const actual = shallow(
-            <Scroll
-                isActive={false}
-                isPressed={false}
-            />
-        );
+        const actual = shallow(<Scroll {...defaultProps} />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render when inactive and pressed", () => {
-        const actual = shallow(
-            <Scroll
-                isActive={false}
-                isPressed={true}
-            />
-        );
+        const actual = shallow(<Scroll {...defaultProps} isPressed={true} />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render when active and not pressed", () => {
-        const actual = shallow(
-            <Scroll
-                isActive={true}
-                isPressed={false}
-            />
-        );
+        const actual = shallow(<Scroll {...defaultProps} isActive={true} />);
 
         expect(actual).toMatchSnapshot();
     });
 
-    it("should render when it has a notification", () => {
-        const actual = shallow(
-            <Scroll
-                hasDismiss={true}
-            />
-        );
-
-        expect(actual).toMatchSnapshot();
-    });
-
-    it("should not render when icon is hidden", () => {
-        const actual = shallow(
-            <Scroll
-                isIconHidden={true}
-            />
-        );
+    it("should hide icon", () => {
+        const actual = shallow(<Scroll {...defaultProps} hasHiddenIcons={true} />);
 
         expect(actual).toMatchSnapshot();
     });

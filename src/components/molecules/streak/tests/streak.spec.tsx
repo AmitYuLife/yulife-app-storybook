@@ -11,19 +11,14 @@ const allFillers = {
 const onPressFiller = { onPress: jest.fn() };
 
 describe("Streak", () => {
-
     it("should render unfinished state", () => {
-        const actual = shallow(
-            <Streak isFinished={false} {...allFillers} type="forest" />
-        );
+        const actual = shallow(<Streak isOnline={true} isFinished={false} {...allFillers} type="forest" />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render finished state", () => {
-        const actual = shallow(
-            <Streak isFinished={false} {...allFillers} type="forest" />
-        );
+        const actual = shallow(<Streak isOnline={true} isFinished={false} {...allFillers} type="forest" />);
 
         expect(actual).toMatchSnapshot();
     });
@@ -31,6 +26,7 @@ describe("Streak", () => {
     it("should render 0% progress state", () => {
         const actual = shallow(
             <Streak
+                isOnline={true}
                 isFinished={false}
                 {...onPressFiller}
                 currentStreak={0}
@@ -45,6 +41,7 @@ describe("Streak", () => {
     it("should render 100% progress state", () => {
         const actual = shallow(
             <Streak
+                isOnline={true}
                 isFinished={false}
                 {...onPressFiller}
                 currentStreak={1}
@@ -59,6 +56,7 @@ describe("Streak", () => {
     it("should render 50% progress state", () => {
         const actual = shallow(
             <Streak
+                isOnline={true}
                 isFinished={false}
                 {...onPressFiller}
                 currentStreak={1}

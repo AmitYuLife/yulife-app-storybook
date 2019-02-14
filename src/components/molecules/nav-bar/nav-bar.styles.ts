@@ -1,8 +1,4 @@
-import {
-    StyleSheet,
-    TextStyle,
-    ViewStyle
-} from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../styles";
 
 const styles = StyleSheet.create({
@@ -13,7 +9,8 @@ const styles = StyleSheet.create({
         width: "100%"
     } as ViewStyle,
     text: {
-        fontSize: Style.SCALE_UP_AND_DOWN(16),
+        fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+        fontSize: Style.SCALE_UP_AND_DOWN(12),
         textAlign: "center",
         width: "100%"
     } as TextStyle,
@@ -21,6 +18,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flex: 1,
         justifyContent: "flex-end"
+    } as ViewStyle,
+    wrapper: {
+        alignItems: "center",
+        height: 80,
+        justifyContent: "flex-start",
+        width: 280
     } as ViewStyle
 });
 
@@ -29,9 +32,9 @@ export function getLabelAdjustment(index: number) {
         case 0:
             return { marginRight: 4 } as TextStyle;
         case 1:
-            return { marginRight: 8 } as TextStyle;
+            return { marginRight: 0 } as TextStyle;
         case 2:
-            return { marginRight: 6 } as TextStyle;
+            return { marginRight: -4 } as TextStyle;
         default:
             return null;
     }

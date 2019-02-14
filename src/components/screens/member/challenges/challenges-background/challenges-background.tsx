@@ -1,3 +1,4 @@
+import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import Svg, { G, LinearGradient, Polygon, Polyline, Rect, Stop } from "react-native-svg";
 import styles, { height, platformAdjustments, width } from "./challenges-background.styles";
@@ -30,15 +31,15 @@ export default function ChallengesBackground({ currentLevel }: any) {
 }
 
 function getWorldStyle(currentLevel: number) {
-    switch (true) {
-        case currentLevel > 50:
+    switch (getCurrentWorld(currentLevel)) {
+        case 1:
             return {
                 polygon1: "#1A6090",
                 polygon2: "#023A63",
                 polyline: "#023D73",
                 rect: "url(#SVGID_2_)"
             };
-        case currentLevel > 0:
+        case 0:
         default:
             return {
                 polygon1: "#449997",

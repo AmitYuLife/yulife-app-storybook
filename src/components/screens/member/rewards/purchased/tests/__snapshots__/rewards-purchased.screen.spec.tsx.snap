@@ -60,6 +60,7 @@ ShallowWrapper {
           style={
             Object {
               "flex": 1,
+              "marginBottom": 105,
               "paddingHorizontal": 30,
             }
           }
@@ -97,7 +98,13 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "marginBottom": 36,
+              "backgroundColor": "rgb(255,255,255)",
+              "bottom": 0,
+              "left": 0,
+              "paddingBottom": 34,
+              "paddingTop": 16,
+              "position": "absolute",
+              "right": 0,
             }
           }
         >
@@ -106,6 +113,7 @@ ShallowWrapper {
             areIconsHidden={true}
             colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={Array []}
           />
         </View>,
@@ -195,6 +203,7 @@ ShallowWrapper {
           />,
           "style": Object {
             "flex": 1,
+            "marginBottom": 105,
             "paddingHorizontal": 30,
           },
         },
@@ -245,11 +254,18 @@ ShallowWrapper {
             areIconsHidden={true}
             colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={Array []}
           />,
           "style": Object {
             "alignItems": "center",
-            "marginBottom": 36,
+            "backgroundColor": "rgb(255,255,255)",
+            "bottom": 0,
+            "left": 0,
+            "paddingBottom": 34,
+            "paddingTop": 16,
+            "position": "absolute",
+            "right": 0,
           },
         },
         "ref": null,
@@ -262,6 +278,7 @@ ShallowWrapper {
             "areIconsHidden": true,
             "colour": "darker",
             "hasNotification": false,
+            "hasWhiteBackground": true,
             "labels": Array [],
           },
           "ref": null,
@@ -302,6 +319,7 @@ ShallowWrapper {
             style={
               Object {
                 "flex": 1,
+                "marginBottom": 105,
                 "paddingHorizontal": 30,
               }
             }
@@ -339,7 +357,13 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "marginBottom": 36,
+                "backgroundColor": "rgb(255,255,255)",
+                "bottom": 0,
+                "left": 0,
+                "paddingBottom": 34,
+                "paddingTop": 16,
+                "position": "absolute",
+                "right": 0,
               }
             }
           >
@@ -348,6 +372,7 @@ ShallowWrapper {
               areIconsHidden={true}
               colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={Array []}
             />
           </View>,
@@ -437,6 +462,7 @@ ShallowWrapper {
             />,
             "style": Object {
               "flex": 1,
+              "marginBottom": 105,
               "paddingHorizontal": 30,
             },
           },
@@ -487,11 +513,18 @@ ShallowWrapper {
               areIconsHidden={true}
               colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={Array []}
             />,
             "style": Object {
               "alignItems": "center",
-              "marginBottom": 36,
+              "backgroundColor": "rgb(255,255,255)",
+              "bottom": 0,
+              "left": 0,
+              "paddingBottom": 34,
+              "paddingTop": 16,
+              "position": "absolute",
+              "right": 0,
             },
           },
           "ref": null,
@@ -504,6 +537,7 @@ ShallowWrapper {
               "areIconsHidden": true,
               "colour": "darker",
               "hasNotification": false,
+              "hasWhiteBackground": true,
               "labels": Array [],
             },
             "ref": null,
@@ -586,6 +620,7 @@ ShallowWrapper {
           style={
             Object {
               "flex": 1,
+              "marginBottom": 105,
               "paddingHorizontal": 30,
             }
           }
@@ -598,7 +633,13 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "marginBottom": 36,
+              "backgroundColor": "rgb(255,255,255)",
+              "bottom": 0,
+              "left": 0,
+              "paddingBottom": 34,
+              "paddingTop": 16,
+              "position": "absolute",
+              "right": 0,
             }
           }
         >
@@ -607,6 +648,7 @@ ShallowWrapper {
             areIconsHidden={true}
             colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={Array []}
           />
         </View>,
@@ -671,6 +713,7 @@ ShallowWrapper {
           />,
           "style": Object {
             "flex": 1,
+            "marginBottom": 105,
             "paddingHorizontal": 30,
           },
         },
@@ -698,11 +741,18 @@ ShallowWrapper {
             areIconsHidden={true}
             colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={Array []}
           />,
           "style": Object {
             "alignItems": "center",
-            "marginBottom": 36,
+            "backgroundColor": "rgb(255,255,255)",
+            "bottom": 0,
+            "left": 0,
+            "paddingBottom": 34,
+            "paddingTop": 16,
+            "position": "absolute",
+            "right": 0,
           },
         },
         "ref": null,
@@ -715,6 +765,7 @@ ShallowWrapper {
             "areIconsHidden": true,
             "colour": "darker",
             "hasNotification": false,
+            "hasWhiteBackground": true,
             "labels": Array [],
           },
           "ref": null,
@@ -755,6 +806,7 @@ ShallowWrapper {
             style={
               Object {
                 "flex": 1,
+                "marginBottom": 105,
                 "paddingHorizontal": 30,
               }
             }
@@ -767,7 +819,13 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "marginBottom": 36,
+                "backgroundColor": "rgb(255,255,255)",
+                "bottom": 0,
+                "left": 0,
+                "paddingBottom": 34,
+                "paddingTop": 16,
+                "position": "absolute",
+                "right": 0,
               }
             }
           >
@@ -776,6 +834,7 @@ ShallowWrapper {
               areIconsHidden={true}
               colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={Array []}
             />
           </View>,
@@ -840,6 +899,7 @@ ShallowWrapper {
             />,
             "style": Object {
               "flex": 1,
+              "marginBottom": 105,
               "paddingHorizontal": 30,
             },
           },
@@ -867,11 +927,18 @@ ShallowWrapper {
               areIconsHidden={true}
               colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={Array []}
             />,
             "style": Object {
               "alignItems": "center",
-              "marginBottom": 36,
+              "backgroundColor": "rgb(255,255,255)",
+              "bottom": 0,
+              "left": 0,
+              "paddingBottom": 34,
+              "paddingTop": 16,
+              "position": "absolute",
+              "right": 0,
             },
           },
           "ref": null,
@@ -884,6 +951,7 @@ ShallowWrapper {
               "areIconsHidden": true,
               "colour": "darker",
               "hasNotification": false,
+              "hasWhiteBackground": true,
               "labels": Array [],
             },
             "ref": null,

@@ -40,6 +40,22 @@ export const getImageStyle = (image: Images): ImageStyle => {
             position.bottom = 0;
             position.right = 0;
             break;
+        case IMAGES.BIGHORN_SHEEP:
+            position.bottom = 0;
+            position.right = 0;
+            break;
+        case IMAGES.CAMEL:
+            position.bottom = 0;
+            position.right = 0;
+            break;
+        case IMAGES.MEERKAT:
+            position.bottom = 0;
+            position.right = Style.SCALE_UP_AND_DOWN(15);
+            break;
+        case IMAGES.DESERT_FOX:
+            position.bottom = 0;
+            position.right = 0;
+            break;
         default:
             position.top = 0;
             position.right = 0;
@@ -70,6 +86,14 @@ export const getImage = (image: Images) => {
             return assets.dolphin;
         case IMAGES.TORTOISE:
             return assets.tortoise;
+        case IMAGES.BIGHORN_SHEEP:
+            return assets.bighornSheep;
+        case IMAGES.CAMEL:
+            return assets.camel;
+        case IMAGES.MEERKAT:
+            return assets.meerkat;
+        case IMAGES.DESERT_FOX:
+            return assets.desertFox;
         default:
             return null;
     }

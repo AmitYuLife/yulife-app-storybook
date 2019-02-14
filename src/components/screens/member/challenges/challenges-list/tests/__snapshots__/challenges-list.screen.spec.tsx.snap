@@ -27,6 +27,7 @@ ShallowWrapper {
         <SafeAreaView
           style={
             Object {
+              "backgroundColor": "rgb(154, 231, 216)",
               "bottom": 0,
               "left": 0,
               "position": "absolute",
@@ -35,7 +36,20 @@ ShallowWrapper {
             }
           }
         >
-          <ChallengesBackground />
+          <Component
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/challenges/forest.png",
+              }
+            }
+            style={
+              Object {
+                "height": 1334,
+                "width": 750,
+              }
+            }
+          />
         </SafeAreaView>,
         <View
           style={
@@ -56,11 +70,11 @@ ShallowWrapper {
         </View>,
         <TopBar
           coins={1234}
-          isLight={false}
           leftIcon="Back"
           menuLabel="map"
           name="level 1"
           onPressLeftIcon={[Function]}
+          type="default"
         />,
         <View
           style={
@@ -93,8 +107,22 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <ChallengesBackground />,
+          "children": <Component
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/challenges/forest.png",
+              }
+            }
+            style={
+              Object {
+                "height": 1334,
+                "width": 750,
+              }
+            }
+          />,
           "style": Object {
+            "backgroundColor": "rgb(154, 231, 216)",
             "bottom": 0,
             "left": 0,
             "position": "absolute",
@@ -106,9 +134,16 @@ ShallowWrapper {
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "currentLevel": undefined,
+            "resizeMode": "cover",
+            "source": Object {
+              "testUri": "../../../assets/challenges/forest.png",
+            },
+            "style": Object {
+              "height": 1334,
+              "width": 750,
+            },
           },
           "ref": null,
           "rendered": null,
@@ -154,11 +189,11 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "coins": 1234,
-          "isLight": false,
           "leftIcon": "Back",
           "menuLabel": "map",
           "name": "level 1",
           "onPressLeftIcon": [Function],
+          "type": "default",
         },
         "ref": null,
         "rendered": null,
@@ -213,6 +248,7 @@ ShallowWrapper {
           <SafeAreaView
             style={
               Object {
+                "backgroundColor": "rgb(154, 231, 216)",
                 "bottom": 0,
                 "left": 0,
                 "position": "absolute",
@@ -221,7 +257,20 @@ ShallowWrapper {
               }
             }
           >
-            <ChallengesBackground />
+            <Component
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/challenges/forest.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 1334,
+                  "width": 750,
+                }
+              }
+            />
           </SafeAreaView>,
           <View
             style={
@@ -242,11 +291,11 @@ ShallowWrapper {
           </View>,
           <TopBar
             coins={1234}
-            isLight={false}
             leftIcon="Back"
             menuLabel="map"
             name="level 1"
             onPressLeftIcon={[Function]}
+            type="default"
           />,
           <View
             style={
@@ -279,8 +328,22 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <ChallengesBackground />,
+            "children": <Component
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/challenges/forest.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 1334,
+                  "width": 750,
+                }
+              }
+            />,
             "style": Object {
+              "backgroundColor": "rgb(154, 231, 216)",
               "bottom": 0,
               "left": 0,
               "position": "absolute",
@@ -292,9 +355,16 @@ ShallowWrapper {
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "function",
+            "nodeType": "class",
             "props": Object {
-              "currentLevel": undefined,
+              "resizeMode": "cover",
+              "source": Object {
+                "testUri": "../../../assets/challenges/forest.png",
+              },
+              "style": Object {
+                "height": 1334,
+                "width": 750,
+              },
             },
             "ref": null,
             "rendered": null,
@@ -340,11 +410,11 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "coins": 1234,
-            "isLight": false,
             "leftIcon": "Back",
             "menuLabel": "map",
             "name": "level 1",
             "onPressLeftIcon": [Function],
+            "type": "default",
           },
           "ref": null,
           "rendered": null,
@@ -439,6 +509,7 @@ ShallowWrapper {
         <SafeAreaView
           style={
             Object {
+              "backgroundColor": "rgb(154, 231, 216)",
               "bottom": 0,
               "left": 0,
               "position": "absolute",
@@ -447,7 +518,20 @@ ShallowWrapper {
             }
           }
         >
-          <ChallengesBackground />
+          <Component
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/challenges/forest.png",
+              }
+            }
+            style={
+              Object {
+                "height": 1334,
+                "width": 750,
+              }
+            }
+          />
         </SafeAreaView>,
         <View
           style={
@@ -468,11 +552,11 @@ ShallowWrapper {
         </View>,
         <TopBar
           coins={1234}
-          isLight={false}
           leftIcon="Back"
           menuLabel="map"
           name="level 1"
           onPressLeftIcon={[Function]}
+          type="default"
         />,
         <View
           style={
@@ -505,8 +589,22 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <ChallengesBackground />,
+          "children": <Component
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/challenges/forest.png",
+              }
+            }
+            style={
+              Object {
+                "height": 1334,
+                "width": 750,
+              }
+            }
+          />,
           "style": Object {
+            "backgroundColor": "rgb(154, 231, 216)",
             "bottom": 0,
             "left": 0,
             "position": "absolute",
@@ -518,9 +616,16 @@ ShallowWrapper {
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "currentLevel": undefined,
+            "resizeMode": "cover",
+            "source": Object {
+              "testUri": "../../../assets/challenges/forest.png",
+            },
+            "style": Object {
+              "height": 1334,
+              "width": 750,
+            },
           },
           "ref": null,
           "rendered": null,
@@ -566,11 +671,11 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "coins": 1234,
-          "isLight": false,
           "leftIcon": "Back",
           "menuLabel": "map",
           "name": "level 1",
           "onPressLeftIcon": [Function],
+          "type": "default",
         },
         "ref": null,
         "rendered": null,
@@ -625,6 +730,7 @@ ShallowWrapper {
           <SafeAreaView
             style={
               Object {
+                "backgroundColor": "rgb(154, 231, 216)",
                 "bottom": 0,
                 "left": 0,
                 "position": "absolute",
@@ -633,7 +739,20 @@ ShallowWrapper {
               }
             }
           >
-            <ChallengesBackground />
+            <Component
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/challenges/forest.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 1334,
+                  "width": 750,
+                }
+              }
+            />
           </SafeAreaView>,
           <View
             style={
@@ -654,11 +773,11 @@ ShallowWrapper {
           </View>,
           <TopBar
             coins={1234}
-            isLight={false}
             leftIcon="Back"
             menuLabel="map"
             name="level 1"
             onPressLeftIcon={[Function]}
+            type="default"
           />,
           <View
             style={
@@ -691,8 +810,22 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <ChallengesBackground />,
+            "children": <Component
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/challenges/forest.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 1334,
+                  "width": 750,
+                }
+              }
+            />,
             "style": Object {
+              "backgroundColor": "rgb(154, 231, 216)",
               "bottom": 0,
               "left": 0,
               "position": "absolute",
@@ -704,9 +837,16 @@ ShallowWrapper {
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "function",
+            "nodeType": "class",
             "props": Object {
-              "currentLevel": undefined,
+              "resizeMode": "cover",
+              "source": Object {
+                "testUri": "../../../assets/challenges/forest.png",
+              },
+              "style": Object {
+                "height": 1334,
+                "width": 750,
+              },
             },
             "ref": null,
             "rendered": null,
@@ -752,11 +892,11 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "coins": 1234,
-            "isLight": false,
             "leftIcon": "Back",
             "menuLabel": "map",
             "name": "level 1",
             "onPressLeftIcon": [Function],
+            "type": "default",
           },
           "ref": null,
           "rendered": null,

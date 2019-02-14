@@ -1,10 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Treasure should not render when icon is hidden 1`] = `
+exports[`Treasure should hide icon 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Treasure
-    isIconHidden={true}
+    colourScheme={
+      Object {
+        "active": "#FFFFFF",
+        "inactive": "#DDDDDD",
+        "pressed": "#EEEEEE",
+      }
+    }
+    hasDismiss={false}
+    hasHiddenIcons={true}
+    isActive={false}
+    isPressed={false}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -14,77 +24,9 @@ ShallowWrapper {
     "simulateEvent": [Function],
     "unmount": [Function],
   },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "children": Array [
-        null,
-        <Circle
-          cx="410.5"
-          cy="18"
-          fill="rgba(255,255,255,0.4)"
-          r="10"
-        />,
-      ],
-    },
-    "ref": null,
-    "rendered": Array [
-      null,
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "cx": "410.5",
-          "cy": "18",
-          "fill": "rgba(255,255,255,0.4)",
-          "r": "10",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
+  Symbol(enzyme.__node__): null,
   Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": Array [
-          null,
-          <Circle
-            cx="410.5"
-            cy="18"
-            fill="rgba(255,255,255,0.4)"
-            r="10"
-          />,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        null,
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "cx": "410.5",
-            "cy": "18",
-            "fill": "rgba(255,255,255,0.4)",
-            "r": "10",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
-    },
+    null,
   ],
   Symbol(enzyme.__options__): Object {
     "adapter": ReactSixteenAdapter {
@@ -112,6 +54,15 @@ exports[`Treasure should render when active and not pressed 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Treasure
+    colourScheme={
+      Object {
+        "active": "#FFFFFF",
+        "inactive": "#DDDDDD",
+        "pressed": "#EEEEEE",
+      }
+    }
+    hasDismiss={false}
+    hasHiddenIcons={false}
     isActive={true}
     isPressed={false}
   />,
@@ -129,46 +80,45 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <G>
-          <Rect
-            fill="rgba(255,255,255,1)"
-            height="8"
-            rx={0}
-            ry={0}
-            transform="matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)"
-            width="3"
-            x="380.2"
-            y="62.7"
-          />
-          <Rect
-            fill="rgba(255,255,255,1)"
-            height="8"
-            rx={0}
-            ry={0}
-            transform="matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)"
-            width="3"
-            x="371.6"
-            y="71.3"
-          />
-          <Rect
-            fill="rgba(255,255,255,1)"
-            height="3"
-            rx={0}
-            ry={0}
-            width="8"
-            x="366"
-            y="85.5"
-          />
-          <Path
-            d="M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z"
-            fill="rgba(255,255,255,1)"
-          />
-        </G>,
         <Circle
-          cx="410.5"
-          cy="18"
-          fill="rgba(255,255,255,1)"
-          r="10"
+          cx="444"
+          cy="62"
+          fill="#FFFFFF"
+          fillOpacity="0.5"
+          r="60"
+        />,
+        <Rect
+          fill="#FFFFFF"
+          height="8"
+          rx={0}
+          ry={0}
+          transform="matrix(0.8651 -0.5015 0.5015 0.8651 34.5754 211.3933)"
+          width="3"
+          x="408.9"
+          y="37.4"
+        />,
+        <Rect
+          fill="#FFFFFF"
+          height="7.5"
+          rx={0}
+          ry={0}
+          transform="matrix(0.3987 -0.9171 0.9171 0.3987 196.2158 398.2996)"
+          width="3"
+          x="400.3"
+          y="45.8"
+        />,
+        <Rect
+          fill="#FFFFFF"
+          height="3"
+          rx={0}
+          ry={0}
+          width="8"
+          x="394.6"
+          y="60.2"
+        />,
+        <Path
+          d="M483.4,36.3c-1.9-3.3-4.9-5.6-8.5-6.6c-1.7-0.5-3.5-0.6-5.3-0.4H431c-2.4,0.1-4.6,0.8-6.6,1.9l-7.8,4.6l11.9,20.6h-2.3 h-16.5v37h39.5h2h21V59l6.2-3.5C485,51.5,487.3,42.9,483.4,36.3z M426,33.8c1.5-0.9,3.3-1.4,5.1-1.5h31.2l-4.2,2.5h-33.8L426,33.8z M429.1,59.4h5v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V59.4z M412.6,90.4v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5 v-2.5h12v31H412.6z M449.1,56.4h-12h-5l-10.8-18.6h36.3l10.9,18.6h-17.4H449.1z M469.1,90.4h-17v-31h17V90.4z M482,46.1 c-0.8,2.8-2.6,5.2-5.2,6.7l-5.2,3l-11-19l5.3-3.1c1.4-0.8,3-1.3,4.5-1.4h0.8l0,0c3.8,0,7.6,1.9,9.7,5.5 C482.4,40.3,482.8,43.3,482,46.1z"
+          fill="#FFFFFF"
         />,
       ],
     },
@@ -179,110 +129,14 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": Array [
-            <Rect
-              fill="rgba(255,255,255,1)"
-              height="8"
-              rx={0}
-              ry={0}
-              transform="matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)"
-              width="3"
-              x="380.2"
-              y="62.7"
-            />,
-            <Rect
-              fill="rgba(255,255,255,1)"
-              height="8"
-              rx={0}
-              ry={0}
-              transform="matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)"
-              width="3"
-              x="371.6"
-              y="71.3"
-            />,
-            <Rect
-              fill="rgba(255,255,255,1)"
-              height="3"
-              rx={0}
-              ry={0}
-              width="8"
-              x="366"
-              y="85.5"
-            />,
-            <Path
-              d="M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z"
-              fill="rgba(255,255,255,1)"
-            />,
-          ],
+          "cx": "444",
+          "cy": "62",
+          "fill": "#FFFFFF",
+          "fillOpacity": "0.5",
+          "r": "60",
         },
         "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "fill": "rgba(255,255,255,1)",
-              "height": "8",
-              "rx": 0,
-              "ry": 0,
-              "transform": "matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)",
-              "width": "3",
-              "x": "380.2",
-              "y": "62.7",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "fill": "rgba(255,255,255,1)",
-              "height": "8",
-              "rx": 0,
-              "ry": 0,
-              "transform": "matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)",
-              "width": "3",
-              "x": "371.6",
-              "y": "71.3",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "fill": "rgba(255,255,255,1)",
-              "height": "3",
-              "rx": 0,
-              "ry": 0,
-              "width": "8",
-              "x": "366",
-              "y": "85.5",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "d": "M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z",
-              "fill": "rgba(255,255,255,1)",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
+        "rendered": null,
         "type": [Function],
       },
       Object {
@@ -290,10 +144,61 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "cx": "410.5",
-          "cy": "18",
-          "fill": "rgba(255,255,255,1)",
-          "r": "10",
+          "fill": "#FFFFFF",
+          "height": "8",
+          "rx": 0,
+          "ry": 0,
+          "transform": "matrix(0.8651 -0.5015 0.5015 0.8651 34.5754 211.3933)",
+          "width": "3",
+          "x": "408.9",
+          "y": "37.4",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "#FFFFFF",
+          "height": "7.5",
+          "rx": 0,
+          "ry": 0,
+          "transform": "matrix(0.3987 -0.9171 0.9171 0.3987 196.2158 398.2996)",
+          "width": "3",
+          "x": "400.3",
+          "y": "45.8",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "#FFFFFF",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "8",
+          "x": "394.6",
+          "y": "60.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "d": "M483.4,36.3c-1.9-3.3-4.9-5.6-8.5-6.6c-1.7-0.5-3.5-0.6-5.3-0.4H431c-2.4,0.1-4.6,0.8-6.6,1.9l-7.8,4.6l11.9,20.6h-2.3 h-16.5v37h39.5h2h21V59l6.2-3.5C485,51.5,487.3,42.9,483.4,36.3z M426,33.8c1.5-0.9,3.3-1.4,5.1-1.5h31.2l-4.2,2.5h-33.8L426,33.8z M429.1,59.4h5v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V59.4z M412.6,90.4v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5 v-2.5h12v31H412.6z M449.1,56.4h-12h-5l-10.8-18.6h36.3l10.9,18.6h-17.4H449.1z M469.1,90.4h-17v-31h17V90.4z M482,46.1 c-0.8,2.8-2.6,5.2-5.2,6.7l-5.2,3l-11-19l5.3-3.1c1.4-0.8,3-1.3,4.5-1.4h0.8l0,0c3.8,0,7.6,1.9,9.7,5.5 C482.4,40.3,482.8,43.3,482,46.1z",
+          "fill": "#FFFFFF",
         },
         "ref": null,
         "rendered": null,
@@ -309,46 +214,45 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <G>
-            <Rect
-              fill="rgba(255,255,255,1)"
-              height="8"
-              rx={0}
-              ry={0}
-              transform="matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)"
-              width="3"
-              x="380.2"
-              y="62.7"
-            />
-            <Rect
-              fill="rgba(255,255,255,1)"
-              height="8"
-              rx={0}
-              ry={0}
-              transform="matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)"
-              width="3"
-              x="371.6"
-              y="71.3"
-            />
-            <Rect
-              fill="rgba(255,255,255,1)"
-              height="3"
-              rx={0}
-              ry={0}
-              width="8"
-              x="366"
-              y="85.5"
-            />
-            <Path
-              d="M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z"
-              fill="rgba(255,255,255,1)"
-            />
-          </G>,
           <Circle
-            cx="410.5"
-            cy="18"
-            fill="rgba(255,255,255,1)"
-            r="10"
+            cx="444"
+            cy="62"
+            fill="#FFFFFF"
+            fillOpacity="0.5"
+            r="60"
+          />,
+          <Rect
+            fill="#FFFFFF"
+            height="8"
+            rx={0}
+            ry={0}
+            transform="matrix(0.8651 -0.5015 0.5015 0.8651 34.5754 211.3933)"
+            width="3"
+            x="408.9"
+            y="37.4"
+          />,
+          <Rect
+            fill="#FFFFFF"
+            height="7.5"
+            rx={0}
+            ry={0}
+            transform="matrix(0.3987 -0.9171 0.9171 0.3987 196.2158 398.2996)"
+            width="3"
+            x="400.3"
+            y="45.8"
+          />,
+          <Rect
+            fill="#FFFFFF"
+            height="3"
+            rx={0}
+            ry={0}
+            width="8"
+            x="394.6"
+            y="60.2"
+          />,
+          <Path
+            d="M483.4,36.3c-1.9-3.3-4.9-5.6-8.5-6.6c-1.7-0.5-3.5-0.6-5.3-0.4H431c-2.4,0.1-4.6,0.8-6.6,1.9l-7.8,4.6l11.9,20.6h-2.3 h-16.5v37h39.5h2h21V59l6.2-3.5C485,51.5,487.3,42.9,483.4,36.3z M426,33.8c1.5-0.9,3.3-1.4,5.1-1.5h31.2l-4.2,2.5h-33.8L426,33.8z M429.1,59.4h5v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V59.4z M412.6,90.4v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5 v-2.5h12v31H412.6z M449.1,56.4h-12h-5l-10.8-18.6h36.3l10.9,18.6h-17.4H449.1z M469.1,90.4h-17v-31h17V90.4z M482,46.1 c-0.8,2.8-2.6,5.2-5.2,6.7l-5.2,3l-11-19l5.3-3.1c1.4-0.8,3-1.3,4.5-1.4h0.8l0,0c3.8,0,7.6,1.9,9.7,5.5 C482.4,40.3,482.8,43.3,482,46.1z"
+            fill="#FFFFFF"
           />,
         ],
       },
@@ -359,110 +263,14 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": Array [
-              <Rect
-                fill="rgba(255,255,255,1)"
-                height="8"
-                rx={0}
-                ry={0}
-                transform="matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)"
-                width="3"
-                x="380.2"
-                y="62.7"
-              />,
-              <Rect
-                fill="rgba(255,255,255,1)"
-                height="8"
-                rx={0}
-                ry={0}
-                transform="matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)"
-                width="3"
-                x="371.6"
-                y="71.3"
-              />,
-              <Rect
-                fill="rgba(255,255,255,1)"
-                height="3"
-                rx={0}
-                ry={0}
-                width="8"
-                x="366"
-                y="85.5"
-              />,
-              <Path
-                d="M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z"
-                fill="rgba(255,255,255,1)"
-              />,
-            ],
+            "cx": "444",
+            "cy": "62",
+            "fill": "#FFFFFF",
+            "fillOpacity": "0.5",
+            "r": "60",
           },
           "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "fill": "rgba(255,255,255,1)",
-                "height": "8",
-                "rx": 0,
-                "ry": 0,
-                "transform": "matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)",
-                "width": "3",
-                "x": "380.2",
-                "y": "62.7",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "fill": "rgba(255,255,255,1)",
-                "height": "8",
-                "rx": 0,
-                "ry": 0,
-                "transform": "matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)",
-                "width": "3",
-                "x": "371.6",
-                "y": "71.3",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "fill": "rgba(255,255,255,1)",
-                "height": "3",
-                "rx": 0,
-                "ry": 0,
-                "width": "8",
-                "x": "366",
-                "y": "85.5",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "d": "M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z",
-                "fill": "rgba(255,255,255,1)",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
+          "rendered": null,
           "type": [Function],
         },
         Object {
@@ -470,10 +278,61 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "cx": "410.5",
-            "cy": "18",
-            "fill": "rgba(255,255,255,1)",
-            "r": "10",
+            "fill": "#FFFFFF",
+            "height": "8",
+            "rx": 0,
+            "ry": 0,
+            "transform": "matrix(0.8651 -0.5015 0.5015 0.8651 34.5754 211.3933)",
+            "width": "3",
+            "x": "408.9",
+            "y": "37.4",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "#FFFFFF",
+            "height": "7.5",
+            "rx": 0,
+            "ry": 0,
+            "transform": "matrix(0.3987 -0.9171 0.9171 0.3987 196.2158 398.2996)",
+            "width": "3",
+            "x": "400.3",
+            "y": "45.8",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "#FFFFFF",
+            "height": "3",
+            "rx": 0,
+            "ry": 0,
+            "width": "8",
+            "x": "394.6",
+            "y": "60.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "d": "M483.4,36.3c-1.9-3.3-4.9-5.6-8.5-6.6c-1.7-0.5-3.5-0.6-5.3-0.4H431c-2.4,0.1-4.6,0.8-6.6,1.9l-7.8,4.6l11.9,20.6h-2.3 h-16.5v37h39.5h2h21V59l6.2-3.5C485,51.5,487.3,42.9,483.4,36.3z M426,33.8c1.5-0.9,3.3-1.4,5.1-1.5h31.2l-4.2,2.5h-33.8L426,33.8z M429.1,59.4h5v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V59.4z M412.6,90.4v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5 v-2.5h12v31H412.6z M449.1,56.4h-12h-5l-10.8-18.6h36.3l10.9,18.6h-17.4H449.1z M469.1,90.4h-17v-31h17V90.4z M482,46.1 c-0.8,2.8-2.6,5.2-5.2,6.7l-5.2,3l-11-19l5.3-3.1c1.4-0.8,3-1.3,4.5-1.4h0.8l0,0c3.8,0,7.6,1.9,9.7,5.5 C482.4,40.3,482.8,43.3,482,46.1z",
+            "fill": "#FFFFFF",
           },
           "ref": null,
           "rendered": null,
@@ -509,6 +368,15 @@ exports[`Treasure should render when inactive and not pressed 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Treasure
+    colourScheme={
+      Object {
+        "active": "#FFFFFF",
+        "inactive": "#DDDDDD",
+        "pressed": "#EEEEEE",
+      }
+    }
+    hasDismiss={false}
+    hasHiddenIcons={false}
     isActive={false}
     isPressed={false}
   />,
@@ -526,46 +394,38 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <G>
-          <Rect
-            fill="rgba(255,255,255,0.4)"
-            height="8"
-            rx={0}
-            ry={0}
-            transform="matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)"
-            width="3"
-            x="380.2"
-            y="62.7"
-          />
-          <Rect
-            fill="rgba(255,255,255,0.4)"
-            height="8"
-            rx={0}
-            ry={0}
-            transform="matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)"
-            width="3"
-            x="371.6"
-            y="71.3"
-          />
-          <Rect
-            fill="rgba(255,255,255,0.4)"
-            height="3"
-            rx={0}
-            ry={0}
-            width="8"
-            x="366"
-            y="85.5"
-          />
-          <Path
-            d="M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z"
-            fill="rgba(255,255,255,0.4)"
-          />
-        </G>,
-        <Circle
-          cx="410.5"
-          cy="18"
-          fill="rgba(255,255,255,0.4)"
-          r="10"
+        <Rect
+          fill="#DDDDDD"
+          height="8"
+          rx={0}
+          ry={0}
+          transform="matrix(0.8651 -0.5015 0.5015 0.8651 22.0488 214.7955)"
+          width="3"
+          x="408.9"
+          y="62.4"
+        />,
+        <Rect
+          fill="#DDDDDD"
+          height="7.5"
+          rx={0}
+          ry={0}
+          transform="matrix(0.3987 -0.9171 0.9171 0.3987 173.3256 413.3168)"
+          width="3"
+          x="400.3"
+          y="70.7"
+        />,
+        <Rect
+          fill="#DDDDDD"
+          height="3"
+          rx={0}
+          ry={0}
+          width="8"
+          x="394.6"
+          y="85.2"
+        />,
+        <Path
+          d="M483.4,61.3c-1.9-3.3-4.9-5.6-8.5-6.6c-1.7-0.5-3.5-0.6-5.3-0.4H431c-2.4,0.1-4.6,0.8-6.6,1.9l-7.8,4.6l11.9,20.6h-2.3 h-16.5v37h39.5h2h21V84l6.2-3.5C485,76.5,487.3,67.9,483.4,61.3z M426,58.8c1.5-0.9,3.3-1.4,5.1-1.5h31.2l-4.2,2.5h-33.8L426,58.8z M429.1,84.4h5v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V84.4z M412.6,115.4v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5 v-2.5h12v31H412.6z M449.1,81.4h-12h-5l-10.8-18.6h36.3l10.9,18.6h-17.4H449.1z M469.1,115.4h-17v-31h17V115.4z M482,71.1 c-0.8,2.8-2.6,5.2-5.2,6.7l-5.2,3l-11-19l5.3-3.1c1.4-0.8,3-1.3,4.5-1.4h0.8l0,0c3.8,0,7.6,1.9,9.7,5.5 C482.4,65.3,482.8,68.3,482,71.1z"
+          fill="#DDDDDD"
         />,
       ],
     },
@@ -576,110 +436,17 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": Array [
-            <Rect
-              fill="rgba(255,255,255,0.4)"
-              height="8"
-              rx={0}
-              ry={0}
-              transform="matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)"
-              width="3"
-              x="380.2"
-              y="62.7"
-            />,
-            <Rect
-              fill="rgba(255,255,255,0.4)"
-              height="8"
-              rx={0}
-              ry={0}
-              transform="matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)"
-              width="3"
-              x="371.6"
-              y="71.3"
-            />,
-            <Rect
-              fill="rgba(255,255,255,0.4)"
-              height="3"
-              rx={0}
-              ry={0}
-              width="8"
-              x="366"
-              y="85.5"
-            />,
-            <Path
-              d="M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z"
-              fill="rgba(255,255,255,0.4)"
-            />,
-          ],
+          "fill": "#DDDDDD",
+          "height": "8",
+          "rx": 0,
+          "ry": 0,
+          "transform": "matrix(0.8651 -0.5015 0.5015 0.8651 22.0488 214.7955)",
+          "width": "3",
+          "x": "408.9",
+          "y": "62.4",
         },
         "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "fill": "rgba(255,255,255,0.4)",
-              "height": "8",
-              "rx": 0,
-              "ry": 0,
-              "transform": "matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)",
-              "width": "3",
-              "x": "380.2",
-              "y": "62.7",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "fill": "rgba(255,255,255,0.4)",
-              "height": "8",
-              "rx": 0,
-              "ry": 0,
-              "transform": "matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)",
-              "width": "3",
-              "x": "371.6",
-              "y": "71.3",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "fill": "rgba(255,255,255,0.4)",
-              "height": "3",
-              "rx": 0,
-              "ry": 0,
-              "width": "8",
-              "x": "366",
-              "y": "85.5",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "d": "M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z",
-              "fill": "rgba(255,255,255,0.4)",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
+        "rendered": null,
         "type": [Function],
       },
       Object {
@@ -687,10 +454,43 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "cx": "410.5",
-          "cy": "18",
-          "fill": "rgba(255,255,255,0.4)",
-          "r": "10",
+          "fill": "#DDDDDD",
+          "height": "7.5",
+          "rx": 0,
+          "ry": 0,
+          "transform": "matrix(0.3987 -0.9171 0.9171 0.3987 173.3256 413.3168)",
+          "width": "3",
+          "x": "400.3",
+          "y": "70.7",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "#DDDDDD",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "8",
+          "x": "394.6",
+          "y": "85.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "d": "M483.4,61.3c-1.9-3.3-4.9-5.6-8.5-6.6c-1.7-0.5-3.5-0.6-5.3-0.4H431c-2.4,0.1-4.6,0.8-6.6,1.9l-7.8,4.6l11.9,20.6h-2.3 h-16.5v37h39.5h2h21V84l6.2-3.5C485,76.5,487.3,67.9,483.4,61.3z M426,58.8c1.5-0.9,3.3-1.4,5.1-1.5h31.2l-4.2,2.5h-33.8L426,58.8z M429.1,84.4h5v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V84.4z M412.6,115.4v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5 v-2.5h12v31H412.6z M449.1,81.4h-12h-5l-10.8-18.6h36.3l10.9,18.6h-17.4H449.1z M469.1,115.4h-17v-31h17V115.4z M482,71.1 c-0.8,2.8-2.6,5.2-5.2,6.7l-5.2,3l-11-19l5.3-3.1c1.4-0.8,3-1.3,4.5-1.4h0.8l0,0c3.8,0,7.6,1.9,9.7,5.5 C482.4,65.3,482.8,68.3,482,71.1z",
+          "fill": "#DDDDDD",
         },
         "ref": null,
         "rendered": null,
@@ -706,46 +506,38 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <G>
-            <Rect
-              fill="rgba(255,255,255,0.4)"
-              height="8"
-              rx={0}
-              ry={0}
-              transform="matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)"
-              width="3"
-              x="380.2"
-              y="62.7"
-            />
-            <Rect
-              fill="rgba(255,255,255,0.4)"
-              height="8"
-              rx={0}
-              ry={0}
-              transform="matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)"
-              width="3"
-              x="371.6"
-              y="71.3"
-            />
-            <Rect
-              fill="rgba(255,255,255,0.4)"
-              height="3"
-              rx={0}
-              ry={0}
-              width="8"
-              x="366"
-              y="85.5"
-            />
-            <Path
-              d="M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z"
-              fill="rgba(255,255,255,0.4)"
-            />
-          </G>,
-          <Circle
-            cx="410.5"
-            cy="18"
-            fill="rgba(255,255,255,0.4)"
-            r="10"
+          <Rect
+            fill="#DDDDDD"
+            height="8"
+            rx={0}
+            ry={0}
+            transform="matrix(0.8651 -0.5015 0.5015 0.8651 22.0488 214.7955)"
+            width="3"
+            x="408.9"
+            y="62.4"
+          />,
+          <Rect
+            fill="#DDDDDD"
+            height="7.5"
+            rx={0}
+            ry={0}
+            transform="matrix(0.3987 -0.9171 0.9171 0.3987 173.3256 413.3168)"
+            width="3"
+            x="400.3"
+            y="70.7"
+          />,
+          <Rect
+            fill="#DDDDDD"
+            height="3"
+            rx={0}
+            ry={0}
+            width="8"
+            x="394.6"
+            y="85.2"
+          />,
+          <Path
+            d="M483.4,61.3c-1.9-3.3-4.9-5.6-8.5-6.6c-1.7-0.5-3.5-0.6-5.3-0.4H431c-2.4,0.1-4.6,0.8-6.6,1.9l-7.8,4.6l11.9,20.6h-2.3 h-16.5v37h39.5h2h21V84l6.2-3.5C485,76.5,487.3,67.9,483.4,61.3z M426,58.8c1.5-0.9,3.3-1.4,5.1-1.5h31.2l-4.2,2.5h-33.8L426,58.8z M429.1,84.4h5v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V84.4z M412.6,115.4v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5 v-2.5h12v31H412.6z M449.1,81.4h-12h-5l-10.8-18.6h36.3l10.9,18.6h-17.4H449.1z M469.1,115.4h-17v-31h17V115.4z M482,71.1 c-0.8,2.8-2.6,5.2-5.2,6.7l-5.2,3l-11-19l5.3-3.1c1.4-0.8,3-1.3,4.5-1.4h0.8l0,0c3.8,0,7.6,1.9,9.7,5.5 C482.4,65.3,482.8,68.3,482,71.1z"
+            fill="#DDDDDD"
           />,
         ],
       },
@@ -756,110 +548,17 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": Array [
-              <Rect
-                fill="rgba(255,255,255,0.4)"
-                height="8"
-                rx={0}
-                ry={0}
-                transform="matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)"
-                width="3"
-                x="380.2"
-                y="62.7"
-              />,
-              <Rect
-                fill="rgba(255,255,255,0.4)"
-                height="8"
-                rx={0}
-                ry={0}
-                transform="matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)"
-                width="3"
-                x="371.6"
-                y="71.3"
-              />,
-              <Rect
-                fill="rgba(255,255,255,0.4)"
-                height="3"
-                rx={0}
-                ry={0}
-                width="8"
-                x="366"
-                y="85.5"
-              />,
-              <Path
-                d="M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z"
-                fill="rgba(255,255,255,0.4)"
-              />,
-            ],
+            "fill": "#DDDDDD",
+            "height": "8",
+            "rx": 0,
+            "ry": 0,
+            "transform": "matrix(0.8651 -0.5015 0.5015 0.8651 22.0488 214.7955)",
+            "width": "3",
+            "x": "408.9",
+            "y": "62.4",
           },
           "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "fill": "rgba(255,255,255,0.4)",
-                "height": "8",
-                "rx": 0,
-                "ry": 0,
-                "transform": "matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)",
-                "width": "3",
-                "x": "380.2",
-                "y": "62.7",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "fill": "rgba(255,255,255,0.4)",
-                "height": "8",
-                "rx": 0,
-                "ry": 0,
-                "transform": "matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)",
-                "width": "3",
-                "x": "371.6",
-                "y": "71.3",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "fill": "rgba(255,255,255,0.4)",
-                "height": "3",
-                "rx": 0,
-                "ry": 0,
-                "width": "8",
-                "x": "366",
-                "y": "85.5",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "d": "M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z",
-                "fill": "rgba(255,255,255,0.4)",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
+          "rendered": null,
           "type": [Function],
         },
         Object {
@@ -867,10 +566,43 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "cx": "410.5",
-            "cy": "18",
-            "fill": "rgba(255,255,255,0.4)",
-            "r": "10",
+            "fill": "#DDDDDD",
+            "height": "7.5",
+            "rx": 0,
+            "ry": 0,
+            "transform": "matrix(0.3987 -0.9171 0.9171 0.3987 173.3256 413.3168)",
+            "width": "3",
+            "x": "400.3",
+            "y": "70.7",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "#DDDDDD",
+            "height": "3",
+            "rx": 0,
+            "ry": 0,
+            "width": "8",
+            "x": "394.6",
+            "y": "85.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "d": "M483.4,61.3c-1.9-3.3-4.9-5.6-8.5-6.6c-1.7-0.5-3.5-0.6-5.3-0.4H431c-2.4,0.1-4.6,0.8-6.6,1.9l-7.8,4.6l11.9,20.6h-2.3 h-16.5v37h39.5h2h21V84l6.2-3.5C485,76.5,487.3,67.9,483.4,61.3z M426,58.8c1.5-0.9,3.3-1.4,5.1-1.5h31.2l-4.2,2.5h-33.8L426,58.8z M429.1,84.4h5v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V84.4z M412.6,115.4v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5 v-2.5h12v31H412.6z M449.1,81.4h-12h-5l-10.8-18.6h36.3l10.9,18.6h-17.4H449.1z M469.1,115.4h-17v-31h17V115.4z M482,71.1 c-0.8,2.8-2.6,5.2-5.2,6.7l-5.2,3l-11-19l5.3-3.1c1.4-0.8,3-1.3,4.5-1.4h0.8l0,0c3.8,0,7.6,1.9,9.7,5.5 C482.4,65.3,482.8,68.3,482,71.1z",
+            "fill": "#DDDDDD",
           },
           "ref": null,
           "rendered": null,
@@ -906,6 +638,15 @@ exports[`Treasure should render when inactive and pressed 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Treasure
+    colourScheme={
+      Object {
+        "active": "#FFFFFF",
+        "inactive": "#DDDDDD",
+        "pressed": "#EEEEEE",
+      }
+    }
+    hasDismiss={false}
+    hasHiddenIcons={false}
     isActive={false}
     isPressed={true}
   />,
@@ -923,46 +664,38 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <G>
-          <Rect
-            fill="rgba(255,255,255,0.2)"
-            height="8"
-            rx={0}
-            ry={0}
-            transform="matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)"
-            width="3"
-            x="380.2"
-            y="62.7"
-          />
-          <Rect
-            fill="rgba(255,255,255,0.2)"
-            height="8"
-            rx={0}
-            ry={0}
-            transform="matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)"
-            width="3"
-            x="371.6"
-            y="71.3"
-          />
-          <Rect
-            fill="rgba(255,255,255,0.2)"
-            height="3"
-            rx={0}
-            ry={0}
-            width="8"
-            x="366"
-            y="85.5"
-          />
-          <Path
-            d="M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z"
-            fill="rgba(255,255,255,0.2)"
-          />
-        </G>,
-        <Circle
-          cx="410.5"
-          cy="18"
-          fill="rgba(255,255,255,0.2)"
-          r="10"
+        <Rect
+          fill="#EEEEEE"
+          height="8"
+          rx={0}
+          ry={0}
+          transform="matrix(0.8651 -0.5015 0.5015 0.8651 22.0488 214.7955)"
+          width="3"
+          x="408.9"
+          y="62.4"
+        />,
+        <Rect
+          fill="#EEEEEE"
+          height="7.5"
+          rx={0}
+          ry={0}
+          transform="matrix(0.3987 -0.9171 0.9171 0.3987 173.3256 413.3168)"
+          width="3"
+          x="400.3"
+          y="70.7"
+        />,
+        <Rect
+          fill="#EEEEEE"
+          height="3"
+          rx={0}
+          ry={0}
+          width="8"
+          x="394.6"
+          y="85.2"
+        />,
+        <Path
+          d="M483.4,61.3c-1.9-3.3-4.9-5.6-8.5-6.6c-1.7-0.5-3.5-0.6-5.3-0.4H431c-2.4,0.1-4.6,0.8-6.6,1.9l-7.8,4.6l11.9,20.6h-2.3 h-16.5v37h39.5h2h21V84l6.2-3.5C485,76.5,487.3,67.9,483.4,61.3z M426,58.8c1.5-0.9,3.3-1.4,5.1-1.5h31.2l-4.2,2.5h-33.8L426,58.8z M429.1,84.4h5v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V84.4z M412.6,115.4v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5 v-2.5h12v31H412.6z M449.1,81.4h-12h-5l-10.8-18.6h36.3l10.9,18.6h-17.4H449.1z M469.1,115.4h-17v-31h17V115.4z M482,71.1 c-0.8,2.8-2.6,5.2-5.2,6.7l-5.2,3l-11-19l5.3-3.1c1.4-0.8,3-1.3,4.5-1.4h0.8l0,0c3.8,0,7.6,1.9,9.7,5.5 C482.4,65.3,482.8,68.3,482,71.1z"
+          fill="#EEEEEE"
         />,
       ],
     },
@@ -973,110 +706,17 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": Array [
-            <Rect
-              fill="rgba(255,255,255,0.2)"
-              height="8"
-              rx={0}
-              ry={0}
-              transform="matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)"
-              width="3"
-              x="380.2"
-              y="62.7"
-            />,
-            <Rect
-              fill="rgba(255,255,255,0.2)"
-              height="8"
-              rx={0}
-              ry={0}
-              transform="matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)"
-              width="3"
-              x="371.6"
-              y="71.3"
-            />,
-            <Rect
-              fill="rgba(255,255,255,0.2)"
-              height="3"
-              rx={0}
-              ry={0}
-              width="8"
-              x="366"
-              y="85.5"
-            />,
-            <Path
-              d="M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z"
-              fill="rgba(255,255,255,0.2)"
-            />,
-          ],
+          "fill": "#EEEEEE",
+          "height": "8",
+          "rx": 0,
+          "ry": 0,
+          "transform": "matrix(0.8651 -0.5015 0.5015 0.8651 22.0488 214.7955)",
+          "width": "3",
+          "x": "408.9",
+          "y": "62.4",
         },
         "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "fill": "rgba(255,255,255,0.2)",
-              "height": "8",
-              "rx": 0,
-              "ry": 0,
-              "transform": "matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)",
-              "width": "3",
-              "x": "380.2",
-              "y": "62.7",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "fill": "rgba(255,255,255,0.2)",
-              "height": "8",
-              "rx": 0,
-              "ry": 0,
-              "transform": "matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)",
-              "width": "3",
-              "x": "371.6",
-              "y": "71.3",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "fill": "rgba(255,255,255,0.2)",
-              "height": "3",
-              "rx": 0,
-              "ry": 0,
-              "width": "8",
-              "x": "366",
-              "y": "85.5",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "d": "M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z",
-              "fill": "rgba(255,255,255,0.2)",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
+        "rendered": null,
         "type": [Function],
       },
       Object {
@@ -1084,10 +724,43 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "cx": "410.5",
-          "cy": "18",
-          "fill": "rgba(255,255,255,0.2)",
-          "r": "10",
+          "fill": "#EEEEEE",
+          "height": "7.5",
+          "rx": 0,
+          "ry": 0,
+          "transform": "matrix(0.3987 -0.9171 0.9171 0.3987 173.3256 413.3168)",
+          "width": "3",
+          "x": "400.3",
+          "y": "70.7",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "fill": "#EEEEEE",
+          "height": "3",
+          "rx": 0,
+          "ry": 0,
+          "width": "8",
+          "x": "394.6",
+          "y": "85.2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "d": "M483.4,61.3c-1.9-3.3-4.9-5.6-8.5-6.6c-1.7-0.5-3.5-0.6-5.3-0.4H431c-2.4,0.1-4.6,0.8-6.6,1.9l-7.8,4.6l11.9,20.6h-2.3 h-16.5v37h39.5h2h21V84l6.2-3.5C485,76.5,487.3,67.9,483.4,61.3z M426,58.8c1.5-0.9,3.3-1.4,5.1-1.5h31.2l-4.2,2.5h-33.8L426,58.8z M429.1,84.4h5v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V84.4z M412.6,115.4v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5 v-2.5h12v31H412.6z M449.1,81.4h-12h-5l-10.8-18.6h36.3l10.9,18.6h-17.4H449.1z M469.1,115.4h-17v-31h17V115.4z M482,71.1 c-0.8,2.8-2.6,5.2-5.2,6.7l-5.2,3l-11-19l5.3-3.1c1.4-0.8,3-1.3,4.5-1.4h0.8l0,0c3.8,0,7.6,1.9,9.7,5.5 C482.4,65.3,482.8,68.3,482,71.1z",
+          "fill": "#EEEEEE",
         },
         "ref": null,
         "rendered": null,
@@ -1103,46 +776,38 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <G>
-            <Rect
-              fill="rgba(255,255,255,0.2)"
-              height="8"
-              rx={0}
-              ry={0}
-              transform="matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)"
-              width="3"
-              x="380.2"
-              y="62.7"
-            />
-            <Rect
-              fill="rgba(255,255,255,0.2)"
-              height="8"
-              rx={0}
-              ry={0}
-              transform="matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)"
-              width="3"
-              x="371.6"
-              y="71.3"
-            />
-            <Rect
-              fill="rgba(255,255,255,0.2)"
-              height="3"
-              rx={0}
-              ry={0}
-              width="8"
-              x="366"
-              y="85.5"
-            />
-            <Path
-              d="M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z"
-              fill="rgba(255,255,255,0.2)"
-            />
-          </G>,
-          <Circle
-            cx="410.5"
-            cy="18"
-            fill="rgba(255,255,255,0.2)"
-            r="10"
+          <Rect
+            fill="#EEEEEE"
+            height="8"
+            rx={0}
+            ry={0}
+            transform="matrix(0.8651 -0.5015 0.5015 0.8651 22.0488 214.7955)"
+            width="3"
+            x="408.9"
+            y="62.4"
+          />,
+          <Rect
+            fill="#EEEEEE"
+            height="7.5"
+            rx={0}
+            ry={0}
+            transform="matrix(0.3987 -0.9171 0.9171 0.3987 173.3256 413.3168)"
+            width="3"
+            x="400.3"
+            y="70.7"
+          />,
+          <Rect
+            fill="#EEEEEE"
+            height="3"
+            rx={0}
+            ry={0}
+            width="8"
+            x="394.6"
+            y="85.2"
+          />,
+          <Path
+            d="M483.4,61.3c-1.9-3.3-4.9-5.6-8.5-6.6c-1.7-0.5-3.5-0.6-5.3-0.4H431c-2.4,0.1-4.6,0.8-6.6,1.9l-7.8,4.6l11.9,20.6h-2.3 h-16.5v37h39.5h2h21V84l6.2-3.5C485,76.5,487.3,67.9,483.4,61.3z M426,58.8c1.5-0.9,3.3-1.4,5.1-1.5h31.2l-4.2,2.5h-33.8L426,58.8z M429.1,84.4h5v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V84.4z M412.6,115.4v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5 v-2.5h12v31H412.6z M449.1,81.4h-12h-5l-10.8-18.6h36.3l10.9,18.6h-17.4H449.1z M469.1,115.4h-17v-31h17V115.4z M482,71.1 c-0.8,2.8-2.6,5.2-5.2,6.7l-5.2,3l-11-19l5.3-3.1c1.4-0.8,3-1.3,4.5-1.4h0.8l0,0c3.8,0,7.6,1.9,9.7,5.5 C482.4,65.3,482.8,68.3,482,71.1z"
+            fill="#EEEEEE"
           />,
         ],
       },
@@ -1153,110 +818,17 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": Array [
-              <Rect
-                fill="rgba(255,255,255,0.2)"
-                height="8"
-                rx={0}
-                ry={0}
-                transform="matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)"
-                width="3"
-                x="380.2"
-                y="62.7"
-              />,
-              <Rect
-                fill="rgba(255,255,255,0.2)"
-                height="8"
-                rx={0}
-                ry={0}
-                transform="matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)"
-                width="3"
-                x="371.6"
-                y="71.3"
-              />,
-              <Rect
-                fill="rgba(255,255,255,0.2)"
-                height="3"
-                rx={0}
-                ry={0}
-                width="8"
-                x="366"
-                y="85.5"
-              />,
-              <Path
-                d="M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z"
-                fill="rgba(255,255,255,0.2)"
-              />,
-            ],
+            "fill": "#EEEEEE",
+            "height": "8",
+            "rx": 0,
+            "ry": 0,
+            "transform": "matrix(0.8651 -0.5015 0.5015 0.8651 22.0488 214.7955)",
+            "width": "3",
+            "x": "408.9",
+            "y": "62.4",
           },
           "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "fill": "rgba(255,255,255,0.2)",
-                "height": "8",
-                "rx": 0,
-                "ry": 0,
-                "transform": "matrix(0.866 -0.5 0.5 0.866 17.8102 199.7843)",
-                "width": "3",
-                "x": "380.2",
-                "y": "62.7",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "fill": "rgba(255,255,255,0.2)",
-                "height": "8",
-                "rx": 0,
-                "ry": 0,
-                "transform": "matrix(0.5 -0.866 0.866 0.5 121.3991 360.7773)",
-                "width": "3",
-                "x": "371.6",
-                "y": "71.3",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "fill": "rgba(255,255,255,0.2)",
-                "height": "3",
-                "rx": 0,
-                "ry": 0,
-                "width": "8",
-                "x": "366",
-                "y": "85.5",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "d": "M454.6,63.3c-2.6-4.6-7.5-7.1-12.4-7v0l-40.1,0c-2.3,0-4.5,0.6-6.6,1.9l-7.8,4.5l12,20.7h-2.4h-16.5v37h40h1.5 h21.5V85.7l5.7-3.3C456.2,78.5,458.5,70,454.6,63.3z M397,60.7c1.7-1,3.4-1.5,5.1-1.5l31.4,0l-4.2,2.4h-34L397,60.7z M400.3,86.3h5 v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V86.3z M383.8,117.3v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5v-2.5h12.5v31 H383.8z M420.8,83.3h-12.5h-5.1l-10.8-18.7h36.5l10.8,18.7h-17.4H420.8z M440.8,117.3h-17v-31h17V117.3z M448,79.8l-5.2,3l-11-19.1 l5.2-3c5.3-3,12-1.2,15,4C455.1,70,453.3,76.8,448,79.8z",
-                "fill": "rgba(255,255,255,0.2)",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
+          "rendered": null,
           "type": [Function],
         },
         Object {
@@ -1264,10 +836,43 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "cx": "410.5",
-            "cy": "18",
-            "fill": "rgba(255,255,255,0.2)",
-            "r": "10",
+            "fill": "#EEEEEE",
+            "height": "7.5",
+            "rx": 0,
+            "ry": 0,
+            "transform": "matrix(0.3987 -0.9171 0.9171 0.3987 173.3256 413.3168)",
+            "width": "3",
+            "x": "400.3",
+            "y": "70.7",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "fill": "#EEEEEE",
+            "height": "3",
+            "rx": 0,
+            "ry": 0,
+            "width": "8",
+            "x": "394.6",
+            "y": "85.2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "d": "M483.4,61.3c-1.9-3.3-4.9-5.6-8.5-6.6c-1.7-0.5-3.5-0.6-5.3-0.4H431c-2.4,0.1-4.6,0.8-6.6,1.9l-7.8,4.6l11.9,20.6h-2.3 h-16.5v37h39.5h2h21V84l6.2-3.5C485,76.5,487.3,67.9,483.4,61.3z M426,58.8c1.5-0.9,3.3-1.4,5.1-1.5h31.2l-4.2,2.5h-33.8L426,58.8z M429.1,84.4h5v2.5c0,1.4-1.1,2.5-2.5,2.5s-2.5-1.1-2.5-2.5V84.4z M412.6,115.4v-31h13.5v2.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5 v-2.5h12v31H412.6z M449.1,81.4h-12h-5l-10.8-18.6h36.3l10.9,18.6h-17.4H449.1z M469.1,115.4h-17v-31h17V115.4z M482,71.1 c-0.8,2.8-2.6,5.2-5.2,6.7l-5.2,3l-11-19l5.3-3.1c1.4-0.8,3-1.3,4.5-1.4h0.8l0,0c3.8,0,7.6,1.9,9.7,5.5 C482.4,65.3,482.8,68.3,482,71.1z",
+            "fill": "#EEEEEE",
           },
           "ref": null,
           "rendered": null,

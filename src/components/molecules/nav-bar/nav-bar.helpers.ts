@@ -7,11 +7,7 @@ interface IGetTextStyle {
     colour: string;
 }
 
-export const getTextStyle = ({
-    isActive,
-    isPressed,
-    colour
-}: IGetTextStyle) => {
+export const getTextStyle = ({ isActive, isPressed, colour }: IGetTextStyle) => {
     let color;
     if (colour === NavBar.Colours.LIGHT) {
         if (isActive) {
@@ -37,8 +33,55 @@ export const getTextStyle = ({
         } else {
             color = Colours.navBar.dark.inactive;
         }
+    } else if (colour === NavBar.Colours.DESERT) {
+        if (isActive) {
+            color = Colours.navBar.desert.active;
+        } else if (isPressed) {
+            color = Colours.navBar.desert.pressed;
+        } else {
+            color = Colours.navBar.desert.inactive;
+        }
     } else {
         return null;
     }
     return { color };
 };
+
+export interface INavBarColourScheme {
+    active: string;
+    inactive: string;
+    pressed: string;
+}
+
+export interface IIconProps {
+    isActive: boolean;
+    isPressed: boolean;
+    colourScheme: INavBarColourScheme;
+    hasDismiss?: boolean;
+    hasHiddenIcons?: boolean;
+    hasWhiteBackground?: boolean;
+}
+
+export function getNavBarColourScheme(colour: string): INavBarColourScheme {
+    switch (colour) {
+        case NavBar.Colours.DESERT:
+            return Colours.navBar.desert;
+        case NavBar.Colours.DARK:
+            return Colours.navBar.dark;
+        case NavBar.Colours.DARKER:
+            return Colours.navBar.darker;
+        case NavBar.Colours.LIGHT:
+        default:
+            return Colours.navBar.light;
+    }
+}
+
+export function getIconColour(scheme: INavBarColourScheme, isActive: boolean, isPressed: boolean) {
+    if (isActive) {
+        return scheme.active;
+    } else if (isPressed) {
+        return scheme.pressed;
+    } else {
+        return scheme.inactive;
+    }
+}

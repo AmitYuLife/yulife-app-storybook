@@ -1,3 +1,4 @@
+import { getCurrentWorld } from "@services/utils";
 import React, { PureComponent } from "react";
 import { PanResponder, Platform, SafeAreaView, ScrollView, StatusBar, View } from "react-native";
 import { Navigation } from "react-native-navigation";
@@ -134,7 +135,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                             labels={labels}
                             hasNotification={false}
                         />
-                        <TopBar isLight={UI.isTopBarLight} onPressLeftIcon={onLeftMenuPress} coins={totalCoins} />
+                        <TopBar onPressLeftIcon={onLeftMenuPress} coins={totalCoins} />
                     </>
                 )}
             </SafeAreaView>
@@ -143,7 +144,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
 
     public scrollToCurrentLevel = () => {
         const { currentLevel } = this.props;
-        const activeWorldIndex = Math.floor((currentLevel - 1) / 50);
+        const activeWorldIndex = getCurrentWorld(currentLevel);
         const activeIndex = calculateIndexOfLevel(currentLevel);
 
         this.indices = calculateIndices(currentLevel, true);

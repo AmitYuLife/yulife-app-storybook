@@ -15,3 +15,7 @@ export function padNum(x: number) {
 export function numberWithCommas(x: number) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+export function getCurrentWorld(currentLevel: number) {
+    return Math.floor((currentLevel - 1) / 50);
+}

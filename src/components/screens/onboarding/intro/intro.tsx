@@ -48,11 +48,11 @@ class IntroScreen extends PureComponent<IProps> {
                 </ScrollView>
                 {!isShowingTopBar ? null : (
                     <View style={styles.topBarWrapper}>
-                        <TopBar isDemo={true} />
+                        <TopBar type="demo" />
                     </View>
                 )}
                 <View style={styles.navBarWrapper}>
-                    <NavBar colour={NavBar.Colours.DARK} activeIndex={navBarIndex} />
+                    <NavBar colour={NavBar.Colours.DARK} activeIndex={navBarIndex} hasWhiteBackground={true} />
                 </View>
             </SafeAreaView>
         );

@@ -1,4 +1,6 @@
-import { Style } from "@styles/index";
+// import { Style } from "@styles/index";
+import { TopBarTypes } from "@molecules/top-bar/top-bar";
+import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import { PureComponent } from "react";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
@@ -24,21 +26,19 @@ interface IProps extends IConnectedScreenProps {
     currentLevel: number;
     data: IChallenge[];
     hideUnity?: () => void | null;
+    unity: number;
 }
 
 interface IState {
     UI: {
-        isTopBarLight: boolean;
         navBarColour: IColours;
+        topBarType: TopBarTypes;
     };
 }
 
 class QuestsScreen extends PureComponent<IProps, IState> {
     public state = {
-        UI: {
-            isTopBarLight: false,
-            navBarColour: COLOURS.LIGHT
-        }
+        UI: getInitialState(this.props.currentLevel)
     };
     public flatList: FlatList<IMapSlice>;
 
@@ -63,34 +63,36 @@ class QuestsScreen extends PureComponent<IProps, IState> {
 
     public render() {
         const { UI } = this.state;
-        const { currentLevel, data, labels, onLeftMenuPress, hideUnity, totalCoins } = this.props;
+        const { currentLevel, data, labels, onLeftMenuPress, unity, totalCoins } = this.props;
 
-        if (hideUnity) {
-            const currentWorld = Math.floor((currentLevel - 1) / 50);
+        if (unity) {
+            const currentWorld = getCurrentWorld(unity);
             const Unity = getUnity(currentWorld);
-
             return (
                 <View style={styles.wrapper}>
-                    <Unity data={data[50 + currentWorld * 50]} onSkip={hideUnity} />
+                    <Unity data={data[50 + currentWorld * 50]} onSkip={this.handleSkipUnity} />
                 </View>
             );
         }
+
+        const { initialScrollIndex, slices } = this.getWorldData();
 
         return (
             <SafeAreaView style={styles.wrapper}>
                 <ScrollyQuest
                     currentLevel={currentLevel}
-                    data={this.getSlices()}
+                    initialScrollIndex={initialScrollIndex}
+                    data={slices}
                     levels={data}
                     onViewableItemsChanged={this.handleViewableItemsChanged}
                     setFlatListRef={this.setFlatListRef}
                 />
-                <TopBar isLight={UI.isTopBarLight} onPressLeftIcon={onLeftMenuPress} coins={totalCoins} />
+                <TopBar type={UI.topBarType} onPressLeftIcon={onLeftMenuPress} coins={totalCoins} />
                 <View style={styles.navBarWrapper}>
                     <NavBar
                         activeIndex={1}
                         areIconsHidden={false}
-                        colour={NavBar.Colours.DARK}
+                        colour={UI.navBarColour}
                         hasNotification={false}
                         labels={labels}
                     />
@@ -105,24 +107,23 @@ class QuestsScreen extends PureComponent<IProps, IState> {
 
     private scrollToCurrentLevel = () => {
         const { currentLevel } = this.props;
-        const { offset } = mapSlices.reduce(
-            (acc, curr) => {
-                if (acc.level < currentLevel) {
-                    return { offset: curr.height + acc.offset, level: curr.slots.length + acc.level };
-                }
-                return acc;
-            },
-            { level: 1, offset: 0 }
-        );
+        const result = mapSlices.find((slice) => slice.slots.some((item) => item.index === currentLevel - 1));
 
-        global.setTimeout(() => {
-            if (this.flatList) {
-                this.flatList.scrollToOffset({
-                    animated: true,
-                    offset: Style.SCALE_UP_AND_DOWN(offset) - Style.DEVICE_HEIGHT / 2
-                });
-            }
-        }, 2000);
+        if (result && result.offset) {
+            global.setTimeout(() => {
+                if (this.flatList) {
+                    this.flatList.scrollToOffset({
+                        animated: true,
+                        offset: result.offset
+                    });
+                }
+            }, 1200);
+        }
+    };
+
+    private handleSkipUnity = () => {
+        this.props.hideUnity();
+        this.scrollToCurrentLevel();
     };
 
     private handleViewableItemsChanged: ViewabilityConfigCallbackPair["onViewableItemsChanged"] = ({
@@ -132,21 +133,42 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         const last = viewableItems[viewableItems.length - 1];
 
         if (first && last) {
-            this.setState({ UI: { isTopBarLight: last.item.isTopBarLight, navBarColour: first.item.navBarColour } });
+            this.setState({ UI: { topBarType: last.item.topBarType, navBarColour: first.item.navBarColour } });
         }
     };
 
-    private getSlices = () => {
-        const { currentLevel } = this.props;
-        const currentWorld = Math.floor((currentLevel - 1) / 50);
-
-        switch (currentWorld) {
+    private getWorldData = () => {
+        switch (getCurrentWorld(this.props.currentLevel)) {
+            case 2:
+                return { initialScrollIndex: 58, slices: mapSlices.slice(0, 87) };
             case 1:
-                return mapSlices;
+                return { initialScrollIndex: 29, slices: mapSlices.slice(0, 58) };
             case 0:
             default:
-                return mapSlices.slice(0, 37);
+                return { initialScrollIndex: 0, slices: mapSlices.slice(0, 29) };
         }
     };
 }
+
 export default QuestsScreen;
+
+function getInitialState(currentLevel: number) {
+    switch (getCurrentWorld(currentLevel)) {
+        case 2:
+            return {
+                navBarColour: COLOURS.DESERT,
+                topBarType: "desert" as TopBarTypes
+            };
+        case 1:
+            return {
+                navBarColour: COLOURS.LIGHT,
+                topBarType: "white" as TopBarTypes
+            };
+        case 0:
+        default:
+            return {
+                navBarColour: COLOURS.LIGHT,
+                topBarType: "default" as TopBarTypes
+            };
+    }
+}

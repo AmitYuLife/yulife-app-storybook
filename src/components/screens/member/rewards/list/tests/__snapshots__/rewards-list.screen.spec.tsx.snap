@@ -62,6 +62,7 @@ ShallowWrapper {
           style={
             Object {
               "flex": 1,
+              "marginBottom": 105,
             }
           }
         >
@@ -89,16 +90,20 @@ ShallowWrapper {
             Object {
               "alignItems": "center",
               "backgroundColor": "rgb(255,255,255)",
-              "paddingBottom": 30,
-              "paddingTop": 50,
+              "bottom": 0,
+              "left": 0,
+              "paddingBottom": 34,
+              "paddingTop": 16,
+              "position": "absolute",
+              "right": 0,
             }
           }
         >
           <NavBar
             activeIndex={2}
-            areIconsHidden={true}
             colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={Array []}
           />
         </View>,
@@ -177,6 +182,7 @@ ShallowWrapper {
           />,
           "style": Object {
             "flex": 1,
+            "marginBottom": 105,
           },
         },
         "ref": null,
@@ -213,16 +219,20 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={2}
-            areIconsHidden={true}
             colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={Array []}
           />,
           "style": Object {
             "alignItems": "center",
             "backgroundColor": "rgb(255,255,255)",
-            "paddingBottom": 30,
-            "paddingTop": 50,
+            "bottom": 0,
+            "left": 0,
+            "paddingBottom": 34,
+            "paddingTop": 16,
+            "position": "absolute",
+            "right": 0,
           },
         },
         "ref": null,
@@ -232,9 +242,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 2,
-            "areIconsHidden": true,
             "colour": "darker",
             "hasNotification": false,
+            "hasWhiteBackground": true,
             "labels": Array [],
           },
           "ref": null,
@@ -275,6 +285,7 @@ ShallowWrapper {
             style={
               Object {
                 "flex": 1,
+                "marginBottom": 105,
               }
             }
           >
@@ -302,16 +313,20 @@ ShallowWrapper {
               Object {
                 "alignItems": "center",
                 "backgroundColor": "rgb(255,255,255)",
-                "paddingBottom": 30,
-                "paddingTop": 50,
+                "bottom": 0,
+                "left": 0,
+                "paddingBottom": 34,
+                "paddingTop": 16,
+                "position": "absolute",
+                "right": 0,
               }
             }
           >
             <NavBar
               activeIndex={2}
-              areIconsHidden={true}
               colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={Array []}
             />
           </View>,
@@ -390,6 +405,7 @@ ShallowWrapper {
             />,
             "style": Object {
               "flex": 1,
+              "marginBottom": 105,
             },
           },
           "ref": null,
@@ -426,16 +442,20 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={2}
-              areIconsHidden={true}
               colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={Array []}
             />,
             "style": Object {
               "alignItems": "center",
               "backgroundColor": "rgb(255,255,255)",
-              "paddingBottom": 30,
-              "paddingTop": 50,
+              "bottom": 0,
+              "left": 0,
+              "paddingBottom": 34,
+              "paddingTop": 16,
+              "position": "absolute",
+              "right": 0,
             },
           },
           "ref": null,
@@ -445,9 +465,9 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 2,
-              "areIconsHidden": true,
               "colour": "darker",
               "hasNotification": false,
+              "hasWhiteBackground": true,
               "labels": Array [],
             },
             "ref": null,
@@ -532,6 +552,7 @@ ShallowWrapper {
           style={
             Object {
               "flex": 1,
+              "marginBottom": 105,
             }
           }
         >
@@ -547,16 +568,20 @@ ShallowWrapper {
             Object {
               "alignItems": "center",
               "backgroundColor": "rgb(255,255,255)",
-              "paddingBottom": 30,
-              "paddingTop": 50,
+              "bottom": 0,
+              "left": 0,
+              "paddingBottom": 34,
+              "paddingTop": 16,
+              "position": "absolute",
+              "right": 0,
             }
           }
         >
           <NavBar
             activeIndex={2}
-            areIconsHidden={true}
             colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={Array []}
           />
         </View>,
@@ -623,6 +648,7 @@ ShallowWrapper {
           />,
           "style": Object {
             "flex": 1,
+            "marginBottom": 105,
           },
         },
         "ref": null,
@@ -649,16 +675,20 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={2}
-            areIconsHidden={true}
             colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={Array []}
           />,
           "style": Object {
             "alignItems": "center",
             "backgroundColor": "rgb(255,255,255)",
-            "paddingBottom": 30,
-            "paddingTop": 50,
+            "bottom": 0,
+            "left": 0,
+            "paddingBottom": 34,
+            "paddingTop": 16,
+            "position": "absolute",
+            "right": 0,
           },
         },
         "ref": null,
@@ -668,9 +698,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 2,
-            "areIconsHidden": true,
             "colour": "darker",
             "hasNotification": false,
+            "hasWhiteBackground": true,
             "labels": Array [],
           },
           "ref": null,
@@ -711,6 +741,7 @@ ShallowWrapper {
             style={
               Object {
                 "flex": 1,
+                "marginBottom": 105,
               }
             }
           >
@@ -726,16 +757,20 @@ ShallowWrapper {
               Object {
                 "alignItems": "center",
                 "backgroundColor": "rgb(255,255,255)",
-                "paddingBottom": 30,
-                "paddingTop": 50,
+                "bottom": 0,
+                "left": 0,
+                "paddingBottom": 34,
+                "paddingTop": 16,
+                "position": "absolute",
+                "right": 0,
               }
             }
           >
             <NavBar
               activeIndex={2}
-              areIconsHidden={true}
               colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={Array []}
             />
           </View>,
@@ -802,6 +837,7 @@ ShallowWrapper {
             />,
             "style": Object {
               "flex": 1,
+              "marginBottom": 105,
             },
           },
           "ref": null,
@@ -828,16 +864,20 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={2}
-              areIconsHidden={true}
               colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={Array []}
             />,
             "style": Object {
               "alignItems": "center",
               "backgroundColor": "rgb(255,255,255)",
-              "paddingBottom": 30,
-              "paddingTop": 50,
+              "bottom": 0,
+              "left": 0,
+              "paddingBottom": 34,
+              "paddingTop": 16,
+              "position": "absolute",
+              "right": 0,
             },
           },
           "ref": null,
@@ -847,9 +887,9 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 2,
-              "areIconsHidden": true,
               "colour": "darker",
               "hasNotification": false,
+              "hasWhiteBackground": true,
               "labels": Array [],
             },
             "ref": null,

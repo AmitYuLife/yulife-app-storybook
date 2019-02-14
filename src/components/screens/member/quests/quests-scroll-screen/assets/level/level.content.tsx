@@ -24,6 +24,9 @@ const getLevelLockIcon = (currentLevel: number, level: IChallenge) => {
         case level.level === 91 && currentLevel < 89:
         case level.level === 95 && currentLevel < 94:
         case level.level === 98 && currentLevel < 97:
+        case level.level === 120 && currentLevel < 118:
+        case level.level === 145 && currentLevel < 144:
+        case level.level === 148 && currentLevel < 147:
             return <Image source={images.doubleLock} />;
         default:
             return <Image source={images.lock} />;

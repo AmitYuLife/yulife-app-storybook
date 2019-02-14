@@ -55,10 +55,10 @@ ShallowWrapper {
         />,
         <TopBar
           coins={1234}
-          isLight={false}
           menuLabel="brisk walk"
           onPressLeftIcon={[MockFunction]}
           timer="2020-12-31T23:59:59"
+          type="default"
         />,
         <View
           style={
@@ -93,7 +93,7 @@ ShallowWrapper {
         >
           <NavBar
             activeIndex={1}
-            colour="light"
+            colour="darker"
             hasNotification={false}
             labels={Array []}
             onDismissPress={[MockFunction]}
@@ -136,10 +136,10 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "coins": 1234,
-          "isLight": false,
           "menuLabel": "brisk walk",
           "onPressLeftIcon": [MockFunction],
           "timer": "2020-12-31T23:59:59",
+          "type": "default",
         },
         "ref": null,
         "rendered": null,
@@ -195,7 +195,7 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={1}
-            colour="light"
+            colour="darker"
             hasNotification={false}
             labels={Array []}
             onDismissPress={[MockFunction]}
@@ -214,7 +214,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 1,
-            "colour": "light",
+            "colour": "darker",
             "hasNotification": false,
             "labels": Array [],
             "onDismissPress": [MockFunction],
@@ -256,10 +256,10 @@ ShallowWrapper {
           />,
           <TopBar
             coins={1234}
-            isLight={false}
             menuLabel="brisk walk"
             onPressLeftIcon={[MockFunction]}
             timer="2020-12-31T23:59:59"
+            type="default"
           />,
           <View
             style={
@@ -294,7 +294,7 @@ ShallowWrapper {
           >
             <NavBar
               activeIndex={1}
-              colour="light"
+              colour="darker"
               hasNotification={false}
               labels={Array []}
               onDismissPress={[MockFunction]}
@@ -337,10 +337,10 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "coins": 1234,
-            "isLight": false,
             "menuLabel": "brisk walk",
             "onPressLeftIcon": [MockFunction],
             "timer": "2020-12-31T23:59:59",
+            "type": "default",
           },
           "ref": null,
           "rendered": null,
@@ -396,7 +396,7 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={1}
-              colour="light"
+              colour="darker"
               hasNotification={false}
               labels={Array []}
               onDismissPress={[MockFunction]}
@@ -415,7 +415,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 1,
-              "colour": "light",
+              "colour": "darker",
               "hasNotification": false,
               "labels": Array [],
               "onDismissPress": [MockFunction],

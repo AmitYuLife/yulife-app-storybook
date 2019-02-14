@@ -39,6 +39,21 @@ export const getImageAndStyle = (image: CenteredScreenImages) => {
                 source: require("../../../../assets/centred-screen/challenge_failed_ocean.png"),
                 style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
             };
+        case "desert":
+            return {
+                source: require("../../../../assets/centred-screen/desert.png"),
+                style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
+            };
+        case "gray_desert":
+            return {
+                source: require("../../../../assets/centred-screen/gray_desert.png"),
+                style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
+            };
+        case "challenge_failed_desert":
+            return {
+                source: require("../../../../assets/centred-screen/challenge_failed_desert.png"),
+                style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
+            };
         default:
             return { source: null, style: null };
     }

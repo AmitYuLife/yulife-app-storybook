@@ -55,6 +55,7 @@ storiesOf("Molecules", module)
             })}
             maxStreak={4}
             isFinished={boolean("Is Finished?", false)}
+            isOnline={boolean("Is online?", true)}
             type={select("type", [
                 "forest",
                 "ocean"

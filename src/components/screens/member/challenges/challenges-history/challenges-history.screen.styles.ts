@@ -8,9 +8,8 @@ import { Style } from "../../../../../styles";
 
 export default StyleSheet.create({
     background: {
-        borderColor: "transparent",
-        borderWidth: 1,
-        height: "100%"
+        height: Style.DEVICE_HEIGHT,
+        width: Style.DEVICE_WIDTH
     } as ImageStyle,
     backgroundWrapper: {
         ...StyleSheet.absoluteFillObject
@@ -41,7 +40,6 @@ export default StyleSheet.create({
         paddingBottom: Style.SCALE_Y_UP_AND_DOWN(40)
     } as ViewStyle,
     historyLink: {
-        color: "rgba(226, 1, 119, 1)",
         marginVertical: Style.SCALE_UP_AND_DOWN(25)
     } as ViewStyle,
     imagesWrapper: {

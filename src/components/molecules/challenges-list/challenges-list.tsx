@@ -1,5 +1,4 @@
 import * as React from "react";
-import { SFC } from "react";
 import { View } from "react-native";
 import { ChallengeTile, IChallengeTileProps } from "..";
 import styles from "./challenges-list.styles";
@@ -19,31 +18,23 @@ export interface IChallengesListProps {
 
 const list = ["short stroll", "meditation"];
 
-const ChallengeSet: SFC<IChallengesListProps> = ({ challenges }) => (
-    <View style={styles.wrapper}>
-        <View>
-            {challenges
-                .filter(({ challengeType }) => !list.includes(challengeType))
-                .map((challenge, index) => (
-                    <ChallengeTile
-                        {...challenge}
-                        isImageBackgroundFlipped={index % 2 !== 0}
-                        key={index}
-                    />
-                ))}
+export default function ChallengeSet({ challenges }: IChallengesListProps) {
+    return (
+        <View style={styles.wrapper}>
+            <View>
+                {challenges
+                    .filter(({ challengeType }) => !list.includes(challengeType))
+                    .map((challenge, index) => (
+                        <ChallengeTile {...challenge} isImageBackgroundFlipped={index % 2 !== 0} key={index} />
+                    ))}
+            </View>
+            <View style={styles.rightColumnWrapper}>
+                {challenges
+                    .filter(({ challengeType }) => list.includes(challengeType))
+                    .map((challenge, index) => (
+                        <ChallengeTile {...challenge} isImageBackgroundFlipped={index % 2 === 0} key={index} />
+                    ))}
+            </View>
         </View>
-        <View style={styles.rightColumnWrapper}>
-            {challenges
-                .filter(({ challengeType }) => list.includes(challengeType))
-                .map((challenge, index) => (
-                    <ChallengeTile
-                        {...challenge}
-                        isImageBackgroundFlipped={index % 2 === 0}
-                        key={index}
-                    />
-                ))}
-        </View>
-    </View>
-);
-
-export default ChallengeSet;
+    );
+}

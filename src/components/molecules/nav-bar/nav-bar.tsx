@@ -1,12 +1,10 @@
 import * as React from "react";
-import { StatelessComponent } from "react";
 import { PureComponent } from "react";
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import Svg from "react-native-svg";
 import { Text } from "../../atoms";
 import { Giraffe, Lines, Notification, Scroll, Treasure } from "./assets";
-import { IconProps } from "./assets/icon.model";
-import { getTextStyle } from "./nav-bar.helpers";
+import { getIconColour, getNavBarColourScheme } from "./nav-bar.helpers";
 import styles, { getLabelAdjustment } from "./nav-bar.styles";
 
 export interface ILabel {
@@ -19,15 +17,17 @@ export enum COLOURS {
     BLUE = "blue",
     DARK = "dark",
     DARKER = "darker",
+    DESERT = "desert",
     LIGHT = "light",
     PINK = "pink"
 }
 
-export type IColours = "blue" | "dark" | "darker" | "light" | "pink";
+export type IColours = "blue" | "dark" | "darker" | "desert" | "light" | "pink";
 
 interface IProps {
     activeIndex: number;
     hasNotification?: boolean;
+    hasWhiteBackground?: boolean;
     labels?: ILabel[];
     colour?: IColours;
     areIconsHidden?: boolean;
@@ -42,7 +42,7 @@ class NavBar extends PureComponent<IProps, IState> {
     public static Colours = COLOURS;
 
     public static defaultProps = {
-        colour: COLOURS.LIGHT,
+        colour: COLOURS.DARKER,
         labels: [
             {
                 name: "yucoin",
@@ -66,42 +66,41 @@ class NavBar extends PureComponent<IProps, IState> {
     public render() {
         const {
             colour = COLOURS.LIGHT,
-            areIconsHidden,
             activeIndex,
             hasNotification,
+            hasWhiteBackground,
             labels,
             onDismissPress
         } = this.props;
         const { pressed } = this.state;
-        const icons: Array<StatelessComponent<IconProps>> = [Giraffe, Scroll, Treasure];
+        const colourScheme = getNavBarColourScheme(colour);
 
         return (
-            <View
-                style={{
-                    alignItems: "center",
-                    height: 85 * (!areIconsHidden ? 1 : 0.55),
-                    justifyContent: "flex-start",
-                    width: 280
-                }}
-            >
-                <Svg width="228" height="62" viewBox="0 0 457 124">
-                    <Lines colour={colour} isExtended={!onDismissPress && !hasNotification} />
-                    {icons.map((Icon, index) => (
-                        <Icon
-                            key={index}
-                            isPressed={pressed === index}
-                            isActive={activeIndex === index}
-                            colour={colour}
-                            hasDismiss={!!onDismissPress}
-                            isIconHidden={areIconsHidden}
-                        />
-                    ))}
-                    <Notification
-                        colour={colour}
-                        isPressed={pressed === 1}
-                        isVisible={hasNotification}
-                        isActive={activeIndex === 1}
+            <View style={styles.wrapper}>
+                <Svg width="252" height="62" viewBox="0 0 504 124">
+                    <Lines activeIndex={activeIndex} colourScheme={colourScheme} />
+                    <Giraffe
+                        isPressed={pressed === 0}
+                        isActive={activeIndex === 0}
+                        colourScheme={colourScheme}
+                        hasDismiss={!!onDismissPress}
+                        hasWhiteBackground={hasWhiteBackground}
                     />
+                    <Scroll
+                        isPressed={pressed === 1}
+                        isActive={activeIndex === 1}
+                        colourScheme={colourScheme}
+                        hasDismiss={!!onDismissPress}
+                        hasWhiteBackground={hasWhiteBackground}
+                    />
+                    <Treasure
+                        isPressed={pressed === 2}
+                        isActive={activeIndex === 2}
+                        colourScheme={colourScheme}
+                        hasDismiss={!!onDismissPress}
+                        hasWhiteBackground={hasWhiteBackground}
+                    />
+                    <Notification isVisible={hasNotification} />
                 </Svg>
                 <View style={StyleSheet.flatten(styles.labelsWrapper)}>
                     {labels.map(({ name, onPress }, index) => (
@@ -117,11 +116,13 @@ class NavBar extends PureComponent<IProps, IState> {
                                     <Text
                                         style={StyleSheet.flatten([
                                             styles.text,
-                                            getTextStyle({
-                                                colour,
-                                                isActive: activeIndex === index,
-                                                isPressed: pressed === index
-                                            })
+                                            {
+                                                color: getIconColour(
+                                                    colourScheme,
+                                                    activeIndex === index,
+                                                    pressed === index
+                                                )
+                                            }
                                         ])}
                                     >
                                         {name}
@@ -137,11 +138,11 @@ class NavBar extends PureComponent<IProps, IState> {
 
     private handlePressIn = (pressed: number) => {
         return () => this.setState({ pressed });
-    }
+    };
 
     private handlePressOut = (onPress: () => void) => {
         return () => this.setState({ pressed: null }, onPress);
-    }
+    };
 }
 
 export default NavBar;

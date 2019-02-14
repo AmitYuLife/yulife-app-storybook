@@ -61,11 +61,13 @@ export default class Pulse extends React.PureComponent<IProps, IState> {
                 style={[
                     styles.circleWrapper,
                     {
-                        bottom: (CIRCLE_SIZE - pulseMaxSize) / 2,
                         height: pulseMaxSize,
                         marginLeft: -pulseMaxSize / 2,
                         width: pulseMaxSize
-                    }
+                    },
+                    typeof style.bottom === "undefined"
+                        ? { top: (CIRCLE_SIZE - pulseMaxSize) / 2 }
+                        : { bottom: (CIRCLE_SIZE - pulseMaxSize) / 2 }
                 ]}
             >
                 <Animated.View

@@ -1,6 +1,7 @@
-import { padNum } from "../../../services/utils";
+import { padNum } from "@services/utils";
+import { TopBarTypes } from "./top-bar";
 
-export const formatSeconds = (secondsRemaining: number): string => {
+export function formatSeconds(secondsRemaining: number): string {
     const days = Math.floor(secondsRemaining / 86400);
     const hours = Math.floor(secondsRemaining / (60 * 60)) % 24;
     const minutes = Math.floor(secondsRemaining / 60) % 60;
@@ -23,4 +24,28 @@ export const formatSeconds = (secondsRemaining: number): string => {
     }
 
     return "--:--";
-};
+}
+
+export function getStyle(type: TopBarTypes) {
+    switch (type) {
+        case "desert":
+            return {
+                colour: "rgb(108,59,38)",
+                logoColour: "rgb(108,59,38)",
+                textStyle: { color: "rgb(108,59,38)" }
+            };
+        case "white":
+            return {
+                colour: "#FFF",
+                logoColour: "#FFF",
+                textStyle: { color: "white" }
+            };
+        case "demo":
+        default:
+            return {
+                colour: "#333333",
+                logoColour: "#E20177",
+                textStyle: { color: "#333333" }
+            };
+    }
+}

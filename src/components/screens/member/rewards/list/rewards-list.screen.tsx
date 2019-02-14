@@ -1,5 +1,4 @@
 import * as React from "react";
-import { SFC } from "react";
 import { SafeAreaView, View } from "react-native";
 import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
@@ -15,7 +14,7 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
     refreshing: boolean;
 }
 
-const RewardsListScreen: SFC<IRewardsListScreenProps> = ({
+export default function RewardsListScreen({
     data,
     hasNotification = false,
     labels,
@@ -25,25 +24,25 @@ const RewardsListScreen: SFC<IRewardsListScreenProps> = ({
     onLeftMenuPress,
     refreshing,
     totalCoins
-}) => (
-    <SafeAreaView style={styles.wrapper}>
-        <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
-        <View style={styles.rewardTabsWrapper}>
-            <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={0} />
-        </View>
-        <View style={styles.listWrapper}>
-            <RewardsList data={data} onItemPress={onItemPress} refreshing={refreshing} onRefresh={onLeftTabPress} />
-        </View>
-        <View style={styles.navBarWrapper}>
-            <NavBar
-                activeIndex={2}
-                areIconsHidden={true}
-                colour={NavBar.Colours.DARKER}
-                hasNotification={hasNotification}
-                labels={labels}
-            />
-        </View>
-    </SafeAreaView>
-);
-
-export default RewardsListScreen;
+}: IRewardsListScreenProps) {
+    return (
+        <SafeAreaView style={styles.wrapper}>
+            <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
+            <View style={styles.rewardTabsWrapper}>
+                <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={0} />
+            </View>
+            <View style={styles.listWrapper}>
+                <RewardsList data={data} onItemPress={onItemPress} refreshing={refreshing} onRefresh={onLeftTabPress} />
+            </View>
+            <View style={styles.navBarWrapper}>
+                <NavBar
+                    activeIndex={2}
+                    colour={NavBar.Colours.DARKER}
+                    hasNotification={hasNotification}
+                    hasWhiteBackground={true}
+                    labels={labels}
+                />
+            </View>
+        </SafeAreaView>
+    );
+}

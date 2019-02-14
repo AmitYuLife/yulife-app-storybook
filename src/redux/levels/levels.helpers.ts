@@ -1,3 +1,4 @@
+import { getCurrentWorld } from "@services/utils";
 import moment from "moment";
 import Pedometer from "react-native-dual-pedometer";
 import { queryMindfulSessions } from "../../services/fitkit/fitkit.service";
@@ -59,6 +60,6 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
 }
 
 export function getChallengesAmountAvailable(level: number) {
-    const available = Math.floor((level - 1) / 50) + 1;
+    const available = getCurrentWorld(level) + 1;
     return available > MAX_AVAILABLE ? MAX_AVAILABLE : available;
 }

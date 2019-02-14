@@ -6,6 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Streak
     currentStreak={0}
     isFinished={false}
+    isOnline={true}
     maxStreak={1}
     onPress={[MockFunction]}
     type="forest"
@@ -350,6 +351,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Streak
     currentStreak={1}
     isFinished={false}
+    isOnline={true}
     maxStreak={2}
     onPress={[MockFunction]}
     type="forest"
@@ -694,6 +696,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Streak
     currentStreak={1}
     isFinished={false}
+    isOnline={true}
     maxStreak={1}
     onPress={[MockFunction]}
     type="forest"
@@ -1038,6 +1041,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Streak
     currentStreak={0}
     isFinished={false}
+    isOnline={true}
     maxStreak={0}
     onPress={[MockFunction]}
     type="forest"
@@ -1382,6 +1386,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Streak
     currentStreak={0}
     isFinished={false}
+    isOnline={true}
     maxStreak={0}
     onPress={[MockFunction]}
     type="forest"

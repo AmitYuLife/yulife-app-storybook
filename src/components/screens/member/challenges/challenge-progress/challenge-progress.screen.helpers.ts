@@ -1,93 +1,134 @@
+import { TopBarTypes } from "@molecules/top-bar/top-bar";
 import { StyleSheet } from "react-native";
 import { Style } from "../../../../../styles";
 import assets from "./assets";
 import { ChallengeType } from "./challenge-progress.screen";
 import styles from "./challenge-progress.screen.styles";
+import { ProgressBarTypes } from "./subcomponents/progress-bar";
 
-const BRISK_WALK = [
+interface IStyleSet {
+    backgroundColour: string;
+    instructionTextColour?: string;
+    topBarType: TopBarTypes;
+    progressBarType: ProgressBarTypes;
+    source: any;
+    style: any;
+}
+
+const BRISK_WALK: IStyleSet[] = [
     {
+        backgroundColour: "rgb(255,255,255)",
+        progressBarType: "black",
         source: assets.squirrel,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(450) }])
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(450) }]),
+        topBarType: "default"
     },
     {
+        backgroundColour: "rgb(0,81,143)",
+        progressBarType: "ocean-white",
         source: assets.otter,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: "100%" }])
+        style: StyleSheet.flatten([styles.backgroundImage, { height: "100%" }]),
+        topBarType: "white"
+    },
+    {
+        backgroundColour: "#fffbcd",
+        progressBarType: "desert-brown",
+        source: assets.meerkat,
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
+        topBarType: "default"
     }
 ];
-const SHORT_STROLL = [
+const SHORT_STROLL: IStyleSet[] = [
     {
+        backgroundColour: "rgb(255,255,255)",
+        progressBarType: "black",
         source: assets.elephant,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(450) }])
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(450) }]),
+        topBarType: "default"
     },
     {
+        backgroundColour: "rgb(255,255,255)",
+        progressBarType: "black",
         source: assets.tortoise,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: "100%" }])
+        style: StyleSheet.flatten([styles.backgroundImage, { height: "100%" }]),
+        topBarType: "default"
+    },
+    {
+        backgroundColour: "#fffbcd",
+        progressBarType: "desert-brown",
+        source: assets.bighornSheep,
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
+        topBarType: "default"
     }
 ];
-const LONG_WALK = [
+const LONG_WALK: IStyleSet[] = [
     {
+        backgroundColour: "rgb(255,255,255)",
+        progressBarType: "black",
         source: assets.ostrich,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }])
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
+        topBarType: "default"
     },
     {
+        backgroundColour: "rgb(124,215,237)",
+        progressBarType: "ocean-black",
         source: assets.whale,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(650) }])
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(650) }]),
+        topBarType: "default"
+    },
+    {
+        backgroundColour: "#425f81",
+        progressBarType: "ocean-white",
+        source: assets.desertFox,
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
+        topBarType: "white"
     }
 ];
-const MEDITATION = [
+const MEDITATION: IStyleSet[] = [
     {
+        backgroundColour: "rgb(255,255,255)",
+        instructionTextColour: "rgb(136,136,136)",
+        progressBarType: "black",
         source: assets.bird,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }])
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
+        topBarType: "default"
     },
     {
+        backgroundColour: "rgb(255,255,255)",
+        instructionTextColour: "rgb(136,136,136)",
+        progressBarType: "black",
         source: assets.dolphin,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(650) }])
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(650) }]),
+        topBarType: "default"
+    },
+    {
+        backgroundColour: "#aedaec",
+        instructionTextColour: "rgb(80,142,205)",
+        progressBarType: "ocean-black",
+        source: assets.camel,
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
+        topBarType: "default"
     }
 ];
 
-export const getBackgroundImageAndStyle = (challengeType: ChallengeType, currentWorld = 0) => {
+export function getWorldStyle(challengeType: ChallengeType, currentWorld = 0): IStyleSet {
     switch (challengeType) {
         case "brisk walk":
-            return BRISK_WALK[currentWorld];
+            return BRISK_WALK[currentWorld] || BRISK_WALK[0];
         case "day walk":
         case "short stroll":
-            return SHORT_STROLL[currentWorld];
+            return SHORT_STROLL[currentWorld] || SHORT_STROLL[0];
         case "long walk":
-            return LONG_WALK[currentWorld];
+            return LONG_WALK[currentWorld] || LONG_WALK[0];
         case "meditation":
-            return MEDITATION[currentWorld];
+            return MEDITATION[currentWorld] || MEDITATION[0];
         default:
-            return { source: null, style: StyleSheet.flatten([styles.backgroundImage, { height: "auto" }]) };
+            return {
+                backgroundColour: "rgb(255,255,255)",
+                progressBarType: "black",
+                source: null,
+                style: StyleSheet.flatten([styles.backgroundImage, { height: "auto" }]),
+                topBarType: "default"
+            };
     }
-};
-
-export const getBackgroundColor = (challengeType: ChallengeType, currentWorld = 0) => {
-    switch (challengeType) {
-        case "brisk walk":
-            return currentWorld === 1 ? "rgb(0,81,143)" : "rgb(255,255,255)";
-        case "long walk":
-            return currentWorld === 1 ? "rgb(124,215,237)" : "rgb(255,255,255)";
-        default:
-            return "rgb(255,255,255)";
-    }
-};
-
-export const hasLightTopBar = (challengeType: ChallengeType, currentWorld = 0) => {
-    switch (challengeType) {
-        case "brisk walk":
-            return currentWorld === 1 ? true : false;
-        default:
-            return false;
-    }
-};
-
-export const getProgressBarType = (challengeType: ChallengeType, currentWorld = 0) => {
-    switch (challengeType) {
-        case "brisk walk":
-            return currentWorld === 1 ? "ocean-white" : "black";
-        case "long walk":
-            return currentWorld === 1 ? "ocean-black" : "black";
-        default:
-            return "black";
-    }
-};
+}

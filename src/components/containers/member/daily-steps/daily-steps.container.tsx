@@ -1,3 +1,4 @@
+import { getCurrentWorld } from "@services/utils";
 import moment from "moment";
 import { PureComponent } from "react";
 import React from "react";
@@ -119,14 +120,13 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
             totalCoins
         } = this.props;
         const { dailyStepsLoading, lastUpdate } = this.state;
-        const currentWorld = Math.floor((currentLevel - 1) / 50);
         const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
 
         return (
             <DailyStepsScreen
                 coinsToday={dailyEarnedCoins}
                 currentStreak={streaks.currentStreak}
-                currentWorld={currentWorld}
+                currentWorld={getCurrentWorld(currentLevel)}
                 displayStreak={displayStreak}
                 fitKitAvailable={available}
                 hasNotification={hasNotification}
