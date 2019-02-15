@@ -405,13 +405,13 @@ class QuestsContainer extends PureComponent<Props, IState> {
                             this.showLevelCompleteModal(level);
                         }
                     } else if (status.isNext) {
-                        if (level.level % 50 === 0) {
-                            // is unity level
-                            this.setState({ unity: level.level }, () => {
-                                this.props.submitUnityAction({ levelId: level.id });
-                            });
-                        } else if (levelAvailable) {
-                            if (isChestLevel) {
+                        if (levelAvailable) {
+                            if (level.level % 50 === 0) {
+                                // is unity level
+                                this.setState({ unity: level.level }, () => {
+                                    this.props.submitUnityAction({ levelId: level.id });
+                                });
+                            } else if (isChestLevel) {
                                 this.showChestModal(level, true);
                             } else {
                                 this.goToChallengesList(level);

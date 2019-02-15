@@ -21,7 +21,7 @@ class LevelPending extends PureComponent<IProps, IState> {
     private interval: NodeJS.Timer;
 
     public componentDidMount() {
-        global.setInterval(this.handleUpdateNextAvailable, 1000);
+        this.interval = global.setInterval(this.handleUpdateNextAvailable, 1000);
     }
 
     public componentWillUnmount() {

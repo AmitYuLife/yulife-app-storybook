@@ -1,4 +1,5 @@
 import { Navigation } from "react-native-navigation";
+import { delay } from "redux-saga";
 import { call, put, select, take, takeLatest } from "redux-saga/effects";
 import { MODALS, ROUTES } from "../../navigation/routes";
 import { getRouteState } from "../app/app.selectors";
@@ -62,6 +63,9 @@ function* showOnChallengeComplete() {
     const { done } = yield select(challengesStatusSelector);
 
     if (done === 1 && features.showStreaks && streaks.isAvailable && currentRoute !== MODALS.streaks) {
+        if (currentRoute === MODALS.chest) {
+            yield call(delay, 4000);
+        }
         yield call(() =>
             Navigation.showModal({
                 component: {

@@ -34,23 +34,24 @@ const getLevelLockIcon = (currentLevel: number, level: IChallenge) => {
 };
 
 export default function getLevelButton(nextAvailable: number, currentLevel: number, level: IChallenge): any {
+    const isUnity = level.level % 50 === 0;
     // step right up, we have more horrible logic, come and see the horrible logic!
-    if (level.level % 50 === 0) {
-        if (level.level > currentLevel) {
-            return <Image source={images.lock} />;
-        }
-        return (
+    if (level.level === currentLevel) {
+        return nextAvailable < 0 ? (
+            <LevelPending
+                nextAvailableAt={level.nextAvailableAt}
+                textFill={!level.isActive && !isUnity ? "rgb(79, 151,139)" : "white"}
+            />
+        ) : (
             <Text style={styles.text} bold={true}>
                 {level.level}
             </Text>
         );
-    } else if (level.level === currentLevel) {
-        return nextAvailable < 0 ? (
-            <LevelPending
-                nextAvailableAt={level.nextAvailableAt}
-                textFill={!level.isActive ? "rgb(79, 151,139)" : "white"}
-            />
-        ) : (
+    } else if (isUnity) {
+        if (level.level > currentLevel) {
+            return <Image source={images.lock} />;
+        }
+        return (
             <Text style={styles.text} bold={true}>
                 {level.level}
             </Text>

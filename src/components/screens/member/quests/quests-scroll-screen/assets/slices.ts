@@ -325,7 +325,7 @@ const WorldSlices: IMapSlice[] = [
         navBarColour: COLOURS.DARK,
         offset: offsets.w1s8,
         slots: [{ bottom: 0, index: 49, left: 187 }],
-        topBarType: "white"
+        topBarType: "default"
     },
     /**
      *  OCEAN WORLD
