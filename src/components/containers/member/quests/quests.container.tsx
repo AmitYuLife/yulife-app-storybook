@@ -78,10 +78,11 @@ function getLevelStatus(
     nextAvailableAt: string
 ) {
     const { hasDone: hasDoneChallenge, isAvailable: isChallengeAvailable } = challengesStatus;
+    const isInSecondWorld = currentLevel > 51;
 
     if (currentLevel === level) {
         return {
-            isActive: hasDoneChallenge ? !isChallengeAvailable : true,
+            isActive: isInSecondWorld && hasDoneChallenge ? !isChallengeAvailable : true,
             isDone: false,
             isNext: true,
             isPrevious: false,
@@ -91,7 +92,10 @@ function getLevelStatus(
 
     // previous level = currentLevel - 1
     // previous level for unity = currentLevel - 2
-    if (currentLevel - 1 === level || (currentLevel % 50 === 1 && currentLevel - 2 === level)) {
+    if (
+        (level % 50 !== 0 && currentLevel - 1 === level) ||
+        (isInSecondWorld && currentLevel % 50 === 1 && currentLevel - 2 === level)
+    ) {
         const previousAvailable = hasDoneChallenge && isChallengeAvailable;
         return {
             isActive: previousAvailable,
@@ -216,7 +220,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                         <ChallengeProgressScreen
                             {...props}
                             challengeType={subtype as any}
-                            currentWorld={getCurrentWorld(currentLevel)}
+                            currentWorld={getCurrentWorld(level)}
                             onCalmPress={openCalm}
                             onDismissPress={showOverlay}
                             onHeadspacePress={openHeadspace}
@@ -405,13 +409,13 @@ class QuestsContainer extends PureComponent<Props, IState> {
                             this.showLevelCompleteModal(level);
                         }
                     } else if (status.isNext) {
-                        if (levelAvailable) {
-                            if (level.level % 50 === 0) {
-                                // is unity level
-                                this.setState({ unity: level.level }, () => {
-                                    this.props.submitUnityAction({ levelId: level.id });
-                                });
-                            } else if (isChestLevel) {
+                        if (level.level % 50 === 0) {
+                            // is unity level
+                            this.setState({ unity: level.level }, () => {
+                                this.props.submitUnityAction({ levelId: level.id });
+                            });
+                        } else if (levelAvailable) {
+                            if (isChestLevel) {
                                 this.showChestModal(level, true);
                             } else {
                                 this.goToChallengesList(level);
