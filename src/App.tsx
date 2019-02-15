@@ -13,7 +13,7 @@ registerScreens();
 Navigation.events().registerAppLaunchedListener(async () => {
     // initialize TestFairy
     if (Config.TESTFAIRY_ENABLED === "yes") {
-        TestFairy.enableVideo("wifi", "high", 0.5);
+        TestFairy.enableVideo("wifi", "high", 0.4);
         TestFairy.begin(Config.TESTFAIRY_KEY);
     }
 
