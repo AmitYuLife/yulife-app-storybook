@@ -9,6 +9,12 @@ import { formatSeconds, getStyle } from "./top-bar.helpers";
 import styles from "./top-bar.styles";
 
 export type TopBarTypes = "default" | "white" | "desert" | "demo";
+export enum TOP_BAR_TYPES {
+    DEFAULT = "default",
+    WHITE = "white",
+    DESERT = "desert",
+    DEMO = "demo"
+}
 
 interface IProps {
     onPressLeftIcon?: () => void;

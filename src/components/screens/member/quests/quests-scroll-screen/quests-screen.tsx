@@ -51,10 +51,6 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         this.scrollToCurrentLevel();
     }
 
-    public componentDidMount() {
-        this.scrollToCurrentLevel();
-    }
-
     public componentDidUpdate(prevProps: IProps) {
         if (prevProps.hideUnity && !this.props.hideUnity) {
             this.scrollToCurrentLevel();
@@ -109,13 +105,17 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         const { currentLevel } = this.props;
         const result = mapSlices.find((slice) => slice.slots.some((item) => item.index === currentLevel - 1));
 
-        if (result && result.offset) {
+        if (result && result.episodeSettings) {
+            const { navBarType, offset, topBarType } = result.episodeSettings;
+
             global.setTimeout(() => {
                 if (this.flatList) {
-                    this.flatList.scrollToOffset({
-                        animated: true,
-                        offset: result.offset
-                    });
+                    this.setState({ UI: { topBarType, navBarColour: navBarType } }, () =>
+                        this.flatList.scrollToOffset({
+                            animated: true,
+                            offset
+                        })
+                    );
                 }
             }, 1200);
         }
