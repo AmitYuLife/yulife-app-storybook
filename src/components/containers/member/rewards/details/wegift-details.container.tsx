@@ -1,3 +1,4 @@
+import { RedeemRewardFunctionType, RedeemRewardMutation } from "@graphql/rewards";
 import * as React from "react";
 import { Component } from "react";
 import { Alert, Linking } from "react-native";
@@ -5,10 +6,6 @@ import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetRewards_getRewards, RedeemReward } from "../../../../../graphql/_core/schema";
-import RedeemRewardMutation, {
-    redeemRewardGql,
-    RedeemRewardMutationType
-} from "../../../../../graphql/rewards/redeemReward.gql";
 import { MODALS, ROUTES } from "../../../../../navigation/routes";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../../redux/app/app.selectors";
@@ -64,7 +61,7 @@ class WegiftRewardDetailsContainer extends Component<Props> {
         const labelCtaPrimary = `buy with ${yuCoin} yucoin`;
 
         return (
-            <RedeemRewardMutation mutation={redeemRewardGql}>
+            <RedeemRewardMutation>
                 {(redeemReward, { loading }) => {
                     const handleSubmit = async () => {
                         this.handleRewardPurchase(redeemReward);
@@ -100,25 +97,24 @@ class WegiftRewardDetailsContainer extends Component<Props> {
 
     private handleRewardsPress = () => {
         this.props.onTabChange("rewards", this.props.componentId);
-    }
+    };
 
     private handlePurchasesPress = () => {
         this.props.onTabChange("purchases", this.props.componentId);
-    }
+    };
 
     private openPDFs = (pdf: "policy" | "terms") => async () => {
         const { reward } = this.props;
-        const url =
-            pdf === "policy" ? Config.REWARDS_POLICY_URL : reward.terms_and_conditions_url;
+        const url = pdf === "policy" ? Config.REWARDS_POLICY_URL : reward.terms_and_conditions_url;
 
         const supported = await Linking.canOpenURL(url);
 
         if (supported) {
             await Linking.openURL(url);
         }
-    }
+    };
 
-    private handleRewardPurchase = (redeemReward: RedeemRewardMutationType) => {
+    private handleRewardPurchase = (redeemReward: RedeemRewardFunctionType) => {
         const { offline, reward, totalCoins } = this.props;
 
         const [{ value, yuCoin }] = reward.available_denominations;
@@ -176,7 +172,7 @@ class WegiftRewardDetailsContainer extends Component<Props> {
                 }
             ]
         );
-    }
+    };
 }
 
 const mapStateToProps = (state: IReduxState) => ({

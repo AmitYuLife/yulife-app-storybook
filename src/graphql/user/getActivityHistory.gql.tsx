@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
-import { Query, QueryResult } from "react-apollo";
+import * as React from "react";
+import { Query, QueryProps, QueryResult } from "react-apollo";
 import { GetActivityHistory } from "../_core/schema";
 
 export const getActivityHistoryGql = gql`
@@ -24,4 +25,6 @@ export const getActivityHistoryGql = gql`
 
 export type GetActivityHistoryResultType = QueryResult<GetActivityHistory>;
 
-export default class GetActivityHistoryQuery extends Query<GetActivityHistory> {}
+export default function GetActivityHistoryQuery(props: Partial<QueryProps<GetActivityHistory>>) {
+    return <Query {...props as any} query={getActivityHistoryGql} />;
+}

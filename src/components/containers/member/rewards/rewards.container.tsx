@@ -1,3 +1,9 @@
+import {
+    GetAllPurchasesQuery,
+    GetAllPurchasesResultType,
+    GetRewardsQuery,
+    GetRewardsResultType
+} from "@graphql/rewards";
 import moment from "moment";
 import { PureComponent } from "react";
 import * as React from "react";
@@ -5,8 +11,6 @@ import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetAllPurchases_getAllPurchases, GetRewards_getRewards } from "../../../../graphql/_core/schema";
-import GetAllPurchases, { getAllPurchasesGql } from "../../../../graphql/rewards/getAllPurchases.gql";
-import GetRewardsQuery, { getRewardsGql } from "../../../../graphql/rewards/getRewards.gql";
 import { IMainTabsProps } from "../../../../navigation/root";
 import { MODALS, ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
@@ -61,7 +65,11 @@ class RewardsContainer extends PureComponent<Props, IState> {
     public render() {
         const { tab } = this.state;
 
-        return tab === "rewards" ? this.renderRewards() : this.renderPurchases();
+        return tab === "rewards" ? (
+            <GetRewardsQuery>{this.renderRewards}</GetRewardsQuery>
+        ) : (
+            <GetAllPurchasesQuery>{this.renderPurchases}</GetAllPurchasesQuery>
+        );
     }
 
     private handleTabChange = (tab: Tab, componentId: string = "") => {
@@ -70,30 +78,26 @@ class RewardsContainer extends PureComponent<Props, IState> {
                 await Navigation.popToRoot(componentId);
             }
         });
-    }
+    };
 
     // all related to the rewards tab
-    private renderRewards = () => (
-        <GetRewardsQuery query={getRewardsGql} fetchPolicy="cache-and-network">
-            {({ loading, data, refetch }) => {
-                const { hasNotification, labels, onLeftMenuPress, totalCoins } = this.props;
+    private renderRewards = ({ loading, data, refetch }: GetRewardsResultType) => {
+        const { hasNotification, labels, onLeftMenuPress, totalCoins } = this.props;
 
-                return (
-                    <RewardsListScreen
-                        data={data.getRewards || []}
-                        hasNotification={hasNotification}
-                        labels={labels}
-                        onItemPress={this.handleRewardDetailsItemPress}
-                        onLeftMenuPress={onLeftMenuPress}
-                        onLeftTabPress={() => refetch()}
-                        onRightTabPress={() => this.handleTabChange("purchases")}
-                        refreshing={loading}
-                        totalCoins={totalCoins}
-                    />
-                );
-            }}
-        </GetRewardsQuery>
-    )
+        return (
+            <RewardsListScreen
+                data={data.getRewards || []}
+                hasNotification={hasNotification}
+                labels={labels}
+                onItemPress={this.handleRewardDetailsItemPress}
+                onLeftMenuPress={onLeftMenuPress}
+                onLeftTabPress={() => refetch()}
+                onRightTabPress={() => this.handleTabChange("purchases")}
+                refreshing={loading}
+                totalCoins={totalCoins}
+            />
+        );
+    };
 
     private getDetailsRoute = (rewardProviderId: string) => {
         switch (rewardProviderId) {
@@ -105,7 +109,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
             default:
                 return ROUTES.wegiftDetails;
         }
-    }
+    };
 
     private handleRewardDetailsItemPress = async (reward: GetRewards_getRewards) => {
         if (!reward.available_denominations.length) {
@@ -135,30 +139,26 @@ class RewardsContainer extends PureComponent<Props, IState> {
                 }
             });
         }
-    }
+    };
 
     // all related to the purchases tab
-    private renderPurchases = () => (
-        <GetAllPurchases query={getAllPurchasesGql} fetchPolicy="cache-and-network">
-            {({ loading, data, refetch }) => {
-                const { hasNotification, labels, onLeftMenuPress, totalCoins } = this.props;
-                const items = this.formatPuchaseItem(data.getAllPurchases);
+    private renderPurchases = ({ loading, data, refetch }: GetAllPurchasesResultType) => {
+        const { hasNotification, labels, onLeftMenuPress, totalCoins } = this.props;
+        const items = this.formatPuchaseItem(data.getAllPurchases);
 
-                return (
-                    <PurchasedListScreen
-                        data={items}
-                        hasNotification={hasNotification}
-                        labels={labels}
-                        onLeftMenuPress={onLeftMenuPress}
-                        onLeftTabPress={() => this.handleTabChange("rewards")}
-                        onRightTabPress={() => refetch()}
-                        refreshing={loading}
-                        totalCoins={totalCoins}
-                    />
-                );
-            }}
-        </GetAllPurchases>
-    )
+        return (
+            <PurchasedListScreen
+                data={items}
+                hasNotification={hasNotification}
+                labels={labels}
+                onLeftMenuPress={onLeftMenuPress}
+                onLeftTabPress={() => this.handleTabChange("rewards")}
+                onRightTabPress={() => refetch()}
+                refreshing={loading}
+                totalCoins={totalCoins}
+            />
+        );
+    };
 
     private getConfirmedRoute = (rewardProviderId: string) => {
         switch (rewardProviderId) {
@@ -168,7 +168,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
             default:
                 return ROUTES.wegiftConfirmed;
         }
-    }
+    };
 
     private formatPuchaseItem = (data: GetAllPurchases_getAllPurchases[] = []) => {
         return data.map((purchase) => {
@@ -200,7 +200,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
                 status
             };
         });
-    }
+    };
 
     private formatVoucherName = (num: number, currencyType: string, name: string) => {
         switch (currencyType) {
@@ -210,7 +210,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
             default:
                 return `£${formatMoney(num)} ${name} VOUCHER`;
         }
-    }
+    };
 }
 
 const mapStateToProps = (state: IReduxState) => ({

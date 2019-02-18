@@ -1,3 +1,7 @@
+import {
+    RedeemRewardFunctionType,
+    RedeemRewardMutation
+} from "@graphql/rewards";
 import * as React from "react";
 import { Component } from "react";
 import { Alert, Linking } from "react-native";
@@ -5,10 +9,6 @@ import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetRewards_getRewards, RedeemReward } from "../../../../../graphql/_core/schema";
-import RedeemRewardMutation, {
-    redeemRewardGql,
-    RedeemRewardMutationType
-} from "../../../../../graphql/rewards/redeemReward.gql";
 import { MODALS, ROUTES } from "../../../../../navigation/routes";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../../redux/app/app.selectors";
@@ -136,7 +136,7 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
         const hasErrorAccountNumber = this.state.isAccountNumberDirty && !isValidAccountNumber;
 
         return (
-            <RedeemRewardMutation mutation={redeemRewardGql}>
+            <RedeemRewardMutation>
                 {(redeemReward, { loading }) => {
                     const handleSubmit = async () => {
                         this.handleRewardPurchase(redeemReward);
@@ -301,7 +301,7 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
         }
     }
 
-    private handleRewardPurchase = (redeemReward: RedeemRewardMutationType) => {
+    private handleRewardPurchase = (redeemReward: RedeemRewardFunctionType) => {
         const { offline, reward, totalCoins } = this.props;
         const {
             forename: firstName,

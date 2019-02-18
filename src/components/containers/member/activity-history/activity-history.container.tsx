@@ -1,3 +1,4 @@
+import { GetActivityHistoryQuery } from "@graphql/user";
 import moment from "moment";
 import * as React from "react";
 import { PureComponent } from "react";
@@ -9,7 +10,6 @@ import {
     AddHistoricalStepsMutation
 } from "../../../../graphql/challenges/addHistoricalSteps.gql";
 import { AddHistoricalStepsMutationFunction } from "../../../../graphql/challenges/addHistoricalSteps.gql";
-import GetActivityHistoryQuery, { getActivityHistoryGql } from "../../../../graphql/user/getActivityHistory.gql";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { mapPedometerResults } from "../../../../redux/daily-steps/daily-steps.sagas";
 import { getUserStart } from "../../../../redux/user/user.actions";
@@ -38,7 +38,7 @@ class ActivityHistoryContainer extends PureComponent<Props> {
         return (
             <AddHistoricalStepsMutation mutation={addHistoricalStepsGql}>
                 {(addHistoricalSteps) => (
-                    <GetActivityHistoryQuery query={getActivityHistoryGql} fetchPolicy="network-only">
+                    <GetActivityHistoryQuery fetchPolicy="network-only">
                         {({ loading, data, refetch, error }) => {
                             if (loading) {
                                 return <Loading />;
@@ -69,7 +69,7 @@ class ActivityHistoryContainer extends PureComponent<Props> {
 
     private handleClose = () => {
         Navigation.popToRoot(this.props.componentId);
-    }
+    };
 
     private handleReloadActivity = async (
         addHistoricalSteps: AddHistoricalStepsMutationFunction,
@@ -117,7 +117,7 @@ class ActivityHistoryContainer extends PureComponent<Props> {
                 }
             }
         }
-    }
+    };
 }
 
 const mapStateToProps = (state: IReduxState) => ({

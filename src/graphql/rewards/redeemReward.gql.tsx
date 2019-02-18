@@ -1,25 +1,24 @@
 import gql from "graphql-tag";
-import { Query, QueryResult } from "react-apollo";
-import { GetAllPurchases } from "../_core/schema";
+import * as React from "react";
+import { Mutation, MutationFn, MutationProps, MutationResult } from "react-apollo";
+import { RedeemReward, RedeemRewardVariables } from "../_core/schema";
 
-export const getAllPurchasesGql = gql`
-    query GetAllPurchases {
-        getAllPurchases {
-            __typename
+export const redeemRewardGql = gql`
+    mutation RedeemReward($id: String!, $amount: Float!, $metadata: ProductMetadata) {
+        redeemReward(product: { id: $id, amount: $amount }, metadata: $metadata) {
             id
             userId
             rewardProviderId
             amount
             code
-            pin
             currency_code
+            pin
             expiry_date
             name
-            updatedAt
-            createdAt
             yuCoinsSpent
             delivery_url
-            status
+            updatedAt
+            createdAt
             metadata {
                 __typename
                 avios {
@@ -33,7 +32,6 @@ export const getAllPurchasesGql = gql`
             reward {
                 __typename
                 name
-                code
                 description
                 card_image_url
                 terms_and_conditions_url
@@ -48,6 +46,10 @@ export const getAllPurchasesGql = gql`
     }
 `;
 
-export type GetAllPurchasesResultType = QueryResult<GetAllPurchases>;
+export type RedeemRewardFunctionType = MutationFn<RedeemReward, RedeemRewardVariables>;
 
-export default class GetAllPurchasesQuery extends Query<GetAllPurchases> {}
+export type RedeemRewardResultType = MutationResult<RedeemReward>;
+
+export default function RedeemRewardMutation(props: Partial<MutationProps<RedeemReward, RedeemRewardVariables>>) {
+    return <Mutation {...props as any} mutation={redeemRewardGql} />;
+}

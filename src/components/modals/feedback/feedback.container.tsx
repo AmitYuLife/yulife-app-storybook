@@ -1,10 +1,7 @@
+import { AddUserFeedbackMutation, AddUserFeedbackMutationFunction } from "@graphql/user";
 import * as React from "react";
 import { PureComponent } from "react";
 import DeviceInfo from "react-native-device-info";
-import AddUserFeedbackMutation, {
-    addUserFeedbackGql,
-    AddUserFeedbackMutationFunction
-} from "../../../graphql/user/addUserFeedback.gql";
 import Logger from "../../../services/logging/logger";
 import FeedbackModal from "./feedback.modal";
 
@@ -19,14 +16,13 @@ interface IState {
 type Props = IProps;
 
 export default class FeedbackModalContainer extends PureComponent<Props, IState> {
-
     public state: IState = {
         rating: 0
     };
 
     public render() {
         return (
-            <AddUserFeedbackMutation mutation={addUserFeedbackGql}>
+            <AddUserFeedbackMutation>
                 {(addUserFeedback, { loading }) => {
                     const { rating } = this.state;
 
@@ -46,7 +42,7 @@ export default class FeedbackModalContainer extends PureComponent<Props, IState>
 
     private onRatingSelect = (rating: number) => {
         this.setState({ rating });
-    }
+    };
 
     private onCancel = () => {
         const logging = {
@@ -58,12 +54,12 @@ export default class FeedbackModalContainer extends PureComponent<Props, IState>
         Logger.logMixpanelEvent("app_rating", logging);
 
         this.props.closeModal();
-    }
+    };
 
     private onSubmit = async (addUserFeedback: AddUserFeedbackMutationFunction) => {
         const { rating } = this.state;
 
-        await addUserFeedback({ variables: { rating }});
+        await addUserFeedback({ variables: { rating } });
 
         const logging = {
             app_version: DeviceInfo.getVersion(),
@@ -79,5 +75,5 @@ export default class FeedbackModalContainer extends PureComponent<Props, IState>
         }
 
         this.props.closeModal();
-    }
+    };
 }

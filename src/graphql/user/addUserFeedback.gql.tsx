@@ -1,6 +1,5 @@
 import gql from "graphql-tag";
-import { Mutation, MutationFn, MutationResult } from "react-apollo";
-
+import { Mutation, MutationFn, MutationProps, MutationResult } from "react-apollo";
 import { AddUserFeedback, AddUserFeedbackVariables } from "../_core/schema";
 
 export const addUserFeedbackGql = gql`
@@ -14,4 +13,8 @@ export const addUserFeedbackGql = gql`
 export type AddUserFeedbackResultType = MutationResult<AddUserFeedback>;
 export type AddUserFeedbackMutationFunction = MutationFn<AddUserFeedback, AddUserFeedbackVariables>;
 
-export default class AddUserFeedbackMutation extends Mutation<AddUserFeedback, AddUserFeedbackVariables> {}
+export default function AddUserFeedbackMutation(
+    props: Partial<MutationProps<AddUserFeedback, AddUserFeedbackVariables>>
+) {
+    return <Mutation {...props as any} mutation={addUserFeedbackGql} />;
+}

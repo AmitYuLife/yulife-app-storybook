@@ -93,13 +93,12 @@ export type GetCurrentUserResultType = QueryResult<GetCurrentUser>;
 
 export class GetCurrentUserQuery extends Query<GetCurrentUser> {}
 
-const getCurrentUserWithClient = () =>
-    client.query<GetCurrentUser>({
+export default function getCurrentUserWithClient() {
+    return client.query<GetCurrentUser>({
         fetchPolicy: "network-only",
         query: getCurrentUserGql,
         variables: {
             intercomHashMethod: Platform.OS as IntercomHashMethod
         }
     });
-
-export default getCurrentUserWithClient;
+}
