@@ -73,7 +73,7 @@ class TodayYucoinContainer extends PureComponent<Props> {
                             onPressCta={this.handleCtaPress}
                             onPressClose={this.handleClose}
                             showCta={challengesStatus.isAvailable}
-                            ctaLabel={challengesStatus.done > 0 ? "take another challenge" : "take a challenge"}
+                            ctaLabel={this.getCtaLabel(challengesStatus.done, !!activeChallenge)}
                         />
                     );
                 }}
@@ -81,14 +81,21 @@ class TodayYucoinContainer extends PureComponent<Props> {
         );
     }
 
+    private getCtaLabel = (challengesDone: number, hasActiveChallenge: boolean) => {
+        if (hasActiveChallenge) {
+            return "back to challenge";
+        }
+        return challengesDone > 0 ? "take another challenge" : "take a challenge";
+    };
+
     private handleClose = () => {
         Navigation.dismissModal(this.props.componentId);
-    }
+    };
 
     private handleCtaPress = () => {
         Navigation.dismissModal(this.props.componentId);
         this.props.onCtaPress();
-    }
+    };
 }
 
 const mapStateToProps = (state: IReduxState) => ({

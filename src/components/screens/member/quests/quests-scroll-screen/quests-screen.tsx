@@ -47,6 +47,10 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         Navigation.events().bindComponent(this);
     }
 
+    public componentDidMount() {
+        this.scrollToCurrentLevel();
+    }
+
     public componentDidAppear() {
         this.scrollToCurrentLevel();
     }
