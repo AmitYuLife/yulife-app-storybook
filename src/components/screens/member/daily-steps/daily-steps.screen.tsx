@@ -153,7 +153,7 @@ function getStyle(currentWorld: number) {
                 hasWhiteGlow: false,
                 isLight: false,
                 navBar: {
-                    offline: COLOURS.DARKER,
+                    offline: COLOURS.LIGHT,
                     online: COLOURS.LIGHT
                 },
                 streakType: "forest",

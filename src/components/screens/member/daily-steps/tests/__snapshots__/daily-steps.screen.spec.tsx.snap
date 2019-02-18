@@ -68,7 +68,7 @@ ShallowWrapper {
         >
           <NavBar
             activeIndex={0}
-            colour="darker"
+            colour="light"
             hasNotification={false}
             labels={Array []}
           />
@@ -153,7 +153,7 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={0}
-            colour="darker"
+            colour="light"
             hasNotification={false}
             labels={Array []}
           />,
@@ -169,7 +169,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 0,
-            "colour": "darker",
+            "colour": "light",
             "hasNotification": false,
             "labels": Array [],
           },
@@ -221,7 +221,7 @@ ShallowWrapper {
           >
             <NavBar
               activeIndex={0}
-              colour="darker"
+              colour="light"
               hasNotification={false}
               labels={Array []}
             />
@@ -306,7 +306,7 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={0}
-              colour="darker"
+              colour="light"
               hasNotification={false}
               labels={Array []}
             />,
@@ -322,7 +322,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 0,
-              "colour": "darker",
+              "colour": "light",
               "hasNotification": false,
               "labels": Array [],
             },
@@ -424,7 +424,7 @@ ShallowWrapper {
         >
           <NavBar
             activeIndex={0}
-            colour="darker"
+            colour="light"
             hasNotification={false}
             labels={Array []}
           />
@@ -507,7 +507,7 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={0}
-            colour="darker"
+            colour="light"
             hasNotification={false}
             labels={Array []}
           />,
@@ -523,7 +523,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 0,
-            "colour": "darker",
+            "colour": "light",
             "hasNotification": false,
             "labels": Array [],
           },
@@ -573,7 +573,7 @@ ShallowWrapper {
           >
             <NavBar
               activeIndex={0}
-              colour="darker"
+              colour="light"
               hasNotification={false}
               labels={Array []}
             />
@@ -656,7 +656,7 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={0}
-              colour="darker"
+              colour="light"
               hasNotification={false}
               labels={Array []}
             />,
@@ -672,7 +672,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 0,
-              "colour": "darker",
+              "colour": "light",
               "hasNotification": false,
               "labels": Array [],
             },
@@ -1936,7 +1936,7 @@ ShallowWrapper {
         >
           <NavBar
             activeIndex={0}
-            colour="darker"
+            colour="light"
             hasNotification={false}
             labels={Array []}
           />
@@ -2022,7 +2022,7 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={0}
-            colour="darker"
+            colour="light"
             hasNotification={false}
             labels={Array []}
           />,
@@ -2038,7 +2038,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 0,
-            "colour": "darker",
+            "colour": "light",
             "hasNotification": false,
             "labels": Array [],
           },
@@ -2091,7 +2091,7 @@ ShallowWrapper {
           >
             <NavBar
               activeIndex={0}
-              colour="darker"
+              colour="light"
               hasNotification={false}
               labels={Array []}
             />
@@ -2177,7 +2177,7 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={0}
-              colour="darker"
+              colour="light"
               hasNotification={false}
               labels={Array []}
             />,
@@ -2193,7 +2193,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 0,
-              "colour": "darker",
+              "colour": "light",
               "hasNotification": false,
               "labels": Array [],
             },
