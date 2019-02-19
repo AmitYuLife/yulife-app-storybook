@@ -51,10 +51,6 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
         isTopHidden: false
     };
     private top3Y = new Animated.Value(0);
-    private viewabilityConfig = {
-        viewAreaCoveragePercentThreshold: 95,
-        waitForInteraction: true
-    };
 
     public render() {
         const { isTopHidden } = this.state;
@@ -88,11 +84,11 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                 >
                     <FlatList
                         data={items}
+                        initialNumToRender={items.length}
                         initialScrollIndex={initialScrollIndex}
                         keyExtractor={this.keyExtractor}
                         getItemLayout={this.getItemLayout}
                         renderItem={this.renderItem}
-                        viewabilityConfig={this.viewabilityConfig}
                     />
                 </Animated.View>
             </SafeAreaView>
