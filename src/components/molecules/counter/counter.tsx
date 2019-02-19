@@ -1,10 +1,13 @@
+import { Text } from "@atoms/index";
 import * as React from "react";
-import { Animated } from "react-native";
+import { Animated, TextStyle } from "react-native";
 
 interface IProps {
-    initialValue?: number;
+    duration?: number;
     value: number;
-    renderValue: (value: number) => React.ReactNode;
+    textAfterValue?: string;
+    textBeforeValue?: string;
+    textStyle?: TextStyle;
 }
 
 interface IState {
@@ -16,47 +19,43 @@ class Counter extends React.PureComponent<IProps, IState> {
     constructor(props: IProps) {
         super(props);
 
-        const { initialValue } = props;
-        const firstValue = initialValue !== null ? initialValue : props.value;
+        const { value } = props;
 
-        this.animatedValue = new Animated.Value(firstValue);
+        this.animatedValue = new Animated.Value(value);
         this.animatedValue.addListener(this.onValueChanged);
 
-        this.state = {
-            value: firstValue
-        };
+        this.state = { value };
     }
 
-    public componentWillReceiveProps(nextProps: IProps) {
-        const { value } = this.props;
-
-        if (value !== nextProps.value) {
-            this.move(nextProps);
+    public componentDidUpdate({ value }: IProps) {
+        if (value !== this.props.value) {
+            this.move();
         }
     }
 
     public render() {
-        const { renderValue } = this.props;
+        const { textAfterValue = "", textBeforeValue = "", textStyle } = this.props;
         const { value } = this.state;
+        const renderValue = `${textBeforeValue} ${value} ${textAfterValue}`.trim();
 
-        return renderValue(value);
+        return <Text style={textStyle}>{renderValue}</Text>;
     }
 
     private onValueChanged = (e: Partial<IProps>) => {
         this.setState({
-            value: e.value
+            value: Math.floor(e.value)
         });
-    }
+    };
 
-    private move = (props: Partial<IProps>) => {
-        const { value } = props;
+    private move = () => {
+        const { duration = 1000, value } = this.props;
 
         Animated.timing(this.animatedValue, {
-            duration: 150,
+            duration,
             toValue: value,
             useNativeDriver: true
         }).start();
-    }
+    };
 }
 
 export default Counter;

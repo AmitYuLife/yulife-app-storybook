@@ -1,6 +1,7 @@
+import { Button, Pad, Text } from "@atoms/index";
+import { Counter } from "@molecules/index";
 import * as React from "react";
 import { StyleSheet, TextStyle, View } from "react-native";
-import { Button, Pad, Text } from "../../../atoms";
 import styles from "./daily-steps.screen.styles";
 
 export interface IProps {
@@ -15,7 +16,7 @@ export default function DailyStepsOnline({ coinsToday, onCtaPress, steps, textSt
 
     return (
         <View style={styles.dailyStepsOnlineWrapper}>
-            <Text style={textStyle}>{steps} steps</Text>
+            <Counter value={steps} textStyle={textStyle} textAfterValue="steps" />
             <Pad height={8} />
             <Text>
                 <Text style={flattenStyle}>{`${coinsToday} `}</Text>

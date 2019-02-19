@@ -23,10 +23,10 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <YuText>
-          123456
-           steps
-        </YuText>,
+        <Counter
+          textAfterValue="steps"
+          value={123456}
+        />,
         <Pad
           height={8}
         />,
@@ -88,19 +88,14 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
-          "children": Array [
-            123456,
-            " steps",
-          ],
-          "style": undefined,
+          "textAfterValue": "steps",
+          "textStyle": undefined,
+          "value": 123456,
         },
         "ref": null,
-        "rendered": Array [
-          123456,
-          " steps",
-        ],
+        "rendered": null,
         "type": [Function],
       },
       Object {
@@ -255,10 +250,10 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <YuText>
-            123456
-             steps
-          </YuText>,
+          <Counter
+            textAfterValue="steps"
+            value={123456}
+          />,
           <Pad
             height={8}
           />,
@@ -320,19 +315,14 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "children": Array [
-              123456,
-              " steps",
-            ],
-            "style": undefined,
+            "textAfterValue": "steps",
+            "textStyle": undefined,
+            "value": 123456,
           },
           "ref": null,
-          "rendered": Array [
-            123456,
-            " steps",
-          ],
+          "rendered": null,
           "type": [Function],
         },
         Object {
