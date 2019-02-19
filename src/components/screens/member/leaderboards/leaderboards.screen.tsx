@@ -84,6 +84,7 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                 >
                     <FlatList
                         data={items}
+                        removeClippedSubviews={false}
                         initialNumToRender={items.length}
                         initialScrollIndex={initialScrollIndex}
                         keyExtractor={this.keyExtractor}
