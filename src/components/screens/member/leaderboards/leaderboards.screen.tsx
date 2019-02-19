@@ -85,7 +85,7 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                     <FlatList
                         data={items}
                         removeClippedSubviews={false}
-                        initialNumToRender={items.length}
+                        initialNumToRender={10}
                         initialScrollIndex={initialScrollIndex}
                         keyExtractor={this.keyExtractor}
                         getItemLayout={this.getItemLayout}
@@ -102,10 +102,10 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
 
     private renderItem = ({ item, index }: ListRenderItemInfo<IItem>) => (
         <LeaderboardItem
-            key={item.id}
             {...item}
             isCurrentUser={index === this.props.initialScrollIndex}
             rank={index + 1}
+            key={item.id}
         />
     );
 

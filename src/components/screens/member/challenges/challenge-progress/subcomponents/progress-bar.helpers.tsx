@@ -1,3 +1,4 @@
+import { Counter } from "@molecules/index";
 import React, { SFC } from "react";
 import { StyleSheet, Text } from "react-native";
 import { padNum } from "../../../../../../services/utils";
@@ -58,7 +59,13 @@ export const renderProgressLabel = ({ amount, styleType = "black", type }: Parti
 
     switch (type) {
         case "steps":
-            return <Text style={StyleSheet.flatten([styles.stepsText, textColorStyle])}>{`${amount} ${type}`}</Text>;
+            return (
+                <Counter
+                    value={amount}
+                    textStyle={StyleSheet.flatten([styles.stepsText, textColorStyle])}
+                    textAfterValue={type}
+                />
+            );
 
         case "minutes":
             const { minutes, seconds } = displaySecondsAsMinutes(amount);
