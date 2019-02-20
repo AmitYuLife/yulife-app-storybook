@@ -25,13 +25,10 @@ interface IState {
 }
 
 export default class LevelBubble extends React.PureComponent<IProps, IState> {
-    constructor(props: IProps) {
-        super(props);
-        this.state = {
-            pulseValue: 50,
-            style: getButtonPosition(props.slice, props.index)
-        };
-    }
+    public state: IState = {
+        pulseValue: 50,
+        style: getButtonPosition(this.props.slice, this.props.index)
+    };
 
     public render() {
         const { currentLevel, level } = this.props;

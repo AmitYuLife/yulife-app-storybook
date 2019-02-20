@@ -1,15 +1,14 @@
+import { OptimizedFlatList } from "@molecules/index";
 import * as React from "react";
 import { PureComponent } from "react";
 import {
     Animated,
-    FlatList,
     Image,
     SafeAreaView,
     ScrollView,
     StyleSheet,
     TouchableOpacity,
     View,
-    // ViewToken,
     ViewStyle
 } from "react-native";
 import { ListRenderItemInfo } from "react-native";
@@ -44,8 +43,6 @@ interface IState {
     isTopHidden: boolean;
 }
 
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-
 export default class LeaderboardScreen extends PureComponent<IProps, IState> {
     public scrollView: ScrollView;
     public state = {
@@ -57,7 +54,6 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
     public render() {
         const { isTopHidden } = this.state;
         const { initialScrollIndex, onCoinPress, onPressClose, onStepsPress, items, sortBy = "steps" } = this.props;
-        const renderItem = getRenderItem(initialScrollIndex);
 
         return (
             <SafeAreaView style={styles.wrapper}>
@@ -65,7 +61,7 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                     <View style={styles.backgroundImageWrapper}>
                         <Image style={styles.backgroundImageBase} source={assets.background} />
                     </View>
-                    {!isTopHidden && items.slice(0, 3).map(renderTop)}
+                    {!isTopHidden && items.slice(0, 3).map(this.renderTop)}
                     <Pad height={275} />
                     <View style={styles.giraffeImageWrapper}>
                         <Image source={assets.giraffe} />
@@ -85,18 +81,39 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                         { transform: [{ translateY: this.top3Y }] }
                     ] as ViewStyle)}
                 >
-                    <AnimatedFlatList
+                    <OptimizedFlatList
                         data={items}
                         removeClippedSubviews={false}
                         initialScrollIndex={initialScrollIndex}
-                        keyExtractor={keyExtractor}
-                        getItemLayout={getItemLayout}
-                        renderItem={renderItem}
+                        keyExtractor={this.keyExtractor}
+                        getItemLayout={this.getItemLayout}
+                        renderItem={this.renderItem}
                     />
                 </Animated.View>
             </SafeAreaView>
         );
     }
+
+    private renderTop = (item: IItem, i: number) => (
+        <LeaderboardPosition key={`top-3-${item.id}`} name={item.firstName} position={i + 1} />
+    );
+
+    private renderItem = ({ item, index }: ListRenderItemInfo<IItem>) => (
+        <LeaderboardItem
+            {...item}
+            isCurrentUser={index === this.props.initialScrollIndex}
+            rank={index + 1}
+            key={item.id}
+        />
+    );
+
+    private keyExtractor = (item: IItem) => item.id;
+
+    private getItemLayout = (_: any, index: number) => ({
+        index,
+        length: LEADERBOARD_ITEM_HEIGHT,
+        offset: LEADERBOARD_ITEM_HEIGHT * index
+    });
 
     private handlePressImage = () => {
         const { isTopHidden } = this.state;
@@ -108,27 +125,5 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
             toValue,
             useNativeDriver: true
         }).start(() => this.setState({ isScrolling: false }));
-    };
-}
-
-function renderTop(item: IItem, i: number) {
-    return <LeaderboardPosition key={`top-3-${item.id}`} name={item.firstName} position={i + 1} />;
-}
-
-function getRenderItem(initialScrollIndex: number) {
-    return ({ item, index }: ListRenderItemInfo<IItem>) => (
-        <LeaderboardItem {...item} isCurrentUser={index === initialScrollIndex} rank={index + 1} key={item.id} />
-    );
-}
-
-function keyExtractor(item: IItem) {
-    return item.id;
-}
-
-function getItemLayout(_: any, index: number) {
-    return {
-        index,
-        length: LEADERBOARD_ITEM_HEIGHT,
-        offset: LEADERBOARD_ITEM_HEIGHT * index
     };
 }

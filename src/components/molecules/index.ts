@@ -13,3 +13,4 @@ export { default as RewardsListItem } from "./rewards-list/rewards-list-item/rew
 export { default as RewardItemContent } from "./reward-item-content/reward-item-content";
 export { default as RewardsList } from "./rewards-list/rewards-list";
 export { default as RewardTabs } from "./reward-tabs/reward-tabs";
+export { default as OptimizedFlatList } from "./optimized-flat-list/optimized-flat-list";
