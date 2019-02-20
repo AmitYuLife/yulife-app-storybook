@@ -83,7 +83,7 @@ export default function DailyStepsScreen({
                 <DailyStepsOnline
                     coinsToday={coinsToday}
                     steps={steps}
-                    onCtaPress={displayStreak ? null : onCtaPress}
+                    onCtaPress={onCtaPress}
                     textStyle={textStyle}
                 />
             )}

@@ -18,7 +18,12 @@ import {
     getLastUpdated,
     isFetchingDailyStepsSelector
 } from "../../../../redux/daily-steps/daily-steps.selectors";
-import { currentLevelSelector, hasNotificationSelector } from "../../../../redux/levels/levels.selectors";
+import {
+    challengesStatusSelector,
+    currentLevelSelector,
+    hasNotificationSelector,
+    ITodayChallengesStatus
+} from "../../../../redux/levels/levels.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
 import { IStreaks, streaksSelector } from "../../../../redux/streaks/streaks.selectors";
 import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
@@ -34,6 +39,7 @@ interface IFitKitAvailableProps {
 
 interface IConnectedState {
     appState: string;
+    challengesStatus: ITodayChallengesStatus;
     currentLevel: number;
     dailyEarnedCoins: number;
     dailySteps: number;
@@ -108,6 +114,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     private renderScreen = ({ available, authorised, authorise, loading }: IFitKitAvailableProps) => {
         const {
             currentLevel,
+            challengesStatus,
             dailyEarnedCoins,
             dailySteps,
             features = {},
@@ -121,6 +128,8 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
         } = this.props;
         const { dailyStepsLoading, lastUpdate } = this.state;
         const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
+        const displayEarnMore =
+            challengesStatus.isAvailable && (!displayStreak || (displayStreak && streaks.isDoneToday));
 
         return (
             <DailyStepsScreen
@@ -139,7 +148,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                 maxStreak={streaks.maxStreak}
                 onAuthoriseFitKitPress={() => authorise(FitKitPermissions)}
                 onCoinPress={this.onCoinPress}
-                onCtaPress={this.onCta}
+                onCtaPress={displayEarnMore ? this.onCta : null}
                 onLeftMenuPress={onLeftMenuPress}
                 onStreakPress={this.onStreak}
                 steps={dailySteps}
@@ -204,6 +213,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
 
 const mapStateToProps = (state: IReduxState) => ({
     appState: getAppState(state),
+    challengesStatus: challengesStatusSelector(state),
     currentLevel: currentLevelSelector(state),
     dailyEarnedCoins: getDailyEarnedCoins(state),
     dailySteps: getDailySteps(state),

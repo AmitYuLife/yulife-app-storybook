@@ -765,7 +765,7 @@ ShallowWrapper {
         </TouchableOpacity>,
         <DailyStepsOnline
           coinsToday={0}
-          onCtaPress={null}
+          onCtaPress={[MockFunction]}
           steps={0}
           textStyle={
             Object {
@@ -863,7 +863,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "coinsToday": 0,
-          "onCtaPress": null,
+          "onCtaPress": [MockFunction],
           "steps": 0,
           "textStyle": Object {
             "color": "#333333",
@@ -952,7 +952,7 @@ ShallowWrapper {
           </TouchableOpacity>,
           <DailyStepsOnline
             coinsToday={0}
-            onCtaPress={null}
+            onCtaPress={[MockFunction]}
             steps={0}
             textStyle={
               Object {
@@ -1050,7 +1050,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "coinsToday": 0,
-            "onCtaPress": null,
+            "onCtaPress": [MockFunction],
             "steps": 0,
             "textStyle": Object {
               "color": "#333333",
