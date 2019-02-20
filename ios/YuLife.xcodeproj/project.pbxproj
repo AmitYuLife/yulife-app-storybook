@@ -143,6 +143,7 @@
 		6CD5C3E6AC854A25BF61D1BB /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C3838907B2431AB27CACE8 /* libRNDeviceInfo.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8470B5A883B14DAEB00B99CD /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8680205BCB6C46FEB6D2A697 /* libReactNativeConfig.a */; };
+		855F79BE322746398ED2316B /* libFastImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B09107DFCFA44CD95F0F5B1 /* libFastImage.a */; };
 		94DF73CA21538A1900E53652 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DF73C72153899D00E53652 /* libRCTPushNotification.a */; };
 		96ACEAB1A8F2402ABD8CC95C /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C16438F77A940059B8ACB7A /* OpenSans-Regular.ttf */; };
 		A3335D14F85D42C8A71DB717 /* libBugsnagReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 741B056F3798488EB651C6D6 /* libBugsnagReactNative.a */; };
@@ -510,6 +511,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		94463CC7221DE97F0015504C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 839148B686214E20A8B6335A /* FastImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A287971D1DE0C0A60081BDFA;
+			remoteInfo = FastImage;
+		};
 		94DF73BD215388F900E53652 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B518BC259B444B63AE8B3482 /* RNDeviceInfo.xcodeproj */;
@@ -785,7 +793,9 @@
 		7C16438F77A940059B8ACB7A /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Regular.ttf"; path = "../assets/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		7C1D49D004D347FA95FF1B84 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Bold.ttf"; path = "../assets/fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		839148B686214E20A8B6335A /* FastImage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = FastImage.xcodeproj; path = "../node_modules/react-native-fast-image/ios/FastImage.xcodeproj"; sourceTree = "<group>"; };
 		8680205BCB6C46FEB6D2A697 /* libReactNativeConfig.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeConfig.a; sourceTree = "<group>"; };
+		8B09107DFCFA44CD95F0F5B1 /* libFastImage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libFastImage.a; sourceTree = "<group>"; };
 		94B7DD6A97C04116BE7BA37F /* ReactNativeTestFairy.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeTestFairy.xcodeproj; path = "../node_modules/react-native-testfairy/ios/ReactNativeTestFairy.xcodeproj"; sourceTree = "<group>"; };
 		94DF73C12153899D00E53652 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		9903AC7FFDE9457B9E58F46A /* Bariol-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Bariol-Bold.otf"; path = "../assets/fonts/Bariol-Bold.otf"; sourceTree = "<group>"; };
@@ -851,6 +861,7 @@
 				5A949CCFD5804B9BAF2770A2 /* libRNFitKit.a in Frameworks */,
 				6CD5C3E6AC854A25BF61D1BB /* libRNDeviceInfo.a in Frameworks */,
 				5CD3F0623EBF4402BF961CF0 /* libReactNativeTestFairy.a in Frameworks */,
+				855F79BE322746398ED2316B /* libFastImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1253,6 +1264,7 @@
 				FE7CE842D73D4912A39D1CF6 /* libRNFitKit.a */,
 				E1C3838907B2431AB27CACE8 /* libRNDeviceInfo.a */,
 				001704067A0E4CACA7C87720 /* libReactNativeTestFairy.a */,
+				8B09107DFCFA44CD95F0F5B1 /* libFastImage.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1328,6 +1340,7 @@
 				E36B50194DAB4CBE82680CE6 /* RNFitKit.xcodeproj */,
 				B518BC259B444B63AE8B3482 /* RNDeviceInfo.xcodeproj */,
 				94B7DD6A97C04116BE7BA37F /* ReactNativeTestFairy.xcodeproj */,
+				839148B686214E20A8B6335A /* FastImage.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1363,6 +1376,14 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* YuLife.app */,
 				00E356EE1AD99517003FC87E /* YuLifeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94463CC4221DE97F0015504C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94463CC8221DE97F0015504C /* libFastImage.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1492,6 +1513,10 @@
 				{
 					ProductGroup = 3A70171E212317B6007BE538 /* Products */;
 					ProjectRef = A23499BFDAA5480F982F1227 /* BugsnagReactNative.xcodeproj */;
+				},
+				{
+					ProductGroup = 94463CC4221DE97F0015504C /* Products */;
+					ProjectRef = 839148B686214E20A8B6335A /* FastImage.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -1945,6 +1970,13 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		94463CC8221DE97F0015504C /* libFastImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFastImage.a;
+			remoteRef = 94463CC7221DE97F0015504C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		94DF73BE215388F900E53652 /* libRNDeviceInfo.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2180,12 +2212,14 @@
 					"$(SRCROOT)/../node_modules/react-native-fitkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
+					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 				);
 				INFOPLIST_FILE = YuLifeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2223,12 +2257,14 @@
 					"$(SRCROOT)/../node_modules/react-native-fitkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
+					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 				);
 				INFOPLIST_FILE = YuLifeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2274,6 +2310,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fitkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
+					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 				);
 				INFOPLIST_FILE = YuLife/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
@@ -2316,6 +2353,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fitkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
+					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 				);
 				INFOPLIST_FILE = YuLife/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";

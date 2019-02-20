@@ -17,6 +17,7 @@ import com.kevinejohn.RNMixpanel.RNMixpanel;
 import com.testfairy.react.TestFairyPackage;
 import com.wwdrew.reactnative.RNDualPedometerPackage;
 import com.yulife.reactnative.fitkit.RNFitKitPackage;
+import com.dylanvann.fastimage.FastImageViewPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -68,7 +69,8 @@ public class MainApplication extends NavigationApplication {
                 BugsnagReactNative.getPackage(),            // bugsnag-react-native
                 new RNDualPedometerPackage(),               // react-native-dual-pedometer
                 new RNFitKitPackage(),                      // react-native-fitkit
-                new TestFairyPackage()                      // react-native-testfairy
+                new TestFairyPackage(),                     // react-native-testfairy
+                new FastImageViewPackage()                  // react-native-fast-image
         );
     }
 }

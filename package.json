@@ -58,6 +58,7 @@
     "react-native-config": "^0.11.5",
     "react-native-device-info": "^0.22.5",
     "react-native-dual-pedometer": "git+https://github.com/poppiestar/react-native-dual-pedometer.git",
+    "react-native-fast-image": "^5.1.2",
     "react-native-fitkit": "ssh://git@gitlab.com:yu-life/react-native-fitkit.git",
     "react-native-intercom": "^12.0.0",
     "react-native-iphone-x-helper": "1.0.3",

@@ -47,7 +47,11 @@ class ScrollyQuest extends Component<IProps> {
     private keyExtractor = (level: IMapSlice) => level.id;
 
     private renderItem: ListRenderItem<IMapSlice> = ({ item }) => (
-        <MapSlice currentLevel={this.props.currentLevel} levels={this.getSlicedLevels(item)} slice={item} />
+        <MapSlice
+            currentLevel={this.props.currentLevel}
+            levels={this.getSlicedLevels(item)}
+            slice={item}
+        />
     );
 
     private getItemLayout = (_: any, index: number) => ({

@@ -134,6 +134,10 @@ dependencies {
 
     // FitKit
     implementation project(':react-native-fitkit')
+
+    // FastImage
+    implementation("com.android.support:support-v4:$supportLibVersion")
+    implementation project(':react-native-fast-image')
 }
 
 // Run this once to be able to run the application with BUCK

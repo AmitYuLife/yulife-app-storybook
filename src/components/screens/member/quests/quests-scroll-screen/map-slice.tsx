@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import FastImage from "react-native-fast-image";
 import { Style } from "../../../../../styles";
 import { IChallenge } from "../quests-screen/quests-screen";
 import { IMapSlice, LevelBubble, MAP_SLICE_HEIGHT } from "./assets";
@@ -14,9 +15,10 @@ interface IProps {
 export default class MapSlice extends React.PureComponent<IProps> {
     public render() {
         const { levels, slice } = this.props;
+
         return (
-            <View style={{ height: MAP_SLICE_HEIGHT, overflow: "visible" }}>
-                <Image
+            <View key={slice.id} style={{ height: MAP_SLICE_HEIGHT, overflow: "visible" }}>
+                <FastImage
                     source={slice.image}
                     style={StyleSheet.flatten([styles.image, { height: MAP_SLICE_HEIGHT }]) as any}
                 />
