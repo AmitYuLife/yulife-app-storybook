@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Component } from "react";
 import { FlatList, ListRenderItem, View } from "react-native";
 import { IMapSlice, MAP_SLICE_HEIGHT } from "./assets";
 import MapSlice from "./map-slice";
@@ -9,13 +8,14 @@ import styles from "./quests-screen.styles";
 interface IProps {
     data: IMapSlice[];
     initialScrollIndex: number;
+    isMapVisible?: boolean;
     currentLevel: number;
     levels: IChallenge[];
     onViewableItemsChanged?: any;
     setFlatListRef: (ref: any) => void;
 }
 
-class ScrollyQuest extends Component<IProps> {
+class ScrollyQuest extends React.PureComponent<IProps> {
     private viewabilityConfig = {
         minimumViewTime: 400,
         viewAreaCoveragePercentThreshold: 95,
@@ -47,11 +47,7 @@ class ScrollyQuest extends Component<IProps> {
     private keyExtractor = (level: IMapSlice) => level.id;
 
     private renderItem: ListRenderItem<IMapSlice> = ({ item }) => (
-        <MapSlice
-            currentLevel={this.props.currentLevel}
-            levels={this.getSlicedLevels(item)}
-            slice={item}
-        />
+        <MapSlice currentLevel={this.props.currentLevel} levels={this.getSlicedLevels(item)} slice={item} />
     );
 
     private getItemLayout = (_: any, index: number) => ({

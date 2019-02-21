@@ -46,13 +46,12 @@ ShallowWrapper {
             }
           }
         />
-        <Component
+        <FastImage
           onLoad={[Function]}
-          resizeMethod="scale"
           resizeMode="cover"
           source={
             Object {
-              "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/background/abcdefg_2x.png",
+              "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,h_300,w_750/v1/reward/background/abcdefg_3x.png",
             }
           }
           style={
@@ -137,13 +136,12 @@ ShallowWrapper {
               }
             }
           />,
-          <Component
+          <FastImage
             onLoad={[Function]}
-            resizeMethod="scale"
             resizeMode="cover"
             source={
               Object {
-                "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/background/abcdefg_2x.png",
+                "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,h_300,w_750/v1/reward/background/abcdefg_3x.png",
               }
             }
             style={
@@ -228,10 +226,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "onLoad": [Function],
-            "resizeMethod": "scale",
             "resizeMode": "cover",
             "source": Object {
-              "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/background/abcdefg_2x.png",
+              "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,h_300,w_750/v1/reward/background/abcdefg_3x.png",
             },
             "style": Array [
               Object {
@@ -344,13 +341,12 @@ ShallowWrapper {
               }
             }
           />
-          <Component
+          <FastImage
             onLoad={[Function]}
-            resizeMethod="scale"
             resizeMode="cover"
             source={
               Object {
-                "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/background/abcdefg_2x.png",
+                "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,h_300,w_750/v1/reward/background/abcdefg_3x.png",
               }
             }
             style={
@@ -435,13 +431,12 @@ ShallowWrapper {
                 }
               }
             />,
-            <Component
+            <FastImage
               onLoad={[Function]}
-              resizeMethod="scale"
               resizeMode="cover"
               source={
                 Object {
-                  "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/background/abcdefg_2x.png",
+                  "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,h_300,w_750/v1/reward/background/abcdefg_3x.png",
                 }
               }
               style={
@@ -526,10 +521,9 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "onLoad": [Function],
-              "resizeMethod": "scale",
               "resizeMode": "cover",
               "source": Object {
-                "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,q_80/v1/reward/background/abcdefg_2x.png",
+                "uri": "https://res.cloudinary.com/yu-life/image/upload/c_fit,h_300,w_750/v1/reward/background/abcdefg_3x.png",
               },
               "style": Array [
                 Object {
