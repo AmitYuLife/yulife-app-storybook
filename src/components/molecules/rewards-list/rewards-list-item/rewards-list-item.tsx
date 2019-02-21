@@ -1,8 +1,9 @@
+import { GetRewards_getRewards_uiSettings } from "@graphql/_core/schema";
+import { getCloudinaryUrl } from "@services/cloudinary/index";
 import * as React from "react";
 import { PureComponent } from "react";
-import { ActivityIndicator, Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import { GetRewards_getRewards_uiSettings } from "../../../../graphql/_core/schema";
-import { getCloudinaryUrl } from "../../../../services/cloudinary/index";
+import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from "react-native";
+import FastImage from "react-native-fast-image";
 import LockedOverlay from "./locked-overlay";
 import styles from "./rewards-list-item.styles";
 import UnlockedOverlay from "./unlocked-overlay";
@@ -23,7 +24,6 @@ interface IState {
 }
 
 class RewardsListItem extends PureComponent<IProps, IState> {
-
     public state: IState = {
         hasLoaded: false
     };
@@ -45,18 +45,14 @@ class RewardsListItem extends PureComponent<IProps, IState> {
                             backgroundColor: "#bebebe"
                         }}
                     />
-                    <Image
-                        resizeMethod="scale"
+                    <FastImage
                         resizeMode="cover"
                         style={[styles.imageBackground, { opacity: isLocked ? 0.3 : 1 }]}
                         onLoad={this.handleLoadEnd}
-                        source={getCloudinaryUrl({
-                            transformation: [
-                                {
-                                    effect: isLocked ? "grayscale" : null
-                                }
-                            ],
-                            url: `reward/background/${code}`
+                        source={getCloudinaryUrl(`reward/background/${code}`, {
+                            height: 150,
+                            transformation: [{ effect: isLocked ? "grayscale" : null }],
+                            width: 375
                         })}
                     />
                     <View style={styles.overlayWrapper}>
@@ -81,7 +77,7 @@ class RewardsListItem extends PureComponent<IProps, IState> {
 
     private handleLoadEnd = () => {
         this.setState({ hasLoaded: true });
-    }
+    };
 }
 
 export default RewardsListItem;

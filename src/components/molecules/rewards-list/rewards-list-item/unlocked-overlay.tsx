@@ -1,6 +1,6 @@
 import * as React from "react";
-import { SFC } from "react";
-import { Image, View } from "react-native";
+import { View } from "react-native";
+import FastImage from "react-native-fast-image";
 import { GetRewards_getRewards_uiSettings } from "../../../../graphql/_core/schema";
 import { getCloudinaryUrl } from "../../../../services/cloudinary/index";
 import { Text } from "../../../atoms";
@@ -16,28 +16,28 @@ interface IProps {
     settings?: GetRewards_getRewards_uiSettings;
 }
 
-const UnlockedOverlay: SFC<IProps> = ({ code, cost, linkType, rewardCurrency, rewardValue, settings }) => (
-    <View style={styles.unlockedContainer}>
-        <Image
-            resizeMethod="resize"
-            resizeMode="contain"
-            style={{
-                height: (settings && settings.logoHeight) || 30,
-                width: (settings && settings.logoWidth) || 100
-            }}
-            source={getCloudinaryUrl({
-                url: `reward/logo/${code}`
-            })}
-        />
-        <Text bold={true} style={styles.voucherText}>
-            {settings && settings.offerHeading
-                ? settings.offerHeading
-                : renderValue(rewardValue, rewardCurrency, linkType)}
-        </Text>
-        <Text style={styles.costText}>
-            {settings && settings.offerSubheading ? settings.offerSubheading : renderExchange(cost, rewardCurrency)}
-        </Text>
-    </View>
-);
+export default function UnlockedOverlay({ code, cost, linkType, rewardCurrency, rewardValue, settings }: IProps) {
+    const height = (settings && settings.logoHeight) || 30;
+    const width = (settings && settings.logoWidth) || 100;
 
-export default UnlockedOverlay;
+    return (
+        <View style={styles.unlockedContainer}>
+            <FastImage
+                resizeMode="contain"
+                style={{ height, width }}
+                source={getCloudinaryUrl(`reward/logo/${code}`, {
+                    height,
+                    width
+                })}
+            />
+            <Text bold={true} style={styles.voucherText}>
+                {settings && settings.offerHeading
+                    ? settings.offerHeading
+                    : renderValue(rewardValue, rewardCurrency, linkType)}
+            </Text>
+            <Text style={styles.costText}>
+                {settings && settings.offerSubheading ? settings.offerSubheading : renderExchange(cost, rewardCurrency)}
+            </Text>
+        </View>
+    );
+}

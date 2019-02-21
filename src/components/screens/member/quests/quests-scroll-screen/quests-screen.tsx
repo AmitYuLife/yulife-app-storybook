@@ -37,7 +37,7 @@ interface IState {
 }
 
 class QuestsScreen extends PureComponent<IProps, IState> {
-    public state = {
+    public state: IState = {
         UI: getInitialState(this.props.currentLevel)
     };
     public flatList: FlatList<IMapSlice>;

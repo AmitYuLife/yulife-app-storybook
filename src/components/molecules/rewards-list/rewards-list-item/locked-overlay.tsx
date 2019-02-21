@@ -1,9 +1,9 @@
+import { Text } from "@atoms/index";
+import { GetRewards_getRewards_uiSettings } from "@graphql/_core/schema";
+import { getCloudinaryUrl } from "@services/cloudinary/index";
 import * as React from "react";
-import { SFC } from "react";
-import { Image, View } from "react-native";
-import { GetRewards_getRewards_uiSettings } from "../../../../graphql/_core/schema";
-import { getCloudinaryUrl } from "../../../../services/cloudinary/index";
-import { Text } from "../../../atoms";
+import { View } from "react-native";
+import FastImage from "react-native-fast-image";
 import styles from "./locked-overlay.styles";
 
 interface IProps {
@@ -11,33 +11,25 @@ interface IProps {
     settings?: GetRewards_getRewards_uiSettings;
 }
 
-const LockedOverlay: SFC<IProps> = ({ code, settings }) => (
-    <View style={styles.lockedContainer}>
-        <View style={styles.lockedWhiteSpace}>
-            <Image
-                resizeMethod="resize"
-                resizeMode="contain"
-                style={{
-                    height: (settings && settings.logoHeight) || 30,
-                    width: (settings && settings.logoWidth) || 100
-                }}
-                source={getCloudinaryUrl({
-                    transformation: [
-                        {
-                            effect: "grayscale"
-                        },
-                        {
-                            effect: "replace_color:white"
-                        }
-                    ],
-                    url: `reward/logo/${code}`
-                })}
-            />
-            <Text bold={true} style={styles.voucherText}>
-                locked
-            </Text>
+export default function LockedOverlay({ code, settings }: IProps) {
+    const height = (settings && settings.logoHeight) || 30;
+    const width = (settings && settings.logoWidth) || 100;
+    return (
+        <View style={styles.lockedContainer}>
+            <View style={styles.lockedWhiteSpace}>
+                <FastImage
+                    resizeMode="contain"
+                    style={{ height, width }}
+                    source={getCloudinaryUrl(`reward/logo/${code}`, {
+                        height,
+                        transformation: [{ effect: "grayscale" }, { effect: "replace_color:white" }],
+                        width
+                    })}
+                />
+                <Text bold={true} style={styles.voucherText}>
+                    locked
+                </Text>
+            </View>
         </View>
-    </View>
-);
-
-export default LockedOverlay;
+    );
+}
