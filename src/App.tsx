@@ -27,22 +27,22 @@ Navigation.events().registerAppLaunchedListener(async () => {
 
     if (token) {
         await setNextRoot();
-
-        if (Platform.OS === "android") {
-            try {
-                const url = await Linking.getInitialURL();
-
-                if (url) {
-                    handleDeepLink(url);
-                }
-            } catch (e) {
-                // console.log(e.message);
-            }
-        } else {
-            Linking.addEventListener("url", ({ url }) => handleDeepLink(url));
-        }
     } else {
         await setUnauthenticatedRoot();
+    }
+
+    if (Platform.OS === "android") {
+        try {
+            const url = await Linking.getInitialURL();
+
+            if (url) {
+                handleDeepLink(url, !!token);
+            }
+        } catch (e) {
+            // console.log(e.message);
+        }
+    } else {
+        Linking.addEventListener("url", ({ url }) => handleDeepLink(url, !!token));
     }
 });
 

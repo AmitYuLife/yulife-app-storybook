@@ -4,31 +4,44 @@ import { Navigation } from "react-native-navigation";
 import { labels } from "./root";
 import { MODALS } from "./routes";
 
-export default function handleDeepLink(fullUrl: string) {
-    const url = fullUrl.replace("yulifeapp://yulife/", "");
-    switch (url) {
-        case labels[0].name:
-            labels[0].onPress();
+export default function handleDeepLink(fullUrl: string, hasToken: boolean) {
+    const url = fullUrl.replace("yulifeapp://yulife/", "").replace("https://join.yulife.com/", "");
+
+    switch (true) {
+        case url.startsWith(labels[0].name):
+            if (hasToken) {
+                labels[0].onPress();
+            }
             return;
-        case labels[1].name:
-            labels[1].onPress();
+        case url.startsWith(labels[1].name):
+            if (hasToken) {
+                labels[1].onPress();
+            }
             return;
-        case labels[2].name:
-            labels[2].onPress();
+        case url.startsWith(labels[2].name):
+            if (hasToken) {
+                labels[2].onPress();
+            }
             return;
-        case "historical-data":
-            store.dispatch({ type: GET_HISTORICAL_DATA });
+        case url.startsWith("historical-data"):
+            if (hasToken) {
+                store.dispatch({ type: GET_HISTORICAL_DATA });
+            }
             return;
-        case "feedback":
-            Navigation.showModal({
-                component: {
-                    id: MODALS.feedback,
-                    name: MODALS.feedback,
-                    passProps: {
-                        closeModal: () => Navigation.dismissModal(MODALS.feedback)
+        case url.startsWith("feedback"):
+            if (hasToken) {
+                Navigation.showModal({
+                    component: {
+                        id: MODALS.feedback,
+                        name: MODALS.feedback,
+                        passProps: {
+                            closeModal: () => Navigation.dismissModal(MODALS.feedback)
+                        }
                     }
-                }
-            });
+                });
+            }
+            return;
+        case url.startsWith("signup/confirm"): // OTP
             return;
         default:
             return;
