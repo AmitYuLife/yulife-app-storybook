@@ -15,6 +15,7 @@ import DailyStepsOnline, { IProps as IDailyStepsOnlineProps } from "./daily-step
 import styles from "./daily-steps.screen.styles";
 
 interface IProps extends IConnectedScreenProps {
+    showCounter?: boolean;
     currentStreak?: number;
     currentWorld?: number;
     displayStreak?: boolean;
@@ -51,6 +52,7 @@ export default function DailyStepsScreen({
     onCtaPress,
     onLeftMenuPress,
     onStreakPress,
+    showCounter = false,
     steps,
     totalCoins
 }: Props) {
@@ -81,7 +83,13 @@ export default function DailyStepsScreen({
             ) : !isOnline ? (
                 <DailyStepsOffline isLight={isLight} lastUpdate={lastUpdate} />
             ) : (
-                <DailyStepsOnline coinsToday={coinsToday} steps={steps} onCtaPress={onCtaPress} textStyle={textStyle} />
+                <DailyStepsOnline
+                    coinsToday={coinsToday}
+                    showCounter={showCounter}
+                    steps={steps}
+                    onCtaPress={onCtaPress}
+                    textStyle={textStyle}
+                />
             )}
             {!displayStreak ? null : (
                 <Streak

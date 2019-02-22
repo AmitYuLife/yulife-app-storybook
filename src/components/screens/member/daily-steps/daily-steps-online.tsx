@@ -6,17 +6,22 @@ import styles from "./daily-steps.screen.styles";
 
 export interface IProps {
     coinsToday: number;
+    showCounter?: boolean;
     onCtaPress?: () => void;
     steps: number;
     textStyle?: TextStyle;
 }
 
-export default function DailyStepsOnline({ coinsToday, onCtaPress, steps, textStyle }: IProps) {
+export default function DailyStepsOnline({ coinsToday, showCounter = false, onCtaPress, steps, textStyle }: IProps) {
     const flattenStyle = StyleSheet.flatten([styles.heading, textStyle]);
 
     return (
         <View style={styles.dailyStepsOnlineWrapper}>
-            <Counter value={steps} textStyle={textStyle} textAfterValue="steps" />
+            {showCounter ? (
+                <Counter value={steps} textStyle={textStyle} textAfterValue="steps" />
+            ) : (
+                <Text style={textStyle}>{steps} steps</Text>
+            )}
             <Pad height={8} />
             <Text>
                 <Text style={flattenStyle}>{`${coinsToday} `}</Text>

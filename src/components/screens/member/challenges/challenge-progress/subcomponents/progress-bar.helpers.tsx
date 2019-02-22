@@ -54,17 +54,24 @@ export const renderProgressBar: SFC<IProps> = ({ amount, goals, styleType, type 
     }
 };
 
-export const renderProgressLabel = ({ amount, styleType = "black", type }: Partial<IProps>): React.ReactNode => {
+export const renderProgressLabel = ({
+    amount,
+    showCounter,
+    styleType = "black",
+    type
+}: Partial<IProps>): React.ReactNode => {
     const textColorStyle = getProgressLabelTextColor(styleType);
 
     switch (type) {
         case "steps":
-            return (
+            return showCounter ? (
                 <Counter
                     value={amount}
                     textStyle={StyleSheet.flatten([styles.stepsText, textColorStyle])}
                     textAfterValue={type}
                 />
+            ) : (
+                <Text style={styles.stepsText}>{`${amount} ${type}`}</Text>
             );
 
         case "minutes":

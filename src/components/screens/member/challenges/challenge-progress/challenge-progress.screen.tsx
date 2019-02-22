@@ -12,6 +12,7 @@ interface IProps extends IConnectedScreenProps {
     challengeType: ChallengeType;
     currentWorld?: number;
     endDateTime: string;
+    showCounter?: boolean;
     userProgress: number;
     progressTargets: number[];
     unit: "steps" | "minutes";
@@ -29,6 +30,7 @@ export default function ChallengeProgressScreen({
     onDismissPress,
     onHeadspacePress,
     onLeftMenuPress,
+    showCounter = false,
     progressTargets,
     unit,
     userProgress,
@@ -55,7 +57,13 @@ export default function ChallengeProgressScreen({
                 timer={endDateTime}
             />
             <View style={styles.progressBarWrapper}>
-                <ProgressBar amount={userProgress} goals={progressTargets} styleType={progressBarType} type={unit} />
+                <ProgressBar
+                    amount={userProgress}
+                    showCounter={showCounter}
+                    goals={progressTargets}
+                    styleType={progressBarType}
+                    type={unit}
+                />
             </View>
             {challengeType !== "meditation" ? null : (
                 <View style={styles.instructionWrapper}>

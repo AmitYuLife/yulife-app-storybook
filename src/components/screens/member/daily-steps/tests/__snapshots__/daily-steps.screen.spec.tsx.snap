@@ -766,6 +766,7 @@ ShallowWrapper {
         <DailyStepsOnline
           coinsToday={0}
           onCtaPress={[MockFunction]}
+          showCounter={false}
           steps={0}
           textStyle={
             Object {
@@ -864,6 +865,7 @@ ShallowWrapper {
         "props": Object {
           "coinsToday": 0,
           "onCtaPress": [MockFunction],
+          "showCounter": false,
           "steps": 0,
           "textStyle": Object {
             "color": "#333333",
@@ -953,6 +955,7 @@ ShallowWrapper {
           <DailyStepsOnline
             coinsToday={0}
             onCtaPress={[MockFunction]}
+            showCounter={false}
             steps={0}
             textStyle={
               Object {
@@ -1051,6 +1054,7 @@ ShallowWrapper {
           "props": Object {
             "coinsToday": 0,
             "onCtaPress": [MockFunction],
+            "showCounter": false,
             "steps": 0,
             "textStyle": Object {
               "color": "#333333",
@@ -1192,6 +1196,7 @@ ShallowWrapper {
         <DailyStepsOnline
           coinsToday={0}
           onCtaPress={[MockFunction]}
+          showCounter={false}
           steps={0}
           textStyle={
             Object {
@@ -1283,6 +1288,7 @@ ShallowWrapper {
         "props": Object {
           "coinsToday": 0,
           "onCtaPress": [MockFunction],
+          "showCounter": false,
           "steps": 0,
           "textStyle": Object {
             "color": "#333333",
@@ -1357,6 +1363,7 @@ ShallowWrapper {
           <DailyStepsOnline
             coinsToday={0}
             onCtaPress={[MockFunction]}
+            showCounter={false}
             steps={0}
             textStyle={
               Object {
@@ -1448,6 +1455,7 @@ ShallowWrapper {
           "props": Object {
             "coinsToday": 0,
             "onCtaPress": [MockFunction],
+            "showCounter": false,
             "steps": 0,
             "textStyle": Object {
               "color": "#333333",

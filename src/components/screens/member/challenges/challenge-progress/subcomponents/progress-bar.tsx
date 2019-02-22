@@ -8,15 +8,16 @@ export type ProgressBarTypes = "black" | "ocean-white" | "ocean-black" | "desert
 export interface IProps {
     amount: number;
     goals: number[];
+    showCounter?: boolean;
     styleType?: ProgressBarTypes;
     type: "steps" | "minutes" | string;
 }
 
-export default function ProgressBar({ amount, goals, styleType, type }: IProps) {
+export default function ProgressBar({ amount, goals, showCounter = false, styleType, type }: IProps) {
     return (
         <View style={styles.container}>
             {renderProgressBar({ type, amount, goals, styleType })}
-            <View style={styles.counterPosition}>{renderProgressLabel({ amount, type, styleType })}</View>
+            <View style={styles.counterPosition}>{renderProgressLabel({ amount, showCounter, type, styleType })}</View>
         </View>
     );
 }

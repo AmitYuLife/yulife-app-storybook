@@ -157,6 +157,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
             activeLevel: { coins, endDateTime, level, milestones, rating, score, status, subtype, timeUp, unit },
             componentId,
             currentLevel,
+            features,
             labels,
             onLeftMenuPress,
             totalCoins
@@ -201,6 +202,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                             {...props}
                             challengeType={subtype as any}
                             currentWorld={getCurrentWorld(level)}
+                            showCounter={features.showCounter}
                             onCalmPress={openCalm}
                             onDismissPress={showOverlay}
                             onHeadspacePress={openHeadspace}

@@ -76,6 +76,7 @@ ShallowWrapper {
                 6000,
               ]
             }
+            showCounter={false}
             styleType="black"
             type="steps"
           />
@@ -159,6 +160,7 @@ ShallowWrapper {
                 6000,
               ]
             }
+            showCounter={false}
             styleType="black"
             type="steps"
           />,
@@ -178,6 +180,7 @@ ShallowWrapper {
               4000,
               6000,
             ],
+            "showCounter": false,
             "styleType": "black",
             "type": "steps",
           },
@@ -277,6 +280,7 @@ ShallowWrapper {
                   6000,
                 ]
               }
+              showCounter={false}
               styleType="black"
               type="steps"
             />
@@ -360,6 +364,7 @@ ShallowWrapper {
                   6000,
                 ]
               }
+              showCounter={false}
               styleType="black"
               type="steps"
             />,
@@ -379,6 +384,7 @@ ShallowWrapper {
                 4000,
                 6000,
               ],
+              "showCounter": false,
               "styleType": "black",
               "type": "steps",
             },

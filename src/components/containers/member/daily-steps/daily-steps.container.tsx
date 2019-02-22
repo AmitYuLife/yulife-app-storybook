@@ -110,6 +110,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
         return (
             <DailyStepsScreen
                 coinsToday={dailyEarnedCoins}
+                showCounter={features.showCounter}
                 currentStreak={streaks.currentStreak}
                 currentWorld={getCurrentWorld(currentLevel)}
                 displayStreak={displayStreak}
