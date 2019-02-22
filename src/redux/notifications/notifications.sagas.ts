@@ -2,10 +2,14 @@ import moment from "moment";
 import { Platform } from "react-native";
 import PushNotification from "react-native-push-notification";
 import { call, select, takeEvery } from "redux-saga/effects";
-import { CANCEL_LOCAL_PUSH, SEND_TEST_LOCAL_PUSH } from "../device/device.actions";
+import { CANCEL_LOCAL_PUSH } from "../device/device.actions";
 import { CHALLENGE_CANCEL, CHALLENGE_START_SUCCESS, ChallengeStartSuccessActionResult } from "../levels/levels.actions";
 import { activeLevelSelector } from "../levels/levels.selectors";
-import { UPDATE_NOTIFICATION_SETTINGS, UpdateNotificationSettingsActionResult } from "./notifications.actions";
+import {
+    SEND_TEST_LOCAL_PUSH,
+    UPDATE_NOTIFICATION_SETTINGS,
+    UpdateNotificationSettingsActionResult
+} from "./notifications.actions";
 import { defaultNotificationSettings, getNotificationTitleAndMessage, numericId } from "./notifications.helpers";
 import { challengeCompletionSelector } from "./notifications.selectors";
 
