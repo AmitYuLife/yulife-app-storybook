@@ -8,7 +8,7 @@ import { AddHistoricalSteps_addHistoricalSteps, ChallengePayload } from "../../g
 import addHistoricalSteps from "../../graphql/challenges/addHistoricalSteps.gql";
 import upsertStepsChallenge from "../../graphql/challenges/upsertStepsChallenge.gql";
 import getCurrentUserWithClient from "../../graphql/user/getCurrentUser.gql";
-import { MODALS } from "../../navigation/routes";
+import { MODALS } from "../../navigation/constants";
 import Logger from "../../services/logging/logger";
 import { pathOr } from "../../services/utils";
 import { getRouteState } from "../app/app.selectors";

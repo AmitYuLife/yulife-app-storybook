@@ -1,3 +1,5 @@
+import { ROUTES } from "@navigation/constants";
+import { setNoAccessRoot, setUnauthenticatedRoot } from "@navigation/root";
 import { Linking } from "react-native";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
@@ -8,8 +10,6 @@ import updateLeaderboardConsentGql from "../../graphql/member/updateLeaderboardC
 import updateMemberConsentGql from "../../graphql/member/updateMemberConsent.gql";
 import getCurrentUserWithClient from "../../graphql/user/getCurrentUser.gql";
 import getMagicLinkWithClient from "../../graphql/user/getMagicLink.gql";
-import { setNoAccessRoot, setUnauthenticatedRoot } from "../../navigation/root";
-import { ROUTES } from "../../navigation/routes";
 import Logger from "../../services/logging/logger";
 import { getToken } from "../../services/storage";
 import { clearToken } from "../../services/storage/token";

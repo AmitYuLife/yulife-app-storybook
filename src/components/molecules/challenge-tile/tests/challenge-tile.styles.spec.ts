@@ -1,22 +1,15 @@
-import { IMAGES } from "../challenge-tile";
-import {
-    getImage,
-    getImageStyle
-} from "../challenge-tile.helpers";
+import { getImage, getImageStyle } from "../challenge-tile.helpers";
+import { IMAGES } from "../challenge-tile.types";
 
 describe("Challenge Tile styles", () => {
-
     describe("getImage", () => {
-
         it("should be null on unknown input", () => {
-
             const actual = getImage(undefined);
 
             expect(actual).toBeNull();
         });
 
         it("should be defined on known input", () => {
-
             const bird = getImage(IMAGES.BIRD);
             expect(bird).toBeDefined();
 
@@ -32,9 +25,7 @@ describe("Challenge Tile styles", () => {
     });
 
     describe("getImageStyle", () => {
-
         it("should always return typeof ImageStyle", () => {
-
             const actual = getImageStyle(undefined);
             expect(actual).toMatchSnapshot();
 

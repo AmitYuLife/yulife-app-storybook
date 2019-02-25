@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SFC } from "react";
 import { View } from "react-native";
-import { Text } from "..";
+import Text from "../text/text";
 import Plus from "./assets/plus";
 import styles from "./plus-points.styles";
 
@@ -14,11 +14,7 @@ const PlusPoints: SFC<IProps> = ({ coins }) => (
         <View style={styles.plusWrapper}>
             <Plus scale={0.5} />
         </View>
-        <Text
-            style={styles.text}
-        >
-            {`${coins}`}
-        </Text>
+        <Text style={styles.text}>{`${coins}`}</Text>
     </View>
 );
 

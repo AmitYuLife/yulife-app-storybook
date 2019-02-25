@@ -1,3 +1,5 @@
+import { MODALS } from "@navigation/constants";
+import { IMainTabsProps } from "@navigation/root";
 import { getCurrentWorld } from "@services/utils";
 import moment from "moment";
 import { PureComponent } from "react";
@@ -6,8 +8,6 @@ import { BackHandler, NativeEventSubscription } from "react-native";
 import { FitKitAuthoriseFunction, FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { IMainTabsProps } from "../../../../navigation/root";
-import { MODALS } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
 import { getDailyEarnedCoins, getTotalCoins } from "../../../../redux/coins/coins.selectors";

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
-import { ROUTES } from "../../../navigation/routes";
+import { ROUTES } from "../../../navigation/constants";
 import { WelcomeScreen } from "../../screens";
 
 // TODO find where these props actually come from in RNN types

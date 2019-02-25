@@ -1,3 +1,4 @@
+import { MODALS } from "@navigation/constants";
 import moment from "moment";
 import { Navigation } from "react-native-navigation";
 import { delay } from "redux-saga";
@@ -6,7 +7,6 @@ import cancelActiveChallengeWithClient from "../../graphql/challenges/cancelActi
 import createActiveChallengeWithClient from "../../graphql/challenges/createActiveChallenge.gql";
 import submitUnityChallengeWithClient from "../../graphql/challenges/submitUnity.gql";
 import updateActiveChallengeWithClient from "../../graphql/challenges/updateActiveChallenge.gql";
-import { MODALS } from "../../navigation/routes";
 import { queryMindfulSessions } from "../../services/fitkit/fitkit.service";
 import { pathOr } from "../../services/utils";
 import { cancelLocalPush } from "../device/device.actions";

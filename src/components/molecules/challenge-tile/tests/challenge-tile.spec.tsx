@@ -1,6 +1,7 @@
 import { shallow } from "enzyme";
 import * as React from "react";
-import ChallengeTile, { IMAGES } from "../challenge-tile";
+import ChallengeTile from "../challenge-tile";
+import { IMAGES } from "../challenge-tile.types";
 
 const defaultProps = {
     currentWorld: 0,
@@ -8,36 +9,20 @@ const defaultProps = {
 };
 
 describe("ChallengeTile", () => {
-
     it("should render default props", () => {
-        const actual = shallow(
-            <ChallengeTile
-                {...defaultProps}
-            />
-        );
+        const actual = shallow(<ChallengeTile {...defaultProps} />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render when flipped", () => {
-        const actual = shallow(
-            <ChallengeTile
-                {...defaultProps}
-                isImageBackgroundFlipped={true}
-            />
-        );
+        const actual = shallow(<ChallengeTile {...defaultProps} isImageBackgroundFlipped={true} />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render when locked", () => {
-        const actual = shallow(
-            <ChallengeTile
-                {...defaultProps}
-                isLocked={true}
-                minimumLevel={5}
-            />
-        );
+        const actual = shallow(<ChallengeTile {...defaultProps} isLocked={true} minimumLevel={5} />);
 
         expect(actual).toMatchSnapshot();
     });

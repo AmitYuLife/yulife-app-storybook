@@ -1,7 +1,7 @@
+import { MODALS, ROUTES } from "@navigation/constants";
 import { Navigation } from "react-native-navigation";
 import { delay } from "redux-saga";
 import { call, put, select, take, takeLatest } from "redux-saga/effects";
-import { MODALS, ROUTES } from "../../navigation/routes";
 import { getRouteState } from "../app/app.selectors";
 import { START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
 import { getChallengesStatus } from "../levels/levels.selectors";

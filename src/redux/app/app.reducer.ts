@@ -1,5 +1,5 @@
+import { ROUTES } from "@navigation/constants";
 import { AppState, AppStateStatus } from "react-native";
-import { ROUTES } from "../../navigation/routes";
 import { SyncAction } from "../_core/types";
 import {
     UPDATE_APP_STATE,

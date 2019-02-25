@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SFC } from "react";
 import { StyleSheet, View } from "react-native";
-import { Text } from "../";
+import Text from "../text/text";
 import styles from "./generic-heading.styles";
 
 interface IProps {

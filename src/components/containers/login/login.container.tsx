@@ -1,3 +1,5 @@
+import { ROUTES } from "@navigation/constants";
+import { setNextRoot } from "@navigation/root";
 import React, { Component } from "react";
 import { Platform } from "react-native";
 import { FitKitAvailable } from "react-native-fitkit";
@@ -5,8 +7,6 @@ import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IntercomHashMethod, LoginMethod } from "../../../graphql/_core/schema";
 import LoginUserMutation, { loginUserGql, LoginUserMutationFunction } from "../../../graphql/user/loginUser.gql";
-import { setNextRoot } from "../../../navigation/root";
-import { ROUTES } from "../../../navigation/routes";
 import { loginUserSuccess } from "../../../redux/user/user.actions";
 import { setToken } from "../../../services/storage";
 import { LoginScreen } from "../../screens";

@@ -1,5 +1,6 @@
 export { default as ChallengesList, IChallengesListProps } from "./challenges-list/challenges-list";
-export { default as ChallengeTile, IChallengeTileProps, Images, IMAGES } from "./challenge-tile/challenge-tile";
+export { default as ChallengeTile, IChallengeTileProps } from "./challenge-tile/challenge-tile";
+export { Images, IMAGES } from "./challenge-tile/challenge-tile.types";
 export { default as Counter } from "./counter/counter";
 export { default as Instruction } from "./instruction/instruction";
 export { default as LinkGroup } from "./link-group/link-group";

@@ -2,7 +2,7 @@ import { Navigation } from "react-native-navigation";
 import { ILabel } from "../components/molecules";
 import { getIntro } from "../services/storage";
 import { Style } from "../styles";
-import { ROUTES } from "./routes";
+import { ROUTES } from "./constants";
 
 // tslint:disable-next-line
 const icon = require("../../assets/clock/clock.png");

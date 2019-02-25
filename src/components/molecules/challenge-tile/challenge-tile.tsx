@@ -5,6 +5,7 @@ import { Text } from "../../atoms";
 import assets from "./assets";
 import { getImage, getImageStyle } from "./challenge-tile.helpers";
 import styles from "./challenge-tile.styles";
+import { IMAGES, Images } from "./challenge-tile.types";
 
 export interface IChallengeTileProps {
     challengeType?: string;
@@ -17,35 +18,6 @@ export interface IChallengeTileProps {
     onPress?: () => void;
     reward?: string;
 }
-
-export enum IMAGES {
-    DOLPHIN = "dolphin",
-    SQUIRREL = "squirrel",
-    ELEPHANT = "elephant",
-    BIRD = "bird",
-    OSTRICH = "ostrich",
-    OTTER = "otter",
-    TORTOISE = "tortoise",
-    WHALE = "whale",
-    BIGHORN_SHEEP = "bighornSheep",
-    CAMEL = "camel",
-    DESERT_FOX = "desertFox",
-    MEERKAT = "meerkat"
-}
-
-export type Images =
-    | "dolphin"
-    | "squirrel"
-    | "elephant"
-    | "bird"
-    | "ostrich"
-    | "otter"
-    | "tortoise"
-    | "whale"
-    | "bighornSheep"
-    | "camel"
-    | "desertFox"
-    | "meerkat";
 
 const BRISK_WALK = [IMAGES.SQUIRREL, IMAGES.OTTER, IMAGES.MEERKAT];
 const LONG_WALK = [IMAGES.OSTRICH, IMAGES.WHALE, IMAGES.DESERT_FOX];

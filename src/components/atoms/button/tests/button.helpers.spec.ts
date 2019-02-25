@@ -1,8 +1,7 @@
-import { BUTTON_TYPES, Types } from "../button";
 import { getShadowStyle, getTextStyle, getWrapperOverlayStyle, getWrapperStyle } from "../button.helpers";
+import { BUTTON_TYPES, Types } from "../button.types";
 
 describe("getWrapperStyle", () => {
-
     it("should return null for an undefined input", () => {
         expect(getWrapperStyle(undefined)).toBeNull();
     });
@@ -72,7 +71,6 @@ describe("getWrapperStyle", () => {
 });
 
 describe("getTextStyle", () => {
-
     it("should return null for an undefined input", () => {
         expect(getTextStyle(undefined)).toBeNull();
     });
@@ -84,17 +82,13 @@ describe("getTextStyle", () => {
     });
 
     it("should be defined when given a known input", () => {
-        const actual = getTextStyle(
-            BUTTON_TYPES.PRIMARY_SMALL
-        );
+        const actual = getTextStyle(BUTTON_TYPES.PRIMARY_SMALL);
 
         expect(actual).toBeDefined();
     });
 
     it("should be defined when given a known input", () => {
-        const actual = getTextStyle(
-            BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL
-        );
+        const actual = getTextStyle(BUTTON_TYPES.PRIMARY_GREYSCALE_SMALL);
 
         expect(actual).toBeDefined();
     });
@@ -119,7 +113,6 @@ describe("getTextStyle", () => {
 });
 
 describe("getShadowStyle", () => {
-
     it("should return null for an undefined input", () => {
         expect(getShadowStyle(undefined)).toBeNull();
     });
@@ -168,7 +161,6 @@ describe("getShadowStyle", () => {
 });
 
 describe("getWrapperOverlayStyle", () => {
-
     it("should return null for an undefined input", () => {
         expect(getWrapperOverlayStyle(undefined)).toBeNull();
     });

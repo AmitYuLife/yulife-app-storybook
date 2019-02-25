@@ -1,6 +1,6 @@
-import { Alert, ConnectionInfo } from "react-native";
+import { Alert, ConnectionInfo, NetInfo } from "react-native";
 import { call, put, take, takeLatest } from "redux-saga/effects";
-import { ROUTES } from "../../navigation/routes";
+import { ROUTES } from "../../navigation/constants";
 import Logger from "../../services/logging/logger";
 // import bugsnag from "../../utils/bugsnag";
 // import { SyncAction, AsyncAction } from "../_core/types";
@@ -17,6 +17,10 @@ function* listenToAppState() {
 }
 
 function* listenToNetworkState() {
+    const isConnected = yield call(NetInfo.isConnected.fetch);
+
+    yield put(updateOfflineState(!isConnected));
+
     const networkChannel = yield call(appNetworkChannel);
 
     while (true) {

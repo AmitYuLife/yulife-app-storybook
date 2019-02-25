@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View } from "react-native";
-import { ChallengeTile, IChallengeTileProps } from "..";
+import ChallengeTile, { IChallengeTileProps } from "../challenge-tile/challenge-tile";
 import styles from "./challenges-list.styles";
 
 export interface IChallengesListTileProps {

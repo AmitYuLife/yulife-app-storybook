@@ -1,7 +1,7 @@
 import { ImageStyle, StyleSheet } from "react-native";
 import { Style } from "../../../styles";
 import assets from "./assets";
-import { Images, IMAGES } from "./challenge-tile";
+import { Images, IMAGES } from "./challenge-tile.types";
 
 export const getImageStyle = (image: Images): ImageStyle => {
     const position = {} as { bottom?: number; left?: number; right?: number; top?: number };

@@ -9,7 +9,7 @@ import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetRewards_getRewards, RedeemReward } from "../../../../../graphql/_core/schema";
-import { MODALS, ROUTES } from "../../../../../navigation/routes";
+import { MODALS, ROUTES } from "../../../../../navigation/constants";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";

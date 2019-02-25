@@ -1,11 +1,11 @@
+import { MODALS, ROUTES } from "@navigation/constants";
+import { setIntroRoot } from "@navigation/root";
 import * as React from "react";
 import { PureComponent } from "react";
 import DeviceInfo from "react-native-device-info";
 import Intercom from "react-native-intercom";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { setIntroRoot } from "../../../../navigation/root";
-import { MODALS, ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getRouteState } from "../../../../redux/app/app.selectors";
 import { getPushNotifications } from "../../../../redux/device/device.selectors";

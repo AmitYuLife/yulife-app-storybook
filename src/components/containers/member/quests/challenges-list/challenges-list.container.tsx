@@ -4,7 +4,7 @@ import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
-import { MODALS } from "../../../../../navigation/routes";
+import { MODALS } from "../../../../../navigation/constants";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { challengeStartAction } from "../../../../../redux/levels/levels.actions";

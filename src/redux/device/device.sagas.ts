@@ -1,3 +1,4 @@
+import { MODALS } from "@navigation/constants";
 import { Platform } from "react-native";
 import Config from "react-native-config";
 import Intercom from "react-native-intercom";
@@ -9,7 +10,6 @@ import PushNotification, {
 } from "react-native-push-notification";
 import { delay } from "redux-saga";
 import { call, put, race, select, spawn, take, takeEvery, takeLatest } from "redux-saga/effects";
-import { MODALS } from "../../navigation/routes";
 import { getToken } from "../../services/storage";
 import { appStateChannel } from "../app/app.channels";
 import { getRouteState } from "../app/app.selectors";
