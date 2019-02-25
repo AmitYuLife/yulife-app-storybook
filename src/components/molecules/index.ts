@@ -15,3 +15,4 @@ export { default as RewardItemContent } from "./reward-item-content/reward-item-
 export { default as RewardsList } from "./rewards-list/rewards-list";
 export { default as RewardTabs } from "./reward-tabs/reward-tabs";
 export { default as OptimizedFlatList } from "./optimized-flat-list/optimized-flat-list";
+export { default as TouchableOpacityWithState } from "./touchable-opacity-delay/touchable-opacity-delay";

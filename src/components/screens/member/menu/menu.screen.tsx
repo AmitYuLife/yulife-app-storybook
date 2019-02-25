@@ -1,3 +1,4 @@
+import { TouchableOpacityWithState } from "@molecules/index";
 import * as React from "react";
 import { SFC } from "react";
 import { Image, ImageRequireSource, TouchableOpacity, View } from "react-native";
@@ -29,20 +30,19 @@ const MenuScreen: SFC<IProps> = ({ onPressClose, links, version }) => (
             </View>
             {!links
                 ? null
-                : links.map(
-                      ({ source, onPress, label, condition }, index) =>
-                          !condition ? null : (
-                              <TouchableOpacity key={index} style={styles.itemWrapper} onPress={onPress}>
-                                  {source && (
-                                      <View style={styles.iconWrapper}>
-                                          <Image style={styles.logo} source={source} />
-                                      </View>
-                                  )}
-                                  <View style={styles.textWrapper}>
-                                      <Text style={styles.text} bold={true}>{`${label}  `}</Text>
+                : links.map(({ source, onPress, label, condition }, index) =>
+                      !condition ? null : (
+                          <TouchableOpacityWithState key={`menu-${index}`} style={styles.itemWrapper} onPress={onPress}>
+                              {source && (
+                                  <View style={styles.iconWrapper}>
+                                      <Image style={styles.logo} source={source} />
                                   </View>
-                              </TouchableOpacity>
-                          )
+                              )}
+                              <View style={styles.textWrapper}>
+                                  <Text style={styles.text} bold={true}>{`${label}  `}</Text>
+                              </View>
+                          </TouchableOpacityWithState>
+                      )
                   )}
         </View>
         <View style={styles.versionTextWrapper}>

@@ -1,6 +1,7 @@
+import { TouchableOpacityWithState } from "@molecules/index";
 import moment from "moment";
 import * as React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 import { IChallenge } from "../../quests-screen";
 import { IMapSlice } from "../index";
 import getLevelButton from "./level.content";
@@ -47,7 +48,7 @@ export default class LevelBubble extends React.PureComponent<IProps, IState> {
                         style={style}
                     />
                 )}
-                <TouchableOpacity
+                <TouchableOpacityWithState
                     onPress={level.onPress}
                     style={StyleSheet.flatten([
                         styles.bubble,
@@ -58,7 +59,7 @@ export default class LevelBubble extends React.PureComponent<IProps, IState> {
                     ])}
                 >
                     {getLevelButton(nextAvailable, currentLevel, level)}
-                </TouchableOpacity>
+                </TouchableOpacityWithState>
             </>
         );
     }

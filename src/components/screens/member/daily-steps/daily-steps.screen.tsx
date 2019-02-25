@@ -1,6 +1,7 @@
+import { TouchableOpacityWithState } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
-import { Platform, TouchableOpacity, View } from "react-native";
+import { Platform, View } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { IConnectedScreenProps } from "../../../../typings";
 import { CentredScreen, Pad } from "../../../atoms";
@@ -64,13 +65,13 @@ export default function DailyStepsScreen({
         >
             <TopBar coins={totalCoins} type={topBarType} onPressLeftIcon={onLeftMenuPress} />
             <Pad height={getPadHeight(displayStreak)} />
-            <TouchableOpacity onPress={onCoinPress} activeOpacity={1}>
+            <TouchableOpacityWithState onPress={onCoinPress} activeOpacity={1}>
                 <YuCoin
                     hasWhiteGlow={hasWhiteGlow}
                     isLoading={isLoading}
                     isGrayScale={!hasPermission || (!isOnline && !isLoading)}
                 />
-            </TouchableOpacity>
+            </TouchableOpacityWithState>
             {isLoading ? (
                 <DailyStepsLoading />
             ) : !fitKitAvailable ? (
@@ -80,12 +81,7 @@ export default function DailyStepsScreen({
             ) : !isOnline ? (
                 <DailyStepsOffline isLight={isLight} lastUpdate={lastUpdate} />
             ) : (
-                <DailyStepsOnline
-                    coinsToday={coinsToday}
-                    steps={steps}
-                    onCtaPress={onCtaPress}
-                    textStyle={textStyle}
-                />
+                <DailyStepsOnline coinsToday={coinsToday} steps={steps} onCtaPress={onCtaPress} textStyle={textStyle} />
             )}
             {displayStreak && (
                 <Streak

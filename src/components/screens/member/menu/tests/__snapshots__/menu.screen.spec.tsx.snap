@@ -102,8 +102,7 @@ ShallowWrapper {
               style={Object {}}
             />
           </View>
-          <TouchableOpacity
-            activeOpacity={0.2}
+          <TouchableOpacityWithState
             onPress={[MockFunction]}
             style={
               Object {
@@ -147,9 +146,8 @@ ShallowWrapper {
                 debug  
               </YuText>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.2}
+          </TouchableOpacityWithState>
+          <TouchableOpacityWithState
             onPress={[MockFunction]}
             style={
               Object {
@@ -181,7 +179,7 @@ ShallowWrapper {
                 leaderboard  
               </YuText>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacityWithState>
         </View>,
         <View
           style={
@@ -265,8 +263,7 @@ ShallowWrapper {
               />
             </View>,
             Array [
-              <TouchableOpacity
-                activeOpacity={0.2}
+              <TouchableOpacityWithState
                 onPress={[MockFunction]}
                 style={
                   Object {
@@ -310,10 +307,9 @@ ShallowWrapper {
                     debug  
                   </YuText>
                 </View>
-              </TouchableOpacity>,
+              </TouchableOpacityWithState>,
               null,
-              <TouchableOpacity
-                activeOpacity={0.2}
+              <TouchableOpacityWithState
                 onPress={[MockFunction]}
                 style={
                   Object {
@@ -345,7 +341,7 @@ ShallowWrapper {
                     leaderboard  
                   </YuText>
                 </View>
-              </TouchableOpacity>,
+              </TouchableOpacityWithState>,
               null,
             ],
           ],
@@ -449,10 +445,9 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": "0",
+            "key": "menu-0",
             "nodeType": "class",
             "props": Object {
-              "activeOpacity": 0.2,
               "children": Array [
                 <View
                   style={
@@ -577,10 +572,9 @@ ShallowWrapper {
           null,
           Object {
             "instance": null,
-            "key": "2",
+            "key": "menu-2",
             "nodeType": "class",
             "props": Object {
-              "activeOpacity": 0.2,
               "children": Array [
                 undefined,
                 <View
@@ -779,8 +773,7 @@ ShallowWrapper {
                 style={Object {}}
               />
             </View>
-            <TouchableOpacity
-              activeOpacity={0.2}
+            <TouchableOpacityWithState
               onPress={[MockFunction]}
               style={
                 Object {
@@ -824,9 +817,8 @@ ShallowWrapper {
                   debug  
                 </YuText>
               </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              activeOpacity={0.2}
+            </TouchableOpacityWithState>
+            <TouchableOpacityWithState
               onPress={[MockFunction]}
               style={
                 Object {
@@ -858,7 +850,7 @@ ShallowWrapper {
                   leaderboard  
                 </YuText>
               </View>
-            </TouchableOpacity>
+            </TouchableOpacityWithState>
           </View>,
           <View
             style={
@@ -942,8 +934,7 @@ ShallowWrapper {
                 />
               </View>,
               Array [
-                <TouchableOpacity
-                  activeOpacity={0.2}
+                <TouchableOpacityWithState
                   onPress={[MockFunction]}
                   style={
                     Object {
@@ -987,10 +978,9 @@ ShallowWrapper {
                       debug  
                     </YuText>
                   </View>
-                </TouchableOpacity>,
+                </TouchableOpacityWithState>,
                 null,
-                <TouchableOpacity
-                  activeOpacity={0.2}
+                <TouchableOpacityWithState
                   onPress={[MockFunction]}
                   style={
                     Object {
@@ -1022,7 +1012,7 @@ ShallowWrapper {
                       leaderboard  
                     </YuText>
                   </View>
-                </TouchableOpacity>,
+                </TouchableOpacityWithState>,
                 null,
               ],
             ],
@@ -1126,10 +1116,9 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "0",
+              "key": "menu-0",
               "nodeType": "class",
               "props": Object {
-                "activeOpacity": 0.2,
                 "children": Array [
                   <View
                     style={
@@ -1254,10 +1243,9 @@ ShallowWrapper {
             null,
             Object {
               "instance": null,
-              "key": "2",
+              "key": "menu-2",
               "nodeType": "class",
               "props": Object {
-                "activeOpacity": 0.2,
                 "children": Array [
                   undefined,
                   <View

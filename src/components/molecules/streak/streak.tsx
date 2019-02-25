@@ -51,7 +51,9 @@ class Streak extends PureComponent<IProps, IState> {
     };
 
     private handlePressOut = () => {
-        this.setState({ isPressed: false }, this.props.onPress);
+        if (this.state.isPressed) {
+            this.setState({ isPressed: false }, this.props.onPress);
+        }
     };
 }
 
