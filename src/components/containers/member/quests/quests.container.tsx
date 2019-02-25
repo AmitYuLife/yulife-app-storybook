@@ -10,8 +10,8 @@ import GetCurrentWorld, {
     getCurrentWorldGql,
     GetCurrentWorldResultType
 } from "../../../../graphql/challenges/getCurrentWorld.gql";
-import { IMainTabsProps } from "../../../../navigation/root";
 import { MODALS, ROUTES } from "../../../../navigation/constants";
+import { IMainTabsProps } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";

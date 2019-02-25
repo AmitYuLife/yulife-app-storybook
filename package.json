@@ -63,6 +63,7 @@
     "react-native-intercom": "^12.0.0",
     "react-native-iphone-x-helper": "1.0.3",
     "react-native-mixpanel": "^1.1.1",
+    "react-native-modal-datetime-picker": "^6.0.0",
     "react-native-navigation": "^2.8.0",
     "react-native-push-notification": "^3.1.2",
     "react-native-svg": "^9.0.0",

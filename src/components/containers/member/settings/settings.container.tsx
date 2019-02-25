@@ -1,12 +1,14 @@
-import { MODALS } from "@navigation/routes";
+import { MODALS } from "@navigation/constants";
 import { IReduxState } from "@redux/_core/reducers";
 import { UpdateNofiticationPayload, updateNotificationSettings } from "@redux/notifications/notifications.actions";
 import { getNotifications } from "@redux/notifications/notifications.selectors";
 import { updateLeaderboardConsent } from "@redux/user/user.actions";
 import { getLeaderboards, getUserFeatures, Leaderboard } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
+import moment from "moment";
 import * as React from "react";
 import { PureComponent } from "react";
+import DateTimePicker from "react-native-modal-datetime-picker";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 
@@ -19,8 +21,21 @@ interface IOwnProps {
 
 type IProps = IOwnProps & ConnectedState & ConnectedDispatch;
 
-class SettingsContainer extends PureComponent<IProps> {
+interface IState {
+    isTimeModalVisible: boolean;
+    modalDate: Date;
+    selectedNotification: UpdateNofiticationPayload;
+}
+
+class SettingsContainer extends PureComponent<IProps, IState> {
+    public state: IState = {
+        isTimeModalVisible: false,
+        modalDate: null,
+        selectedNotification: null
+    };
+
     public render() {
+        const { isTimeModalVisible, modalDate } = this.state;
         const { features, leaderboards = [], notifications = {} as any } = this.props;
         const leaderboard = {
             isVisible: true,
@@ -41,7 +56,18 @@ class SettingsContainer extends PureComponent<IProps> {
             name: "notifications"
         } as any;
 
-        return <SettingsScreen onPressClose={this.handleClose} sections={[notification, leaderboard]} />;
+        return (
+            <>
+                <SettingsScreen onPressClose={this.handleClose} sections={[notification, leaderboard]} />
+                <DateTimePicker
+                    date={modalDate}
+                    mode="time"
+                    isVisible={isTimeModalVisible}
+                    onConfirm={this.handleTimeModalConfirm}
+                    onCancel={this.handleTimeModalCancel}
+                />
+            </>
+        );
     }
 
     private handleUpdateLeaderboardConsent = (l: Leaderboard) => () => {
@@ -90,10 +116,28 @@ class SettingsContainer extends PureComponent<IProps> {
     };
 
     private handleNotificationPress = (n: UpdateNofiticationPayload) => () => {
-        if (n.time) {
-            // open a screen with setup
+        if (n.time && !n.active) {
+            const currentDate = moment().format("YYYY-MM-DD");
+            this.setState({
+                isTimeModalVisible: true,
+                modalDate: moment(`${currentDate}T${n.time}`).toDate(),
+                selectedNotification: n
+            });
+        } else {
+            this.props.updateNotificationSettings({ ...n, active: !n.active });
         }
-        this.props.updateNotificationSettings({ ...n, active: !n.active });
+    };
+
+    private handleTimeModalConfirm = (date: Date) => {
+        const { selectedNotification } = this.state;
+        const time = moment(date.toISOString()).format("HH:mm");
+        this.setState({ isTimeModalVisible: false }, () => {
+            this.props.updateNotificationSettings({ ...selectedNotification, time, active: true });
+        });
+    };
+
+    private handleTimeModalCancel = () => {
+        this.setState({ isTimeModalVisible: false });
     };
 
     private handleClose = () => {

@@ -1,4 +1,3 @@
-
 export enum BUTTON_TYPES {
     PRIMARY = "Primary",
     PRIMARY_MEDIUM = "PrimaryMedium",
