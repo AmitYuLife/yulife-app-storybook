@@ -10,14 +10,12 @@ export const startDailySteps = (): SyncAction => ({
     type: START_DAILY_STEPS
 });
 
-export type UpdateDailyStepsSuccessAction = SyncAction<UpsertPassiveChallenge>;
-export const updateDailyStepsSuccess = (results: UpsertPassiveChallenge): UpdateDailyStepsSuccessAction => ({
+export const updateDailyStepsSuccess = (results: UpsertPassiveChallenge) => ({
     payload: results,
     type: UPDATE_DAILY_STEPS_SUCCESS
 });
 
-export type UpdateDailyStepsFailedAction = SyncAction<string>;
-export const updateDailyStepsFailed = (error: string): UpdateDailyStepsFailedAction => ({
+export const updateDailyStepsFailed = (error: string) => ({
     payload: error,
     type: UPDATE_DAILY_STEPS_FAILED
 });

@@ -69,12 +69,12 @@ const updateDailyStepsSuccess = (
     };
 };
 
-const getUserSuccess = (state: IDailyStepsStore, res: GetCurrentUser): IDailyStepsStore => ({
+const getUserSuccess = (state: IDailyStepsStore, res: GetCurrentUser) => ({
     ...state,
     exchangeRate: pathOr<ExchangeRate>(res, "getCurrentUser.passiveChallenge.exchange", initialState.exchangeRate)
 });
 
-const loginUserSuccess = (state: IDailyStepsStore, res: LoginUser): IDailyStepsStore => ({
+const loginUserSuccess = (state: IDailyStepsStore, res: LoginUser) => ({
     ...state,
     exchangeRate: pathOr<ExchangeRate>(res, "loginUser.user.passiveChallenge.exchange", initialState.exchangeRate)
 });

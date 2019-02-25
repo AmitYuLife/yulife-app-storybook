@@ -15,24 +15,18 @@ import { appStateChannel } from "../app/app.channels";
 import { getRouteState } from "../app/app.selectors";
 import { CHALLENGE_START_SUCCESS } from "../levels/levels.actions";
 import { LOGOUT, updateUserConsent } from "../user/user.actions";
-import {
-    ADD_DEVICE_TOKEN,
-    addDeviceToken,
-    AddDeviceTokenActionResult,
-    pushNotificationReceived,
-    setPushPermissions
-} from "./device.actions";
+import { ADD_DEVICE_TOKEN, addDeviceToken, pushNotificationReceived, setPushPermissions } from "./device.actions";
 import { REQUIRE_PUSH_ENABLED } from "./device.actions";
 import { createPushNotificationsChannel, createPushPermissionsChannel } from "./device.channels";
-import { pushNotificationsSelector, PushPermissions, PushPermissionsEnum } from "./device.selectors";
+import { getPushNotifications, PushPermissions, PushPermissionsEnum } from "./device.selectors";
 
-function* registerIntercom({ payload }: AddDeviceTokenActionResult) {
+function* registerIntercom({ payload }: ReturnType<typeof addDeviceToken>) {
     yield spawn(() => Intercom.sendTokenToIntercom(payload.deviceToken));
     yield spawn(() => Mixpanel.addPushDeviceToken(payload.deviceToken));
 }
 
 function* checkPermissions() {
-    const perms = yield select(pushNotificationsSelector);
+    const perms = yield select(getPushNotifications);
     // android defaults to true
     let status: PushPermissions = PushPermissionsEnum.enabled;
 
@@ -42,8 +36,8 @@ function* checkPermissions() {
         status = permissions.alert
             ? PushPermissionsEnum.enabled
             : perms.requested
-                ? PushPermissionsEnum.denied
-                : PushPermissionsEnum.notyet;
+            ? PushPermissionsEnum.denied
+            : PushPermissionsEnum.notyet;
         channel.close();
     }
 
@@ -61,7 +55,7 @@ function* checkPermissions() {
 }
 
 function* showPushNotificationModal() {
-    const permissions = yield select(pushNotificationsSelector);
+    const permissions = yield select(getPushNotifications);
 
     if (permissions.status !== "enabled") {
         const currentRoute = yield select(getRouteState);
@@ -147,7 +141,7 @@ function* onLogout() {
 }
 
 function* requestPush() {
-    const { status } = yield select(pushNotificationsSelector);
+    const { status } = yield select(getPushNotifications);
 
     if (status !== "enabled") {
         yield call(() => {

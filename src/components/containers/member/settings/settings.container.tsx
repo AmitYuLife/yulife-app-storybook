@@ -1,36 +1,23 @@
 import { MODALS } from "@navigation/routes";
 import { IReduxState } from "@redux/_core/reducers";
-import {
-    UpdateNofiticationPayload,
-    updateNotificationSettings,
-    UpdateNotificationSettingsAction
-} from "@redux/notifications/notifications.actions";
-import { INotificationsStore } from "@redux/notifications/notifications.reducer";
-import { notificationsSelector } from "@redux/notifications/notifications.selectors";
-import { updateLeaderboardConsent, UpdateLeaderboardConsentAction } from "@redux/user/user.actions";
-import { Leaderboard, leaderboardsSelector, userFeaturesSelector } from "@redux/user/user.selectors";
+import { UpdateNofiticationPayload, updateNotificationSettings } from "@redux/notifications/notifications.actions";
+import { getNotifications } from "@redux/notifications/notifications.selectors";
+import { updateLeaderboardConsent } from "@redux/user/user.actions";
+import { getLeaderboards, getUserFeatures, Leaderboard } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 
-interface IConnectedState {
-    features: { [x: string]: boolean };
-    leaderboards: Leaderboard[];
-    notifications: INotificationsStore;
-}
-
-interface IConnectedDispatch {
-    updateNotificationSettings: UpdateNotificationSettingsAction;
-    updateLeaderboardConsent: UpdateLeaderboardConsentAction;
-}
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IOwnProps {
     componentId: string;
 }
 
-type IProps = IOwnProps & IConnectedState & IConnectedDispatch;
+type IProps = IOwnProps & ConnectedState & ConnectedDispatch;
 
 class SettingsContainer extends PureComponent<IProps> {
     public render() {
@@ -115,9 +102,9 @@ class SettingsContainer extends PureComponent<IProps> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    features: userFeaturesSelector(state),
-    leaderboards: leaderboardsSelector(state),
-    notifications: notificationsSelector(state)
+    features: getUserFeatures(state),
+    leaderboards: getLeaderboards(state),
+    notifications: getNotifications(state)
 });
 
 const mapDispatchToProps = {
@@ -125,7 +112,7 @@ const mapDispatchToProps = {
     updateNotificationSettings
 };
 
-export default connect<IConnectedState, IConnectedDispatch>(
+export default connect<ConnectedState, ConnectedDispatch>(
     mapStateToProps,
     mapDispatchToProps
 )(SettingsContainer);

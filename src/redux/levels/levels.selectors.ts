@@ -31,7 +31,7 @@ export interface ITodayChallengesStatus {
     isAvailable: boolean;
 }
 
-export const challengesStatusSelector = (state: IReduxState): ITodayChallengesStatus => {
+export const getChallengesStatus = (state: IReduxState): ITodayChallengesStatus => {
     const available = getChallengesAmountAvailable(state.levels.level);
     const done = state.levels.challengesDoneToday;
 
@@ -42,8 +42,8 @@ export const challengesStatusSelector = (state: IReduxState): ITodayChallengesSt
         isAvailable: done < available
     };
 };
-export const currentLevelSelector = (state: IReduxState): number => state.levels.level;
-export const nextLevelAvailableAtSelector = (state: IReduxState): string => state.levels.nextLevelAvailableAt;
-export const activeLevelSelector = (state: IReduxState): IActiveLevel => state.levels.active;
-export const hasNotificationSelector = (state: IReduxState) =>
+export const getCurrentLevel = (state: IReduxState): number => state.levels.level;
+export const getNextLevelAvailableAt = (state: IReduxState): string => state.levels.nextLevelAvailableAt;
+export const getActiveLevel = (state: IReduxState): IActiveLevel => state.levels.active;
+export const getHasNotification = (state: IReduxState) =>
     !!state.levels.active.levelSlotId || state.levels.active.timeUp || !!state.levels.active.status;

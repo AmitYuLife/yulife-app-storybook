@@ -10,7 +10,7 @@ export interface IStreaks {
     reward: string;
 }
 
-export const streaksSelector = ({ streaks }: IReduxState): IStreaks => ({
+export const getStreaks = ({ streaks }: IReduxState): IStreaks => ({
     currentStreak: streaks.streak,
     displayStreak: streaks.displayStreak,
     isAvailable: streaks.isAvailable,
@@ -22,4 +22,4 @@ export const streaksSelector = ({ streaks }: IReduxState): IStreaks => ({
     maxStreak: streaks.maxStreak,
     reward: `${streaks.value} ${streaks.type}`
 });
-export const streakAwardIdSelector = ({ streaks }: IReduxState) => streaks.streakAwardId;
+export const getStreakAwardId = ({ streaks }: IReduxState) => streaks.streakAwardId;

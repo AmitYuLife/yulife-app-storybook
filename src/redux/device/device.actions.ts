@@ -1,5 +1,4 @@
 import { PushNotification } from "react-native-push-notification";
-import { SyncAction } from "../_core/types";
 import { IDeviceStore } from "./device.reducer";
 import { IPushNotification } from "./device.selectors";
 
@@ -9,33 +8,25 @@ export const REQUIRE_PUSH_ENABLED = "REQUIRE_PUSH_ENABLED";
 export const CANCEL_LOCAL_PUSH = "CANCEL_LOCAL_PUSH";
 export const SET_PUSH_PERMISSIONS = "SET_PUSH_PERMISSIONS";
 
-export type AddDeviceTokenActionResult = SyncAction<Partial<IDeviceStore>>;
-export type AddDeviceTokenAction = (payload: Partial<IDeviceStore>) => AddDeviceTokenActionResult;
-export const addDeviceToken: AddDeviceTokenAction = (payload) => ({
+export const addDeviceToken = (payload: Partial<IDeviceStore>) => ({
     payload,
     type: ADD_DEVICE_TOKEN
 });
 
-export type PushNotificationReceivedActionResult = SyncAction<PushNotification>;
-export type PushNotificationReceivedAction = (payload: PushNotification) => PushNotificationReceivedActionResult;
-export const pushNotificationReceived: PushNotificationReceivedAction = (payload) => ({
+export const pushNotificationReceived = (payload: PushNotification) => ({
     payload,
     type: PUSH_NOTIFICATION_RECEIVED
 });
 
-export type RequirePushEnabledAction = () => SyncAction;
-export const requirePushEnabled: RequirePushEnabledAction = () => ({
+export const requirePushEnabled = () => ({
     type: REQUIRE_PUSH_ENABLED
 });
 
-export type CancelLocalPushAction = () => SyncAction;
-export const cancelLocalPush: CancelLocalPushAction = () => ({
+export const cancelLocalPush = () => ({
     type: CANCEL_LOCAL_PUSH
 });
 
-export type SetPushPermissionsActionResult = SyncAction<Partial<IPushNotification>>;
-export type SetPushPermissionsAction = (payload: Partial<IPushNotification>) => SetPushPermissionsActionResult;
-export const setPushPermissions: SetPushPermissionsAction = (payload) => ({
+export const setPushPermissions = (payload: Partial<IPushNotification>) => ({
     payload,
     type: SET_PUSH_PERMISSIONS
 });

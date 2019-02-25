@@ -5,7 +5,7 @@ import Logger from "../../services/logging/logger";
 import { getToken } from "../../services/storage";
 import { UPDATE_APP_STATE } from "../app/app.actions";
 import { START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
-import { isUserArchivedSelector, userFeaturesSelector } from "../user/user.selectors";
+import { getIsUserArchived, getUserFeatures } from "../user/user.selectors";
 import {
     PEDOMETER_STOP,
     startPedometerUpdates,
@@ -13,10 +13,10 @@ import {
     updatePedometerSuccessAction
 } from "./pedometer.actions";
 import { stepsChannel } from "./pedometer.channels";
-import { stepsSelector } from "./pedometer.selectors";
+import { getSteps } from "./pedometer.selectors";
 
 function* listenToSteps() {
-    const features = yield select(userFeaturesSelector);
+    const features = yield select(getUserFeatures);
     const momentStartDay = moment().startOf("day");
     const startOfDay = momentStartDay.format();
     const channel = yield call(stepsChannel, startOfDay);
@@ -37,7 +37,7 @@ function* listenToSteps() {
     while (true) {
         try {
             const results = yield take(channel);
-            const currentSteps = yield select(stepsSelector);
+            const currentSteps = yield select(getSteps);
 
             if (features.loggingEnabled) {
                 yield spawn(() => Logger.logMixpanelEvent("raw_steps_results_passive", results));
@@ -65,7 +65,7 @@ function* startPedometer() {
             dailySteps: take(START_DAILY_STEPS)
         });
         const token = yield call(getToken);
-        const isArchived = yield select(isUserArchivedSelector);
+        const isArchived = yield select(getIsUserArchived);
 
         if (token && !isArchived && (dailySteps || appStart || (appUpdated && appUpdated.payload === "active"))) {
             yield put(startPedometerUpdates());

@@ -27,11 +27,9 @@ interface IProps {
     componentId: string;
 }
 
-interface IConnectedDispatch {
-    getUserStart: () => void;
-}
+type ConnectedDispatch = typeof mapDispatchToProps;
 
-interface IChildProps extends UpsertOnboardingChallengeStateType, IConnectedDispatch, IProps {
+interface IChildProps extends UpsertOnboardingChallengeStateType, ConnectedDispatch, IProps {
     upsertOnboardingChallenge: UpsertOnboardingChallengeMutationType;
 }
 
@@ -111,10 +109,10 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps> {
         }
 
         await setNextRoot();
-    }
+    };
 }
 
-const SignUpRewardContainer = (props: IProps & IConnectedDispatch) => (
+const SignUpRewardContainer = (props: IProps & ConnectedDispatch) => (
     <UpsertOnboardingChallengeMutation mutation={upsertOnboardingChallengeGql}>
         {(upsertOnboardingChallenge, args) => {
             return (
@@ -132,7 +130,7 @@ const mapDispatchToProps = {
     getUserStart
 };
 
-export default connect<{}, IConnectedDispatch>(
+export default connect<{}, ConnectedDispatch>(
     null,
     mapDispatchToProps
 )(SignUpRewardContainer);

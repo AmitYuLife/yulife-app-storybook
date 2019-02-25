@@ -15,7 +15,7 @@ import { getRouteState } from "../app/app.selectors";
 import {
     PEDOMETER_START,
     PEDOMETER_UPDATES_SUCCESS,
-    UpdatePedometerSuccessActionResult
+    updatePedometerSuccessAction
 } from "../pedometer/pedometer.actions";
 import { GET_HISTORICAL_DATA, updateDailyStepsFailed, updateDailyStepsSuccess } from "./daily-steps.actions";
 import { getLastUpdated } from "./daily-steps.selectors";
@@ -101,7 +101,7 @@ export function* oldDaysUpdate() {
     }
 }
 
-function* dailyStepsUpdate({ payload }: UpdatePedometerSuccessActionResult) {
+function* dailyStepsUpdate({ payload }: ReturnType<typeof updatePedometerSuccessAction>) {
     try {
         const { data } = yield call(upsertStepsChallenge, [mapPedometerResults(payload)]);
 

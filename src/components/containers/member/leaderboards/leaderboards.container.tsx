@@ -5,20 +5,15 @@ import { connect } from "react-redux";
 import { GetLeaderboardVariables } from "../../../../graphql/_core/schema";
 import GetLeaderboardQuery, { getLeaderboardGql } from "../../../../graphql/member/getLeaderboard.gql";
 import { IReduxState } from "../../../../redux/_core/reducers";
-import { updateLeaderboardConsent, UpdateLeaderboardConsentAction } from "../../../../redux/user/user.actions";
-import { Leaderboard, leaderboardsSelector } from "../../../../redux/user/user.selectors";
+import { updateLeaderboardConsent } from "../../../../redux/user/user.actions";
+import { getLeaderboards } from "../../../../redux/user/user.selectors";
 import { Loading } from "../../../atoms";
 import { GenericModal } from "../../../modals";
 import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-error-modal";
 import { LeaderboardsScreen } from "../../../screens";
 
-interface IConnectedState {
-    leaderboards: Leaderboard[];
-}
-
-interface IConnectedDispatch {
-    updateLeaderboardConsent: UpdateLeaderboardConsentAction;
-}
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IProps {
     componentId: string;
@@ -29,7 +24,7 @@ interface IState {
     sortBy: string;
 }
 
-type Props = IConnectedState & IConnectedDispatch & IProps;
+type Props = ConnectedState & ConnectedDispatch & IProps;
 
 class LeaderboardsContainer extends PureComponent<Props, IState> {
     public state = {
@@ -107,28 +102,28 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 
     private handleClose = () => {
         Navigation.popToRoot(this.props.componentId);
-    }
+    };
 
     private handleRefetch = (refetch: (variables: GetLeaderboardVariables) => void, sortBy: string) => () => {
         this.setState({ sortBy }, () => refetch({ sortBy }));
-    }
+    };
 
     private allowLeaderboard = () => {
         const { leaderboards, updateLeaderboardConsent: updateConsent } = this.props;
         const company = leaderboards[0];
         updateConsent({ leaderboardId: company.leaderboardId, consent: true });
-    }
+    };
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    leaderboards: leaderboardsSelector(state)
+    leaderboards: getLeaderboards(state)
 });
 
 const mapDispatchToProps = {
     updateLeaderboardConsent
 };
 
-export default connect<IConnectedState, IConnectedDispatch>(
+export default connect<ConnectedState, ConnectedDispatch>(
     mapStateToProps,
     mapDispatchToProps
 )(LeaderboardsContainer);

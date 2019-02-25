@@ -3,30 +3,32 @@ import { Platform } from "react-native";
 import PushNotification from "react-native-push-notification";
 import { call, select, takeEvery } from "redux-saga/effects";
 import { CANCEL_LOCAL_PUSH } from "../device/device.actions";
-import { CHALLENGE_CANCEL, CHALLENGE_START_SUCCESS, ChallengeStartSuccessActionResult } from "../levels/levels.actions";
-import { activeLevelSelector } from "../levels/levels.selectors";
+import { CHALLENGE_CANCEL, CHALLENGE_START_SUCCESS, challengeStartSuccessAction } from "../levels/levels.actions";
+import { getActiveLevel } from "../levels/levels.selectors";
 import {
     SEND_TEST_LOCAL_PUSH,
     UPDATE_NOTIFICATION_SETTINGS,
-    UpdateNotificationSettingsActionResult
+    updateNotificationSettings
 } from "./notifications.actions";
 import { defaultNotificationSettings, getNotificationTitleAndMessage, numericId } from "./notifications.helpers";
-import { challengeCompletionSelector } from "./notifications.selectors";
+import { getChallengeCompletionNotification } from "./notifications.selectors";
 
 function* cancelChallengeNotificationSaga() {
-    const active = yield select(activeLevelSelector);
+    const active = yield select(getActiveLevel);
 
     if (active.levelSlotId) {
         yield call(() => PushNotification.cancelLocalNotifications({ id: numericId(active.levelSlotId) }));
     }
 }
 
-function* scheduleChallengeNotificationSaga({ payload: { createActiveChallenge } }: ChallengeStartSuccessActionResult) {
+function* scheduleChallengeNotificationSaga({
+    payload: { createActiveChallenge }
+}: ReturnType<typeof challengeStartSuccessAction>) {
     if (!createActiveChallenge.challenge) {
         return null;
     }
 
-    const challengeCompletion = yield select(challengeCompletionSelector);
+    const challengeCompletion = yield select(getChallengeCompletionNotification);
 
     if (challengeCompletion.active) {
         const { endDateTime, levelSlotId } = createActiveChallenge.challenge;
@@ -47,7 +49,7 @@ function* scheduleChallengeNotificationSaga({ payload: { createActiveChallenge }
     }
 }
 
-function* sendTestPush() {
+function* sendTestPushSaga() {
     yield call(() =>
         PushNotification.localNotificationSchedule({
             ...defaultNotificationSettings,
@@ -68,7 +70,7 @@ function* sendTestPush() {
     );
 }
 
-function* updateNotificationSettings({ payload }: UpdateNotificationSettingsActionResult) {
+function* updateNotificationSettingsSaga({ payload }: ReturnType<typeof updateNotificationSettings>) {
     if (["dailyChallengeReminder", "streakSaver"].includes(payload.key)) {
         if (payload.active) {
             const today = moment().format("YYYY-MM-DD");
@@ -97,6 +99,6 @@ export default [
     takeEvery(CHALLENGE_CANCEL, cancelChallengeNotificationSaga),
     takeEvery(CANCEL_LOCAL_PUSH, cancelChallengeNotificationSaga),
     takeEvery(CHALLENGE_START_SUCCESS, scheduleChallengeNotificationSaga),
-    takeEvery(SEND_TEST_LOCAL_PUSH, sendTestPush),
-    takeEvery(UPDATE_NOTIFICATION_SETTINGS, updateNotificationSettings)
+    takeEvery(SEND_TEST_LOCAL_PUSH, sendTestPushSaga),
+    takeEvery(UPDATE_NOTIFICATION_SETTINGS, updateNotificationSettingsSaga)
 ];

@@ -10,7 +10,7 @@ import { MODALS } from "../../navigation/routes";
 import { queryMindfulSessions } from "../../services/fitkit/fitkit.service";
 import { pathOr } from "../../services/utils";
 import { cancelLocalPush } from "../device/device.actions";
-import { stepsSelector } from "../pedometer/pedometer.selectors";
+import { getSteps } from "../pedometer/pedometer.selectors";
 import { GET_USER_SUCCESS, getUserStart } from "../user/user.actions";
 import {
     CHALLENGE_CANCEL,
@@ -21,14 +21,13 @@ import {
     CHALLENGE_TIME_UP,
     challengeEndSuccessAction,
     challengeResetSuccessAction,
-    ChallengeStartActionResult,
     challengeStartSuccessAction,
     challengeTimeUpAction,
     challengeUpdateSuccessAction
 } from "./levels.actions";
-import { SubmitUnityActionResult } from "./levels.actions";
+import { challengeStartAction, submitUnityAction } from "./levels.actions";
 import { getEndResult } from "./levels.helpers";
-import { activeLevelSelector, challengesStatusSelector } from "./levels.selectors";
+import { getActiveLevel, getChallengesStatus } from "./levels.selectors";
 
 function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, endDateTime: string) {
     const start = moment(startDateTime).format();
@@ -82,8 +81,8 @@ function* startStepsTracking(endDateTime: string) {
 }
 
 export function* resetChallenge() {
-    const { done } = yield select(challengesStatusSelector);
-    const active = yield select(activeLevelSelector);
+    const { done } = yield select(getChallengesStatus);
+    const active = yield select(getActiveLevel);
 
     if (done < 1 && active.chest.value > 0 && active.status === "success") {
         yield call(() => {
@@ -108,7 +107,7 @@ export function* resetChallenge() {
 }
 
 function* endChallenge() {
-    const active = yield select(activeLevelSelector);
+    const active = yield select(getActiveLevel);
 
     if (active.levelSlotId) {
         if (active.isCompleted) {
@@ -172,10 +171,10 @@ export function* startChallenges() {
         });
 
         if (challengeStarted) {
-            const { payload }: ChallengeStartActionResult = challengeStarted;
+            const { payload }: ReturnType<typeof challengeStartAction> = challengeStarted;
 
             const { levelSlotId } = payload;
-            const initialPedometerResult = yield select(stepsSelector);
+            const initialPedometerResult = yield select(getSteps);
             const { data } = yield call(createActiveChallengeWithClient, levelSlotId);
 
             if (data && data.createActiveChallenge) {
@@ -201,9 +200,7 @@ export function* startChallenges() {
                 }
             }
         } else {
-            const { endDateTime, levelSlotId, startDateTime, status, subtype, timeUp } = yield select(
-                activeLevelSelector
-            );
+            const { endDateTime, levelSlotId, startDateTime, status, subtype, timeUp } = yield select(getActiveLevel);
 
             if (levelSlotId && !timeUp && !status) {
                 yield call(startChallenge, {
@@ -217,7 +214,7 @@ export function* startChallenges() {
     }
 }
 
-function* submitUnity({ payload }: SubmitUnityActionResult) {
+function* submitUnity({ payload }: ReturnType<typeof submitUnityAction>) {
     try {
         yield call(submitUnityChallengeWithClient, payload.levelId);
         yield put(getUserStart());

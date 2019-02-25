@@ -13,7 +13,7 @@ import { AddHistoricalStepsMutationFunction } from "../../../../graphql/challeng
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { mapPedometerResults } from "../../../../redux/daily-steps/daily-steps.sagas";
 import { getUserStart } from "../../../../redux/user/user.actions";
-import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
+import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import Logger from "../../../../services/logging/logger";
 import Loading from "../../../atoms/loading/loading";
 import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-error-modal";
@@ -23,15 +23,10 @@ interface IProps {
     componentId: string;
 }
 
-interface IConnectedState {
-    features: { [x: string]: boolean };
-}
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+type ConnectedDispatch = typeof mapDispatchToProps;
 
-interface IConnectedDispatch {
-    getUserStart: () => void;
-}
-
-type Props = IProps & IConnectedState & IConnectedDispatch;
+type Props = IProps & ConnectedState & ConnectedDispatch;
 
 class ActivityHistoryContainer extends PureComponent<Props> {
     public render() {
@@ -121,14 +116,14 @@ class ActivityHistoryContainer extends PureComponent<Props> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    features: userFeaturesSelector(state)
+    features: getUserFeatures(state)
 });
 
 const mapDispatchToProps = {
     getUserStart
 };
 
-export default connect<IConnectedState, IConnectedDispatch>(
+export default connect<ConnectedState, ConnectedDispatch>(
     mapStateToProps,
     mapDispatchToProps
 )(ActivityHistoryContainer);

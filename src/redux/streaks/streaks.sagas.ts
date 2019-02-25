@@ -4,16 +4,16 @@ import { call, put, select, take, takeLatest } from "redux-saga/effects";
 import { MODALS, ROUTES } from "../../navigation/routes";
 import { getRouteState } from "../app/app.selectors";
 import { START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
-import { challengesStatusSelector } from "../levels/levels.selectors";
+import { getChallengesStatus } from "../levels/levels.selectors";
 import { GET_USER_SUCCESS } from "../user/user.actions";
-import { userFeaturesSelector } from "../user/user.selectors";
+import { getUserFeatures } from "../user/user.selectors";
 import { DISPLAY_STREAKS_COMPLETED, displayStreaksFirstAction } from "./streaks.actions";
-import { streaksSelector } from "./streaks.selectors";
+import { getStreaks } from "./streaks.selectors";
 
 function* showFirstStreakModal() {
-    const streaks = yield select(streaksSelector);
+    const streaks = yield select(getStreaks);
     const currentRoute = yield select(getRouteState);
-    const features = yield select(userFeaturesSelector);
+    const features = yield select(getUserFeatures);
 
     if (features.showStreaks && !streaks.displayStreak && streaks.isAvailable && currentRoute !== MODALS.streaks) {
         if (!(streaks.currentStreak > 0)) {
@@ -57,10 +57,10 @@ function* showFirstStreakModal() {
 function* showOnChallengeComplete() {
     yield take(GET_USER_SUCCESS);
 
-    const streaks = yield select(streaksSelector);
+    const streaks = yield select(getStreaks);
     const currentRoute = yield select(getRouteState);
-    const features = yield select(userFeaturesSelector);
-    const { done } = yield select(challengesStatusSelector);
+    const features = yield select(getUserFeatures);
+    const { done } = yield select(getChallengesStatus);
 
     if (done === 1 && features.showStreaks && streaks.isAvailable && currentRoute !== MODALS.streaks) {
         if (currentRoute === MODALS.chest) {

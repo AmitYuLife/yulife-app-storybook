@@ -3,11 +3,11 @@ import { Platform } from "react-native";
 import { FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { IntercomHashMethod, LoginMethod, LoginUser } from "../../../graphql/_core/schema";
+import { IntercomHashMethod, LoginMethod } from "../../../graphql/_core/schema";
 import LoginUserMutation, { loginUserGql, LoginUserMutationFunction } from "../../../graphql/user/loginUser.gql";
 import { setNextRoot } from "../../../navigation/root";
 import { ROUTES } from "../../../navigation/routes";
-import { loginUserSuccess, LoginUserSuccessAction } from "../../../redux/user/user.actions";
+import { loginUserSuccess } from "../../../redux/user/user.actions";
 import { setToken } from "../../../services/storage";
 import { LoginScreen } from "../../screens";
 import { validateEmail, validatePassword } from "./login.helpers";
@@ -20,9 +20,7 @@ interface IOwnProps {
     componentId: string;
 }
 
-interface IConnectedDispatch {
-    loginUserSuccess: (results: LoginUser) => LoginUserSuccessAction;
-}
+type ConnectedDispatch = typeof mapDispatchToProps;
 
 export interface IState {
     email: string;
@@ -31,7 +29,7 @@ export interface IState {
     passwordError: string;
 }
 
-type Props = IOwnProps & IConnectedDispatch;
+type Props = IOwnProps & ConnectedDispatch;
 
 export class LoginContainer extends Component<Props, IState> {
     public state: IState = {
@@ -109,7 +107,7 @@ export class LoginContainer extends Component<Props, IState> {
         }
 
         navigateToNext();
-    }
+    };
 
     private onLogIn = async (loginUser: LoginUserMutationFunction, authorised: boolean) => {
         const { email, password } = this.state;
@@ -137,7 +135,7 @@ export class LoginContainer extends Component<Props, IState> {
                 console.log(e);
             }
         }
-    }
+    };
 
     private onSignUp = async () => {
         await Navigation.push(this.props.componentId, {
@@ -146,7 +144,7 @@ export class LoginContainer extends Component<Props, IState> {
                 name: ROUTES.signUp
             }
         });
-    }
+    };
 
     private onResetPassword = async () => {
         await Navigation.push(this.props.componentId, {
@@ -155,19 +153,19 @@ export class LoginContainer extends Component<Props, IState> {
                 name: ROUTES.resetPassword
             }
         });
-    }
+    };
 
     private onEmailChange = (email: string) => {
         const emailError = validateEmail(email);
 
         this.setState({ email, emailError });
-    }
+    };
 
     private onPasswordChange = (password: string) => {
         const passwordError = validatePassword(password);
 
         this.setState({ password, passwordError });
-    }
+    };
 
     private isFormValid = () => {
         let formIsValid = true;
@@ -178,14 +176,14 @@ export class LoginContainer extends Component<Props, IState> {
         }
 
         return formIsValid;
-    }
+    };
 }
 
 const mapDispatchToProps = {
     loginUserSuccess
 };
 
-export default connect<{}, IConnectedDispatch>(
+export default connect<{}, ConnectedDispatch>(
     null,
     mapDispatchToProps
 )(LoginContainer);

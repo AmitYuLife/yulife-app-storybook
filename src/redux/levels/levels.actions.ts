@@ -4,7 +4,6 @@ import {
     SubmitUnityVariables,
     UpdateActiveChallenge
 } from "../../graphql/_core/schema";
-import { SyncAction } from "../_core/types";
 
 export const CHALLENGE_SUBMIT_UNITY = "CHALLENGE_SUBMIT_UNITY";
 export const CHALLENGE_START = "CHALLENGE_START";
@@ -18,68 +17,52 @@ export const CHALLENGE_RESET = "CHALLENGE_RESET";
 export const CHALLENGE_RESET_SUCCESS = "CHALLENGE_RESET_SUCCESS";
 export const CHALLENGE_CANCEL = "CHALLENGE_CANCEL";
 
-export type SubmitUnityActionResult = SyncAction<SubmitUnityVariables>;
-export type SubmitUnityAction = (payload: SubmitUnityVariables) => SubmitUnityActionResult;
-export const submitUnityAction: SubmitUnityAction = (payload) => ({
+export const submitUnityAction = (payload: SubmitUnityVariables) => ({
     payload,
     type: CHALLENGE_SUBMIT_UNITY
 });
 
-export type ChallengeStartActionResult = SyncAction<CreateActiveChallengeVariables>;
-export type ChallengeStartAction = (payload: CreateActiveChallengeVariables) => ChallengeStartActionResult;
-export const challengeStartAction: ChallengeStartAction = (payload) => ({
+export const challengeStartAction = (payload: CreateActiveChallengeVariables) => ({
     payload,
     type: CHALLENGE_START
 });
 
 export type ChallengeStartPayload = CreateActiveChallenge & { initialPedometerResult: number };
-export type ChallengeStartSuccessActionResult = SyncAction<ChallengeStartPayload>;
-export type ChallengeStartSuccessAction = (payload: ChallengeStartPayload) => ChallengeStartSuccessActionResult;
-export const challengeStartSuccessAction: ChallengeStartSuccessAction = (payload) => ({
+export const challengeStartSuccessAction = (payload: ChallengeStartPayload) => ({
     payload,
     type: CHALLENGE_START_SUCCESS
 });
 
-export type ChallengeUpdateSuccessActionResult = SyncAction<UpdateActiveChallenge>;
-export type ChallengeUpdateSuccessAction = (payload: UpdateActiveChallenge) => ChallengeUpdateSuccessActionResult;
-export const challengeUpdateSuccessAction: ChallengeUpdateSuccessAction = (payload) => ({
+export const challengeUpdateSuccessAction = (payload: UpdateActiveChallenge) => ({
     payload,
     type: CHALLENGE_UPDATE_SUCCESS
 });
 
-export type ChallengeTimeUpAction = () => SyncAction;
-export const challengeTimeUpAction: ChallengeTimeUpAction = () => ({
+export const challengeTimeUpAction = () => ({
     type: CHALLENGE_TIME_UP
 });
 
-export type ChallengeContinueAction = () => SyncAction;
-export const challengeContinueAction: ChallengeContinueAction = () => ({
+export const challengeContinueAction = () => ({
     type: CHALLENGE_CONTINUE
 });
 
-export type ChallengeEndAction = () => SyncAction;
-export const challengeEndAction: ChallengeEndAction = () => ({
+export const challengeEndAction = () => ({
     type: CHALLENGE_END
 });
 
-export type ChallengeEndSuccessActionResult = SyncAction<UpdateActiveChallenge>;
-export type ChallengeEndSuccessAction = (payload: UpdateActiveChallenge) => ChallengeEndSuccessActionResult;
-export const challengeEndSuccessAction: ChallengeEndSuccessAction = (payload) => ({
+export const challengeEndSuccessAction = (payload: UpdateActiveChallenge) => ({
     payload,
     type: CHALLENGE_END_SUCCESS
 });
 
-export type ChallengeResetAction = () => SyncAction;
-export const challengeResetAction: ChallengeResetAction = () => ({
+export const challengeResetAction = () => ({
     type: CHALLENGE_RESET
 });
 
-export type ChallengeResetSuccessAction = () => SyncAction;
-export const challengeResetSuccessAction: ChallengeResetSuccessAction = () => ({
+export const challengeResetSuccessAction = () => ({
     type: CHALLENGE_RESET_SUCCESS
 });
 
-export type ChallengeCancelAction = () => SyncAction;
-export const challengeCancelAction: ChallengeCancelAction = () => ({
+export const challengeCancelAction = () => ({
     type: CHALLENGE_CANCEL
 });

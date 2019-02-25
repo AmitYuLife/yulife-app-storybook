@@ -16,24 +16,19 @@ import { IReduxState } from "../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import {
-    ChallengeCancelAction,
     challengeCancelAction,
-    ChallengeEndAction,
     challengeEndAction,
-    ChallengeResetAction,
     challengeResetAction
 } from "../../../../redux/levels/levels.actions";
-import { submitUnityAction, SubmitUnityAction } from "../../../../redux/levels/levels.actions";
+import { submitUnityAction } from "../../../../redux/levels/levels.actions";
 import {
-    activeLevelSelector,
-    challengesStatusSelector,
-    currentLevelSelector,
-    IActiveLevel,
-    ITodayChallengesStatus,
-    nextLevelAvailableAtSelector
+    getActiveLevel,
+    getChallengesStatus,
+    getCurrentLevel,
+    getNextLevelAvailableAt
 } from "../../../../redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "../../../../redux/streaks/streaks.actions";
-import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
+import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { openCalm, openHeadspace } from "../../../../services/app-link";
 import BlurProvider from "../../../atoms/blur/blur-provider";
 import Loading from "../../../atoms/loading/loading";
@@ -47,23 +42,8 @@ import {
 } from "../../../screens";
 import ChallengeFailedScreen from "../../../screens/member/challenges/challenge-failed/challenge-failed.screen";
 
-interface IConnectedState {
-    activeLevel: IActiveLevel;
-    challengesStatus: ITodayChallengesStatus;
-    currentLevel: number;
-    features: { [x: string]: boolean };
-    nextLevelAvailableAt: string;
-    offline: boolean;
-    totalCoins: number;
-}
-
-interface IConnectedDispatch {
-    challengeCancelAction: ChallengeCancelAction;
-    challengeEndAction: ChallengeEndAction;
-    challengeResetAction: ChallengeResetAction;
-    displayStreaksCompletedAction: () => void;
-    submitUnityAction: SubmitUnityAction;
-}
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+type ConnectedDispatch = typeof mapDispatchToProps;
 
 function isAvailable(nextAvailableAt: string): boolean {
     const nextAvailable = !!nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
@@ -72,7 +52,7 @@ function isAvailable(nextAvailableAt: string): boolean {
 }
 
 function getLevelStatus(
-    challengesStatus: ITodayChallengesStatus,
+    challengesStatus: ConnectedState["challengesStatus"],
     currentLevel: number,
     level: number,
     nextAvailableAt: string
@@ -114,7 +94,7 @@ function getLevelStatus(
     };
 }
 
-type Props = IMainTabsProps & IConnectedState & IConnectedDispatch;
+type Props = IMainTabsProps & ConnectedState & ConnectedDispatch;
 
 interface IState {
     unity: number;
@@ -438,11 +418,11 @@ class QuestsContainer extends PureComponent<Props, IState> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    activeLevel: activeLevelSelector(state),
-    challengesStatus: challengesStatusSelector(state),
-    currentLevel: currentLevelSelector(state),
-    features: userFeaturesSelector(state),
-    nextLevelAvailableAt: nextLevelAvailableAtSelector(state),
+    activeLevel: getActiveLevel(state),
+    challengesStatus: getChallengesStatus(state),
+    currentLevel: getCurrentLevel(state),
+    features: getUserFeatures(state),
+    nextLevelAvailableAt: getNextLevelAvailableAt(state),
     offline: getOfflineState(state),
     totalCoins: getTotalCoins(state)
 });
@@ -455,7 +435,7 @@ const mapDispatchToProps = {
     submitUnityAction
 };
 
-export default connect<IConnectedState, IConnectedDispatch>(
+export default connect<ConnectedState, ConnectedDispatch>(
     mapStateToProps,
     mapDispatchToProps
 )(QuestsContainer);

@@ -10,8 +10,8 @@ import {
 import { getCurrentUserGql, GetCurrentUserQuery } from "../../../graphql/user/getCurrentUser.gql";
 import { IReduxState } from "../../../redux/_core/reducers";
 import { getDailyStepsCoins } from "../../../redux/coins/coins.selectors";
-import { ExchangeRate, exchangeRateSelector, getDailySteps } from "../../../redux/daily-steps/daily-steps.selectors";
-import { challengesStatusSelector, ITodayChallengesStatus } from "../../../redux/levels/levels.selectors";
+import { getDailySteps, getExchangeRate } from "../../../redux/daily-steps/daily-steps.selectors";
+import { getChallengesStatus } from "../../../redux/levels/levels.selectors";
 import { pathOr } from "../../../services/utils";
 import Loading from "../../atoms/loading/loading";
 import { TodayYucoinScreen } from "../../screens";
@@ -21,16 +21,11 @@ interface IProps {
     onCtaPress: () => void;
 }
 
-interface IConnectedState {
-    challengesStatus: ITodayChallengesStatus;
-    dailyStepsEarned: number;
-    exchangeRate: ExchangeRate;
-    steps: number;
-}
+type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 type ActiveChallenge = GetCurrentUser_getCurrentUser_activeChallenge;
 type ChallengeToday = GetCurrentUser_getCurrentUser_todayActivity;
-type Props = IProps & IConnectedState;
+type Props = IProps & ConnectedState;
 
 class TodayYucoinContainer extends PureComponent<Props> {
     public render() {
@@ -99,10 +94,10 @@ class TodayYucoinContainer extends PureComponent<Props> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    challengesStatus: challengesStatusSelector(state),
+    challengesStatus: getChallengesStatus(state),
     dailyStepsEarned: getDailyStepsCoins(state),
-    exchangeRate: exchangeRateSelector(state),
+    exchangeRate: getExchangeRate(state),
     steps: getDailySteps(state)
 });
 
-export default connect<IConnectedState>(mapStateToProps)(TodayYucoinContainer);
+export default connect<ConnectedState>(mapStateToProps)(TodayYucoinContainer);

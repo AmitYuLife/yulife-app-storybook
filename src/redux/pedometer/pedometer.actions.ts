@@ -1,26 +1,23 @@
 import { PedometerResponse } from "react-native-dual-pedometer";
-import { SyncAction } from "../_core/types";
 
 export const PEDOMETER_START = "PEDOMETER_START";
 export const PEDOMETER_UPDATES_START = "PEDOMETER_UPDATES_START";
 export const PEDOMETER_UPDATES_SUCCESS = "PEDOMETER_UPDATES_SUCCESS";
 export const PEDOMETER_STOP = "PEDOMETER_STOP";
 
-export const startPedometerUpdates = (): SyncAction => ({
+export const startPedometerUpdates = () => ({
     type: PEDOMETER_START
 });
 
-export const updatePedometerStartAction = (): SyncAction => ({
+export const updatePedometerStartAction = () => ({
     type: PEDOMETER_UPDATES_START
 });
 
-export type UpdatePedometerSuccessActionResult = SyncAction<PedometerResponse>;
-export type UpdatePedometerSuccessAction = (payload: PedometerResponse) => UpdatePedometerSuccessActionResult;
-export const updatePedometerSuccessAction: UpdatePedometerSuccessAction = (payload) => ({
+export const updatePedometerSuccessAction = (payload: PedometerResponse) => ({
     payload,
     type: PEDOMETER_UPDATES_SUCCESS
 });
 
-export const stopPedometerUpdates = (): SyncAction => ({
+export const stopPedometerUpdates = () => ({
     type: PEDOMETER_STOP
 });

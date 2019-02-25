@@ -15,22 +15,19 @@ import { IMainTabsProps } from "../../../../navigation/root";
 import { MODALS, ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
-import { hasNotificationSelector } from "../../../../redux/levels/levels.selectors";
+import { getHasNotification } from "../../../../redux/levels/levels.selectors";
 import { formatMoney } from "../../../../services/money";
 import { PurchasedListScreen, RewardsListScreen } from "../../../screens";
 
 type Tab = "rewards" | "purchases";
 
-interface IConnectedState {
-    hasNotification: boolean;
-    totalCoins: number;
-}
+type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 interface IState {
     tab: Tab;
 }
 
-type Props = IMainTabsProps & IConnectedState;
+type Props = IMainTabsProps & ConnectedState;
 
 class RewardsContainer extends PureComponent<Props, IState> {
     public state: IState = {
@@ -214,8 +211,8 @@ class RewardsContainer extends PureComponent<Props, IState> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    hasNotification: hasNotificationSelector(state),
+    hasNotification: getHasNotification(state),
     totalCoins: getTotalCoins(state)
 });
 
-export default connect<IConnectedState>(mapStateToProps)(RewardsContainer);
+export default connect<ConnectedState>(mapStateToProps)(RewardsContainer);

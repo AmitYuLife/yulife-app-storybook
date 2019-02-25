@@ -13,6 +13,6 @@ export interface IPushNotification {
     status: PushPermissions;
 }
 
-export const deviceTokenSelector = (state: IReduxState): string => state.device.deviceToken;
-export const deviceIdSelector = (state: IReduxState): string => state.device.deviceId;
-export const pushNotificationsSelector = (state: IReduxState): IPushNotification => state.device.pushNotifications;
+export const getDeviceToken = (state: IReduxState): string => state.device.deviceToken;
+export const getDeviceId = (state: IReduxState): string => state.device.deviceId;
+export const getPushNotifications = (state: IReduxState): IPushNotification => state.device.pushNotifications;

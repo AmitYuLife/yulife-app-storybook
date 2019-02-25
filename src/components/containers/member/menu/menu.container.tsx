@@ -7,28 +7,19 @@ import { connect } from "react-redux";
 import { setIntroRoot } from "../../../../navigation/root";
 import { MODALS, ROUTES } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
-import { SyncAction } from "../../../../redux/_core/types";
 import { getRouteState } from "../../../../redux/app/app.selectors";
-import { IPushNotification, pushNotificationsSelector } from "../../../../redux/device/device.selectors";
+import { getPushNotifications } from "../../../../redux/device/device.selectors";
 import { logOut, openMemberZone } from "../../../../redux/user/user.actions";
-import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
+import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { MenuScreen } from "../../../screens";
 import assets, { LINKS } from "./assets";
 
 export type Link = "debug" | "leaderboard" | "activity" | "chat" | "logout" | "member" | "play" | "settings";
 
-interface IConnectedState {
-    currentRoute: string;
-    features: { [x: string]: boolean };
-    permissions: IPushNotification;
-}
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+type ConnectedDipatch = typeof mapDispatchToProps;
 
-interface IConnectedDipatch {
-    logOut: () => void;
-    openMemberZone: () => SyncAction;
-}
-
-type Props = IConnectedState & IConnectedDipatch;
+type Props = ConnectedState & ConnectedDipatch;
 
 class MenuContainer extends PureComponent<Props> {
     public render() {
@@ -120,7 +111,7 @@ class MenuContainer extends PureComponent<Props> {
             default:
                 return null;
         }
-    }
+    };
 
     // private handleModal = (name: string) => {
     //     Navigation.showModal({
@@ -135,7 +126,7 @@ class MenuContainer extends PureComponent<Props> {
     private handleMemberZone = () => {
         this.handleClose();
         this.props.openMemberZone();
-    }
+    };
 
     private handlePush = (route: string) => {
         this.handleClose();
@@ -145,7 +136,7 @@ class MenuContainer extends PureComponent<Props> {
                 name: route
             }
         });
-    }
+    };
 
     private handleClose = () => {
         Navigation.mergeOptions(ROUTES.menu, {
@@ -156,7 +147,7 @@ class MenuContainer extends PureComponent<Props> {
                 }
             }
         });
-    }
+    };
 
     private handleIntercom = () => {
         const { permissions } = this.props;
@@ -176,13 +167,13 @@ class MenuContainer extends PureComponent<Props> {
         } else {
             callback();
         }
-    }
+    };
 }
 
 const mapStateToProps = (state: IReduxState) => ({
     currentRoute: getRouteState(state),
-    features: userFeaturesSelector(state),
-    permissions: pushNotificationsSelector(state)
+    features: getUserFeatures(state),
+    permissions: getPushNotifications(state)
 });
 
 const mapDispatchToProps = {
@@ -190,7 +181,7 @@ const mapDispatchToProps = {
     openMemberZone
 };
 
-export default connect<IConnectedState>(
+export default connect<ConnectedState, ConnectedDipatch>(
     mapStateToProps,
     mapDispatchToProps
 )(MenuContainer);

@@ -5,7 +5,6 @@ import {
     UpdateLeaderboardConsentVariables,
     UpdateMemberConsent
 } from "../../graphql/_core/schema";
-import { SyncAction } from "../_core/types";
 
 export const FITKIT_CONSENT_AUTHORISED = "FITKIT_CONSENT_AUTHORISED";
 export const SET_USER_NO_ACCESS = "SET_USER_NO_ACCESS";
@@ -18,57 +17,47 @@ export const UPDATE_USER_CONSENT_SUCCESS = "UPDATE_USER_CONSENT_SUCCESS";
 export const LOGOUT = "LOGOUT";
 export const OPEN_MEMBER_ZONE = "OPEN_MEMBER_ZONE";
 
-export const fitKitConsentAuthorised = (): SyncAction => ({
+export const fitKitConsentAuthorised = () => ({
     type: FITKIT_CONSENT_AUTHORISED
 });
 
-export const setUserNoAccessAction = (): SyncAction => ({
+export const setUserNoAccessAction = () => ({
     type: SET_USER_NO_ACCESS
 });
 
-export const getUserStart = (): SyncAction => ({
+export const getUserStart = () => ({
     type: GET_USER_START
 });
 
-export type GetUserSuccessAction = SyncAction<GetCurrentUser>;
-export const getUserSuccess = (payload: GetCurrentUser): GetUserSuccessAction => ({
+export const getUserSuccess = (payload: GetCurrentUser) => ({
     payload,
     type: GET_USER_SUCCESS
 });
 
-export type LoginUserSuccessAction = SyncAction<LoginUser>;
-export const loginUserSuccess = (payload: LoginUser): LoginUserSuccessAction => ({
+export const loginUserSuccess = (payload: LoginUser) => ({
     payload,
     type: LOGIN_USER_SUCCESS
 });
 
-export type UpdateLeaderboardConsentActionResult = SyncAction<UpdateLeaderboardConsentVariables>;
-export type UpdateLeaderboardConsentAction = (
-    payload: UpdateLeaderboardConsentVariables
-) => UpdateLeaderboardConsentActionResult;
-export const updateLeaderboardConsent: UpdateLeaderboardConsentAction = (payload) => ({
+export const updateLeaderboardConsent = (payload: UpdateLeaderboardConsentVariables) => ({
     payload,
     type: UPDATE_LEADERBOARD_CONSENT
 });
 
-export type UpdateUserConsentActionResult = SyncAction<MobileConsentInput>;
-export type UpdateUserConsentAction = (payload: MobileConsentInput) => UpdateUserConsentActionResult;
-export const updateUserConsent: UpdateUserConsentAction = (payload) => ({
+export const updateUserConsent = (payload: MobileConsentInput) => ({
     payload,
     type: UPDATE_USER_CONSENT
 });
 
-export type UpdateUserConsentSuccessActionResult = SyncAction<UpdateMemberConsent>;
-export type UpdateUserConsentSuccessAction = (payload: UpdateMemberConsent) => UpdateUserConsentSuccessActionResult;
-export const updateUserConsentSuccess: UpdateUserConsentSuccessAction = (payload) => ({
+export const updateUserConsentSuccess = (payload: UpdateMemberConsent) => ({
     payload,
     type: UPDATE_USER_CONSENT_SUCCESS
 });
 
-export const logOut = (): SyncAction => ({
+export const logOut = () => ({
     type: LOGOUT
 });
 
-export const openMemberZone = (): SyncAction => ({
+export const openMemberZone = () => ({
     type: OPEN_MEMBER_ZONE
 });

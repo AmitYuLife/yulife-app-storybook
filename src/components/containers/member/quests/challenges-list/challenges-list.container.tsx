@@ -7,22 +7,16 @@ import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/sc
 import { MODALS } from "../../../../../navigation/routes";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
-import { challengeStartAction, ChallengeStartAction } from "../../../../../redux/levels/levels.actions";
-import { currentLevelSelector } from "../../../../../redux/levels/levels.selectors";
+import { challengeStartAction } from "../../../../../redux/levels/levels.actions";
+import { getCurrentLevel } from "../../../../../redux/levels/levels.selectors";
 import { BlurProvider, IToggleBlur } from "../../../../atoms";
 import { ChallengeDetailsModal } from "../../../../modals";
 import { ILabel } from "../../../../molecules/nav-bar/nav-bar";
 import { ChallengesListScreen } from "../../../../screens";
 import { formatMilestones, getSlotDuration, reduceMilestones } from "./challenges-list.helpers";
 
-interface IConnectedState {
-    currentLevel: number;
-    totalCoins: number;
-}
-
-interface IConnectedDispatch {
-    challengeStartAction: ChallengeStartAction;
-}
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IProps {
     componentId: string;
@@ -30,7 +24,7 @@ interface IProps {
     level: GetCurrentWorld_getCurrentWorld;
 }
 
-type Props = IProps & IConnectedState & IConnectedDispatch;
+type Props = IProps & ConnectedState & ConnectedDispatch;
 
 interface IState {
     slot: {
@@ -138,7 +132,7 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    currentLevel: currentLevelSelector(state),
+    currentLevel: getCurrentLevel(state),
     totalCoins: getTotalCoins(state)
 });
 
@@ -146,7 +140,7 @@ const mapDispatchToProps = {
     challengeStartAction
 };
 
-export default connect<IConnectedState, IConnectedDispatch>(
+export default connect<ConnectedState, ConnectedDispatch>(
     mapStateToProps,
     mapDispatchToProps
 )(ChallengesListContainer);

@@ -18,7 +18,7 @@ import { persistor } from "../_core/store";
 import { appStateChannel } from "../app/app.channels";
 import { getRouteState } from "../app/app.selectors";
 import { CHALLENGE_RESET_SUCCESS } from "../levels/levels.actions";
-import { activeLevelSelector } from "../levels/levels.selectors";
+import { getActiveLevel } from "../levels/levels.selectors";
 import { stopPedometerUpdates } from "../pedometer/pedometer.actions";
 import { REDEEM_STREAK } from "../streaks/streaks.actions";
 import {
@@ -26,19 +26,19 @@ import {
     GET_USER_START,
     getUserSuccess,
     LOGIN_USER_SUCCESS,
-    LoginUserSuccessAction,
+    loginUserSuccess,
     LOGOUT,
     OPEN_MEMBER_ZONE,
     SET_USER_NO_ACCESS,
+    setUserNoAccessAction,
     UPDATE_LEADERBOARD_CONSENT,
     UPDATE_USER_CONSENT,
-    UpdateLeaderboardConsentActionResult,
-    UpdateUserConsentActionResult,
+    updateLeaderboardConsent,
+    updateUserConsent,
     updateUserConsentSuccess
 } from "./user.actions";
-import { setUserNoAccessAction } from "./user.actions";
 
-function* updateLeaderboardConsentSaga({ payload }: UpdateLeaderboardConsentActionResult) {
+function* updateLeaderboardConsentSaga({ payload }: ReturnType<typeof updateLeaderboardConsent>) {
     try {
         yield call(updateLeaderboardConsentGql, payload);
         yield call(getUserData);
@@ -48,7 +48,7 @@ function* updateLeaderboardConsentSaga({ payload }: UpdateLeaderboardConsentActi
     }
 }
 
-function* updateUserConsentSaga({ payload }: UpdateUserConsentActionResult) {
+function* updateUserConsentSaga({ payload }: ReturnType<typeof updateUserConsent>) {
     try {
         const { data } = yield call(updateMemberConsentGql, payload);
         yield put(updateUserConsentSuccess(data));
@@ -68,7 +68,7 @@ function* fitKitConsentAuthorisedSaga() {
     }
 }
 
-function* loginUserSuccessSaga({ payload }: LoginUserSuccessAction) {
+function* loginUserSuccessSaga({ payload }: ReturnType<typeof loginUserSuccess>) {
     const { user, intercomHash } = payload.loginUser;
     yield spawn(setTestFairyId, user.id);
     yield call(setLoggerIdentity, user.id, user.membershipType, intercomHash);
@@ -80,7 +80,7 @@ function* fetchUserOnAppStateChange() {
 
     while (true) {
         const state = isActive ? yield take(appState) : "active"; // should call it on INIT
-        const active = yield select(activeLevelSelector);
+        const active = yield select(getActiveLevel);
 
         if (state === "active" && !active.levelSlotId) {
             yield call(getUserData);

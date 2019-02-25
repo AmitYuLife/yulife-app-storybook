@@ -3,13 +3,11 @@ import { PureComponent } from "react";
 import { Linking } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { requirePushEnabled, RequirePushEnabledAction } from "../../../redux/device/device.actions";
+import { requirePushEnabled } from "../../../redux/device/device.actions";
 import { IPushNotification } from "../../../redux/device/device.selectors";
 import GenericModal from "../generic-modal/generic-modal";
 
-interface IConnectedDispatch {
-    requirePushEnabled: RequirePushEnabledAction;
-}
+type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IProps {
     callback?: () => void;
@@ -18,11 +16,14 @@ interface IProps {
     permissions: IPushNotification;
 }
 
-type Props = IConnectedDispatch & IProps;
+type Props = ConnectedDispatch & IProps;
 
 class PushNotificationsModal extends PureComponent<Props> {
     public render() {
-        const { fromChallenge, permissions: { status } } = this.props;
+        const {
+            fromChallenge,
+            permissions: { status }
+        } = this.props;
         const toSettings = status === "denied";
         const data = this.getProps(toSettings, fromChallenge);
 
@@ -37,12 +38,12 @@ class PushNotificationsModal extends PureComponent<Props> {
         }
 
         Navigation.dismissModal(componentId);
-    }
+    };
 
     private handleAgree = () => {
         this.props.requirePushEnabled();
         this.dismissModal();
-    }
+    };
 
     private openSettings = async () => {
         try {
@@ -52,7 +53,7 @@ class PushNotificationsModal extends PureComponent<Props> {
             console.log(e);
         }
         this.dismissModal();
-    }
+    };
 
     private getProps = (toSettings: boolean, fromChallenge?: boolean) => {
         if (toSettings) {
@@ -83,14 +84,14 @@ class PushNotificationsModal extends PureComponent<Props> {
             onPressSecondary: this.dismissModal,
             subheading: "Turn the notification on so we can notify you when there’s a response to your message."
         };
-    }
+    };
 }
 
 const mapDispatchToProps = {
     requirePushEnabled
 };
 
-export default connect<{}, IConnectedDispatch>(
+export default connect<{}, ConnectedDispatch>(
     null,
     mapDispatchToProps
 )(PushNotificationsModal);

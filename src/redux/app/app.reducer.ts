@@ -1,4 +1,4 @@
-import { AppState } from "react-native";
+import { AppState, AppStateStatus } from "react-native";
 import { ROUTES } from "../../navigation/routes";
 import { SyncAction } from "../_core/types";
 import {
@@ -7,19 +7,15 @@ import {
     UPDATE_OFFLINE_STATE
 } from "./app.actions";
 
-export interface IAppStore {
-    appState: string;
-    currentRoute: string;
-    isOffline: boolean;
-}
-
-export const initialState: IAppStore = {
+export const initialState = {
     appState: AppState.currentState,
     currentRoute: ROUTES.dailySteps,
     isOffline: false
 };
 
-const appReducer = (state: IAppStore = initialState, action: SyncAction) => {
+export type IAppStore = typeof initialState;
+
+const appReducer = (state = initialState, action: SyncAction) => {
     switch (action.type) {
 
         case UPDATE_APP_STATE:
@@ -39,7 +35,7 @@ const appReducer = (state: IAppStore = initialState, action: SyncAction) => {
 export default appReducer;
 
 // cases
-const updateAppState = (state: IAppStore, appState: string): IAppStore => ({
+const updateAppState = (state: IAppStore, appState: AppStateStatus): IAppStore => ({
     ...state,
     appState
 });

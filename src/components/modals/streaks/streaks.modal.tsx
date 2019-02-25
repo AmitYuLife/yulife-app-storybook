@@ -5,17 +5,13 @@ import { connect } from "react-redux";
 import CollectAwardMutation, { collectAwardGql } from "../../../graphql/member/collectAward.gql";
 import { IReduxState } from "../../../redux/_core/reducers";
 import { redeemStreakAction } from "../../../redux/streaks/streaks.actions";
-import { streakAwardIdSelector } from "../../../redux/streaks/streaks.selectors";
+import { getStreakAwardId } from "../../../redux/streaks/streaks.selectors";
 import { Button, Text } from "../../atoms";
 import assets from "./assets";
 import styles from "./streaks.modal.styles";
 
-interface IConnectedState {
-    streakAwardId: string;
-}
-interface IConnectedDispatch {
-    redeemStreakAction: () => void;
-}
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IProps {
     isDoneToday: boolean;
@@ -26,7 +22,7 @@ interface IProps {
     streakMax: number;
 }
 
-type Props = IProps & IConnectedDispatch & IConnectedState;
+type Props = IProps & ConnectedDispatch & ConnectedState;
 
 class StreaksModal extends PureComponent<Props> {
     public render() {
@@ -124,7 +120,7 @@ class StreaksModal extends PureComponent<Props> {
         }
 
         return <Text style={StyleSheet.flatten([styles.streakLabel, styles.streakLabelLast])}>{reward}</Text>;
-    }
+    };
 
     private getImage(): ImageRequireSource {
         const { streakCompleted, streakMax } = this.props;
@@ -155,7 +151,7 @@ class StreaksModal extends PureComponent<Props> {
         } else {
             return "take a challenge";
         }
-    }
+    };
 
     private getSubHeading = () => {
         const { isDoneToday, streakCompleted, streakMax, reward } = this.props;
@@ -167,7 +163,7 @@ class StreaksModal extends PureComponent<Props> {
         } else {
             return `Do ${streakMax} challenges in a row to earn ${reward}.`;
         }
-    }
+    };
 
     private getHeading = () => {
         const { isDoneToday, streakCompleted, streakMax } = this.props;
@@ -179,18 +175,18 @@ class StreaksModal extends PureComponent<Props> {
         } else {
             return `Start streak day ${streakCompleted + 1}`;
         }
-    }
+    };
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    streakAwardId: streakAwardIdSelector(state)
+    streakAwardId: getStreakAwardId(state)
 });
 
 const mapDispatchToProps = {
     redeemStreakAction
 };
 
-export default connect<IConnectedState, IConnectedDispatch>(
+export default connect<ConnectedState, ConnectedDispatch>(
     mapStateToProps,
     mapDispatchToProps
 )(StreaksModal);

@@ -9,24 +9,18 @@ import { connect } from "react-redux";
 import { IMainTabsProps } from "../../../../navigation/root";
 import { MODALS } from "../../../../navigation/routes";
 import { IReduxState } from "../../../../redux/_core/reducers";
-import { SyncAction } from "../../../../redux/_core/types";
 import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
 import { getDailyEarnedCoins, getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { startDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
 import {
     getDailySteps,
-    getLastUpdated,
-    isFetchingDailyStepsSelector
+    getDailyStepsIsFetching,
+    getLastUpdated
 } from "../../../../redux/daily-steps/daily-steps.selectors";
-import {
-    challengesStatusSelector,
-    currentLevelSelector,
-    hasNotificationSelector,
-    ITodayChallengesStatus
-} from "../../../../redux/levels/levels.selectors";
+import { getChallengesStatus, getCurrentLevel, getHasNotification } from "../../../../redux/levels/levels.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
-import { IStreaks, streaksSelector } from "../../../../redux/streaks/streaks.selectors";
-import { userFeaturesSelector } from "../../../../redux/user/user.selectors";
+import { getStreaks } from "../../../../redux/streaks/streaks.selectors";
+import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
 import { DailyStepsScreen } from "../../../screens";
 
@@ -37,27 +31,10 @@ interface IFitKitAvailableProps {
     loading: boolean;
 }
 
-interface IConnectedState {
-    appState: string;
-    challengesStatus: ITodayChallengesStatus;
-    currentLevel: number;
-    dailyEarnedCoins: number;
-    dailySteps: number;
-    features: { [x: string]: boolean };
-    hasNotification: boolean;
-    isFetching: boolean;
-    lastUpdated: string;
-    offline: boolean;
-    streaks: IStreaks;
-    totalCoins: number;
-}
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+type ConnectedDispatch = typeof mapDispatchToProps;
 
-interface IConnectedDispatch {
-    dailyStepsCoinClicked: () => SyncAction;
-    startDailySteps: () => SyncAction;
-}
-
-type Props = IMainTabsProps & IConnectedState & IConnectedDispatch;
+type Props = IMainTabsProps & ConnectedState & ConnectedDispatch;
 
 interface IState {
     dailyStepsLoading: boolean;
@@ -212,16 +189,16 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
 
 const mapStateToProps = (state: IReduxState) => ({
     appState: getAppState(state),
-    challengesStatus: challengesStatusSelector(state),
-    currentLevel: currentLevelSelector(state),
+    challengesStatus: getChallengesStatus(state),
+    currentLevel: getCurrentLevel(state),
     dailyEarnedCoins: getDailyEarnedCoins(state),
     dailySteps: getDailySteps(state),
-    features: userFeaturesSelector(state),
-    hasNotification: hasNotificationSelector(state),
-    isFetching: isFetchingDailyStepsSelector(state),
+    features: getUserFeatures(state),
+    hasNotification: getHasNotification(state),
+    isFetching: getDailyStepsIsFetching(state),
     lastUpdated: getLastUpdated(state),
     offline: getOfflineState(state),
-    streaks: streaksSelector(state),
+    streaks: getStreaks(state),
     totalCoins: getTotalCoins(state)
 });
 
@@ -230,7 +207,7 @@ const mapDispatchToProps = {
     startDailySteps
 };
 
-export default connect<IConnectedState, IConnectedDispatch>(
+export default connect<ConnectedState, ConnectedDispatch>(
     mapStateToProps,
     mapDispatchToProps
 )(DailyStepsContainer);

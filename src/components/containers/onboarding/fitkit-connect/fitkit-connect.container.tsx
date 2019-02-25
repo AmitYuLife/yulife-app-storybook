@@ -5,7 +5,6 @@ import Config from "react-native-config";
 import { FitKitAuthoriseFunction, FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { SyncAction } from "../../../../redux/_core/types";
 import { fitKitConsentAuthorised } from "../../../../redux/user/user.actions";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
 import { FitKitConnectScreen } from "../../../screens";
@@ -16,18 +15,15 @@ interface IProps {
     navigateToNext: () => void;
 }
 
-interface IConnectedDispatch {
-    fitKitConsentAuthorised: () => SyncAction;
-}
+type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IState {
     connecting: boolean;
 }
 
-type Props = IProps & IConnectedDispatch;
+type Props = IProps & ConnectedDispatch;
 
 class FitKitConnectContainer extends PureComponent<Props, IState> {
-
     public state: IState = {
         connecting: false
     };
@@ -79,7 +75,7 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
             this.props.fitKitConsentAuthorised();
             authorise(FitKitPermissions);
         });
-    }
+    };
 
     private onPrivacyPolicy = async () => {
         try {
@@ -88,14 +84,14 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
             // tslint:disable-next-line
             console.log("Unable to open privacy policy link:", e);
         }
-    }
+    };
 }
 
 const mapDispatchToProps = {
     fitKitConsentAuthorised
 };
 
-export default connect<{}, IConnectedDispatch>(
+export default connect<{}, ConnectedDispatch>(
     null,
     mapDispatchToProps
 )(FitKitConnectContainer);
