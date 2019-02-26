@@ -69,13 +69,13 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
         }
 
         return (
-            <GetLeaderboardQuery query={getLeaderboardGql} fetchPolicy="network-only" variables={{ sortBy }}>
-                {({ error, loading, data = { getLeaderboard: [], getCurrentUser: { id: null } }, refetch }) => {
+            <GetLeaderboardQuery query={getLeaderboardGql} fetchPolicy="cache-and-network" variables={{ sortBy }}>
+                {({ error, loading, data, refetch }) => {
                     if (loading) {
                         return <Loading />;
                     }
 
-                    if (error) {
+                    if (error && (!data.getLeaderboard || !data.getCurrentUser)) {
                         return <GenericConnectionErrorModal onPress={this.handleClose} />;
                     }
 
@@ -88,7 +88,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                     return (
                         <LeaderboardsScreen
                             initialScrollIndex={initialScrollIndex}
-                            items={data.getLeaderboard}
+                            items={data.getLeaderboard || []}
                             onCoinPress={onCoinPress}
                             onPressClose={this.handleClose}
                             onStepsPress={onStepsPress}

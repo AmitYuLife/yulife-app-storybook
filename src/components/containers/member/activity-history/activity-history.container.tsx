@@ -33,13 +33,13 @@ class ActivityHistoryContainer extends PureComponent<Props> {
         return (
             <AddHistoricalStepsMutation mutation={addHistoricalStepsGql}>
                 {(addHistoricalSteps) => (
-                    <GetActivityHistoryQuery fetchPolicy="network-only">
+                    <GetActivityHistoryQuery fetchPolicy="cache-and-network">
                         {({ loading, data, refetch, error }) => {
                             if (loading) {
                                 return <Loading />;
                             }
 
-                            if (error) {
+                            if (error && !data.getActivityHistoryWithLevels) {
                                 return <GenericConnectionErrorModal onPress={this.handleClose} />;
                             }
 
