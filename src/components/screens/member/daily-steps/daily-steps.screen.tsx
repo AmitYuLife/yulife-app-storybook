@@ -83,7 +83,7 @@ export default function DailyStepsScreen({
             ) : (
                 <DailyStepsOnline coinsToday={coinsToday} steps={steps} onCtaPress={onCtaPress} textStyle={textStyle} />
             )}
-            {displayStreak && (
+            {!displayStreak ? null : (
                 <Streak
                     isFinished={isDoneToday}
                     isOnline={isOnline}

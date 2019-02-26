@@ -19,17 +19,27 @@ export interface IProps {
 
 interface IState {
     isPressed: boolean;
+    wasClicked: boolean;
 }
 
 class Streak extends PureComponent<IProps, IState> {
     public state: IState = {
-        isPressed: false
+        isPressed: false,
+        wasClicked: false
     };
+    private timeout: NodeJS.Timer = null;
+
+    public componentWillUnmount() {
+        if (this.timeout) {
+            global.clearTimeout(this.timeout);
+        }
+    }
 
     public render() {
         const { isFinished, isOnline, currentStreak, maxStreak, type } = this.props;
         const { isPressed } = this.state;
         const backgroundColor = getColour(type, isFinished, isPressed, isOnline);
+
         return (
             <TouchableWithoutFeedback onPressIn={this.handlePressIn} onPressOut={this.handlePressOut}>
                 <View style={StyleSheet.flatten([styles.wrapper, { backgroundColor }])}>
@@ -51,8 +61,9 @@ class Streak extends PureComponent<IProps, IState> {
     };
 
     private handlePressOut = () => {
-        if (this.state.isPressed) {
-            this.setState({ isPressed: false }, this.props.onPress);
+        if (!this.state.wasClicked) {
+            this.setState({ isPressed: false, wasClicked: true }, this.props.onPress);
+            this.timeout = global.setTimeout(() => this.setState({ wasClicked: false }), 1000);
         }
     };
 }
