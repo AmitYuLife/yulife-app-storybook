@@ -75,7 +75,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                         return <Loading />;
                     }
 
-                    if (error && (!data.getLeaderboard || !data.getCurrentUser)) {
+                    if (error && (!data || !data.getLeaderboard || !data.getCurrentUser)) {
                         return <GenericConnectionErrorModal onPress={this.handleClose} />;
                     }
 

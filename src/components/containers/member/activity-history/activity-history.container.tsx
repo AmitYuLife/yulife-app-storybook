@@ -39,7 +39,7 @@ class ActivityHistoryContainer extends PureComponent<Props> {
                                 return <Loading />;
                             }
 
-                            if (error && !data.getActivityHistoryWithLevels) {
+                            if (error && (!data || !data.getActivityHistoryWithLevels)) {
                                 return <GenericConnectionErrorModal onPress={this.handleClose} />;
                             }
 

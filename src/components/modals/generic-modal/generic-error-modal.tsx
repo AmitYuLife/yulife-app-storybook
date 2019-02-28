@@ -8,8 +8,8 @@ interface IProps {
 const GenericConnectionErrorModal: SFC<{ onPress: IProps["onPress"] }> = ({ onPress }) => (
     <GenericModal
         onPress={onPress}
-        heading="oops!"
-        subheading="there was an error retrieving data. please try again later."
+        heading="you're offline"
+        subheading="check your internet connection"
         ctaLabel="back"
     />
 );
