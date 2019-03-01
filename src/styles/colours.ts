@@ -57,6 +57,10 @@ export default {
             pressed: "rgba(232,49,129,0.6)"
         }
     },
+    navNotification: {
+        body: "rgb(171, 79, 79)",
+        border: "white"
+    },
     picker: {
         empty: "rgb(204,204,204)",
         filled: "rgb(106,106,106)"

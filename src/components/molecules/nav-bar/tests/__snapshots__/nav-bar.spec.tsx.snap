@@ -78,6 +78,9 @@ ShallowWrapper {
             isActive={false}
             isPressed={false}
           />
+          <Notification
+            isVisible={true}
+          />
           <Treasure
             colourScheme={
               Object {
@@ -89,9 +92,6 @@ ShallowWrapper {
             hasDismiss={false}
             isActive={false}
             isPressed={false}
-          />
-          <Notification
-            isVisible={true}
           />
         </Svg>,
         <View
@@ -263,6 +263,9 @@ ShallowWrapper {
               isActive={false}
               isPressed={false}
             />,
+            <Notification
+              isVisible={true}
+            />,
             <Treasure
               colourScheme={
                 Object {
@@ -274,9 +277,6 @@ ShallowWrapper {
               hasDismiss={false}
               isActive={false}
               isPressed={false}
-            />,
-            <Notification
-              isVisible={true}
             />,
           ],
           "height": "62",
@@ -345,15 +345,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "colourScheme": Object {
-                "active": "rgb(0,0,0)",
-                "inactive": "rgba(71,108,104,0.5)",
-                "pressed": "rgba(71,108,104,0.75)",
-              },
-              "hasDismiss": false,
-              "hasWhiteBackground": undefined,
-              "isActive": false,
-              "isPressed": false,
+              "isVisible": true,
             },
             "ref": null,
             "rendered": null,
@@ -364,7 +356,15 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "isVisible": true,
+              "colourScheme": Object {
+                "active": "rgb(0,0,0)",
+                "inactive": "rgba(71,108,104,0.5)",
+                "pressed": "rgba(71,108,104,0.75)",
+              },
+              "hasDismiss": false,
+              "hasWhiteBackground": undefined,
+              "isActive": false,
+              "isPressed": false,
             },
             "ref": null,
             "rendered": null,
@@ -910,6 +910,9 @@ ShallowWrapper {
               isActive={false}
               isPressed={false}
             />
+            <Notification
+              isVisible={true}
+            />
             <Treasure
               colourScheme={
                 Object {
@@ -921,9 +924,6 @@ ShallowWrapper {
               hasDismiss={false}
               isActive={false}
               isPressed={false}
-            />
-            <Notification
-              isVisible={true}
             />
           </Svg>,
           <View
@@ -1095,6 +1095,9 @@ ShallowWrapper {
                 isActive={false}
                 isPressed={false}
               />,
+              <Notification
+                isVisible={true}
+              />,
               <Treasure
                 colourScheme={
                   Object {
@@ -1106,9 +1109,6 @@ ShallowWrapper {
                 hasDismiss={false}
                 isActive={false}
                 isPressed={false}
-              />,
-              <Notification
-                isVisible={true}
               />,
             ],
             "height": "62",
@@ -1177,15 +1177,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "colourScheme": Object {
-                  "active": "rgb(0,0,0)",
-                  "inactive": "rgba(71,108,104,0.5)",
-                  "pressed": "rgba(71,108,104,0.75)",
-                },
-                "hasDismiss": false,
-                "hasWhiteBackground": undefined,
-                "isActive": false,
-                "isPressed": false,
+                "isVisible": true,
               },
               "ref": null,
               "rendered": null,
@@ -1196,7 +1188,15 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "isVisible": true,
+                "colourScheme": Object {
+                  "active": "rgb(0,0,0)",
+                  "inactive": "rgba(71,108,104,0.5)",
+                  "pressed": "rgba(71,108,104,0.75)",
+                },
+                "hasDismiss": false,
+                "hasWhiteBackground": undefined,
+                "isActive": false,
+                "isPressed": false,
               },
               "ref": null,
               "rendered": null,
@@ -1796,6 +1796,9 @@ ShallowWrapper {
             isActive={false}
             isPressed={false}
           />
+          <Notification
+            isVisible={false}
+          />
           <Treasure
             colourScheme={
               Object {
@@ -1807,9 +1810,6 @@ ShallowWrapper {
             hasDismiss={false}
             isActive={false}
             isPressed={false}
-          />
-          <Notification
-            isVisible={false}
           />
         </Svg>,
         <View
@@ -1981,6 +1981,9 @@ ShallowWrapper {
               isActive={false}
               isPressed={false}
             />,
+            <Notification
+              isVisible={false}
+            />,
             <Treasure
               colourScheme={
                 Object {
@@ -1992,9 +1995,6 @@ ShallowWrapper {
               hasDismiss={false}
               isActive={false}
               isPressed={false}
-            />,
-            <Notification
-              isVisible={false}
             />,
           ],
           "height": "62",
@@ -2063,15 +2063,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "colourScheme": Object {
-                "active": "rgb(0,0,0)",
-                "inactive": "rgba(71,108,104,0.5)",
-                "pressed": "rgba(71,108,104,0.75)",
-              },
-              "hasDismiss": false,
-              "hasWhiteBackground": undefined,
-              "isActive": false,
-              "isPressed": false,
+              "isVisible": false,
             },
             "ref": null,
             "rendered": null,
@@ -2082,7 +2074,15 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "isVisible": false,
+              "colourScheme": Object {
+                "active": "rgb(0,0,0)",
+                "inactive": "rgba(71,108,104,0.5)",
+                "pressed": "rgba(71,108,104,0.75)",
+              },
+              "hasDismiss": false,
+              "hasWhiteBackground": undefined,
+              "isActive": false,
+              "isPressed": false,
             },
             "ref": null,
             "rendered": null,
@@ -2628,6 +2628,9 @@ ShallowWrapper {
               isActive={false}
               isPressed={false}
             />
+            <Notification
+              isVisible={false}
+            />
             <Treasure
               colourScheme={
                 Object {
@@ -2639,9 +2642,6 @@ ShallowWrapper {
               hasDismiss={false}
               isActive={false}
               isPressed={false}
-            />
-            <Notification
-              isVisible={false}
             />
           </Svg>,
           <View
@@ -2813,6 +2813,9 @@ ShallowWrapper {
                 isActive={false}
                 isPressed={false}
               />,
+              <Notification
+                isVisible={false}
+              />,
               <Treasure
                 colourScheme={
                   Object {
@@ -2824,9 +2827,6 @@ ShallowWrapper {
                 hasDismiss={false}
                 isActive={false}
                 isPressed={false}
-              />,
-              <Notification
-                isVisible={false}
               />,
             ],
             "height": "62",
@@ -2895,15 +2895,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "colourScheme": Object {
-                  "active": "rgb(0,0,0)",
-                  "inactive": "rgba(71,108,104,0.5)",
-                  "pressed": "rgba(71,108,104,0.75)",
-                },
-                "hasDismiss": false,
-                "hasWhiteBackground": undefined,
-                "isActive": false,
-                "isPressed": false,
+                "isVisible": false,
               },
               "ref": null,
               "rendered": null,
@@ -2914,7 +2906,15 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "isVisible": false,
+                "colourScheme": Object {
+                  "active": "rgb(0,0,0)",
+                  "inactive": "rgba(71,108,104,0.5)",
+                  "pressed": "rgba(71,108,104,0.75)",
+                },
+                "hasDismiss": false,
+                "hasWhiteBackground": undefined,
+                "isActive": false,
+                "isPressed": false,
               },
               "ref": null,
               "rendered": null,
@@ -3514,6 +3514,9 @@ ShallowWrapper {
             isActive={true}
             isPressed={false}
           />
+          <Notification
+            isVisible={true}
+          />
           <Treasure
             colourScheme={
               Object {
@@ -3525,9 +3528,6 @@ ShallowWrapper {
             hasDismiss={false}
             isActive={false}
             isPressed={false}
-          />
-          <Notification
-            isVisible={true}
           />
         </Svg>,
         <View
@@ -3699,6 +3699,9 @@ ShallowWrapper {
               isActive={true}
               isPressed={false}
             />,
+            <Notification
+              isVisible={true}
+            />,
             <Treasure
               colourScheme={
                 Object {
@@ -3710,9 +3713,6 @@ ShallowWrapper {
               hasDismiss={false}
               isActive={false}
               isPressed={false}
-            />,
-            <Notification
-              isVisible={true}
             />,
           ],
           "height": "62",
@@ -3781,15 +3781,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "colourScheme": Object {
-                "active": "rgb(0,0,0)",
-                "inactive": "rgba(71,108,104,0.5)",
-                "pressed": "rgba(71,108,104,0.75)",
-              },
-              "hasDismiss": false,
-              "hasWhiteBackground": undefined,
-              "isActive": false,
-              "isPressed": false,
+              "isVisible": true,
             },
             "ref": null,
             "rendered": null,
@@ -3800,7 +3792,15 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "isVisible": true,
+              "colourScheme": Object {
+                "active": "rgb(0,0,0)",
+                "inactive": "rgba(71,108,104,0.5)",
+                "pressed": "rgba(71,108,104,0.75)",
+              },
+              "hasDismiss": false,
+              "hasWhiteBackground": undefined,
+              "isActive": false,
+              "isPressed": false,
             },
             "ref": null,
             "rendered": null,
@@ -4346,6 +4346,9 @@ ShallowWrapper {
               isActive={true}
               isPressed={false}
             />
+            <Notification
+              isVisible={true}
+            />
             <Treasure
               colourScheme={
                 Object {
@@ -4357,9 +4360,6 @@ ShallowWrapper {
               hasDismiss={false}
               isActive={false}
               isPressed={false}
-            />
-            <Notification
-              isVisible={true}
             />
           </Svg>,
           <View
@@ -4531,6 +4531,9 @@ ShallowWrapper {
                 isActive={true}
                 isPressed={false}
               />,
+              <Notification
+                isVisible={true}
+              />,
               <Treasure
                 colourScheme={
                   Object {
@@ -4542,9 +4545,6 @@ ShallowWrapper {
                 hasDismiss={false}
                 isActive={false}
                 isPressed={false}
-              />,
-              <Notification
-                isVisible={true}
               />,
             ],
             "height": "62",
@@ -4613,15 +4613,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "colourScheme": Object {
-                  "active": "rgb(0,0,0)",
-                  "inactive": "rgba(71,108,104,0.5)",
-                  "pressed": "rgba(71,108,104,0.75)",
-                },
-                "hasDismiss": false,
-                "hasWhiteBackground": undefined,
-                "isActive": false,
-                "isPressed": false,
+                "isVisible": true,
               },
               "ref": null,
               "rendered": null,
@@ -4632,7 +4624,15 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "isVisible": true,
+                "colourScheme": Object {
+                  "active": "rgb(0,0,0)",
+                  "inactive": "rgba(71,108,104,0.5)",
+                  "pressed": "rgba(71,108,104,0.75)",
+                },
+                "hasDismiss": false,
+                "hasWhiteBackground": undefined,
+                "isActive": false,
+                "isPressed": false,
               },
               "ref": null,
               "rendered": null,
@@ -5232,6 +5232,9 @@ ShallowWrapper {
             isActive={true}
             isPressed={false}
           />
+          <Notification
+            isVisible={false}
+          />
           <Treasure
             colourScheme={
               Object {
@@ -5243,9 +5246,6 @@ ShallowWrapper {
             hasDismiss={false}
             isActive={false}
             isPressed={false}
-          />
-          <Notification
-            isVisible={false}
           />
         </Svg>,
         <View
@@ -5417,6 +5417,9 @@ ShallowWrapper {
               isActive={true}
               isPressed={false}
             />,
+            <Notification
+              isVisible={false}
+            />,
             <Treasure
               colourScheme={
                 Object {
@@ -5428,9 +5431,6 @@ ShallowWrapper {
               hasDismiss={false}
               isActive={false}
               isPressed={false}
-            />,
-            <Notification
-              isVisible={false}
             />,
           ],
           "height": "62",
@@ -5499,15 +5499,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "colourScheme": Object {
-                "active": "rgb(0,0,0)",
-                "inactive": "rgba(71,108,104,0.5)",
-                "pressed": "rgba(71,108,104,0.75)",
-              },
-              "hasDismiss": false,
-              "hasWhiteBackground": undefined,
-              "isActive": false,
-              "isPressed": false,
+              "isVisible": false,
             },
             "ref": null,
             "rendered": null,
@@ -5518,7 +5510,15 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "isVisible": false,
+              "colourScheme": Object {
+                "active": "rgb(0,0,0)",
+                "inactive": "rgba(71,108,104,0.5)",
+                "pressed": "rgba(71,108,104,0.75)",
+              },
+              "hasDismiss": false,
+              "hasWhiteBackground": undefined,
+              "isActive": false,
+              "isPressed": false,
             },
             "ref": null,
             "rendered": null,
@@ -6064,6 +6064,9 @@ ShallowWrapper {
               isActive={true}
               isPressed={false}
             />
+            <Notification
+              isVisible={false}
+            />
             <Treasure
               colourScheme={
                 Object {
@@ -6075,9 +6078,6 @@ ShallowWrapper {
               hasDismiss={false}
               isActive={false}
               isPressed={false}
-            />
-            <Notification
-              isVisible={false}
             />
           </Svg>,
           <View
@@ -6249,6 +6249,9 @@ ShallowWrapper {
                 isActive={true}
                 isPressed={false}
               />,
+              <Notification
+                isVisible={false}
+              />,
               <Treasure
                 colourScheme={
                   Object {
@@ -6260,9 +6263,6 @@ ShallowWrapper {
                 hasDismiss={false}
                 isActive={false}
                 isPressed={false}
-              />,
-              <Notification
-                isVisible={false}
               />,
             ],
             "height": "62",
@@ -6331,15 +6331,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "colourScheme": Object {
-                  "active": "rgb(0,0,0)",
-                  "inactive": "rgba(71,108,104,0.5)",
-                  "pressed": "rgba(71,108,104,0.75)",
-                },
-                "hasDismiss": false,
-                "hasWhiteBackground": undefined,
-                "isActive": false,
-                "isPressed": false,
+                "isVisible": false,
               },
               "ref": null,
               "rendered": null,
@@ -6350,7 +6342,15 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "isVisible": false,
+                "colourScheme": Object {
+                  "active": "rgb(0,0,0)",
+                  "inactive": "rgba(71,108,104,0.5)",
+                  "pressed": "rgba(71,108,104,0.75)",
+                },
+                "hasDismiss": false,
+                "hasWhiteBackground": undefined,
+                "isActive": false,
+                "isPressed": false,
               },
               "ref": null,
               "rendered": null,
@@ -6950,6 +6950,9 @@ ShallowWrapper {
             isActive={false}
             isPressed={false}
           />
+          <Notification
+            isVisible={true}
+          />
           <Treasure
             colourScheme={
               Object {
@@ -6961,9 +6964,6 @@ ShallowWrapper {
             hasDismiss={false}
             isActive={true}
             isPressed={false}
-          />
-          <Notification
-            isVisible={true}
           />
         </Svg>,
         <View
@@ -7135,6 +7135,9 @@ ShallowWrapper {
               isActive={false}
               isPressed={false}
             />,
+            <Notification
+              isVisible={true}
+            />,
             <Treasure
               colourScheme={
                 Object {
@@ -7146,9 +7149,6 @@ ShallowWrapper {
               hasDismiss={false}
               isActive={true}
               isPressed={false}
-            />,
-            <Notification
-              isVisible={true}
             />,
           ],
           "height": "62",
@@ -7217,15 +7217,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "colourScheme": Object {
-                "active": "rgb(0,0,0)",
-                "inactive": "rgba(71,108,104,0.5)",
-                "pressed": "rgba(71,108,104,0.75)",
-              },
-              "hasDismiss": false,
-              "hasWhiteBackground": undefined,
-              "isActive": true,
-              "isPressed": false,
+              "isVisible": true,
             },
             "ref": null,
             "rendered": null,
@@ -7236,7 +7228,15 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "isVisible": true,
+              "colourScheme": Object {
+                "active": "rgb(0,0,0)",
+                "inactive": "rgba(71,108,104,0.5)",
+                "pressed": "rgba(71,108,104,0.75)",
+              },
+              "hasDismiss": false,
+              "hasWhiteBackground": undefined,
+              "isActive": true,
+              "isPressed": false,
             },
             "ref": null,
             "rendered": null,
@@ -7782,6 +7782,9 @@ ShallowWrapper {
               isActive={false}
               isPressed={false}
             />
+            <Notification
+              isVisible={true}
+            />
             <Treasure
               colourScheme={
                 Object {
@@ -7793,9 +7796,6 @@ ShallowWrapper {
               hasDismiss={false}
               isActive={true}
               isPressed={false}
-            />
-            <Notification
-              isVisible={true}
             />
           </Svg>,
           <View
@@ -7967,6 +7967,9 @@ ShallowWrapper {
                 isActive={false}
                 isPressed={false}
               />,
+              <Notification
+                isVisible={true}
+              />,
               <Treasure
                 colourScheme={
                   Object {
@@ -7978,9 +7981,6 @@ ShallowWrapper {
                 hasDismiss={false}
                 isActive={true}
                 isPressed={false}
-              />,
-              <Notification
-                isVisible={true}
               />,
             ],
             "height": "62",
@@ -8049,15 +8049,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "colourScheme": Object {
-                  "active": "rgb(0,0,0)",
-                  "inactive": "rgba(71,108,104,0.5)",
-                  "pressed": "rgba(71,108,104,0.75)",
-                },
-                "hasDismiss": false,
-                "hasWhiteBackground": undefined,
-                "isActive": true,
-                "isPressed": false,
+                "isVisible": true,
               },
               "ref": null,
               "rendered": null,
@@ -8068,7 +8060,15 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "isVisible": true,
+                "colourScheme": Object {
+                  "active": "rgb(0,0,0)",
+                  "inactive": "rgba(71,108,104,0.5)",
+                  "pressed": "rgba(71,108,104,0.75)",
+                },
+                "hasDismiss": false,
+                "hasWhiteBackground": undefined,
+                "isActive": true,
+                "isPressed": false,
               },
               "ref": null,
               "rendered": null,
@@ -8668,6 +8668,9 @@ ShallowWrapper {
             isActive={false}
             isPressed={false}
           />
+          <Notification
+            isVisible={false}
+          />
           <Treasure
             colourScheme={
               Object {
@@ -8679,9 +8682,6 @@ ShallowWrapper {
             hasDismiss={false}
             isActive={true}
             isPressed={false}
-          />
-          <Notification
-            isVisible={false}
           />
         </Svg>,
         <View
@@ -8853,6 +8853,9 @@ ShallowWrapper {
               isActive={false}
               isPressed={false}
             />,
+            <Notification
+              isVisible={false}
+            />,
             <Treasure
               colourScheme={
                 Object {
@@ -8864,9 +8867,6 @@ ShallowWrapper {
               hasDismiss={false}
               isActive={true}
               isPressed={false}
-            />,
-            <Notification
-              isVisible={false}
             />,
           ],
           "height": "62",
@@ -8935,15 +8935,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "colourScheme": Object {
-                "active": "rgb(0,0,0)",
-                "inactive": "rgba(71,108,104,0.5)",
-                "pressed": "rgba(71,108,104,0.75)",
-              },
-              "hasDismiss": false,
-              "hasWhiteBackground": undefined,
-              "isActive": true,
-              "isPressed": false,
+              "isVisible": false,
             },
             "ref": null,
             "rendered": null,
@@ -8954,7 +8946,15 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "isVisible": false,
+              "colourScheme": Object {
+                "active": "rgb(0,0,0)",
+                "inactive": "rgba(71,108,104,0.5)",
+                "pressed": "rgba(71,108,104,0.75)",
+              },
+              "hasDismiss": false,
+              "hasWhiteBackground": undefined,
+              "isActive": true,
+              "isPressed": false,
             },
             "ref": null,
             "rendered": null,
@@ -9500,6 +9500,9 @@ ShallowWrapper {
               isActive={false}
               isPressed={false}
             />
+            <Notification
+              isVisible={false}
+            />
             <Treasure
               colourScheme={
                 Object {
@@ -9511,9 +9514,6 @@ ShallowWrapper {
               hasDismiss={false}
               isActive={true}
               isPressed={false}
-            />
-            <Notification
-              isVisible={false}
             />
           </Svg>,
           <View
@@ -9685,6 +9685,9 @@ ShallowWrapper {
                 isActive={false}
                 isPressed={false}
               />,
+              <Notification
+                isVisible={false}
+              />,
               <Treasure
                 colourScheme={
                   Object {
@@ -9696,9 +9699,6 @@ ShallowWrapper {
                 hasDismiss={false}
                 isActive={true}
                 isPressed={false}
-              />,
-              <Notification
-                isVisible={false}
               />,
             ],
             "height": "62",
@@ -9767,15 +9767,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "colourScheme": Object {
-                  "active": "rgb(0,0,0)",
-                  "inactive": "rgba(71,108,104,0.5)",
-                  "pressed": "rgba(71,108,104,0.75)",
-                },
-                "hasDismiss": false,
-                "hasWhiteBackground": undefined,
-                "isActive": true,
-                "isPressed": false,
+                "isVisible": false,
               },
               "ref": null,
               "rendered": null,
@@ -9786,7 +9778,15 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "isVisible": false,
+                "colourScheme": Object {
+                  "active": "rgb(0,0,0)",
+                  "inactive": "rgba(71,108,104,0.5)",
+                  "pressed": "rgba(71,108,104,0.75)",
+                },
+                "hasDismiss": false,
+                "hasWhiteBackground": undefined,
+                "isActive": true,
+                "isPressed": false,
               },
               "ref": null,
               "rendered": null,
