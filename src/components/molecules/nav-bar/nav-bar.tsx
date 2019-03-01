@@ -93,6 +93,7 @@ class NavBar extends PureComponent<IProps, IState> {
                         hasDismiss={!!onDismissPress}
                         hasWhiteBackground={hasWhiteBackground}
                     />
+                    <Notification isVisible={hasNotification} />
                     <Treasure
                         isPressed={pressed === 2}
                         isActive={activeIndex === 2}
@@ -100,7 +101,6 @@ class NavBar extends PureComponent<IProps, IState> {
                         hasDismiss={!!onDismissPress}
                         hasWhiteBackground={hasWhiteBackground}
                     />
-                    <Notification isVisible={hasNotification} />
                 </Svg>
                 <View style={StyleSheet.flatten(styles.labelsWrapper)}>
                     {labels.map(({ name, onPress }, index) => (
