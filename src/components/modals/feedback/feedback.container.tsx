@@ -1,8 +1,7 @@
 import { AddUserFeedbackMutation, AddUserFeedbackMutationFunction } from "@graphql/user";
+import Logger from "@services/logging/logger";
 import * as React from "react";
 import { PureComponent } from "react";
-import DeviceInfo from "react-native-device-info";
-import Logger from "../../../services/logging/logger";
 import FeedbackModal from "./feedback.modal";
 
 interface IProps {
@@ -45,14 +44,7 @@ export default class FeedbackModalContainer extends PureComponent<Props, IState>
     };
 
     private onCancel = () => {
-        const logging = {
-            app_version: DeviceInfo.getVersion(),
-            rated: false
-        };
-
-        Logger.logIntercomEvent("app_rating", logging);
-        Logger.logMixpanelEvent("app_rating", logging);
-
+        Logger.logEvent("app_rating", { rated: false });
         this.props.closeModal();
     };
 
@@ -62,13 +54,11 @@ export default class FeedbackModalContainer extends PureComponent<Props, IState>
         await addUserFeedback({ variables: { rating } });
 
         const logging = {
-            app_version: DeviceInfo.getVersion(),
             rated: true,
             rating
         };
 
-        Logger.logIntercomEvent("app_rating", logging);
-        Logger.logMixpanelEvent("app_rating", logging);
+        Logger.logEvent("app_rating", logging);
 
         if (rating <= 3) {
             Logger.logIntercomEvent("low_app_rating");

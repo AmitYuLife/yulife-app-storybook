@@ -17,6 +17,7 @@ jest.mock("react-native-dual-pedometer", () => {
 
 jest.mock("react-native-device-info", () => ({
     getUniqueID: jest.fn(),
+    getVersion: jest.fn(),
 }));
 
 jest.mock("react-native-mixpanel", () => ({

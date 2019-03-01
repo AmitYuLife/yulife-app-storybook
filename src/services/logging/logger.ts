@@ -1,10 +1,12 @@
 import { Client } from "bugsnag-react-native";
 import Config from "react-native-config";
+import DeviceInfo from "react-native-device-info";
 import Intercom from "react-native-intercom";
 import Mixpanel from "react-native-mixpanel";
 import bugsnag from "../bugsnag";
 
 class LoggerInstance {
+    private appVersion: string = DeviceInfo.getVersion();
     private bugsnag: Client;
 
     constructor() {
@@ -22,30 +24,20 @@ class LoggerInstance {
         this.bugsnag.setUser(userId, "", "");
     };
 
-    public logEvent(event: string, props?: {}) {
-        if (props) {
-            Intercom.logEvent(event, props);
-            Mixpanel.trackWithProperties(event, props);
-        } else {
-            Intercom.logEvent(event, null);
-            Mixpanel.track(event);
-        }
+    public logEvent(event: string, metadata: { [x: string]: any } = {}) {
+        metadata.app_version = this.appVersion;
+        Intercom.logEvent(event, metadata);
+        Mixpanel.trackWithProperties(event, metadata);
     }
 
-    public logMixpanelEvent(event: string, props?: {}) {
-        if (props) {
-            Mixpanel.trackWithProperties(event, props);
-        } else {
-            Mixpanel.track(event);
-        }
+    public logMixpanelEvent(event: string, metadata: { [x: string]: any } = {}) {
+        metadata.app_version = this.appVersion;
+        Mixpanel.trackWithProperties(event, metadata);
     }
 
-    public logIntercomEvent(event: string, props?: {}) {
-        if (props) {
-            Intercom.logEvent(event, props);
-        } else {
-            Intercom.logEvent(event, null);
-        }
+    public logIntercomEvent(event: string, metadata: { [key: string]: any } = {}) {
+        metadata.app_version = this.appVersion;
+        Intercom.logEvent(event, metadata);
     }
 
     public setUserProperties(props: {}, customAttrs = false) {
