@@ -176,7 +176,6 @@ export default StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
         height: rowHeight,
-        justifyContent: "flex-end",
-        marginTop: Platform.OS === "ios" ? 0 : -2
+        justifyContent: "flex-end"
     } as ViewStyle
 });
