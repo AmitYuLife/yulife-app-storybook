@@ -15,6 +15,13 @@ const styles = StyleSheet.create({
     ctaButton: {
         marginTop: Style.SCALE_UP_AND_DOWN(-4)
     } as ViewStyle,
+    error: {
+        bottom: Style.SCALE_UP_AND_DOWN(30),
+        color: "rgb(170,170,170)",
+        fontSize: Style.SCALE_UP_AND_DOWN(16),
+        position: "absolute",
+        textAlign: "center"
+    } as TextStyle,
     footer: {
         color: "rgb(170,170,170)",
         fontSize: Style.SCALE_UP_AND_DOWN(16),

@@ -14,13 +14,13 @@ class LoggerInstance {
 
     public setIntercomHash = async (hash: string) => {
         return Intercom.setUserHash(hash);
-    }
+    };
 
     public setUserId = (userId: string) => {
         Intercom.registerIdentifiedUser({ userId });
         Mixpanel.identify(userId);
         this.bugsnag.setUser(userId, "", "");
-    }
+    };
 
     public logEvent(event: string, props?: {}) {
         if (props) {
@@ -64,8 +64,8 @@ class LoggerInstance {
         });
     }
 
-    public logMixpanelError(e: Error, where: string) {
-        this.logMixpanelEvent("app_catched_error", { message: e.message, where });
+    public logMixpanelError(e: Error | string, where: string) {
+        this.logMixpanelEvent("app_catched_error", { message: typeof e === "string" ? e : e.message, where });
     }
 }
 

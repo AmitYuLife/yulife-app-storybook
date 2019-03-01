@@ -5,10 +5,14 @@ import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {
+    // CHALLENGE_END_FAIL,
     CHALLENGE_END_SUCCESS,
+    // CHALLENGE_RESET_FAIL,
     CHALLENGE_RESET_SUCCESS,
+    // CHALLENGE_START_FAIL,
     CHALLENGE_START_SUCCESS,
     CHALLENGE_TIME_UP,
+    // CHALLENGE_UPDATE_FAIL,
     CHALLENGE_UPDATE_SUCCESS
 } from "./levels.actions";
 import { ChallengeStartPayload } from "./levels.actions";

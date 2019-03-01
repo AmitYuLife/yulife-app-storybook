@@ -1,8 +1,7 @@
 import { GetActivityHistoryQuery } from "@graphql/user";
-import moment from "moment";
+import { querySteps } from "@services/fitkit/fitkit.service";
 import * as React from "react";
 import { PureComponent } from "react";
-import RNFitKit, { FitKitTypes } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import {
@@ -75,29 +74,9 @@ class ActivityHistoryContainer extends PureComponent<Props> {
         Logger.logEvent("activity_history_updated");
 
         if (features.canUpdateActivityHistory) {
-            const authorised = await RNFitKit.authorise({
-                read: [FitKitTypes.Types.Steps]
-            });
+            const { results, error } = await querySteps(30, 1);
 
-            if (authorised) {
-                const startTime = moment()
-                    .subtract(30, "days")
-                    .startOf("day")
-                    .format();
-                const endTime = moment()
-                    .subtract(1, "days")
-                    .endOf("day")
-                    .format();
-                const results = await RNFitKit.aggregateQuery({
-                    aggregateBy: {
-                        bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
-                        type: FitKitTypes.AggregateType.Time
-                    },
-                    endTime,
-                    sampleType: FitKitTypes.Types.Steps,
-                    startTime
-                });
-
+            if (results && !!results.length) {
                 try {
                     const response = await addHistoricalSteps({
                         variables: { payload: results.map(mapPedometerResults as any), shouldAward: true }
@@ -108,8 +87,10 @@ class ActivityHistoryContainer extends PureComponent<Props> {
                         this.props.getUserStart();
                     }
                 } catch (e) {
-                    return;
+                    Logger.logMixpanelError(error, "@activity_history_reload_catched");
                 }
+            } else {
+                Logger.logMixpanelError(error, "@activity_history_reload");
             }
         }
     };
