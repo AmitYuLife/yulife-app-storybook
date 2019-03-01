@@ -1,13 +1,17 @@
+import { createActiveChallengeGql } from "@graphql/challenges/createActiveChallenge.gql";
+import { querySteps } from "@services/fitkit/fitkit.service";
 import { getCurrentWorld } from "@services/utils";
+import { ApolloClient } from "apollo-client";
 import * as React from "react";
 import { PureComponent } from "react";
+import { ApolloConsumer } from "react-apollo";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { MODALS } from "../../../../../navigation/constants";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
-import { challengeStartAction } from "../../../../../redux/levels/levels.actions";
+import { challengeStartSuccessAction } from "../../../../../redux/levels/levels.actions";
 import { getCurrentLevel } from "../../../../../redux/levels/levels.selectors";
 import { BlurProvider, IToggleBlur } from "../../../../atoms";
 import { ChallengeDetailsModal } from "../../../../modals";
@@ -22,11 +26,14 @@ interface IProps {
     componentId: string;
     labels: ILabel[];
     level: GetCurrentWorld_getCurrentWorld;
+    client: ApolloClient<any>;
 }
 
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
 interface IState {
+    error: string;
+    isLoading: boolean;
     slot: {
         challengeType: string;
         duration: string;
@@ -37,8 +44,10 @@ interface IState {
     };
 }
 
-class ChallengesListContainer extends PureComponent<Props, IState> {
+class ChallengesListContainerWithClient extends PureComponent<Props, IState> {
     public state: IState = {
+        error: null,
+        isLoading: false,
         slot: {
             challengeType: "brisk walk",
             duration: "",
@@ -50,62 +59,61 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
     };
 
     public render() {
-        return <BlurProvider render={this.renderScreen} renderOverlay={this.renderOverlay} />;
-    }
-
-    private renderScreen = ({ showOverlay }: IToggleBlur) => {
+        const {
+            error,
+            isLoading,
+            slot: { challengeType, duration, milestones, unit }
+        } = this.state;
         const { currentLevel, labels, level, totalCoins } = this.props;
         const currentWorld = getCurrentWorld(level.level);
 
         return (
-            <ChallengesListScreen
-                challenges={level.slots.map((slot) => {
-                    const formattedSlot = {
-                        challengeType: slot.subtype,
-                        duration: getSlotDuration(slot),
-                        id: slot.id,
-                        milestones: formatMilestones(slot.milestones, slot.subtype),
-                        reward: `0-${reduceMilestones(slot.milestones)}`,
-                        unit: slot.unit
-                    };
-                    const isLocked = currentLevel < slot.availableAtLevel;
+            <BlurProvider
+                render={({ showOverlay }: IToggleBlur) => (
+                    <ChallengesListScreen
+                        challenges={level.slots.map((slot) => {
+                            const formattedSlot = {
+                                challengeType: slot.subtype,
+                                duration: getSlotDuration(slot),
+                                id: slot.id,
+                                milestones: formatMilestones(slot.milestones, slot.subtype),
+                                reward: `0-${reduceMilestones(slot.milestones)}`,
+                                unit: slot.unit
+                            };
+                            const isLocked = currentLevel < slot.availableAtLevel;
 
-                    return {
-                        ...formattedSlot,
-                        currentWorld,
-                        isLocked,
-                        minimumLevel: slot.availableAtLevel || 0,
-                        onPress: isLocked ? () => ({}) : this.handleSlotPress(formattedSlot, showOverlay)
-                    };
-                })}
-                currentLevel={level.level}
-                labels={labels}
-                name={`level ${level.level}`}
-                onPressLeftIcon={this.onNavPress}
-                totalCoins={totalCoins}
+                            return {
+                                ...formattedSlot,
+                                currentWorld,
+                                isLocked,
+                                minimumLevel: slot.availableAtLevel || 0,
+                                onPress: isLocked ? () => ({}) : this.handleSlotPress(formattedSlot, showOverlay)
+                            };
+                        })}
+                        currentLevel={level.level}
+                        labels={labels}
+                        name={`level ${level.level}`}
+                        onPressLeftIcon={this.onNavPress}
+                        totalCoins={totalCoins}
+                    />
+                )}
+                renderOverlay={({ hideOverlay }: IToggleBlur) => (
+                    <ChallengeDetailsModal
+                        challengeType={challengeType}
+                        currentWorld={currentWorld}
+                        duration={duration}
+                        error={error}
+                        isLoading={isLoading}
+                        milestones={milestones}
+                        onPressCta={this.handleSubmitChallenge}
+                        onPressClose={hideOverlay}
+                        onPressSetUp={challengeType === "meditation" ? this.showMeditationSetUpModal : null}
+                        unit={unit}
+                    />
+                )}
             />
         );
-    };
-
-    private renderOverlay = ({ hideOverlay }: IToggleBlur) => {
-        const {
-            slot: { challengeType, duration, milestones, unit }
-        } = this.state;
-        const currentWorld = getCurrentWorld(this.props.level.level);
-
-        return (
-            <ChallengeDetailsModal
-                challengeType={challengeType}
-                currentWorld={currentWorld}
-                duration={duration}
-                milestones={milestones}
-                onPressCta={this.handleSubmitChallenge}
-                onPressClose={hideOverlay}
-                onPressSetUp={challengeType === "meditation" ? this.showMeditationSetUpModal : null}
-                unit={unit}
-            />
-        );
-    };
+    }
 
     private showMeditationSetUpModal = () => {
         Navigation.showModal({
@@ -116,10 +124,41 @@ class ChallengesListContainer extends PureComponent<Props, IState> {
         });
     };
 
-    private handleSubmitChallenge = async () => {
-        const { id: levelSlotId } = this.state.slot;
-        this.props.challengeStartAction({ levelSlotId });
-        await this.onNavPress();
+    private handleSubmitChallenge = () => {
+        this.setState({ isLoading: true }, async () => {
+            const { client } = this.props;
+            const { id: levelSlotId } = this.state.slot;
+
+            try {
+                const { results } = await querySteps(0, 0);
+                const initialPedometerResult = results && results[0] ? results[0].value : 0;
+
+                const { data } = (await client.mutate({
+                    mutation: createActiveChallengeGql,
+                    variables: { levelSlotId }
+                })) as any;
+
+                if (data && data.createActiveChallenge) {
+                    this.props.challengeStartSuccessAction({
+                        ...data,
+                        initialPedometerResult,
+                        levelSlotId
+                    });
+                    await this.onNavPress();
+                } else {
+                    this.setError();
+                }
+            } catch (e) {
+                this.setError();
+            }
+        });
+    };
+
+    private setError = () => {
+        this.setState({
+            error: "Sorry, there was a problem starting your challenge. \n Please try again!",
+            isLoading: false
+        });
     };
 
     private handleSlotPress = (slot: any, showOverlay: () => void) => () => {
@@ -137,8 +176,14 @@ const mapStateToProps = (state: IReduxState) => ({
 });
 
 const mapDispatchToProps = {
-    challengeStartAction
+    challengeStartSuccessAction
 };
+
+function ChallengesListContainer(props: any) {
+    return (
+        <ApolloConsumer>{(client) => <ChallengesListContainerWithClient {...props} client={client} />}</ApolloConsumer>
+    );
+}
 
 export default connect<ConnectedState, ConnectedDispatch>(
     mapStateToProps,

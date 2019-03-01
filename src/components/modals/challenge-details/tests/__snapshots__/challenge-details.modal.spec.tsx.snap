@@ -82,6 +82,7 @@ ShallowWrapper {
           />
         </View>,
         <Button
+          disabled={false}
           label="take challenge"
           onPress={[MockFunction]}
           type="Primary"
@@ -101,6 +102,7 @@ ShallowWrapper {
             }
           }
         />,
+        null,
       ],
       "style": Object {
         "alignItems": "center",
@@ -218,6 +220,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "disabled": false,
           "label": "take challenge",
           "onPress": [MockFunction],
           "type": "Primary",
@@ -245,6 +248,7 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
+      null,
     ],
     "type": [Function],
   },
@@ -304,6 +308,7 @@ ShallowWrapper {
             />
           </View>,
           <Button
+            disabled={false}
             label="take challenge"
             onPress={[MockFunction]}
             type="Primary"
@@ -323,6 +328,7 @@ ShallowWrapper {
               }
             }
           />,
+          null,
         ],
         "style": Object {
           "alignItems": "center",
@@ -440,6 +446,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "disabled": false,
             "label": "take challenge",
             "onPress": [MockFunction],
             "type": "Primary",
@@ -467,6 +474,7 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
+        null,
       ],
       "type": [Function],
     },
@@ -574,6 +582,7 @@ ShallowWrapper {
           />
         </View>,
         <Button
+          disabled={false}
           label="take challenge"
           onPress={[MockFunction]}
           type="Primary"
@@ -594,6 +603,7 @@ ShallowWrapper {
         >
           
         </YuText>,
+        null,
       ],
       "style": Object {
         "alignItems": "center",
@@ -711,6 +721,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "disabled": false,
           "label": "take challenge",
           "onPress": [MockFunction],
           "type": "Primary",
@@ -738,6 +749,7 @@ ShallowWrapper {
         "rendered": "",
         "type": [Function],
       },
+      null,
     ],
     "type": [Function],
   },
@@ -797,6 +809,7 @@ ShallowWrapper {
             />
           </View>,
           <Button
+            disabled={false}
             label="take challenge"
             onPress={[MockFunction]}
             type="Primary"
@@ -817,6 +830,7 @@ ShallowWrapper {
           >
             
           </YuText>,
+          null,
         ],
         "style": Object {
           "alignItems": "center",
@@ -934,6 +948,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "disabled": false,
             "label": "take challenge",
             "onPress": [MockFunction],
             "type": "Primary",
@@ -961,6 +976,7 @@ ShallowWrapper {
           "rendered": "",
           "type": [Function],
         },
+        null,
       ],
       "type": [Function],
     },

@@ -10,6 +10,8 @@ interface IOwnProps {
     challengeType: string;
     currentWorld?: number;
     duration: string;
+    isLoading?: boolean;
+    error?: string;
     onPressClose: () => void;
     onPressCta: () => void;
     onPressSetUp?: () => void;
@@ -21,6 +23,8 @@ export default function ChallengeDetails({
     challengeType,
     currentWorld = 0,
     duration,
+    error = null,
+    isLoading = false,
     milestones,
     onPressClose,
     onPressCta,
@@ -38,7 +42,8 @@ export default function ChallengeDetails({
                 <Milestones milestones={milestones} unit={unit} />
             </View>
             <Button
-                label={data.ctaLabel}
+                disabled={isLoading}
+                label={isLoading ? data.loading : data.ctaLabel}
                 onPress={onPressCta}
                 type={Button.Types.PRIMARY}
                 wrapperStyle={styles.ctaButton}
@@ -53,6 +58,7 @@ export default function ChallengeDetails({
                     wrapperStyle={styles.setUp}
                 />
             )}
+            {!error ? null : <Text style={styles.error}>{error}</Text>}
         </View>
     );
 }

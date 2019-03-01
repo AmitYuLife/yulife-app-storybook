@@ -1,31 +1,30 @@
 import { MODALS } from "@navigation/constants";
+import Logger from "@services/logging/logger";
 import moment from "moment";
 import { Navigation } from "react-native-navigation";
 import { delay } from "redux-saga";
-import { call, cancel, cancelled, fork, put, race, select, take, takeLatest } from "redux-saga/effects";
+import { call, cancel, cancelled, fork, put, race, select, spawn, take, takeLatest } from "redux-saga/effects";
 import cancelActiveChallengeWithClient from "../../graphql/challenges/cancelActiveChallenge.gql";
-import createActiveChallengeWithClient from "../../graphql/challenges/createActiveChallenge.gql";
 import submitUnityChallengeWithClient from "../../graphql/challenges/submitUnity.gql";
 import updateActiveChallengeWithClient from "../../graphql/challenges/updateActiveChallenge.gql";
 import { queryMindfulSessions } from "../../services/fitkit/fitkit.service";
 import { pathOr } from "../../services/utils";
 import { cancelLocalPush } from "../device/device.actions";
-import { getSteps } from "../pedometer/pedometer.selectors";
 import { GET_USER_SUCCESS, getUserStart } from "../user/user.actions";
 import {
     CHALLENGE_CANCEL,
     CHALLENGE_END,
     CHALLENGE_RESET,
-    CHALLENGE_START,
+    CHALLENGE_START_SUCCESS,
     CHALLENGE_SUBMIT_UNITY,
     CHALLENGE_TIME_UP,
     challengeEndSuccessAction,
     challengeResetSuccessAction,
     challengeStartSuccessAction,
     challengeTimeUpAction,
-    challengeUpdateSuccessAction
+    challengeUpdateSuccessAction,
+    submitUnityAction
 } from "./levels.actions";
-import { challengeStartAction, submitUnityAction } from "./levels.actions";
 import { getEndResult } from "./levels.helpers";
 import { getActiveLevel, getChallengesStatus } from "./levels.selectors";
 
@@ -124,6 +123,7 @@ function* endChallenge() {
                 }
             } catch (e) {
                 // console.log(e);
+                yield spawn(() => Logger.logMixpanelError(e, "levels.sagas.@128"));
             }
         }
     } else {
@@ -137,6 +137,7 @@ function* startChallenge({ isMeditation, levelSlotId, startDateTime, endDateTime
         : yield fork(startStepsTracking, endDateTime);
 
     let inProgress = true;
+
     while (inProgress) {
         const { challengeCancelled, challengeTimeUp } = yield race({
             challengeCancelled: take(CHALLENGE_CANCEL),
@@ -155,6 +156,7 @@ function* startChallenge({ isMeditation, levelSlotId, startDateTime, endDateTime
                 inProgress = false;
             } catch (e) {
                 // console.log(e);
+                yield spawn(() => Logger.logMixpanelError(e, "levels.sagas.@161"));
             }
         } else if (challengeTimeUp) {
             inProgress = false;
@@ -163,54 +165,35 @@ function* startChallenge({ isMeditation, levelSlotId, startDateTime, endDateTime
     }
 }
 
-export function* startChallenges() {
-    while (true) {
-        const { challengeStarted } = yield race({
-            challengeContinued: take(GET_USER_SUCCESS),
-            challengeStarted: take(CHALLENGE_START)
+function* startChallengeSuccess({ payload }: ReturnType<typeof challengeStartSuccessAction>) {
+    const {
+        createActiveChallenge: {
+            challenge: { startDateTime, endDateTime },
+            levelSlot: { subtype }
+        },
+        levelSlotId
+    } = payload;
+
+    if (startDateTime && endDateTime && subtype) {
+        yield call(startChallenge, {
+            endDateTime,
+            isMeditation: subtype === "meditation",
+            levelSlotId,
+            startDateTime
         });
+    }
+}
 
-        if (challengeStarted) {
-            const { payload }: ReturnType<typeof challengeStartAction> = challengeStarted;
+function* startChallengeIfActive() {
+    const { endDateTime, levelSlotId, startDateTime, status, subtype, timeUp } = yield select(getActiveLevel);
 
-            const { levelSlotId } = payload;
-            const initialPedometerResult = yield select(getSteps);
-            const { data } = yield call(createActiveChallengeWithClient, levelSlotId);
-
-            if (data && data.createActiveChallenge) {
-                yield put(
-                    challengeStartSuccessAction({
-                        ...data,
-                        initialPedometerResult
-                    })
-                );
-
-                const {
-                    challenge: { startDateTime, endDateTime },
-                    levelSlot: { subtype }
-                } = data.createActiveChallenge;
-
-                if (startDateTime && endDateTime && subtype) {
-                    yield call(startChallenge, {
-                        endDateTime,
-                        isMeditation: subtype === "meditation",
-                        levelSlotId,
-                        startDateTime
-                    });
-                }
-            }
-        } else {
-            const { endDateTime, levelSlotId, startDateTime, status, subtype, timeUp } = yield select(getActiveLevel);
-
-            if (levelSlotId && !timeUp && !status) {
-                yield call(startChallenge, {
-                    endDateTime,
-                    isMeditation: subtype === "meditation",
-                    levelSlotId,
-                    startDateTime
-                });
-            }
-        }
+    if (levelSlotId && !timeUp && !status) {
+        yield call(startChallenge, {
+            endDateTime,
+            isMeditation: subtype === "meditation",
+            levelSlotId,
+            startDateTime
+        });
     }
 }
 
@@ -219,12 +202,14 @@ function* submitUnity({ payload }: ReturnType<typeof submitUnityAction>) {
         yield call(submitUnityChallengeWithClient, payload.levelId);
         yield put(getUserStart());
     } catch (e) {
-        // console.log(e);
+        yield spawn(() => Logger.logMixpanelError(e, "levels.sagas.@231"));
     }
 }
 
 export default [
-    startChallenges(),
+    // startChallenges(),
+    takeLatest(CHALLENGE_START_SUCCESS, startChallengeSuccess),
+    takeLatest(GET_USER_SUCCESS, startChallengeIfActive),
     takeLatest(CHALLENGE_RESET, resetChallenge),
     takeLatest(CHALLENGE_END, endChallenge),
     takeLatest(CHALLENGE_SUBMIT_UNITY, submitUnity)

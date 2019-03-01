@@ -6,16 +6,29 @@ import {
 } from "../../graphql/_core/schema";
 
 export const CHALLENGE_SUBMIT_UNITY = "CHALLENGE_SUBMIT_UNITY";
+
 export const CHALLENGE_START = "CHALLENGE_START";
 export const CHALLENGE_START_SUCCESS = "CHALLENGE_START_SUCCESS";
+export const CHALLENGE_START_FAIL = "CHALLENGE_START_FAIL";
+
 export const CHALLENGE_UPDATE_SUCCESS = "CHALLENGE_UPDATE_SUCCESS";
+export const CHALLENGE_UPDATE_FAIL = "CHALLENGE_UPDATE_FAIL";
+
 export const CHALLENGE_CONTINUE = "CHALLENGE_CONTINUE";
+
 export const CHALLENGE_TIME_UP = "CHALLENGE_TIME_UP";
+
 export const CHALLENGE_END = "CHALLENGE_END";
 export const CHALLENGE_END_SUCCESS = "CHALLENGE_END_SUCCESS";
+export const CHALLENGE_END_FAIL = "CHALLENGE_END_FAIL";
+
 export const CHALLENGE_RESET = "CHALLENGE_RESET";
 export const CHALLENGE_RESET_SUCCESS = "CHALLENGE_RESET_SUCCESS";
+export const CHALLENGE_RESET_FAIL = "CHALLENGE_RESET_FAIL";
+
 export const CHALLENGE_CANCEL = "CHALLENGE_CANCEL";
+export const CHALLENGE_CANCEL_SUCCESS = "CHALLENGE_CANCEL_SUCCESS";
+export const CHALLENGE_CANCEL_FAIL = "CHALLENGE_CANCEL_FAIL";
 
 export const submitUnityAction = (payload: SubmitUnityVariables) => ({
     payload,
@@ -27,7 +40,7 @@ export const challengeStartAction = (payload: CreateActiveChallengeVariables) =>
     type: CHALLENGE_START
 });
 
-export type ChallengeStartPayload = CreateActiveChallenge & { initialPedometerResult: number };
+export type ChallengeStartPayload = CreateActiveChallenge & { initialPedometerResult: number, levelSlotId: string };
 export const challengeStartSuccessAction = (payload: ChallengeStartPayload) => ({
     payload,
     type: CHALLENGE_START_SUCCESS
