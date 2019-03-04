@@ -21,7 +21,7 @@ export default function Blur({ blurRef, wrapperOpacity, wrapperPosition }: IProp
                 ]
             }}
         >
-            <BlurView blurAmount={15} blurType="light" style={StyleSheet.absoluteFill} />
+            <BlurView blurAmount={15} blurType="light" style={StyleSheet.absoluteFillObject} />
         </Animated.View>
     ) : (
         <Animated.View
@@ -36,7 +36,7 @@ export default function Blur({ blurRef, wrapperOpacity, wrapperPosition }: IProp
                 ]
             }}
         >
-            <BlurView viewRef={blurRef} blurAmount={15} blurType="light" style={StyleSheet.absoluteFill} />
+            <BlurView viewRef={blurRef} blurAmount={15} blurType="light" style={StyleSheet.absoluteFillObject} />
         </Animated.View>
     );
 }

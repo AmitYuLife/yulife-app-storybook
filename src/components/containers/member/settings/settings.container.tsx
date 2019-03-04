@@ -40,6 +40,7 @@ class SettingsContainer extends PureComponent<IProps, IState> {
         const leaderboard = {
             isVisible: true,
             items: leaderboards.map((l) => ({
+                isLoading: l.isLoading,
                 name: l.name,
                 onPress: this.handleUpdateLeaderboardConsent(l),
                 status: l.consent ? "active" : "inactive"

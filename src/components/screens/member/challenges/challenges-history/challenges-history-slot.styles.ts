@@ -1,8 +1,4 @@
-import {
-    StyleSheet,
-    TextStyle,
-    ViewStyle
-} from "react-native";
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../../../styles";
 
 export default StyleSheet.create({
@@ -28,7 +24,7 @@ export default StyleSheet.create({
     } as ViewStyle,
     star: {
         marginRight: Style.SCALE_UP_AND_DOWN(5)
-    } as ViewStyle,
+    } as ImageStyle,
     starsWrapper: {
         flex: 1,
         flexDirection: "row"

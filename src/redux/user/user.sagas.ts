@@ -31,9 +31,11 @@ import {
     OPEN_MEMBER_ZONE,
     SET_USER_NO_ACCESS,
     setUserNoAccessAction,
-    UPDATE_LEADERBOARD_CONSENT,
+    UPDATE_LEADERBOARD_CONSENT_START,
     UPDATE_USER_CONSENT,
     updateLeaderboardConsent,
+    updateLeaderboardConsentFailed,
+    updateLeaderboardConsentSuccess,
     updateUserConsent,
     updateUserConsentSuccess
 } from "./user.actions";
@@ -42,7 +44,9 @@ function* updateLeaderboardConsentSaga({ payload }: ReturnType<typeof updateLead
     try {
         yield call(updateLeaderboardConsentGql, payload);
         yield call(getUserData);
+        yield put(updateLeaderboardConsentSuccess(payload));
     } catch (e) {
+        yield put(updateLeaderboardConsentFailed(payload));
         // tslint:disable-next-line
         console.log(e);
     }
@@ -170,7 +174,7 @@ export default [
     takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
     takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
     takeLatest(CHALLENGE_RESET_SUCCESS, getUserData),
-    takeLatest(UPDATE_LEADERBOARD_CONSENT, updateLeaderboardConsentSaga),
+    takeLatest(UPDATE_LEADERBOARD_CONSENT_START, updateLeaderboardConsentSaga),
     takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
     takeLatest(LOGOUT, logOut),
     takeLatest(OPEN_MEMBER_ZONE, openMemberZone)
