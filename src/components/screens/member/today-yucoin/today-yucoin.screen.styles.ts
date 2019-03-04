@@ -1,4 +1,4 @@
-import { ImageStyle, Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../../styles";
 
 const styles = StyleSheet.create({
@@ -14,10 +14,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: Style.SCALE_UP_AND_DOWN(15),
         paddingVertical: Style.SCALE_UP_AND_DOWN(30)
     } as ViewStyle,
+    checkWrapper: { flex: 1, alignItems: "flex-end" } as ViewStyle,
     checksWrapper: {
         alignSelf: "flex-end",
         flexDirection: "row",
-        marginLeft: "auto",
+        justifyContent: "flex-end",
         position: "absolute",
         right: Platform.OS === "ios" ? -1 : 0,
         top: 9
@@ -73,21 +74,19 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     } as ViewStyle,
     progressWrapper: {
-        alignItems: "center",
+        alignItems: "flex-end",
         borderColor: "transparent",
         borderWidth: 1,
         justifyContent: "center",
         overflow: "hidden",
         width: "100%"
     } as ViewStyle,
-    star: {
-        marginLeft: Style.SCALE_UP_AND_DOWN(30)
-    } as ImageStyle,
     starWrapper: {
         marginLeft: 5,
         marginTop: 2
     } as ViewStyle,
     starsWrapper: {
+        alignItems: "center",
         flexDirection: "row",
         marginLeft: Style.SCALE_UP_AND_DOWN(5)
     } as ViewStyle,
