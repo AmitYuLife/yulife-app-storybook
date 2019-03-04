@@ -3,6 +3,7 @@ import {
     GetCurrentUser_getCurrentUser_leaderboards,
     LoginUser,
     MobileConsentInput,
+    UpdateLeaderboardConsentVariables,
     UpdateMemberConsent
 } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
@@ -10,6 +11,9 @@ import {
     GET_USER_SUCCESS,
     LOGIN_USER_SUCCESS,
     SET_USER_NO_ACCESS,
+    UPDATE_LEADERBOARD_CONSENT_FAILED,
+    UPDATE_LEADERBOARD_CONSENT_START,
+    UPDATE_LEADERBOARD_CONSENT_SUCCESS,
     UPDATE_USER_CONSENT_SUCCESS
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
@@ -18,7 +22,9 @@ interface IFeature {
     [x: string]: boolean;
 }
 
-type Leaderboard = GetCurrentUser_getCurrentUser_leaderboards;
+type Leaderboard = GetCurrentUser_getCurrentUser_leaderboards & {
+    isLoading?: boolean;
+};
 
 export interface IUserStore {
     archived: boolean;
@@ -47,6 +53,13 @@ const userReducer = (state: IUserStore = initialState, action: SyncAction): IUse
 
         case UPDATE_USER_CONSENT_SUCCESS:
             return updateUserConsentSuccess(state, action.payload);
+
+        case UPDATE_LEADERBOARD_CONSENT_START:
+            return updateLeaderboardLoading(state, action.payload, true);
+
+        case UPDATE_LEADERBOARD_CONSENT_SUCCESS:
+        case UPDATE_LEADERBOARD_CONSENT_FAILED:
+            return updateLeaderboardLoading(state, action.payload, false);
 
         default:
             return state;
@@ -89,4 +102,19 @@ const updateUserConsentSuccess = (state: IUserStore, { upsertMobileConsent }: Up
     consent: {
         ...upsertMobileConsent
     }
+});
+
+// Only updates loading states
+const updateLeaderboardLoading = (
+    state: IUserStore,
+    payload: UpdateLeaderboardConsentVariables,
+    isLoading: boolean
+): IUserStore => ({
+    ...state,
+    leaderboards: state.leaderboards.map((leaderboard) => {
+        if (leaderboard.leaderboardId === payload.leaderboardId) {
+            return { ...leaderboard, isLoading };
+        }
+        return leaderboard;
+    })
 });

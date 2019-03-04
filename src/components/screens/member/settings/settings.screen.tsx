@@ -13,6 +13,7 @@ export interface ILeaderboardSectionItem {
     name: string;
     status: "active" | "inactive" | "create";
     onPress: () => void;
+    isLoading: boolean;
 }
 
 export interface INotificationsSectionItem extends IYulifeNotification {
@@ -64,9 +65,9 @@ export default class SettingsScreen extends PureComponent<IProps> {
             <View key={index} style={styles.wrapper}>
                 <SectionHeading heading={section.name} />
                 <View style={styles.leaderboardItemsWrapper}>
-                    {section.items.map((item, i) => (
-                        <LeaderboardItem {...item} key={i} />
-                    ))}
+                    {section.items.map((item, i) => {
+                        return <LeaderboardItem {...item} key={i} />;
+                    })}
                 </View>
             </View>
         );

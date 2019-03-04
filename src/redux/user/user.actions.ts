@@ -6,12 +6,19 @@ import {
     UpdateMemberConsent
 } from "../../graphql/_core/schema";
 
+export interface ISetIsUpdatingLeaderboardPayload {
+    isLoading: boolean;
+    id: string;
+}
+
 export const FITKIT_CONSENT_AUTHORISED = "FITKIT_CONSENT_AUTHORISED";
 export const SET_USER_NO_ACCESS = "SET_USER_NO_ACCESS";
 export const GET_USER_START = "GET_USER_START";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
-export const UPDATE_LEADERBOARD_CONSENT = "UPDATE_LEADERBOARD_CONSENT";
+export const UPDATE_LEADERBOARD_CONSENT_START = "UPDATE_LEADERBOARD_CONSENT_START";
+export const UPDATE_LEADERBOARD_CONSENT_FAILED = "UPDATE_LEADERBOARD_CONSENT_FAILED";
+export const UPDATE_LEADERBOARD_CONSENT_SUCCESS = "UPDATE_LEADERBOARD_CONSENT_SUCCESS";
 export const UPDATE_USER_CONSENT = "UPDATE_USER_CONSENT";
 export const UPDATE_USER_CONSENT_SUCCESS = "UPDATE_USER_CONSENT_SUCCESS";
 export const LOGOUT = "LOGOUT";
@@ -41,7 +48,17 @@ export const loginUserSuccess = (payload: LoginUser) => ({
 
 export const updateLeaderboardConsent = (payload: UpdateLeaderboardConsentVariables) => ({
     payload,
-    type: UPDATE_LEADERBOARD_CONSENT
+    type: UPDATE_LEADERBOARD_CONSENT_START
+});
+
+export const updateLeaderboardConsentFailed = (payload: UpdateLeaderboardConsentVariables) => ({
+    payload,
+    type: UPDATE_LEADERBOARD_CONSENT_FAILED
+});
+
+export const updateLeaderboardConsentSuccess = (payload: UpdateLeaderboardConsentVariables) => ({
+    payload,
+    type: UPDATE_LEADERBOARD_CONSENT_SUCCESS
 });
 
 export const updateUserConsent = (payload: MobileConsentInput) => ({
