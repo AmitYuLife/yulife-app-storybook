@@ -61,14 +61,14 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Circle
-          cx="251.6"
-          cy="28"
+          cx="286.1"
+          cy="61.8"
           fill="white"
           r="19"
         />,
         <Circle
-          cx="251.6"
-          cy="28"
+          cx="285.8"
+          cy="61.8"
           fill="rgb(171, 79, 79)"
           r="16"
         />,
@@ -85,8 +85,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "cx": "251.6",
-          "cy": "28",
+          "cx": "286.1",
+          "cy": "61.8",
           "fill": "white",
           "r": "19",
         },
@@ -99,8 +99,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "cx": "251.6",
-          "cy": "28",
+          "cx": "285.8",
+          "cy": "61.8",
           "fill": "rgb(171, 79, 79)",
           "r": "16",
         },
@@ -131,14 +131,14 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Circle
-            cx="251.6"
-            cy="28"
+            cx="286.1"
+            cy="61.8"
             fill="white"
             r="19"
           />,
           <Circle
-            cx="251.6"
-            cy="28"
+            cx="285.8"
+            cy="61.8"
             fill="rgb(171, 79, 79)"
             r="16"
           />,
@@ -155,8 +155,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "cx": "251.6",
-            "cy": "28",
+            "cx": "286.1",
+            "cy": "61.8",
             "fill": "white",
             "r": "19",
           },
@@ -169,8 +169,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "cx": "251.6",
-            "cy": "28",
+            "cx": "285.8",
+            "cy": "61.8",
             "fill": "rgb(171, 79, 79)",
             "r": "16",
           },
