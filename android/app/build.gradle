@@ -103,7 +103,6 @@ android {
 }
 
 dependencies {
-    def googlePlayServicesVersion = safeExtGet("googlePlayServicesVersion", "+")
     def reactNativeVersion = safeExtGet("reactNativeVersion", "+")
 
     implementation project(':react-native-device-info')
@@ -119,12 +118,12 @@ dependencies {
 
     // Intercom
     implementation project(':react-native-intercom')
-    implementation "io.intercom.android:intercom-sdk:5.+"
+    implementation 'io.intercom.android:intercom-sdk-fcm:5.+'
+    implementation 'com.google.firebase:firebase-messaging:15.0.0'
 
     // Mixpanel
     implementation project(':react-native-mixpanel')
     implementation "com.mixpanel.android:mixpanel-android:5.+"
-    implementation "com.google.android.gms:play-services-gcm:$googlePlayServicesVersion"
 
     // Bugsnag
     implementation project(':bugsnag-react-native')
@@ -146,3 +145,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+apply plugin: 'com.google.gms.google-services'
