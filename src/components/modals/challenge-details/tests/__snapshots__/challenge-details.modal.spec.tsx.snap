@@ -83,6 +83,7 @@ ShallowWrapper {
         </View>,
         <Button
           disabled={false}
+          isLoading={false}
           label="take challenge"
           onPress={[MockFunction]}
           type="Primary"
@@ -221,6 +222,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "disabled": false,
+          "isLoading": false,
           "label": "take challenge",
           "onPress": [MockFunction],
           "type": "Primary",
@@ -309,6 +311,7 @@ ShallowWrapper {
           </View>,
           <Button
             disabled={false}
+            isLoading={false}
             label="take challenge"
             onPress={[MockFunction]}
             type="Primary"
@@ -447,6 +450,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "disabled": false,
+            "isLoading": false,
             "label": "take challenge",
             "onPress": [MockFunction],
             "type": "Primary",
@@ -583,6 +587,7 @@ ShallowWrapper {
         </View>,
         <Button
           disabled={false}
+          isLoading={false}
           label="take challenge"
           onPress={[MockFunction]}
           type="Primary"
@@ -722,6 +727,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "disabled": false,
+          "isLoading": false,
           "label": "take challenge",
           "onPress": [MockFunction],
           "type": "Primary",
@@ -810,6 +816,7 @@ ShallowWrapper {
           </View>,
           <Button
             disabled={false}
+            isLoading={false}
             label="take challenge"
             onPress={[MockFunction]}
             type="Primary"
@@ -949,6 +956,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "disabled": false,
+            "isLoading": false,
             "label": "take challenge",
             "onPress": [MockFunction],
             "type": "Primary",

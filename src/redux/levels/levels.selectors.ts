@@ -22,6 +22,7 @@ export interface IActiveLevel {
     subtype: string;
     timeUp: boolean;
     unit: string;
+    isCancelling?: boolean;
 }
 
 export interface ITodayChallengesStatus {

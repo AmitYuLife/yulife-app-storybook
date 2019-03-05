@@ -162,7 +162,19 @@ class QuestsContainer extends PureComponent<Props, IState> {
     private renderCurrentWorld = ({ loading, data, refetch }: GetCurrentWorldResultType) => {
         const { unity } = this.state;
         const {
-            activeLevel: { coins, endDateTime, level, milestones, rating, score, status, subtype, timeUp, unit },
+            activeLevel: {
+                coins,
+                endDateTime,
+                level,
+                milestones,
+                rating,
+                score,
+                status,
+                subtype,
+                timeUp,
+                unit,
+                isCancelling
+            },
             componentId,
             currentLevel,
             features,
@@ -227,6 +239,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                             subheading="You won’t be able to come back to it."
                             ctaLabel="no way!"
                             onPressSecondary={this.props.challengeCancelAction}
+                            isSecondaryLoading={isCancelling}
                             ctaLabelSecondary="exit"
                         />
                     )}

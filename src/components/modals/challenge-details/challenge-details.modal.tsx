@@ -43,6 +43,7 @@ export default function ChallengeDetails({
             </View>
             <Button
                 disabled={isLoading}
+                isLoading={isLoading}
                 label={isLoading ? data.loading : data.ctaLabel}
                 onPress={onPressCta}
                 type={Button.Types.PRIMARY}

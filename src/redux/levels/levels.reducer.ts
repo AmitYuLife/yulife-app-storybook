@@ -6,6 +6,7 @@ import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {
     // CHALLENGE_END_FAIL,
+    CHALLENGE_CANCEL,
     CHALLENGE_END_SUCCESS,
     // CHALLENGE_RESET_FAIL,
     CHALLENGE_RESET_SUCCESS,
@@ -34,6 +35,7 @@ export const initialState: ILevelsStore = {
         coins: 0,
         endDateTime: "",
         initialPedometerResult: 0,
+        isCancelling: false, // loaders
         isCompleted: false, // for meditation, when goal reached
         level: null,
         levelSlotId: "",
@@ -59,6 +61,9 @@ const userReducer = (state: ILevelsStore = initialState, action: SyncAction): IL
 
         case LOGIN_USER_SUCCESS:
             return loginUserSuccess(state, action.payload);
+
+        case CHALLENGE_CANCEL:
+            return isCancellingChallenge(state);
 
         case CHALLENGE_START_SUCCESS:
             return challengeStartSuccess(state, action.payload);
@@ -127,6 +132,14 @@ const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore =>
         "loginUser.user.coinLedger.nextLevelAvailableAt",
         initialState.nextLevelAvailableAt
     )
+});
+
+const isCancellingChallenge = (state: ILevelsStore): ILevelsStore => ({
+    ...state,
+    active: {
+        ...state.active,
+        isCancelling: true
+    }
 });
 
 const challengeStartSuccess = (

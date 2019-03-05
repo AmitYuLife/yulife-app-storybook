@@ -57,6 +57,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
             /* tslint:disable:max-line-length */
             return (
                 <GenericModal
+                    isPrimaryLoading={companyLeaderboard.isLoading}
                     onPress={this.allowLeaderboard}
                     heading="turn on leaderboard?"
                     subheading="We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings."
