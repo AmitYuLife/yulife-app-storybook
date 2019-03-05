@@ -388,6 +388,7 @@ storiesOf("Screens", module)
                 range: true,
                 step: 1
             }, "QuestScreenOffline")}
+            fitkitAvailable={boolean("FitKitAvailable", true)}
             onLeftMenuPress={action("on left menu press")}
             totalCoins={number("TotalCoins", 4, {
                 max: 999999,

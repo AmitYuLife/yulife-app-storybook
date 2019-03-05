@@ -2,13 +2,19 @@ import { Pad, Text } from "@atoms/index";
 import { COLOURS, NavBar, TopBar } from "@molecules/index";
 import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
-import { Image, SafeAreaView, View } from "react-native";
+import { Image, Platform, SafeAreaView, View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
 import styles from "./quests-offline.styles";
 
-type Props = IConnectedScreenProps & { currentLevel: number };
+type Props = IConnectedScreenProps & { currentLevel: number; fitkitAvailable: boolean };
 
-export default function QuestsScreenOffline({ currentLevel, totalCoins, labels, onLeftMenuPress }: Props) {
+export default function QuestsScreenOffline({
+    currentLevel,
+    fitkitAvailable,
+    labels,
+    onLeftMenuPress,
+    totalCoins
+}: Props) {
     const { image, navBarType } = getWorldStyle(currentLevel);
 
     return (
@@ -19,10 +25,17 @@ export default function QuestsScreenOffline({ currentLevel, totalCoins, labels, 
             <View style={styles.headingWrapper}>
                 <View>
                     <Text style={styles.heading} bold={true}>
-                        you’re offline
+                        {!fitkitAvailable ? "device not supported" : "you’re offline"}
                     </Text>
                 </View>
-                <Text>Check your internet connection.</Text>
+                <Text>
+                    {!fitkitAvailable
+                        ? Platform.select({
+                              android: "your device requires Google Play Services in order to use this app.",
+                              ios: "your device requires Apple Healthkit in order to use this app."
+                          })
+                        : "Check your internet connection."}
+                </Text>
                 <Pad height={60} />
             </View>
             <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />

@@ -5,7 +5,7 @@ import moment from "moment";
 import { PureComponent } from "react";
 import React from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
-import { FitKitAuthoriseFunction, FitKitAvailable } from "react-native-fitkit";
+import { FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
@@ -23,13 +23,6 @@ import { getStreaks } from "../../../../redux/streaks/streaks.selectors";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
 import { DailyStepsScreen } from "../../../screens";
-
-interface IFitKitAvailableProps {
-    available: boolean;
-    authorised: boolean;
-    authorise: FitKitAuthoriseFunction;
-    loading: boolean;
-}
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -85,54 +78,56 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     public render() {
-        return <FitKitAvailable>{this.renderScreen}</FitKitAvailable>;
-    }
-
-    private renderScreen = ({ available, authorised, authorise, loading }: IFitKitAvailableProps) => {
-        const {
-            currentLevel,
-            challengesStatus,
-            dailyEarnedCoins,
-            dailySteps,
-            features = {},
-            hasNotification,
-            isFetching,
-            labels,
-            offline,
-            onLeftMenuPress,
-            streaks,
-            totalCoins
-        } = this.props;
-        const { dailyStepsLoading, lastUpdate } = this.state;
-        const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
-        const displayEarnMore = challengesStatus.isAvailable;
-
         return (
-            <DailyStepsScreen
-                coinsToday={dailyEarnedCoins}
-                showCounter={features.showCounter}
-                currentStreak={streaks.currentStreak}
-                currentWorld={getCurrentWorld(currentLevel)}
-                displayStreak={displayStreak}
-                fitKitAvailable={available}
-                hasNotification={hasNotification}
-                hasPermission={authorised}
-                isDoneToday={streaks.isDoneToday}
-                isLoading={isFetching || loading || dailyStepsLoading}
-                isOnline={!offline}
-                labels={labels}
-                lastUpdate={lastUpdate}
-                maxStreak={streaks.maxStreak}
-                onAuthoriseFitKitPress={() => authorise(FitKitPermissions)}
-                onCoinPress={this.onCoinPress}
-                onCtaPress={displayEarnMore ? this.onCta : null}
-                onLeftMenuPress={onLeftMenuPress}
-                onStreakPress={this.onStreak}
-                steps={dailySteps}
-                totalCoins={totalCoins}
-            />
+            <FitKitAvailable>
+                {({ available, authorised, authorise, loading }) => {
+                    const {
+                        currentLevel,
+                        challengesStatus,
+                        dailyEarnedCoins,
+                        dailySteps,
+                        features = {},
+                        hasNotification,
+                        isFetching,
+                        labels,
+                        offline,
+                        onLeftMenuPress,
+                        streaks,
+                        totalCoins
+                    } = this.props;
+                    const { dailyStepsLoading, lastUpdate } = this.state;
+                    const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
+                    const displayEarnMore = challengesStatus.isAvailable;
+
+                    return (
+                        <DailyStepsScreen
+                            coinsToday={dailyEarnedCoins}
+                            showCounter={features.showCounter}
+                            currentStreak={streaks.currentStreak}
+                            currentWorld={getCurrentWorld(currentLevel)}
+                            displayStreak={displayStreak}
+                            fitKitAvailable={available}
+                            hasNotification={hasNotification}
+                            hasPermission={authorised}
+                            isDoneToday={streaks.isDoneToday}
+                            isLoading={isFetching || loading || dailyStepsLoading}
+                            isOnline={!offline}
+                            labels={labels}
+                            lastUpdate={lastUpdate}
+                            maxStreak={streaks.maxStreak}
+                            onAuthoriseFitKitPress={() => authorise(FitKitPermissions)}
+                            onCoinPress={this.onCoinPress}
+                            onCtaPress={displayEarnMore ? this.onCta : null}
+                            onLeftMenuPress={onLeftMenuPress}
+                            onStreakPress={this.onStreak}
+                            steps={dailySteps}
+                            totalCoins={totalCoins}
+                        />
+                    );
+                }}
+            </FitKitAvailable>
         );
-    };
+    }
 
     private onCoinPress = () => {
         const { features = {}, dailyStepsCoinClicked: clickDailySteps } = this.props;

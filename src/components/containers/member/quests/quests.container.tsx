@@ -3,6 +3,7 @@ import moment from "moment";
 import { PureComponent } from "react";
 import React from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
+import { FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../graphql/_core/schema";
@@ -34,13 +35,13 @@ import BlurProvider from "../../../atoms/blur/blur-provider";
 import Loading from "../../../atoms/loading/loading";
 import { ChallengeCompleteModal, GenericModal } from "../../../modals";
 import {
+    ChallengeFailedScreen,
     ChallengeProgressScreen,
     ChallengeSuccessScreen,
     QuestsScreen,
     QuestsScreenOffline,
     QuestsScrollScreen
 } from "../../../screens";
-import ChallengeFailedScreen from "../../../screens/member/challenges/challenge-failed/challenge-failed.screen";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -133,21 +134,28 @@ class QuestsContainer extends PureComponent<Props, IState> {
     public render() {
         const { currentLevel, labels, offline, onLeftMenuPress, totalCoins } = this.props;
 
-        if (offline) {
-            return (
-                <QuestsScreenOffline
-                    currentLevel={currentLevel}
-                    totalCoins={totalCoins}
-                    labels={labels}
-                    onLeftMenuPress={onLeftMenuPress}
-                />
-            );
-        }
-
         return (
-            <GetCurrentWorld query={getCurrentWorldGql} fetchPolicy="network-only">
-                {this.renderCurrentWorld}
-            </GetCurrentWorld>
+            <FitKitAvailable>
+                {({ available }) => {
+                    if (!available || offline) {
+                        return (
+                            <QuestsScreenOffline
+                                currentLevel={currentLevel}
+                                fitkitAvailable={available}
+                                totalCoins={totalCoins}
+                                labels={labels}
+                                onLeftMenuPress={onLeftMenuPress}
+                            />
+                        );
+                    }
+
+                    return (
+                        <GetCurrentWorld query={getCurrentWorldGql} fetchPolicy="network-only">
+                            {this.renderCurrentWorld}
+                        </GetCurrentWorld>
+                    );
+                }}
+            </FitKitAvailable>
         );
     }
 
