@@ -3,6 +3,7 @@ import { Image, SafeAreaView, View } from "react-native";
 import Svg, { Rect } from "react-native-svg";
 import { GetCurrentUser_getCurrentUser_todayActivity } from "../../../../graphql/_core/schema";
 import { ExchangeRate } from "../../../../redux/daily-steps/daily-steps.selectors";
+import { Style } from "../../../../styles";
 import { Button, ChestCoin, Close, GenericHeading, Pad, StarInline, Text } from "../../../atoms";
 import { Glow } from "../daily-steps/assets/yu-coin-subcomponents";
 import styles from "./today-yucoin.screen.styles";
@@ -54,7 +55,6 @@ export default function TodayYucoinScreen({
     steps = 0
 }: IProps) {
     const showNoChallengeDone = !challenges.length && !activeChallenge;
-
     return (
         <SafeAreaView style={styles.wrapper}>
             <GenericHeading hidesBorder={true} heading="today's yucoin" />
@@ -86,23 +86,23 @@ export default function TodayYucoinScreen({
                         </Text>
                     </View>
                     <View style={styles.progressWrapper}>
-                        <Svg width="264" height="15" style={styles.svg}>
-                            <Rect y="4" width="264" height="4" fill="rgb(233,233,233)" />
+                        <Svg width={Style.SCALE_UP_AND_DOWN(275)} height="15" style={styles.svg}>
+                            <Rect y="4" width={Style.SCALE_UP_AND_DOWN(275)} height="4" fill="rgb(233,233,233)" />
                             <Rect
                                 y="4"
-                                width={String(Math.floor((steps * 260) / (exchangeRate.steps * 6)))}
+                                width={Math.floor(Style.SCALE_UP_AND_DOWN(275) * (steps / (exchangeRate.steps * 6)))}
                                 height="4"
                                 fill="black"
                             />
                         </Svg>
                         <View style={styles.checksWrapper}>
                             {Array.from({ length: 6 }).map((_, index) => (
-                                <Image
-                                    key={index}
-                                    resizeMode="cover"
-                                    style={styles.star}
-                                    source={steps / 2000 >= index + 1 ? images.checkFilled : images.checkEmpty}
-                                />
+                                <View style={styles.checkWrapper} key={index}>
+                                    <Image
+                                        resizeMode="cover"
+                                        source={steps / 2000 >= index + 1 ? images.checkFilled : images.checkEmpty}
+                                    />
+                                </View>
                             ))}
                         </View>
                     </View>
