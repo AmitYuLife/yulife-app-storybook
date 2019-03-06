@@ -56,6 +56,7 @@ class Button extends PureComponent<IProps, IState> {
         } else {
             return (
                 <TouchableOpacity
+                    activeOpacity={0.6}
                     disabled={disabled}
                     onPress={onPress}
                     style={StyleSheet.flatten([getWrapperStyle({ type }), wrapperStyle])}
