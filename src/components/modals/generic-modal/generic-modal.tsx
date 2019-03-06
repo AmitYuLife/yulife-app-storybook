@@ -10,6 +10,8 @@ interface IProps {
     ctaLabel: string;
     onPressSecondary?: () => void;
     ctaLabelSecondary?: string;
+    isPrimaryLoading?: boolean;
+    isSecondaryLoading?: boolean;
 }
 
 export default function GenericModal({
@@ -18,7 +20,9 @@ export default function GenericModal({
     ctaLabel,
     onPress,
     onPressSecondary,
-    ctaLabelSecondary
+    ctaLabelSecondary,
+    isPrimaryLoading,
+    isSecondaryLoading
 }: IProps) {
     return (
         <View style={styles.wrapper}>
@@ -27,6 +31,7 @@ export default function GenericModal({
             </Text>
             <Text style={styles.subheading}>{subheading}</Text>
             <Button
+                isLoading={isPrimaryLoading}
                 wrapperStyle={styles.buttonWrapper}
                 label={ctaLabel}
                 onPress={onPress || (() => null)}
@@ -38,6 +43,7 @@ export default function GenericModal({
                     label={ctaLabelSecondary}
                     onPress={onPressSecondary || (() => null)}
                     type={Button.Types.SECONDARY}
+                    isLoading={isSecondaryLoading}
                 />
             )}
         </View>

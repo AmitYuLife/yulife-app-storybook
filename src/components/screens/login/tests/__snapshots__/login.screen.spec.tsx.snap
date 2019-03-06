@@ -74,6 +74,7 @@ ShallowWrapper {
         />
         <Button
           disabled={false}
+          isLoading={false}
           label="log in"
           onPress={[MockFunction]}
           testID="BUTTON_LOGIN"
@@ -150,6 +151,7 @@ ShallowWrapper {
           />,
           <Button
             disabled={false}
+            isLoading={false}
             label="log in"
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
@@ -306,6 +308,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "disabled": false,
+            "isLoading": false,
             "label": "log in",
             "onPress": [MockFunction],
             "testID": "BUTTON_LOGIN",
@@ -400,6 +403,7 @@ ShallowWrapper {
           />
           <Button
             disabled={false}
+            isLoading={false}
             label="log in"
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
@@ -476,6 +480,7 @@ ShallowWrapper {
             />,
             <Button
               disabled={false}
+              isLoading={false}
               label="log in"
               onPress={[MockFunction]}
               testID="BUTTON_LOGIN"
@@ -632,6 +637,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "disabled": false,
+              "isLoading": false,
               "label": "log in",
               "onPress": [MockFunction],
               "testID": "BUTTON_LOGIN",
@@ -774,6 +780,7 @@ ShallowWrapper {
         />
         <Button
           disabled={true}
+          isLoading={true}
           label="logging in ..."
           onPress={[MockFunction]}
           testID="BUTTON_LOGIN"
@@ -850,6 +857,7 @@ ShallowWrapper {
           />,
           <Button
             disabled={true}
+            isLoading={true}
             label="logging in ..."
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
@@ -1006,6 +1014,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "disabled": true,
+            "isLoading": true,
             "label": "logging in ...",
             "onPress": [MockFunction],
             "testID": "BUTTON_LOGIN",
@@ -1100,6 +1109,7 @@ ShallowWrapper {
           />
           <Button
             disabled={true}
+            isLoading={true}
             label="logging in ..."
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
@@ -1176,6 +1186,7 @@ ShallowWrapper {
             />,
             <Button
               disabled={true}
+              isLoading={true}
               label="logging in ..."
               onPress={[MockFunction]}
               testID="BUTTON_LOGIN"
@@ -1332,6 +1343,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "disabled": true,
+              "isLoading": true,
               "label": "logging in ...",
               "onPress": [MockFunction],
               "testID": "BUTTON_LOGIN",
@@ -1474,6 +1486,7 @@ ShallowWrapper {
         />
         <Button
           disabled={false}
+          isLoading={false}
           label="log in"
           onPress={[MockFunction]}
           testID="BUTTON_LOGIN"
@@ -1550,6 +1563,7 @@ ShallowWrapper {
           />,
           <Button
             disabled={false}
+            isLoading={false}
             label="log in"
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
@@ -1706,6 +1720,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "disabled": false,
+            "isLoading": false,
             "label": "log in",
             "onPress": [MockFunction],
             "testID": "BUTTON_LOGIN",
@@ -1800,6 +1815,7 @@ ShallowWrapper {
           />
           <Button
             disabled={false}
+            isLoading={false}
             label="log in"
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
@@ -1876,6 +1892,7 @@ ShallowWrapper {
             />,
             <Button
               disabled={false}
+              isLoading={false}
               label="log in"
               onPress={[MockFunction]}
               testID="BUTTON_LOGIN"
@@ -2032,6 +2049,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "disabled": false,
+              "isLoading": false,
               "label": "log in",
               "onPress": [MockFunction],
               "testID": "BUTTON_LOGIN",
@@ -2162,6 +2180,7 @@ ShallowWrapper {
         />
         <Button
           disabled={false}
+          isLoading={false}
           label="log in"
           onPress={[MockFunction]}
           testID="BUTTON_LOGIN"
@@ -2227,6 +2246,7 @@ ShallowWrapper {
           />,
           <Button
             disabled={false}
+            isLoading={false}
             label="log in"
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
@@ -2327,6 +2347,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "disabled": false,
+            "isLoading": false,
             "label": "log in",
             "onPress": [MockFunction],
             "testID": "BUTTON_LOGIN",
@@ -2409,6 +2430,7 @@ ShallowWrapper {
           />
           <Button
             disabled={false}
+            isLoading={false}
             label="log in"
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
@@ -2474,6 +2496,7 @@ ShallowWrapper {
             />,
             <Button
               disabled={false}
+              isLoading={false}
               label="log in"
               onPress={[MockFunction]}
               testID="BUTTON_LOGIN"
@@ -2574,6 +2597,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "disabled": false,
+              "isLoading": false,
               "label": "log in",
               "onPress": [MockFunction],
               "testID": "BUTTON_LOGIN",
@@ -2719,6 +2743,7 @@ ShallowWrapper {
         />
         <Button
           disabled={false}
+          isLoading={false}
           label="log in"
           onPress={[MockFunction]}
           testID="BUTTON_LOGIN"
@@ -2797,6 +2822,7 @@ ShallowWrapper {
           />,
           <Button
             disabled={false}
+            isLoading={false}
             label="log in"
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
@@ -2963,6 +2989,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "disabled": false,
+            "isLoading": false,
             "label": "log in",
             "onPress": [MockFunction],
             "testID": "BUTTON_LOGIN",
@@ -3060,6 +3087,7 @@ ShallowWrapper {
           />
           <Button
             disabled={false}
+            isLoading={false}
             label="log in"
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
@@ -3138,6 +3166,7 @@ ShallowWrapper {
             />,
             <Button
               disabled={false}
+              isLoading={false}
               label="log in"
               onPress={[MockFunction]}
               testID="BUTTON_LOGIN"
@@ -3304,6 +3333,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "disabled": false,
+              "isLoading": false,
               "label": "log in",
               "onPress": [MockFunction],
               "testID": "BUTTON_LOGIN",

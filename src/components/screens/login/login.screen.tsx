@@ -96,6 +96,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
                     <Pad height={44} />
                     <Button
                         testID={BUTTON_LOGIN}
+                        isLoading={isLoggingIn}
                         disabled={isLoggingIn || disabled}
                         label={isLoggingIn ? data.isLoggingIn : data.logInCta}
                         onPress={onLogInPress}
@@ -110,7 +111,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
 
     private keyboardDidShow = (isShowingKeyboard: boolean) => {
         return () => this.setState({ isShowingKeyboard });
-    }
+    };
 
     private getLinks = () => {
         const { onResetPasswordPress, onSignUpPress } = this.props;
@@ -124,7 +125,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
                 onPress: onSignUpPress
             }
         ];
-    }
+    };
 }
 
 export default LoginScreen;

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import {
+    ActivityIndicator,
     RegisteredStyle,
     StyleSheet,
     Text,
@@ -9,10 +10,12 @@ import {
     View,
     ViewStyle
 } from "react-native";
+import { Colours } from "../../../styles";
 import { getShadowStyle, getTextStyle, getWrapperOverlayStyle, getWrapperStyle } from "./button.helpers";
 import { BUTTON_TYPES, Types } from "./button.types";
 
 interface IProps {
+    isLoading?: boolean;
     type: Types;
     onPress: () => void;
     label: string;
@@ -33,7 +36,7 @@ class Button extends PureComponent<IProps, IState> {
     };
 
     public render() {
-        const { label, type, onPress, wrapperStyle, disabled, testID } = this.props;
+        const { label, type, onPress, wrapperStyle, disabled, testID, isLoading } = this.props;
         const { pressedIn } = this.state;
         if (type.startsWith(BUTTON_TYPES.PRIMARY)) {
             return (
@@ -47,7 +50,11 @@ class Button extends PureComponent<IProps, IState> {
                         onPressOut={this.handlePressOut}
                     >
                         <View style={getWrapperStyle({ type, pressedIn })}>
-                            <Text style={getTextStyle(type)}>{label}</Text>
+                            {isLoading ? (
+                                <ActivityIndicator color="white" />
+                            ) : (
+                                <Text style={getTextStyle(type)}>{label}</Text>
+                            )}
                         </View>
                     </TouchableWithoutFeedback>
                     {!disabled ? null : <View style={getWrapperOverlayStyle({ disabled })} />}
@@ -61,7 +68,11 @@ class Button extends PureComponent<IProps, IState> {
                     onPress={onPress}
                     style={StyleSheet.flatten([getWrapperStyle({ type }), wrapperStyle])}
                 >
-                    <Text style={getTextStyle(type)}>{label}</Text>
+                    {isLoading ? (
+                        <ActivityIndicator color={Colours.darkHotPink} />
+                    ) : (
+                        <Text style={getTextStyle(type)}>{label}</Text>
+                    )}
                 </TouchableOpacity>
             );
         }

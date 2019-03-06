@@ -24,8 +24,17 @@ interface IProps {
 
 type Props = IProps & ConnectedDispatch & ConnectedState;
 
-class StreaksModal extends PureComponent<Props> {
+interface IState {
+    isLoading: boolean;
+}
+
+class StreaksModal extends PureComponent<Props, IState> {
+    public state = {
+        isLoading: false
+    };
+
     public render() {
+        const { isLoading } = this.state;
         const {
             onPressCtaPrimary,
             onPressCtaSecondary,
@@ -42,6 +51,9 @@ class StreaksModal extends PureComponent<Props> {
                         streakCompleted === streakMax && streakAwardId
                             ? async () => {
                                   try {
+                                      this.setState({
+                                          isLoading: true
+                                      });
                                       const result = await collectAward({
                                           variables: {
                                               awardId: streakAwardId
@@ -55,6 +67,10 @@ class StreaksModal extends PureComponent<Props> {
                                       onPressCtaPrimary();
                                   } catch (e) {
                                       onPressCtaPrimary();
+                                  } finally {
+                                      this.setState({
+                                          isLoading: false
+                                      });
                                   }
                               }
                             : onPressCtaPrimary;
@@ -90,6 +106,7 @@ class StreaksModal extends PureComponent<Props> {
                                 ))}
                             </View>
                             <Button
+                                isLoading={isLoading}
                                 wrapperStyle={styles.buttonPrimaryWrapper}
                                 type={Button.Types.PRIMARY}
                                 onPress={onSubmit}

@@ -35,6 +35,7 @@ const ResetPasswordScreen: SFC<IProps> = ({
         />
         <Pad height={30} />
         <Button
+            isLoading={isSubmitting}
             disabled={disableSubmit || isSubmitting}
             label={isSubmitting ? "submitting ..." : "send me the link"}
             onPress={onSubmitPress}

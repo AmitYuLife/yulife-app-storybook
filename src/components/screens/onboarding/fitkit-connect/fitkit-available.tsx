@@ -13,12 +13,10 @@ const FitKitAvailable: SFC<IProps> = ({ connecting, onConnectPress }) => (
     <>
         <Heading label={data.heading} />
         <Pad height={14} />
-        <Blurb
-            label={data.blurb}
-            wrapperStyle={styles.blurbWrapper}
-        />
+        <Blurb label={data.blurb} wrapperStyle={styles.blurbWrapper} />
         <Pad height={34} />
         <Button
+            isLoading={connecting}
             disabled={connecting}
             label={connecting ? data.primaryButtonConnecting : data.primaryButtonLabel}
             onPress={onConnectPress}
