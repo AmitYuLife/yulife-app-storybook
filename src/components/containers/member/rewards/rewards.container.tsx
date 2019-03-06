@@ -118,7 +118,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
                         ctaLabel: "check other rewards",
                         heading: "the voucher is locked",
                         onPress: () => Navigation.dismissModal(MODALS.rewards),
-                        subheading: "You'll be able to process it when you progress further."
+                        subheading: "access coming soon"
                     }
                 }
             });
