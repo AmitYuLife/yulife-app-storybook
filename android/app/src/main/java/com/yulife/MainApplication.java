@@ -15,7 +15,7 @@ import com.reactnativenavigation.react.ReactGateway;
 import com.robinpowered.react.Intercom.IntercomPackage;
 import com.kevinejohn.RNMixpanel.RNMixpanel;
 import com.testfairy.react.TestFairyPackage;
-import com.wwdrew.reactnative.RNDualPedometerPackage;
+import com.yulife.reactnative.pedometer.RNDualPedometerPackage;
 import com.yulife.reactnative.fitkit.RNFitKitPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 

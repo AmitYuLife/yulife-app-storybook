@@ -1,7 +1,7 @@
 {
   "name": "yulife",
-  "version": "1.4.2",
-  "versionCode": 38,
+  "version": "1.5.0",
+  "versionCode": 39,
   "private": true,
   "scripts": {
     "android:adb:reverse": "adb reverse tcp:8081 tcp:8081",
@@ -57,7 +57,7 @@
     "react-native-blur": "^3.2.2",
     "react-native-config": "^0.11.5",
     "react-native-device-info": "^0.22.5",
-    "react-native-dual-pedometer": "git+https://github.com/poppiestar/react-native-dual-pedometer.git",
+    "react-native-dual-pedometer": "ssh://git@gitlab.com:yu-life/yulife-rn-pedometer.git#fa5025b6b561507bee8e55590678fc34a9d30e2e",
     "react-native-fast-image": "^5.1.2",
     "react-native-fitkit": "ssh://git@gitlab.com:yu-life/react-native-fitkit.git#112ee6b1a85a88a52f14d161523f7568becd043e",
     "react-native-intercom": "^12.0.0",

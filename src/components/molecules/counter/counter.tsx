@@ -29,6 +29,7 @@ class Counter extends React.PureComponent<IProps, IState> {
 
     public componentDidUpdate({ value }: IProps) {
         if (value !== this.props.value) {
+            this.animatedValue.stopAnimation();
             this.move();
         }
     }
