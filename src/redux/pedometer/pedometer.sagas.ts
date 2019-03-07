@@ -1,5 +1,4 @@
 import moment from "moment";
-import Pedometer from "react-native-dual-pedometer";
 import { call, cancel, cancelled, fork, put, race, select, spawn, take } from "redux-saga/effects";
 import Logger from "../../services/logging/logger";
 import { getToken } from "../../services/storage";
@@ -9,6 +8,7 @@ import { getIsUserArchived, getUserFeatures } from "../user/user.selectors";
 import {
     PEDOMETER_STOP,
     startPedometerUpdates,
+    updatePedometerNoNewDataAction,
     updatePedometerStartAction,
     updatePedometerSuccessAction
 } from "./pedometer.actions";
@@ -16,23 +16,12 @@ import { stepsChannel } from "./pedometer.channels";
 import { getSteps } from "./pedometer.selectors";
 
 function* listenToSteps() {
+    yield put(updatePedometerStartAction());
+
     const features = yield select(getUserFeatures);
     const momentStartDay = moment().startOf("day");
     const startOfDay = momentStartDay.format();
     const channel = yield call(stepsChannel, startOfDay);
-
-    yield put(updatePedometerStartAction());
-
-    try {
-        const firstQuery = yield call(Pedometer.queryPedometerFromDate, startOfDay, moment().format());
-        yield put(updatePedometerSuccessAction(firstQuery));
-
-        if (features.loggingEnabled) {
-            yield spawn(() => Logger.logMixpanelEvent("raw_steps_results_passive", firstQuery));
-        }
-    } catch (e) {
-        yield spawn(() => Logger.logMixpanelError(e, "pedometer.sagas.@29"));
-    }
 
     while (true) {
         try {
@@ -45,9 +34,11 @@ function* listenToSteps() {
 
             if (results.steps !== currentSteps) {
                 yield put(updatePedometerSuccessAction(results));
+            } else {
+                yield put(updatePedometerNoNewDataAction());
             }
         } catch (e) {
-            yield spawn(() => Logger.logMixpanelError(e, "pedometer.sagas.@29"));
+            yield spawn(() => Logger.logMixpanelError(e, "pedometer.sagas.@38"));
         } finally {
             if (yield cancelled()) {
                 channel.close();

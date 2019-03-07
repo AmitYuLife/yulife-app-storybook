@@ -6,7 +6,7 @@ import {
 } from "../../graphql/_core/schema";
 import { LoginUser } from "../../graphql/_core/schema";
 import { pathOr } from "../../services/utils";
-import { PEDOMETER_UPDATES_START } from "../pedometer/pedometer.actions";
+import { PEDOMETER_UPDATES_NO_NEW_DATA, PEDOMETER_UPDATES_START } from "../pedometer/pedometer.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import { UPDATE_DAILY_STEPS_FAILED, UPDATE_DAILY_STEPS_SUCCESS } from "./daily-steps.actions";
 
@@ -35,6 +35,9 @@ const dailyStepsReducer = (state: IDailyStepsStore = initialState, action: any):
     switch (action.type) {
         case PEDOMETER_UPDATES_START:
             return { ...state, isFetching: true };
+
+        case PEDOMETER_UPDATES_NO_NEW_DATA:
+            return { ...state, isFetching: false };
 
         case UPDATE_DAILY_STEPS_SUCCESS:
             return updateDailyStepsSuccess(state, action.payload);
