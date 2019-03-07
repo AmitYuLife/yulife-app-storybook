@@ -1,13 +1,6 @@
 import * as React from "react";
 import { SFC } from "react";
-import {
-    Image,
-    Platform,
-    StyleSheet,
-    TouchableOpacity,
-    TouchableWithoutFeedbackProps,
-    ViewStyle
-} from "react-native";
+import { Image, Platform, StyleSheet, TouchableOpacity, TouchableWithoutFeedbackProps, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../styles";
 
@@ -32,8 +25,8 @@ const styles = StyleSheet.create({
     } as ViewStyle
 });
 
-const Close: SFC<TouchableWithoutFeedbackProps> = ({ onPress }) => (
-    <TouchableOpacity style={styles.wrapper} onPress={onPress}>
+const Close: SFC<TouchableWithoutFeedbackProps> = ({ onPress, style = {} }) => (
+    <TouchableOpacity style={[styles.wrapper, style]} onPress={onPress}>
         <Image source={require("../../../../assets/close/close.png")} />
     </TouchableOpacity>
 );

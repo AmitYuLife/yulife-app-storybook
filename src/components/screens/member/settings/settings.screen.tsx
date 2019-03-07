@@ -28,6 +28,7 @@ interface ISettingSection<T> {
 }
 
 interface IProps {
+    onCreateLeaderboard: () => void;
     onPressClose: () => void;
     sections: Array<ISettingSection<INotificationsSectionItem | ILeaderboardSectionItem>>;
 }
@@ -68,6 +69,12 @@ export default class SettingsScreen extends PureComponent<IProps> {
                     {section.items.map((item, i) => {
                         return <LeaderboardItem {...item} key={i} />;
                     })}
+                    <LeaderboardItem
+                        name="create"
+                        onPress={this.props.onCreateLeaderboard}
+                        status="create"
+                        isLoading={false}
+                    />
                 </View>
             </View>
         );

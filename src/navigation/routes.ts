@@ -29,6 +29,7 @@ import {
     ChallengeDetailsModal,
     ChallengeUnavailableModal,
     CollectRewardModal,
+    CreateLeaderboardModal,
     GenericModal,
     LevelUnavailableModal,
     MeditationSetUpModal,
@@ -79,6 +80,7 @@ export default [
     // modals
     { name: MODALS.challengeDetails, component: ChallengeDetailsModal },
     { name: MODALS.challengeUnavailable, component: ChallengeUnavailableModal },
+    { name: MODALS.createLeaderboard, component: CreateLeaderboardModal },
     { name: MODALS.chest, component: AnimatedChest },
     { name: MODALS.collectReward, component: CollectRewardModal },
     { name: MODALS.feedback, component: FeedbackModalContainer }, // TODO: fix this

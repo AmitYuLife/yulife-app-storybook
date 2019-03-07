@@ -26,12 +26,15 @@ ShallowWrapper {
         }
       />,
       "onPress": undefined,
-      "style": Object {
-        "padding": 20,
-        "position": "absolute",
-        "right": 10,
-        "top": 60,
-      },
+      "style": Array [
+        Object {
+          "padding": 20,
+          "position": "absolute",
+          "right": 10,
+          "top": 60,
+        },
+        Object {},
+      ],
     },
     "ref": null,
     "rendered": Object {
@@ -64,12 +67,15 @@ ShallowWrapper {
           }
         />,
         "onPress": undefined,
-        "style": Object {
-          "padding": 20,
-          "position": "absolute",
-          "right": 10,
-          "top": 60,
-        },
+        "style": Array [
+          Object {
+            "padding": 20,
+            "position": "absolute",
+            "right": 10,
+            "top": 60,
+          },
+          Object {},
+        ],
       },
       "ref": null,
       "rendered": Object {

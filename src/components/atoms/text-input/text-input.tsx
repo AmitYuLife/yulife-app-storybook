@@ -22,16 +22,18 @@ interface IProps {
     placeholder?: string;
     style?: RegisteredStyle<ViewStyle>;
     testID?: string;
+    icon?: Types;
 }
 
 export enum TEXT_INPUT_TYPES {
+    BOARD = "Board",
     EMAIL = "Email",
     PASSWORD = "Password",
     TEXT = "Text",
     CARD = "Card"
 }
 
-export type Types = "Email" | "Password" | "Text" | "Card";
+export type Types = "Email" | "Password" | "Text" | "Card" | "Board";
 
 class TextInput extends React.PureComponent<IProps> {
     public static Types = TEXT_INPUT_TYPES;
@@ -41,9 +43,9 @@ class TextInput extends React.PureComponent<IProps> {
     };
 
     public render() {
-        const { value, onChange, hasError, errorMessage, type, placeholder = "", style } = this.props;
+        const { icon, value, onChange, hasError, errorMessage, type, placeholder = "", style } = this.props;
         const { isFocused } = this.state;
-        const Icon = getIcon(type);
+        const Icon = icon ? getIcon(icon) : getIcon(type);
         return (
             <View style={StyleSheet.flatten([styles.outerWrapper, style])}>
                 <View

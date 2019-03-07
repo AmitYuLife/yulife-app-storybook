@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Colours } from "../../../styles";
-import { Card, Giraffe, Lock, Mail } from "./assets";
+import { Board, Card, Giraffe, Lock, Mail } from "./assets";
 import { Types } from "./text-input";
 import styles from "./text-input.styles";
 
@@ -47,6 +47,8 @@ export const getIcon = (type: Types) => {
             return Lock;
         case "Text":
             return Giraffe;
+        case "Board":
+            return Board;
         default:
             return null;
     }
@@ -78,6 +80,8 @@ export const getPlaceholder = ({ type, placeholder }: IGetPlaceholder) => {
             return "Password";
         case "Text":
             return placeholder;
+        case "Board":
+            return "Group name";
         default:
             return "";
     }
