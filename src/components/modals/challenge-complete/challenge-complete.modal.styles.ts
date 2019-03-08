@@ -2,6 +2,10 @@ import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../styles";
 
 export default StyleSheet.create({
+    alarm: {
+        height: 64,
+        width: 64
+    } as ViewStyle,
     ctaWrapper: {
         marginTop: Style.SCALE_UP_AND_DOWN(37)
     } as ViewStyle,
