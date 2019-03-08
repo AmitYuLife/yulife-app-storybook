@@ -54,7 +54,7 @@ export default function ActivityHistoryLevelsItem({
                                 LEVEL
                             </Text>
                             <Text bold={true} style={styles.levelTextBottom}>
-                                {padNum(level)}
+                                {padNum(level, -3)}
                             </Text>
                         </View>
                     </View>

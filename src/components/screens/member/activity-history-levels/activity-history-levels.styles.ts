@@ -123,7 +123,7 @@ export default StyleSheet.create({
     } as ViewStyle,
     levelTextBottom: {
         color: "white",
-        fontSize: Style.SCALE_UP_AND_DOWN(22),
+        fontSize: Style.SCALE_UP_AND_DOWN(18),
         textAlign: "center"
     } as TextStyle,
     levelTextTop: {

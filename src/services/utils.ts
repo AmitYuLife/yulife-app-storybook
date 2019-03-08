@@ -8,8 +8,8 @@ export const pathOr: PathOr = (obj, key, def, p) => {
     return obj === undefined || p < key.length ? def : obj;
 };
 
-export function padNum(x: number) {
-    return `0${x}`.slice(-2);
+export function padNum(x: number, sliceIndex: number = -2) {
+    return `0${x}`.slice(sliceIndex);
 }
 
 export function numberWithCommas(x: number) {
