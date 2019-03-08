@@ -1,11 +1,12 @@
 import * as React from "react";
-import { Image, SafeAreaView, View } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import Svg, { Rect } from "react-native-svg";
 import { GetCurrentUser_getCurrentUser_todayActivity } from "../../../../graphql/_core/schema";
 import { ExchangeRate } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { Style } from "../../../../styles";
 import { Button, ChestCoin, Close, GenericHeading, Pad, StarInline, Text } from "../../../atoms";
 import { Glow } from "../daily-steps/assets/yu-coin-subcomponents";
+import Check from "./assets/check";
 import styles from "./today-yucoin.screen.styles";
 
 type ChallengeToday = GetCurrentUser_getCurrentUser_todayActivity;
@@ -21,11 +22,6 @@ interface IProps {
     dailyStepsEarned: number;
     exchangeRate: ExchangeRate;
 }
-
-const images = {
-    checkEmpty: require("../../../../../assets/today-yucoin/check-empty.png"),
-    checkFilled: require("../../../../../assets/today-yucoin/check-filled.png")
-};
 
 function getLabel(challenge: ChallengeToday, isActive: boolean = false) {
     let result = `${challenge.name}`;
@@ -55,6 +51,7 @@ export default function TodayYucoinScreen({
     steps = 0
 }: IProps) {
     const showNoChallengeDone = !challenges.length && !activeChallenge;
+    const progressBarWidth = Style.SCALE_UP_AND_DOWN(275);
     return (
         <SafeAreaView style={styles.wrapper}>
             <GenericHeading hidesBorder={true} heading="today's yucoin" />
@@ -86,11 +83,11 @@ export default function TodayYucoinScreen({
                         </Text>
                     </View>
                     <View style={styles.progressWrapper}>
-                        <Svg width={Style.SCALE_UP_AND_DOWN(275)} height="15" style={styles.svg}>
-                            <Rect y="4" width={Style.SCALE_UP_AND_DOWN(275)} height="4" fill="rgb(233,233,233)" />
+                        <Svg width={progressBarWidth} height="15" style={styles.svg}>
+                            <Rect y="4" width={progressBarWidth} height="4" fill="rgb(233,233,233)" />
                             <Rect
                                 y="4"
-                                width={Math.floor(Style.SCALE_UP_AND_DOWN(275) * (steps / (exchangeRate.steps * 6)))}
+                                width={Math.floor(progressBarWidth * (steps / (exchangeRate.steps * 6)))}
                                 height="4"
                                 fill="black"
                             />
@@ -98,9 +95,9 @@ export default function TodayYucoinScreen({
                         <View style={styles.checksWrapper}>
                             {Array.from({ length: 6 }).map((_, index) => (
                                 <View style={styles.checkWrapper} key={index}>
-                                    <Image
-                                        resizeMode="cover"
-                                        source={steps / 2000 >= index + 1 ? images.checkFilled : images.checkEmpty}
+                                    <Check
+                                        isFilling={(steps + 500) / 2000 >= index + 1}
+                                        fillProgress={((steps + 500 - exchangeRate.steps * (index + 1)) / 500) * 100}
                                     />
                                 </View>
                             ))}
