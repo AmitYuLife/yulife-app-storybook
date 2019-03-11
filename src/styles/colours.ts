@@ -12,6 +12,10 @@ export default {
             }
         }
     },
+    checkMilestone: {
+        filledCheck: "rgb(231,176,61)",
+        unfilledCircle: "rgb(230,230,230)"
+    },
     darkGray: "rgb(51,51,51)",
     darkHotPink: "rgb(226,1,119)",
     darkHotPinkShadow: "#95012b",
