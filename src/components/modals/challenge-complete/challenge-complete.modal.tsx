@@ -1,6 +1,6 @@
 import * as React from "react";
-import { SFC } from "react";
-import { Image, View } from "react-native";
+import { View } from "react-native";
+import * as Animatable from "react-native-animatable";
 import { Button, Text } from "../../atoms";
 import data from "./challenge-complete.modal.data";
 import styles from "./challenge-complete.modal.styles";
@@ -9,11 +9,19 @@ interface IProps {
     onCtaPress: () => void;
 }
 
-const ChallengeComplete: SFC<IProps> = ({ onCtaPress }) => (
+const ChallengeComplete: React.SFC<IProps> = ({ onCtaPress }) => (
     <View style={styles.wrapper}>
-        <Image source={require("../../../../assets/challenge-complete/timeup.png")} />
+        <Animatable.Image
+            style={styles.alarm}
+            delay={1000}
+            iterationCount="infinite"
+            animation="swing"
+            source={require("../../../../assets/challenge-complete/alarm.png")}
+        />
         <View style={styles.headingWrapper}>
-            <Text bold={true} style={styles.text}>{data.heading}</Text>
+            <Text bold={true} style={styles.text}>
+                {data.heading}
+            </Text>
         </View>
         <Button
             wrapperStyle={styles.ctaWrapper}
