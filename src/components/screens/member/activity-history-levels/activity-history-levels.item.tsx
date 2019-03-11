@@ -1,5 +1,4 @@
 import { StarInline, Text } from "@atoms/index";
-import { padNum } from "@services/utils";
 import * as React from "react";
 import { View } from "react-native";
 import styles from "./activity-history-levels.styles";
@@ -54,7 +53,7 @@ export default function ActivityHistoryLevelsItem({
                                 LEVEL
                             </Text>
                             <Text bold={true} style={styles.levelTextBottom}>
-                                {padNum(level, -3)}
+                                {level}
                             </Text>
                         </View>
                     </View>
