@@ -68,5 +68,5 @@ android/*.jks
 android/app/release
 
 # e2e
-./e2e/__report
-./e2e/__report/*
+e2e/__report
+e2e/__report/*

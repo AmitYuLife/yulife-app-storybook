@@ -10,5 +10,15 @@
         "object-literal-sort-keys": true,
         "ordered-imports": true
     },
+    "linterOptions": {
+        "exclude": [
+            "e2e"
+        ]
+    },
+    "cliOptions": {
+        "exclude": [
+            "e2e"
+        ]
+    },
     "rulesDirectory": []
 }

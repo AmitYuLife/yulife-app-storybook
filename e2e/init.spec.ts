@@ -1,15 +1,12 @@
-
-// import * as path from "path";
+import { mockServer, startWalkingSteps } from "@mock";
 const detoxInstance: Detox.Detox = require("detox"); // tslint:disable-line
 const adapter = require("detox/runners/mocha/adapter"); // tslint:disable-line
 const config = require("../package.json").detox; // tslint:disable-line
 
-// require("dotenv").config({
-//     path: path.resolve("./", ".env.e2e"),
-// });
-
 before(async () => {
     await detoxInstance.init(config);
+    device.setURLBlacklist([".*3001"]); // prevent websocket from hanging
+    await mockServer.startServer();
 });
 
 beforeEach(async function () { // tslint:disable-line
@@ -21,5 +18,6 @@ afterEach(async function () { // tslint:disable-line
 });
 
 after(async () => {
+    await mockServer.close();
     await detoxInstance.cleanup();
 });

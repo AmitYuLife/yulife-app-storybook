@@ -6,6 +6,8 @@
 - `yarn e2e:run:includeManual` - runs tests, asks for user inputs on manual assertions
 - `yarn e2e:run:manualOnly` - runs manual tests only with `.manual.spec.ts` extension 
 
+Important: run `yarn start:e2e` when running the packager in order for the mocks to work.
+
 ## Debugging
 - The easiest way to check if an element is not found is to open the mochaawesome report in __report
 
