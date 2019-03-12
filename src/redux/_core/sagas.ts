@@ -1,6 +1,7 @@
 import { all } from "redux-saga/effects";
 import appSagas from "../app/app.sagas";
 import dailyStepsSagas from "../daily-steps/daily-steps.sagas";
+import detoxSagas from "../detox/detox.sagas";
 import deviceSagas from "../device/device.sagas";
 import levelsSagas from "../levels/levels.sagas";
 import loggingSagas from "../logging/logging.sagas";
@@ -14,6 +15,7 @@ export default function* allSagas() {
         ...appSagas,
         ...dailyStepsSagas,
         ...deviceSagas,
+        ...detoxSagas,
         ...levelsSagas,
         ...loggingSagas,
         ...notificationsSagas,

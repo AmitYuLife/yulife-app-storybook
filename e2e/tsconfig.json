@@ -27,6 +27,9 @@
             "@bdd": [
                 "./_utils/bdd/index"
             ],
+            "@mock": [
+                "./_utils/mock/index"
+            ],
             "@navigation": [
                 "./_utils/navigation/index"
             ],
