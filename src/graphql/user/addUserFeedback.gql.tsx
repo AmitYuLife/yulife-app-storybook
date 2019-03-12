@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import * as React from "react";
 import { Mutation, MutationFn, MutationProps, MutationResult } from "react-apollo";
 import { AddUserFeedback, AddUserFeedbackVariables } from "../_core/schema";
 
