@@ -22,7 +22,7 @@ export default function LeaderboardItem({ isCurrentUser, rank, name, steps, coin
         <View style={styles.wrapper}>
             <View style={styles.rankWrapper}>
                 <Text style={StyleSheet.flatten([styles.text, styles.textRight, currentUserStyle])}>
-                    {padNum(rank)}
+                    {padNum(rank, -3)}
                 </Text>
             </View>
             <View style={styles.nameWrapper}>

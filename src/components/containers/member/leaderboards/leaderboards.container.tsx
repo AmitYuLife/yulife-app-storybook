@@ -1,3 +1,4 @@
+/* tslint:disable */
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
@@ -88,6 +89,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                         <LeaderboardsScreen
                             isLoading={loading}
                             initialScrollIndex={initialScrollIndex}
+                            leaderboards={leaderboards}
                             items={data.getLeaderboard || []}
                             onHandleCoinsRefetch={coinsRefetch}
                             onPressClose={this.handleClose}

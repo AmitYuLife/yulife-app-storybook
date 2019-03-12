@@ -10,7 +10,7 @@ export default StyleSheet.create({
     } as ViewStyle,
     rankWrapper: {
         paddingLeft: Style.SCALE_UP_AND_DOWN(10),
-        width: Style.SCALE_UP_AND_DOWN(36)
+        width: Style.SCALE_UP_AND_DOWN(40)
     } as ViewStyle,
     stepsWrapper: {
         paddingRight: Style.SCALE_UP_AND_DOWN(10),

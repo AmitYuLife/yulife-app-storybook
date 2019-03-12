@@ -1,10 +1,11 @@
+import { Leaderboard } from "@redux/user/user.selectors";
 import * as React from "react";
 import { PureComponent } from "react";
 import {
-    ActivityIndicator,
     Animated,
     FlatList,
     Image,
+    LayoutChangeEvent,
     NativeScrollEvent,
     NativeSyntheticEvent,
     SafeAreaView,
@@ -14,17 +15,17 @@ import {
     ViewStyle
 } from "react-native";
 import { ListRenderItemInfo } from "react-native";
-import { Colours, Style } from "../../../../styles";
-import { Close, GenericHeading, LeaderboardPosition, Pad } from "../../../atoms";
+import { Style } from "../../../../styles";
+import { Close, Pad } from "../../../atoms";
 import assets from "./assets";
 import LeaderboardHeader from "./leaderboard-header/leaderboard-header";
 import LeaderboardItem from "./leaderboard-item/leaderboard-item";
-import data from "./leaderboards.data";
+import LeaderboardPositionScroll from "./leaderboard-position-scroll/leaderboard-position-scroll";
 import styles from "./leaderboards.screen.styles";
 
 export type LeaderboardTypes = "yucoin" | "steps" | "meditation";
 
-interface IItem {
+export interface IItem {
     id: string;
     coins: number;
     firstName: string;
@@ -35,6 +36,7 @@ interface IItem {
 
 interface IProps {
     initialScrollIndex: number;
+    leaderboards: Leaderboard[];
     items: IItem[];
     isLoading: boolean;
     onHandleCoinsRefetch: () => void;
@@ -44,37 +46,48 @@ interface IProps {
 }
 
 interface IState {
+    height: number;
     isScrolling: boolean;
     isTopHidden: boolean;
     leaderboardSubtype: LeaderboardTypes;
+    activePage: number;
 }
 
 export default class LeaderboardScreen extends PureComponent<IProps, IState> {
     public flatList: FlatList<any>;
+    public viewRef: View;
     public state = {
+        hasChanged: false,
+        height: 0,
+        activePage: 0,
         isScrolling: false,
         isTopHidden: false,
         leaderboardSubtype: "steps" as LeaderboardTypes
     };
+
     private top3Y = new Animated.Value(0);
 
     public render() {
-        const { isTopHidden, leaderboardSubtype } = this.state;
-        const { isLoading, onPressClose, items } = this.props;
-
+        const { isTopHidden, height, leaderboardSubtype, activePage } = this.state;
+        const { isLoading, onPressClose, items, leaderboards } = this.props;
         return (
             <SafeAreaView style={styles.wrapper}>
-                <Animated.View style={{ transform: [{ translateY: this.top3Y }] }}>
+                <LeaderboardPositionScroll
+                    items={items}
+                    height={height}
+                    pages={leaderboards}
+                    activePage={activePage}
+                    isHidden={isTopHidden}
+                    isLoading={isLoading}
+                    onSwipeEnd={this.onChangeActiveLeaderboard}
+                />
+                <Animated.View
+                    onLayout={(event: LayoutChangeEvent) => this.measureView(event)}
+                    style={{ transform: [{ translateY: this.top3Y }] }}
+                >
                     <View style={styles.backgroundImageWrapper}>
                         <Image style={styles.backgroundImageBase} source={assets.background} />
                     </View>
-                    {isLoading ? (
-                        <View style={styles.loaderWrapper}>
-                            <ActivityIndicator size="large" color={Colours.gray} />
-                        </View>
-                    ) : (
-                        !isTopHidden && items.slice(0, 3).map(this.renderTop)
-                    )}
 
                     <Pad height={275} />
                     <View style={styles.giraffeImageWrapper}>
@@ -89,13 +102,12 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                         onPressRight={this.pressHeaderRight}
                     />
                 </Animated.View>
-                <View style={styles.header}>
-                    <GenericHeading heading={data.heading} hidesBorder={true} subheading={data.subheading} />
+                <View style={styles.closeWrapper}>
+                    <Close onPress={onPressClose} />
                 </View>
-                <Close onPress={onPressClose} />
                 <Animated.View
                     style={StyleSheet.flatten([
-                        isTopHidden ? styles.scrollView2 : styles.scrollView1,
+                        isTopHidden ? styles.shrinkedList : styles.expandedList,
                         { transform: [{ translateY: this.top3Y }] }
                     ] as ViewStyle)}
                 >
@@ -112,10 +124,6 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
             </SafeAreaView>
         );
     }
-
-    private renderTop = (item: IItem, i: number) => (
-        <LeaderboardPosition key={`top-3-${item.id}`} name={item.firstName} position={i + 1} />
-    );
 
     private renderLeaderboardList = ({ index }: ListRenderItemInfo<any>) => {
         const { isLoading, initialScrollIndex, items } = this.props;
@@ -215,5 +223,17 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
             this.props.onHandleCoinsRefetch();
         }
         this.changeLeaderboardSubtype(index);
+    };
+
+    private onChangeActiveLeaderboard = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+        this.setState({
+            activePage: Math.floor(event.nativeEvent.contentOffset.x / Style.DEVICE_WIDTH)
+        });
+    };
+
+    private measureView = (event: LayoutChangeEvent) => {
+        this.setState({
+            height: event.nativeEvent.layout.height
+        });
     };
 }
