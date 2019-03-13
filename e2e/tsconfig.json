@@ -30,6 +30,9 @@
             "@mock": [
                 "./_utils/mock/index"
             ],
+            "@data": [
+                "./_utils/data/index"
+            ],
             "@navigation": [
                 "./_utils/navigation/index"
             ],

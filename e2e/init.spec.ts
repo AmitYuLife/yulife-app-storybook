@@ -1,4 +1,5 @@
-import { mockServer, startWalkingSteps } from "@mock";
+import { mockServer } from "@mock";
+import { dataManager } from "./_utils/data/dataManager";
 const detoxInstance: Detox.Detox = require("detox"); // tslint:disable-line
 const adapter = require("detox/runners/mocha/adapter"); // tslint:disable-line
 const config = require("../package.json").detox; // tslint:disable-line
@@ -7,6 +8,8 @@ before(async () => {
     await detoxInstance.init(config);
     device.setURLBlacklist([".*3001"]); // prevent websocket from hanging
     await mockServer.startServer();
+    await dataManager.connect();
+    await dataManager.reseed();
 });
 
 beforeEach(async function () { // tslint:disable-line
