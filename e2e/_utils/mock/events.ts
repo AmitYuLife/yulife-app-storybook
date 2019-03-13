@@ -1,6 +1,6 @@
 import { AsyncAction, SyncAction } from "@app/redux/_core/types";
 import { ConnectionInfo } from "react-native";
-import { PedometerResponse } from "react-native-dual-pedometer";
+import { PedometerResponse } from "react-native-fitkit";
 
 export const enum EVENT {
     CONNECTION_INFO_CHANGED = "CONNECTION_INFO_CHANGED",
