@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View } from "react-native";
+import { Image, View } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { Button, Text } from "../../atoms";
 import data from "./challenge-complete.modal.data";
@@ -11,13 +11,16 @@ interface IProps {
 
 const ChallengeComplete: React.SFC<IProps> = ({ onCtaPress }) => (
     <View style={styles.wrapper}>
-        <Animatable.Image
-            style={styles.alarm}
-            delay={1000}
-            iterationCount="infinite"
-            animation="swing"
-            source={require("../../../../assets/challenge-complete/alarm.png")}
-        />
+        <View>
+            <Animatable.Image
+                style={styles.alarm}
+                delay={1000}
+                iterationCount="infinite"
+                animation="swing"
+                source={require("../../../../assets/challenge-complete/clock.png")}
+            />
+            <Image style={styles.base} source={require("../../../../assets/challenge-complete/base.png")} />
+        </View>
         <View style={styles.headingWrapper}>
             <Text bold={true} style={styles.text}>
                 {data.heading}
