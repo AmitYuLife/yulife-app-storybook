@@ -21,3 +21,26 @@ export const combinationErrorMessagePresent = async (): Promise<void> => {
     await waitFor(target).toExist();
     await expect(target).toBeVisible();
 };
+
+export const isOnLoginScreen = async (): Promise<void> => {
+    const target = element(by.label("welcome!"));
+    await waitFor(target).toExist();
+    await expect(target).toBeVisible();
+};
+
+export const notOnLoginScreen = async (): Promise<void> => {
+    const target = element(by.label("welcome!"));
+    await expect(target).toBeNotVisible();
+};
+
+export const healthAppPromptVisible = async (): Promise<void> => {
+    const target = element(by.label("connect to health app"));
+    await waitFor(target).toExist();
+    await expect(target).toBeVisible();
+};
+
+export const privacyLinkVisible = async (): Promise<void> => {
+    const target = element(by.label("Privacy notice"));
+    await waitFor(target).toExist();
+    await expect(target).toBeVisible();
+};

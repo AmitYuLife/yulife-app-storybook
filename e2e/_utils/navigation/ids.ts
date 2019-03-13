@@ -4,3 +4,5 @@ export const BUTTON_LOGIN = "BUTTON_LOGIN";
 
 export const INPUT_LOGIN_EMAIL = "INPUT_LOGIN_EMAIL";
 export const INPUT_LOGIN_PASSWORD = "INPUT_LOGIN_PASSWORD";
+
+export const INPUT_BUTTON = (label: string) => `INPUT_BUTTON-${label}`;
