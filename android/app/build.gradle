@@ -128,9 +128,6 @@ dependencies {
     // Bugsnag
     implementation project(':bugsnag-react-native')
 
-    // Dual Pedometer
-    implementation project(':react-native-dual-pedometer')
-
     // FitKit
     implementation project(':react-native-fitkit')
 

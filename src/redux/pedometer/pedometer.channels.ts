@@ -1,16 +1,16 @@
-import Pedometer from "react-native-dual-pedometer";
+import RNFitKit from "react-native-fitkit";
 import { eventChannel } from "redux-saga";
 
 export function stepsChannel(startTime: string) {
     return eventChannel((emitter) => {
-        const { PEDOMETER_UPDATE } = Pedometer.constants;
+        const { PEDOMETER_UPDATE } = RNFitKit.constants;
 
-        const subscriber = Pedometer.addListener(PEDOMETER_UPDATE, emitter);
-        Pedometer.startPedometerUpdatesFromDate(startTime);
+        const subscriber = RNFitKit.addListener(PEDOMETER_UPDATE, emitter);
+        RNFitKit.startPedometerUpdatesFromDate(startTime);
 
         const unlisten = () => {
             subscriber.remove();
-            Pedometer.stopPedometerUpdates();
+            RNFitKit.stopPedometerUpdates();
         };
 
         return unlisten;

@@ -1,4 +1,4 @@
-import { PedometerResponse } from "react-native-dual-pedometer";
+import { PedometerResponse } from "react-native-fitkit";
 import { GetCurrentUser, LoginUser, UpdateActiveChallenge } from "../../graphql/_core/schema";
 import { pathOr } from "../../services/utils";
 import { SyncAction } from "../_core/types";

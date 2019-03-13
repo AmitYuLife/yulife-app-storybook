@@ -11,7 +11,7 @@ jest.mock("react-native-config", () => ({
 
 jest.mock("react-native-intercom", () => {}, { virtual: true });
 
-jest.mock("react-native-dual-pedometer", () => {
+jest.mock("react-native-fitkit", () => {
     Pedometer: {}
 });
 
