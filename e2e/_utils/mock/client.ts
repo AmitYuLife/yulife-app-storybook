@@ -17,13 +17,13 @@ export default class SocketClient {
         this.socket = io.connect(url, { transports: ["websocket"], forceNew: true });
         this.socket = io.connect(url);
         this.socket.on("connect", () => {
-            console.log("Connected?", this.socket);
+            // console.log("Connected?", this.socket);
         });
         this.socket.on("connect_error", () => {
-            console.log("Connect error", this.socket);
+            // console.log("Connect error", this.socket);
         });
         this.socket.on("connect_timeout", () => {
-            console.log("Connect timeout", this.socket);
+            // console.log("Connect timeout", this.socket);
         });
         // this.socket.on("TEST", (payload: string) => console.log("TEST", payload));
         // this.socket.on(EVENT.REDUX_EVENT, (payload: string) => console.log("REDUX EVENT", payload));
@@ -52,5 +52,4 @@ export default class SocketClient {
     public unsubscribe(event: EVENT, cb: any) {
         this.socket.off(event, cb);
     }
-
 }
