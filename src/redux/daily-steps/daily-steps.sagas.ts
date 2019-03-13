@@ -1,6 +1,6 @@
+import { querySteps } from "@services/fitkit/fitkit.service";
 import moment from "moment";
-import { PedometerResponse } from "react-native-dual-pedometer";
-import RNFitKit, { FitKitTypes } from "react-native-fitkit";
+import { PedometerResponse } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { delay } from "redux-saga";
 import { call, put, select, spawn, takeLatest } from "redux-saga/effects";
@@ -36,32 +36,12 @@ export function* oldDaysUpdate() {
     if (moment(lastUpdated).isBefore(startOfDay)) {
         let isUpdated = false;
         // get steps from start of last updated date until the end of previous day
-        const startTime = moment(lastUpdated)
-            .startOf("day")
-            .format();
-        const endTime = moment()
-            .subtract(1, "days")
-            .endOf("day")
-            .format();
+        const { results } = yield call(querySteps, lastUpdated, 1);
 
-        const authorised = yield call(RNFitKit.authorise, {
-            read: [FitKitTypes.Types.Steps]
-        });
-
-        if (authorised) {
-            const results = yield call(RNFitKit.aggregateQuery, {
-                aggregateBy: {
-                    bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
-                    type: FitKitTypes.AggregateType.Time
-                },
-                endTime,
-                sampleType: FitKitTypes.Types.Steps,
-                startTime
-            });
-
+        if (results.length > 0) {
             while (!isUpdated) {
                 try {
-                    const res = yield call(addHistoricalSteps, results.map(mapPedometerResults), true);
+                    const res = yield call(addHistoricalSteps, results, true);
                     const response: HistoricalSteps = pathOr<HistoricalSteps>(res, "data.addHistoricalSteps", {
                         endDateTime: "",
                         startDateTime: "",
@@ -118,33 +98,10 @@ function* getHistoricalData() {
         const onboardingDate = pathOr<string>(res, "data.getCurrentUser.onboardingDate", "");
 
         if (onboardingDate && onboardingDate.length === 19) {
-            const startTime = moment(onboardingDate)
-                .subtract(60, "days")
-                .startOf("day")
-                .format();
-            const endTime = moment(onboardingDate)
-                .subtract(1, "days")
-                .endOf("day")
-                .format();
+            const { results } = yield call(querySteps, 60, 1);
 
-            const authorised = yield call(RNFitKit.authorise, {
-                read: [FitKitTypes.Types.Steps]
-            });
-
-            if (authorised) {
-                const results = yield call(RNFitKit.aggregateQuery, {
-                    aggregateBy: {
-                        bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
-                        type: FitKitTypes.AggregateType.Time
-                    },
-                    endTime,
-                    sampleType: FitKitTypes.Types.Steps,
-                    startTime
-                });
-
-                if (!!results.length) {
-                    yield call(addHistoricalSteps, results.map(mapPedometerResults), false);
-                }
+            if (!!results.length) {
+                yield call(addHistoricalSteps, results, false);
             }
         }
     } catch (e) {

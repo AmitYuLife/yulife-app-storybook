@@ -1,4 +1,4 @@
-import { PedometerResponse } from "react-native-dual-pedometer";
+import { PedometerResponse } from "react-native-fitkit";
 
 export const PEDOMETER_START = "PEDOMETER_START";
 export const PEDOMETER_UPDATES_START = "PEDOMETER_UPDATES_START";

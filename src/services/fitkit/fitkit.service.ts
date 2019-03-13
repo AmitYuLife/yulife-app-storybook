@@ -1,6 +1,5 @@
 import moment from "moment";
-import { PedometerResponse } from "react-native-dual-pedometer";
-import RNFitKit, { FitKitTypes, SampleQueryResult } from "react-native-fitkit";
+import RNFitKit, { FitKitTypes, PedometerResponse, SampleQueryResult } from "react-native-fitkit";
 import { ChallengePayload } from "../../graphql/_core/schema";
 
 export const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
@@ -9,62 +8,57 @@ export const mapPedometerResults = (results: PedometerResponse): ChallengePayloa
     value: Math.floor(results.steps)
 });
 
-export const transformSampleResultToPayload = (item: SampleQueryResult & { duration: number }): ChallengePayload => ({
+export const transformSampleResultToPayload = (item: SampleQueryResult): ChallengePayload => ({
     endDateTime: moment(item.endTime).format(),
     startDateTime: moment(item.startTime).format(),
-    value: item.duration
+    value: Math.floor(item.value)
 });
 
 export const queryMindfulSessions = async (startTime: string, endTime: string): Promise<ChallengePayload[]> => {
     try {
-        const authorised = await RNFitKit.authorise({
-            read: [FitKitTypes.Types.Mindfulness]
+        const results = await RNFitKit.sampleQuery({
+            disableUserEntries: true,
+            endTime,
+            startTime,
+            type: FitKitTypes.Types.MindfulSession
         });
 
-        if (authorised) {
-            const results = await RNFitKit.sampleQuery({
-                endTime,
-                sampleType: FitKitTypes.Types.Mindfulness,
-                startTime
-            });
-
-            return results.map(transformSampleResultToPayload);
-        }
+        return results.map(transformSampleResultToPayload);
     } catch (e) {
         return [];
     }
 };
 
 export const querySteps = async (
-    startDays: number,
-    endDays: number
+    start: number | string,
+    end: number
 ): Promise<{ results: ChallengePayload[]; error: string }> => {
     try {
-        const authorised = await RNFitKit.authorise({
-            read: [FitKitTypes.Types.Steps]
+        const startTime =
+            typeof start === "number"
+                ? moment()
+                      .subtract(start, "days")
+                      .startOf("day")
+                      .format()
+                : moment(start)
+                      .startOf("day")
+                      .format();
+        const endTime = moment()
+            .subtract(end, "days")
+            .endOf("day")
+            .format();
+        const response = await RNFitKit.aggregateQuery({
+            aggregateBy: {
+                bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
+                type: FitKitTypes.AggregateType.Time
+            },
+            disableUserEntries: true,
+            endTime,
+            startTime,
+            type: FitKitTypes.Types.StepCount
         });
 
-        if (authorised) {
-            const startTime = moment()
-                .subtract(startDays, "days")
-                .startOf("day")
-                .format();
-            const endTime = moment()
-                .subtract(endDays, "days")
-                .endOf("day")
-                .format();
-            const response = await RNFitKit.aggregateQuery({
-                aggregateBy: {
-                    bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
-                    type: FitKitTypes.AggregateType.Time
-                },
-                endTime,
-                sampleType: FitKitTypes.Types.Steps,
-                startTime
-            });
-
-            return { results: response.map(mapPedometerResults as any), error: null };
-        }
+        return { results: response.map(mapPedometerResults as any), error: null };
     } catch (e) {
         return { results: [], error: e.message };
     }

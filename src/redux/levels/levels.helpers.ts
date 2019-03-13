@@ -1,6 +1,6 @@
 import { getCurrentWorld } from "@services/utils";
 import moment from "moment";
-import Pedometer from "react-native-dual-pedometer";
+import RNFitKit from "react-native-fitkit";
 import { queryMindfulSessions } from "../../services/fitkit/fitkit.service";
 import { IActiveLevel } from "./levels.selectors";
 
@@ -46,7 +46,7 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
     try {
         const start = moment(startDateTime).format();
         const end = moment(endDateTime).format();
-        const results = await Pedometer.queryPedometerFromDate(start, end);
+        const results = await RNFitKit.queryPedometerFromDate(start, end);
         // console.log("RESULTS: ", results);
         return {
             value: results && results.steps > score ? results.steps : score
