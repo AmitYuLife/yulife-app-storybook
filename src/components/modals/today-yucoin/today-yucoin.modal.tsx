@@ -13,7 +13,6 @@ import { getDailyStepsCoins } from "../../../redux/coins/coins.selectors";
 import { getDailySteps, getExchangeRate } from "../../../redux/daily-steps/daily-steps.selectors";
 import { getChallengesStatus } from "../../../redux/levels/levels.selectors";
 import { pathOr } from "../../../services/utils";
-import Loading from "../../atoms/loading/loading";
 import { TodayYucoinScreen } from "../../screens";
 
 interface IProps {
@@ -38,10 +37,6 @@ class TodayYucoinContainer extends PureComponent<Props> {
                 variables={{ intercomHashMethod: Platform.OS }}
             >
                 {({ loading, data }) => {
-                    if (loading) {
-                        return <Loading />;
-                    }
-
                     const todayActivity = pathOr<ChallengeToday[]>(data, "getCurrentUser.todayActivity", []);
                     const { challenge, levelSlot } = pathOr<ActiveChallenge>(data, "getCurrentUser.activeChallenge", {
                         challenge: null,
@@ -64,6 +59,7 @@ class TodayYucoinContainer extends PureComponent<Props> {
                             challenges={todayActivity}
                             dailyStepsEarned={dailyStepsEarned}
                             exchangeRate={exchangeRate}
+                            loading={loading}
                             steps={steps}
                             onPressCta={this.handleCtaPress}
                             onPressClose={this.handleClose}

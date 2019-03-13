@@ -408,6 +408,7 @@ storiesOf("Screens", module)
             exchangeRate={{ steps: 2000, yucoin: 1}}
             challenges={[]}
             activeChallenge={null}
+            loading={false}
             showCta={true}
             ctaLabel="take a challenge"
             onPressCta={action("pressed cta")}

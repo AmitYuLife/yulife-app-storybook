@@ -14,7 +14,6 @@ import { mapPedometerResults } from "../../../../redux/daily-steps/daily-steps.s
 import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import Logger from "../../../../services/logging/logger";
-import Loading from "../../../atoms/loading/loading";
 import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-error-modal";
 import { ActivityHistoryLevels } from "../../../screens";
 
@@ -34,10 +33,6 @@ class ActivityHistoryContainer extends PureComponent<Props> {
                 {(addHistoricalSteps) => (
                     <GetActivityHistoryQuery fetchPolicy="cache-and-network">
                         {({ loading, data, refetch, error }) => {
-                            if (loading) {
-                                return <Loading />;
-                            }
-
                             if (error && (!data || !data.getActivityHistoryWithLevels)) {
                                 return <GenericConnectionErrorModal onPress={this.handleClose} />;
                             }
