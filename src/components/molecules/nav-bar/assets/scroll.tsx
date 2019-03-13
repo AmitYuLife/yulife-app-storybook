@@ -25,7 +25,7 @@ export default function Scroll({
                     cx="252"
                     cy="62"
                     r="60"
-                    fillOpacity={hasWhiteBackground ? "0.1" : "0.5"}
+                    fillOpacity={hasDismiss && isPressed ? "0.7" : hasWhiteBackground ? "0.1" : "0.5"}
                 />
                 <Path
                     d="M288.1,35.5c0-3.6-2.9-6.5-6.5-6.5h-50c-3.6,0-6.5,2.9-6.5,6.5v0.1V82h-3.5c-3.6,0-6.5,2.9-6.5,6.5c0,0,0,0,0,0
