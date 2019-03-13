@@ -22,9 +22,12 @@ type ConnectedDipatch = typeof mapDispatchToProps;
 type Props = ConnectedState & ConnectedDipatch;
 
 class MenuContainer extends PureComponent<Props> {
+    private deviceVersion = DeviceInfo.getVersion();
+    private buildNumber = DeviceInfo.getBuildNumber();
+
     public render() {
         const { features = {} } = this.props;
-        const version = DeviceInfo.getVersion();
+        const version = features.showBuildNumber ? `${this.deviceVersion} (${this.buildNumber})` : this.deviceVersion;
 
         return (
             <MenuScreen
