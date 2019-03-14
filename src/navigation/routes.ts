@@ -6,6 +6,7 @@ import {
     ChallengesHistoryContainer,
     ChallengesListContainer,
     DailyStepsContainer,
+    DebugContainer,
     FitKitConnectContainer,
     IntroContainer,
     LeaderboardsContainer,
@@ -62,6 +63,7 @@ export default [
     { name: ROUTES.rewards, component: RewardsContainer },
     { name: ROUTES.activityHistory, component: ActivityHistoryContainer },
     { name: ROUTES.leaderboards, component: LeaderboardsContainer },
+    { name: ROUTES.debug, component: DebugContainer },
 
     // quests screens
     { name: ROUTES.questsChallengesList, component: ChallengesListContainer },

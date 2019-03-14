@@ -950,6 +950,23 @@ export interface LoginUserVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: ResetData
+// ====================================================
+
+export interface ResetData {
+  resetData: boolean | null;
+}
+
+export interface ResetDataVariables {
+  code: string;
+  type?: string | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: SendMagicLink
 // ====================================================
 

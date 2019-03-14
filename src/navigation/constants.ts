@@ -1,4 +1,3 @@
-// tslint:disable:object-literal-sort-keys
 export const ROUTES = {
     // root screens
     loading: "yulife.Loading",
@@ -23,6 +22,7 @@ export const ROUTES = {
     rewards: "yulife.member.Rewards",
     activityHistory: "yulife.member.ActivityHistory",
     leaderboards: "yulife.member.Leaderboards",
+    debug: "yulife.member.Debug",
 
     // quests
     questsChallengesList: "yulife.quests.ChallengesList",
@@ -51,4 +51,3 @@ export const MODALS = {
     streaks: "yulife.modals.Streaks",
     todayYucoin: "yulife.modals.todayYucoin"
 };
-// tslint:enable:object-literal-sort-keys

@@ -129,6 +129,22 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
+              "name": "getAvailableConnections",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
               "name": "getCurrentWorld",
               "type": {
                 "kind": "LIST",
@@ -2373,6 +2389,22 @@
                   "ofType": null
                 }
               }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "connections",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
             }
           ],
           "inputFields": null,
@@ -2602,18 +2634,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            {
-              "args": [],
-              "deprecationReason": null,
-              "description": "",
-              "isDeprecated": false,
-              "name": "topupClicked",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
                 "ofType": null
               }
             },
@@ -4638,6 +4658,18 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "createdAt",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             }
           ],
           "inputFields": null,
@@ -6067,6 +6099,22 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
+              "name": "topupOptions",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Topup",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
               "name": "insuranceCoverAmount",
               "type": {
                 "kind": "SCALAR",
@@ -6835,6 +6883,72 @@
                 {
                   "defaultValue": null,
                   "description": "",
+                  "name": "name",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "getNewConnectionLink",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "syncConnections",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": "",
+                  "name": "name",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                }
+              ],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "deleteConnection",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            {
+              "args": [
+                {
+                  "defaultValue": null,
+                  "description": "",
                   "name": "type",
                   "type": {
                     "kind": "NON_NULL",
@@ -7255,13 +7369,13 @@
                 {
                   "defaultValue": null,
                   "description": "",
-                  "name": "beneficiaries",
+                  "name": "split",
                   "type": {
                     "kind": "LIST",
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "BeneficiaryInput",
+                      "name": "BeneficiarySplitItem",
                       "ofType": null
                     }
                   }
@@ -7270,11 +7384,15 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
-              "name": "addBeneficiaries",
+              "name": "splitBeneficiaries",
               "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Beneficiary",
+                  "ofType": null
+                }
               }
             },
             {
@@ -9566,6 +9684,37 @@
             {
               "defaultValue": null,
               "description": "",
+              "name": "percentage",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            }
+          ],
+          "interfaces": null,
+          "kind": "INPUT_OBJECT",
+          "name": "BeneficiarySplitItem",
+          "possibleTypes": null
+        },
+        {
+          "description": "",
+          "enumValues": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "defaultValue": null,
+              "description": "",
+              "name": "id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": "",
               "name": "beneficiaryFirstName",
               "type": {
                 "kind": "SCALAR",
@@ -10343,16 +10492,6 @@
             {
               "defaultValue": null,
               "description": "",
-              "name": "topupClicked",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            {
-              "defaultValue": null,
-              "description": "",
               "name": "topupOptionSelected",
               "type": {
                 "kind": "SCALAR",
@@ -10429,11 +10568,52 @@
                 "name": "Float",
                 "ofType": null
               }
+            },
+            {
+              "defaultValue": null,
+              "description": "",
+              "name": "topupOption",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "TopupOption",
+                "ofType": null
+              }
             }
           ],
           "interfaces": null,
           "kind": "INPUT_OBJECT",
           "name": "QuoteInput",
+          "possibleTypes": null
+        },
+        {
+          "description": "",
+          "enumValues": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "defaultValue": null,
+              "description": "",
+              "name": "coverWithTopup",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            {
+              "defaultValue": null,
+              "description": "",
+              "name": "monthlyCost",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          ],
+          "interfaces": null,
+          "kind": "INPUT_OBJECT",
+          "name": "TopupOption",
           "possibleTypes": null
         },
         {
@@ -10469,6 +10649,18 @@
               "deprecationReason": null,
               "description": "",
               "isDeprecated": false,
+              "name": "topupCreated",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
               "name": "error",
               "type": {
                 "kind": "SCALAR",
@@ -10482,6 +10674,18 @@
               "description": "",
               "isDeprecated": false,
               "name": "quote",
+              "type": {
+                "kind": "OBJECT",
+                "name": "Quote",
+                "ofType": null
+              }
+            },
+            {
+              "args": [],
+              "deprecationReason": null,
+              "description": "",
+              "isDeprecated": false,
+              "name": "topupQuote",
               "type": {
                 "kind": "OBJECT",
                 "name": "Quote",

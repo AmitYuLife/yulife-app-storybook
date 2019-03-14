@@ -98,6 +98,7 @@ class MenuContainer extends PureComponent<Props> {
                 this.handleIntercom();
                 return null;
             case LINKS.DEBUG:
+                this.handlePush(ROUTES.debug);
                 return null;
             case LINKS.LEADERBOARD:
                 this.handlePush(ROUTES.leaderboards);
