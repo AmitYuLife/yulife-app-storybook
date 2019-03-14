@@ -24,9 +24,13 @@ export default function DailyStepsOnline({ coinsToday, showCounter = false, onCt
             )}
             <Pad height={8} />
             <Text>
-                <Text style={flattenStyle}>{`${coinsToday} `}</Text>
+                {showCounter ? (
+                    <Counter duration={1200} value={coinsToday} textStyle={flattenStyle} />
+                ) : (
+                    <Text style={flattenStyle}>{coinsToday}</Text>
+                )}
                 <Text style={flattenStyle} bold={true}>
-                    yu
+                    {` yu`}
                 </Text>
                 <Text style={flattenStyle}>{`coin `}</Text>
                 <Text style={flattenStyle}>today</Text>

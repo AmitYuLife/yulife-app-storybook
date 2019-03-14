@@ -61,8 +61,8 @@ ShallowWrapper {
               }
             }
           >
-            <YuText
-              style={
+            <Counter
+              textStyle={
                 Object {
                   "color": "#333333",
                   "fontSize": 36,
@@ -70,9 +70,8 @@ ShallowWrapper {
                   "marginRight": 16,
                 }
               }
-            >
-              1234
-            </YuText>
+              value={1234}
+            />
           </View>
           <View
             style={
@@ -163,8 +162,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
-                style={
+              <Counter
+                textStyle={
                   Object {
                     "color": "#333333",
                     "fontSize": 36,
@@ -172,9 +171,8 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                value={1234}
+              />
             </View>,
             <View
               style={
@@ -203,8 +201,8 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <YuText
-                style={
+              "children": <Counter
+                textStyle={
                   Object {
                     "color": "#333333",
                     "fontSize": 36,
@@ -212,9 +210,8 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>,
+                value={1234}
+              />,
               "style": Object {
                 "height": "100%",
                 "justifyContent": "center",
@@ -224,18 +221,18 @@ ShallowWrapper {
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "function",
+              "nodeType": "class",
               "props": Object {
-                "children": 1234,
-                "style": Object {
+                "textStyle": Object {
                   "color": "#333333",
                   "fontSize": 36,
                   "marginBottom": -8,
                   "marginRight": 16,
                 },
+                "value": 1234,
               },
               "ref": null,
-              "rendered": 1234,
+              "rendered": null,
               "type": [Function],
             },
             "type": [Function],
@@ -319,8 +316,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
-                style={
+              <Counter
+                textStyle={
                   Object {
                     "color": "#333333",
                     "fontSize": 36,
@@ -328,9 +325,8 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                value={1234}
+              />
             </View>
             <View
               style={
@@ -421,8 +417,8 @@ ShallowWrapper {
                   }
                 }
               >
-                <YuText
-                  style={
+                <Counter
+                  textStyle={
                     Object {
                       "color": "#333333",
                       "fontSize": 36,
@@ -430,9 +426,8 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>
+                  value={1234}
+                />
               </View>,
               <View
                 style={
@@ -461,8 +456,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <YuText
-                  style={
+                "children": <Counter
+                  textStyle={
                     Object {
                       "color": "#333333",
                       "fontSize": 36,
@@ -470,9 +465,8 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>,
+                  value={1234}
+                />,
                 "style": Object {
                   "height": "100%",
                   "justifyContent": "center",
@@ -482,18 +476,18 @@ ShallowWrapper {
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "function",
+                "nodeType": "class",
                 "props": Object {
-                  "children": 1234,
-                  "style": Object {
+                  "textStyle": Object {
                     "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
                   },
+                  "value": 1234,
                 },
                 "ref": null,
-                "rendered": 1234,
+                "rendered": null,
                 "type": [Function],
               },
               "type": [Function],
@@ -614,8 +608,8 @@ ShallowWrapper {
               }
             }
           >
-            <YuText
-              style={
+            <Counter
+              textStyle={
                 Object {
                   "color": "#333333",
                   "fontSize": 36,
@@ -623,9 +617,8 @@ ShallowWrapper {
                   "marginRight": 16,
                 }
               }
-            >
-              1234
-            </YuText>
+              value={1234}
+            />
           </View>
           <View
             style={
@@ -716,8 +709,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
-                style={
+              <Counter
+                textStyle={
                   Object {
                     "color": "#333333",
                     "fontSize": 36,
@@ -725,9 +718,8 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                value={1234}
+              />
             </View>,
             <View
               style={
@@ -756,8 +748,8 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <YuText
-                style={
+              "children": <Counter
+                textStyle={
                   Object {
                     "color": "#333333",
                     "fontSize": 36,
@@ -765,9 +757,8 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>,
+                value={1234}
+              />,
               "style": Object {
                 "height": "100%",
                 "justifyContent": "center",
@@ -777,18 +768,18 @@ ShallowWrapper {
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "function",
+              "nodeType": "class",
               "props": Object {
-                "children": 1234,
-                "style": Object {
+                "textStyle": Object {
                   "color": "#333333",
                   "fontSize": 36,
                   "marginBottom": -8,
                   "marginRight": 16,
                 },
+                "value": 1234,
               },
               "ref": null,
-              "rendered": 1234,
+              "rendered": null,
               "type": [Function],
             },
             "type": [Function],
@@ -872,8 +863,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
-                style={
+              <Counter
+                textStyle={
                   Object {
                     "color": "#333333",
                     "fontSize": 36,
@@ -881,9 +872,8 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                value={1234}
+              />
             </View>
             <View
               style={
@@ -974,8 +964,8 @@ ShallowWrapper {
                   }
                 }
               >
-                <YuText
-                  style={
+                <Counter
+                  textStyle={
                     Object {
                       "color": "#333333",
                       "fontSize": 36,
@@ -983,9 +973,8 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>
+                  value={1234}
+                />
               </View>,
               <View
                 style={
@@ -1014,8 +1003,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <YuText
-                  style={
+                "children": <Counter
+                  textStyle={
                     Object {
                       "color": "#333333",
                       "fontSize": 36,
@@ -1023,9 +1012,8 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>,
+                  value={1234}
+                />,
                 "style": Object {
                   "height": "100%",
                   "justifyContent": "center",
@@ -1035,18 +1023,18 @@ ShallowWrapper {
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "function",
+                "nodeType": "class",
                 "props": Object {
-                  "children": 1234,
-                  "style": Object {
+                  "textStyle": Object {
                     "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
                   },
+                  "value": 1234,
                 },
                 "ref": null,
-                "rendered": 1234,
+                "rendered": null,
                 "type": [Function],
               },
               "type": [Function],
@@ -1189,8 +1177,8 @@ ShallowWrapper {
               }
             }
           >
-            <YuText
-              style={
+            <Counter
+              textStyle={
                 Object {
                   "color": "#333333",
                   "fontSize": 36,
@@ -1198,9 +1186,8 @@ ShallowWrapper {
                   "marginRight": 16,
                 }
               }
-            >
-              1234
-            </YuText>
+              value={1234}
+            />
           </View>
           <View
             style={
@@ -1352,8 +1339,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
-                style={
+              <Counter
+                textStyle={
                   Object {
                     "color": "#333333",
                     "fontSize": 36,
@@ -1361,9 +1348,8 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                value={1234}
+              />
             </View>,
             <View
               style={
@@ -1392,8 +1378,8 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <YuText
-                style={
+              "children": <Counter
+                textStyle={
                   Object {
                     "color": "#333333",
                     "fontSize": 36,
@@ -1401,9 +1387,8 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>,
+                value={1234}
+              />,
               "style": Object {
                 "height": "100%",
                 "justifyContent": "center",
@@ -1413,18 +1398,18 @@ ShallowWrapper {
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "function",
+              "nodeType": "class",
               "props": Object {
-                "children": 1234,
-                "style": Object {
+                "textStyle": Object {
                   "color": "#333333",
                   "fontSize": 36,
                   "marginBottom": -8,
                   "marginRight": 16,
                 },
+                "value": 1234,
               },
               "ref": null,
-              "rendered": 1234,
+              "rendered": null,
               "type": [Function],
             },
             "type": [Function],
@@ -1529,8 +1514,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
-                style={
+              <Counter
+                textStyle={
                   Object {
                     "color": "#333333",
                     "fontSize": 36,
@@ -1538,9 +1523,8 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                value={1234}
+              />
             </View>
             <View
               style={
@@ -1692,8 +1676,8 @@ ShallowWrapper {
                   }
                 }
               >
-                <YuText
-                  style={
+                <Counter
+                  textStyle={
                     Object {
                       "color": "#333333",
                       "fontSize": 36,
@@ -1701,9 +1685,8 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>
+                  value={1234}
+                />
               </View>,
               <View
                 style={
@@ -1732,8 +1715,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <YuText
-                  style={
+                "children": <Counter
+                  textStyle={
                     Object {
                       "color": "#333333",
                       "fontSize": 36,
@@ -1741,9 +1724,8 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>,
+                  value={1234}
+                />,
                 "style": Object {
                   "height": "100%",
                   "justifyContent": "center",
@@ -1753,18 +1735,18 @@ ShallowWrapper {
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "function",
+                "nodeType": "class",
                 "props": Object {
-                  "children": 1234,
-                  "style": Object {
+                  "textStyle": Object {
                     "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
                   },
+                  "value": 1234,
                 },
                 "ref": null,
-                "rendered": 1234,
+                "rendered": null,
                 "type": [Function],
               },
               "type": [Function],
@@ -1908,8 +1890,8 @@ ShallowWrapper {
               }
             }
           >
-            <YuText
-              style={
+            <Counter
+              textStyle={
                 Object {
                   "color": "#333333",
                   "fontSize": 36,
@@ -1917,9 +1899,8 @@ ShallowWrapper {
                   "marginRight": 16,
                 }
               }
-            >
-              1234
-            </YuText>
+              value={1234}
+            />
           </View>
           <View
             style={
@@ -2060,8 +2041,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
-                style={
+              <Counter
+                textStyle={
                   Object {
                     "color": "#333333",
                     "fontSize": 36,
@@ -2069,9 +2050,8 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                value={1234}
+              />
             </View>,
             <View
               style={
@@ -2100,8 +2080,8 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <YuText
-                style={
+              "children": <Counter
+                textStyle={
                   Object {
                     "color": "#333333",
                     "fontSize": 36,
@@ -2109,9 +2089,8 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>,
+                value={1234}
+              />,
               "style": Object {
                 "height": "100%",
                 "justifyContent": "center",
@@ -2121,18 +2100,18 @@ ShallowWrapper {
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "function",
+              "nodeType": "class",
               "props": Object {
-                "children": 1234,
-                "style": Object {
+                "textStyle": Object {
                   "color": "#333333",
                   "fontSize": 36,
                   "marginBottom": -8,
                   "marginRight": 16,
                 },
+                "value": 1234,
               },
               "ref": null,
-              "rendered": 1234,
+              "rendered": null,
               "type": [Function],
             },
             "type": [Function],
@@ -2238,8 +2217,8 @@ ShallowWrapper {
                 }
               }
             >
-              <YuText
-                style={
+              <Counter
+                textStyle={
                   Object {
                     "color": "#333333",
                     "fontSize": 36,
@@ -2247,9 +2226,8 @@ ShallowWrapper {
                     "marginRight": 16,
                   }
                 }
-              >
-                1234
-              </YuText>
+                value={1234}
+              />
             </View>
             <View
               style={
@@ -2390,8 +2368,8 @@ ShallowWrapper {
                   }
                 }
               >
-                <YuText
-                  style={
+                <Counter
+                  textStyle={
                     Object {
                       "color": "#333333",
                       "fontSize": 36,
@@ -2399,9 +2377,8 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>
+                  value={1234}
+                />
               </View>,
               <View
                 style={
@@ -2430,8 +2407,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <YuText
-                  style={
+                "children": <Counter
+                  textStyle={
                     Object {
                       "color": "#333333",
                       "fontSize": 36,
@@ -2439,9 +2416,8 @@ ShallowWrapper {
                       "marginRight": 16,
                     }
                   }
-                >
-                  1234
-                </YuText>,
+                  value={1234}
+                />,
                 "style": Object {
                   "height": "100%",
                   "justifyContent": "center",
@@ -2451,18 +2427,18 @@ ShallowWrapper {
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "function",
+                "nodeType": "class",
                 "props": Object {
-                  "children": 1234,
-                  "style": Object {
+                  "textStyle": Object {
                     "color": "#333333",
                     "fontSize": 36,
                     "marginBottom": -8,
                     "marginRight": 16,
                   },
+                  "value": 1234,
                 },
                 "ref": null,
-                "rendered": 1234,
+                "rendered": null,
                 "type": [Function],
               },
               "type": [Function],

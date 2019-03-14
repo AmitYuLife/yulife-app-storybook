@@ -38,7 +38,7 @@ ShallowWrapper {
               }
             }
           >
-            5 
+            5
           </YuText>
           <YuText
             bold={true}
@@ -48,7 +48,7 @@ ShallowWrapper {
               }
             }
           >
-            yu
+             yu
           </YuText>
           <YuText
             style={
@@ -127,7 +127,7 @@ ShallowWrapper {
                 }
               }
             >
-              5 
+              5
             </YuText>,
             <YuText
               bold={true}
@@ -137,7 +137,7 @@ ShallowWrapper {
                 }
               }
             >
-              yu
+               yu
             </YuText>,
             <YuText
               style={
@@ -166,13 +166,13 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": "5 ",
+              "children": 5,
               "style": Object {
                 "fontSize": 70,
               },
             },
             "ref": null,
-            "rendered": "5 ",
+            "rendered": 5,
             "type": [Function],
           },
           Object {
@@ -181,13 +181,13 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "bold": true,
-              "children": "yu",
+              "children": " yu",
               "style": Object {
                 "fontSize": 70,
               },
             },
             "ref": null,
-            "rendered": "yu",
+            "rendered": " yu",
             "type": [Function],
           },
           Object {
@@ -270,7 +270,7 @@ ShallowWrapper {
                 }
               }
             >
-              5 
+              5
             </YuText>
             <YuText
               bold={true}
@@ -280,7 +280,7 @@ ShallowWrapper {
                 }
               }
             >
-              yu
+               yu
             </YuText>
             <YuText
               style={
@@ -359,7 +359,7 @@ ShallowWrapper {
                   }
                 }
               >
-                5 
+                5
               </YuText>,
               <YuText
                 bold={true}
@@ -369,7 +369,7 @@ ShallowWrapper {
                   }
                 }
               >
-                yu
+                 yu
               </YuText>,
               <YuText
                 style={
@@ -398,13 +398,13 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "children": "5 ",
+                "children": 5,
                 "style": Object {
                   "fontSize": 70,
                 },
               },
               "ref": null,
-              "rendered": "5 ",
+              "rendered": 5,
               "type": [Function],
             },
             Object {
@@ -413,13 +413,13 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "bold": true,
-                "children": "yu",
+                "children": " yu",
                 "style": Object {
                   "fontSize": 70,
                 },
               },
               "ref": null,
-              "rendered": "yu",
+              "rendered": " yu",
               "type": [Function],
             },
             Object {
