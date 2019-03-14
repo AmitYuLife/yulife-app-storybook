@@ -18,6 +18,8 @@ const TOKEN_EXPIRATION = 365 * 24 * 60 * 60;
 
 interface IOwnProps {
     componentId: string;
+    otp?: string;
+    email?: string;
 }
 
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -27,22 +29,33 @@ export interface IState {
     emailError: string;
     password: string;
     passwordError: string;
+    isUsingOtp: boolean;
 }
 
 type Props = IOwnProps & ConnectedDispatch;
 
 export class LoginContainer extends Component<Props, IState> {
+    public static getDerivedStateFromProps(props: Props) {
+        if (props.otp && props.otp.length > 10) {
+            return {
+                email: props.email,
+                emailError: "",
+                isUsingOtp: true,
+                password: props.otp,
+                passwordError: ""
+            };
+        }
+
+        return {};
+    }
+
     public state: IState = {
         email: "",
         emailError: "",
+        isUsingOtp: false,
         password: "",
         passwordError: ""
     };
-
-    // public componentDidMount() {
-    //     // TODO logging
-    //     Logger.logEvent("Page View", { "Page Name": "Login" });
-    // }
 
     public render() {
         const { email, emailError, passwordError, password } = this.state;
@@ -110,7 +123,7 @@ export class LoginContainer extends Component<Props, IState> {
     };
 
     private onLogIn = async (loginUser: LoginUserMutationFunction, authorised: boolean) => {
-        const { email, password } = this.state;
+        const { email, isUsingOtp, password } = this.state;
 
         if (this.isFormValid()) {
             try {
@@ -118,7 +131,7 @@ export class LoginContainer extends Component<Props, IState> {
                     variables: {
                         email: email.toLowerCase(),
                         intercomHashMethod: Platform.OS as IntercomHashMethod,
-                        method: LoginMethod.PASSWORD,
+                        method: isUsingOtp ? LoginMethod.OTP : LoginMethod.PASSWORD,
                         password,
                         tokenExpiration: TOKEN_EXPIRATION
                     }
@@ -132,7 +145,7 @@ export class LoginContainer extends Component<Props, IState> {
                 }
             } catch (e) {
                 // tslint:disable-next-line
-                console.log(e);
+                // console.log(e);
             }
         }
     };
