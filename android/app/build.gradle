@@ -63,6 +63,7 @@ android {
     }
     buildTypes {
         debug {
+            manifestPlaceholders = [deepLinkHost: "join-develop.yulife.com", deepLinkAppName:"yulife-debug"]
             applicationIdSuffix ".debug"
             debuggable true
             matchingFallbacks = ['debug']
@@ -75,16 +76,19 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             applicationIdSuffix  ".release"
             matchingFallbacks = ['release']
+            manifestPlaceholders = [deepLinkHost: "join-develop.yulife.com", deepLinkAppName:"yulife-develop"]
         }
         uat {
             initWith release
             applicationIdSuffix ".release"
             matchingFallbacks = ['release']
+            manifestPlaceholders = [deepLinkHost: "join-uat.yulife.com", deepLinkAppName:"yulife-uat"]
         }
         production {
             initWith uat
             applicationIdSuffix ".app"
             matchingFallbacks = ['release']
+            manifestPlaceholders = [deepLinkHost: "join.yulife.com", deepLinkAppName:"yulife"]
         }
     }
     // applicationVariants are e.g. debug, release

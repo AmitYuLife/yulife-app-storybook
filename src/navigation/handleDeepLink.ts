@@ -1,11 +1,13 @@
 import { store } from "@redux/_core/store";
 import { GET_HISTORICAL_DATA } from "@redux/daily-steps/daily-steps.actions";
+import { getQueryStringObject } from "@services/utils";
+import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "./constants";
-import { labels } from "./root";
+import { labels, setLoadingRoot, setUnauthenticatedRoot } from "./root";
 
-export default function handleDeepLink(fullUrl: string, hasToken: boolean) {
-    const url = fullUrl.replace("yulifeapp://yulife/", "").replace("https://join.yulife.com/", "");
+export default async function handleDeepLink(fullUrl: string, hasToken: boolean) {
+    const url = fullUrl.replace("yulifeapp://yulife/", "").replace(Config.JOIN_URL, "");
 
     switch (true) {
         case url.startsWith(labels[0].name):
@@ -30,7 +32,7 @@ export default function handleDeepLink(fullUrl: string, hasToken: boolean) {
             return;
         case url.startsWith("feedback"):
             if (hasToken) {
-                Navigation.showModal({
+                await Navigation.showModal({
                     component: {
                         id: MODALS.feedback,
                         name: MODALS.feedback,
@@ -42,6 +44,13 @@ export default function handleDeepLink(fullUrl: string, hasToken: boolean) {
             }
             return;
         case url.startsWith("signup/confirm"): // OTP
+            if (!hasToken) {
+                const props = getQueryStringObject(url);
+                if (props.redirectUrl === "/member") {
+                    await setLoadingRoot();
+                    await setUnauthenticatedRoot(props);
+                }
+            }
             return;
         default:
             return;

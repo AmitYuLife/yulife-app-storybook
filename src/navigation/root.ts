@@ -181,7 +181,7 @@ export const setAuthenticatedRoot = async () =>
         }
     } as any);
 
-export const setUnauthenticatedRoot = async () =>
+export const setUnauthenticatedRoot = async (passProps?: any) =>
     Navigation.setRoot({
         root: {
             stack: {
@@ -189,7 +189,8 @@ export const setUnauthenticatedRoot = async () =>
                     {
                         component: {
                             id: ROUTES.login,
-                            name: ROUTES.login
+                            name: ROUTES.login,
+                            passProps
                         }
                     }
                 ]

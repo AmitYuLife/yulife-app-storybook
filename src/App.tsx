@@ -36,7 +36,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
             const url = await Linking.getInitialURL();
 
             if (url) {
-                handleDeepLink(url, !!token);
+                await handleDeepLink(url, !!token);
             }
         } catch (e) {
             // console.log(e.message);
