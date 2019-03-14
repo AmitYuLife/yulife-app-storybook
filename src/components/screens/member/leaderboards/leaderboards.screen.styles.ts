@@ -45,6 +45,7 @@ export default StyleSheet.create({
         top: getTop(),
         width: "100%"
     } as ViewStyle,
+    loaderWrapper: { position: "absolute", top: Style.SCALE_UP_AND_DOWN(180), left: 0, right: 0 } as ViewStyle,
     scrollView1: {
         flex: 1,
         paddingHorizontal: Style.SCALE_UP_AND_DOWN(15),

@@ -7,9 +7,10 @@ import styles from "./challenge-complete.modal.styles";
 
 interface IProps {
     onCtaPress: () => void;
+    isLoading?: boolean;
 }
 
-const ChallengeComplete: React.SFC<IProps> = ({ onCtaPress }) => (
+const ChallengeComplete: React.SFC<IProps> = ({ isLoading, onCtaPress }) => (
     <View style={styles.wrapper}>
         <Animatable.Image
             style={styles.alarm}
@@ -24,6 +25,7 @@ const ChallengeComplete: React.SFC<IProps> = ({ onCtaPress }) => (
             </Text>
         </View>
         <Button
+            isLoading={isLoading}
             wrapperStyle={styles.ctaWrapper}
             onPress={onCtaPress}
             label={data.cta}

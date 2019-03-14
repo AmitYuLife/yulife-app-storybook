@@ -2,6 +2,7 @@ import { OptimizedFlatList } from "@molecules/index";
 import * as React from "react";
 import { PureComponent } from "react";
 import {
+    ActivityIndicator,
     Animated,
     Image,
     SafeAreaView,
@@ -12,6 +13,7 @@ import {
     ViewStyle
 } from "react-native";
 import { ListRenderItemInfo } from "react-native";
+import { Colours } from "../../../../styles";
 import { Close, GenericHeading, LeaderboardPosition, Pad } from "../../../atoms";
 import assets from "./assets";
 import LeaderboardHeader from "./leaderboard-header/leaderboard-header";
@@ -32,6 +34,7 @@ interface IItem {
 interface IProps {
     initialScrollIndex: number;
     items: IItem[];
+    isLoading: boolean;
     onCoinPress: () => void;
     onPressClose: () => void;
     onStepsPress: () => void;
@@ -53,7 +56,15 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
 
     public render() {
         const { isTopHidden } = this.state;
-        const { initialScrollIndex, onCoinPress, onPressClose, onStepsPress, items, sortBy = "steps" } = this.props;
+        const {
+            initialScrollIndex,
+            isLoading,
+            onCoinPress,
+            onPressClose,
+            onStepsPress,
+            items,
+            sortBy = "steps"
+        } = this.props;
 
         return (
             <SafeAreaView style={styles.wrapper}>
@@ -61,7 +72,14 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                     <View style={styles.backgroundImageWrapper}>
                         <Image style={styles.backgroundImageBase} source={assets.background} />
                     </View>
-                    {!isTopHidden && items.slice(0, 3).map(this.renderTop)}
+                    {isLoading ? (
+                        <View style={styles.loaderWrapper}>
+                            <ActivityIndicator size="large" color={Colours.gray} />
+                        </View>
+                    ) : (
+                        !isTopHidden && items.slice(0, 3).map(this.renderTop)
+                    )}
+
                     <Pad height={275} />
                     <View style={styles.giraffeImageWrapper}>
                         <Image source={assets.giraffe} />
@@ -82,6 +100,8 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                     ] as ViewStyle)}
                 >
                     <OptimizedFlatList
+                        onRefresh={this.onRefresh}
+                        refreshing={isLoading}
                         data={items}
                         removeClippedSubviews={false}
                         initialScrollIndex={initialScrollIndex}
@@ -125,5 +145,13 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
             toValue,
             useNativeDriver: true
         }).start(() => this.setState({ isScrolling: false }));
+    };
+
+    private onRefresh = () => {
+        if (this.props.sortBy === "coins") {
+            this.props.onCoinPress();
+        } else {
+            this.props.onStepsPress();
+        }
     };
 }

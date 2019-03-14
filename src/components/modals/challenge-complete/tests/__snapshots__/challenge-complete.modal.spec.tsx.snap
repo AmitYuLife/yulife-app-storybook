@@ -152,6 +152,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "isLoading": undefined,
           "label": "see result",
           "onPress": [MockFunction],
           "type": "PrimarySmall",
@@ -305,6 +306,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "isLoading": undefined,
             "label": "see result",
             "onPress": [MockFunction],
             "type": "PrimarySmall",
