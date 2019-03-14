@@ -20,29 +20,46 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <withAnimatable(Component)
-          animation="swing"
-          delay={1000}
-          direction="normal"
-          iterationCount="infinite"
-          iterationDelay={0}
-          onAnimationBegin={[Function]}
-          onAnimationEnd={[Function]}
-          onTransitionBegin={[Function]}
-          onTransitionEnd={[Function]}
-          source={
-            Object {
-              "testUri": "../../../assets/challenge-complete/alarm.png",
+        <View>
+          <withAnimatable(Component)
+            animation="swing"
+            delay={1000}
+            direction="normal"
+            iterationCount="infinite"
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-complete/clock.png",
+              }
             }
-          }
-          style={
-            Object {
-              "height": 64,
-              "width": 64,
+            style={
+              Object {
+                "height": 70,
+                "width": 70,
+              }
             }
-          }
-          useNativeDriver={false}
-        />,
+            useNativeDriver={false}
+          />
+          <Component
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-complete/base.png",
+              }
+            }
+            style={
+              Object {
+                "bottom": -2,
+                "height": 70,
+                "position": "absolute",
+                "width": 70,
+              }
+            }
+          />
+        </View>,
         <View
           style={
             Object {
@@ -85,29 +102,99 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "animation": "swing",
-          "delay": 1000,
-          "direction": "normal",
-          "duration": undefined,
-          "easing": undefined,
-          "iterationCount": "infinite",
-          "iterationDelay": 0,
-          "onAnimationBegin": [Function],
-          "onAnimationEnd": [Function],
-          "onTransitionBegin": [Function],
-          "onTransitionEnd": [Function],
-          "source": Object {
-            "testUri": "../../../assets/challenge-complete/alarm.png",
-          },
-          "style": Object {
-            "height": 64,
-            "width": 64,
-          },
-          "transition": undefined,
-          "useNativeDriver": false,
+          "children": Array [
+            <withAnimatable(Component)
+              animation="swing"
+              delay={1000}
+              direction="normal"
+              iterationCount="infinite"
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-complete/clock.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 70,
+                  "width": 70,
+                }
+              }
+              useNativeDriver={false}
+            />,
+            <Component
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-complete/base.png",
+                }
+              }
+              style={
+                Object {
+                  "bottom": -2,
+                  "height": 70,
+                  "position": "absolute",
+                  "width": 70,
+                }
+              }
+            />,
+          ],
         },
         "ref": null,
-        "rendered": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "animation": "swing",
+              "delay": 1000,
+              "direction": "normal",
+              "duration": undefined,
+              "easing": undefined,
+              "iterationCount": "infinite",
+              "iterationDelay": 0,
+              "onAnimationBegin": [Function],
+              "onAnimationEnd": [Function],
+              "onTransitionBegin": [Function],
+              "onTransitionEnd": [Function],
+              "source": Object {
+                "testUri": "../../../assets/challenge-complete/clock.png",
+              },
+              "style": Object {
+                "height": 70,
+                "width": 70,
+              },
+              "transition": undefined,
+              "useNativeDriver": false,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../assets/challenge-complete/base.png",
+              },
+              "style": Object {
+                "bottom": -2,
+                "height": 70,
+                "position": "absolute",
+                "width": 70,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
         "type": [Function],
       },
       Object {
@@ -173,29 +260,46 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <withAnimatable(Component)
-            animation="swing"
-            delay={1000}
-            direction="normal"
-            iterationCount="infinite"
-            iterationDelay={0}
-            onAnimationBegin={[Function]}
-            onAnimationEnd={[Function]}
-            onTransitionBegin={[Function]}
-            onTransitionEnd={[Function]}
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-complete/alarm.png",
+          <View>
+            <withAnimatable(Component)
+              animation="swing"
+              delay={1000}
+              direction="normal"
+              iterationCount="infinite"
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-complete/clock.png",
+                }
               }
-            }
-            style={
-              Object {
-                "height": 64,
-                "width": 64,
+              style={
+                Object {
+                  "height": 70,
+                  "width": 70,
+                }
               }
-            }
-            useNativeDriver={false}
-          />,
+              useNativeDriver={false}
+            />
+            <Component
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-complete/base.png",
+                }
+              }
+              style={
+                Object {
+                  "bottom": -2,
+                  "height": 70,
+                  "position": "absolute",
+                  "width": 70,
+                }
+              }
+            />
+          </View>,
           <View
             style={
               Object {
@@ -238,29 +342,99 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "animation": "swing",
-            "delay": 1000,
-            "direction": "normal",
-            "duration": undefined,
-            "easing": undefined,
-            "iterationCount": "infinite",
-            "iterationDelay": 0,
-            "onAnimationBegin": [Function],
-            "onAnimationEnd": [Function],
-            "onTransitionBegin": [Function],
-            "onTransitionEnd": [Function],
-            "source": Object {
-              "testUri": "../../../assets/challenge-complete/alarm.png",
-            },
-            "style": Object {
-              "height": 64,
-              "width": 64,
-            },
-            "transition": undefined,
-            "useNativeDriver": false,
+            "children": Array [
+              <withAnimatable(Component)
+                animation="swing"
+                delay={1000}
+                direction="normal"
+                iterationCount="infinite"
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={
+                  Object {
+                    "testUri": "../../../assets/challenge-complete/clock.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 70,
+                    "width": 70,
+                  }
+                }
+                useNativeDriver={false}
+              />,
+              <Component
+                source={
+                  Object {
+                    "testUri": "../../../assets/challenge-complete/base.png",
+                  }
+                }
+                style={
+                  Object {
+                    "bottom": -2,
+                    "height": 70,
+                    "position": "absolute",
+                    "width": 70,
+                  }
+                }
+              />,
+            ],
           },
           "ref": null,
-          "rendered": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "swing",
+                "delay": 1000,
+                "direction": "normal",
+                "duration": undefined,
+                "easing": undefined,
+                "iterationCount": "infinite",
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "source": Object {
+                  "testUri": "../../../assets/challenge-complete/clock.png",
+                },
+                "style": Object {
+                  "height": 70,
+                  "width": 70,
+                },
+                "transition": undefined,
+                "useNativeDriver": false,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../assets/challenge-complete/base.png",
+                },
+                "style": Object {
+                  "bottom": -2,
+                  "height": 70,
+                  "position": "absolute",
+                  "width": 70,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
         Object {
