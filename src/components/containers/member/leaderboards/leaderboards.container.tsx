@@ -7,7 +7,6 @@ import GetLeaderboardQuery, { getLeaderboardGql } from "../../../../graphql/memb
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { updateLeaderboardConsent } from "../../../../redux/user/user.actions";
 import { getLeaderboards } from "../../../../redux/user/user.selectors";
-import { Loading } from "../../../atoms";
 import { GenericModal } from "../../../modals";
 import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-error-modal";
 import { LeaderboardsScreen } from "../../../screens";
@@ -72,22 +71,22 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
         return (
             <GetLeaderboardQuery query={getLeaderboardGql} fetchPolicy="cache-and-network" variables={{ sortBy }}>
                 {({ error, loading, data, refetch }) => {
-                    if (loading) {
-                        return <Loading />;
-                    }
-
                     if (error && (!data || !data.getLeaderboard || !data.getCurrentUser)) {
                         return <GenericConnectionErrorModal onPress={this.handleClose} />;
                     }
 
                     const onCoinPress = this.handleRefetch(refetch, "coins");
                     const onStepsPress = this.handleRefetch(refetch, "steps");
-                    const initialScrollIndex = (data.getLeaderboard as any).findIndex(
-                        (item: any) => item.id === `lead_${data.getCurrentUser.id}`
-                    );
+                    const initialScrollIndex =
+                        data &&
+                        data.getLeaderboard != null &&
+                        (data.getLeaderboard as any).findIndex(
+                            (item: any) => item.id === `lead_${data.getCurrentUser.id}`
+                        );
 
                     return (
                         <LeaderboardsScreen
+                            isLoading={loading}
                             initialScrollIndex={initialScrollIndex}
                             items={data.getLeaderboard || []}
                             onCoinPress={onCoinPress}

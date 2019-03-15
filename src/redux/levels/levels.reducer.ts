@@ -5,10 +5,12 @@ import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {
-    // CHALLENGE_END_FAIL,
     CHALLENGE_CANCEL,
+    CHALLENGE_END,
+    CHALLENGE_END_FAIL,
     CHALLENGE_END_SUCCESS,
-    // CHALLENGE_RESET_FAIL,
+    CHALLENGE_RESET,
+    CHALLENGE_RESET_FAIL,
     CHALLENGE_RESET_SUCCESS,
     // CHALLENGE_START_FAIL,
     CHALLENGE_START_SUCCESS,
@@ -35,8 +37,8 @@ export const initialState: ILevelsStore = {
         coins: 0,
         endDateTime: "",
         initialPedometerResult: 0,
-        isCancelling: false, // loaders
         isCompleted: false, // for meditation, when goal reached
+        isLoading: false,
         level: null,
         levelSlotId: "",
         milestones: [],
@@ -71,6 +73,14 @@ const userReducer = (state: ILevelsStore = initialState, action: SyncAction): IL
         case CHALLENGE_UPDATE_SUCCESS:
             return challengeUpdateSuccess(state, action.payload);
 
+        case CHALLENGE_END:
+        case CHALLENGE_RESET:
+            return challengeLoading(state, true);
+
+        case CHALLENGE_RESET_FAIL:
+        case CHALLENGE_END_FAIL:
+            return challengeLoading(state, false);
+
         case CHALLENGE_END_SUCCESS:
             return challengeEndSuccess(state, action.payload);
 
@@ -78,7 +88,7 @@ const userReducer = (state: ILevelsStore = initialState, action: SyncAction): IL
             return challengeTimeUp(state);
 
         case CHALLENGE_RESET_SUCCESS:
-            return challengeReset(state);
+            return challengeResetSuccess(state);
 
         case PEDOMETER_UPDATES_SUCCESS:
             return pedometerUpdate(state, action.payload);
@@ -138,7 +148,7 @@ const isCancellingChallenge = (state: ILevelsStore): ILevelsStore => ({
     ...state,
     active: {
         ...state.active,
-        isCancelling: true
+        isLoading: true
     }
 });
 
@@ -190,6 +200,7 @@ const challengeEndSuccess = (state: ILevelsStore, res: UpdateActiveChallenge): I
     active: {
         ...state.active,
         coins: pathOr<number>(res, "updateActiveChallenge.challenge.yuCoinAwarded", state.active.coins),
+        isLoading: false,
         milestonesLog: pathOr<any[]>(res, "updateActiveChallenge.challenge.milestoneLog", state.active.milestonesLog),
         rating: pathOr<number>(res, "updateActiveChallenge.challenge.rating", state.active.rating),
         score: pathOr<number>(
@@ -215,7 +226,7 @@ const challengeTimeUp = (state: ILevelsStore): ILevelsStore => ({
     }
 });
 
-const challengeReset = (state: ILevelsStore): ILevelsStore => ({
+const challengeResetSuccess = (state: ILevelsStore): ILevelsStore => ({
     ...state,
     active: {
         ...initialState.active
@@ -240,3 +251,11 @@ const pedometerUpdate = (state: ILevelsStore, { steps }: PedometerResponse): ILe
         }
     };
 };
+
+const challengeLoading = (state: ILevelsStore, isLoading: boolean): ILevelsStore => ({
+    ...state,
+    active: {
+        ...state.active,
+        isLoading
+    }
+});

@@ -173,7 +173,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                 subtype,
                 timeUp,
                 unit,
-                isCancelling
+                isLoading
             },
             componentId,
             currentLevel,
@@ -207,7 +207,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
         }
 
         if (timeUp) {
-            return <ChallengeCompleteModal onCtaPress={this.props.challengeEndAction} />;
+            return <ChallengeCompleteModal isLoading={isLoading} onCtaPress={this.props.challengeEndAction} />;
         }
 
         if (subtype) {
@@ -239,7 +239,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                             subheading="You won’t be able to come back to it."
                             ctaLabel="no way!"
                             onPressSecondary={this.props.challengeCancelAction}
-                            isSecondaryLoading={isCancelling}
+                            isSecondaryLoading={isLoading}
                             ctaLabelSecondary="exit"
                         />
                     )}

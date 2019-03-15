@@ -11,6 +11,7 @@ export interface IActiveLevel {
     endDateTime: string;
     initialPedometerResult: number;
     isCompleted: boolean;
+    isLoading: boolean;
     level: number;
     levelSlotId: string;
     milestones: CreateActiveChallenge_createActiveChallenge_levelSlot_milestones[];
@@ -22,7 +23,6 @@ export interface IActiveLevel {
     subtype: string;
     timeUp: boolean;
     unit: string;
-    isCancelling?: boolean;
 }
 
 export interface ITodayChallengesStatus {
