@@ -47,30 +47,38 @@ ShallowWrapper {
               scale={0.5}
             />
           </View>
-          <TextInput
-            allowFontScaling={true}
-            autoCapitalize="none"
-            autoCorrect={false}
-            autoFocus={false}
-            keyboardType="email-address"
-            onBlur={[Function]}
-            onChangeText={[MockFunction]}
-            onFocus={[Function]}
-            placeholder="Email"
-            secureTextEntry={false}
+          <View
             style={
               Object {
-                "color": "rgb(51,51,51)",
-                "fontFamily": "Bariol-Regular",
-                "fontSize": 32,
-                "marginBottom": 0,
-                "padding": 0,
-                "width": "100%",
+                "flex": 1,
               }
             }
-            underlineColorAndroid="transparent"
-            value="test"
-          />
+          >
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              autoFocus={false}
+              keyboardType="email-address"
+              onBlur={[Function]}
+              onChangeText={[MockFunction]}
+              onFocus={[Function]}
+              placeholder="Email"
+              secureTextEntry={false}
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "marginBottom": 0,
+                  "padding": 0,
+                  "width": "100%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value="test"
+            />
+          </View>
         </View>,
         null,
       ],
@@ -99,30 +107,38 @@ ShallowWrapper {
                 scale={0.5}
               />
             </View>,
-            <TextInput
-              allowFontScaling={true}
-              autoCapitalize="none"
-              autoCorrect={false}
-              autoFocus={false}
-              keyboardType="email-address"
-              onBlur={[Function]}
-              onChangeText={[MockFunction]}
-              onFocus={[Function]}
-              placeholder="Email"
-              secureTextEntry={false}
+            <View
               style={
                 Object {
-                  "color": "rgb(51,51,51)",
-                  "fontFamily": "Bariol-Regular",
-                  "fontSize": 32,
-                  "marginBottom": 0,
-                  "padding": 0,
-                  "width": "100%",
+                  "flex": 1,
                 }
               }
-              underlineColorAndroid="transparent"
-              value="test"
-            />,
+            >
+              <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoFocus={false}
+                keyboardType="email-address"
+                onBlur={[Function]}
+                onChangeText={[MockFunction]}
+                onFocus={[Function]}
+                placeholder="Email"
+                secureTextEntry={false}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "marginBottom": 0,
+                    "padding": 0,
+                    "width": "100%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value="test"
+              />
+            </View>,
           ],
           "style": Object {
             "alignItems": "flex-end",
@@ -169,30 +185,66 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "allowFontScaling": true,
-              "autoCapitalize": "none",
-              "autoCorrect": false,
-              "autoFocus": false,
-              "keyboardType": "email-address",
-              "onBlur": [Function],
-              "onChangeText": [MockFunction],
-              "onFocus": [Function],
-              "placeholder": "Email",
-              "secureTextEntry": false,
+              "children": <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoFocus={false}
+                keyboardType="email-address"
+                onBlur={[Function]}
+                onChangeText={[MockFunction]}
+                onFocus={[Function]}
+                placeholder="Email"
+                secureTextEntry={false}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "marginBottom": 0,
+                    "padding": 0,
+                    "width": "100%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value="test"
+              />,
               "style": Object {
-                "color": "rgb(51,51,51)",
-                "fontFamily": "Bariol-Regular",
-                "fontSize": 32,
-                "marginBottom": 0,
-                "padding": 0,
-                "width": "100%",
+                "flex": 1,
               },
-              "testID": undefined,
-              "underlineColorAndroid": "transparent",
-              "value": "test",
             },
             "ref": null,
-            "rendered": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "allowFontScaling": true,
+                "autoCapitalize": "none",
+                "autoCorrect": false,
+                "autoFocus": false,
+                "keyboardType": "email-address",
+                "onBlur": [Function],
+                "onChangeText": [MockFunction],
+                "onFocus": [Function],
+                "placeholder": "Email",
+                "secureTextEntry": false,
+                "style": Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "marginBottom": 0,
+                  "padding": 0,
+                  "width": "100%",
+                },
+                "testID": undefined,
+                "underlineColorAndroid": "transparent",
+                "value": "test",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             "type": [Function],
           },
         ],
@@ -234,30 +286,38 @@ ShallowWrapper {
                 scale={0.5}
               />
             </View>
-            <TextInput
-              allowFontScaling={true}
-              autoCapitalize="none"
-              autoCorrect={false}
-              autoFocus={false}
-              keyboardType="email-address"
-              onBlur={[Function]}
-              onChangeText={[MockFunction]}
-              onFocus={[Function]}
-              placeholder="Email"
-              secureTextEntry={false}
+            <View
               style={
                 Object {
-                  "color": "rgb(51,51,51)",
-                  "fontFamily": "Bariol-Regular",
-                  "fontSize": 32,
-                  "marginBottom": 0,
-                  "padding": 0,
-                  "width": "100%",
+                  "flex": 1,
                 }
               }
-              underlineColorAndroid="transparent"
-              value="test"
-            />
+            >
+              <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoFocus={false}
+                keyboardType="email-address"
+                onBlur={[Function]}
+                onChangeText={[MockFunction]}
+                onFocus={[Function]}
+                placeholder="Email"
+                secureTextEntry={false}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "marginBottom": 0,
+                    "padding": 0,
+                    "width": "100%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value="test"
+              />
+            </View>
           </View>,
           null,
         ],
@@ -286,30 +346,38 @@ ShallowWrapper {
                   scale={0.5}
                 />
               </View>,
-              <TextInput
-                allowFontScaling={true}
-                autoCapitalize="none"
-                autoCorrect={false}
-                autoFocus={false}
-                keyboardType="email-address"
-                onBlur={[Function]}
-                onChangeText={[MockFunction]}
-                onFocus={[Function]}
-                placeholder="Email"
-                secureTextEntry={false}
+              <View
                 style={
                   Object {
-                    "color": "rgb(51,51,51)",
-                    "fontFamily": "Bariol-Regular",
-                    "fontSize": 32,
-                    "marginBottom": 0,
-                    "padding": 0,
-                    "width": "100%",
+                    "flex": 1,
                   }
                 }
-                underlineColorAndroid="transparent"
-                value="test"
-              />,
+              >
+                <TextInput
+                  allowFontScaling={true}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  autoFocus={false}
+                  keyboardType="email-address"
+                  onBlur={[Function]}
+                  onChangeText={[MockFunction]}
+                  onFocus={[Function]}
+                  placeholder="Email"
+                  secureTextEntry={false}
+                  style={
+                    Object {
+                      "color": "rgb(51,51,51)",
+                      "fontFamily": "Bariol-Regular",
+                      "fontSize": 32,
+                      "marginBottom": 0,
+                      "padding": 0,
+                      "width": "100%",
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value="test"
+                />
+              </View>,
             ],
             "style": Object {
               "alignItems": "flex-end",
@@ -356,30 +424,66 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "allowFontScaling": true,
-                "autoCapitalize": "none",
-                "autoCorrect": false,
-                "autoFocus": false,
-                "keyboardType": "email-address",
-                "onBlur": [Function],
-                "onChangeText": [MockFunction],
-                "onFocus": [Function],
-                "placeholder": "Email",
-                "secureTextEntry": false,
+                "children": <TextInput
+                  allowFontScaling={true}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  autoFocus={false}
+                  keyboardType="email-address"
+                  onBlur={[Function]}
+                  onChangeText={[MockFunction]}
+                  onFocus={[Function]}
+                  placeholder="Email"
+                  secureTextEntry={false}
+                  style={
+                    Object {
+                      "color": "rgb(51,51,51)",
+                      "fontFamily": "Bariol-Regular",
+                      "fontSize": 32,
+                      "marginBottom": 0,
+                      "padding": 0,
+                      "width": "100%",
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value="test"
+                />,
                 "style": Object {
-                  "color": "rgb(51,51,51)",
-                  "fontFamily": "Bariol-Regular",
-                  "fontSize": 32,
-                  "marginBottom": 0,
-                  "padding": 0,
-                  "width": "100%",
+                  "flex": 1,
                 },
-                "testID": undefined,
-                "underlineColorAndroid": "transparent",
-                "value": "test",
               },
               "ref": null,
-              "rendered": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "allowFontScaling": true,
+                  "autoCapitalize": "none",
+                  "autoCorrect": false,
+                  "autoFocus": false,
+                  "keyboardType": "email-address",
+                  "onBlur": [Function],
+                  "onChangeText": [MockFunction],
+                  "onFocus": [Function],
+                  "placeholder": "Email",
+                  "secureTextEntry": false,
+                  "style": Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "marginBottom": 0,
+                    "padding": 0,
+                    "width": "100%",
+                  },
+                  "testID": undefined,
+                  "underlineColorAndroid": "transparent",
+                  "value": "test",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
               "type": [Function],
             },
           ],
@@ -459,30 +563,38 @@ ShallowWrapper {
               scale={0.5}
             />
           </View>
-          <TextInput
-            allowFontScaling={true}
-            autoCapitalize="none"
-            autoCorrect={false}
-            autoFocus={false}
-            keyboardType="default"
-            onBlur={[Function]}
-            onChangeText={[MockFunction]}
-            onFocus={[Function]}
-            placeholder="Password"
-            secureTextEntry={true}
+          <View
             style={
               Object {
-                "color": "rgb(51,51,51)",
-                "fontFamily": "Bariol-Regular",
-                "fontSize": 32,
-                "marginBottom": 0,
-                "padding": 0,
-                "width": "100%",
+                "flex": 1,
               }
             }
-            underlineColorAndroid="transparent"
-            value="test"
-          />
+          >
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              autoFocus={false}
+              keyboardType="default"
+              onBlur={[Function]}
+              onChangeText={[MockFunction]}
+              onFocus={[Function]}
+              placeholder="Password"
+              secureTextEntry={true}
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "marginBottom": 0,
+                  "padding": 0,
+                  "width": "100%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value="test"
+            />
+          </View>
         </View>,
         null,
       ],
@@ -511,30 +623,38 @@ ShallowWrapper {
                 scale={0.5}
               />
             </View>,
-            <TextInput
-              allowFontScaling={true}
-              autoCapitalize="none"
-              autoCorrect={false}
-              autoFocus={false}
-              keyboardType="default"
-              onBlur={[Function]}
-              onChangeText={[MockFunction]}
-              onFocus={[Function]}
-              placeholder="Password"
-              secureTextEntry={true}
+            <View
               style={
                 Object {
-                  "color": "rgb(51,51,51)",
-                  "fontFamily": "Bariol-Regular",
-                  "fontSize": 32,
-                  "marginBottom": 0,
-                  "padding": 0,
-                  "width": "100%",
+                  "flex": 1,
                 }
               }
-              underlineColorAndroid="transparent"
-              value="test"
-            />,
+            >
+              <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoFocus={false}
+                keyboardType="default"
+                onBlur={[Function]}
+                onChangeText={[MockFunction]}
+                onFocus={[Function]}
+                placeholder="Password"
+                secureTextEntry={true}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "marginBottom": 0,
+                    "padding": 0,
+                    "width": "100%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value="test"
+              />
+            </View>,
           ],
           "style": Object {
             "alignItems": "flex-end",
@@ -581,30 +701,66 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "allowFontScaling": true,
-              "autoCapitalize": "none",
-              "autoCorrect": false,
-              "autoFocus": false,
-              "keyboardType": "default",
-              "onBlur": [Function],
-              "onChangeText": [MockFunction],
-              "onFocus": [Function],
-              "placeholder": "Password",
-              "secureTextEntry": true,
+              "children": <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoFocus={false}
+                keyboardType="default"
+                onBlur={[Function]}
+                onChangeText={[MockFunction]}
+                onFocus={[Function]}
+                placeholder="Password"
+                secureTextEntry={true}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "marginBottom": 0,
+                    "padding": 0,
+                    "width": "100%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value="test"
+              />,
               "style": Object {
-                "color": "rgb(51,51,51)",
-                "fontFamily": "Bariol-Regular",
-                "fontSize": 32,
-                "marginBottom": 0,
-                "padding": 0,
-                "width": "100%",
+                "flex": 1,
               },
-              "testID": undefined,
-              "underlineColorAndroid": "transparent",
-              "value": "test",
             },
             "ref": null,
-            "rendered": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "allowFontScaling": true,
+                "autoCapitalize": "none",
+                "autoCorrect": false,
+                "autoFocus": false,
+                "keyboardType": "default",
+                "onBlur": [Function],
+                "onChangeText": [MockFunction],
+                "onFocus": [Function],
+                "placeholder": "Password",
+                "secureTextEntry": true,
+                "style": Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "marginBottom": 0,
+                  "padding": 0,
+                  "width": "100%",
+                },
+                "testID": undefined,
+                "underlineColorAndroid": "transparent",
+                "value": "test",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             "type": [Function],
           },
         ],
@@ -646,30 +802,38 @@ ShallowWrapper {
                 scale={0.5}
               />
             </View>
-            <TextInput
-              allowFontScaling={true}
-              autoCapitalize="none"
-              autoCorrect={false}
-              autoFocus={false}
-              keyboardType="default"
-              onBlur={[Function]}
-              onChangeText={[MockFunction]}
-              onFocus={[Function]}
-              placeholder="Password"
-              secureTextEntry={true}
+            <View
               style={
                 Object {
-                  "color": "rgb(51,51,51)",
-                  "fontFamily": "Bariol-Regular",
-                  "fontSize": 32,
-                  "marginBottom": 0,
-                  "padding": 0,
-                  "width": "100%",
+                  "flex": 1,
                 }
               }
-              underlineColorAndroid="transparent"
-              value="test"
-            />
+            >
+              <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoFocus={false}
+                keyboardType="default"
+                onBlur={[Function]}
+                onChangeText={[MockFunction]}
+                onFocus={[Function]}
+                placeholder="Password"
+                secureTextEntry={true}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "marginBottom": 0,
+                    "padding": 0,
+                    "width": "100%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value="test"
+              />
+            </View>
           </View>,
           null,
         ],
@@ -698,30 +862,38 @@ ShallowWrapper {
                   scale={0.5}
                 />
               </View>,
-              <TextInput
-                allowFontScaling={true}
-                autoCapitalize="none"
-                autoCorrect={false}
-                autoFocus={false}
-                keyboardType="default"
-                onBlur={[Function]}
-                onChangeText={[MockFunction]}
-                onFocus={[Function]}
-                placeholder="Password"
-                secureTextEntry={true}
+              <View
                 style={
                   Object {
-                    "color": "rgb(51,51,51)",
-                    "fontFamily": "Bariol-Regular",
-                    "fontSize": 32,
-                    "marginBottom": 0,
-                    "padding": 0,
-                    "width": "100%",
+                    "flex": 1,
                   }
                 }
-                underlineColorAndroid="transparent"
-                value="test"
-              />,
+              >
+                <TextInput
+                  allowFontScaling={true}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  autoFocus={false}
+                  keyboardType="default"
+                  onBlur={[Function]}
+                  onChangeText={[MockFunction]}
+                  onFocus={[Function]}
+                  placeholder="Password"
+                  secureTextEntry={true}
+                  style={
+                    Object {
+                      "color": "rgb(51,51,51)",
+                      "fontFamily": "Bariol-Regular",
+                      "fontSize": 32,
+                      "marginBottom": 0,
+                      "padding": 0,
+                      "width": "100%",
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value="test"
+                />
+              </View>,
             ],
             "style": Object {
               "alignItems": "flex-end",
@@ -768,30 +940,66 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "allowFontScaling": true,
-                "autoCapitalize": "none",
-                "autoCorrect": false,
-                "autoFocus": false,
-                "keyboardType": "default",
-                "onBlur": [Function],
-                "onChangeText": [MockFunction],
-                "onFocus": [Function],
-                "placeholder": "Password",
-                "secureTextEntry": true,
+                "children": <TextInput
+                  allowFontScaling={true}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  autoFocus={false}
+                  keyboardType="default"
+                  onBlur={[Function]}
+                  onChangeText={[MockFunction]}
+                  onFocus={[Function]}
+                  placeholder="Password"
+                  secureTextEntry={true}
+                  style={
+                    Object {
+                      "color": "rgb(51,51,51)",
+                      "fontFamily": "Bariol-Regular",
+                      "fontSize": 32,
+                      "marginBottom": 0,
+                      "padding": 0,
+                      "width": "100%",
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value="test"
+                />,
                 "style": Object {
-                  "color": "rgb(51,51,51)",
-                  "fontFamily": "Bariol-Regular",
-                  "fontSize": 32,
-                  "marginBottom": 0,
-                  "padding": 0,
-                  "width": "100%",
+                  "flex": 1,
                 },
-                "testID": undefined,
-                "underlineColorAndroid": "transparent",
-                "value": "test",
               },
               "ref": null,
-              "rendered": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "allowFontScaling": true,
+                  "autoCapitalize": "none",
+                  "autoCorrect": false,
+                  "autoFocus": false,
+                  "keyboardType": "default",
+                  "onBlur": [Function],
+                  "onChangeText": [MockFunction],
+                  "onFocus": [Function],
+                  "placeholder": "Password",
+                  "secureTextEntry": true,
+                  "style": Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "marginBottom": 0,
+                    "padding": 0,
+                    "width": "100%",
+                  },
+                  "testID": undefined,
+                  "underlineColorAndroid": "transparent",
+                  "value": "test",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
               "type": [Function],
             },
           ],
@@ -872,30 +1080,38 @@ ShallowWrapper {
               scale={0.5}
             />
           </View>
-          <TextInput
-            allowFontScaling={true}
-            autoCapitalize="none"
-            autoCorrect={false}
-            autoFocus={false}
-            keyboardType="default"
-            onBlur={[Function]}
-            onChangeText={[MockFunction]}
-            onFocus={[Function]}
-            placeholder="Password"
-            secureTextEntry={true}
+          <View
             style={
               Object {
-                "color": "rgb(51,51,51)",
-                "fontFamily": "Bariol-Regular",
-                "fontSize": 32,
-                "marginBottom": 0,
-                "padding": 0,
-                "width": "100%",
+                "flex": 1,
               }
             }
-            underlineColorAndroid="transparent"
-            value="test"
-          />
+          >
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              autoFocus={false}
+              keyboardType="default"
+              onBlur={[Function]}
+              onChangeText={[MockFunction]}
+              onFocus={[Function]}
+              placeholder="Password"
+              secureTextEntry={true}
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "marginBottom": 0,
+                  "padding": 0,
+                  "width": "100%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value="test"
+            />
+          </View>
         </View>,
         null,
       ],
@@ -924,30 +1140,38 @@ ShallowWrapper {
                 scale={0.5}
               />
             </View>,
-            <TextInput
-              allowFontScaling={true}
-              autoCapitalize="none"
-              autoCorrect={false}
-              autoFocus={false}
-              keyboardType="default"
-              onBlur={[Function]}
-              onChangeText={[MockFunction]}
-              onFocus={[Function]}
-              placeholder="Password"
-              secureTextEntry={true}
+            <View
               style={
                 Object {
-                  "color": "rgb(51,51,51)",
-                  "fontFamily": "Bariol-Regular",
-                  "fontSize": 32,
-                  "marginBottom": 0,
-                  "padding": 0,
-                  "width": "100%",
+                  "flex": 1,
                 }
               }
-              underlineColorAndroid="transparent"
-              value="test"
-            />,
+            >
+              <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoFocus={false}
+                keyboardType="default"
+                onBlur={[Function]}
+                onChangeText={[MockFunction]}
+                onFocus={[Function]}
+                placeholder="Password"
+                secureTextEntry={true}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "marginBottom": 0,
+                    "padding": 0,
+                    "width": "100%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value="test"
+              />
+            </View>,
           ],
           "style": Object {
             "alignItems": "flex-end",
@@ -994,30 +1218,66 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "allowFontScaling": true,
-              "autoCapitalize": "none",
-              "autoCorrect": false,
-              "autoFocus": false,
-              "keyboardType": "default",
-              "onBlur": [Function],
-              "onChangeText": [MockFunction],
-              "onFocus": [Function],
-              "placeholder": "Password",
-              "secureTextEntry": true,
+              "children": <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoFocus={false}
+                keyboardType="default"
+                onBlur={[Function]}
+                onChangeText={[MockFunction]}
+                onFocus={[Function]}
+                placeholder="Password"
+                secureTextEntry={true}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "marginBottom": 0,
+                    "padding": 0,
+                    "width": "100%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value="test"
+              />,
               "style": Object {
-                "color": "rgb(51,51,51)",
-                "fontFamily": "Bariol-Regular",
-                "fontSize": 32,
-                "marginBottom": 0,
-                "padding": 0,
-                "width": "100%",
+                "flex": 1,
               },
-              "testID": undefined,
-              "underlineColorAndroid": "transparent",
-              "value": "test",
             },
             "ref": null,
-            "rendered": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "allowFontScaling": true,
+                "autoCapitalize": "none",
+                "autoCorrect": false,
+                "autoFocus": false,
+                "keyboardType": "default",
+                "onBlur": [Function],
+                "onChangeText": [MockFunction],
+                "onFocus": [Function],
+                "placeholder": "Password",
+                "secureTextEntry": true,
+                "style": Object {
+                  "color": "rgb(51,51,51)",
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                  "marginBottom": 0,
+                  "padding": 0,
+                  "width": "100%",
+                },
+                "testID": undefined,
+                "underlineColorAndroid": "transparent",
+                "value": "test",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             "type": [Function],
           },
         ],
@@ -1059,30 +1319,38 @@ ShallowWrapper {
                 scale={0.5}
               />
             </View>
-            <TextInput
-              allowFontScaling={true}
-              autoCapitalize="none"
-              autoCorrect={false}
-              autoFocus={false}
-              keyboardType="default"
-              onBlur={[Function]}
-              onChangeText={[MockFunction]}
-              onFocus={[Function]}
-              placeholder="Password"
-              secureTextEntry={true}
+            <View
               style={
                 Object {
-                  "color": "rgb(51,51,51)",
-                  "fontFamily": "Bariol-Regular",
-                  "fontSize": 32,
-                  "marginBottom": 0,
-                  "padding": 0,
-                  "width": "100%",
+                  "flex": 1,
                 }
               }
-              underlineColorAndroid="transparent"
-              value="test"
-            />
+            >
+              <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoFocus={false}
+                keyboardType="default"
+                onBlur={[Function]}
+                onChangeText={[MockFunction]}
+                onFocus={[Function]}
+                placeholder="Password"
+                secureTextEntry={true}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "marginBottom": 0,
+                    "padding": 0,
+                    "width": "100%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value="test"
+              />
+            </View>
           </View>,
           null,
         ],
@@ -1111,30 +1379,38 @@ ShallowWrapper {
                   scale={0.5}
                 />
               </View>,
-              <TextInput
-                allowFontScaling={true}
-                autoCapitalize="none"
-                autoCorrect={false}
-                autoFocus={false}
-                keyboardType="default"
-                onBlur={[Function]}
-                onChangeText={[MockFunction]}
-                onFocus={[Function]}
-                placeholder="Password"
-                secureTextEntry={true}
+              <View
                 style={
                   Object {
-                    "color": "rgb(51,51,51)",
-                    "fontFamily": "Bariol-Regular",
-                    "fontSize": 32,
-                    "marginBottom": 0,
-                    "padding": 0,
-                    "width": "100%",
+                    "flex": 1,
                   }
                 }
-                underlineColorAndroid="transparent"
-                value="test"
-              />,
+              >
+                <TextInput
+                  allowFontScaling={true}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  autoFocus={false}
+                  keyboardType="default"
+                  onBlur={[Function]}
+                  onChangeText={[MockFunction]}
+                  onFocus={[Function]}
+                  placeholder="Password"
+                  secureTextEntry={true}
+                  style={
+                    Object {
+                      "color": "rgb(51,51,51)",
+                      "fontFamily": "Bariol-Regular",
+                      "fontSize": 32,
+                      "marginBottom": 0,
+                      "padding": 0,
+                      "width": "100%",
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value="test"
+                />
+              </View>,
             ],
             "style": Object {
               "alignItems": "flex-end",
@@ -1181,30 +1457,66 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "allowFontScaling": true,
-                "autoCapitalize": "none",
-                "autoCorrect": false,
-                "autoFocus": false,
-                "keyboardType": "default",
-                "onBlur": [Function],
-                "onChangeText": [MockFunction],
-                "onFocus": [Function],
-                "placeholder": "Password",
-                "secureTextEntry": true,
+                "children": <TextInput
+                  allowFontScaling={true}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  autoFocus={false}
+                  keyboardType="default"
+                  onBlur={[Function]}
+                  onChangeText={[MockFunction]}
+                  onFocus={[Function]}
+                  placeholder="Password"
+                  secureTextEntry={true}
+                  style={
+                    Object {
+                      "color": "rgb(51,51,51)",
+                      "fontFamily": "Bariol-Regular",
+                      "fontSize": 32,
+                      "marginBottom": 0,
+                      "padding": 0,
+                      "width": "100%",
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value="test"
+                />,
                 "style": Object {
-                  "color": "rgb(51,51,51)",
-                  "fontFamily": "Bariol-Regular",
-                  "fontSize": 32,
-                  "marginBottom": 0,
-                  "padding": 0,
-                  "width": "100%",
+                  "flex": 1,
                 },
-                "testID": undefined,
-                "underlineColorAndroid": "transparent",
-                "value": "test",
               },
               "ref": null,
-              "rendered": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "allowFontScaling": true,
+                  "autoCapitalize": "none",
+                  "autoCorrect": false,
+                  "autoFocus": false,
+                  "keyboardType": "default",
+                  "onBlur": [Function],
+                  "onChangeText": [MockFunction],
+                  "onFocus": [Function],
+                  "placeholder": "Password",
+                  "secureTextEntry": true,
+                  "style": Object {
+                    "color": "rgb(51,51,51)",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                    "marginBottom": 0,
+                    "padding": 0,
+                    "width": "100%",
+                  },
+                  "testID": undefined,
+                  "underlineColorAndroid": "transparent",
+                  "value": "test",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
               "type": [Function],
             },
           ],

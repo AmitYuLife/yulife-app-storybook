@@ -66,21 +66,23 @@ class TextInput extends React.PureComponent<IProps> {
                             />
                         }
                     </View>
-                    <Input
-                        testID={this.props.testID}
-                        onFocus={this.handleFocus(true)}
-                        onBlur={this.handleFocus(false)}
-                        onChangeText={onChange}
-                        value={getValue({ value, type })}
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        autoFocus={false}
-                        placeholder={getPlaceholder({ type, placeholder })}
-                        style={getStyle({ type })}
-                        underlineColorAndroid="transparent"
-                        secureTextEntry={type === TEXT_INPUT_TYPES.PASSWORD}
-                        keyboardType={getKeyboardType(type)}
-                    />
+                    <View style={styles.inputWrapper}>
+                        <Input
+                            testID={this.props.testID}
+                            onFocus={this.handleFocus(true)}
+                            onBlur={this.handleFocus(false)}
+                            onChangeText={onChange}
+                            value={getValue({ value, type })}
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            autoFocus={false}
+                            placeholder={getPlaceholder({ type, placeholder })}
+                            style={getStyle({ type })}
+                            underlineColorAndroid="transparent"
+                            secureTextEntry={type === TEXT_INPUT_TYPES.PASSWORD}
+                            keyboardType={getKeyboardType(type)}
+                        />
+                    </View>
                 </View>
                 {hasError ? <TextInputError>{errorMessage || ""}</TextInputError> : null}
             </View>
