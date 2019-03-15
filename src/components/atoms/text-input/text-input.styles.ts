@@ -1,10 +1,4 @@
-import {
-    ImageStyle,
-    Platform,
-    StyleSheet,
-    TextStyle,
-    ViewStyle
-} from "react-native";
+import { ImageStyle, Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../styles";
 
 export default StyleSheet.create({
@@ -26,6 +20,9 @@ export default StyleSheet.create({
         padding: 0,
         width: "100%"
     } as TextStyle,
+    inputWrapper: {
+        flex: 1
+    } as ViewStyle,
     inputCard: {
         marginLeft: 2
     } as ViewStyle,
