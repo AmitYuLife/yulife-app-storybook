@@ -47,12 +47,22 @@ class SettingsContainer extends PureComponent<IProps, IState> {
             })),
             name: "leaderboard"
         } as any;
+
+        if (features.showCreateLeaderboard) {
+            leaderboard.items.push({
+                isLoading: false,
+                name: "create",
+                onPress: this.handleCreateNewLeaderboard,
+                status: "create"
+            });
+        }
+
         const notification = {
             isVisible: features.showNotifications,
             items: Object.keys(notifications).map((key) => ({
                 ...notifications[key],
                 key,
-                onPress: this.handleNotificationPress({ ...notifications[key], key })
+                ...this.getNotificationPressFunctions({ ...notifications[key], key })
             })),
             name: "notifications"
         } as any;
@@ -129,24 +139,25 @@ class SettingsContainer extends PureComponent<IProps, IState> {
         });
     };
 
-    private handleNotificationPress = (n: UpdateNofiticationPayload) => () => {
-        if (n.time && !n.active) {
+    private getNotificationPressFunctions = (n: UpdateNofiticationPayload) => ({
+        onSwitchPress: () => {
+            this.props.updateNotificationSettings({ ...n, active: !n.active });
+        },
+        onTimePress: () => {
             const currentDate = moment().format("YYYY-MM-DD");
             this.setState({
                 isTimeModalVisible: true,
                 modalDate: moment(`${currentDate}T${n.time}`).toDate(),
                 selectedNotification: n
             });
-        } else {
-            this.props.updateNotificationSettings({ ...n, active: !n.active });
         }
-    };
+    });
 
     private handleTimeModalConfirm = (date: Date) => {
         const { selectedNotification } = this.state;
         const time = moment(date.toISOString()).format("HH:mm");
         this.setState({ isTimeModalVisible: false }, () => {
-            this.props.updateNotificationSettings({ ...selectedNotification, time, active: true });
+            this.props.updateNotificationSettings({ ...selectedNotification, time });
         });
     };
 

@@ -18,7 +18,8 @@ export interface ILeaderboardSectionItem {
 
 export interface INotificationsSectionItem extends IYulifeNotification {
     name: string;
-    onPress: () => void;
+    onSwitchPress: () => void;
+    onTimePress: () => void;
 }
 
 interface ISettingSection<T> {
@@ -69,12 +70,6 @@ export default class SettingsScreen extends PureComponent<IProps> {
                     {section.items.map((item, i) => {
                         return <LeaderboardItem {...item} key={i} />;
                     })}
-                    <LeaderboardItem
-                        name="create"
-                        onPress={this.props.onCreateLeaderboard}
-                        status="create"
-                        isLoading={false}
-                    />
                 </View>
             </View>
         );
