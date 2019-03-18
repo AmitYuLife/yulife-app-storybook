@@ -59,7 +59,11 @@ class SettingsContainer extends PureComponent<IProps, IState> {
 
         return (
             <>
-                <SettingsScreen onPressClose={this.handleClose} sections={[notification, leaderboard]} />
+                <SettingsScreen
+                    onCreateLeaderboard={this.handleCreateNewLeaderboard}
+                    onPressClose={this.handleClose}
+                    sections={[notification, leaderboard]}
+                />
                 <DateTimePicker
                     date={modalDate}
                     mode="time"
@@ -112,6 +116,15 @@ class SettingsContainer extends PureComponent<IProps, IState> {
                 id: MODALS.generic,
                 name: MODALS.generic,
                 passProps
+            }
+        });
+    };
+
+    private handleCreateNewLeaderboard = () => {
+        Navigation.showModal({
+            component: {
+                id: MODALS.createLeaderboard,
+                name: MODALS.createLeaderboard
             }
         });
     };

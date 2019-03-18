@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginHorizontal: Style.SCALE_UP_AND_DOWN(15),
-        width: Style.SCALE_UP_AND_DOWN(85)
+        width: Style.SCALE_UP_AND_DOWN(65)
     } as ViewStyle
 });
 

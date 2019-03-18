@@ -6,7 +6,7 @@ export default StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         marginTop: Style.SCALE_UP_AND_DOWN(15),
-        width: "100%"
+        paddingHorizontal: Style.SCALE_UP_AND_DOWN(60)
     } as ViewStyle,
     notificationsItemsWrapper: {
         flexDirection: "column",
