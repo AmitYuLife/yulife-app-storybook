@@ -1,26 +1,28 @@
-import { OptimizedFlatList } from "@molecules/index";
 import * as React from "react";
 import { PureComponent } from "react";
 import {
     ActivityIndicator,
     Animated,
+    FlatList,
     Image,
+    NativeScrollEvent,
+    NativeSyntheticEvent,
     SafeAreaView,
-    ScrollView,
     StyleSheet,
     TouchableOpacity,
     View,
     ViewStyle
 } from "react-native";
 import { ListRenderItemInfo } from "react-native";
-import { Colours } from "../../../../styles";
+import { Colours, Style } from "../../../../styles";
 import { Close, GenericHeading, LeaderboardPosition, Pad } from "../../../atoms";
 import assets from "./assets";
 import LeaderboardHeader from "./leaderboard-header/leaderboard-header";
 import LeaderboardItem from "./leaderboard-item/leaderboard-item";
-import { LEADERBOARD_ITEM_HEIGHT } from "./leaderboard-item/leaderboard-item.styles";
 import data from "./leaderboards.data";
 import styles from "./leaderboards.screen.styles";
+
+export type LeaderboardTypes = "yucoin" | "steps" | "meditation";
 
 interface IItem {
     id: string;
@@ -35,36 +37,30 @@ interface IProps {
     initialScrollIndex: number;
     items: IItem[];
     isLoading: boolean;
-    onCoinPress: () => void;
+    onHandleCoinsRefetch: () => void;
     onPressClose: () => void;
-    onStepsPress: () => void;
+    onHandleStepsRefetch: () => void;
     sortBy: string;
 }
 
 interface IState {
     isScrolling: boolean;
     isTopHidden: boolean;
+    leaderboardSubtype: LeaderboardTypes;
 }
 
 export default class LeaderboardScreen extends PureComponent<IProps, IState> {
-    public scrollView: ScrollView;
+    public flatList: FlatList<any>;
     public state = {
         isScrolling: false,
-        isTopHidden: false
+        isTopHidden: false,
+        leaderboardSubtype: "steps" as LeaderboardTypes
     };
     private top3Y = new Animated.Value(0);
 
     public render() {
-        const { isTopHidden } = this.state;
-        const {
-            initialScrollIndex,
-            isLoading,
-            onCoinPress,
-            onPressClose,
-            onStepsPress,
-            items,
-            sortBy = "steps"
-        } = this.props;
+        const { isTopHidden, leaderboardSubtype } = this.state;
+        const { isLoading, onPressClose, items } = this.props;
 
         return (
             <SafeAreaView style={styles.wrapper}>
@@ -87,7 +83,11 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                             <Image source={isTopHidden ? assets.arrowDown : assets.arrowUp} />
                         </TouchableOpacity>
                     </View>
-                    <LeaderboardHeader sortBy={sortBy} onCoinPress={onCoinPress} onStepsPress={onStepsPress} />
+                    <LeaderboardHeader
+                        type={leaderboardSubtype}
+                        onPressLeft={this.pressHeaderLeft}
+                        onPressRight={this.pressHeaderRight}
+                    />
                 </Animated.View>
                 <View style={styles.header}>
                     <GenericHeading heading={data.heading} hidesBorder={true} subheading={data.subheading} />
@@ -99,15 +99,14 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                         { transform: [{ translateY: this.top3Y }] }
                     ] as ViewStyle)}
                 >
-                    <OptimizedFlatList
-                        onRefresh={this.onRefresh}
-                        refreshing={isLoading}
-                        data={items}
-                        removeClippedSubviews={false}
-                        initialScrollIndex={initialScrollIndex}
-                        keyExtractor={this.keyExtractor}
-                        getItemLayout={this.getItemLayout}
-                        renderItem={this.renderItem}
+                    <FlatList
+                        keyExtractor={this.outerListKeyExtractor}
+                        ref={this.setRef}
+                        horizontal={true}
+                        pagingEnabled={true}
+                        onMomentumScrollEnd={this.onSwipeEnd}
+                        data={Array.from({ length: 2 })}
+                        renderItem={this.renderLeaderboardList}
                     />
                 </Animated.View>
             </SafeAreaView>
@@ -118,22 +117,37 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
         <LeaderboardPosition key={`top-3-${item.id}`} name={item.firstName} position={i + 1} />
     );
 
-    private renderItem = ({ item, index }: ListRenderItemInfo<IItem>) => (
-        <LeaderboardItem
-            {...item}
-            isCurrentUser={index === this.props.initialScrollIndex}
-            rank={index + 1}
-            key={item.id}
-        />
-    );
+    private renderLeaderboardList = ({ index }: ListRenderItemInfo<any>) => {
+        const { isLoading, initialScrollIndex, items } = this.props;
+        return (
+            <FlatList
+                contentContainerStyle={styles.flatlistContainer}
+                onRefresh={this.onRefresh}
+                refreshing={isLoading}
+                data={items}
+                removeClippedSubviews={false}
+                initialScrollIndex={isLoading ? 0 : initialScrollIndex}
+                keyExtractor={this.keyExtractor}
+                renderItem={this.renderItem(index ? "yucoin" : "steps")}
+            />
+        );
+    };
+
+    private renderItem = (type: LeaderboardTypes) => {
+        return ({ item, index }: ListRenderItemInfo<IItem>) => (
+            <LeaderboardItem
+                {...item}
+                type={type}
+                isCurrentUser={index === this.props.initialScrollIndex}
+                rank={index + 1}
+                key={item.id}
+            />
+        );
+    };
+
+    private outerListKeyExtractor = (_: undefined, index: number) => `${index}`;
 
     private keyExtractor = (item: IItem) => item.id;
-
-    private getItemLayout = (_: any, index: number) => ({
-        index,
-        length: LEADERBOARD_ITEM_HEIGHT,
-        offset: LEADERBOARD_ITEM_HEIGHT * index
-    });
 
     private handlePressImage = () => {
         const { isTopHidden } = this.state;
@@ -147,11 +161,59 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
         }).start(() => this.setState({ isScrolling: false }));
     };
 
+    private setRef = (ref: FlatList<any>) => (this.flatList = ref);
+
     private onRefresh = () => {
-        if (this.props.sortBy === "coins") {
-            this.props.onCoinPress();
-        } else {
-            this.props.onStepsPress();
+        if (this.state.leaderboardSubtype === "steps") {
+            this.props.onHandleStepsRefetch();
+        } else if (this.state.leaderboardSubtype === "yucoin") {
+            this.props.onHandleCoinsRefetch();
         }
+    };
+
+    private changeLeaderboardSubtype = (index: number) => {
+        switch (index) {
+            case 0:
+                return this.setState({
+                    leaderboardSubtype: "steps"
+                });
+            case 1:
+                return this.setState({
+                    leaderboardSubtype: "yucoin"
+                });
+            case 2:
+                return this.setState({
+                    leaderboardSubtype: "meditation"
+                });
+        }
+    };
+
+    private pressHeaderLeft = () => {
+        const { leaderboardSubtype } = this.state;
+        if (leaderboardSubtype === "yucoin") {
+            this.changeLeaderboardSubtype(0);
+            this.flatList.scrollToIndex({ animated: true, index: 0 });
+            this.props.onHandleStepsRefetch();
+        }
+    };
+
+    private pressHeaderRight = () => {
+        const { leaderboardSubtype } = this.state;
+        if (leaderboardSubtype === "steps") {
+            this.changeLeaderboardSubtype(1);
+            this.flatList.scrollToIndex({ animated: true, index: 1 });
+            this.props.onHandleCoinsRefetch();
+        }
+    };
+
+    private onSwipeEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+        const index = Math.round(event.nativeEvent.contentOffset.x / Style.DEVICE_WIDTH);
+        const { leaderboardSubtype } = this.state;
+        if (index === 0 && leaderboardSubtype !== "steps") {
+            this.props.onHandleStepsRefetch();
+        } else if (index === 1 && leaderboardSubtype !== "yucoin") {
+            this.props.onHandleCoinsRefetch();
+        }
+        this.changeLeaderboardSubtype(index);
     };
 }
