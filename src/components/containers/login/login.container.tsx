@@ -1,8 +1,8 @@
 import { ROUTES } from "@navigation/constants";
 import { setNextRoot } from "@navigation/root";
+import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import React, { Component } from "react";
 import { Platform } from "react-native";
-import { FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IntercomHashMethod, LoginMethod } from "../../../graphql/_core/schema";

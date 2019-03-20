@@ -1,3 +1,4 @@
+import { BUTTON_INTRO_SCREEN } from "@ids";
 import React, { PureComponent } from "react";
 import { Image, TouchableOpacity } from "react-native";
 import styles from "./screen-1.styles";
@@ -11,6 +12,7 @@ class OnboardingScreenOne extends PureComponent<IScreenProps> {
                 activeOpacity={1}
                 onPress={onPressNext}
                 style={styles.wrapper}
+                testID={BUTTON_INTRO_SCREEN(1)}
             >
                 <Image
                     resizeMethod="resize"

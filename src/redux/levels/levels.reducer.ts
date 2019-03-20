@@ -1,4 +1,4 @@
-import { PedometerResponse } from "react-native-fitkit";
+import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import { GetCurrentUser, LoginUser, UpdateActiveChallenge } from "../../graphql/_core/schema";
 import { pathOr } from "../../services/utils";
 import { SyncAction } from "../_core/types";

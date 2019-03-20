@@ -1,4 +1,4 @@
-import { FitKitAuthOptions, FitKitTypes } from "react-native-fitkit";
+import { FitKitAuthOptions, FitKitTypes } from "@services/fitkit/fitkit.service";
 
 const Permissions: FitKitAuthOptions = {
     read: [

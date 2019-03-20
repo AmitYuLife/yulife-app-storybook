@@ -1,5 +1,5 @@
 import { GetActivityHistoryQuery } from "@graphql/user";
-import { querySteps } from "@services/fitkit/fitkit.service";
+import { querySteps } from "@services/fitkit/fitkit.helpers";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";

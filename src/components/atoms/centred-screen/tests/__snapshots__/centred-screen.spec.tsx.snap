@@ -54,6 +54,7 @@ ShallowWrapper {
         "flex": 1,
         "flexDirection": "column",
       },
+      "testID": undefined,
     },
     "ref": null,
     "rendered": Array [
@@ -150,6 +151,7 @@ ShallowWrapper {
           "flex": 1,
           "flexDirection": "column",
         },
+        "testID": undefined,
       },
       "ref": null,
       "rendered": Array [
@@ -283,6 +285,7 @@ ShallowWrapper {
         "flex": 1,
         "flexDirection": "column",
       },
+      "testID": undefined,
     },
     "ref": null,
     "rendered": Array [
@@ -382,6 +385,7 @@ ShallowWrapper {
           "flex": 1,
           "flexDirection": "column",
         },
+        "testID": undefined,
       },
       "ref": null,
       "rendered": Array [
@@ -517,6 +521,7 @@ ShallowWrapper {
         "flex": 1,
         "flexDirection": "column",
       },
+      "testID": undefined,
     },
     "ref": null,
     "rendered": Array [
@@ -616,6 +621,7 @@ ShallowWrapper {
           "flex": 1,
           "flexDirection": "column",
         },
+        "testID": undefined,
       },
       "ref": null,
       "rendered": Array [
@@ -751,6 +757,7 @@ ShallowWrapper {
         "flex": 1,
         "flexDirection": "column",
       },
+      "testID": undefined,
     },
     "ref": null,
     "rendered": Array [
@@ -850,6 +857,7 @@ ShallowWrapper {
           "flex": 1,
           "flexDirection": "column",
         },
+        "testID": undefined,
       },
       "ref": null,
       "rendered": Array [
@@ -957,6 +965,7 @@ ShallowWrapper {
         "flex": 1,
         "flexDirection": "column",
       },
+      "testID": undefined,
     },
     "ref": null,
     "rendered": Array [
@@ -981,6 +990,7 @@ ShallowWrapper {
           "flex": 1,
           "flexDirection": "column",
         },
+        "testID": undefined,
       },
       "ref": null,
       "rendered": Array [

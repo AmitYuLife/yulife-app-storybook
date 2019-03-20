@@ -1,36 +1,40 @@
+import axios from "axios";
 import { Db, MongoClient } from "mongodb";
 import * as stubs from "./records";
 import { IDatabaseRecord } from "./types";
 
 export class DataManager {
     private db: Db;
+    private apiUrl: string;
 
-    public connect = async (mongoUrl = "mongodb://localhost:27017/yulife-detox") => {
+    public connect = async (
+        mongoUrl = "mongodb://localhost:27017/yulife-detox",
+        apiUrl = "http://localhost:5000/"
+    ) => {
         this.log(`Connecting to ${mongoUrl}`);
         const client = new MongoClient(mongoUrl);
         await client.connect();
         this.db = client.db();
         this.log(`Connected!`);
-    }
-
-    public seed = async () => {
-        const values = (Object as any).values(stubs);
-        this.log(`Seeding ${values.length} records`);
-        await this.insertRecords(values);
+        this.apiUrl = apiUrl;
     }
 
     public reseed = async () => {
-        const values = Object.values(stubs);
-        this.log(`Re-Seeding ${values.length} records`);
+        this.log(`Clearing DB...`);
         await this.clearDb();
+
+        this.log(`Triggering API seed...`);
+        await axios.post(`${this.apiUrl}detox/seed`);
+
+        const values = Object.values(stubs);
+        this.log(`Adding ${values.length} records from detox stubs`);
         await this.insertRecords(values);
     }
 
     public clearDb = async () => {
-        this.log(`Clearing DB`);
-        const promises = Object
-            .values(stubs)
-            .map((record) => this.db.collection(record.collection).deleteMany({}));
+        this.log(`Clearing DB collections`);
+        const collections = await this.db.collections();
+        const promises = collections.map((collection) => collection.drop());
         await Promise.all(promises);
     }
 
@@ -56,7 +60,7 @@ export class DataManager {
             try {
                 await this.db.collection(collection).insertOne(data);
             } catch (e) {
-                throw new Error(`Error inserting ${collection} (ID: ${data._id}: ${e})`)
+                throw new Error(`Error inserting ${collection} (ID: ${data._id}: ${e})`);
             }
         });
         return Promise.all(promises);

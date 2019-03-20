@@ -7,12 +7,14 @@ interface IProps {
     bold?: boolean;
     style?: RegisteredStyle<TextStyle> | TextStyle;
     numberOfLines?: number;
+    testID?: string;
 }
 
-const YuText: SFC<IProps> = ({ children, bold, style, numberOfLines }) => (
+const YuText: SFC<IProps> = ({ children, bold, style, numberOfLines, testID }) => (
     <Text
         numberOfLines={numberOfLines}
         style={StyleSheet.flatten([styles.base, bold ? styles.weightBold : styles.weightNormal, style])}
+        testID={testID}
     >
         {children}
     </Text>

@@ -1,3 +1,4 @@
+import { VIEW_CONFETTI_COIN } from "@ids";
 import * as React from "react";
 import { SFC } from "react";
 import { Image, StyleSheet, View } from "react-native";
@@ -10,7 +11,10 @@ interface IProps {
 }
 
 const CoinConfetti: SFC<IProps> = ({ coins, isExpanded }) => (
-    <View style={StyleSheet.flatten([styles.wrapper, isExpanded ? styles.wrapperExpanded : styles.null])}>
+    <View
+        testID={VIEW_CONFETTI_COIN(coins)}
+        style={StyleSheet.flatten([styles.wrapper, isExpanded ? styles.wrapperExpanded : styles.null])}
+    >
         <Image source={require("../../../../assets/coin-confetti/coin.png")} />
         <View style={styles.confettiWrapper}>
             <Image

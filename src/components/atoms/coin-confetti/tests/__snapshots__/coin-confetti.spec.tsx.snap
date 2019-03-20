@@ -62,6 +62,7 @@ ShallowWrapper {
         "justifyContent": "center",
         "width": "100%",
       },
+      "testID": "VIEW_CONFETTI_COIN_undefined",
     },
     "ref": null,
     "rendered": Array [
@@ -180,6 +181,7 @@ ShallowWrapper {
           "justifyContent": "center",
           "width": "100%",
         },
+        "testID": "VIEW_CONFETTI_COIN_undefined",
       },
       "ref": null,
       "rendered": Array [
@@ -333,6 +335,7 @@ ShallowWrapper {
         "height": 440,
         "width": "100%",
       },
+      "testID": "VIEW_CONFETTI_COIN_2000",
     },
     "ref": null,
     "rendered": Array [
@@ -456,6 +459,7 @@ ShallowWrapper {
           "height": 440,
           "width": "100%",
         },
+        "testID": "VIEW_CONFETTI_COIN_2000",
       },
       "ref": null,
       "rendered": Array [
@@ -611,6 +615,7 @@ ShallowWrapper {
         "height": 440,
         "width": "100%",
       },
+      "testID": "VIEW_CONFETTI_COIN_undefined",
     },
     "ref": null,
     "rendered": Array [
@@ -722,6 +727,7 @@ ShallowWrapper {
           "height": 440,
           "width": "100%",
         },
+        "testID": "VIEW_CONFETTI_COIN_undefined",
       },
       "ref": null,
       "rendered": Array [

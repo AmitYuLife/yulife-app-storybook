@@ -1,6 +1,6 @@
-import { querySteps } from "@services/fitkit/fitkit.service";
+import { querySteps } from "@services/fitkit/fitkit.helpers";
+import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
-import { PedometerResponse } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { delay } from "redux-saga";
 import { call, put, select, spawn, takeLatest } from "redux-saga/effects";

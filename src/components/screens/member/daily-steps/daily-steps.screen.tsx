@@ -1,3 +1,4 @@
+import { DAILY_STEPS_SCREEN } from "@ids";
 import { TouchableOpacityWithState } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
@@ -64,6 +65,7 @@ export default function DailyStepsScreen({
         <CentredScreen
             footerImage={!isOnline || !hasPermission ? centredScreen.offline.image : centredScreen.online.image}
             style={isOnline ? centredScreen.online.style : centredScreen.offline.style}
+            testID={DAILY_STEPS_SCREEN}
         >
             <TopBar coins={totalCoins} type={topBarType} onPressLeftIcon={onLeftMenuPress} />
             <Pad height={getPadHeight(displayStreak)} />

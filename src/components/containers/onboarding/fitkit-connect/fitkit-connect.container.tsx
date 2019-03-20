@@ -1,8 +1,8 @@
+import { FitKitAuthoriseFunction, FitKitAvailable } from "@services/fitkit/fitkit.service";
 import * as React from "react";
 import { PureComponent } from "react";
 import { BackHandler, Linking, NativeEventSubscription } from "react-native";
 import Config from "react-native-config";
-import { FitKitAuthoriseFunction, FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { fitKitConsentAuthorised } from "../../../../redux/user/user.actions";
