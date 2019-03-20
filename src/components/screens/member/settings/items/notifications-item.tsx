@@ -1,4 +1,5 @@
 import { Text } from "@atoms/index";
+import { Colours } from "@styles/index";
 import * as React from "react";
 import { SFC } from "react";
 import { StyleSheet, Switch, TouchableOpacity, View } from "react-native";
@@ -17,7 +18,11 @@ const NotificationsItem: SFC<INotificationsSectionItem> = ({ active, name, onSwi
                 </TouchableOpacity>
             )}
         </View>
-        <Switch onValueChange={onSwitchPress} value={active} />
+        <Switch
+            onTintColor={Colours.darkHotPink}
+            onValueChange={onSwitchPress}
+            value={active}
+        />
     </View>
 );
 
