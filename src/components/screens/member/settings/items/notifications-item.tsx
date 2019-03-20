@@ -7,7 +7,7 @@ import { INotificationsSectionItem } from "../settings.screen";
 import styles from "./notifications-item.styles";
 
 const swithPropsIOS = { onTintColor: Colours.darkHotPink };
-const swithPropsAndroidON = { thumbTintColor: Colours.darkHotPink, onTintColor: "#F9B5D9" };
+// const swithPropsAndroidON = { thumbTintColor: Colours.darkHotPink, onTintColor: "#F9B5D9" };
 
 const NotificationsItem: SFC<INotificationsSectionItem> = ({ active, name, onSwitchPress, onTimePress, time }) => (
     <View style={styles.wrapper}>
@@ -24,8 +24,8 @@ const NotificationsItem: SFC<INotificationsSectionItem> = ({ active, name, onSwi
         <Switch
             onValueChange={onSwitchPress}
             value={active}
-            {...Platform.select<any>({
-                android: active ? swithPropsAndroidON : {},
+            {...Platform.select({
+                android: {},
                 ios: swithPropsIOS
             })}
         />
