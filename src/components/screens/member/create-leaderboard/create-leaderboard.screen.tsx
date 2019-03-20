@@ -1,3 +1,4 @@
+import { CreateLeaderboardVariables } from "@graphql/_core/schema";
 import * as React from "react";
 import { FlatList, ListRenderItemInfo, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { Button, CentredScreen, Close, GenericHeading, Pad, TextInput } from "../../../atoms";
@@ -12,7 +13,8 @@ interface IState {
 }
 
 interface IProps {
-    onCreateLeaderboard: () => void;
+    isLoading: boolean;
+    onCreateLeaderboard: (variables: CreateLeaderboardVariables) => void;
     onPressClose: () => void;
 }
 
@@ -26,8 +28,9 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
 
     public render() {
         const { emailError, emailInput, emails, groupName } = this.state;
-        const { onCreateLeaderboard } = this.props;
+        const { isLoading } = this.props;
         const isCreateDisabled = !emails.length || groupName === "";
+
         return (
             <SafeAreaView style={StyleSheet.absoluteFill}>
                 <GenericHeading heading="create a leaderboard" hidesBorder={true} />
@@ -59,10 +62,11 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
                         renderItem={this.renderItem}
                     />
                     <Button
+                        isLoading={isLoading}
                         wrapperStyle={styles.createButton}
-                        disabled={isCreateDisabled}
+                        disabled={isCreateDisabled || isLoading}
                         label="create"
-                        onPress={onCreateLeaderboard}
+                        onPress={this.handleCreateLeaderboardSubmit}
                         type="Primary"
                     />
                 </CentredScreen>
@@ -70,6 +74,7 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
             </SafeAreaView>
         );
     }
+
     private keyExtractor = (item: string, index: number) => `${index}${item}`;
 
     private renderItem = ({ item, index }: ListRenderItemInfo<string>) => (
@@ -114,6 +119,11 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
                 ]
             }));
         };
+    };
+
+    private handleCreateLeaderboardSubmit = () => {
+        const { groupName, emails } = this.state;
+        this.props.onCreateLeaderboard({ name: groupName, invitees: emails });
     };
 }
 
