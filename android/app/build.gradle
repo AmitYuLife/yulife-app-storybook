@@ -38,7 +38,7 @@ android {
         applicationId "com.yulife"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative56"
+        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57_5"
         multiDexEnabled true
         renderscriptTargetApi rootProject.ext.minSdkVersion
         renderscriptSupportModeEnabled true

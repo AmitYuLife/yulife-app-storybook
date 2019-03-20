@@ -11,6 +11,8 @@ import TestFairy from "react-native-testfairy";
 registerScreens();
 
 Navigation.events().registerAppLaunchedListener(async () => {
+    await setLoadingRoot();
+
     // initialize TestFairy
     if (Config.TESTFAIRY_ENABLED === "yes") {
         TestFairy.enableVideo("wifi", "high", 0.4);
@@ -20,8 +22,6 @@ Navigation.events().registerAppLaunchedListener(async () => {
     await migrateOldAppVersionToken();
 
     setDefaultOptions();
-
-    setLoadingRoot();
 
     const token = await getToken();
 
