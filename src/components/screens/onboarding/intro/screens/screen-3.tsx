@@ -1,3 +1,4 @@
+import { BUTTON_INTRO_SCREEN } from "@ids";
 import React, { PureComponent } from "react";
 import { Image, TouchableOpacity, View } from "react-native";
 import styles from "./screen-3.styles";
@@ -20,6 +21,7 @@ class OnboardingScreenThree extends PureComponent<IScreenProps> {
                         <TouchableOpacity
                             onPress={onPressNext}
                             style={styles.button}
+                            testID={BUTTON_INTRO_SCREEN(3)}
                         />
                         <TouchableOpacity
                             onPress={onPressPrevious}

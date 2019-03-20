@@ -4,12 +4,12 @@ import * as moment from "moment";
 
 export const authoriseFitKit = async (): Promise<void> => {
     mockServer.emit({
-        name: MOCK_EVENTS.REDUX_EVENT,
-        payload: fitKitConsentAuthorised()
+        name: MOCK_EVENTS.FITKIT_AUTHORISED,
+        payload: null
     });
 };
 
-export const sendSteps = async (amount = 10): Promise<void> => {
+export const sendSteps = (amount = 10) => async (): Promise<void> => {
     mockServer.emit({
         name: MOCK_EVENTS.PEDOMETER_EVENT,
         payload: {
@@ -20,9 +20,9 @@ export const sendSteps = async (amount = 10): Promise<void> => {
     });
 };
 
-export const startWalkingSteps = async (amount = 1000, increment = 10, interval = 5000): Promise<number> => {
+export const startWalkingSteps = (amount = 1000, increment = 10, interval = 5000) => async (): Promise<number> => {
     return setInterval(() => {
-        sendSteps(amount);
+        sendSteps(amount)();
         amount = amount + increment;
     }, interval);
 };

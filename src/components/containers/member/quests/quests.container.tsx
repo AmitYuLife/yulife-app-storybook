@@ -1,9 +1,9 @@
+import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import { getCurrentWorld } from "@services/utils";
 import moment from "moment";
 import { PureComponent } from "react";
 import React from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
-import { FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../graphql/_core/schema";

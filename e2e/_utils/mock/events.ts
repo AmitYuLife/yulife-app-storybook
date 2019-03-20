@@ -6,12 +6,18 @@ export const enum EVENT {
     CONNECTION_INFO_CHANGED = "CONNECTION_INFO_CHANGED",
     LOCATION_CHANGED = "LOCATION_CHANGED",
     PEDOMETER_EVENT = "PEDOMETER_EVENT",
-    REDUX_EVENT = "REDUX_EVENT"
+    REDUX_EVENT = "REDUX_EVENT",
+    FITKIT_AUTHORISED = "FITKIT_AUTHORISED"
 }
 
 export interface IEventWithPayload {
     name: EVENT;
     payload?: {};
+}
+
+export interface IFitkitAuthorised extends IEventWithPayload {
+    name: EVENT.FITKIT_AUTHORISED;
+    payload?: null;
 }
 
 export interface IConnectionInfoChanged extends IEventWithPayload {
@@ -40,4 +46,5 @@ export type MockedEvent =
     IConnectionInfoChanged |
     ILocationChanged |
     IPedometerEvent |
-    IReduxEvent;
+    IReduxEvent |
+    IFitkitAuthorised;

@@ -1,4 +1,4 @@
-import RNFitKit from "react-native-fitkit";
+import RNFitKit from "@services/fitkit/fitkit.service";
 import { eventChannel } from "redux-saga";
 
 export function stepsChannel(startTime: string) {

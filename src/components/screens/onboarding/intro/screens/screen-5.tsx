@@ -1,3 +1,4 @@
+import { BUTTON_INTRO_SCREEN } from "@ids";
 import React, { PureComponent } from "react";
 import { Image, TouchableOpacity, View } from "react-native";
 import styles from "./screen-5.styles";
@@ -22,6 +23,7 @@ class OnboardingScreenFive extends PureComponent<IScreenProps> {
                         <TouchableOpacity
                             onPress={onPressNext}
                             style={styles.button}
+                            testID={BUTTON_INTRO_SCREEN(5)}
                         />
                         <TouchableOpacity
                             onPress={onPressPrevious}

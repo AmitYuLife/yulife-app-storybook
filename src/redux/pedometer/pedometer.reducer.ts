@@ -1,5 +1,5 @@
+import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
-import { PedometerResponse } from "react-native-fitkit";
 import { PEDOMETER_UPDATES_SUCCESS } from "./pedometer.actions";
 
 export interface IPedometerStore {

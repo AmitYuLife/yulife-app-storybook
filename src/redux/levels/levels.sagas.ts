@@ -7,7 +7,7 @@ import { call, cancel, cancelled, fork, put, race, select, spawn, take, takeLate
 import cancelActiveChallengeWithClient from "../../graphql/challenges/cancelActiveChallenge.gql";
 import submitUnityChallengeWithClient from "../../graphql/challenges/submitUnity.gql";
 import updateActiveChallengeWithClient from "../../graphql/challenges/updateActiveChallenge.gql";
-import { queryMindfulSessions } from "../../services/fitkit/fitkit.service";
+import { queryMindfulSessions } from "../../services/fitkit/fitkit.helpers";
 import { pathOr } from "../../services/utils";
 import { cancelLocalPush } from "../device/device.actions";
 import { GET_USER_SUCCESS, getUserStart } from "../user/user.actions";

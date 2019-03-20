@@ -78,6 +78,7 @@ ShallowWrapper {
       "style": Object {
         "backgroundColor": "#FFF",
       },
+      "testID": "DAILY_STEPS_SCREEN",
     },
     "ref": null,
     "rendered": Array [
@@ -231,6 +232,7 @@ ShallowWrapper {
         "style": Object {
           "backgroundColor": "#FFF",
         },
+        "testID": "DAILY_STEPS_SCREEN",
       },
       "ref": null,
       "rendered": Array [
@@ -434,6 +436,7 @@ ShallowWrapper {
       "style": Object {
         "backgroundColor": "#FFF",
       },
+      "testID": "DAILY_STEPS_SCREEN",
     },
     "ref": null,
     "rendered": Array [
@@ -583,6 +586,7 @@ ShallowWrapper {
         "style": Object {
           "backgroundColor": "#FFF",
         },
+        "testID": "DAILY_STEPS_SCREEN",
       },
       "ref": null,
       "rendered": Array [
@@ -802,6 +806,7 @@ ShallowWrapper {
       "style": Object {
         "backgroundColor": "#FFF",
       },
+      "testID": "DAILY_STEPS_SCREEN",
     },
     "ref": null,
     "rendered": Array [
@@ -991,6 +996,7 @@ ShallowWrapper {
         "style": Object {
           "backgroundColor": "#FFF",
         },
+        "testID": "DAILY_STEPS_SCREEN",
       },
       "ref": null,
       "rendered": Array [
@@ -1225,6 +1231,7 @@ ShallowWrapper {
       "style": Object {
         "backgroundColor": "#FFF",
       },
+      "testID": "DAILY_STEPS_SCREEN",
     },
     "ref": null,
     "rendered": Array [
@@ -1392,6 +1399,7 @@ ShallowWrapper {
         "style": Object {
           "backgroundColor": "#FFF",
         },
+        "testID": "DAILY_STEPS_SCREEN",
       },
       "ref": null,
       "rendered": Array [
@@ -1601,6 +1609,7 @@ ShallowWrapper {
       "style": Object {
         "backgroundColor": "#FFF",
       },
+      "testID": "DAILY_STEPS_SCREEN",
     },
     "ref": null,
     "rendered": Array [
@@ -1750,6 +1759,7 @@ ShallowWrapper {
         "style": Object {
           "backgroundColor": "#FFF",
         },
+        "testID": "DAILY_STEPS_SCREEN",
       },
       "ref": null,
       "rendered": Array [
@@ -1954,6 +1964,7 @@ ShallowWrapper {
       "style": Object {
         "backgroundColor": "#FFF",
       },
+      "testID": "DAILY_STEPS_SCREEN",
     },
     "ref": null,
     "rendered": Array [
@@ -2109,6 +2120,7 @@ ShallowWrapper {
         "style": Object {
           "backgroundColor": "#FFF",
         },
+        "testID": "DAILY_STEPS_SCREEN",
       },
       "ref": null,
       "rendered": Array [

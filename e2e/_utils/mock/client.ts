@@ -3,6 +3,7 @@ import {
     EVENT,
     IConnectionInfoChanged,
     IEventWithPayload,
+    IFitkitAuthorised,
     ILocationChanged,
     IPedometerEvent,
     IReduxEvent
@@ -27,6 +28,11 @@ export default class SocketClient {
         });
         // this.socket.on("TEST", (payload: string) => console.log("TEST", payload));
         // this.socket.on(EVENT.REDUX_EVENT, (payload: string) => console.log("REDUX EVENT", payload));
+    }
+
+    public onFitkitAuthorised(cb: Callback<IFitkitAuthorised>) {
+        this.socket.on(EVENT.FITKIT_AUTHORISED, cb);
+        return () => this.socket.off(EVENT.FITKIT_AUTHORISED, cb);
     }
 
     public onLocationChanged(cb: Callback<ILocationChanged>) {

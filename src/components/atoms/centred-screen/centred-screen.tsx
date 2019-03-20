@@ -7,6 +7,7 @@ interface IProps {
     children?: React.ReactNode;
     footerImage?: CenteredScreenImages;
     style?: RegisteredStyle<ViewStyle>;
+    testID?: string;
 }
 
 export type CenteredScreenImages =
@@ -21,9 +22,9 @@ export type CenteredScreenImages =
     | "gray_desert"
     | "challenge_failed_desert";
 
-export default function CenteredScreen({ children, footerImage, style }: IProps) {
+export default function CenteredScreen({ children, footerImage, style, testID }: IProps) {
     return (
-        <SafeAreaView style={StyleSheet.flatten([styles.wrapper, style])}>
+        <SafeAreaView style={StyleSheet.flatten([styles.wrapper, style])} testID={testID}>
             {!footerImage ? null : (
                 <View style={styles.imageWrapper}>
                     <Image resizeMode="cover" {...getImageAndStyle(footerImage)} />

@@ -1,7 +1,7 @@
+import RNFitKit from "@services/fitkit/fitkit.service";
 import { getCurrentWorld } from "@services/utils";
 import moment from "moment";
-import RNFitKit from "react-native-fitkit";
-import { queryMindfulSessions } from "../../services/fitkit/fitkit.service";
+import { queryMindfulSessions } from "../../services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.selectors";
 
 const MAX_AVAILABLE = 4;

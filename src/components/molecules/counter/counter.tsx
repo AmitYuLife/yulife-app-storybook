@@ -1,4 +1,5 @@
 import { Text } from "@atoms/index";
+import { VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids";
 import * as React from "react";
 import { Animated, TextStyle } from "react-native";
 
@@ -39,7 +40,14 @@ class Counter extends React.PureComponent<IProps, IState> {
         const { value } = this.state;
         const renderValue = `${textBeforeValue} ${value} ${textAfterValue}`.trim();
 
-        return <Text style={textStyle}>{renderValue}</Text>;
+        return (
+            <Text
+                style={textStyle}
+                testID={VIEW_TOP_RIGHT_COIN_COUNTER(value)}
+            >
+                {renderValue}
+            </Text>
+        );
     }
 
     private onValueChanged = (e: Partial<IProps>) => {

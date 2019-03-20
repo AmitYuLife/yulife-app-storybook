@@ -1,11 +1,11 @@
 import { MODALS } from "@navigation/constants";
 import { IMainTabsProps } from "@navigation/root";
+import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import { getCurrentWorld } from "@services/utils";
 import moment from "moment";
 import { PureComponent } from "react";
 import React from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
-import { FitKitAvailable } from "react-native-fitkit";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";

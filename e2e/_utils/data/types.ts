@@ -8,7 +8,18 @@ export interface IDatabaseRecord {
 
 export enum DatabaseCollection {
     auths = "auths",
-    users = "users"
-}
+    challenges = "challenges",
+    challengetemplates = "challengetemplates",
+    coinledgers = "coinledgers",
+    collection = "collection",
+    core_coin_multipliers = "core_coin_multipliers",
+    core_runner_businesses = "core_runner_businesses",
+    core_streaks = "core_streaks",
+    coupons = "coupons",
+    devices = "devices",
 
-export type DatabaseRecordCollection = "auths" | "challenges" | "challengetemplates" | "coinledgers" | "rewards";
+    users = "users",
+    map_level_slot_templates = "map_level_slot_templates",
+    map_milestone_templates = "map_milestone_templates",
+    history_user_consents = "history_user_consents"
+}

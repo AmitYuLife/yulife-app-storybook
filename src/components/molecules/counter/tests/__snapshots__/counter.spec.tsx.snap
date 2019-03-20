@@ -22,6 +22,7 @@ ShallowWrapper {
     "props": Object {
       "children": "100 steps",
       "style": undefined,
+      "testID": "VIEW_TOP_RIGHT_COIN_COUNTER_100",
     },
     "ref": null,
     "rendered": "100 steps",
@@ -35,6 +36,7 @@ ShallowWrapper {
       "props": Object {
         "children": "100 steps",
         "style": undefined,
+        "testID": "VIEW_TOP_RIGHT_COIN_COUNTER_100",
       },
       "ref": null,
       "rendered": "100 steps",
