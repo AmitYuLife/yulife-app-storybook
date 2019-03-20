@@ -17,3 +17,6 @@
 #}
 
 -keep class com.yulife.BuildConfig { *; }
+
+# for mixpanel resources
+-keep class **.R$* { *; }
