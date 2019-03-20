@@ -43,7 +43,7 @@
    
     // Mixpanel
     NSString *mixpanelApiKey = [ReactNativeConfig envFor:@"MIXPANEL_API_TOKEN"];
-    [Mixpanel sharedInstanceWithToken:mixpanelApiKey];
+    [Mixpanel sharedInstanceWithToken:mixpanelApiKey launchOptions:launchOptions];
 
     // Bugsnag
     [BugsnagReactNative start];
@@ -58,6 +58,8 @@
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
   [RCTPushNotificationManager didRegisterUserNotificationSettings:notificationSettings];
+  Mixpanel *mixpanel = [Mixpanel sharedInstance];
+  [mixpanel.people addPushDeviceToken:deviceToken];
 }
 // Required for the register event.
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
