@@ -1,9 +1,4 @@
-import {
-    Platform,
-    StyleSheet,
-    TextStyle,
-    ViewStyle
-} from "react-native";
+import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../styles";
 
 export default StyleSheet.create({
@@ -13,9 +8,8 @@ export default StyleSheet.create({
     } as ViewStyle,
     coinsText: {
         fontSize: Style.SCALE_UP_AND_DOWN(18),
-        marginBottom: Style.SCALE_UP_AND_DOWN(
-            Platform.OS === "ios" ? -4 : 0
-        ),
+
+        marginBottom: Style.SCALE_UP_AND_DOWN(Platform.OS === "ios" ? -1 : 2),
         marginRight: Style.SCALE_UP_AND_DOWN(8)
     } as TextStyle,
     coinsTextWrapper: {
@@ -77,9 +71,7 @@ export default StyleSheet.create({
         flexDirection: "row",
         height: Style.SCALE_UP_AND_DOWN(28),
         justifyContent: "center",
-        marginTop: Style.SCALE_UP_AND_DOWN(
-            Platform.OS === "ios" ? 4 : 8
-        ),
+        marginTop: Style.SCALE_UP_AND_DOWN(Platform.OS === "ios" ? 4 : 8),
         width: "100%"
     } as ViewStyle
 });
