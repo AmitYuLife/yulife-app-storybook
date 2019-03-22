@@ -39,6 +39,7 @@ export interface IContainerProps {
     onPressConfirm: () => void;
     onPressSetUp: () => void;
     onPressPolicy: () => void;
+    isLoading?: boolean;
 }
 
 export interface IOnPressPickerArgs {
@@ -69,7 +70,6 @@ interface IState {
 }
 
 class AviosDetailsScreen extends React.PureComponent<Props, IState> {
-
     public state = {
         isShowingKeyboard: false
     };
@@ -120,7 +120,8 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
             forenameValue,
             surnameValue,
             amountValue,
-            coins
+            coins,
+            isLoading
         } = this.props;
         const { isShowingKeyboard } = this.state;
         return (
@@ -204,9 +205,10 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
                     <View style={styles.ctaWrapper}>
                         <Button
                             type={Button.Types.PRIMARY}
+                            isLoading={isLoading}
                             label={confirmButtonLabel}
                             onPress={onPressConfirm}
-                            disabled={isDisabledCta}
+                            disabled={isDisabledCta || isLoading}
                         />
                     </View>
                     <View style={styles.linksWrapper}>
@@ -234,21 +236,21 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
 
     private keyboardDidShow = (isShowingKeyboard: boolean) => {
         return () => this.setState({ isShowingKeyboard });
-    }
+    };
 
     private handlePressLoyalty = () => {
         this.props.onPressLoyaltyPicker({
             instruction: "Select your loyalty programme",
             items: this.props.loyaltyList
         });
-    }
+    };
 
     private handlePressAmount = () => {
         this.props.onPressAmountPicker({
             instruction: "Select your amount",
             items: this.props.amountList
         });
-    }
+    };
 }
 
 export default AviosDetailsScreen;

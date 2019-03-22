@@ -12,7 +12,6 @@ import { getOfflineState } from "../../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { getUserStart } from "../../../../../redux/user/user.actions";
 import Logger from "../../../../../services/logging/logger";
-import { Loading } from "../../../../atoms";
 import { WegiftRewardDetailsScreen } from "../../../../screens";
 
 interface IProps {
@@ -67,10 +66,6 @@ class WegiftRewardDetailsContainer extends Component<Props> {
                         this.handleRewardPurchase(redeemReward);
                     };
 
-                    if (loading) {
-                        return <Loading />;
-                    }
-
                     return (
                         <WegiftRewardDetailsScreen
                             uiSettings={uiSettings}
@@ -85,6 +80,7 @@ class WegiftRewardDetailsContainer extends Component<Props> {
                             onPressTerms={this.openPDFs("terms")}
                             onPressPolicy={this.openPDFs("policy")}
                             coins={totalCoins}
+                            isLoading={loading}
                             onPressTopBar={this.handleRewardsPress}
                             onLeftTabPress={this.handleRewardsPress}
                             onRightTabPress={this.handlePurchasesPress}

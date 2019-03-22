@@ -15,6 +15,7 @@ export interface IServerProps {
 }
 
 interface IContainerProps {
+    isLoadingConfirmAction: boolean;
     onPressCancel: () => void;
     onPressConfirm: () => void;
     onPressTerms: () => void;
@@ -46,7 +47,8 @@ class WegiftRewardsConfirmed extends PureComponent<Props, IState> {
             purchaseDate,
             validDate,
             imageUrl,
-            coins
+            coins,
+            isLoadingConfirmAction
         } = this.props;
         const { hasLoaded } = this.state;
         return (
@@ -89,6 +91,7 @@ class WegiftRewardsConfirmed extends PureComponent<Props, IState> {
                         labelCtaSecondary="get voucher"
                         onPressTerms={onPressTerms}
                         onPressPolicy={onPressPolicy}
+                        isLoadingSecondary={isLoadingConfirmAction}
                     />
                     <Pad height={50} />
                 </ScrollView>

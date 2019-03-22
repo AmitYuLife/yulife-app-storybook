@@ -1,7 +1,4 @@
-import {
-    RedeemRewardFunctionType,
-    RedeemRewardMutation
-} from "@graphql/rewards";
+import { RedeemRewardFunctionType, RedeemRewardMutation } from "@graphql/rewards";
 import * as React from "react";
 import { Component } from "react";
 import { Alert, Linking } from "react-native";
@@ -15,7 +12,7 @@ import { getOfflineState } from "../../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { getUserStart } from "../../../../../redux/user/user.actions";
 import Logger from "../../../../../services/logging/logger";
-import { BlurProvider, Loading } from "../../../../atoms";
+import { BlurProvider } from "../../../../atoms";
 import { ListPicker } from "../../../../molecules";
 import { AviosRewardDetailsScreen } from "../../../../screens";
 import {
@@ -142,10 +139,6 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
                         this.handleRewardPurchase(redeemReward);
                     };
 
-                    if (loading) {
-                        return <Loading />;
-                    }
-
                     return (
                         <BlurProvider
                             ref={(ref) => (this.blurProvider = ref)}
@@ -154,6 +147,7 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
                                 <AviosRewardDetailsScreen
                                     uiSettings={uiSettings}
                                     isDisabledCta={isDisabledCta}
+                                    isLoading={loading}
                                     hasErrorAccountNumber={hasErrorAccountNumber}
                                     onPressLoyaltyPicker={this.handlePressPicker({
                                         picker: "loyalty",
@@ -226,19 +220,19 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
         if (supported) {
             await Linking.openURL(url);
         }
-    }
+    };
 
     private handleRewardsPress = () => {
         this.props.onTabChange("rewards", this.props.componentId);
-    }
+    };
 
     private handlePurchasesPress = () => {
         this.props.onTabChange("purchases", this.props.componentId);
-    }
+    };
 
     private handlePick = ({ picker, item }: { picker: string; item: IRewardReturnedUsersItem }) => () => {
         this.setState({ [picker]: item }, () => this.blurProvider.toggleOverlay());
-    }
+    };
 
     private handlePressPicker = ({ toggleOverlay, picker }: { toggleOverlay: () => void; picker: string }) => {
         return ({ items, instruction }: IOnPressPickerArgs) => {
@@ -258,7 +252,7 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
                 () => toggleOverlay()
             );
         };
-    }
+    };
 
     private validateForm = () => {
         const {
@@ -270,7 +264,7 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
             hasError: !forename || !surname || !id,
             isValidAccountNumber: this.verifyAccountNumber()
         };
-    }
+    };
 
     private handleTextChange = (key: string) => {
         return (value: string) => {
@@ -279,7 +273,7 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
                 isAccountNumberDirty: key === "accountNumber"
             } as Partial<IState>);
         };
-    }
+    };
 
     private verifyAccountNumber = () => {
         const {
@@ -299,7 +293,7 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
         } else {
             return false;
         }
-    }
+    };
 
     private handleRewardPurchase = (redeemReward: RedeemRewardFunctionType) => {
         const { offline, reward, totalCoins } = this.props;
@@ -375,7 +369,7 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
                 text: "Confirm"
             }
         ]);
-    }
+    };
 }
 
 const mapStateToProps = (state: IReduxState) => ({

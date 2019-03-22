@@ -17,6 +17,7 @@ interface IProps {
     onPressCtaPrimary: () => void;
     labelCtaPrimary: string;
     linkType?: string;
+    isLoading?: boolean;
     onPressTerms: () => void;
     onPressPolicy: () => void;
     coins: number;
@@ -36,6 +37,7 @@ const WegiftDetailsScreen: SFC<IProps> = ({
     onPressCtaPrimary,
     labelCtaPrimary,
     linkType,
+    isLoading,
     onPressTerms,
     onPressPolicy,
     onPressTopBar,
@@ -61,6 +63,7 @@ const WegiftDetailsScreen: SFC<IProps> = ({
             />
             <View style={styles.scrollViewContentWrapper}>
                 <RewardItemContent
+                    isLoadingPrimary={isLoading}
                     description={description}
                     instructions={instructions}
                     labelCtaPrimary={labelCtaPrimary}
