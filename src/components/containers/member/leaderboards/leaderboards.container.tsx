@@ -75,8 +75,8 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                         return <GenericConnectionErrorModal onPress={this.handleClose} />;
                     }
 
-                    const onCoinPress = this.handleRefetch(refetch, "coins");
-                    const onStepsPress = this.handleRefetch(refetch, "steps");
+                    const coinsRefetch = this.handleRefetch(refetch, "coins");
+                    const stepsRefetch = this.handleRefetch(refetch, "steps");
                     const initialScrollIndex =
                         data &&
                         data.getLeaderboard != null &&
@@ -89,9 +89,9 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                             isLoading={loading}
                             initialScrollIndex={initialScrollIndex}
                             items={data.getLeaderboard || []}
-                            onCoinPress={onCoinPress}
+                            onHandleCoinsRefetch={coinsRefetch}
                             onPressClose={this.handleClose}
-                            onStepsPress={onStepsPress}
+                            onHandleStepsRefetch={stepsRefetch}
                             sortBy={sortBy}
                         />
                     );

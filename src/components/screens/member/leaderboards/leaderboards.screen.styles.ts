@@ -40,6 +40,9 @@ export default StyleSheet.create({
         position: "relative",
         width: "100%"
     } as ViewStyle,
+    flatlistContainer: {
+        width: Style.DEVICE_WIDTH - Style.SCALE_UP_AND_DOWN(30)
+    } as ViewStyle,
     header: {
         position: "absolute",
         top: getTop(),
