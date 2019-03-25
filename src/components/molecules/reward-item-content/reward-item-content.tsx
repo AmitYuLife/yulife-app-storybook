@@ -12,6 +12,8 @@ interface IProps {
     labelCtaPrimary: string;
     labelCtaSecondary?: string;
     labelCtaTertiary?: string;
+    isLoadingPrimary?: boolean;
+    isLoadingSecondary?: boolean;
     onPressCtaPrimary: () => void;
     onPressCtaSecondary?: () => void;
     onPressCtaTertiary?: () => void;
@@ -29,7 +31,9 @@ const RewardItemContent: SFC<IProps> = ({
     labelCtaSecondary,
     labelCtaTertiary,
     onPressTerms,
-    onPressPolicy
+    onPressPolicy,
+    isLoadingPrimary,
+    isLoadingSecondary
 }) => (
     <View style={styles.wrapper}>
         {!description ? null : (
@@ -61,6 +65,8 @@ const RewardItemContent: SFC<IProps> = ({
         <Button
             wrapperStyle={styles.primaryWrapper}
             type={Button.Types.PRIMARY}
+            isLoading={isLoadingPrimary}
+            disabled={isLoadingPrimary}
             onPress={onPressCtaPrimary}
             label={labelCtaPrimary}
         />
@@ -70,6 +76,8 @@ const RewardItemContent: SFC<IProps> = ({
                 type={Button.Types.SECONDARY}
                 onPress={onPressCtaSecondary}
                 label={labelCtaSecondary}
+                isLoading={isLoadingSecondary}
+                disabled={isLoadingSecondary}
             />
         )}
         {!onPressCtaTertiary ? (

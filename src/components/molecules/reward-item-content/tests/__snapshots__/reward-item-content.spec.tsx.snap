@@ -458,6 +458,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "disabled": undefined,
+          "isLoading": undefined,
           "label": "Label 1",
           "onPress": [MockFunction],
           "type": "Primary",
@@ -930,6 +932,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "disabled": undefined,
+            "isLoading": undefined,
             "label": "Label 1",
             "onPress": [MockFunction],
             "type": "Primary",
@@ -1067,6 +1071,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "disabled": undefined,
+          "isLoading": undefined,
           "label": "Label 1",
           "onPress": [MockFunction],
           "type": "Primary",
@@ -1085,6 +1091,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "disabled": undefined,
+          "isLoading": undefined,
           "label": "Label 2",
           "onPress": [MockFunction],
           "type": "Secondary",
@@ -1178,6 +1186,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "disabled": undefined,
+            "isLoading": undefined,
             "label": "Label 1",
             "onPress": [MockFunction],
             "type": "Primary",
@@ -1196,6 +1206,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "disabled": undefined,
+            "isLoading": undefined,
             "label": "Label 2",
             "onPress": [MockFunction],
             "type": "Secondary",
@@ -1317,6 +1329,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "disabled": undefined,
+          "isLoading": undefined,
           "label": "Label 1",
           "onPress": [MockFunction],
           "type": "Primary",
@@ -1404,6 +1418,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "disabled": undefined,
+            "isLoading": undefined,
             "label": "Label 1",
             "onPress": [MockFunction],
             "type": "Primary",
