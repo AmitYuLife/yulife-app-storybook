@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { ILabel } from "../components/molecules";
 import { getIntro } from "../services/storage";
@@ -82,8 +83,8 @@ export const labels = [
     }
 ];
 
-export const setAuthenticatedRoot = async () =>
-    Navigation.setRoot({
+export const setAuthenticatedRoot = async () => {
+    await Navigation.setRoot({
         root: {
             sideMenu: {
                 center: {
@@ -167,10 +168,15 @@ export const setAuthenticatedRoot = async () =>
                         visible: false
                     },
                     sideMenu: {
-                        left: {
-                            enabled: false,
-                            width: Style.DEVICE_WIDTH
-                        }
+                        left: Platform.select({
+                            android: {
+                                enabled: false,
+                                width: Style.DEVICE_WIDTH
+                            },
+                            ios: {
+                                enabled: false
+                            }
+                        })
                     },
                     topBar: {
                         drawBehind: true,
@@ -179,7 +185,18 @@ export const setAuthenticatedRoot = async () =>
                 }
             }
         }
-    } as any);
+    });
+
+    if (Platform.OS === "ios") {
+        await Navigation.mergeOptions(ROUTES.menu, {
+            sideMenu: {
+                left: {
+                    width: Style.DEVICE_WIDTH
+                } as any
+            }
+        });
+    }
+};
 
 export const setUnauthenticatedRoot = async (passProps?: any) =>
     Navigation.setRoot({
