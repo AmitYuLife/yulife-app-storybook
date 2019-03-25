@@ -52,7 +52,7 @@ export default StyleSheet.create({
         backgroundColor: "white",
         left: 0,
         paddingBottom: Style.SCALE_UP_AND_DOWN(8),
-        paddingTop: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 30 : Platform.OS === "android" ? 0 : 20),
+        paddingTop: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 45 : Platform.OS === "android" ? 0 : 25),
         position: "absolute",
         right: 0,
         top: 0
