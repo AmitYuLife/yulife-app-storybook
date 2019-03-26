@@ -105,8 +105,10 @@ ShallowWrapper {
           }
         >
           <TouchableWithoutFeedback
+            accessibilityLabel="active"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_yucoin"
           >
             <View
               style={
@@ -141,8 +143,10 @@ ShallowWrapper {
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
+            accessibilityLabel="inactive"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_quests"
           >
             <View
               style={
@@ -177,8 +181,10 @@ ShallowWrapper {
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
+            accessibilityLabel="inactive"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_rewards"
           >
             <View
               style={
@@ -380,8 +386,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <TouchableWithoutFeedback
+              accessibilityLabel="active"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_yucoin"
             >
               <View
                 style={
@@ -416,8 +424,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>,
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_quests"
             >
               <View
                 style={
@@ -452,8 +462,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>,
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_rewards"
             >
               <View
                 style={
@@ -502,6 +514,7 @@ ShallowWrapper {
             "key": "0",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "active",
               "children": <View
                 style={
                   Object {
@@ -535,6 +548,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_yucoin",
             },
             "ref": null,
             "rendered": Object {
@@ -622,6 +636,7 @@ ShallowWrapper {
             "key": "1",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "inactive",
               "children": <View
                 style={
                   Object {
@@ -655,6 +670,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_quests",
             },
             "ref": null,
             "rendered": Object {
@@ -742,6 +758,7 @@ ShallowWrapper {
             "key": "2",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "inactive",
               "children": <View
                 style={
                   Object {
@@ -775,6 +792,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_rewards",
             },
             "ref": null,
             "rendered": Object {
@@ -937,8 +955,10 @@ ShallowWrapper {
             }
           >
             <TouchableWithoutFeedback
+              accessibilityLabel="active"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_yucoin"
             >
               <View
                 style={
@@ -973,8 +993,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_quests"
             >
               <View
                 style={
@@ -1009,8 +1031,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_rewards"
             >
               <View
                 style={
@@ -1212,8 +1236,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <TouchableWithoutFeedback
+                accessibilityLabel="active"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_yucoin"
               >
                 <View
                   style={
@@ -1248,8 +1274,10 @@ ShallowWrapper {
                 </View>
               </TouchableWithoutFeedback>,
               <TouchableWithoutFeedback
+                accessibilityLabel="inactive"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_quests"
               >
                 <View
                   style={
@@ -1284,8 +1312,10 @@ ShallowWrapper {
                 </View>
               </TouchableWithoutFeedback>,
               <TouchableWithoutFeedback
+                accessibilityLabel="inactive"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_rewards"
               >
                 <View
                   style={
@@ -1334,6 +1364,7 @@ ShallowWrapper {
               "key": "0",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "active",
                 "children": <View
                   style={
                     Object {
@@ -1367,6 +1398,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_yucoin",
               },
               "ref": null,
               "rendered": Object {
@@ -1454,6 +1486,7 @@ ShallowWrapper {
               "key": "1",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "inactive",
                 "children": <View
                   style={
                     Object {
@@ -1487,6 +1520,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_quests",
               },
               "ref": null,
               "rendered": Object {
@@ -1574,6 +1608,7 @@ ShallowWrapper {
               "key": "2",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "inactive",
                 "children": <View
                   style={
                     Object {
@@ -1607,6 +1642,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_rewards",
               },
               "ref": null,
               "rendered": Object {
@@ -1823,8 +1859,10 @@ ShallowWrapper {
           }
         >
           <TouchableWithoutFeedback
+            accessibilityLabel="active"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_yucoin"
           >
             <View
               style={
@@ -1859,8 +1897,10 @@ ShallowWrapper {
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
+            accessibilityLabel="inactive"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_quests"
           >
             <View
               style={
@@ -1895,8 +1935,10 @@ ShallowWrapper {
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
+            accessibilityLabel="inactive"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_rewards"
           >
             <View
               style={
@@ -2098,8 +2140,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <TouchableWithoutFeedback
+              accessibilityLabel="active"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_yucoin"
             >
               <View
                 style={
@@ -2134,8 +2178,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>,
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_quests"
             >
               <View
                 style={
@@ -2170,8 +2216,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>,
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_rewards"
             >
               <View
                 style={
@@ -2220,6 +2268,7 @@ ShallowWrapper {
             "key": "0",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "active",
               "children": <View
                 style={
                   Object {
@@ -2253,6 +2302,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_yucoin",
             },
             "ref": null,
             "rendered": Object {
@@ -2340,6 +2390,7 @@ ShallowWrapper {
             "key": "1",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "inactive",
               "children": <View
                 style={
                   Object {
@@ -2373,6 +2424,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_quests",
             },
             "ref": null,
             "rendered": Object {
@@ -2460,6 +2512,7 @@ ShallowWrapper {
             "key": "2",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "inactive",
               "children": <View
                 style={
                   Object {
@@ -2493,6 +2546,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_rewards",
             },
             "ref": null,
             "rendered": Object {
@@ -2655,8 +2709,10 @@ ShallowWrapper {
             }
           >
             <TouchableWithoutFeedback
+              accessibilityLabel="active"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_yucoin"
             >
               <View
                 style={
@@ -2691,8 +2747,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_quests"
             >
               <View
                 style={
@@ -2727,8 +2785,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_rewards"
             >
               <View
                 style={
@@ -2930,8 +2990,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <TouchableWithoutFeedback
+                accessibilityLabel="active"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_yucoin"
               >
                 <View
                   style={
@@ -2966,8 +3028,10 @@ ShallowWrapper {
                 </View>
               </TouchableWithoutFeedback>,
               <TouchableWithoutFeedback
+                accessibilityLabel="inactive"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_quests"
               >
                 <View
                   style={
@@ -3002,8 +3066,10 @@ ShallowWrapper {
                 </View>
               </TouchableWithoutFeedback>,
               <TouchableWithoutFeedback
+                accessibilityLabel="inactive"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_rewards"
               >
                 <View
                   style={
@@ -3052,6 +3118,7 @@ ShallowWrapper {
               "key": "0",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "active",
                 "children": <View
                   style={
                     Object {
@@ -3085,6 +3152,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_yucoin",
               },
               "ref": null,
               "rendered": Object {
@@ -3172,6 +3240,7 @@ ShallowWrapper {
               "key": "1",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "inactive",
                 "children": <View
                   style={
                     Object {
@@ -3205,6 +3274,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_quests",
               },
               "ref": null,
               "rendered": Object {
@@ -3292,6 +3362,7 @@ ShallowWrapper {
               "key": "2",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "inactive",
                 "children": <View
                   style={
                     Object {
@@ -3325,6 +3396,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_rewards",
               },
               "ref": null,
               "rendered": Object {
@@ -3541,8 +3613,10 @@ ShallowWrapper {
           }
         >
           <TouchableWithoutFeedback
+            accessibilityLabel="inactive"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_yucoin"
           >
             <View
               style={
@@ -3577,8 +3651,10 @@ ShallowWrapper {
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
+            accessibilityLabel="active"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_quests"
           >
             <View
               style={
@@ -3613,8 +3689,10 @@ ShallowWrapper {
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
+            accessibilityLabel="inactive"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_rewards"
           >
             <View
               style={
@@ -3816,8 +3894,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_yucoin"
             >
               <View
                 style={
@@ -3852,8 +3932,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>,
             <TouchableWithoutFeedback
+              accessibilityLabel="active"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_quests"
             >
               <View
                 style={
@@ -3888,8 +3970,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>,
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_rewards"
             >
               <View
                 style={
@@ -3938,6 +4022,7 @@ ShallowWrapper {
             "key": "0",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "inactive",
               "children": <View
                 style={
                   Object {
@@ -3971,6 +4056,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_yucoin",
             },
             "ref": null,
             "rendered": Object {
@@ -4058,6 +4144,7 @@ ShallowWrapper {
             "key": "1",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "active",
               "children": <View
                 style={
                   Object {
@@ -4091,6 +4178,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_quests",
             },
             "ref": null,
             "rendered": Object {
@@ -4178,6 +4266,7 @@ ShallowWrapper {
             "key": "2",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "inactive",
               "children": <View
                 style={
                   Object {
@@ -4211,6 +4300,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_rewards",
             },
             "ref": null,
             "rendered": Object {
@@ -4373,8 +4463,10 @@ ShallowWrapper {
             }
           >
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_yucoin"
             >
               <View
                 style={
@@ -4409,8 +4501,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
+              accessibilityLabel="active"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_quests"
             >
               <View
                 style={
@@ -4445,8 +4539,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_rewards"
             >
               <View
                 style={
@@ -4648,8 +4744,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <TouchableWithoutFeedback
+                accessibilityLabel="inactive"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_yucoin"
               >
                 <View
                   style={
@@ -4684,8 +4782,10 @@ ShallowWrapper {
                 </View>
               </TouchableWithoutFeedback>,
               <TouchableWithoutFeedback
+                accessibilityLabel="active"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_quests"
               >
                 <View
                   style={
@@ -4720,8 +4820,10 @@ ShallowWrapper {
                 </View>
               </TouchableWithoutFeedback>,
               <TouchableWithoutFeedback
+                accessibilityLabel="inactive"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_rewards"
               >
                 <View
                   style={
@@ -4770,6 +4872,7 @@ ShallowWrapper {
               "key": "0",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "inactive",
                 "children": <View
                   style={
                     Object {
@@ -4803,6 +4906,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_yucoin",
               },
               "ref": null,
               "rendered": Object {
@@ -4890,6 +4994,7 @@ ShallowWrapper {
               "key": "1",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "active",
                 "children": <View
                   style={
                     Object {
@@ -4923,6 +5028,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_quests",
               },
               "ref": null,
               "rendered": Object {
@@ -5010,6 +5116,7 @@ ShallowWrapper {
               "key": "2",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "inactive",
                 "children": <View
                   style={
                     Object {
@@ -5043,6 +5150,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_rewards",
               },
               "ref": null,
               "rendered": Object {
@@ -5259,8 +5367,10 @@ ShallowWrapper {
           }
         >
           <TouchableWithoutFeedback
+            accessibilityLabel="inactive"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_yucoin"
           >
             <View
               style={
@@ -5295,8 +5405,10 @@ ShallowWrapper {
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
+            accessibilityLabel="active"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_quests"
           >
             <View
               style={
@@ -5331,8 +5443,10 @@ ShallowWrapper {
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
+            accessibilityLabel="inactive"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_rewards"
           >
             <View
               style={
@@ -5534,8 +5648,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_yucoin"
             >
               <View
                 style={
@@ -5570,8 +5686,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>,
             <TouchableWithoutFeedback
+              accessibilityLabel="active"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_quests"
             >
               <View
                 style={
@@ -5606,8 +5724,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>,
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_rewards"
             >
               <View
                 style={
@@ -5656,6 +5776,7 @@ ShallowWrapper {
             "key": "0",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "inactive",
               "children": <View
                 style={
                   Object {
@@ -5689,6 +5810,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_yucoin",
             },
             "ref": null,
             "rendered": Object {
@@ -5776,6 +5898,7 @@ ShallowWrapper {
             "key": "1",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "active",
               "children": <View
                 style={
                   Object {
@@ -5809,6 +5932,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_quests",
             },
             "ref": null,
             "rendered": Object {
@@ -5896,6 +6020,7 @@ ShallowWrapper {
             "key": "2",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "inactive",
               "children": <View
                 style={
                   Object {
@@ -5929,6 +6054,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_rewards",
             },
             "ref": null,
             "rendered": Object {
@@ -6091,8 +6217,10 @@ ShallowWrapper {
             }
           >
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_yucoin"
             >
               <View
                 style={
@@ -6127,8 +6255,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
+              accessibilityLabel="active"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_quests"
             >
               <View
                 style={
@@ -6163,8 +6293,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_rewards"
             >
               <View
                 style={
@@ -6366,8 +6498,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <TouchableWithoutFeedback
+                accessibilityLabel="inactive"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_yucoin"
               >
                 <View
                   style={
@@ -6402,8 +6536,10 @@ ShallowWrapper {
                 </View>
               </TouchableWithoutFeedback>,
               <TouchableWithoutFeedback
+                accessibilityLabel="active"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_quests"
               >
                 <View
                   style={
@@ -6438,8 +6574,10 @@ ShallowWrapper {
                 </View>
               </TouchableWithoutFeedback>,
               <TouchableWithoutFeedback
+                accessibilityLabel="inactive"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_rewards"
               >
                 <View
                   style={
@@ -6488,6 +6626,7 @@ ShallowWrapper {
               "key": "0",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "inactive",
                 "children": <View
                   style={
                     Object {
@@ -6521,6 +6660,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_yucoin",
               },
               "ref": null,
               "rendered": Object {
@@ -6608,6 +6748,7 @@ ShallowWrapper {
               "key": "1",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "active",
                 "children": <View
                   style={
                     Object {
@@ -6641,6 +6782,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_quests",
               },
               "ref": null,
               "rendered": Object {
@@ -6728,6 +6870,7 @@ ShallowWrapper {
               "key": "2",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "inactive",
                 "children": <View
                   style={
                     Object {
@@ -6761,6 +6904,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_rewards",
               },
               "ref": null,
               "rendered": Object {
@@ -6977,8 +7121,10 @@ ShallowWrapper {
           }
         >
           <TouchableWithoutFeedback
+            accessibilityLabel="inactive"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_yucoin"
           >
             <View
               style={
@@ -7013,8 +7159,10 @@ ShallowWrapper {
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
+            accessibilityLabel="inactive"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_quests"
           >
             <View
               style={
@@ -7049,8 +7197,10 @@ ShallowWrapper {
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
+            accessibilityLabel="active"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_rewards"
           >
             <View
               style={
@@ -7252,8 +7402,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_yucoin"
             >
               <View
                 style={
@@ -7288,8 +7440,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>,
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_quests"
             >
               <View
                 style={
@@ -7324,8 +7478,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>,
             <TouchableWithoutFeedback
+              accessibilityLabel="active"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_rewards"
             >
               <View
                 style={
@@ -7374,6 +7530,7 @@ ShallowWrapper {
             "key": "0",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "inactive",
               "children": <View
                 style={
                   Object {
@@ -7407,6 +7564,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_yucoin",
             },
             "ref": null,
             "rendered": Object {
@@ -7494,6 +7652,7 @@ ShallowWrapper {
             "key": "1",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "inactive",
               "children": <View
                 style={
                   Object {
@@ -7527,6 +7686,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_quests",
             },
             "ref": null,
             "rendered": Object {
@@ -7614,6 +7774,7 @@ ShallowWrapper {
             "key": "2",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "active",
               "children": <View
                 style={
                   Object {
@@ -7647,6 +7808,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_rewards",
             },
             "ref": null,
             "rendered": Object {
@@ -7809,8 +7971,10 @@ ShallowWrapper {
             }
           >
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_yucoin"
             >
               <View
                 style={
@@ -7845,8 +8009,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_quests"
             >
               <View
                 style={
@@ -7881,8 +8047,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
+              accessibilityLabel="active"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_rewards"
             >
               <View
                 style={
@@ -8084,8 +8252,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <TouchableWithoutFeedback
+                accessibilityLabel="inactive"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_yucoin"
               >
                 <View
                   style={
@@ -8120,8 +8290,10 @@ ShallowWrapper {
                 </View>
               </TouchableWithoutFeedback>,
               <TouchableWithoutFeedback
+                accessibilityLabel="inactive"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_quests"
               >
                 <View
                   style={
@@ -8156,8 +8328,10 @@ ShallowWrapper {
                 </View>
               </TouchableWithoutFeedback>,
               <TouchableWithoutFeedback
+                accessibilityLabel="active"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_rewards"
               >
                 <View
                   style={
@@ -8206,6 +8380,7 @@ ShallowWrapper {
               "key": "0",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "inactive",
                 "children": <View
                   style={
                     Object {
@@ -8239,6 +8414,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_yucoin",
               },
               "ref": null,
               "rendered": Object {
@@ -8326,6 +8502,7 @@ ShallowWrapper {
               "key": "1",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "inactive",
                 "children": <View
                   style={
                     Object {
@@ -8359,6 +8536,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_quests",
               },
               "ref": null,
               "rendered": Object {
@@ -8446,6 +8624,7 @@ ShallowWrapper {
               "key": "2",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "active",
                 "children": <View
                   style={
                     Object {
@@ -8479,6 +8658,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_rewards",
               },
               "ref": null,
               "rendered": Object {
@@ -8695,8 +8875,10 @@ ShallowWrapper {
           }
         >
           <TouchableWithoutFeedback
+            accessibilityLabel="inactive"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_yucoin"
           >
             <View
               style={
@@ -8731,8 +8913,10 @@ ShallowWrapper {
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
+            accessibilityLabel="inactive"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_quests"
           >
             <View
               style={
@@ -8767,8 +8951,10 @@ ShallowWrapper {
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
+            accessibilityLabel="active"
             onPressIn={[Function]}
             onPressOut={[Function]}
+            testID="TAB_BUTTON_rewards"
           >
             <View
               style={
@@ -8970,8 +9156,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_yucoin"
             >
               <View
                 style={
@@ -9006,8 +9194,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>,
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_quests"
             >
               <View
                 style={
@@ -9042,8 +9232,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>,
             <TouchableWithoutFeedback
+              accessibilityLabel="active"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_rewards"
             >
               <View
                 style={
@@ -9092,6 +9284,7 @@ ShallowWrapper {
             "key": "0",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "inactive",
               "children": <View
                 style={
                   Object {
@@ -9125,6 +9318,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_yucoin",
             },
             "ref": null,
             "rendered": Object {
@@ -9212,6 +9406,7 @@ ShallowWrapper {
             "key": "1",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "inactive",
               "children": <View
                 style={
                   Object {
@@ -9245,6 +9440,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_quests",
             },
             "ref": null,
             "rendered": Object {
@@ -9332,6 +9528,7 @@ ShallowWrapper {
             "key": "2",
             "nodeType": "class",
             "props": Object {
+              "accessibilityLabel": "active",
               "children": <View
                 style={
                   Object {
@@ -9365,6 +9562,7 @@ ShallowWrapper {
               </View>,
               "onPressIn": [Function],
               "onPressOut": [Function],
+              "testID": "TAB_BUTTON_rewards",
             },
             "ref": null,
             "rendered": Object {
@@ -9527,8 +9725,10 @@ ShallowWrapper {
             }
           >
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_yucoin"
             >
               <View
                 style={
@@ -9563,8 +9763,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
+              accessibilityLabel="inactive"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_quests"
             >
               <View
                 style={
@@ -9599,8 +9801,10 @@ ShallowWrapper {
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
+              accessibilityLabel="active"
               onPressIn={[Function]}
               onPressOut={[Function]}
+              testID="TAB_BUTTON_rewards"
             >
               <View
                 style={
@@ -9802,8 +10006,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <TouchableWithoutFeedback
+                accessibilityLabel="inactive"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_yucoin"
               >
                 <View
                   style={
@@ -9838,8 +10044,10 @@ ShallowWrapper {
                 </View>
               </TouchableWithoutFeedback>,
               <TouchableWithoutFeedback
+                accessibilityLabel="inactive"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_quests"
               >
                 <View
                   style={
@@ -9874,8 +10082,10 @@ ShallowWrapper {
                 </View>
               </TouchableWithoutFeedback>,
               <TouchableWithoutFeedback
+                accessibilityLabel="active"
                 onPressIn={[Function]}
                 onPressOut={[Function]}
+                testID="TAB_BUTTON_rewards"
               >
                 <View
                   style={
@@ -9924,6 +10134,7 @@ ShallowWrapper {
               "key": "0",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "inactive",
                 "children": <View
                   style={
                     Object {
@@ -9957,6 +10168,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_yucoin",
               },
               "ref": null,
               "rendered": Object {
@@ -10044,6 +10256,7 @@ ShallowWrapper {
               "key": "1",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "inactive",
                 "children": <View
                   style={
                     Object {
@@ -10077,6 +10290,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_quests",
               },
               "ref": null,
               "rendered": Object {
@@ -10164,6 +10378,7 @@ ShallowWrapper {
               "key": "2",
               "nodeType": "class",
               "props": Object {
+                "accessibilityLabel": "active",
                 "children": <View
                   style={
                     Object {
@@ -10197,6 +10412,7 @@ ShallowWrapper {
                 </View>,
                 "onPressIn": [Function],
                 "onPressOut": [Function],
+                "testID": "TAB_BUTTON_rewards",
               },
               "ref": null,
               "rendered": Object {

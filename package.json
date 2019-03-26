@@ -7,12 +7,12 @@
     "android:adb:reverse": "adb reverse tcp:8081 tcp:8081",
     "android:restart": "adb shell input text 'RR'",
     "android:menu": "adb shell input keyevent 82",
-    "e2e:build": "detox build",
+    "e2e:build": "ENVFILE=.env.local detox build",
     "e2e:run": "SKIP_MANUAL=true TS_NODE_PROJECT=./e2e/tsconfig.json detox test -s 'e2e/**/*.spec.ts'",
     "e2e:run:includeManual": "TS_NODE_PROJECT=./e2e/tsconfig.json detox test -s 'e2e/**/*.spec.ts'",
     "e2e:run:manualOnly": "TS_NODE_PROJECT=./e2e/tsconfig.json detox test -s e2e/**/*.manual.spec.ts",
     "start": "run-p start:bundler tsc:watch",
-    "start:e2e": "RN_SRC_EXT=e2e.ts run-p start:bundler tsc:watch",
+    "start:e2e": "RN_SRC_EXT=e2e.ts ENVFILE=.env.local run-p start:bundler tsc:watch",
     "start:storybook": "run-p storybook",
     "start:bundler": "react-native start --reset-cache",
     "start:ios": "react-native run-ios",
@@ -165,7 +165,7 @@
     "configurations": {
       "ios.sim.debug": {
         "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/YuLife.app",
-        "build": "xcodebuild -project ios/YuLife.xcodeproj -scheme example -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "build": "xcodebuild -project ios/YuLife.xcodeproj -scheme YuLife -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build -UseModernBuildSystem=NO",
         "type": "ios.simulator",
         "name": "iPhone 8"
       }

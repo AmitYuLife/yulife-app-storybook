@@ -1,3 +1,4 @@
+import { MENU_ITEM, MENU_SCREEN } from "@ids";
 import { TouchableOpacityWithState } from "@molecules/index";
 import * as React from "react";
 import { SFC } from "react";
@@ -21,7 +22,7 @@ interface IProps {
 
 const MenuScreen: SFC<IProps> = ({ onPressClose, links, version }) => (
     <>
-        <View style={styles.wrapper}>
+        <View style={styles.wrapper} testID={MENU_SCREEN}>
             <TouchableOpacity style={styles.closeWrapper} onPress={onPressClose}>
                 <Image resizeMode="contain" style={styles.close} source={assets.close} />
             </TouchableOpacity>
@@ -32,7 +33,12 @@ const MenuScreen: SFC<IProps> = ({ onPressClose, links, version }) => (
                 ? null
                 : links.map(({ source, onPress, label, condition }, index) =>
                       !condition ? null : (
-                          <TouchableOpacityWithState key={`menu-${index}`} style={styles.itemWrapper} onPress={onPress}>
+                          <TouchableOpacityWithState
+                            key={`menu-${index}`}
+                            style={styles.itemWrapper}
+                            onPress={onPress}
+                            testID={MENU_ITEM(label)}
+                          >
                               {source && (
                                   <View style={styles.iconWrapper}>
                                       <Image style={styles.logo} source={source} />

@@ -1,16 +1,36 @@
 export const navigateViaText = async (text: string) => {
-    await (waitFor(element(by.text(text)))).toBeVisible();
-    await element(by.text(text)).tap();
+    const target = element(by.text(text));
+    await waitFor(target).toBeVisible().withTimeout(5000);
+    await target.tap();
+    return target;
 };
 
 export const navigateViaID = async (id: string) => {
-    await (waitFor(element(by.id(id)))).toBeVisible();
-    await element(by.id(id)).tap();
+    const target = element(by.id(id));
+    await waitFor(target).toBeVisible().withTimeout(5000);
+    await target.tap();
+    return target;
 };
 
 export const navigateViaLabel = async (label: string) => {
-    await (waitFor(element(by.label(label)))).toBeVisible();
-    await element(by.label(label)).tap();
+    const target = element(by.label(label));
+    await waitFor(target).toBeVisible().withTimeout(5000);
+    await target.tap();
+    return target;
+};
+
+export const expectIsVisibleViaID = async (id: string) => {
+    const target = element(by.id(id));
+    await waitFor(target).toExist().withTimeout(5000);
+    await expect(target).toBeVisible();
+    return target;
+};
+
+export const expectIsVisibleViaText = async (label: string) => {
+    const target = element(by.text(label));
+    await waitFor(target).toExist().withTimeout(5000);
+    await expect(target).toBeVisible();
+    return target;
 };
 
 export const reset = async () => {

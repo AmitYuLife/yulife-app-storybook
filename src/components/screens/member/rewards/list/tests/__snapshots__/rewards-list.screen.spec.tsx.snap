@@ -111,6 +111,7 @@ ShallowWrapper {
       "style": Object {
         "flex": 1,
       },
+      "testID": "REWARDS_SCREEN",
     },
     "ref": null,
     "rendered": Array [
@@ -334,6 +335,7 @@ ShallowWrapper {
         "style": Object {
           "flex": 1,
         },
+        "testID": "REWARDS_SCREEN",
       },
       "ref": null,
       "rendered": Array [
@@ -589,6 +591,7 @@ ShallowWrapper {
       "style": Object {
         "flex": 1,
       },
+      "testID": "REWARDS_SCREEN",
     },
     "ref": null,
     "rendered": Array [
@@ -778,6 +781,7 @@ ShallowWrapper {
         "style": Object {
           "flex": 1,
         },
+        "testID": "REWARDS_SCREEN",
       },
       "ref": null,
       "rendered": Array [

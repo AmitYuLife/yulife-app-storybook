@@ -1,5 +1,10 @@
-import { BUTTON_INTRO_SCREEN, BUTTON_LOGIN } from "@ids";
-import { sendSteps } from "@mock";
+import {
+    BUTTON_INTRO_SCREEN,
+    BUTTON_LOGIN,
+    BUTTON_TOP_LEFT_BAR,
+    MENU_ITEM,
+    TAB_BUTTON
+} from "@ids";
 export { authoriseFitKit, sendSteps } from "@mock";
 
 export const tapOnLogin = async (): Promise<void> => {
@@ -24,4 +29,22 @@ export const pressNext5Times = async (): Promise<void> => {
         await waitFor(target).toExist().withTimeout(5000);
         await target.tap();
     }
+};
+
+export const pressOnTab = (label: string) => async (): Promise<void> => {
+    const target = element(by.id(TAB_BUTTON(label)));
+    await waitFor(target).toExist().withTimeout(5000);
+    await target.tap();
+};
+
+export const pressOnMenu = async (): Promise<void> => {
+    const target = element(by.id(BUTTON_TOP_LEFT_BAR));
+    await waitFor(target).toExist().withTimeout(5000);
+    await target.tap();
+};
+
+export const pressOnActivityHistory = async (): Promise<void> => {
+    const target = element(by.id(MENU_ITEM("activity history")));
+    await waitFor(target).toExist().withTimeout(5000);
+    await target.tap();
 };

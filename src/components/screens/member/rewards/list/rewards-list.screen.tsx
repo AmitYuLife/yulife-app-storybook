@@ -1,3 +1,4 @@
+import { REWARDS_SCREEN } from "@ids";
 import * as React from "react";
 import { SafeAreaView, View } from "react-native";
 import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
@@ -26,7 +27,7 @@ export default function RewardsListScreen({
     totalCoins
 }: IRewardsListScreenProps) {
     return (
-        <SafeAreaView style={styles.wrapper}>
+        <SafeAreaView style={styles.wrapper} testID={REWARDS_SCREEN}>
             <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
             <View style={styles.rewardTabsWrapper}>
                 <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={0} />

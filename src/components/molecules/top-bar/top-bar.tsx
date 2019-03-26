@@ -1,3 +1,4 @@
+import { BUTTON_TOP_LEFT_BAR } from "@ids";
 import moment from "moment";
 import * as React from "react";
 import { Component } from "react";
@@ -115,7 +116,12 @@ class TopBar extends Component<IProps, IState> {
 
         return (
             <View style={styles.wrapper}>
-                <TouchableOpacity style={styles.menuWrapper} onPress={onPressLeftIcon}>
+                <TouchableOpacity
+                    style={styles.menuWrapper}
+                    onPress={onPressLeftIcon}
+                    testID={BUTTON_TOP_LEFT_BAR}
+                    accessibilityLabel={leftIcon}
+                >
                     {renderLeftIcon(leftIcon, colour)}
                     {!menuLabel ? null : (
                         <View style={styles.menuLabelWrapper}>
