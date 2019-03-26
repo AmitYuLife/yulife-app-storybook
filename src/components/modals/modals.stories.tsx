@@ -84,5 +84,6 @@ storiesOf("Modals", module)
             onPressCtaPrimary={action("pressed streak cta primary")}
             onPressCtaSecondary={action("pressed streak cta secondary")}
             reward="250 yucoin"
+            nextStreakAvailableAt=""
         />
     ));

@@ -718,9 +718,7 @@ export interface GetCurrentUser_getCurrentUser_mobileConsent {
 export interface GetCurrentUser_getCurrentUser_coinLedger {
   currentBalance: number | null;
   currentLevel: number | null;
-  currentStreak: number | null;
   nextLevelAvailableAt: string | null;
-  nextStreakAvailableAt: string | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_passiveChallenge_exchange {
@@ -777,6 +775,8 @@ export interface GetCurrentUser_getCurrentUser_activeStreak {
   value: number | null;
   maxStreak: number | null;
   streakAwardId: string | null;
+  streak: number | null;
+  nextStreakAvailableAt: string | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_todayActivity {
@@ -855,9 +855,7 @@ export interface LoginUser_loginUser_user_mobileConsent {
 export interface LoginUser_loginUser_user_coinLedger {
   currentBalance: number | null;
   currentLevel: number | null;
-  currentStreak: number | null;
   nextLevelAvailableAt: string | null;
-  nextStreakAvailableAt: string | null;
 }
 
 export interface LoginUser_loginUser_user_passiveChallenge_exchange {
@@ -913,6 +911,8 @@ export interface LoginUser_loginUser_user_activeStreak {
   value: number | null;
   maxStreak: number | null;
   streakAwardId: string | null;
+  streak: number | null;
+  nextStreakAvailableAt: string | null;
 }
 
 export interface LoginUser_loginUser_user_todayActivity {

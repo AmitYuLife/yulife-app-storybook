@@ -44,9 +44,7 @@ export const loginUserGql = gql`
                 coinLedger {
                     currentBalance
                     currentLevel
-                    currentStreak
                     nextLevelAvailableAt
-                    nextStreakAvailableAt
                 }
                 passiveChallenge {
                     exchange {
@@ -87,6 +85,8 @@ export const loginUserGql = gql`
                     value
                     maxStreak
                     streakAwardId
+                    streak
+                    nextStreakAvailableAt
                 }
                 todayActivity {
                     id

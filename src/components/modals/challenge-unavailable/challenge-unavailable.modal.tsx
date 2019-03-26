@@ -1,10 +1,9 @@
-import moment from "moment";
+import { getTimeRemaining } from "@services/utils";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Image, View } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { Button, Text } from "../../atoms";
-import { getTime } from "../../screens/member/quests/quests-screen/subcomponents/common/level/level-pending.helpers";
 import assets from "./assets";
 import styles from "./challenge-unavailable.styles";
 
@@ -26,7 +25,7 @@ class ChallengeUnavailable extends PureComponent<IProps, IState> {
 
         Navigation.events().bindComponent(this);
         this.state = {
-            timeRemaining: this.getTimeRemaining(this.props.nextAvailableAt)
+            timeRemaining: getTimeRemaining(this.props.nextAvailableAt)
         };
     }
 
@@ -62,12 +61,8 @@ class ChallengeUnavailable extends PureComponent<IProps, IState> {
         );
     }
 
-    private getTimeRemaining = (nextAvailableAt: string) => {
-        return `${getTime(Math.abs(moment().diff(moment(nextAvailableAt), "seconds")))}`;
-    }
-
     private updateTimeRemaining = () => {
-        this.setState({ timeRemaining: this.getTimeRemaining(this.props.nextAvailableAt )} );
+        this.setState({ timeRemaining: getTimeRemaining(this.props.nextAvailableAt )} );
         this.timer = setTimeout(this.updateTimeRemaining, 1000);
     }
 }
