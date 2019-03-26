@@ -1,11 +1,12 @@
+import { getTimeRemaining } from "@services/utils";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Image, ImageRequireSource, StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import CollectAwardMutation, { collectAwardGql } from "../../../graphql/member/collectAward.gql";
 import { IReduxState } from "../../../redux/_core/reducers";
-import { redeemStreakAction } from "../../../redux/streaks/streaks.actions";
 import { getStreakAwardId } from "../../../redux/streaks/streaks.selectors";
+import { getUserStart } from "../../../redux/user/user.actions";
 import { Button, Text } from "../../atoms";
 import assets from "./assets";
 import styles from "./streaks.modal.styles";
@@ -20,18 +21,35 @@ interface IProps {
     onPressCtaSecondary: (() => void) | null;
     streakCompleted: number;
     streakMax: number;
+    nextStreakAvailableAt: string;
 }
 
 type Props = IProps & ConnectedDispatch & ConnectedState;
 
 interface IState {
     isLoading: boolean;
+    timeRemaining: string;
 }
 
 class StreaksModal extends PureComponent<Props, IState> {
     public state = {
-        isLoading: false
+        isLoading: false,
+        timeRemaining: getTimeRemaining(this.props.nextStreakAvailableAt)
     };
+
+    private timer: NodeJS.Timer;
+
+    public componentDidMount() {
+        const { streakAwardId, streakCompleted, streakMax } = this.props;
+
+        if (streakMax === streakCompleted && !streakAwardId) {
+            this.timer = setTimeout(this.updateTimeRemaining, 1000);
+        }
+    }
+
+    public componentWillUnmount() {
+        clearTimeout(this.timer);
+    }
 
     public render() {
         const { isLoading } = this.state;
@@ -61,7 +79,7 @@ class StreaksModal extends PureComponent<Props, IState> {
                                       });
 
                                       if (result && result.data && result.data.collectAward) {
-                                          this.props.redeemStreakAction();
+                                          this.props.getUserStart();
                                       }
 
                                       onPressCtaPrimary();
@@ -89,21 +107,27 @@ class StreaksModal extends PureComponent<Props, IState> {
                                 <Text style={styles.subHeading}>{this.getSubHeading()}</Text>
                             </View>
                             <View style={styles.streaksWrapper}>
-                                {Array.from({ length: streakMax }).map((_, index) => (
-                                    <View
-                                        key={index}
-                                        style={StyleSheet.flatten([
-                                            styles.streakWrapper,
-                                            index === streakMax ? styles.streakWrapperLast : null
-                                        ])}
-                                    >
-                                        <Image
-                                            style={styles.streak}
-                                            source={index < streakCompleted ? assets.streakFilled : assets.streakEmpty}
-                                        />
-                                        {this.renderStreakText(index, streakCompleted, streakMax, reward)}
-                                    </View>
-                                ))}
+                                {streakMax === streakCompleted && !streakAwardId ? (
+                                    <Text>Next streak available in {this.state.timeRemaining}</Text>
+                                ) : (
+                                    Array.from({ length: streakMax }).map((_, index) => (
+                                        <View
+                                            key={index}
+                                            style={StyleSheet.flatten([
+                                                styles.streakWrapper,
+                                                index === streakMax ? styles.streakWrapperLast : null
+                                            ])}
+                                        >
+                                            <Image
+                                                style={styles.streak}
+                                                source={
+                                                    index < streakCompleted ? assets.streakFilled : assets.streakEmpty
+                                                }
+                                            />
+                                            {this.renderStreakText(index, streakCompleted, streakMax, reward)}
+                                        </View>
+                                    ))
+                                )}
                             </View>
                             <Button
                                 isLoading={isLoading}
@@ -126,6 +150,11 @@ class StreaksModal extends PureComponent<Props, IState> {
             </CollectAwardMutation>
         );
     }
+
+    private updateTimeRemaining = () => {
+        this.setState({ timeRemaining: getTimeRemaining(this.props.nextStreakAvailableAt) });
+        this.timer = setTimeout(this.updateTimeRemaining, 1000);
+    };
 
     private renderStreakText = (index: number, streakCompleted: number, streakMax: number, reward: string) => {
         if (index < streakCompleted) {
@@ -159,9 +188,12 @@ class StreaksModal extends PureComponent<Props, IState> {
     }
 
     private getLabelCtaPrimary = () => {
-        const { streakCompleted, streakMax, isDoneToday, reward } = this.props;
+        const { streakCompleted, streakMax, isDoneToday, reward, streakAwardId } = this.props;
 
         if (streakCompleted === streakMax) {
+            if (!streakAwardId) {
+                return "done";
+            }
             return `collect ${reward}`;
         } else if (isDoneToday) {
             return "done";
@@ -171,9 +203,12 @@ class StreaksModal extends PureComponent<Props, IState> {
     };
 
     private getSubHeading = () => {
-        const { isDoneToday, streakCompleted, streakMax, reward } = this.props;
+        const { isDoneToday, streakCompleted, streakMax, reward, streakAwardId } = this.props;
 
         if (streakCompleted === streakMax) {
+            if (!streakAwardId) {
+                return "Well done! The reward has been collected.";
+            }
             return "You did it!";
         } else if (isDoneToday) {
             return "Come back tomorrow to carry on.";
@@ -200,7 +235,7 @@ const mapStateToProps = (state: IReduxState) => ({
 });
 
 const mapDispatchToProps = {
-    redeemStreakAction
+    getUserStart
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(

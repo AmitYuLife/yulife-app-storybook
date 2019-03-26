@@ -152,7 +152,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
 
     private onStreak = () => {
         const {
-            streaks: { currentStreak, isDoneToday, maxStreak, reward },
+            streaks: { currentStreak, isDoneToday, maxStreak, reward, nextStreakAvailableAt },
             labels
         } = this.props;
         const modalName = MODALS.streaks;
@@ -176,7 +176,8 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                           },
                     reward,
                     streakCompleted: currentStreak,
-                    streakMax: maxStreak
+                    streakMax: maxStreak,
+                    nextStreakAvailableAt
                 }
             }
         });

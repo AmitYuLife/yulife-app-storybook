@@ -20,7 +20,6 @@ import { getRouteState } from "../app/app.selectors";
 import { CHALLENGE_RESET_SUCCESS } from "../levels/levels.actions";
 import { getActiveLevel } from "../levels/levels.selectors";
 import { stopPedometerUpdates } from "../pedometer/pedometer.actions";
-import { REDEEM_STREAK } from "../streaks/streaks.actions";
 import {
     FITKIT_CONSENT_AUTHORISED,
     GET_USER_START,
@@ -168,7 +167,6 @@ function* setTestFairyId(id: string) {
 
 export default [
     takeLatest("INIT", fetchUserOnAppStateChange),
-    takeLatest(REDEEM_STREAK, getUserData),
     takeLatest(GET_USER_START, getUserData),
     takeLatest(SET_USER_NO_ACCESS, setUserNoAccess),
     takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),

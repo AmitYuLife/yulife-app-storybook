@@ -30,7 +30,9 @@ const loginSuccessFixture: LoginUser = {
                 maxStreak: 4,
                 streakAwardId: null,
                 type: "yucoin",
-                value: 250
+                value: 250,
+                streak: 0,
+                nextStreakAvailableAt: ""
             },
             archived: false,
             businessAccountId: "abcdefghijkl",
@@ -38,9 +40,7 @@ const loginSuccessFixture: LoginUser = {
             coinLedger: {
                 currentBalance: 15,
                 currentLevel: 1,
-                currentStreak: 0,
-                nextLevelAvailableAt: "",
-                nextStreakAvailableAt: ""
+                nextLevelAvailableAt: ""
             },
             id: "1234567890",
             leaderboards: [],

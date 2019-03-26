@@ -7,6 +7,7 @@ export interface IStreaks {
     isAvailable: boolean;
     isDoneToday: boolean;
     maxStreak: number;
+    nextStreakAvailableAt: string;
     reward: string;
 }
 
@@ -20,6 +21,7 @@ export const getStreaks = ({ streaks }: IReduxState): IStreaks => ({
             .startOf("day")
             .format("YYYY-MM-DDTHH:mm:ss") <= streaks.nextStreakAvailableAt,
     maxStreak: streaks.maxStreak,
+    nextStreakAvailableAt: streaks.nextStreakAvailableAt,
     reward: `${streaks.value} ${streaks.type}`
 });
 export const getStreakAwardId = ({ streaks }: IReduxState) => streaks.streakAwardId;

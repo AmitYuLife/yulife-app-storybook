@@ -1,3 +1,5 @@
+import moment from "moment";
+
 type PathOr = <T>(obj: { [x: string]: any }, key: string | string[], defaultValue?: T, p?: number) => T | any;
 export const pathOr: PathOr = (obj, key, def, p) => {
     p = 0;
@@ -32,4 +34,29 @@ export function getQueryStringObject(fullUrl: string) {
     }
 
     return result;
+}
+
+export function getTimeRemaining(nextAvailableAt: string) {
+    return `${getTime(Math.abs(moment().diff(moment(nextAvailableAt), "seconds")))}`;
+}
+
+export function getTime(nextAvailable: number) {
+    const hours = Math.floor(nextAvailable / (60 * 60)) % 24;
+    const minutes = Math.floor(nextAvailable / 60) % 60;
+    const seconds = nextAvailable % 60;
+    if (hours < 1 && minutes < 1 && seconds < 1) {
+        return null;
+    }
+
+    const paddedHours = padNum(hours);
+    const paddedMinutes = padNum(minutes);
+    const paddedSeconds = padNum(seconds);
+
+    if (hours < 1 && minutes < 1) {
+        return `:${paddedSeconds}`;
+    } else if (hours < 1) {
+        return `${paddedMinutes}:${paddedSeconds}`;
+    } else {
+        return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+    }
 }
