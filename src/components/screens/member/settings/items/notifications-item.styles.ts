@@ -1,5 +1,5 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Style } from "../../../../../styles";
+import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { Colours, Style } from "../../../../../styles";
 
 const styles = StyleSheet.create({
     nameWrapper: {
@@ -25,5 +25,8 @@ const styles = StyleSheet.create({
         paddingVertical: Style.SCALE_UP_AND_DOWN(14)
     } as ViewStyle
 });
+
+export const trackColor = { false: Colours.checkMilestone.unfilledCircle, true: Colours.heavyPink };
+export const thumbColor = Platform.OS === "android" ? "white" : null;
 
 export default styles;
