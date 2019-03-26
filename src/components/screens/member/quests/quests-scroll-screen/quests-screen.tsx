@@ -1,4 +1,5 @@
 // import { Style } from "@styles/index";
+import { QUESTS_SCREEN } from "@ids";
 import { TopBarTypes } from "@molecules/top-bar/top-bar";
 import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
@@ -78,7 +79,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         const { initialScrollIndex, slices } = this.getWorldData();
 
         return (
-            <SafeAreaView style={styles.wrapper}>
+            <SafeAreaView style={styles.wrapper} testID={QUESTS_SCREEN(currentLevel)}>
                 <ScrollyQuest
                     currentLevel={currentLevel}
                     initialScrollIndex={initialScrollIndex}

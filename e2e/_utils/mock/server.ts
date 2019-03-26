@@ -12,7 +12,7 @@ export class SocketServer {
         this.server = app.listen(port);
         this.io = socketio(this.server);
         this.io.on("connection", (socket) => {
-            console.log("Client connected..."); // tslint:disable-line
+            this.log("Client connected..."); // tslint:disable-line
             socket.emit("WELCOME");
         });
         console.log(`Mock server started on port ${port}`) // tslint:disable-line
@@ -24,8 +24,14 @@ export class SocketServer {
     }
 
     public emit = (event: MockedEvent) => {
-        console.log("emitting..", event.name, event.payload);
+        this.log("emitting event..", event.name, event.payload);
         this.io.emit(event.name, event.payload);
+    }
+
+    private log(...msg: any[]) {
+        if (process.env.DEBUG) {
+            console.log(...msg); // tslint:disable-line
+        }
     }
 
 }

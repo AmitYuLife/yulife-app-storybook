@@ -1,5 +1,17 @@
-import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, VIEW_CONFETTI_COIN, DAILY_STEPS_SCREEN } from "@ids";
-import { VIEW_TOP_RIGHT_COIN_COUNTER } from '../../../_utils/navigation/ids';
+import {
+    BUTTON_LOGIN,
+    DAILY_STEPS_SCREEN,
+    INPUT_LOGIN_EMAIL,
+    INPUT_LOGIN_PASSWORD,
+    MENU_ITEM,
+    MENU_SCREEN,
+    QUESTS_SCREEN,
+    REWARDS_SCREEN,
+    TAB_BUTTON,
+    VIEW_CONFETTI_COIN,
+    VIEW_TOP_RIGHT_COIN_COUNTER
+} from "@ids";
+import { expectIsVisibleViaID, expectIsVisibleViaText } from "@navigation";
 
 export const emailUnchanged = async (): Promise<void> => {
     const target = element(by.id(INPUT_LOGIN_EMAIL));
@@ -69,19 +81,38 @@ export const given200coins = async (): Promise<void> => {
 };
 
 export const givenCoinsTopRight = (coins: number) => async (): Promise<void> => {
-    const target = element(by.id(VIEW_TOP_RIGHT_COIN_COUNTER(coins)));
-    await waitFor(target).toExist();
-    await expect(target).toBeVisible();
+    await expectIsVisibleViaID(VIEW_TOP_RIGHT_COIN_COUNTER(coins));
 };
 
 export const stepsMeasured = (steps: number) => async (): Promise<void> => {
-    const target = element(by.text(`${steps} steps`));
-    await waitFor(target).toExist();
-    await expect(target).toBeVisible();
+    await expectIsVisibleViaText(`${steps} steps`);
 };
 
 export const dailyStepsScreenVisible = async (): Promise<void> => {
-    const target = element(by.id(DAILY_STEPS_SCREEN));
-    await waitFor(target).toExist();
-    await expect(target).toBeVisible();
+    await expectIsVisibleViaID(DAILY_STEPS_SCREEN);
+};
+
+export const tabIsActive = (label: string) => async (): Promise<void> => {
+    const target = await expectIsVisibleViaID(TAB_BUTTON(label));
+    await expect(target).toHaveLabel("active");
+};
+
+export const tabIsInActive = (label: string) => async (): Promise<void> => {
+    const target = await expectIsVisibleViaID(TAB_BUTTON(label));
+    await expect(target).toHaveLabel("inactive");
+};
+
+export const worldIsVisible = (level: number) => async (): Promise<void> => {
+    await expectIsVisibleViaID(QUESTS_SCREEN(level));
+};
+
+export const rewardsScreenVisible = async (): Promise<void> => {
+    await expectIsVisibleViaID(REWARDS_SCREEN);
+};
+
+export const menuIsVisible = async (): Promise<void> => {
+    await expectIsVisibleViaID(MENU_SCREEN);
+    await expectIsVisibleViaID(MENU_ITEM("activity history"));
+    await expectIsVisibleViaID(MENU_ITEM("member zone"));
+    await expectIsVisibleViaID(MENU_ITEM("leaderboard"));
 };

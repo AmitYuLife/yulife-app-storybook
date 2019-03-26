@@ -53,6 +53,7 @@ ShallowWrapper {
               "paddingTop": 180,
             }
           }
+          testID="MENU_SCREEN"
         >
           <TouchableOpacity
             activeOpacity={0.2}
@@ -111,6 +112,7 @@ ShallowWrapper {
                 "height": 116,
               }
             }
+            testID="MENU_ITEM_debug"
           >
             <View
               style={
@@ -156,6 +158,7 @@ ShallowWrapper {
                 "height": 116,
               }
             }
+            testID="MENU_ITEM_leaderboard"
           >
             <View
               style={
@@ -272,6 +275,7 @@ ShallowWrapper {
                     "height": 116,
                   }
                 }
+                testID="MENU_ITEM_debug"
               >
                 <View
                   style={
@@ -318,6 +322,7 @@ ShallowWrapper {
                     "height": 116,
                   }
                 }
+                testID="MENU_ITEM_leaderboard"
               >
                 <View
                   style={
@@ -351,6 +356,7 @@ ShallowWrapper {
             "paddingLeft": 210,
             "paddingTop": 180,
           },
+          "testID": "MENU_SCREEN",
         },
         "ref": null,
         "rendered": Array [
@@ -490,6 +496,7 @@ ShallowWrapper {
                 "flexDirection": "row",
                 "height": 116,
               },
+              "testID": "MENU_ITEM_debug",
             },
             "ref": null,
             "rendered": Array [
@@ -606,6 +613,7 @@ ShallowWrapper {
                 "flexDirection": "row",
                 "height": 116,
               },
+              "testID": "MENU_ITEM_leaderboard",
             },
             "ref": null,
             "rendered": Array [
@@ -724,6 +732,7 @@ ShallowWrapper {
                 "paddingTop": 180,
               }
             }
+            testID="MENU_SCREEN"
           >
             <TouchableOpacity
               activeOpacity={0.2}
@@ -782,6 +791,7 @@ ShallowWrapper {
                   "height": 116,
                 }
               }
+              testID="MENU_ITEM_debug"
             >
               <View
                 style={
@@ -827,6 +837,7 @@ ShallowWrapper {
                   "height": 116,
                 }
               }
+              testID="MENU_ITEM_leaderboard"
             >
               <View
                 style={
@@ -943,6 +954,7 @@ ShallowWrapper {
                       "height": 116,
                     }
                   }
+                  testID="MENU_ITEM_debug"
                 >
                   <View
                     style={
@@ -989,6 +1001,7 @@ ShallowWrapper {
                       "height": 116,
                     }
                   }
+                  testID="MENU_ITEM_leaderboard"
                 >
                   <View
                     style={
@@ -1022,6 +1035,7 @@ ShallowWrapper {
               "paddingLeft": 210,
               "paddingTop": 180,
             },
+            "testID": "MENU_SCREEN",
           },
           "ref": null,
           "rendered": Array [
@@ -1161,6 +1175,7 @@ ShallowWrapper {
                   "flexDirection": "row",
                   "height": 116,
                 },
+                "testID": "MENU_ITEM_debug",
               },
               "ref": null,
               "rendered": Array [
@@ -1277,6 +1292,7 @@ ShallowWrapper {
                   "flexDirection": "row",
                   "height": 116,
                 },
+                "testID": "MENU_ITEM_leaderboard",
               },
               "ref": null,
               "rendered": Array [
@@ -1433,6 +1449,7 @@ ShallowWrapper {
               "paddingTop": 180,
             }
           }
+          testID="MENU_SCREEN"
         >
           <TouchableOpacity
             activeOpacity={0.2}
@@ -1572,6 +1589,7 @@ ShallowWrapper {
             "paddingLeft": 210,
             "paddingTop": 180,
           },
+          "testID": "MENU_SCREEN",
         },
         "ref": null,
         "rendered": Array [
@@ -1730,6 +1748,7 @@ ShallowWrapper {
                 "paddingTop": 180,
               }
             }
+            testID="MENU_SCREEN"
           >
             <TouchableOpacity
               activeOpacity={0.2}
@@ -1869,6 +1888,7 @@ ShallowWrapper {
               "paddingLeft": 210,
               "paddingTop": 180,
             },
+            "testID": "MENU_SCREEN",
           },
           "ref": null,
           "rendered": Array [

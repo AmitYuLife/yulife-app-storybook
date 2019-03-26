@@ -1,3 +1,4 @@
+import { TAB_BUTTON } from "@ids";
 import * as React from "react";
 import { PureComponent } from "react";
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
@@ -105,6 +106,8 @@ class NavBar extends PureComponent<IProps, IState> {
                 <View style={StyleSheet.flatten(styles.labelsWrapper)}>
                     {labels.map(({ name, onPress }, index) => (
                         <TouchableWithoutFeedback
+                            testID={TAB_BUTTON(name)}
+                            accessibilityLabel={activeIndex === index ? "active" : "inactive"}
                             key={index}
                             onPressIn={this.handlePressIn(index)}
                             onPressOut={this.handlePressOut(

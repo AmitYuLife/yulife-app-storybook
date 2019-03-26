@@ -34,7 +34,10 @@ export class DataManager {
     public clearDb = async () => {
         this.log(`Clearing DB collections`);
         const collections = await this.db.collections();
-        const promises = collections.map((collection) => collection.drop());
+        const promises = collections.map(async (collection) => {
+            this.log(`Dropping collection ${collection.collectionName}`);
+            await collection.drop();
+        });
         await Promise.all(promises);
     }
 

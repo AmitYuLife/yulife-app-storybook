@@ -23,6 +23,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <TouchableOpacity
+          accessibilityLabel="Back"
           activeOpacity={0.2}
           onPress={[MockFunction]}
           style={
@@ -35,6 +36,7 @@ ShallowWrapper {
               "position": "absolute",
             }
           }
+          testID="BUTTON_TOP_LEFT_BAR"
         >
           <Back
             color="#333333"
@@ -103,6 +105,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "accessibilityLabel": "Back",
           "activeOpacity": 0.2,
           "children": Array [
             <Back
@@ -119,6 +122,7 @@ ShallowWrapper {
             "paddingHorizontal": 16,
             "position": "absolute",
           },
+          "testID": "BUTTON_TOP_LEFT_BAR",
         },
         "ref": null,
         "rendered": Array [
@@ -278,6 +282,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <TouchableOpacity
+            accessibilityLabel="Back"
             activeOpacity={0.2}
             onPress={[MockFunction]}
             style={
@@ -290,6 +295,7 @@ ShallowWrapper {
                 "position": "absolute",
               }
             }
+            testID="BUTTON_TOP_LEFT_BAR"
           >
             <Back
               color="#333333"
@@ -358,6 +364,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "accessibilityLabel": "Back",
             "activeOpacity": 0.2,
             "children": Array [
               <Back
@@ -374,6 +381,7 @@ ShallowWrapper {
               "paddingHorizontal": 16,
               "position": "absolute",
             },
+            "testID": "BUTTON_TOP_LEFT_BAR",
           },
           "ref": null,
           "rendered": Array [
@@ -570,6 +578,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <TouchableOpacity
+          accessibilityLabel="Menu"
           activeOpacity={0.2}
           onPress={[MockFunction]}
           style={
@@ -582,6 +591,7 @@ ShallowWrapper {
               "position": "absolute",
             }
           }
+          testID="BUTTON_TOP_LEFT_BAR"
         >
           <Menu
             color="#333333"
@@ -650,6 +660,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "accessibilityLabel": "Menu",
           "activeOpacity": 0.2,
           "children": Array [
             <Menu
@@ -666,6 +677,7 @@ ShallowWrapper {
             "paddingHorizontal": 16,
             "position": "absolute",
           },
+          "testID": "BUTTON_TOP_LEFT_BAR",
         },
         "ref": null,
         "rendered": Array [
@@ -825,6 +837,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <TouchableOpacity
+            accessibilityLabel="Menu"
             activeOpacity={0.2}
             onPress={[MockFunction]}
             style={
@@ -837,6 +850,7 @@ ShallowWrapper {
                 "position": "absolute",
               }
             }
+            testID="BUTTON_TOP_LEFT_BAR"
           >
             <Menu
               color="#333333"
@@ -905,6 +919,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "accessibilityLabel": "Menu",
             "activeOpacity": 0.2,
             "children": Array [
               <Menu
@@ -921,6 +936,7 @@ ShallowWrapper {
               "paddingHorizontal": 16,
               "position": "absolute",
             },
+            "testID": "BUTTON_TOP_LEFT_BAR",
           },
           "ref": null,
           "rendered": Array [
@@ -1118,6 +1134,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <TouchableOpacity
+          accessibilityLabel="Menu"
           activeOpacity={0.2}
           onPress={[MockFunction]}
           style={
@@ -1130,6 +1147,7 @@ ShallowWrapper {
               "position": "absolute",
             }
           }
+          testID="BUTTON_TOP_LEFT_BAR"
         >
           <Menu
             color="#333333"
@@ -1219,6 +1237,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "accessibilityLabel": "Menu",
           "activeOpacity": 0.2,
           "children": Array [
             <Menu
@@ -1255,6 +1274,7 @@ ShallowWrapper {
             "paddingHorizontal": 16,
             "position": "absolute",
           },
+          "testID": "BUTTON_TOP_LEFT_BAR",
         },
         "ref": null,
         "rendered": Array [
@@ -1455,6 +1475,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <TouchableOpacity
+            accessibilityLabel="Menu"
             activeOpacity={0.2}
             onPress={[MockFunction]}
             style={
@@ -1467,6 +1488,7 @@ ShallowWrapper {
                 "position": "absolute",
               }
             }
+            testID="BUTTON_TOP_LEFT_BAR"
           >
             <Menu
               color="#333333"
@@ -1556,6 +1578,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "accessibilityLabel": "Menu",
             "activeOpacity": 0.2,
             "children": Array [
               <Menu
@@ -1592,6 +1615,7 @@ ShallowWrapper {
               "paddingHorizontal": 16,
               "position": "absolute",
             },
+            "testID": "BUTTON_TOP_LEFT_BAR",
           },
           "ref": null,
           "rendered": Array [
@@ -1830,6 +1854,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <TouchableOpacity
+          accessibilityLabel="Menu"
           activeOpacity={0.2}
           onPress={[MockFunction]}
           style={
@@ -1842,6 +1867,7 @@ ShallowWrapper {
               "position": "absolute",
             }
           }
+          testID="BUTTON_TOP_LEFT_BAR"
         >
           <Menu
             color="#333333"
@@ -1932,6 +1958,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "accessibilityLabel": "Menu",
           "activeOpacity": 0.2,
           "children": Array [
             <Menu
@@ -1948,6 +1975,7 @@ ShallowWrapper {
             "paddingHorizontal": 16,
             "position": "absolute",
           },
+          "testID": "BUTTON_TOP_LEFT_BAR",
         },
         "ref": null,
         "rendered": Array [
@@ -2157,6 +2185,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <TouchableOpacity
+            accessibilityLabel="Menu"
             activeOpacity={0.2}
             onPress={[MockFunction]}
             style={
@@ -2169,6 +2198,7 @@ ShallowWrapper {
                 "position": "absolute",
               }
             }
+            testID="BUTTON_TOP_LEFT_BAR"
           >
             <Menu
               color="#333333"
@@ -2259,6 +2289,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "accessibilityLabel": "Menu",
             "activeOpacity": 0.2,
             "children": Array [
               <Menu
@@ -2275,6 +2306,7 @@ ShallowWrapper {
               "paddingHorizontal": 16,
               "position": "absolute",
             },
+            "testID": "BUTTON_TOP_LEFT_BAR",
           },
           "ref": null,
           "rendered": Array [
