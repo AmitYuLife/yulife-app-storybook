@@ -33,12 +33,6 @@ export default StyleSheet.create({
         top: 0,
         width: "100%"
     } as ViewStyle,
-    closeWrapper: {
-        padding: Style.SCALE_UP_AND_DOWN(10),
-        position: "absolute",
-        right: Style.SCALE_UP_AND_DOWN(5),
-        zIndex: 4
-    } as ViewStyle,
     giraffeImageWrapper: {
         flexDirection: "row",
         justifyContent: "flex-end",
@@ -46,20 +40,18 @@ export default StyleSheet.create({
         position: "relative",
         width: "100%"
     } as ViewStyle,
-    flatlistContainer: {
-        width: Style.DEVICE_WIDTH - Style.SCALE_UP_AND_DOWN(30)
-    } as ViewStyle,
     header: {
         position: "absolute",
         top: getTop(),
         width: "100%"
     } as ViewStyle,
-    expandedList: {
+    loaderWrapper: { position: "absolute", top: Style.SCALE_UP_AND_DOWN(180), left: 0, right: 0 } as ViewStyle,
+    scrollView1: {
         flex: 1,
         paddingHorizontal: Style.SCALE_UP_AND_DOWN(15),
         width: "100%"
     } as ViewStyle,
-    shrinkedList: {
+    scrollView2: {
         height: Style.DEVICE_HEIGHT - Style.SCALE_UP_AND_DOWN(230),
         paddingHorizontal: Style.SCALE_UP_AND_DOWN(15),
         width: "100%"

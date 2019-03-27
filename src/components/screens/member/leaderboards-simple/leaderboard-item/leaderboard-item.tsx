@@ -2,7 +2,6 @@ import { Text } from "@atoms/index";
 import { numberWithCommas, padNum } from "@services/utils";
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
-import { LeaderboardTypes } from "../leaderboards.screen";
 import styles from "./leaderboard-item.styles";
 
 export interface ILeaderboardItemProps {
@@ -11,10 +10,9 @@ export interface ILeaderboardItemProps {
     name: string;
     rank: number;
     steps: number;
-    type: LeaderboardTypes;
 }
 
-export default function LeaderboardItem({ isCurrentUser, rank, name, steps, coins, type }: ILeaderboardItemProps) {
+export default function LeaderboardItem({ isCurrentUser, rank, name, steps }: ILeaderboardItemProps) {
     const currentUserStyle = isCurrentUser ? styles.textHighlighted : {};
     const textStyleRightSmall = StyleSheet.flatten([styles.text, styles.textRight, styles.textSmall, currentUserStyle]);
 
@@ -22,14 +20,14 @@ export default function LeaderboardItem({ isCurrentUser, rank, name, steps, coin
         <View style={styles.wrapper}>
             <View style={styles.rankWrapper}>
                 <Text style={StyleSheet.flatten([styles.text, styles.textRight, currentUserStyle])}>
-                    {padNum(rank, -3)}
+                    {padNum(rank)}
                 </Text>
             </View>
             <View style={styles.nameWrapper}>
                 <Text style={StyleSheet.flatten([styles.text, currentUserStyle])}>{name}</Text>
             </View>
             <View style={styles.stepsWrapper}>
-                <Text style={textStyleRightSmall}>{numberWithCommas(type === "yucoin" ? coins : steps)}</Text>
+                <Text style={textStyleRightSmall}>{numberWithCommas(steps)}</Text>
             </View>
         </View>
     );

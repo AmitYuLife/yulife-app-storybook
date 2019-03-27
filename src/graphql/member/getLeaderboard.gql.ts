@@ -3,8 +3,8 @@ import { Query, QueryResult } from "react-apollo";
 import { GetLeaderboard, GetLeaderboardVariables } from "../_core/schema";
 
 export const getLeaderboardGql = gql`
-    query GetLeaderboard($sortBy: String) {
-        getLeaderboard(sortBy: $sortBy) {
+    query GetLeaderboard($sortBy: String $leaderboardId: String) {
+        getLeaderboard(sortBy: $sortBy leaderboardId: $leaderboardId) {
             __typename
             id
             firstName

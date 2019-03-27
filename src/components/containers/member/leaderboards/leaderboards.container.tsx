@@ -1,3 +1,4 @@
+/* tslint:disable */
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
@@ -6,10 +7,10 @@ import { GetLeaderboardVariables } from "../../../../graphql/_core/schema";
 import GetLeaderboardQuery, { getLeaderboardGql } from "../../../../graphql/member/getLeaderboard.gql";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { updateLeaderboardConsent } from "../../../../redux/user/user.actions";
-import { getLeaderboards } from "../../../../redux/user/user.selectors";
+import { getLeaderboards, getUserFeatures } from "../../../../redux/user/user.selectors";
 import { GenericModal } from "../../../modals";
 import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-error-modal";
-import { LeaderboardsScreen } from "../../../screens";
+import { LeaderboardsScreen, SimpleLeaderboardsScreen } from "../../../screens";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -21,14 +22,16 @@ interface IProps {
 interface IState {
     isLoading: boolean;
     sortBy: string;
+    leaderboardId: string;
 }
 
 type Props = ConnectedState & ConnectedDispatch & IProps;
 
 class LeaderboardsContainer extends PureComponent<Props, IState> {
-    public state = {
+    public state: IState = {
         isLoading: true,
-        sortBy: "steps"
+        sortBy: "steps",
+        leaderboardId: null
     };
 
     public componentDidMount() {
@@ -36,8 +39,8 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
     }
 
     public render() {
-        const { sortBy } = this.state;
-        const { leaderboards = [] } = this.props;
+        const { sortBy, leaderboardId } = this.state;
+        const { leaderboards = [], features = {} } = this.props;
 
         if (!leaderboards.length) {
             return (
@@ -69,7 +72,11 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
         }
 
         return (
-            <GetLeaderboardQuery query={getLeaderboardGql} fetchPolicy="cache-and-network" variables={{ sortBy }}>
+            <GetLeaderboardQuery
+                query={getLeaderboardGql}
+                fetchPolicy="cache-and-network"
+                variables={{ leaderboardId, sortBy }}
+            >
                 {({ error, loading, data, refetch }) => {
                     if (error && (!data || !data.getLeaderboard || !data.getCurrentUser)) {
                         return <GenericConnectionErrorModal onPress={this.handleClose} />;
@@ -84,15 +91,30 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                             (item: any) => item.id === `lead_${data.getCurrentUser.id}`
                         );
 
+                    if (features.showAdvancedLeaderboards) {
+                        return (
+                            <LeaderboardsScreen
+                                isLoading={loading}
+                                initialScrollIndex={initialScrollIndex}
+                                leaderboards={leaderboards}
+                                items={data.getLeaderboard || []}
+                                onHandleCoinsRefetch={coinsRefetch}
+                                onPressClose={this.handleClose}
+                                onHandleStepsRefetch={stepsRefetch}
+                                onLeaderboardChange={this.handleLeaderboardChange}
+                                sortBy={sortBy}
+                            />
+                        );
+                    }
+
                     return (
-                        <LeaderboardsScreen
+                        <SimpleLeaderboardsScreen
                             isLoading={loading}
                             initialScrollIndex={initialScrollIndex}
                             items={data.getLeaderboard || []}
-                            onHandleCoinsRefetch={coinsRefetch}
                             onPressClose={this.handleClose}
-                            onHandleStepsRefetch={stepsRefetch}
                             sortBy={sortBy}
+                            onRefetch={stepsRefetch}
                         />
                     );
                 }}
@@ -108,6 +130,11 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
         this.setState({ sortBy }, () => refetch({ sortBy }));
     };
 
+    private handleLeaderboardChange = (index: number) => {
+        const { leaderboards } = this.props;
+        this.setState({ leaderboardId: leaderboards[index].leaderboardId });
+    };
+
     private allowLeaderboard = () => {
         const { leaderboards, updateLeaderboardConsent: updateConsent } = this.props;
         const company = leaderboards[0];
@@ -116,6 +143,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
+    features: getUserFeatures(state),
     leaderboards: getLeaderboards(state)
 });
 

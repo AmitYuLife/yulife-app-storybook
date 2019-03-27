@@ -398,6 +398,7 @@ export interface GetLeaderboard {
 
 export interface GetLeaderboardVariables {
   sortBy?: string | null;
+  leaderboardId?: string | null;
 }
 
 
