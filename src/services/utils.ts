@@ -41,6 +41,7 @@ export function getTimeRemaining(nextAvailableAt: string) {
 }
 
 export function getTime(nextAvailable: number) {
+    const days = Math.floor(nextAvailable / (60 * 60 * 24));
     const hours = Math.floor(nextAvailable / (60 * 60)) % 24;
     const minutes = Math.floor(nextAvailable / 60) % 60;
     const seconds = nextAvailable % 60;
@@ -48,15 +49,18 @@ export function getTime(nextAvailable: number) {
         return null;
     }
 
+    const paddedDays = padNum(days);
     const paddedHours = padNum(hours);
     const paddedMinutes = padNum(minutes);
     const paddedSeconds = padNum(seconds);
 
-    if (hours < 1 && minutes < 1) {
+    if (days < 1 && hours < 1 && minutes < 1) {
         return `:${paddedSeconds}`;
-    } else if (hours < 1) {
+    } else if (days < 1 && hours < 1) {
         return `${paddedMinutes}:${paddedSeconds}`;
-    } else {
+    } else if (days < 1) {
         return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+    } else {
+        return `${paddedDays}:${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
     }
 }
