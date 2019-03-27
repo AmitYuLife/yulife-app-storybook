@@ -1,4 +1,4 @@
-# YuLife App
+# yulife app
 
 Source code for the React Native app for iOS and Android.
 
@@ -16,13 +16,13 @@ nvm use
 
 Follow the [React Native Installation Instructions](https://facebook.github.io/react-native/docs/getting-started.html) for both iOS and Android targets, skipping the section that installs Node.js. This should guide you through the installation of the following required components:
 
-* watchman
-* react-native-cli
-* XCode (v9.4 or newer)
-* XCode Command Line Tools
-* Java Development Kit (JDK 8 or newer)
-* Android Studio
-* Android SDK
+-   watchman
+-   react-native-cli
+-   XCode (v9.4 or newer)
+-   XCode Command Line Tools
+-   Java Development Kit (JDK 8 or newer)
+-   Android Studio
+-   Android SDK
 
 If you are having trouble starting the apps, ensure you have followed the installation instructions correctly and have installed all of the necessary dependencies.
 
@@ -103,9 +103,9 @@ Choose your build profile from the `Product -> Scheme` menu. By default, the `Yu
 
 The app needs to be signed before it can be installed on a physical device.
 
-* Ensure you've logged in to XCode using your Apple ID (`Preferences -> Accounts`). Your account needs to be linked to the `Yu Life Limited` team.
+-   Ensure you've logged in to XCode using your Apple ID (`Preferences -> Accounts`). Your account needs to be linked to the `Yu Life Limited` team.
 
-* Under the *General* tab of `YuLife` build target, tick the `Automatically manage signing` option and select `Yu Life Limited` as your team.
+-   Under the _General_ tab of `YuLife` build target, tick the `Automatically manage signing` option and select `Yu Life Limited` as your team.
 
 ### Android
 
@@ -244,3 +244,80 @@ The YuLife project follows the [atomic design](http://atomicdesign.bradfrost.com
 ### Disappearing packages
 Problem: `npm install some-package --save-dev` deletes git dependencies in package.json.
 Solution: Re-run `npm install` after
+
+## flow
+
+### on start
+
+```mermaid
+graph TD;
+    id0[Start]-->id1[Check if there is a token in AsyncStorage];
+    id1-->id3[No]
+    id3-->id4[Show login screen]
+    id1-->id2[Yes]
+    id2-->id5[Check if has seen intro]
+    id5-->id11[No]
+    id11-->id12[show intro]
+    id5-->id13[Yes]
+    id13-->id14[show daily-steps / quest / rewards]
+    id2-->id6[Queries getCurrentUser]
+    id6-->id15[FAIL]
+    id15-->id17[uses the previous stored state, basically does nothing]
+    id6-->id16[SUCCESS]
+    id16-->id18[if `user is archived` then shows the `no access screen`]
+    id16-->id19[else updates the redux streaks/coins/features/leaderboards/challenges]
+    id2-->id7[Start the event emitter for steps]
+    id2-->id8[Check stepsLastUpdated]
+    id2-->id9[Send the deviceToken to intercom/mixpanel and registers push notifications]
+    id2-->id10[Starts listening for deep links, app state, network state and navigation]
+```
+
+-   Check if there is a `token` in `AsyncStorage`
+    -   NO
+        -   Show [login screen](#login)
+    -   YES
+        -   Check if has seen intro
+            -   NO: show `intro`
+            -   YES: show [daily-steps](#daily-steps) / [quest](#quest) / [rewards](#rewards)
+        -   Queries `getCurrentUser`
+            -   FAIL: uses the previous stored state (basically does nothing)
+            -   SUCCESS
+                -   if `user is archived` then shows the `no access screen`
+                -   else updates the redux (streaks/coins/user(features/leaderboards...)/challenges)
+        -   Start `the event emitter for steps`
+        -   Check `stepsLastUpdated`
+            -   `if < today` then get the previous days steps and send it to server (tries to send the result until it succeds)
+            -   `else` do nothing
+        -   Send the `deviceToken` to intercom/mixpanel and registers push notifications
+        -   Starts listening for `deep links`, `app state`, `network state` and `navigation`
+
+### login
+
+-   on submit
+    -   FAIL: show the error message
+    -   SUCCESS
+        -   store the token to AsyncStorage
+        -   populate redux with latest user data
+        -   Check if has seen intro
+            -   NO: show `intro`
+            -   YES: show [daily-steps](#daily-steps) / [quest](#quest) / [rewards](#rewards)
+
+### daily-steps
+
+-   TODO
+
+### quest
+
+-   on mount
+    -   `if offline`: shows offline quest screen
+    -   queries `getCurrentWorld`
+        -   if request failed: ????? (renders cached data)
+        -   render new rewards list and cache them
+
+### rewards
+
+-   on mount
+    -   `if offline`: shows cached rewards (if no cached results we're f#^&\*d !? LOLWAT)
+    -   Queries `getRewards`
+        -   if request failed: show cached rewards
+        -   render new rewards list and cache them
