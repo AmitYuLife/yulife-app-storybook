@@ -49,7 +49,6 @@ export function getTime(nextAvailable: number) {
         return null;
     }
 
-    const paddedDays = padNum(days);
     const paddedHours = padNum(hours);
     const paddedMinutes = padNum(minutes);
     const paddedSeconds = padNum(seconds);
@@ -61,6 +60,7 @@ export function getTime(nextAvailable: number) {
     } else if (days < 1) {
         return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
     } else {
-        return `${paddedDays}:${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+        const daysOrDay = days > 1 ? "days" : "day";
+        return `${days} ${daysOrDay} and ${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
     }
 }
