@@ -7,10 +7,10 @@ import { GetLeaderboardVariables } from "../../../../graphql/_core/schema";
 import GetLeaderboardQuery, { getLeaderboardGql } from "../../../../graphql/member/getLeaderboard.gql";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { updateLeaderboardConsent } from "../../../../redux/user/user.actions";
-import { getLeaderboards } from "../../../../redux/user/user.selectors";
+import { getLeaderboards, getUserFeatures } from "../../../../redux/user/user.selectors";
 import { GenericModal } from "../../../modals";
 import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-error-modal";
-import { LeaderboardsScreen } from "../../../screens";
+import { LeaderboardsScreen, SimpleLeaderboardsScreen } from "../../../screens";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -40,7 +40,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 
     public render() {
         const { sortBy, leaderboardId } = this.state;
-        const { leaderboards = [] } = this.props;
+        const { leaderboards = [], features = {} } = this.props;
 
         if (!leaderboards.length) {
             return (
@@ -91,17 +91,30 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                             (item: any) => item.id === `lead_${data.getCurrentUser.id}`
                         );
 
+                    if (features.showAdvancedLeaderboards) {
+                        return (
+                            <LeaderboardsScreen
+                                isLoading={loading}
+                                initialScrollIndex={initialScrollIndex}
+                                leaderboards={leaderboards}
+                                items={data.getLeaderboard || []}
+                                onHandleCoinsRefetch={coinsRefetch}
+                                onPressClose={this.handleClose}
+                                onHandleStepsRefetch={stepsRefetch}
+                                onLeaderboardChange={this.handleLeaderboardChange}
+                                sortBy={sortBy}
+                            />
+                        );
+                    }
+
                     return (
-                        <LeaderboardsScreen
+                        <SimpleLeaderboardsScreen
                             isLoading={loading}
                             initialScrollIndex={initialScrollIndex}
-                            leaderboards={leaderboards}
                             items={data.getLeaderboard || []}
-                            onHandleCoinsRefetch={coinsRefetch}
                             onPressClose={this.handleClose}
-                            onHandleStepsRefetch={stepsRefetch}
-                            onLeaderboardChange={this.handleLeaderboardChange}
                             sortBy={sortBy}
+                            onRefetch={stepsRefetch}
                         />
                     );
                 }}
@@ -130,6 +143,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
+    features: getUserFeatures(state),
     leaderboards: getLeaderboards(state)
 });
 
