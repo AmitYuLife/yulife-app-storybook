@@ -42,6 +42,7 @@ interface IProps {
     onHandleCoinsRefetch: () => void;
     onPressClose: () => void;
     onHandleStepsRefetch: () => void;
+    onLeaderboardChange: (index: number) => void;
     sortBy: string;
 }
 
@@ -226,9 +227,9 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
     };
 
     private onChangeActiveLeaderboard = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-        this.setState({
-            activePage: Math.floor(event.nativeEvent.contentOffset.x / Style.DEVICE_WIDTH)
-        });
+        const activePage = Math.floor(event.nativeEvent.contentOffset.x / Style.DEVICE_WIDTH);
+
+        this.setState({ activePage }, () => this.props.onLeaderboardChange(activePage));
     };
 
     private measureView = (event: LayoutChangeEvent) => {

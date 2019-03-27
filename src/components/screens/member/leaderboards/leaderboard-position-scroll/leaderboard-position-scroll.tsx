@@ -49,7 +49,7 @@ class LeaderboardPositionScroll extends React.PureComponent<IProps> {
 
     private keyExtractor = (_: undefined, index: number) => `${index}`;
 
-    private renderLeaderboardPositions = () => {
+    private renderLeaderboardPositions = ({ item: { name } }: any) => {
         const { items, isHidden, isLoading } = this.props;
         return (
             <View style={styles.scrollViewItem}>
@@ -70,7 +70,7 @@ class LeaderboardPositionScroll extends React.PureComponent<IProps> {
                 )}
 
                 <View style={styles.header}>
-                    <GenericHeading heading={data.heading} hidesBorder={true} subheading={data.subheading} />
+                    <GenericHeading heading={name} hidesBorder={true} subheading={data.subheading} />
                 </View>
             </View>
         );

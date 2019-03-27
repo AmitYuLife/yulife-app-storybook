@@ -22,14 +22,16 @@ interface IProps {
 interface IState {
     isLoading: boolean;
     sortBy: string;
+    leaderboardId: string;
 }
 
 type Props = ConnectedState & ConnectedDispatch & IProps;
 
 class LeaderboardsContainer extends PureComponent<Props, IState> {
-    public state = {
+    public state: IState = {
         isLoading: true,
-        sortBy: "steps"
+        sortBy: "steps",
+        leaderboardId: null
     };
 
     public componentDidMount() {
@@ -37,7 +39,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
     }
 
     public render() {
-        const { sortBy } = this.state;
+        const { sortBy, leaderboardId } = this.state;
         const { leaderboards = [] } = this.props;
 
         if (!leaderboards.length) {
@@ -70,7 +72,11 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
         }
 
         return (
-            <GetLeaderboardQuery query={getLeaderboardGql} fetchPolicy="cache-and-network" variables={{ sortBy }}>
+            <GetLeaderboardQuery
+                query={getLeaderboardGql}
+                fetchPolicy="cache-and-network"
+                variables={{ leaderboardId, sortBy }}
+            >
                 {({ error, loading, data, refetch }) => {
                     if (error && (!data || !data.getLeaderboard || !data.getCurrentUser)) {
                         return <GenericConnectionErrorModal onPress={this.handleClose} />;
@@ -94,6 +100,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                             onHandleCoinsRefetch={coinsRefetch}
                             onPressClose={this.handleClose}
                             onHandleStepsRefetch={stepsRefetch}
+                            onLeaderboardChange={this.handleLeaderboardChange}
                             sortBy={sortBy}
                         />
                     );
@@ -108,6 +115,11 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 
     private handleRefetch = (refetch: (variables: GetLeaderboardVariables) => void, sortBy: string) => () => {
         this.setState({ sortBy }, () => refetch({ sortBy }));
+    };
+
+    private handleLeaderboardChange = (index: number) => {
+        const { leaderboards } = this.props;
+        this.setState({ leaderboardId: leaderboards[index].leaderboardId });
     };
 
     private allowLeaderboard = () => {
