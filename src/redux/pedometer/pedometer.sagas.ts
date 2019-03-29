@@ -21,7 +21,7 @@ function* listenToSteps() {
     const features = yield select(getUserFeatures);
     const momentStartDay = moment().startOf("day");
     const startOfDay = momentStartDay.format();
-    const channel = yield call(stepsChannel, startOfDay);
+    const channel = yield call(stepsChannel, startOfDay, features.isNewFetchSystem);
 
     while (true) {
         try {
