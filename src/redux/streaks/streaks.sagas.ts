@@ -79,7 +79,8 @@ function* showOnChallengeComplete() {
                         onPressCtaSecondary: null,
                         reward: streaks.reward,
                         streakCompleted: streaks.currentStreak,
-                        streakMax: streaks.maxStreak
+                        streakMax: streaks.maxStreak,
+                        nextStreakAvailableAt: streaks.nextStreakAvailableAt
                     }
                 }
             })
