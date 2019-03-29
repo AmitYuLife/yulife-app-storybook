@@ -1,4 +1,5 @@
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
+import moment from "moment";
 import { GetCurrentUser, LoginUser, UpdateActiveChallenge } from "../../graphql/_core/schema";
 import { pathOr } from "../../services/utils";
 import { SyncAction } from "../_core/types";
@@ -234,14 +235,16 @@ const challengeResetSuccess = (state: ILevelsStore): ILevelsStore => ({
 });
 
 const pedometerUpdate = (state: ILevelsStore, { steps }: PedometerResponse): ILevelsStore => {
-    if (state.active.subtype === "meditation") {
+    if (
+        state.active.subtype === "meditation" ||
+        !state.active.levelSlotId ||
+        moment().isAfter(moment(state.active.endDateTime))
+    ) {
         return state;
     }
 
-    const isChallengeActive = !!state.active.levelSlotId && !state.active.timeUp && !state.active.status;
     const current = steps - state.active.initialPedometerResult;
-    const currentScore = current > state.active.score ? current : state.active.score;
-    const score = isChallengeActive ? currentScore : state.active.score;
+    const score = current > state.active.score ? current : state.active.score;
 
     return {
         ...state,
