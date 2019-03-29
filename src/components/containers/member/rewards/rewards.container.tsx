@@ -16,6 +16,7 @@ import { IMainTabsProps } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getHasNotification } from "../../../../redux/levels/levels.selectors";
+import Logger from "../../../../services/logging/logger";
 import { formatMoney } from "../../../../services/money";
 import { PurchasedListScreen, RewardsListScreen } from "../../../screens";
 
@@ -110,6 +111,14 @@ class RewardsContainer extends PureComponent<Props, IState> {
 
     private handleRewardDetailsItemPress = async (reward: GetRewards_getRewards) => {
         if (!reward.available_denominations.length) {
+            Logger.logMixpanelEvent("reward_viewed", {
+                locked: true,
+                reward_availability: reward.availability,
+                reward_best_sticker: reward.reward_sticker,
+                reward_code: reward.code,
+                reward_name: reward.name
+            });
+
             await Navigation.showModal({
                 component: {
                     id: MODALS.rewards,
