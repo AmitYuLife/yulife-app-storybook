@@ -8,6 +8,7 @@ describe("SignUpRewardScreen", () => {
     it("should render with required props", () => {
         const actual = shallow(
             <SignUpRewardScreen
+                isLoading={false}
                 onCollectPress={jest.fn()}
                 reward={200}
             />

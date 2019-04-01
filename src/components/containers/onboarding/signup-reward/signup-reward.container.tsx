@@ -27,11 +27,18 @@ interface IProps {
 
 type ConnectedDispatch = typeof mapDispatchToProps;
 
+interface IState {
+    isLoading: boolean;
+}
+
 interface IChildProps extends UpsertOnboardingChallengeStateType, ConnectedDispatch, IProps {
     upsertOnboardingChallenge: UpsertOnboardingChallengeMutationType;
 }
 
-class SignUpRewardContainerChild extends PureComponent<IChildProps> {
+class SignUpRewardContainerChild extends PureComponent<IChildProps, IState> {
+    public state = {
+        isLoading: false
+    };
     private backHandler: NativeEventSubscription;
 
     constructor(props: IChildProps) {
@@ -50,6 +57,7 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps> {
     }
 
     public render() {
+        const { isLoading } = this.state;
         const { loading, data, error } = this.props;
 
         // TODO: handle errors
@@ -57,7 +65,7 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps> {
             return null;
         }
 
-        if (loading || !data || !data.upsertPassiveChallenge) {
+        if (!data || !data.upsertPassiveChallenge) {
             return <Loading />;
         }
 
@@ -65,6 +73,7 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps> {
             <AddHistoricalStepsMutation mutation={addHistoricalStepsGql}>
                 {(addHistoricalSteps) => (
                     <SignUpRewardScreen
+                        isLoading={loading || isLoading}
                         onCollectPress={this.onCollect(addHistoricalSteps)}
                         reward={data.upsertPassiveChallenge.challenge.yuCoinAwarded}
                     />
@@ -75,6 +84,9 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps> {
 
     private onCollect = (addHistoricalSteps: AddHistoricalStepsMutationFunction) => async () => {
         try {
+            this.setState({
+                isLoading: true
+            });
             const { results: payload } = await querySteps(60, 1);
 
             if (payload.length > 0) {
@@ -86,6 +98,9 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps> {
             Logger.logIntercomEvent("historical_steps_sync_failed", { message: e.message });
         }
 
+        this.setState({
+            isLoading: false
+        });
         await setNextRoot();
     };
 }

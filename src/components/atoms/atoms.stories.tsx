@@ -35,7 +35,9 @@ storiesOf("Atoms", module)
                     <Text>Transparent background</Text>
                 </TouchableOpacity>
             )}
-            render={({ toggleOverlay }) => <SignUpRewardScreen onCollectPress={toggleOverlay} reward={200} />}
+            render={({ toggleOverlay }) => (
+                <SignUpRewardScreen isLoading={false} onCollectPress={toggleOverlay} reward={200} />
+            )}
         />
     ))
     .add("2. Blurb", () => (
