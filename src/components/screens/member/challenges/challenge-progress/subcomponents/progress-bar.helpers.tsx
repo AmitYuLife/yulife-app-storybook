@@ -71,7 +71,7 @@ export const renderProgressLabel = ({
                     textAfterValue={type}
                 />
             ) : (
-                <Text style={styles.stepsText}>{`${amount} ${type}`}</Text>
+                <Text style={StyleSheet.flatten([styles.stepsText, textColorStyle])}>{`${amount} ${type}`}</Text>
             );
 
         case "minutes":
