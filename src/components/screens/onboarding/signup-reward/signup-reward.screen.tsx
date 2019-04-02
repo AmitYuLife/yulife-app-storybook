@@ -5,11 +5,12 @@ import data from "./signup-reward.screen.data";
 import styles from "./signup-reward.screen.styles";
 
 interface IProps {
+    isLoading: boolean;
     onCollectPress: () => void;
     reward: number;
 }
 
-const SignUpRewardScreen: SFC<IProps> = ({ onCollectPress, reward }) => (
+const SignUpRewardScreen: SFC<IProps> = ({ isLoading, onCollectPress, reward }) => (
     <CentredScreen footerImage="forest">
         <Pad height={74} />
         <CoinConfetti coins={reward} />
@@ -17,7 +18,13 @@ const SignUpRewardScreen: SFC<IProps> = ({ onCollectPress, reward }) => (
         <Pad height={10} />
         <Blurb wrapperStyle={styles.blurbWrapper} label={data.blurb} />
         <Pad height={26} />
-        <Button type={Button.Types.PRIMARY_SMALL} label={data.buttonLabel} onPress={onCollectPress} />
+        <Button
+            type={Button.Types.PRIMARY_SMALL}
+            label={data.buttonLabel}
+            onPress={onCollectPress}
+            isLoading={isLoading}
+            disabled={isLoading}
+        />
     </CentredScreen>
 );
 

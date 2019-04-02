@@ -84,6 +84,7 @@ storiesOf("Screens", module)
     ))
     .add("5. SignUp Reward", () => (
         <SignUpRewardScreen
+            isLoading={false}
             onCollectPress={action("on collect press")}
             reward={number("Reward", 1000, {
                 max: 2000,
