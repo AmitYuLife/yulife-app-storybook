@@ -1,9 +1,10 @@
+import GetDebugCodesQuery from "@graphql/debug/getDebugCodes.gql";
+import ResetDataMutation, { ResetDataMutationFunction } from "@graphql/debug/resetData.gql";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Alert } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import ResetDataMutation, { ResetDataMutationFunction } from "../../../../graphql/user/resetData.gql";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { sendTestPush } from "../../../../redux/notifications/notifications.actions";
 import { getUserStart } from "../../../../redux/user/user.actions";
@@ -20,32 +21,39 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
 class ActivityHistoryContainer extends PureComponent<Props> {
-    private list: Array<{ id: string; text: string }> = [
-        { id: "reset-today-partial-data", text: "Reset today partial data" },
-        { id: "reset-today-full-data", text: "Reset today full data" },
-        { id: "reset-streaks", text: "Reset streaks" },
-        { id: "more-coins", text: "More coins!" },
-        { id: "reset-coins", text: "Reset coins" },
-        { id: "send-test-push", text: "Send test local push in 5 sec" }
+    private list: string[] = [
+        "reset-today-partial-data",
+        "reset-today-full-data",
+        "reset-streaks",
+        "more-coins",
+        "reset-coins"
     ];
 
     public render() {
-        return <ResetDataMutation>{this.renderMutation}</ResetDataMutation>;
+        return (
+            <ResetDataMutation>
+                {(resetData) => (
+                    <GetDebugCodesQuery fetchPolicy="cache-and-network">
+                        {({ data }) => {
+                            const list = [...((data && data.getDebugCodes) || this.list), "send-test-push"];
+
+                            return <DebugScreen onPressClose={this.handleClose} data={this.getData(list, resetData)} />;
+                        }}
+                    </GetDebugCodesQuery>
+                )}
+            </ResetDataMutation>
+        );
     }
 
-    private renderMutation = (resetData: ResetDataMutationFunction) => (
-        <DebugScreen onPressClose={this.handleClose} data={this.getData(resetData)} />
-    );
-
-    private getData = (resetData: ResetDataMutationFunction) => {
-        return this.list.map((item) => ({
-            ...item,
+    private getData = (list: string[], resetData: ResetDataMutationFunction) => {
+        return list.map((code) => ({
+            id: code,
             onPress: async () => {
                 try {
-                    if (item.id === "send-test-push") {
+                    if (code === "send-test-push") {
                         this.props.sendTestPush();
                     } else {
-                        await resetData({ variables: { code: item.id } });
+                        await resetData({ variables: { code } });
                         Alert.alert("Success");
                         this.props.getUserStart();
                     }

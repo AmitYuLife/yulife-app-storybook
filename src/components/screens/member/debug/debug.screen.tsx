@@ -8,7 +8,6 @@ import styles from "./debug.styles";
 
 interface ItemProps {
     id: string;
-    text: string;
     onPress: () => void;
 }
 
@@ -39,7 +38,7 @@ export default class DebugScreen extends PureComponent<IProps> {
     private renderItem = ({ item }: ListRenderItemInfo<ItemProps>) => {
         return (
             <TouchableOpacityWithState style={styles.itemWrapper} onPress={item.onPress}>
-                <Text>{item.text}</Text>
+                <Text>{item.id}</Text>
                 <Svg viewBox="0 0 23 41" height={String(41 * 0.35)} width={String(23 * 0.35)} style={styles.arrow}>
                     <Polygon fill="#333" points="20.5,40.6 0.4,20.5 20.5,0.4 22.6,2.6 4.7,20.5 22.6,38.4 " />
                 </Svg>

@@ -335,6 +335,35 @@ export interface UpsertPassiveChallengeVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: GetDebugCodes
+// ====================================================
+
+export interface GetDebugCodes {
+  getDebugCodes: (string | null)[] | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: ResetData
+// ====================================================
+
+export interface ResetData {
+  resetData: boolean | null;
+}
+
+export interface ResetDataVariables {
+  code: string;
+  type?: string | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: CollectAward
 // ====================================================
 
@@ -966,23 +995,6 @@ export interface LoginUserVariables {
   method?: LoginMethod | null;
   tokenExpiration?: number | null;
   intercomHashMethod?: IntercomHashMethod | null;
-}
-
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: ResetData
-// ====================================================
-
-export interface ResetData {
-  resetData: boolean | null;
-}
-
-export interface ResetDataVariables {
-  code: string;
-  type?: string | null;
 }
 
 

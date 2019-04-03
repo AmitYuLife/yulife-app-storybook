@@ -203,7 +203,7 @@ ShallowWrapper {
               style={
                 Object {
                   "color": "rgb(51,51,51)",
-                  "fontSize": 28,
+                  "fontSize": 34,
                 }
               }
             >
@@ -698,7 +698,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "color": "rgb(51,51,51)",
-                    "fontSize": 28,
+                    "fontSize": 34,
                   }
                 }
               >
@@ -736,7 +736,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "color": "rgb(51,51,51)",
-                    "fontSize": 28,
+                    "fontSize": 34,
                   }
                 }
               >
@@ -753,7 +753,7 @@ ShallowWrapper {
                 "children": "debug",
                 "style": Object {
                   "color": "rgb(51,51,51)",
-                  "fontSize": 28,
+                  "fontSize": 34,
                 },
               },
               "ref": null,
@@ -949,7 +949,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "color": "rgb(51,51,51)",
-                    "fontSize": 28,
+                    "fontSize": 34,
                   }
                 }
               >
@@ -1444,7 +1444,7 @@ ShallowWrapper {
                   style={
                     Object {
                       "color": "rgb(51,51,51)",
-                      "fontSize": 28,
+                      "fontSize": 34,
                     }
                   }
                 >
@@ -1482,7 +1482,7 @@ ShallowWrapper {
                   style={
                     Object {
                       "color": "rgb(51,51,51)",
-                      "fontSize": 28,
+                      "fontSize": 34,
                     }
                   }
                 >
@@ -1499,7 +1499,7 @@ ShallowWrapper {
                   "children": "debug",
                   "style": Object {
                     "color": "rgb(51,51,51)",
-                    "fontSize": 28,
+                    "fontSize": 34,
                   },
                 },
                 "ref": null,
@@ -1654,7 +1654,7 @@ ShallowWrapper {
               style={
                 Object {
                   "color": "rgb(51,51,51)",
-                  "fontSize": 28,
+                  "fontSize": 34,
                 }
               }
             >
@@ -1849,7 +1849,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "color": "rgb(51,51,51)",
-                    "fontSize": 28,
+                    "fontSize": 34,
                   }
                 }
               >
@@ -1887,7 +1887,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "color": "rgb(51,51,51)",
-                    "fontSize": 28,
+                    "fontSize": 34,
                   }
                 }
               >
@@ -1904,7 +1904,7 @@ ShallowWrapper {
                 "children": "debug",
                 "style": Object {
                   "color": "rgb(51,51,51)",
-                  "fontSize": 28,
+                  "fontSize": 34,
                 },
               },
               "ref": null,
@@ -2020,7 +2020,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "color": "rgb(51,51,51)",
-                    "fontSize": 28,
+                    "fontSize": 34,
                   }
                 }
               >
@@ -2215,7 +2215,7 @@ ShallowWrapper {
                   style={
                     Object {
                       "color": "rgb(51,51,51)",
-                      "fontSize": 28,
+                      "fontSize": 34,
                     }
                   }
                 >
@@ -2253,7 +2253,7 @@ ShallowWrapper {
                   style={
                     Object {
                       "color": "rgb(51,51,51)",
-                      "fontSize": 28,
+                      "fontSize": 34,
                     }
                   }
                 >
@@ -2270,7 +2270,7 @@ ShallowWrapper {
                   "children": "debug",
                   "style": Object {
                     "color": "rgb(51,51,51)",
-                    "fontSize": 28,
+                    "fontSize": 34,
                   },
                 },
                 "ref": null,

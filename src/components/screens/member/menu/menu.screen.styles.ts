@@ -41,7 +41,7 @@ export default StyleSheet.create({
     } as ViewStyle,
     debugText: {
         color: "rgb(51,51,51)",
-        fontSize: Style.SCALE_UP_AND_DOWN(14)
+        fontSize: Style.SCALE_UP_AND_DOWN(17)
     } as TextStyle,
     versionText: {
         color: "rgb(201,201,201)",
