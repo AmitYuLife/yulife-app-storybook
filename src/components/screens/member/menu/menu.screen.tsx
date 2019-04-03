@@ -17,10 +17,11 @@ export interface IMenuLink {
 interface IProps {
     links: IMenuLink[];
     onPressClose: () => void;
+    onDebugPress: (() => void) | null;
     version: string;
 }
 
-const MenuScreen: SFC<IProps> = ({ onPressClose, links, version }) => (
+const MenuScreen: SFC<IProps> = ({ onDebugPress, onPressClose, links, version }) => (
     <>
         <View style={styles.wrapper} testID={MENU_SCREEN}>
             <TouchableOpacity style={styles.closeWrapper} onPress={onPressClose}>
@@ -34,10 +35,10 @@ const MenuScreen: SFC<IProps> = ({ onPressClose, links, version }) => (
                 : links.map(({ source, onPress, label, condition }, index) =>
                       !condition ? null : (
                           <TouchableOpacityWithState
-                            key={`menu-${index}`}
-                            style={styles.itemWrapper}
-                            onPress={onPress}
-                            testID={MENU_ITEM(label)}
+                              key={`menu-${index}`}
+                              style={styles.itemWrapper}
+                              onPress={onPress}
+                              testID={MENU_ITEM(label)}
                           >
                               {source && (
                                   <View style={styles.iconWrapper}>
@@ -52,6 +53,11 @@ const MenuScreen: SFC<IProps> = ({ onPressClose, links, version }) => (
                   )}
         </View>
         <View style={styles.versionTextWrapper}>
+            {!onDebugPress ? null : (
+                <TouchableOpacityWithState onPress={onDebugPress}>
+                    <Text style={styles.debugText}>debug</Text>
+                </TouchableOpacityWithState>
+            )}
             <Text style={styles.versionText}>{version}</Text>
         </View>
     </>

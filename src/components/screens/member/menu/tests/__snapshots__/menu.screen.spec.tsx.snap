@@ -27,6 +27,7 @@ ShallowWrapper {
         },
       ]
     }
+    onDebugPress={[MockFunction]}
     onPressClose={[MockFunction]}
     version="1.0.0"
   />,
@@ -195,6 +196,20 @@ ShallowWrapper {
             }
           }
         >
+          <TouchableOpacityWithState
+            onPress={[MockFunction]}
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontSize": 28,
+                }
+              }
+            >
+              debug
+            </YuText>
+          </TouchableOpacityWithState>
           <YuText
             style={
               Object {
@@ -675,17 +690,33 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <YuText
-            style={
-              Object {
-                "color": "rgb(201,201,201)",
-                "fontSize": 20,
-                "textAlign": "center",
+          "children": Array [
+            <TouchableOpacityWithState
+              onPress={[MockFunction]}
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontSize": 28,
+                  }
+                }
+              >
+                debug
+              </YuText>
+            </TouchableOpacityWithState>,
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(201,201,201)",
+                  "fontSize": 20,
+                  "textAlign": "center",
+                }
               }
-            }
-          >
-            1.0.0
-          </YuText>,
+            >
+              1.0.0
+            </YuText>,
+          ],
           "style": Object {
             "alignItems": "center",
             "bottom": 20,
@@ -695,22 +726,59 @@ ShallowWrapper {
           },
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": "1.0.0",
-            "style": Object {
-              "color": "rgb(201,201,201)",
-              "fontSize": 20,
-              "textAlign": "center",
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontSize": 28,
+                  }
+                }
+              >
+                debug
+              </YuText>,
+              "onPress": [MockFunction],
             },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "debug",
+                "style": Object {
+                  "color": "rgb(51,51,51)",
+                  "fontSize": 28,
+                },
+              },
+              "ref": null,
+              "rendered": "debug",
+              "type": [Function],
+            },
+            "type": [Function],
           },
-          "ref": null,
-          "rendered": "1.0.0",
-          "type": [Function],
-        },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "1.0.0",
+              "style": Object {
+                "color": "rgb(201,201,201)",
+                "fontSize": 20,
+                "textAlign": "center",
+              },
+            },
+            "ref": null,
+            "rendered": "1.0.0",
+            "type": [Function],
+          },
+        ],
         "type": [Function],
       },
     ],
@@ -874,6 +942,20 @@ ShallowWrapper {
               }
             }
           >
+            <TouchableOpacityWithState
+              onPress={[MockFunction]}
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontSize": 28,
+                  }
+                }
+              >
+                debug
+              </YuText>
+            </TouchableOpacityWithState>
             <YuText
               style={
                 Object {
@@ -1354,17 +1436,33 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <YuText
-              style={
-                Object {
-                  "color": "rgb(201,201,201)",
-                  "fontSize": 20,
-                  "textAlign": "center",
+            "children": Array [
+              <TouchableOpacityWithState
+                onPress={[MockFunction]}
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(51,51,51)",
+                      "fontSize": 28,
+                    }
+                  }
+                >
+                  debug
+                </YuText>
+              </TouchableOpacityWithState>,
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(201,201,201)",
+                    "fontSize": 20,
+                    "textAlign": "center",
+                  }
                 }
-              }
-            >
-              1.0.0
-            </YuText>,
+              >
+                1.0.0
+              </YuText>,
+            ],
             "style": Object {
               "alignItems": "center",
               "bottom": 20,
@@ -1374,22 +1472,59 @@ ShallowWrapper {
             },
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "1.0.0",
-              "style": Object {
-                "color": "rgb(201,201,201)",
-                "fontSize": 20,
-                "textAlign": "center",
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "color": "rgb(51,51,51)",
+                      "fontSize": 28,
+                    }
+                  }
+                >
+                  debug
+                </YuText>,
+                "onPress": [MockFunction],
               },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "debug",
+                  "style": Object {
+                    "color": "rgb(51,51,51)",
+                    "fontSize": 28,
+                  },
+                },
+                "ref": null,
+                "rendered": "debug",
+                "type": [Function],
+              },
+              "type": [Function],
             },
-            "ref": null,
-            "rendered": "1.0.0",
-            "type": [Function],
-          },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "1.0.0",
+                "style": Object {
+                  "color": "rgb(201,201,201)",
+                  "fontSize": 20,
+                  "textAlign": "center",
+                },
+              },
+              "ref": null,
+              "rendered": "1.0.0",
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
       ],
@@ -1423,6 +1558,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <MenuScreen
     links={null}
+    onDebugPress={[MockFunction]}
     onPressClose={[MockFunction]}
     version="1.0.0"
   />,
@@ -1511,6 +1647,20 @@ ShallowWrapper {
             }
           }
         >
+          <TouchableOpacityWithState
+            onPress={[MockFunction]}
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontSize": 28,
+                }
+              }
+            >
+              debug
+            </YuText>
+          </TouchableOpacityWithState>
           <YuText
             style={
               Object {
@@ -1691,17 +1841,33 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <YuText
-            style={
-              Object {
-                "color": "rgb(201,201,201)",
-                "fontSize": 20,
-                "textAlign": "center",
+          "children": Array [
+            <TouchableOpacityWithState
+              onPress={[MockFunction]}
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontSize": 28,
+                  }
+                }
+              >
+                debug
+              </YuText>
+            </TouchableOpacityWithState>,
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(201,201,201)",
+                  "fontSize": 20,
+                  "textAlign": "center",
+                }
               }
-            }
-          >
-            1.0.0
-          </YuText>,
+            >
+              1.0.0
+            </YuText>,
+          ],
           "style": Object {
             "alignItems": "center",
             "bottom": 20,
@@ -1711,22 +1877,59 @@ ShallowWrapper {
           },
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": "1.0.0",
-            "style": Object {
-              "color": "rgb(201,201,201)",
-              "fontSize": 20,
-              "textAlign": "center",
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontSize": 28,
+                  }
+                }
+              >
+                debug
+              </YuText>,
+              "onPress": [MockFunction],
             },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "debug",
+                "style": Object {
+                  "color": "rgb(51,51,51)",
+                  "fontSize": 28,
+                },
+              },
+              "ref": null,
+              "rendered": "debug",
+              "type": [Function],
+            },
+            "type": [Function],
           },
-          "ref": null,
-          "rendered": "1.0.0",
-          "type": [Function],
-        },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "1.0.0",
+              "style": Object {
+                "color": "rgb(201,201,201)",
+                "fontSize": 20,
+                "textAlign": "center",
+              },
+            },
+            "ref": null,
+            "rendered": "1.0.0",
+            "type": [Function],
+          },
+        ],
         "type": [Function],
       },
     ],
@@ -1810,6 +2013,20 @@ ShallowWrapper {
               }
             }
           >
+            <TouchableOpacityWithState
+              onPress={[MockFunction]}
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontSize": 28,
+                  }
+                }
+              >
+                debug
+              </YuText>
+            </TouchableOpacityWithState>
             <YuText
               style={
                 Object {
@@ -1990,17 +2207,33 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <YuText
-              style={
-                Object {
-                  "color": "rgb(201,201,201)",
-                  "fontSize": 20,
-                  "textAlign": "center",
+            "children": Array [
+              <TouchableOpacityWithState
+                onPress={[MockFunction]}
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(51,51,51)",
+                      "fontSize": 28,
+                    }
+                  }
+                >
+                  debug
+                </YuText>
+              </TouchableOpacityWithState>,
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(201,201,201)",
+                    "fontSize": 20,
+                    "textAlign": "center",
+                  }
                 }
-              }
-            >
-              1.0.0
-            </YuText>,
+              >
+                1.0.0
+              </YuText>,
+            ],
             "style": Object {
               "alignItems": "center",
               "bottom": 20,
@@ -2010,22 +2243,59 @@ ShallowWrapper {
             },
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "1.0.0",
-              "style": Object {
-                "color": "rgb(201,201,201)",
-                "fontSize": 20,
-                "textAlign": "center",
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "color": "rgb(51,51,51)",
+                      "fontSize": 28,
+                    }
+                  }
+                >
+                  debug
+                </YuText>,
+                "onPress": [MockFunction],
               },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "debug",
+                  "style": Object {
+                    "color": "rgb(51,51,51)",
+                    "fontSize": 28,
+                  },
+                },
+                "ref": null,
+                "rendered": "debug",
+                "type": [Function],
+              },
+              "type": [Function],
             },
-            "ref": null,
-            "rendered": "1.0.0",
-            "type": [Function],
-          },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "1.0.0",
+                "style": Object {
+                  "color": "rgb(201,201,201)",
+                  "fontSize": 20,
+                  "textAlign": "center",
+                },
+              },
+              "ref": null,
+              "rendered": "1.0.0",
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
       ],

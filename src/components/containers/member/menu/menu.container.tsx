@@ -2,6 +2,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { setIntroRoot } from "@navigation/root";
 import * as React from "react";
 import { PureComponent } from "react";
+import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import Intercom from "react-native-intercom";
 import { Navigation } from "react-native-navigation";
@@ -23,21 +24,17 @@ type Props = ConnectedState & ConnectedDipatch;
 
 class MenuContainer extends PureComponent<Props> {
     private deviceVersion = DeviceInfo.getVersion();
-    private buildNumber = DeviceInfo.getBuildNumber();
 
     public render() {
         const { features = {} } = this.props;
-        const version = features.showBuildNumber ? `${this.deviceVersion} (${this.buildNumber})` : this.deviceVersion;
+        const version = features.showBuildNumber
+            ? `${this.deviceVersion} (${Config.BUILD_NUMBER})`
+            : this.deviceVersion;
 
         return (
             <MenuScreen
                 onPressClose={this.handleClose}
                 links={[
-                    {
-                        condition: features.showDebug,
-                        label: "debug",
-                        onPress: this.handlePressLink(LINKS.DEBUG)
-                    },
                     {
                         condition: features.showActivity,
                         label: "activity history",
@@ -82,6 +79,7 @@ class MenuContainer extends PureComponent<Props> {
                     }
                 ]}
                 version={version}
+                onDebugPress={features.showDebug ? this.handlePressLink(LINKS.DEBUG) : null}
             />
         );
     }

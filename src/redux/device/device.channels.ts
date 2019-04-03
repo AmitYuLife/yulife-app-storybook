@@ -17,6 +17,10 @@ export function createPushNotificationsChannel() {
             senderID: Config.GCM_SENDER_ID
         });
 
+        // PushNotification.popInitialNotification((notification) => {
+        //     console.log("@DEVICE CHANNEL ... ", notification);
+        // });
+
         return () => null;
     });
 }

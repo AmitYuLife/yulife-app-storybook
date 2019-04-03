@@ -26,6 +26,7 @@ const defaultProps = {
             onPress: jest.fn()
         }],
         onPressClose: jest.fn(),
+        onDebugPress: jest.fn(),
         version: "1.0.0"
 };
 

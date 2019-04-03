@@ -102,8 +102,6 @@ function* getUserData() {
         if (token) {
             const { data } = yield call(getCurrentUserWithClient);
 
-            yield spawn(Logger.logMixpanelEvent, "CONFIG_FILE", Config);
-            yield spawn(Logger.logMixpanelEvent, "ENV_FILE", process.env);
             yield spawn(setTestFairyId, data.getCurrentUser.id);
             yield spawn(
                 setLoggerIdentity,

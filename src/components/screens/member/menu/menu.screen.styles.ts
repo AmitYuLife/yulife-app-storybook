@@ -39,6 +39,10 @@ export default StyleSheet.create({
     textWrapper: {
         paddingRight: Style.SCALE_UP_AND_DOWN(8)
     } as ViewStyle,
+    debugText: {
+        color: "rgb(51,51,51)",
+        fontSize: Style.SCALE_UP_AND_DOWN(14)
+    } as TextStyle,
     versionText: {
         color: "rgb(201,201,201)",
         fontSize: Style.SCALE_UP_AND_DOWN(10),

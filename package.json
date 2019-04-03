@@ -38,7 +38,7 @@
     "set-ios-version": "scripts/set-ios-version.sh",
     "storybook": "storybook start -p 7007",
     "bitrise:edit": "bitrise :workflow-editor",
-    "version-ios": "./scripts/set-ios-version.sh"
+    "set-bitrise-build-number": "node scripts/set-bitrise-build-number.js"
   },
   "dependencies": {
     "apollo-boost": "^0.1.15",
