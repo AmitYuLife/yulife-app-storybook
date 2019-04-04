@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     wrapper: {
         alignItems: "center",
         justifyContent: "center",
+        marginTop: Style.SCALE_UP_AND_DOWN(15),
         marginHorizontal: Style.SCALE_UP_AND_DOWN(15),
         width: Style.SCALE_UP_AND_DOWN(65)
     } as ViewStyle

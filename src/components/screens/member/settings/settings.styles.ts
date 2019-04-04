@@ -4,9 +4,10 @@ import { Style } from "../../../../styles";
 export default StyleSheet.create({
     leaderboardItemsWrapper: {
         flexDirection: "row",
+        flexWrap: "wrap",
         justifyContent: "center",
         marginTop: Style.SCALE_UP_AND_DOWN(15),
-        paddingHorizontal: Style.SCALE_UP_AND_DOWN(60)
+        paddingHorizontal: Style.SCALE_UP_AND_DOWN(40)
     } as ViewStyle,
     notificationsItemsWrapper: {
         flexDirection: "column",
