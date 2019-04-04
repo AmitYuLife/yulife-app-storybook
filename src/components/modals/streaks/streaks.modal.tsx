@@ -108,7 +108,9 @@ class StreaksModal extends PureComponent<Props, IState> {
                             </View>
                             <View style={styles.streaksWrapper}>
                                 {streakMax === streakCompleted && !streakAwardId ? (
-                                    <Text>Next streak available in {this.state.timeRemaining}</Text>
+                                    <Text style={styles.subHeading}>
+                                        Next streak available in {this.state.timeRemaining}
+                                    </Text>
                                 ) : (
                                     Array.from({ length: streakMax }).map((_, index) => (
                                         <View
