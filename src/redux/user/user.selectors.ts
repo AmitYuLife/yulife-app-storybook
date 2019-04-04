@@ -7,3 +7,5 @@ export const getIsUserArchived = (state: IReduxState) => state.user.archived;
 export const getUserConsent = (state: IReduxState) => state.user.consent;
 export const getUserFeatures = (state: IReduxState) => state.user.features;
 export const getLeaderboards = (state: IReduxState) => state.user.leaderboards;
+export const getConsentedLeaderboards = (state: IReduxState) =>
+    state.user.leaderboards.filter(({ consent }) => consent);
