@@ -8,7 +8,7 @@ import styles from "./leaderboard-item.styles";
 
 const LeaderboardItem: SFC<ILeaderboardSectionItem> = ({ name, onPress, status, isLoading }) => (
     <TouchableOpacity style={styles.wrapper} onPress={onPress}>
-        <Text bold={false} style={styles.name}>
+        <Text numberOfLines={1} bold={false} style={styles.name}>
             {name.length > 11 ? `${name.slice(0, 8)}...` : name}
         </Text>
         <LeaderboardCircle status={status} isLoading={isLoading} />
