@@ -7,7 +7,7 @@ import { GetLeaderboardVariables } from "../../../../graphql/_core/schema";
 import GetLeaderboardQuery, { getLeaderboardGql } from "../../../../graphql/member/getLeaderboard.gql";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { updateLeaderboardConsent } from "../../../../redux/user/user.actions";
-import { getLeaderboards, getUserFeatures } from "../../../../redux/user/user.selectors";
+import { getConsentedLeaderboards, getUserFeatures } from "../../../../redux/user/user.selectors";
 import { GenericModal } from "../../../modals";
 import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-error-modal";
 import { LeaderboardsScreen, SimpleLeaderboardsScreen } from "../../../screens";
@@ -144,7 +144,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 
 const mapStateToProps = (state: IReduxState) => ({
     features: getUserFeatures(state),
-    leaderboards: getLeaderboards(state)
+    leaderboards: getConsentedLeaderboards(state)
 });
 
 const mapDispatchToProps = {
