@@ -28,6 +28,7 @@ ShallowWrapper {
         }
       >
         <CoinConfetti
+          animationType="collect-reward"
           coins={20}
           isExpanded={true}
         />
@@ -69,6 +70,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <CoinConfetti
+            animationType="collect-reward"
             coins={20}
             isExpanded={true}
           />,
@@ -105,6 +107,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "animationType": "collect-reward",
             "coins": 20,
             "isExpanded": true,
           },
@@ -191,6 +194,7 @@ ShallowWrapper {
           }
         >
           <CoinConfetti
+            animationType="collect-reward"
             coins={20}
             isExpanded={true}
           />
@@ -232,6 +236,7 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <CoinConfetti
+              animationType="collect-reward"
               coins={20}
               isExpanded={true}
             />,
@@ -268,6 +273,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "animationType": "collect-reward",
               "coins": 20,
               "isExpanded": true,
             },
@@ -391,6 +397,7 @@ ShallowWrapper {
         }
       >
         <CoinConfetti
+          animationType="collect-reward"
           coins={20}
           isExpanded={true}
         />
@@ -432,6 +439,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <CoinConfetti
+            animationType="collect-reward"
             coins={20}
             isExpanded={true}
           />,
@@ -468,6 +476,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "animationType": "collect-reward",
             "coins": 20,
             "isExpanded": true,
           },
@@ -554,6 +563,7 @@ ShallowWrapper {
           }
         >
           <CoinConfetti
+            animationType="collect-reward"
             coins={20}
             isExpanded={true}
           />
@@ -595,6 +605,7 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <CoinConfetti
+              animationType="collect-reward"
               coins={20}
               isExpanded={true}
             />,
@@ -631,6 +642,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "animationType": "collect-reward",
               "coins": 20,
               "isExpanded": true,
             },
@@ -755,6 +767,7 @@ ShallowWrapper {
         }
       >
         <CoinConfetti
+          animationType="collect-reward"
           coins={20}
           isExpanded={true}
         />
@@ -802,6 +815,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <CoinConfetti
+            animationType="collect-reward"
             coins={20}
             isExpanded={true}
           />,
@@ -844,6 +858,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "animationType": "collect-reward",
             "coins": 20,
             "isExpanded": true,
           },
@@ -946,6 +961,7 @@ ShallowWrapper {
           }
         >
           <CoinConfetti
+            animationType="collect-reward"
             coins={20}
             isExpanded={true}
           />
@@ -993,6 +1009,7 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <CoinConfetti
+              animationType="collect-reward"
               coins={20}
               isExpanded={true}
             />,
@@ -1035,6 +1052,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "animationType": "collect-reward",
               "coins": 20,
               "isExpanded": true,
             },
