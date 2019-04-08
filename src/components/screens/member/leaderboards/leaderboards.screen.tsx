@@ -118,6 +118,7 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                         horizontal={true}
                         pagingEnabled={true}
                         onMomentumScrollEnd={this.onSwipeEnd}
+                        onScrollToIndexFailed={onScrollToIndexFailed}
                         data={Array.from({ length: 2 })}
                         renderItem={this.renderLeaderboardList}
                     />
@@ -237,4 +238,8 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
             height: event.nativeEvent.layout.height
         });
     };
+}
+
+function onScrollToIndexFailed() {
+    // console.log(something..)
 }
