@@ -11,6 +11,7 @@ export { default as Heading } from "./heading/heading";
 export { default as Loading } from "./loading/loading";
 export { default as Pad } from "./pad/pad";
 export { default as PageIndicator } from "./page-indicator/page-indicator";
+export { default as AnimatedPlusPoints } from "./plus-points/animated-plus-points";
 export { default as PlusPoints } from "./plus-points/plus-points";
 export { default as StarInline } from "./star-inline/star-inline";
 export { default as Stars } from "./stars/stars";

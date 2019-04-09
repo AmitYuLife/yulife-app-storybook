@@ -1,4 +1,4 @@
-import { Button, PlusPoints, Stars, Text } from "@atoms/index";
+import { AnimatedPlusPoints, Button, Stars, Text } from "@atoms/index";
 import * as React from "react";
 import { Image, View } from "react-native";
 import Assets from "./assets";
@@ -24,7 +24,7 @@ export default function ChallengeSuccessScreen({ level, onPressCta, rating, rewa
             </View>
             <View>
                 <View style={styles.plusPointsWrapper}>
-                    <PlusPoints coins={reward} />
+                    <AnimatedPlusPoints type="challenge-success" coins={reward} />
                 </View>
                 <Image source={Assets.challengeSuccess} />
                 <Text bold={true} style={styles.score}>

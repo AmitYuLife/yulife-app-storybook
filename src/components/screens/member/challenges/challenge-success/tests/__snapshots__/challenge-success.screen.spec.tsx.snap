@@ -66,8 +66,9 @@ ShallowWrapper {
               }
             }
           >
-            <PlusPoints
+            <AnimatedCoinConfetti
               coins={2}
+              type="challenge-success"
             />
           </View>
           <Component
@@ -225,8 +226,9 @@ ShallowWrapper {
                 }
               }
             >
-              <PlusPoints
+              <AnimatedCoinConfetti
                 coins={2}
+                type="challenge-success"
               />
             </View>,
             <Component
@@ -261,8 +263,9 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <PlusPoints
+              "children": <AnimatedCoinConfetti
                 coins={2}
+                type="challenge-success"
               />,
               "style": Object {
                 "alignItems": "center",
@@ -273,9 +276,10 @@ ShallowWrapper {
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "function",
+              "nodeType": "class",
               "props": Object {
                 "coins": 2,
+                "type": "challenge-success",
               },
               "ref": null,
               "rendered": null,
@@ -427,8 +431,9 @@ ShallowWrapper {
                 }
               }
             >
-              <PlusPoints
+              <AnimatedCoinConfetti
                 coins={2}
+                type="challenge-success"
               />
             </View>
             <Component
@@ -586,8 +591,9 @@ ShallowWrapper {
                   }
                 }
               >
-                <PlusPoints
+                <AnimatedCoinConfetti
                   coins={2}
+                  type="challenge-success"
                 />
               </View>,
               <Component
@@ -622,8 +628,9 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <PlusPoints
+                "children": <AnimatedCoinConfetti
                   coins={2}
+                  type="challenge-success"
                 />,
                 "style": Object {
                   "alignItems": "center",
@@ -634,9 +641,10 @@ ShallowWrapper {
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "function",
+                "nodeType": "class",
                 "props": Object {
                   "coins": 2,
+                  "type": "challenge-success",
                 },
                 "ref": null,
                 "rendered": null,
@@ -828,8 +836,9 @@ ShallowWrapper {
               }
             }
           >
-            <PlusPoints
+            <AnimatedCoinConfetti
               coins={2}
+              type="challenge-success"
             />
           </View>
           <Component
@@ -987,8 +996,9 @@ ShallowWrapper {
                 }
               }
             >
-              <PlusPoints
+              <AnimatedCoinConfetti
                 coins={2}
+                type="challenge-success"
               />
             </View>,
             <Component
@@ -1023,8 +1033,9 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <PlusPoints
+              "children": <AnimatedCoinConfetti
                 coins={2}
+                type="challenge-success"
               />,
               "style": Object {
                 "alignItems": "center",
@@ -1035,9 +1046,10 @@ ShallowWrapper {
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "function",
+              "nodeType": "class",
               "props": Object {
                 "coins": 2,
+                "type": "challenge-success",
               },
               "ref": null,
               "rendered": null,
@@ -1189,8 +1201,9 @@ ShallowWrapper {
                 }
               }
             >
-              <PlusPoints
+              <AnimatedCoinConfetti
                 coins={2}
+                type="challenge-success"
               />
             </View>
             <Component
@@ -1348,8 +1361,9 @@ ShallowWrapper {
                   }
                 }
               >
-                <PlusPoints
+                <AnimatedCoinConfetti
                   coins={2}
+                  type="challenge-success"
                 />
               </View>,
               <Component
@@ -1384,8 +1398,9 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <PlusPoints
+                "children": <AnimatedCoinConfetti
                   coins={2}
+                  type="challenge-success"
                 />,
                 "style": Object {
                   "alignItems": "center",
@@ -1396,9 +1411,10 @@ ShallowWrapper {
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "function",
+                "nodeType": "class",
                 "props": Object {
                   "coins": 2,
+                  "type": "challenge-success",
                 },
                 "ref": null,
                 "rendered": null,
