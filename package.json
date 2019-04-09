@@ -8,7 +8,9 @@
     "android:restart": "adb shell input text 'RR'",
     "android:menu": "adb shell input keyevent 82",
     "e2e:build": "ENVFILE=.env.local detox build",
+    "e2e:build:release": "RN_SRC_EXT=e2e.ts ENVFILE=.env.local detox build -c ios.sim.release",
     "e2e:run": "SKIP_MANUAL=true TS_NODE_PROJECT=./e2e/tsconfig.json detox test -s 'e2e/**/*.spec.ts'",
+    "e2e:run:release": "npm run e2e:run -- -c ios.sim.release --take-screenshots all --artifacts-location ./e2e/__report",
     "e2e:run:includeManual": "TS_NODE_PROJECT=./e2e/tsconfig.json detox test -s 'e2e/**/*.spec.ts'",
     "e2e:run:manualOnly": "TS_NODE_PROJECT=./e2e/tsconfig.json detox test -s e2e/**/*.manual.spec.ts",
     "start": "run-p start:bundler tsc:watch",
@@ -166,6 +168,12 @@
       "ios.sim.debug": {
         "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/YuLife.app",
         "build": "xcodebuild -project ios/YuLife.xcodeproj -scheme YuLife -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build -UseModernBuildSystem=NO",
+        "type": "ios.simulator",
+        "name": "iPhone 8"
+      },
+      "ios.sim.release": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/YuLife.app",
+        "build": "xcodebuild -project ios/YuLife.xcodeproj -scheme YuLife -configuration Release -sdk iphonesimulator -derivedDataPath ios/build -UseModernBuildSystem=NO",
         "type": "ios.simulator",
         "name": "iPhone 8"
       }
