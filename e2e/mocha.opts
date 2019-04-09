@@ -4,3 +4,4 @@
 --reporter-options reportDir=e2e/__report 
 --require ts-node/register
 --require tsconfig-paths/register
+--exit
