@@ -1,5 +1,5 @@
 import { GetActivityHistoryQuery } from "@graphql/user";
-import { querySteps } from "@services/fitkit/fitkit.helpers";
+import { mapPedometerResults, querySteps } from "@services/fitkit/fitkit.helpers";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
@@ -10,7 +10,6 @@ import {
 } from "../../../../graphql/challenges/addHistoricalSteps.gql";
 import { AddHistoricalStepsMutationFunction } from "../../../../graphql/challenges/addHistoricalSteps.gql";
 import { IReduxState } from "../../../../redux/_core/reducers";
-import { mapPedometerResults } from "../../../../redux/daily-steps/daily-steps.sagas";
 import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import Logger from "../../../../services/logging/logger";

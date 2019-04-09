@@ -1,6 +1,7 @@
 import RNFitKit, { FitKitTypes, PedometerResponse, SampleQueryResult } from "@services/fitkit/fitkit.service";
 import moment from "moment";
 import { ChallengePayload } from "../../graphql/_core/schema";
+import Logger from "../logging/logger";
 
 export const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
     endDateTime: moment(results.endTime).format(),
@@ -23,6 +24,10 @@ export const queryMindfulSessions = async (startTime: string, endTime: string): 
             type: FitKitTypes.Types.MindfulSession
         });
 
+        if (results && results.length > 0) {
+            Logger.logMixpanelEvent("raw_meditation_results", { results });
+        }
+
         return results.map(transformSampleResultToPayload);
     } catch (e) {
         return [];
@@ -37,12 +42,12 @@ export const querySteps = async (
         const startTime =
             typeof start === "number"
                 ? moment()
-                    .subtract(start, "days")
-                    .startOf("day")
-                    .format()
+                      .subtract(start, "days")
+                      .startOf("day")
+                      .format()
                 : moment(start)
-                    .startOf("day")
-                    .format();
+                      .startOf("day")
+                      .format();
         const endTime = moment()
             .subtract(end, "days")
             .endOf("day")

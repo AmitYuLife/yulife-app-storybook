@@ -1,0 +1,43 @@
+import Logger from "@services/logging/logger";
+import moment from "moment";
+import { call, cancelled, put, select, spawn, take } from "redux-saga/effects";
+import { getUserFeatures } from "../../user/user.selectors";
+import {
+    updatePedometerNoNewDataAction,
+    updatePedometerStartAction,
+    updatePedometerSuccessAction
+} from "../pedometer.actions";
+import { stepsChannel } from "../pedometer.channels";
+import { getSteps } from "../pedometer.selectors";
+
+export default function* listenToSteps() {
+    yield put(updatePedometerStartAction());
+
+    const features = yield select(getUserFeatures);
+    const momentStartDay = moment().startOf("day");
+    const startOfDay = momentStartDay.format();
+    const channel = yield call(stepsChannel, startOfDay, features.isNewFetchSystem);
+
+    while (true) {
+        try {
+            const results = yield take(channel);
+            const currentSteps = yield select(getSteps);
+
+            if (features.loggingEnabled) {
+                yield spawn(() => Logger.logMixpanelEvent("raw_steps_results_passive", results));
+            }
+
+            if (results.steps !== currentSteps) {
+                yield put(updatePedometerSuccessAction(results));
+            } else {
+                yield put(updatePedometerNoNewDataAction());
+            }
+        } catch (e) {
+            yield spawn(() => Logger.logMixpanelError(e, "listenToSteps"));
+        } finally {
+            if (yield cancelled()) {
+                channel.close();
+            }
+        }
+    }
+}
