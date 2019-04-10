@@ -1,51 +1,7 @@
-import * as React from "react";
-import { View } from "react-native";
-import { Button, Text } from "../../atoms";
-import styles from "./generic-modal.styles";
+import React from "react";
+import { GenericScreen } from "../../screens";
+import { IGenericModalProps } from "../../screens/member/generic-modal-screen/generic-modal.screen";
 
-interface IProps {
-    onPress?: () => void;
-    heading: string;
-    subheading: string;
-    ctaLabel: string;
-    onPressSecondary?: () => void;
-    ctaLabelSecondary?: string;
-    isPrimaryLoading?: boolean;
-    isSecondaryLoading?: boolean;
-}
-
-export default function GenericModal({
-    heading,
-    subheading,
-    ctaLabel,
-    onPress,
-    onPressSecondary,
-    ctaLabelSecondary,
-    isPrimaryLoading,
-    isSecondaryLoading
-}: IProps) {
-    return (
-        <View style={styles.wrapper}>
-            <Text style={styles.heading} bold={true}>
-                {heading}
-            </Text>
-            <Text style={styles.subheading}>{subheading}</Text>
-            <Button
-                isLoading={isPrimaryLoading}
-                wrapperStyle={styles.buttonWrapper}
-                label={ctaLabel}
-                onPress={onPress || (() => null)}
-                type={Button.Types.PRIMARY}
-            />
-            {!(onPressSecondary && ctaLabelSecondary) ? null : (
-                <Button
-                    wrapperStyle={styles.buttonWrapperSecondary}
-                    label={ctaLabelSecondary}
-                    onPress={onPressSecondary || (() => null)}
-                    type={Button.Types.SECONDARY}
-                    isLoading={isSecondaryLoading}
-                />
-            )}
-        </View>
-    );
+export default function GenericrModal(props: IGenericModalProps) {
+    return <GenericScreen {...props} />;
 }

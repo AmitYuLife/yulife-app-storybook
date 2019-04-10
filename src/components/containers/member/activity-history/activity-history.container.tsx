@@ -13,7 +13,7 @@ import { IReduxState } from "../../../../redux/_core/reducers";
 import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import Logger from "../../../../services/logging/logger";
-import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-error-modal";
+import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-connection-error-modal";
 import { ActivityHistoryLevels } from "../../../screens";
 
 interface IProps {

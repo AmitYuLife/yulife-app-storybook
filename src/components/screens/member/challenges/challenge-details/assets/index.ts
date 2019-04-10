@@ -1,0 +1,16 @@
+export default {
+    bighornSheep: require("../../../../../../../assets/challenge-details/bighornSheep.png"),
+    bird: require("../../../../../../../assets/challenge-details/bird.png"),
+    camel: require("../../../../../../../assets/challenge-details/camel.png"),
+    desertFox: require("../../../../../../../assets/challenge-details/desertFox.png"),
+    dolphin: require("../../../../../../../assets/challenge-details/dolphin.png"),
+    elephant: require("../../../../../../../assets/challenge-details/elephant.png"),
+    meerkat: require("../../../../../../../assets/challenge-details/meerkat.png"),
+    ostrich: require("../../../../../../../assets/challenge-details/ostrich.png"),
+    otter: require("../../../../../../../assets/challenge-details/otter.png"),
+    squirrel: require("../../../../../../../assets/challenge-details/squirrel.png"),
+    star: require("../../../../../../../assets/challenge-details/star.png"),
+    tortoise: require("../../../../../../../assets/challenge-details/tortoise.png"),
+    whale: require("../../../../../../../assets/challenge-details/whale.png"),
+    yucoin: require("../../../../../../../assets/challenge-details/yucoin.png")
+};

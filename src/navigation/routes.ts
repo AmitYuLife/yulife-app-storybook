@@ -31,6 +31,7 @@ import {
     ChallengeUnavailableModal,
     CollectRewardModal,
     CreateLeaderboardModal,
+    FeedbackModal,
     GenericModal,
     LevelUnavailableModal,
     MeditationSetUpModal,
@@ -38,7 +39,6 @@ import {
     StreaksModal,
     TodayYucoinModal
 } from "../components/modals";
-import FeedbackModalContainer from "../components/modals/feedback/feedback.container";
 import { MODALS, ROUTES } from "./constants";
 
 export default [
@@ -85,7 +85,7 @@ export default [
     { name: MODALS.createLeaderboard, component: CreateLeaderboardModal },
     { name: MODALS.chest, component: AnimatedChest },
     { name: MODALS.collectReward, component: CollectRewardModal },
-    { name: MODALS.feedback, component: FeedbackModalContainer }, // TODO: fix this
+    { name: MODALS.feedback, component: FeedbackModal }, // TODO: fix this
     { name: MODALS.generic, component: GenericModal },
     { name: MODALS.levelUnavailable, component: LevelUnavailableModal },
     { name: MODALS.meditationSetUp, component: MeditationSetUpModal },

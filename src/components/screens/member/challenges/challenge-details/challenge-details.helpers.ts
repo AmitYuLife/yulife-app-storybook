@@ -1,0 +1,46 @@
+import assets from "./assets/";
+import styles from "./challenge-details.styles";
+
+const BRISK_WALK = [
+    { source: assets.squirrel, style: styles.image },
+    { source: assets.otter, style: styles.image },
+    { source: assets.meerkat, style: styles.image }
+];
+const SHORT_STROLL = [
+    { source: assets.elephant, style: styles.image },
+    { source: assets.tortoise, style: styles.image },
+    { source: assets.bighornSheep, style: styles.image }
+];
+const LONG_WALK = [
+    { source: assets.ostrich, style: styles.imageLongWalk },
+    { source: assets.whale, style: styles.imageLongWalk },
+    { source: assets.desertFox, style: styles.imageLongWalk }
+];
+const MEDITATION = [
+    { source: assets.bird, style: styles.image },
+    { source: assets.dolphin, style: styles.image },
+    { source: assets.camel, style: styles.image }
+];
+
+export const getImageAndStyle = (challengeType: string, currentWorld = 0) => {
+    switch (challengeType) {
+        case "brisk walk":
+            return BRISK_WALK[currentWorld] || BRISK_WALK[0];
+        case "day walk":
+        case "short stroll":
+            return SHORT_STROLL[currentWorld] || SHORT_STROLL[0];
+        case "long walk":
+            return LONG_WALK[currentWorld] || LONG_WALK[0];
+        case "meditation":
+            return MEDITATION[currentWorld] || MEDITATION[0];
+        default:
+            return { source: null, style: styles.image };
+    }
+};
+
+export const data = {
+    ctaLabel: "take challenge",
+    footer: "",
+    loading: "loading...",
+    setUpLabel: "set up tutorial"
+};

@@ -1,9 +1,8 @@
 import { shallow } from "enzyme";
 import * as React from "react";
-import Milestones from "../milestones";
+import Milestones from "../../../screens/member/challenges/challenge-details/milestones";
 
 describe("Milestones", () => {
-
     it("should render with units as minutes", () => {
         const actual = shallow(
             <Milestones

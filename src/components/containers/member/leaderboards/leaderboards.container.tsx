@@ -9,7 +9,7 @@ import { IReduxState } from "../../../../redux/_core/reducers";
 import { updateLeaderboardConsent } from "../../../../redux/user/user.actions";
 import { getConsentedLeaderboards, getUserFeatures } from "../../../../redux/user/user.selectors";
 import { GenericModal } from "../../../modals";
-import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-error-modal";
+import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-connection-error-modal";
 import { LeaderboardsScreen, SimpleLeaderboardsScreen } from "../../../screens";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
