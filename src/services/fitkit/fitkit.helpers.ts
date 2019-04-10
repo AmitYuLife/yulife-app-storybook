@@ -25,7 +25,7 @@ export const queryMindfulSessions = async (startTime: string, endTime: string): 
         });
 
         if (results && results.length > 0) {
-            Logger.logMixpanelEvent("raw_meditation_results", { results });
+            Logger.logMixpanelEvent("raw_meditation_query_results", { results });
         }
 
         return results.map(transformSampleResultToPayload);
@@ -52,7 +52,7 @@ export const querySteps = async (
             .subtract(end, "days")
             .endOf("day")
             .format();
-        const response = await RNFitKit.aggregateQuery({
+        const results = await RNFitKit.aggregateQuery({
             aggregateBy: {
                 bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
                 type: FitKitTypes.AggregateType.Time
@@ -63,7 +63,11 @@ export const querySteps = async (
             type: FitKitTypes.Types.StepCount
         });
 
-        return { results: response.map(mapPedometerResults as any), error: null };
+        if (results && results.length > 0) {
+            Logger.logMixpanelEvent("raw_steps_query_results", { results });
+        }
+
+        return { results: results.map(transformSampleResultToPayload as any), error: null };
     } catch (e) {
         return { results: [], error: e.message };
     }
