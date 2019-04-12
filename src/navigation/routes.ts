@@ -33,6 +33,7 @@ import {
     CreateLeaderboardModal,
     FeedbackModal,
     GenericModal,
+    LeaderboardInviteModal,
     LevelUnavailableModal,
     MeditationSetUpModal,
     PushNotificationsModal,
@@ -87,6 +88,7 @@ export default [
     { name: MODALS.collectReward, component: CollectRewardModal },
     { name: MODALS.feedback, component: FeedbackModal }, // TODO: fix this
     { name: MODALS.generic, component: GenericModal },
+    { name: MODALS.leaderboardInvite, component: LeaderboardInviteModal },
     { name: MODALS.levelUnavailable, component: LevelUnavailableModal },
     { name: MODALS.meditationSetUp, component: MeditationSetUpModal },
     { name: MODALS.pushNotifications, component: PushNotificationsModal },

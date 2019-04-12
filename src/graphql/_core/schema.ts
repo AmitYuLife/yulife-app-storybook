@@ -821,6 +821,7 @@ export interface GetCurrentUser_getCurrentUser_leaderboards {
   leaderboardId: string | null;
   name: string | null;
   consent: boolean | null;
+  inviteFrom: string | null;
 }
 
 export interface GetCurrentUser_getCurrentUser {
@@ -957,6 +958,7 @@ export interface LoginUser_loginUser_user_leaderboards {
   leaderboardId: string | null;
   name: string | null;
   consent: boolean | null;
+  inviteFrom: string | null;
 }
 
 export interface LoginUser_loginUser_user {
@@ -995,6 +997,23 @@ export interface LoginUserVariables {
   method?: LoginMethod | null;
   tokenExpiration?: number | null;
   intercomHashMethod?: IntercomHashMethod | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: ReplyToLeaderboardInvite
+// ====================================================
+
+export interface ReplyToLeaderboardInvite {
+  replyToLeaderboardInvite: boolean | null;
+}
+
+export interface ReplyToLeaderboardInviteVariables {
+  leaderboardId: string;
+  hasAccepted: boolean;
 }
 
 

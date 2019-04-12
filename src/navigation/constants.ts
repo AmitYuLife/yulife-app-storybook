@@ -45,6 +45,7 @@ export const MODALS = {
     feedback: "yulife.modals.Feedback",
     generic: "yulife.modals.Generic",
     leaderboards: "yulife.modals.Leaderboards",
+    leaderboardInvite: "yulife.modals.LeaderboardInvite",
     levelUnavailable: "yulife.modals.LevelUnavailable",
     meditationSetUp: "yulife.modals.MeditationSetUp",
     pushNotifications: "yulife.modals.PushNotifications",
