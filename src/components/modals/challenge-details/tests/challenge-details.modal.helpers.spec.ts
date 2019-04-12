@@ -1,11 +1,8 @@
-import { getImageAndStyle } from "../challenge-details.modal.helpers";
+import { getImageAndStyle } from "../../../screens/member/challenges/challenge-details/challenge-details.helpers";
 
 describe("ChallengeDetails helpers", () => {
-
     describe("getImageAndStyle helper", () => {
-
         it("should return an image for each challenge type", () => {
-
             let actual = getImageAndStyle("brisk walk");
             expect(actual).toMatchSnapshot();
 

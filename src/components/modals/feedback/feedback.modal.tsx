@@ -1,37 +1,69 @@
+import { AddUserFeedbackMutation, AddUserFeedbackMutationFunction } from "@graphql/user";
+import Logger from "@services/logging/logger";
 import * as React from "react";
-import { SFC } from "react";
-import { StyleSheet, View } from "react-native";
-import { Button, CentredScreen, Heading, Pad } from "../../atoms";
-import { Text } from "../../atoms";
-import styles from "./feedback.modal.styles";
-import StarRating from "./star-rating";
+import { PureComponent } from "react";
+import { FeedbackModalScreen } from "../../screens";
 
 interface IProps {
-    isSubmitting: boolean;
-    onCancel: () => void;
-    onRatingSelect: (rating: number) => void;
-    onSubmit: () => void;
+    closeModal: () => void;
+}
+
+interface IState {
     rating: number;
 }
 
-const FeedbackModal: SFC<IProps> = ({ isSubmitting, onCancel, onRatingSelect, onSubmit, rating }) => (
-    <View style={StyleSheet.absoluteFill}>
-        <CentredScreen style={styles.centredScreen} footerImage="forest">
-            <Heading size={Heading.Sizes.LARGE} label="feedback" />
-            <Text>let us know what you think</Text>
-            <Pad height={42} />
-            <StarRating onSelect={onRatingSelect} rating={rating} />
-            <Pad height={22} />
-            <Button
-                isLoading={isSubmitting}
-                disabled={isSubmitting}
-                type={Button.Types.PRIMARY_SMALL}
-                label={isSubmitting ? "submitting" : "send"}
-                onPress={onSubmit}
-            />
-            <Button type={Button.Types.LINK} label="not now" onPress={onCancel} />
-        </CentredScreen>
-    </View>
-);
+type Props = IProps;
 
-export default FeedbackModal;
+export default class FeedbackModal extends PureComponent<Props, IState> {
+    public state: IState = {
+        rating: 0
+    };
+
+    public render() {
+        return (
+            <AddUserFeedbackMutation>
+                {(addUserFeedback, { loading }) => {
+                    const { rating } = this.state;
+
+                    return (
+                        <FeedbackModalScreen
+                            isSubmitting={loading}
+                            onCancel={this.onCancel}
+                            onRatingSelect={this.onRatingSelect}
+                            onSubmit={() => this.onSubmit(addUserFeedback)}
+                            rating={rating}
+                        />
+                    );
+                }}
+            </AddUserFeedbackMutation>
+        );
+    }
+
+    private onRatingSelect = (rating: number) => {
+        this.setState({ rating });
+    };
+
+    private onCancel = () => {
+        Logger.logEvent("app_rating", { rated: false });
+        this.props.closeModal();
+    };
+
+    private onSubmit = async (addUserFeedback: AddUserFeedbackMutationFunction) => {
+        const { rating } = this.state;
+
+        await addUserFeedback({ variables: { rating } });
+
+        const logging = {
+            rated: true,
+            rating
+        };
+
+        Logger.logEvent("app_rating", logging);
+
+        if (rating <= 3) {
+            Logger.logIntercomEvent("low_app_rating");
+        }
+
+        this.props.closeModal();
+    };
+}

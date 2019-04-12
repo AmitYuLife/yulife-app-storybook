@@ -5,7 +5,7 @@ import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { requirePushEnabled } from "../../../redux/device/device.actions";
 import { IPushNotification } from "../../../redux/device/device.selectors";
-import GenericModal from "../generic-modal/generic-modal";
+import { GenericScreen } from "../../screens";
 
 type ConnectedDispatch = typeof mapDispatchToProps;
 
@@ -27,7 +27,7 @@ class PushNotificationsModal extends PureComponent<Props> {
         const toSettings = status === "denied";
         const data = this.getProps(toSettings, fromChallenge);
 
-        return <GenericModal {...data} />;
+        return <GenericScreen {...data} />;
     }
 
     private dismissModal = async () => {

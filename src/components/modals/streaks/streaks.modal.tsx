@@ -1,15 +1,12 @@
 import { getTimeRemaining } from "@services/utils";
 import * as React from "react";
 import { PureComponent } from "react";
-import { Image, ImageRequireSource, StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import CollectAwardMutation, { collectAwardGql } from "../../../graphql/member/collectAward.gql";
 import { IReduxState } from "../../../redux/_core/reducers";
 import { getStreakAwardId } from "../../../redux/streaks/streaks.selectors";
 import { getUserStart } from "../../../redux/user/user.actions";
-import { Button, Text } from "../../atoms";
-import assets from "./assets";
-import styles from "./streaks.modal.styles";
+import { StreaksScreen } from "../../screens";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -94,59 +91,20 @@ class StreaksModal extends PureComponent<Props, IState> {
                             : onPressCtaPrimary;
 
                     return (
-                        <View style={styles.wrapper}>
-                            <View>
-                                <Image source={this.getImage()} />
-                            </View>
-                            <View style={styles.headingWrapper}>
-                                <Text bold={true} style={styles.heading}>
-                                    {this.getHeading()}
-                                </Text>
-                            </View>
-                            <View style={styles.subHeadingWrapper}>
-                                <Text style={styles.subHeading}>{this.getSubHeading()}</Text>
-                            </View>
-                            <View style={styles.streaksWrapper}>
-                                {streakMax === streakCompleted && !streakAwardId ? (
-                                    <Text style={styles.subHeading}>
-                                        Next streak available in {this.state.timeRemaining}
-                                    </Text>
-                                ) : (
-                                    Array.from({ length: streakMax }).map((_, index) => (
-                                        <View
-                                            key={index}
-                                            style={StyleSheet.flatten([
-                                                styles.streakWrapper,
-                                                index === streakMax ? styles.streakWrapperLast : null
-                                            ])}
-                                        >
-                                            <Image
-                                                style={styles.streak}
-                                                source={
-                                                    index < streakCompleted ? assets.streakFilled : assets.streakEmpty
-                                                }
-                                            />
-                                            {this.renderStreakText(index, streakCompleted, streakMax, reward)}
-                                        </View>
-                                    ))
-                                )}
-                            </View>
-                            <Button
-                                isLoading={isLoading}
-                                wrapperStyle={styles.buttonPrimaryWrapper}
-                                type={Button.Types.PRIMARY}
-                                onPress={onSubmit}
-                                label={this.getLabelCtaPrimary()}
-                            />
-                            {!onPressCtaSecondary ? null : (
-                                <Button
-                                    wrapperStyle={styles.buttonSecondaryWrapper}
-                                    type={Button.Types.LINK}
-                                    onPress={onPressCtaSecondary}
-                                    label={"later"}
-                                />
-                            )}
-                        </View>
+                        <StreaksScreen
+                            heading={this.getHeading()}
+                            subHeading={this.getSubHeading()}
+                            primaryButtonLabel={this.getLabelCtaPrimary()}
+                            streakAwardId={streakAwardId}
+                            streakCompleted={streakCompleted}
+                            streakMax={streakMax}
+                            onSubmit={onSubmit}
+                            reward={reward}
+                            isLoading={isLoading}
+                            onPressCtaPrimary={onPressCtaPrimary}
+                            onPressCtaSecondary={onPressCtaSecondary}
+                            timeRemaining={this.state.timeRemaining}
+                        />
                     );
                 }}
             </CollectAwardMutation>
@@ -157,37 +115,6 @@ class StreaksModal extends PureComponent<Props, IState> {
         this.setState({ timeRemaining: getTimeRemaining(this.props.nextStreakAvailableAt) });
         this.timer = setTimeout(this.updateTimeRemaining, 1000);
     };
-
-    private renderStreakText = (index: number, streakCompleted: number, streakMax: number, reward: string) => {
-        if (index < streakCompleted) {
-            return null;
-        }
-
-        if (index < streakMax - 1) {
-            return <Text style={styles.streakLabel}>{`${index + 1}`}</Text>;
-        }
-
-        return <Text style={StyleSheet.flatten([styles.streakLabel, styles.streakLabelLast])}>{reward}</Text>;
-    };
-
-    private getImage(): ImageRequireSource {
-        const { streakCompleted, streakMax } = this.props;
-        const ratio = streakCompleted / streakMax;
-
-        if (ratio < 0.2) {
-            return assets.from0;
-        } else if (ratio < 0.4) {
-            return assets.from20;
-        } else if (ratio < 0.6) {
-            return assets.from40;
-        } else if (ratio < 0.8) {
-            return assets.from60;
-        } else if (ratio < 1) {
-            return assets.from80;
-        } else {
-            return assets.from100;
-        }
-    }
 
     private getLabelCtaPrimary = () => {
         const { streakCompleted, streakMax, isDoneToday, reward, streakAwardId } = this.props;

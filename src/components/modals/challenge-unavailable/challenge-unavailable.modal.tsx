@@ -1,11 +1,8 @@
 import { getTimeRemaining } from "@services/utils";
 import * as React from "react";
 import { PureComponent } from "react";
-import { Image, View } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { Button, Text } from "../../atoms";
-import assets from "./assets";
-import styles from "./challenge-unavailable.styles";
+import { ChallengeUnavailableScreen } from "../../screens";
 
 interface IProps {
     nextAvailableAt: string;
@@ -16,8 +13,7 @@ interface IState {
     timeRemaining: string;
 }
 
-class ChallengeUnavailable extends PureComponent<IProps, IState> {
-
+class ChallengeUnavailableModal extends PureComponent<IProps, IState> {
     private timer: NodeJS.Timer;
 
     public constructor(props: IProps) {
@@ -41,30 +37,13 @@ class ChallengeUnavailable extends PureComponent<IProps, IState> {
         const { onPressCta } = this.props;
         const { timeRemaining } = this.state;
 
-        return (
-            <View style={styles.wrapper}>
-                <View style={styles.imageWrapper}>
-                    <Image source={assets.challengeUnavailable} />
-                </View>
-                <Text bold={true} style={styles.text}>
-                    You have just completed a level
-                </Text>
-                <Text bold={true} style={styles.heading}>
-                    The next level will be available in {timeRemaining}
-                </Text>
-                <Button
-                    type={Button.Types.PRIMARY_MEDIUM}
-                    label="got it"
-                    onPress={onPressCta}
-                />
-            </View>
-        );
+        return <ChallengeUnavailableScreen timeRemaining={timeRemaining} onPressCta={onPressCta} />;
     }
 
     private updateTimeRemaining = () => {
-        this.setState({ timeRemaining: getTimeRemaining(this.props.nextAvailableAt )} );
+        this.setState({ timeRemaining: getTimeRemaining(this.props.nextAvailableAt) });
         this.timer = setTimeout(this.updateTimeRemaining, 1000);
-    }
+    };
 }
 
-export default ChallengeUnavailable;
+export default ChallengeUnavailableModal;

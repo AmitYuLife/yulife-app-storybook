@@ -2,8 +2,8 @@ import React, { PureComponent } from "react";
 import { NativeScrollEvent, NativeSyntheticEvent, Platform, ScrollView } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { Style } from "../../../styles";
+import { MeditationSetUpScreen } from "../../screens";
 import assets from "./assets";
-import MeditationSetUpScreen from "./meditation-set-up.screen";
 
 interface IProps {
     componentId?: string;
@@ -63,7 +63,7 @@ class MeditationSetUpContainer extends PureComponent<IProps, IState> {
 
     private setScrollViewRef = (ref: ScrollView) => {
         this.scrollView = ref;
-    }
+    };
 
     private handlePressBack = () => {
         if (this.state.activeIndex === 0) {
@@ -74,7 +74,7 @@ class MeditationSetUpContainer extends PureComponent<IProps, IState> {
                 () => this.scrollView.scrollTo({ x: indices[this.state.activeIndex] })
             );
         }
-    }
+    };
 
     private handlePressCta = () => {
         if (this.state.activeIndex + 1 === indices.length) {
@@ -85,7 +85,7 @@ class MeditationSetUpContainer extends PureComponent<IProps, IState> {
                 () => this.scrollView.scrollTo({ x: indices[this.state.activeIndex] })
             );
         }
-    }
+    };
 
     private handleMomentumScrollEnd = ({
         nativeEvent: {
@@ -94,11 +94,11 @@ class MeditationSetUpContainer extends PureComponent<IProps, IState> {
     }: NativeSyntheticEvent<NativeScrollEvent>) => {
         const activeIndex = indices.findIndex((offset) => offset === x);
         this.setState({ activeIndex });
-    }
+    };
 
     private dismissModal = () => {
         Navigation.dismissModal(this.props.componentId);
-    }
+    };
 }
 
 export default MeditationSetUpContainer;
