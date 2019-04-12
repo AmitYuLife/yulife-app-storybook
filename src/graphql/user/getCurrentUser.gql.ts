@@ -84,6 +84,7 @@ export const getCurrentUserGql = gql`
                 leaderboardId
                 name
                 consent
+                inviteFrom
             }
         }
     }

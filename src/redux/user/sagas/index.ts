@@ -3,6 +3,7 @@ import { CHALLENGE_RESET_SUCCESS } from "../../levels/levels.actions";
 import {
     FITKIT_CONSENT_AUTHORISED,
     GET_USER_START,
+    GET_USER_SUCCESS,
     LOGIN_USER_SUCCESS,
     LOGOUT,
     OPEN_MEMBER_ZONE,
@@ -18,12 +19,14 @@ import loginUserSuccessSaga from "./loginUserSuccess.saga";
 import logOutSaga from "./logOut.saga";
 import openMemberZoneSaga from "./openMemberZone.saga";
 import setUserNoAccessSaga from "./setUserNoAccess.saga";
+import showLeaderboardInviteSaga from "./showLeaderboardInvite.saga";
 import updateLeaderboardConsentSaga from "./updateLeaderboardConsent.saga";
 import updateUserConsentSaga from "./updateUserConsent.saga";
 
 export default [
     takeLatest("INIT", fetchUserOnAppStateChangeSaga),
     takeLatest(GET_USER_START, getUserDataSaga),
+    takeLatest(GET_USER_SUCCESS, showLeaderboardInviteSaga),
     takeLatest(SET_USER_NO_ACCESS, setUserNoAccessSaga),
     takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
     takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
