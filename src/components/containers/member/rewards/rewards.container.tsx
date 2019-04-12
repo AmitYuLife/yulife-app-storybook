@@ -91,7 +91,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
                 onLeftMenuPress={onLeftMenuPress}
                 onLeftTabPress={() => refetch()}
                 onRightTabPress={() => this.handleTabChange("purchases")}
-                refreshing={loading}
+                loading={loading}
                 totalCoins={totalCoins}
             />
         );
@@ -160,7 +160,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
                 onLeftMenuPress={onLeftMenuPress}
                 onLeftTabPress={() => this.handleTabChange("rewards")}
                 onRightTabPress={() => refetch()}
-                refreshing={loading}
+                loading={loading}
                 totalCoins={totalCoins}
             />
         );

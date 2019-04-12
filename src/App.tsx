@@ -2,16 +2,25 @@ import registerScreens from "@navigation";
 import handleDeepLink from "@navigation/handleDeepLink";
 import { setLoadingRoot, setNextRoot, setUnauthenticatedRoot } from "@navigation/root";
 import { getToken, migrateOldAppVersionToken } from "@services/storage";
-import { Linking, Platform } from "react-native";
+import { Image, Linking, Platform } from "react-native";
 import Config from "react-native-config";
+import FastImage from "react-native-fast-image";
 import { Navigation } from "react-native-navigation";
 import TestFairy from "react-native-testfairy";
+import { mapSlices } from "./components/screens/member/quests/quests-scroll-screen/assets";
 
 // register all the screens
 registerScreens();
 
 Navigation.events().registerAppLaunchedListener(async () => {
     await setLoadingRoot();
+
+    // preload quest map images
+    FastImage.preload(
+        mapSlices.map((item) => ({
+            uri: Image.resolveAssetSource(item.image).uri
+        }))
+    );
 
     // initialize TestFairy
     if (Config.TESTFAIRY_ENABLED === "yes") {

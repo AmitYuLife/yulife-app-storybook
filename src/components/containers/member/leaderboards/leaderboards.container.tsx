@@ -114,7 +114,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                             items={data.getLeaderboard || []}
                             onPressClose={this.handleClose}
                             sortBy={sortBy}
-                            onRefetch={stepsRefetch}
+                            onRefetch={() => refetch()}
                         />
                     );
                 }}

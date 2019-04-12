@@ -18,10 +18,10 @@ ShallowWrapper {
       ]
     }
     labels={Array []}
+    loading={false}
     onLeftMenuPress={[MockFunction]}
     onLeftTabPress={[MockFunction]}
     onRightTabPress={[MockFunction]}
-    refreshing={false}
     totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -65,33 +65,34 @@ ShallowWrapper {
             }
           }
         >
-          <FlatList
+          <LargeList
             data={
               Array [
                 Object {
-                  "cost": "123",
-                  "day": "Monday",
-                  "id": "id",
-                  "month": "April",
-                  "onPress": [MockFunction],
-                  "reward": "string",
-                  "status": "pending",
+                  "items": Array [
+                    Object {
+                      "cost": "123",
+                      "day": "Monday",
+                      "id": "id",
+                      "month": "April",
+                      "onPress": [MockFunction],
+                      "reward": "string",
+                      "status": "pending",
+                    },
+                  ],
                 },
               ]
             }
-            disableVirtualization={false}
-            horizontal={false}
-            initialNumToRender={10}
-            keyExtractor={[Function]}
-            maxToRenderPerBatch={10}
-            numColumns={1}
-            onEndReachedThreshold={2}
-            onRefresh={[MockFunction]}
-            refreshing={false}
-            renderItem={[Function]}
-            scrollEventThrottle={50}
-            updateCellsBatchingPeriod={50}
-            windowSize={21}
+            groupCount={4}
+            groupMinHeight={444.6666666666667}
+            heightForIndexPath={[Function]}
+            heightForSection={[Function]}
+            onRefresh={[Function]}
+            refreshHeader={[Function]}
+            renderEmpty={[Function]}
+            renderIndexPath={[Function]}
+            renderSection={[Function]}
+            updateTimeInterval={150}
           />
         </View>,
         <View
@@ -173,33 +174,34 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <FlatList
+          "children": <LargeList
             data={
               Array [
                 Object {
-                  "cost": "123",
-                  "day": "Monday",
-                  "id": "id",
-                  "month": "April",
-                  "onPress": [MockFunction],
-                  "reward": "string",
-                  "status": "pending",
+                  "items": Array [
+                    Object {
+                      "cost": "123",
+                      "day": "Monday",
+                      "id": "id",
+                      "month": "April",
+                      "onPress": [MockFunction],
+                      "reward": "string",
+                      "status": "pending",
+                    },
+                  ],
                 },
               ]
             }
-            disableVirtualization={false}
-            horizontal={false}
-            initialNumToRender={10}
-            keyExtractor={[Function]}
-            maxToRenderPerBatch={10}
-            numColumns={1}
-            onEndReachedThreshold={2}
-            onRefresh={[MockFunction]}
-            refreshing={false}
-            renderItem={[Function]}
-            scrollEventThrottle={50}
-            updateCellsBatchingPeriod={50}
-            windowSize={21}
+            groupCount={4}
+            groupMinHeight={444.6666666666667}
+            heightForIndexPath={[Function]}
+            heightForSection={[Function]}
+            onRefresh={[Function]}
+            refreshHeader={[Function]}
+            renderEmpty={[Function]}
+            renderIndexPath={[Function]}
+            renderSection={[Function]}
+            updateTimeInterval={150}
           />,
           "style": Object {
             "flex": 1,
@@ -215,30 +217,31 @@ ShallowWrapper {
           "props": Object {
             "data": Array [
               Object {
-                "cost": "123",
-                "day": "Monday",
-                "id": "id",
-                "month": "April",
-                "onPress": [MockFunction],
-                "reward": "string",
-                "status": "pending",
+                "items": Array [
+                  Object {
+                    "cost": "123",
+                    "day": "Monday",
+                    "id": "id",
+                    "month": "April",
+                    "onPress": [MockFunction],
+                    "reward": "string",
+                    "status": "pending",
+                  },
+                ],
               },
             ],
-            "disableVirtualization": false,
-            "horizontal": false,
-            "initialNumToRender": 10,
-            "keyExtractor": [Function],
-            "maxToRenderPerBatch": 10,
-            "numColumns": 1,
-            "onEndReachedThreshold": 2,
-            "onRefresh": [MockFunction],
-            "refreshing": false,
-            "renderItem": [Function],
-            "scrollEventThrottle": 50,
-            "updateCellsBatchingPeriod": 50,
-            "windowSize": 21,
+            "groupCount": 4,
+            "groupMinHeight": 444.6666666666667,
+            "heightForIndexPath": [Function],
+            "heightForSection": [Function],
+            "onRefresh": [Function],
+            "refreshHeader": [Function],
+            "renderEmpty": [Function],
+            "renderIndexPath": [Function],
+            "renderSection": [Function],
+            "updateTimeInterval": 150,
           },
-          "ref": null,
+          "ref": [Function],
           "rendered": null,
           "type": [Function],
         },
@@ -324,33 +327,34 @@ ShallowWrapper {
               }
             }
           >
-            <FlatList
+            <LargeList
               data={
                 Array [
                   Object {
-                    "cost": "123",
-                    "day": "Monday",
-                    "id": "id",
-                    "month": "April",
-                    "onPress": [MockFunction],
-                    "reward": "string",
-                    "status": "pending",
+                    "items": Array [
+                      Object {
+                        "cost": "123",
+                        "day": "Monday",
+                        "id": "id",
+                        "month": "April",
+                        "onPress": [MockFunction],
+                        "reward": "string",
+                        "status": "pending",
+                      },
+                    ],
                   },
                 ]
               }
-              disableVirtualization={false}
-              horizontal={false}
-              initialNumToRender={10}
-              keyExtractor={[Function]}
-              maxToRenderPerBatch={10}
-              numColumns={1}
-              onEndReachedThreshold={2}
-              onRefresh={[MockFunction]}
-              refreshing={false}
-              renderItem={[Function]}
-              scrollEventThrottle={50}
-              updateCellsBatchingPeriod={50}
-              windowSize={21}
+              groupCount={4}
+              groupMinHeight={444.6666666666667}
+              heightForIndexPath={[Function]}
+              heightForSection={[Function]}
+              onRefresh={[Function]}
+              refreshHeader={[Function]}
+              renderEmpty={[Function]}
+              renderIndexPath={[Function]}
+              renderSection={[Function]}
+              updateTimeInterval={150}
             />
           </View>,
           <View
@@ -432,33 +436,34 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <FlatList
+            "children": <LargeList
               data={
                 Array [
                   Object {
-                    "cost": "123",
-                    "day": "Monday",
-                    "id": "id",
-                    "month": "April",
-                    "onPress": [MockFunction],
-                    "reward": "string",
-                    "status": "pending",
+                    "items": Array [
+                      Object {
+                        "cost": "123",
+                        "day": "Monday",
+                        "id": "id",
+                        "month": "April",
+                        "onPress": [MockFunction],
+                        "reward": "string",
+                        "status": "pending",
+                      },
+                    ],
                   },
                 ]
               }
-              disableVirtualization={false}
-              horizontal={false}
-              initialNumToRender={10}
-              keyExtractor={[Function]}
-              maxToRenderPerBatch={10}
-              numColumns={1}
-              onEndReachedThreshold={2}
-              onRefresh={[MockFunction]}
-              refreshing={false}
-              renderItem={[Function]}
-              scrollEventThrottle={50}
-              updateCellsBatchingPeriod={50}
-              windowSize={21}
+              groupCount={4}
+              groupMinHeight={444.6666666666667}
+              heightForIndexPath={[Function]}
+              heightForSection={[Function]}
+              onRefresh={[Function]}
+              refreshHeader={[Function]}
+              renderEmpty={[Function]}
+              renderIndexPath={[Function]}
+              renderSection={[Function]}
+              updateTimeInterval={150}
             />,
             "style": Object {
               "flex": 1,
@@ -474,30 +479,31 @@ ShallowWrapper {
             "props": Object {
               "data": Array [
                 Object {
-                  "cost": "123",
-                  "day": "Monday",
-                  "id": "id",
-                  "month": "April",
-                  "onPress": [MockFunction],
-                  "reward": "string",
-                  "status": "pending",
+                  "items": Array [
+                    Object {
+                      "cost": "123",
+                      "day": "Monday",
+                      "id": "id",
+                      "month": "April",
+                      "onPress": [MockFunction],
+                      "reward": "string",
+                      "status": "pending",
+                    },
+                  ],
                 },
               ],
-              "disableVirtualization": false,
-              "horizontal": false,
-              "initialNumToRender": 10,
-              "keyExtractor": [Function],
-              "maxToRenderPerBatch": 10,
-              "numColumns": 1,
-              "onEndReachedThreshold": 2,
-              "onRefresh": [MockFunction],
-              "refreshing": false,
-              "renderItem": [Function],
-              "scrollEventThrottle": 50,
-              "updateCellsBatchingPeriod": 50,
-              "windowSize": 21,
+              "groupCount": 4,
+              "groupMinHeight": 444.6666666666667,
+              "heightForIndexPath": [Function],
+              "heightForSection": [Function],
+              "onRefresh": [Function],
+              "refreshHeader": [Function],
+              "renderEmpty": [Function],
+              "renderIndexPath": [Function],
+              "renderSection": [Function],
+              "updateTimeInterval": 150,
             },
-            "ref": null,
+            "ref": [Function],
             "rendered": null,
             "type": [Function],
           },
@@ -578,10 +584,10 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <RewardsPurchasedScreen
     data={Array []}
     labels={Array []}
+    loading={false}
     onLeftMenuPress={[MockFunction]}
     onLeftTabPress={[MockFunction]}
     onRightTabPress={[MockFunction]}
-    refreshing={false}
     totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -625,8 +631,24 @@ ShallowWrapper {
             }
           }
         >
-          <PurchasesEmpty
-            onCtaPress={[MockFunction]}
+          <LargeList
+            data={
+              Array [
+                Object {
+                  "items": Array [],
+                },
+              ]
+            }
+            groupCount={4}
+            groupMinHeight={444.6666666666667}
+            heightForIndexPath={[Function]}
+            heightForSection={[Function]}
+            onRefresh={[Function]}
+            refreshHeader={[Function]}
+            renderEmpty={[Function]}
+            renderIndexPath={[Function]}
+            renderSection={[Function]}
+            updateTimeInterval={150}
           />
         </View>,
         <View
@@ -708,8 +730,24 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <PurchasesEmpty
-            onCtaPress={[MockFunction]}
+          "children": <LargeList
+            data={
+              Array [
+                Object {
+                  "items": Array [],
+                },
+              ]
+            }
+            groupCount={4}
+            groupMinHeight={444.6666666666667}
+            heightForIndexPath={[Function]}
+            heightForSection={[Function]}
+            onRefresh={[Function]}
+            refreshHeader={[Function]}
+            renderEmpty={[Function]}
+            renderIndexPath={[Function]}
+            renderSection={[Function]}
+            updateTimeInterval={150}
           />,
           "style": Object {
             "flex": 1,
@@ -721,11 +759,25 @@ ShallowWrapper {
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "onCtaPress": [MockFunction],
+            "data": Array [
+              Object {
+                "items": Array [],
+              },
+            ],
+            "groupCount": 4,
+            "groupMinHeight": 444.6666666666667,
+            "heightForIndexPath": [Function],
+            "heightForSection": [Function],
+            "onRefresh": [Function],
+            "refreshHeader": [Function],
+            "renderEmpty": [Function],
+            "renderIndexPath": [Function],
+            "renderSection": [Function],
+            "updateTimeInterval": 150,
           },
-          "ref": null,
+          "ref": [Function],
           "rendered": null,
           "type": [Function],
         },
@@ -811,8 +863,24 @@ ShallowWrapper {
               }
             }
           >
-            <PurchasesEmpty
-              onCtaPress={[MockFunction]}
+            <LargeList
+              data={
+                Array [
+                  Object {
+                    "items": Array [],
+                  },
+                ]
+              }
+              groupCount={4}
+              groupMinHeight={444.6666666666667}
+              heightForIndexPath={[Function]}
+              heightForSection={[Function]}
+              onRefresh={[Function]}
+              refreshHeader={[Function]}
+              renderEmpty={[Function]}
+              renderIndexPath={[Function]}
+              renderSection={[Function]}
+              updateTimeInterval={150}
             />
           </View>,
           <View
@@ -894,8 +962,24 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <PurchasesEmpty
-              onCtaPress={[MockFunction]}
+            "children": <LargeList
+              data={
+                Array [
+                  Object {
+                    "items": Array [],
+                  },
+                ]
+              }
+              groupCount={4}
+              groupMinHeight={444.6666666666667}
+              heightForIndexPath={[Function]}
+              heightForSection={[Function]}
+              onRefresh={[Function]}
+              refreshHeader={[Function]}
+              renderEmpty={[Function]}
+              renderIndexPath={[Function]}
+              renderSection={[Function]}
+              updateTimeInterval={150}
             />,
             "style": Object {
               "flex": 1,
@@ -907,11 +991,25 @@ ShallowWrapper {
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "function",
+            "nodeType": "class",
             "props": Object {
-              "onCtaPress": [MockFunction],
+              "data": Array [
+                Object {
+                  "items": Array [],
+                },
+              ],
+              "groupCount": 4,
+              "groupMinHeight": 444.6666666666667,
+              "heightForIndexPath": [Function],
+              "heightForSection": [Function],
+              "onRefresh": [Function],
+              "refreshHeader": [Function],
+              "renderEmpty": [Function],
+              "renderIndexPath": [Function],
+              "renderSection": [Function],
+              "updateTimeInterval": 150,
             },
-            "ref": null,
+            "ref": [Function],
             "rendered": null,
             "type": [Function],
           },

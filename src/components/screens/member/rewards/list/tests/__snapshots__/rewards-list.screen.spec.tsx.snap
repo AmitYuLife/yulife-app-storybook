@@ -18,12 +18,12 @@ ShallowWrapper {
       ]
     }
     labels={Array []}
+    loading={false}
     onItemPress={[MockFunction]}
     onLeftMenuPress={[MockFunction]}
     onLeftTabPress={[MockFunction]}
     onRefresh={[MockFunction]}
     onRightTabPress={[MockFunction]}
-    refreshing={false}
     totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -66,23 +66,34 @@ ShallowWrapper {
             }
           }
         >
-          <RewardsList
+          <LargeList
             data={
               Array [
                 Object {
-                  "cost": "123",
-                  "day": "Monday",
-                  "id": "id",
-                  "month": "April",
-                  "onPress": [MockFunction],
-                  "reward": "string",
-                  "status": "pending",
+                  "items": Array [
+                    Object {
+                      "cost": "123",
+                      "day": "Monday",
+                      "id": "id",
+                      "month": "April",
+                      "onPress": [MockFunction],
+                      "reward": "string",
+                      "status": "pending",
+                    },
+                  ],
                 },
               ]
             }
-            onItemPress={[MockFunction]}
-            onRefresh={[MockFunction]}
-            refreshing={false}
+            groupCount={4}
+            groupMinHeight={444.6666666666667}
+            heightForIndexPath={[Function]}
+            heightForSection={[Function]}
+            onRefresh={[Function]}
+            refreshHeader={[Function]}
+            renderEmpty={[Function]}
+            renderIndexPath={[Function]}
+            renderSection={[Function]}
+            updateTimeInterval={150}
           />
         </View>,
         <View
@@ -163,23 +174,34 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <RewardsList
+          "children": <LargeList
             data={
               Array [
                 Object {
-                  "cost": "123",
-                  "day": "Monday",
-                  "id": "id",
-                  "month": "April",
-                  "onPress": [MockFunction],
-                  "reward": "string",
-                  "status": "pending",
+                  "items": Array [
+                    Object {
+                      "cost": "123",
+                      "day": "Monday",
+                      "id": "id",
+                      "month": "April",
+                      "onPress": [MockFunction],
+                      "reward": "string",
+                      "status": "pending",
+                    },
+                  ],
                 },
               ]
             }
-            onItemPress={[MockFunction]}
-            onRefresh={[MockFunction]}
-            refreshing={false}
+            groupCount={4}
+            groupMinHeight={444.6666666666667}
+            heightForIndexPath={[Function]}
+            heightForSection={[Function]}
+            onRefresh={[Function]}
+            refreshHeader={[Function]}
+            renderEmpty={[Function]}
+            renderIndexPath={[Function]}
+            renderSection={[Function]}
+            updateTimeInterval={150}
           />,
           "style": Object {
             "flex": 1,
@@ -190,24 +212,35 @@ ShallowWrapper {
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
             "data": Array [
               Object {
-                "cost": "123",
-                "day": "Monday",
-                "id": "id",
-                "month": "April",
-                "onPress": [MockFunction],
-                "reward": "string",
-                "status": "pending",
+                "items": Array [
+                  Object {
+                    "cost": "123",
+                    "day": "Monday",
+                    "id": "id",
+                    "month": "April",
+                    "onPress": [MockFunction],
+                    "reward": "string",
+                    "status": "pending",
+                  },
+                ],
               },
             ],
-            "onItemPress": [MockFunction],
-            "onRefresh": [MockFunction],
-            "refreshing": false,
+            "groupCount": 4,
+            "groupMinHeight": 444.6666666666667,
+            "heightForIndexPath": [Function],
+            "heightForSection": [Function],
+            "onRefresh": [Function],
+            "refreshHeader": [Function],
+            "renderEmpty": [Function],
+            "renderIndexPath": [Function],
+            "renderSection": [Function],
+            "updateTimeInterval": 150,
           },
-          "ref": null,
+          "ref": [Function],
           "rendered": null,
           "type": [Function],
         },
@@ -290,23 +323,34 @@ ShallowWrapper {
               }
             }
           >
-            <RewardsList
+            <LargeList
               data={
                 Array [
                   Object {
-                    "cost": "123",
-                    "day": "Monday",
-                    "id": "id",
-                    "month": "April",
-                    "onPress": [MockFunction],
-                    "reward": "string",
-                    "status": "pending",
+                    "items": Array [
+                      Object {
+                        "cost": "123",
+                        "day": "Monday",
+                        "id": "id",
+                        "month": "April",
+                        "onPress": [MockFunction],
+                        "reward": "string",
+                        "status": "pending",
+                      },
+                    ],
                   },
                 ]
               }
-              onItemPress={[MockFunction]}
-              onRefresh={[MockFunction]}
-              refreshing={false}
+              groupCount={4}
+              groupMinHeight={444.6666666666667}
+              heightForIndexPath={[Function]}
+              heightForSection={[Function]}
+              onRefresh={[Function]}
+              refreshHeader={[Function]}
+              renderEmpty={[Function]}
+              renderIndexPath={[Function]}
+              renderSection={[Function]}
+              updateTimeInterval={150}
             />
           </View>,
           <View
@@ -387,23 +431,34 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <RewardsList
+            "children": <LargeList
               data={
                 Array [
                   Object {
-                    "cost": "123",
-                    "day": "Monday",
-                    "id": "id",
-                    "month": "April",
-                    "onPress": [MockFunction],
-                    "reward": "string",
-                    "status": "pending",
+                    "items": Array [
+                      Object {
+                        "cost": "123",
+                        "day": "Monday",
+                        "id": "id",
+                        "month": "April",
+                        "onPress": [MockFunction],
+                        "reward": "string",
+                        "status": "pending",
+                      },
+                    ],
                   },
                 ]
               }
-              onItemPress={[MockFunction]}
-              onRefresh={[MockFunction]}
-              refreshing={false}
+              groupCount={4}
+              groupMinHeight={444.6666666666667}
+              heightForIndexPath={[Function]}
+              heightForSection={[Function]}
+              onRefresh={[Function]}
+              refreshHeader={[Function]}
+              renderEmpty={[Function]}
+              renderIndexPath={[Function]}
+              renderSection={[Function]}
+              updateTimeInterval={150}
             />,
             "style": Object {
               "flex": 1,
@@ -414,24 +469,35 @@ ShallowWrapper {
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "function",
+            "nodeType": "class",
             "props": Object {
               "data": Array [
                 Object {
-                  "cost": "123",
-                  "day": "Monday",
-                  "id": "id",
-                  "month": "April",
-                  "onPress": [MockFunction],
-                  "reward": "string",
-                  "status": "pending",
+                  "items": Array [
+                    Object {
+                      "cost": "123",
+                      "day": "Monday",
+                      "id": "id",
+                      "month": "April",
+                      "onPress": [MockFunction],
+                      "reward": "string",
+                      "status": "pending",
+                    },
+                  ],
                 },
               ],
-              "onItemPress": [MockFunction],
-              "onRefresh": [MockFunction],
-              "refreshing": false,
+              "groupCount": 4,
+              "groupMinHeight": 444.6666666666667,
+              "heightForIndexPath": [Function],
+              "heightForSection": [Function],
+              "onRefresh": [Function],
+              "refreshHeader": [Function],
+              "renderEmpty": [Function],
+              "renderIndexPath": [Function],
+              "renderSection": [Function],
+              "updateTimeInterval": 150,
             },
-            "ref": null,
+            "ref": [Function],
             "rendered": null,
             "type": [Function],
           },
@@ -510,12 +576,12 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <RewardsListScreen
     data={Array []}
     labels={Array []}
+    loading={false}
     onItemPress={[MockFunction]}
     onLeftMenuPress={[MockFunction]}
     onLeftTabPress={[MockFunction]}
     onRefresh={[MockFunction]}
     onRightTabPress={[MockFunction]}
-    refreshing={false}
     totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -558,11 +624,24 @@ ShallowWrapper {
             }
           }
         >
-          <RewardsList
-            data={Array []}
-            onItemPress={[MockFunction]}
-            onRefresh={[MockFunction]}
-            refreshing={false}
+          <LargeList
+            data={
+              Array [
+                Object {
+                  "items": Array [],
+                },
+              ]
+            }
+            groupCount={4}
+            groupMinHeight={444.6666666666667}
+            heightForIndexPath={[Function]}
+            heightForSection={[Function]}
+            onRefresh={[Function]}
+            refreshHeader={[Function]}
+            renderEmpty={[Function]}
+            renderIndexPath={[Function]}
+            renderSection={[Function]}
+            updateTimeInterval={150}
           />
         </View>,
         <View
@@ -643,11 +722,24 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <RewardsList
-            data={Array []}
-            onItemPress={[MockFunction]}
-            onRefresh={[MockFunction]}
-            refreshing={false}
+          "children": <LargeList
+            data={
+              Array [
+                Object {
+                  "items": Array [],
+                },
+              ]
+            }
+            groupCount={4}
+            groupMinHeight={444.6666666666667}
+            heightForIndexPath={[Function]}
+            heightForSection={[Function]}
+            onRefresh={[Function]}
+            refreshHeader={[Function]}
+            renderEmpty={[Function]}
+            renderIndexPath={[Function]}
+            renderSection={[Function]}
+            updateTimeInterval={150}
           />,
           "style": Object {
             "flex": 1,
@@ -658,14 +750,25 @@ ShallowWrapper {
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "data": Array [],
-            "onItemPress": [MockFunction],
-            "onRefresh": [MockFunction],
-            "refreshing": false,
+            "data": Array [
+              Object {
+                "items": Array [],
+              },
+            ],
+            "groupCount": 4,
+            "groupMinHeight": 444.6666666666667,
+            "heightForIndexPath": [Function],
+            "heightForSection": [Function],
+            "onRefresh": [Function],
+            "refreshHeader": [Function],
+            "renderEmpty": [Function],
+            "renderIndexPath": [Function],
+            "renderSection": [Function],
+            "updateTimeInterval": 150,
           },
-          "ref": null,
+          "ref": [Function],
           "rendered": null,
           "type": [Function],
         },
@@ -748,11 +851,24 @@ ShallowWrapper {
               }
             }
           >
-            <RewardsList
-              data={Array []}
-              onItemPress={[MockFunction]}
-              onRefresh={[MockFunction]}
-              refreshing={false}
+            <LargeList
+              data={
+                Array [
+                  Object {
+                    "items": Array [],
+                  },
+                ]
+              }
+              groupCount={4}
+              groupMinHeight={444.6666666666667}
+              heightForIndexPath={[Function]}
+              heightForSection={[Function]}
+              onRefresh={[Function]}
+              refreshHeader={[Function]}
+              renderEmpty={[Function]}
+              renderIndexPath={[Function]}
+              renderSection={[Function]}
+              updateTimeInterval={150}
             />
           </View>,
           <View
@@ -833,11 +949,24 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <RewardsList
-              data={Array []}
-              onItemPress={[MockFunction]}
-              onRefresh={[MockFunction]}
-              refreshing={false}
+            "children": <LargeList
+              data={
+                Array [
+                  Object {
+                    "items": Array [],
+                  },
+                ]
+              }
+              groupCount={4}
+              groupMinHeight={444.6666666666667}
+              heightForIndexPath={[Function]}
+              heightForSection={[Function]}
+              onRefresh={[Function]}
+              refreshHeader={[Function]}
+              renderEmpty={[Function]}
+              renderIndexPath={[Function]}
+              renderSection={[Function]}
+              updateTimeInterval={150}
             />,
             "style": Object {
               "flex": 1,
@@ -848,14 +977,25 @@ ShallowWrapper {
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "function",
+            "nodeType": "class",
             "props": Object {
-              "data": Array [],
-              "onItemPress": [MockFunction],
-              "onRefresh": [MockFunction],
-              "refreshing": false,
+              "data": Array [
+                Object {
+                  "items": Array [],
+                },
+              ],
+              "groupCount": 4,
+              "groupMinHeight": 444.6666666666667,
+              "heightForIndexPath": [Function],
+              "heightForSection": [Function],
+              "onRefresh": [Function],
+              "refreshHeader": [Function],
+              "renderEmpty": [Function],
+              "renderIndexPath": [Function],
+              "renderSection": [Function],
+              "updateTimeInterval": 150,
             },
-            "ref": null,
+            "ref": [Function],
             "rendered": null,
             "type": [Function],
           },

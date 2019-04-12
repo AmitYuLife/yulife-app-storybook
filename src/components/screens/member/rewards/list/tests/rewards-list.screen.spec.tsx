@@ -12,14 +12,14 @@ const defaultProps = {
         onPress: jest.fn(),
         reward: "string",
         status: "pending"
-    }],
+    } as any],
     labels: [] as ILabel[],
     onItemPress: jest.fn(),
     onLeftMenuPress: jest.fn(),
     onLeftTabPress: jest.fn(),
     onRefresh: jest.fn(),
     onRightTabPress: jest.fn(),
-    refreshing: false,
+    loading: false,
     totalCoins: 1234
 };
 
