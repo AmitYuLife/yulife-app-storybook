@@ -1,7 +1,9 @@
+import { NavBar, RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
+import { Style } from "@styles/index";
 import * as React from "react";
-import { FlatList, ListRenderItemInfo, SafeAreaView, View } from "react-native";
+import { SafeAreaView, View } from "react-native";
+import { IndexPath, LargeList } from "react-native-largelist-v3";
 import { IConnectedScreenProps } from "../../../../../typings";
-import { NavBar, RewardTabs, TopBar } from "../../../../molecules";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
 import PurchasesEmpty from "./purchases-empty/purchases-empty";
 import styles from "./rewards-purchased.screen.styles";
@@ -11,60 +13,93 @@ interface IProps extends IConnectedScreenProps {
     hasNotification?: boolean;
     onLeftTabPress: () => void;
     onRightTabPress: () => void;
-    refreshing: boolean;
+    loading: boolean;
 }
 
 type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
     id: string;
 };
 
-function renderItem({
-    item: { day, month, reward, cost, status, onPress }
-}: ListRenderItemInfo<RewardsPurchasedItemData>) {
-    return (
-        <RewardsPurchasedItem day={day} month={month} reward={reward} cost={cost} status={status} onPress={onPress} />
-    );
-}
+export default class RewardsPurchasedScreen extends React.PureComponent<IProps> {
+    private largeList: LargeList;
 
-export default function RewardsPurchasedScreen({
-    data,
-    hasNotification = false,
-    labels,
-    onLeftTabPress,
-    onRightTabPress,
-    onLeftMenuPress,
-    refreshing,
-    totalCoins
-}: IProps) {
-    return (
-        <SafeAreaView style={styles.wrapper}>
-            <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
-            <View style={styles.rewardTabsWrapper}>
-                <RewardTabs activeTabIndex={1} onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} />
-            </View>
-            <View style={styles.listWrapper}>
-                {!data.length ? (
-                    <PurchasesEmpty onCtaPress={onLeftTabPress} />
-                ) : (
-                    <FlatList
-                        data={data}
-                        keyExtractor={(item) => item.id}
-                        onRefresh={onRightTabPress}
-                        refreshing={refreshing}
-                        renderItem={renderItem}
+    public render() {
+        const {
+            data,
+            hasNotification = false,
+            labels,
+            onLeftTabPress,
+            onRightTabPress,
+            onLeftMenuPress,
+            totalCoins
+        } = this.props;
+
+        return (
+            <SafeAreaView style={styles.wrapper}>
+                <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
+                <View style={styles.rewardTabsWrapper}>
+                    <RewardTabs activeTabIndex={1} onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} />
+                </View>
+                <View style={styles.listWrapper}>
+                    <LargeList
+                        ref={this.setLargeListRef}
+                        renderIndexPath={this.renderIndexPath}
+                        heightForIndexPath={this.getHeight}
+                        data={[{ items: data }]}
+                        onRefresh={this.handleRefresh}
+                        renderEmpty={this.renderEmpty}
+                        refreshHeader={YulifeRefreshHeader}
                     />
-                )}
-            </View>
-            <View style={styles.navBarWrapper}>
-                <NavBar
-                    activeIndex={2}
-                    areIconsHidden={true}
-                    colour={NavBar.Colours.DARKER}
-                    hasNotification={hasNotification}
-                    hasWhiteBackground={true}
-                    labels={labels}
+                </View>
+                <View style={styles.navBarWrapper}>
+                    <NavBar
+                        activeIndex={2}
+                        areIconsHidden={true}
+                        colour={NavBar.Colours.DARKER}
+                        hasNotification={hasNotification}
+                        hasWhiteBackground={true}
+                        labels={labels}
+                    />
+                </View>
+            </SafeAreaView>
+        );
+    }
+
+    private renderEmpty = () => {
+        const { onLeftTabPress } = this.props;
+        return <PurchasesEmpty onCtaPress={onLeftTabPress} />;
+    };
+
+    private setLargeListRef = (ref: LargeList) => {
+        this.largeList = ref;
+    };
+
+    private handleRefresh = async () => {
+        await this.props.onRightTabPress();
+        this.largeList.endRefresh();
+    };
+
+    private renderIndexPath = ({ row }: IndexPath) => {
+        const { data } = this.props;
+        const item = data[row];
+
+        if (item) {
+            const { day, month, reward, cost, status, onPress } = item;
+
+            return (
+                <RewardsPurchasedItem
+                    day={day}
+                    month={month}
+                    reward={reward}
+                    cost={cost}
+                    status={status}
+                    onPress={onPress}
                 />
-            </View>
-        </SafeAreaView>
-    );
+            );
+        }
+
+        return null;
+    };
+
+    private getHeight = () => Style.SCALE_UP_AND_DOWN(74);
 }

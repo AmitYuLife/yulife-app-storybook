@@ -23,7 +23,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <FastImage
+        <ForwardRef
           resizeMode="contain"
           source={
             Object {
@@ -78,7 +78,7 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {
           "resizeMode": "contain",
           "source": Object {
@@ -91,7 +91,77 @@ ShallowWrapper {
         },
         "ref": null,
         "rendered": null,
-        "type": [Function],
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "cacheControl": Object {
+            "cacheOnly": "cacheOnly",
+            "immutable": "immutable",
+            "web": "web",
+          },
+          "defaultProps": Object {
+            "resizeMode": "cover",
+          },
+          "displayName": "FastImage",
+          "preload": [Function],
+          "priority": Object {
+            "high": "high",
+            "low": "low",
+            "normal": "normal",
+          },
+          "propTypes": Object {
+            "accessibilityActions": [Function],
+            "accessibilityComponentType": [Function],
+            "accessibilityElementsHidden": [Function],
+            "accessibilityHint": [Function],
+            "accessibilityIgnoresInvertColors": [Function],
+            "accessibilityLabel": [Function],
+            "accessibilityLiveRegion": [Function],
+            "accessibilityRole": [Function],
+            "accessibilityStates": [Function],
+            "accessibilityTraits": [Function],
+            "accessibilityViewIsModal": [Function],
+            "accessible": [Function],
+            "collapsable": [Function],
+            "fallback": [Function],
+            "hitSlop": [Function],
+            "importantForAccessibility": [Function],
+            "nativeID": [Function],
+            "needsOffscreenAlphaCompositing": [Function],
+            "onAccessibilityAction": [Function],
+            "onAccessibilityTap": [Function],
+            "onError": [Function],
+            "onLayout": [Function],
+            "onLoad": [Function],
+            "onLoadEnd": [Function],
+            "onLoadStart": [Function],
+            "onMagicTap": [Function],
+            "onMoveShouldSetResponder": [Function],
+            "onMoveShouldSetResponderCapture": [Function],
+            "onProgress": [Function],
+            "onResponderGrant": [Function],
+            "onResponderMove": [Function],
+            "onResponderReject": [Function],
+            "onResponderRelease": [Function],
+            "onResponderTerminate": [Function],
+            "onResponderTerminationRequest": [Function],
+            "onStartShouldSetResponder": [Function],
+            "onStartShouldSetResponderCapture": [Function],
+            "pointerEvents": [Function],
+            "removeClippedSubviews": [Function],
+            "renderToHardwareTextureAndroid": [Function],
+            "shouldRasterizeIOS": [Function],
+            "source": [Function],
+            "style": [Function],
+            "testID": [Function],
+          },
+          "render": [Function],
+          "resizeMode": Object {
+            "center": "center",
+            "contain": "contain",
+            "cover": "cover",
+            "stretch": "stretch",
+          },
+        },
       },
       Object {
         "instance": null,
@@ -136,7 +206,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <FastImage
+          <ForwardRef
             resizeMode="contain"
             source={
               Object {
@@ -191,7 +261,7 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
             "resizeMode": "contain",
             "source": Object {
@@ -204,7 +274,77 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": null,
-          "type": [Function],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "cacheControl": Object {
+              "cacheOnly": "cacheOnly",
+              "immutable": "immutable",
+              "web": "web",
+            },
+            "defaultProps": Object {
+              "resizeMode": "cover",
+            },
+            "displayName": "FastImage",
+            "preload": [Function],
+            "priority": Object {
+              "high": "high",
+              "low": "low",
+              "normal": "normal",
+            },
+            "propTypes": Object {
+              "accessibilityActions": [Function],
+              "accessibilityComponentType": [Function],
+              "accessibilityElementsHidden": [Function],
+              "accessibilityHint": [Function],
+              "accessibilityIgnoresInvertColors": [Function],
+              "accessibilityLabel": [Function],
+              "accessibilityLiveRegion": [Function],
+              "accessibilityRole": [Function],
+              "accessibilityStates": [Function],
+              "accessibilityTraits": [Function],
+              "accessibilityViewIsModal": [Function],
+              "accessible": [Function],
+              "collapsable": [Function],
+              "fallback": [Function],
+              "hitSlop": [Function],
+              "importantForAccessibility": [Function],
+              "nativeID": [Function],
+              "needsOffscreenAlphaCompositing": [Function],
+              "onAccessibilityAction": [Function],
+              "onAccessibilityTap": [Function],
+              "onError": [Function],
+              "onLayout": [Function],
+              "onLoad": [Function],
+              "onLoadEnd": [Function],
+              "onLoadStart": [Function],
+              "onMagicTap": [Function],
+              "onMoveShouldSetResponder": [Function],
+              "onMoveShouldSetResponderCapture": [Function],
+              "onProgress": [Function],
+              "onResponderGrant": [Function],
+              "onResponderMove": [Function],
+              "onResponderReject": [Function],
+              "onResponderRelease": [Function],
+              "onResponderTerminate": [Function],
+              "onResponderTerminationRequest": [Function],
+              "onStartShouldSetResponder": [Function],
+              "onStartShouldSetResponderCapture": [Function],
+              "pointerEvents": [Function],
+              "removeClippedSubviews": [Function],
+              "renderToHardwareTextureAndroid": [Function],
+              "shouldRasterizeIOS": [Function],
+              "source": [Function],
+              "style": [Function],
+              "testID": [Function],
+            },
+            "render": [Function],
+            "resizeMode": Object {
+              "center": "center",
+              "contain": "contain",
+              "cover": "cover",
+              "stretch": "stretch",
+            },
+          },
         },
         Object {
           "instance": null,
@@ -303,7 +443,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <FastImage
+        <ForwardRef
           resizeMode="contain"
           source={
             Object {
@@ -358,7 +498,7 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {
           "resizeMode": "contain",
           "source": Object {
@@ -371,7 +511,77 @@ ShallowWrapper {
         },
         "ref": null,
         "rendered": null,
-        "type": [Function],
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "cacheControl": Object {
+            "cacheOnly": "cacheOnly",
+            "immutable": "immutable",
+            "web": "web",
+          },
+          "defaultProps": Object {
+            "resizeMode": "cover",
+          },
+          "displayName": "FastImage",
+          "preload": [Function],
+          "priority": Object {
+            "high": "high",
+            "low": "low",
+            "normal": "normal",
+          },
+          "propTypes": Object {
+            "accessibilityActions": [Function],
+            "accessibilityComponentType": [Function],
+            "accessibilityElementsHidden": [Function],
+            "accessibilityHint": [Function],
+            "accessibilityIgnoresInvertColors": [Function],
+            "accessibilityLabel": [Function],
+            "accessibilityLiveRegion": [Function],
+            "accessibilityRole": [Function],
+            "accessibilityStates": [Function],
+            "accessibilityTraits": [Function],
+            "accessibilityViewIsModal": [Function],
+            "accessible": [Function],
+            "collapsable": [Function],
+            "fallback": [Function],
+            "hitSlop": [Function],
+            "importantForAccessibility": [Function],
+            "nativeID": [Function],
+            "needsOffscreenAlphaCompositing": [Function],
+            "onAccessibilityAction": [Function],
+            "onAccessibilityTap": [Function],
+            "onError": [Function],
+            "onLayout": [Function],
+            "onLoad": [Function],
+            "onLoadEnd": [Function],
+            "onLoadStart": [Function],
+            "onMagicTap": [Function],
+            "onMoveShouldSetResponder": [Function],
+            "onMoveShouldSetResponderCapture": [Function],
+            "onProgress": [Function],
+            "onResponderGrant": [Function],
+            "onResponderMove": [Function],
+            "onResponderReject": [Function],
+            "onResponderRelease": [Function],
+            "onResponderTerminate": [Function],
+            "onResponderTerminationRequest": [Function],
+            "onStartShouldSetResponder": [Function],
+            "onStartShouldSetResponderCapture": [Function],
+            "pointerEvents": [Function],
+            "removeClippedSubviews": [Function],
+            "renderToHardwareTextureAndroid": [Function],
+            "shouldRasterizeIOS": [Function],
+            "source": [Function],
+            "style": [Function],
+            "testID": [Function],
+          },
+          "render": [Function],
+          "resizeMode": Object {
+            "center": "center",
+            "contain": "contain",
+            "cover": "cover",
+            "stretch": "stretch",
+          },
+        },
       },
       Object {
         "instance": null,
@@ -416,7 +626,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <FastImage
+          <ForwardRef
             resizeMode="contain"
             source={
               Object {
@@ -471,7 +681,7 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
             "resizeMode": "contain",
             "source": Object {
@@ -484,7 +694,77 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": null,
-          "type": [Function],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "cacheControl": Object {
+              "cacheOnly": "cacheOnly",
+              "immutable": "immutable",
+              "web": "web",
+            },
+            "defaultProps": Object {
+              "resizeMode": "cover",
+            },
+            "displayName": "FastImage",
+            "preload": [Function],
+            "priority": Object {
+              "high": "high",
+              "low": "low",
+              "normal": "normal",
+            },
+            "propTypes": Object {
+              "accessibilityActions": [Function],
+              "accessibilityComponentType": [Function],
+              "accessibilityElementsHidden": [Function],
+              "accessibilityHint": [Function],
+              "accessibilityIgnoresInvertColors": [Function],
+              "accessibilityLabel": [Function],
+              "accessibilityLiveRegion": [Function],
+              "accessibilityRole": [Function],
+              "accessibilityStates": [Function],
+              "accessibilityTraits": [Function],
+              "accessibilityViewIsModal": [Function],
+              "accessible": [Function],
+              "collapsable": [Function],
+              "fallback": [Function],
+              "hitSlop": [Function],
+              "importantForAccessibility": [Function],
+              "nativeID": [Function],
+              "needsOffscreenAlphaCompositing": [Function],
+              "onAccessibilityAction": [Function],
+              "onAccessibilityTap": [Function],
+              "onError": [Function],
+              "onLayout": [Function],
+              "onLoad": [Function],
+              "onLoadEnd": [Function],
+              "onLoadStart": [Function],
+              "onMagicTap": [Function],
+              "onMoveShouldSetResponder": [Function],
+              "onMoveShouldSetResponderCapture": [Function],
+              "onProgress": [Function],
+              "onResponderGrant": [Function],
+              "onResponderMove": [Function],
+              "onResponderReject": [Function],
+              "onResponderRelease": [Function],
+              "onResponderTerminate": [Function],
+              "onResponderTerminationRequest": [Function],
+              "onStartShouldSetResponder": [Function],
+              "onStartShouldSetResponderCapture": [Function],
+              "pointerEvents": [Function],
+              "removeClippedSubviews": [Function],
+              "renderToHardwareTextureAndroid": [Function],
+              "shouldRasterizeIOS": [Function],
+              "source": [Function],
+              "style": [Function],
+              "testID": [Function],
+            },
+            "render": [Function],
+            "resizeMode": Object {
+              "center": "center",
+              "contain": "contain",
+              "cover": "cover",
+              "stretch": "stretch",
+            },
+          },
         },
         Object {
           "instance": null,

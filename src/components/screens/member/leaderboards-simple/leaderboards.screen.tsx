@@ -1,11 +1,11 @@
-import { Close, GenericHeading, LeaderboardPosition, Pad } from "@atoms/index";
+import { Close, GenericHeading, LeaderboardPosition, Loading, Pad } from "@atoms/index";
+import { YulifeRefreshHeader } from "@molecules/index";
 import { Colours } from "@styles/index";
 import * as React from "react";
 import { PureComponent } from "react";
 import {
     ActivityIndicator,
     Animated,
-    FlatList,
     Image,
     SafeAreaView,
     ScrollView,
@@ -14,7 +14,7 @@ import {
     View,
     ViewStyle
 } from "react-native";
-import { ListRenderItemInfo } from "react-native";
+import { IndexPath, LargeList } from "react-native-largelist-v3";
 import assets from "./assets";
 import LeaderboardHeader from "./leaderboard-header/leaderboard-header";
 import LeaderboardItem from "./leaderboard-item/leaderboard-item";
@@ -46,6 +46,7 @@ interface IState {
 }
 
 export default class LeaderboardScreen extends PureComponent<IProps, IState> {
+    public largeList: LargeList;
     public scrollView: ScrollView;
     public state = {
         isScrolling: false,
@@ -55,13 +56,7 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
 
     public render() {
         const { isTopHidden } = this.state;
-        const {
-            initialScrollIndex,
-            isLoading,
-            onPressClose,
-            items,
-            onRefetch
-        } = this.props;
+        const { isLoading, onPressClose, items, initialScrollIndex } = this.props;
 
         return (
             <SafeAreaView style={styles.wrapper}>
@@ -96,41 +91,53 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                         { transform: [{ translateY: this.top3Y }] }
                     ] as ViewStyle)}
                 >
-                    <FlatList
-                        onRefresh={onRefetch}
-                        refreshing={isLoading}
-                        data={items}
-                        removeClippedSubviews={false}
-                        initialScrollIndex={initialScrollIndex}
-                        keyExtractor={this.keyExtractor}
-                        getItemLayout={this.getItemLayout}
-                        renderItem={this.renderItem}
+                    <LargeList
+                        ref={this.setLargeListRef}
+                        initialContentOffset={{ x: 0, y: initialScrollIndex * LEADERBOARD_ITEM_HEIGHT}}
+                        renderIndexPath={this.renderIndexPath}
+                        heightForIndexPath={this.getHeight}
+                        data={[{ items }]}
+                        onRefresh={this.handleRefresh}
+                        renderEmpty={Loading}
+                        refreshHeader={YulifeRefreshHeader}
                     />
                 </Animated.View>
             </SafeAreaView>
         );
     }
 
+    private setLargeListRef = (ref: LargeList) => {
+        this.largeList = ref;
+    };
+
+    private handleRefresh = async () => {
+        await this.props.onRefetch();
+        this.largeList.endRefresh();
+    };
+
+    private renderIndexPath = ({ row }: IndexPath) => {
+        const { items } = this.props;
+        const item = items[row];
+
+        if (item) {
+            return (
+                <LeaderboardItem
+                    {...item}
+                    isCurrentUser={row === this.props.initialScrollIndex}
+                    rank={row + 1}
+                    key={item.id}
+                />
+            );
+        }
+
+        return null;
+    };
+
+    private getHeight = () => LEADERBOARD_ITEM_HEIGHT;
+
     private renderTop = (item: IItem, i: number) => (
         <LeaderboardPosition key={`top-3-${item.id}`} name={item.firstName} position={i + 1} />
     );
-
-    private renderItem = ({ item, index }: ListRenderItemInfo<IItem>) => (
-        <LeaderboardItem
-            {...item}
-            isCurrentUser={index === this.props.initialScrollIndex}
-            rank={index + 1}
-            key={item.id}
-        />
-    );
-
-    private keyExtractor = (item: IItem) => item.id;
-
-    private getItemLayout = (_: any, index: number) => ({
-        index,
-        length: LEADERBOARD_ITEM_HEIGHT,
-        offset: LEADERBOARD_ITEM_HEIGHT * index
-    });
 
     private handlePressImage = () => {
         const { isTopHidden } = this.state;

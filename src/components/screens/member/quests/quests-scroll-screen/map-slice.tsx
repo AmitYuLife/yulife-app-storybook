@@ -17,11 +17,8 @@ export default class MapSlice extends React.PureComponent<IProps> {
         const { levels, slice } = this.props;
 
         return (
-            <View key={slice.id} style={{ height: MAP_SLICE_HEIGHT, overflow: "visible" }}>
-                <FastImage
-                    source={slice.image}
-                    style={StyleSheet.flatten([styles.image, { height: MAP_SLICE_HEIGHT }]) as any}
-                />
+            <View key={slice.id} style={styles.wrapper}>
+                <FastImage source={slice.image} style={styles.image} />
                 <View style={styles.levelButtonWrapper}>{levels.map(this.mapLevels)}</View>
             </View>
         );
@@ -40,11 +37,15 @@ const styles = StyleSheet.create({
         position: "absolute",
         right: 0,
         top: 0,
-        width: Style.DEVICE_WIDTH
+        width: Style.DEVICE_WIDTH,
+        height: MAP_SLICE_HEIGHT
     },
     levelButtonWrapper: {
         alignItems: "flex-end",
         flex: 1,
         flexDirection: "row"
+    },
+    wrapper: {
+        height: MAP_SLICE_HEIGHT
     }
 });

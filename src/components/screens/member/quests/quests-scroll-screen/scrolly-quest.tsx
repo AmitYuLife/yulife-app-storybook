@@ -39,6 +39,9 @@ class ScrollyQuest extends React.PureComponent<IProps> {
                     renderItem={this.renderItem}
                     onViewableItemsChanged={onViewableItemsChanged}
                     viewabilityConfig={this.viewabilityConfig}
+                    initialNumToRender={8}
+                    windowSize={61}
+                    directionalLockEnabled={true}
                 />
             </View>
         );
