@@ -2,10 +2,22 @@ import { MODALS, ROUTES } from "./constants";
 
 export default [
     // root screens
-    { name: ROUTES.loading, component: require("../components/containers/app-loading/app-loading.container").default },
-    { name: ROUTES.noAccess, component: require("../components/containers/no-access/no-access.container").default },
-    { name: ROUTES.welcome, component: require("../components/containers/welcome/welcome.container").default },
-    { name: ROUTES.login, component: require("../components/containers/login/login.container").default },
+    {
+        name: ROUTES.loading,
+        component: require("../components/containers/app-loading/app-loading.container").default
+    },
+    {
+        name: ROUTES.noAccess,
+        component: require("../components/containers/no-access/no-access.container").default
+    },
+    {
+        name: ROUTES.welcome,
+        component: require("../components/containers/welcome/welcome.container").default
+    },
+    {
+        name: ROUTES.login,
+        component: require("../components/containers/login/login.container").default
+    },
     {
         name: ROUTES.resetPassword,
         component: require("../components/containers/reset-password/reset-password.container").default
@@ -14,7 +26,10 @@ export default [
         name: ROUTES.resetPasswordSuccess,
         component: require("../components/containers/reset-password/reset-password-success.container").default
     },
-    { name: ROUTES.signUp, component: require("../components/containers/sign-up/sign-up.container").default },
+    {
+        name: ROUTES.signUp,
+        component: require("../components/containers/sign-up/sign-up.container").default
+    },
 
     // onboarding screens
     {
@@ -31,7 +46,10 @@ export default [
     },
 
     // member screens
-    { name: ROUTES.menu, component: require("../components/containers/member/menu/menu.container").default },
+    {
+        name: ROUTES.menu,
+        component: require("../components/containers/member/menu/menu.container").default
+    },
     {
         name: ROUTES.settings,
         component: require("../components/containers/member/settings/settings.container").default
@@ -40,8 +58,14 @@ export default [
         name: ROUTES.dailySteps,
         component: require("../components/containers/member/daily-steps/daily-steps.container").default
     },
-    { name: ROUTES.quests, component: require("../components/containers/member/quests/quests.container").default },
-    { name: ROUTES.rewards, component: require("../components/containers/member/rewards/rewards.container").default },
+    {
+        name: ROUTES.quests,
+        component: require("../components/containers/member/quests/quests.container").default
+    },
+    {
+        name: ROUTES.rewards,
+        component: require("../components/containers/member/rewards/rewards.container").default
+    },
     {
         name: ROUTES.activityHistory,
         component: require("../components/containers/member/activity-history/activity-history.container").default
@@ -50,7 +74,10 @@ export default [
         name: ROUTES.leaderboards,
         component: require("../components/containers/member/leaderboards/leaderboards.container").default
     },
-    { name: ROUTES.debug, component: require("../components/containers/member/debug/debug.container").default },
+    {
+        name: ROUTES.debug,
+        component: require("../components/containers/member/debug/debug.container").default
+    },
 
     // quests screens
     {
@@ -98,13 +125,22 @@ export default [
         name: MODALS.createLeaderboard,
         component: require("../components/modals/create-leaderboard/create-leaderboard.modal").default
     },
-    { name: MODALS.chest, component: require("../components/modals/animated-chest/animated-chest") },
+    {
+        name: MODALS.chest,
+        component: require("../components/modals/animated-chest/animated-chest").default
+    },
     {
         name: MODALS.collectReward,
         component: require("../components/modals/collect-reward/collect-reward.modal").default
     },
-    { name: MODALS.feedback, component: require("../components/modals/feedback/feedback.modal").default },
-    { name: MODALS.generic, component: require("../components/modals/generic-modal/generic-modal").default },
+    {
+        name: MODALS.feedback,
+        component: require("../components/modals/feedback/feedback.modal").default
+    },
+    {
+        name: MODALS.generic,
+        component: require("../components/modals/generic-modal/generic-modal").default
+    },
     {
         name: MODALS.leaderboardInvite,
         component: require("../components/modals/leaderboard-invite/leaderboard-invite.modal").default
@@ -121,8 +157,20 @@ export default [
         name: MODALS.pushNotifications,
         component: require("../components/modals/push-notifications/push-notifications.modal").default
     },
-    { name: MODALS.streaks, component: require("../components/modals/streaks/streaks.modal").default },
-    { name: MODALS.leaderboards, component: require("../components/modals/generic-modal/generic-modal").default },
-    { name: MODALS.rewards, component: require("../components/modals/generic-modal/generic-modal").default },
-    { name: MODALS.todayYucoin, component: require("../components/modals/today-yucoin/today-yucoin.modal").default }
+    {
+        name: MODALS.streaks,
+        component: require("../components/modals/streaks/streaks.modal").default
+    },
+    {
+        name: MODALS.leaderboards,
+        component: require("../components/modals/generic-modal/generic-modal").default
+    },
+    {
+        name: MODALS.rewards,
+        component: require("../components/modals/generic-modal/generic-modal").default
+    },
+    {
+        name: MODALS.todayYucoin,
+        component: require("../components/modals/today-yucoin/today-yucoin.modal").default
+    }
 ];
