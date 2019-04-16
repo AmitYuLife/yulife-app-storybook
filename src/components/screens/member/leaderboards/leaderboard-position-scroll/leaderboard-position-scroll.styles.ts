@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     header: {
         position: "absolute",
         top: getTop(),
+        paddingHorizontal: Style.SCALE_UP_AND_DOWN(50),
         width: "100%"
     } as ViewStyle,
     leaderboardPositionWrapper: {

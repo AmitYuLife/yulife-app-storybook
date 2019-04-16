@@ -43,6 +43,7 @@ export default StyleSheet.create({
     header: {
         position: "absolute",
         top: getTop(),
+        paddingHorizontal: Style.SCALE_UP_AND_DOWN(50),
         width: "100%"
     } as ViewStyle,
     loaderWrapper: { position: "absolute", top: Style.SCALE_UP_AND_DOWN(180), left: 0, right: 0 } as ViewStyle,

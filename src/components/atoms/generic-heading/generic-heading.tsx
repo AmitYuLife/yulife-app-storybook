@@ -19,7 +19,7 @@ const GenericHeading: SFC<IProps> = ({ heading, hidesBorder, subheading }) => (
                 subheading ? null : styles.paddingBottom
             ])}
         >
-            <Text bold={true} style={styles.heading}>
+            <Text numberOfLines={1} bold={true} style={styles.heading}>
                 {heading}
             </Text>
         </View>

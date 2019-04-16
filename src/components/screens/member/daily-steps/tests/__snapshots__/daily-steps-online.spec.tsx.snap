@@ -25,7 +25,8 @@ ShallowWrapper {
       "children": Array [
         <YuText>
           123456
-           steps
+           
+          steps
         </YuText>,
         <Pad
           height={8}
@@ -92,14 +93,16 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             123456,
-            " steps",
+            " ",
+            "steps",
           ],
           "style": undefined,
         },
         "ref": null,
         "rendered": Array [
           123456,
-          " steps",
+          " ",
+          "steps",
         ],
         "type": [Function],
       },
@@ -257,7 +260,8 @@ ShallowWrapper {
         "children": Array [
           <YuText>
             123456
-             steps
+             
+            steps
           </YuText>,
           <Pad
             height={8}
@@ -324,14 +328,16 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               123456,
-              " steps",
+              " ",
+              "steps",
             ],
             "style": undefined,
           },
           "ref": null,
           "rendered": Array [
             123456,
-            " steps",
+            " ",
+            "steps",
           ],
           "type": [Function],
         },
