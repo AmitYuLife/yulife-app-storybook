@@ -1,26 +1,42 @@
-import registerScreens from "@navigation";
-import handleDeepLink from "@navigation/handleDeepLink";
-import { setLoadingRoot, setNextRoot, setUnauthenticatedRoot } from "@navigation/root";
-import { getToken, migrateOldAppVersionToken } from "@services/storage";
-import { Image, Linking, Platform } from "react-native";
-import Config from "react-native-config";
-import FastImage from "react-native-fast-image";
-import { Navigation } from "react-native-navigation";
-import TestFairy from "react-native-testfairy";
-import { mapSlices } from "./components/screens/member/quests/quests-scroll-screen/assets";
+/* tslint:disable */
+const Navigation = require("react-native-navigation").Navigation;
+const registerScreens = require("./navigation/index").default;
 
 // register all the screens
 registerScreens();
 
 Navigation.events().registerAppLaunchedListener(async () => {
-    await setLoadingRoot();
+    const rootHandler = require("./navigation/root");
 
-    // preload quest map images
-    FastImage.preload(
-        mapSlices.map((item) => ({
-            uri: Image.resolveAssetSource(item.image).uri
-        }))
-    );
+    await rootHandler.setLoadingRoot();
+
+    const storageHandler = require("./services/storage");
+
+    await storageHandler.migrateOldAppVersionToken();
+
+    setDefaultOptions();
+
+    const token = await storageHandler.getToken();
+    const RN = require("react-native");
+
+    if (token) {
+        const FastImage = require("react-native-fast-image").default;
+        const mapAssets = require("./components/screens/member/quests/quests-scroll-screen/assets");
+
+        await rootHandler.setNextRoot();
+
+        // preload quest map images
+        FastImage.preload(
+            mapAssets.mapSlices.map((item: any) => ({
+                uri: RN.Image.resolveAssetSource(item.image).uri
+            }))
+        );
+    } else {
+        await rootHandler.setUnauthenticatedRoot();
+    }
+
+    const Config = require("react-native-config").default;
+    const TestFairy = require("react-native-testfairy");
 
     // initialize TestFairy
     if (Config.TESTFAIRY_ENABLED === "yes") {
@@ -28,21 +44,11 @@ Navigation.events().registerAppLaunchedListener(async () => {
         TestFairy.begin(Config.TESTFAIRY_KEY);
     }
 
-    await migrateOldAppVersionToken();
+    const handleDeepLink = require("./navigation/handleDeepLink").default;
 
-    setDefaultOptions();
-
-    const token = await getToken();
-
-    if (token) {
-        await setNextRoot();
-    } else {
-        await setUnauthenticatedRoot();
-    }
-
-    if (Platform.OS === "android") {
+    if (RN.Platform.OS === "android") {
         try {
-            const url = await Linking.getInitialURL();
+            const url = await RN.Linking.getInitialURL();
 
             if (url) {
                 await handleDeepLink(url, !!token);
@@ -51,7 +57,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
             // console.log(e.message);
         }
     } else {
-        Linking.addEventListener("url", ({ url }) => handleDeepLink(url, !!token));
+        RN.Linking.addEventListener("url", ({ url }: any) => handleDeepLink(url, !!token));
     }
 });
 
