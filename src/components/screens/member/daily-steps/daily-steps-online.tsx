@@ -14,13 +14,16 @@ export interface IProps {
 
 export default function DailyStepsOnline({ coinsToday, showCounter = false, onCtaPress, steps, textStyle }: IProps) {
     const flattenStyle = StyleSheet.flatten([styles.heading, textStyle]);
+    const counterType = steps === 1 ? "step" : "steps";
 
     return (
         <View style={styles.dailyStepsOnlineWrapper}>
             {showCounter ? (
-                <Counter value={steps} textStyle={textStyle} textAfterValue="steps" />
+                <Counter value={steps} textStyle={textStyle} textAfterValue={counterType} />
             ) : (
-                <Text style={textStyle}>{steps} steps</Text>
+                <Text style={textStyle}>
+                    {steps} {counterType}
+                </Text>
             )}
             <Pad height={8} />
             <Text>
