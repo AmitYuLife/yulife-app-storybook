@@ -9,7 +9,7 @@ import { Navigation } from "react-native-navigation";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { COLOURS, IColours, NavBar, TopBar } from "../../../../molecules";
-import { IMapSlice, mapSlices } from "./assets";
+import { IMapSlice, loadingSlices, mapSlices } from "./assets";
 import styles from "./quests-screen.styles";
 import ScrollyQuest from "./scrolly-quest";
 import getUnity from "./unity-movies/unity";
@@ -143,14 +143,28 @@ class QuestsScreen extends PureComponent<IProps, IState> {
     };
 
     private getWorldData = () => {
-        switch (getCurrentWorld(this.props.currentLevel)) {
+        const { currentLevel } = this.props;
+
+        switch (getCurrentWorld(currentLevel)) {
             case 2:
-                return { initialScrollIndex: 58, slices: mapSlices.slice(0, 87) };
+                return {
+                    initialScrollIndex: 58,
+                    slices:
+                        currentLevel < 150 ? [...mapSlices.slice(0, 84), loadingSlices.desert] : mapSlices.slice(0, 87)
+                };
             case 1:
-                return { initialScrollIndex: 29, slices: mapSlices.slice(0, 58) };
+                return {
+                    initialScrollIndex: 29,
+                    slices:
+                        currentLevel < 100 ? [...mapSlices.slice(0, 54), loadingSlices.ocean] : mapSlices.slice(0, 58)
+                };
             case 0:
             default:
-                return { initialScrollIndex: 0, slices: mapSlices.slice(0, 29) };
+                return {
+                    initialScrollIndex: 0,
+                    slices:
+                        currentLevel < 50 ? [...mapSlices.slice(0, 26), loadingSlices.forest] : mapSlices.slice(0, 29)
+                };
         }
     };
 }

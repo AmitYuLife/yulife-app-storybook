@@ -853,3 +853,27 @@ const WorldSlices: IMapSlice[] = [
 ];
 
 export default WorldSlices;
+
+export const loadingSlices: { [x: string]: IMapSlice } = {
+    forest: {
+        id: "MAP_SLICE_W01_LOADING_01",
+        image: require("../../../../../../../assets/quest-slices/loading/w1s1.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.DEFAULT
+    },
+    ocean: {
+        id: "MAP_SLICE_W02_LOADING_01",
+        image: require("../../../../../../../assets/quest-slices/loading/w2s1.png"),
+        navBarColour: COLOURS.DARK,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.DEFAULT
+    },
+    desert: {
+        id: "MAP_SLICE_W03_LOADING_01",
+        image: require("../../../../../../../assets/quest-slices/loading/w3s1.png"),
+        navBarColour: COLOURS.DESERT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.DESERT
+    }
+};
