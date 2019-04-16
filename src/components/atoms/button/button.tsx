@@ -2,7 +2,6 @@ import * as React from "react";
 import { PureComponent } from "react";
 import {
     ActivityIndicator,
-    RegisteredStyle,
     StyleSheet,
     Text,
     TouchableOpacity,
@@ -19,7 +18,7 @@ interface IProps {
     type: Types;
     onPress: () => void;
     label: string;
-    wrapperStyle?: RegisteredStyle<ViewStyle>;
+    wrapperStyle?: ViewStyle;
     disabled?: boolean;
     testID?: string;
 }

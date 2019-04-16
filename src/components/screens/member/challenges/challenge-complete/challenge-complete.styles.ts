@@ -1,17 +1,17 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../../../styles";
 
 export default StyleSheet.create({
     alarm: {
         height: 70,
         width: 70
-    } as ViewStyle,
+    } as ImageStyle,
     base: {
         bottom: -2,
         height: 70,
         width: 70,
         position: "absolute"
-    } as ViewStyle,
+    } as ImageStyle,
     ctaWrapper: {
         marginTop: Style.SCALE_UP_AND_DOWN(37)
     } as ViewStyle,

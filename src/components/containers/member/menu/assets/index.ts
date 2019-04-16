@@ -1,6 +1,6 @@
 import { ImageRequireSource } from "react-native";
 
-export const enum LINKS {
+export enum LINKS {
     DEBUG = "debug",
     ACTIVITY = "activity",
     LEADERBOARD = "leaderboard",

@@ -81,7 +81,7 @@ ShallowWrapper {
             onRightTabPress={[MockFunction]}
           />
         </View>,
-        <ScrollView
+        <ScrollViewMock
           style={
             Object {
               "flex": 1,
@@ -126,7 +126,7 @@ ShallowWrapper {
           <Pad
             height={50}
           />
-        </ScrollView>,
+        </ScrollViewMock>,
       ],
       "style": Object {
         "flex": 1,
@@ -355,7 +355,7 @@ ShallowWrapper {
               onRightTabPress={[MockFunction]}
             />
           </View>,
-          <ScrollView
+          <ScrollViewMock
             style={
               Object {
                 "flex": 1,
@@ -400,7 +400,7 @@ ShallowWrapper {
             <Pad
               height={50}
             />
-          </ScrollView>,
+          </ScrollViewMock>,
         ],
         "style": Object {
           "flex": 1,

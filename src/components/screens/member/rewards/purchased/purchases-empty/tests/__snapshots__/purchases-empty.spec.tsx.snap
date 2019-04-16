@@ -20,7 +20,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component
+        <Image
           source={
             Object {
               "testUri": "../../../assets/purchases-empty/rewards-empty.png",
@@ -183,7 +183,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/purchases-empty/rewards-empty.png",

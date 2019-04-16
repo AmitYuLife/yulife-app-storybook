@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RegisteredStyle, StyleSheet, TextInput as Input, View, ViewStyle } from "react-native";
+import { StyleSheet, TextInput as Input, View, ViewStyle } from "react-native";
 import TextInputError from "./text-input-error";
 import {
     getColour,
@@ -20,7 +20,7 @@ interface IProps {
     type: Types;
     onBlur?: (value: string) => void;
     placeholder?: string;
-    style?: RegisteredStyle<ViewStyle>;
+    style?: ViewStyle;
     testID?: string;
     icon?: Types;
 }

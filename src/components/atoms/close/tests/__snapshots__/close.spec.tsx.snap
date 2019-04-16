@@ -18,7 +18,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "activeOpacity": 0.2,
-      "children": <Component
+      "children": <Image
         source={
           Object {
             "testUri": "../../../assets/close/close.png",
@@ -59,7 +59,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "activeOpacity": 0.2,
-        "children": <Component
+        "children": <Image
           source={
             Object {
               "testUri": "../../../assets/close/close.png",

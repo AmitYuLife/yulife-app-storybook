@@ -151,6 +151,8 @@
 		EBAA9B26F42B473A81BB43A3 /* Bariol-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 63DDB257B8034DF18D1D01CA /* Bariol-Regular.otf */; };
 		F40602917AEA4642963A2DC4 /* libRNSpringScrollView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7362EB49B3C41BB9766373F /* libRNSpringScrollView.a */; };
 		F7C6483916D3450C8AD04253 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D735CA38EBDC4E069BDE45DC /* libRNBlur.a */; };
+		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
+		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -808,6 +810,8 @@
 		E1C3838907B2431AB27CACE8 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
 		E36B50194DAB4CBE82680CE6 /* RNFitKit.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFitKit.xcodeproj; path = "../node_modules/react-native-fitkit/ios/RNFitKit.xcodeproj"; sourceTree = "<group>"; };
 		ECAF7C7DE0AE4E27AF136FB8 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
+		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -823,6 +827,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				3A70168B21230991007BE538 /* UserNotifications.framework in Frameworks */,
 				3A7016892123098A007BE538 /* StoreKit.framework in Frameworks */,
 				3A70168721230983007BE538 /* QuartzCore.framework in Frameworks */,
@@ -988,6 +993,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				3AA5311A213558C700C88415 /* HealthKit.framework */,
 				3A70168A21230991007BE538 /* UserNotifications.framework */,
 				3A7016882123098A007BE538 /* StoreKit.framework */,

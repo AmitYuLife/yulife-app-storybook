@@ -1,11 +1,11 @@
 import * as React from "react";
 import { SFC } from "react";
-import { RegisteredStyle, StyleSheet, Text, TextStyle } from "react-native";
+import { StyleSheet, Text, TextStyle } from "react-native";
 import styles from "./text.styles";
 
 interface IProps {
     bold?: boolean;
-    style?: RegisteredStyle<TextStyle> | TextStyle;
+    style?: TextStyle;
     numberOfLines?: number;
     testID?: string;
 }

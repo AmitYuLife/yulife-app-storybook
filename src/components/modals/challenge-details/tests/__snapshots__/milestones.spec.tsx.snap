@@ -57,7 +57,7 @@ ShallowWrapper {
               2 mins
             </YuText>
           </View>
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -82,7 +82,7 @@ ShallowWrapper {
               1 x
             </YuText>
           </View>
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -116,7 +116,7 @@ ShallowWrapper {
               4 mins
             </YuText>
           </View>
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -129,7 +129,7 @@ ShallowWrapper {
               }
             }
           />
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -154,7 +154,7 @@ ShallowWrapper {
               2 x
             </YuText>
           </View>
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -188,7 +188,7 @@ ShallowWrapper {
               8 mins
             </YuText>
           </View>
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -201,7 +201,7 @@ ShallowWrapper {
               }
             }
           />
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -214,7 +214,7 @@ ShallowWrapper {
               }
             }
           />
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -239,7 +239,7 @@ ShallowWrapper {
               3 x
             </YuText>
           </View>
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -275,7 +275,7 @@ ShallowWrapper {
               </YuText>
             </View>,
             Array [
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -301,7 +301,7 @@ ShallowWrapper {
                 1 x
               </YuText>
             </View>,
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -431,7 +431,7 @@ ShallowWrapper {
               </YuText>
             </View>,
             Array [
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -444,7 +444,7 @@ ShallowWrapper {
                   }
                 }
               />,
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -470,7 +470,7 @@ ShallowWrapper {
                 2 x
               </YuText>
             </View>,
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -617,7 +617,7 @@ ShallowWrapper {
               </YuText>
             </View>,
             Array [
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -630,7 +630,7 @@ ShallowWrapper {
                   }
                 }
               />,
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -643,7 +643,7 @@ ShallowWrapper {
                   }
                 }
               />,
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -669,7 +669,7 @@ ShallowWrapper {
                 3 x
               </YuText>
             </View>,
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -845,7 +845,7 @@ ShallowWrapper {
                 2 mins
               </YuText>
             </View>
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -870,7 +870,7 @@ ShallowWrapper {
                 1 x
               </YuText>
             </View>
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -904,7 +904,7 @@ ShallowWrapper {
                 4 mins
               </YuText>
             </View>
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -917,7 +917,7 @@ ShallowWrapper {
                 }
               }
             />
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -942,7 +942,7 @@ ShallowWrapper {
                 2 x
               </YuText>
             </View>
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -976,7 +976,7 @@ ShallowWrapper {
                 8 mins
               </YuText>
             </View>
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -989,7 +989,7 @@ ShallowWrapper {
                 }
               }
             />
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -1002,7 +1002,7 @@ ShallowWrapper {
                 }
               }
             />
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -1027,7 +1027,7 @@ ShallowWrapper {
                 3 x
               </YuText>
             </View>
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -1063,7 +1063,7 @@ ShallowWrapper {
                 </YuText>
               </View>,
               Array [
-                <Component
+                <Image
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -1089,7 +1089,7 @@ ShallowWrapper {
                   1 x
                 </YuText>
               </View>,
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -1219,7 +1219,7 @@ ShallowWrapper {
                 </YuText>
               </View>,
               Array [
-                <Component
+                <Image
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -1232,7 +1232,7 @@ ShallowWrapper {
                     }
                   }
                 />,
-                <Component
+                <Image
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -1258,7 +1258,7 @@ ShallowWrapper {
                   2 x
                 </YuText>
               </View>,
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -1405,7 +1405,7 @@ ShallowWrapper {
                 </YuText>
               </View>,
               Array [
-                <Component
+                <Image
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -1418,7 +1418,7 @@ ShallowWrapper {
                     }
                   }
                 />,
-                <Component
+                <Image
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -1431,7 +1431,7 @@ ShallowWrapper {
                     }
                   }
                 />,
-                <Component
+                <Image
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -1457,7 +1457,7 @@ ShallowWrapper {
                   3 x
                 </YuText>
               </View>,
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -1685,7 +1685,7 @@ ShallowWrapper {
               1000 steps
             </YuText>
           </View>
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -1710,7 +1710,7 @@ ShallowWrapper {
               1 x
             </YuText>
           </View>
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -1744,7 +1744,7 @@ ShallowWrapper {
               2000 steps
             </YuText>
           </View>
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -1757,7 +1757,7 @@ ShallowWrapper {
               }
             }
           />
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -1782,7 +1782,7 @@ ShallowWrapper {
               2 x
             </YuText>
           </View>
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -1816,7 +1816,7 @@ ShallowWrapper {
               3000 steps
             </YuText>
           </View>
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -1829,7 +1829,7 @@ ShallowWrapper {
               }
             }
           />
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -1842,7 +1842,7 @@ ShallowWrapper {
               }
             }
           />
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/star.png",
@@ -1867,7 +1867,7 @@ ShallowWrapper {
               3 x
             </YuText>
           </View>
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -1903,7 +1903,7 @@ ShallowWrapper {
               </YuText>
             </View>,
             Array [
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -1929,7 +1929,7 @@ ShallowWrapper {
                 1 x
               </YuText>
             </View>,
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -2059,7 +2059,7 @@ ShallowWrapper {
               </YuText>
             </View>,
             Array [
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -2072,7 +2072,7 @@ ShallowWrapper {
                   }
                 }
               />,
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -2098,7 +2098,7 @@ ShallowWrapper {
                 2 x
               </YuText>
             </View>,
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -2245,7 +2245,7 @@ ShallowWrapper {
               </YuText>
             </View>,
             Array [
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -2258,7 +2258,7 @@ ShallowWrapper {
                   }
                 }
               />,
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -2271,7 +2271,7 @@ ShallowWrapper {
                   }
                 }
               />,
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/star.png",
@@ -2297,7 +2297,7 @@ ShallowWrapper {
                 3 x
               </YuText>
             </View>,
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -2473,7 +2473,7 @@ ShallowWrapper {
                 1000 steps
               </YuText>
             </View>
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -2498,7 +2498,7 @@ ShallowWrapper {
                 1 x
               </YuText>
             </View>
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -2532,7 +2532,7 @@ ShallowWrapper {
                 2000 steps
               </YuText>
             </View>
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -2545,7 +2545,7 @@ ShallowWrapper {
                 }
               }
             />
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -2570,7 +2570,7 @@ ShallowWrapper {
                 2 x
               </YuText>
             </View>
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -2604,7 +2604,7 @@ ShallowWrapper {
                 3000 steps
               </YuText>
             </View>
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -2617,7 +2617,7 @@ ShallowWrapper {
                 }
               }
             />
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -2630,7 +2630,7 @@ ShallowWrapper {
                 }
               }
             />
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/star.png",
@@ -2655,7 +2655,7 @@ ShallowWrapper {
                 3 x
               </YuText>
             </View>
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -2691,7 +2691,7 @@ ShallowWrapper {
                 </YuText>
               </View>,
               Array [
-                <Component
+                <Image
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -2717,7 +2717,7 @@ ShallowWrapper {
                   1 x
                 </YuText>
               </View>,
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -2847,7 +2847,7 @@ ShallowWrapper {
                 </YuText>
               </View>,
               Array [
-                <Component
+                <Image
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -2860,7 +2860,7 @@ ShallowWrapper {
                     }
                   }
                 />,
-                <Component
+                <Image
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -2886,7 +2886,7 @@ ShallowWrapper {
                   2 x
                 </YuText>
               </View>,
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/yucoin.png",
@@ -3033,7 +3033,7 @@ ShallowWrapper {
                 </YuText>
               </View>,
               Array [
-                <Component
+                <Image
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -3046,7 +3046,7 @@ ShallowWrapper {
                     }
                   }
                 />,
-                <Component
+                <Image
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -3059,7 +3059,7 @@ ShallowWrapper {
                     }
                   }
                 />,
-                <Component
+                <Image
                   source={
                     Object {
                       "testUri": "../../../assets/challenge-details/star.png",
@@ -3085,7 +3085,7 @@ ShallowWrapper {
                   3 x
                 </YuText>
               </View>,
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-details/yucoin.png",

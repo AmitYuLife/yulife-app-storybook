@@ -37,7 +37,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -71,7 +71,7 @@ ShallowWrapper {
               type="challenge-success"
             />
           </View>
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-success/challenge-success.png",
@@ -152,7 +152,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -231,7 +231,7 @@ ShallowWrapper {
                 type="challenge-success"
               />
             </View>,
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/challenge-success.png",
@@ -402,7 +402,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -436,7 +436,7 @@ ShallowWrapper {
                 type="challenge-success"
               />
             </View>
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/challenge-success.png",
@@ -517,7 +517,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -596,7 +596,7 @@ ShallowWrapper {
                   type="challenge-success"
                 />
               </View>,
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-success/challenge-success.png",
@@ -807,7 +807,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -841,7 +841,7 @@ ShallowWrapper {
               type="challenge-success"
             />
           </View>
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-success/challenge-success.png",
@@ -922,7 +922,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -1001,7 +1001,7 @@ ShallowWrapper {
                 type="challenge-success"
               />
             </View>,
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/challenge-success.png",
@@ -1172,7 +1172,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -1206,7 +1206,7 @@ ShallowWrapper {
                 type="challenge-success"
               />
             </View>
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-success/challenge-success.png",
@@ -1287,7 +1287,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-success/levelLine.png",
@@ -1366,7 +1366,7 @@ ShallowWrapper {
                   type="challenge-success"
                 />
               </View>,
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-success/challenge-success.png",

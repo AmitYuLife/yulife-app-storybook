@@ -1,11 +1,11 @@
 import * as React from "react";
 import { SFC } from "react";
-import { RegisteredStyle, StyleSheet, Text, View, ViewStyle } from "react-native";
+import { StyleSheet, Text, View, ViewStyle } from "react-native";
 import styles from "./blurb.styles";
 
 interface IProps {
     label: string;
-    wrapperStyle?: RegisteredStyle<ViewStyle>;
+    wrapperStyle?: ViewStyle;
 }
 
 const Blurb: SFC<IProps> = ({ label, wrapperStyle }) => (

@@ -36,7 +36,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <Image
             resizeMode="cover"
             source={
               Object {
@@ -107,7 +107,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Component
+          "children": <Image
             resizeMode="cover"
             source={
               Object {
@@ -257,7 +257,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <Image
               resizeMode="cover"
               source={
                 Object {
@@ -328,7 +328,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Component
+            "children": <Image
               resizeMode="cover"
               source={
                 Object {
@@ -518,7 +518,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <Image
             resizeMode="cover"
             source={
               Object {
@@ -589,7 +589,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Component
+          "children": <Image
             resizeMode="cover"
             source={
               Object {
@@ -739,7 +739,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <Image
               resizeMode="cover"
               source={
                 Object {
@@ -810,7 +810,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Component
+            "children": <Image
               resizeMode="cover"
               source={
                 Object {

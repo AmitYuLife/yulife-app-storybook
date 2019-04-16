@@ -29,7 +29,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-failed/levelLine.png",
@@ -60,7 +60,7 @@ ShallowWrapper {
         >
           you didn’t make it
         </YuText>,
-        <Component
+        <Image
           source={
             Object {
               "testUri": "../../../assets/challenge-failed/face.png",
@@ -117,7 +117,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-failed/levelLine.png",
@@ -261,7 +261,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <Image
               source={
                 Object {
                   "testUri": "../../../assets/challenge-failed/levelLine.png",
@@ -292,7 +292,7 @@ ShallowWrapper {
           >
             you didn’t make it
           </YuText>,
-          <Component
+          <Image
             source={
               Object {
                 "testUri": "../../../assets/challenge-failed/face.png",
@@ -349,7 +349,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Component
+              <Image
                 source={
                   Object {
                     "testUri": "../../../assets/challenge-failed/levelLine.png",
