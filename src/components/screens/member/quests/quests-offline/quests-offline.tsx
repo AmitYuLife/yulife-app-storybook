@@ -1,26 +1,30 @@
 import { Pad, Text } from "@atoms/index";
-import { COLOURS, NavBar, TopBar } from "@molecules/index";
-import { getCurrentWorld } from "@services/utils";
+import { NavBar, TopBar } from "@molecules/index";
 import * as React from "react";
 import { Image, Platform, SafeAreaView, View } from "react-native";
+import { IThemeStore } from "../../../../../redux/theme/theme.reducer";
 import { IConnectedScreenProps } from "../../../../../typings";
+import assets from "./assets";
 import styles from "./quests-offline.styles";
 
-type Props = IConnectedScreenProps & { currentLevel: number; fitkitAvailable: boolean };
+type Props = IConnectedScreenProps & {
+    fitkitAvailable: boolean;
+    theme: IThemeStore["questsOfflineScreen"];
+};
+
+type ImageType = "forest" | "ocean" | "desert";
 
 export default function QuestsScreenOffline({
-    currentLevel,
     fitkitAvailable,
     labels,
     onLeftMenuPress,
-    totalCoins
+    totalCoins,
+    theme: { image, navBarType }
 }: Props) {
-    const { image, navBarType } = getWorldStyle(currentLevel);
-
     return (
         <SafeAreaView style={styles.wrapper}>
             <View style={styles.backgroundWrapper}>
-                <Image resizeMode="cover" style={styles.background} source={image} />
+                <Image resizeMode="cover" style={styles.background} source={assets[image as ImageType]} />
             </View>
             <View style={styles.headingWrapper}>
                 <View>
@@ -44,25 +48,4 @@ export default function QuestsScreenOffline({
             </View>
         </SafeAreaView>
     );
-}
-
-function getWorldStyle(currentLevel: number) {
-    switch (getCurrentWorld(currentLevel)) {
-        case 2:
-            return {
-                image: require("../../../../../../assets/quests-offline/desert.png"),
-                navBarType: COLOURS.DARK
-            };
-        case 1:
-            return {
-                image: require("../../../../../../assets/quests-offline/ocean.png"),
-                navBarType: COLOURS.LIGHT
-            };
-        case 0:
-        default:
-            return {
-                image: require("../../../../../../assets/quests-offline/forest.png"),
-                navBarType: COLOURS.LIGHT
-            };
-    }
 }

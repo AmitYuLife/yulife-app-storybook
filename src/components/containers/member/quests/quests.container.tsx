@@ -29,6 +29,11 @@ import {
     getNextLevelAvailableAt
 } from "../../../../redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "../../../../redux/streaks/streaks.actions";
+import {
+    getChallengeFailedTheme,
+    getChallengeProgressTheme,
+    getQuestsOfflineTheme
+} from "../../../../redux/theme/theme.selectors";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { openCalm, openHeadspace } from "../../../../services/app-link";
 import BlurProvider from "../../../atoms/blur/blur-provider";
@@ -132,7 +137,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
     }
 
     public render() {
-        const { currentLevel, labels, offline, onLeftMenuPress, totalCoins } = this.props;
+        const { labels, offline, onLeftMenuPress, totalCoins, theme } = this.props;
 
         return (
             <FitKitAvailable>
@@ -140,11 +145,11 @@ class QuestsContainer extends PureComponent<Props, IState> {
                     if (!available || offline) {
                         return (
                             <QuestsScreenOffline
-                                currentLevel={currentLevel}
                                 fitkitAvailable={available}
                                 totalCoins={totalCoins}
                                 labels={labels}
                                 onLeftMenuPress={onLeftMenuPress}
+                                theme={theme.questsOffline}
                             />
                         );
                     }
@@ -180,7 +185,8 @@ class QuestsContainer extends PureComponent<Props, IState> {
             features,
             labels,
             onLeftMenuPress,
-            totalCoins
+            totalCoins,
+            theme
         } = this.props;
 
         const props = {
@@ -202,7 +208,11 @@ class QuestsContainer extends PureComponent<Props, IState> {
                     unit={unit as any}
                 />
             ) : (
-                <ChallengeFailedScreen level={level} onPress={this.handleResetChallenge(refetch)} />
+                <ChallengeFailedScreen
+                    level={level}
+                    onPress={this.handleResetChallenge(refetch)}
+                    theme={theme.challengeFailed}
+                />
             );
         }
 
@@ -228,6 +238,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                             onHeadspacePress={openHeadspace}
                             endDateTime={endDateTime}
                             userProgress={score}
+                            theme={theme.challengeProgress[subtype === "day walk" ? "short stroll" : subtype]}
                             progressTargets={progressTargets}
                             unit={unit as any}
                         />
@@ -447,7 +458,12 @@ const mapStateToProps = (state: IReduxState) => ({
     features: getUserFeatures(state),
     nextLevelAvailableAt: getNextLevelAvailableAt(state),
     offline: getOfflineState(state),
-    totalCoins: getTotalCoins(state)
+    totalCoins: getTotalCoins(state),
+    theme: {
+        challengeFailed: getChallengeFailedTheme(state),
+        challengeProgress: getChallengeProgressTheme(state),
+        questsOffline: getQuestsOfflineTheme(state)
+    }
 });
 
 const mapDispatchToProps = {

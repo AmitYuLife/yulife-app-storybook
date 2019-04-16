@@ -5,6 +5,15 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeFailedScreen
     onPress={[MockFunction]}
+    theme={
+      Object {
+        "backgroundImage": "challenge_failed_forest",
+        "backgroundStyle": null,
+        "footerStyle": Object {
+          "color": "rgb(170,170,170)",
+        },
+      }
+    }
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],

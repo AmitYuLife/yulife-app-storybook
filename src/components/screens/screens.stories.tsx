@@ -1,11 +1,11 @@
+import { COLOURS, IColours, NavBar } from "@app/components/molecules";
+import { StreakTypes } from "@app/components/molecules/streak/streak";
+import { TopBarTypes } from "@app/components/molecules/top-bar/top-bar";
+// tslint:disable-next-line
+import { ProgressBarTypes } from "@app/components/screens/member/challenges/challenge-progress/subcomponents/progress-bar";
+import { ICentredScreen } from "@app/redux/theme/theme.reducer";
 import { action } from "@storybook/addon-actions";
-import {
-    boolean,
-    number,
-    object,
-    select,
-    withKnobs
-} from "@storybook/addon-knobs";
+import { boolean, number, object, select, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import moment from "moment";
 import React from "react";
@@ -35,10 +35,7 @@ import {
 storiesOf("Screens", module)
     .addDecorator(withKnobs)
     .add("1. Welcome", () => (
-        <WelcomeScreen
-            onSignUpPress={action("on sign-up press")}
-            onLogInPress={action("on login press")}
-        />
+        <WelcomeScreen onSignUpPress={action("on sign-up press")} onLogInPress={action("on login press")} />
     ))
     .add("2. Login", () => (
         <LoginScreen
@@ -67,11 +64,7 @@ storiesOf("Screens", module)
             onSubmitPress={action("on submit press")}
         />
     ))
-    .add("3b. Reset Password Success", () => (
-        <ResetPasswordSuccessScreen
-            onLogInPress={action("on login press")}
-        />
-    ))
+    .add("3b. Reset Password Success", () => <ResetPasswordSuccessScreen onLogInPress={action("on login press")} />)
     .add("4. FitKit Connect", () => (
         <FitKitConnectScreen
             connecting={boolean("Connecting?", false, "FitKit")}
@@ -86,28 +79,43 @@ storiesOf("Screens", module)
         <SignUpRewardScreen
             isLoading={false}
             onCollectPress={action("on collect press")}
-            reward={number("Reward", 1000, {
-                max: 2000,
-                min: 0,
-                range: true,
-                step: 1
-            }, "SignUp")}
+            reward={number(
+                "Reward",
+                1000,
+                {
+                    max: 2000,
+                    min: 0,
+                    range: true,
+                    step: 1
+                },
+                "SignUp"
+            )}
         />
     ))
     .add("6. Daily Steps", () => (
         <DailyStepsScreen
-            coinsToday={number("Coins", 4, {
-                max: 12,
-                min: 0,
-                range: true,
-                step: 1
-            }, "DailySteps")}
-            currentStreak={number("Current Streak", 2, {
-                max: 4,
-                min: 0,
-                range: true,
-                step: 1
-            }, "DailySteps")}
+            coinsToday={number(
+                "Coins",
+                4,
+                {
+                    max: 12,
+                    min: 0,
+                    range: true,
+                    step: 1
+                },
+                "DailySteps"
+            )}
+            currentStreak={number(
+                "Current Streak",
+                2,
+                {
+                    max: 4,
+                    min: 0,
+                    range: true,
+                    step: 1
+                },
+                "DailySteps"
+            )}
             displayStreak={boolean("Display Streak?", true, "DailySteps")}
             fitKitAvailable={boolean("FitKit Available?", true, "DailySteps")}
             hasPermission={boolean("FitKit Permission?", true, "DailySteps")}
@@ -120,293 +128,401 @@ storiesOf("Screens", module)
             onCtaPress={action("on cta press")}
             onLeftMenuPress={action("on left menu press")}
             onStreakPress={action("on streak press")}
-            steps={number("Steps", 1246, {
-                max: 35000,
-                min: 0,
-                range: true,
-                step: 1
-            }, "DailySteps")}
-            totalCoins={number("TotalCoins", 4, {
-                max: 999999,
-                min: 0,
-                range: true,
-                step: 1
-            }, "DailySteps")}
+            steps={number(
+                "Steps",
+                1246,
+                {
+                    max: 35000,
+                    min: 0,
+                    range: true,
+                    step: 1
+                },
+                "DailySteps"
+            )}
+            totalCoins={number(
+                "TotalCoins",
+                4,
+                {
+                    max: 999999,
+                    min: 0,
+                    range: true,
+                    step: 1
+                },
+                "DailySteps"
+            )}
+            theme={{
+                centredScreen: {
+                    offline: { image: "gray_forest", style: { backgroundColor: "#FFF" } } as ICentredScreen,
+                    online: { image: "large_forest", style: { backgroundColor: "#FFF" } } as ICentredScreen
+                },
+                hasWhiteGlow: false,
+                isLight: false,
+                navBar: {
+                    offline: COLOURS.LIGHT,
+                    online: COLOURS.LIGHT
+                },
+                streakType: "forest" as StreakTypes,
+                textStyle: { color: "#333333" },
+                topBarType: "default" as TopBarTypes
+            }}
         />
     ))
     .add("7. Challenges List", () => (
         <ChallengesListScreen
-            challenges={object("Challenges", [
-                {
-                    challengeType: "brisk walk",
-                    currentWorld: 0,
-                    duration: "10 mins",
-                    reward: "0-3"
-                },
-                {
-                    challengeType: "long walk",
-                    currentWorld: 0,
-                    duration: "30 mins",
-                    reward: "0-6"
-                },
-                {
-                    challengeType: "short stroll",
-                    currentWorld: 0,
-                    duration: "5 mins",
-                    reward: "0-1"
-                },
-                {
-                    challengeType: "meditation",
-                    currentWorld: 0,
-                    duration: "3-10 mins",
-                    reward: "0-3"
-                }
-            ], "ChallengesList")}
-            labels={object("Labels", [
-                {
-                    name: "yucoin",
-                    onPress: action("on first tab press")
-                },
-                {
-                    name: "quests",
-                    onPress: action("on second tab press")
-                },
-                {
-                    name: "rewards",
-                    onPress: action("on third tab press")
-                }
-            ], "ChallengesList")}
+            challenges={object(
+                "Challenges",
+                [
+                    {
+                        challengeType: "brisk walk",
+                        currentWorld: 0,
+                        duration: "10 mins",
+                        reward: "0-3"
+                    },
+                    {
+                        challengeType: "long walk",
+                        currentWorld: 0,
+                        duration: "30 mins",
+                        reward: "0-6"
+                    },
+                    {
+                        challengeType: "short stroll",
+                        currentWorld: 0,
+                        duration: "5 mins",
+                        reward: "0-1"
+                    },
+                    {
+                        challengeType: "meditation",
+                        currentWorld: 0,
+                        duration: "3-10 mins",
+                        reward: "0-3"
+                    }
+                ],
+                "ChallengesList"
+            )}
+            labels={object(
+                "Labels",
+                [
+                    {
+                        name: "yucoin",
+                        onPress: action("on first tab press")
+                    },
+                    {
+                        name: "quests",
+                        onPress: action("on second tab press")
+                    },
+                    {
+                        name: "rewards",
+                        onPress: action("on third tab press")
+                    }
+                ],
+                "ChallengesList"
+            )}
             name="level 1"
             onPressLeftIcon={action("on left icon press")}
-            totalCoins={number("TotalCoins", 1246, {
-                max: 35000,
-                min: 0,
-                range: true,
-                step: 1
-            }, "ChallengesList")}
+            totalCoins={number(
+                "TotalCoins",
+                1246,
+                {
+                    max: 35000,
+                    min: 0,
+                    range: true,
+                    step: 1
+                },
+                "ChallengesList"
+            )}
+            theme={{
+                backgroundImage: "forest",
+                backgroundWrapperStyle: { backgroundColor: "rgb(154, 231, 216)" },
+                navBarType: NavBar.Colours.LIGHT,
+                topBarType: "default" as TopBarTypes
+            }}
         />
     ))
     .add("8. Challenge Progress", () => (
         <ChallengeProgressScreen
             onDismissPress={action("on dismiss press")}
-            endDateTime={moment().add(1, "hours").format()}
+            endDateTime={moment()
+                .add(1, "hours")
+                .format()}
             userProgress={number("userProgress", 1000)}
             onLeftMenuPress={action("on left menu press")}
             progressTargets={object("progressTargets", [2000, 4000, 6000])}
             unit={select("unit", ["steps", "minutes"], "steps")}
-            challengeType={select("Challenge Type", [
+            challengeType={select(
+                "Challenge Type",
+                ["brisk walk", "short stroll", "long walk", "meditation"],
                 "brisk walk",
-                "short stroll",
-                "long walk",
-                "meditation"
-            ], "brisk walk", "ChallengeDetails")}
-            totalCoins={number("TotalCoins", 4, {
-                max: 999999,
-                min: 0,
-                range: true,
-                step: 1
-            }, "ChallengeDetails")}
+                "ChallengeDetails"
+            )}
+            totalCoins={number(
+                "TotalCoins",
+                4,
+                {
+                    max: 999999,
+                    min: 0,
+                    range: true,
+                    step: 1
+                },
+                "ChallengeDetails"
+            )}
+            theme={{
+                backgroundColour: "rgb(255,255,255)",
+                navBarType: "light" as IColours,
+                progressBarType: "black" as ProgressBarTypes,
+                source: "squirrel",
+                style: { height: 450 },
+                topBarType: "default" as TopBarTypes
+            }}
         />
     ))
     .add("9. Challenge Success", () => (
         <ChallengeSuccessScreen
-            level={number("Level", 1, {
-                max: 49,
-                min: 1,
-                range: true,
-                step: 1
-            }, "ChallengeSuccess")}
+            level={number(
+                "Level",
+                1,
+                {
+                    max: 49,
+                    min: 1,
+                    range: true,
+                    step: 1
+                },
+                "ChallengeSuccess"
+            )}
             onPressCta={action("on cta press")}
-            score={number("Score", 246, {
-                max: 35000,
-                min: 0,
-                range: true,
-                step: 1
-            }, "ChallengeSuccess")}
-            unit={select("Unit", [
-                "steps",
-                "minutes"
-            ], "steps", "ChallengeSuccess")}
-            rating={number("Rating", 0, {
-                max: 3,
-                min: 0,
-                range: true,
-                step: 1
-            }, "ChallengeSuccess")}
-            reward={number("Reward", 0, {
-                max: 3,
-                min: 0,
-                range: true,
-                step: 1
-            }, "ChallengeSuccess")}
+            score={number(
+                "Score",
+                246,
+                {
+                    max: 35000,
+                    min: 0,
+                    range: true,
+                    step: 1
+                },
+                "ChallengeSuccess"
+            )}
+            unit={select("Unit", ["steps", "minutes"], "steps", "ChallengeSuccess")}
+            rating={number(
+                "Rating",
+                0,
+                {
+                    max: 3,
+                    min: 0,
+                    range: true,
+                    step: 1
+                },
+                "ChallengeSuccess"
+            )}
+            reward={number(
+                "Reward",
+                0,
+                {
+                    max: 3,
+                    min: 0,
+                    range: true,
+                    step: 1
+                },
+                "ChallengeSuccess"
+            )}
         />
     ))
     .add("10. Challenge Failed", () => (
         <ChallengeFailedScreen
-            level={number("Level", 1, {
-                max: 49,
-                min: 1,
-                range: true,
-                step: 1
-            }, "ChallengeFailed")}
+            level={number(
+                "Level",
+                1,
+                {
+                    max: 49,
+                    min: 1,
+                    range: true,
+                    step: 1
+                },
+                "ChallengeFailed"
+            )}
+            theme={{
+                backgroundImage: "challenge_failed_forest",
+                backgroundStyle: null,
+                footerStyle: {
+                    color: "rgb(170,170,170)"
+                }
+            }}
             onPress={action("on press")}
         />
     ))
     .add("11. Activity History w/ Levels", () => (
         <ActivityHistoryLevels
-            items={object("Items", [
-                {
-                    challenges: [],
-                    dayOfMonth: "14",
-                    dayOfWeek: "SUN",
-                    steps: 10098,
-                    yucoin: 3
-                },
-                {
-                    challenges: [
-                        {
-                            earned: 1,
-                            milestones: 1,
-                            name: "long walk",
-                            score: "8000 steps"
-                        },
-                        {
-                            earned: 3,
-                            milestones: 2,
-                            name: "meditation",
-                            score: "08m 00s"
-                        },
-                        {
-                            earned: 1,
-                            milestones: 3,
-                            name: "short stroll",
-                            score: "1299 steps"
-                        }
-                    ],
-                    dayOfMonth: "13",
-                    dayOfWeek: "SAT",
-                    level: 4,
-                    steps: 4098,
-                    yucoin: 3
-                },
-                {
-                    challenges: [
-                        {
-                            earned: 4,
-                            milestones: 3,
-                            name: "long walk",
-                            score: "9299 steps"
-                        },
-                        {
-                            earned: 3,
-                            milestones: 2,
-                            name: "meditation",
-                            score: "08m 00s"
-                        }
-                    ],
-                    dayOfMonth: "12",
-                    dayOfWeek: "FRI",
-                    level: 3,
-                    steps: 6098,
-                    yucoin: 3
-                },
-                {
-                    challenges: [],
-                    dayOfMonth: "11",
-                    dayOfWeek: "THU",
-                    steps: 10098,
-                    yucoin: 3
-                },
-                {
-                    challenges: [
-                        {
-                            earned: 1,
-                            milestones: 3,
-                            name: "short stroll",
-                            score: "08m 00s"
-                        }
-                    ],
-                    dayOfMonth: "10",
-                    dayOfWeek: "WED",
-                    level: 2,
-                    steps: 10098,
-                    yucoin: 3
-                },
-                {
-                    challenges: [
-                        {
-                            earned: 1,
-                            milestones: 3,
-                            name: "short stroll",
-                            score: "05m 00s"
-                        }
-                    ],
-                    dayOfMonth: "9",
-                    dayOfWeek: "TUE",
-                    level: 1,
-                    steps: 7890,
-                    yucoin: 3
-                }
-            ], "Items")}
+            items={object(
+                "Items",
+                [
+                    {
+                        challenges: [],
+                        dayOfMonth: "14",
+                        dayOfWeek: "SUN",
+                        steps: 10098,
+                        yucoin: 3
+                    },
+                    {
+                        challenges: [
+                            {
+                                earned: 1,
+                                milestones: 1,
+                                name: "long walk",
+                                score: "8000 steps"
+                            },
+                            {
+                                earned: 3,
+                                milestones: 2,
+                                name: "meditation",
+                                score: "08m 00s"
+                            },
+                            {
+                                earned: 1,
+                                milestones: 3,
+                                name: "short stroll",
+                                score: "1299 steps"
+                            }
+                        ],
+                        dayOfMonth: "13",
+                        dayOfWeek: "SAT",
+                        level: 4,
+                        steps: 4098,
+                        yucoin: 3
+                    },
+                    {
+                        challenges: [
+                            {
+                                earned: 4,
+                                milestones: 3,
+                                name: "long walk",
+                                score: "9299 steps"
+                            },
+                            {
+                                earned: 3,
+                                milestones: 2,
+                                name: "meditation",
+                                score: "08m 00s"
+                            }
+                        ],
+                        dayOfMonth: "12",
+                        dayOfWeek: "FRI",
+                        level: 3,
+                        steps: 6098,
+                        yucoin: 3
+                    },
+                    {
+                        challenges: [],
+                        dayOfMonth: "11",
+                        dayOfWeek: "THU",
+                        steps: 10098,
+                        yucoin: 3
+                    },
+                    {
+                        challenges: [
+                            {
+                                earned: 1,
+                                milestones: 3,
+                                name: "short stroll",
+                                score: "08m 00s"
+                            }
+                        ],
+                        dayOfMonth: "10",
+                        dayOfWeek: "WED",
+                        level: 2,
+                        steps: 10098,
+                        yucoin: 3
+                    },
+                    {
+                        challenges: [
+                            {
+                                earned: 1,
+                                milestones: 3,
+                                name: "short stroll",
+                                score: "05m 00s"
+                            }
+                        ],
+                        dayOfMonth: "9",
+                        dayOfWeek: "TUE",
+                        level: 1,
+                        steps: 7890,
+                        yucoin: 3
+                    }
+                ],
+                "Items"
+            )}
             onPressClose={action("on press close")}
             onRefresh={action("on refresh")}
             loading={boolean("Loading?", false, "Items")}
         />
     ))
-    .add("12. Intro", () => (
-        <IntroScreen onPressLastCta={action("on press last press")} />
-    ))
+    .add("12. Intro", () => <IntroScreen onPressLastCta={action("on press last press")} />)
     .add("13a. QuestScreen", () => {
         const nextAvailable = moment().unix();
         return (
             <QuestsScreen
-                currentLevel={number("CurrentLevel", 4, {
-                    max: 99,
-                    min: 0,
-                    range: true,
-                    step: 1
-                }, "QuestScreen")}
-                data={object("data", Array.from({ length: 7 }).map((_, i) => ({
-                    id: `_${i + 1}`,
-                    onPress: action(`@ pressed _${i + 1}`),
-                    rating: 3
-                })).concat({ isNext: true, nextAvailable, onPress: action(`@ pressed next`) } as any)) as any}
+                currentLevel={number(
+                    "CurrentLevel",
+                    4,
+                    {
+                        max: 99,
+                        min: 0,
+                        range: true,
+                        step: 1
+                    },
+                    "QuestScreen"
+                )}
+                data={
+                    object(
+                        "data",
+                        Array.from({ length: 7 })
+                            .map((_, i) => ({
+                                id: `_${i + 1}`,
+                                onPress: action(`@ pressed _${i + 1}`),
+                                rating: 3
+                            }))
+                            .concat({ isNext: true, nextAvailable, onPress: action(`@ pressed next`) } as any)
+                    ) as any
+                }
                 onLeftMenuPress={action("on left menu press")}
-                totalCoins={number("TotalCoins", 4, {
-                    max: 999999,
-                    min: 0,
-                    range: true,
-                    step: 1
-                }, "QuestScreen")}
+                totalCoins={number(
+                    "TotalCoins",
+                    4,
+                    {
+                        max: 999999,
+                        min: 0,
+                        range: true,
+                        step: 1
+                    },
+                    "QuestScreen"
+                )}
             />
         );
     })
     .add("13b. QuestScreenOffline", () => (
         <QuestsScreenOffline
-            currentLevel={number("CurrentLevel", 41, {
-                max: 99,
-                min: 0,
-                range: true,
-                step: 1
-            }, "QuestScreenOffline")}
             fitkitAvailable={boolean("FitKitAvailable", true)}
             onLeftMenuPress={action("on left menu press")}
-            totalCoins={number("TotalCoins", 4, {
-                max: 999999,
-                min: 0,
-                range: true,
-                step: 1
-            }, "QuestScreenOffline")}
+            theme={{
+                image: "desert",
+                navBarType: COLOURS.DARK
+            }}
+            totalCoins={number(
+                "TotalCoins",
+                4,
+                {
+                    max: 999999,
+                    min: 0,
+                    range: true,
+                    step: 1
+                },
+                "QuestScreenOffline"
+            )}
         />
     ))
-    .add("13c. QuestsMovie", () => (
-        <QuestsMovie />
-    ))
+    .add("13c. QuestsMovie", () => <QuestsMovie />)
     .add("14. Today Yucoin", () => (
         <TodayYucoinScreen
             steps={number("steps", 6543)}
             dailyStepsEarned={number("dailyStepsEarned", 3)}
-            exchangeRate={{ steps: 2000, yucoin: 1}}
+            exchangeRate={{ steps: 2000, yucoin: 1 }}
             challenges={[]}
             activeChallenge={null}
             loading={false}
@@ -416,15 +532,8 @@ storiesOf("Screens", module)
             onPressClose={action("pressed close")}
         />
     ))
-    .add("15. NoAccessScreen", () => (
-        <NoAccessScreen />
-    ))
-    .add("16. QuestsNextEpisode", () => (
-        <QuestsNextEpisode
-            data={null}
-            onSkip={action("pressed skip")}
-        />
-    ))
+    .add("15. NoAccessScreen", () => <NoAccessScreen />)
+    .add("16. QuestsNextEpisode", () => <QuestsNextEpisode data={null} onSkip={action("pressed skip")} />)
     .add("17. Challenges List Completed", () => (
         <ChallengesHistoryScreen
             onLeftMenuPress={() => null}

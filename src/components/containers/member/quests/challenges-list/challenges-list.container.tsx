@@ -1,8 +1,8 @@
 import { createActiveChallengeGql } from "@graphql/challenges/createActiveChallenge.gql";
 import { getCurrentWorld } from "@services/utils";
 import { ApolloClient } from "apollo-client";
-import * as React from "react";
 import { PureComponent } from "react";
+import * as React from "react";
 import { ApolloConsumer } from "react-apollo";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
@@ -13,6 +13,7 @@ import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { getDailySteps } from "../../../../../redux/daily-steps/daily-steps.selectors";
 import { challengeStartSuccessAction } from "../../../../../redux/levels/levels.actions";
 import { getCurrentLevel } from "../../../../../redux/levels/levels.selectors";
+import { getChallengeListTheme } from "../../../../../redux/theme/theme.selectors";
 import { BlurProvider, IToggleBlur } from "../../../../atoms";
 import { ChallengeDetailsModal } from "../../../../modals";
 import { ILabel } from "../../../../molecules/nav-bar/nav-bar";
@@ -64,7 +65,7 @@ class ChallengesListContainerWithClient extends PureComponent<Props, IState> {
             isLoading,
             slot: { challengeType, duration, milestones, unit }
         } = this.state;
-        const { currentLevel, labels, level, totalCoins } = this.props;
+        const { currentLevel, labels, level, totalCoins, theme } = this.props;
         const currentWorld = getCurrentWorld(level.level);
 
         return (
@@ -90,11 +91,11 @@ class ChallengesListContainerWithClient extends PureComponent<Props, IState> {
                                 onPress: isLocked ? () => ({}) : this.handleSlotPress(formattedSlot, showOverlay)
                             };
                         })}
-                        currentLevel={level.level}
                         labels={labels}
                         name={`level ${level.level}`}
                         onPressLeftIcon={this.onNavPress}
                         totalCoins={totalCoins}
+                        theme={theme}
                     />
                 )}
                 renderOverlay={({ hideOverlay }: IToggleBlur) => (
@@ -170,7 +171,8 @@ class ChallengesListContainerWithClient extends PureComponent<Props, IState> {
 const mapStateToProps = (state: IReduxState) => ({
     currentLevel: getCurrentLevel(state),
     dailySteps: getDailySteps(state),
-    totalCoins: getTotalCoins(state)
+    totalCoins: getTotalCoins(state),
+    theme: getChallengeListTheme(state)
 });
 
 const mapDispatchToProps = {

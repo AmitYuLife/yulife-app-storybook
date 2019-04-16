@@ -1,3 +1,4 @@
+import { IThemeStore } from "@app/redux/theme/theme.reducer";
 import { DAILY_STEPS_SCREEN } from "@ids";
 import { TouchableOpacityWithState } from "@molecules/index";
 import { Style } from "@styles/index";
@@ -6,7 +7,7 @@ import { Platform, View } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { IConnectedScreenProps } from "../../../../typings";
 import { CentredScreen, Pad } from "../../../atoms";
-import { COLOURS, NavBar, Streak, TopBar } from "../../../molecules";
+import { NavBar, Streak, TopBar } from "../../../molecules";
 import YuCoin from "./assets/yu-coin";
 import DailyStepsFitKitAuthorise from "./daily-steps-fitkit-authorise";
 import DailyStepsFitKitUnavailable from "./daily-steps-fitkit-unavailable";
@@ -30,6 +31,7 @@ interface IProps extends IConnectedScreenProps {
     onAuthoriseFitKitPress: () => void;
     onCoinPress: () => void;
     onStreakPress?: () => void;
+    theme: IThemeStore["dailyStepsScreen"];
 }
 
 type Props = IProps & IDailyStepsOnlineProps & IDailyStepsOfflineProps;
@@ -37,7 +39,6 @@ type Props = IProps & IDailyStepsOnlineProps & IDailyStepsOfflineProps;
 export default function DailyStepsScreen({
     coinsToday,
     currentStreak,
-    currentWorld = 0,
     displayStreak = false,
     fitKitAvailable,
     hasNotification = false,
@@ -55,12 +56,9 @@ export default function DailyStepsScreen({
     onStreakPress,
     showCounter = false,
     steps,
-    totalCoins
+    totalCoins,
+    theme: { centredScreen, hasWhiteGlow, isLight, topBarType, navBar, streakType, textStyle }
 }: Props) {
-    const { centredScreen, hasWhiteGlow, isLight, topBarType, navBar, streakType, textStyle } = getStyle(
-        currentWorld
-    ) as any;
-
     return (
         <CentredScreen
             footerImage={!isOnline || !hasPermission ? centredScreen.offline.image : centredScreen.online.image}
@@ -113,60 +111,6 @@ export default function DailyStepsScreen({
             </View>
         </CentredScreen>
     );
-}
-
-function getStyle(currentWorld: number) {
-    switch (currentWorld) {
-        case 2:
-            return {
-                centredScreen: {
-                    offline: { image: "gray_desert", style: { backgroundColor: "rgb(235,235,235)" } },
-                    online: { image: "desert", style: { backgroundColor: "rgb(255,249,225)" } }
-                },
-                hasWhiteGlow: true,
-                isLight: false,
-                navBar: {
-                    offline: COLOURS.DARKER,
-                    online: COLOURS.DESERT
-                },
-                streakType: "desert",
-                textStyle: { color: "rgb(108,59,38)" },
-                topBarType: "desert"
-            };
-        case 1:
-            return {
-                centredScreen: {
-                    offline: { image: "gray_ocean", style: { backgroundColor: "#747474" } },
-                    online: { image: "ocean", style: { backgroundColor: "rgb(1,62,116)" } }
-                },
-                hasWhiteGlow: false,
-                isLight: true,
-                navBar: {
-                    offline: COLOURS.LIGHT,
-                    online: COLOURS.LIGHT
-                },
-                streakType: "ocean",
-                textStyle: { color: "white" },
-                topBarType: "white"
-            };
-        case 0:
-        default:
-            return {
-                centredScreen: {
-                    offline: { image: "gray_forest", style: { backgroundColor: "#FFF" } },
-                    online: { image: "large_forest", style: { backgroundColor: "#FFF" } }
-                },
-                hasWhiteGlow: false,
-                isLight: false,
-                navBar: {
-                    offline: COLOURS.LIGHT,
-                    online: COLOURS.LIGHT
-                },
-                streakType: "forest",
-                textStyle: { color: "#333333" },
-                topBarType: "default"
-            };
-    }
 }
 
 function getPadHeight(displayStreak: boolean) {
