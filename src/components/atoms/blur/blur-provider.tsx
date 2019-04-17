@@ -3,10 +3,10 @@ import { Animated, findNodeHandle, StyleSheet, View } from "react-native";
 import Blur from "./blur";
 import styles from "./blur-provider.styles";
 
-const TYPES: { [name: string]: Types } = {
-    DEFAULT: "default",
-    DARK: "dark"
-};
+enum TYPES {
+    DEFAULT = "default",
+    DARK = "dark"
+}
 
 export type Types = "default" | "dark";
 

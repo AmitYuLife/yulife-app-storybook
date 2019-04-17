@@ -737,7 +737,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "behavior": "padding",
+      "behavior": null,
       "children": <CenteredScreen
         footerImage="forest"
       >
@@ -1066,7 +1066,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "behavior": "padding",
+        "behavior": null,
         "children": <CenteredScreen
           footerImage="forest"
         >
@@ -1443,7 +1443,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "behavior": "padding",
+      "behavior": null,
       "children": <CenteredScreen
         footerImage="forest"
       >
@@ -1772,7 +1772,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "behavior": "padding",
+        "behavior": null,
         "children": <CenteredScreen
           footerImage="forest"
         >
@@ -2149,7 +2149,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "behavior": "padding",
+      "behavior": null,
       "children": <CenteredScreen
         footerImage="forest"
       >
@@ -2399,7 +2399,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "behavior": "padding",
+        "behavior": null,
         "children": <CenteredScreen
           footerImage="forest"
         >
@@ -2697,7 +2697,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "behavior": "padding",
+      "behavior": null,
       "children": <CenteredScreen
         footerImage="forest"
       >
@@ -3041,7 +3041,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "behavior": "padding",
+        "behavior": null,
         "children": <CenteredScreen
           footerImage="forest"
         >

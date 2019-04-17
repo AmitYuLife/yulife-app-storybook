@@ -14,14 +14,14 @@ export interface ILabel {
     colour?: IColours;
 }
 
-export const COLOURS: { [name: string]: IColours } = {
-    BLUE: "blue",
-    DARK: "dark",
-    DARKER: "darker",
-    DESERT: "desert",
-    LIGHT: "light",
-    PINK: "pink"
-};
+export enum COLOURS {
+    BLUE = "blue",
+    DARK = "dark",
+    DARKER = "darker",
+    DESERT = "desert",
+    LIGHT = "light",
+    PINK = "pink"
+}
 
 export type IColours = "blue" | "dark" | "darker" | "desert" | "light" | "pink";
 

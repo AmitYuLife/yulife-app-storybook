@@ -11,12 +11,12 @@ import { formatSeconds, getStyle } from "./top-bar.helpers";
 import styles from "./top-bar.styles";
 
 export type TopBarTypes = "default" | "white" | "desert" | "demo";
-export const TOP_BAR_TYPES: { [name: string]: TopBarTypes } = {
-    DEFAULT: "default",
-    WHITE: "white",
-    DESERT: "desert",
-    DEMO: "demo"
-};
+export enum TOP_BAR_TYPES {
+    DEFAULT = "default",
+    WHITE = "white",
+    DESERT = "desert",
+    DEMO = "demo"
+}
 
 interface IProps {
     onPressLeftIcon?: () => void;
@@ -29,10 +29,10 @@ interface IProps {
     type?: TopBarTypes;
 }
 
-export const LEFT_ICON_TYPES: { [name: string]: LeftIconTypes } = {
-    MENU: "Menu",
-    BACK: "Back"
-};
+export enum LEFT_ICON_TYPES {
+    MENU = "Menu",
+    BACK = "Back"
+}
 
 export type LeftIconTypes = "Menu" | "Back";
 

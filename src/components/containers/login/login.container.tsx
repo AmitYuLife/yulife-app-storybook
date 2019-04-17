@@ -131,7 +131,7 @@ export class LoginContainer extends Component<Props, IState> {
                     variables: {
                         email: email.toLowerCase(),
                         intercomHashMethod: Platform.OS as IntercomHashMethod,
-                        method: (isUsingOtp ? "OTP" : "PASSWORD") as LoginMethod,
+                        method: isUsingOtp ? LoginMethod.OTP : LoginMethod.PASSWORD,
                         password,
                         tokenExpiration: TOKEN_EXPIRATION
                     }

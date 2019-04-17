@@ -1,12 +1,12 @@
 import { IReduxState } from "../_core/reducers";
 
 export type PushPermissions = "notyet" | "later" | "enabled" | "denied";
-export const PushPermissionsEnum: { [name: string]: PushPermissions } = {
-    denied: "denied",
-    enabled: "enabled",
-    later: "later",
-    notyet: "notyet"
-};
+export enum PushPermissionsEnum {
+    denied = "denied",
+    enabled = "enabled",
+    later = "later",
+    notyet = "notyet"
+}
 
 export interface IPushNotification {
     requested: boolean;

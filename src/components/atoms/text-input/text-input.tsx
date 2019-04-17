@@ -25,13 +25,13 @@ interface IProps {
     icon?: Types;
 }
 
-export const TEXT_INPUT_TYPES: { [name: string]: Types } = {
-    BOARD: "Board",
-    EMAIL: "Email",
-    PASSWORD: "Password",
-    TEXT: "Text",
-    CARD: "Card"
-};
+export enum TEXT_INPUT_TYPES {
+    BOARD = "Board",
+    EMAIL = "Email",
+    PASSWORD = "Password",
+    TEXT = "Text",
+    CARD = "Card"
+}
 
 export type Types = "Email" | "Password" | "Text" | "Card" | "Board";
 
