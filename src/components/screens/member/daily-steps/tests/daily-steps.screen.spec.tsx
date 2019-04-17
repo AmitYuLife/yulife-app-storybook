@@ -1,7 +1,10 @@
+import { StreakTypes } from "@app/components/molecules/streak/streak";
+import { TopBarTypes } from "@app/components/molecules/top-bar/top-bar";
+import { ICentredScreen } from "@app/redux/theme/theme.reducer";
 import { shallow } from "enzyme";
 import * as React from "react";
 import "react-native";
-import { ILabel } from "../../../../molecules";
+import { COLOURS, ILabel } from "../../../../molecules";
 import DailyStepsScreen from "../daily-steps.screen";
 
 const defaultProps = {
@@ -21,72 +24,57 @@ const defaultProps = {
     onLeftMenuPress: jest.fn(),
     onStreakPress: jest.fn(),
     steps: 0,
-    totalCoins: 1234
+    totalCoins: 1234,
+    theme: {
+        centredScreen: {
+            offline: { image: "gray_forest", style: { backgroundColor: "#FFF" } } as ICentredScreen,
+            online: { image: "large_forest", style: { backgroundColor: "#FFF" } } as ICentredScreen
+        },
+        hasWhiteGlow: false,
+        isLight: false,
+        navBar: {
+            offline: COLOURS.LIGHT,
+            online: COLOURS.LIGHT
+        },
+        streakType: "forest" as StreakTypes,
+        textStyle: { color: "#333333" },
+        topBarType: "default" as TopBarTypes
+    }
 };
 
 describe("DailyStepsScreen", () => {
-
     it("should render default values", () => {
-        const actual = shallow(
-            <DailyStepsScreen
-                {...defaultProps}
-            />
-        );
+        const actual = shallow(<DailyStepsScreen {...defaultProps} />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render daily streak", () => {
-        const actual = shallow(
-            <DailyStepsScreen
-                {...defaultProps}
-                displayStreak={true}
-            />
-        );
+        const actual = shallow(<DailyStepsScreen {...defaultProps} displayStreak={true} />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render loading screen", () => {
-        const actual = shallow(
-            <DailyStepsScreen
-                {...defaultProps}
-                isLoading={true}
-            />
-        );
+        const actual = shallow(<DailyStepsScreen {...defaultProps} isLoading={true} />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render FitKit permissions screen", () => {
-        const actual = shallow(
-            <DailyStepsScreen
-                {...defaultProps}
-                hasPermission={false}
-            />
-        );
+        const actual = shallow(<DailyStepsScreen {...defaultProps} hasPermission={false} />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render FitKit unavailable screen", () => {
-        const actual = shallow(
-            <DailyStepsScreen
-                {...defaultProps}
-                fitKitAvailable={false}
-            />
-        );
+        const actual = shallow(<DailyStepsScreen {...defaultProps} fitKitAvailable={false} />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render offline screen", () => {
-        const actual = shallow(
-            <DailyStepsScreen
-                {...defaultProps}
-                isOnline={false}
-            />
-        );
+        const actual = shallow(<DailyStepsScreen {...defaultProps} isOnline={false} />);
 
         expect(actual).toMatchSnapshot();
     });

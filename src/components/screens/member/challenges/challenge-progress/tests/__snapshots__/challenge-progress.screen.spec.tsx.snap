@@ -16,6 +16,18 @@ ShallowWrapper {
         6000,
       ]
     }
+    theme={
+      Object {
+        "backgroundColour": "rgb(255,255,255)",
+        "navBarType": "light",
+        "progressBarType": "black",
+        "source": "squirrel",
+        "style": Object {
+          "height": 450,
+        },
+        "topBarType": "default",
+      }
+    }
     totalCoins={1234}
     unit="steps"
     userProgress={1000}
@@ -44,12 +56,7 @@ ShallowWrapper {
           }
           style={
             Object {
-              "bottom": 0,
-              "height": 900,
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "width": "100%",
+              "height": 450,
             }
           }
         />,
@@ -119,12 +126,7 @@ ShallowWrapper {
             "testUri": "../../../assets/challenge-progress/squirrel.png",
           },
           "style": Object {
-            "bottom": 0,
-            "height": 900,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "width": "100%",
+            "height": 450,
           },
         },
         "ref": null,
@@ -248,12 +250,7 @@ ShallowWrapper {
             }
             style={
               Object {
-                "bottom": 0,
-                "height": 900,
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "width": "100%",
+                "height": 450,
               }
             }
           />,
@@ -323,12 +320,7 @@ ShallowWrapper {
               "testUri": "../../../assets/challenge-progress/squirrel.png",
             },
             "style": Object {
-              "bottom": 0,
-              "height": 900,
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "width": "100%",
+              "height": 450,
             },
           },
           "ref": null,

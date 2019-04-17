@@ -20,6 +20,7 @@ import {
 import { getChallengesStatus, getCurrentLevel, getHasNotification } from "../../../../redux/levels/levels.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
 import { getStreaks } from "../../../../redux/streaks/streaks.selectors";
+import { getDailyStepsTheme } from "../../../../redux/theme/theme.selectors";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
 import { DailyStepsScreen } from "../../../screens";
@@ -93,6 +94,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                         offline,
                         onLeftMenuPress,
                         streaks,
+                        theme,
                         totalCoins
                     } = this.props;
                     const { dailyStepsLoading, lastUpdate } = this.state;
@@ -121,6 +123,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                             onLeftMenuPress={onLeftMenuPress}
                             onStreakPress={this.onStreak}
                             steps={dailySteps}
+                            theme={theme}
                             totalCoins={totalCoins}
                         />
                     );
@@ -196,6 +199,7 @@ const mapStateToProps = (state: IReduxState) => ({
     lastUpdated: getLastUpdated(state),
     offline: getOfflineState(state),
     streaks: getStreaks(state),
+    theme: getDailyStepsTheme(state),
     totalCoins: getTotalCoins(state)
 });
 

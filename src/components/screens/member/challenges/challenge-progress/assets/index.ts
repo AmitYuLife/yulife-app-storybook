@@ -1,4 +1,6 @@
-export default {
+export type AssetType = keyof typeof assets;
+
+const assets = {
     bighornSheep: require("../../../../../../../assets/challenge-progress/bighornSheep.png"),
     bird: require("../../../../../../../assets/challenge-progress/bird.png"),
     camel: require("../../../../../../../assets/challenge-progress/camel.png"),
@@ -12,3 +14,5 @@ export default {
     tortoise: require("../../../../../../../assets/challenge-progress/tortoise.png"),
     whale: require("../../../../../../../assets/challenge-progress/whale.png")
 };
+
+export default assets;

@@ -1,7 +1,10 @@
+import { TopBarTypes } from "@app/components/molecules/top-bar/top-bar";
+// tslint:disable-next-line
+import { ProgressBarTypes } from "@app/components/screens/member/challenges/challenge-progress/subcomponents/progress-bar";
 import { shallow } from "enzyme";
 import * as React from "react";
 import "react-native";
-import { ILabel } from "../../../../../molecules";
+import { IColours, ILabel } from "../../../../../molecules";
 import ChallengeProgressScreen, { ChallengeType } from "../challenge-progress.screen";
 
 const defaultProps = {
@@ -13,7 +16,15 @@ const defaultProps = {
     progressTargets: [2000, 4000, 6000],
     totalCoins: 1234,
     unit: "steps" as "steps",
-    userProgress: 1000
+    userProgress: 1000,
+    theme: {
+        backgroundColour: "rgb(255,255,255)",
+        navBarType: "light" as IColours,
+        progressBarType: "black" as ProgressBarTypes,
+        source: "squirrel",
+        style: { height: 450 },
+        topBarType: "default" as TopBarTypes
+    }
 };
 
 describe("ChallengeProgressScreen", () => {

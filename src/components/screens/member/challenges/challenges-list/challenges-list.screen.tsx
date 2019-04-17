@@ -1,31 +1,29 @@
 import { ChallengesList, IChallengesListProps, ILabel, NavBar, TopBar } from "@molecules/index";
-import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
-import { Image, SafeAreaView, StyleSheet, View } from "react-native";
+import { Image, SafeAreaView, View } from "react-native";
+import { IThemeStore } from "../../../../../redux/theme/theme.reducer";
 import styles from "./challenges-list.screen.styles";
 
 interface IProps extends IChallengesListProps {
-    currentLevel?: number;
     labels: ILabel[];
     name: string;
     onPressLeftIcon: () => void;
     totalCoins: number;
+    theme: IThemeStore["challengeListScreen"];
 }
 
 export default function ChallengesListScreen({
     challenges,
-    currentLevel,
     labels,
     onPressLeftIcon,
     totalCoins,
-    name
+    name,
+    theme: { backgroundWrapperStyle, backgroundImage, navBarType, topBarType }
 }: IProps) {
-    const { backgroundWrapperStyle, backgroundImage, navBarType, topBarType } = getWorldStyle(currentLevel) as any;
-
     return (
         <SafeAreaView style={styles.wrapper}>
             <SafeAreaView style={backgroundWrapperStyle}>
-                <Image resizeMode="cover" style={styles.background} source={backgroundImage} />
+                <Image resizeMode="cover" style={styles.background} source={getBackgroundImageAsset(backgroundImage)} />
             </SafeAreaView>
             <View style={styles.challengeSetWrapper}>
                 <ChallengesList challenges={challenges} />
@@ -45,38 +43,14 @@ export default function ChallengesListScreen({
     );
 }
 
-function getWorldStyle(currentLevel: number) {
-    switch (getCurrentWorld(currentLevel)) {
-        case 2:
-            return {
-                backgroundImage: require("../../../../../../assets/challenges/desert.png"),
-                backgroundWrapperStyle: StyleSheet.flatten([
-                    StyleSheet.absoluteFillObject,
-                    { backgroundColor: "rgb(254,251,205)" }
-                ]),
-                navBarType: NavBar.Colours.DESERT,
-                topBarType: "desert"
-            };
-        case 1:
-            return {
-                backgroundImage: require("../../../../../../assets/challenges/ocean.png"),
-                backgroundWrapperStyle: StyleSheet.flatten([
-                    StyleSheet.absoluteFillObject,
-                    { backgroundColor: "rgb(87,155,193)" }
-                ]),
-                navBarType: NavBar.Colours.LIGHT,
-                topBarType: "white"
-            };
-        case 0:
+function getBackgroundImageAsset(backgroundImage: string) {
+    switch (backgroundImage) {
+        case "desert":
+            return require("../../../../../../assets/challenges/desert.png");
+        case "ocean":
+            return require("../../../../../../assets/challenges/ocean.png");
+        case "forest":
         default:
-            return {
-                backgroundImage: require("../../../../../../assets/challenges/forest.png"),
-                backgroundWrapperStyle: StyleSheet.flatten([
-                    StyleSheet.absoluteFillObject,
-                    { backgroundColor: "rgb(154, 231, 216)" }
-                ]),
-                navBarType: NavBar.Colours.LIGHT,
-                topBarType: "default"
-            };
+            return require("../../../../../../assets/challenges/forest.png");
     }
 }

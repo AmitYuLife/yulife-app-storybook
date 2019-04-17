@@ -17,6 +17,7 @@ import pedometerReducer, {
     IPedometerStore
 } from "../pedometer/pedometer.reducer";
 import streaksReducer, { initialState as initialStreaksState, IStreaksStore } from "../streaks/streaks.reducer";
+import themeReducer, { initialState as initialThemeState, IThemeStore } from "../theme/theme.reducer";
 import userReducer, { initialState as initialUserState, IUserStore } from "../user/user.reducer";
 
 export interface IReduxState {
@@ -28,6 +29,7 @@ export interface IReduxState {
     notifications: INotificationsStore;
     pedometer: IPedometerStore;
     streaks: IStreaksStore;
+    theme: IThemeStore;
     user: IUserStore;
 }
 
@@ -40,6 +42,7 @@ export const initialState: IReduxState = {
     notifications: initialNotificationsState,
     pedometer: initialPedometerState,
     streaks: initialStreaksState,
+    theme: initialThemeState,
     user: initialUserState
 };
 
@@ -52,6 +55,7 @@ const combinedReducers = combineReducers({
     notifications: notificationsReducer,
     pedometer: pedometerReducer,
     streaks: streaksReducer,
+    theme: themeReducer,
     user: userReducer
 });
 

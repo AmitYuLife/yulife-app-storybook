@@ -20,6 +20,35 @@ ShallowWrapper {
     onLeftMenuPress={[MockFunction]}
     onStreakPress={[MockFunction]}
     steps={0}
+    theme={
+      Object {
+        "centredScreen": Object {
+          "offline": Object {
+            "image": "gray_forest",
+            "style": Object {
+              "backgroundColor": "#FFF",
+            },
+          },
+          "online": Object {
+            "image": "large_forest",
+            "style": Object {
+              "backgroundColor": "#FFF",
+            },
+          },
+        },
+        "hasWhiteGlow": false,
+        "isLight": false,
+        "navBar": Object {
+          "offline": "light",
+          "online": "light",
+        },
+        "streakType": "forest",
+        "textStyle": Object {
+          "color": "#333333",
+        },
+        "topBarType": "default",
+      }
+    }
     totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -380,6 +409,35 @@ ShallowWrapper {
     onLeftMenuPress={[MockFunction]}
     onStreakPress={[MockFunction]}
     steps={0}
+    theme={
+      Object {
+        "centredScreen": Object {
+          "offline": Object {
+            "image": "gray_forest",
+            "style": Object {
+              "backgroundColor": "#FFF",
+            },
+          },
+          "online": Object {
+            "image": "large_forest",
+            "style": Object {
+              "backgroundColor": "#FFF",
+            },
+          },
+        },
+        "hasWhiteGlow": false,
+        "isLight": false,
+        "navBar": Object {
+          "offline": "light",
+          "online": "light",
+        },
+        "streakType": "forest",
+        "textStyle": Object {
+          "color": "#333333",
+        },
+        "topBarType": "default",
+      }
+    }
     totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -733,6 +791,35 @@ ShallowWrapper {
     onLeftMenuPress={[MockFunction]}
     onStreakPress={[MockFunction]}
     steps={0}
+    theme={
+      Object {
+        "centredScreen": Object {
+          "offline": Object {
+            "image": "gray_forest",
+            "style": Object {
+              "backgroundColor": "#FFF",
+            },
+          },
+          "online": Object {
+            "image": "large_forest",
+            "style": Object {
+              "backgroundColor": "#FFF",
+            },
+          },
+        },
+        "hasWhiteGlow": false,
+        "isLight": false,
+        "navBar": Object {
+          "offline": "light",
+          "online": "light",
+        },
+        "streakType": "forest",
+        "textStyle": Object {
+          "color": "#333333",
+        },
+        "topBarType": "default",
+      }
+    }
     totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -1165,6 +1252,35 @@ ShallowWrapper {
     onLeftMenuPress={[MockFunction]}
     onStreakPress={[MockFunction]}
     steps={0}
+    theme={
+      Object {
+        "centredScreen": Object {
+          "offline": Object {
+            "image": "gray_forest",
+            "style": Object {
+              "backgroundColor": "#FFF",
+            },
+          },
+          "online": Object {
+            "image": "large_forest",
+            "style": Object {
+              "backgroundColor": "#FFF",
+            },
+          },
+        },
+        "hasWhiteGlow": false,
+        "isLight": false,
+        "navBar": Object {
+          "offline": "light",
+          "online": "light",
+        },
+        "streakType": "forest",
+        "textStyle": Object {
+          "color": "#333333",
+        },
+        "topBarType": "default",
+      }
+    }
     totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -1553,6 +1669,35 @@ ShallowWrapper {
     onLeftMenuPress={[MockFunction]}
     onStreakPress={[MockFunction]}
     steps={0}
+    theme={
+      Object {
+        "centredScreen": Object {
+          "offline": Object {
+            "image": "gray_forest",
+            "style": Object {
+              "backgroundColor": "#FFF",
+            },
+          },
+          "online": Object {
+            "image": "large_forest",
+            "style": Object {
+              "backgroundColor": "#FFF",
+            },
+          },
+        },
+        "hasWhiteGlow": false,
+        "isLight": false,
+        "navBar": Object {
+          "offline": "light",
+          "online": "light",
+        },
+        "streakType": "forest",
+        "textStyle": Object {
+          "color": "#333333",
+        },
+        "topBarType": "default",
+      }
+    }
     totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -1905,6 +2050,35 @@ ShallowWrapper {
     onLeftMenuPress={[MockFunction]}
     onStreakPress={[MockFunction]}
     steps={0}
+    theme={
+      Object {
+        "centredScreen": Object {
+          "offline": Object {
+            "image": "gray_forest",
+            "style": Object {
+              "backgroundColor": "#FFF",
+            },
+          },
+          "online": Object {
+            "image": "large_forest",
+            "style": Object {
+              "backgroundColor": "#FFF",
+            },
+          },
+        },
+        "hasWhiteGlow": false,
+        "isLight": false,
+        "navBar": Object {
+          "offline": "light",
+          "online": "light",
+        },
+        "streakType": "forest",
+        "textStyle": Object {
+          "color": "#333333",
+        },
+        "topBarType": "default",
+      }
+    }
     totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
