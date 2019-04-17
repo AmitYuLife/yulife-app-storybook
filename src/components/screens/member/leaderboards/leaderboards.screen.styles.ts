@@ -14,6 +14,8 @@ const getTop = () => {
     return 0;
 };
 
+const closeWrapperTopPosition = Platform.OS === "android" ? 15 : 5;
+
 export default StyleSheet.create({
     arrowImageWrapper: {
         bottom: 0 - Style.SCALE_UP_AND_DOWN(1),
@@ -34,10 +36,19 @@ export default StyleSheet.create({
         width: "100%"
     } as ViewStyle,
     closeWrapper: {
+        height: 40,
+        width: 40,
         padding: Style.SCALE_UP_AND_DOWN(10),
         position: "absolute",
+        top: Style.SCALE_UP_AND_DOWN(getTop() + closeWrapperTopPosition),
         right: Style.SCALE_UP_AND_DOWN(5),
+        elevation: 4,
         zIndex: 4
+    } as ViewStyle,
+    closeButton: {
+        ...StyleSheet.absoluteFillObject,
+        justifyContent: "center",
+        alignItems: "center"
     } as ViewStyle,
     giraffeImageWrapper: {
         flexDirection: "row",
@@ -67,5 +78,14 @@ export default StyleSheet.create({
     wrapper: {
         backgroundColor: "white",
         flex: 1
-    } as ViewStyle
+    } as ViewStyle,
+    loaderWrapper: { position: "absolute", left: 0, right: 0 } as ViewStyle,
+    simpleLeaderboardHidden: {
+        top: Style.SCALE_UP_AND_DOWN(50)
+    } as ViewStyle,
+    simpleLeaderboardShown: {
+        top: Style.SCALE_UP_AND_DOWN(180)
+    } as ViewStyle,
+    simpleLeaderboardWrapper: { zIndex: 3 } as ViewStyle,
+    simpleLeaderboardPosition: { position: "absolute", width: "100%" } as ViewStyle
 });

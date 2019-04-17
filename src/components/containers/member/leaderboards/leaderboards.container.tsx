@@ -10,7 +10,7 @@ import { updateLeaderboardConsent } from "../../../../redux/user/user.actions";
 import { getConsentedLeaderboards, getUserFeatures } from "../../../../redux/user/user.selectors";
 import { GenericModal } from "../../../modals";
 import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-connection-error-modal";
-import { LeaderboardsScreen, SimpleLeaderboardsScreen } from "../../../screens";
+import { LeaderboardsScreen } from "../../../screens";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -91,30 +91,19 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                             (item: any) => item.id === `lead_${data.getCurrentUser.id}`
                         );
 
-                    if (features.showAdvancedLeaderboards) {
-                        return (
-                            <LeaderboardsScreen
-                                isLoading={loading}
-                                initialScrollIndex={initialScrollIndex}
-                                leaderboards={leaderboards}
-                                items={data.getLeaderboard || []}
-                                onHandleCoinsRefetch={coinsRefetch}
-                                onPressClose={this.handleClose}
-                                onHandleStepsRefetch={stepsRefetch}
-                                onLeaderboardChange={this.handleLeaderboardChange}
-                                sortBy={sortBy}
-                            />
-                        );
-                    }
-
                     return (
-                        <SimpleLeaderboardsScreen
+                        <LeaderboardsScreen
                             isLoading={loading}
                             initialScrollIndex={initialScrollIndex}
+                            leaderboards={leaderboards}
                             items={data.getLeaderboard || []}
+                            onHandleCoinsRefetch={coinsRefetch}
                             onPressClose={this.handleClose}
+                            onHandleStepsRefetch={stepsRefetch}
+                            onLeaderboardChange={this.handleLeaderboardChange}
                             sortBy={sortBy}
                             onRefetch={() => refetch()}
+                            isAdvanced={features.showAdvancedLeaderboards}
                         />
                     );
                 }}
