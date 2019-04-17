@@ -1,15 +1,17 @@
 import { ImageRequireSource } from "react-native";
 
-export enum LINKS {
-    DEBUG = "debug",
-    ACTIVITY = "activity",
-    LEADERBOARD = "leaderboard",
-    CHAT = "chat",
-    LOGOUT = "logout",
-    MEMBER = "member",
-    PLAY = "play",
-    SETTINGS = "settings"
-}
+type Types = "debug" | "activity" | "leaderboard" | "chat" | "logout" | "member" | "play" | "settings";
+
+export const LINKS: { [name: string]: Types } = {
+    DEBUG: "debug",
+    ACTIVITY: "activity",
+    LEADERBOARD: "leaderboard",
+    CHAT: "chat",
+    LOGOUT: "logout",
+    MEMBER: "member",
+    PLAY: "play",
+    SETTINGS: "settings"
+};
 
 export default {
     [LINKS.ACTIVITY]: require("../../../../../../assets/menu/activity.png"),

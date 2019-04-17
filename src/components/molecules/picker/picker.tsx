@@ -4,10 +4,10 @@ import { Text } from "../../atoms";
 import Assets, { BoxedHeart, Coins } from "./assets";
 import styles from "./picker.styles";
 
-enum ICONS {
-    HEART = "heart",
-    COINS = "coins"
-}
+const ICONS: { [name: string]: Icon } = {
+    HEART: "heart",
+    COINS: "coins"
+};
 
 type Icon = "heart" | "coins";
 

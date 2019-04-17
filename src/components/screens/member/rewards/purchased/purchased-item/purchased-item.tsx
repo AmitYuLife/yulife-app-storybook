@@ -14,11 +14,11 @@ export interface IRewardsPurchasedItemProps {
     onPress: () => void;
 }
 
-export enum RewardStatus {
-    failed = "failed",
-    pending = "pending",
-    delivered = "delivered"
-}
+export const RewardStatus: { [name: string]: "failed" | "pending" | "delivered" } = {
+    failed: "failed",
+    pending: "pending",
+    delivered: "delivered"
+};
 
 const RewardsPurchasedItem: SFC<IRewardsPurchasedItemProps> = ({ day, month, reward, cost, status, onPress }) => (
     <TouchableOpacityWithState onPress={onPress} style={styles.wrapper}>

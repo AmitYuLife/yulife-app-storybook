@@ -9,11 +9,11 @@ interface IProps {
     size?: Sizes;
     style?: TextStyle;
 }
-enum SIZES {
-    DEFAULT = "default",
-    LARGE = "large",
-    SMALL = "small"
-}
+const SIZES: { [name: string]: Sizes } = {
+    DEFAULT: "default",
+    LARGE: "large",
+    SMALL: "small"
+};
 
 type Sizes = "default" | "large" | "small";
 

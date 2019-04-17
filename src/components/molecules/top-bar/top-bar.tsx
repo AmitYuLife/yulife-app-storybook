@@ -11,12 +11,12 @@ import { formatSeconds, getStyle } from "./top-bar.helpers";
 import styles from "./top-bar.styles";
 
 export type TopBarTypes = "default" | "white" | "desert" | "demo";
-export enum TOP_BAR_TYPES {
-    DEFAULT = "default",
-    WHITE = "white",
-    DESERT = "desert",
-    DEMO = "demo"
-}
+export const TOP_BAR_TYPES: { [name: string]: TopBarTypes } = {
+    DEFAULT: "default",
+    WHITE: "white",
+    DESERT: "desert",
+    DEMO: "demo"
+};
 
 interface IProps {
     onPressLeftIcon?: () => void;
@@ -29,10 +29,10 @@ interface IProps {
     type?: TopBarTypes;
 }
 
-export enum LEFT_ICON_TYPES {
-    MENU = "Menu",
-    BACK = "Back"
-}
+export const LEFT_ICON_TYPES: { [name: string]: LeftIconTypes } = {
+    MENU: "Menu",
+    BACK: "Back"
+};
 
 export type LeftIconTypes = "Menu" | "Back";
 
@@ -132,10 +132,7 @@ class TopBar extends Component<IProps, IState> {
                 {this.renderCenter(colour, logoColour, textStyle)}
                 <View style={styles.coinsWrapper}>
                     <View style={styles.coinsTextWrapper}>
-                        <Counter
-                            value={coins || 0}
-                            textStyle={StyleSheet.flatten([styles.coinsText, textStyle])}
-                        />
+                        <Counter value={coins || 0} textStyle={StyleSheet.flatten([styles.coinsText, textStyle])} />
                     </View>
                     <View style={styles.coinsLogoWrapper}>
                         <Coins color={colour} />

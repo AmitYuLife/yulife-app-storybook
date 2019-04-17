@@ -20,16 +20,18 @@ import {
     IRewardReturnedUsersItem
 } from "../../../../screens/member/rewards/details/avios-details.screen";
 
-enum Programmes {
-    aerLingus = "aerclub",
-    vueling = "vueling club",
-    meridiana = "meridiana club",
-    britishAirways = "the british airways executive club"
-}
+type ProgrammesTypes = "aerclub" | "vueling club" | "meridiana club" | "the british airways executive club";
+
+const Programmes: {[name: string]: ProgrammesTypes} = {
+    aerLingus: "aerclub",
+    vueling: "vueling club",
+    meridiana: "meridiana club",
+    britishAirways: "the british airways executive club"
+};
 
 interface IProgrammesItem {
-    id: Programmes;
-    label: Programmes;
+    id: ProgrammesTypes;
+    label: ProgrammesTypes;
 }
 
 interface IPressableRewardReturnedUsersItem extends IRewardReturnedUsersItem {
