@@ -65,7 +65,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
         } = this.props;
 
         return (
-            <KeyboardAvoidingView behavior="padding" style={styles.kAV}>
+            <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.kAV}>
                 <CentredScreen footerImage="forest">
                     {this.state.isShowingKeyboard ? null : (
                         <View>
