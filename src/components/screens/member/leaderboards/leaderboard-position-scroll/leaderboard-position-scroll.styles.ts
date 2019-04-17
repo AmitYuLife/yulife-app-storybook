@@ -16,6 +16,8 @@ export const getTop = () => {
 
 const shrinkedListHeight = isIphoneX ? 40 : 15;
 
+const pageIndicatorAddTop = Platform.OS === "android" ? 5 : 0;
+
 const styles = StyleSheet.create({
     header: {
         position: "absolute",
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         position: "absolute",
-        top: Style.SCALE_UP_AND_DOWN(getTop() + 58),
+        top: Style.SCALE_UP_AND_DOWN(getTop() + 58 + pageIndicatorAddTop),
         width: "100%",
         zIndex: 2
     } as ViewStyle,
@@ -44,6 +46,7 @@ const styles = StyleSheet.create({
     } as ViewStyle,
     flatlist: {
         position: "absolute",
+        elevation: 2,
         zIndex: 2
     } as ViewStyle,
     scrollViewItem: {

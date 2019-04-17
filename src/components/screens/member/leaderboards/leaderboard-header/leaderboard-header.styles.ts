@@ -1,40 +1,27 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../../../styles";
 
 export default StyleSheet.create({
+    arrow: {
+        height: Style.SCALE_UP_AND_DOWN(7),
+        width: Style.SCALE_UP_AND_DOWN(11)
+    } as ImageStyle,
     arrowWrapper: {
-        backgroundColor: "white",
-        position: "absolute",
-        width: 15,
-        paddingVertical: 8
+        paddingRight: Style.SCALE_UP_AND_DOWN(5)
     } as ViewStyle,
-    arrowLeft: {
-        left: 0
-    } as ViewStyle,
-    arrowRight: {
-        right: 0
-    } as ViewStyle,
-    arrowButton: {
-        alignItems: "center",
-        justifyContent: "center"
-    } as ViewStyle,
-    arrowButtonText: {
-        color: Colours.heavyPink,
-        fontWeight: "900"
-    } as TextStyle,
     nameWrapper: {
         flex: 1,
         paddingLeft: Style.SCALE_UP_AND_DOWN(10)
     } as ViewStyle,
     rankWrapper: {
-        marginLeft: Style.SCALE_UP_AND_DOWN(10),
+        paddingLeft: Style.SCALE_UP_AND_DOWN(10),
         width: Style.SCALE_UP_AND_DOWN(40)
     } as ViewStyle,
     stepsWrapper: {
         alignItems: "center",
         flexDirection: "row",
         justifyContent: "flex-end",
-        marginRight: Style.SCALE_UP_AND_DOWN(30),
+        paddingRight: Style.SCALE_UP_AND_DOWN(15),
         width: Style.SCALE_UP_AND_DOWN(80)
     } as ViewStyle,
     text: {
@@ -49,6 +36,13 @@ export default StyleSheet.create({
         alignItems: "center",
         backgroundColor: Colours.heavyPink,
         flexDirection: "row",
+        marginHorizontal: Style.SCALE_UP_AND_DOWN(15),
         paddingVertical: Style.SCALE_UP_AND_DOWN(6)
+    } as ViewStyle,
+    yucoinWrapper: {
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        width: Style.SCALE_UP_AND_DOWN(65)
     } as ViewStyle
 });
