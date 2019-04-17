@@ -36,8 +36,8 @@ export interface IThemeStore {
         hasWhiteGlow: boolean;
         isLight: boolean;
         navBar: {
-            offline: COLOURS;
-            online: COLOURS;
+            offline: IColours;
+            online: IColours;
         };
         streakType: StreakTypes;
         textStyle: { color: string };
