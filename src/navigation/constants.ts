@@ -53,3 +53,9 @@ export const MODALS = {
     streaks: "yulife.modals.Streaks",
     todayYucoin: "yulife.modals.todayYucoin"
 };
+
+export const bottomTabs = {
+    animate: false,
+    drawBehind: true,
+    visible: false
+};

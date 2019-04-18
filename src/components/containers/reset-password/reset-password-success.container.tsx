@@ -1,3 +1,4 @@
+import { bottomTabs, ROUTES } from "@navigation/constants";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
@@ -9,22 +10,18 @@ interface IProps {
 }
 
 class ResetPasswordSuccessContainer extends PureComponent<IProps> {
-
     public render() {
-        return (
-            <ResetPasswordSuccessScreen
-                onLogInPress={this.onLogIn}
-            />
-        );
+        return <ResetPasswordSuccessScreen onLogInPress={this.onLogIn} />;
     }
 
     private onLogIn = async () => {
         await Navigation.push(this.props.componentId, {
             component: {
-                name: "yulife.Login"
+                name: ROUTES.login,
+                options: { bottomTabs }
             }
         });
-    }
+    };
 }
 
 export default ResetPasswordSuccessContainer;

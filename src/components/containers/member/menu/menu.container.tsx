@@ -1,4 +1,4 @@
-import { MODALS, ROUTES } from "@navigation/constants";
+import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import { setIntroRoot } from "@navigation/root";
 import * as React from "react";
 import { PureComponent } from "react";
@@ -135,7 +135,8 @@ class MenuContainer extends PureComponent<Props> {
         Navigation.push(this.props.currentRoute, {
             component: {
                 id: route,
-                name: route
+                name: route,
+                options: { bottomTabs }
             }
         });
     };

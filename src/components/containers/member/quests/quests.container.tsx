@@ -1,3 +1,4 @@
+import { bottomTabs } from "@navigation/constants";
 import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import { getCurrentWorld } from "@services/utils";
 import moment from "moment";
@@ -365,7 +366,8 @@ class QuestsContainer extends PureComponent<Props, IState> {
                 Navigation.push(componentId, {
                     component: {
                         id: ROUTES.activityHistory,
-                        name: ROUTES.activityHistory
+                        name: ROUTES.activityHistory,
+                        options: { bottomTabs }
                     }
                 });
             }
@@ -375,7 +377,8 @@ class QuestsContainer extends PureComponent<Props, IState> {
             component: {
                 id: ROUTES.questsChallengesHistory,
                 name: ROUTES.questsChallengesHistory,
-                passProps
+                passProps,
+                options: { bottomTabs }
             }
         });
     };
@@ -390,7 +393,8 @@ class QuestsContainer extends PureComponent<Props, IState> {
                 passProps: {
                     labels,
                     level
-                }
+                },
+                options: { bottomTabs }
             }
         });
     };

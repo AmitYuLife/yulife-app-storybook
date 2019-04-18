@@ -4,6 +4,7 @@ import {
     GetRewardsQuery,
     GetRewardsResultType
 } from "@graphql/rewards";
+import { bottomTabs } from "@navigation/constants";
 import moment from "moment";
 import { PureComponent } from "react";
 import * as React from "react";
@@ -141,7 +142,8 @@ class RewardsContainer extends PureComponent<Props, IState> {
                     passProps: {
                         onTabChange: this.handleTabChange,
                         reward
-                    }
+                    },
+                    options: { bottomTabs }
                 }
             });
         }
@@ -198,7 +200,8 @@ class RewardsContainer extends PureComponent<Props, IState> {
                             passProps: {
                                 onTabChange: this.handleTabChange,
                                 purchase
-                            }
+                            },
+                            options: { bottomTabs }
                         }
                     });
                 },

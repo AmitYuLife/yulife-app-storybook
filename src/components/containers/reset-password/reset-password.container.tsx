@@ -1,3 +1,4 @@
+import { bottomTabs, ROUTES } from "@navigation/constants";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
@@ -19,7 +20,6 @@ interface IState {
 }
 
 class ResetPasswordContainer extends PureComponent<IProps, IState> {
-
     public state: IState = {
         email: "",
         emailError: ""
@@ -50,13 +50,13 @@ class ResetPasswordContainer extends PureComponent<IProps, IState> {
 
     private onCancel = () => {
         Navigation.pop(this.props.componentId);
-    }
+    };
 
     private onEmailChange = (email: string) => {
         const emailError = validateEmail(email);
 
         this.setState({ email, emailError });
-    }
+    };
 
     private isFormValid = () => {
         let formIsValid = true;
@@ -67,7 +67,7 @@ class ResetPasswordContainer extends PureComponent<IProps, IState> {
         }
 
         return formIsValid;
-    }
+    };
 
     private onSubmit = async (sendMagicLink: SendMagicLinkMutationFunction) => {
         const { email } = this.state;
@@ -83,7 +83,8 @@ class ResetPasswordContainer extends PureComponent<IProps, IState> {
                 if (results && results.data) {
                     await Navigation.push(this.props.componentId, {
                         component: {
-                            name: "yulife.ResetPasswordSuccess"
+                            name: ROUTES.resetPasswordSuccess,
+                            options: { bottomTabs }
                         }
                     });
                 }
@@ -92,7 +93,7 @@ class ResetPasswordContainer extends PureComponent<IProps, IState> {
                 console.log(e);
             }
         }
-    }
+    };
 }
 
 export default ResetPasswordContainer;

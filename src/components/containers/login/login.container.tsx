@@ -1,4 +1,4 @@
-import { ROUTES } from "@navigation/constants";
+import { bottomTabs, ROUTES } from "@navigation/constants";
 import { setNextRoot } from "@navigation/root";
 import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import React, { Component } from "react";
@@ -96,7 +96,8 @@ export class LoginContainer extends Component<Props, IState> {
                 Navigation.push(componentId, {
                     component: {
                         id: route,
-                        name: route
+                        name: route,
+                        options: { bottomTabs }
                     }
                 });
                 return;
@@ -113,7 +114,8 @@ export class LoginContainer extends Component<Props, IState> {
                     name: route,
                     passProps: {
                         navigateToNext
-                    }
+                    },
+                    options: { bottomTabs }
                 }
             });
             return;
@@ -154,7 +156,8 @@ export class LoginContainer extends Component<Props, IState> {
         await Navigation.push(this.props.componentId, {
             component: {
                 id: ROUTES.signUp,
-                name: ROUTES.signUp
+                name: ROUTES.signUp,
+                options: { bottomTabs }
             }
         });
     };
@@ -163,7 +166,8 @@ export class LoginContainer extends Component<Props, IState> {
         await Navigation.push(this.props.componentId, {
             component: {
                 id: ROUTES.resetPassword,
-                name: ROUTES.resetPassword
+                name: ROUTES.resetPassword,
+                options: { bottomTabs }
             }
         });
     };

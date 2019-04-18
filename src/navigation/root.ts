@@ -3,10 +3,14 @@ import { Navigation } from "react-native-navigation";
 import { ILabel } from "../components/molecules";
 import { getIntro } from "../services/storage";
 import { Style } from "../styles";
-import { ROUTES } from "./constants";
+import { bottomTabs, ROUTES } from "./constants";
 
 // tslint:disable-next-line
 const icon = require("../../assets/clock/clock.png");
+
+const bottomTab = {
+    icon
+};
 
 export interface IMainTabsProps {
     componentId?: string;
@@ -35,10 +39,7 @@ export const labels = [
         onPress: () => {
             Navigation.mergeOptions(ROUTES.dailySteps, {
                 bottomTabs: {
-                    animate: false,
-                    currentTabIndex: 0,
-                    drawBehind: true,
-                    visible: false
+                    currentTabIndex: 0
                 },
                 statusBar: {
                     drawBehind: false,
@@ -52,10 +53,7 @@ export const labels = [
         onPress: () => {
             Navigation.mergeOptions(ROUTES.quests, {
                 bottomTabs: {
-                    animate: false,
-                    currentTabIndex: 1,
-                    drawBehind: true,
-                    visible: false
+                    currentTabIndex: 1
                 },
                 statusBar: {
                     drawBehind: false,
@@ -69,10 +67,7 @@ export const labels = [
         onPress: () => {
             Navigation.mergeOptions(ROUTES.rewards, {
                 bottomTabs: {
-                    animate: false,
-                    currentTabIndex: 2,
-                    drawBehind: true,
-                    visible: false
+                    currentTabIndex: 2
                 },
                 statusBar: {
                     drawBehind: false,
@@ -100,15 +95,12 @@ export const setAuthenticatedRoot = async () => {
                                                 passProps: {
                                                     labels,
                                                     onLeftMenuPress
-                                                }
+                                                },
+                                                options: { bottomTabs }
                                             }
                                         }
                                     ],
-                                    options: {
-                                        bottomTab: {
-                                            icon
-                                        }
-                                    }
+                                    options: { bottomTabs, bottomTab }
                                 }
                             },
                             {
@@ -121,15 +113,12 @@ export const setAuthenticatedRoot = async () => {
                                                 passProps: {
                                                     labels,
                                                     onLeftMenuPress
-                                                }
+                                                },
+                                                options: { bottomTabs }
                                             }
                                         }
                                     ],
-                                    options: {
-                                        bottomTab: {
-                                            icon
-                                        }
-                                    }
+                                    options: { bottomTabs, bottomTab }
                                 }
                             },
                             {
@@ -142,15 +131,12 @@ export const setAuthenticatedRoot = async () => {
                                                 passProps: {
                                                     labels,
                                                     onLeftMenuPress
-                                                }
+                                                },
+                                                options: { bottomTabs }
                                             }
                                         }
                                     ],
-                                    options: {
-                                        bottomTab: {
-                                            icon
-                                        }
-                                    }
+                                    options: { bottomTabs, bottomTab }
                                 }
                             }
                         ]
@@ -163,10 +149,7 @@ export const setAuthenticatedRoot = async () => {
                     }
                 },
                 options: {
-                    bottomTabs: {
-                        drawBehind: true,
-                        visible: false
-                    },
+                    bottomTabs,
                     sideMenu: {
                         left: Platform.select({
                             android: {

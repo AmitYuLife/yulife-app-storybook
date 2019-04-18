@@ -6,6 +6,8 @@ const registerScreens = require("./navigation/index").default;
 registerScreens();
 
 Navigation.events().registerAppLaunchedListener(async () => {
+    setDefaultOptions();
+
     const rootHandler = require("./navigation/root");
 
     await rootHandler.setLoadingRoot();
@@ -13,8 +15,6 @@ Navigation.events().registerAppLaunchedListener(async () => {
     const storageHandler = require("./services/storage");
 
     await storageHandler.migrateOldAppVersionToken();
-
-    setDefaultOptions();
 
     const token = await storageHandler.getToken();
     const RN = require("react-native");
