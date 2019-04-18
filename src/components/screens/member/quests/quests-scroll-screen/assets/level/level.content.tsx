@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { Text } from "../../../../../../atoms";
+import { getCurrentWorld } from "../../../../../../../services/utils";
+import { Chest, DoubleLock, Lock, Text } from "../../../../../../atoms";
 import { IChallenge } from "../../quests-screen";
 import LevelPending from "./level-pending";
 import styles from "./level.styles";
@@ -26,9 +27,9 @@ const getLevelLockIcon = (currentLevel: number, level: IChallenge) => {
         case level.level === 120 && currentLevel < 118:
         case level.level === 145 && currentLevel < 144:
         case level.level === 148 && currentLevel < 147:
-            return <Image source={images.doubleLock} />;
+            return <DoubleLock colour={getLockColor(level.level)} />;
         default:
-            return <Image source={images.lock} />;
+            return <Lock colour={getLockColor(level.level)} />;
     }
 };
 
@@ -36,7 +37,7 @@ export default function getLevelButton(nextAvailable: number, currentLevel: numb
     // step right up, we have more horrible logic, come and see the horrible logic!
     if (level.level % 50 === 0) {
         if (level.level > currentLevel) {
-            return <Image source={images.lock} />;
+            return <Lock colour={getLockColor(level.level)} />;
         }
         return (
             <Text style={styles.text} bold={true}>
@@ -76,9 +77,21 @@ export default function getLevelButton(nextAvailable: number, currentLevel: numb
         );
     } else {
         if (level.isChestLevel) {
-            return <Image source={images.chest} />;
+            return <Chest colour={getLockColor(level.level)} />;
         } else {
             return getLevelLockIcon(currentLevel, level);
         }
+    }
+}
+
+function getLockColor(currentLevel: number) {
+    switch (getCurrentWorld(currentLevel)) {
+        case 2:
+            return "rgb(183, 136, 67)";
+        case 1:
+            return "rgb(4, 40, 114)";
+        case 0:
+        default:
+            return "rgb(79, 151, 139)";
     }
 }

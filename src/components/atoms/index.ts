@@ -20,3 +20,6 @@ export { default as TextInput } from "./text-input/text-input";
 export { default as TextInputError } from "./text-input/text-input-error";
 export { default as GenericHeading } from "./generic-heading/generic-heading";
 export { default as LeaderboardPosition } from "./leaderboard-position/leaderboard-position";
+export { default as Lock } from "./lock/lock";
+export { default as DoubleLock } from "./lock/double-lock";
+export { default as Chest } from "./chest/chest";
