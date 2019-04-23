@@ -62,16 +62,17 @@ export const renderProgressLabel = ({
 }: Partial<IProps>): React.ReactNode => {
     const textColorStyle = getProgressLabelTextColor(styleType);
 
+    const typeText = type === "steps" && amount === 1 ? "step" : type;
     switch (type) {
         case "steps":
             return showCounter ? (
                 <Counter
                     value={amount}
                     textStyle={StyleSheet.flatten([styles.stepsText, textColorStyle])}
-                    textAfterValue={type}
+                    textAfterValue={typeText}
                 />
             ) : (
-                <Text style={StyleSheet.flatten([styles.stepsText, textColorStyle])}>{`${amount} ${type}`}</Text>
+                <Text style={StyleSheet.flatten([styles.stepsText, textColorStyle])}>{`${amount} ${typeText}`}</Text>
             );
 
         case "minutes":

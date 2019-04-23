@@ -54,6 +54,7 @@ export default function TodayYucoinScreen({
 }: IProps) {
     const showNoChallengeDone = !challenges.length && !activeChallenge;
     const progressBarWidth = Style.SCALE_UP_AND_DOWN(275);
+    const typeText = steps === 1 ? "step" : "steps";
     return (
         <SafeAreaView style={styles.wrapper}>
             <GenericHeading hidesBorder={true} heading="today's yucoin" />
@@ -76,7 +77,7 @@ export default function TodayYucoinScreen({
                 </View>
                 <View style={styles.challengesWrapper}>
                     <View style={styles.passiveChallengeWrapper}>
-                        <Text style={styles.steps}>{`${steps} steps`}</Text>
+                        <Text style={styles.steps}>{`${steps} ${typeText}`}</Text>
                         <Text style={styles.yucoinsEarned}>{dailyStepsEarned}</Text>
                     </View>
                     <View style={styles.passiveChallengeInstructionsWrapper}>
