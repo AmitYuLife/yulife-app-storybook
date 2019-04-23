@@ -6,7 +6,7 @@ import { Style } from "../styles";
 import { bottomTabs, ROUTES } from "./constants";
 
 // tslint:disable-next-line
-const icon = require("../../assets/clock/clock.png");
+const icon = require("../../assets/icons/clock.png");
 
 const bottomTab = {
     icon

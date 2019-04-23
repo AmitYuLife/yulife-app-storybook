@@ -69,7 +69,7 @@ const MeditationSetUp: SFC<IProps> = ({
                 <Back />
             </TouchableOpacity>
             <TouchableOpacity onPress={onPressClose} style={styles.closeWrapper}>
-                <Image source={require("../../../../../assets/close/close.png")} />
+                <Image source={require("../../../../../assets/icons/close.png")} />
             </TouchableOpacity>
         </View>
         <View style={styles.ctaWrapper}>
