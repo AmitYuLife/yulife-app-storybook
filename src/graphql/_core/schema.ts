@@ -868,6 +868,7 @@ export interface GetCurrentUser_getCurrentUser_leaderboards {
   leaderboardId: string | null;
   name: string | null;
   consent: boolean | null;
+  hasAccepted: boolean | null;
   inviteFrom: string | null;
 }
 
@@ -1005,6 +1006,7 @@ export interface LoginUser_loginUser_user_leaderboards {
   leaderboardId: string | null;
   name: string | null;
   consent: boolean | null;
+  hasAccepted: boolean | null;
   inviteFrom: string | null;
 }
 

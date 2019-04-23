@@ -3,7 +3,7 @@ import { IReduxState } from "@redux/_core/reducers";
 import { UpdateNofiticationPayload, updateNotificationSettings } from "@redux/notifications/notifications.actions";
 import { getNotifications } from "@redux/notifications/notifications.selectors";
 import { updateLeaderboardConsent } from "@redux/user/user.actions";
-import { getLeaderboards, getUserFeatures, Leaderboard } from "@redux/user/user.selectors";
+import { getAcceptedLeaderboards, getUserFeatures, Leaderboard } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
 import moment from "moment";
 import * as React from "react";
@@ -86,48 +86,55 @@ class SettingsContainer extends PureComponent<IProps, IState> {
     }
 
     private handleUpdateLeaderboardConsent = (l: Leaderboard) => () => {
-        const dismissModal = () => Navigation.dismissModal(MODALS.generic);
-        const passProps = l.consent
-            ? {
-                  ctaLabel: "keep it on!",
-                  ctaLabelSecondary: "turn it off",
-                  heading: "turn it off?",
-                  onPress: dismissModal,
-                  onPressSecondary: () => {
-                      this.props.updateLeaderboardConsent({
-                          consent: !l.consent,
-                          leaderboardId: l.leaderboardId
-                      });
-                      dismissModal();
-                  },
-                  subheading:
-                      /* tslint:disable-next-line */
-                      "This means you won’t be able to see how well you’re doing compared to others in your business or workspace."
-              }
-            : {
-                  ctaLabel: "give me leaderboards",
-                  ctaLabelSecondary: "no thanks",
-                  heading: "turn on leaderboard?",
-                  onPress: () => {
-                      this.props.updateLeaderboardConsent({
-                          consent: !l.consent,
-                          leaderboardId: l.leaderboardId
-                      });
-                      dismissModal();
-                  },
-                  onPressSecondary: dismissModal,
-                  subheading:
-                      /* tslint:disable-next-line */
-                      "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings."
-              };
+        if (l.leaderboardId.length === 32) {
+            const dismissModal = () => Navigation.dismissModal(MODALS.generic);
+            const passProps = l.consent
+                ? {
+                      ctaLabel: "keep it on!",
+                      ctaLabelSecondary: "turn it off",
+                      heading: "turn it off?",
+                      onPress: dismissModal,
+                      onPressSecondary: () => {
+                          this.props.updateLeaderboardConsent({
+                              consent: !l.consent,
+                              leaderboardId: l.leaderboardId
+                          });
+                          dismissModal();
+                      },
+                      subheading:
+                          /* tslint:disable-next-line */
+                          "This means you won’t be able to see how well you’re doing compared to others in your business or workspace."
+                  }
+                : {
+                      ctaLabel: "give me leaderboards",
+                      ctaLabelSecondary: "no thanks",
+                      heading: "turn on leaderboard?",
+                      onPress: () => {
+                          this.props.updateLeaderboardConsent({
+                              consent: !l.consent,
+                              leaderboardId: l.leaderboardId
+                          });
+                          dismissModal();
+                      },
+                      onPressSecondary: dismissModal,
+                      subheading:
+                          /* tslint:disable-next-line */
+                          "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings."
+                  };
 
-        Navigation.showModal({
-            component: {
-                id: MODALS.generic,
-                name: MODALS.generic,
-                passProps
-            }
-        });
+            Navigation.showModal({
+                component: {
+                    id: MODALS.generic,
+                    name: MODALS.generic,
+                    passProps
+                }
+            });
+        } else {
+            this.props.updateLeaderboardConsent({
+                consent: !l.consent,
+                leaderboardId: l.leaderboardId
+            });
+        }
     };
 
     private handleCreateNewLeaderboard = () => {
@@ -172,7 +179,7 @@ class SettingsContainer extends PureComponent<IProps, IState> {
 
 const mapStateToProps = (state: IReduxState) => ({
     features: getUserFeatures(state),
-    leaderboards: getLeaderboards(state),
+    leaderboards: getAcceptedLeaderboards(state),
     notifications: getNotifications(state)
 });
 

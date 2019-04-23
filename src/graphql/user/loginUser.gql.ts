@@ -99,6 +99,7 @@ export const loginUserGql = gql`
                     leaderboardId
                     name
                     consent
+                    hasAccepted
                     inviteFrom
                 }
             }
