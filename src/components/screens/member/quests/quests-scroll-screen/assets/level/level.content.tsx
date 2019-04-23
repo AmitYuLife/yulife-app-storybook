@@ -7,11 +7,8 @@ import LevelPending from "./level-pending";
 import styles from "./level.styles";
 
 const images = {
-    chest: require("../../../../../../../../assets/quests/chest-blue.png"),
     completedNoStar: require("../../../../../../../../assets/quests/completed-no-star.png"),
-    completedStar: require("../../../../../../../../assets/quests/completed-star.png"),
-    doubleLock: require("../../../../../../../../assets/quests/double-lock-blue.png"),
-    lock: require("../../../../../../../../assets/quests/lock-blue.png")
+    completedStar: require("../../../../../../../../assets/quests/completed-star.png")
 };
 
 const getLevelLockIcon = (currentLevel: number, level: IChallenge) => {

@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
 const Close: SFC<TouchableWithoutFeedbackProps> = ({ onPress, style = {} }) => (
     <TouchableOpacity style={[styles.wrapper, style]} onPress={onPress}>
-        <Image source={require("../../../../assets/close/close.png")} />
+        <Image source={require("../../../../assets/icons/close.png")} />
     </TouchableOpacity>
 );
 

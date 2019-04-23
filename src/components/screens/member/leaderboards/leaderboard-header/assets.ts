@@ -1,3 +1,3 @@
 export default {
-    arrow: require("../../../../../../assets/leaderboards/arrow.png")
+    arrow: require("../../../../../../assets/icons/arrow.png")
 };

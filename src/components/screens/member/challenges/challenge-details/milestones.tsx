@@ -44,17 +44,14 @@ const Milestones: SFC<IMilestoneProps> = ({ milestones, unit }) => (
                 {Array.from({ length: milestones.length === 1 ? 3 : index + 1 }).map((_, i) => (
                     <Image
                         key={i}
-                        source={require("../../../../../../assets/challenge-details/star.png")}
+                        source={require("../../../../../../assets/icons/star.png")}
                         style={styles.starImage}
                     />
                 ))}
                 <View style={styles.rewardWrapper}>
                     <Text>{`${reward} x`}</Text>
                 </View>
-                <Image
-                    style={styles.yucoinImage}
-                    source={require("../../../../../../assets/challenge-details/yucoin.png")}
-                />
+                <Image style={styles.yucoinImage} source={require("../../../../../../assets/icons/yucoin.png")} />
             </View>
         ))}
     </>

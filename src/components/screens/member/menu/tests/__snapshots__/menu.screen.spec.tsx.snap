@@ -75,7 +75,7 @@ ShallowWrapper {
               resizeMode="contain"
               source={
                 Object {
-                  "testUri": "../../../assets/menu/x.png",
+                  "testUri": "../../../assets/icons/close.png",
                 }
               }
               style={
@@ -251,7 +251,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../assets/menu/x.png",
+                    "testUri": "../../../assets/icons/close.png",
                   }
                 }
                 style={
@@ -385,7 +385,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../assets/menu/x.png",
+                    "testUri": "../../../assets/icons/close.png",
                   }
                 }
                 style={
@@ -414,7 +414,7 @@ ShallowWrapper {
               "props": Object {
                 "resizeMode": "contain",
                 "source": Object {
-                  "testUri": "../../../assets/menu/x.png",
+                  "testUri": "../../../assets/icons/close.png",
                 },
                 "style": Object {
                   "height": 26,
@@ -821,7 +821,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../assets/menu/x.png",
+                    "testUri": "../../../assets/icons/close.png",
                   }
                 }
                 style={
@@ -997,7 +997,7 @@ ShallowWrapper {
                   resizeMode="contain"
                   source={
                     Object {
-                      "testUri": "../../../assets/menu/x.png",
+                      "testUri": "../../../assets/icons/close.png",
                     }
                   }
                   style={
@@ -1131,7 +1131,7 @@ ShallowWrapper {
                   resizeMode="contain"
                   source={
                     Object {
-                      "testUri": "../../../assets/menu/x.png",
+                      "testUri": "../../../assets/icons/close.png",
                     }
                   }
                   style={
@@ -1160,7 +1160,7 @@ ShallowWrapper {
                 "props": Object {
                   "resizeMode": "contain",
                   "source": Object {
-                    "testUri": "../../../assets/menu/x.png",
+                    "testUri": "../../../assets/icons/close.png",
                   },
                   "style": Object {
                     "height": 26,
@@ -1606,7 +1606,7 @@ ShallowWrapper {
               resizeMode="contain"
               source={
                 Object {
-                  "testUri": "../../../assets/menu/x.png",
+                  "testUri": "../../../assets/icons/close.png",
                 }
               }
               style={
@@ -1702,7 +1702,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../assets/menu/x.png",
+                    "testUri": "../../../assets/icons/close.png",
                   }
                 }
                 style={
@@ -1753,7 +1753,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../assets/menu/x.png",
+                    "testUri": "../../../assets/icons/close.png",
                   }
                 }
                 style={
@@ -1782,7 +1782,7 @@ ShallowWrapper {
               "props": Object {
                 "resizeMode": "contain",
                 "source": Object {
-                  "testUri": "../../../assets/menu/x.png",
+                  "testUri": "../../../assets/icons/close.png",
                 },
                 "style": Object {
                   "height": 26,
@@ -1972,7 +1972,7 @@ ShallowWrapper {
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../assets/menu/x.png",
+                    "testUri": "../../../assets/icons/close.png",
                   }
                 }
                 style={
@@ -2068,7 +2068,7 @@ ShallowWrapper {
                   resizeMode="contain"
                   source={
                     Object {
-                      "testUri": "../../../assets/menu/x.png",
+                      "testUri": "../../../assets/icons/close.png",
                     }
                   }
                   style={
@@ -2119,7 +2119,7 @@ ShallowWrapper {
                   resizeMode="contain"
                   source={
                     Object {
-                      "testUri": "../../../assets/menu/x.png",
+                      "testUri": "../../../assets/icons/close.png",
                     }
                   }
                   style={
@@ -2148,7 +2148,7 @@ ShallowWrapper {
                 "props": Object {
                   "resizeMode": "contain",
                   "source": Object {
-                    "testUri": "../../../assets/menu/x.png",
+                    "testUri": "../../../assets/icons/close.png",
                   },
                   "style": Object {
                     "height": 26,
