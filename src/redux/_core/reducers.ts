@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 
 import appReducer, { IAppStore, initialState as initialAppState } from "../app/app.reducer";
 import coinsReducer, { ICoinsStore, initialState as initialCoinsState } from "../coins/coins.reducer";
+import copyReducer, { ICopyStore, initialState as initialCopyState } from "../copy/copy.reducer";
 import dailyStepsReducer, {
     IDailyStepsStore,
     initialState as initialDailyStepsState
@@ -31,6 +32,7 @@ export interface IReduxState {
     streaks: IStreaksStore;
     theme: IThemeStore;
     user: IUserStore;
+    copy: ICopyStore;
 }
 
 export const initialState: IReduxState = {
@@ -43,7 +45,8 @@ export const initialState: IReduxState = {
     pedometer: initialPedometerState,
     streaks: initialStreaksState,
     theme: initialThemeState,
-    user: initialUserState
+    user: initialUserState,
+    copy: initialCopyState
 };
 
 const combinedReducers = combineReducers({
@@ -56,7 +59,8 @@ const combinedReducers = combineReducers({
     pedometer: pedometerReducer,
     streaks: streaksReducer,
     theme: themeReducer,
-    user: userReducer
+    user: userReducer,
+    copy: copyReducer
 });
 
 export default combinedReducers;

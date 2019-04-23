@@ -36,7 +36,16 @@ storiesOf("Atoms", module)
                 </TouchableOpacity>
             )}
             render={({ toggleOverlay }) => (
-                <SignUpRewardScreen isLoading={false} onCollectPress={toggleOverlay} reward={200} />
+                <SignUpRewardScreen
+                    isLoading={false}
+                    onCollectPress={toggleOverlay}
+                    reward={200}
+                    copy={{
+                        heading: "",
+                        subheading: "",
+                        ctaLabel: ""
+                    }}
+                />
             )}
         />
     ))

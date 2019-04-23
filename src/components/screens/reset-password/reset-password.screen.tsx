@@ -1,5 +1,6 @@
 import * as React from "react";
 import { SFC } from "react";
+import { GetMobileCopy_getMobileCopy_screens_resetPassword as ResetPasswordCopy} from "../../../graphql/_core/schema";
 import { Button, CentredScreen, Heading, Pad, TextInput } from "../../atoms";
 import styles from "./reset-password.screen.styles";
 
@@ -11,6 +12,7 @@ interface IProps {
     onCancelPress: () => void;
     onEmailChange: (email: string) => void;
     onSubmitPress: () => void;
+    copy: ResetPasswordCopy;
 }
 
 const ResetPasswordScreen: SFC<IProps> = ({
@@ -20,11 +22,12 @@ const ResetPasswordScreen: SFC<IProps> = ({
     isSubmitting,
     onCancelPress,
     onEmailChange,
-    onSubmitPress
+    onSubmitPress,
+    copy
 }) => (
     <CentredScreen footerImage="forest">
         <Pad height={120} />
-        <Heading style={styles.heading} label="reset password" />
+        <Heading style={styles.heading} label={copy.heading} />
         <Pad height={90} />
         <TextInput
             errorMessage={emailError}
@@ -42,7 +45,7 @@ const ResetPasswordScreen: SFC<IProps> = ({
             type={Button.Types.PRIMARY}
         />
         <Pad height={10} />
-        <Button label="Back" type={Button.Types.LINK} onPress={onCancelPress} />
+        <Button label={copy.ctaLabel} type={Button.Types.LINK} onPress={onCancelPress} />
     </CentredScreen>
 );
 

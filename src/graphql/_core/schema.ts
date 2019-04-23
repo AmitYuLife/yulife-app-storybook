@@ -335,6 +335,53 @@ export interface UpsertPassiveChallengeVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: GetMobileCopy
+// ====================================================
+
+export interface GetMobileCopy_getMobileCopy_screens_login {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+  secondaryCtaLabel: string | null;
+}
+
+export interface GetMobileCopy_getMobileCopy_screens_noAccess {
+  heading: string | null;
+  subheading: string | null;
+}
+
+export interface GetMobileCopy_getMobileCopy_screens_resetPassword {
+  heading: string | null;
+  ctaLabel: string | null;
+}
+
+export interface GetMobileCopy_getMobileCopy_screens_signupReward {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+}
+
+export interface GetMobileCopy_getMobileCopy_screens {
+  login: GetMobileCopy_getMobileCopy_screens_login | null;
+  noAccess: GetMobileCopy_getMobileCopy_screens_noAccess | null;
+  resetPassword: GetMobileCopy_getMobileCopy_screens_resetPassword | null;
+  signupReward: GetMobileCopy_getMobileCopy_screens_signupReward | null;
+}
+
+export interface GetMobileCopy_getMobileCopy {
+  version: string | null;
+  screens: GetMobileCopy_getMobileCopy_screens | null;
+}
+
+export interface GetMobileCopy {
+  getMobileCopy: GetMobileCopy_getMobileCopy | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetDebugCodes
 // ====================================================
 

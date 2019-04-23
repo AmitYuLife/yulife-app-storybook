@@ -5,8 +5,14 @@ import React, { Component } from "react";
 import { Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { IntercomHashMethod, LoginMethod } from "../../../graphql/_core/schema";
+import {
+    GetMobileCopy_getMobileCopy_screens_login as LoginCopy,
+    IntercomHashMethod,
+    LoginMethod
+} from "../../../graphql/_core/schema";
 import LoginUserMutation, { loginUserGql, LoginUserMutationFunction } from "../../../graphql/user/loginUser.gql";
+import { IReduxState } from "../../../redux/_core/reducers";
+import { getCopy } from "../../../redux/copy/copy.selectors";
 import { loginUserSuccess } from "../../../redux/user/user.actions";
 import { setToken } from "../../../services/storage";
 import { LoginScreen } from "../../screens";
@@ -22,6 +28,7 @@ interface IOwnProps {
     email?: string;
 }
 
+type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
 export interface IState {
@@ -32,7 +39,7 @@ export interface IState {
     isUsingOtp: boolean;
 }
 
-type Props = IOwnProps & ConnectedDispatch;
+type Props = IOwnProps & ConnectedState & ConnectedDispatch;
 
 export class LoginContainer extends Component<Props, IState> {
     public static getDerivedStateFromProps(props: Props) {
@@ -59,6 +66,7 @@ export class LoginContainer extends Component<Props, IState> {
 
     public render() {
         const { email, emailError, passwordError, password } = this.state;
+        const { copy } = this.props;
 
         return (
             <FitKitAvailable>
@@ -79,6 +87,7 @@ export class LoginContainer extends Component<Props, IState> {
                                     onSignUpPress={this.onSignUp}
                                     password={password}
                                     passwordError={passwordError}
+                                    copy={copy}
                                 />
                             );
                         }}
@@ -196,11 +205,15 @@ export class LoginContainer extends Component<Props, IState> {
     };
 }
 
+const mapStateToProps = (state: IReduxState) => ({
+    copy: getCopy(state, "login") as LoginCopy
+});
+
 const mapDispatchToProps = {
     loginUserSuccess
 };
 
-export default connect<{}, ConnectedDispatch>(
-    null,
+export default connect<ConnectedState, ConnectedDispatch>(
+    mapStateToProps,
     mapDispatchToProps
 )(LoginContainer);

@@ -4,6 +4,7 @@ import { PureComponent } from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
+import { GetMobileCopy_getMobileCopy_screens_signupReward as SignUpRewardCopy} from "../../../../graphql/_core/schema";
 import { AddHistoricalStepsMutationFunction } from "../../../../graphql/challenges/addHistoricalSteps.gql";
 import {
     addHistoricalStepsGql,
@@ -15,6 +16,8 @@ import UpsertOnboardingChallengeMutation, {
     UpsertOnboardingChallengeStateType
 } from "../../../../graphql/challenges/upsertOnboardingChallenge.gql";
 import { setNextRoot } from "../../../../navigation/root";
+import { IReduxState } from "../../../../redux/_core/reducers";
+import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getUserStart } from "../../../../redux/user/user.actions";
 import Logger from "../../../../services/logging/logger";
 import { Loading } from "../../../atoms";
@@ -25,13 +28,14 @@ interface IProps {
     componentId: string;
 }
 
+type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IState {
     isLoading: boolean;
 }
 
-interface IChildProps extends UpsertOnboardingChallengeStateType, ConnectedDispatch, IProps {
+interface IChildProps extends UpsertOnboardingChallengeStateType, ConnectedState, ConnectedDispatch, IProps {
     upsertOnboardingChallenge: UpsertOnboardingChallengeMutationType;
 }
 
@@ -58,7 +62,7 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps, IState> {
 
     public render() {
         const { isLoading } = this.state;
-        const { loading, data, error } = this.props;
+        const { loading, data, error, copy } = this.props;
 
         // TODO: handle errors
         if (error) {
@@ -76,6 +80,7 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps, IState> {
                         isLoading={loading || isLoading}
                         onCollectPress={this.onCollect(addHistoricalSteps)}
                         reward={data.upsertPassiveChallenge.challenge.yuCoinAwarded}
+                        copy={copy}
                     />
                 )}
             </AddHistoricalStepsMutation>
@@ -105,7 +110,7 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps, IState> {
     };
 }
 
-const SignUpRewardContainer = (props: IProps & ConnectedDispatch) => (
+const SignUpRewardContainer = (props: IProps & ConnectedState &ConnectedDispatch) => (
     <UpsertOnboardingChallengeMutation mutation={upsertOnboardingChallengeGql}>
         {(upsertOnboardingChallenge, args) => {
             return (
@@ -119,11 +124,15 @@ const SignUpRewardContainer = (props: IProps & ConnectedDispatch) => (
     </UpsertOnboardingChallengeMutation>
 );
 
+const mapStateToProps = (state: IReduxState) => ({
+    copy: getCopy(state, "signupReward") as SignUpRewardCopy
+});
+
 const mapDispatchToProps = {
     getUserStart
 };
 
-export default connect<{}, ConnectedDispatch>(
-    null,
+export default connect<ConnectedState, ConnectedDispatch>(
+    mapStateToProps,
     mapDispatchToProps
 )(SignUpRewardContainer);

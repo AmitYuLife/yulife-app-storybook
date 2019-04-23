@@ -16,7 +16,13 @@ const defaultProps = {
     onResetPasswordPress: jest.fn(),
     onSignUpPress: jest.fn(),
     password: "",
-    passwordError: ""
+    passwordError: "",
+    copy: {
+        heading: "",
+        subheading: "",
+        ctaLabel: "",
+        secondaryCtaLabel: ""
+    }
 } as IProps;
 
 describe("LoginScreen", () => {
