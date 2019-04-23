@@ -42,6 +42,7 @@ export default function ActivityHistoryLevelsItem({
     steps,
     yucoin
 }: ItemProps) {
+    const typeText = steps === 1 ? "step" : "steps";
     return (
         <View style={styles.listItemWrapper}>
             <View style={styles.levelWrapper}>
@@ -68,7 +69,7 @@ export default function ActivityHistoryLevelsItem({
                     <View style={styles.activityLabelsWrapper}>
                         <View style={styles.activityLabelWrapper}>
                             <Text numberOfLines={1} style={styles.activityLabel}>
-                                {`${steps} steps`}
+                                {`${steps} ${typeText}`}
                             </Text>
                         </View>
                         {!challenges.length ? (
