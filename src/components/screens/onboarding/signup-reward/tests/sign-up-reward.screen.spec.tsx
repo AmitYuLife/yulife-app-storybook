@@ -11,6 +11,11 @@ describe("SignUpRewardScreen", () => {
                 isLoading={false}
                 onCollectPress={jest.fn()}
                 reward={200}
+                copy={{
+                    heading: "",
+                    subheading: "",
+                    ctaLabel: ""
+                }}
             />
         );
 

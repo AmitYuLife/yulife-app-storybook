@@ -10,7 +10,11 @@ const defaultProps = {
     isSubmitting: false,
     onCancelPress: jest.fn(),
     onEmailChange: jest.fn(),
-    onSubmitPress: jest.fn()
+    onSubmitPress: jest.fn(),
+    copy: {
+        heading: "",
+        ctaLabel: ""
+    }
 };
 
 describe("ResetPassword", () => {

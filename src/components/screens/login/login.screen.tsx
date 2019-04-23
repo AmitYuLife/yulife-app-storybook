@@ -2,9 +2,9 @@ import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
 import * as React from "react";
 import { PureComponent } from "react";
 import { EmitterSubscription, Keyboard, KeyboardAvoidingView, Platform, View } from "react-native";
+import { GetMobileCopy_getMobileCopy_screens_login as LoginCopy } from "../../../graphql/_core/schema";
 import { Blurb, Button, CentredScreen, Heading, Pad, TextInput, TextInputError } from "../../atoms";
 import { LinkGroup } from "../../molecules";
-import data from "./login.screen.data";
 import styles from "./login.screen.styles";
 
 export interface IProps {
@@ -20,6 +20,7 @@ export interface IProps {
     onSignUpPress: () => void;
     password: string;
     passwordError: string;
+    copy: LoginCopy;
 }
 
 interface IState {
@@ -61,7 +62,8 @@ class LoginScreen extends PureComponent<IProps, IState> {
             onLogInPress,
             onPasswordChange,
             password,
-            passwordError
+            passwordError,
+            copy
         } = this.props;
 
         return (
@@ -70,8 +72,8 @@ class LoginScreen extends PureComponent<IProps, IState> {
                     {this.state.isShowingKeyboard ? null : (
                         <View>
                             <Pad height={100} />
-                            <Heading label={data.heading} size={Heading.Sizes.LARGE} />
-                            <Blurb label={data.subheading} />
+                            <Heading label={copy.heading} size={Heading.Sizes.LARGE} />
+                            <Blurb label={copy.subheading} />
                         </View>
                     )}
                     <Pad height={44} />
@@ -98,7 +100,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
                         testID={BUTTON_LOGIN}
                         isLoading={isLoggingIn}
                         disabled={isLoggingIn || disabled}
-                        label={isLoggingIn ? data.isLoggingIn : data.logInCta}
+                        label={copy.ctaLabel}
                         onPress={onLogInPress}
                         type={Button.Types.PRIMARY}
                     />
@@ -114,14 +116,14 @@ class LoginScreen extends PureComponent<IProps, IState> {
     };
 
     private getLinks = () => {
-        const { onResetPasswordPress, onSignUpPress } = this.props;
+        const { onResetPasswordPress, onSignUpPress, copy} = this.props;
         return [
             {
                 label: "Forgot password",
                 onPress: onResetPasswordPress
             },
             {
-                label: "Sign up",
+                label: copy.secondaryCtaLabel,
                 onPress: onSignUpPress
             }
         ];

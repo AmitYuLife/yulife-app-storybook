@@ -9,6 +9,7 @@ import { boolean, number, object, select, withKnobs } from "@storybook/addon-kno
 import { storiesOf } from "@storybook/react-native";
 import moment from "moment";
 import React from "react";
+
 import {
     ActivityHistoryLevels,
     ChallengeFailedScreen,
@@ -51,6 +52,12 @@ storiesOf("Screens", module)
             onSignUpPress={action("on signup press")}
             password=""
             passwordError=""
+            copy={{
+                heading: "",
+                subheading: "",
+                ctaLabel: "",
+                secondaryCtaLabel: ""
+            }}
         />
     ))
     .add("3a. Reset Password", () => (
@@ -62,6 +69,10 @@ storiesOf("Screens", module)
             onCancelPress={action("on cancel press")}
             onEmailChange={action("on email change")}
             onSubmitPress={action("on submit press")}
+            copy={{
+                heading: "",
+                ctaLabel: ""
+            }}
         />
     ))
     .add("3b. Reset Password Success", () => <ResetPasswordSuccessScreen onLogInPress={action("on login press")} />)
@@ -90,6 +101,11 @@ storiesOf("Screens", module)
                 },
                 "SignUp"
             )}
+            copy={{
+                heading: "",
+                subheading: "",
+                ctaLabel: ""
+            }}
         />
     ))
     .add("6. Daily Steps", () => (

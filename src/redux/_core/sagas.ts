@@ -1,5 +1,6 @@
 import { all } from "redux-saga/effects";
 import appSagas from "../app/sagas";
+import copySagas from "../copy/sagas";
 import dailyStepsSagas from "../daily-steps/sagas";
 import detoxSagas from "../detox/detox.sagas";
 import deviceSagas from "../device/sagas";
@@ -13,6 +14,7 @@ import userSagas from "../user/sagas";
 export default function* allSagas() {
     yield all([
         ...appSagas,
+        ...copySagas,
         ...dailyStepsSagas,
         ...deviceSagas,
         ...detoxSagas,

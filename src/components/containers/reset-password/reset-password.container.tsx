@@ -2,10 +2,14 @@ import { bottomTabs, ROUTES } from "@navigation/constants";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
+import { connect } from "react-redux";
+import { GetMobileCopy_getMobileCopy_screens_resetPassword as ResetPasswordCopy} from "../../../graphql/_core/schema";
 import SendMagicLinkMutation, {
     sendMagicLinkGql,
     SendMagicLinkMutationFunction
 } from "../../../graphql/user/sendMagicLink.gql";
+import { IReduxState } from "../../../redux/_core/reducers";
+import { getCopy } from "../../../redux/copy/copy.selectors";
 import { ResetPasswordScreen } from "../../screens";
 import { validateEmail } from "../login/login.helpers";
 
@@ -19,7 +23,12 @@ interface IState {
     emailError: string;
 }
 
-class ResetPasswordContainer extends PureComponent<IProps, IState> {
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+
+type Props = IProps & ConnectedState;
+
+class ResetPasswordContainer extends PureComponent<Props, IState> {
+
     public state: IState = {
         email: "",
         emailError: ""
@@ -30,6 +39,7 @@ class ResetPasswordContainer extends PureComponent<IProps, IState> {
             <SendMagicLinkMutation mutation={sendMagicLinkGql}>
                 {(sendMagicLink, { loading }) => {
                     const { email, emailError } = this.state;
+                    const { copy } = this.props;
                     const disableSubmit = email === "" || emailError !== "";
 
                     return (
@@ -41,6 +51,7 @@ class ResetPasswordContainer extends PureComponent<IProps, IState> {
                             onCancelPress={this.onCancel}
                             onEmailChange={this.onEmailChange}
                             onSubmitPress={() => this.onSubmit(sendMagicLink)}
+                            copy={copy}
                         />
                     );
                 }}
@@ -96,4 +107,11 @@ class ResetPasswordContainer extends PureComponent<IProps, IState> {
     };
 }
 
-export default ResetPasswordContainer;
+const mapStateToProps = (state: IReduxState) => ({
+    copy: getCopy(state, "resetPassword") as ResetPasswordCopy
+});
+
+export default connect<ConnectedState, {}>(
+    mapStateToProps,
+    null
+)(ResetPasswordContainer);

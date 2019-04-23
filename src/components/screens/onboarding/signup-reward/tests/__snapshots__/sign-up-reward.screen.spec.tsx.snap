@@ -4,6 +4,13 @@ exports[`SignUpRewardScreen should render with required props 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <SignUpRewardScreen
+    copy={
+      Object {
+        "ctaLabel": "",
+        "heading": "",
+        "subheading": "",
+      }
+    }
     isLoading={false}
     onCollectPress={[MockFunction]}
     reward={200}
@@ -29,7 +36,7 @@ ShallowWrapper {
           coins={200}
         />,
         <Heading
-          label="sign up reward"
+          label=""
           style={
             Object {
               "marginTop": -20,
@@ -40,7 +47,7 @@ ShallowWrapper {
           height={10}
         />,
         <Blurb
-          label="You can exchange your yucoin for AVIOS points and gift cards from Amazon, Decathlon, Nike and more!"
+          label=""
           wrapperStyle={
             Object {
               "paddingHorizontal": 88,
@@ -53,7 +60,7 @@ ShallowWrapper {
         <Button
           disabled={false}
           isLoading={false}
-          label="next"
+          label=""
           onPress={[MockFunction]}
           type="PrimarySmall"
         />,
@@ -89,7 +96,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "label": "sign up reward",
+          "label": "",
           "style": Object {
             "marginTop": -20,
           },
@@ -114,7 +121,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "label": "You can exchange your yucoin for AVIOS points and gift cards from Amazon, Decathlon, Nike and more!",
+          "label": "",
           "wrapperStyle": Object {
             "paddingHorizontal": 88,
           },
@@ -141,7 +148,7 @@ ShallowWrapper {
         "props": Object {
           "disabled": false,
           "isLoading": false,
-          "label": "next",
+          "label": "",
           "onPress": [MockFunction],
           "type": "PrimarySmall",
         },
@@ -166,7 +173,7 @@ ShallowWrapper {
             coins={200}
           />,
           <Heading
-            label="sign up reward"
+            label=""
             style={
               Object {
                 "marginTop": -20,
@@ -177,7 +184,7 @@ ShallowWrapper {
             height={10}
           />,
           <Blurb
-            label="You can exchange your yucoin for AVIOS points and gift cards from Amazon, Decathlon, Nike and more!"
+            label=""
             wrapperStyle={
               Object {
                 "paddingHorizontal": 88,
@@ -190,7 +197,7 @@ ShallowWrapper {
           <Button
             disabled={false}
             isLoading={false}
-            label="next"
+            label=""
             onPress={[MockFunction]}
             type="PrimarySmall"
           />,
@@ -226,7 +233,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "label": "sign up reward",
+            "label": "",
             "style": Object {
               "marginTop": -20,
             },
@@ -251,7 +258,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "label": "You can exchange your yucoin for AVIOS points and gift cards from Amazon, Decathlon, Nike and more!",
+            "label": "",
             "wrapperStyle": Object {
               "paddingHorizontal": 88,
             },
@@ -278,7 +285,7 @@ ShallowWrapper {
           "props": Object {
             "disabled": false,
             "isLoading": false,
-            "label": "next",
+            "label": "",
             "onPress": [MockFunction],
             "type": "PrimarySmall",
           },
