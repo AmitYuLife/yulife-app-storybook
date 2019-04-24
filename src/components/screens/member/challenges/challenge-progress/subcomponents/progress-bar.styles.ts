@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         color: Colours.progressBar.oceanWhite.heading
     },
     timeLabel: {
-        lineHeight: Platform.OS === "ios" ? Style.SCALE_UP_AND_DOWN(20) : Style.SCALE_UP_AND_DOWN(35),
+        lineHeight: Platform.OS === "ios" ? Style.SCALE_UP_AND_DOWN(26) : Style.SCALE_UP_AND_DOWN(35),
         marginHorizontal: Style.SCALE_UP_AND_DOWN(5)
     }
 });
