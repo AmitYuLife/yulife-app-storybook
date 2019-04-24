@@ -1,12 +1,10 @@
+import { GetCurrentUser_getCurrentUser_leaderboards as Leaderboard } from "@graphql/_core/schema";
 import { MODALS } from "@navigation/constants";
-import { pathOr } from "@services/utils";
 import { Navigation } from "react-native-navigation";
 import { call, select } from "redux-saga/effects";
 import { getRouteState } from "../../app/app.selectors";
-import { getUserSuccess } from "../user.actions";
 
-export default function* showLeaderboardInviteSaga({ payload }: ReturnType<typeof getUserSuccess>) {
-    const leaderboards: typeof payload.getCurrentUser.leaderboards = pathOr(payload.getCurrentUser.leaderboards, []);
+export default function* showLeaderboardInvite(leaderboards: Leaderboard[]) {
     const currentRoute = yield select(getRouteState);
 
     if (leaderboards && leaderboards.length > 0 && currentRoute !== MODALS.leaderboardInvite) {
