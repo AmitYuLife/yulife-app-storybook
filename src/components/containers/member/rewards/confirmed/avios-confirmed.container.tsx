@@ -53,7 +53,7 @@ class AviosRewardConfirmedContainer extends Component<Props> {
                 loyaltyProgramme={loyaltyProgramme}
                 coins={totalCoins}
                 onPressCancel={this.goToRewards}
-                onPressConfirm={status === "pending" ? this.showIntercom : () => null}
+                onPressConfirm={this.showIntercom}
                 onPressPolicy={this.openRewardsPolicy}
                 onPressTopBar={this.goBack}
             />
@@ -62,7 +62,7 @@ class AviosRewardConfirmedContainer extends Component<Props> {
 
     public showIntercom = () => {
         Intercom.displayConversationsList();
-    }
+    };
 
     public showPendingAlert = (amount: number) => {
         Alert.alert(
@@ -76,7 +76,7 @@ class AviosRewardConfirmedContainer extends Component<Props> {
                 }
             ]
         );
-    }
+    };
 
     public openRewardsPolicy = async () => {
         const url = Config.REWARDS_POLICY_URL;
@@ -85,15 +85,15 @@ class AviosRewardConfirmedContainer extends Component<Props> {
         if (supported) {
             await Linking.openURL(url);
         }
-    }
+    };
 
     public goBack = async () => {
         await this.props.onTabChange("purchases", this.props.componentId);
-    }
+    };
 
     public goToRewards = async () => {
         await this.props.onTabChange("rewards", this.props.componentId);
-    }
+    };
 }
 
 const mapStateToProps = (state: IReduxState) => ({
