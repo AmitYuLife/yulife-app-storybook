@@ -81,9 +81,9 @@ export const renderProgressLabel = ({
             return (
                 <>
                     <Text style={StyleSheet.flatten([styles.stepsText, textColorStyle])}>{padNum(minutes)}</Text>
-                    <Text style={StyleSheet.flatten([styles.timeLabel, textColorStyle])}>Min</Text>
+                    <Text style={StyleSheet.flatten([styles.timeLabel, textColorStyle])}>min</Text>
                     <Text style={StyleSheet.flatten([styles.stepsText, textColorStyle])}>{padNum(seconds)}</Text>
-                    <Text style={StyleSheet.flatten([styles.timeLabel, textColorStyle])}>Sec</Text>
+                    <Text style={StyleSheet.flatten([styles.timeLabel, textColorStyle])}>sec</Text>
                 </>
             );
 
