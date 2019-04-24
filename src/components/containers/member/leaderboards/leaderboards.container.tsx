@@ -42,20 +42,9 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
         const { sortBy, leaderboardId } = this.state;
         const { leaderboards = [], features = {} } = this.props;
 
-        if (!leaderboards.length) {
-            return (
-                <GenericModal
-                    onPress={this.handleClose}
-                    heading="no leaderboards!"
-                    subheading="Sorry. There are no leaderboards you belong to."
-                    ctaLabel="back"
-                />
-            );
-        }
+        const [companyLeaderboard, ...consentedLeaderboards] = leaderboards;
 
-        const companyLeaderboard = leaderboards[0];
-
-        if (!companyLeaderboard.consent) {
+        if ((!consentedLeaderboards || consentedLeaderboards.length < 1) && !companyLeaderboard.consent) {
             /* tslint:disable:max-line-length */
             return (
                 <GenericModal
@@ -95,7 +84,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                         <LeaderboardsScreen
                             isLoading={loading}
                             initialScrollIndex={initialScrollIndex}
-                            leaderboards={leaderboards}
+                            leaderboards={companyLeaderboard.consent ? leaderboards : consentedLeaderboards || []}
                             items={data.getLeaderboard || []}
                             onHandleCoinsRefetch={coinsRefetch}
                             onPressClose={this.handleClose}
