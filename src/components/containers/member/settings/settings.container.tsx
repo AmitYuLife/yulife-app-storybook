@@ -105,7 +105,7 @@ class SettingsContainer extends PureComponent<IProps, IState> {
                       "This means you won’t be able to see how well you’re doing compared to others in your business or workspace."
               }
             : {
-                  ctaLabel: "give me leaderboards",
+                  ctaLabel: "give me leaderboard",
                   ctaLabelSecondary: "no thanks",
                   heading: "turn on leaderboard?",
                   onPress: () => {
