@@ -1,4 +1,5 @@
 /* tslint:disable */
+import Logger from "@services/logging/logger";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
@@ -110,7 +111,16 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 
     private handleLeaderboardChange = (index: number) => {
         const { leaderboards } = this.props;
-        this.setState({ leaderboardId: leaderboards[index].leaderboardId });
+        const leaderboardId = leaderboards[index].leaderboardId;
+
+        this.setState({ leaderboardId });
+        Logger.logEvent("screen_view", {
+            name:
+                leaderboardId.length === 32
+                    ? "yulife.member.Leaderboards.Primary"
+                    : "yulife.member.Leaderboards.Secondary",
+            leaderboard_id: leaderboardId
+        });
     };
 
     private allowLeaderboard = () => {
