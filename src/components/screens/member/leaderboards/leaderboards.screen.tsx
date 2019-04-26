@@ -68,11 +68,27 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
     public state = initialState;
 
     private top3Y = new Animated.Value(0);
+    private timeout: NodeJS.Timer = null;
+
+    public componentDidUpdate() {
+        const { isLoading, initialScrollIndex } = this.props;
+
+        if (!isLoading) {
+            this.timeout = global.setTimeout(() => {
+                this.largeList.scrollTo({ x: 0, y: initialScrollIndex * LEADERBOARD_ITEM_HEIGHT });
+            }, 1000);
+        }
+    }
+
+    public componentWillUnmount() {
+        if (this.timeout) {
+            global.clearTimeout(this.timeout);
+        }
+    }
 
     public render() {
         const { isTopHidden, height, activePage } = this.state;
         const {
-            initialScrollIndex,
             isAdvanced,
             isLoading,
             onPressClose,
@@ -129,7 +145,6 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                 >
                     <LargeList
                         ref={this.setLargeListRef}
-                        initialContentOffset={{ x: 0, y: initialScrollIndex * LEADERBOARD_ITEM_HEIGHT }}
                         renderIndexPath={this.renderIndexPath}
                         heightForIndexPath={this.getHeight}
                         showsVerticalScrollIndicator={false}
