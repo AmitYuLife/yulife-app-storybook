@@ -40,7 +40,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
     }
 
     public render() {
-        const { sortBy, leaderboardId } = this.state;
+        const { sortBy } = this.state;
         const { leaderboards = [], features = {} } = this.props;
 
         const [companyLeaderboard, ...consentedLeaderboards] = leaderboards;
@@ -60,6 +60,10 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
             );
             /* tslint:enable:max-line-length */
         }
+
+        const leaderboardId =
+            this.state.leaderboardId ||
+            (companyLeaderboard.consent ? companyLeaderboard.leaderboardId : consentedLeaderboards[0].leaderboardId);
 
         return (
             <GetLeaderboardQuery

@@ -1,6 +1,15 @@
 import { CreateLeaderboardVariables } from "@graphql/_core/schema";
 import * as React from "react";
-import { FlatList, ListRenderItemInfo, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+    FlatList,
+    KeyboardAvoidingView,
+    ListRenderItemInfo,
+    Platform,
+    SafeAreaView,
+    StyleSheet,
+    Text,
+    View
+} from "react-native";
 import { Button, CentredScreen, Close, GenericHeading, Pad, TextInput } from "../../../atoms";
 import { validateEmail } from "../../../containers/login/login.helpers";
 import styles from "./create-leaderboard.screen.styles";
@@ -33,44 +42,46 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
 
         return (
             <SafeAreaView style={StyleSheet.absoluteFill}>
-                <GenericHeading heading="create a leaderboard" hidesBorder={true} />
-                <CentredScreen>
-                    <Pad height={20} />
-                    <TextInput
-                        type="Board"
-                        onChange={this.groupNameChange}
-                        placeholder="Group name"
-                        value={groupName}
-                    />
-                    <Pad height={12} />
-                    <TextInput
-                        type="Text"
-                        icon="Email"
-                        onChange={this.emailChange}
-                        placeholder="invite members (email)"
-                        value={emailInput}
-                        hasError={!!emailError}
-                        errorMessage={emailError}
-                    />
-                    <Pad height={20} />
-                    <Button label="add" onPress={this.addEmail} type="Secondary" />
-                    <FlatList
-                        keyExtractor={this.keyExtractor}
-                        style={styles.flatListStyle}
-                        contentContainerStyle={styles.flatListContainerStyle}
-                        data={emails}
-                        renderItem={this.renderItem}
-                    />
-                    <Button
-                        isLoading={isLoading}
-                        wrapperStyle={styles.createButton}
-                        disabled={isCreateDisabled || isLoading}
-                        label="create"
-                        onPress={this.handleCreateLeaderboardSubmit}
-                        type="Primary"
-                    />
-                </CentredScreen>
-                <Close onPress={this.props.onPressClose} />
+                <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={{ flex: 1 }} >
+                    <GenericHeading heading="create a leaderboard" hidesBorder={true} />
+                    <CentredScreen>
+                        <Pad height={20} />
+                        <TextInput
+                            type="Board"
+                            onChange={this.groupNameChange}
+                            placeholder="Group name"
+                            value={groupName}
+                        />
+                        <Pad height={12} />
+                        <TextInput
+                            type="Email"
+                            icon="Email"
+                            onChange={this.emailChange}
+                            placeholder="invite members (email)"
+                            value={emailInput}
+                            hasError={!!emailError}
+                            errorMessage={emailError}
+                        />
+                        <Pad height={20} />
+                        <Button label="add" onPress={this.addEmail} type="Secondary" />
+                        <FlatList
+                            keyExtractor={this.keyExtractor}
+                            style={styles.flatListStyle}
+                            contentContainerStyle={styles.flatListContainerStyle}
+                            data={emails}
+                            renderItem={this.renderItem}
+                        />
+                        <Button
+                            isLoading={isLoading}
+                            wrapperStyle={styles.createButton}
+                            disabled={isCreateDisabled || isLoading}
+                            label="create"
+                            onPress={this.handleCreateLeaderboardSubmit}
+                            type="Primary"
+                        />
+                    </CentredScreen>
+                    <Close onPress={this.props.onPressClose} />
+                </KeyboardAvoidingView>
             </SafeAreaView>
         );
     }
@@ -93,11 +104,17 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
     private addEmail = () => {
         const { emailInput, emails } = this.state;
         if (!validateEmail(emailInput)) {
-            this.setState({
-                emails: [...emails, emailInput.replace(/\s/g, "")],
-                emailInput: "",
-                emailError: ""
-            });
+            if (emails.indexOf(emailInput) === -1) {
+                this.setState({
+                    emails: [...emails, emailInput.replace(/\s/g, "")],
+                    emailInput: "",
+                    emailError: ""
+                });
+            } else {
+                this.setState({
+                    emailError: "Member already invited"
+                });
+            }
         }
     };
 

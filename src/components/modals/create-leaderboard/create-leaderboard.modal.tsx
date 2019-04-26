@@ -2,6 +2,7 @@ import { CreateLeaderboardVariables } from "@graphql/_core/schema";
 import CreateLeaderboardMutation, { CreateLeaderboardMutationFunction } from "@graphql/member/createLeaderboard.gql";
 import { getUserStart } from "@redux/user/user.actions";
 import * as React from "react";
+import { Keyboard } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { CreateLeaderboardScreen } from "../../screens";
@@ -35,6 +36,7 @@ class CreateLeaderboardModal extends React.PureComponent<Props> {
         variables: CreateLeaderboardVariables
     ) => {
         try {
+            Keyboard.dismiss();
             await createLeaderboard({ variables });
             this.props.getUserStart();
             await Navigation.dismissModal(this.props.componentId);
