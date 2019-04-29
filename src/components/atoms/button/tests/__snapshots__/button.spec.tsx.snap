@@ -599,14 +599,14 @@ ShallowWrapper {
           style={
             Object {
               "backgroundColor": "rgba(255,255,255,0.8)",
-              "borderRadius": 54,
+              "borderRadius": 100,
               "bottom": 0,
               "height": 108,
               "left": -3,
               "position": "absolute",
               "right": 0,
               "top": 0,
-              "width": 620,
+              "width": 621,
             }
           }
         />,
@@ -732,14 +732,14 @@ ShallowWrapper {
         "props": Object {
           "style": Object {
             "backgroundColor": "rgba(255,255,255,0.8)",
-            "borderRadius": 54,
+            "borderRadius": 100,
             "bottom": 0,
             "height": 108,
             "left": -3,
             "position": "absolute",
             "right": 0,
             "top": 0,
-            "width": 620,
+            "width": 621,
           },
         },
         "ref": null,
@@ -808,14 +808,14 @@ ShallowWrapper {
             style={
               Object {
                 "backgroundColor": "rgba(255,255,255,0.8)",
-                "borderRadius": 54,
+                "borderRadius": 100,
                 "bottom": 0,
                 "height": 108,
                 "left": -3,
                 "position": "absolute",
                 "right": 0,
                 "top": 0,
-                "width": 620,
+                "width": 621,
               }
             }
           />,
@@ -941,14 +941,14 @@ ShallowWrapper {
           "props": Object {
             "style": Object {
               "backgroundColor": "rgba(255,255,255,0.8)",
-              "borderRadius": 54,
+              "borderRadius": 100,
               "bottom": 0,
               "height": 108,
               "left": -3,
               "position": "absolute",
               "right": 0,
               "top": 0,
-              "width": 620,
+              "width": 621,
             },
           },
           "ref": null,
