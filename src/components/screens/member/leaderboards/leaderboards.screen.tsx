@@ -75,7 +75,9 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
 
         if (!isLoading) {
             this.timeout = global.setTimeout(() => {
-                this.largeList.scrollTo({ x: 0, y: initialScrollIndex * LEADERBOARD_ITEM_HEIGHT });
+                if (this.largeList) {
+                    this.largeList.scrollTo({ x: 0, y: initialScrollIndex * LEADERBOARD_ITEM_HEIGHT });
+                }
             }, 1000);
         }
     }
