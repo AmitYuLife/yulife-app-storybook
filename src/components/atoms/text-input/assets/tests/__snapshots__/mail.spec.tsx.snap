@@ -18,14 +18,12 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <G>
-          <Path
-            d="M0,0v38h52V0H0z M46.1,3L26,19.5L5.9,3H46.1z M3,35V4.5l23,18.9L49,4.5V35H3z"
-            fill="rgb(204,204,204)"
-            stroke="rgb(204,204,204)"
-            strokeWidth={1}
-          />
-        </G>,
+        <Path
+          d="M0,0v38h52V0H0z M46.1,3L26,19.5L5.9,3H46.1z M3,35V4.5l23,18.9L49,4.5V35H3z"
+          fill="rgb(204,204,204)"
+          stroke="rgb(204,204,204)"
+          strokeWidth={1}
+        />,
         <Polyline
           fill="none"
           points="2,1.7 26,21.4 50,1.7 "
@@ -45,28 +43,13 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Path
-            d="M0,0v38h52V0H0z M46.1,3L26,19.5L5.9,3H46.1z M3,35V4.5l23,18.9L49,4.5V35H3z"
-            fill="rgb(204,204,204)"
-            stroke="rgb(204,204,204)"
-            strokeWidth={1}
-          />,
+          "d": "M0,0v38h52V0H0z M46.1,3L26,19.5L5.9,3H46.1z M3,35V4.5l23,18.9L49,4.5V35H3z",
+          "fill": "rgb(204,204,204)",
+          "stroke": "rgb(204,204,204)",
+          "strokeWidth": 1,
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "d": "M0,0v38h52V0H0z M46.1,3L26,19.5L5.9,3H46.1z M3,35V4.5l23,18.9L49,4.5V35H3z",
-            "fill": "rgb(204,204,204)",
-            "stroke": "rgb(204,204,204)",
-            "strokeWidth": 1,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
+        "rendered": null,
         "type": [Function],
       },
       Object {
@@ -93,14 +76,12 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <G>
-            <Path
-              d="M0,0v38h52V0H0z M46.1,3L26,19.5L5.9,3H46.1z M3,35V4.5l23,18.9L49,4.5V35H3z"
-              fill="rgb(204,204,204)"
-              stroke="rgb(204,204,204)"
-              strokeWidth={1}
-            />
-          </G>,
+          <Path
+            d="M0,0v38h52V0H0z M46.1,3L26,19.5L5.9,3H46.1z M3,35V4.5l23,18.9L49,4.5V35H3z"
+            fill="rgb(204,204,204)"
+            stroke="rgb(204,204,204)"
+            strokeWidth={1}
+          />,
           <Polyline
             fill="none"
             points="2,1.7 26,21.4 50,1.7 "
@@ -120,28 +101,13 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Path
-              d="M0,0v38h52V0H0z M46.1,3L26,19.5L5.9,3H46.1z M3,35V4.5l23,18.9L49,4.5V35H3z"
-              fill="rgb(204,204,204)"
-              stroke="rgb(204,204,204)"
-              strokeWidth={1}
-            />,
+            "d": "M0,0v38h52V0H0z M46.1,3L26,19.5L5.9,3H46.1z M3,35V4.5l23,18.9L49,4.5V35H3z",
+            "fill": "rgb(204,204,204)",
+            "stroke": "rgb(204,204,204)",
+            "strokeWidth": 1,
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "d": "M0,0v38h52V0H0z M46.1,3L26,19.5L5.9,3H46.1z M3,35V4.5l23,18.9L49,4.5V35H3z",
-              "fill": "rgb(204,204,204)",
-              "stroke": "rgb(204,204,204)",
-              "strokeWidth": 1,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+          "rendered": null,
           "type": [Function],
         },
         Object {
