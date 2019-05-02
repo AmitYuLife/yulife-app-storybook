@@ -54,9 +54,9 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                 <GenericModal
                     isPrimaryLoading={companyLeaderboard.isLoading}
                     onPress={this.allowLeaderboard}
-                    heading="turn on leaderboard?"
-                    subheading="We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings."
-                    ctaLabel="give me leaderboards"
+                    heading="join this leaderboard?"
+                    subheading="This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?"
+                    ctaLabel="yes please!"
                     onPressSecondary={this.handleClose}
                     ctaLabelSecondary="no thanks"
                 />

@@ -1,3 +1,4 @@
+/* tslint:disable:max-line-length */
 export default {
     login: {
         heading: "welcome!",
@@ -14,9 +15,9 @@ export default {
         ctaLabel: "Back"
     },
     signupReward: {
-        heading: "sign up reward",
+        heading: "sign up bonus",
         subheading:
-            "You can exchange your yucoin for AVIOS points and gift cards from Amazon, Decathlon, Nike and more!",
+            "Here’s 200 extra yucoin just for being you (and for signing up to yulife!). You can exchange your yucoin for air miles and gift cards from Amazon, ASOS, Nike and more!",
         ctaLabel: "next"
     }
 };

@@ -102,12 +102,12 @@ class SettingsContainer extends PureComponent<IProps, IState> {
                   },
                   subheading:
                       /* tslint:disable-next-line */
-                      "This means you won’t be able to see how well you’re doing compared to others in your business or workspace."
+                      "This means you won’t be able to access this leaderboard."
               }
             : {
-                  ctaLabel: "give me leaderboard",
+                  ctaLabel: "yes please!",
                   ctaLabelSecondary: "no thanks",
-                  heading: "turn on leaderboard?",
+                  heading: "join this leaderboard?",
                   onPress: () => {
                       this.props.updateLeaderboardConsent({
                           consent: !l.consent,
@@ -118,7 +118,7 @@ class SettingsContainer extends PureComponent<IProps, IState> {
                   onPressSecondary: dismissModal,
                   subheading:
                       /* tslint:disable-next-line */
-                      "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings."
+                      "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?"
               };
 
         Navigation.showModal({
