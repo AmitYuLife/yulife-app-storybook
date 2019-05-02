@@ -1,13 +1,18 @@
 import { pathOr } from "@services/utils";
-import { call, take } from "redux-saga/effects";
+import { call, race, take } from "redux-saga/effects";
 import { START_DAILY_STEPS } from "../../daily-steps/daily-steps.actions";
-import { loginUserSuccess } from "../user.actions";
+import { GET_USER_START, loginUserSuccess } from "../user.actions";
 import showLeaderboardInvite from "./showLeaderboardInvite.helper";
 
 export default function* showLeaderboardInviteOnLoginSaga({ payload }: ReturnType<typeof loginUserSuccess>) {
     const leaderboards: typeof payload.loginUser.user.leaderboards = pathOr(payload.loginUser.user.leaderboards, []);
 
-    yield take(START_DAILY_STEPS);
+    const { startDailySteps } = yield race({
+        startDailySteps: take(START_DAILY_STEPS),
+        getUserStart: take(GET_USER_START)
+    });
 
-    yield call(showLeaderboardInvite, leaderboards);
+    if (startDailySteps) {
+        yield call(showLeaderboardInvite, leaderboards);
+    }
 }
