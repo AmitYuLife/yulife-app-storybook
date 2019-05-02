@@ -182,7 +182,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
             features,
             labels,
             onLeftMenuPress,
-            totalCoins,
+            totalCoins
         } = this.props;
 
         const props = {

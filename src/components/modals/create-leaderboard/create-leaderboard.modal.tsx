@@ -46,6 +46,7 @@ class CreateLeaderboardModal extends React.PureComponent<Props> {
     };
 
     private pressClose = () => {
+        Keyboard.dismiss();
         Navigation.dismissModal(this.props.componentId);
     };
 }
