@@ -45,7 +45,10 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 
         const [companyLeaderboard, ...consentedLeaderboards] = leaderboards;
 
-        if ((!consentedLeaderboards || consentedLeaderboards.length < 1) && !companyLeaderboard.consent) {
+        if (
+            !companyLeaderboard.consent &&
+            (features.showAdvancedLeaderboards ? !consentedLeaderboards || consentedLeaderboards.length < 1 : true)
+        ) {
             /* tslint:disable:max-line-length */
             return (
                 <GenericModal
