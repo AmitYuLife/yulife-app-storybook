@@ -8,16 +8,6 @@ ShallowWrapper {
     labels={Array []}
     name="level 1"
     onPressLeftIcon={[Function]}
-    theme={
-      Object {
-        "backgroundImage": "forest",
-        "backgroundWrapperStyle": Object {
-          "backgroundColor": "rgb(154, 231, 216)",
-        },
-        "navBarType": "light",
-        "topBarType": "default",
-      }
-    }
     totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -38,6 +28,11 @@ ShallowWrapper {
           style={
             Object {
               "backgroundColor": "rgb(154, 231, 216)",
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
             }
           }
         >
@@ -128,6 +123,11 @@ ShallowWrapper {
           />,
           "style": Object {
             "backgroundColor": "rgb(154, 231, 216)",
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
           },
         },
         "ref": null,
@@ -249,6 +249,11 @@ ShallowWrapper {
             style={
               Object {
                 "backgroundColor": "rgb(154, 231, 216)",
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
               }
             }
           >
@@ -339,6 +344,11 @@ ShallowWrapper {
             />,
             "style": Object {
               "backgroundColor": "rgb(154, 231, 216)",
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
             },
           },
           "ref": null,
@@ -480,16 +490,6 @@ ShallowWrapper {
     labels={Array []}
     name="level 1"
     onPressLeftIcon={[Function]}
-    theme={
-      Object {
-        "backgroundImage": "forest",
-        "backgroundWrapperStyle": Object {
-          "backgroundColor": "rgb(154, 231, 216)",
-        },
-        "navBarType": "light",
-        "topBarType": "default",
-      }
-    }
     totalCoins={1234}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -510,6 +510,11 @@ ShallowWrapper {
           style={
             Object {
               "backgroundColor": "rgb(154, 231, 216)",
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
             }
           }
         >
@@ -600,6 +605,11 @@ ShallowWrapper {
           />,
           "style": Object {
             "backgroundColor": "rgb(154, 231, 216)",
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
           },
         },
         "ref": null,
@@ -721,6 +731,11 @@ ShallowWrapper {
             style={
               Object {
                 "backgroundColor": "rgb(154, 231, 216)",
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
               }
             }
           >
@@ -811,6 +826,11 @@ ShallowWrapper {
             />,
             "style": Object {
               "backgroundColor": "rgb(154, 231, 216)",
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
             },
           },
           "ref": null,

@@ -1,5 +1,5 @@
-import { IThemeStore } from "@app/redux/theme/theme.reducer";
 import { Button, CentredScreen, Stars, Text } from "@atoms/index";
+import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import Assets from "./assets";
@@ -9,14 +9,11 @@ import styles from "./challenge-failed.screen.styles";
 interface IProps {
     level?: number;
     onPress: () => void;
-    theme: IThemeStore["challengeFailedScreen"];
 }
 
-export default function ChallengeFailedScreen({
-    level,
-    onPress,
-    theme: { backgroundImage, backgroundStyle, footerStyle }
-}: IProps) {
+export default function ChallengeFailedScreen({ level, onPress }: IProps) {
+    const { backgroundImage, backgroundStyle, footerStyle } = getStyle(level);
+
     return (
         <CentredScreen
             style={StyleSheet.flatten([styles.wrapper, backgroundStyle]) as any}
@@ -35,4 +32,28 @@ export default function ChallengeFailedScreen({
             <Button onPress={onPress} label={data.cta} type={Button.Types.PRIMARY_GREYSCALE_SMALL} />
         </CentredScreen>
     );
+}
+
+function getStyle(currentLevel: number): any {
+    switch (getCurrentWorld(currentLevel)) {
+        case 2:
+            return {
+                backgroundImage: "challenge_failed_desert",
+                backgroundStyle: { backgroundColor: "#fffbcd" },
+                footerStyle: styles.footerGray
+            };
+        case 1:
+            return {
+                backgroundImage: "challenge_failed_ocean",
+                backgroundStyle: null,
+                footerStyle: styles.footerWhite
+            };
+        case 0:
+        default:
+            return {
+                backgroundImage: "challenge_failed_forest",
+                backgroundStyle: null,
+                footerStyle: styles.footerGray
+            };
+    }
 }

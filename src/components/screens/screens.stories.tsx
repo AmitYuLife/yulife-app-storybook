@@ -1,8 +1,6 @@
-import { COLOURS, IColours, NavBar } from "@app/components/molecules";
+import { COLOURS } from "@app/components/molecules";
 import { StreakTypes } from "@app/components/molecules/streak/streak";
 import { TopBarTypes } from "@app/components/molecules/top-bar/top-bar";
-// tslint:disable-next-line
-import { ProgressBarTypes } from "@app/components/screens/member/challenges/challenge-progress/subcomponents/progress-bar";
 import { ICentredScreen } from "@app/redux/theme/theme.reducer";
 import { action } from "@storybook/addon-actions";
 import { boolean, number, object, select, withKnobs } from "@storybook/addon-knobs";
@@ -246,12 +244,6 @@ storiesOf("Screens", module)
                 },
                 "ChallengesList"
             )}
-            theme={{
-                backgroundImage: "forest",
-                backgroundWrapperStyle: { backgroundColor: "rgb(154, 231, 216)" },
-                navBarType: NavBar.Colours.LIGHT,
-                topBarType: "default" as TopBarTypes
-            }}
         />
     ))
     .add("8. Challenge Progress", () => (
@@ -281,14 +273,6 @@ storiesOf("Screens", module)
                 },
                 "ChallengeDetails"
             )}
-            theme={{
-                backgroundColour: "rgb(255,255,255)",
-                navBarType: "light" as IColours,
-                progressBarType: "black" as ProgressBarTypes,
-                source: "squirrel",
-                style: { height: 450 },
-                topBarType: "default" as TopBarTypes
-            }}
         />
     ))
     .add("9. Challenge Success", () => (
@@ -354,13 +338,6 @@ storiesOf("Screens", module)
                 },
                 "ChallengeFailed"
             )}
-            theme={{
-                backgroundImage: "challenge_failed_forest",
-                backgroundStyle: null,
-                footerStyle: {
-                    color: "rgb(170,170,170)"
-                }
-            }}
             onPress={action("on press")}
         />
     ))

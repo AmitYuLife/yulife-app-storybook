@@ -1,13 +1,12 @@
-import { IThemeStore } from "@app/redux/theme/theme.reducer";
 import * as React from "react";
 import { Image, Platform, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { NavBar, TopBar } from "../../../../molecules";
-import assets, { AssetType } from "./assets";
+import { getWorldStyle } from "./challenge-progress.screen.helpers";
 import styles from "./challenge-progress.screen.styles";
 import ProgressBar from "./subcomponents/progress-bar";
 
-export type ChallengeType = "short stroll" | "meditation" | "long walk" | "brisk walk";
+export type ChallengeType = "short stroll" | "meditation" | "day walk" | "long walk" | "brisk walk";
 
 interface IProps extends IConnectedScreenProps {
     challengeType: ChallengeType;
@@ -20,11 +19,11 @@ interface IProps extends IConnectedScreenProps {
     onCalmPress?: () => void;
     onDismissPress: () => void;
     onHeadspacePress?: () => void;
-    theme: IThemeStore["challengeProgressScreen"][ChallengeType];
 }
 
 export default function ChallengeProgressScreen({
     challengeType,
+    currentWorld = 0,
     endDateTime,
     labels,
     onCalmPress,
@@ -35,12 +34,21 @@ export default function ChallengeProgressScreen({
     progressTargets,
     unit,
     userProgress,
-    theme: { backgroundColour, instructionTextColour, navBarType, progressBarType, source, style, topBarType },
     totalCoins
 }: IProps) {
+    const {
+        backgroundColour,
+        instructionTextColour,
+        navBarType,
+        progressBarType,
+        source,
+        style,
+        topBarType
+    } = getWorldStyle(challengeType, currentWorld);
+
     return (
         <SafeAreaView style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}>
-            <Image resizeMethod="resize" resizeMode="cover" source={assets[source as AssetType]} style={style} />
+            <Image resizeMethod="resize" resizeMode="cover" source={source} style={style} />
             <TopBar
                 coins={totalCoins}
                 type={topBarType}

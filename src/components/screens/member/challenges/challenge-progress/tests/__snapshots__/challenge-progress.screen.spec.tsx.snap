@@ -56,7 +56,12 @@ ShallowWrapper {
           }
           style={
             Object {
-              "height": 450,
+              "bottom": 0,
+              "height": 900,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
             }
           }
         />,
@@ -126,7 +131,12 @@ ShallowWrapper {
             "testUri": "../../../assets/challenge-progress/squirrel.png",
           },
           "style": Object {
-            "height": 450,
+            "bottom": 0,
+            "height": 900,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "width": "100%",
           },
         },
         "ref": null,
@@ -250,7 +260,12 @@ ShallowWrapper {
             }
             style={
               Object {
-                "height": 450,
+                "bottom": 0,
+                "height": 900,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": "100%",
               }
             }
           />,
@@ -320,7 +335,12 @@ ShallowWrapper {
               "testUri": "../../../assets/challenge-progress/squirrel.png",
             },
             "style": Object {
-              "height": 450,
+              "bottom": 0,
+              "height": 900,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
             },
           },
           "ref": null,

@@ -8,13 +8,6 @@ describe("ChallengeFailedScreen", () => {
         const actual = shallow(
             <ChallengeFailedScreen
                 onPress={jest.fn()}
-                theme={{
-                    backgroundImage: "challenge_failed_forest",
-                    backgroundStyle: null,
-                    footerStyle: {
-                        color: "rgb(170,170,170)"
-                    }
-                }}
             />
         );
 
