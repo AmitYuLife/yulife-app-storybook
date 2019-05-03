@@ -1,8 +1,8 @@
 import { AnimatedPlusPoints, Button, Stars, Text } from "@atoms/index";
 import * as React from "react";
 import { Image, View } from "react-native";
+import { GetMobileCopy_getMobileCopy_screens_challenges_success } from "../../../../../graphql/_core/schema";
 import Assets from "./assets";
-import data from "./challenge-success.screen.data";
 import styles from "./challenge-success.screen.styles";
 
 interface IProps {
@@ -12,9 +12,10 @@ interface IProps {
     reward: number;
     score: number;
     unit: "steps" | "minutes";
+    copy: GetMobileCopy_getMobileCopy_screens_challenges_success;
 }
 
-export default function ChallengeSuccessScreen({ level, onPressCta, rating, reward, score, unit }: IProps) {
+export default function ChallengeSuccessScreen({ level, onPressCta, rating, reward, score, unit, copy }: IProps) {
     return (
         <View style={styles.wrapper}>
             <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
@@ -32,10 +33,10 @@ export default function ChallengeSuccessScreen({ level, onPressCta, rating, rewa
                 </Text>
             </View>
             <View style={styles.footerWrapper}>
-                <Text style={styles.footer}>{data.footer}</Text>
+                <Text style={styles.footer}>{copy.footer}</Text>
             </View>
             <Button
-                label={data.ctaLabel}
+                label={copy.ctaLabel}
                 onPress={onPressCta}
                 type={Button.Types.PRIMARY_SMALL}
                 wrapperStyle={styles.ctaWrapper}

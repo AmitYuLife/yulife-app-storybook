@@ -1,12 +1,12 @@
-/* tslint:disable */
+import { GetLeaderboardVariables } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { GetLeaderboardVariables } from "../../../../graphql/_core/schema";
 import GetLeaderboardQuery, { getLeaderboardGql } from "../../../../graphql/member/getLeaderboard.gql";
 import { IReduxState } from "../../../../redux/_core/reducers";
+import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { updateLeaderboardConsent } from "../../../../redux/user/user.actions";
 import { getConsentedLeaderboards, getUserFeatures } from "../../../../redux/user/user.selectors";
 import { GenericModal } from "../../../modals";
@@ -41,7 +41,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 
     public render() {
         const { sortBy } = this.state;
-        const { leaderboards = [], features = {} } = this.props;
+        const { leaderboards = [], features = {}, copy } = this.props;
 
         const [companyLeaderboard, ...consentedLeaderboards] = leaderboards;
 
@@ -54,11 +54,11 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                 <GenericModal
                     isPrimaryLoading={companyLeaderboard.isLoading}
                     onPress={this.allowLeaderboard}
-                    heading="join this leaderboard?"
-                    subheading="This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?"
-                    ctaLabel="yes please!"
+                    heading={copy.turnBoardOn.heading}
+                    subheading={copy.turnBoardOn.subheading}
+                    ctaLabel={copy.turnBoardOn.ctaLabel}
                     onPressSecondary={this.handleClose}
-                    ctaLabelSecondary="no thanks"
+                    ctaLabelSecondary={copy.turnBoardOn.ctaLabelSecondary}
                 />
             );
             /* tslint:enable:max-line-length */
@@ -101,6 +101,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                             sortBy={sortBy}
                             onRefetch={() => refetch()}
                             isAdvanced={features.showAdvancedLeaderboards}
+                            copy={copy}
                         />
                     );
                 }}
@@ -139,7 +140,8 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 
 const mapStateToProps = (state: IReduxState) => ({
     features: getUserFeatures(state),
-    leaderboards: getConsentedLeaderboards(state)
+    leaderboards: getConsentedLeaderboards(state),
+    copy: getCopy(state, "leaderboards")
 });
 
 const mapDispatchToProps = {

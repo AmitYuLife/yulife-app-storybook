@@ -4,6 +4,12 @@ exports[`DailyStepsFitKitAuthorise should render default values 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <DailyStepsFitKitAuthorise
+    copy={
+      Object {
+        "permission": "",
+        "permissionCta": "",
+      }
+    }
     onPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -31,10 +37,10 @@ ShallowWrapper {
             }
           }
         >
-          We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.
+          
         </YuText>,
         <Button
-          label="yes let’s connect"
+          label=""
           onPress={[MockFunction]}
           type="PrimaryMedium"
         />,
@@ -47,7 +53,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+          "children": "",
           "style": Object {
             "color": "rgb(96,96,96)",
             "lineHeight": 44,
@@ -57,7 +63,7 @@ ShallowWrapper {
           },
         },
         "ref": null,
-        "rendered": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+        "rendered": "",
         "type": [Function],
       },
       Object {
@@ -65,7 +71,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "label": "yes let’s connect",
+          "label": "",
           "onPress": [MockFunction],
           "type": "PrimaryMedium",
         },
@@ -94,10 +100,10 @@ ShallowWrapper {
               }
             }
           >
-            We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.
+            
           </YuText>,
           <Button
-            label="yes let’s connect"
+            label=""
             onPress={[MockFunction]}
             type="PrimaryMedium"
           />,
@@ -110,7 +116,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+            "children": "",
             "style": Object {
               "color": "rgb(96,96,96)",
               "lineHeight": 44,
@@ -120,7 +126,7 @@ ShallowWrapper {
             },
           },
           "ref": null,
-          "rendered": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+          "rendered": "",
           "type": [Function],
         },
         Object {
@@ -128,7 +134,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "label": "yes let’s connect",
+            "label": "",
             "onPress": [MockFunction],
             "type": "PrimaryMedium",
           },

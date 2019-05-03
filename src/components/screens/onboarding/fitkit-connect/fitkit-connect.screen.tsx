@@ -1,8 +1,8 @@
 import * as React from "react";
 import { SFC } from "react";
+import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "../../../../graphql/_core/schema";
 import { Button, CentredScreen, Loading, Pad } from "../../../atoms";
 import FitKitAvailable from "./fitkit-available";
-import data from "./fitkit-connect.screen.data";
 import FitKitUnavailable from "./fitkit-unavailable";
 
 interface IProps {
@@ -12,6 +12,7 @@ interface IProps {
     onConnectPress: () => void;
     onPrivacyPolicyPress: () => void;
     onSkipPress: () => void;
+    copy: GetMobileCopy_getMobileCopy_screens_fitkitConnect;
 }
 
 const FitKitConnectScreen: SFC<IProps> = ({
@@ -20,26 +21,27 @@ const FitKitConnectScreen: SFC<IProps> = ({
     loading,
     onConnectPress,
     onPrivacyPolicyPress,
-    onSkipPress
+    onSkipPress,
+    copy
 }) => (
     <>
         {!loading ? (
             <CentredScreen footerImage="forest">
                 <Pad height={120} />
                 {fitKitAvailable ? (
-                    <FitKitAvailable connecting={connecting} onConnectPress={onConnectPress} />
+                    <FitKitAvailable connecting={connecting} onConnectPress={onConnectPress} copy={copy} />
                 ) : (
-                    <FitKitUnavailable />
+                    <FitKitUnavailable copy={copy} />
                 )}
                 <Pad height={19} />
                 <Button
                     disabled={connecting}
-                    label={data.secondaryButtonLabel}
+                    label={copy.secondaryButtonLabel}
                     onPress={onSkipPress}
                     type={Button.Types.SECONDARY}
                 />
                 <Pad height={10} />
-                <Button label={data.linkButtonLabel} onPress={onPrivacyPolicyPress} type={Button.Types.LINK} />
+                <Button label={copy.linkButtonLabel} onPress={onPrivacyPolicyPress} type={Button.Types.LINK} />
             </CentredScreen>
         ) : (
             <Loading />

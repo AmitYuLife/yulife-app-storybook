@@ -9,6 +9,10 @@ describe("ChallengeComplete", () => {
         const actual = shallow(
             <ChallengeComplete
                 onCtaPress={jest.fn()}
+                copy={{
+                    ctaLabel: "",
+                    heading: ""
+                }}
             />
         );
 

@@ -13,6 +13,10 @@ describe("ChallengeSuccessScreen", () => {
                 rating={2}
                 reward={2}
                 onPressCta={jest.fn()}
+                copy={{
+                    ctaLabel: "",
+                    footer: ""
+                }}
             />
         );
 
@@ -27,6 +31,10 @@ describe("ChallengeSuccessScreen", () => {
                 rating={2}
                 reward={2}
                 onPressCta={jest.fn()}
+                copy={{
+                    ctaLabel: "",
+                    footer: ""
+                }}
             />
         );
 

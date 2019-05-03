@@ -10,6 +10,7 @@ import {
 } from "../../../../graphql/challenges/addHistoricalSteps.gql";
 import { AddHistoricalStepsMutationFunction } from "../../../../graphql/challenges/addHistoricalSteps.gql";
 import { IReduxState } from "../../../../redux/_core/reducers";
+import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import Logger from "../../../../services/logging/logger";
@@ -27,6 +28,8 @@ type Props = IProps & ConnectedState & ConnectedDispatch;
 
 class ActivityHistoryContainer extends PureComponent<Props> {
     public render() {
+        const { copy } = this.props;
+
         return (
             <AddHistoricalStepsMutation mutation={addHistoricalStepsGql}>
                 {(addHistoricalSteps) => (
@@ -46,6 +49,7 @@ class ActivityHistoryContainer extends PureComponent<Props> {
                                     loading={loading}
                                     onPressClose={this.handleClose}
                                     onRefresh={onRefresh}
+                                    copy={copy}
                                 />
                             );
                         }}
@@ -91,7 +95,8 @@ class ActivityHistoryContainer extends PureComponent<Props> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    features: getUserFeatures(state)
+    features: getUserFeatures(state),
+    copy: getCopy(state, "activityHistoryLevels")
 });
 
 const mapDispatchToProps = {

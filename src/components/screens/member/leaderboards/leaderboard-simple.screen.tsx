@@ -1,8 +1,8 @@
 import React from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { GetMobileCopy_getMobileCopy_screens_leaderboards } from "../../../../graphql/_core/schema";
 import { Colours } from "../../../../styles";
 import { GenericHeading, LeaderboardPosition } from "../../../atoms";
-import data from "./leaderboards.data";
 import { IItem } from "./leaderboards.screen";
 import styles from "./leaderboards.screen.styles";
 
@@ -10,9 +10,10 @@ interface IProps {
     isLoading: boolean;
     isTopHidden: boolean;
     items: IItem[];
+    copy: GetMobileCopy_getMobileCopy_screens_leaderboards;
 }
 
-const SimpleLeaderboard = ({ isLoading, items, isTopHidden }: IProps) => {
+const SimpleLeaderboard = ({ isLoading, items, isTopHidden, copy }: IProps) => {
     return (
         <View style={styles.simpleLeaderboardWrapper}>
             {isLoading ? (
@@ -26,7 +27,7 @@ const SimpleLeaderboard = ({ isLoading, items, isTopHidden }: IProps) => {
                 </View>
             ) : (
                 <View style={styles.simpleLeaderboardPosition}>
-                    <GenericHeading heading={data.heading} hidesBorder={true} subheading={data.subheading} />
+                    <GenericHeading heading={copy.heading} hidesBorder={true} subheading={copy.subheading} />
                     {!isTopHidden && items.slice(0, 3).map(renderPosition)}
                 </View>
             )}

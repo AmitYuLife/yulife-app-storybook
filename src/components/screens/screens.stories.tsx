@@ -27,15 +27,12 @@ import {
     ResetPasswordScreen,
     ResetPasswordSuccessScreen,
     SignUpRewardScreen,
-    TodayYucoinScreen,
-    WelcomeScreen
+    TodayYucoinScreen
 } from "./index";
 
 storiesOf("Screens", module)
     .addDecorator(withKnobs)
-    .add("1. Welcome", () => (
-        <WelcomeScreen onSignUpPress={action("on sign-up press")} onLogInPress={action("on login press")} />
-    ))
+    .add("1. NoAccessScreen", () => <NoAccessScreen />)
     .add("2. Login", () => (
         <LoginScreen
             disabled={false}
@@ -54,7 +51,7 @@ storiesOf("Screens", module)
                 heading: "",
                 subheading: "",
                 ctaLabel: "",
-                secondaryCtaLabel: ""
+                ctaLabelSecondary: ""
             }}
         />
     ))
@@ -82,6 +79,17 @@ storiesOf("Screens", module)
             onConnectPress={action("on connect press")}
             onPrivacyPolicyPress={action("on privacy policy press")}
             onSkipPress={action("on skip press")}
+            copy={{
+                blurb: "",
+                heading: "",
+                linkButtonLabel: "",
+                primaryButtonConnecting: "",
+                primaryButtonLabel: "",
+                secondaryButtonLabel: "",
+                unavailableAndroid: "",
+                unavailableHeading: "",
+                unavailableIOS: ""
+            }}
         />
     ))
     .add("5. SignUp Reward", () => (
@@ -178,6 +186,10 @@ storiesOf("Screens", module)
                 streakType: "forest" as StreakTypes,
                 textStyle: { color: "#333333" },
                 topBarType: "default" as TopBarTypes
+            }}
+            copy={{
+                permission: "",
+                permissionCta: ""
             }}
         />
     ))
@@ -323,6 +335,10 @@ storiesOf("Screens", module)
                 },
                 "ChallengeSuccess"
             )}
+            copy={{
+                ctaLabel: "",
+                footer: ""
+            }}
         />
     ))
     .add("10. Challenge Failed", () => (
@@ -339,6 +355,11 @@ storiesOf("Screens", module)
                 "ChallengeFailed"
             )}
             onPress={action("on press")}
+            copy={{
+                ctaLabel: "",
+                footer: "",
+                heading: ""
+            }}
         />
     ))
     .add("11. Activity History w/ Levels", () => (
@@ -444,6 +465,13 @@ storiesOf("Screens", module)
             onPressClose={action("on press close")}
             onRefresh={action("on refresh")}
             loading={boolean("Loading?", false, "Items")}
+            copy={{
+                headerLeft: "",
+                headerLevel: "",
+                headerMid: "",
+                headerRight: "",
+                heading: ""
+            }}
         />
     ))
     .add("12. Intro", () => <IntroScreen onPressLastCta={action("on press last press")} />)
@@ -525,9 +553,8 @@ storiesOf("Screens", module)
             onPressClose={action("pressed close")}
         />
     ))
-    .add("15. NoAccessScreen", () => <NoAccessScreen />)
-    .add("16. QuestsNextEpisode", () => <QuestsNextEpisode data={null} onSkip={action("pressed skip")} />)
-    .add("17. Challenges List Completed", () => (
+    .add("15. QuestsNextEpisode", () => <QuestsNextEpisode data={null} onSkip={action("pressed skip")} />)
+    .add("16. Challenges List Completed", () => (
         <ChallengesHistoryScreen
             onLeftMenuPress={() => null}
             totalCoins={604}

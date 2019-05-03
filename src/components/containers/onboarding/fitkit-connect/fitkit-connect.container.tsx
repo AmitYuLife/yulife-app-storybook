@@ -5,6 +5,8 @@ import { BackHandler, Linking, NativeEventSubscription } from "react-native";
 import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
+import { IReduxState } from "../../../../redux/_core/reducers";
+import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { fitKitConsentAuthorised } from "../../../../redux/user/user.actions";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
 import { FitKitConnectScreen } from "../../../screens";
@@ -15,13 +17,14 @@ interface IProps {
     navigateToNext: () => void;
 }
 
+type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IState {
     connecting: boolean;
 }
 
-type Props = IProps & ConnectedDispatch;
+type Props = IProps & ConnectedState & ConnectedDispatch;
 
 class FitKitConnectContainer extends PureComponent<Props, IState> {
     public state: IState = {
@@ -44,7 +47,7 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
 
     public render() {
         const { connecting } = this.state;
-        const { navigateToNext } = this.props;
+        const { navigateToNext, copy } = this.props;
 
         return (
             <FitKitAvailable>
@@ -63,6 +66,7 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
                             onConnectPress={() => this.onConnect(authorise)}
                             onPrivacyPolicyPress={this.onPrivacyPolicy}
                             onSkipPress={navigateToNext}
+                            copy={copy}
                         />
                     );
                 }}
@@ -87,11 +91,15 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
     };
 }
 
+const mapStateToProps = (state: IReduxState) => ({
+    copy: getCopy(state, "fitkitConnect")
+});
+
 const mapDispatchToProps = {
     fitKitConsentAuthorised
 };
 
-export default connect<{}, ConnectedDispatch>(
-    null,
+export default connect<ConnectedState, ConnectedDispatch>(
+    mapStateToProps,
     mapDispatchToProps
 )(FitKitConnectContainer);

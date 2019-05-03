@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { GetAllPurchases_getAllPurchases } from "../../../../../graphql/_core/schema";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
+import { getCopy } from "../../../../../redux/copy/copy.selectors";
 import { AviosRewardConfirmedScreen } from "../../../../screens";
 
 interface IProps {
@@ -16,11 +17,9 @@ interface IProps {
     onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
 }
 
-interface IConnectedState {
-    totalCoins: number;
-}
+type ConnectedState = ReturnType<typeof mapStateToProps>;
 
-type Props = IProps & IConnectedState;
+type Props = IProps & ConnectedState;
 
 class AviosRewardConfirmedContainer extends Component<Props> {
     public componentDidMount() {
@@ -65,17 +64,14 @@ class AviosRewardConfirmedContainer extends Component<Props> {
     };
 
     public showPendingAlert = (amount: number) => {
-        Alert.alert(
-            "AVIOS Sent",
-            `Your ${amount} AVIOS points will appear on your account within the next 24hrs.
- We will email you as soon as they are there.`,
-            [
-                {
-                    style: "cancel",
-                    text: "OK, got it"
-                }
-            ]
-        );
+        const { aviosConfirmed } = this.props.copy;
+
+        Alert.alert(aviosConfirmed.title, aviosConfirmed.message.replace("${amount}", amount.toString()), [
+            {
+                style: "cancel",
+                text: aviosConfirmed.cancelButtonText
+            }
+        ]);
     };
 
     public openRewardsPolicy = async () => {
@@ -97,7 +93,8 @@ class AviosRewardConfirmedContainer extends Component<Props> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    totalCoins: getTotalCoins(state)
+    totalCoins: getTotalCoins(state),
+    copy: getCopy(state, "purchases")
 });
 
-export default connect<IConnectedState>(mapStateToProps)(AviosRewardConfirmedContainer);
+export default connect<ConnectedState>(mapStateToProps)(AviosRewardConfirmedContainer);

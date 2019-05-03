@@ -1,3 +1,4 @@
+import { GetCurrentWorld_getCurrentWorld } from "@graphql/_core/schema";
 import { bottomTabs } from "@navigation/constants";
 import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import { getCurrentWorld } from "@services/utils";
@@ -7,7 +8,6 @@ import React from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { GetCurrentWorld_getCurrentWorld } from "../../../../graphql/_core/schema";
 import GetCurrentWorld, {
     getCurrentWorldGql,
     GetCurrentWorldResultType
@@ -17,6 +17,7 @@ import { IMainTabsProps } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
+import { getCopy } from "../../../../redux/copy/copy.selectors";
 import {
     challengeCancelAction,
     challengeEndAction,
@@ -182,7 +183,8 @@ class QuestsContainer extends PureComponent<Props, IState> {
             features,
             labels,
             onLeftMenuPress,
-            totalCoins
+            totalCoins,
+            copy
         } = this.props;
 
         const props = {
@@ -202,17 +204,25 @@ class QuestsContainer extends PureComponent<Props, IState> {
                     reward={coins}
                     score={score}
                     unit={unit as any}
+                    copy={copy.success}
                 />
             ) : (
                 <ChallengeFailedScreen
                     level={level}
                     onPress={this.handleResetChallenge(refetch)}
+                    copy={copy.failed}
                 />
             );
         }
 
         if (timeUp) {
-            return <ChallengeCompleteModal isLoading={isLoading} onCtaPress={this.props.challengeEndAction} />;
+            return (
+                <ChallengeCompleteModal
+                    isLoading={isLoading}
+                    onCtaPress={this.props.challengeEndAction}
+                    copy={copy.completed}
+                />
+            );
         }
 
         if (subtype) {
@@ -240,12 +250,12 @@ class QuestsContainer extends PureComponent<Props, IState> {
                     renderOverlay={({ hideOverlay }) => (
                         <GenericModal
                             onPress={hideOverlay}
-                            heading="exit challenge?"
-                            subheading="You won’t be able to come back to it."
-                            ctaLabel="no way!"
+                            heading={copy.exitChallenge.heading}
+                            subheading={copy.exitChallenge.subheading}
+                            ctaLabel={copy.exitChallenge.ctaLabel}
                             onPressSecondary={this.props.challengeCancelAction}
                             isSecondaryLoading={isLoading}
-                            ctaLabelSecondary="exit"
+                            ctaLabelSecondary={copy.exitChallenge.ctaLabelSecondary}
                         />
                     )}
                 />
@@ -293,9 +303,12 @@ class QuestsContainer extends PureComponent<Props, IState> {
     };
 
     private showChestModal = (level: GetCurrentWorld_getCurrentWorld, isNext: boolean) => {
+        const { copy } = this.props;
         const passProps = {
-            ctaLabel: isNext ? "let's do it" : "got it",
-            heading: isNext ? "take a challenge to unlock the chest" : `unlock at level ${level.level}`,
+            ctaLabel: isNext ? copy.showChestModal.ctaLabelIsNext : copy.showChestModal.ctaLabelIsNotNext,
+            heading: isNext
+                ? copy.showChestModal.headingIsNext
+                : copy.showChestModal.headingIsNotNext + `${level.level}`,
             isLocked: true,
             onPressCta: () => {
                 if (isNext) {
@@ -458,7 +471,8 @@ const mapStateToProps = (state: IReduxState) => ({
     totalCoins: getTotalCoins(state),
     theme: {
         questsOffline: getQuestsOfflineTheme(state)
-    }
+    },
+    copy: getCopy(state, "challenges")
 });
 
 const mapDispatchToProps = {

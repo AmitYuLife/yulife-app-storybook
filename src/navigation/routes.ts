@@ -11,10 +11,6 @@ export default [
         component: require("../components/containers/no-access/no-access.container").default
     },
     {
-        name: ROUTES.welcome,
-        component: require("../components/containers/welcome/welcome.container").default
-    },
-    {
         name: ROUTES.login,
         component: require("../components/containers/login/login.container").default
     },

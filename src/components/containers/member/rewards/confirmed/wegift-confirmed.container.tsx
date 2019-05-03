@@ -15,15 +15,13 @@ interface IProps {
     onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
 }
 
-interface IConnectedState {
-    totalCoins: number;
-}
+type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 interface IState {
     isAccessingUrl: boolean;
 }
 
-type Props = IProps & IConnectedState;
+type Props = IProps & ConnectedState;
 
 class WegiftRewardConfirmedContainer extends Component<Props, IState> {
     public state = {
@@ -107,4 +105,4 @@ const mapStateToProps = (state: IReduxState) => ({
     totalCoins: getTotalCoins(state)
 });
 
-export default connect<IConnectedState>(mapStateToProps)(WegiftRewardConfirmedContainer);
+export default connect<ConnectedState>(mapStateToProps)(WegiftRewardConfirmedContainer);

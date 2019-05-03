@@ -3,7 +3,8 @@ import * as React from "react";
 import PurchasesEmpty from "../purchases-empty";
 
 const defaultProps = {
-    onCtaPress: jest.fn()
+    onCtaPress: jest.fn(),
+    copy: { heading: "", subheading: "", ctaLabel: "" }
 };
 
 describe("PurchasesEmpty", () => {
