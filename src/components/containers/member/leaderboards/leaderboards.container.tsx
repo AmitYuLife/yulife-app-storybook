@@ -42,7 +42,6 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
     public render() {
         const { sortBy } = this.state;
         const { leaderboards = [], features = {}, copy } = this.props;
-
         const [companyLeaderboard, ...consentedLeaderboards] = leaderboards;
 
         if (
@@ -118,7 +117,8 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
     };
 
     private handleLeaderboardChange = (index: number) => {
-        const { leaderboards } = this.props;
+        const [companyLeaderboard, ...consentedLeaderboards] = this.props.leaderboards;
+        const leaderboards = companyLeaderboard.consent ? this.props.leaderboards : consentedLeaderboards;
         const leaderboardId = leaderboards[index].leaderboardId;
 
         this.setState({ leaderboardId });
