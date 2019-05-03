@@ -4,6 +4,12 @@ exports[`ChallengeSuccessScreen should render minutes as expected 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeSuccessScreen
+    copy={
+      Object {
+        "ctaLabel": "",
+        "footer": "",
+      }
+    }
     onPressCta={[MockFunction]}
     rating={2}
     reward={2}
@@ -111,11 +117,11 @@ ShallowWrapper {
               }
             }
           >
-            Well done!
+            
           </YuText>
         </View>,
         <Button
-          label="collect"
+          label=""
           onPress={[MockFunction]}
           type="PrimarySmall"
           wrapperStyle={
@@ -338,7 +344,7 @@ ShallowWrapper {
               }
             }
           >
-            Well done!
+            
           </YuText>,
           "style": Object {
             "marginTop": 20,
@@ -350,7 +356,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "Well done!",
+            "children": "",
             "style": Object {
               "color": "rgb(170,170,170)",
               "fontSize": 30,
@@ -358,7 +364,7 @@ ShallowWrapper {
             },
           },
           "ref": null,
-          "rendered": "Well done!",
+          "rendered": "",
           "type": [Function],
         },
         "type": [Function],
@@ -368,7 +374,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "label": "collect",
+          "label": "",
           "onPress": [MockFunction],
           "type": "PrimarySmall",
           "wrapperStyle": Object {
@@ -476,11 +482,11 @@ ShallowWrapper {
                 }
               }
             >
-              Well done!
+              
             </YuText>
           </View>,
           <Button
-            label="collect"
+            label=""
             onPress={[MockFunction]}
             type="PrimarySmall"
             wrapperStyle={
@@ -703,7 +709,7 @@ ShallowWrapper {
                 }
               }
             >
-              Well done!
+              
             </YuText>,
             "style": Object {
               "marginTop": 20,
@@ -715,7 +721,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": "Well done!",
+              "children": "",
               "style": Object {
                 "color": "rgb(170,170,170)",
                 "fontSize": 30,
@@ -723,7 +729,7 @@ ShallowWrapper {
               },
             },
             "ref": null,
-            "rendered": "Well done!",
+            "rendered": "",
             "type": [Function],
           },
           "type": [Function],
@@ -733,7 +739,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "label": "collect",
+            "label": "",
             "onPress": [MockFunction],
             "type": "PrimarySmall",
             "wrapperStyle": Object {
@@ -774,6 +780,12 @@ exports[`ChallengeSuccessScreen should render steps as expected 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeSuccessScreen
+    copy={
+      Object {
+        "ctaLabel": "",
+        "footer": "",
+      }
+    }
     onPressCta={[MockFunction]}
     rating={2}
     reward={2}
@@ -881,11 +893,11 @@ ShallowWrapper {
               }
             }
           >
-            Well done!
+            
           </YuText>
         </View>,
         <Button
-          label="collect"
+          label=""
           onPress={[MockFunction]}
           type="PrimarySmall"
           wrapperStyle={
@@ -1108,7 +1120,7 @@ ShallowWrapper {
               }
             }
           >
-            Well done!
+            
           </YuText>,
           "style": Object {
             "marginTop": 20,
@@ -1120,7 +1132,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "Well done!",
+            "children": "",
             "style": Object {
               "color": "rgb(170,170,170)",
               "fontSize": 30,
@@ -1128,7 +1140,7 @@ ShallowWrapper {
             },
           },
           "ref": null,
-          "rendered": "Well done!",
+          "rendered": "",
           "type": [Function],
         },
         "type": [Function],
@@ -1138,7 +1150,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "label": "collect",
+          "label": "",
           "onPress": [MockFunction],
           "type": "PrimarySmall",
           "wrapperStyle": Object {
@@ -1246,11 +1258,11 @@ ShallowWrapper {
                 }
               }
             >
-              Well done!
+              
             </YuText>
           </View>,
           <Button
-            label="collect"
+            label=""
             onPress={[MockFunction]}
             type="PrimarySmall"
             wrapperStyle={
@@ -1473,7 +1485,7 @@ ShallowWrapper {
                 }
               }
             >
-              Well done!
+              
             </YuText>,
             "style": Object {
               "marginTop": 20,
@@ -1485,7 +1497,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": "Well done!",
+              "children": "",
               "style": Object {
                 "color": "rgb(170,170,170)",
                 "fontSize": 30,
@@ -1493,7 +1505,7 @@ ShallowWrapper {
               },
             },
             "ref": null,
-            "rendered": "Well done!",
+            "rendered": "",
             "type": [Function],
           },
           "type": [Function],
@@ -1503,7 +1515,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "label": "collect",
+            "label": "",
             "onPress": [MockFunction],
             "type": "PrimarySmall",
             "wrapperStyle": Object {

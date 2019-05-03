@@ -1,16 +1,17 @@
 import * as React from "react";
 import { Image, View } from "react-native";
 import * as Animatable from "react-native-animatable";
+import { GetMobileCopy_getMobileCopy_screens_challenges_completed } from "../../../../../graphql/_core/schema";
 import { Button, Text } from "../../../../atoms";
-import data from "./challenge-complete.data";
 import styles from "./challenge-complete.styles";
 
 interface IProps {
     onCtaPress: () => void;
     isLoading?: boolean;
+    copy: GetMobileCopy_getMobileCopy_screens_challenges_completed;
 }
 
-const ChallengeCompleteScreen: React.SFC<IProps> = ({ isLoading, onCtaPress }) => (
+const ChallengeCompleteScreen: React.SFC<IProps> = ({ isLoading, onCtaPress, copy }) => (
     <View style={styles.wrapper}>
         <View>
             <Animatable.Image
@@ -24,14 +25,14 @@ const ChallengeCompleteScreen: React.SFC<IProps> = ({ isLoading, onCtaPress }) =
         </View>
         <View style={styles.headingWrapper}>
             <Text bold={true} style={styles.text}>
-                {data.heading}
+                {copy.heading}
             </Text>
         </View>
         <Button
             isLoading={isLoading}
             wrapperStyle={styles.ctaWrapper}
             onPress={onCtaPress}
-            label={data.cta}
+            label={copy.ctaLabel}
             type={Button.Types.PRIMARY_SMALL}
         />
     </View>

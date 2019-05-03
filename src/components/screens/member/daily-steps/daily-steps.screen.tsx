@@ -5,6 +5,7 @@ import { Style } from "@styles/index";
 import * as React from "react";
 import { Platform, View } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
+import { GetMobileCopy_getMobileCopy_screens_dailyStepsFitKitAuthorise } from "../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../typings";
 import { CentredScreen, Pad } from "../../../atoms";
 import { NavBar, Streak, TopBar } from "../../../molecules";
@@ -32,6 +33,7 @@ interface IProps extends IConnectedScreenProps {
     onCoinPress: () => void;
     onStreakPress?: () => void;
     theme: IThemeStore["dailyStepsScreen"];
+    copy: GetMobileCopy_getMobileCopy_screens_dailyStepsFitKitAuthorise;
 }
 
 type Props = IProps & IDailyStepsOnlineProps & IDailyStepsOfflineProps;
@@ -57,7 +59,8 @@ export default function DailyStepsScreen({
     showCounter = false,
     steps,
     totalCoins,
-    theme: { centredScreen, hasWhiteGlow, isLight, topBarType, navBar, streakType, textStyle }
+    theme: { centredScreen, hasWhiteGlow, isLight, topBarType, navBar, streakType, textStyle },
+    copy
 }: Props) {
     return (
         <CentredScreen
@@ -79,7 +82,7 @@ export default function DailyStepsScreen({
             ) : !fitKitAvailable ? (
                 <DailyStepsFitKitUnavailable />
             ) : !hasPermission ? (
-                <DailyStepsFitKitAuthorise onPress={onAuthoriseFitKitPress} />
+                <DailyStepsFitKitAuthorise onPress={onAuthoriseFitKitPress} copy={copy} />
             ) : !isOnline ? (
                 <DailyStepsOffline isLight={isLight} lastUpdate={lastUpdate} />
             ) : (

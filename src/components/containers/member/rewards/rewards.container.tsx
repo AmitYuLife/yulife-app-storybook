@@ -16,6 +16,7 @@ import { MODALS, ROUTES } from "../../../../navigation/constants";
 import { IMainTabsProps } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
+import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getHasNotification } from "../../../../redux/levels/levels.selectors";
 import Logger from "../../../../services/logging/logger";
 import { formatMoney } from "../../../../services/money";
@@ -111,6 +112,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
     };
 
     private handleRewardDetailsItemPress = async (reward: GetRewards_getRewards) => {
+        const { copy } = this.props;
         if (!reward.available_denominations.length) {
             Logger.logMixpanelEvent("reward_viewed", {
                 locked: true,
@@ -125,10 +127,10 @@ class RewardsContainer extends PureComponent<Props, IState> {
                     id: MODALS.rewards,
                     name: MODALS.rewards,
                     passProps: {
-                        ctaLabel: "check other rewards",
-                        heading: "the voucher is locked",
+                        ctaLabel: copy.lockedReward.ctaLabel,
+                        heading: copy.lockedReward.heading,
                         onPress: () => Navigation.dismissModal(MODALS.rewards),
-                        subheading: "access coming soon"
+                        subheading: copy.lockedReward.subheading
                     }
                 }
             });
@@ -151,7 +153,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
 
     // all related to the purchases tab
     private renderPurchases = ({ loading, data, refetch }: GetAllPurchasesResultType) => {
-        const { hasNotification, labels, onLeftMenuPress, totalCoins } = this.props;
+        const { hasNotification, labels, onLeftMenuPress, totalCoins, copy } = this.props;
         const items = this.formatPuchaseItem(data.getAllPurchases);
 
         return (
@@ -164,6 +166,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
                 onRightTabPress={() => refetch()}
                 loading={loading}
                 totalCoins={totalCoins}
+                copy={copy}
             />
         );
     };
@@ -224,7 +227,8 @@ class RewardsContainer extends PureComponent<Props, IState> {
 
 const mapStateToProps = (state: IReduxState) => ({
     hasNotification: getHasNotification(state),
-    totalCoins: getTotalCoins(state)
+    totalCoins: getTotalCoins(state),
+    copy: getCopy(state, "purchases")
 });
 
 export default connect<ConnectedState>(mapStateToProps)(RewardsContainer);

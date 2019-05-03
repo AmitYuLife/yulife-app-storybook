@@ -5,6 +5,19 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <FitKitAvailable
     connecting={false}
+    copy={
+      Object {
+        "blurb": "",
+        "heading": "",
+        "linkButtonLabel": "",
+        "primaryButtonConnecting": "",
+        "primaryButtonLabel": "",
+        "secondaryButtonLabel": "",
+        "unavailableAndroid": "",
+        "unavailableHeading": "",
+        "unavailableIOS": "",
+      }
+    }
     onConnectPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -22,13 +35,13 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Heading
-          label="connect to health app"
+          label=""
         />,
         <Pad
           height={14}
         />,
         <Blurb
-          label="We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings."
+          label=""
           wrapperStyle={
             Object {
               "paddingHorizontal": 80,
@@ -41,7 +54,7 @@ ShallowWrapper {
         <Button
           disabled={false}
           isLoading={false}
-          label="yes let’s connect"
+          label=""
           onPress={[MockFunction]}
           type="Primary"
         />,
@@ -54,7 +67,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "label": "connect to health app",
+          "label": "",
         },
         "ref": null,
         "rendered": null,
@@ -76,7 +89,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "label": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+          "label": "",
           "wrapperStyle": Object {
             "paddingHorizontal": 80,
           },
@@ -103,7 +116,7 @@ ShallowWrapper {
         "props": Object {
           "disabled": false,
           "isLoading": false,
-          "label": "yes let’s connect",
+          "label": "",
           "onPress": [MockFunction],
           "type": "Primary",
         },
@@ -122,13 +135,13 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Heading
-            label="connect to health app"
+            label=""
           />,
           <Pad
             height={14}
           />,
           <Blurb
-            label="We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings."
+            label=""
             wrapperStyle={
               Object {
                 "paddingHorizontal": 80,
@@ -141,7 +154,7 @@ ShallowWrapper {
           <Button
             disabled={false}
             isLoading={false}
-            label="yes let’s connect"
+            label=""
             onPress={[MockFunction]}
             type="Primary"
           />,
@@ -154,7 +167,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "label": "connect to health app",
+            "label": "",
           },
           "ref": null,
           "rendered": null,
@@ -176,7 +189,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "label": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+            "label": "",
             "wrapperStyle": Object {
               "paddingHorizontal": 80,
             },
@@ -203,7 +216,7 @@ ShallowWrapper {
           "props": Object {
             "disabled": false,
             "isLoading": false,
-            "label": "yes let’s connect",
+            "label": "",
             "onPress": [MockFunction],
             "type": "Primary",
           },
@@ -242,6 +255,19 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <FitKitAvailable
     connecting={true}
+    copy={
+      Object {
+        "blurb": "",
+        "heading": "",
+        "linkButtonLabel": "",
+        "primaryButtonConnecting": "",
+        "primaryButtonLabel": "",
+        "secondaryButtonLabel": "",
+        "unavailableAndroid": "",
+        "unavailableHeading": "",
+        "unavailableIOS": "",
+      }
+    }
     onConnectPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -259,13 +285,13 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Heading
-          label="connect to health app"
+          label=""
         />,
         <Pad
           height={14}
         />,
         <Blurb
-          label="We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings."
+          label=""
           wrapperStyle={
             Object {
               "paddingHorizontal": 80,
@@ -278,7 +304,7 @@ ShallowWrapper {
         <Button
           disabled={true}
           isLoading={true}
-          label="connecting ..."
+          label=""
           onPress={[MockFunction]}
           type="Primary"
         />,
@@ -291,7 +317,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "label": "connect to health app",
+          "label": "",
         },
         "ref": null,
         "rendered": null,
@@ -313,7 +339,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "label": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+          "label": "",
           "wrapperStyle": Object {
             "paddingHorizontal": 80,
           },
@@ -340,7 +366,7 @@ ShallowWrapper {
         "props": Object {
           "disabled": true,
           "isLoading": true,
-          "label": "connecting ...",
+          "label": "",
           "onPress": [MockFunction],
           "type": "Primary",
         },
@@ -359,13 +385,13 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Heading
-            label="connect to health app"
+            label=""
           />,
           <Pad
             height={14}
           />,
           <Blurb
-            label="We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings."
+            label=""
             wrapperStyle={
               Object {
                 "paddingHorizontal": 80,
@@ -378,7 +404,7 @@ ShallowWrapper {
           <Button
             disabled={true}
             isLoading={true}
-            label="connecting ..."
+            label=""
             onPress={[MockFunction]}
             type="Primary"
           />,
@@ -391,7 +417,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "label": "connect to health app",
+            "label": "",
           },
           "ref": null,
           "rendered": null,
@@ -413,7 +439,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "label": "We’d like to collect your health and personal data to track your activity, give you rewards and a personalised experience. You'll be able to adjust what data we receive in settings.",
+            "label": "",
             "wrapperStyle": Object {
               "paddingHorizontal": 80,
             },
@@ -440,7 +466,7 @@ ShallowWrapper {
           "props": Object {
             "disabled": true,
             "isLoading": true,
-            "label": "connecting ...",
+            "label": "",
             "onPress": [MockFunction],
             "type": "Primary",
           },

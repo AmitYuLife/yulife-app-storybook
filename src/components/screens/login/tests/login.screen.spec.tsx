@@ -21,7 +21,7 @@ const defaultProps = {
         heading: "",
         subheading: "",
         ctaLabel: "",
-        secondaryCtaLabel: ""
+        ctaLabelSecondary: ""
     }
 } as IProps;
 

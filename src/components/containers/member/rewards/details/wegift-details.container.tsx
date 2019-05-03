@@ -10,6 +10,7 @@ import { bottomTabs, MODALS, ROUTES } from "../../../../../navigation/constants"
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
+import { getCopy } from "../../../../../redux/copy/copy.selectors";
 import { getUserStart } from "../../../../../redux/user/user.actions";
 import Logger from "../../../../../services/logging/logger";
 import { WegiftRewardDetailsScreen } from "../../../../screens";
@@ -20,16 +21,10 @@ interface IProps {
     onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
 }
 
-interface IConnectedState {
-    offline: boolean;
-    totalCoins: number;
-}
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+type ConnectedDispatch = typeof mapDispatchToProps;
 
-interface IConnectedDispatch {
-    getUserStart: () => void;
-}
-
-type Props = IProps & IConnectedState & IConnectedDispatch;
+type Props = IProps & ConnectedState & ConnectedDispatch;
 
 class WegiftRewardDetailsContainer extends Component<Props> {
     public componentDidMount() {
@@ -111,7 +106,7 @@ class WegiftRewardDetailsContainer extends Component<Props> {
     };
 
     private handleRewardPurchase = (redeemReward: RedeemRewardFunctionType) => {
-        const { offline, reward, totalCoins } = this.props;
+        const { offline, reward, totalCoins, copy } = this.props;
 
         const [{ value, yuCoin }] = reward.available_denominations;
         Alert.alert(
@@ -140,20 +135,20 @@ class WegiftRewardDetailsContainer extends Component<Props> {
                             }
                         } catch (e) {
                             const passProps = {
-                                ctaLabel: "check other rewards",
-                                heading: "the voucher is not currently available",
+                                ctaLabel: copy.voucherNotAvailable.ctaLabel,
+                                heading: copy.voucherNotAvailable.heading,
                                 onPress: () => Navigation.dismissModal(MODALS.rewards),
-                                subheading: "Please come back later."
+                                subheading: copy.voucherNotAvailable.subheading
                             };
 
                             if (offline) {
-                                passProps.ctaLabel = "got it";
-                                passProps.heading = "you're offline";
-                                passProps.subheading = "check your internet connection";
+                                passProps.ctaLabel = copy.offline.ctaLabel;
+                                passProps.heading = copy.offline.heading;
+                                passProps.subheading = copy.offline.subheading;
                             } else if (totalCoins < yuCoin) {
-                                passProps.ctaLabel = "got it";
-                                passProps.heading = "not enough coin";
-                                passProps.subheading = "Earn more and come back later!";
+                                passProps.ctaLabel = copy.notEnoughCoins.ctaLabel;
+                                passProps.heading = copy.notEnoughCoins.heading;
+                                passProps.subheading = copy.notEnoughCoins.subheading;
                             }
 
                             await Navigation.showModal({
@@ -174,14 +169,15 @@ class WegiftRewardDetailsContainer extends Component<Props> {
 
 const mapStateToProps = (state: IReduxState) => ({
     offline: getOfflineState(state),
-    totalCoins: getTotalCoins(state)
+    totalCoins: getTotalCoins(state),
+    copy: getCopy(state, "purchases")
 });
 
 const mapDispatchToProps = {
     getUserStart
 };
 
-export default connect<IConnectedState, IConnectedDispatch>(
+export default connect<ConnectedState, ConnectedDispatch>(
     mapStateToProps,
     mapDispatchToProps
 )(WegiftRewardDetailsContainer);

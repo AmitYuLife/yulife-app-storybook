@@ -4,6 +4,40 @@ exports[`RewardsPurchasedScreen should render with data 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <RewardsPurchasedScreen
+    copy={
+      Object {
+        "aviosConfirmed": Object {
+          "cancelButtonText": "",
+          "message": "",
+          "title": "",
+        },
+        "empty": Object {
+          "ctaLabel": "",
+          "heading": "",
+          "subheading": "",
+        },
+        "lockedReward": Object {
+          "ctaLabel": "",
+          "heading": "",
+          "subheading": "",
+        },
+        "notEnoughCoins": Object {
+          "ctaLabel": "",
+          "heading": "",
+          "subheading": "",
+        },
+        "offline": Object {
+          "ctaLabel": "",
+          "heading": "",
+          "subheading": "",
+        },
+        "voucherNotAvailable": Object {
+          "ctaLabel": "",
+          "heading": "",
+          "subheading": "",
+        },
+      }
+    }
     data={
       Array [
         Object {
@@ -582,6 +616,40 @@ exports[`RewardsPurchasedScreen should render without data 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <RewardsPurchasedScreen
+    copy={
+      Object {
+        "aviosConfirmed": Object {
+          "cancelButtonText": "",
+          "message": "",
+          "title": "",
+        },
+        "empty": Object {
+          "ctaLabel": "",
+          "heading": "",
+          "subheading": "",
+        },
+        "lockedReward": Object {
+          "ctaLabel": "",
+          "heading": "",
+          "subheading": "",
+        },
+        "notEnoughCoins": Object {
+          "ctaLabel": "",
+          "heading": "",
+          "subheading": "",
+        },
+        "offline": Object {
+          "ctaLabel": "",
+          "heading": "",
+          "subheading": "",
+        },
+        "voucherNotAvailable": Object {
+          "ctaLabel": "",
+          "heading": "",
+          "subheading": "",
+        },
+      }
+    }
     data={Array []}
     labels={Array []}
     loading={false}

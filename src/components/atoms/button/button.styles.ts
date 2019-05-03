@@ -1,8 +1,4 @@
-import {
-    StyleSheet,
-    TextStyle,
-    ViewStyle
-} from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../styles";
 
 const wrapperPrimaryBodyHeight = Style.SCALE_UP_AND_DOWN(50);
@@ -78,10 +74,10 @@ export default StyleSheet.create({
     wrapperOverlayPrimaryDisabled: {
         ...StyleSheet.absoluteFillObject,
         backgroundColor: "rgba(255,255,255,0.8)",
-        borderRadius: wrapperPrimaryTotalHeight / 2,
+        borderRadius: Style.SCALE_UP_AND_DOWN(50),
         height: wrapperPrimaryTotalHeight,
         left: -3,
-        width: wrapperPrimaryBodyWidth + 8
+        width: wrapperPrimaryBodyWidth + wrapperPrimaryShadowOffset + 1
     } as ViewStyle,
     wrapperPrimary: {
         backgroundColor: Colours.button.primary.default.body,

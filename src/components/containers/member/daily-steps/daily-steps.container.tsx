@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
 import { getDailyEarnedCoins, getTotalCoins } from "../../../../redux/coins/coins.selectors";
+import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { startDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
 import {
     getDailySteps,
@@ -95,7 +96,8 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                         onLeftMenuPress,
                         streaks,
                         theme,
-                        totalCoins
+                        totalCoins,
+                        copy
                     } = this.props;
                     const { dailyStepsLoading, lastUpdate } = this.state;
                     const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
@@ -125,6 +127,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                             steps={dailySteps}
                             theme={theme}
                             totalCoins={totalCoins}
+                            copy={copy}
                         />
                     );
                 }}
@@ -200,7 +203,8 @@ const mapStateToProps = (state: IReduxState) => ({
     offline: getOfflineState(state),
     streaks: getStreaks(state),
     theme: getDailyStepsTheme(state),
-    totalCoins: getTotalCoins(state)
+    totalCoins: getTotalCoins(state),
+    copy: getCopy(state, "dailyStepsFitKitAuthorise")
 });
 
 const mapDispatchToProps = {

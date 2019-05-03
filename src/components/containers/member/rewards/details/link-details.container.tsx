@@ -16,12 +16,9 @@ interface IProps {
     onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
 }
 
-interface IConnectedState {
-    offline: boolean;
-    totalCoins: number;
-}
+type ConnectedState = ReturnType<typeof mapStateToProps>;
 
-type Props = IProps & IConnectedState;
+type Props = IProps & ConnectedState;
 
 class LinkRewardDetailsContainer extends Component<Props> {
     public componentDidMount() {
@@ -74,11 +71,11 @@ class LinkRewardDetailsContainer extends Component<Props> {
 
     private handleRewardsPress = () => {
         this.props.onTabChange("rewards", this.props.componentId);
-    }
+    };
 
     private handlePurchasesPress = () => {
         this.props.onTabChange("purchases", this.props.componentId);
-    }
+    };
 
     private openPDFs = (pdf: "policy" | "terms") => async () => {
         const { reward } = this.props;
@@ -89,7 +86,7 @@ class LinkRewardDetailsContainer extends Component<Props> {
         if (supported) {
             await Linking.openURL(url);
         }
-    }
+    };
 
     private handleSubmit = () => {
         const {
@@ -119,7 +116,7 @@ class LinkRewardDetailsContainer extends Component<Props> {
                 }
             ]
         );
-    }
+    };
 }
 
 const mapStateToProps = (state: IReduxState) => ({
@@ -127,4 +124,4 @@ const mapStateToProps = (state: IReduxState) => ({
     totalCoins: getTotalCoins(state)
 });
 
-export default connect<IConnectedState>(mapStateToProps)(LinkRewardDetailsContainer);
+export default connect<ConnectedState>(mapStateToProps)(LinkRewardDetailsContainer);

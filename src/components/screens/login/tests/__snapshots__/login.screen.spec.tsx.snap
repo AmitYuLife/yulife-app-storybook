@@ -7,8 +7,8 @@ ShallowWrapper {
     copy={
       Object {
         "ctaLabel": "",
+        "ctaLabelSecondary": "",
         "heading": "",
-        "secondaryCtaLabel": "",
         "subheading": "",
       }
     }
@@ -721,8 +721,8 @@ ShallowWrapper {
     copy={
       Object {
         "ctaLabel": "",
+        "ctaLabelSecondary": "",
         "heading": "",
-        "secondaryCtaLabel": "",
         "subheading": "",
       }
     }
@@ -1435,8 +1435,8 @@ ShallowWrapper {
     copy={
       Object {
         "ctaLabel": "",
+        "ctaLabelSecondary": "",
         "heading": "",
-        "secondaryCtaLabel": "",
         "subheading": "",
       }
     }
@@ -2149,8 +2149,8 @@ ShallowWrapper {
     copy={
       Object {
         "ctaLabel": "",
+        "ctaLabelSecondary": "",
         "heading": "",
-        "secondaryCtaLabel": "",
         "subheading": "",
       }
     }
@@ -2705,8 +2705,8 @@ ShallowWrapper {
     copy={
       Object {
         "ctaLabel": "",
+        "ctaLabelSecondary": "",
         "heading": "",
-        "secondaryCtaLabel": "",
         "subheading": "",
       }
     }

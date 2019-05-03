@@ -46,7 +46,14 @@ storiesOf("Modals", module)
         />
     ))
     .add("2. Challenge Complete", () => (
-        <ChallengeCompleteModal isLoading={boolean("isLoading", true)} onCtaPress={action("on cta press")} />
+        <ChallengeCompleteModal
+            isLoading={boolean("isLoading", true)}
+            onCtaPress={action("on cta press")}
+            copy={{
+                ctaLabel: "",
+                heading: ""
+            }}
+        />
     ))
     .add("3. Collect Reward", () => (
         <CollectRewardModal date={text("Date", "", "CollectReward")} onPress={action("on press")} yucoin={20} />
