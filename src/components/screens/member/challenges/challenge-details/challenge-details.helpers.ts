@@ -4,22 +4,26 @@ import styles from "./challenge-details.styles";
 const BRISK_WALK = [
     { source: assets.squirrel, style: styles.image },
     { source: assets.otter, style: styles.image },
-    { source: assets.meerkat, style: styles.image }
+    { source: assets.meerkat, style: styles.image },
+    { source: assets.wolf, style: styles.image }
 ];
 const SHORT_STROLL = [
     { source: assets.elephant, style: styles.image },
     { source: assets.tortoise, style: styles.image },
-    { source: assets.bighornSheep, style: styles.image }
+    { source: assets.bighornSheep, style: styles.image },
+    { source: assets.whiteBighornSheep, style: styles.image }
 ];
 const LONG_WALK = [
     { source: assets.ostrich, style: styles.imageLongWalk },
     { source: assets.whale, style: styles.imageLongWalk },
-    { source: assets.desertFox, style: styles.imageLongWalk }
+    { source: assets.desertFox, style: styles.imageLongWalk },
+    { source: assets.deer, style: styles.imageLongWalk }
 ];
 const MEDITATION = [
     { source: assets.bird, style: styles.image },
     { source: assets.dolphin, style: styles.image },
-    { source: assets.camel, style: styles.image }
+    { source: assets.camel, style: styles.image },
+    { source: assets.owl, style: styles.image }
 ];
 
 export const getImageAndStyle = (challengeType: string, currentWorld = 0) => {

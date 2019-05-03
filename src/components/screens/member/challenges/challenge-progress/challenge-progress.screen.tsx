@@ -10,10 +10,10 @@ export type ChallengeType = "short stroll" | "meditation" | "day walk" | "long w
 
 interface IProps extends IConnectedScreenProps {
     challengeType: ChallengeType;
-    currentWorld?: number;
     endDateTime: string;
     showCounter?: boolean;
     userProgress: number;
+    currentWorld: number;
     progressTargets: number[];
     unit: "steps" | "minutes";
     onCalmPress?: () => void;

@@ -3,6 +3,36 @@ import { Style } from "../../../styles";
 import assets from "./assets";
 import { Images, IMAGES } from "./challenge-tile.types";
 
+export const getLockedImageStyle = (image: Images): ImageStyle => {
+    const position = {} as { bottom?: number; left?: number; right?: number; top?: number };
+    switch (image) {
+        case IMAGES.WOLF:
+            position.left = 0;
+            position.bottom = 0;
+            break;
+        case IMAGES.DEER:
+            position.left = 0;
+            position.bottom = 0;
+            break;
+        case IMAGES.WHITE_BIGHORN_SHEEP:
+            position.right = 0;
+            position.bottom = 0;
+            break;
+        case IMAGES.OWL:
+            position.right = 0;
+            position.bottom = 0;
+            break;
+        default:
+            return null;
+    }
+    return StyleSheet.flatten([
+        {
+            position: "absolute",
+            ...position
+        } as ImageStyle
+    ]);
+};
+
 export const getImageStyle = (image: Images): ImageStyle => {
     const position = {} as { bottom?: number; left?: number; right?: number; top?: number };
     const topAdjust = Style.isShortAndroid() ? 0 : 0;
@@ -56,6 +86,22 @@ export const getImageStyle = (image: Images): ImageStyle => {
             position.bottom = 0;
             position.right = 0;
             break;
+        case IMAGES.WOLF:
+            position.left = 0;
+            position.bottom = 0;
+            break;
+        case IMAGES.DEER:
+            position.left = 0;
+            position.bottom = 0;
+            break;
+        case IMAGES.WHITE_BIGHORN_SHEEP:
+            position.right = 0;
+            position.bottom = 0;
+            break;
+        case IMAGES.OWL:
+            position.right = 0;
+            position.bottom = 0;
+            break;
         default:
             position.top = 0;
             position.right = 0;
@@ -94,6 +140,14 @@ export const getImage = (image: Images) => {
             return assets.meerkat;
         case IMAGES.DESERT_FOX:
             return assets.desertFox;
+        case IMAGES.DEER:
+            return assets.deer;
+        case IMAGES.OWL:
+            return assets.owl;
+        case IMAGES.WHITE_BIGHORN_SHEEP:
+            return assets.whiteBighornSheep;
+        case IMAGES.WOLF:
+            return assets.wolf;
         default:
             return null;
     }

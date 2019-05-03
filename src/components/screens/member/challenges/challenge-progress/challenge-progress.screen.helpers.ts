@@ -1,4 +1,4 @@
-import { IColours } from "@molecules/index";
+import { IColours, NavBar } from "@molecules/index";
 import { TopBarTypes } from "@molecules/top-bar/top-bar";
 import { StyleSheet } from "react-native";
 import { Style } from "../../../../../styles";
@@ -41,6 +41,14 @@ const BRISK_WALK: IStyleSet[] = [
         source: assets.meerkat,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
         topBarType: "default"
+    },
+    {
+        backgroundColour: "rgb(255, 183, 192)",
+        navBarType: NavBar.Colours.LIGHT,
+        progressBarType: "mountain-pink",
+        source: assets.wolf,
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
+        topBarType: "default"
     }
 ];
 const SHORT_STROLL: IStyleSet[] = [
@@ -65,6 +73,14 @@ const SHORT_STROLL: IStyleSet[] = [
         navBarType: "desert",
         progressBarType: "desert-brown",
         source: assets.bighornSheep,
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
+        topBarType: "default"
+    },
+    {
+        backgroundColour: "rgb(255, 183, 192)",
+        navBarType: NavBar.Colours.LIGHT,
+        progressBarType: "mountain-pink",
+        source: assets.whiteBighornSheep,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
         topBarType: "default"
     }
@@ -93,6 +109,14 @@ const LONG_WALK: IStyleSet[] = [
         source: assets.desertFox,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
         topBarType: "white"
+    },
+    {
+        backgroundColour: "rgb(160, 232, 252)",
+        navBarType: NavBar.Colours.LIGHT,
+        progressBarType: "mountain-black",
+        source: assets.deer,
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
+        topBarType: "default"
     }
 ];
 const MEDITATION: IStyleSet[] = [
@@ -120,6 +144,15 @@ const MEDITATION: IStyleSet[] = [
         navBarType: "desert",
         progressBarType: "ocean-black",
         source: assets.camel,
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
+        topBarType: "default"
+    },
+    {
+        backgroundColour: "rgb(167, 210, 255)",
+        instructionTextColour: "rgb(80, 142, 205)",
+        navBarType: NavBar.Colours.LIGHT,
+        progressBarType: "mountain-black",
+        source: assets.owl,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
         topBarType: "default"
     }

@@ -2,6 +2,7 @@ import { TouchableOpacityWithState } from "@molecules/index";
 import moment from "moment";
 import * as React from "react";
 import { StyleSheet } from "react-native";
+import { Style } from "../../../../../../../styles";
 import { IChallenge } from "../../quests-screen";
 import { IMapSlice } from "../index";
 import getLevelButton from "./level.content";
@@ -42,7 +43,7 @@ export default class LevelBubble extends React.PureComponent<IProps, IState> {
                 {!level.isActive ? null : (
                     <Pulse
                         size={CIRCLE_SIZE + 6}
-                        pulseMaxSize={66}
+                        pulseMaxSize={Style.SCALE_UP_AND_DOWN(66)}
                         interval={nextAvailable < 0 ? 1250 : 750}
                         backgroundColor="rgb(145,0,76)"
                         style={style}

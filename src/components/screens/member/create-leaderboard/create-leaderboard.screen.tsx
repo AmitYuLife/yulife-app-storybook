@@ -42,7 +42,7 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
 
         return (
             <SafeAreaView style={StyleSheet.absoluteFill}>
-                <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={{ flex: 1 }} >
+                <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={{ flex: 1 }}>
                     <GenericHeading heading="create a leaderboard" hidesBorder={true} />
                     <CentredScreen>
                         <Pad height={20} />
@@ -80,8 +80,8 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
                             type="Primary"
                         />
                     </CentredScreen>
-                    <Close onPress={this.props.onPressClose} />
                 </KeyboardAvoidingView>
+                <Close onPress={this.props.onPressClose} />
             </SafeAreaView>
         );
     }

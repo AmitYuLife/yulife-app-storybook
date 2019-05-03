@@ -10,7 +10,11 @@ export enum IMAGES {
     BIGHORN_SHEEP = "bighornSheep",
     CAMEL = "camel",
     DESERT_FOX = "desertFox",
-    MEERKAT = "meerkat"
+    MEERKAT = "meerkat",
+    DEER = "deer",
+    OWL = "owl",
+    WHITE_BIGHORN_SHEEP = "whiteBighornSheep",
+    WOLF = "wolf"
 }
 
 export type Images =
@@ -25,4 +29,8 @@ export type Images =
     | "bighornSheep"
     | "camel"
     | "desertFox"
-    | "meerkat";
+    | "meerkat"
+    | "deer"
+    | "owl"
+    | "whiteBighornSheep"
+    | "wolf";

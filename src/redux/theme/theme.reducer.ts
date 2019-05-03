@@ -80,6 +80,28 @@ const getCurrentWorldTheme = (
     }
 
     switch (getCurrentWorld(currentLevel)) {
+        case 3:
+            return {
+                dailyStepsScreen: {
+                    centredScreen: {
+                        offline: { image: "gray_mountain", style: { backgroundColor: "rgb(235,235,235)" } },
+                        online: { image: "mountain", style: { backgroundColor: "rgb(248, 212, 219)" } }
+                    },
+                    hasWhiteGlow: true,
+                    isLight: false,
+                    navBar: {
+                        offline: COLOURS.LIGHT,
+                        online: COLOURS.BLUE
+                    },
+                    streakType: "ocean",
+                    textStyle: { color: "rgb(51, 51, 51)" },
+                    topBarType: "default"
+                },
+                questsOfflineScreen: {
+                    image: "mountain",
+                    navBarType: COLOURS.LIGHT
+                }
+            };
         case 2:
             return {
                 dailyStepsScreen: {

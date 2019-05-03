@@ -37,6 +37,12 @@ export default function ChallengeFailedScreen({ level, onPress, copy }: IProps) 
 
 function getStyle(currentLevel: number): any {
     switch (getCurrentWorld(currentLevel)) {
+        case 3:
+            return {
+                backgroundImage: "challenge_failed_mountain",
+                backgroundStyle: { backgroundColor: "rgb(248, 212, 219)" },
+                footerStyle: styles.footerGray
+            };
         case 2:
             return {
                 backgroundImage: "challenge_failed_desert",

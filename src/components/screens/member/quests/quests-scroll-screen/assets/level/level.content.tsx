@@ -83,6 +83,8 @@ export default function getLevelButton(nextAvailable: number, currentLevel: numb
 
 function getLockColor(currentLevel: number) {
     switch (getCurrentWorld(currentLevel)) {
+        case 3:
+            return "rgb(87, 133, 188)";
         case 2:
             return "rgb(183, 136, 67)";
         case 1:

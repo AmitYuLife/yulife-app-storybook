@@ -5,6 +5,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeProgressScreen
     challengeType="brisk walk"
+    currentWorld={1}
     endDateTime="2020-12-31T23:59:59"
     labels={Array []}
     onDismissPress={[MockFunction]}
@@ -15,18 +16,6 @@ ShallowWrapper {
         4000,
         6000,
       ]
-    }
-    theme={
-      Object {
-        "backgroundColour": "rgb(255,255,255)",
-        "navBarType": "light",
-        "progressBarType": "black",
-        "source": "squirrel",
-        "style": Object {
-          "height": 450,
-        },
-        "topBarType": "default",
-      }
     }
     totalCoins={1234}
     unit="steps"
@@ -51,13 +40,13 @@ ShallowWrapper {
           resizeMode="cover"
           source={
             Object {
-              "testUri": "../../../assets/challenge-progress/squirrel.png",
+              "testUri": "../../../assets/challenge-progress/otter.png",
             }
           }
           style={
             Object {
               "bottom": 0,
-              "height": 900,
+              "height": "100%",
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -70,7 +59,7 @@ ShallowWrapper {
           menuLabel="brisk walk"
           onPressLeftIcon={[MockFunction]}
           timer="2020-12-31T23:59:59"
-          type="default"
+          type="white"
         />,
         <View
           style={
@@ -89,7 +78,7 @@ ShallowWrapper {
               ]
             }
             showCounter={false}
-            styleType="black"
+            styleType="ocean-white"
             type="steps"
           />
         </View>,
@@ -114,7 +103,7 @@ ShallowWrapper {
         </View>,
       ],
       "style": Object {
-        "backgroundColor": "rgb(255,255,255)",
+        "backgroundColor": "rgb(0,81,143)",
         "flex": 1,
       },
     },
@@ -128,11 +117,11 @@ ShallowWrapper {
           "resizeMethod": "resize",
           "resizeMode": "cover",
           "source": Object {
-            "testUri": "../../../assets/challenge-progress/squirrel.png",
+            "testUri": "../../../assets/challenge-progress/otter.png",
           },
           "style": Object {
             "bottom": 0,
-            "height": 900,
+            "height": "100%",
             "left": 0,
             "position": "absolute",
             "right": 0,
@@ -152,7 +141,7 @@ ShallowWrapper {
           "menuLabel": "brisk walk",
           "onPressLeftIcon": [MockFunction],
           "timer": "2020-12-31T23:59:59",
-          "type": "default",
+          "type": "white",
         },
         "ref": null,
         "rendered": null,
@@ -173,7 +162,7 @@ ShallowWrapper {
               ]
             }
             showCounter={false}
-            styleType="black"
+            styleType="ocean-white"
             type="steps"
           />,
           "style": Object {
@@ -193,7 +182,7 @@ ShallowWrapper {
               6000,
             ],
             "showCounter": false,
-            "styleType": "black",
+            "styleType": "ocean-white",
             "type": "steps",
           },
           "ref": null,
@@ -255,13 +244,13 @@ ShallowWrapper {
             resizeMode="cover"
             source={
               Object {
-                "testUri": "../../../assets/challenge-progress/squirrel.png",
+                "testUri": "../../../assets/challenge-progress/otter.png",
               }
             }
             style={
               Object {
                 "bottom": 0,
-                "height": 900,
+                "height": "100%",
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
@@ -274,7 +263,7 @@ ShallowWrapper {
             menuLabel="brisk walk"
             onPressLeftIcon={[MockFunction]}
             timer="2020-12-31T23:59:59"
-            type="default"
+            type="white"
           />,
           <View
             style={
@@ -293,7 +282,7 @@ ShallowWrapper {
                 ]
               }
               showCounter={false}
-              styleType="black"
+              styleType="ocean-white"
               type="steps"
             />
           </View>,
@@ -318,7 +307,7 @@ ShallowWrapper {
           </View>,
         ],
         "style": Object {
-          "backgroundColor": "rgb(255,255,255)",
+          "backgroundColor": "rgb(0,81,143)",
           "flex": 1,
         },
       },
@@ -332,11 +321,11 @@ ShallowWrapper {
             "resizeMethod": "resize",
             "resizeMode": "cover",
             "source": Object {
-              "testUri": "../../../assets/challenge-progress/squirrel.png",
+              "testUri": "../../../assets/challenge-progress/otter.png",
             },
             "style": Object {
               "bottom": 0,
-              "height": 900,
+              "height": "100%",
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -356,7 +345,7 @@ ShallowWrapper {
             "menuLabel": "brisk walk",
             "onPressLeftIcon": [MockFunction],
             "timer": "2020-12-31T23:59:59",
-            "type": "default",
+            "type": "white",
           },
           "ref": null,
           "rendered": null,
@@ -377,7 +366,7 @@ ShallowWrapper {
                 ]
               }
               showCounter={false}
-              styleType="black"
+              styleType="ocean-white"
               type="steps"
             />,
             "style": Object {
@@ -397,7 +386,7 @@ ShallowWrapper {
                 6000,
               ],
               "showCounter": false,
-              "styleType": "black",
+              "styleType": "ocean-white",
               "type": "steps",
             },
             "ref": null,

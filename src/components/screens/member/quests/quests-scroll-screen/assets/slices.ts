@@ -518,7 +518,7 @@ const WorldSlices: IMapSlice[] = [
         id: "MAP_SLICE_W02E22",
         image: require("../../../../../../../assets/quest-slices/w2s22.png"),
         navBarColour: COLOURS.LIGHT,
-        slots: [{ index: 92, left: 93, top: 0 }, { index: 93, left: 283, top: 0 }],
+        slots: [{ index: 92, left: 93, top: 8 }, { index: 93, left: 283, top: 8 }],
         topBarType: TOP_BAR_TYPES.WHITE
     },
     {
@@ -849,6 +849,310 @@ const WorldSlices: IMapSlice[] = [
         navBarColour: COLOURS.DESERT,
         slots: [{ bottom: 10, index: 149, left: 187 }],
         topBarType: TOP_BAR_TYPES.DESERT
+    },
+    /**
+     *  MOUNTAIN WORLD
+     *  first episode
+     */
+    {
+        id: "MAP_SLICE_W04E00",
+        image: require("../../../../../../../assets/quest-slices/w4s0.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        id: "MAP_SLICE_W04E01",
+        image: require("../../../../../../../assets/quest-slices/w4s1.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s1,
+        id: "MAP_SLICE_W04E02",
+        image: require("../../../../../../../assets/quest-slices/w4s2.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [{ index: 151, top: 8, left: 187 }],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s1,
+        id: "MAP_SLICE_W04E03",
+        image: require("../../../../../../../assets/quest-slices/w4s3.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [
+            { index: 150, bottom: 36, left: 187 },
+            { index: 152, bottom: 36, left: 100 },
+            { index: 153, bottom: 36, left: 280 },
+            { index: 154, top: 8, left: 187 }
+        ],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s1,
+        id: "MAP_SLICE_W04E04",
+        image: require("../../../../../../../assets/quest-slices/w4s4.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [{ index: 155, bottom: 36, left: 187 }, { index: 156, top: 10, left: 187 }],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        id: "MAP_SLICE_W04E05",
+        image: require("../../../../../../../assets/quest-slices/w4s5.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+
+    // next episode
+    {
+        episodeSettings: episodeSettings.w4s2,
+        id: "MAP_SLICE_W04E06",
+        image: require("../../../../../../../assets/quest-slices/w4s6.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [{ index: 157, bottom: 45, left: 95 }, { index: 158, top: 8, left: 187 }],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s2,
+        id: "MAP_SLICE_W04E07",
+        image: require("../../../../../../../assets/quest-slices/w4s7.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [
+            { index: 159, top: 8, left: 290 },
+            { index: 160, bottom: 40, left: 187 },
+            { index: 161, bottom: 40, left: 95 }
+        ],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s2,
+        id: "MAP_SLICE_W04E08",
+        image: require("../../../../../../../assets/quest-slices/w4s8.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [{ index: 163, top: 8, left: 187 }, { index: 162, top: 110, left: 187 }],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        id: "MAP_SLICE_W04E09",
+        image: require("../../../../../../../assets/quest-slices/w4s9.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    // next episode
+    {
+        id: "MAP_SLICE_W04E10",
+        image: require("../../../../../../../assets/quest-slices/w4s10.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s3,
+        id: "MAP_SLICE_W04E11",
+        image: require("../../../../../../../assets/quest-slices/w4s11.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [
+            { index: 164, bottom: 40, left: 187 },
+            { index: 165, bottom: 40, left: 97 },
+            { index: 166, top: 8, left: 97 },
+            { index: 167, bottom: 40, left: 277 },
+            { index: 168, top: 8, left: 277 }
+        ],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s3,
+        id: "MAP_SLICE_W04E12",
+        image: require("../../../../../../../assets/quest-slices/w4s12.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [{ index: 169, bottom: 30, left: 187 }, { index: 170, bottom: 120, left: 187 }],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s3,
+        id: "MAP_SLICE_W04E13",
+        image: require("../../../../../../../assets/quest-slices/w4s13.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    // next episode
+    {
+        episodeSettings: episodeSettings.w4s4,
+        id: "MAP_SLICE_W04E14",
+        image: require("../../../../../../../assets/quest-slices/w4s14.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [{ index: 171, bottom: 80, left: 187 }],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s4,
+        id: "MAP_SLICE_W04E15",
+        image: require("../../../../../../../assets/quest-slices/w4s15.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [
+            { index: 172, bottom: 8, left: 282 },
+            { index: 173, bottom: 8, left: 187 },
+            { index: 174, bottom: 8, left: 87 },
+            { index: 175, top: 40, left: 187 }
+        ],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s4,
+        id: "MAP_SLICE_W04E16",
+        image: require("../../../../../../../assets/quest-slices/w4s16.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [{ index: 176, bottom: 8, left: 282 }, { index: 177, bottom: 90, left: 282 }],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        id: "MAP_SLICE_W04E17",
+        image: require("../../../../../../../assets/quest-slices/w4s17.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    // next episode
+    {
+        episodeSettings: episodeSettings.w4s5,
+        id: "MAP_SLICE_W04E18",
+        image: require("../../../../../../../assets/quest-slices/w4s18.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [{ index: 178, bottom: 24, left: 187 }, { index: 179, top: 8, left: 187 }],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s5,
+        id: "MAP_SLICE_W04E19",
+        image: require("../../../../../../../assets/quest-slices/w4s19.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [
+            { index: 180, bottom: 35, left: 187 },
+            { index: 181, top: 8, left: 282 },
+            { index: 182, top: 8, left: 187 },
+            { index: 183, top: 8, left: 92 }
+        ],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s5,
+        id: "MAP_SLICE_W04E20",
+        image: require("../../../../../../../assets/quest-slices/w4s20.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [{ index: 184, bottom: 30, left: 187 }],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    // next episode
+    {
+        episodeSettings: episodeSettings.w4s6,
+        id: "MAP_SLICE_W04E21",
+        image: require("../../../../../../../assets/quest-slices/w4s21.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [{ index: 185, top: 8, left: 187 }],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s6,
+        id: "MAP_SLICE_W04E22",
+        image: require("../../../../../../../assets/quest-slices/w4s22.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [
+            { index: 186, bottom: 40, left: 97 },
+            { index: 187, top: 8, left: 97 },
+            { index: 188, bottom: 40, left: 282 },
+            { index: 189, top: 8, left: 282 }
+        ],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s6,
+        id: "MAP_SLICE_W04E23",
+        image: require("../../../../../../../assets/quest-slices/w4s23.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [{ index: 190, bottom: 30, left: 187 }, { index: 191, top: 10, left: 187 }],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s6,
+        id: "MAP_SLICE_W04E24",
+        image: require("../../../../../../../assets/quest-slices/w4s24.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    // next episode
+    {
+        episodeSettings: episodeSettings.w4s7,
+        id: "MAP_SLICE_W04E25",
+        image: require("../../../../../../../assets/quest-slices/w4s25.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s7,
+        id: "MAP_SLICE_W04E26",
+        image: require("../../../../../../../assets/quest-slices/w4s26.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [{ index: 192, top: 8, left: 97 }, { index: 193, top: 8, left: 277 }],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s7,
+        id: "MAP_SLICE_W04E27",
+        image: require("../../../../../../../assets/quest-slices/w4s27.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [
+            { index: 194, bottom: 30, left: 187 },
+            { index: 195, top: 30, left: 97 },
+            { index: 196, top: 30, left: 277 }
+        ],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s7,
+        id: "MAP_SLICE_W04E28",
+        image: require("../../../../../../../assets/quest-slices/w4s28.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [{ index: 197, bottom: 8, left: 187 }, { index: 198, top: 30, left: 187 }],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s7,
+        id: "MAP_SLICE_W04E29",
+        image: require("../../../../../../../assets/quest-slices/w4s29.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    // next episode
+    {
+        episodeSettings: episodeSettings.w4s8,
+        id: "MAP_SLICE_W04E30",
+        image: require("../../../../../../../assets/quest-slices/w4s30.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s8,
+        id: "MAP_SLICE_W04E31",
+        image: require("../../../../../../../assets/quest-slices/w4s31.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    {
+        episodeSettings: episodeSettings.w4s8,
+        id: "MAP_SLICE_W04E32",
+        image: require("../../../../../../../assets/quest-slices/w4s32.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [{ index: 199, bottom: 0, left: 187 }],
+        topBarType: TOP_BAR_TYPES.WHITE
     }
 ];
 
@@ -875,5 +1179,12 @@ export const loadingSlices: { [x: string]: IMapSlice } = {
         navBarColour: COLOURS.DESERT,
         slots: [],
         topBarType: TOP_BAR_TYPES.DESERT
+    },
+    mountain: {
+        id: "MAP_SLICE_W04_LOADING_01",
+        image: require("../../../../../../../assets/quest-slices/loading/w4s1.png"),
+        navBarColour: COLOURS.LIGHT,
+        slots: [],
+        topBarType: TOP_BAR_TYPES.MOUNTAIN
     }
 };

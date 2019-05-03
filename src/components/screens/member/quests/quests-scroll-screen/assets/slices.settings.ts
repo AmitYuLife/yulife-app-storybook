@@ -132,5 +132,45 @@ export const episodeSettings = {
         navBarType: COLOURS.LIGHT,
         offset: MAP_SLICE_HEIGHT * 83 - (isIphoneX() ? MAP_SLICE_HEIGHT : 0),
         topBarType: TOP_BAR_TYPES.DESERT
+    },
+    w4s1: {
+        navBarType: COLOURS.LIGHT,
+        offset: MAP_SLICE_HEIGHT * 89 - (isIphoneX() ? Style.SCALE_UP_AND_DOWN(70) : 0),
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    w4s2: {
+        navBarType: COLOURS.LIGHT,
+        offset: MAP_SLICE_HEIGHT * 92 + Style.SCALE_UP_AND_DOWN(isIphoneX() ? 10 : 70),
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    w4s3: {
+        navBarType: COLOURS.LIGHT,
+        offset: MAP_SLICE_HEIGHT * 97 + Style.SCALE_UP_AND_DOWN(isIphoneX() ? 0 : 40),
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    w4s4: {
+        navBarType: COLOURS.LIGHT,
+        offset: MAP_SLICE_HEIGHT * 101 - Style.SCALE_UP_AND_DOWN(100),
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    w4s5: {
+        navBarType: COLOURS.LIGHT,
+        offset: MAP_SLICE_HEIGHT * 104 - Style.SCALE_UP_AND_DOWN(isIphoneX() ? 80 : 20),
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    w4s6: {
+        navBarType: COLOURS.LIGHT,
+        offset: MAP_SLICE_HEIGHT * 107 + Style.SCALE_UP_AND_DOWN(isIphoneX() ? 30 : 70),
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    w4s7: {
+        navBarType: COLOURS.LIGHT,
+        offset: MAP_SLICE_HEIGHT * 113 - (isIphoneX() ? Style.SCALE_UP_AND_DOWN(85) : 0),
+        topBarType: TOP_BAR_TYPES.WHITE
+    },
+    w4s8: {
+        navBarType: COLOURS.LIGHT,
+        offset: MAP_SLICE_HEIGHT * 117,
+        topBarType: TOP_BAR_TYPES.WHITE
     }
 };

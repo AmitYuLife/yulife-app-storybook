@@ -22,6 +22,17 @@ const BRISK_WALK: ISlotSet[] = [
         source: require("../../../../../../assets/challenge-history/meerkat.png"),
         style: { position: "absolute", left: Style.SCALE_UP_AND_DOWN(8), top: 0, right: 0, bottom: 0 },
         width: Style.SCALE_UP_AND_DOWN(60)
+    },
+    {
+        source: require("../../../../../../assets/challenge-history/wolf.png"),
+        style: {
+            position: "absolute",
+            left: Style.SCALE_UP_AND_DOWN(8),
+            top: Style.SCALE_Y_UP_AND_DOWN(25),
+            right: 0,
+            bottom: 0
+        },
+        width: Style.SCALE_UP_AND_DOWN(116)
     }
 ];
 const SHORT_STROLL: ISlotSet[] = [
@@ -54,6 +65,16 @@ const SHORT_STROLL: ISlotSet[] = [
             top: Style.SCALE_Y_UP_AND_DOWN(72)
         },
         width: Style.SCALE_UP_AND_DOWN(90)
+    },
+    {
+        source: require("../../../../../../assets/challenge-history/whiteBighornSheep.png"),
+        style: {
+            bottom: 0,
+            position: "absolute",
+            right: Style.SCALE_UP_AND_DOWN(10),
+            top: Style.SCALE_Y_UP_AND_DOWN(72)
+        },
+        width: Style.SCALE_UP_AND_DOWN(83)
     }
 ];
 const LONG_WALK: ISlotSet[] = [
@@ -71,6 +92,11 @@ const LONG_WALK: ISlotSet[] = [
         source: require("../../../../../../assets/challenge-history/desertFox.png"),
         style: { position: "absolute", left: 0, top: Style.SCALE_Y_UP_AND_DOWN(152), right: 0, bottom: 0 },
         width: Style.SCALE_UP_AND_DOWN(82)
+    },
+    {
+        source: require("../../../../../../assets/challenge-history/deer.png"),
+        style: { position: "absolute", left: 0, top: Style.SCALE_Y_UP_AND_DOWN(142), right: 0, bottom: 0 },
+        width: Style.SCALE_UP_AND_DOWN(107)
     }
 ];
 const MEDITATION: ISlotSet[] = [
@@ -103,6 +129,16 @@ const MEDITATION: ISlotSet[] = [
             top: Style.SCALE_Y_UP_AND_DOWN(212)
         },
         width: Style.SCALE_UP_AND_DOWN(100)
+    },
+    {
+        source: require("../../../../../../assets/challenge-history/owl.png"),
+        style: {
+            bottom: 0,
+            position: "absolute",
+            right: Style.SCALE_UP_AND_DOWN(20),
+            top: Style.SCALE_Y_UP_AND_DOWN(240)
+        },
+        width: Style.SCALE_UP_AND_DOWN(62)
     }
 ];
 

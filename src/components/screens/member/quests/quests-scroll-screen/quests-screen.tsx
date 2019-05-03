@@ -146,6 +146,14 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         const { currentLevel } = this.props;
 
         switch (getCurrentWorld(currentLevel)) {
+            case 3:
+                return {
+                    initialScrollIndex: 88,
+                    slices:
+                        currentLevel < 200
+                            ? [...mapSlices.slice(0, 116), loadingSlices.mountain]
+                            : mapSlices.slice(0, 128)
+                };
             case 2:
                 return {
                     initialScrollIndex: 58,
@@ -173,6 +181,11 @@ export default QuestsScreen;
 
 function getInitialState(currentLevel: number) {
     switch (getCurrentWorld(currentLevel)) {
+        case 3:
+            return {
+                navBarColour: COLOURS.LIGHT,
+                topBarType: "white" as TopBarTypes
+            };
         case 2:
             return {
                 navBarColour: COLOURS.DESERT,

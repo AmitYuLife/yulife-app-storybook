@@ -134,6 +134,26 @@ const adjustGoalValue = (type: "steps" | "minutes" | string, goal: number): stri
 
 const getStyle = (styleType: ProgressBarTypes) => {
     switch (styleType) {
+        case "mountain-pink":
+            return {
+                barColor: styles.barColorMountainPink,
+                goalTextColor: styles.goalTextColorDesertPink,
+                progressColor: styles.progressColorBlack,
+                progressGoalEmpty: "rgb(231, 116, 121)",
+                progressGoalFilled: "#000",
+                progressStarEmpty: "#FFF",
+                progressStarFilled: "#F1AF00"
+            };
+        case "mountain-black":
+            return {
+                barColor: styles.barColorOceanBlack,
+                goalTextColor: styles.goalTextColorOceanBlack,
+                progressColor: styles.progressColorOceanBlack,
+                progressGoalEmpty: "rgb(80, 142, 205)",
+                progressGoalFilled: "#000",
+                progressStarEmpty: "#FFF",
+                progressStarFilled: "#F1AF00"
+            };
         case "desert-brown":
             return {
                 barColor: styles.barColorDesertBrown,
