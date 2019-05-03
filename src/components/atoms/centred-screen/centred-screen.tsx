@@ -20,7 +20,10 @@ export type CenteredScreenImages =
     | "challenge_failed_ocean"
     | "desert"
     | "gray_desert"
-    | "challenge_failed_desert";
+    | "challenge_failed_desert"
+    | "gray_mountain"
+    | "mountain"
+    | "challenge_failed_mountain";
 
 export default function CenteredScreen({ children, footerImage, style, testID }: IProps) {
     return (

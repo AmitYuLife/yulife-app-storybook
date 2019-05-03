@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
     barColorBlack: {
         backgroundColor: Colours.progressBar.black.shadow
     },
+    barColorMountainPink: {
+        backgroundColor: "rgb(231, 116, 121)"
+    },
     barColorDesertBrown: {
         backgroundColor: "rgb(252,194,116)"
     },
@@ -36,6 +39,9 @@ const styles = StyleSheet.create({
     },
     goalTextColorDesertBrown: {
         color: "rgb(252,194,116)"
+    },
+    goalTextColorDesertPink: {
+        color: "rgb(231, 116, 121)"
     },
     goalTextColorOceanBlack: {
         color: Colours.progressBar.oceanBlack.shadow

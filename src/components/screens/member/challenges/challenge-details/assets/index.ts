@@ -12,5 +12,9 @@ export default {
     star: require("../../../../../../../assets/icons/star.png"),
     tortoise: require("../../../../../../../assets/challenge-details/tortoise.png"),
     whale: require("../../../../../../../assets/challenge-details/whale.png"),
-    yucoin: require("../../../../../../../assets/icons/yucoin.png")
+    yucoin: require("../../../../../../../assets/icons/yucoin.png"),
+    deer: require("../../../../../../../assets/challenge-details/deer.png"),
+    owl: require("../../../../../../../assets/challenge-details/owl.png"),
+    whiteBighornSheep: require("../../../../../../../assets/challenge-details/whiteBighornSheep.png"),
+    wolf: require("../../../../../../../assets/challenge-details/wolf.png")
 };

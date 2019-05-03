@@ -3,7 +3,7 @@ import { PureComponent, SFC } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "../../atoms";
 import assets from "./assets";
-import { getImage, getImageStyle } from "./challenge-tile.helpers";
+import { getImage, getImageStyle, getLockedImageStyle } from "./challenge-tile.helpers";
 import styles from "./challenge-tile.styles";
 import { IMAGES, Images } from "./challenge-tile.types";
 
@@ -19,10 +19,10 @@ export interface IChallengeTileProps {
     reward?: string;
 }
 
-const BRISK_WALK = [IMAGES.SQUIRREL, IMAGES.OTTER, IMAGES.MEERKAT];
-const LONG_WALK = [IMAGES.OSTRICH, IMAGES.WHALE, IMAGES.DESERT_FOX];
-const MEDITATION = [IMAGES.BIRD, IMAGES.DOLPHIN, IMAGES.CAMEL];
-const SHORT_STROLL = [IMAGES.ELEPHANT, IMAGES.TORTOISE, IMAGES.BIGHORN_SHEEP];
+const BRISK_WALK = [IMAGES.SQUIRREL, IMAGES.OTTER, IMAGES.MEERKAT, IMAGES.WOLF];
+const LONG_WALK = [IMAGES.OSTRICH, IMAGES.WHALE, IMAGES.DESERT_FOX, IMAGES.DEER];
+const MEDITATION = [IMAGES.BIRD, IMAGES.DOLPHIN, IMAGES.CAMEL, IMAGES.OWL];
+const SHORT_STROLL = [IMAGES.ELEPHANT, IMAGES.TORTOISE, IMAGES.BIGHORN_SHEEP, IMAGES.WHITE_BIGHORN_SHEEP];
 
 type Props = IChallengeTileProps;
 
@@ -97,7 +97,11 @@ const AnimalImage: SFC<Partial<Props>> = ({ image, isLocked, isImageBackgroundFl
                 isImageBackgroundFlipped ? styles.imageBackgroundFlipped : null
             ])}
         />
-        <Image style={isLocked ? null : getImageStyle(image)} source={getImage(image)} resizeMode="contain" />
+        <Image
+            style={isLocked ? getLockedImageStyle(image) : getImageStyle(image)}
+            source={getImage(image)}
+            resizeMode="contain"
+        />
     </View>
 );
 

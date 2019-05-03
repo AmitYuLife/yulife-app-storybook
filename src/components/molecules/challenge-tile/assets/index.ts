@@ -12,5 +12,9 @@ export default {
     otter: require("../../../../../assets/challenge-tile/otter.png"),
     squirrel: require("../../../../../assets/challenge-tile/squirrel.png"),
     tortoise: require("../../../../../assets/challenge-tile/tortoise.png"),
-    whale: require("../../../../../assets/challenge-tile/whale.png")
+    whale: require("../../../../../assets/challenge-tile/whale.png"),
+    deer: require("../../../../../assets/challenge-tile/deer.png"),
+    owl: require("../../../../../assets/challenge-tile/owl.png"),
+    whiteBighornSheep: require("../../../../../assets/challenge-tile/whiteBighornSheep.png"),
+    wolf: require("../../../../../assets/challenge-tile/wolf.png")
 };

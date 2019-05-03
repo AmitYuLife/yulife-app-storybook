@@ -3,7 +3,13 @@ import { View } from "react-native";
 import { renderProgressBar, renderProgressLabel } from "./progress-bar.helpers";
 import styles from "./progress-bar.styles";
 
-export type ProgressBarTypes = "black" | "ocean-white" | "ocean-black" | "desert-brown";
+export type ProgressBarTypes =
+    | "black"
+    | "ocean-white"
+    | "ocean-black"
+    | "desert-brown"
+    | "mountain-pink"
+    | "mountain-black";
 
 export interface IProps {
     amount: number;

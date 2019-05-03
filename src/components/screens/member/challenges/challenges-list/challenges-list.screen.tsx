@@ -47,6 +47,16 @@ export default function ChallengesListScreen({
 
 function getWorldStyle(currentLevel: number) {
     switch (getCurrentWorld(currentLevel)) {
+        case 3:
+            return {
+                backgroundImage: require("../../../../../../assets/challenges/mountain.png"),
+                backgroundWrapperStyle: StyleSheet.flatten([
+                    StyleSheet.absoluteFillObject,
+                    { backgroundColor: "rgb(59,123,209)" }
+                ]),
+                navBarType: NavBar.Colours.LIGHT,
+                topBarType: "mountain"
+            };
         case 2:
             return {
                 backgroundImage: require("../../../../../../assets/challenges/desert.png"),

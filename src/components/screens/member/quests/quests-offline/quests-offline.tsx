@@ -12,7 +12,7 @@ type Props = IConnectedScreenProps & {
     theme: IThemeStore["questsOfflineScreen"];
 };
 
-type ImageType = "forest" | "ocean" | "desert";
+type ImageType = "forest" | "ocean" | "desert" | "mountain";
 
 export default function QuestsScreenOffline({
     fitkitAvailable,

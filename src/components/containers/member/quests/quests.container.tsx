@@ -3,8 +3,8 @@ import { bottomTabs } from "@navigation/constants";
 import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import { getCurrentWorld } from "@services/utils";
 import moment from "moment";
-import { PureComponent } from "react";
 import React from "react";
+import { PureComponent } from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
@@ -41,7 +41,6 @@ import {
     ChallengeFailedScreen,
     ChallengeProgressScreen,
     ChallengeSuccessScreen,
-    QuestsScreen,
     QuestsScreenOffline,
     QuestsScrollScreen
 } from "../../../screens";
@@ -207,11 +206,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
                     copy={copy.success}
                 />
             ) : (
-                <ChallengeFailedScreen
-                    level={level}
-                    onPress={this.handleResetChallenge(refetch)}
-                    copy={copy.failed}
-                />
+                <ChallengeFailedScreen level={level} onPress={this.handleResetChallenge(refetch)} copy={copy.failed} />
             );
         }
 
@@ -235,8 +230,8 @@ class QuestsContainer extends PureComponent<Props, IState> {
                     render={({ showOverlay }) => (
                         <ChallengeProgressScreen
                             {...props}
-                            challengeType={subtype as any}
                             currentWorld={getCurrentWorld(level)}
+                            challengeType={subtype as any}
                             showCounter={features.showCounter}
                             onCalmPress={openCalm}
                             onDismissPress={showOverlay}
@@ -266,15 +261,13 @@ class QuestsContainer extends PureComponent<Props, IState> {
             return <Loading />;
         }
 
-        return true ? (
+        return (
             <QuestsScrollScreen
                 {...props}
                 data={this.formatData(data.getCurrentWorld)}
                 hideUnity={this.hideUnity}
                 unity={unity}
             />
-        ) : (
-            <QuestsScreen {...props} data={this.formatData(data.getCurrentWorld)} />
         );
     };
 

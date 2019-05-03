@@ -28,6 +28,12 @@ export function formatSeconds(secondsRemaining: number): string {
 
 export function getStyle(type: TopBarTypes) {
     switch (type) {
+        case "mountain":
+            return {
+                colour: "rgb(51, 51, 51)",
+                logoColour: "rgb(51, 51, 51)",
+                textStyle: { color: "rgb(51, 51, 51)" }
+            };
         case "desert":
             return {
                 colour: "rgb(108,59,38)",
