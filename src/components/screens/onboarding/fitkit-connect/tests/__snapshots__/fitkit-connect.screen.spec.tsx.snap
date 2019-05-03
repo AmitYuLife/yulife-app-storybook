@@ -5,6 +5,19 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <FitKitConnectScreen
     connecting={false}
+    copy={
+      Object {
+        "blurb": "",
+        "heading": "",
+        "linkButtonLabel": "",
+        "primaryButtonConnecting": "",
+        "primaryButtonLabel": "",
+        "secondaryButtonLabel": "",
+        "unavailableAndroid": "",
+        "unavailableHeading": "",
+        "unavailableIOS": "",
+      }
+    }
     fitKitAvailable={false}
     loading={false}
     onConnectPress={[MockFunction]}
@@ -30,13 +43,27 @@ ShallowWrapper {
         <Pad
           height={120}
         />
-        <FitKitUnavailable />
+        <FitKitUnavailable
+          copy={
+            Object {
+              "blurb": "",
+              "heading": "",
+              "linkButtonLabel": "",
+              "primaryButtonConnecting": "",
+              "primaryButtonLabel": "",
+              "secondaryButtonLabel": "",
+              "unavailableAndroid": "",
+              "unavailableHeading": "",
+              "unavailableIOS": "",
+            }
+          }
+        />
         <Pad
           height={19}
         />
         <Button
           disabled={false}
-          label="skip"
+          label=""
           onPress={[MockFunction]}
           type="Secondary"
         />
@@ -44,7 +71,7 @@ ShallowWrapper {
           height={10}
         />
         <Button
-          label="Privacy notice"
+          label=""
           onPress={[MockFunction]}
           type="Link"
         />
@@ -60,13 +87,27 @@ ShallowWrapper {
           <Pad
             height={120}
           />,
-          <FitKitUnavailable />,
+          <FitKitUnavailable
+            copy={
+              Object {
+                "blurb": "",
+                "heading": "",
+                "linkButtonLabel": "",
+                "primaryButtonConnecting": "",
+                "primaryButtonLabel": "",
+                "secondaryButtonLabel": "",
+                "unavailableAndroid": "",
+                "unavailableHeading": "",
+                "unavailableIOS": "",
+              }
+            }
+          />,
           <Pad
             height={19}
           />,
           <Button
             disabled={false}
-            label="skip"
+            label=""
             onPress={[MockFunction]}
             type="Secondary"
           />,
@@ -74,7 +115,7 @@ ShallowWrapper {
             height={10}
           />,
           <Button
-            label="Privacy notice"
+            label=""
             onPress={[MockFunction]}
             type="Link"
           />,
@@ -98,7 +139,19 @@ ShallowWrapper {
           "instance": null,
           "key": undefined,
           "nodeType": "function",
-          "props": Object {},
+          "props": Object {
+            "copy": Object {
+              "blurb": "",
+              "heading": "",
+              "linkButtonLabel": "",
+              "primaryButtonConnecting": "",
+              "primaryButtonLabel": "",
+              "secondaryButtonLabel": "",
+              "unavailableAndroid": "",
+              "unavailableHeading": "",
+              "unavailableIOS": "",
+            },
+          },
           "ref": null,
           "rendered": null,
           "type": [Function],
@@ -120,7 +173,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "disabled": false,
-            "label": "skip",
+            "label": "",
             "onPress": [MockFunction],
             "type": "Secondary",
           },
@@ -144,7 +197,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "label": "Privacy notice",
+            "label": "",
             "onPress": [MockFunction],
             "type": "Link",
           },
@@ -169,13 +222,27 @@ ShallowWrapper {
           <Pad
             height={120}
           />
-          <FitKitUnavailable />
+          <FitKitUnavailable
+            copy={
+              Object {
+                "blurb": "",
+                "heading": "",
+                "linkButtonLabel": "",
+                "primaryButtonConnecting": "",
+                "primaryButtonLabel": "",
+                "secondaryButtonLabel": "",
+                "unavailableAndroid": "",
+                "unavailableHeading": "",
+                "unavailableIOS": "",
+              }
+            }
+          />
           <Pad
             height={19}
           />
           <Button
             disabled={false}
-            label="skip"
+            label=""
             onPress={[MockFunction]}
             type="Secondary"
           />
@@ -183,7 +250,7 @@ ShallowWrapper {
             height={10}
           />
           <Button
-            label="Privacy notice"
+            label=""
             onPress={[MockFunction]}
             type="Link"
           />
@@ -199,13 +266,27 @@ ShallowWrapper {
             <Pad
               height={120}
             />,
-            <FitKitUnavailable />,
+            <FitKitUnavailable
+              copy={
+                Object {
+                  "blurb": "",
+                  "heading": "",
+                  "linkButtonLabel": "",
+                  "primaryButtonConnecting": "",
+                  "primaryButtonLabel": "",
+                  "secondaryButtonLabel": "",
+                  "unavailableAndroid": "",
+                  "unavailableHeading": "",
+                  "unavailableIOS": "",
+                }
+              }
+            />,
             <Pad
               height={19}
             />,
             <Button
               disabled={false}
-              label="skip"
+              label=""
               onPress={[MockFunction]}
               type="Secondary"
             />,
@@ -213,7 +294,7 @@ ShallowWrapper {
               height={10}
             />,
             <Button
-              label="Privacy notice"
+              label=""
               onPress={[MockFunction]}
               type="Link"
             />,
@@ -237,7 +318,19 @@ ShallowWrapper {
             "instance": null,
             "key": undefined,
             "nodeType": "function",
-            "props": Object {},
+            "props": Object {
+              "copy": Object {
+                "blurb": "",
+                "heading": "",
+                "linkButtonLabel": "",
+                "primaryButtonConnecting": "",
+                "primaryButtonLabel": "",
+                "secondaryButtonLabel": "",
+                "unavailableAndroid": "",
+                "unavailableHeading": "",
+                "unavailableIOS": "",
+              },
+            },
             "ref": null,
             "rendered": null,
             "type": [Function],
@@ -259,7 +352,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "disabled": false,
-              "label": "skip",
+              "label": "",
               "onPress": [MockFunction],
               "type": "Secondary",
             },
@@ -283,7 +376,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "label": "Privacy notice",
+              "label": "",
               "onPress": [MockFunction],
               "type": "Link",
             },
@@ -324,6 +417,19 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <FitKitConnectScreen
     connecting={true}
+    copy={
+      Object {
+        "blurb": "",
+        "heading": "",
+        "linkButtonLabel": "",
+        "primaryButtonConnecting": "",
+        "primaryButtonLabel": "",
+        "secondaryButtonLabel": "",
+        "unavailableAndroid": "",
+        "unavailableHeading": "",
+        "unavailableIOS": "",
+      }
+    }
     fitKitAvailable={true}
     loading={false}
     onConnectPress={[MockFunction]}
@@ -351,6 +457,19 @@ ShallowWrapper {
         />
         <FitKitAvailable
           connecting={true}
+          copy={
+            Object {
+              "blurb": "",
+              "heading": "",
+              "linkButtonLabel": "",
+              "primaryButtonConnecting": "",
+              "primaryButtonLabel": "",
+              "secondaryButtonLabel": "",
+              "unavailableAndroid": "",
+              "unavailableHeading": "",
+              "unavailableIOS": "",
+            }
+          }
           onConnectPress={[MockFunction]}
         />
         <Pad
@@ -358,7 +477,7 @@ ShallowWrapper {
         />
         <Button
           disabled={true}
-          label="skip"
+          label=""
           onPress={[MockFunction]}
           type="Secondary"
         />
@@ -366,7 +485,7 @@ ShallowWrapper {
           height={10}
         />
         <Button
-          label="Privacy notice"
+          label=""
           onPress={[MockFunction]}
           type="Link"
         />
@@ -384,6 +503,19 @@ ShallowWrapper {
           />,
           <FitKitAvailable
             connecting={true}
+            copy={
+              Object {
+                "blurb": "",
+                "heading": "",
+                "linkButtonLabel": "",
+                "primaryButtonConnecting": "",
+                "primaryButtonLabel": "",
+                "secondaryButtonLabel": "",
+                "unavailableAndroid": "",
+                "unavailableHeading": "",
+                "unavailableIOS": "",
+              }
+            }
             onConnectPress={[MockFunction]}
           />,
           <Pad
@@ -391,7 +523,7 @@ ShallowWrapper {
           />,
           <Button
             disabled={true}
-            label="skip"
+            label=""
             onPress={[MockFunction]}
             type="Secondary"
           />,
@@ -399,7 +531,7 @@ ShallowWrapper {
             height={10}
           />,
           <Button
-            label="Privacy notice"
+            label=""
             onPress={[MockFunction]}
             type="Link"
           />,
@@ -425,6 +557,17 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "connecting": true,
+            "copy": Object {
+              "blurb": "",
+              "heading": "",
+              "linkButtonLabel": "",
+              "primaryButtonConnecting": "",
+              "primaryButtonLabel": "",
+              "secondaryButtonLabel": "",
+              "unavailableAndroid": "",
+              "unavailableHeading": "",
+              "unavailableIOS": "",
+            },
             "onConnectPress": [MockFunction],
           },
           "ref": null,
@@ -448,7 +591,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "disabled": true,
-            "label": "skip",
+            "label": "",
             "onPress": [MockFunction],
             "type": "Secondary",
           },
@@ -472,7 +615,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "label": "Privacy notice",
+            "label": "",
             "onPress": [MockFunction],
             "type": "Link",
           },
@@ -499,6 +642,19 @@ ShallowWrapper {
           />
           <FitKitAvailable
             connecting={true}
+            copy={
+              Object {
+                "blurb": "",
+                "heading": "",
+                "linkButtonLabel": "",
+                "primaryButtonConnecting": "",
+                "primaryButtonLabel": "",
+                "secondaryButtonLabel": "",
+                "unavailableAndroid": "",
+                "unavailableHeading": "",
+                "unavailableIOS": "",
+              }
+            }
             onConnectPress={[MockFunction]}
           />
           <Pad
@@ -506,7 +662,7 @@ ShallowWrapper {
           />
           <Button
             disabled={true}
-            label="skip"
+            label=""
             onPress={[MockFunction]}
             type="Secondary"
           />
@@ -514,7 +670,7 @@ ShallowWrapper {
             height={10}
           />
           <Button
-            label="Privacy notice"
+            label=""
             onPress={[MockFunction]}
             type="Link"
           />
@@ -532,6 +688,19 @@ ShallowWrapper {
             />,
             <FitKitAvailable
               connecting={true}
+              copy={
+                Object {
+                  "blurb": "",
+                  "heading": "",
+                  "linkButtonLabel": "",
+                  "primaryButtonConnecting": "",
+                  "primaryButtonLabel": "",
+                  "secondaryButtonLabel": "",
+                  "unavailableAndroid": "",
+                  "unavailableHeading": "",
+                  "unavailableIOS": "",
+                }
+              }
               onConnectPress={[MockFunction]}
             />,
             <Pad
@@ -539,7 +708,7 @@ ShallowWrapper {
             />,
             <Button
               disabled={true}
-              label="skip"
+              label=""
               onPress={[MockFunction]}
               type="Secondary"
             />,
@@ -547,7 +716,7 @@ ShallowWrapper {
               height={10}
             />,
             <Button
-              label="Privacy notice"
+              label=""
               onPress={[MockFunction]}
               type="Link"
             />,
@@ -573,6 +742,17 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "connecting": true,
+              "copy": Object {
+                "blurb": "",
+                "heading": "",
+                "linkButtonLabel": "",
+                "primaryButtonConnecting": "",
+                "primaryButtonLabel": "",
+                "secondaryButtonLabel": "",
+                "unavailableAndroid": "",
+                "unavailableHeading": "",
+                "unavailableIOS": "",
+              },
               "onConnectPress": [MockFunction],
             },
             "ref": null,
@@ -596,7 +776,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "disabled": true,
-              "label": "skip",
+              "label": "",
               "onPress": [MockFunction],
               "type": "Secondary",
             },
@@ -620,7 +800,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "label": "Privacy notice",
+              "label": "",
               "onPress": [MockFunction],
               "type": "Link",
             },
@@ -661,6 +841,19 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <FitKitConnectScreen
     connecting={false}
+    copy={
+      Object {
+        "blurb": "",
+        "heading": "",
+        "linkButtonLabel": "",
+        "primaryButtonConnecting": "",
+        "primaryButtonLabel": "",
+        "secondaryButtonLabel": "",
+        "unavailableAndroid": "",
+        "unavailableHeading": "",
+        "unavailableIOS": "",
+      }
+    }
     fitKitAvailable={true}
     loading={true}
     onConnectPress={[MockFunction]}
@@ -742,6 +935,19 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <FitKitConnectScreen
     connecting={false}
+    copy={
+      Object {
+        "blurb": "",
+        "heading": "",
+        "linkButtonLabel": "",
+        "primaryButtonConnecting": "",
+        "primaryButtonLabel": "",
+        "secondaryButtonLabel": "",
+        "unavailableAndroid": "",
+        "unavailableHeading": "",
+        "unavailableIOS": "",
+      }
+    }
     fitKitAvailable={true}
     loading={false}
     onConnectPress={[MockFunction]}
@@ -769,6 +975,19 @@ ShallowWrapper {
         />
         <FitKitAvailable
           connecting={false}
+          copy={
+            Object {
+              "blurb": "",
+              "heading": "",
+              "linkButtonLabel": "",
+              "primaryButtonConnecting": "",
+              "primaryButtonLabel": "",
+              "secondaryButtonLabel": "",
+              "unavailableAndroid": "",
+              "unavailableHeading": "",
+              "unavailableIOS": "",
+            }
+          }
           onConnectPress={[MockFunction]}
         />
         <Pad
@@ -776,7 +995,7 @@ ShallowWrapper {
         />
         <Button
           disabled={false}
-          label="skip"
+          label=""
           onPress={[MockFunction]}
           type="Secondary"
         />
@@ -784,7 +1003,7 @@ ShallowWrapper {
           height={10}
         />
         <Button
-          label="Privacy notice"
+          label=""
           onPress={[MockFunction]}
           type="Link"
         />
@@ -802,6 +1021,19 @@ ShallowWrapper {
           />,
           <FitKitAvailable
             connecting={false}
+            copy={
+              Object {
+                "blurb": "",
+                "heading": "",
+                "linkButtonLabel": "",
+                "primaryButtonConnecting": "",
+                "primaryButtonLabel": "",
+                "secondaryButtonLabel": "",
+                "unavailableAndroid": "",
+                "unavailableHeading": "",
+                "unavailableIOS": "",
+              }
+            }
             onConnectPress={[MockFunction]}
           />,
           <Pad
@@ -809,7 +1041,7 @@ ShallowWrapper {
           />,
           <Button
             disabled={false}
-            label="skip"
+            label=""
             onPress={[MockFunction]}
             type="Secondary"
           />,
@@ -817,7 +1049,7 @@ ShallowWrapper {
             height={10}
           />,
           <Button
-            label="Privacy notice"
+            label=""
             onPress={[MockFunction]}
             type="Link"
           />,
@@ -843,6 +1075,17 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "connecting": false,
+            "copy": Object {
+              "blurb": "",
+              "heading": "",
+              "linkButtonLabel": "",
+              "primaryButtonConnecting": "",
+              "primaryButtonLabel": "",
+              "secondaryButtonLabel": "",
+              "unavailableAndroid": "",
+              "unavailableHeading": "",
+              "unavailableIOS": "",
+            },
             "onConnectPress": [MockFunction],
           },
           "ref": null,
@@ -866,7 +1109,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "disabled": false,
-            "label": "skip",
+            "label": "",
             "onPress": [MockFunction],
             "type": "Secondary",
           },
@@ -890,7 +1133,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "label": "Privacy notice",
+            "label": "",
             "onPress": [MockFunction],
             "type": "Link",
           },
@@ -917,6 +1160,19 @@ ShallowWrapper {
           />
           <FitKitAvailable
             connecting={false}
+            copy={
+              Object {
+                "blurb": "",
+                "heading": "",
+                "linkButtonLabel": "",
+                "primaryButtonConnecting": "",
+                "primaryButtonLabel": "",
+                "secondaryButtonLabel": "",
+                "unavailableAndroid": "",
+                "unavailableHeading": "",
+                "unavailableIOS": "",
+              }
+            }
             onConnectPress={[MockFunction]}
           />
           <Pad
@@ -924,7 +1180,7 @@ ShallowWrapper {
           />
           <Button
             disabled={false}
-            label="skip"
+            label=""
             onPress={[MockFunction]}
             type="Secondary"
           />
@@ -932,7 +1188,7 @@ ShallowWrapper {
             height={10}
           />
           <Button
-            label="Privacy notice"
+            label=""
             onPress={[MockFunction]}
             type="Link"
           />
@@ -950,6 +1206,19 @@ ShallowWrapper {
             />,
             <FitKitAvailable
               connecting={false}
+              copy={
+                Object {
+                  "blurb": "",
+                  "heading": "",
+                  "linkButtonLabel": "",
+                  "primaryButtonConnecting": "",
+                  "primaryButtonLabel": "",
+                  "secondaryButtonLabel": "",
+                  "unavailableAndroid": "",
+                  "unavailableHeading": "",
+                  "unavailableIOS": "",
+                }
+              }
               onConnectPress={[MockFunction]}
             />,
             <Pad
@@ -957,7 +1226,7 @@ ShallowWrapper {
             />,
             <Button
               disabled={false}
-              label="skip"
+              label=""
               onPress={[MockFunction]}
               type="Secondary"
             />,
@@ -965,7 +1234,7 @@ ShallowWrapper {
               height={10}
             />,
             <Button
-              label="Privacy notice"
+              label=""
               onPress={[MockFunction]}
               type="Link"
             />,
@@ -991,6 +1260,17 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "connecting": false,
+              "copy": Object {
+                "blurb": "",
+                "heading": "",
+                "linkButtonLabel": "",
+                "primaryButtonConnecting": "",
+                "primaryButtonLabel": "",
+                "secondaryButtonLabel": "",
+                "unavailableAndroid": "",
+                "unavailableHeading": "",
+                "unavailableIOS": "",
+              },
               "onConnectPress": [MockFunction],
             },
             "ref": null,
@@ -1014,7 +1294,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "disabled": false,
-              "label": "skip",
+              "label": "",
               "onPress": [MockFunction],
               "type": "Secondary",
             },
@@ -1038,7 +1318,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "label": "Privacy notice",
+              "label": "",
               "onPress": [MockFunction],
               "type": "Link",
             },

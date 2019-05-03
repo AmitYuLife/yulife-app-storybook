@@ -6,8 +6,9 @@ import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
+import { IReduxState } from "../../../redux/_core/reducers";
+import { getCopy } from "../../../redux/copy/copy.selectors";
 import { getUserStart } from "../../../redux/user/user.actions";
-import data from "./leaderboard-invite.data";
 
 interface IProps {
     componentId: string;
@@ -15,9 +16,10 @@ interface IProps {
     inviteFrom: string;
 }
 
+type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
-type Props = ConnectedDispatch & IProps;
+type Props = ConnectedState & ConnectedDispatch & IProps;
 
 interface IState {
     isPrimaryLoading: boolean;
@@ -81,28 +83,32 @@ class LeaderboardInviteModal extends PureComponent<Props, IState> {
     };
 
     private getProps = () => {
-        const { inviteFrom } = this.props;
+        const { inviteFrom, copy } = this.props;
         const [firstName, lastName] = inviteFrom.split(" ");
         const heading =
             firstName.slice(-1) === "s"
-                ? `${data.headingBeforeName} ${firstName}' ${data.headingAfterName}`
-                : `${data.headingBeforeName} ${firstName}'s ${data.headingAfterName}`;
-        const subheading = `${data.subheadingBeforeName} ${firstName} ${lastName}'s ${data.subheadingAfterName}`;
+                ? `${copy.invite.headingBeforeName} ${firstName}' ${copy.invite.headingAfterName}`
+                : `${copy.invite.headingBeforeName} ${firstName}'s ${copy.invite.headingAfterName}`;
+        const subheading =
+        `${copy.invite.subheadingBeforeName} ${firstName} ${lastName}'s ${copy.invite.subheadingAfterName}`;
 
         return {
             heading,
             subheading,
-            ctaLabel: data.ctaLabel,
-            ctaLabelSecondary: data.ctaLabelSecondary
+            ctaLabel: copy.invite.ctaLabel,
+            ctaLabelSecondary: copy.invite.ctaLabelSecondary
         };
     };
 }
+const mapStateToProps = (state: IReduxState) => ({
+    copy: getCopy(state, "leaderboards")
+});
 
 const mapDispatchToProps = {
     getUserStart
 };
 
-export default connect<{}, ConnectedDispatch>(
-    null,
+export default connect<ConnectedState, ConnectedDispatch>(
+    mapStateToProps,
     mapDispatchToProps
 )(LeaderboardInviteModal);

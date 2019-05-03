@@ -4,6 +4,13 @@ exports[`ChallengeFailedScreen should match snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeFailedScreen
+    copy={
+      Object {
+        "ctaLabel": "",
+        "footer": "",
+        "heading": "",
+      }
+    }
     onPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -58,7 +65,7 @@ ShallowWrapper {
             }
           }
         >
-          you didn’t make it
+          
         </YuText>,
         <Image
           source={
@@ -85,10 +92,10 @@ ShallowWrapper {
             }
           }
         >
-          Try again.
+          
         </YuText>,
         <Button
-          label="got it"
+          label=""
           onPress={[MockFunction]}
           type="PrimaryGreyscaleSmall"
         />,
@@ -183,14 +190,14 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "bold": true,
-          "children": "you didn’t make it",
+          "children": "",
           "style": Object {
             "color": "rgb(51,51,51)",
             "fontSize": 80,
           },
         },
         "ref": null,
-        "rendered": "you didn’t make it",
+        "rendered": "",
         "type": [Function],
       },
       Object {
@@ -214,7 +221,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "Try again.",
+          "children": "",
           "style": Object {
             "color": "rgb(170,170,170)",
             "fontSize": 30,
@@ -226,7 +233,7 @@ ShallowWrapper {
           },
         },
         "ref": null,
-        "rendered": "Try again.",
+        "rendered": "",
         "type": [Function],
       },
       Object {
@@ -234,7 +241,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "label": "got it",
+          "label": "",
           "onPress": [MockFunction],
           "type": "PrimaryGreyscaleSmall",
         },
@@ -290,7 +297,7 @@ ShallowWrapper {
               }
             }
           >
-            you didn’t make it
+            
           </YuText>,
           <Image
             source={
@@ -317,10 +324,10 @@ ShallowWrapper {
               }
             }
           >
-            Try again.
+            
           </YuText>,
           <Button
-            label="got it"
+            label=""
             onPress={[MockFunction]}
             type="PrimaryGreyscaleSmall"
           />,
@@ -415,14 +422,14 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "bold": true,
-            "children": "you didn’t make it",
+            "children": "",
             "style": Object {
               "color": "rgb(51,51,51)",
               "fontSize": 80,
             },
           },
           "ref": null,
-          "rendered": "you didn’t make it",
+          "rendered": "",
           "type": [Function],
         },
         Object {
@@ -446,7 +453,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "Try again.",
+            "children": "",
             "style": Object {
               "color": "rgb(170,170,170)",
               "fontSize": 30,
@@ -458,7 +465,7 @@ ShallowWrapper {
             },
           },
           "ref": null,
-          "rendered": "Try again.",
+          "rendered": "",
           "type": [Function],
         },
         Object {
@@ -466,7 +473,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "label": "got it",
+            "label": "",
             "onPress": [MockFunction],
             "type": "PrimaryGreyscaleSmall",
           },

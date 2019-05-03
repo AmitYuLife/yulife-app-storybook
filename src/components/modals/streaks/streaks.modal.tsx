@@ -4,6 +4,7 @@ import { PureComponent } from "react";
 import { connect } from "react-redux";
 import CollectAwardMutation, { collectAwardGql } from "../../../graphql/member/collectAward.gql";
 import { IReduxState } from "../../../redux/_core/reducers";
+import { getCopy } from "../../../redux/copy/copy.selectors";
 import { getStreakAwardId } from "../../../redux/streaks/streaks.selectors";
 import { getUserStart } from "../../../redux/user/user.actions";
 import { StreaksScreen } from "../../screens";
@@ -117,50 +118,51 @@ class StreaksModal extends PureComponent<Props, IState> {
     };
 
     private getLabelCtaPrimary = () => {
-        const { streakCompleted, streakMax, isDoneToday, reward, streakAwardId } = this.props;
+        const { streakCompleted, streakMax, isDoneToday, reward, streakAwardId, copy } = this.props;
 
         if (streakCompleted === streakMax) {
             if (!streakAwardId) {
-                return "done";
+                return copy.ctaLabelDone;
             }
-            return `collect ${reward}`;
+            return copy.ctaLabelCollect.replace("${reward}", reward);
         } else if (isDoneToday) {
-            return "done";
+            return copy.ctaLabelDone;
         } else {
-            return "take a challenge";
+            return copy.ctaLabelTakeChallenge;
         }
     };
 
     private getSubHeading = () => {
-        const { isDoneToday, streakCompleted, streakMax, reward, streakAwardId } = this.props;
+        const { isDoneToday, streakCompleted, streakMax, reward, streakAwardId, copy } = this.props;
 
         if (streakCompleted === streakMax) {
             if (!streakAwardId) {
-                return "Well done! The reward has been collected.";
+                return copy.subheadingCollected;
             }
-            return "You did it!";
+            return copy.subheadingCompleted;
         } else if (isDoneToday) {
-            return "Come back tomorrow to carry on.";
+            return copy.subheadingTodayStreakDone;
         } else {
-            return `Do ${streakMax} challenges in a row to earn ${reward}.`;
+            return copy.subheadingInstrucion.replace("${streakMax}", streakMax.toString()).replace("${reward}", reward);
         }
     };
 
     private getHeading = () => {
-        const { isDoneToday, streakCompleted, streakMax } = this.props;
+        const { isDoneToday, streakCompleted, streakMax, copy } = this.props;
 
         if (streakCompleted === streakMax) {
-            return "Streak completed";
+            return copy.headingCompleted;
         } else if (isDoneToday) {
-            return `Completed streak day ${streakCompleted}`;
+            return copy.headingCompletedTodayStreak.replace("${streakCompleted}", streakCompleted.toString());
         } else {
-            return `Start streak day ${streakCompleted + 1}`;
+            return copy.headingStartStreakDay.replace("${streakCompleted}", (streakCompleted + 1).toString());
         }
     };
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    streakAwardId: getStreakAwardId(state)
+    streakAwardId: getStreakAwardId(state),
+    copy: getCopy(state, "streak")
 });
 
 const mapDispatchToProps = {

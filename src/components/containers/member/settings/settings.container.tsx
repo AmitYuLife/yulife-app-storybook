@@ -11,6 +11,7 @@ import { PureComponent } from "react";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
+import { getCopy } from "../../../../redux/copy/copy.selectors";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -86,12 +87,13 @@ class SettingsContainer extends PureComponent<IProps, IState> {
     }
 
     private handleUpdateLeaderboardConsent = (l: Leaderboard) => () => {
+        const { turnBoardOff, turnBoardOn } = this.props.copyLeaderBoard;
         const dismissModal = () => Navigation.dismissModal(MODALS.generic);
         const passProps = l.consent
             ? {
-                  ctaLabel: "keep it on!",
-                  ctaLabelSecondary: "turn it off",
-                  heading: "turn it off?",
+                  ctaLabel: turnBoardOff.ctaLabel,
+                  ctaLabelSecondary: turnBoardOff.ctaLabelSecondary,
+                  heading: turnBoardOff.heading,
                   onPress: dismissModal,
                   onPressSecondary: () => {
                       this.props.updateLeaderboardConsent({
@@ -100,14 +102,12 @@ class SettingsContainer extends PureComponent<IProps, IState> {
                       });
                       dismissModal();
                   },
-                  subheading:
-                      /* tslint:disable-next-line */
-                      "This means you won’t be able to access this leaderboard."
+                  subheading: turnBoardOff.subheading
               }
             : {
-                  ctaLabel: "yes please!",
-                  ctaLabelSecondary: "no thanks",
-                  heading: "join this leaderboard?",
+                  ctaLabel: turnBoardOn.ctaLabel,
+                  ctaLabelSecondary: turnBoardOn.ctaLabelSecondary,
+                  heading: turnBoardOn.heading,
                   onPress: () => {
                       this.props.updateLeaderboardConsent({
                           consent: !l.consent,
@@ -116,9 +116,7 @@ class SettingsContainer extends PureComponent<IProps, IState> {
                       dismissModal();
                   },
                   onPressSecondary: dismissModal,
-                  subheading:
-                      /* tslint:disable-next-line */
-                      "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?"
+                  subheading: turnBoardOn.subheading
               };
 
         Navigation.showModal({
@@ -173,7 +171,8 @@ class SettingsContainer extends PureComponent<IProps, IState> {
 const mapStateToProps = (state: IReduxState) => ({
     features: getUserFeatures(state),
     leaderboards: getAcceptedLeaderboards(state),
-    notifications: getNotifications(state)
+    notifications: getNotifications(state),
+    copyLeaderBoard: getCopy(state, "leaderboards")
 });
 
 const mapDispatchToProps = {

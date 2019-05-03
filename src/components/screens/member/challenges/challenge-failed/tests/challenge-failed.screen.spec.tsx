@@ -8,6 +8,11 @@ describe("ChallengeFailedScreen", () => {
         const actual = shallow(
             <ChallengeFailedScreen
                 onPress={jest.fn()}
+                copy={{
+                    ctaLabel: "",
+                    footer: "",
+                    heading: ""
+                }}
             />
         );
 

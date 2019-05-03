@@ -1,10 +1,10 @@
 import { Leaderboard } from "@app/redux/user/user.selectors";
 import React from "react";
 import { ActivityIndicator, FlatList, NativeScrollEvent, NativeSyntheticEvent, StyleSheet, View } from "react-native";
+import { GetMobileCopy_getMobileCopy_screens_leaderboards } from "../../../../../graphql/_core/schema";
 import { Colours } from "../../../../../styles";
 import { GenericHeading, PageIndicator } from "../../../../atoms";
 import LeaderBoardPosition from "../../../../atoms/leaderboard-position/leaderboard-position";
-import data from "../leaderboards.data";
 import { IItem } from "../leaderboards.screen";
 import styles, { calculateListHeight } from "./leaderboard-position-scroll.styles";
 
@@ -16,6 +16,7 @@ interface IProps {
     pages: Leaderboard[];
     isHidden: boolean;
     onSwipeEnd: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
+    copy: GetMobileCopy_getMobileCopy_screens_leaderboards;
 }
 
 class LeaderboardPositionScroll extends React.PureComponent<IProps> {
@@ -50,7 +51,7 @@ class LeaderboardPositionScroll extends React.PureComponent<IProps> {
     private keyExtractor = (_: undefined, index: number) => `${index}`;
 
     private renderLeaderboardPositions = ({ item: { name } }: any) => {
-        const { items, isHidden, isLoading } = this.props;
+        const { items, isHidden, isLoading, copy } = this.props;
         return (
             <View style={styles.scrollViewItem}>
                 {isLoading && !isHidden ? (
@@ -70,7 +71,7 @@ class LeaderboardPositionScroll extends React.PureComponent<IProps> {
                 )}
 
                 <View style={styles.header}>
-                    <GenericHeading heading={name} hidesBorder={true} subheading={data.subheading} />
+                    <GenericHeading heading={name} hidesBorder={true} subheading={copy.subheading} />
                 </View>
             </View>
         );

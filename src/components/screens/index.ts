@@ -3,7 +3,6 @@ export { default as LoginScreen } from "./login/login.screen";
 export { default as SignUpScreen } from "./sign-up/sign-up.screen";
 export { default as ResetPasswordScreen } from "./reset-password/reset-password.screen";
 export { default as ResetPasswordSuccessScreen } from "./reset-password/reset-password-success.screen";
-export { default as WelcomeScreen } from "./welcome/welcome.screen";
 export { default as NoAccessScreen } from "./no-access/no-access.screen";
 
 // onboarding screens

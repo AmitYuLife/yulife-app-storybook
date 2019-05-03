@@ -1,22 +1,23 @@
 import * as React from "react";
 import { SFC } from "react";
 import { Image, View } from "react-native";
+import { GetMobileCopy_getMobileCopy_screens_purchases_empty } from "../../../../../../graphql/_core/schema";
 import { Button, Text } from "../../../../../atoms";
-import data from "./purchases-empty.data";
 import styles from "./purchases-empty.styles";
 
 interface IProps {
     onCtaPress: () => void;
+    copy: GetMobileCopy_getMobileCopy_screens_purchases_empty;
 }
 
-const PurchasesEmpty: SFC<IProps> = ({ onCtaPress }) => (
+const PurchasesEmpty: SFC<IProps> = ({ onCtaPress, copy }) => (
     <View style={styles.wrapper}>
         <Image style={styles.image} source={require("../../../../../../../assets/purchases-empty/rewards-empty.png")} />
         <View style={styles.contentWrapper}>
-            <Text style={styles.text}>{data.contentLine1}</Text>
-            <Text style={styles.text}>{data.contentLine2}</Text>
+            <Text style={styles.text}>{copy.heading}</Text>
+            <Text style={styles.text}>{copy.subheading}</Text>
         </View>
-        <Button type={Button.Types.SECONDARY_MEDIUM} label={data.ctaLabel} onPress={onCtaPress} />
+        <Button type={Button.Types.SECONDARY_MEDIUM} label={copy.ctaLabel} onPress={onCtaPress} />
     </View>
 );
 

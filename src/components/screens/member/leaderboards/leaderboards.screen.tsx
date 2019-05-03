@@ -15,6 +15,7 @@ import {
     ViewStyle
 } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
+import { GetMobileCopy_getMobileCopy_screens_leaderboards } from "../../../../graphql/_core/schema";
 import { Style } from "../../../../styles";
 import { Close, Loading, Pad } from "../../../atoms";
 import { YulifeRefreshHeader } from "../../../molecules";
@@ -49,6 +50,7 @@ interface IProps {
     onLeaderboardChange: (index: number) => void;
     onRefetch: () => void;
     sortBy: string;
+    copy: GetMobileCopy_getMobileCopy_screens_leaderboards;
 }
 
 const initialState = {
@@ -98,7 +100,8 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
             leaderboards,
             onHandleCoinsRefetch,
             onHandleStepsRefetch,
-            sortBy
+            sortBy,
+            copy
         } = this.props;
         return (
             <SafeAreaView style={styles.wrapper}>
@@ -111,9 +114,15 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
                         isHidden={isTopHidden}
                         isLoading={isLoading}
                         onSwipeEnd={this.onChangeActiveLeaderboard}
+                        copy={copy}
                     />
                 ) : (
-                    <SimpleLeaderboardPosition isLoading={isLoading} isTopHidden={isTopHidden} items={items} />
+                    <SimpleLeaderboardPosition
+                        isLoading={isLoading}
+                        isTopHidden={isTopHidden}
+                        items={items}
+                        copy={copy}
+                    />
                 )}
                 <Animated.View
                     onLayout={(event: LayoutChangeEvent) => this.measureView(event)}

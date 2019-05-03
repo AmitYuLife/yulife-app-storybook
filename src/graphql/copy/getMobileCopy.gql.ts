@@ -11,7 +11,7 @@ export const getMobileCopyGql = gql`
                     heading
                     subheading
                     ctaLabel
-                    secondaryCtaLabel
+                    ctaLabelSecondary
                 }
                 noAccess {
                     heading
@@ -24,8 +24,149 @@ export const getMobileCopyGql = gql`
                 signupReward {
                     heading
                     subheading
-
                     ctaLabel
+                }
+                leaderboards {
+                    heading
+                    subheading
+                    noLeaderBoard {
+                        heading
+                        subheading
+                        ctaLabel
+                    }
+                    turnBoardOn {
+                        heading
+                        subheading
+                        ctaLabel
+                        ctaLabelSecondary
+                    }
+                    turnBoardOff {
+                        ctaLabel
+                        ctaLabelSecondary
+                        heading
+                        subheading
+                    }
+                    invite {
+                        headingBeforeName
+                        headingAfterName
+                        subheadingBeforeName
+                        subheadingAfterName
+                        ctaLabel
+                        ctaLabelSecondary
+                    }
+                }
+                activityHistoryLevels {
+                    headerLeft
+                    headerLevel
+                    headerMid
+                    headerRight
+                    heading
+                }
+                dailyStepsFitKitAuthorise {
+                    permission
+                    permissionCta
+                }
+                purchases {
+                    empty {
+                        heading
+                        subheading
+                        ctaLabel
+                    }
+                    lockedReward {
+                        ctaLabel
+                        heading
+                        subheading
+                    }
+                    voucherNotAvailable {
+                        ctaLabel
+                        heading
+                        subheading
+                    }
+                    offline {
+                        ctaLabel
+                        heading
+                        subheading
+                    }
+                    notEnoughCoins {
+                        ctaLabel
+                        heading
+                        subheading
+                    }
+                    aviosConfirmed {
+                        title
+                        message
+                        cancelButtonText
+                    }
+                }
+                fitkitConnect {
+                    blurb
+                    heading
+                    linkButtonLabel
+                    primaryButtonConnecting
+                    primaryButtonLabel
+                    secondaryButtonLabel
+                    unavailableAndroid
+                    unavailableHeading
+                    unavailableIOS
+                }
+                challenges {
+                    failed {
+                        ctaLabel
+                        footer
+                        heading
+                    }
+                    completed {
+                        ctaLabel
+                        heading
+                    }
+                    exitChallenge {
+                        heading
+                        subheading
+                        ctaLabel
+                        ctaLabelSecondary
+                    }
+                    showChestModal {
+                        ctaLabelIsNext
+                        ctaLabelIsNotNext
+                        headingIsNext
+                        headingIsNotNext
+                    }
+                    success {
+                        ctaLabel
+                        footer
+                    }
+                }
+                streak {
+                    ctaLabelDone
+                    ctaLabelCollect
+                    ctaLabelTakeChallenge
+                    subheadingCollected
+                    subheadingCompleted
+                    subheadingTodayStreakDone
+                    subheadingInstrucion
+                    headingCompleted
+                    headingCompletedTodayStreak
+                    headingStartStreakDay
+                }
+                pushNotification {
+                    toSettings {
+                        ctaLabel
+                        ctaLabelSecondary
+                        heading
+                        subheading
+                    }
+                    fromChallenge {
+                        ctaLabel
+                        ctaLabelSecondary
+                        heading
+                        subheading
+                    }
+                    turnNotificationOn {
+                        ctaLabel
+                        ctaLabelSecondary
+                        heading
+                        subheading
+                    }
                 }
             }
         }

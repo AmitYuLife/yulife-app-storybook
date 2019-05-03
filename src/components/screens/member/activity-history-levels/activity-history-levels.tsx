@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FlatList, ListRenderItemInfo, SafeAreaView, StyleSheet, View } from "react-native";
+import { GetMobileCopy_getMobileCopy_screens_activityHistoryLevels } from "../../../../graphql/_core/schema";
 import { Close, GenericHeading, Text } from "../../../atoms";
-import data from "./activity-history-levels.data";
 import Item, { ItemProps } from "./activity-history-levels.item";
 import styles from "./activity-history-levels.styles";
 
@@ -13,6 +13,7 @@ export interface IOwnProps {
     loading: boolean;
     onPressClose: () => void;
     onRefresh: () => Promise<void>;
+    copy: GetMobileCopy_getMobileCopy_screens_activityHistoryLevels;
 }
 
 type IProps = IOwnProps & IServerProps;
@@ -25,24 +26,24 @@ function renderItem({ item, index }: ListRenderItemInfo<ItemProps>) {
     return <Item key={index} {...item} />;
 }
 
-export default function ActivityHistoryLevels({ items, loading, onPressClose, onRefresh }: IProps) {
+export default function ActivityHistoryLevels({ items, loading, onPressClose, onRefresh, copy }: IProps) {
     return (
         <SafeAreaView style={styles.wrapper}>
-            <GenericHeading heading={data.heading} />
+            <GenericHeading heading={copy.heading} />
             <View style={styles.headersWrapper}>
                 <View style={StyleSheet.flatten([styles.headerBase, styles.headerOneWrapper])}>
                     <Text style={styles.headerSpecial} bold={true}>
-                        {data.headerLevel}
+                        {copy.headerLevel}
                     </Text>
                 </View>
                 <View style={StyleSheet.flatten([styles.headerBase, styles.headerTwoWrapper])}>
-                    <Text style={styles.headerDefault}>{data.headerLeft}</Text>
+                    <Text style={styles.headerDefault}>{copy.headerLeft}</Text>
                 </View>
                 <View style={StyleSheet.flatten([styles.headerBase, styles.headerThreeWrapper])}>
-                    <Text style={styles.headerDefault}>{data.headerMid}</Text>
+                    <Text style={styles.headerDefault}>{copy.headerMid}</Text>
                 </View>
                 <View style={StyleSheet.flatten([styles.headerBase, styles.headerFourWrapper])}>
-                    <Text style={styles.headerDefault}>{data.headerRight}</Text>
+                    <Text style={styles.headerDefault}>{copy.headerRight}</Text>
                 </View>
             </View>
 

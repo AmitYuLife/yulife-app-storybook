@@ -123,7 +123,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
                 onPress: onResetPasswordPress
             },
             {
-                label: copy.secondaryCtaLabel,
+                label: copy.ctaLabelSecondary,
                 onPress: onSignUpPress
             }
         ];

@@ -3,6 +3,7 @@ import { PureComponent } from "react";
 import { Linking } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
+import { GetMobileCopy_getMobileCopy_screens_pushNotification } from "../../../graphql/_core/schema";
 import { requirePushEnabled } from "../../../redux/device/device.actions";
 import { IPushNotification } from "../../../redux/device/device.selectors";
 import { GenericScreen } from "../../screens";
@@ -14,6 +15,7 @@ interface IProps {
     componentId?: string;
     fromChallenge?: boolean;
     permissions: IPushNotification;
+    copy: GetMobileCopy_getMobileCopy_screens_pushNotification;
 }
 
 type Props = ConnectedDispatch & IProps;
@@ -50,39 +52,40 @@ class PushNotificationsModal extends PureComponent<Props> {
             await Linking.openURL("app-settings:");
         } catch (e) {
             // tslint:disable-next-line
-            console.log(e);
+            // console.log(e);
         }
         this.dismissModal();
     };
 
     private getProps = (toSettings: boolean, fromChallenge?: boolean) => {
+        const { copy } = this.props;
         if (toSettings) {
             return {
-                ctaLabel: "go to settings",
-                ctaLabelSecondary: "skip",
-                heading: "notification",
+                ctaLabel: copy.toSettings.ctaLabel,
+                ctaLabelSecondary: copy.toSettings.ctaLabelSecondary,
+                heading: copy.toSettings.heading,
                 onPress: this.openSettings,
                 onPressSecondary: this.dismissModal,
-                subheading: "To get notifications, you need to go to the system settings and turn it on."
+                subheading: copy.toSettings.subheading
             };
         }
         if (fromChallenge) {
             return {
-                ctaLabel: "of course",
-                ctaLabelSecondary: "maybe later",
-                heading: "don't miss out",
+                ctaLabel: copy.fromChallenge.ctaLabel,
+                ctaLabelSecondary: copy.fromChallenge.ctaLabelSecondary,
+                heading: copy.fromChallenge.heading,
                 onPress: this.handleAgree,
                 onPressSecondary: this.dismissModal,
-                subheading: "Do you want us to give you a shout when you finish a challenge?"
+                subheading: copy.fromChallenge.subheading
             };
         }
         return {
-            ctaLabel: "allow",
-            ctaLabelSecondary: "skip",
-            heading: "notification",
+            ctaLabel: copy.turnNotificationOn.ctaLabel,
+            ctaLabelSecondary: copy.turnNotificationOn.ctaLabelSecondary,
+            heading: copy.turnNotificationOn.heading,
             onPress: this.handleAgree,
             onPressSecondary: this.dismissModal,
-            subheading: "Turn the notification on so we can notify you when there’s a response to your message."
+            subheading: copy.turnNotificationOn.subheading
         };
     };
 }

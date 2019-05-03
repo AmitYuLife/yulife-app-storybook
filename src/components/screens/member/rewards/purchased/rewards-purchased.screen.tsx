@@ -3,6 +3,7 @@ import { Style } from "@styles/index";
 import * as React from "react";
 import { SafeAreaView, View } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
+import { GetMobileCopy_getMobileCopy_screens_purchases } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
 import PurchasesEmpty from "./purchases-empty/purchases-empty";
@@ -14,6 +15,7 @@ interface IProps extends IConnectedScreenProps {
     onLeftTabPress: () => void;
     onRightTabPress: () => void;
     loading: boolean;
+    copy: GetMobileCopy_getMobileCopy_screens_purchases;
 }
 
 type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
@@ -66,8 +68,8 @@ export default class RewardsPurchasedScreen extends React.PureComponent<IProps> 
     }
 
     private renderEmpty = () => {
-        const { onLeftTabPress } = this.props;
-        return <PurchasesEmpty onCtaPress={onLeftTabPress} />;
+        const { onLeftTabPress, copy } = this.props;
+        return <PurchasesEmpty onCtaPress={onLeftTabPress} copy={copy.empty} />;
     };
 
     private setLargeListRef = (ref: LargeList) => {

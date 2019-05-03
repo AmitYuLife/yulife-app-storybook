@@ -5,6 +5,12 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <DailyStepsScreen
     coinsToday={0}
+    copy={
+      Object {
+        "permission": "",
+        "permissionCta": "",
+      }
+    }
     currentStreak={0}
     fitKitAvailable={true}
     hasPermission={false}
@@ -84,6 +90,12 @@ ShallowWrapper {
           />
         </TouchableOpacityWithState>,
         <DailyStepsFitKitAuthorise
+          copy={
+            Object {
+              "permission": "",
+              "permissionCta": "",
+            }
+          }
           onPress={[MockFunction]}
         />,
         null,
@@ -169,6 +181,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
+          "copy": Object {
+            "permission": "",
+            "permissionCta": "",
+          },
           "onPress": [MockFunction],
         },
         "ref": null,
@@ -238,6 +254,12 @@ ShallowWrapper {
             />
           </TouchableOpacityWithState>,
           <DailyStepsFitKitAuthorise
+            copy={
+              Object {
+                "permission": "",
+                "permissionCta": "",
+              }
+            }
             onPress={[MockFunction]}
           />,
           null,
@@ -323,6 +345,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "copy": Object {
+              "permission": "",
+              "permissionCta": "",
+            },
             "onPress": [MockFunction],
           },
           "ref": null,
@@ -394,6 +420,12 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <DailyStepsScreen
     coinsToday={0}
+    copy={
+      Object {
+        "permission": "",
+        "permissionCta": "",
+      }
+    }
     currentStreak={0}
     fitKitAvailable={false}
     hasPermission={true}
@@ -775,6 +807,12 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <DailyStepsScreen
     coinsToday={0}
+    copy={
+      Object {
+        "permission": "",
+        "permissionCta": "",
+      }
+    }
     currentStreak={0}
     displayStreak={true}
     fitKitAvailable={true}
@@ -1237,6 +1275,12 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <DailyStepsScreen
     coinsToday={0}
+    copy={
+      Object {
+        "permission": "",
+        "permissionCta": "",
+      }
+    }
     currentStreak={0}
     fitKitAvailable={true}
     hasPermission={true}
@@ -1654,6 +1698,12 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <DailyStepsScreen
     coinsToday={0}
+    copy={
+      Object {
+        "permission": "",
+        "permissionCta": "",
+      }
+    }
     currentStreak={0}
     fitKitAvailable={true}
     hasPermission={true}
@@ -2035,6 +2085,12 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <DailyStepsScreen
     coinsToday={0}
+    copy={
+      Object {
+        "permission": "",
+        "permissionCta": "",
+      }
+    }
     currentStreak={0}
     fitKitAvailable={true}
     hasPermission={true}

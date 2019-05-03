@@ -4,6 +4,12 @@ exports[`ChallengeComplete should match snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengeCompleteModal
+    copy={
+      Object {
+        "ctaLabel": "",
+        "heading": "",
+      }
+    }
     onCtaPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -19,6 +25,10 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
+      "copy": Object {
+        "ctaLabel": "",
+        "heading": "",
+      },
       "isLoading": undefined,
       "onCtaPress": [MockFunction],
     },
@@ -32,6 +42,10 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
+        "copy": Object {
+          "ctaLabel": "",
+          "heading": "",
+        },
         "isLoading": undefined,
         "onCtaPress": [MockFunction],
       },
