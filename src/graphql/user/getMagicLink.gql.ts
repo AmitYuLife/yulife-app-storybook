@@ -14,7 +14,7 @@ export type GetMagicLinkResultType = QueryResult<GetMagicLink>;
 export class GetMagicLinkQuery extends Query<GetMagicLink> {}
 
 const getMagicLinkWithClient = () =>
-    client.query<GetMagicLink>({
+    client().query<GetMagicLink>({
         fetchPolicy: "network-only",
         query: getMagicLinkGql
     });

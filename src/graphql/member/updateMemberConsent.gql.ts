@@ -14,7 +14,7 @@ const updateMemberConsentGql = gql`
     }
 `;
 
-export default (consent: MobileConsentInput) => client.mutate<UpdateMemberConsent, UpdateMemberConsentVariables>({
+export default (consent: MobileConsentInput) => client().mutate<UpdateMemberConsent, UpdateMemberConsentVariables>({
     mutation: updateMemberConsentGql,
     variables: { consent }
 });

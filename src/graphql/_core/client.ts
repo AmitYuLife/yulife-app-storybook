@@ -1,4 +1,4 @@
-import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
+import { defaultDataIdFromObject, InMemoryCache, NormalizedCacheObject } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
 import { from } from "apollo-link";
@@ -11,7 +11,7 @@ import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import { getToken } from "../../services/storage";
 
-const httpLink = createHttpLink({
+const httpLink = () => createHttpLink({
     uri: `${Config.API_URL}/graphql`
 });
 
@@ -76,9 +76,14 @@ const errorAfterware = onError(() => {
     // console.log("Error ... ", error);
 });
 
-const client = new ApolloClient({
-    cache,
-    link: from([authMiddleware, errorAfterware, httpLink])
-});
+let client: ApolloClient<NormalizedCacheObject>;
 
-export default client;
+export default () => {
+    if (!client) {
+        client = new ApolloClient({
+            cache,
+            link: from([authMiddleware, errorAfterware, httpLink()])
+        });
+    }
+    return client;
+};

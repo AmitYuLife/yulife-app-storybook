@@ -13,7 +13,7 @@ const updateLeaderboardConsentGql = gql`
 `;
 
 export default (variables: UpdateLeaderboardConsentVariables) =>
-    client.mutate<UpdateLeaderboardConsent, UpdateLeaderboardConsentVariables>({
+    client().mutate<UpdateLeaderboardConsent, UpdateLeaderboardConsentVariables>({
         mutation: updateLeaderboardConsentGql,
         variables
     });

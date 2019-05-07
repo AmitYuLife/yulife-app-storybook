@@ -10,7 +10,7 @@ export const submitUnityGql = gql`
 `;
 
 export default (levelId: string) =>
-    client.mutate<SubmitUnity, SubmitUnityVariables>({
+    client().mutate<SubmitUnity, SubmitUnityVariables>({
         mutation: submitUnityGql,
         variables: { levelId }
     });

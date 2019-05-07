@@ -1,5 +1,6 @@
 import { bottomTabs, ROUTES } from "@navigation/constants";
 import { setNextRoot } from "@navigation/root";
+import { TOKEN_EXPIRATION } from "@services/constants";
 import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import React, { Component } from "react";
 import { Platform } from "react-native";
@@ -19,8 +20,6 @@ import { LoginScreen } from "../../screens";
 import { validateEmail, validatePassword } from "./login.helpers";
 
 const trimGraphQLError = (message: string) => message.replace(/^GraphQL error: /, "");
-
-const TOKEN_EXPIRATION = 365 * 24 * 60 * 60;
 
 interface IOwnProps {
     componentId: string;

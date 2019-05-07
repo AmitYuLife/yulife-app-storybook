@@ -11,7 +11,7 @@ export const collectAwardGql = gql`
 `;
 
 export const collectAwardWithClient = (awardId: string) =>
-    client.mutate<CollectAward, CollectAwardVariables>({
+    client().mutate<CollectAward, CollectAwardVariables>({
         mutation: collectAwardGql,
         variables: { awardId }
     });

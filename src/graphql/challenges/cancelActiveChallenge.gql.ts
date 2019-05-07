@@ -13,7 +13,7 @@ export const cancelActiveChallengeGql = gql`
 `;
 
 export default (levelSlotId: string) =>
-    client.mutate<CancelActiveChallenge, CancelActiveChallengeVariables>({
+    client().mutate<CancelActiveChallenge, CancelActiveChallengeVariables>({
         mutation: cancelActiveChallengeGql,
         variables: { levelSlotId }
     });
