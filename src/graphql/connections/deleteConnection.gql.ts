@@ -15,7 +15,7 @@ export type DeleteConnectionMutationFunction = MutationFn<DeleteConnection>;
 export class DeleteConnectionMutation extends Mutation<DeleteConnection, DeleteConnectionVariables> {}
 
 export default (name: string) =>
-    client.mutate<DeleteConnection, DeleteConnectionVariables>({
+    client().mutate<DeleteConnection, DeleteConnectionVariables>({
         mutation: deleteConnectionGql,
         variables: { name }
     });

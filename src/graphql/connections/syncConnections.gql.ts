@@ -15,6 +15,6 @@ export type SyncConnectionsMutationFunction = MutationFn<SyncConnections>;
 export class SyncConnectionsMutation extends Mutation<SyncConnections> {}
 
 export default () =>
-    client.mutate<SyncConnections>({
+    client().mutate<SyncConnections>({
         mutation: syncConnectionsGql
     });

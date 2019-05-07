@@ -14,7 +14,7 @@ export type GetNewConnectionLinkFunctionType = MutationFn<GetNewConnectionLink, 
 export type GetNewConnectionLinkResultType = MutationResult<GetNewConnectionLink>;
 
 export default (name: string) =>
-    client.mutate<GetNewConnectionLink, GetNewConnectionLinkVariables>({
+    client().mutate<GetNewConnectionLink, GetNewConnectionLinkVariables>({
         mutation: getNewConnectionLinkGql,
         variables: { name }
     });
