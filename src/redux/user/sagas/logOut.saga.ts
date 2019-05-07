@@ -9,6 +9,6 @@ export default function* logOutSaga() {
     yield call(Logger.logEvent, "log_out");
     yield call(setUnauthenticatedRoot);
     yield call(clearToken);
-    yield call(() => client.resetStore());
+    yield call(() => client().resetStore());
     yield call(() => persistor.purge());
 }

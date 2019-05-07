@@ -9,6 +9,7 @@ import loggingSagas from "../logging/logging.sagas";
 import notificationsSagas from "../notifications/sagas";
 import pedometerSagas from "../pedometer/sagas";
 import streaksSagas from "../streaks/sagas";
+import tokenSagas from "../token/token.sagas";
 import userSagas from "../user/sagas";
 
 export default function* allSagas() {
@@ -23,6 +24,7 @@ export default function* allSagas() {
         ...notificationsSagas,
         ...pedometerSagas,
         ...streaksSagas,
+        ...tokenSagas,
         ...userSagas
     ]);
 }

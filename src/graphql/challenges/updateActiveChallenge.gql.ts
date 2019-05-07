@@ -43,7 +43,7 @@ export const updateActiveChallengeGql = gql`
 `;
 
 const updateActiveChallengeWithClient = (levelSlotId: string, payload: ChallengePayload) =>
-    client.mutate<UpdateActiveChallenge, UpdateActiveChallengeVariables>({
+    client().mutate<UpdateActiveChallenge, UpdateActiveChallengeVariables>({
         mutation: updateActiveChallengeGql,
         variables: { levelSlotId, payload }
     });

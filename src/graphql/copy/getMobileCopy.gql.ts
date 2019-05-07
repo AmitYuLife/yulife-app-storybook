@@ -174,7 +174,7 @@ export const getMobileCopyGql = gql`
 `;
 
 export default function getMobileCopyWithClient() {
-    return client.query<GetMobileCopy>({
+    return client().query<GetMobileCopy>({
         fetchPolicy: "network-only",
         query: getMobileCopyGql
     });

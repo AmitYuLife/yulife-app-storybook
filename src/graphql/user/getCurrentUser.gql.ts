@@ -100,7 +100,7 @@ export type GetCurrentUserResultType = QueryResult<GetCurrentUser>;
 export class GetCurrentUserQuery extends Query<GetCurrentUser> {}
 
 export default function getCurrentUserWithClient() {
-    return client.query<GetCurrentUser>({
+    return client().query<GetCurrentUser>({
         fetchPolicy: "network-only",
         query: getCurrentUserGql,
         variables: {

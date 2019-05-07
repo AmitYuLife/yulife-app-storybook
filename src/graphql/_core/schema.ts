@@ -894,6 +894,23 @@ export interface GetRewards {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: getSession
+// ====================================================
+
+export interface getSession_getSession {
+  id: string | null;
+  expires: number | null;
+}
+
+export interface getSession {
+  getSession: getSession_getSession | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: RedeemReward
 // ====================================================
 
@@ -1007,6 +1024,30 @@ export interface GetActivityHistory {
 
 export interface GetActivityHistoryVariables {
   monthsAgo?: number | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: RefreshSession
+// ====================================================
+
+export interface RefreshSession_refreshSession {
+  token: string | null;
+  expiresAt: number | null;
+  message: string | null;
+  intercomHash: string | null;
+}
+
+export interface RefreshSession {
+  refreshSession: RefreshSession_refreshSession | null;
+}
+
+export interface RefreshSessionVariables {
+  tokenExpiration: number;
+  intercomHashMethod?: IntercomHashMethod | null;
 }
 
 

@@ -56,7 +56,7 @@ class LoggerInstance {
         });
     }
 
-    public logMixpanelError(e: Error | string, where: string) {
+    public logMixpanelError(e: Error | string, where: any) {
         this.logMixpanelEvent("app_catched_error", { message: typeof e === "string" ? e : e.message, where });
     }
 }
