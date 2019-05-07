@@ -29,6 +29,10 @@ export const loginUserGql = gql`
                 businessAccountId
                 membershipType
                 challengesDoneToday
+                connections {
+                    name
+                    isConnected
+                }
                 userFeatures {
                     name
                     value

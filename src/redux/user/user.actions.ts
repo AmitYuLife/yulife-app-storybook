@@ -5,6 +5,7 @@ import {
     UpdateLeaderboardConsentVariables,
     UpdateMemberConsent
 } from "../../graphql/_core/schema";
+import { Connection } from "./user.selectors";
 
 export interface ISetIsUpdatingLeaderboardPayload {
     isLoading: boolean;
@@ -21,6 +22,9 @@ export const UPDATE_LEADERBOARD_CONSENT_FAILED = "UPDATE_LEADERBOARD_CONSENT_FAI
 export const UPDATE_LEADERBOARD_CONSENT_SUCCESS = "UPDATE_LEADERBOARD_CONSENT_SUCCESS";
 export const UPDATE_USER_CONSENT = "UPDATE_USER_CONSENT";
 export const UPDATE_USER_CONSENT_SUCCESS = "UPDATE_USER_CONSENT_SUCCESS";
+export const UPDATE_CONNECTION_START = "UPDATE_CONNECTION_START";
+export const UPDATE_CONNECTION_FAILED = "UPDATE_CONNECTION_FAILED";
+export const UPDATE_CONNECTION_SUCCESS = "UPDATE_CONNECTION_SUCCESS";
 export const LOGOUT = "LOGOUT";
 export const OPEN_MEMBER_ZONE = "OPEN_MEMBER_ZONE";
 
@@ -69,6 +73,21 @@ export const updateUserConsent = (payload: MobileConsentInput) => ({
 export const updateUserConsentSuccess = (payload: UpdateMemberConsent) => ({
     payload,
     type: UPDATE_USER_CONSENT_SUCCESS
+});
+
+export const updateConnectionStart = (payload: Connection) => ({
+    payload,
+    type: UPDATE_CONNECTION_START
+});
+
+export const updateConnectionFailed = (payload: Connection) => ({
+    payload,
+    type: UPDATE_CONNECTION_FAILED
+});
+
+export const updateConnectionSuccess = (payload: Connection) => ({
+    payload,
+    type: UPDATE_CONNECTION_SUCCESS
 });
 
 export const logOut = () => ({

@@ -335,6 +335,50 @@ export interface UpsertPassiveChallengeVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: DeleteConnection
+// ====================================================
+
+export interface DeleteConnection {
+  deleteConnection: boolean | null;
+}
+
+export interface DeleteConnectionVariables {
+  name: string;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: GetNewConnectionLink
+// ====================================================
+
+export interface GetNewConnectionLink {
+  getNewConnectionLink: string | null;
+}
+
+export interface GetNewConnectionLinkVariables {
+  name: string;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: SyncConnections
+// ====================================================
+
+export interface SyncConnections {
+  syncConnections: boolean | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetMobileCopy
 // ====================================================
 
@@ -973,6 +1017,11 @@ export interface GetActivityHistoryVariables {
 // GraphQL query operation: GetCurrentUser
 // ====================================================
 
+export interface GetCurrentUser_getCurrentUser_connections {
+  name: string | null;
+  isConnected: boolean | null;
+}
+
 export interface GetCurrentUser_getCurrentUser_userFeatures {
   name: string | null;
   value: boolean | null;
@@ -1073,6 +1122,7 @@ export interface GetCurrentUser_getCurrentUser {
   onboardingDate: string | null;
   membershipType: string | null;
   challengesDoneToday: number | null;
+  connections: (GetCurrentUser_getCurrentUser_connections | null)[] | null;
   userFeatures: (GetCurrentUser_getCurrentUser_userFeatures | null)[] | null;
   mobileConsent: GetCurrentUser_getCurrentUser_mobileConsent | null;
   coinLedger: GetCurrentUser_getCurrentUser_coinLedger | null;
@@ -1111,6 +1161,11 @@ export interface GetMagicLink {
 // ====================================================
 // GraphQL mutation operation: LoginUser
 // ====================================================
+
+export interface LoginUser_loginUser_user_connections {
+  name: string | null;
+  isConnected: boolean | null;
+}
 
 export interface LoginUser_loginUser_user_userFeatures {
   name: string | null;
@@ -1211,6 +1266,7 @@ export interface LoginUser_loginUser_user {
   businessAccountId: string | null;
   membershipType: string | null;
   challengesDoneToday: number | null;
+  connections: (LoginUser_loginUser_user_connections | null)[] | null;
   userFeatures: (LoginUser_loginUser_user_userFeatures | null)[] | null;
   mobileConsent: LoginUser_loginUser_user_mobileConsent | null;
   redeemedOnboarding: boolean | null;
@@ -1378,6 +1434,11 @@ export interface ChallengeTemplate {
 // GraphQL fragment: User
 // ====================================================
 
+export interface User_connections {
+  name: string | null;
+  isConnected: boolean | null;
+}
+
 export interface User_userFeatures {
   name: string | null;
   value: boolean | null;
@@ -1407,6 +1468,7 @@ export interface User {
   dateOfBirth: string | null;
   smokerStatus: string | null;
   bmi: string | null;
+  connections: (User_connections | null)[] | null;
   __typename: "User";
   userFeatures: (User_userFeatures | null)[] | null;
   userStatus: User_userStatus | null;

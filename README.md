@@ -182,6 +182,16 @@ npm run test:unit -- -u
 npm run test:all
 ```
 
+## Debugging
+
+You can use the react native debugger.
+
+Install it: `brew update && brew cask install react-native-debugger`
+
+Run it with cmd-space or from launcher ("React Native Debugger").
+
+Once running, press cmd-d in the emulator and select "Start remote JS debugging" from the menu.
+
 ## StoryBook
 
 This project provides a StoryBook server. To access it, run the following `start` command instead

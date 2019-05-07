@@ -13,9 +13,7 @@ import { getPushNotifications } from "../../../../redux/device/device.selectors"
 import { logOut, openMemberZone } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { MenuScreen } from "../../../screens";
-import assets, { LINKS } from "./assets";
-
-export type Link = "debug" | "leaderboard" | "activity" | "chat" | "logout" | "member" | "play" | "settings";
+import assets, { LINKS, LinkTypes } from "./assets";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDipatch = typeof mapDispatchToProps;
@@ -84,7 +82,7 @@ class MenuContainer extends PureComponent<Props> {
         );
     }
 
-    private handlePressLink = (link: Link) => (): null => {
+    private handlePressLink = (link: LinkTypes) => (): null => {
         switch (link) {
             case LINKS.ACTIVITY:
                 this.handlePush(ROUTES.activityHistory);

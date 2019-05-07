@@ -14,6 +14,10 @@ export const getCurrentUserGql = gql`
             onboardingDate
             membershipType
             challengesDoneToday
+            connections {
+                name
+                isConnected
+            }
             userFeatures {
                 name
                 value

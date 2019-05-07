@@ -12,6 +12,10 @@ export const userFragmentGql = gql`
         dateOfBirth
         smokerStatus
         bmi
+        connections {
+            name
+            isConnected
+        }
         __typename
         userFeatures {
             name
