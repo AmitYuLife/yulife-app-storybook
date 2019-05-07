@@ -8,6 +8,7 @@ import {
     LOGOUT,
     OPEN_MEMBER_ZONE,
     SET_USER_NO_ACCESS,
+    UPDATE_CONNECTION_START,
     UPDATE_LEADERBOARD_CONSENT_START,
     UPDATE_USER_CONSENT
 } from "../user.actions";
@@ -21,6 +22,7 @@ import openMemberZoneSaga from "./openMemberZone.saga";
 import setUserNoAccessSaga from "./setUserNoAccess.saga";
 import showLeaderboardInviteOnGetUserSaga from "./showLeaderboardInviteOnGetUser.saga";
 import showLeaderboardInviteOnLoginSaga from "./showLeaderboardInviteOnLogin.saga";
+import updateConnectionSaga from "./updateConnection.saga";
 import updateLeaderboardConsentSaga from "./updateLeaderboardConsent.saga";
 import updateUserConsentSaga from "./updateUserConsent.saga";
 
@@ -36,5 +38,6 @@ export default [
     takeLatest(UPDATE_LEADERBOARD_CONSENT_START, updateLeaderboardConsentSaga),
     takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
     takeLatest(LOGOUT, logOutSaga),
-    takeLatest(OPEN_MEMBER_ZONE, openMemberZoneSaga)
+    takeLatest(OPEN_MEMBER_ZONE, openMemberZoneSaga),
+    takeLatest(UPDATE_CONNECTION_START, updateConnectionSaga)
 ];

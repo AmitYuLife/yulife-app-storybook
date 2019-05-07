@@ -3,6 +3,7 @@ import * as React from "react";
 import { PureComponent } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import { Close, GenericHeading } from "../../../atoms";
+import ConnectionsItem from "./items/connections-item";
 import LeaderboardItem from "./items/leaderboard-item";
 import NotificationsItem from "./items/notifications-item";
 import SectionHeading from "./section-heading/section-heading";
@@ -22,6 +23,13 @@ export interface INotificationsSectionItem extends IYulifeNotification {
     onTimePress: () => void;
 }
 
+export interface IConnectionsSectionItem {
+    name: string;
+    isConnected: boolean;
+    isLoading: boolean;
+    onPress: () => void;
+}
+
 interface ISettingSection<T> {
     isVisible: boolean;
     items: T[];
@@ -31,7 +39,7 @@ interface ISettingSection<T> {
 interface IProps {
     onCreateLeaderboard: () => void;
     onPressClose: () => void;
-    sections: Array<ISettingSection<INotificationsSectionItem | ILeaderboardSectionItem>>;
+    sections: Array<ISettingSection<INotificationsSectionItem | ILeaderboardSectionItem | IConnectionsSectionItem>>;
 }
 
 export default class SettingsScreen extends PureComponent<IProps> {
@@ -54,6 +62,8 @@ export default class SettingsScreen extends PureComponent<IProps> {
                     return this.renderLeaderboard(section, index);
                 case "notifications":
                     return this.renderNotifications(section, index);
+                case "connections":
+                    return this.renderConnections(section, index);
                 default:
                     return null;
             }
@@ -81,6 +91,19 @@ export default class SettingsScreen extends PureComponent<IProps> {
                 <SectionHeading heading={section.name} />
                 <View style={styles.notificationsItemsWrapper}>
                     {section.items.map((item, i) => (item.available ? <NotificationsItem {...item} key={i} /> : null))}
+                </View>
+            </View>
+        );
+    };
+
+    private renderConnections = (section: ISettingSection<IConnectionsSectionItem>, index: number) => {
+        return (
+            <View key={index} style={styles.wrapper}>
+                <SectionHeading heading={section.name} />
+                <View style={styles.notificationsItemsWrapper}>
+                    {section.items.map((item, i) => (
+                        <ConnectionsItem {...item} key={i} />
+                    ))}
                 </View>
             </View>
         );

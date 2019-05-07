@@ -2,8 +2,14 @@ import { MODALS } from "@navigation/constants";
 import { IReduxState } from "@redux/_core/reducers";
 import { UpdateNofiticationPayload, updateNotificationSettings } from "@redux/notifications/notifications.actions";
 import { getNotifications } from "@redux/notifications/notifications.selectors";
-import { updateLeaderboardConsent } from "@redux/user/user.actions";
-import { getAcceptedLeaderboards, getUserFeatures, Leaderboard } from "@redux/user/user.selectors";
+import { updateConnectionStart, updateLeaderboardConsent } from "@redux/user/user.actions";
+import {
+    Connection,
+    getAcceptedLeaderboards,
+    getUserConnections,
+    getUserFeatures,
+    Leaderboard
+} from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
 import moment from "moment";
 import * as React from "react";
@@ -37,7 +43,8 @@ class SettingsContainer extends PureComponent<IProps, IState> {
 
     public render() {
         const { isTimeModalVisible, modalDate } = this.state;
-        const { features, leaderboards = [], notifications = {} as any } = this.props;
+        const { connections, features, leaderboards = [], notifications = {} as any } = this.props;
+
         const leaderboard = {
             isVisible: true,
             items: leaderboards.map((l) => ({
@@ -58,6 +65,15 @@ class SettingsContainer extends PureComponent<IProps, IState> {
             });
         }
 
+        const connection = {
+            isVisible: features.showConnections,
+            items: connections.map((c) => ({
+                ...c,
+                onPress: this.handleConnectionItemPress(c)
+            })),
+            name: "connections"
+        } as any;
+
         const notification = {
             isVisible: features.showNotifications,
             items: Object.keys(notifications).map((key) => ({
@@ -73,7 +89,7 @@ class SettingsContainer extends PureComponent<IProps, IState> {
                 <SettingsScreen
                     onCreateLeaderboard={this.handleCreateNewLeaderboard}
                     onPressClose={this.handleClose}
-                    sections={[notification, leaderboard]}
+                    sections={[notification, connection, leaderboard]}
                 />
                 <DateTimePicker
                     date={modalDate}
@@ -85,6 +101,10 @@ class SettingsContainer extends PureComponent<IProps, IState> {
             </>
         );
     }
+
+    private handleConnectionItemPress = (c: Connection) => () => {
+        this.props.updateConnectionStart(c);
+    };
 
     private handleUpdateLeaderboardConsent = (l: Leaderboard) => () => {
         const { turnBoardOff, turnBoardOn } = this.props.copyLeaderBoard;
@@ -169,6 +189,7 @@ class SettingsContainer extends PureComponent<IProps, IState> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
+    connections: getUserConnections(state),
     features: getUserFeatures(state),
     leaderboards: getAcceptedLeaderboards(state),
     notifications: getNotifications(state),
@@ -176,6 +197,7 @@ const mapStateToProps = (state: IReduxState) => ({
 });
 
 const mapDispatchToProps = {
+    updateConnectionStart,
     updateLeaderboardConsent,
     updateNotificationSettings
 };

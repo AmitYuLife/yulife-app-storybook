@@ -42,6 +42,7 @@ const loginSuccessFixture: LoginUser = {
                 currentLevel: 1,
                 nextLevelAvailableAt: ""
             },
+            connections: [{ name: "garmin", isConnected: false }],
             id: "1234567890",
             leaderboards: [],
             membershipType: "yulife",
@@ -61,7 +62,6 @@ const loginSuccessFixture: LoginUser = {
 };
 
 describe("User Actions", () => {
-
     describe("fitKitConsentAuthorised action", () => {
         const actual = fitKitConsentAuthorised();
 

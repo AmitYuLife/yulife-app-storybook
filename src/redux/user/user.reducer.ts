@@ -1,5 +1,6 @@
 import {
     GetCurrentUser,
+    GetCurrentUser_getCurrentUser_connections,
     GetCurrentUser_getCurrentUser_leaderboards,
     LoginUser,
     MobileConsentInput,
@@ -11,6 +12,9 @@ import {
     GET_USER_SUCCESS,
     LOGIN_USER_SUCCESS,
     SET_USER_NO_ACCESS,
+    UPDATE_CONNECTION_FAILED,
+    UPDATE_CONNECTION_START,
+    UPDATE_CONNECTION_SUCCESS,
     UPDATE_LEADERBOARD_CONSENT_FAILED,
     UPDATE_LEADERBOARD_CONSENT_START,
     UPDATE_LEADERBOARD_CONSENT_SUCCESS,
@@ -26,8 +30,11 @@ type Leaderboard = GetCurrentUser_getCurrentUser_leaderboards & {
     isLoading?: boolean;
 };
 
+type Connection = GetCurrentUser_getCurrentUser_connections & { isLoading?: boolean };
+
 export interface IUserStore {
     archived: boolean;
+    connections: Connection[];
     consent: MobileConsentInput;
     features: IFeature;
     leaderboards: Leaderboard[];
@@ -35,6 +42,7 @@ export interface IUserStore {
 
 export const initialState: IUserStore = {
     archived: false,
+    connections: [],
     consent: {},
     features: {},
     leaderboards: []
@@ -61,6 +69,13 @@ const userReducer = (state: IUserStore = initialState, action: SyncAction): IUse
         case UPDATE_LEADERBOARD_CONSENT_FAILED:
             return updateLeaderboardLoading(state, action.payload, false);
 
+        case UPDATE_CONNECTION_START:
+            return updateConnectionsLoading(state, action.payload, true);
+
+        case UPDATE_CONNECTION_SUCCESS:
+        case UPDATE_CONNECTION_FAILED:
+            return updateConnectionsLoading(state, action.payload, false);
+
         default:
             return state;
     }
@@ -70,10 +85,11 @@ export default userReducer;
 
 const getUserSuccess = (
     state: IUserStore,
-    { getCurrentUser: { leaderboards = [], mobileConsent, userFeatures = [] } }: GetCurrentUser
+    { getCurrentUser: { leaderboards = [], mobileConsent, userFeatures = [], connections = [] } }: GetCurrentUser
 ): IUserStore => ({
     ...state,
     archived: false,
+    connections,
     consent: {
         ...mobileConsent
     },
@@ -85,11 +101,12 @@ const loginUserSuccess = (
     state: IUserStore,
     {
         loginUser: {
-            user: { leaderboards = [], mobileConsent, userFeatures = [] }
+            user: { leaderboards = [], mobileConsent, userFeatures = [], connections = [] }
         }
     }: LoginUser
 ): IUserStore => ({
     ...state,
+    connections,
     consent: {
         ...mobileConsent
     },
@@ -116,5 +133,16 @@ const updateLeaderboardLoading = (
             return { ...leaderboard, isLoading };
         }
         return leaderboard;
+    })
+});
+
+// Only updates loading states
+const updateConnectionsLoading = (state: IUserStore, payload: any, isLoading: boolean): IUserStore => ({
+    ...state,
+    connections: state.connections.map((connection) => {
+        if (connection.name === payload.name) {
+            return { ...connection, isLoading };
+        }
+        return connection;
     })
 });
