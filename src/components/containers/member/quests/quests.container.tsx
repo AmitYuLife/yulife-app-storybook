@@ -296,12 +296,10 @@ class QuestsContainer extends PureComponent<Props, IState> {
     };
 
     private showChestModal = (level: GetCurrentWorld_getCurrentWorld, isNext: boolean) => {
-        const { copy } = this.props;
+        const { ctaLabelIsNext, ctaLabelIsNotNext, headingIsNext, headingIsNotNext } = this.props.copy.showChestModal;
         const passProps = {
-            ctaLabel: isNext ? copy.showChestModal.ctaLabelIsNext : copy.showChestModal.ctaLabelIsNotNext,
-            heading: isNext
-                ? copy.showChestModal.headingIsNext
-                : copy.showChestModal.headingIsNotNext + `${level.level}`,
+            ctaLabel: isNext ? ctaLabelIsNext : ctaLabelIsNotNext,
+            heading: isNext ? headingIsNext : `${headingIsNotNext} ${level.level}`,
             isLocked: true,
             onPressCta: () => {
                 if (isNext) {

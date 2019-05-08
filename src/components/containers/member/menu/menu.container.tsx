@@ -2,13 +2,13 @@ import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import { setIntroRoot } from "@navigation/root";
 import * as React from "react";
 import { PureComponent } from "react";
-import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import Intercom from "react-native-intercom";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getRouteState } from "../../../../redux/app/app.selectors";
+import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getPushNotifications } from "../../../../redux/device/device.selectors";
 import { logOut, openMemberZone } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
@@ -25,9 +25,6 @@ class MenuContainer extends PureComponent<Props> {
 
     public render() {
         const { features = {} } = this.props;
-        const version = features.showBuildNumber
-            ? `${this.deviceVersion} (${Config.BUILD_NUMBER})`
-            : this.deviceVersion;
 
         return (
             <MenuScreen
@@ -76,7 +73,7 @@ class MenuContainer extends PureComponent<Props> {
                         source: assets[LINKS.LOGOUT]
                     }
                 ]}
-                version={version}
+                version={this.deviceVersion}
                 onDebugPress={features.showDebug ? this.handlePressLink(LINKS.DEBUG) : null}
             />
         );
@@ -151,7 +148,7 @@ class MenuContainer extends PureComponent<Props> {
     };
 
     private handleIntercom = () => {
-        const { permissions } = this.props;
+        const { permissions, pushNotificationCopy } = this.props;
         const callback = () => Intercom.displayConversationsList();
 
         if (permissions.status !== "enabled") {
@@ -161,7 +158,8 @@ class MenuContainer extends PureComponent<Props> {
                     name: MODALS.pushNotifications,
                     passProps: {
                         callback,
-                        permissions
+                        permissions,
+                        copy: pushNotificationCopy
                     }
                 }
             });
@@ -174,7 +172,8 @@ class MenuContainer extends PureComponent<Props> {
 const mapStateToProps = (state: IReduxState) => ({
     currentRoute: getRouteState(state),
     features: getUserFeatures(state),
-    permissions: getPushNotifications(state)
+    permissions: getPushNotifications(state),
+    pushNotificationCopy: getCopy(state, "pushNotification")
 });
 
 const mapDispatchToProps = {
