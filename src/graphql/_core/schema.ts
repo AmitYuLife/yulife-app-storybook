@@ -894,23 +894,6 @@ export interface GetRewards {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: getSession
-// ====================================================
-
-export interface getSession_getSession {
-  id: string | null;
-  expires: number | null;
-}
-
-export interface getSession {
-  getSession: getSession_getSession | null;
-}
-
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL mutation operation: RedeemReward
 // ====================================================
 
@@ -1000,6 +983,12 @@ export interface AddUserFeedbackVariables {
 // GraphQL query operation: GetActivityHistory
 // ====================================================
 
+export interface GetActivityHistory_getActivityHistoryWithLevels_sources {
+  garmin: number | null;
+  fitbit: number | null;
+  device: number | null;
+}
+
 export interface GetActivityHistory_getActivityHistoryWithLevels_challenges {
   id: string | null;
   earned: number | null;
@@ -1011,6 +1000,7 @@ export interface GetActivityHistory_getActivityHistoryWithLevels_challenges {
 export interface GetActivityHistory_getActivityHistoryWithLevels {
   id: string | null;
   steps: number | null;
+  sources: GetActivityHistory_getActivityHistoryWithLevels_sources | null;
   yucoin: number | null;
   dayOfMonth: string | null;
   dayOfWeek: string | null;
@@ -1024,30 +1014,6 @@ export interface GetActivityHistory {
 
 export interface GetActivityHistoryVariables {
   monthsAgo?: number | null;
-}
-
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: RefreshSession
-// ====================================================
-
-export interface RefreshSession_refreshSession {
-  token: string | null;
-  expiresAt: number | null;
-  message: string | null;
-  intercomHash: string | null;
-}
-
-export interface RefreshSession {
-  refreshSession: RefreshSession_refreshSession | null;
-}
-
-export interface RefreshSessionVariables {
-  tokenExpiration: number;
-  intercomHashMethod?: IntercomHashMethod | null;
 }
 
 
@@ -1200,6 +1166,23 @@ export interface GetMagicLink {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: getSession
+// ====================================================
+
+export interface getSession_getSession {
+  id: string | null;
+  expires: number | null;
+}
+
+export interface getSession {
+  getSession: getSession_getSession | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: LoginUser
 // ====================================================
 
@@ -1336,6 +1319,30 @@ export interface LoginUserVariables {
   password: string;
   method?: LoginMethod | null;
   tokenExpiration?: number | null;
+  intercomHashMethod?: IntercomHashMethod | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: RefreshSession
+// ====================================================
+
+export interface RefreshSession_refreshSession {
+  token: string | null;
+  expiresAt: number | null;
+  message: string | null;
+  intercomHash: string | null;
+}
+
+export interface RefreshSession {
+  refreshSession: RefreshSession_refreshSession | null;
+}
+
+export interface RefreshSessionVariables {
+  tokenExpiration: number;
   intercomHashMethod?: IntercomHashMethod | null;
 }
 

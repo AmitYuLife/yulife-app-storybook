@@ -17,6 +17,11 @@ export interface ItemProps {
     dayOfWeek: string;
     level?: number;
     steps: number;
+    sources?: {
+        garmin?: number;
+        fitbit?: number;
+        device?: number;
+    };
     yucoin: number;
 }
 
@@ -40,6 +45,7 @@ export default function ActivityHistoryLevelsItem({
     dayOfWeek,
     level,
     steps,
+    sources,
     yucoin
 }: ItemProps) {
     const typeText = steps === 1 ? "step" : "steps";
@@ -72,6 +78,31 @@ export default function ActivityHistoryLevelsItem({
                                 {`${steps} ${typeText}`}
                             </Text>
                         </View>
+                        {sources && (
+                            <React.Fragment>
+                            {sources.device && (
+                                <View style={styles.activityLabelWrapper}>
+                                    <Text numberOfLines={1} style={styles.activityLabel}>
+                                        {`Phone / ${sources.device} steps`}
+                                    </Text>
+                                </View>
+                            )}
+                            {sources.fitbit && (
+                                <View style={styles.activityLabelWrapper}>
+                                    <Text numberOfLines={1} style={styles.activityLabel}>
+                                        {`Fitbit / ${sources.fitbit} steps`}
+                                    </Text>
+                                </View>
+                            )}
+                            {sources.garmin && (
+                                <View style={styles.activityLabelWrapper}>
+                                    <Text numberOfLines={1} style={styles.activityLabel}>
+                                        {`Garmin / ${sources.garmin} steps`}
+                                    </Text>
+                                </View>
+                            )}
+                            </React.Fragment>
+                        )}
                         {!challenges.length ? (
                             <View style={styles.activityLabelWrapper}>
                                 <Text numberOfLines={1} style={styles.activityLabel}>
@@ -90,6 +121,9 @@ export default function ActivityHistoryLevelsItem({
                     </View>
                     <View style={styles.starsColumn}>
                         <View style={styles.starsWrapper} />
+                        {sources && sources.device && <View style={styles.starsWrapper} />}
+                        {sources && sources.fitbit && <View style={styles.starsWrapper} />}
+                        {sources && sources.garmin && <View style={styles.starsWrapper} />}
                         {challenges.map((challenge, key) => (
                             <View style={styles.starsWrapper} key={key}>
                                 {showRating(challenge) &&
@@ -105,6 +139,9 @@ export default function ActivityHistoryLevelsItem({
                         <View style={styles.yuCoinEarnedWrapper}>
                             <Text style={styles.yuCoinEarned}>{yucoin}</Text>
                         </View>
+                        {sources && sources.device && <View style={styles.yuCoinEarnedWrapper} />}
+                        {sources && sources.fitbit && <View style={styles.yuCoinEarnedWrapper} />}
+                        {sources && sources.garmin && <View style={styles.yuCoinEarnedWrapper} />}
                         {challenges.length ? null : (
                             <View style={styles.yuCoinEarnedWrapper}>
                                 <Text style={styles.yuCoinEarned}>0</Text>
