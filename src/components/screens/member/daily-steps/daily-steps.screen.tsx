@@ -77,12 +77,12 @@ export default function DailyStepsScreen({
                     isGrayScale={!hasPermission || (!isOnline && !isLoading)}
                 />
             </TouchableOpacityWithState>
-            {isLoading ? (
-                <DailyStepsLoading />
-            ) : !fitKitAvailable ? (
+            {!fitKitAvailable ? (
                 <DailyStepsFitKitUnavailable />
             ) : !hasPermission ? (
                 <DailyStepsFitKitAuthorise onPress={onAuthoriseFitKitPress} copy={copy} />
+            ) : isLoading ? (
+                <DailyStepsLoading />
             ) : !isOnline ? (
                 <DailyStepsOffline isLight={isLight} lastUpdate={lastUpdate} />
             ) : (
