@@ -65,6 +65,9 @@ class TodayYucoinContainer extends PureComponent<Props> {
                             onPressClose={this.handleClose}
                             showCta={challengesStatus.isAvailable}
                             ctaLabel={this.getCtaLabel(challengesStatus.done, !!activeChallenge)}
+                            isShowingPassiveMeditation={false}
+                            isStepsSurge={false}
+                            isMeditationSurge={false}
                         />
                     );
                 }}

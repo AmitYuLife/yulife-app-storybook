@@ -558,6 +558,7 @@ storiesOf("Screens", module)
             ctaLabel="take a challenge"
             onPressCta={action("pressed cta")}
             onPressClose={action("pressed close")}
+            isShowingPassiveMeditation={false}
         />
     ))
     .add("15. QuestsNextEpisode", () => <QuestsNextEpisode data={null} onSkip={action("pressed skip")} />)

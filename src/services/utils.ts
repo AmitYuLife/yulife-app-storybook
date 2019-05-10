@@ -64,3 +64,13 @@ export function getTime(nextAvailable: number) {
         return `${days} ${daysOrDay} and ${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
     }
 }
+
+export function displaySecondsAsMinutes(amount: number): { minutes: number; seconds: number } {
+    const minutes = Math.floor(amount / 60);
+    const seconds = amount % 60;
+
+    return {
+        minutes,
+        seconds
+    };
+}

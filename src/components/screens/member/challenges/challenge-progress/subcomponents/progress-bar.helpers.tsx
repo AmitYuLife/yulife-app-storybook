@@ -1,7 +1,7 @@
 import { Counter } from "@molecules/index";
 import React, { SFC } from "react";
 import { StyleSheet, Text } from "react-native";
-import { padNum } from "../../../../../../services/utils";
+import { displaySecondsAsMinutes, padNum } from "../../../../../../services/utils";
 import Progress from "./progress";
 import { IProps } from "./progress-bar";
 import styles from "./progress-bar.styles";
@@ -90,16 +90,6 @@ export const renderProgressLabel = ({
         default:
             return null;
     }
-};
-
-const displaySecondsAsMinutes = (amount: number): { minutes: number; seconds: number } => {
-    const minutes = Math.floor(amount / 60);
-    const seconds = amount % 60;
-
-    return {
-        minutes,
-        seconds
-    };
 };
 
 const getProgressLabelTextColor = (styleType: IProps["styleType"]) => {
