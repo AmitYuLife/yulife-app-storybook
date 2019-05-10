@@ -1,4 +1,5 @@
 import { StarInline, Text } from "@atoms/index";
+import { GetActivityHistory_getActivityHistoryWithLevels_sources as Sources } from "@graphql/_core/schema";
 import * as React from "react";
 import { View } from "react-native";
 import styles from "./activity-history-levels.styles";
@@ -17,11 +18,7 @@ export interface ItemProps {
     dayOfWeek: string;
     level?: number;
     steps: number;
-    sources?: {
-        garmin?: number;
-        fitbit?: number;
-        device?: number;
-    };
+    sources?: Partial<Sources>;
     yucoin: number;
 }
 
@@ -78,31 +75,7 @@ export default function ActivityHistoryLevelsItem({
                                 {`${steps} ${typeText}`}
                             </Text>
                         </View>
-                        {sources ? (
-                            <React.Fragment>
-                            {sources.device ? (
-                                <View style={styles.activityLabelWrapper}>
-                                    <Text numberOfLines={1} style={styles.activityLabel}>
-                                        {`Phone / ${sources.device} steps`}
-                                    </Text>
-                                </View>
-                            ) : null}
-                            {sources.fitbit ? (
-                                <View style={styles.activityLabelWrapper}>
-                                    <Text numberOfLines={1} style={styles.activityLabel}>
-                                        {`Fitbit / ${sources.fitbit} steps`}
-                                    </Text>
-                                </View>
-                            ) : null}
-                            {sources.garmin ? (
-                                <View style={styles.activityLabelWrapper}>
-                                    <Text numberOfLines={1} style={styles.activityLabel}>
-                                        {`Garmin / ${sources.garmin} steps`}
-                                    </Text>
-                                </View>
-                            ) : null}
-                            </React.Fragment>
-                        ) : null}
+                        {renderSourcesText(sources)}
                         {!challenges.length ? (
                             <View style={styles.activityLabelWrapper}>
                                 <Text numberOfLines={1} style={styles.activityLabel}>
@@ -121,9 +94,7 @@ export default function ActivityHistoryLevelsItem({
                     </View>
                     <View style={styles.starsColumn}>
                         <View style={styles.starsWrapper} />
-                        {(sources && sources.device) ? <View style={styles.starsWrapper} /> : null}
-                        {(sources && sources.fitbit) ? <View style={styles.starsWrapper} /> : null}
-                        {(sources && sources.garmin) ? <View style={styles.starsWrapper} /> : null}
+                        {renderSourcesValue(sources)}
                         {challenges.map((challenge, key) => (
                             <View style={styles.starsWrapper} key={key}>
                                 {showRating(challenge) &&
@@ -139,9 +110,6 @@ export default function ActivityHistoryLevelsItem({
                         <View style={styles.yuCoinEarnedWrapper}>
                             <Text style={styles.yuCoinEarned}>{yucoin}</Text>
                         </View>
-                        {(sources && sources.device) ? <View style={styles.yuCoinEarnedWrapper} /> : null}
-                        {(sources && sources.fitbit) ? <View style={styles.yuCoinEarnedWrapper} /> : null}
-                        {(sources && sources.garmin) ? <View style={styles.yuCoinEarnedWrapper} /> : null}
                         {challenges.length ? null : (
                             <View style={styles.yuCoinEarnedWrapper}>
                                 <Text style={styles.yuCoinEarned}>0</Text>
@@ -159,5 +127,59 @@ export default function ActivityHistoryLevelsItem({
                 </View>
             </View>
         </View>
+    );
+}
+
+function renderSourcesText(sources: Partial<Sources>) {
+    if (!sources) {
+        return null;
+    }
+
+    if (!sources.garmin && !sources.fitbit) {
+        return null;
+    }
+
+    return (
+        <>
+            {!sources.device ? null : (
+                <View style={styles.activityLabelWrapper}>
+                    <Text numberOfLines={1} style={styles.activityLabel}>
+                        {`phone / ${sources.device} steps`}
+                    </Text>
+                </View>
+            )}
+            {!sources.fitbit ? null : (
+                <View style={styles.activityLabelWrapper}>
+                    <Text numberOfLines={1} style={styles.activityLabel}>
+                        {`fitbit / ${sources.fitbit} steps`}
+                    </Text>
+                </View>
+            )}
+            {!sources.garmin ? null : (
+                <View style={styles.activityLabelWrapper}>
+                    <Text numberOfLines={1} style={styles.activityLabel}>
+                        {`garmin / ${sources.garmin} steps`}
+                    </Text>
+                </View>
+            )}
+        </>
+    );
+}
+
+function renderSourcesValue(sources: Partial<Sources>) {
+    if (!sources) {
+        return null;
+    }
+
+    if (!sources.garmin && !sources.fitbit) {
+        return null;
+    }
+
+    return (
+        <>
+            {!sources.device ? null : <View style={styles.yuCoinEarnedWrapper} />}
+            {!sources.fitbit ? null : <View style={styles.yuCoinEarnedWrapper} />}
+            {!sources.garmin ? null : <View style={styles.yuCoinEarnedWrapper} />}
+        </>
     );
 }

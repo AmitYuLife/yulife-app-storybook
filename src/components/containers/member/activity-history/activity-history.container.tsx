@@ -90,6 +90,8 @@ class ActivityHistoryContainer extends PureComponent<Props> {
             } else {
                 Logger.logMixpanelError(error, "@activity_history_reload");
             }
+        } else {
+            refetch();
         }
     };
 }
