@@ -1,15 +1,21 @@
 import { Button, ChestCoin, Close, GenericHeading, Pad, StarInline, Text } from "@atoms/index";
 import * as React from "react";
-import { ActivityIndicator, SafeAreaView, View } from "react-native";
+import { ActivityIndicator, SafeAreaView, ScrollView, View } from "react-native";
 import Svg, { Rect } from "react-native-svg";
 import { GetCurrentUser_getCurrentUser_todayActivity } from "../../../../graphql/_core/schema";
 import { ExchangeRate } from "../../../../redux/daily-steps/daily-steps.selectors";
+import { displaySecondsAsMinutes } from "../../../../services/utils";
 import { Colours, Style } from "../../../../styles";
 import { Glow } from "../daily-steps/assets/yu-coin-subcomponents";
 import Check from "./assets/check";
 import styles from "./today-yucoin.screen.styles";
 
 type ChallengeToday = GetCurrentUser_getCurrentUser_todayActivity;
+
+interface IMeditationExchangeRate {
+    seconds: number;
+    yucoin: number;
+}
 
 interface IProps {
     loading: boolean;
@@ -22,6 +28,12 @@ interface IProps {
     challenges: ChallengeToday[];
     dailyStepsEarned: number;
     exchangeRate: ExchangeRate;
+    meditationExchangeRate?: IMeditationExchangeRate;
+    isStepsSurge?: boolean;
+    isMeditationSurge?: boolean;
+    dailyMeditationSecondsEarned?: number;
+    meditationSeconds?: number;
+    isShowingPassiveMeditation: boolean;
 }
 
 function getLabel(challenge: ChallengeToday, isActive: boolean = false) {
@@ -50,103 +62,194 @@ export default function TodayYucoinScreen({
     onPressClose,
     onPressCta,
     showCta,
-    steps = 0
+    steps = 0,
+    meditationExchangeRate = {
+        seconds: 180,
+        yucoin: 2
+    },
+    dailyMeditationSecondsEarned = 0,
+    meditationSeconds = 0,
+    isShowingPassiveMeditation,
+    isStepsSurge,
+    isMeditationSurge
 }: IProps) {
     const showNoChallengeDone = !challenges.length && !activeChallenge;
     const progressBarWidth = Style.SCALE_UP_AND_DOWN(275);
     const typeText = steps === 1 ? "step" : "steps";
+
+    const meditationExchangeRateDisplay = displaySecondsAsMinutes(meditationExchangeRate.seconds);
+    const meditationSecondsDisplay = displaySecondsAsMinutes(meditationSeconds);
+
     return (
         <SafeAreaView style={styles.wrapper}>
             <GenericHeading hidesBorder={true} heading="today's yucoin" />
-            <View style={styles.chestCoinWrapper}>
-                <View style={styles.coinOuterWrapper}>
-                    <View style={styles.coinInnerWrapper}>
-                        <Glow />
-                        <View style={styles.absolute}>
-                            <ChestCoin />
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollViewContentContainer}
+                showsVerticalScrollIndicator={false}
+            >
+                <View style={styles.chestCoinWrapper}>
+                    <View style={styles.coinOuterWrapper}>
+                        <View style={styles.coinInnerWrapper}>
+                            <Glow />
+                            <View style={styles.absolute}>
+                                <ChestCoin />
+                            </View>
                         </View>
                     </View>
                 </View>
-            </View>
-            <View style={styles.contentWrapper}>
-                <View style={styles.headingWrapper}>
-                    <Text bold={true} style={styles.heading}>{`activity & quests`}</Text>
-                    <Text bold={true} style={styles.headingRight}>
-                        yucoin
-                    </Text>
-                </View>
-                <View style={styles.challengesWrapper}>
-                    <View style={styles.passiveChallengeWrapper}>
-                        <Text style={styles.steps}>{`${steps} ${typeText}`}</Text>
-                        <Text style={styles.yucoinsEarned}>{dailyStepsEarned}</Text>
-                    </View>
-                    <View style={styles.passiveChallengeInstructionsWrapper}>
-                        <Text style={styles.passiveChallengeInstructions}>
-                            {`${exchangeRate.yucoin} yucoin for ${exchangeRate.steps} steps`}
+                <View style={styles.contentWrapper}>
+                    <View style={styles.headingWrapper}>
+                        <Text bold={true} style={styles.heading}>
+                            passive activity
+                        </Text>
+                        <Text bold={true} style={styles.headingRight}>
+                            yucoin
                         </Text>
                     </View>
-                    <View style={styles.progressWrapper}>
-                        <Svg width={progressBarWidth} height="15" style={styles.svg}>
-                            <Rect y="4" width={progressBarWidth} height="4" fill="rgb(233,233,233)" />
-                            <Rect
-                                y="4"
-                                width={Math.floor(progressBarWidth * (steps / (exchangeRate.steps * 6)))}
-                                height="4"
-                                fill="black"
-                            />
-                        </Svg>
-                        <View style={styles.checksWrapper}>
-                            {Array.from({ length: 6 }).map((_, index) => (
-                                <View style={styles.checkWrapper} key={index}>
-                                    <Check
-                                        isFilling={(steps + 500) / 2000 >= index + 1}
-                                        fillProgress={((steps + 500 - exchangeRate.steps * (index + 1)) / 500) * 100}
-                                    />
-                                </View>
-                            ))}
+                    <View style={styles.challengesWrapper}>
+                        <View style={styles.passiveChallengeWrapper}>
+                            <Text style={styles.steps}>{`${steps} ${typeText}`}</Text>
+                            {!isStepsSurge ? null : (
+                                <>
+                                    <View style={styles.surgeWrapper}>
+                                        <Text style={styles.surge}>Surge x2</Text>
+                                    </View>
+                                </>
+                            )}
+                            <Text style={styles.yucoinsEarned}>{dailyStepsEarned}</Text>
                         </View>
+                        <View style={styles.passiveChallengeInstructionsWrapper}>
+                            <Text style={styles.passiveChallengeInstructions}>
+                                {`${exchangeRate.yucoin} yucoin for ${exchangeRate.steps} steps`}
+                            </Text>
+                        </View>
+                        <View style={styles.progressWrapper}>
+                            <Svg width={progressBarWidth} height="15" style={styles.svg}>
+                                <Rect y="4" width={progressBarWidth} height="4" fill="rgb(233,233,233)" />
+                                <Rect
+                                    y="4"
+                                    width={Math.floor(progressBarWidth * (steps / (exchangeRate.steps * 6)))}
+                                    height="4"
+                                    fill="black"
+                                />
+                            </Svg>
+                            <View style={styles.checksWrapper}>
+                                {Array.from({ length: 6 }).map((_, index) => (
+                                    <View style={styles.checkWrapper} key={index}>
+                                        <Check
+                                            isFilling={(steps + 500) / 2000 >= index + 1}
+                                            fillProgress={
+                                                ((steps + 500 - exchangeRate.steps * (index + 1)) / 500) * 100
+                                            }
+                                        />
+                                    </View>
+                                ))}
+                            </View>
+                        </View>
+                        <Pad height={20} />
+
+                        {/* meditation passive activity */}
+                        {!isShowingPassiveMeditation ? null : (
+                            <>
+                                <View style={styles.passiveChallengeWrapper}>
+                                    <Text style={styles.steps}>{`${meditationSecondsDisplay.minutes}:${
+                                        meditationSecondsDisplay.seconds
+                                    } mindful minutes`}</Text>
+                                    {!isMeditationSurge ? null : (
+                                        <>
+                                            <View style={styles.surgeWrapper}>
+                                                <Text style={styles.surge}>Surge x2</Text>
+                                            </View>
+                                        </>
+                                    )}
+                                    <Text style={styles.yucoinsEarned}>{dailyMeditationSecondsEarned}</Text>
+                                </View>
+                                <View style={styles.passiveChallengeInstructionsWrapper}>
+                                    <Text style={styles.passiveChallengeInstructions}>
+                                        {`${meditationExchangeRate.yucoin} yucoin for ${
+                                            meditationExchangeRateDisplay.minutes
+                                        } min`}
+                                    </Text>
+                                </View>
+                                <View style={styles.progressWrapper}>
+                                    <Svg width={progressBarWidth} height="15" style={styles.svg}>
+                                        <Rect y="4" width={progressBarWidth} height="4" fill="rgb(233,233,233)" />
+                                        <Rect
+                                            y="4"
+                                            width={Math.floor(
+                                                progressBarWidth * (meditationSeconds / meditationExchangeRate.seconds)
+                                            )}
+                                            height="4"
+                                            fill="black"
+                                        />
+                                    </Svg>
+                                    <View style={styles.checksWrapper}>
+                                        {Array.from({ length: 3 }).map((_, index) => (
+                                            <View style={styles.checkWrapper} key={index}>
+                                                <Check
+                                                    isFilling={meditationSeconds / 60 >= index + 1}
+                                                    fillProgress={(meditationSeconds / (60 * (index + 1))) * 100}
+                                                />
+                                            </View>
+                                        ))}
+                                    </View>
+                                </View>
+                            </>
+                        )}
                     </View>
-                    <Pad height={20} />
+
                     {loading ? (
                         <ActivityIndicator color={Colours.darkHotPink} />
                     ) : (
                         <>
-                            {!showNoChallengeDone ? null : (
-                                <View style={styles.activeChallengeWrapper}>
-                                    <Text style={styles.steps}>quests / you haven’t done any today</Text>
-                                    <View style={styles.starsWrapper} />
-                                    <Text style={styles.yucoinsEarned}>0</Text>
-                                </View>
-                            )}
-                            {!activeChallenge ? null : (
-                                <View style={styles.activeChallengeWrapper}>
-                                    <Text style={styles.steps}>{getLabel(activeChallenge, true)}</Text>
-                                    <Text style={styles.yucoinsEarned}>{activeChallenge.earned}</Text>
-                                </View>
-                            )}
-                            {challenges.map((challenge, i) => (
-                                <View key={i} style={styles.activeChallengeWrapper}>
-                                    <Text style={styles.steps}>{getLabel(challenge)}</Text>
-                                    <View style={styles.starsWrapper}>
-                                        {showRating(challenge) &&
-                                            Array.from({ length: 3 }).map((_, index) => (
-                                                <View key={index} style={styles.starWrapper}>
-                                                    <StarInline filled={challenge.milestones > index} />
-                                                </View>
-                                            ))}
+                            <View style={styles.headingWrapper}>
+                                <Text bold={true} style={styles.heading}>
+                                    quests
+                                </Text>
+                                <Text bold={true} style={styles.headingRight}>
+                                    yucoin
+                                </Text>
+                            </View>
+
+                            <View style={styles.challengesWrapper}>
+                                {!showNoChallengeDone ? null : (
+                                    <View style={styles.activeChallengeWrapper}>
+                                        <Text style={styles.steps}>quests / you haven’t done any today</Text>
+                                        <View style={styles.starsWrapper} />
+                                        <Text style={styles.yucoinsEarned}>0</Text>
                                     </View>
-                                    <Text style={styles.yucoinsEarned}>{challenge.earned}</Text>
-                                </View>
-                            ))}
+                                )}
+                                {!activeChallenge ? null : (
+                                    <View style={styles.activeChallengeWrapper}>
+                                        <Text style={styles.steps}>{getLabel(activeChallenge, true)}</Text>
+                                        <Text style={styles.yucoinsEarned}>{activeChallenge.earned}</Text>
+                                    </View>
+                                )}
+                                {challenges.map((challenge, i) => (
+                                    <View key={i} style={styles.activeChallengeWrapper}>
+                                        <Text style={styles.steps}>{getLabel(challenge)}</Text>
+                                        <View style={styles.starsWrapper}>
+                                            {showRating(challenge) &&
+                                                Array.from({ length: 3 }).map((_, index) => (
+                                                    <View key={index} style={styles.starWrapper}>
+                                                        <StarInline filled={challenge.milestones > index} />
+                                                    </View>
+                                                ))}
+                                        </View>
+                                        <Text style={styles.yucoinsEarned}>{challenge.earned}</Text>
+                                    </View>
+                                ))}
+                            </View>
                         </>
                     )}
                 </View>
-            </View>
-            {!showCta || loading ? null : (
-                <View style={styles.ctaWrapper}>
-                    <Button onPress={onPressCta} label={ctaLabel} type={Button.Types.PRIMARY} />
-                </View>
-            )}
+                {!showCta || loading ? null : (
+                    <View style={styles.ctaWrapper}>
+                        <Button onPress={onPressCta} label={ctaLabel} type={Button.Types.PRIMARY} />
+                    </View>
+                )}
+            </ScrollView>
             <Close onPress={onPressClose} />
         </SafeAreaView>
     );

@@ -1,5 +1,5 @@
 import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Colours, Style } from "../../../../styles";
+import { Style } from "../../../../styles";
 
 const styles = StyleSheet.create({
     absolute: {
@@ -48,15 +48,15 @@ const styles = StyleSheet.create({
         alignSelf: "center"
     } as ViewStyle,
     heading: {
-        color: "white"
+        color: "rgb(216, 139, 37)"
     } as TextStyle,
     headingRight: {
-        color: "white",
+        color: "rgb(216, 139, 37)",
         marginLeft: "auto"
     } as TextStyle,
     headingWrapper: {
         alignItems: "center",
-        backgroundColor: Colours.darkHotPink,
+        backgroundColor: "rgb(255, 242, 121)",
         flexDirection: "row",
         height: Style.SCALE_UP_AND_DOWN(34),
         paddingHorizontal: Style.SCALE_UP_AND_DOWN(15),
@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
         marginTop: Style.SCALE_UP_AND_DOWN(8)
     } as ViewStyle,
     passiveChallengeWrapper: {
-        flexDirection: "row"
+        flexDirection: "row",
+        alignItems: "center"
     } as ViewStyle,
     progressWrapper: {
         alignItems: "flex-end",
@@ -103,7 +104,27 @@ const styles = StyleSheet.create({
     yucoinsEarned: {
         fontSize: Style.SCALE_UP_AND_DOWN(16),
         marginLeft: "auto"
-    } as TextStyle
+    } as TextStyle,
+    scrollView: {
+        flex: 1
+    } as ViewStyle,
+    scrollViewContentContainer: {
+        paddingVertical: Style.SCALE_UP_AND_DOWN(30)
+    } as ViewStyle,
+    surgeWrapper: {
+        justifyContent: "center",
+        alignItems: "center",
+        paddingHorizontal: Style.SCALE_UP_AND_DOWN(8),
+        paddingVertical: Style.SCALE_UP_AND_DOWN(4),
+        borderRadius: Style.SCALE_UP_AND_DOWN(20),
+        borderColor: "rgb(216, 139, 37)",
+        borderWidth: Style.SCALE_UP_AND_DOWN(1),
+        marginLeft: 10
+    } as ViewStyle,
+    surge: {
+        fontSize: Style.SCALE_UP_AND_DOWN(13),
+        color: "rgb(216, 139, 37)"
+    }
 });
 
 export default styles;
