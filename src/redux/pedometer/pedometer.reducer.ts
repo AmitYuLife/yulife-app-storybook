@@ -1,5 +1,6 @@
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
+import { REHYDRATE } from "redux-persist";
 import { PEDOMETER_UPDATES_SUCCESS } from "./pedometer.actions";
 
 export interface IPedometerStore {
@@ -20,6 +21,9 @@ export const initialState: IPedometerStore = {
 
 const pedometerReducer = (state: IPedometerStore = initialState, action: any): IPedometerStore => {
     switch (action.type) {
+        // ALERT: check if not breaking anything
+        case REHYDRATE:
+            return { ...state };
         case PEDOMETER_UPDATES_SUCCESS:
             return updatePedometer(state, action.payload);
         default:

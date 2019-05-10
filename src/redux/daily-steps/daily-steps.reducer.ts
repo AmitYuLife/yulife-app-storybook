@@ -1,4 +1,5 @@
 import moment from "moment";
+import { REHYDRATE } from "redux-persist";
 import {
     GetCurrentUser,
     GetCurrentUser_getCurrentUser_passiveChallenge_exchange,
@@ -33,6 +34,12 @@ export const initialState: IDailyStepsStore = {
 
 const dailyStepsReducer = (state: IDailyStepsStore = initialState, action: any): IDailyStepsStore => {
     switch (action.type) {
+        case REHYDRATE:
+            if (action.payload && action.payload.dailySteps) {
+                return updatePersistedState(state, action.payload.dailySteps);
+            }
+            return { ...state };
+
         case PEDOMETER_UPDATES_START:
             return { ...state, isFetching: true };
 
@@ -58,17 +65,34 @@ const dailyStepsReducer = (state: IDailyStepsStore = initialState, action: any):
 
 export default dailyStepsReducer;
 
+const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailyStepsStore) => {
+    if (!persistedState.lastUpdated) {
+        return { ...state };
+    }
+    const lastUpdated = moment(persistedState.lastUpdated)
+        .startOf("day")
+        .format();
+    const today = moment()
+        .startOf("day")
+        .format();
+
+    if (lastUpdated !== today) {
+        return { ...persistedState, dailySteps: 0, isFetching: true };
+    }
+
+    return { ...persistedState };
+};
+
 const updateDailyStepsSuccess = (
     state: IDailyStepsStore,
     { upsertPassiveChallenge: { challenge } }: UpsertPassiveChallenge
 ) => {
     const lastUpdated = moment.unix(challenge.updatedAt).format();
-
     return {
         ...state,
         dailySteps: challenge.incomingData.steps,
         isFetching: false,
-        lastUpdated: lastUpdated === state.lastUpdated ? moment().format() : lastUpdated
+        lastUpdated
     };
 };
 
