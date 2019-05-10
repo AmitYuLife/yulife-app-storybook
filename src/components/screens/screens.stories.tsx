@@ -373,6 +373,10 @@ storiesOf("Screens", module)
                         dayOfMonth: "14",
                         dayOfWeek: "SUN",
                         steps: 10098,
+                        sources: {
+                            device: 9000,
+                            garmin: 10098
+                        },
                         yucoin: 3
                     },
                     {
@@ -400,6 +404,7 @@ storiesOf("Screens", module)
                         dayOfWeek: "SAT",
                         level: 4,
                         steps: 4098,
+                        sources: {},
                         yucoin: 3
                     },
                     {
@@ -421,6 +426,7 @@ storiesOf("Screens", module)
                         dayOfWeek: "FRI",
                         level: 3,
                         steps: 6098,
+                        sources: {},
                         yucoin: 3
                     },
                     {

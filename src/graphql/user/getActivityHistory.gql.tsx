@@ -8,6 +8,11 @@ export const getActivityHistoryGql = gql`
         getActivityHistoryWithLevels(monthsAgo: $monthsAgo) {
             id
             steps
+            sources {
+                garmin
+                fitbit
+                device
+            }
             yucoin
             dayOfMonth
             dayOfWeek
