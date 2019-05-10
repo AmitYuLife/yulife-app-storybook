@@ -51,33 +51,26 @@ class FitKitConnectContainer extends PureComponent<Props, IState> {
 
         return (
             <FitKitAvailable>
-                {({ available, authorised, authorise, loading }) => {
-                    if (authorised) {
-                        // ensure authorised when coming back to app
-                        // authorise(FitKitPermissions);
-                        navigateToNext();
-                    }
-
-                    return (
-                        <FitKitConnectScreen
-                            connecting={connecting}
-                            loading={loading || authorised}
-                            fitKitAvailable={available}
-                            onConnectPress={() => this.onConnect(authorise)}
-                            onPrivacyPolicyPress={this.onPrivacyPolicy}
-                            onSkipPress={navigateToNext}
-                            copy={copy}
-                        />
-                    );
-                }}
+                {({ available, authorised, authorise, loading }) => (
+                    <FitKitConnectScreen
+                        connecting={connecting}
+                        loading={loading || authorised}
+                        fitKitAvailable={available}
+                        onConnectPress={() => this.onConnect(authorise)}
+                        onPrivacyPolicyPress={this.onPrivacyPolicy}
+                        onSkipPress={navigateToNext}
+                        copy={copy}
+                    />
+                )}
             </FitKitAvailable>
         );
     }
 
     private onConnect = (authorise: FitKitAuthoriseFunction) => {
-        this.setState({ connecting: true }, () => {
+        this.setState({ connecting: true }, async () => {
             this.props.fitKitConsentAuthorised();
-            authorise(FitKitPermissions);
+            await authorise(FitKitPermissions);
+            this.props.navigateToNext();
         });
     };
 
