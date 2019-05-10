@@ -15,10 +15,14 @@ export const transformSampleResultToPayload = (item: SampleQueryResult): Challen
     value: Math.floor(item.value)
 });
 
-export const queryMindfulSessions = async (startTime: string, endTime: string): Promise<ChallengePayload[]> => {
+export const queryMindfulSessions = async (
+    startTime: string,
+    endTime: string,
+    disableUserEntries = true
+): Promise<ChallengePayload[]> => {
     try {
         const results = await RNFitKit.sampleQuery({
-            disableUserEntries: true,
+            disableUserEntries,
             endTime,
             startTime,
             type: FitKitTypes.Types.MindfulSession
@@ -36,7 +40,8 @@ export const queryMindfulSessions = async (startTime: string, endTime: string): 
 
 export const querySteps = async (
     start: number | string,
-    end: number
+    end: number,
+    disableUserEntries = true
 ): Promise<{ results: ChallengePayload[]; error: string }> => {
     try {
         const startTime =
@@ -57,7 +62,7 @@ export const querySteps = async (
                 bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
                 type: FitKitTypes.AggregateType.Time
             },
-            disableUserEntries: true,
+            disableUserEntries,
             endTime,
             startTime,
             type: FitKitTypes.Types.StepCount

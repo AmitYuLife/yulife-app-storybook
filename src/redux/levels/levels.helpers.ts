@@ -6,12 +6,12 @@ import { IActiveLevel } from "./levels.selectors";
 
 const MAX_AVAILABLE = 4;
 
-export async function getEndResult({ startDateTime, endDateTime, subtype, score }: IActiveLevel) {
+export async function getEndResult({ startDateTime, endDateTime, subtype, score }: IActiveLevel, features: any = {}) {
     if (subtype === "meditation") {
         try {
             const start = moment(startDateTime).format();
             const end = moment(endDateTime).format();
-            const queryResult = await queryMindfulSessions(start, end);
+            const queryResult = await queryMindfulSessions(start, end, features.disableUserEntries);
 
             if (queryResult.length > 0) {
                 return {
@@ -24,7 +24,7 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
                 const endLater = moment(endDateTime)
                     .add(2, "hours")
                     .format();
-                const queryResultAllDay = await queryMindfulSessions(startOfDay, endLater);
+                const queryResultAllDay = await queryMindfulSessions(startOfDay, endLater, features.disableUserEntries);
 
                 if (queryResultAllDay.length > 0) {
                     return {

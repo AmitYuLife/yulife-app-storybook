@@ -92,7 +92,7 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps, IState> {
             this.setState({
                 isLoading: true
             });
-            const { results: payload } = await querySteps(60, 1);
+            const { results: payload } = await querySteps(60, 1, false);
 
             if (payload.length > 0) {
                 await addHistoricalSteps({

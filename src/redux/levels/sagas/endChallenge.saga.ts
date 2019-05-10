@@ -1,4 +1,5 @@
 import updateActiveChallengeWithClient from "@graphql/challenges/updateActiveChallenge.gql";
+import { getUserFeatures } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
 import { call, put, select, spawn } from "redux-saga/effects";
 import { challengeEndSuccessAction, challengeResetSuccessAction } from "../levels.actions";
@@ -13,7 +14,8 @@ export default function* endChallengeSaga() {
             yield put(challengeEndSuccessAction({ updateActiveChallenge: null }));
         } else {
             try {
-                const result = yield call(getEndResult, active);
+                const features = yield select(getUserFeatures);
+                const result = yield call(getEndResult, active, features);
                 const { data } = yield call(updateActiveChallengeWithClient, active.levelSlotId, result);
 
                 if (data.updateActiveChallenge) {

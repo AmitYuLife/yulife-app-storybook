@@ -9,6 +9,7 @@ import { Navigation } from "react-native-navigation";
 import { delay } from "redux-saga";
 import { call, select, spawn } from "redux-saga/effects";
 import { getRouteState } from "../../app/app.selectors";
+import { getUserFeatures } from "../../user/user.selectors";
 import { getLastUpdated } from "../daily-steps.selectors";
 
 type HistoricalSteps = AddHistoricalSteps_addHistoricalSteps;
@@ -19,9 +20,11 @@ export default function* sendStepsSinceLastUpdatedSaga() {
     const startOfDay = moment().startOf("day");
 
     if (moment(lastUpdated).isBefore(startOfDay)) {
+
+        const features = yield select(getUserFeatures);
         let isUpdated = false;
         // get steps from start of last updated date until the end of previous day
-        const { results } = yield call(querySteps, lastUpdated, 1);
+        const { results } = yield call(querySteps, lastUpdated, 1, features.disableUserEntries);
 
         if (results.length > 0) {
             while (!isUpdated) {

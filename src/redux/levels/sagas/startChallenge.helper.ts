@@ -5,8 +5,9 @@ import Logger from "@services/logging/logger";
 import { pathOr } from "@services/utils";
 import moment from "moment";
 import { delay } from "redux-saga";
-import { call, cancel, cancelled, fork, put, race, spawn, take } from "redux-saga/effects";
+import { call, cancel, cancelled, fork, put, race, select, spawn, take } from "redux-saga/effects";
 import { cancelLocalPush } from "../../device/device.actions";
+import { getUserFeatures } from "../../user/user.selectors";
 import {
     CHALLENGE_CANCEL,
     CHALLENGE_TIME_UP,
@@ -25,7 +26,8 @@ function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, e
         }
 
         try {
-            const queryResult = yield call(queryMindfulSessions, start, end.format());
+            const features = yield select(getUserFeatures);
+            const queryResult = yield call(queryMindfulSessions, start, end.format(), features.disableUserEntries);
 
             if (queryResult.length > 0) {
                 const results = {
