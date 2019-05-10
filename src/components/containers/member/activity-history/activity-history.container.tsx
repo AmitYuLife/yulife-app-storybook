@@ -72,7 +72,7 @@ class ActivityHistoryContainer extends PureComponent<Props> {
         Logger.logEvent("activity_history_updated");
 
         if (features.canUpdateActivityHistory) {
-            const { results, error } = await querySteps(30, 1);
+            const { results, error } = await querySteps(30, 1, features.disableUserEntries);
 
             if (results && !!results.length) {
                 try {

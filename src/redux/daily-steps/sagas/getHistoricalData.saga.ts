@@ -11,7 +11,7 @@ export default function* getHistoricalDataSaga() {
         const onboardingDate = pathOr<string>(res, "data.getCurrentUser.onboardingDate", "");
 
         if (onboardingDate && onboardingDate.length === 19) {
-            const { results } = yield call(querySteps, 60, 1);
+            const { results } = yield call(querySteps, 60, 1, false);
 
             if (!!results.length) {
                 yield call(addHistoricalSteps, results, false);
