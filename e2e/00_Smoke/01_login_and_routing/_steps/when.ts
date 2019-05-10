@@ -2,6 +2,7 @@ import {
     BUTTON_INTRO_SCREEN,
     BUTTON_LOGIN,
     BUTTON_TOP_LEFT_BAR,
+    BUTTON_CLOSE,
     MENU_ITEM,
     TAB_BUTTON
 } from "@ids";
@@ -48,3 +49,21 @@ export const pressOnActivityHistory = async (): Promise<void> => {
     await waitFor(target).toExist().withTimeout(5000);
     await target.tap();
 };
+
+export const pressOnLeaderboards = async (): Promise<void> => {
+    const target = element(by.id(MENU_ITEM("leaderboard")));
+    await waitFor(target).toExist().withTimeout(5000);
+    await target.tap();
+}
+
+export const pressOnSettings = async (): Promise<void> => {
+    const target = element(by.id(MENU_ITEM("settings")));
+    await waitFor(target).toExist().withTimeout(5000);
+    await target.tap();
+}
+
+export const closeCurrentScreen = async (): Promise<void> => {
+    const target = element(by.id(BUTTON_CLOSE));
+    await waitFor(target).toExist().withTimeout(5000);
+    await target.tap();
+}

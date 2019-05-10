@@ -2,6 +2,9 @@
 export const COMPONENT_HOME_SCREEN = "COMPONENT_HOME_SCREEN";
 export const DAILY_STEPS_SCREEN = "DAILY_STEPS_SCREEN";
 export const REWARDS_SCREEN = "REWARDS_SCREEN";
+export const ACTIVITY_HISTORY_SCREEN = "ACTIVITY_HISTORY_SCREEN";
+export const LEADERBOARD_SCREEN = "LEADERBOARD_SCREEN";
+export const SETTINGS_SCREEN = "SETTINGS_SCREEN";
 export const QUESTS_SCREEN = (level: number) => `QUESTS_SCREEN_${level.toString()}`;
 export const MENU_SCREEN = "MENU_SCREEN";
 
@@ -9,6 +12,7 @@ export const MENU_SCREEN = "MENU_SCREEN";
 export const BUTTON_LOGIN = "BUTTON_LOGIN";
 export const BUTTON_INTRO_SCREEN = (index: number) => `BUTTON_INTRO_SCREEN_${index}`;
 export const BUTTON_TOP_LEFT_BAR = "BUTTON_TOP_LEFT_BAR";
+export const BUTTON_CLOSE = "BUTTON_CLOSE";
 
 export const INPUT_LOGIN_EMAIL = "INPUT_LOGIN_EMAIL";
 export const INPUT_LOGIN_PASSWORD = "INPUT_LOGIN_PASSWORD";

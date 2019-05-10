@@ -1,3 +1,4 @@
+import { LEADERBOARD_SCREEN } from "@ids";
 import { Leaderboard } from "@redux/user/user.selectors";
 import * as React from "react";
 import { PureComponent } from "react";
@@ -104,7 +105,7 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
             copy
         } = this.props;
         return (
-            <SafeAreaView style={styles.wrapper}>
+            <SafeAreaView style={styles.wrapper} testID={LEADERBOARD_SCREEN}>
                 {isAdvanced ? (
                     <LeaderboardPositionScroll
                         items={items}

@@ -1,3 +1,4 @@
+import { ACTIVITY_HISTORY_SCREEN } from "@ids";
 import * as React from "react";
 import { FlatList, ListRenderItemInfo, SafeAreaView, StyleSheet, View } from "react-native";
 import { GetMobileCopy_getMobileCopy_screens_activityHistoryLevels } from "../../../../graphql/_core/schema";
@@ -28,7 +29,7 @@ function renderItem({ item, index }: ListRenderItemInfo<ItemProps>) {
 
 export default function ActivityHistoryLevels({ items, loading, onPressClose, onRefresh, copy }: IProps) {
     return (
-        <SafeAreaView style={styles.wrapper}>
+        <SafeAreaView style={styles.wrapper} testID={ACTIVITY_HISTORY_SCREEN}>
             <GenericHeading heading={copy.heading} />
             <View style={styles.headersWrapper}>
                 <View style={StyleSheet.flatten([styles.headerBase, styles.headerOneWrapper])}>

@@ -21,5 +21,7 @@ export enum DatabaseCollection {
     users = "users",
     map_level_slot_templates = "map_level_slot_templates",
     map_milestone_templates = "map_milestone_templates",
-    history_user_consents = "history_user_consents"
+    history_user_consents = "history_user_consents",
+    user_leaderboards = "user_leaderboards",
+    user_consents = "user_consents"
 }

@@ -1,3 +1,4 @@
+import { BUTTON_CLOSE } from "@ids";
 import * as React from "react";
 import { SFC } from "react";
 import { Image, Platform, StyleSheet, TouchableOpacity, TouchableWithoutFeedbackProps, ViewStyle } from "react-native";
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
 });
 
 const Close: SFC<TouchableWithoutFeedbackProps> = ({ onPress, style = {} }) => (
-    <TouchableOpacity style={[styles.wrapper, style]} onPress={onPress}>
+    <TouchableOpacity style={[styles.wrapper, style]} onPress={onPress} testID={BUTTON_CLOSE}>
         <Image source={require("../../../../assets/icons/close.png")} />
     </TouchableOpacity>
 );

@@ -7,6 +7,9 @@ import {
     MENU_SCREEN,
     QUESTS_SCREEN,
     REWARDS_SCREEN,
+    SETTINGS_SCREEN,
+    ACTIVITY_HISTORY_SCREEN,
+    LEADERBOARD_SCREEN,
     TAB_BUTTON,
     VIEW_CONFETTI_COIN,
     VIEW_TOP_RIGHT_COIN_COUNTER
@@ -59,7 +62,7 @@ export const privacyLinkVisible = async (): Promise<void> => {
 };
 
 export const rewardScreenVisible = async (): Promise<void> => {
-    const check1 = element(by.label("sign up reward"));
+    const check1 = element(by.label("sign up bonus"));
     await waitFor(check1).toExist();
     await expect(check1).toBeVisible();
 
@@ -108,6 +111,18 @@ export const worldIsVisible = (level: number) => async (): Promise<void> => {
 
 export const rewardsScreenVisible = async (): Promise<void> => {
     await expectIsVisibleViaID(REWARDS_SCREEN);
+};
+
+export const activityHistoryScreenVisible = async (): Promise<void> => {
+    await expectIsVisibleViaID(ACTIVITY_HISTORY_SCREEN);
+};
+
+export const leaderboardsScreenVisible = async (): Promise<void> => {
+    await expectIsVisibleViaID(LEADERBOARD_SCREEN);
+};
+
+export const settingsScreenVisible = async (): Promise<void> => {
+    await expectIsVisibleViaID(SETTINGS_SCREEN);
 };
 
 export const menuIsVisible = async (): Promise<void> => {

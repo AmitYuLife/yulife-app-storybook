@@ -16,21 +16,43 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                 Then("The yucoin tab should be inactive", then.tabIsInActive("yucoin"))
                 Then("The rewards tab should be inactive", then.tabIsInActive("rewards"))
             })
-            When("I press on the yucoin tab", when.pressOnTab("yucoin"), async () => {
-                Then("The yucoin tab should be active", then.tabIsActive("yucoin"))
-                Then("The quests tab should be inactive", then.tabIsInActive("quests"))
-                Then("The rewards tab should be inactive", then.tabIsInActive("rewards"))
-            })
             When("I press on the rewards tab", when.pressOnTab("rewards"), async () => {
                 Then("The yucoin tab should be inactive", then.tabIsInActive("yucoin"))
                 Then("The quests tab should be inactive", then.tabIsInActive("quests"))
                 Then("The rewards tab should be active", then.tabIsActive("rewards"));
                 Then("I should see a list of possible rewards", then.rewardsScreenVisible);
             })
+            When("I press on the yucoin tab", when.pressOnTab("yucoin"), async () => {
+                Then("The yucoin tab should be active", then.tabIsActive("yucoin"))
+                Then("The quests tab should be inactive", then.tabIsInActive("quests"))
+                Then("The rewards tab should be inactive", then.tabIsInActive("rewards"))
+                Then("I should see the daily steps screen", then.dailyStepsScreenVisible);
+            })
             When("I press on the top left menu", when.pressOnMenu, async () => {
                 Then("I should see the menu", then.menuIsVisible);
                 When("I press on activity history", when.pressOnActivityHistory, async () => {
-                    ThenManual("I should see the activity history screen");
+                    Then("I should see the activity history screen", then.activityHistoryScreenVisible);
+                })
+                When("I close the activity history screen", when.closeCurrentScreen, async () => {
+                    Then("I should see the daily steps screen", then.dailyStepsScreenVisible);
+                })
+            })
+            When("I press on the top left menu", when.pressOnMenu, async () => {
+                Then("I should see the menu", then.menuIsVisible);
+                When("I press on leaderboards", when.pressOnLeaderboards, async () => {
+                    Then("I should see the leaderboards screen", then.leaderboardsScreenVisible);
+                })
+                When("I close the leaderboards screen", when.closeCurrentScreen, async () => {
+                    Then("I should see the daily steps screen", then.dailyStepsScreenVisible);
+                })
+            })
+            When("I press on the top left menu", when.pressOnMenu, async () => {
+                Then("I should see the menu", then.menuIsVisible);
+                When("I press on settings", when.pressOnSettings, async () => {
+                    Then("I should see the settings screen", then.settingsScreenVisible);
+                })
+                When("I close the settings screen", when.closeCurrentScreen, async () => {
+                    Then("I should see the daily steps screen", then.dailyStepsScreenVisible);
                 })
             })
         })

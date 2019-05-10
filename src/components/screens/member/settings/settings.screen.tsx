@@ -1,3 +1,4 @@
+import { SETTINGS_SCREEN } from "@ids";
 import { IYulifeNotification } from "@redux/notifications/notifications.selectors";
 import * as React from "react";
 import { PureComponent } from "react";
@@ -47,7 +48,7 @@ export default class SettingsScreen extends PureComponent<IProps> {
         const { onPressClose, sections = [] } = this.props;
 
         return (
-            <SafeAreaView style={styles.wrapper}>
+            <SafeAreaView style={styles.wrapper} testID={SETTINGS_SCREEN}>
                 <GenericHeading heading={data.heading} hidesBorder={true} />
                 <ScrollView style={styles.scrollView}>{sections.map(this.renderSection)}</ScrollView>
                 <Close onPress={onPressClose} />
