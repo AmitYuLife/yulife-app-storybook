@@ -77,7 +77,7 @@ class ActivityHistoryContainer extends PureComponent<Props> {
             if (results && !!results.length) {
                 try {
                     const response = await addHistoricalSteps({
-                        variables: { payload: results.map(mapPedometerResults as any), shouldAward: true }
+                        variables: { payload: results, shouldAward: true }
                     });
 
                     if (response && response.data && response.data.addHistoricalSteps) {
