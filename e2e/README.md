@@ -182,6 +182,138 @@ FEATURE: As a user I can navigate through member routes correctly
 --------------------------------------------------------------------------------------------------------
 
 ### Quests
+
+## Worlds
+```
+FEATURE: As a user I can complete both types of challenge in the first world
+    SCENARIO: I can finish a walking challenge in the first world
+        GIVEN: I have logged in and passed the intro screens and I pressed the `quests` tab and my level is within 1-49
+            THEN: I should see the first world part of the quest map
+                WHEN: I press on the short stroll challenge
+                    THEN: I should see the short stroll challenge details page
+                        WHEN: I press on the take challenge button
+                            THEN: I should see the challenge progress screen for short stroll
+                                WHEN: I register 2000 steps in 10 minutes
+                                    THEN: I should see 2000 steps on the screen
+                                WHEN: The time ends
+                                    THEN: I should see the time's up screen
+                                        WHEN: I press `show results` button
+                                            THEN: I should see the challenge success screen
+                                                WHEN: I press on `collect`
+                                                    THEN: I should see the quest map screen
+                                                    THEN: I should see my total coin increasing
+    SCENARIO: I can finish a meditation challenge in the first world
+        GIVEN: I have logged in and passed the intro screens and I pressed the `quests` tab and my level is within 3-49
+            THEN: I should see the first world part of the quest map
+                WHEN: I press on the meditation challenge
+                    THEN: I should see the meditation challenge details page
+                        WHEN: I press on the take challenge button
+                            THEN: I should see the challenge progress screen for meditation
+                                WHEN: I register 10 mindful minutes
+                                    THEN: I should see the time's up screen
+                                        WHEN: I press `show results` button
+                                            THEN: I should see the challenge success screen
+                                                WHEN: I press on `collect`
+                                                    THEN: I should see the quest map screen
+                                                    THEN: I should see my total coin increasing
+
+FEATURE: As a user I can complete both types of challenge in the second world
+    SCENARIO: I can finish a walking challenge in the second world
+        GIVEN: I have logged in and passed the intro screens and I pressed the `quests` tab and my level is within 50-99
+            THEN: I should see the second world part of the quest map
+                WHEN: I press on the short stroll challenge
+                    THEN: I should see the short stroll challenge details page
+                        WHEN: I press on the take challenge button
+                            THEN: I should see the challenge progress screen for short stroll
+                                WHEN: I register 2000 steps in 10 minutes
+                                    THEN: I should see 2000 steps on the screen
+                                WHEN: The time ends
+                                    THEN: I should see the time's up screen
+                                        WHEN: I press `show results` button
+                                            THEN: I should see the challenge success screen
+                                                WHEN: I press on `collect`
+                                                    THEN: I should see the quest map screen
+                                                    THEN: I should see my total coin increasing
+    SCENARIO: I can finish a meditation challenge in the second world
+        GIVEN: I have logged in and passed the intro screens and I pressed the `quests` tab and my level is within 50-99
+            THEN: I should see the second world part of the quest map
+                WHEN: I press on the meditation challenge
+                    THEN: I should see the meditation challenge details page
+                        WHEN: I press on the take challenge button
+                            THEN: I should see the challenge progress screen for meditation
+                                WHEN: I register 10 mindful minutes
+                                    THEN: I should see the time's up screen
+                                        WHEN: I press `show results` button
+                                            THEN: I should see the challenge success screen
+                                                WHEN: I press on `collect`
+                                                    THEN: I should see the quest map screen
+                                                    THEN: I should see my total coin increasing
+
+FEATURE: As a user I can complete both types of challenge in the third world
+    SCENARIO: I can finish a walking challenge in the third world
+        GIVEN: I have logged in and passed the intro screens and I pressed the `quests` tab and my level is within 100-149
+            THEN: I should see the third world part of the quest map
+                WHEN: I press on the short stroll challenge
+                    THEN: I should see the short stroll challenge details page
+                        WHEN: I press on the take challenge button
+                            THEN: I should see the challenge progress screen for short stroll
+                                WHEN: I register 2000 steps in 10 minutes
+                                    THEN: I should see 2000 steps on the screen
+                                WHEN: The time ends
+                                    THEN: I should see the time's up screen
+                                        WHEN: I press `show results` button
+                                            THEN: I should see the challenge success screen
+                                                WHEN: I press on `collect`
+                                                    THEN: I should see the quest map screen
+                                                    THEN: I should see my total coin increasing
+    SCENARIO: I can finish a meditation challenge in the third world
+        GIVEN: I have logged in and passed the intro screens and I pressed the `quests` tab and my level is within 100-149
+            THEN: I should see the third world part of the quest map
+                WHEN: I press on the meditation challenge
+                    THEN: I should see the meditation challenge details page
+                        WHEN: I press on the take challenge button
+                            THEN: I should see the challenge progress screen for meditation
+                                WHEN: I register 10 mindful minutes
+                                    THEN: I should see the time's up screen
+                                        WHEN: I press `show results` button
+                                            THEN: I should see the challenge success screen
+                                                WHEN: I press on `collect`
+                                                    THEN: I should see the quest map screen
+                                                    THEN: I should see my total coin increasing
+
+FEATURE: As a user I can complete both types of challenge in the fourth world
+    SCENARIO: I can finish a walking challenge in the fourth world
+        GIVEN: I have logged in and passed the intro screens and I pressed the `quests` tab and my level is within 150-199
+            THEN: I should see the fourth world part of the quest map
+                WHEN: I press on the short stroll challenge
+                    THEN: I should see the short stroll challenge details page
+                        WHEN: I press on the take challenge button
+                            THEN: I should see the challenge progress screen for short stroll
+                                WHEN: I register 2000 steps in 10 minutes
+                                    THEN: I should see 2000 steps on the screen
+                                WHEN: The time ends
+                                    THEN: I should see the time's up screen
+                                        WHEN: I press `show results` button
+                                            THEN: I should see the challenge success screen
+                                                WHEN: I press on `collect`
+                                                    THEN: I should see the quest map screen
+                                                    THEN: I should see my total coin increasing
+    SCENARIO: I can finish a meditation challenge in the fourth world
+        GIVEN: I have logged in and passed the intro screens and I pressed the `quests` tab and my level is within 150-199
+            THEN: I should see the fourth world part of the quest map
+                WHEN: I press on the meditation challenge
+                    THEN: I should see the meditation challenge details page
+                        WHEN: I press on the take challenge button
+                            THEN: I should see the challenge progress screen for meditation
+                                WHEN: I register 10 mindful minutes
+                                    THEN: I should see the time's up screen
+                                        WHEN: I press `show results` button
+                                            THEN: I should see the challenge success screen
+                                                WHEN: I press on `collect`
+                                                    THEN: I should see the quest map screen
+                                                    THEN: I should see my total coin increasing
+```
+## Challenges
 ```
 FEATURE: As a user I can take a challenge
     SCENARIO: I can take a challenge and cancel it
