@@ -8,10 +8,12 @@ export default function* updateCopySaga() {
     try {
         const { data } = yield call(getMobileCopy);
 
-        const currentVersion = yield select(getCopyVersion);
+        if (data && data.getMobileCopy) {
+            const currentVersion = yield select(getCopyVersion);
 
-        if (data && data.getMobileCopy && data.getMobileCopy.version !== currentVersion) {
-            yield put(updateCopy(data));
+            if (data.getMobileCopy.version !== currentVersion) {
+                yield put(updateCopy(data));
+            }
         }
     } catch (e) {
         yield spawn(() => Logger.logMixpanelError(e, "updateCopySaga"));

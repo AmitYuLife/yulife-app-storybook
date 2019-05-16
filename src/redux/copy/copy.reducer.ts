@@ -19,7 +19,10 @@ const copyReducer = (state: ICopyStore = initialState, action: SyncAction): ICop
             }
             return state;
         case UPDATE_COPY:
-            return action.payload.getMobileCopy;
+            if (action.payload && action.payload.getMobileCopy) {
+                return action.payload.getMobileCopy;
+            }
+            return state;
         default:
             return state;
     }
