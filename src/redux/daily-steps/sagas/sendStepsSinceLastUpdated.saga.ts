@@ -16,7 +16,6 @@ type HistoricalSteps = AddHistoricalSteps_addHistoricalSteps;
 
 export default function* sendStepsSinceLastUpdatedSaga() {
     const lastUpdated = yield select(getLastUpdated);
-    // const lastUpdated = moment().subtract(1, "days"); // for tests
     const startOfDay = moment().startOf("day");
 
     if (moment(lastUpdated).isBefore(startOfDay)) {

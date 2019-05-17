@@ -56,18 +56,6 @@ jest.mock("bugsnag-react-native", () => ({
     Client: jest.fn()
 }));
 
-jest.mock("../src/graphql/challenges/upsertStepsChallenge.gql", () => ({
-    upsertStepsChallenge: jest.fn()
-}));
-
-jest.mock("../src/graphql/user/getCurrentUser.gql", () => ({
-    getCurrentUserGql: jest.fn()
-}));
-
 jest.mock("../src/graphql/member/collectAward.gql", () => ({
     collectAwardWithClient: jest.fn()
-}));
-
-jest.mock("../src/graphql/challenges/addHistoricalSteps.gql", () => ({
-    addHistoricalSteps: jest.fn()
 }));
