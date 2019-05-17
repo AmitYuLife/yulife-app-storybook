@@ -1,4 +1,6 @@
 import {
+    START_DAILY_STEPS,
+    startDailySteps,
     UPDATE_DAILY_STEPS_FAILED,
     UPDATE_DAILY_STEPS_SUCCESS,
     updateDailyStepsFailed,
@@ -7,6 +9,16 @@ import {
 import { upsertStepsSuccessFixture } from "./daily-steps.fixtures";
 
 describe("Daily Steps Actions", () => {
+
+    describe("startDailySteps action", () => {
+        const actual = startDailySteps();
+
+        it("has the correct type", () => {
+            const expected = START_DAILY_STEPS;
+
+            expect(actual.type).toEqual(expected);
+        });
+    });
 
     describe("updateDailyStepsFailed action", () => {
         const errorMessage = "This has failed";

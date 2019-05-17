@@ -1,5 +1,6 @@
 import moment from "moment";
 import { UpsertPassiveChallenge } from "../../../graphql/_core/schema";
+import { startPedometerUpdates, updatePedometerNoNewDataAction } from "../../pedometer/pedometer.actions";
 import { updateDailyStepsFailed, updateDailyStepsSuccess } from "../daily-steps.actions";
 import stepsReducer, { IDailyStepsStore, initialState } from "../daily-steps.reducer";
 import { upsertStepsSuccessFixture } from "./daily-steps.fixtures";
@@ -30,6 +31,26 @@ describe("Daily Steps Reducer", () => {
 
     it("updates the store when the daily steps have failed", () => {
         const actual = stepsReducer(initialState, updateDailyStepsFailed("Message of Errorness"));
+
+        const expected: IDailyStepsStore = {
+            ...initialState,
+            isFetching: false
+        };
+        expect(actual).toEqual(expected);
+    });
+
+    it("updates the store when pedometer updates start", () => {
+        const actual = stepsReducer(initialState, startPedometerUpdates());
+
+        const expected: IDailyStepsStore = {
+            ...initialState,
+            isFetching: true
+        };
+        expect(actual).toEqual(expected);
+    });
+
+    it("updates the store when no new pedometer updates", () => {
+        const actual = stepsReducer(initialState, updatePedometerNoNewDataAction());
 
         const expected: IDailyStepsStore = {
             ...initialState,
