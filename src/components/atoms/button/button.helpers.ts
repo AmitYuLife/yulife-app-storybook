@@ -83,13 +83,17 @@ export const getShadowStyle = (props: IGetShadowStyle) => {
 
 interface IGetWrapperOverlayStyle {
     disabled?: boolean;
+    isShadow?: true;
 }
 
 export const getWrapperOverlayStyle = (props: IGetWrapperOverlayStyle) => {
     if (!props) {
         return null;
     }
-    const { disabled } = props;
+    const { disabled, isShadow = false } = props;
+    if (disabled && isShadow) {
+        return styles.wrapperOverlayPrimaryShadowOffsetDisabled;
+    }
     if (disabled) {
         return styles.wrapperOverlayPrimaryDisabled;
     }
