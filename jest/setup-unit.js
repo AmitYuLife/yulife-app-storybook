@@ -12,38 +12,62 @@ jest.mock("react-native-config", () => ({
 jest.mock("react-native-intercom", () => {}, { virtual: true });
 
 jest.mock("react-native-fitkit", () => {
-    Pedometer: {}
+    Pedometer: {
+    }
 });
 
 jest.mock("react-native-device-info", () => ({
     getUniqueID: jest.fn(),
-    getVersion: jest.fn(),
+    getVersion: jest.fn()
+}));
+
+jest.mock("react-native-push-notification", () => ({
+    configure: jest.fn(),
+    unregister: jest.fn(),
+    localNotification: jest.fn(),
+    localNotificationSchedule: jest.fn(),
+    requestPermissions: jest.fn(),
+    presentLocalNotification: jest.fn(),
+    scheduleLocalNotification: jest.fn(),
+    cancelLocalNotifications: jest.fn(),
+    cancelAllLocalNotifications: jest.fn(),
+    setApplicationIconBadgeNumber: jest.fn(),
+    getApplicationIconBadgeNumber: jest.fn(),
+    popInitialNotification: jest.fn(),
+    abandonPermissions: jest.fn(),
+    checkPermissions: jest.fn(),
+    registerNotificationActions: jest.fn(),
+    clearAllNotifications: jest.fn()
+}));
+
+jest.mock("react-native-mixpanel", () => ({
+    initPushHandling: jest.fn()
 }));
 
 jest.mock("react-native-mixpanel", () => ({
     sharedInstanceWithToken: jest.fn(),
     identify: jest.fn(),
     track: jest.fn(),
-    trackChargeWithProperties: jest.fn(),
+    trackChargeWithProperties: jest.fn()
 }));
 
 jest.mock("bugsnag-react-native", () => ({
     Configuration: jest.fn(),
-    Client: jest.fn(),
+    Client: jest.fn()
 }));
 
 jest.mock("../src/graphql/challenges/upsertStepsChallenge.gql", () => ({
-    upsertStepsChallenge: jest.fn(),
+    upsertStepsChallenge: jest.fn()
 }));
 
 jest.mock("../src/graphql/user/getCurrentUser.gql", () => ({
-    getCurrentUserGql: jest.fn(),
+    getCurrentUserGql: jest.fn()
 }));
 
 jest.mock("../src/graphql/member/collectAward.gql", () => ({
-    collectAwardWithClient: jest.fn(),
+    collectAwardWithClient: jest.fn()
 }));
 
 jest.mock("../src/graphql/challenges/addHistoricalSteps.gql", () => ({
-    addHistoricalSteps: jest.fn(),
+    addHistoricalSteps: jest.fn()
 }));
