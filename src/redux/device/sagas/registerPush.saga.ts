@@ -37,7 +37,7 @@ export default function* registerPushSaga() {
     }
 }
 
-function* handleNotification(notification: IPushNotification) {
+export function* handleNotification(notification: IPushNotification) {
     const isChallengeCompleteNotification = /completed[\w\s]+challenge/.test((notification.message || "").toString());
 
     if (isChallengeCompleteNotification) {

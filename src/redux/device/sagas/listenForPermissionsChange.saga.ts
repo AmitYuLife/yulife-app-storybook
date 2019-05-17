@@ -22,7 +22,7 @@ export default function* listenForPermissionsChangeSaga() {
     }
 }
 
-function* checkPermissions() {
+export function* checkPermissions() {
     const perms = yield select(getPushNotifications);
     // android defaults to true
     let status: PushPermissions = PushPermissionsEnum.enabled;
