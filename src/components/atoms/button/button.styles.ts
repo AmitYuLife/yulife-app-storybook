@@ -4,7 +4,6 @@ import { Colours, Style } from "../../../styles";
 const wrapperPrimaryBodyHeight = Style.SCALE_UP_AND_DOWN(50);
 const wrapperPrimaryBodyWidth = Style.SCALE_UP_AND_DOWN(306);
 const wrapperPrimaryShadowOffset = Style.SCALE_UP_AND_DOWN(4);
-const wrapperPrimaryTotalHeight = wrapperPrimaryBodyHeight + wrapperPrimaryShadowOffset;
 
 export default StyleSheet.create({
     shadow: {
@@ -75,15 +74,16 @@ export default StyleSheet.create({
         ...StyleSheet.absoluteFillObject,
         backgroundColor: "rgba(255,255,255,0.8)",
         borderRadius: Style.SCALE_UP_AND_DOWN(50),
-        height: wrapperPrimaryTotalHeight,
-        left: -3,
-        width: wrapperPrimaryBodyWidth + wrapperPrimaryShadowOffset + 1
+        height: wrapperPrimaryBodyHeight
+    } as ViewStyle,
+    wrapperOverlayPrimaryShadowOffsetDisabled: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: "rgba(255,255,255,0.8)",
+        borderRadius: Style.SCALE_UP_AND_DOWN(50)
     } as ViewStyle,
     wrapperPrimary: {
         backgroundColor: Colours.button.primary.default.body,
-        borderColor: Colours.button.primary.default.body,
         borderRadius: Style.SCALE_UP_AND_DOWN(50),
-        borderWidth: Style.SCALE_UP_AND_DOWN(1),
         height: wrapperPrimaryBodyHeight,
         justifyContent: "center",
         width: wrapperPrimaryBodyWidth

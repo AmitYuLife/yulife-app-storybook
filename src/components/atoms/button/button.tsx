@@ -40,7 +40,9 @@ class Button extends PureComponent<IProps, IState> {
         if (type.startsWith(BUTTON_TYPES.PRIMARY)) {
             return (
                 <View style={wrapperStyle}>
-                    <View style={getShadowStyle({ type, pressedIn })} />
+                    <View style={getShadowStyle({ type, pressedIn })}>
+                        {!disabled ? null : <View style={getWrapperOverlayStyle({ disabled, isShadow: true })} />}
+                    </View>
                     <TouchableWithoutFeedback
                         testID={testID}
                         accessibilityLabel={disabled ? "disabled" : "enabled"}
