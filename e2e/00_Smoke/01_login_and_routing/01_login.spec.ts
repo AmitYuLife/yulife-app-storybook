@@ -5,6 +5,7 @@ import * as given from "./_steps/given";
 import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
+import { ScenarioOnly } from '../../_utils/bdd/index';
 
 Feature("As a user I can get past the login screen", async () => {
 
@@ -19,13 +20,20 @@ Feature("As a user I can get past the login screen", async () => {
         });
     });
 
-    Scenario("I can login with correct login details and make it past the intro screens", scenario.setup, async () => {
+    Scenario("I can login with correct login details and be prompted with a health screen", scenario.setup, async () => {
         Given("I have entered a valid email address and valid password", given.enterValidCredentials, async () => {
             When("I press `log in`", when.tapOnLogin, async () => {
                 Then("I should not longer be on the login screen", then.notOnLoginScreen);
                 Then("I should see a prompt to connect to the health app", then.healthAppPromptVisible);
                 Then("I should see a link to the privacy notice", then.privacyLinkVisible);
-                When("I press authorise healthkit", when.authoriseFitKit, async () => {
+            });
+        });
+    });
+
+    Scenario("I can login with correct login details and make it past the intro screens", scenario.setup, async () => {
+        Given("I have authorised fitkit on my device", when.authoriseFitKit, async () => {
+            Given("I have entered a valid email address and valid password", given.enterValidCredentials, async () => {
+                When("I press `log in`", when.tapOnLogin, async () => {
                     Then("I should see the sign up reward screen", then.rewardScreenVisible);
                     Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
                     When("I press next on on each of the screens (5 times)", [when.pressNext5Times, when.authoriseFitKit], async () => {
@@ -36,10 +44,9 @@ Feature("As a user I can get past the login screen", async () => {
                             Then("I should see 1000 steps on the screen", then.stepsMeasured(1000));
                         });
                     })
-                })
-
+                });
             });
-        });
+        })
     });
 
 });
