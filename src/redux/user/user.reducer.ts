@@ -48,7 +48,7 @@ export const initialState: IUserStore = {
     leaderboards: []
 };
 
-const userReducer = (state: IUserStore = initialState, action: SyncAction): IUserStore => {
+export const userReducer = (state: IUserStore = initialState, action: SyncAction): IUserStore => {
     switch (action.type) {
         case SET_USER_NO_ACCESS:
             return { ...state, archived: true };
