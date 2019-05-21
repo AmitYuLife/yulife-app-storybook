@@ -289,9 +289,7 @@ ShallowWrapper {
             style={
               Object {
                 "backgroundColor": "#e20177",
-                "borderColor": "#e20177",
                 "borderRadius": 100,
-                "borderWidth": 2,
                 "height": 100,
                 "justifyContent": "center",
                 "width": 612,
@@ -317,6 +315,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "children": null,
           "style": Object {
             "backgroundColor": "#95012b",
             "borderRadius": 100,
@@ -342,9 +341,7 @@ ShallowWrapper {
             style={
               Object {
                 "backgroundColor": "#e20177",
-                "borderColor": "#e20177",
                 "borderRadius": 100,
-                "borderWidth": 2,
                 "height": 100,
                 "justifyContent": "center",
                 "width": 612,
@@ -377,9 +374,7 @@ ShallowWrapper {
             />,
             "style": Object {
               "backgroundColor": "#e20177",
-              "borderColor": "#e20177",
               "borderRadius": 100,
-              "borderWidth": 2,
               "height": 100,
               "justifyContent": "center",
               "width": 612,
@@ -438,9 +433,7 @@ ShallowWrapper {
               style={
                 Object {
                   "backgroundColor": "#e20177",
-                  "borderColor": "#e20177",
                   "borderRadius": 100,
-                  "borderWidth": 2,
                   "height": 100,
                   "justifyContent": "center",
                   "width": 612,
@@ -466,6 +459,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "children": null,
             "style": Object {
               "backgroundColor": "#95012b",
               "borderRadius": 100,
@@ -491,9 +485,7 @@ ShallowWrapper {
               style={
                 Object {
                   "backgroundColor": "#e20177",
-                  "borderColor": "#e20177",
                   "borderRadius": 100,
-                  "borderWidth": 2,
                   "height": 100,
                   "justifyContent": "center",
                   "width": 612,
@@ -526,9 +518,7 @@ ShallowWrapper {
               />,
               "style": Object {
                 "backgroundColor": "#e20177",
-                "borderColor": "#e20177",
                 "borderRadius": 100,
-                "borderWidth": 2,
                 "height": 100,
                 "justifyContent": "center",
                 "width": 612,
@@ -626,9 +616,7 @@ ShallowWrapper {
             style={
               Object {
                 "backgroundColor": "#e20177",
-                "borderColor": "#e20177",
                 "borderRadius": 100,
-                "borderWidth": 2,
                 "height": 100,
                 "justifyContent": "center",
                 "shadowOffset": Object {
@@ -657,6 +645,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "children": null,
           "style": Object {
             "backgroundColor": "#95012b",
             "borderRadius": 100,
@@ -682,9 +671,7 @@ ShallowWrapper {
             style={
               Object {
                 "backgroundColor": "#e20177",
-                "borderColor": "#e20177",
                 "borderRadius": 100,
-                "borderWidth": 2,
                 "height": 100,
                 "justifyContent": "center",
                 "shadowOffset": Object {
@@ -720,9 +707,7 @@ ShallowWrapper {
             />,
             "style": Object {
               "backgroundColor": "#e20177",
-              "borderColor": "#e20177",
               "borderRadius": 100,
-              "borderWidth": 2,
               "height": 100,
               "justifyContent": "center",
               "shadowOffset": Object {
@@ -784,9 +769,7 @@ ShallowWrapper {
               style={
                 Object {
                   "backgroundColor": "#e20177",
-                  "borderColor": "#e20177",
                   "borderRadius": 100,
-                  "borderWidth": 2,
                   "height": 100,
                   "justifyContent": "center",
                   "shadowOffset": Object {
@@ -815,6 +798,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "children": null,
             "style": Object {
               "backgroundColor": "#95012b",
               "borderRadius": 100,
@@ -840,9 +824,7 @@ ShallowWrapper {
               style={
                 Object {
                   "backgroundColor": "#e20177",
-                  "borderColor": "#e20177",
                   "borderRadius": 100,
-                  "borderWidth": 2,
                   "height": 100,
                   "justifyContent": "center",
                   "shadowOffset": Object {
@@ -878,9 +860,7 @@ ShallowWrapper {
               />,
               "style": Object {
                 "backgroundColor": "#e20177",
-                "borderColor": "#e20177",
                 "borderRadius": 100,
-                "borderWidth": 2,
                 "height": 100,
                 "justifyContent": "center",
                 "shadowOffset": Object {
