@@ -1,0 +1,831 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LeadeboardPosition should not render anything 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <LeaderBoardPosition
+    name="G"
+    position={4}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): null,
+  Symbol(enzyme.__nodes__): Array [
+    null,
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`LeadeboardPosition should render 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <LeaderBoardPosition
+    name="G"
+    position={1}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Text
+          style={
+            Object {
+              "color": "rgb(244,186,0)",
+              "fontFamily": "Bariol-Bold",
+              "fontSize": 50,
+              "textAlign": "center",
+            }
+          }
+        >
+          01
+        </Text>,
+        <Image
+          source={
+            Object {
+              "testUri": "../../../assets/leaderboards/first.png",
+            }
+          }
+          style={
+            Object {
+              "height": 110,
+              "width": 110,
+            }
+          }
+        />,
+        <Text
+          style={
+            Object {
+              "color": "rgb(244,186,0)",
+              "fontFamily": "Bariol-Bold",
+              "fontSize": 36,
+              "marginTop": 12,
+              "textAlign": "center",
+            }
+          }
+        >
+          G
+        </Text>,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "space-around",
+        "left": 275,
+        "position": "absolute",
+        "top": 200,
+        "width": 200,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "01",
+          "style": Object {
+            "color": "rgb(244,186,0)",
+            "fontFamily": "Bariol-Bold",
+            "fontSize": 50,
+            "textAlign": "center",
+          },
+        },
+        "ref": null,
+        "rendered": "01",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "source": Object {
+            "testUri": "../../../assets/leaderboards/first.png",
+          },
+          "style": Object {
+            "height": 110,
+            "width": 110,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "G",
+          "style": Object {
+            "color": "rgb(244,186,0)",
+            "fontFamily": "Bariol-Bold",
+            "fontSize": 36,
+            "marginTop": 12,
+            "textAlign": "center",
+          },
+        },
+        "ref": null,
+        "rendered": "G",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Text
+            style={
+              Object {
+                "color": "rgb(244,186,0)",
+                "fontFamily": "Bariol-Bold",
+                "fontSize": 50,
+                "textAlign": "center",
+              }
+            }
+          >
+            01
+          </Text>,
+          <Image
+            source={
+              Object {
+                "testUri": "../../../assets/leaderboards/first.png",
+              }
+            }
+            style={
+              Object {
+                "height": 110,
+                "width": 110,
+              }
+            }
+          />,
+          <Text
+            style={
+              Object {
+                "color": "rgb(244,186,0)",
+                "fontFamily": "Bariol-Bold",
+                "fontSize": 36,
+                "marginTop": 12,
+                "textAlign": "center",
+              }
+            }
+          >
+            G
+          </Text>,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "flexDirection": "column",
+          "justifyContent": "space-around",
+          "left": 275,
+          "position": "absolute",
+          "top": 200,
+          "width": 200,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "01",
+            "style": Object {
+              "color": "rgb(244,186,0)",
+              "fontFamily": "Bariol-Bold",
+              "fontSize": 50,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "01",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "source": Object {
+              "testUri": "../../../assets/leaderboards/first.png",
+            },
+            "style": Object {
+              "height": 110,
+              "width": 110,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "G",
+            "style": Object {
+              "color": "rgb(244,186,0)",
+              "fontFamily": "Bariol-Bold",
+              "fontSize": 36,
+              "marginTop": 12,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "G",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`LeadeboardPosition should render 2nd 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <LeaderBoardPosition
+    name="G"
+    position={2}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Text
+          style={
+            Object {
+              "color": "rgb(204,204,204)",
+              "fontFamily": "Bariol-Bold",
+              "fontSize": 50,
+              "textAlign": "center",
+            }
+          }
+        >
+          02
+        </Text>,
+        <Image
+          source={
+            Object {
+              "testUri": "../../../assets/leaderboards/second.png",
+            }
+          }
+          style={
+            Object {
+              "height": 110,
+              "width": 110,
+            }
+          }
+        />,
+        <Text
+          style={
+            Object {
+              "color": "rgb(204,204,204)",
+              "fontFamily": "Bariol-Bold",
+              "fontSize": 36,
+              "marginTop": 12,
+              "textAlign": "center",
+            }
+          }
+        >
+          G
+        </Text>,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "space-around",
+        "left": 100,
+        "position": "absolute",
+        "top": 304,
+        "width": 200,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "02",
+          "style": Object {
+            "color": "rgb(204,204,204)",
+            "fontFamily": "Bariol-Bold",
+            "fontSize": 50,
+            "textAlign": "center",
+          },
+        },
+        "ref": null,
+        "rendered": "02",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "source": Object {
+            "testUri": "../../../assets/leaderboards/second.png",
+          },
+          "style": Object {
+            "height": 110,
+            "width": 110,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "G",
+          "style": Object {
+            "color": "rgb(204,204,204)",
+            "fontFamily": "Bariol-Bold",
+            "fontSize": 36,
+            "marginTop": 12,
+            "textAlign": "center",
+          },
+        },
+        "ref": null,
+        "rendered": "G",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Text
+            style={
+              Object {
+                "color": "rgb(204,204,204)",
+                "fontFamily": "Bariol-Bold",
+                "fontSize": 50,
+                "textAlign": "center",
+              }
+            }
+          >
+            02
+          </Text>,
+          <Image
+            source={
+              Object {
+                "testUri": "../../../assets/leaderboards/second.png",
+              }
+            }
+            style={
+              Object {
+                "height": 110,
+                "width": 110,
+              }
+            }
+          />,
+          <Text
+            style={
+              Object {
+                "color": "rgb(204,204,204)",
+                "fontFamily": "Bariol-Bold",
+                "fontSize": 36,
+                "marginTop": 12,
+                "textAlign": "center",
+              }
+            }
+          >
+            G
+          </Text>,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "flexDirection": "column",
+          "justifyContent": "space-around",
+          "left": 100,
+          "position": "absolute",
+          "top": 304,
+          "width": 200,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "02",
+            "style": Object {
+              "color": "rgb(204,204,204)",
+              "fontFamily": "Bariol-Bold",
+              "fontSize": 50,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "02",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "source": Object {
+              "testUri": "../../../assets/leaderboards/second.png",
+            },
+            "style": Object {
+              "height": 110,
+              "width": 110,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "G",
+            "style": Object {
+              "color": "rgb(204,204,204)",
+              "fontFamily": "Bariol-Bold",
+              "fontSize": 36,
+              "marginTop": 12,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "G",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`LeadeboardPosition should render 3rd 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <LeaderBoardPosition
+    name="G"
+    position={3}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Text
+          style={
+            Object {
+              "color": "rgb(245,172,171)",
+              "fontFamily": "Bariol-Bold",
+              "fontSize": 50,
+              "textAlign": "center",
+            }
+          }
+        >
+          03
+        </Text>,
+        <Image
+          source={
+            Object {
+              "testUri": "../../../assets/leaderboards/third.png",
+            }
+          }
+          style={
+            Object {
+              "height": 110,
+              "width": 110,
+            }
+          }
+        />,
+        <Text
+          style={
+            Object {
+              "color": "rgb(245,172,171)",
+              "fontFamily": "Bariol-Bold",
+              "fontSize": 36,
+              "marginTop": 12,
+              "textAlign": "center",
+            }
+          }
+        >
+          G
+        </Text>,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "space-around",
+        "position": "absolute",
+        "right": 100,
+        "top": 304,
+        "width": 200,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "03",
+          "style": Object {
+            "color": "rgb(245,172,171)",
+            "fontFamily": "Bariol-Bold",
+            "fontSize": 50,
+            "textAlign": "center",
+          },
+        },
+        "ref": null,
+        "rendered": "03",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "source": Object {
+            "testUri": "../../../assets/leaderboards/third.png",
+          },
+          "style": Object {
+            "height": 110,
+            "width": 110,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "G",
+          "style": Object {
+            "color": "rgb(245,172,171)",
+            "fontFamily": "Bariol-Bold",
+            "fontSize": 36,
+            "marginTop": 12,
+            "textAlign": "center",
+          },
+        },
+        "ref": null,
+        "rendered": "G",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Text
+            style={
+              Object {
+                "color": "rgb(245,172,171)",
+                "fontFamily": "Bariol-Bold",
+                "fontSize": 50,
+                "textAlign": "center",
+              }
+            }
+          >
+            03
+          </Text>,
+          <Image
+            source={
+              Object {
+                "testUri": "../../../assets/leaderboards/third.png",
+              }
+            }
+            style={
+              Object {
+                "height": 110,
+                "width": 110,
+              }
+            }
+          />,
+          <Text
+            style={
+              Object {
+                "color": "rgb(245,172,171)",
+                "fontFamily": "Bariol-Bold",
+                "fontSize": 36,
+                "marginTop": 12,
+                "textAlign": "center",
+              }
+            }
+          >
+            G
+          </Text>,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "flexDirection": "column",
+          "justifyContent": "space-around",
+          "position": "absolute",
+          "right": 100,
+          "top": 304,
+          "width": 200,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "03",
+            "style": Object {
+              "color": "rgb(245,172,171)",
+              "fontFamily": "Bariol-Bold",
+              "fontSize": 50,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "03",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "source": Object {
+              "testUri": "../../../assets/leaderboards/third.png",
+            },
+            "style": Object {
+              "height": 110,
+              "width": 110,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "G",
+            "style": Object {
+              "color": "rgb(245,172,171)",
+              "fontFamily": "Bariol-Bold",
+              "fontSize": 36,
+              "marginTop": 12,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "G",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

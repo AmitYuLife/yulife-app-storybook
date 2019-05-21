@@ -1,5 +1,241 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CentredScreen should render with a desert footer image 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <CenteredScreen
+    footerImage="desert"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            }
+          }
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/desert.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>,
+        undefined,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flex": 1,
+        "flexDirection": "column",
+      },
+      "testID": undefined,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/desert.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />,
+          "style": Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "resizeMode": "cover",
+            "source": Object {
+              "testUri": "../../../assets/centred-screen/desert.png",
+            },
+            "style": Object {
+              "height": 600,
+              "marginBottom": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      undefined,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": "100%",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/desert.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />
+          </View>,
+          undefined,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "column",
+        },
+        "testID": undefined,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/desert.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />,
+            "style": Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "resizeMode": "cover",
+              "source": Object {
+                "testUri": "../../../assets/centred-screen/desert.png",
+              },
+              "style": Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        undefined,
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
 exports[`CentredScreen should render with a forest footer image 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
@@ -194,6 +430,242 @@ ShallowWrapper {
               },
               "style": Object {
                 "height": 400,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        undefined,
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`CentredScreen should render with a gray desert footer image 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <CenteredScreen
+    footerImage="gray_desert"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            }
+          }
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/gray_desert.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>,
+        undefined,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flex": 1,
+        "flexDirection": "column",
+      },
+      "testID": undefined,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/gray_desert.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />,
+          "style": Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "resizeMode": "cover",
+            "source": Object {
+              "testUri": "../../../assets/centred-screen/gray_desert.png",
+            },
+            "style": Object {
+              "height": 600,
+              "marginBottom": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      undefined,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": "100%",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/gray_desert.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />
+          </View>,
+          undefined,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "column",
+        },
+        "testID": undefined,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/gray_desert.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />,
+            "style": Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "resizeMode": "cover",
+              "source": Object {
+                "testUri": "../../../assets/centred-screen/gray_desert.png",
+              },
+              "style": Object {
+                "height": 600,
+                "marginBottom": 0,
                 "width": "100%",
               },
             },
@@ -426,6 +898,1186 @@ ShallowWrapper {
               "resizeMode": "cover",
               "source": Object {
                 "testUri": "../../../assets/centred-screen/gray-forest.png",
+              },
+              "style": Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        undefined,
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`CentredScreen should render with a gray mountain footer image 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <CenteredScreen
+    footerImage="gray_mountain"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            }
+          }
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/gray_mountain.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>,
+        undefined,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flex": 1,
+        "flexDirection": "column",
+      },
+      "testID": undefined,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/gray_mountain.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />,
+          "style": Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "resizeMode": "cover",
+            "source": Object {
+              "testUri": "../../../assets/centred-screen/gray_mountain.png",
+            },
+            "style": Object {
+              "height": 600,
+              "marginBottom": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      undefined,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": "100%",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/gray_mountain.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />
+          </View>,
+          undefined,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "column",
+        },
+        "testID": undefined,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/gray_mountain.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />,
+            "style": Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "resizeMode": "cover",
+              "source": Object {
+                "testUri": "../../../assets/centred-screen/gray_mountain.png",
+              },
+              "style": Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        undefined,
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`CentredScreen should render with a gray ocean footer image 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <CenteredScreen
+    footerImage="gray_ocean"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            }
+          }
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/gray-ocean.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>,
+        undefined,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flex": 1,
+        "flexDirection": "column",
+      },
+      "testID": undefined,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/gray-ocean.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />,
+          "style": Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "resizeMode": "cover",
+            "source": Object {
+              "testUri": "../../../assets/centred-screen/gray-ocean.png",
+            },
+            "style": Object {
+              "height": 600,
+              "marginBottom": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      undefined,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": "100%",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/gray-ocean.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />
+          </View>,
+          undefined,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "column",
+        },
+        "testID": undefined,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/gray-ocean.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />,
+            "style": Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "resizeMode": "cover",
+              "source": Object {
+                "testUri": "../../../assets/centred-screen/gray-ocean.png",
+              },
+              "style": Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        undefined,
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`CentredScreen should render with a image for challenge failed on desert world 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <CenteredScreen
+    footerImage="challenge_failed_desert"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            }
+          }
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/challenge_failed_desert.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>,
+        undefined,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flex": 1,
+        "flexDirection": "column",
+      },
+      "testID": undefined,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/challenge_failed_desert.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />,
+          "style": Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "resizeMode": "cover",
+            "source": Object {
+              "testUri": "../../../assets/centred-screen/challenge_failed_desert.png",
+            },
+            "style": Object {
+              "height": 600,
+              "marginBottom": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      undefined,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": "100%",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/challenge_failed_desert.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />
+          </View>,
+          undefined,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "column",
+        },
+        "testID": undefined,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/challenge_failed_desert.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />,
+            "style": Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "resizeMode": "cover",
+              "source": Object {
+                "testUri": "../../../assets/centred-screen/challenge_failed_desert.png",
+              },
+              "style": Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        undefined,
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`CentredScreen should render with a image for challenge failed on mountain world 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <CenteredScreen
+    footerImage="challenge_failed_mountain"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            }
+          }
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/challenge_failed_mountain.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>,
+        undefined,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flex": 1,
+        "flexDirection": "column",
+      },
+      "testID": undefined,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/challenge_failed_mountain.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />,
+          "style": Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "resizeMode": "cover",
+            "source": Object {
+              "testUri": "../../../assets/centred-screen/challenge_failed_mountain.png",
+            },
+            "style": Object {
+              "height": 600,
+              "marginBottom": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      undefined,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": "100%",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/challenge_failed_mountain.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />
+          </View>,
+          undefined,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "column",
+        },
+        "testID": undefined,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/challenge_failed_mountain.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />,
+            "style": Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "resizeMode": "cover",
+              "source": Object {
+                "testUri": "../../../assets/centred-screen/challenge_failed_mountain.png",
+              },
+              "style": Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        undefined,
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`CentredScreen should render with a image for challenge failed on ocean world 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <CenteredScreen
+    footerImage="challenge_failed_ocean"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            }
+          }
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/challenge_failed_ocean.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>,
+        undefined,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flex": 1,
+        "flexDirection": "column",
+      },
+      "testID": undefined,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/challenge_failed_ocean.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />,
+          "style": Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "resizeMode": "cover",
+            "source": Object {
+              "testUri": "../../../assets/centred-screen/challenge_failed_ocean.png",
+            },
+            "style": Object {
+              "height": 600,
+              "marginBottom": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      undefined,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": "100%",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/challenge_failed_ocean.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />
+          </View>,
+          undefined,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "column",
+        },
+        "testID": undefined,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/challenge_failed_ocean.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />,
+            "style": Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "resizeMode": "cover",
+              "source": Object {
+                "testUri": "../../../assets/centred-screen/challenge_failed_ocean.png",
               },
               "style": Object {
                 "height": 600,
@@ -703,6 +2355,478 @@ ShallowWrapper {
 `;
 
 exports[`CentredScreen should render with a mountain footer image 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <CenteredScreen
+    footerImage="mountain"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            }
+          }
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/mountain.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>,
+        undefined,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flex": 1,
+        "flexDirection": "column",
+      },
+      "testID": undefined,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/mountain.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />,
+          "style": Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "resizeMode": "cover",
+            "source": Object {
+              "testUri": "../../../assets/centred-screen/mountain.png",
+            },
+            "style": Object {
+              "height": 600,
+              "marginBottom": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      undefined,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": "100%",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/mountain.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />
+          </View>,
+          undefined,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "column",
+        },
+        "testID": undefined,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/mountain.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />,
+            "style": Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "resizeMode": "cover",
+              "source": Object {
+                "testUri": "../../../assets/centred-screen/mountain.png",
+              },
+              "style": Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        undefined,
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`CentredScreen should render with a ocean footer image 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <CenteredScreen
+    footerImage="ocean"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            }
+          }
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/ocean.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>,
+        undefined,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flex": 1,
+        "flexDirection": "column",
+      },
+      "testID": undefined,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/centred-screen/ocean.png",
+              }
+            }
+            style={
+              Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              }
+            }
+          />,
+          "style": Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "resizeMode": "cover",
+            "source": Object {
+              "testUri": "../../../assets/centred-screen/ocean.png",
+            },
+            "style": Object {
+              "height": 600,
+              "marginBottom": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      undefined,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": "100%",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/ocean.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />
+          </View>,
+          undefined,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "column",
+        },
+        "testID": undefined,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/centred-screen/ocean.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 600,
+                  "marginBottom": 0,
+                  "width": "100%",
+                }
+              }
+            />,
+            "style": Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "resizeMode": "cover",
+              "source": Object {
+                "testUri": "../../../assets/centred-screen/ocean.png",
+              },
+              "style": Object {
+                "height": 600,
+                "marginBottom": 0,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        undefined,
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`CentredScreen should render with an image for challenge failed on forest world 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <CenteredScreen

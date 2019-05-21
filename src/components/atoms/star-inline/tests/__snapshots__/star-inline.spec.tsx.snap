@@ -1,14 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Text should render text with only one line 1`] = `
+exports[`Star Inline SVG should render filled star 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <YuText
-    bold={true}
-    numberOfLines={1}
-  >
-    testtesttesttesttesttesttesttesttesttesttesttesttesttest
-  </YuText>,
+  Symbol(enzyme.__unrendered__): <StarInline
+    filled={true}
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -22,17 +19,13 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": "testtesttesttesttesttesttesttesttesttesttesttesttesttest",
-      "numberOfLines": 1,
-      "style": Object {
-        "color": "rgb(51,51,51)",
-        "fontFamily": "Bariol-Bold",
-        "fontSize": 30,
+      "source": Object {
+        "testUri": "../../../assets/star-inline/starFilled.png",
       },
-      "testID": undefined,
+      "style": undefined,
     },
     "ref": null,
-    "rendered": "testtesttesttesttesttesttesttesttesttesttesttesttesttest",
+    "rendered": null,
     "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
@@ -41,17 +34,13 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": "testtesttesttesttesttesttesttesttesttesttesttesttesttest",
-        "numberOfLines": 1,
-        "style": Object {
-          "color": "rgb(51,51,51)",
-          "fontFamily": "Bariol-Bold",
-          "fontSize": 30,
+        "source": Object {
+          "testUri": "../../../assets/star-inline/starFilled.png",
         },
-        "testID": undefined,
+        "style": undefined,
       },
       "ref": null,
-      "rendered": "testtesttesttesttesttesttesttesttesttesttesttesttesttest",
+      "rendered": null,
       "type": [Function],
     },
   ],
@@ -77,14 +66,17 @@ ShallowWrapper {
 }
 `;
 
-exports[`Text should render when bold 1`] = `
+exports[`Star Inline SVG should render filled star with height of 50 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <YuText
-    bold={true}
-  >
-    test
-  </YuText>,
+  Symbol(enzyme.__unrendered__): <StarInline
+    filled={true}
+    style={
+      Object {
+        "height": 50,
+      }
+    }
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -98,17 +90,15 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": "test",
-      "numberOfLines": undefined,
-      "style": Object {
-        "color": "rgb(51,51,51)",
-        "fontFamily": "Bariol-Bold",
-        "fontSize": 30,
+      "source": Object {
+        "testUri": "../../../assets/star-inline/starFilled.png",
       },
-      "testID": undefined,
+      "style": Object {
+        "height": 50,
+      },
     },
     "ref": null,
-    "rendered": "test",
+    "rendered": null,
     "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
@@ -117,17 +107,15 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": "test",
-        "numberOfLines": undefined,
-        "style": Object {
-          "color": "rgb(51,51,51)",
-          "fontFamily": "Bariol-Bold",
-          "fontSize": 30,
+        "source": Object {
+          "testUri": "../../../assets/star-inline/starFilled.png",
         },
-        "testID": undefined,
+        "style": Object {
+          "height": 50,
+        },
       },
       "ref": null,
-      "rendered": "test",
+      "rendered": null,
       "type": [Function],
     },
   ],
@@ -153,12 +141,10 @@ ShallowWrapper {
 }
 `;
 
-exports[`Text should render with the minimum props 1`] = `
+exports[`Star Inline SVG should render without props 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <YuText>
-    test
-  </YuText>,
+  Symbol(enzyme.__unrendered__): <StarInline />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -172,17 +158,13 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": "test",
-      "numberOfLines": undefined,
-      "style": Object {
-        "color": "rgb(51,51,51)",
-        "fontFamily": "Bariol-Regular",
-        "fontSize": 30,
+      "source": Object {
+        "testUri": "../../../assets/star-inline/starEmpty.png",
       },
-      "testID": undefined,
+      "style": undefined,
     },
     "ref": null,
-    "rendered": "test",
+    "rendered": null,
     "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
@@ -191,17 +173,13 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": "test",
-        "numberOfLines": undefined,
-        "style": Object {
-          "color": "rgb(51,51,51)",
-          "fontFamily": "Bariol-Regular",
-          "fontSize": 30,
+        "source": Object {
+          "testUri": "../../../assets/star-inline/starEmpty.png",
         },
-        "testID": undefined,
+        "style": undefined,
       },
       "ref": null,
-      "rendered": "test",
+      "rendered": null,
       "type": [Function],
     },
   ],

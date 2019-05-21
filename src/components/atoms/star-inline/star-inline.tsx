@@ -1,4 +1,4 @@
-import React, { SFC } from "react";
+import * as React from "react";
 import { Image, ImageStyle } from "react-native";
 import assets from "./assets";
 
@@ -7,11 +7,8 @@ interface IProps {
     style?: ImageStyle;
 }
 
-const StarInline: SFC<IProps> = ({
-    filled,
-    style
-}) => (
-        <Image style={style} source={filled ? assets.filled : assets.empty} />
-    );
+const StarInline: React.SFC<IProps> = ({ filled, style }) => (
+    <Image style={style} source={filled ? assets.filled : assets.empty} />
+);
 
 export default StarInline;

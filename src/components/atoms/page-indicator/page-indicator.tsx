@@ -1,4 +1,4 @@
-import React, { SFC } from "react";
+import * as React from "react";
 import { View } from "react-native";
 import styles from "./page-indicator.styles";
 
@@ -7,7 +7,7 @@ interface IProps {
     activePage: number;
 }
 
-const PageIndicator: SFC<IProps> = ({ pages, activePage }) => (
+const PageIndicator: React.SFC<IProps> = ({ pages, activePage }) => (
     <>
         {pages.map((_, i: number) => (
             <View key={i} style={[styles.pageIndicator, i === activePage ? styles.activePage : styles.inactivePage]} />
