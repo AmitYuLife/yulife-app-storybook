@@ -1,5 +1,5 @@
 /* tslint:disable */
-import React, { SFC } from "react";
+import * as React from "react";
 import Svg, { G, Path } from "react-native-svg";
 import { Colours } from "../../../styles";
 
@@ -8,7 +8,7 @@ interface Props {
     colour?: string;
 }
 
-const Chest: SFC<Props> = ({ scale = 1, colour }) => (
+const Chest: React.SFC<Props> = ({ scale = 1, colour }) => (
     <Svg width={String(30 * scale)} height={String(30 * scale)} viewBox="0 0 59 47">
         <G>
             <Path

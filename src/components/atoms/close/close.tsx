@@ -1,6 +1,5 @@
 import { BUTTON_CLOSE } from "@ids";
 import * as React from "react";
-import { SFC } from "react";
 import { Image, Platform, StyleSheet, TouchableOpacity, TouchableWithoutFeedbackProps, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../styles";
@@ -26,7 +25,7 @@ const styles = StyleSheet.create({
     } as ViewStyle
 });
 
-const Close: SFC<TouchableWithoutFeedbackProps> = ({ onPress, style = {} }) => (
+const Close: React.SFC<TouchableWithoutFeedbackProps> = ({ onPress, style = {} }) => (
     <TouchableOpacity style={[styles.wrapper, style]} onPress={onPress} testID={BUTTON_CLOSE}>
         <Image source={require("../../../../assets/icons/close.png")} />
     </TouchableOpacity>

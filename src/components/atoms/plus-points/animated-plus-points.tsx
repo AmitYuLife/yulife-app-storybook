@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Animated, Easing, Platform } from "react-native";
 import PlusPoints from "./plus-points";
 import styles from "./plus-points.styles";

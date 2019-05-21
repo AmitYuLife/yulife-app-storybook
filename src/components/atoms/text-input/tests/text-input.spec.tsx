@@ -4,26 +4,13 @@ import "react-native";
 import TextInput from "../text-input";
 
 describe("TextInput", () => {
-
     it("should render email textinput", () => {
-        const actual = shallow(
-            <TextInput
-                value="test"
-                onChange={jest.fn()}
-                type={TextInput.Types.EMAIL}
-            />
-        );
+        const actual = shallow(<TextInput value="test" onChange={jest.fn()} type={TextInput.Types.EMAIL} />);
         expect(actual).toMatchSnapshot();
     });
 
     it("should render password textinput", () => {
-        const actual = shallow(
-            <TextInput
-                value="test"
-                onChange={jest.fn()}
-                type={TextInput.Types.PASSWORD}
-            />
-        );
+        const actual = shallow(<TextInput value="test" onChange={jest.fn()} type={TextInput.Types.PASSWORD} />);
 
         expect(actual).toMatchSnapshot();
     });
@@ -34,6 +21,7 @@ describe("TextInput", () => {
                 value="test"
                 onChange={jest.fn()}
                 type={TextInput.Types.PASSWORD}
+                hasError={true}
                 errorMessage="error"
             />
         );
@@ -43,17 +31,69 @@ describe("TextInput", () => {
 
     it("should handle focus", () => {
         const actual = shallow(
-            <TextInput
-                value="test"
-                onChange={jest.fn()}
-                type={TextInput.Types.PASSWORD}
-                errorMessage="error"
-            />
+            <TextInput value="test" onChange={jest.fn()} type={TextInput.Types.PASSWORD} errorMessage="error" />
         );
         /*tslint:disable-next-line*/
         const instance = actual.instance() as any;
         const a = instance.handleFocus();
 
         expect(typeof a === "function").toBe(true);
+    });
+
+    it("should render board icon", () => {
+        const actual = shallow(
+            <TextInput
+                value="test"
+                onChange={jest.fn()}
+                type={TextInput.Types.PASSWORD}
+                errorMessage="error"
+                icon="Board"
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render card icon", () => {
+        const actual = shallow(
+            <TextInput
+                value="test"
+                onChange={jest.fn()}
+                type={TextInput.Types.PASSWORD}
+                errorMessage="error"
+                icon="Card"
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render a placeholder", () => {
+        const actual = shallow(
+            <TextInput
+                value=""
+                placeholder="test"
+                onChange={jest.fn()}
+                type={TextInput.Types.PASSWORD}
+                errorMessage="error"
+                icon="Card"
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should not render the error message", () => {
+        const actual = shallow(
+            <TextInput
+                value=""
+                placeholder="test"
+                onChange={jest.fn()}
+                type={TextInput.Types.PASSWORD}
+                errorMessage="error"
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
     });
 });
