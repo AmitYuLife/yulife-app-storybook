@@ -21,9 +21,9 @@ export const enterValidCredentials = async (): Promise<void> => {
 };
 
 export const loginAndGoToStepsScreen = async (): Promise<void> => {
+    await when.authoriseFitKit();
     await enterValidCredentials();
     await when.tapOnLogin();
-    await when.authoriseFitKit();
     await when.pressNext5Times();
     await when.authoriseFitKit();
     await when.sendSteps(1000)();
