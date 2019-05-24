@@ -24,24 +24,26 @@ export default function* showStreakOnChallengeCompleteSaga() {
         if (currentRoute === MODALS.chest) {
             yield call(delay, 4000);
         }
-        yield call(() =>
-            Navigation.showModal({
-                component: {
-                    id: MODALS.streaks,
-                    name: MODALS.streaks,
-                    passProps: {
-                        isDoneToday: true,
-                        onPressCtaPrimary: () => {
-                            Navigation.dismissModal(MODALS.streaks);
-                        },
-                        onPressCtaSecondary: null,
-                        reward: streaks.reward,
-                        streakCompleted: streaks.currentStreak,
-                        streakMax: streaks.maxStreak,
-                        nextStreakAvailableAt: streaks.nextStreakAvailableAt
-                    }
-                }
-            })
-        );
+        yield call(showModal, streaks);
     }
+}
+
+export function showModal(streaks: any) {
+    Navigation.showModal({
+        component: {
+            id: MODALS.streaks,
+            name: MODALS.streaks,
+            passProps: {
+                isDoneToday: true,
+                onPressCtaPrimary: () => {
+                    Navigation.dismissModal(MODALS.streaks);
+                },
+                onPressCtaSecondary: null,
+                reward: streaks.reward,
+                streakCompleted: streaks.currentStreak,
+                streakMax: streaks.maxStreak,
+                nextStreakAvailableAt: streaks.nextStreakAvailableAt
+            }
+        }
+    });
 }

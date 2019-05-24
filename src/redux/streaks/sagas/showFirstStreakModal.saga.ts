@@ -13,39 +13,41 @@ export default function* showFirstStreakModalSaga() {
 
     if (features.showStreaks && !streaks.displayStreak && streaks.isAvailable && currentRoute !== MODALS.streaks) {
         if (!(streaks.currentStreak > 0)) {
-            yield call(() =>
-                Navigation.showModal({
-                    component: {
-                        id: MODALS.streaks,
-                        name: MODALS.streaks,
-                        passProps: {
-                            isDoneToday: false,
-                            onPressCtaPrimary: () => {
-                                Navigation.mergeOptions(ROUTES.quests, {
-                                    bottomTabs: {
-                                        animate: false,
-                                        currentTabIndex: 1,
-                                        drawBehind: true,
-                                        visible: false
-                                    },
-                                    statusBar: {
-                                        drawBehind: false,
-                                        visible: true
-                                    }
-                                });
-                                Navigation.dismissModal(MODALS.streaks);
-                            },
-                            onPressCtaSecondary: () => {
-                                Navigation.dismissModal(MODALS.streaks);
-                            },
-                            reward: streaks.reward,
-                            streakCompleted: 0,
-                            streakMax: streaks.maxStreak
-                        }
-                    }
-                })
-            );
+            yield call(showStreaksModal, streaks);
         }
         yield put(displayStreaksFirstAction());
     }
+}
+
+export function showStreaksModal(streaks: any) {
+    Navigation.showModal({
+        component: {
+            id: MODALS.streaks,
+            name: MODALS.streaks,
+            passProps: {
+                isDoneToday: false,
+                onPressCtaPrimary: () => {
+                    Navigation.mergeOptions(ROUTES.quests, {
+                        bottomTabs: {
+                            animate: false,
+                            currentTabIndex: 1,
+                            drawBehind: true,
+                            visible: false
+                        },
+                        statusBar: {
+                            drawBehind: false,
+                            visible: true
+                        }
+                    });
+                    Navigation.dismissModal(MODALS.streaks);
+                },
+                onPressCtaSecondary: () => {
+                    Navigation.dismissModal(MODALS.streaks);
+                },
+                reward: streaks.reward,
+                streakCompleted: 0,
+                streakMax: streaks.maxStreak
+            }
+        }
+    });
 }
