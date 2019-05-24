@@ -25,6 +25,7 @@ export interface IChallenge extends GetCurrentWorld_getCurrentWorld {
 
 interface IProps extends IConnectedScreenProps {
     currentLevel: number;
+    activeLevel: number;
     data: IChallenge[];
     hideUnity?: () => void | null;
     unity: number;
@@ -49,16 +50,16 @@ class QuestsScreen extends PureComponent<IProps, IState> {
     }
 
     public componentDidMount() {
-        this.scrollToCurrentLevel();
+        this.scrollToActiveLevel();
     }
 
     public componentDidAppear() {
-        this.scrollToCurrentLevel();
+        this.scrollToActiveLevel();
     }
 
     public componentDidUpdate(prevProps: IProps) {
         if (prevProps.hideUnity && !this.props.hideUnity) {
-            this.scrollToCurrentLevel();
+            this.scrollToActiveLevel();
         }
     }
 
@@ -106,9 +107,9 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         this.flatList = ref;
     };
 
-    private scrollToCurrentLevel = () => {
-        const { currentLevel } = this.props;
-        const result = mapSlices.find((slice) => slice.slots.some((item) => item.index === currentLevel - 1));
+    private scrollToActiveLevel = () => {
+        const { activeLevel } = this.props;
+        const result = mapSlices.find((slice) => slice.slots.some((item) => item.index === activeLevel - 1));
 
         if (result && result.episodeSettings) {
             const { navBarType, offset, topBarType } = result.episodeSettings;
@@ -128,7 +129,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
 
     private handleSkipUnity = () => {
         this.props.hideUnity();
-        this.scrollToCurrentLevel();
+        this.scrollToActiveLevel();
     };
 
     private handleViewableItemsChanged: ViewabilityConfigCallbackPair["onViewableItemsChanged"] = ({
