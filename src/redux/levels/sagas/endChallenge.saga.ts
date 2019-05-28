@@ -24,7 +24,6 @@ export default function* endChallengeSaga() {
                     yield put(challengeResetSuccessAction());
                 }
             } catch (e) {
-                // console.log(e);
                 yield spawn(() => Logger.logMixpanelError(e, "endChallenge"));
             }
         }
