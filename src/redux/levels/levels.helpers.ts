@@ -47,12 +47,10 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
         const start = moment(startDateTime).format();
         const end = moment(endDateTime).format();
         const results = await RNFitKit.queryPedometerFromDate(start, end);
-        // console.log("RESULTS: ", results);
         return {
             value: results && results.steps > score ? results.steps : score
         };
     } catch (e) {
-        // console.log("ERRORS: ", e);
         return {
             value: score
         };

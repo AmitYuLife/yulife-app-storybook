@@ -6,7 +6,6 @@ import {
     UpdateActiveChallenge
 } from "../../../graphql/_core/schema";
 import { ChallengeStartPayload } from "../levels.actions";
-import { IActiveLevel } from "../levels.selectors";
 
 export const updateActiveChallenge: UpdateActiveChallenge = {
     updateActiveChallenge: {
@@ -16,37 +15,17 @@ export const updateActiveChallenge: UpdateActiveChallenge = {
             status: "success",
             endDateTime: null,
             incomingData: null,
-            milestoneLog: null,
+            milestoneLog: [],
             yuCoinAwarded: 2,
             rating: 1
         },
         levelSlot: {
             subtype: "brisk walk",
             unit: "",
-            milestones: null
+            milestones: []
         },
         nextLevelAvailableAt: ""
     }
-};
-
-export const activeLevel: IActiveLevel = {
-    chest: null,
-    coins: 56,
-    endDateTime: "",
-    initialPedometerResult: 54,
-    isCompleted: true,
-    isLoading: false,
-    level: 35,
-    levelSlotId: "",
-    milestones: null,
-    milestonesLog: null,
-    rating: null,
-    score: 75,
-    startDateTime: "",
-    status: "success",
-    subtype: null,
-    timeUp: false,
-    unit: null
 };
 
 export const currentUser: GetCurrentUser = {

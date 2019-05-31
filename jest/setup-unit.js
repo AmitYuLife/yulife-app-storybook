@@ -1,5 +1,6 @@
 import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
+import moment from "moment";
 
 configure({ adapter: new Adapter() });
 
@@ -11,10 +12,17 @@ jest.mock("react-native-config", () => ({
 
 jest.mock("react-native-intercom", () => {}, { virtual: true });
 
-jest.mock("react-native-fitkit", () => {
-    Pedometer: {
-    }
-});
+jest.mock("react-native-fitkit", () => ({
+    // As strange as it is to use moment in a config file, this ensures that at whatever point this
+    // mock method is used it will return a recently completed 5 minute activity worth 54 points.
+    sampleQuery: jest.fn(() => ([{
+        endDateTime: moment().subtract(1, "minute").format(),
+        startDateTime: moment().subtract(6, "minute").format(),
+        value: 54
+    }])),
+    queryPedometerFromDate: jest.fn(() => ({ steps: 75 })),
+    FitKitTypes: { Types: {} }
+}));
 
 jest.mock("react-native-device-info", () => ({
     getUniqueID: jest.fn(),
@@ -41,14 +49,12 @@ jest.mock("react-native-push-notification", () => ({
 }));
 
 jest.mock("react-native-mixpanel", () => ({
-    initPushHandling: jest.fn()
-}));
-
-jest.mock("react-native-mixpanel", () => ({
+    initPushHandling: jest.fn(),
     sharedInstanceWithToken: jest.fn(),
     identify: jest.fn(),
     track: jest.fn(),
-    trackChargeWithProperties: jest.fn()
+    trackChargeWithProperties: jest.fn(),
+    trackWithProperties: jest.fn()
 }));
 
 jest.mock("bugsnag-react-native", () => ({
