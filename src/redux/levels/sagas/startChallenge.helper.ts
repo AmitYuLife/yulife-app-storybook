@@ -16,7 +16,7 @@ import {
     challengeUpdateSuccessAction
 } from "../levels.actions";
 
-function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, endDateTime: string) {
+export function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, endDateTime: string) {
     const start = moment(startDateTime).format();
     const end = moment(endDateTime);
 
@@ -58,7 +58,7 @@ function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, e
 }
 
 // android doesn't like big delays: Improvise. Adapt. Overcome.
-function* startStepsTracking(endDateTime: string) {
+export function* startStepsTracking(endDateTime: string) {
     const end = moment(endDateTime);
 
     while (moment().isBefore(end)) {
@@ -92,7 +92,6 @@ export default function* startChallenge({ isMeditation, levelSlotId, startDateTi
                 yield put(challengeResetSuccessAction());
                 inProgress = false;
             } catch (e) {
-                // console.log(e);
                 yield spawn(() => Logger.logMixpanelError(e, "startChallenge"));
             }
         } else if (challengeTimeUp) {

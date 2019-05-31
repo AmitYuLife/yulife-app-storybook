@@ -13,10 +13,8 @@ import {
     CHALLENGE_RESET,
     CHALLENGE_RESET_FAIL,
     CHALLENGE_RESET_SUCCESS,
-    // CHALLENGE_START_FAIL,
     CHALLENGE_START_SUCCESS,
     CHALLENGE_TIME_UP,
-    // CHALLENGE_UPDATE_FAIL,
     CHALLENGE_UPDATE_SUCCESS
 } from "./levels.actions";
 import { ChallengeStartPayload } from "./levels.actions";
@@ -57,7 +55,7 @@ export const initialState: ILevelsStore = {
     nextLevelAvailableAt: ""
 };
 
-const userReducer = (state: ILevelsStore = initialState, action: SyncAction): ILevelsStore => {
+const levelsReducer = (state: ILevelsStore = initialState, action: SyncAction): ILevelsStore => {
     switch (action.type) {
         case GET_USER_SUCCESS:
             return getUserSuccess(state, action.payload);
@@ -99,7 +97,7 @@ const userReducer = (state: ILevelsStore = initialState, action: SyncAction): IL
     }
 };
 
-export default userReducer;
+export default levelsReducer;
 
 const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore => ({
     ...state,
