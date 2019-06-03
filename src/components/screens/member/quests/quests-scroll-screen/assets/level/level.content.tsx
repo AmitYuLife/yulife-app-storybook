@@ -24,6 +24,9 @@ const getLevelLockIcon = (currentLevel: number, level: IChallenge) => {
         case level.level === 120 && currentLevel < 118:
         case level.level === 145 && currentLevel < 144:
         case level.level === 148 && currentLevel < 147:
+        case level.level === 170 && currentLevel < 169:
+        case level.level === 195 && currentLevel < 194:
+        case level.level === 198 && currentLevel < 197:
             return <DoubleLock colour={getLockColor(level.level)} />;
         default:
             return <Lock colour={getLockColor(level.level)} />;
