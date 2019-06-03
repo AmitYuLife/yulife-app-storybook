@@ -585,6 +585,14 @@ export interface GetMobileCopy_getMobileCopy_screens_pushNotification_turnNotifi
   subheading: string | null;
 }
 
+export interface GetMobileCopy_getMobileCopy_screens_popUp {
+  surgeHeading: string | null;
+  surgeSubheading: string | null;
+  leaderboardHeading: string | null;
+  leaderboardSubheading: string | null;
+
+}
+
 export interface GetMobileCopy_getMobileCopy_screens_pushNotification {
   toSettings: GetMobileCopy_getMobileCopy_screens_pushNotification_toSettings | null;
   fromChallenge: GetMobileCopy_getMobileCopy_screens_pushNotification_fromChallenge | null;
@@ -604,6 +612,7 @@ export interface GetMobileCopy_getMobileCopy_screens {
   challenges: GetMobileCopy_getMobileCopy_screens_challenges | null;
   streak: GetMobileCopy_getMobileCopy_screens_streak | null;
   pushNotification: GetMobileCopy_getMobileCopy_screens_pushNotification | null;
+  popUp: GetMobileCopy_getMobileCopy_screens_popUp | null;
 }
 
 export interface GetMobileCopy_getMobileCopy {

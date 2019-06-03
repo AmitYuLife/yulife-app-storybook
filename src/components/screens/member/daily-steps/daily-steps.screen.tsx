@@ -5,10 +5,13 @@ import { Style } from "@styles/index";
 import * as React from "react";
 import { Platform, View } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { GetMobileCopy_getMobileCopy_screens_dailyStepsFitKitAuthorise } from "../../../../graphql/_core/schema";
+import {
+    GetMobileCopy_getMobileCopy_screens_dailyStepsFitKitAuthorise,
+    GetMobileCopy_getMobileCopy_screens_popUp
+} from "../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../typings";
 import { CentredScreen, Pad } from "../../../atoms";
-import { NavBar, Streak, TopBar } from "../../../molecules";
+import { LeaderboardPopup, NavBar, Streak, SurgePopup, TopBar } from "../../../molecules";
 import YuCoin from "./assets/yu-coin";
 import DailyStepsFitKitAuthorise from "./daily-steps-fitkit-authorise";
 import DailyStepsFitKitUnavailable from "./daily-steps-fitkit-unavailable";
@@ -33,7 +36,16 @@ interface IProps extends IConnectedScreenProps {
     onCoinPress: () => void;
     onStreakPress?: () => void;
     theme: IThemeStore["dailyStepsScreen"];
-    copy: GetMobileCopy_getMobileCopy_screens_dailyStepsFitKitAuthorise;
+    copy: {
+        copy: GetMobileCopy_getMobileCopy_screens_dailyStepsFitKitAuthorise;
+        popUpCopy: GetMobileCopy_getMobileCopy_screens_popUp;
+    };
+    onUpdateSurgePopupVisibility?: (payload: boolean) => void;
+    onUpdateLeaderboardPopupVisibility?: (payload: boolean) => void;
+    popupVisibility?: {
+        leaderboard: boolean;
+        surge: boolean;
+    };
 }
 
 type Props = IProps & IDailyStepsOnlineProps & IDailyStepsOfflineProps;
@@ -60,7 +72,13 @@ export default function DailyStepsScreen({
     steps,
     totalCoins,
     theme: { centredScreen, hasWhiteGlow, isLight, topBarType, navBar, streakType, textStyle },
-    copy
+    copy,
+    onUpdateLeaderboardPopupVisibility,
+    onUpdateSurgePopupVisibility,
+    popupVisibility = {
+        leaderboard: false,
+        surge: false
+    }
 }: Props) {
     return (
         <CentredScreen
@@ -70,19 +88,31 @@ export default function DailyStepsScreen({
         >
             <TopBar coins={totalCoins} type={topBarType} onPressLeftIcon={onLeftMenuPress} />
             <Pad height={getPadHeight(displayStreak)} />
-            <TouchableOpacityWithState onPress={onCoinPress} activeOpacity={1}>
-                <YuCoin
+            {!popupVisibility.leaderboard && popupVisibility.surge ? (
+                <SurgePopup
                     hasWhiteGlow={hasWhiteGlow}
-                    isLoading={isLoading}
-                    isGrayScale={!hasPermission || (!isOnline && !isLoading)}
+                    onCoinPress={onCoinPress}
+                    isOnline={isOnline}
+                    hasPermission={hasPermission}
+                    isLoading={true}
+                    copy={copy.popUpCopy}
+                    onUpdateSurgePopupVisibility={onUpdateSurgePopupVisibility}
                 />
-            </TouchableOpacityWithState>
+            ) : (
+                <TouchableOpacityWithState onPress={onCoinPress} activeOpacity={1}>
+                    <YuCoin
+                        hasWhiteGlow={hasWhiteGlow}
+                        isLoading={isLoading}
+                        isGrayScale={!hasPermission || (!isOnline && !isLoading)}
+                    />
+                </TouchableOpacityWithState>
+            )}
             {isLoading ? (
                 <DailyStepsLoading />
             ) : !fitKitAvailable ? (
                 <DailyStepsFitKitUnavailable />
             ) : !hasPermission ? (
-                <DailyStepsFitKitAuthorise onPress={onAuthoriseFitKitPress} copy={copy} />
+                <DailyStepsFitKitAuthorise onPress={onAuthoriseFitKitPress} copy={copy.copy} />
             ) : !isOnline ? (
                 <DailyStepsOffline isLight={isLight} lastUpdate={lastUpdate} />
             ) : (
@@ -104,14 +134,23 @@ export default function DailyStepsScreen({
                     type={streakType}
                 />
             )}
-            <View style={styles.navBarWrapper}>
-                <NavBar
-                    activeIndex={0}
-                    colour={!fitKitAvailable || !hasPermission || !isOnline ? navBar.offline : navBar.online}
+            {popupVisibility.leaderboard ? (
+                <LeaderboardPopup
+                    copy={copy.popUpCopy}
                     hasNotification={hasNotification}
                     labels={labels}
+                    onUpdateLeaderboardPopupVisibility={onUpdateLeaderboardPopupVisibility}
                 />
-            </View>
+            ) : (
+                <View style={styles.navBarWrapper}>
+                    <NavBar
+                        activeIndex={0}
+                        colour={!fitKitAvailable || !hasPermission || !isOnline ? navBar.offline : navBar.online}
+                        hasNotification={hasNotification}
+                        labels={labels}
+                    />
+                </View>
+            )}
         </CentredScreen>
     );
 }

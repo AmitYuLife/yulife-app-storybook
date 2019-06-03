@@ -9,60 +9,77 @@ interface IProps {
 
 export default function Lines({ activeIndex, colourScheme }: IProps) {
     const fill = getIconColour(colourScheme, false, false);
-    const { first, second } = getValues(activeIndex);
+    const { first, second, third } = getValues(activeIndex);
 
     return (
         <G>
-            <Rect y="85.5" height="3" fill={fill} {...first} />
-            <Rect y="85.5" height="3" fill={fill} {...second} />
+            <Rect y="79" height="3" width={40} fill={fill} {...first} />
+            <Rect y="79" height="3" width={40} fill={fill} {...second} />
+            <Rect y="79" height="3" width={40} fill={fill} {...third} />
         </G>
     );
 }
 
 function getValues(activeIndex: number) {
     switch (activeIndex) {
+        case 3:
+            return {
+                first: {
+                    x: "116"
+                },
+                second: {
+                    x: "269"
+                },
+                third: {
+                    x: "416"
+                }
+            };
         case 2:
             return {
                 first: {
-                    width: "106.6",
-                    x: "108.8"
+                    x: "116.2"
                 },
                 second: {
-                    width: "86.1",
-                    x: "288.1"
+                    x: "259"
+                },
+                third: {
+                    x: "426.2"
                 }
             };
         case 1:
             return {
                 first: {
-                    width: "73.5",
-                    x: "108.8"
+                    x: "104.6"
                 },
                 second: {
-                    width: "62.2",
-                    x: "322.4"
+                    x: "274"
+                },
+                third: {
+                    x: "416"
                 }
             };
         case 0:
             return {
                 first: {
-                    width: "84.9",
-                    x: "130.1"
+                    x: "120"
                 },
                 second: {
-                    width: "96.4",
-                    x: "288"
+                    x: "269"
+                },
+                third: {
+                    x: "416"
                 }
             };
         default:
             return {
                 first: {
-                    width: "106.6",
-                    x: "108.8"
+                    x: "120"
                 },
                 second: {
-                    width: "96.4",
-                    x: "288"
+                    x: "269"
+                },
+                third: {
+                    x: "416"
                 }
             };
     }

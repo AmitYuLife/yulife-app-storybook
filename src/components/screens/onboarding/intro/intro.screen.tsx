@@ -1,9 +1,5 @@
 import React, { PureComponent } from "react";
-import {
-    NativeScrollEvent,
-    NativeSyntheticEvent,
-    ScrollView
-} from "react-native";
+import { NativeScrollEvent, NativeSyntheticEvent, ScrollView } from "react-native";
 import { Style } from "../../../../styles";
 import { IColours } from "../../../molecules";
 import Intro from "./intro";
@@ -21,7 +17,7 @@ const config = [
     },
     {
         isShowingTopBar: false,
-        navBarIndex: 2
+        navBarIndex: 3
     },
     {
         isShowingTopBar: false,
@@ -68,25 +64,23 @@ export default class IntroScreenController extends PureComponent<IProps, IState>
 
     private handleMomentumScrollEnd = ({
         nativeEvent: {
-            contentOffset: {
-                x
-            }
+            contentOffset: { x }
         }
     }: NativeSyntheticEvent<NativeScrollEvent>) => {
         const activeIndex = indices.findIndex((offset) => offset === x);
         this.setState({ activeIndex });
-    }
+    };
 
     private handleSetRef = (ref: ScrollView) => {
         this.scrollView = ref;
-    }
+    };
 
     private handlePressPrevious = () => {
         this.setState(
             ({ activeIndex }) => ({ activeIndex: activeIndex - 1 }),
             () => this.scrollView.scrollTo({ x: indices[this.state.activeIndex], animated: false })
         );
-    }
+    };
 
     private handlePressNext = () => {
         if (this.state.activeIndex + 1 === indices.length) {
@@ -97,5 +91,5 @@ export default class IntroScreenController extends PureComponent<IProps, IState>
                 () => this.scrollView.scrollTo({ x: indices[this.state.activeIndex], animated: false })
             );
         }
-    }
+    };
 }

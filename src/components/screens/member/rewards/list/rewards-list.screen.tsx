@@ -1,6 +1,6 @@
 import Loading from "@atoms/loading/loading";
 import { REWARDS_SCREEN } from "@ids";
-import { NavBar, RewardsListItem, RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
+import { COLOURS, NavBar, RewardsListItem, RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
 import { SafeAreaView, View } from "react-native";
@@ -16,6 +16,8 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
     onRightTabPress: () => void;
     onItemPress: (item: GetRewards_getRewards) => void;
     loading: boolean;
+    currentWorld?: number;
+    navbarColour: COLOURS;
 }
 
 export default class RewardsListScreen extends React.PureComponent<IRewardsListScreenProps> {
@@ -29,7 +31,9 @@ export default class RewardsListScreen extends React.PureComponent<IRewardsListS
             onLeftTabPress,
             onRightTabPress,
             onLeftMenuPress,
-            totalCoins
+            totalCoins,
+            currentWorld,
+            navbarColour
         } = this.props;
 
         return (
@@ -51,10 +55,11 @@ export default class RewardsListScreen extends React.PureComponent<IRewardsListS
                 </View>
                 <View style={styles.navBarWrapper}>
                     <NavBar
-                        activeIndex={2}
-                        colour={NavBar.Colours.DARKER}
+                        activeIndex={3}
+                        colour={navbarColour || NavBar.Colours.DARKER}
                         hasNotification={hasNotification}
-                        hasWhiteBackground={true}
+                        hasImage={true}
+                        currentWorld={currentWorld}
                         labels={labels}
                     />
                 </View>

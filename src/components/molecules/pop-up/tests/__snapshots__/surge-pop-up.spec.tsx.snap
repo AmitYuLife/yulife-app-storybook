@@ -1,0 +1,1054 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SurgePopup should render 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SurgePopup
+    copy={
+      Object {
+        "leaderboardHeading": "leaderboard heading test",
+        "leaderboardSubheading": "leaderboard subheading test",
+        "surgeHeading": "surge heading test",
+        "surgeSubheading": "surge subheading test",
+      }
+    }
+    hasPermission={true}
+    hasWhiteGlow={true}
+    isLoading={false}
+    isOnline={true}
+    onCoinPress={[MockFunction]}
+    onUpdateSurgePopupVisibility={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        <View
+          onLayout={[Function]}
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />,
+        null,
+        <View
+          onLayout={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": 0,
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 32,
+              "top": 0,
+            }
+          }
+        >
+          <TouchableOpacityWithState
+            activeOpacity={1}
+            onPress={[Function]}
+          >
+            <YuCoin
+              hasWhiteGlow={true}
+              isGrayScale={false}
+              isLoading={false}
+            />
+          </TouchableOpacityWithState>
+        </View>,
+        null,
+        <Close
+          onPress={[Function]}
+          style={
+            Object {
+              "zIndex": 2,
+            }
+          }
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "onLayout": [Function],
+          "style": Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+        },
+        "ref": [Function],
+        "rendered": null,
+        "type": [Function],
+      },
+      null,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <TouchableOpacityWithState
+            activeOpacity={1}
+            onPress={[Function]}
+          >
+            <YuCoin
+              hasWhiteGlow={true}
+              isGrayScale={false}
+              isLoading={false}
+            />
+          </TouchableOpacityWithState>,
+          "onLayout": [Function],
+          "style": Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "position": "absolute",
+            "right": 32,
+            "top": 0,
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeOpacity": 1,
+            "children": <YuCoin
+              hasWhiteGlow={true}
+              isGrayScale={false}
+              isLoading={false}
+            />,
+            "onPress": [Function],
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "hasWhiteGlow": true,
+              "isGrayScale": false,
+              "isLoading": false,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      null,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "onPress": [Function],
+          "style": Object {
+            "zIndex": 2,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <View
+            onLayout={[Function]}
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />,
+          null,
+          <View
+            onLayout={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": 0,
+                "justifyContent": "center",
+                "position": "absolute",
+                "right": 32,
+                "top": 0,
+              }
+            }
+          >
+            <TouchableOpacityWithState
+              activeOpacity={1}
+              onPress={[Function]}
+            >
+              <YuCoin
+                hasWhiteGlow={true}
+                isGrayScale={false}
+                isLoading={false}
+              />
+            </TouchableOpacityWithState>
+          </View>,
+          null,
+          <Close
+            onPress={[Function]}
+            style={
+              Object {
+                "zIndex": 2,
+              }
+            }
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "onLayout": [Function],
+            "style": Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+          },
+          "ref": [Function],
+          "rendered": null,
+          "type": [Function],
+        },
+        null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <TouchableOpacityWithState
+              activeOpacity={1}
+              onPress={[Function]}
+            >
+              <YuCoin
+                hasWhiteGlow={true}
+                isGrayScale={false}
+                isLoading={false}
+              />
+            </TouchableOpacityWithState>,
+            "onLayout": [Function],
+            "style": Object {
+              "alignItems": "center",
+              "bottom": 0,
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 32,
+              "top": 0,
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 1,
+              "children": <YuCoin
+                hasWhiteGlow={true}
+                isGrayScale={false}
+                isLoading={false}
+              />,
+              "onPress": [Function],
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "hasWhiteGlow": true,
+                "isGrayScale": false,
+                "isLoading": false,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "onPress": [Function],
+            "style": Object {
+              "zIndex": 2,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`SurgePopup should render with a grayscale yucoin 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SurgePopup
+    copy={
+      Object {
+        "leaderboardHeading": "leaderboard heading test",
+        "leaderboardSubheading": "leaderboard subheading test",
+        "surgeHeading": "surge heading test",
+        "surgeSubheading": "surge subheading test",
+      }
+    }
+    hasPermission={true}
+    hasWhiteGlow={true}
+    isLoading={false}
+    isOnline={false}
+    onCoinPress={[MockFunction]}
+    onUpdateSurgePopupVisibility={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        <View
+          onLayout={[Function]}
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />,
+        null,
+        <View
+          onLayout={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": 0,
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 32,
+              "top": 0,
+            }
+          }
+        >
+          <TouchableOpacityWithState
+            activeOpacity={1}
+            onPress={[Function]}
+          >
+            <YuCoin
+              hasWhiteGlow={true}
+              isGrayScale={true}
+              isLoading={false}
+            />
+          </TouchableOpacityWithState>
+        </View>,
+        null,
+        <Close
+          onPress={[Function]}
+          style={
+            Object {
+              "zIndex": 2,
+            }
+          }
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "onLayout": [Function],
+          "style": Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+        },
+        "ref": [Function],
+        "rendered": null,
+        "type": [Function],
+      },
+      null,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <TouchableOpacityWithState
+            activeOpacity={1}
+            onPress={[Function]}
+          >
+            <YuCoin
+              hasWhiteGlow={true}
+              isGrayScale={true}
+              isLoading={false}
+            />
+          </TouchableOpacityWithState>,
+          "onLayout": [Function],
+          "style": Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "position": "absolute",
+            "right": 32,
+            "top": 0,
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeOpacity": 1,
+            "children": <YuCoin
+              hasWhiteGlow={true}
+              isGrayScale={true}
+              isLoading={false}
+            />,
+            "onPress": [Function],
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "hasWhiteGlow": true,
+              "isGrayScale": true,
+              "isLoading": false,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      null,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "onPress": [Function],
+          "style": Object {
+            "zIndex": 2,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <View
+            onLayout={[Function]}
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />,
+          null,
+          <View
+            onLayout={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": 0,
+                "justifyContent": "center",
+                "position": "absolute",
+                "right": 32,
+                "top": 0,
+              }
+            }
+          >
+            <TouchableOpacityWithState
+              activeOpacity={1}
+              onPress={[Function]}
+            >
+              <YuCoin
+                hasWhiteGlow={true}
+                isGrayScale={true}
+                isLoading={false}
+              />
+            </TouchableOpacityWithState>
+          </View>,
+          null,
+          <Close
+            onPress={[Function]}
+            style={
+              Object {
+                "zIndex": 2,
+              }
+            }
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "onLayout": [Function],
+            "style": Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+          },
+          "ref": [Function],
+          "rendered": null,
+          "type": [Function],
+        },
+        null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <TouchableOpacityWithState
+              activeOpacity={1}
+              onPress={[Function]}
+            >
+              <YuCoin
+                hasWhiteGlow={true}
+                isGrayScale={true}
+                isLoading={false}
+              />
+            </TouchableOpacityWithState>,
+            "onLayout": [Function],
+            "style": Object {
+              "alignItems": "center",
+              "bottom": 0,
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 32,
+              "top": 0,
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 1,
+              "children": <YuCoin
+                hasWhiteGlow={true}
+                isGrayScale={true}
+                isLoading={false}
+              />,
+              "onPress": [Function],
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "hasWhiteGlow": true,
+                "isGrayScale": true,
+                "isLoading": false,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "onPress": [Function],
+            "style": Object {
+              "zIndex": 2,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`SurgePopup should render yucoin without white glow 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SurgePopup
+    copy={
+      Object {
+        "leaderboardHeading": "leaderboard heading test",
+        "leaderboardSubheading": "leaderboard subheading test",
+        "surgeHeading": "surge heading test",
+        "surgeSubheading": "surge subheading test",
+      }
+    }
+    hasPermission={true}
+    hasWhiteGlow={false}
+    isLoading={false}
+    isOnline={true}
+    onCoinPress={[MockFunction]}
+    onUpdateSurgePopupVisibility={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        <View
+          onLayout={[Function]}
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />,
+        null,
+        <View
+          onLayout={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": 0,
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 32,
+              "top": 0,
+            }
+          }
+        >
+          <TouchableOpacityWithState
+            activeOpacity={1}
+            onPress={[Function]}
+          >
+            <YuCoin
+              hasWhiteGlow={false}
+              isGrayScale={false}
+              isLoading={false}
+            />
+          </TouchableOpacityWithState>
+        </View>,
+        null,
+        <Close
+          onPress={[Function]}
+          style={
+            Object {
+              "zIndex": 2,
+            }
+          }
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "onLayout": [Function],
+          "style": Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+        },
+        "ref": [Function],
+        "rendered": null,
+        "type": [Function],
+      },
+      null,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <TouchableOpacityWithState
+            activeOpacity={1}
+            onPress={[Function]}
+          >
+            <YuCoin
+              hasWhiteGlow={false}
+              isGrayScale={false}
+              isLoading={false}
+            />
+          </TouchableOpacityWithState>,
+          "onLayout": [Function],
+          "style": Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "position": "absolute",
+            "right": 32,
+            "top": 0,
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeOpacity": 1,
+            "children": <YuCoin
+              hasWhiteGlow={false}
+              isGrayScale={false}
+              isLoading={false}
+            />,
+            "onPress": [Function],
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "hasWhiteGlow": false,
+              "isGrayScale": false,
+              "isLoading": false,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      null,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "onPress": [Function],
+          "style": Object {
+            "zIndex": 2,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <View
+            onLayout={[Function]}
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />,
+          null,
+          <View
+            onLayout={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": 0,
+                "justifyContent": "center",
+                "position": "absolute",
+                "right": 32,
+                "top": 0,
+              }
+            }
+          >
+            <TouchableOpacityWithState
+              activeOpacity={1}
+              onPress={[Function]}
+            >
+              <YuCoin
+                hasWhiteGlow={false}
+                isGrayScale={false}
+                isLoading={false}
+              />
+            </TouchableOpacityWithState>
+          </View>,
+          null,
+          <Close
+            onPress={[Function]}
+            style={
+              Object {
+                "zIndex": 2,
+              }
+            }
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "onLayout": [Function],
+            "style": Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+          },
+          "ref": [Function],
+          "rendered": null,
+          "type": [Function],
+        },
+        null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <TouchableOpacityWithState
+              activeOpacity={1}
+              onPress={[Function]}
+            >
+              <YuCoin
+                hasWhiteGlow={false}
+                isGrayScale={false}
+                isLoading={false}
+              />
+            </TouchableOpacityWithState>,
+            "onLayout": [Function],
+            "style": Object {
+              "alignItems": "center",
+              "bottom": 0,
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 32,
+              "top": 0,
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 1,
+              "children": <YuCoin
+                hasWhiteGlow={false}
+                isGrayScale={false}
+                isLoading={false}
+              />,
+              "onPress": [Function],
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "hasWhiteGlow": false,
+                "isGrayScale": false,
+                "isLoading": false,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "onPress": [Function],
+            "style": Object {
+              "zIndex": 2,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

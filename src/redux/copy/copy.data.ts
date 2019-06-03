@@ -172,5 +172,11 @@ export default {
             heading: "notification",
             subheading: "Turn the notification on so we can notify you when there’s a response to your message."
         }
+    },
+    popUp: {
+        surgeHeading: "surge yucoin x2",
+        surgeSubheading: "passive steps and passive meditation are getting 2 times of yucoin!",
+        leaderboardHeading: "new leaderboard",
+        leaderboardSubheading: "leaderboard is now part of nav bar"
     }
 };

@@ -168,5 +168,9 @@ export default [
     {
         name: MODALS.todayYucoin,
         component: require("../components/modals/today-yucoin/today-yucoin.modal").default
+    },
+    {
+        name: MODALS.genericConnectionError,
+        component: require("../components/modals/generic-modal/generic-connection-error-modal").default
     }
 ];

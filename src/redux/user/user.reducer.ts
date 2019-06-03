@@ -1,3 +1,4 @@
+import { POPUPTYPE } from "../../components/molecules";
 import {
     GetCurrentUser,
     GetCurrentUser_getCurrentUser_connections,
@@ -18,6 +19,8 @@ import {
     UPDATE_LEADERBOARD_CONSENT_FAILED,
     UPDATE_LEADERBOARD_CONSENT_START,
     UPDATE_LEADERBOARD_CONSENT_SUCCESS,
+    UPDATE_LEADERBOARD_POPUP_VISIBILITY,
+    UPDATE_SURGE_POPUP_VISIBILITY,
     UPDATE_USER_CONSENT_SUCCESS
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
@@ -26,7 +29,7 @@ interface IFeature {
     [x: string]: boolean;
 }
 
-type Leaderboard = GetCurrentUser_getCurrentUser_leaderboards & {
+export type ILeaderboard = GetCurrentUser_getCurrentUser_leaderboards & {
     isLoading?: boolean;
 };
 
@@ -37,7 +40,11 @@ export interface IUserStore {
     connections: Connection[];
     consent: MobileConsentInput;
     features: IFeature;
-    leaderboards: Leaderboard[];
+    leaderboards: ILeaderboard[];
+    popupVisibility: {
+        leaderboard: boolean;
+        surge: boolean;
+    };
 }
 
 export const initialState: IUserStore = {
@@ -45,7 +52,11 @@ export const initialState: IUserStore = {
     connections: [],
     consent: {},
     features: {},
-    leaderboards: []
+    leaderboards: [],
+    popupVisibility: {
+        leaderboard: true,
+        surge: false
+    }
 };
 
 export const userReducer = (state: IUserStore = initialState, action: SyncAction): IUserStore => {
@@ -75,6 +86,12 @@ export const userReducer = (state: IUserStore = initialState, action: SyncAction
         case UPDATE_CONNECTION_SUCCESS:
         case UPDATE_CONNECTION_FAILED:
             return updateConnectionsLoading(state, action.payload, false);
+
+        case UPDATE_LEADERBOARD_POPUP_VISIBILITY:
+            return updatePopupVisibility(state, action.payload, POPUPTYPE.LEADERBOARD);
+
+        case UPDATE_SURGE_POPUP_VISIBILITY:
+            return updatePopupVisibility(state, action.payload, POPUPTYPE.SURGE);
 
         default:
             return state;
@@ -146,3 +163,24 @@ const updateConnectionsLoading = (state: IUserStore, payload: any, isLoading: bo
         return connection;
     })
 });
+
+const updatePopupVisibility = (state: IUserStore, payload: boolean, type: POPUPTYPE): IUserStore => {
+    switch (type) {
+        case POPUPTYPE.SURGE:
+            return {
+                ...state,
+                popupVisibility: {
+                    ...state.popupVisibility,
+                    surge: payload
+                }
+            };
+        case POPUPTYPE.LEADERBOARD:
+            return {
+                ...state,
+                popupVisibility: {
+                    ...state.popupVisibility,
+                    leaderboard: payload
+                }
+            };
+    }
+};

@@ -1,4 +1,4 @@
-import { NavBar, RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
+import { COLOURS, NavBar, RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
 import { SafeAreaView, View } from "react-native";
@@ -16,6 +16,8 @@ interface IProps extends IConnectedScreenProps {
     onRightTabPress: () => void;
     loading: boolean;
     copy: GetMobileCopy_getMobileCopy_screens_purchases;
+    currentWorld?: number;
+    navbarColour: COLOURS;
 }
 
 type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
@@ -33,7 +35,9 @@ export default class RewardsPurchasedScreen extends React.PureComponent<IProps> 
             onLeftTabPress,
             onRightTabPress,
             onLeftMenuPress,
-            totalCoins
+            totalCoins,
+            currentWorld,
+            navbarColour
         } = this.props;
 
         return (
@@ -55,11 +59,11 @@ export default class RewardsPurchasedScreen extends React.PureComponent<IProps> 
                 </View>
                 <View style={styles.navBarWrapper}>
                     <NavBar
-                        activeIndex={2}
-                        areIconsHidden={true}
-                        colour={NavBar.Colours.DARKER}
+                        activeIndex={3}
+                        hasImage={true}
+                        currentWorld={currentWorld}
+                        colour={navbarColour || NavBar.Colours.DARKER}
                         hasNotification={hasNotification}
-                        hasWhiteBackground={true}
                         labels={labels}
                     />
                 </View>

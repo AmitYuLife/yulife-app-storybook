@@ -48,8 +48,16 @@ describe("DailyStepsScreen", () => {
             <DailyStepsScreen
                 {...defaultProps}
                 copy={{
-                    permission: "",
-                    permissionCta: ""
+                    copy: {
+                        permission: "",
+                        permissionCta: ""
+                    },
+                    popUpCopy: {
+                        leaderboardHeading: "",
+                        leaderboardSubheading: "",
+                        surgeHeading: "",
+                        surgeSubheading: ""
+                    }
                 }}
             />
         );
@@ -63,8 +71,16 @@ describe("DailyStepsScreen", () => {
                 {...defaultProps}
                 displayStreak={true}
                 copy={{
-                    permission: "",
-                    permissionCta: ""
+                    copy: {
+                        permission: "",
+                        permissionCta: ""
+                    },
+                    popUpCopy: {
+                        leaderboardHeading: "",
+                        leaderboardSubheading: "",
+                        surgeHeading: "",
+                        surgeSubheading: ""
+                    }
                 }}
             />
         );
@@ -78,8 +94,16 @@ describe("DailyStepsScreen", () => {
                 {...defaultProps}
                 isLoading={true}
                 copy={{
-                    permission: "",
-                    permissionCta: ""
+                    copy: {
+                        permission: "",
+                        permissionCta: ""
+                    },
+                    popUpCopy: {
+                        leaderboardHeading: "",
+                        leaderboardSubheading: "",
+                        surgeHeading: "",
+                        surgeSubheading: ""
+                    }
                 }}
             />
         );
@@ -93,8 +117,16 @@ describe("DailyStepsScreen", () => {
                 {...defaultProps}
                 hasPermission={false}
                 copy={{
-                    permission: "",
-                    permissionCta: ""
+                    copy: {
+                        permission: "",
+                        permissionCta: ""
+                    },
+                    popUpCopy: {
+                        leaderboardHeading: "",
+                        leaderboardSubheading: "",
+                        surgeHeading: "",
+                        surgeSubheading: ""
+                    }
                 }}
             />
         );
@@ -108,8 +140,16 @@ describe("DailyStepsScreen", () => {
                 {...defaultProps}
                 fitKitAvailable={false}
                 copy={{
-                    permission: "",
-                    permissionCta: ""
+                    copy: {
+                        permission: "",
+                        permissionCta: ""
+                    },
+                    popUpCopy: {
+                        leaderboardHeading: "",
+                        leaderboardSubheading: "",
+                        surgeHeading: "",
+                        surgeSubheading: ""
+                    }
                 }}
             />
         );
@@ -123,8 +163,16 @@ describe("DailyStepsScreen", () => {
                 {...defaultProps}
                 isOnline={false}
                 copy={{
-                    permission: "",
-                    permissionCta: ""
+                    copy: {
+                        permission: "",
+                        permissionCta: ""
+                    },
+                    popUpCopy: {
+                        leaderboardHeading: "",
+                        leaderboardSubheading: "",
+                        surgeHeading: "",
+                        surgeSubheading: ""
+                    }
                 }}
             />
         );

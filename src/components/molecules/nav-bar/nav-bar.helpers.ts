@@ -51,6 +51,7 @@ export interface INavBarColourScheme {
     active: string;
     inactive: string;
     pressed: string;
+    activeIcon?: string;
 }
 
 export interface IIconProps {
@@ -70,18 +71,37 @@ export function getNavBarColourScheme(colour: string): INavBarColourScheme {
             return Colours.navBar.dark;
         case NavBar.Colours.DARKER:
             return Colours.navBar.darker;
+        case NavBar.Colours.MOUNTAIN:
+            return Colours.navBar.mountain;
         case NavBar.Colours.LIGHT:
         default:
             return Colours.navBar.light;
     }
 }
 
-export function getIconColour(scheme: INavBarColourScheme, isActive: boolean, isPressed: boolean) {
+export function getIconColour(scheme: INavBarColourScheme, isActive: boolean, isPressed: boolean, isIcon?: boolean) {
     if (isActive) {
+        if (isIcon) {
+            return scheme.activeIcon ? scheme.activeIcon : scheme.active;
+        }
         return scheme.active;
     } else if (isPressed) {
         return scheme.pressed;
     } else {
         return scheme.inactive;
+    }
+}
+
+export function getImage(currentWorld: number) {
+    switch (currentWorld) {
+        case 3:
+            return require("../../../../assets/navbar/mountain.png");
+        case 2:
+            return require("../../../../assets/navbar/desert.png");
+        case 1:
+            return require("../../../../assets/navbar/ocean.png");
+        case 0:
+        default:
+            return require("../../../../assets/navbar/forest.png");
     }
 }
