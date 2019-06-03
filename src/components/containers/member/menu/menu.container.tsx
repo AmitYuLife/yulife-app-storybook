@@ -43,12 +43,6 @@ class MenuContainer extends PureComponent<Props> {
                         source: assets[LINKS.MEMBER]
                     },
                     {
-                        condition: true,
-                        label: "leaderboard",
-                        onPress: this.handlePressLink(LINKS.LEADERBOARD),
-                        source: assets[LINKS.LEADERBOARD]
-                    },
-                    {
                         condition: true || features.showSettings,
                         label: "settings",
                         onPress: this.handlePressLink(LINKS.SETTINGS),

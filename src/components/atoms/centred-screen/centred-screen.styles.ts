@@ -1,9 +1,4 @@
-import {
-    ImageStyle,
-    Platform,
-    StyleSheet,
-    ViewStyle
-} from "react-native";
+import { ImageStyle, Platform, StyleSheet, ViewStyle } from "react-native";
 import { Style } from "../../../styles";
 
 export default StyleSheet.create({
@@ -15,9 +10,7 @@ export default StyleSheet.create({
     } as ImageStyle,
     imageLargeForest: {
         height: Style.SCALE_UP_AND_DOWN(300),
-        marginBottom: Platform.OS === "ios" && Style.DEVICE_HEIGHT < 700
-        ? -20
-        : 0
+        marginBottom: Platform.OS === "ios" && Style.DEVICE_HEIGHT < 700 ? -20 : 0
     } as ImageStyle,
     imageWrapper: {
         bottom: 0,

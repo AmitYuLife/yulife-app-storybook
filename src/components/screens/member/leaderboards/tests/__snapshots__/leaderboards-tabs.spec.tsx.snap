@@ -1,0 +1,2349 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Leaderboard tabs should render all tabs &  highlight mindful tab 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <LeaderboardTabs
+    isMindfulAvailable={true}
+    onHandleTabPress={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            "steps",
+          ],
+          Array [
+            "coins",
+          ],
+          Array [
+            "steps",
+          ],
+          Array [
+            "coins",
+          ],
+          Array [
+            "steps",
+          ],
+          Array [
+            "mindful",
+          ],
+          Array [
+            "coins",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    sortBy="mindful"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <View
+        style={
+          Object {
+            "backgroundColor": "white",
+            "borderColor": "rgb(254, 250, 191)",
+            "borderTopWidth": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginHorizontal": 30,
+          }
+        }
+      >
+        <TouchableOpacity
+          activeOpacity={0.2}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "rgb(254, 250, 191)",
+              "flex": 1,
+              "height": 100,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={null}
+          >
+            <YuText
+              style={
+                Object {
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              steps
+            </YuText>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.2}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "rgb(226,1,119)",
+              "borderBottomWidth": 1,
+              "borderColor": "rgb(254, 250, 191)",
+              "flex": 1.5,
+              "height": 100,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderLeftColor": "rgb(194, 170, 52)",
+                "borderLeftWidth": 1,
+                "borderRightColor": "rgb(194, 170, 52)",
+                "borderRightWidth": 1,
+                "height": 22,
+                "width": "100%",
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(226,1,119)",
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              mindful mins
+            </YuText>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.2}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "rgb(254, 250, 191)",
+              "flex": 1,
+              "height": 100,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <YuText
+            style={
+              Object {
+                "fontSize": 18,
+                "lineHeight": 20,
+                "textAlign": "center",
+              }
+            }
+          >
+            yucoin
+          </YuText>
+        </TouchableOpacity>
+      </View>,
+      "style": Object {
+        "backgroundColor": "white",
+        "width": "100%",
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={null}
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                steps
+              </YuText>
+            </View>
+          </TouchableOpacity>,
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomColor": "rgb(226,1,119)",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1.5,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderLeftColor": "rgb(194, 170, 52)",
+                  "borderLeftWidth": 1,
+                  "borderRightColor": "rgb(194, 170, 52)",
+                  "borderRightWidth": 1,
+                  "height": 22,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(226,1,119)",
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                mindful mins
+              </YuText>
+            </View>
+          </TouchableOpacity>,
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              yucoin
+            </YuText>
+          </TouchableOpacity>,
+        ],
+        "style": Object {
+          "backgroundColor": "white",
+          "borderColor": "rgb(254, 250, 191)",
+          "borderTopWidth": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginHorizontal": 30,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeOpacity": 0.2,
+            "children": <View
+              style={null}
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                steps
+              </YuText>
+            </View>,
+            "onPress": undefined,
+            "style": Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "rgb(254, 250, 191)",
+              "flex": 1,
+              "height": 100,
+              "justifyContent": "center",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                steps
+              </YuText>,
+              "style": null,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "steps",
+                "style": Object {
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                },
+              },
+              "ref": null,
+              "rendered": "steps",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeOpacity": 0.2,
+            "children": <View
+              style={
+                Object {
+                  "borderLeftColor": "rgb(194, 170, 52)",
+                  "borderLeftWidth": 1,
+                  "borderRightColor": "rgb(194, 170, 52)",
+                  "borderRightWidth": 1,
+                  "height": 22,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(226,1,119)",
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                mindful mins
+              </YuText>
+            </View>,
+            "onPress": undefined,
+            "style": Object {
+              "alignItems": "center",
+              "borderBottomColor": "rgb(226,1,119)",
+              "borderBottomWidth": 1,
+              "borderColor": "rgb(254, 250, 191)",
+              "flex": 1.5,
+              "height": 100,
+              "justifyContent": "center",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "color": "rgb(226,1,119)",
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                mindful mins
+              </YuText>,
+              "style": Object {
+                "borderLeftColor": "rgb(194, 170, 52)",
+                "borderLeftWidth": 1,
+                "borderRightColor": "rgb(194, 170, 52)",
+                "borderRightWidth": 1,
+                "height": 22,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "mindful mins",
+                "style": Object {
+                  "color": "rgb(226,1,119)",
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                },
+              },
+              "ref": null,
+              "rendered": "mindful mins",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeOpacity": 0.2,
+            "children": <YuText
+              style={
+                Object {
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              yucoin
+            </YuText>,
+            "onPress": undefined,
+            "style": Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "rgb(254, 250, 191)",
+              "flex": 1,
+              "height": 100,
+              "justifyContent": "center",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "yucoin",
+              "style": Object {
+                "fontSize": 18,
+                "lineHeight": 20,
+                "textAlign": "center",
+              },
+            },
+            "ref": null,
+            "rendered": "yucoin",
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <View
+          style={
+            Object {
+              "backgroundColor": "white",
+              "borderColor": "rgb(254, 250, 191)",
+              "borderTopWidth": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginHorizontal": 30,
+            }
+          }
+        >
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={null}
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                steps
+              </YuText>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomColor": "rgb(226,1,119)",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1.5,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderLeftColor": "rgb(194, 170, 52)",
+                  "borderLeftWidth": 1,
+                  "borderRightColor": "rgb(194, 170, 52)",
+                  "borderRightWidth": 1,
+                  "height": 22,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(226,1,119)",
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                mindful mins
+              </YuText>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              yucoin
+            </YuText>
+          </TouchableOpacity>
+        </View>,
+        "style": Object {
+          "backgroundColor": "white",
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <TouchableOpacity
+              activeOpacity={0.2}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "borderBottomWidth": 1,
+                  "borderColor": "rgb(254, 250, 191)",
+                  "flex": 1,
+                  "height": 100,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <View
+                style={null}
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  steps
+                </YuText>
+              </View>
+            </TouchableOpacity>,
+            <TouchableOpacity
+              activeOpacity={0.2}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "borderBottomColor": "rgb(226,1,119)",
+                  "borderBottomWidth": 1,
+                  "borderColor": "rgb(254, 250, 191)",
+                  "flex": 1.5,
+                  "height": 100,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "borderLeftColor": "rgb(194, 170, 52)",
+                    "borderLeftWidth": 1,
+                    "borderRightColor": "rgb(194, 170, 52)",
+                    "borderRightWidth": 1,
+                    "height": 22,
+                    "width": "100%",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(226,1,119)",
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  mindful mins
+                </YuText>
+              </View>
+            </TouchableOpacity>,
+            <TouchableOpacity
+              activeOpacity={0.2}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "borderBottomWidth": 1,
+                  "borderColor": "rgb(254, 250, 191)",
+                  "flex": 1,
+                  "height": 100,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                yucoin
+              </YuText>
+            </TouchableOpacity>,
+          ],
+          "style": Object {
+            "backgroundColor": "white",
+            "borderColor": "rgb(254, 250, 191)",
+            "borderTopWidth": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginHorizontal": 30,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 0.2,
+              "children": <View
+                style={null}
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  steps
+                </YuText>
+              </View>,
+              "onPress": undefined,
+              "style": Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  steps
+                </YuText>,
+                "style": null,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "steps",
+                  "style": Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  },
+                },
+                "ref": null,
+                "rendered": "steps",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 0.2,
+              "children": <View
+                style={
+                  Object {
+                    "borderLeftColor": "rgb(194, 170, 52)",
+                    "borderLeftWidth": 1,
+                    "borderRightColor": "rgb(194, 170, 52)",
+                    "borderRightWidth": 1,
+                    "height": 22,
+                    "width": "100%",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(226,1,119)",
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  mindful mins
+                </YuText>
+              </View>,
+              "onPress": undefined,
+              "style": Object {
+                "alignItems": "center",
+                "borderBottomColor": "rgb(226,1,119)",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1.5,
+                "height": 100,
+                "justifyContent": "center",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "color": "rgb(226,1,119)",
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  mindful mins
+                </YuText>,
+                "style": Object {
+                  "borderLeftColor": "rgb(194, 170, 52)",
+                  "borderLeftWidth": 1,
+                  "borderRightColor": "rgb(194, 170, 52)",
+                  "borderRightWidth": 1,
+                  "height": 22,
+                  "width": "100%",
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "mindful mins",
+                  "style": Object {
+                    "color": "rgb(226,1,119)",
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  },
+                },
+                "ref": null,
+                "rendered": "mindful mins",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 0.2,
+              "children": <YuText
+                style={
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                yucoin
+              </YuText>,
+              "onPress": undefined,
+              "style": Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "yucoin",
+                "style": Object {
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                },
+              },
+              "ref": null,
+              "rendered": "yucoin",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Leaderboard tabs should render all tabs except mindful tab 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <LeaderboardTabs
+    isMindfulAvailable={false}
+    onHandleTabPress={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            "steps",
+          ],
+          Array [
+            "coins",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    sortBy="coins"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <View
+        style={
+          Object {
+            "backgroundColor": "white",
+            "borderColor": "rgb(254, 250, 191)",
+            "borderTopWidth": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginHorizontal": 30,
+          }
+        }
+      >
+        <TouchableOpacity
+          activeOpacity={0.2}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "rgb(254, 250, 191)",
+              "flex": 1,
+              "height": 100,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderRightColor": "rgb(194, 170, 52)",
+                "borderRightWidth": 1,
+                "height": 22,
+                "width": "100%",
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              steps
+            </YuText>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.2}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "rgb(226,1,119)",
+              "borderBottomWidth": 1,
+              "borderColor": "rgb(254, 250, 191)",
+              "flex": 1,
+              "height": 100,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <YuText
+            style={
+              Object {
+                "color": "rgb(226,1,119)",
+                "fontSize": 18,
+                "lineHeight": 20,
+                "textAlign": "center",
+              }
+            }
+          >
+            yucoin
+          </YuText>
+        </TouchableOpacity>
+      </View>,
+      "style": Object {
+        "backgroundColor": "white",
+        "width": "100%",
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderRightColor": "rgb(194, 170, 52)",
+                  "borderRightWidth": 1,
+                  "height": 22,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                steps
+              </YuText>
+            </View>
+          </TouchableOpacity>,
+          null,
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomColor": "rgb(226,1,119)",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(226,1,119)",
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              yucoin
+            </YuText>
+          </TouchableOpacity>,
+        ],
+        "style": Object {
+          "backgroundColor": "white",
+          "borderColor": "rgb(254, 250, 191)",
+          "borderTopWidth": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginHorizontal": 30,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeOpacity": 0.2,
+            "children": <View
+              style={
+                Object {
+                  "borderRightColor": "rgb(194, 170, 52)",
+                  "borderRightWidth": 1,
+                  "height": 22,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                steps
+              </YuText>
+            </View>,
+            "onPress": undefined,
+            "style": Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "rgb(254, 250, 191)",
+              "flex": 1,
+              "height": 100,
+              "justifyContent": "center",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                steps
+              </YuText>,
+              "style": Object {
+                "borderRightColor": "rgb(194, 170, 52)",
+                "borderRightWidth": 1,
+                "height": 22,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "steps",
+                "style": Object {
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                },
+              },
+              "ref": null,
+              "rendered": "steps",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeOpacity": 0.2,
+            "children": <YuText
+              style={
+                Object {
+                  "color": "rgb(226,1,119)",
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              yucoin
+            </YuText>,
+            "onPress": undefined,
+            "style": Object {
+              "alignItems": "center",
+              "borderBottomColor": "rgb(226,1,119)",
+              "borderBottomWidth": 1,
+              "borderColor": "rgb(254, 250, 191)",
+              "flex": 1,
+              "height": 100,
+              "justifyContent": "center",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "yucoin",
+              "style": Object {
+                "color": "rgb(226,1,119)",
+                "fontSize": 18,
+                "lineHeight": 20,
+                "textAlign": "center",
+              },
+            },
+            "ref": null,
+            "rendered": "yucoin",
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <View
+          style={
+            Object {
+              "backgroundColor": "white",
+              "borderColor": "rgb(254, 250, 191)",
+              "borderTopWidth": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginHorizontal": 30,
+            }
+          }
+        >
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderRightColor": "rgb(194, 170, 52)",
+                  "borderRightWidth": 1,
+                  "height": 22,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                steps
+              </YuText>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomColor": "rgb(226,1,119)",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(226,1,119)",
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              yucoin
+            </YuText>
+          </TouchableOpacity>
+        </View>,
+        "style": Object {
+          "backgroundColor": "white",
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <TouchableOpacity
+              activeOpacity={0.2}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "borderBottomWidth": 1,
+                  "borderColor": "rgb(254, 250, 191)",
+                  "flex": 1,
+                  "height": 100,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "borderRightColor": "rgb(194, 170, 52)",
+                    "borderRightWidth": 1,
+                    "height": 22,
+                    "width": "100%",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  steps
+                </YuText>
+              </View>
+            </TouchableOpacity>,
+            null,
+            <TouchableOpacity
+              activeOpacity={0.2}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "borderBottomColor": "rgb(226,1,119)",
+                  "borderBottomWidth": 1,
+                  "borderColor": "rgb(254, 250, 191)",
+                  "flex": 1,
+                  "height": 100,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(226,1,119)",
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                yucoin
+              </YuText>
+            </TouchableOpacity>,
+          ],
+          "style": Object {
+            "backgroundColor": "white",
+            "borderColor": "rgb(254, 250, 191)",
+            "borderTopWidth": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginHorizontal": 30,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 0.2,
+              "children": <View
+                style={
+                  Object {
+                    "borderRightColor": "rgb(194, 170, 52)",
+                    "borderRightWidth": 1,
+                    "height": 22,
+                    "width": "100%",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  steps
+                </YuText>
+              </View>,
+              "onPress": undefined,
+              "style": Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  steps
+                </YuText>,
+                "style": Object {
+                  "borderRightColor": "rgb(194, 170, 52)",
+                  "borderRightWidth": 1,
+                  "height": 22,
+                  "width": "100%",
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "steps",
+                  "style": Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  },
+                },
+                "ref": null,
+                "rendered": "steps",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          null,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 0.2,
+              "children": <YuText
+                style={
+                  Object {
+                    "color": "rgb(226,1,119)",
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                yucoin
+              </YuText>,
+              "onPress": undefined,
+              "style": Object {
+                "alignItems": "center",
+                "borderBottomColor": "rgb(226,1,119)",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "yucoin",
+                "style": Object {
+                  "color": "rgb(226,1,119)",
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                },
+              },
+              "ref": null,
+              "rendered": "yucoin",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Leaderboard tabs should render tabs except mindful tab & highlight steps tab 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <LeaderboardTabs
+    isMindfulAvailable={false}
+    onHandleTabPress={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            "steps",
+          ],
+          Array [
+            "coins",
+          ],
+          Array [
+            "steps",
+          ],
+          Array [
+            "coins",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    sortBy="steps"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <View
+        style={
+          Object {
+            "backgroundColor": "white",
+            "borderColor": "rgb(254, 250, 191)",
+            "borderTopWidth": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginHorizontal": 30,
+          }
+        }
+      >
+        <TouchableOpacity
+          activeOpacity={0.2}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "rgb(226,1,119)",
+              "borderBottomWidth": 1,
+              "borderColor": "rgb(254, 250, 191)",
+              "flex": 1,
+              "height": 100,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderRightColor": "rgb(194, 170, 52)",
+                "borderRightWidth": 1,
+                "height": 22,
+                "width": "100%",
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(226,1,119)",
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              steps
+            </YuText>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.2}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "rgb(254, 250, 191)",
+              "flex": 1,
+              "height": 100,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <YuText
+            style={
+              Object {
+                "fontSize": 18,
+                "lineHeight": 20,
+                "textAlign": "center",
+              }
+            }
+          >
+            yucoin
+          </YuText>
+        </TouchableOpacity>
+      </View>,
+      "style": Object {
+        "backgroundColor": "white",
+        "width": "100%",
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomColor": "rgb(226,1,119)",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderRightColor": "rgb(194, 170, 52)",
+                  "borderRightWidth": 1,
+                  "height": 22,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(226,1,119)",
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                steps
+              </YuText>
+            </View>
+          </TouchableOpacity>,
+          null,
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              yucoin
+            </YuText>
+          </TouchableOpacity>,
+        ],
+        "style": Object {
+          "backgroundColor": "white",
+          "borderColor": "rgb(254, 250, 191)",
+          "borderTopWidth": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginHorizontal": 30,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeOpacity": 0.2,
+            "children": <View
+              style={
+                Object {
+                  "borderRightColor": "rgb(194, 170, 52)",
+                  "borderRightWidth": 1,
+                  "height": 22,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(226,1,119)",
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                steps
+              </YuText>
+            </View>,
+            "onPress": undefined,
+            "style": Object {
+              "alignItems": "center",
+              "borderBottomColor": "rgb(226,1,119)",
+              "borderBottomWidth": 1,
+              "borderColor": "rgb(254, 250, 191)",
+              "flex": 1,
+              "height": 100,
+              "justifyContent": "center",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "color": "rgb(226,1,119)",
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                steps
+              </YuText>,
+              "style": Object {
+                "borderRightColor": "rgb(194, 170, 52)",
+                "borderRightWidth": 1,
+                "height": 22,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "steps",
+                "style": Object {
+                  "color": "rgb(226,1,119)",
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                },
+              },
+              "ref": null,
+              "rendered": "steps",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeOpacity": 0.2,
+            "children": <YuText
+              style={
+                Object {
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              yucoin
+            </YuText>,
+            "onPress": undefined,
+            "style": Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "rgb(254, 250, 191)",
+              "flex": 1,
+              "height": 100,
+              "justifyContent": "center",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "yucoin",
+              "style": Object {
+                "fontSize": 18,
+                "lineHeight": 20,
+                "textAlign": "center",
+              },
+            },
+            "ref": null,
+            "rendered": "yucoin",
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <View
+          style={
+            Object {
+              "backgroundColor": "white",
+              "borderColor": "rgb(254, 250, 191)",
+              "borderTopWidth": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginHorizontal": 30,
+            }
+          }
+        >
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomColor": "rgb(226,1,119)",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderRightColor": "rgb(194, 170, 52)",
+                  "borderRightWidth": 1,
+                  "height": 22,
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(226,1,119)",
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                steps
+              </YuText>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              yucoin
+            </YuText>
+          </TouchableOpacity>
+        </View>,
+        "style": Object {
+          "backgroundColor": "white",
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <TouchableOpacity
+              activeOpacity={0.2}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "borderBottomColor": "rgb(226,1,119)",
+                  "borderBottomWidth": 1,
+                  "borderColor": "rgb(254, 250, 191)",
+                  "flex": 1,
+                  "height": 100,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "borderRightColor": "rgb(194, 170, 52)",
+                    "borderRightWidth": 1,
+                    "height": 22,
+                    "width": "100%",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(226,1,119)",
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  steps
+                </YuText>
+              </View>
+            </TouchableOpacity>,
+            null,
+            <TouchableOpacity
+              activeOpacity={0.2}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "borderBottomWidth": 1,
+                  "borderColor": "rgb(254, 250, 191)",
+                  "flex": 1,
+                  "height": 100,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                yucoin
+              </YuText>
+            </TouchableOpacity>,
+          ],
+          "style": Object {
+            "backgroundColor": "white",
+            "borderColor": "rgb(254, 250, 191)",
+            "borderTopWidth": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginHorizontal": 30,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 0.2,
+              "children": <View
+                style={
+                  Object {
+                    "borderRightColor": "rgb(194, 170, 52)",
+                    "borderRightWidth": 1,
+                    "height": 22,
+                    "width": "100%",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(226,1,119)",
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  steps
+                </YuText>
+              </View>,
+              "onPress": undefined,
+              "style": Object {
+                "alignItems": "center",
+                "borderBottomColor": "rgb(226,1,119)",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "color": "rgb(226,1,119)",
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  steps
+                </YuText>,
+                "style": Object {
+                  "borderRightColor": "rgb(194, 170, 52)",
+                  "borderRightWidth": 1,
+                  "height": 22,
+                  "width": "100%",
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "steps",
+                  "style": Object {
+                    "color": "rgb(226,1,119)",
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  },
+                },
+                "ref": null,
+                "rendered": "steps",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          null,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 0.2,
+              "children": <YuText
+                style={
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                yucoin
+              </YuText>,
+              "onPress": undefined,
+              "style": Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "borderColor": "rgb(254, 250, 191)",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "yucoin",
+                "style": Object {
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                  "textAlign": "center",
+                },
+              },
+              "ref": null,
+              "rendered": "yucoin",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

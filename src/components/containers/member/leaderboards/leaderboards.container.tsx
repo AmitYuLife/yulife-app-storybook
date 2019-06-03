@@ -1,21 +1,24 @@
 import { GetLeaderboardVariables } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
-import * as React from "react";
-import { PureComponent } from "react";
-import { Navigation } from "react-native-navigation";
+import React, { PureComponent } from "react";
+import { Linking } from "react-native";
+import Config from "react-native-config";
 import { connect } from "react-redux";
+import { COLOURS } from "../../../../components/molecules";
 import GetLeaderboardQuery, { getLeaderboardGql } from "../../../../graphql/member/getLeaderboard.gql";
+import { IMainTabsProps } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
+import { getOfflineState } from "../../../../redux/app/app.selectors";
+import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
+import { getCurrentLevel, getHasNotification } from "../../../../redux/levels/levels.selectors";
 import { updateLeaderboardConsent } from "../../../../redux/user/user.actions";
-import { getConsentedLeaderboards, getUserFeatures } from "../../../../redux/user/user.selectors";
-import { GenericModal } from "../../../modals";
-import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-connection-error-modal";
-import { LeaderboardsScreen } from "../../../screens";
+import { getAllLeaderboards, getConsentedLeaderboards } from "../../../../redux/user/user.selectors";
+import { getCurrentWorld } from "../../../../services/utils";
+import { LeaderboardOfflineScreen, LeaderboardsScreen } from "../../../screens";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
-
 interface IProps {
     componentId: string;
 }
@@ -24,15 +27,17 @@ interface IState {
     isLoading: boolean;
     sortBy: string;
     leaderboardId: string;
+    activeLeaderboardIndex: number;
 }
 
-type Props = ConnectedState & ConnectedDispatch & IProps;
+type Props = ConnectedState & ConnectedDispatch & IProps & IMainTabsProps;
 
 class LeaderboardsContainer extends PureComponent<Props, IState> {
     public state: IState = {
         isLoading: true,
         sortBy: "steps",
-        leaderboardId: null
+        leaderboardId: null,
+        activeLeaderboardIndex: 0
     };
 
     public componentDidMount() {
@@ -40,46 +45,47 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
     }
 
     public render() {
-        const { sortBy } = this.state;
-        const { leaderboards = [], features = {}, copy } = this.props;
+        const { sortBy, activeLeaderboardIndex } = this.state;
+        const {
+            leaderboards = [],
+            hasNotification,
+            labels,
+            currentLevel,
+            totalCoins,
+            onLeftMenuPress,
+            isOffline,
+            copy
+        } = this.props;
+        const currentWorld = getCurrentWorld(currentLevel);
+        const navbarColour = getNavbarColourScheme(currentWorld);
         const [companyLeaderboard, ...consentedLeaderboards] = leaderboards;
 
-        if (
-            !companyLeaderboard.consent &&
-            (features.showAdvancedLeaderboards ? !consentedLeaderboards || consentedLeaderboards.length < 1 : true)
-        ) {
-            /* tslint:disable:max-line-length */
+        if (isOffline) {
             return (
-                <GenericModal
-                    isPrimaryLoading={companyLeaderboard.isLoading}
-                    onPress={this.allowLeaderboard}
-                    heading={copy.turnBoardOn.heading}
-                    subheading={copy.turnBoardOn.subheading}
-                    ctaLabel={copy.turnBoardOn.ctaLabel}
-                    onPressSecondary={this.handleClose}
-                    ctaLabelSecondary={copy.turnBoardOn.ctaLabelSecondary}
+                <LeaderboardOfflineScreen
+                    hasNotification={hasNotification}
+                    currentWorld={currentWorld}
+                    totalCoins={totalCoins}
+                    labels={labels}
+                    onLeftMenuPress={onLeftMenuPress}
+                    navbarColour={navbarColour}
                 />
             );
-            /* tslint:enable:max-line-length */
         }
 
         const leaderboardId =
             this.state.leaderboardId ||
             (companyLeaderboard.consent ? companyLeaderboard.leaderboardId : consentedLeaderboards[0].leaderboardId);
-
         return (
             <GetLeaderboardQuery
                 query={getLeaderboardGql}
                 fetchPolicy="cache-and-network"
                 variables={{ leaderboardId, sortBy }}
             >
-                {({ error, loading, data, refetch }) => {
-                    if (error && (!data || !data.getLeaderboard || !data.getCurrentUser)) {
-                        return <GenericConnectionErrorModal onPress={this.handleClose} />;
-                    }
-
+                {({ loading, data, refetch }) => {
                     const coinsRefetch = this.handleRefetch(refetch, "coins");
                     const stepsRefetch = this.handleRefetch(refetch, "steps");
+                    const mindfulMinsRefetch = this.handleRefetch(refetch, "mindful");
                     const initialScrollIndex =
                         data &&
                         data.getLeaderboard != null &&
@@ -89,18 +95,28 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 
                     return (
                         <LeaderboardsScreen
+                            currentWorld={currentWorld}
                             isLoading={loading}
                             initialScrollIndex={initialScrollIndex}
-                            leaderboards={companyLeaderboard.consent ? leaderboards : consentedLeaderboards || []}
+                            leaderboards={leaderboards || []}
                             items={data.getLeaderboard || []}
                             onHandleCoinsRefetch={coinsRefetch}
-                            onPressClose={this.handleClose}
                             onHandleStepsRefetch={stepsRefetch}
+                            onHandleMindfulMinsRefetch={mindfulMinsRefetch}
+                            activeLeaderboardIndex={activeLeaderboardIndex}
                             onLeaderboardChange={this.handleLeaderboardChange}
                             sortBy={sortBy}
                             onRefetch={() => refetch()}
-                            isAdvanced={features.showAdvancedLeaderboards}
-                            copy={copy}
+                            hasNotification={hasNotification}
+                            labels={labels}
+                            totalCoins={totalCoins}
+                            onLeftMenuPress={onLeftMenuPress}
+                            onAllowLeaderboard={this.allowLeaderboard}
+                            onRefuseConsent={this.refuseConsent}
+                            onPrivacyPolicyPress={this.onPrivacyPolicyPress}
+                            copy={copy.turnBoardOn}
+                            isMindfulAvailable={false}
+                            navbarColour={navbarColour}
                         />
                     );
                 }}
@@ -108,8 +124,13 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
         );
     }
 
-    private handleClose = () => {
-        Navigation.popToRoot(this.props.componentId);
+    private onPrivacyPolicyPress = async () => {
+        try {
+            await Linking.openURL(Config.PRIVACY_POLICY_URL);
+        } catch (e) {
+            // tslint:disable-next-line
+            console.log("Unable to open privacy policy link:", e);
+        }
     };
 
     private handleRefetch = (refetch: (variables: GetLeaderboardVariables) => void, sortBy: string) => () => {
@@ -117,11 +138,9 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
     };
 
     private handleLeaderboardChange = (index: number) => {
-        const [companyLeaderboard, ...consentedLeaderboards] = this.props.leaderboards;
-        const leaderboards = companyLeaderboard.consent ? this.props.leaderboards : consentedLeaderboards;
-        const leaderboardId = leaderboards[index].leaderboardId;
+        const leaderboardId = this.props.leaderboards[index].leaderboardId;
 
-        this.setState({ leaderboardId });
+        this.setState({ leaderboardId, activeLeaderboardIndex: index });
         Logger.logEvent("screen_view", {
             name:
                 leaderboardId.length === 32
@@ -131,17 +150,33 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
         });
     };
 
+    private refuseConsent = () => {
+        const { activeLeaderboardIndex } = this.state;
+        const { leaderboards } = this.props;
+        const nextIndex = activeLeaderboardIndex + 1 === leaderboards.length ? 0 : activeLeaderboardIndex + 1;
+        const leaderboardId = leaderboards[nextIndex].leaderboardId;
+        this.setState({
+            leaderboardId,
+            activeLeaderboardIndex: nextIndex
+        });
+    };
+
     private allowLeaderboard = () => {
+        const { activeLeaderboardIndex } = this.state;
         const { leaderboards, updateLeaderboardConsent: updateConsent } = this.props;
-        const company = leaderboards[0];
+        const company = leaderboards[activeLeaderboardIndex];
         updateConsent({ leaderboardId: company.leaderboardId, consent: true });
     };
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    features: getUserFeatures(state),
-    leaderboards: getConsentedLeaderboards(state),
-    copy: getCopy(state, "leaderboards")
+    copy: getCopy(state, "leaderboards"),
+    totalCoins: getTotalCoins(state),
+    leaderboards: getAllLeaderboards(state),
+    consentedLeaderboards: getConsentedLeaderboards(state),
+    hasNotification: getHasNotification(state),
+    currentLevel: getCurrentLevel(state),
+    isOffline: getOfflineState(state)
 });
 
 const mapDispatchToProps = {
@@ -152,3 +187,16 @@ export default connect<ConnectedState, ConnectedDispatch>(
     mapStateToProps,
     mapDispatchToProps
 )(LeaderboardsContainer);
+
+function getNavbarColourScheme(currentWorld: number): COLOURS {
+    switch (currentWorld) {
+        case 3:
+            return COLOURS.MOUNTAIN;
+        case 2:
+            return COLOURS.DESERT;
+        case 1:
+        case 0:
+        default:
+            return COLOURS.LIGHT;
+    }
+}

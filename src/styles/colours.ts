@@ -33,7 +33,8 @@ export default {
         blue: {
             active: "rgba(29,100,163,1)",
             inactive: "rgba(29,100,163,0.4)",
-            pressed: "rgba(29,100,163,0.6)"
+            pressed: "rgba(29,100,163,0.6)",
+            activeIcon: "rgb(4, 39, 89)"
         },
         dark: {
             active: "rgba(64,98,94,1)",
@@ -48,21 +49,29 @@ export default {
         desert: {
             active: "rgba(84,12,0,1)",
             inactive: "rgba(84,12,0,0.4)",
-            pressed: "rgba(84,12,0,0.6)"
+            pressed: "rgba(84,12,0,0.6)",
+            activeIcon: "rgb(118, 92, 50)"
         },
         light: {
             active: "rgba(255,255,255,1)",
             inactive: "rgba(255,255,255,0.4)",
-            pressed: "rgba(255,255,255,0.2)"
+            pressed: "rgba(255,255,255,0.2)",
+            activeIcon: "rgb(51, 88, 84)"
         },
         pink: {
             active: "rgb(232,49,129)",
             inactive: "rgba(232,49,129,0.4)",
             pressed: "rgba(232,49,129,0.6)"
+        },
+        mountain: {
+            active: "rgb(150, 179, 204)",
+            inactive: "rgba(150, 179, 204, 0.4)",
+            pressed: "rgba(150, 179, 204, 0.6)",
+            activeIcon: "rgb(4, 39, 89)"
         }
     },
     navNotification: {
-        body: "rgb(171, 79, 79)",
+        body: "rgb(226, 1, 119)",
         border: "white"
     },
     picker: {

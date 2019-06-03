@@ -11,15 +11,17 @@ import * as React from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
+import { COLOURS } from "../../../../components/molecules";
 import { GetAllPurchases_getAllPurchases, GetRewards_getRewards } from "../../../../graphql/_core/schema";
 import { MODALS, ROUTES } from "../../../../navigation/constants";
 import { IMainTabsProps } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
-import { getHasNotification } from "../../../../redux/levels/levels.selectors";
+import { getCurrentLevel, getHasNotification } from "../../../../redux/levels/levels.selectors";
 import Logger from "../../../../services/logging/logger";
 import { formatMoney } from "../../../../services/money";
+import { getCurrentWorld } from "../../../../services/utils";
 import { PurchasedListScreen, RewardsListScreen } from "../../../screens";
 
 type Tab = "rewards" | "purchases";
@@ -82,7 +84,9 @@ class RewardsContainer extends PureComponent<Props, IState> {
 
     // all related to the rewards tab
     private renderRewards = ({ loading, data, refetch }: GetRewardsResultType) => {
-        const { hasNotification, labels, onLeftMenuPress, totalCoins } = this.props;
+        const { hasNotification, labels, onLeftMenuPress, totalCoins, currentLevel } = this.props;
+        const currentWorld = getCurrentWorld(currentLevel);
+        const navbarColour = getNavbarColourScheme(currentWorld);
 
         return (
             <RewardsListScreen
@@ -95,6 +99,8 @@ class RewardsContainer extends PureComponent<Props, IState> {
                 onRightTabPress={() => this.handleTabChange("purchases")}
                 loading={loading}
                 totalCoins={totalCoins}
+                currentWorld={currentWorld}
+                navbarColour={navbarColour}
             />
         );
     };
@@ -153,8 +159,10 @@ class RewardsContainer extends PureComponent<Props, IState> {
 
     // all related to the purchases tab
     private renderPurchases = ({ loading, data, refetch }: GetAllPurchasesResultType) => {
-        const { hasNotification, labels, onLeftMenuPress, totalCoins, copy } = this.props;
+        const { hasNotification, labels, onLeftMenuPress, totalCoins, copy, currentLevel } = this.props;
         const items = this.formatPuchaseItem(data.getAllPurchases);
+        const currentWorld = getCurrentWorld(currentLevel);
+        const navbarColour = getNavbarColourScheme(currentWorld);
 
         return (
             <PurchasedListScreen
@@ -167,6 +175,8 @@ class RewardsContainer extends PureComponent<Props, IState> {
                 loading={loading}
                 totalCoins={totalCoins}
                 copy={copy}
+                currentWorld={currentWorld}
+                navbarColour={navbarColour}
             />
         );
     };
@@ -228,7 +238,21 @@ class RewardsContainer extends PureComponent<Props, IState> {
 const mapStateToProps = (state: IReduxState) => ({
     hasNotification: getHasNotification(state),
     totalCoins: getTotalCoins(state),
-    copy: getCopy(state, "purchases")
+    copy: getCopy(state, "purchases"),
+    currentLevel: getCurrentLevel(state)
 });
 
 export default connect<ConnectedState>(mapStateToProps)(RewardsContainer);
+
+function getNavbarColourScheme(currentWorld: number): COLOURS {
+    switch (currentWorld) {
+        case 3:
+            return COLOURS.MOUNTAIN;
+        case 2:
+            return COLOURS.DESERT;
+        case 1:
+        case 0:
+        default:
+            return COLOURS.LIGHT;
+    }
+}

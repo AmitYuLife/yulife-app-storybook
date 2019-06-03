@@ -63,11 +63,25 @@ export const labels = [
         }
     },
     {
+        name: "leaderboard",
+        onPress: () => {
+            Navigation.mergeOptions(ROUTES.leaderboards, {
+                bottomTabs: {
+                    currentTabIndex: 2
+                },
+                statusBar: {
+                    drawBehind: false,
+                    visible: true
+                }
+            });
+        }
+    },
+    {
         name: "rewards",
         onPress: () => {
             Navigation.mergeOptions(ROUTES.rewards, {
                 bottomTabs: {
-                    currentTabIndex: 2
+                    currentTabIndex: 3
                 },
                 statusBar: {
                     drawBehind: false,
@@ -110,6 +124,24 @@ export const setAuthenticatedRoot = async () => {
                                             component: {
                                                 id: ROUTES.quests,
                                                 name: ROUTES.quests,
+                                                passProps: {
+                                                    labels,
+                                                    onLeftMenuPress
+                                                },
+                                                options: { bottomTabs }
+                                            }
+                                        }
+                                    ],
+                                    options: { bottomTabs, bottomTab }
+                                }
+                            },
+                            {
+                                stack: {
+                                    children: [
+                                        {
+                                            component: {
+                                                id: ROUTES.leaderboards,
+                                                name: ROUTES.leaderboards,
                                                 passProps: {
                                                     labels,
                                                     onLeftMenuPress

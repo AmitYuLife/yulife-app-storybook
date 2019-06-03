@@ -1,4 +1,4 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../styles";
 
 const styles = StyleSheet.create({
@@ -24,17 +24,27 @@ const styles = StyleSheet.create({
         height: 80,
         justifyContent: "flex-start",
         width: 280
-    } as ViewStyle
+    } as ViewStyle,
+    image: {
+        height: 113,
+        position: "absolute",
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: Style.DEVICE_WIDTH
+    } as ImageStyle
 });
 
 export function getLabelAdjustment(index: number) {
     switch (index) {
         case 0:
-            return { marginRight: 4 } as TextStyle;
+            return { marginLeft: 12 };
         case 1:
-            return { marginRight: 0 } as TextStyle;
+            return null;
         case 2:
-            return { marginRight: -4 } as TextStyle;
+            return null;
+        case 3:
+            return { marginRight: 12 };
         default:
             return null;
     }

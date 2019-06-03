@@ -25,6 +25,8 @@ export const UPDATE_USER_CONSENT_SUCCESS = "UPDATE_USER_CONSENT_SUCCESS";
 export const UPDATE_CONNECTION_START = "UPDATE_CONNECTION_START";
 export const UPDATE_CONNECTION_FAILED = "UPDATE_CONNECTION_FAILED";
 export const UPDATE_CONNECTION_SUCCESS = "UPDATE_CONNECTION_SUCCESS";
+export const UPDATE_LEADERBOARD_POPUP_VISIBILITY = "UPDATE_LEADERBOARD_POPUP_VISIBILITY";
+export const UPDATE_SURGE_POPUP_VISIBILITY = "UPDATE_SURGE_POPUP_VISIBILITY";
 export const LOGOUT = "LOGOUT";
 export const OPEN_MEMBER_ZONE = "OPEN_MEMBER_ZONE";
 
@@ -96,4 +98,14 @@ export const logOut = () => ({
 
 export const openMemberZone = () => ({
     type: OPEN_MEMBER_ZONE
+});
+
+export const updateLeaderboardPopupVisibility = (payload: boolean) => ({
+    type: UPDATE_LEADERBOARD_POPUP_VISIBILITY,
+    payload
+});
+
+export const updateSurgePopupVisibility = (payload: boolean) => ({
+    type: UPDATE_SURGE_POPUP_VISIBILITY,
+    payload
 });

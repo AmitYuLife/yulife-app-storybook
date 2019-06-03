@@ -1,11 +1,12 @@
 import { TAB_BUTTON } from "@ids";
-import * as React from "react";
 import { PureComponent } from "react";
-import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import * as React from "react";
+import { Image, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import Svg from "react-native-svg";
 import { Text } from "../../atoms";
 import { Giraffe, Lines, Notification, Scroll, Treasure } from "./assets";
-import { getIconColour, getNavBarColourScheme } from "./nav-bar.helpers";
+import Trophy from "./assets/trophy";
+import { getIconColour, getImage, getNavBarColourScheme } from "./nav-bar.helpers";
 import styles, { getLabelAdjustment } from "./nav-bar.styles";
 
 export interface ILabel {
@@ -20,18 +21,20 @@ export enum COLOURS {
     DARKER = "darker",
     DESERT = "desert",
     LIGHT = "light",
-    PINK = "pink"
+    PINK = "pink",
+    MOUNTAIN = "mountain"
 }
 
-export type IColours = "blue" | "dark" | "darker" | "desert" | "light" | "pink";
+export type IColours = "blue" | "dark" | "darker" | "desert" | "light" | "pink" | "mountain";
 
 interface IProps {
     activeIndex: number;
     hasNotification?: boolean;
     hasWhiteBackground?: boolean;
+    hasImage?: boolean;
     labels?: ILabel[];
+    currentWorld?: number;
     colour?: IColours;
-    areIconsHidden?: boolean;
     onDismissPress?: () => void;
 }
 
@@ -54,6 +57,10 @@ class NavBar extends PureComponent<IProps, IState> {
                 onPress: (): null => null
             },
             {
+                name: "leaderboard",
+                onPress: (): null => null
+            },
+            {
                 name: "rewards",
                 onPress: (): null => null
             }
@@ -70,72 +77,84 @@ class NavBar extends PureComponent<IProps, IState> {
             activeIndex,
             hasNotification,
             hasWhiteBackground,
+            hasImage,
             labels,
+            currentWorld,
             onDismissPress
         } = this.props;
         const { pressed } = this.state;
         const colourScheme = getNavBarColourScheme(colour);
 
         return (
-            <View style={styles.wrapper}>
-                <Svg width="252" height="62" viewBox="0 0 504 124">
-                    <Lines activeIndex={activeIndex} colourScheme={colourScheme} />
-                    <Giraffe
-                        isPressed={pressed === 0}
-                        isActive={activeIndex === 0}
-                        colourScheme={colourScheme}
-                        hasDismiss={!!onDismissPress}
-                        hasWhiteBackground={hasWhiteBackground}
-                    />
-                    <Scroll
-                        isPressed={pressed === 1}
-                        isActive={activeIndex === 1}
-                        colourScheme={colourScheme}
-                        hasDismiss={!!onDismissPress}
-                        hasWhiteBackground={hasWhiteBackground}
-                    />
-                    <Notification isVisible={hasNotification} />
-                    <Treasure
-                        isPressed={pressed === 2}
-                        isActive={activeIndex === 2}
-                        colourScheme={colourScheme}
-                        hasDismiss={!!onDismissPress}
-                        hasWhiteBackground={hasWhiteBackground}
-                    />
-                </Svg>
-                <View style={StyleSheet.flatten(styles.labelsWrapper)}>
-                    {labels.map(({ name, onPress }, index) => (
-                        <TouchableWithoutFeedback
-                            testID={TAB_BUTTON(name)}
-                            accessibilityLabel={activeIndex === index ? "active" : "inactive"}
-                            key={index}
-                            onPressIn={this.handlePressIn(index)}
-                            onPressOut={this.handlePressOut(
-                                activeIndex === 1 && index === 1 ? onDismissPress : onPress
-                            )}
-                        >
-                            <View style={styles.textWrapper}>
-                                <View style={getLabelAdjustment(index)}>
-                                    <Text
-                                        style={StyleSheet.flatten([
-                                            styles.text,
-                                            {
-                                                color: getIconColour(
-                                                    colourScheme,
-                                                    activeIndex === index,
-                                                    pressed === index
-                                                )
-                                            }
-                                        ])}
-                                    >
-                                        {name}
-                                    </Text>
+            <>
+                {hasImage ? <Image source={getImage(currentWorld)} style={styles.image} /> : null}
+                <View style={styles.wrapper}>
+                    <Svg width="252" height="62" viewBox="0 0 575 119">
+                        <Lines activeIndex={activeIndex} colourScheme={colourScheme} />
+                        <Giraffe
+                            isPressed={pressed === 0}
+                            isActive={activeIndex === 0}
+                            colourScheme={colourScheme}
+                            hasDismiss={!!onDismissPress}
+                            hasWhiteBackground={hasWhiteBackground}
+                        />
+                        <Scroll
+                            isPressed={pressed === 1}
+                            isActive={activeIndex === 1}
+                            colourScheme={colourScheme}
+                            hasDismiss={!!onDismissPress}
+                            hasWhiteBackground={hasWhiteBackground}
+                        />
+                        <Notification isVisible={hasNotification} />
+                        <Trophy
+                            isPressed={pressed === 2}
+                            isActive={activeIndex === 2}
+                            colourScheme={colourScheme}
+                            hasDismiss={!!onDismissPress}
+                            hasWhiteBackground={hasWhiteBackground}
+                        />
+                        <Treasure
+                            isPressed={pressed === 3}
+                            isActive={activeIndex === 3}
+                            colourScheme={colourScheme}
+                            hasDismiss={!!onDismissPress}
+                            hasWhiteBackground={hasWhiteBackground}
+                        />
+                    </Svg>
+                    <View style={StyleSheet.flatten(styles.labelsWrapper)}>
+                        {labels.map(({ name, onPress }, index) => (
+                            <TouchableWithoutFeedback
+                                testID={TAB_BUTTON(name)}
+                                accessibilityLabel={activeIndex === index ? "active" : "inactive"}
+                                key={index}
+                                onPressIn={this.handlePressIn(index)}
+                                onPressOut={this.handlePressOut(
+                                    activeIndex === 1 && index === 1 ? onDismissPress : onPress
+                                )}
+                            >
+                                <View style={styles.textWrapper}>
+                                    <View style={getLabelAdjustment(index)}>
+                                        <Text
+                                            style={StyleSheet.flatten([
+                                                styles.text,
+                                                {
+                                                    color: getIconColour(
+                                                        colourScheme,
+                                                        activeIndex === index,
+                                                        pressed === index
+                                                    )
+                                                }
+                                            ])}
+                                        >
+                                            {name}
+                                        </Text>
+                                    </View>
                                 </View>
-                            </View>
-                        </TouchableWithoutFeedback>
-                    ))}
+                            </TouchableWithoutFeedback>
+                        ))}
+                    </View>
                 </View>
-            </View>
+            </>
         );
     }
 

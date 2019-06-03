@@ -91,13 +91,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                 />
                 <TopBar type={UI.topBarType} onPressLeftIcon={onLeftMenuPress} coins={totalCoins} />
                 <View style={styles.navBarWrapper}>
-                    <NavBar
-                        activeIndex={1}
-                        areIconsHidden={false}
-                        colour={UI.navBarColour}
-                        hasNotification={false}
-                        labels={labels}
-                    />
+                    <NavBar activeIndex={1} colour={UI.navBarColour} hasNotification={false} labels={labels} />
                 </View>
             </SafeAreaView>
         );

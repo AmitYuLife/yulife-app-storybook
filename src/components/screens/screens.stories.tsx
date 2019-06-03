@@ -188,8 +188,16 @@ storiesOf("Screens", module)
                 topBarType: "default" as TopBarTypes
             }}
             copy={{
-                permission: "",
-                permissionCta: ""
+                copy: {
+                    permission: "",
+                    permissionCta: ""
+                },
+                popUpCopy: {
+                    leaderboardHeading: "",
+                    leaderboardSubheading: "",
+                    surgeHeading: "",
+                    surgeSubheading: ""
+                }
             }}
         />
     ))

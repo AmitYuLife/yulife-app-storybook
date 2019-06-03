@@ -7,8 +7,16 @@ ShallowWrapper {
     coinsToday={0}
     copy={
       Object {
-        "permission": "",
-        "permissionCta": "",
+        "copy": Object {
+          "permission": "",
+          "permissionCta": "",
+        },
+        "popUpCopy": Object {
+          "leaderboardHeading": "",
+          "leaderboardSubheading": "",
+          "surgeHeading": "",
+          "surgeSubheading": "",
+        },
       }
     }
     currentStreak={0}
@@ -422,8 +430,16 @@ ShallowWrapper {
     coinsToday={0}
     copy={
       Object {
-        "permission": "",
-        "permissionCta": "",
+        "copy": Object {
+          "permission": "",
+          "permissionCta": "",
+        },
+        "popUpCopy": Object {
+          "leaderboardHeading": "",
+          "leaderboardSubheading": "",
+          "surgeHeading": "",
+          "surgeSubheading": "",
+        },
       }
     }
     currentStreak={0}
@@ -809,8 +825,16 @@ ShallowWrapper {
     coinsToday={0}
     copy={
       Object {
-        "permission": "",
-        "permissionCta": "",
+        "copy": Object {
+          "permission": "",
+          "permissionCta": "",
+        },
+        "popUpCopy": Object {
+          "leaderboardHeading": "",
+          "leaderboardSubheading": "",
+          "surgeHeading": "",
+          "surgeSubheading": "",
+        },
       }
     }
     currentStreak={0}
@@ -1277,8 +1301,16 @@ ShallowWrapper {
     coinsToday={0}
     copy={
       Object {
-        "permission": "",
-        "permissionCta": "",
+        "copy": Object {
+          "permission": "",
+          "permissionCta": "",
+        },
+        "popUpCopy": Object {
+          "leaderboardHeading": "",
+          "leaderboardSubheading": "",
+          "surgeHeading": "",
+          "surgeSubheading": "",
+        },
       }
     }
     currentStreak={0}
@@ -1700,8 +1732,16 @@ ShallowWrapper {
     coinsToday={0}
     copy={
       Object {
-        "permission": "",
-        "permissionCta": "",
+        "copy": Object {
+          "permission": "",
+          "permissionCta": "",
+        },
+        "popUpCopy": Object {
+          "leaderboardHeading": "",
+          "leaderboardSubheading": "",
+          "surgeHeading": "",
+          "surgeSubheading": "",
+        },
       }
     }
     currentStreak={0}
@@ -2087,8 +2127,16 @@ ShallowWrapper {
     coinsToday={0}
     copy={
       Object {
-        "permission": "",
-        "permissionCta": "",
+        "copy": Object {
+          "permission": "",
+          "permissionCta": "",
+        },
+        "popUpCopy": Object {
+          "leaderboardHeading": "",
+          "leaderboardSubheading": "",
+          "surgeHeading": "",
+          "surgeSubheading": "",
+        },
       }
     }
     currentStreak={0}

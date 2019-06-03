@@ -53,6 +53,7 @@ ShallowWrapper {
     }
     labels={Array []}
     loading={false}
+    navbarColour="light"
     onLeftMenuPress={[MockFunction]}
     onLeftTabPress={[MockFunction]}
     onRightTabPress={[MockFunction]}
@@ -144,11 +145,10 @@ ShallowWrapper {
           }
         >
           <NavBar
-            activeIndex={2}
-            areIconsHidden={true}
-            colour="darker"
+            activeIndex={3}
+            colour="light"
+            hasImage={true}
             hasNotification={false}
-            hasWhiteBackground={true}
             labels={Array []}
           />
         </View>,
@@ -287,11 +287,10 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <NavBar
-            activeIndex={2}
-            areIconsHidden={true}
-            colour="darker"
+            activeIndex={3}
+            colour="light"
+            hasImage={true}
             hasNotification={false}
-            hasWhiteBackground={true}
             labels={Array []}
           />,
           "style": Object {
@@ -311,11 +310,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "activeIndex": 2,
-            "areIconsHidden": true,
-            "colour": "darker",
+            "activeIndex": 3,
+            "colour": "light",
+            "currentWorld": undefined,
+            "hasImage": true,
             "hasNotification": false,
-            "hasWhiteBackground": true,
             "labels": Array [],
           },
           "ref": null,
@@ -406,11 +405,10 @@ ShallowWrapper {
             }
           >
             <NavBar
-              activeIndex={2}
-              areIconsHidden={true}
-              colour="darker"
+              activeIndex={3}
+              colour="light"
+              hasImage={true}
               hasNotification={false}
-              hasWhiteBackground={true}
               labels={Array []}
             />
           </View>,
@@ -549,11 +547,10 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <NavBar
-              activeIndex={2}
-              areIconsHidden={true}
-              colour="darker"
+              activeIndex={3}
+              colour="light"
+              hasImage={true}
               hasNotification={false}
-              hasWhiteBackground={true}
               labels={Array []}
             />,
             "style": Object {
@@ -573,11 +570,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "activeIndex": 2,
-              "areIconsHidden": true,
-              "colour": "darker",
+              "activeIndex": 3,
+              "colour": "light",
+              "currentWorld": undefined,
+              "hasImage": true,
               "hasNotification": false,
-              "hasWhiteBackground": true,
               "labels": Array [],
             },
             "ref": null,
@@ -653,6 +650,7 @@ ShallowWrapper {
     data={Array []}
     labels={Array []}
     loading={false}
+    navbarColour="light"
     onLeftMenuPress={[MockFunction]}
     onLeftTabPress={[MockFunction]}
     onRightTabPress={[MockFunction]}
@@ -734,11 +732,10 @@ ShallowWrapper {
           }
         >
           <NavBar
-            activeIndex={2}
-            areIconsHidden={true}
-            colour="darker"
+            activeIndex={3}
+            colour="light"
+            hasImage={true}
             hasNotification={false}
-            hasWhiteBackground={true}
             labels={Array []}
           />
         </View>,
@@ -857,11 +854,10 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <NavBar
-            activeIndex={2}
-            areIconsHidden={true}
-            colour="darker"
+            activeIndex={3}
+            colour="light"
+            hasImage={true}
             hasNotification={false}
-            hasWhiteBackground={true}
             labels={Array []}
           />,
           "style": Object {
@@ -881,11 +877,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "activeIndex": 2,
-            "areIconsHidden": true,
-            "colour": "darker",
+            "activeIndex": 3,
+            "colour": "light",
+            "currentWorld": undefined,
+            "hasImage": true,
             "hasNotification": false,
-            "hasWhiteBackground": true,
             "labels": Array [],
           },
           "ref": null,
@@ -966,11 +962,10 @@ ShallowWrapper {
             }
           >
             <NavBar
-              activeIndex={2}
-              areIconsHidden={true}
-              colour="darker"
+              activeIndex={3}
+              colour="light"
+              hasImage={true}
               hasNotification={false}
-              hasWhiteBackground={true}
               labels={Array []}
             />
           </View>,
@@ -1089,11 +1084,10 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <NavBar
-              activeIndex={2}
-              areIconsHidden={true}
-              colour="darker"
+              activeIndex={3}
+              colour="light"
+              hasImage={true}
               hasNotification={false}
-              hasWhiteBackground={true}
               labels={Array []}
             />,
             "style": Object {
@@ -1113,11 +1107,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "activeIndex": 2,
-              "areIconsHidden": true,
-              "colour": "darker",
+              "activeIndex": 3,
+              "colour": "light",
+              "currentWorld": undefined,
+              "hasImage": true,
               "hasNotification": false,
-              "hasWhiteBackground": true,
               "labels": Array [],
             },
             "ref": null,

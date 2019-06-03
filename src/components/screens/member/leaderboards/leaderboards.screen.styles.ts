@@ -1,29 +1,17 @@
-import { ImageStyle, Platform, StyleSheet, ViewStyle } from "react-native";
+import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../styles";
 
-const getTop = () => {
-    if (isIphoneX()) {
-        return 40;
-    }
-
-    if (Platform.OS === "ios") {
-        return 15;
-    }
-
-    return 0;
-};
-
-const closeWrapperTopPosition = Platform.OS === "android" ? 15 : 5;
-
 export default StyleSheet.create({
-    arrowImageWrapper: {
-        bottom: 0 - Style.SCALE_UP_AND_DOWN(1),
-        flex: 0,
-        left: "50%",
-        position: "absolute",
-        transform: [{ translateX: 0 - Style.SCALE_UP_AND_DOWN(12) }],
-        width: Style.SCALE_UP_AND_DOWN(57)
+    image: {
+        height: Style.SCALE_UP_AND_DOWN(100),
+        width: "100%"
+    } as ImageStyle,
+    imageWrapper: {
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        position: "relative",
+        width: "100%"
     } as ViewStyle,
     backgroundImageBase: {
         width: "100%"
@@ -35,57 +23,44 @@ export default StyleSheet.create({
         top: 0,
         width: "100%"
     } as ViewStyle,
-    closeWrapper: {
-        height: 40,
-        width: 40,
-        padding: Style.SCALE_UP_AND_DOWN(10),
-        position: "absolute",
-        top: Style.SCALE_UP_AND_DOWN(getTop() + closeWrapperTopPosition),
-        right: Style.SCALE_UP_AND_DOWN(5),
-        elevation: 4,
-        zIndex: 4
+    topBarWrapper: {
+        zIndex: 3,
+        width: "100%"
     } as ViewStyle,
-    closeButton: {
-        ...StyleSheet.absoluteFillObject,
-        justifyContent: "center",
+    list: {
+        width: "100%",
+        backgroundColor: "white",
+        flex: 1,
+        overflow: "hidden"
+    } as ViewStyle,
+    leaderboardList: {
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        top: 0
+    } as ViewStyle,
+    listWrapperMargin: {
+        marginBottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 70 : 113),
         alignItems: "center"
     } as ViewStyle,
-    giraffeImageWrapper: {
-        flexDirection: "row",
-        justifyContent: "flex-end",
-        paddingRight: Style.SCALE_UP_AND_DOWN(15),
-        position: "relative",
-        width: "100%"
-    } as ViewStyle,
-    flatlistContainer: {
-        width: Style.DEVICE_WIDTH - Style.SCALE_UP_AND_DOWN(30)
-    } as ViewStyle,
-    header: {
-        position: "absolute",
-        top: getTop(),
-        width: "100%"
-    } as ViewStyle,
-    expandedList: {
-        flex: 1,
-        paddingHorizontal: Style.SCALE_UP_AND_DOWN(15),
-        width: "100%"
-    } as ViewStyle,
-    shrinkedList: {
-        height: Style.DEVICE_HEIGHT - Style.SCALE_UP_AND_DOWN(230),
-        paddingHorizontal: Style.SCALE_UP_AND_DOWN(15),
-        width: "100%"
-    } as ViewStyle,
     wrapper: {
-        backgroundColor: "white",
         flex: 1
     } as ViewStyle,
-    loaderWrapper: { position: "absolute", left: 0, right: 0 } as ViewStyle,
-    simpleLeaderboardHidden: {
-        top: Style.SCALE_UP_AND_DOWN(50)
+    grayscaleWrapper: {
+        backgroundColor: "rgb(236, 236, 236)"
     } as ViewStyle,
-    simpleLeaderboardShown: {
-        top: Style.SCALE_UP_AND_DOWN(180)
+    navbarWrapper: {
+        alignItems: "center",
+        justifyContent: "center",
+        bottom: 0,
+        left: 0,
+        paddingBottom: Style.SCALE_UP_AND_DOWN(17),
+        paddingTop: Style.SCALE_UP_AND_DOWN(8),
+        position: "absolute",
+        right: 0
     } as ViewStyle,
-    simpleLeaderboardWrapper: { zIndex: 3 } as ViewStyle,
-    simpleLeaderboardPosition: { position: "absolute", width: "100%" } as ViewStyle
+    leaderboardOfflineWrapper: { justifyContent: "center", alignItems: "center", flex: 1 } as ViewStyle,
+    leaderboardOfflineImage: { position: "absolute", bottom: 0, left: 0, right: 0, width: "100%" } as ImageStyle,
+    leaderboardOfflineText: { fontSize: Style.SCALE_UP_AND_DOWN(20), lineHeight: Style.SCALE_UP_AND_DOWN(20) }
 });

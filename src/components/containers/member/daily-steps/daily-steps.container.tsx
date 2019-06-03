@@ -22,7 +22,8 @@ import { getChallengesStatus, getCurrentLevel, getHasNotification } from "../../
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
 import { getStreaks } from "../../../../redux/streaks/streaks.selectors";
 import { getDailyStepsTheme } from "../../../../redux/theme/theme.selectors";
-import { getUserFeatures } from "../../../../redux/user/user.selectors";
+import { updateLeaderboardPopupVisibility, updateSurgePopupVisibility } from "../../../../redux/user/user.actions";
+import { getUserFeatures, getVisiblePopups } from "../../../../redux/user/user.selectors";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
 import { DailyStepsScreen } from "../../../screens";
 
@@ -97,7 +98,9 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                         streaks,
                         theme,
                         totalCoins,
-                        copy
+                        copy,
+                        popUpCopy,
+                        popupVisibility
                     } = this.props;
                     const { dailyStepsLoading, lastUpdate } = this.state;
                     const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
@@ -127,7 +130,10 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                             steps={dailySteps}
                             theme={theme}
                             totalCoins={totalCoins}
-                            copy={copy}
+                            copy={{ copy, popUpCopy }}
+                            onUpdateLeaderboardPopupVisibility={this.props.updateLeaderboardPopupVisibility}
+                            onUpdateSurgePopupVisibility={this.props.updateSurgePopupVisibility}
+                            popupVisibility={popupVisibility}
                         />
                     );
                 }}
@@ -204,12 +210,17 @@ const mapStateToProps = (state: IReduxState) => ({
     streaks: getStreaks(state),
     theme: getDailyStepsTheme(state),
     totalCoins: getTotalCoins(state),
-    copy: getCopy(state, "dailyStepsFitKitAuthorise")
+    copy: getCopy(state, "dailyStepsFitKitAuthorise"),
+    popUpCopy: getCopy(state, "popUp"),
+    popupVisibility: getVisiblePopups(state),
+    state
 });
 
 const mapDispatchToProps = {
     dailyStepsCoinClicked,
-    startDailySteps
+    startDailySteps,
+    updateLeaderboardPopupVisibility,
+    updateSurgePopupVisibility
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(

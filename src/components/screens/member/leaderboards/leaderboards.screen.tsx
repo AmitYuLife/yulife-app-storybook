@@ -1,31 +1,18 @@
-import { LEADERBOARD_SCREEN } from "@ids";
-import { Leaderboard } from "@redux/user/user.selectors";
+import { GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn } from "@app/graphql/_core/schema";
+import { ILeaderboard } from "@redux/user/user.reducer";
 import * as React from "react";
-import { PureComponent } from "react";
-import {
-    Animated,
-    FlatList,
-    Image,
-    LayoutChangeEvent,
-    NativeScrollEvent,
-    NativeSyntheticEvent,
-    SafeAreaView,
-    StyleSheet,
-    TouchableOpacity,
-    View,
-    ViewStyle
-} from "react-native";
+import { Image, SafeAreaView, StyleSheet, View } from "react-native";
+import FastImage from "react-native-fast-image";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
-import { GetMobileCopy_getMobileCopy_screens_leaderboards } from "../../../../graphql/_core/schema";
-import { Style } from "../../../../styles";
-import { Close, Loading, Pad } from "../../../atoms";
-import { YulifeRefreshHeader } from "../../../molecules";
-import assets from "./assets";
-import LeaderboardHeader from "./leaderboard-header/leaderboard-header";
+import { Loading } from "../../../atoms";
+import { COLOURS, ILabel, NavBar, TopBar, YulifeRefreshHeader } from "../../../molecules";
+import assets, { AssetType } from "./assets";
+import LeaderboardConsent from "./leaderboard-consent/leaderboard-consent";
+import LeaderboardDropdown from "./leaderboard-dropdown/leaderboard-dropdown";
+import LeaderboardToggle from "./leaderboard-dropdown/leaderboard-toggle";
 import LeaderboardItem from "./leaderboard-item/leaderboard-item";
 import { LEADERBOARD_ITEM_HEIGHT } from "./leaderboard-item/leaderboard-item.styles";
-import LeaderboardPositionScroll from "./leaderboard-position-scroll/leaderboard-position-scroll";
-import SimpleLeaderboardPosition from "./leaderboard-simple.screen";
+import LeaderboardTabs from "./leaderboard-tabs/leaderboard-tabs";
 import styles from "./leaderboards.screen.styles";
 
 export type LeaderboardTypes = "coins" | "steps";
@@ -40,48 +27,68 @@ export interface IItem {
 }
 
 interface IProps {
-    isAdvanced: boolean;
+    activeLeaderboardIndex: number;
+    currentWorld: number;
     initialScrollIndex: number;
-    leaderboards: Leaderboard[];
+    labels: ILabel[];
+    leaderboards: ILeaderboard[];
+    hasNotification: boolean;
     items: IItem[];
     isLoading: boolean;
+    isMindfulAvailable: boolean;
     onHandleCoinsRefetch: () => void;
-    onPressClose: () => void;
     onHandleStepsRefetch: () => void;
+    onHandleMindfulMinsRefetch: () => void;
     onLeaderboardChange: (index: number) => void;
     onRefetch: () => void;
     sortBy: string;
-    copy: GetMobileCopy_getMobileCopy_screens_leaderboards;
+    totalCoins: number;
+    onLeftMenuPress: () => void;
+    // Consent props
+    onAllowLeaderboard: () => void;
+    onPrivacyPolicyPress: () => void;
+    onRefuseConsent: () => void;
+    copy: GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn;
+    navbarColour: COLOURS;
 }
 
 const initialState = {
-    hasChanged: false,
-    height: 0,
-    activePage: 0,
-    isScrolling: false,
-    isTopHidden: false
+    isShowingDropdown: false
 };
 
 type IState = typeof initialState;
 
-export default class LeaderboardScreen extends PureComponent<IProps, IState> {
+export default class LeaderboardScreen extends React.PureComponent<IProps, IState> {
     public largeList: LargeList;
-    public flatList: FlatList<any>;
-    public viewRef: View;
     public state = initialState;
 
-    private top3Y = new Animated.Value(0);
     private timeout: NodeJS.Timer = null;
 
-    public componentDidUpdate() {
-        const { isLoading, initialScrollIndex } = this.props;
+    public componentDidUpdate(prevProps: IProps) {
+        const { isLoading, items, initialScrollIndex } = this.props;
 
         if (!isLoading) {
             this.timeout = global.setTimeout(() => {
-                if (this.largeList) {
-                    this.largeList.scrollTo({ x: 0, y: initialScrollIndex * LEADERBOARD_ITEM_HEIGHT });
+                if (this.largeList && items.length > 0 && initialScrollIndex !== -1) {
+                    try {
+                        this.largeList.scrollTo({ x: 0, y: initialScrollIndex * LEADERBOARD_ITEM_HEIGHT });
+                    } catch (err) {
+                        // console.log("err: ", err);
+                    }
                 }
             }, 1000);
+        }
+
+        if (
+            prevProps.activeLeaderboardIndex === this.props.activeLeaderboardIndex &&
+            prevProps.leaderboards.length &&
+            this.props.leaderboards.length &&
+            !prevProps.leaderboards[prevProps.activeLeaderboardIndex].consent &&
+            this.props.leaderboards[this.props.activeLeaderboardIndex].consent
+        ) {
+            if (this.largeList) {
+                this.handleRefresh();
+            }
         }
     }
 
@@ -92,83 +99,102 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
     }
 
     public render() {
-        const { isTopHidden, height, activePage } = this.state;
+        const { isShowingDropdown } = this.state;
         const {
-            isAdvanced,
+            activeLeaderboardIndex,
             isLoading,
-            onPressClose,
-            items,
+            hasNotification,
+            items = [],
+            totalCoins,
             leaderboards,
-            onHandleCoinsRefetch,
-            onHandleStepsRefetch,
             sortBy,
-            copy
+            currentWorld,
+            labels,
+            onLeftMenuPress,
+            onPrivacyPolicyPress,
+            onRefuseConsent,
+            copy,
+            isMindfulAvailable,
+            navbarColour
         } = this.props;
-        return (
-            <SafeAreaView style={styles.wrapper} testID={LEADERBOARD_SCREEN}>
-                {isAdvanced ? (
-                    <LeaderboardPositionScroll
-                        items={items}
-                        height={height}
-                        pages={leaderboards}
-                        activePage={activePage}
-                        isHidden={isTopHidden}
-                        isLoading={isLoading}
-                        onSwipeEnd={this.onChangeActiveLeaderboard}
-                        copy={copy}
-                    />
-                ) : (
-                    <SimpleLeaderboardPosition
-                        isLoading={isLoading}
-                        isTopHidden={isTopHidden}
-                        items={items}
-                        copy={copy}
-                    />
-                )}
-                <Animated.View
-                    onLayout={(event: LayoutChangeEvent) => this.measureView(event)}
-                    style={{ transform: [{ translateY: this.top3Y }] }}
-                >
-                    <View style={styles.backgroundImageWrapper}>
-                        <Image style={styles.backgroundImageBase} source={assets.background} />
-                    </View>
+        const activeLeaderboard = leaderboards.length > 0 && leaderboards[activeLeaderboardIndex];
 
-                    <Pad height={275} />
-                    <View style={styles.giraffeImageWrapper}>
-                        <Image source={assets.giraffe} />
-                        <TouchableOpacity style={styles.arrowImageWrapper} onPressIn={this.handlePressImage}>
-                            <Image source={isTopHidden ? assets.arrowDown : assets.arrowUp} />
-                        </TouchableOpacity>
-                    </View>
-                    <LeaderboardHeader
-                        onCoinPress={onHandleCoinsRefetch}
-                        onStepsPress={onHandleStepsRefetch}
-                        sortBy={sortBy}
-                    />
-                </Animated.View>
-                <View style={styles.closeWrapper}>
-                    <Close style={styles.closeButton} onPress={onPressClose} />
+        return (
+            <SafeAreaView style={styles.wrapper}>
+                <View style={styles.backgroundImageWrapper}>
+                    <Image resizeMethod="scale" style={styles.backgroundImageBase} source={assets.background} />
                 </View>
-                <Animated.View
-                    style={StyleSheet.flatten([
-                        isTopHidden ? styles.shrinkedList : styles.expandedList,
-                        { transform: [{ translateY: this.top3Y }] }
-                    ] as ViewStyle)}
-                >
-                    <LargeList
-                        ref={this.setLargeListRef}
-                        renderIndexPath={this.renderIndexPath}
-                        heightForIndexPath={this.getHeight}
-                        showsVerticalScrollIndicator={false}
-                        data={[{ items }]}
-                        onRefresh={this.handleRefresh}
-                        renderEmpty={Loading}
-                        refreshHeader={YulifeRefreshHeader}
+                <TopBar coins={totalCoins} type="default" onPressLeftIcon={onLeftMenuPress} />
+                <View style={styles.imageWrapper}>
+                    <FastImage style={styles.image} source={assets[sortBy as AssetType]} />
+                </View>
+
+                <LeaderboardToggle
+                    leaderboards={leaderboards}
+                    onToggleDropdown={this.toggleDropdown}
+                    isShowingDropdown={isShowingDropdown}
+                    activePage={activeLeaderboardIndex}
+                />
+
+                <View style={StyleSheet.flatten([styles.list, styles.listWrapperMargin])}>
+                    {activeLeaderboard && !activeLeaderboard.consent ? null : (
+                        <LeaderboardTabs
+                            sortBy={sortBy}
+                            onHandleTabPress={this.handleTabPress}
+                            isMindfulAvailable={isMindfulAvailable}
+                        />
+                    )}
+                    {activeLeaderboard && !activeLeaderboard.consent ? (
+                        <LeaderboardConsent
+                            isLoading={activeLeaderboard.isLoading}
+                            onAllowLeaderboard={this.allowLeaderboard}
+                            onPrivacyPolicyPress={onPrivacyPolicyPress}
+                            onRefuseConsent={onRefuseConsent}
+                            copy={copy}
+                        />
+                    ) : isLoading ? (
+                        <Loading />
+                    ) : (
+                        <LargeList
+                            style={styles.list}
+                            ref={this.setLargeListRef}
+                            renderIndexPath={this.renderIndexPath}
+                            heightForIndexPath={this.getHeight}
+                            showsVerticalScrollIndicator={false}
+                            data={[{ items }]}
+                            onRefresh={this.handleRefresh}
+                            renderEmpty={Loading}
+                            refreshHeader={YulifeRefreshHeader}
+                        />
+                    )}
+                    <LeaderboardDropdown
+                        activePage={activeLeaderboardIndex}
+                        initialScrollIndex={activeLeaderboardIndex}
+                        leaderboards={leaderboards}
+                        isShowingDropdown={isShowingDropdown}
+                        onChangeActiveLeaderboard={this.onChangeActiveLeaderboard}
+                        onToggleDropdown={this.toggleDropdown}
                     />
-                </Animated.View>
+                </View>
+                <View style={styles.navbarWrapper}>
+                    <NavBar
+                        activeIndex={2}
+                        hasImage={true}
+                        colour={navbarColour}
+                        currentWorld={currentWorld}
+                        hasNotification={hasNotification}
+                        labels={labels}
+                    />
+                </View>
             </SafeAreaView>
         );
     }
+
+    private toggleDropdown = () => {
+        this.setState(({ isShowingDropdown }) => ({
+            isShowingDropdown: !isShowingDropdown
+        }));
+    };
 
     private setLargeListRef = (ref: LargeList) => {
         this.largeList = ref;
@@ -177,16 +203,26 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
     private getHeight = () => LEADERBOARD_ITEM_HEIGHT;
 
     private renderIndexPath = ({ row }: IndexPath) => {
-        const { items, initialScrollIndex } = this.props;
+        const { items, initialScrollIndex, sortBy } = this.props;
         const item = items[row];
 
         if (item) {
             return (
-                <LeaderboardItem {...item} isCurrentUser={row === initialScrollIndex} rank={row + 1} key={item.id} />
+                <LeaderboardItem
+                    {...item}
+                    isCurrentUser={row === initialScrollIndex}
+                    sortBy={sortBy}
+                    rank={row + 1}
+                    key={item.id}
+                />
             );
         }
 
         return null;
+    };
+
+    private allowLeaderboard = () => {
+        this.props.onAllowLeaderboard();
     };
 
     private handleRefresh = async () => {
@@ -194,30 +230,21 @@ export default class LeaderboardScreen extends PureComponent<IProps, IState> {
         this.largeList.endRefresh();
     };
 
-    private handlePressImage = () => {
-        const { isTopHidden } = this.state;
-        this.setState({ isScrolling: true, isTopHidden: !isTopHidden }, this.animate(isTopHidden ? 0 : -250));
+    private onChangeActiveLeaderboard = (activePage: number) => {
+        this.props.onLeaderboardChange(activePage);
     };
 
-    private animate = (toValue: number) => () => {
-        Animated.spring(this.top3Y, {
-            toValue,
-            useNativeDriver: true
-        }).start(() => this.setState({ isScrolling: false }));
-    };
-
-    private onChangeActiveLeaderboard = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-        let activePage = Math.ceil(event.nativeEvent.contentOffset.x / Style.DEVICE_WIDTH);
-        if (activePage === this.props.leaderboards.length) {
-            activePage = activePage - 1;
-        }
-
-        this.setState({ activePage }, () => this.props.onLeaderboardChange(activePage));
-    };
-
-    private measureView = (event: LayoutChangeEvent) => {
-        this.setState({
-            height: event.nativeEvent.layout.height
-        });
+    private handleTabPress = (activeTab: string) => {
+        return () => {
+            // add mindful mins refetch
+            switch (activeTab) {
+                case "coins":
+                    return this.props.onHandleCoinsRefetch();
+                case "steps":
+                    return this.props.onHandleStepsRefetch();
+                case "mindful":
+                    return this.props.onHandleMindfulMinsRefetch();
+            }
+        };
     };
 }

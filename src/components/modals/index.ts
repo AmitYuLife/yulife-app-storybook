@@ -6,6 +6,7 @@ export { default as CreateLeaderboardModal } from "./create-leaderboard/create-l
 export { default as CollectRewardModal } from "./collect-reward/collect-reward.modal";
 export { default as FeedbackModal } from "./feedback/feedback.modal";
 export { default as GenericModal } from "./generic-modal/generic-modal";
+export { default as GenericConnectionErrorModal } from "./generic-modal/generic-connection-error-modal";
 export { default as LeaderboardInviteModal } from "./leaderboard-invite/leaderboard-invite.modal";
 export { default as LevelUnavailableModal } from "./level-unavailable/level-unavailable.modal";
 export { default as MeditationSetUpModal } from "./meditation-set-up/meditation-set-up.modal";
