@@ -1,5 +1,6 @@
 /* tslint:disable */
-import React, { SFC } from "react";
+import * as React from "react";
+import { SFC } from "react";
 import Svg, { G, Circle, Line, Polyline } from "react-native-svg";
 import { Colours } from "../../../../../styles";
 import { ActivityIndicator, View } from "react-native";

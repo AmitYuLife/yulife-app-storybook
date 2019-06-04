@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pulse should render 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Pulse
+    backgroundColor="rgb(145,0,76)"
+    interval={1500}
+    pulseMaxSize={66}
+    size={50}
+    style={
+      Object {
+        "left": 187,
+        "top": 0,
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <AnimatedComponent
+        style={
+          Array [
+            Object {
+              "backgroundColor": "rgb(145,0,76)",
+              "borderRadius": 33,
+              "height": 48,
+              "opacity": 0.2,
+              "width": 48,
+            },
+            Object {
+              "left": 187,
+              "top": 0,
+            },
+          ]
+        }
+      />,
+      "style": Array [
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+          "position": "absolute",
+        },
+        Object {
+          "height": 66,
+          "marginLeft": -33,
+          "width": 66,
+        },
+        Object {
+          "top": 17,
+        },
+      ],
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "style": Array [
+          Object {
+            "backgroundColor": "rgb(145,0,76)",
+            "borderRadius": 33,
+            "height": 48,
+            "opacity": 0.2,
+            "width": 48,
+          },
+          Object {
+            "left": 187,
+            "top": 0,
+          },
+        ],
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <AnimatedComponent
+          style={
+            Array [
+              Object {
+                "backgroundColor": "rgb(145,0,76)",
+                "borderRadius": 33,
+                "height": 48,
+                "opacity": 0.2,
+                "width": 48,
+              },
+              Object {
+                "left": 187,
+                "top": 0,
+              },
+            ]
+          }
+        />,
+        "style": Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+            "position": "absolute",
+          },
+          Object {
+            "height": 66,
+            "marginLeft": -33,
+            "width": 66,
+          },
+          Object {
+            "top": 17,
+          },
+        ],
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "style": Array [
+            Object {
+              "backgroundColor": "rgb(145,0,76)",
+              "borderRadius": 33,
+              "height": 48,
+              "opacity": 0.2,
+              "width": 48,
+            },
+            Object {
+              "left": 187,
+              "top": 0,
+            },
+          ],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

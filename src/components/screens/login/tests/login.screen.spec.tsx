@@ -26,57 +26,56 @@ const defaultProps = {
 } as IProps;
 
 describe("LoginScreen", () => {
-
     it("should render", () => {
-        const actual = shallow(
-            <LoginScreen
-                {...defaultProps}
-            />
-        );
+        const actual = shallow(<LoginScreen {...defaultProps} />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render on Android", () => {
         Platform.OS = "android";
-        const actual = shallow(
-            <LoginScreen
-                {...defaultProps}
-            />
-        );
+        const actual = shallow(<LoginScreen {...defaultProps} />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render when showingKeyboard", () => {
-        const actual = shallow(
-            <LoginScreen
-                {...defaultProps}
-            />
-        );
+        const actual = shallow(<LoginScreen {...defaultProps} />);
         actual.setState({ isShowingKeyboard: true });
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render with login error", () => {
-        const actual = shallow(
-            <LoginScreen
-                {...defaultProps}
-                loginError="Bergatron error"
-            />
-        );
+        const actual = shallow(<LoginScreen {...defaultProps} loginError="Bergatron error" />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render as logging in", () => {
+        const actual = shallow(<LoginScreen {...defaultProps} isLoggingIn={true} />);
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render a login error", () => {
+        const actual = shallow(<LoginScreen {...defaultProps} isLoggingIn={true} />);
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render with a error on email input", () => {
         const actual = shallow(
-            <LoginScreen
-                {...defaultProps}
-                isLoggingIn={true}
-            />
+            <LoginScreen {...defaultProps} isLoggingIn={true} email={"e"} emailError={"Not a valid email"} />
         );
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render with a error on pw input", () => {
+        const actual = shallow(<LoginScreen {...defaultProps} isLoggingIn={true} password={"1"} />);
+
+        actual.setProps({ password: "", passwordError: "Please enter password" });
 
         expect(actual).toMatchSnapshot();
     });

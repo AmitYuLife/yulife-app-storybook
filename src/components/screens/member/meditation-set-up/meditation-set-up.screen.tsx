@@ -1,4 +1,4 @@
-import React, { SFC } from "react";
+import * as React from "react";
 import {
     Image,
     ImageRequireSource,
@@ -28,7 +28,7 @@ interface IProps {
     screens: IScreen[];
 }
 
-const MeditationSetUp: SFC<IProps> = ({
+const MeditationSetUp: React.SFC<IProps> = ({
     onPressBack,
     onPressClose,
     onPressCta,

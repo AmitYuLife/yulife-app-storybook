@@ -23,4 +23,10 @@ describe("ChallengeProgressScreen", () => {
 
         expect(actual).toMatchSnapshot();
     });
+
+    it("should match snapshot with meditation text ", () => {
+        const actual = shallow(<ChallengeProgressScreen {...defaultProps} challengeType="meditation" />);
+
+        expect(actual).toMatchSnapshot();
+    });
 });

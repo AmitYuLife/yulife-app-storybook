@@ -1,0 +1,596 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Screen4 should render 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <OnboardingScreenFour
+    onPressNext={[MockFunction]}
+    onPressPrevious={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <View
+        style={
+          Object {
+            "height": 550,
+            "marginBottom": 150,
+            "width": 750,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": 0,
+              "height": "100%",
+              "justifyContent": "flex-end",
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": "100%",
+            }
+          }
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/intro/onboarding-app-4.png",
+              }
+            }
+            style={
+              Object {
+                "height": 973.8199999999999,
+                "width": "100%",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "marginTop": "auto",
+              "width": "100%",
+            }
+          }
+        >
+          <TouchableOpacity
+            activeOpacity={0.2}
+            onPress={[MockFunction]}
+            style={
+              Object {
+                "height": 40,
+              }
+            }
+            testID="BUTTON_INTRO_SCREEN_4"
+          />
+          <TouchableOpacity
+            activeOpacity={0.2}
+            onPress={[MockFunction]}
+            style={
+              Object {
+                "height": 40,
+              }
+            }
+          />
+        </View>
+      </View>,
+      "style": Object {
+        "alignItems": "center",
+        "height": "100%",
+        "justifyContent": "center",
+        "width": 750,
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": 0,
+                "height": "100%",
+                "justifyContent": "flex-end",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "width": "100%",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/intro/onboarding-app-4.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 973.8199999999999,
+                  "width": "100%",
+                }
+              }
+            />
+          </View>,
+          <View
+            style={
+              Object {
+                "marginTop": "auto",
+                "width": "100%",
+              }
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.2}
+              onPress={[MockFunction]}
+              style={
+                Object {
+                  "height": 40,
+                }
+              }
+              testID="BUTTON_INTRO_SCREEN_4"
+            />
+            <TouchableOpacity
+              activeOpacity={0.2}
+              onPress={[MockFunction]}
+              style={
+                Object {
+                  "height": 40,
+                }
+              }
+            />
+          </View>,
+        ],
+        "style": Object {
+          "height": 550,
+          "marginBottom": 150,
+          "width": 750,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/intro/onboarding-app-4.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 973.8199999999999,
+                  "width": "100%",
+                }
+              }
+            />,
+            "style": Object {
+              "alignItems": "center",
+              "bottom": 0,
+              "height": "100%",
+              "justifyContent": "flex-end",
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "resizeMode": "cover",
+              "source": Object {
+                "testUri": "../../../assets/intro/onboarding-app-4.png",
+              },
+              "style": Object {
+                "height": 973.8199999999999,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <TouchableOpacity
+                activeOpacity={0.2}
+                onPress={[MockFunction]}
+                style={
+                  Object {
+                    "height": 40,
+                  }
+                }
+                testID="BUTTON_INTRO_SCREEN_4"
+              />,
+              <TouchableOpacity
+                activeOpacity={0.2}
+                onPress={[MockFunction]}
+                style={
+                  Object {
+                    "height": 40,
+                  }
+                }
+              />,
+            ],
+            "style": Object {
+              "marginTop": "auto",
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "activeOpacity": 0.2,
+                "onPress": [MockFunction],
+                "style": Object {
+                  "height": 40,
+                },
+                "testID": "BUTTON_INTRO_SCREEN_4",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "activeOpacity": 0.2,
+                "onPress": [MockFunction],
+                "style": Object {
+                  "height": 40,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <View
+          style={
+            Object {
+              "height": 550,
+              "marginBottom": 150,
+              "width": 750,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": 0,
+                "height": "100%",
+                "justifyContent": "flex-end",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "width": "100%",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/intro/onboarding-app-4.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 973.8199999999999,
+                  "width": "100%",
+                }
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "marginTop": "auto",
+                "width": "100%",
+              }
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.2}
+              onPress={[MockFunction]}
+              style={
+                Object {
+                  "height": 40,
+                }
+              }
+              testID="BUTTON_INTRO_SCREEN_4"
+            />
+            <TouchableOpacity
+              activeOpacity={0.2}
+              onPress={[MockFunction]}
+              style={
+                Object {
+                  "height": 40,
+                }
+              }
+            />
+          </View>
+        </View>,
+        "style": Object {
+          "alignItems": "center",
+          "height": "100%",
+          "justifyContent": "center",
+          "width": 750,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "bottom": 0,
+                  "height": "100%",
+                  "justifyContent": "flex-end",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": "100%",
+                }
+              }
+            >
+              <Image
+                resizeMode="cover"
+                source={
+                  Object {
+                    "testUri": "../../../assets/intro/onboarding-app-4.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 973.8199999999999,
+                    "width": "100%",
+                  }
+                }
+              />
+            </View>,
+            <View
+              style={
+                Object {
+                  "marginTop": "auto",
+                  "width": "100%",
+                }
+              }
+            >
+              <TouchableOpacity
+                activeOpacity={0.2}
+                onPress={[MockFunction]}
+                style={
+                  Object {
+                    "height": 40,
+                  }
+                }
+                testID="BUTTON_INTRO_SCREEN_4"
+              />
+              <TouchableOpacity
+                activeOpacity={0.2}
+                onPress={[MockFunction]}
+                style={
+                  Object {
+                    "height": 40,
+                  }
+                }
+              />
+            </View>,
+          ],
+          "style": Object {
+            "height": 550,
+            "marginBottom": 150,
+            "width": 750,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <Image
+                resizeMode="cover"
+                source={
+                  Object {
+                    "testUri": "../../../assets/intro/onboarding-app-4.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 973.8199999999999,
+                    "width": "100%",
+                  }
+                }
+              />,
+              "style": Object {
+                "alignItems": "center",
+                "bottom": 0,
+                "height": "100%",
+                "justifyContent": "flex-end",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "resizeMode": "cover",
+                "source": Object {
+                  "testUri": "../../../assets/intro/onboarding-app-4.png",
+                },
+                "style": Object {
+                  "height": 973.8199999999999,
+                  "width": "100%",
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <TouchableOpacity
+                  activeOpacity={0.2}
+                  onPress={[MockFunction]}
+                  style={
+                    Object {
+                      "height": 40,
+                    }
+                  }
+                  testID="BUTTON_INTRO_SCREEN_4"
+                />,
+                <TouchableOpacity
+                  activeOpacity={0.2}
+                  onPress={[MockFunction]}
+                  style={
+                    Object {
+                      "height": 40,
+                    }
+                  }
+                />,
+              ],
+              "style": Object {
+                "marginTop": "auto",
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "activeOpacity": 0.2,
+                  "onPress": [MockFunction],
+                  "style": Object {
+                    "height": 40,
+                  },
+                  "testID": "BUTTON_INTRO_SCREEN_4",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "activeOpacity": 0.2,
+                  "onPress": [MockFunction],
+                  "style": Object {
+                    "height": 40,
+                  },
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

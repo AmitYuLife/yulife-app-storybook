@@ -26,14 +26,7 @@ export { default as AnimatedChestScreen } from "./member/animated-chest/animated
 
 // quests screens
 export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";
-export { default as QuestsScreen, IChallenge } from "./member/quests/quests-screen/quests-screen";
-export { default as QuestsScrollScreen } from "./member/quests/quests-scroll-screen/quests-screen";
-export {
-    default as QuestsMovie
-} from "./member/quests/quests-screen/subcomponents/unity-movies/world-1/quests-movie/quests-movie";
-export {
-    default as QuestsNextEpisode
-} from "./member/quests/quests-screen/subcomponents/unity-movies/world-1/quests-next-episode/quests-next-episode";
+export { default as QuestsScrollScreen, IChallenge } from "./member/quests/quests-scroll-screen/quests-screen";
 export { default as ChallengeFailedScreen } from "./member/challenges/challenge-failed/challenge-failed.screen";
 export { default as ChallengeProgressScreen } from "./member/challenges/challenge-progress/challenge-progress.screen";
 export { default as ChallengeSuccessScreen } from "./member/challenges/challenge-success/challenge-success.screen";
@@ -55,5 +48,5 @@ export { default as WegiftRewardDetailsScreen } from "./member/rewards/details/w
 export { default as WegiftRewardConfirmedScreen } from "./member/rewards/confirmed/wegift-confirmed.screen";
 export { default as AviosRewardDetailsScreen } from "./member/rewards/details/avios-details.screen";
 
-export { default as GenericScreen } from "./member/generic-modal-screen/generic-modal.screen";
-export { default as FeedbackModalScreen } from "./member/feedback/feedback-modal.screen";
+export { default as GenericScreen } from "./member/generic-screen/generic.screen";
+export { default as FeedbackScreen } from "./member/feedback/feedback.screen";

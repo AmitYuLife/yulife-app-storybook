@@ -1,0 +1,1165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PurchasedItem should render a failed status 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <RewardsPurchasedItem
+    cost="775 yucoin"
+    day="29"
+    id="5cee812364d64600283a7f83"
+    month="May"
+    onPress={[MockFunction]}
+    reward="£10 Nike VOUCHER"
+    status="failed"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "width": 160,
+            }
+          }
+        >
+          <YuText
+            style={
+              Object {
+                "fontSize": 44,
+                "lineHeight": 44,
+              }
+            }
+          >
+            29
+          </YuText>
+          <YuText
+            style={
+              Object {
+                "fontSize": 28,
+              }
+            }
+          >
+            May
+          </YuText>
+        </View>,
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+            }
+          }
+        >
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "fontSize": 40,
+                "lineHeight": 44,
+              }
+            }
+          >
+            £10 Nike VOUCHER
+          </YuText>
+          <YuText
+            style={
+              Object {
+                "fontSize": 28,
+              }
+            }
+          >
+            775 yucoin
+          </YuText>
+        </View>,
+        <View
+          style={
+            Object {
+              "justifyContent": "flex-end",
+              "marginLeft": "auto",
+            }
+          }
+        >
+          <YuText
+            style={
+              Object {
+                "color": "rgb(255,102,102)",
+                "fontSize": 28,
+              }
+            }
+          >
+            failed
+          </YuText>
+        </View>,
+      ],
+      "onPress": [MockFunction],
+      "style": Object {
+        "borderBottomColor": "rgb(238,238,238)",
+        "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "height": 148,
+        "paddingBottom": 32,
+        "paddingTop": 38,
+        "width": "100%",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <YuText
+              style={
+                Object {
+                  "fontSize": 44,
+                  "lineHeight": 44,
+                }
+              }
+            >
+              29
+            </YuText>,
+            <YuText
+              style={
+                Object {
+                  "fontSize": 28,
+                }
+              }
+            >
+              May
+            </YuText>,
+          ],
+          "style": Object {
+            "flexDirection": "column",
+            "width": 160,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "29",
+              "style": Object {
+                "fontSize": 44,
+                "lineHeight": 44,
+              },
+            },
+            "ref": null,
+            "rendered": "29",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "May",
+              "style": Object {
+                "fontSize": 28,
+              },
+            },
+            "ref": null,
+            "rendered": "May",
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "fontSize": 40,
+                  "lineHeight": 44,
+                }
+              }
+            >
+              £10 Nike VOUCHER
+            </YuText>,
+            <YuText
+              style={
+                Object {
+                  "fontSize": 28,
+                }
+              }
+            >
+              775 yucoin
+            </YuText>,
+          ],
+          "style": Object {
+            "flex": 1,
+            "flexDirection": "column",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "bold": true,
+              "children": "£10 Nike VOUCHER",
+              "style": Object {
+                "fontSize": 40,
+                "lineHeight": 44,
+              },
+            },
+            "ref": null,
+            "rendered": "£10 Nike VOUCHER",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "775 yucoin",
+              "style": Object {
+                "fontSize": 28,
+              },
+            },
+            "ref": null,
+            "rendered": "775 yucoin",
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <YuText
+            style={
+              Object {
+                "color": "rgb(255,102,102)",
+                "fontSize": 28,
+              }
+            }
+          >
+            failed
+          </YuText>,
+          "style": Object {
+            "justifyContent": "flex-end",
+            "marginLeft": "auto",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "failed",
+            "style": Object {
+              "color": "rgb(255,102,102)",
+              "fontSize": 28,
+            },
+          },
+          "ref": null,
+          "rendered": "failed",
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "width": 160,
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "fontSize": 44,
+                  "lineHeight": 44,
+                }
+              }
+            >
+              29
+            </YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 28,
+                }
+              }
+            >
+              May
+            </YuText>
+          </View>,
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+              }
+            }
+          >
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "fontSize": 40,
+                  "lineHeight": 44,
+                }
+              }
+            >
+              £10 Nike VOUCHER
+            </YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 28,
+                }
+              }
+            >
+              775 yucoin
+            </YuText>
+          </View>,
+          <View
+            style={
+              Object {
+                "justifyContent": "flex-end",
+                "marginLeft": "auto",
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(255,102,102)",
+                  "fontSize": 28,
+                }
+              }
+            >
+              failed
+            </YuText>
+          </View>,
+        ],
+        "onPress": [MockFunction],
+        "style": Object {
+          "borderBottomColor": "rgb(238,238,238)",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "height": 148,
+          "paddingBottom": 32,
+          "paddingTop": 38,
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 44,
+                    "lineHeight": 44,
+                  }
+                }
+              >
+                29
+              </YuText>,
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 28,
+                  }
+                }
+              >
+                May
+              </YuText>,
+            ],
+            "style": Object {
+              "flexDirection": "column",
+              "width": 160,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "29",
+                "style": Object {
+                  "fontSize": 44,
+                  "lineHeight": 44,
+                },
+              },
+              "ref": null,
+              "rendered": "29",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "May",
+                "style": Object {
+                  "fontSize": 28,
+                },
+              },
+              "ref": null,
+              "rendered": "May",
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 40,
+                    "lineHeight": 44,
+                  }
+                }
+              >
+                £10 Nike VOUCHER
+              </YuText>,
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 28,
+                  }
+                }
+              >
+                775 yucoin
+              </YuText>,
+            ],
+            "style": Object {
+              "flex": 1,
+              "flexDirection": "column",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "bold": true,
+                "children": "£10 Nike VOUCHER",
+                "style": Object {
+                  "fontSize": 40,
+                  "lineHeight": 44,
+                },
+              },
+              "ref": null,
+              "rendered": "£10 Nike VOUCHER",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "775 yucoin",
+                "style": Object {
+                  "fontSize": 28,
+                },
+              },
+              "ref": null,
+              "rendered": "775 yucoin",
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <YuText
+              style={
+                Object {
+                  "color": "rgb(255,102,102)",
+                  "fontSize": 28,
+                }
+              }
+            >
+              failed
+            </YuText>,
+            "style": Object {
+              "justifyContent": "flex-end",
+              "marginLeft": "auto",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "failed",
+              "style": Object {
+                "color": "rgb(255,102,102)",
+                "fontSize": 28,
+              },
+            },
+            "ref": null,
+            "rendered": "failed",
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`PurchasedItem should render with details & tabs 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <RewardsPurchasedItem
+    cost="775 yucoin"
+    day="29"
+    id="5cee812364d64600283a7f83"
+    month="May"
+    onPress={[MockFunction]}
+    reward="£10 Nike VOUCHER"
+    status="approved"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "width": 160,
+            }
+          }
+        >
+          <YuText
+            style={
+              Object {
+                "fontSize": 44,
+                "lineHeight": 44,
+              }
+            }
+          >
+            29
+          </YuText>
+          <YuText
+            style={
+              Object {
+                "fontSize": 28,
+              }
+            }
+          >
+            May
+          </YuText>
+        </View>,
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+            }
+          }
+        >
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "fontSize": 40,
+                "lineHeight": 44,
+              }
+            }
+          >
+            £10 Nike VOUCHER
+          </YuText>
+          <YuText
+            style={
+              Object {
+                "fontSize": 28,
+              }
+            }
+          >
+            775 yucoin
+          </YuText>
+        </View>,
+        <View
+          style={
+            Object {
+              "justifyContent": "flex-end",
+              "marginLeft": "auto",
+            }
+          }
+        >
+          <YuText
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontSize": 28,
+              }
+            }
+          >
+            
+          </YuText>
+        </View>,
+      ],
+      "onPress": [MockFunction],
+      "style": Object {
+        "borderBottomColor": "rgb(238,238,238)",
+        "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "height": 148,
+        "paddingBottom": 32,
+        "paddingTop": 38,
+        "width": "100%",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <YuText
+              style={
+                Object {
+                  "fontSize": 44,
+                  "lineHeight": 44,
+                }
+              }
+            >
+              29
+            </YuText>,
+            <YuText
+              style={
+                Object {
+                  "fontSize": 28,
+                }
+              }
+            >
+              May
+            </YuText>,
+          ],
+          "style": Object {
+            "flexDirection": "column",
+            "width": 160,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "29",
+              "style": Object {
+                "fontSize": 44,
+                "lineHeight": 44,
+              },
+            },
+            "ref": null,
+            "rendered": "29",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "May",
+              "style": Object {
+                "fontSize": 28,
+              },
+            },
+            "ref": null,
+            "rendered": "May",
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "fontSize": 40,
+                  "lineHeight": 44,
+                }
+              }
+            >
+              £10 Nike VOUCHER
+            </YuText>,
+            <YuText
+              style={
+                Object {
+                  "fontSize": 28,
+                }
+              }
+            >
+              775 yucoin
+            </YuText>,
+          ],
+          "style": Object {
+            "flex": 1,
+            "flexDirection": "column",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "bold": true,
+              "children": "£10 Nike VOUCHER",
+              "style": Object {
+                "fontSize": 40,
+                "lineHeight": 44,
+              },
+            },
+            "ref": null,
+            "rendered": "£10 Nike VOUCHER",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "775 yucoin",
+              "style": Object {
+                "fontSize": 28,
+              },
+            },
+            "ref": null,
+            "rendered": "775 yucoin",
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <YuText
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontSize": 28,
+              }
+            }
+          >
+            
+          </YuText>,
+          "style": Object {
+            "justifyContent": "flex-end",
+            "marginLeft": "auto",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "",
+            "style": Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 28,
+            },
+          },
+          "ref": null,
+          "rendered": "",
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "width": 160,
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "fontSize": 44,
+                  "lineHeight": 44,
+                }
+              }
+            >
+              29
+            </YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 28,
+                }
+              }
+            >
+              May
+            </YuText>
+          </View>,
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+              }
+            }
+          >
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "fontSize": 40,
+                  "lineHeight": 44,
+                }
+              }
+            >
+              £10 Nike VOUCHER
+            </YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 28,
+                }
+              }
+            >
+              775 yucoin
+            </YuText>
+          </View>,
+          <View
+            style={
+              Object {
+                "justifyContent": "flex-end",
+                "marginLeft": "auto",
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontSize": 28,
+                }
+              }
+            >
+              
+            </YuText>
+          </View>,
+        ],
+        "onPress": [MockFunction],
+        "style": Object {
+          "borderBottomColor": "rgb(238,238,238)",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "height": 148,
+          "paddingBottom": 32,
+          "paddingTop": 38,
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 44,
+                    "lineHeight": 44,
+                  }
+                }
+              >
+                29
+              </YuText>,
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 28,
+                  }
+                }
+              >
+                May
+              </YuText>,
+            ],
+            "style": Object {
+              "flexDirection": "column",
+              "width": 160,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "29",
+                "style": Object {
+                  "fontSize": 44,
+                  "lineHeight": 44,
+                },
+              },
+              "ref": null,
+              "rendered": "29",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "May",
+                "style": Object {
+                  "fontSize": 28,
+                },
+              },
+              "ref": null,
+              "rendered": "May",
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 40,
+                    "lineHeight": 44,
+                  }
+                }
+              >
+                £10 Nike VOUCHER
+              </YuText>,
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 28,
+                  }
+                }
+              >
+                775 yucoin
+              </YuText>,
+            ],
+            "style": Object {
+              "flex": 1,
+              "flexDirection": "column",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "bold": true,
+                "children": "£10 Nike VOUCHER",
+                "style": Object {
+                  "fontSize": 40,
+                  "lineHeight": 44,
+                },
+              },
+              "ref": null,
+              "rendered": "£10 Nike VOUCHER",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "775 yucoin",
+                "style": Object {
+                  "fontSize": 28,
+                },
+              },
+              "ref": null,
+              "rendered": "775 yucoin",
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <YuText
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontSize": 28,
+                }
+              }
+            >
+              
+            </YuText>,
+            "style": Object {
+              "justifyContent": "flex-end",
+              "marginLeft": "auto",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "",
+              "style": Object {
+                "color": "rgb(51,51,51)",
+                "fontSize": 28,
+              },
+            },
+            "ref": null,
+            "rendered": "",
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

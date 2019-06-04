@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import * as React from "react";
 import { ScrollView, View } from "react-native";
 import { Style } from "../../../../../styles";
 import { Pad, Text } from "../../../../atoms";
@@ -25,7 +25,7 @@ interface IContainerProps {
 
 type Props = IServerProps & IContainerProps;
 
-class RewardsConfirmed extends PureComponent<Props> {
+class RewardsConfirmed extends React.PureComponent<Props> {
     public render() {
         const {
             onPressCancel,
@@ -49,8 +49,8 @@ class RewardsConfirmed extends PureComponent<Props> {
                     {status === "delivered"
                         ? CardStates.Delivered
                         : status === "failed"
-                            ? CardStates.Failed
-                            : CardStates.Pending}
+                        ? CardStates.Failed
+                        : CardStates.Pending}
 
                     <View style={styles.rewardNameWrapper}>
                         <Text style={styles.rewardName} bold={true}>

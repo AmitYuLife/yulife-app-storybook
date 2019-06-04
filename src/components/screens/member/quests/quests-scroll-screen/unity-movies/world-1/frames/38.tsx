@@ -1,5 +1,5 @@
 /* tslint:disable */
-import React from "react";
+import * as React from "react";
 import Svg, { LinearGradient, Circle, Polygon, G, Ellipse, Stop, Rect, Path, Line } from "react-native-svg";
 import { platformAdjustments } from "./helpers";
 import styles, { height, width } from "../../unity.styles";

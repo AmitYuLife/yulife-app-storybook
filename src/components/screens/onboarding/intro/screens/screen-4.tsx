@@ -1,10 +1,10 @@
 import { BUTTON_INTRO_SCREEN } from "@ids";
-import React, { PureComponent } from "react";
+import * as React from "react";
 import { Image, TouchableOpacity, View } from "react-native";
 import styles from "./screen-3.styles";
 import { IScreenProps } from "./screen.models";
 
-class OnboardingScreenFour extends PureComponent<IScreenProps> {
+class OnboardingScreenFour extends React.PureComponent<IScreenProps> {
     public render() {
         const { onPressNext, onPressPrevious } = this.props;
         return (
@@ -18,15 +18,8 @@ class OnboardingScreenFour extends PureComponent<IScreenProps> {
                         />
                     </View>
                     <View style={styles.buttonsWrapper}>
-                        <TouchableOpacity
-                            onPress={onPressNext}
-                            style={styles.button}
-                            testID={BUTTON_INTRO_SCREEN(4)}
-                        />
-                        <TouchableOpacity
-                            onPress={onPressPrevious}
-                            style={styles.button}
-                        />
+                        <TouchableOpacity onPress={onPressNext} style={styles.button} testID={BUTTON_INTRO_SCREEN(4)} />
+                        <TouchableOpacity onPress={onPressPrevious} style={styles.button} />
                     </View>
                 </View>
             </View>

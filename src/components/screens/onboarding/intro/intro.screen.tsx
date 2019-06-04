@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import * as React from "react";
 import { NativeScrollEvent, NativeSyntheticEvent, ScrollView } from "react-native";
 import { Style } from "../../../../styles";
 import { IColours } from "../../../molecules";
@@ -43,7 +43,7 @@ interface IState {
     activeIndex: number;
 }
 
-export default class IntroScreenController extends PureComponent<IProps, IState> {
+export default class IntroScreenController extends React.PureComponent<IProps, IState> {
     public scrollView: ScrollView;
     public state = {
         activeIndex: 0

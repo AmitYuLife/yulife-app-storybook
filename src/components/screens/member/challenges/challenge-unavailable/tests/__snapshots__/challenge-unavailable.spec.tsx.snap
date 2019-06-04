@@ -1,0 +1,364 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChallengeFailedScreen should match snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ChallengeUnavailableScreen
+    onPressCta={[MockFunction]}
+    timeRemaining="6 mins 30 secs"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "height": 244,
+              "justifyContent": "center",
+              "marginBottom": 72,
+              "overflow": "hidden",
+              "width": "100%",
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-unavailable/challenge-unavailable.png",
+              }
+            }
+          />
+        </View>,
+        <YuText
+          bold={true}
+          style={
+            Object {
+              "color": "rgb(96, 96, 96)",
+              "fontSize": 30,
+              "fontWeight": "normal",
+              "marginBottom": 32,
+            }
+          }
+        >
+          You have just completed a level
+        </YuText>,
+        <YuText
+          bold={true}
+          style={
+            Object {
+              "fontSize": 44,
+              "marginBottom": 40,
+              "marginHorizontal": 140,
+              "textAlign": "center",
+            }
+          }
+        >
+          The next level will be available in 
+          6 mins 30 secs
+        </YuText>,
+        <Button
+          label="got it"
+          onPress={[MockFunction]}
+          type="PrimaryMedium"
+        />,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Image
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-unavailable/challenge-unavailable.png",
+              }
+            }
+          />,
+          "style": Object {
+            "alignItems": "center",
+            "height": 244,
+            "justifyContent": "center",
+            "marginBottom": 72,
+            "overflow": "hidden",
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "source": Object {
+              "testUri": "../../../assets/challenge-unavailable/challenge-unavailable.png",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "bold": true,
+          "children": "You have just completed a level",
+          "style": Object {
+            "color": "rgb(96, 96, 96)",
+            "fontSize": 30,
+            "fontWeight": "normal",
+            "marginBottom": 32,
+          },
+        },
+        "ref": null,
+        "rendered": "You have just completed a level",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "bold": true,
+          "children": Array [
+            "The next level will be available in ",
+            "6 mins 30 secs",
+          ],
+          "style": Object {
+            "fontSize": 44,
+            "marginBottom": 40,
+            "marginHorizontal": 140,
+            "textAlign": "center",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          "The next level will be available in ",
+          "6 mins 30 secs",
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "got it",
+          "onPress": [MockFunction],
+          "type": "PrimaryMedium",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": 244,
+                "justifyContent": "center",
+                "marginBottom": 72,
+                "overflow": "hidden",
+                "width": "100%",
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-unavailable/challenge-unavailable.png",
+                }
+              }
+            />
+          </View>,
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "rgb(96, 96, 96)",
+                "fontSize": 30,
+                "fontWeight": "normal",
+                "marginBottom": 32,
+              }
+            }
+          >
+            You have just completed a level
+          </YuText>,
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "fontSize": 44,
+                "marginBottom": 40,
+                "marginHorizontal": 140,
+                "textAlign": "center",
+              }
+            }
+          >
+            The next level will be available in 
+            6 mins 30 secs
+          </YuText>,
+          <Button
+            label="got it"
+            onPress={[MockFunction]}
+            type="PrimaryMedium"
+          />,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Image
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-unavailable/challenge-unavailable.png",
+                }
+              }
+            />,
+            "style": Object {
+              "alignItems": "center",
+              "height": 244,
+              "justifyContent": "center",
+              "marginBottom": 72,
+              "overflow": "hidden",
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../assets/challenge-unavailable/challenge-unavailable.png",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "bold": true,
+            "children": "You have just completed a level",
+            "style": Object {
+              "color": "rgb(96, 96, 96)",
+              "fontSize": 30,
+              "fontWeight": "normal",
+              "marginBottom": 32,
+            },
+          },
+          "ref": null,
+          "rendered": "You have just completed a level",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "bold": true,
+            "children": Array [
+              "The next level will be available in ",
+              "6 mins 30 secs",
+            ],
+            "style": Object {
+              "fontSize": 44,
+              "marginBottom": 40,
+              "marginHorizontal": 140,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            "The next level will be available in ",
+            "6 mins 30 secs",
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "got it",
+            "onPress": [MockFunction],
+            "type": "PrimaryMedium",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import * as React from "react";
 import { ActivityIndicator, Image, SafeAreaView, ScrollView, View } from "react-native";
 import { Pad, Text } from "../../../../atoms";
 import { RewardItemContent, TopBar } from "../../../../molecules";
@@ -29,7 +29,7 @@ interface IState {
     hasLoaded: boolean;
 }
 
-class WegiftRewardsConfirmed extends PureComponent<Props, IState> {
+class WegiftRewardsConfirmed extends React.PureComponent<Props, IState> {
     public state = {
         hasLoaded: false
     };

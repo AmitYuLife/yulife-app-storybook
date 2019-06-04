@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Image, ImageRequireSource, StyleSheet, View } from "react-native";
 import { Button, Text } from "../../../atoms";
 import assets from "./assets";

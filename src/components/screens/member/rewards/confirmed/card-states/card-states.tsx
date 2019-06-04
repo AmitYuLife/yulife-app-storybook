@@ -1,10 +1,10 @@
-import React, { SFC } from "react";
+import * as React from "react";
 import { Image, ImageRequireSource, View } from "react-native";
 import { Text } from "../../../../../atoms";
 import assets from "../assets";
 import styles from "./card-states.styles";
 
-const Overlay: SFC<{ icon: ImageRequireSource; text: string }> = ({ icon, text }) => (
+const Overlay: React.SFC<{ icon: ImageRequireSource; text: string }> = ({ icon, text }) => (
     <View style={styles.overlayWrapper}>
         <Image style={styles.icon} source={icon} />
         <Text style={styles.text} bold={true}>

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PureComponent } from "react";
 import { Animated, Image, StyleSheet, View, ViewStyle } from "react-native";
 import { Button, ChestCoin, Text } from "../../../atoms";
 import styles from "./animated-chest.styles";
@@ -13,7 +12,7 @@ interface IProps {
     onPressCtaSecondary?: () => void;
 }
 
-export default class AnimatedChestScreen extends PureComponent<IProps> {
+export default class AnimatedChestScreen extends React.PureComponent<IProps> {
     private animationDelay: NodeJS.Timer;
     private lidYOffset = new Animated.Value(-35);
     private coinYOffset = new Animated.Value(500);

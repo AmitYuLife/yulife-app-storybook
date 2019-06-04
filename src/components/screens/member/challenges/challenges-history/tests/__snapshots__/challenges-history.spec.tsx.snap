@@ -1,0 +1,1673 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChalengesHistoryScreen should match snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ChallengesHistory
+    level={
+      Object {
+        "__typename": "Level",
+        "id": "aasqweq",
+        "level": 1,
+        "levelChestId": null,
+        "name": "name",
+        "rating": 2,
+        "slots": Array [
+          Object {
+            "__typename": "LevelSlot",
+            "availableAtLevel": 1,
+            "id": "asda2",
+            "milestones": Array [
+              Object {
+                "XP": 100,
+                "__typename": "LevelSlotMilestone",
+                "coins": 123,
+                "id": "dsadas",
+                "target": Object {
+                  "__typename": "MilestoneTarget",
+                  "meditation": 0,
+                  "steps": 0,
+                },
+              },
+            ],
+            "passive": true,
+            "rating": 1,
+            "subtype": "brisk walk",
+            "timeLimit": 600,
+            "type": "asdas",
+            "unit": "ssda",
+            "yuCoinAwarded": 3,
+          },
+          Object {
+            "__typename": "LevelSlot",
+            "availableAtLevel": 1,
+            "id": "asda3",
+            "milestones": Array [
+              Object {
+                "XP": 100,
+                "__typename": "LevelSlotMilestone",
+                "coins": 123,
+                "id": "dsadas",
+                "target": Object {
+                  "__typename": "MilestoneTarget",
+                  "meditation": 0,
+                  "steps": 0,
+                },
+              },
+            ],
+            "passive": true,
+            "rating": 3,
+            "subtype": "short stroll",
+            "timeLimit": 300,
+            "type": "asdas",
+            "unit": "ssda",
+            "yuCoinAwarded": 1,
+          },
+          Object {
+            "__typename": "LevelSlot",
+            "availableAtLevel": 1,
+            "id": "asda4",
+            "milestones": Array [
+              Object {
+                "XP": 100,
+                "__typename": "LevelSlotMilestone",
+                "coins": 123,
+                "id": "dsadas",
+                "target": Object {
+                  "__typename": "MilestoneTarget",
+                  "meditation": 0,
+                  "steps": 0,
+                },
+              },
+            ],
+            "passive": true,
+            "rating": null,
+            "subtype": "long walk",
+            "timeLimit": 1800,
+            "type": "asdas",
+            "unit": "ssda",
+            "yuCoinAwarded": 1,
+          },
+          Object {
+            "__typename": "LevelSlot",
+            "availableAtLevel": 1,
+            "id": "asda5",
+            "milestones": Array [
+              Object {
+                "XP": 100,
+                "__typename": "LevelSlotMilestone",
+                "coins": 123,
+                "id": "dsadas",
+                "target": Object {
+                  "__typename": "MilestoneTarget",
+                  "meditation": 180,
+                  "steps": 0,
+                },
+              },
+              Object {
+                "XP": 100,
+                "__typename": "LevelSlotMilestone",
+                "coins": 123,
+                "id": "dsadas",
+                "target": Object {
+                  "__typename": "MilestoneTarget",
+                  "meditation": 600,
+                  "steps": 0,
+                },
+              },
+            ],
+            "passive": true,
+            "rating": 0,
+            "subtype": "meditation",
+            "timeLimit": 1800,
+            "type": "asdas",
+            "unit": "ssda",
+            "yuCoinAwarded": 0,
+          },
+        ],
+      }
+    }
+    onLeftMenuPress={[MockFunction]}
+    onPressActivityHistory={[MockFunction]}
+    onPressCta={[MockFunction]}
+    totalCoins={604}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <SafeAreaView
+          style={
+            Object {
+              "backgroundColor": "rgb(154, 231, 216)",
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/challenges/forest.png",
+              }
+            }
+            style={
+              Object {
+                "height": 1334,
+                "width": 750,
+              }
+            }
+          />
+        </SafeAreaView>,
+        <TopBar
+          coins={604}
+          leftIcon="Back"
+          menuLabel="map"
+          name="level 1"
+          onPressLeftIcon={[MockFunction]}
+          type="default"
+        />,
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "rgba(255, 255, 255, 0.5)",
+              "borderRadius": 20,
+              "justifyContent": "center",
+              "marginBottom": 60,
+              "marginHorizontal": 90,
+              "marginTop": 100,
+              "paddingBottom": 80,
+            }
+          }
+        >
+          <ChallengesHistorySlot
+            availableAtLevel={1}
+            duration="10 mins"
+            locked={false}
+            rating={1}
+            reward={3}
+            type="brisk walk"
+          />
+          <ChallengesHistorySlot
+            availableAtLevel={1}
+            duration="5 mins"
+            locked={false}
+            rating={3}
+            reward={1}
+            type="short stroll"
+          />
+          <ChallengesHistorySlot
+            availableAtLevel={1}
+            duration="30 mins"
+            locked={false}
+            rating={null}
+            reward={1}
+            type="long walk"
+          />
+          <ChallengesHistorySlot
+            availableAtLevel={1}
+            duration="3-10 mins"
+            locked={false}
+            rating={0}
+            reward={0}
+            type="meditation"
+          />
+        </View>,
+        <View
+          style={
+            Object {
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 176,
+            }
+          }
+        >
+          <ErrorableImage
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-tile/squirrel.png",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "left": -32,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+            width={212}
+          />
+          <ErrorableImage
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-tile/elephant.png",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "position": "absolute",
+                "right": -72,
+                "top": 120,
+              }
+            }
+            width={260}
+          />
+          <ErrorableImage
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-tile/ostrich.png",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 280,
+              }
+            }
+            width={184}
+          />
+          <ErrorableImage
+            source={
+              Object {
+                "testUri": "../../../assets/challenge-tile/bird.png",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "position": "absolute",
+                "right": -48,
+                "top": 440,
+              }
+            }
+            width={184}
+          />
+        </View>,
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 760,
+            }
+          }
+        >
+          <Button
+            label="back"
+            onPress={[MockFunction]}
+            type="Primary"
+          />
+          <TouchableOpacity
+            activeOpacity={0.2}
+            onPress={[MockFunction]}
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgba(226, 1, 119, 1)",
+                  "marginVertical": 50,
+                }
+              }
+            >
+              full history
+            </YuText>
+          </TouchableOpacity>
+        </View>,
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": 38,
+              "position": "absolute",
+              "width": 750,
+            }
+          }
+        >
+          <NavBar
+            activeIndex={1}
+            colour="light"
+            hasNotification={false}
+            labels={
+              Array [
+                Object {
+                  "name": "yucoin",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "quests",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "leaderboard",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "rewards",
+                  "onPress": [Function],
+                },
+              ]
+            }
+          />
+        </View>,
+      ],
+      "style": Object {
+        "flex": 1,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "testUri": "../../../assets/challenges/forest.png",
+              }
+            }
+            style={
+              Object {
+                "height": 1334,
+                "width": 750,
+              }
+            }
+          />,
+          "style": Object {
+            "backgroundColor": "rgb(154, 231, 216)",
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "resizeMode": "cover",
+            "source": Object {
+              "testUri": "../../../assets/challenges/forest.png",
+            },
+            "style": Object {
+              "height": 1334,
+              "width": 750,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "coins": 604,
+          "leftIcon": "Back",
+          "menuLabel": "map",
+          "name": "level 1",
+          "onPressLeftIcon": [MockFunction],
+          "type": "default",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <ChallengesHistorySlot
+              availableAtLevel={1}
+              duration="10 mins"
+              locked={false}
+              rating={1}
+              reward={3}
+              type="brisk walk"
+            />,
+            <ChallengesHistorySlot
+              availableAtLevel={1}
+              duration="5 mins"
+              locked={false}
+              rating={3}
+              reward={1}
+              type="short stroll"
+            />,
+            <ChallengesHistorySlot
+              availableAtLevel={1}
+              duration="30 mins"
+              locked={false}
+              rating={null}
+              reward={1}
+              type="long walk"
+            />,
+            <ChallengesHistorySlot
+              availableAtLevel={1}
+              duration="3-10 mins"
+              locked={false}
+              rating={0}
+              reward={0}
+              type="meditation"
+            />,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "backgroundColor": "rgba(255, 255, 255, 0.5)",
+            "borderRadius": 20,
+            "justifyContent": "center",
+            "marginBottom": 60,
+            "marginHorizontal": 90,
+            "marginTop": 100,
+            "paddingBottom": 80,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "asda2",
+            "nodeType": "function",
+            "props": Object {
+              "availableAtLevel": 1,
+              "duration": "10 mins",
+              "locked": false,
+              "rating": 1,
+              "reward": 3,
+              "type": "brisk walk",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "asda3",
+            "nodeType": "function",
+            "props": Object {
+              "availableAtLevel": 1,
+              "duration": "5 mins",
+              "locked": false,
+              "rating": 3,
+              "reward": 1,
+              "type": "short stroll",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "asda4",
+            "nodeType": "function",
+            "props": Object {
+              "availableAtLevel": 1,
+              "duration": "30 mins",
+              "locked": false,
+              "rating": null,
+              "reward": 1,
+              "type": "long walk",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "asda5",
+            "nodeType": "function",
+            "props": Object {
+              "availableAtLevel": 1,
+              "duration": "3-10 mins",
+              "locked": false,
+              "rating": 0,
+              "reward": 0,
+              "type": "meditation",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <ErrorableImage
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-tile/squirrel.png",
+                }
+              }
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": -32,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+              width={212}
+            />,
+            <ErrorableImage
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-tile/elephant.png",
+                }
+              }
+              style={
+                Object {
+                  "bottom": 0,
+                  "position": "absolute",
+                  "right": -72,
+                  "top": 120,
+                }
+              }
+              width={260}
+            />,
+            <ErrorableImage
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-tile/ostrich.png",
+                }
+              }
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 280,
+                }
+              }
+              width={184}
+            />,
+            <ErrorableImage
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-tile/bird.png",
+                }
+              }
+              style={
+                Object {
+                  "bottom": 0,
+                  "position": "absolute",
+                  "right": -48,
+                  "top": 440,
+                }
+              }
+              width={184}
+            />,
+          ],
+          "style": Object {
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 176,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../assets/challenge-tile/squirrel.png",
+              },
+              "style": Object {
+                "bottom": 0,
+                "left": -32,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              "width": 212,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../assets/challenge-tile/elephant.png",
+              },
+              "style": Object {
+                "bottom": 0,
+                "position": "absolute",
+                "right": -72,
+                "top": 120,
+              },
+              "width": 260,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../assets/challenge-tile/ostrich.png",
+              },
+              "style": Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 280,
+              },
+              "width": 184,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "3",
+            "nodeType": "class",
+            "props": Object {
+              "source": Object {
+                "testUri": "../../../assets/challenge-tile/bird.png",
+              },
+              "style": Object {
+                "bottom": 0,
+                "position": "absolute",
+                "right": -48,
+                "top": 440,
+              },
+              "width": 184,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Button
+              label="back"
+              onPress={[MockFunction]}
+              type="Primary"
+            />,
+            <TouchableOpacity
+              activeOpacity={0.2}
+              onPress={[MockFunction]}
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgba(226, 1, 119, 1)",
+                    "marginVertical": 50,
+                  }
+                }
+              >
+                full history
+              </YuText>
+            </TouchableOpacity>,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 760,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "back",
+              "onPress": [MockFunction],
+              "type": "Primary",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeOpacity": 0.2,
+              "children": <YuText
+                style={
+                  Object {
+                    "color": "rgba(226, 1, 119, 1)",
+                    "marginVertical": 50,
+                  }
+                }
+              >
+                full history
+              </YuText>,
+              "onPress": [MockFunction],
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "full history",
+                "style": Object {
+                  "color": "rgba(226, 1, 119, 1)",
+                  "marginVertical": 50,
+                },
+              },
+              "ref": null,
+              "rendered": "full history",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <NavBar
+            activeIndex={1}
+            colour="light"
+            hasNotification={false}
+            labels={
+              Array [
+                Object {
+                  "name": "yucoin",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "quests",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "leaderboard",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "rewards",
+                  "onPress": [Function],
+                },
+              ]
+            }
+          />,
+          "style": Object {
+            "alignItems": "center",
+            "bottom": 38,
+            "position": "absolute",
+            "width": 750,
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeIndex": 1,
+            "colour": "light",
+            "hasNotification": false,
+            "labels": Array [
+              Object {
+                "name": "yucoin",
+                "onPress": [Function],
+              },
+              Object {
+                "name": "quests",
+                "onPress": [Function],
+              },
+              Object {
+                "name": "leaderboard",
+                "onPress": [Function],
+              },
+              Object {
+                "name": "rewards",
+                "onPress": [Function],
+              },
+            ],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <SafeAreaView
+            style={
+              Object {
+                "backgroundColor": "rgb(154, 231, 216)",
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/challenges/forest.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 1334,
+                  "width": 750,
+                }
+              }
+            />
+          </SafeAreaView>,
+          <TopBar
+            coins={604}
+            leftIcon="Back"
+            menuLabel="map"
+            name="level 1"
+            onPressLeftIcon={[MockFunction]}
+            type="default"
+          />,
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(255, 255, 255, 0.5)",
+                "borderRadius": 20,
+                "justifyContent": "center",
+                "marginBottom": 60,
+                "marginHorizontal": 90,
+                "marginTop": 100,
+                "paddingBottom": 80,
+              }
+            }
+          >
+            <ChallengesHistorySlot
+              availableAtLevel={1}
+              duration="10 mins"
+              locked={false}
+              rating={1}
+              reward={3}
+              type="brisk walk"
+            />
+            <ChallengesHistorySlot
+              availableAtLevel={1}
+              duration="5 mins"
+              locked={false}
+              rating={3}
+              reward={1}
+              type="short stroll"
+            />
+            <ChallengesHistorySlot
+              availableAtLevel={1}
+              duration="30 mins"
+              locked={false}
+              rating={null}
+              reward={1}
+              type="long walk"
+            />
+            <ChallengesHistorySlot
+              availableAtLevel={1}
+              duration="3-10 mins"
+              locked={false}
+              rating={0}
+              reward={0}
+              type="meditation"
+            />
+          </View>,
+          <View
+            style={
+              Object {
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 176,
+              }
+            }
+          >
+            <ErrorableImage
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-tile/squirrel.png",
+                }
+              }
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": -32,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+              width={212}
+            />
+            <ErrorableImage
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-tile/elephant.png",
+                }
+              }
+              style={
+                Object {
+                  "bottom": 0,
+                  "position": "absolute",
+                  "right": -72,
+                  "top": 120,
+                }
+              }
+              width={260}
+            />
+            <ErrorableImage
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-tile/ostrich.png",
+                }
+              }
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 280,
+                }
+              }
+              width={184}
+            />
+            <ErrorableImage
+              source={
+                Object {
+                  "testUri": "../../../assets/challenge-tile/bird.png",
+                }
+              }
+              style={
+                Object {
+                  "bottom": 0,
+                  "position": "absolute",
+                  "right": -48,
+                  "top": 440,
+                }
+              }
+              width={184}
+            />
+          </View>,
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 760,
+              }
+            }
+          >
+            <Button
+              label="back"
+              onPress={[MockFunction]}
+              type="Primary"
+            />
+            <TouchableOpacity
+              activeOpacity={0.2}
+              onPress={[MockFunction]}
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgba(226, 1, 119, 1)",
+                    "marginVertical": 50,
+                  }
+                }
+              >
+                full history
+              </YuText>
+            </TouchableOpacity>
+          </View>,
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": 38,
+                "position": "absolute",
+                "width": 750,
+              }
+            }
+          >
+            <NavBar
+              activeIndex={1}
+              colour="light"
+              hasNotification={false}
+              labels={
+                Array [
+                  Object {
+                    "name": "yucoin",
+                    "onPress": [Function],
+                  },
+                  Object {
+                    "name": "quests",
+                    "onPress": [Function],
+                  },
+                  Object {
+                    "name": "leaderboard",
+                    "onPress": [Function],
+                  },
+                  Object {
+                    "name": "rewards",
+                    "onPress": [Function],
+                  },
+                ]
+              }
+            />
+          </View>,
+        ],
+        "style": Object {
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "testUri": "../../../assets/challenges/forest.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 1334,
+                  "width": 750,
+                }
+              }
+            />,
+            "style": Object {
+              "backgroundColor": "rgb(154, 231, 216)",
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "resizeMode": "cover",
+              "source": Object {
+                "testUri": "../../../assets/challenges/forest.png",
+              },
+              "style": Object {
+                "height": 1334,
+                "width": 750,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "coins": 604,
+            "leftIcon": "Back",
+            "menuLabel": "map",
+            "name": "level 1",
+            "onPressLeftIcon": [MockFunction],
+            "type": "default",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <ChallengesHistorySlot
+                availableAtLevel={1}
+                duration="10 mins"
+                locked={false}
+                rating={1}
+                reward={3}
+                type="brisk walk"
+              />,
+              <ChallengesHistorySlot
+                availableAtLevel={1}
+                duration="5 mins"
+                locked={false}
+                rating={3}
+                reward={1}
+                type="short stroll"
+              />,
+              <ChallengesHistorySlot
+                availableAtLevel={1}
+                duration="30 mins"
+                locked={false}
+                rating={null}
+                reward={1}
+                type="long walk"
+              />,
+              <ChallengesHistorySlot
+                availableAtLevel={1}
+                duration="3-10 mins"
+                locked={false}
+                rating={0}
+                reward={0}
+                type="meditation"
+              />,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "backgroundColor": "rgba(255, 255, 255, 0.5)",
+              "borderRadius": 20,
+              "justifyContent": "center",
+              "marginBottom": 60,
+              "marginHorizontal": 90,
+              "marginTop": 100,
+              "paddingBottom": 80,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "asda2",
+              "nodeType": "function",
+              "props": Object {
+                "availableAtLevel": 1,
+                "duration": "10 mins",
+                "locked": false,
+                "rating": 1,
+                "reward": 3,
+                "type": "brisk walk",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "asda3",
+              "nodeType": "function",
+              "props": Object {
+                "availableAtLevel": 1,
+                "duration": "5 mins",
+                "locked": false,
+                "rating": 3,
+                "reward": 1,
+                "type": "short stroll",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "asda4",
+              "nodeType": "function",
+              "props": Object {
+                "availableAtLevel": 1,
+                "duration": "30 mins",
+                "locked": false,
+                "rating": null,
+                "reward": 1,
+                "type": "long walk",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "asda5",
+              "nodeType": "function",
+              "props": Object {
+                "availableAtLevel": 1,
+                "duration": "3-10 mins",
+                "locked": false,
+                "rating": 0,
+                "reward": 0,
+                "type": "meditation",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <ErrorableImage
+                source={
+                  Object {
+                    "testUri": "../../../assets/challenge-tile/squirrel.png",
+                  }
+                }
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": -32,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+                width={212}
+              />,
+              <ErrorableImage
+                source={
+                  Object {
+                    "testUri": "../../../assets/challenge-tile/elephant.png",
+                  }
+                }
+                style={
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "right": -72,
+                    "top": 120,
+                  }
+                }
+                width={260}
+              />,
+              <ErrorableImage
+                source={
+                  Object {
+                    "testUri": "../../../assets/challenge-tile/ostrich.png",
+                  }
+                }
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 280,
+                  }
+                }
+                width={184}
+              />,
+              <ErrorableImage
+                source={
+                  Object {
+                    "testUri": "../../../assets/challenge-tile/bird.png",
+                  }
+                }
+                style={
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "right": -48,
+                    "top": 440,
+                  }
+                }
+                width={184}
+              />,
+            ],
+            "style": Object {
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 176,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../assets/challenge-tile/squirrel.png",
+                },
+                "style": Object {
+                  "bottom": 0,
+                  "left": -32,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                "width": 212,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../assets/challenge-tile/elephant.png",
+                },
+                "style": Object {
+                  "bottom": 0,
+                  "position": "absolute",
+                  "right": -72,
+                  "top": 120,
+                },
+                "width": 260,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "2",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../assets/challenge-tile/ostrich.png",
+                },
+                "style": Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 280,
+                },
+                "width": 184,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "3",
+              "nodeType": "class",
+              "props": Object {
+                "source": Object {
+                  "testUri": "../../../assets/challenge-tile/bird.png",
+                },
+                "style": Object {
+                  "bottom": 0,
+                  "position": "absolute",
+                  "right": -48,
+                  "top": 440,
+                },
+                "width": 184,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Button
+                label="back"
+                onPress={[MockFunction]}
+                type="Primary"
+              />,
+              <TouchableOpacity
+                activeOpacity={0.2}
+                onPress={[MockFunction]}
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgba(226, 1, 119, 1)",
+                      "marginVertical": 50,
+                    }
+                  }
+                >
+                  full history
+                </YuText>
+              </TouchableOpacity>,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 760,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "back",
+                "onPress": [MockFunction],
+                "type": "Primary",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "activeOpacity": 0.2,
+                "children": <YuText
+                  style={
+                    Object {
+                      "color": "rgba(226, 1, 119, 1)",
+                      "marginVertical": 50,
+                    }
+                  }
+                >
+                  full history
+                </YuText>,
+                "onPress": [MockFunction],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "full history",
+                  "style": Object {
+                    "color": "rgba(226, 1, 119, 1)",
+                    "marginVertical": 50,
+                  },
+                },
+                "ref": null,
+                "rendered": "full history",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <NavBar
+              activeIndex={1}
+              colour="light"
+              hasNotification={false}
+              labels={
+                Array [
+                  Object {
+                    "name": "yucoin",
+                    "onPress": [Function],
+                  },
+                  Object {
+                    "name": "quests",
+                    "onPress": [Function],
+                  },
+                  Object {
+                    "name": "leaderboard",
+                    "onPress": [Function],
+                  },
+                  Object {
+                    "name": "rewards",
+                    "onPress": [Function],
+                  },
+                ]
+              }
+            />,
+            "style": Object {
+              "alignItems": "center",
+              "bottom": 38,
+              "position": "absolute",
+              "width": 750,
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "activeIndex": 1,
+              "colour": "light",
+              "hasNotification": false,
+              "labels": Array [
+                Object {
+                  "name": "yucoin",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "quests",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "leaderboard",
+                  "onPress": [Function],
+                },
+                Object {
+                  "name": "rewards",
+                  "onPress": [Function],
+                },
+              ],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

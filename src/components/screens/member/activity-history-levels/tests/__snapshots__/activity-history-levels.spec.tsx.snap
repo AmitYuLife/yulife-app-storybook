@@ -1,0 +1,3249 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActivityHistoryLevels should render 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ActivityHistoryLevels
+    copy={
+      Object {
+        "headerLeft": "",
+        "headerLevel": "",
+        "headerMid": "",
+        "headerRight": "",
+        "heading": "",
+      }
+    }
+    items={
+      Array [
+        Object {
+          "challenges": Array [
+            Object {
+              "earned": 1,
+              "milestones": 1,
+              "name": "long walk",
+              "score": "8000 steps",
+            },
+            Object {
+              "earned": 3,
+              "milestones": 2,
+              "name": "meditation",
+              "score": "08m 00s",
+            },
+            Object {
+              "earned": 1,
+              "milestones": 3,
+              "name": "short stroll",
+              "score": "1299 steps",
+            },
+          ],
+          "dayOfMonth": "13",
+          "dayOfWeek": "SAT",
+          "id": "1",
+          "level": 4,
+          "sources": Object {},
+          "steps": 4098,
+          "yucoin": 3,
+        },
+      ]
+    }
+    loading={false}
+    onPressClose={[MockFunction]}
+    onRefresh={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <GenericHeading
+          heading=""
+        />,
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "height": 130,
+              "paddingHorizontal": 30,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": 90,
+              }
+            }
+          >
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "color": "rgb(251,207,39)",
+                }
+              }
+            >
+              
+            </YuText>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": 112,
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(225,5,119)",
+                }
+              }
+            >
+              
+            </YuText>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "flex-start",
+                "flex": 1,
+                "height": "100%",
+                "justifyContent": "center",
+                "paddingLeft": 24,
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(225,5,119)",
+                }
+              }
+            >
+              
+            </YuText>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": 84,
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(225,5,119)",
+                }
+              }
+            >
+              
+            </YuText>
+          </View>
+        </View>,
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "height": 68,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgb(251,207,39)",
+                "height": "100%",
+                "width": 120,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgb(226,1,119)",
+                "flex": 1,
+                "height": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 320,
+                }
+              }
+            >
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "color": "white",
+                    "lineHeight": 68,
+                    "paddingLeft": 20,
+                  }
+                }
+              >
+                last 30 days
+              </YuText>
+            </View>
+          </View>
+        </View>,
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <FlatList
+            data={
+              Array [
+                Object {
+                  "challenges": Array [
+                    Object {
+                      "earned": 1,
+                      "milestones": 1,
+                      "name": "long walk",
+                      "score": "8000 steps",
+                    },
+                    Object {
+                      "earned": 3,
+                      "milestones": 2,
+                      "name": "meditation",
+                      "score": "08m 00s",
+                    },
+                    Object {
+                      "earned": 1,
+                      "milestones": 3,
+                      "name": "short stroll",
+                      "score": "1299 steps",
+                    },
+                  ],
+                  "dayOfMonth": "13",
+                  "dayOfWeek": "SAT",
+                  "id": "1",
+                  "level": 4,
+                  "sources": Object {},
+                  "steps": 4098,
+                  "yucoin": 3,
+                },
+              ]
+            }
+            disableVirtualization={false}
+            horizontal={false}
+            initialNumToRender={10}
+            keyExtractor={[Function]}
+            maxToRenderPerBatch={10}
+            numColumns={1}
+            onEndReachedThreshold={2}
+            onRefresh={[MockFunction]}
+            refreshing={false}
+            removeClippedSubviews={false}
+            renderItem={[Function]}
+            scrollEventThrottle={50}
+            updateCellsBatchingPeriod={50}
+            windowSize={21}
+          />
+        </View>,
+        <Close
+          onPress={[MockFunction]}
+        />,
+      ],
+      "style": Object {
+        "flex": 1,
+      },
+      "testID": "ACTIVITY_HISTORY_SCREEN",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "heading": "",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 90,
+                }
+              }
+            >
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "color": "rgb(251,207,39)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>,
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 112,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>,
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flex": 1,
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "paddingLeft": 24,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>,
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 84,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>,
+          ],
+          "style": Object {
+            "flexDirection": "row",
+            "height": 130,
+            "paddingHorizontal": 30,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                bold={true}
+                style={
+                  Object {
+                    "color": "rgb(251,207,39)",
+                  }
+                }
+              >
+                
+              </YuText>,
+              "style": Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": 90,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "bold": true,
+                "children": "",
+                "style": Object {
+                  "color": "rgb(251,207,39)",
+                },
+              },
+              "ref": null,
+              "rendered": "",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>,
+              "style": Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": 112,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "",
+                "style": Object {
+                  "color": "rgb(225,5,119)",
+                },
+              },
+              "ref": null,
+              "rendered": "",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>,
+              "style": Object {
+                "alignItems": "flex-start",
+                "flex": 1,
+                "height": "100%",
+                "justifyContent": "center",
+                "paddingLeft": 24,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "",
+                "style": Object {
+                  "color": "rgb(225,5,119)",
+                },
+              },
+              "ref": null,
+              "rendered": "",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>,
+              "style": Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": 84,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "",
+                "style": Object {
+                  "color": "rgb(225,5,119)",
+                },
+              },
+              "ref": null,
+              "rendered": "",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <View
+              style={
+                Object {
+                  "backgroundColor": "rgb(251,207,39)",
+                  "height": "100%",
+                  "width": 120,
+                }
+              }
+            />,
+            <View
+              style={
+                Object {
+                  "backgroundColor": "rgb(226,1,119)",
+                  "flex": 1,
+                  "height": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": 320,
+                  }
+                }
+              >
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "color": "white",
+                      "lineHeight": 68,
+                      "paddingLeft": 20,
+                    }
+                  }
+                >
+                  last 30 days
+                </YuText>
+              </View>
+            </View>,
+          ],
+          "style": Object {
+            "flexDirection": "row",
+            "height": 68,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "style": Object {
+                "backgroundColor": "rgb(251,207,39)",
+                "height": "100%",
+                "width": 120,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <View
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": 320,
+                  }
+                }
+              >
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "color": "white",
+                      "lineHeight": 68,
+                      "paddingLeft": 20,
+                    }
+                  }
+                >
+                  last 30 days
+                </YuText>
+              </View>,
+              "style": Object {
+                "backgroundColor": "rgb(226,1,119)",
+                "flex": 1,
+                "height": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "color": "white",
+                      "lineHeight": 68,
+                      "paddingLeft": 20,
+                    }
+                  }
+                >
+                  last 30 days
+                </YuText>,
+                "style": Object {
+                  "alignItems": "flex-start",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 320,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "bold": true,
+                  "children": "last 30 days",
+                  "style": Object {
+                    "color": "white",
+                    "lineHeight": 68,
+                    "paddingLeft": 20,
+                  },
+                },
+                "ref": null,
+                "rendered": "last 30 days",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <FlatList
+            data={
+              Array [
+                Object {
+                  "challenges": Array [
+                    Object {
+                      "earned": 1,
+                      "milestones": 1,
+                      "name": "long walk",
+                      "score": "8000 steps",
+                    },
+                    Object {
+                      "earned": 3,
+                      "milestones": 2,
+                      "name": "meditation",
+                      "score": "08m 00s",
+                    },
+                    Object {
+                      "earned": 1,
+                      "milestones": 3,
+                      "name": "short stroll",
+                      "score": "1299 steps",
+                    },
+                  ],
+                  "dayOfMonth": "13",
+                  "dayOfWeek": "SAT",
+                  "id": "1",
+                  "level": 4,
+                  "sources": Object {},
+                  "steps": 4098,
+                  "yucoin": 3,
+                },
+              ]
+            }
+            disableVirtualization={false}
+            horizontal={false}
+            initialNumToRender={10}
+            keyExtractor={[Function]}
+            maxToRenderPerBatch={10}
+            numColumns={1}
+            onEndReachedThreshold={2}
+            onRefresh={[MockFunction]}
+            refreshing={false}
+            removeClippedSubviews={false}
+            renderItem={[Function]}
+            scrollEventThrottle={50}
+            updateCellsBatchingPeriod={50}
+            windowSize={21}
+          />,
+          "style": Object {
+            "flex": 1,
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "data": Array [
+              Object {
+                "challenges": Array [
+                  Object {
+                    "earned": 1,
+                    "milestones": 1,
+                    "name": "long walk",
+                    "score": "8000 steps",
+                  },
+                  Object {
+                    "earned": 3,
+                    "milestones": 2,
+                    "name": "meditation",
+                    "score": "08m 00s",
+                  },
+                  Object {
+                    "earned": 1,
+                    "milestones": 3,
+                    "name": "short stroll",
+                    "score": "1299 steps",
+                  },
+                ],
+                "dayOfMonth": "13",
+                "dayOfWeek": "SAT",
+                "id": "1",
+                "level": 4,
+                "sources": Object {},
+                "steps": 4098,
+                "yucoin": 3,
+              },
+            ],
+            "disableVirtualization": false,
+            "horizontal": false,
+            "initialNumToRender": 10,
+            "keyExtractor": [Function],
+            "maxToRenderPerBatch": 10,
+            "numColumns": 1,
+            "onEndReachedThreshold": 2,
+            "onRefresh": [MockFunction],
+            "refreshing": false,
+            "removeClippedSubviews": false,
+            "renderItem": [Function],
+            "scrollEventThrottle": 50,
+            "updateCellsBatchingPeriod": 50,
+            "windowSize": 21,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "onPress": [MockFunction],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <GenericHeading
+            heading=""
+          />,
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "height": 130,
+                "paddingHorizontal": 30,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 90,
+                }
+              }
+            >
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "color": "rgb(251,207,39)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 112,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flex": 1,
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "paddingLeft": 24,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 84,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>
+          </View>,
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "height": 68,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "rgb(251,207,39)",
+                  "height": "100%",
+                  "width": 120,
+                }
+              }
+            />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "rgb(226,1,119)",
+                  "flex": 1,
+                  "height": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": 320,
+                  }
+                }
+              >
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "color": "white",
+                      "lineHeight": 68,
+                      "paddingLeft": 20,
+                    }
+                  }
+                >
+                  last 30 days
+                </YuText>
+              </View>
+            </View>
+          </View>,
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <FlatList
+              data={
+                Array [
+                  Object {
+                    "challenges": Array [
+                      Object {
+                        "earned": 1,
+                        "milestones": 1,
+                        "name": "long walk",
+                        "score": "8000 steps",
+                      },
+                      Object {
+                        "earned": 3,
+                        "milestones": 2,
+                        "name": "meditation",
+                        "score": "08m 00s",
+                      },
+                      Object {
+                        "earned": 1,
+                        "milestones": 3,
+                        "name": "short stroll",
+                        "score": "1299 steps",
+                      },
+                    ],
+                    "dayOfMonth": "13",
+                    "dayOfWeek": "SAT",
+                    "id": "1",
+                    "level": 4,
+                    "sources": Object {},
+                    "steps": 4098,
+                    "yucoin": 3,
+                  },
+                ]
+              }
+              disableVirtualization={false}
+              horizontal={false}
+              initialNumToRender={10}
+              keyExtractor={[Function]}
+              maxToRenderPerBatch={10}
+              numColumns={1}
+              onEndReachedThreshold={2}
+              onRefresh={[MockFunction]}
+              refreshing={false}
+              removeClippedSubviews={false}
+              renderItem={[Function]}
+              scrollEventThrottle={50}
+              updateCellsBatchingPeriod={50}
+              windowSize={21}
+            />
+          </View>,
+          <Close
+            onPress={[MockFunction]}
+          />,
+        ],
+        "style": Object {
+          "flex": 1,
+        },
+        "testID": "ACTIVITY_HISTORY_SCREEN",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "heading": "",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": 90,
+                  }
+                }
+              >
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "color": "rgb(251,207,39)",
+                    }
+                  }
+                >
+                  
+                </YuText>
+              </View>,
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": 112,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(225,5,119)",
+                    }
+                  }
+                >
+                  
+                </YuText>
+              </View>,
+              <View
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "flex": 1,
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "paddingLeft": 24,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(225,5,119)",
+                    }
+                  }
+                >
+                  
+                </YuText>
+              </View>,
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": 84,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(225,5,119)",
+                    }
+                  }
+                >
+                  
+                </YuText>
+              </View>,
+            ],
+            "style": Object {
+              "flexDirection": "row",
+              "height": 130,
+              "paddingHorizontal": 30,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "color": "rgb(251,207,39)",
+                    }
+                  }
+                >
+                  
+                </YuText>,
+                "style": Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 90,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "bold": true,
+                  "children": "",
+                  "style": Object {
+                    "color": "rgb(251,207,39)",
+                  },
+                },
+                "ref": null,
+                "rendered": "",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "color": "rgb(225,5,119)",
+                    }
+                  }
+                >
+                  
+                </YuText>,
+                "style": Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 112,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "",
+                  "style": Object {
+                    "color": "rgb(225,5,119)",
+                  },
+                },
+                "ref": null,
+                "rendered": "",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "color": "rgb(225,5,119)",
+                    }
+                  }
+                >
+                  
+                </YuText>,
+                "style": Object {
+                  "alignItems": "flex-start",
+                  "flex": 1,
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "paddingLeft": 24,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "",
+                  "style": Object {
+                    "color": "rgb(225,5,119)",
+                  },
+                },
+                "ref": null,
+                "rendered": "",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "color": "rgb(225,5,119)",
+                    }
+                  }
+                >
+                  
+                </YuText>,
+                "style": Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 84,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "",
+                  "style": Object {
+                    "color": "rgb(225,5,119)",
+                  },
+                },
+                "ref": null,
+                "rendered": "",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "rgb(251,207,39)",
+                    "height": "100%",
+                    "width": 120,
+                  }
+                }
+              />,
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "rgb(226,1,119)",
+                    "flex": 1,
+                    "height": "100%",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "flex-start",
+                      "height": "100%",
+                      "justifyContent": "center",
+                      "width": 320,
+                    }
+                  }
+                >
+                  <YuText
+                    bold={true}
+                    style={
+                      Object {
+                        "color": "white",
+                        "lineHeight": 68,
+                        "paddingLeft": 20,
+                      }
+                    }
+                  >
+                    last 30 days
+                  </YuText>
+                </View>
+              </View>,
+            ],
+            "style": Object {
+              "flexDirection": "row",
+              "height": 68,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "style": Object {
+                  "backgroundColor": "rgb(251,207,39)",
+                  "height": "100%",
+                  "width": 120,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <View
+                  style={
+                    Object {
+                      "alignItems": "flex-start",
+                      "height": "100%",
+                      "justifyContent": "center",
+                      "width": 320,
+                    }
+                  }
+                >
+                  <YuText
+                    bold={true}
+                    style={
+                      Object {
+                        "color": "white",
+                        "lineHeight": 68,
+                        "paddingLeft": 20,
+                      }
+                    }
+                  >
+                    last 30 days
+                  </YuText>
+                </View>,
+                "style": Object {
+                  "backgroundColor": "rgb(226,1,119)",
+                  "flex": 1,
+                  "height": "100%",
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <YuText
+                    bold={true}
+                    style={
+                      Object {
+                        "color": "white",
+                        "lineHeight": 68,
+                        "paddingLeft": 20,
+                      }
+                    }
+                  >
+                    last 30 days
+                  </YuText>,
+                  "style": Object {
+                    "alignItems": "flex-start",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": 320,
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "bold": true,
+                    "children": "last 30 days",
+                    "style": Object {
+                      "color": "white",
+                      "lineHeight": 68,
+                      "paddingLeft": 20,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "last 30 days",
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <FlatList
+              data={
+                Array [
+                  Object {
+                    "challenges": Array [
+                      Object {
+                        "earned": 1,
+                        "milestones": 1,
+                        "name": "long walk",
+                        "score": "8000 steps",
+                      },
+                      Object {
+                        "earned": 3,
+                        "milestones": 2,
+                        "name": "meditation",
+                        "score": "08m 00s",
+                      },
+                      Object {
+                        "earned": 1,
+                        "milestones": 3,
+                        "name": "short stroll",
+                        "score": "1299 steps",
+                      },
+                    ],
+                    "dayOfMonth": "13",
+                    "dayOfWeek": "SAT",
+                    "id": "1",
+                    "level": 4,
+                    "sources": Object {},
+                    "steps": 4098,
+                    "yucoin": 3,
+                  },
+                ]
+              }
+              disableVirtualization={false}
+              horizontal={false}
+              initialNumToRender={10}
+              keyExtractor={[Function]}
+              maxToRenderPerBatch={10}
+              numColumns={1}
+              onEndReachedThreshold={2}
+              onRefresh={[MockFunction]}
+              refreshing={false}
+              removeClippedSubviews={false}
+              renderItem={[Function]}
+              scrollEventThrottle={50}
+              updateCellsBatchingPeriod={50}
+              windowSize={21}
+            />,
+            "style": Object {
+              "flex": 1,
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "data": Array [
+                Object {
+                  "challenges": Array [
+                    Object {
+                      "earned": 1,
+                      "milestones": 1,
+                      "name": "long walk",
+                      "score": "8000 steps",
+                    },
+                    Object {
+                      "earned": 3,
+                      "milestones": 2,
+                      "name": "meditation",
+                      "score": "08m 00s",
+                    },
+                    Object {
+                      "earned": 1,
+                      "milestones": 3,
+                      "name": "short stroll",
+                      "score": "1299 steps",
+                    },
+                  ],
+                  "dayOfMonth": "13",
+                  "dayOfWeek": "SAT",
+                  "id": "1",
+                  "level": 4,
+                  "sources": Object {},
+                  "steps": 4098,
+                  "yucoin": 3,
+                },
+              ],
+              "disableVirtualization": false,
+              "horizontal": false,
+              "initialNumToRender": 10,
+              "keyExtractor": [Function],
+              "maxToRenderPerBatch": 10,
+              "numColumns": 1,
+              "onEndReachedThreshold": 2,
+              "onRefresh": [MockFunction],
+              "refreshing": false,
+              "removeClippedSubviews": false,
+              "renderItem": [Function],
+              "scrollEventThrottle": 50,
+              "updateCellsBatchingPeriod": 50,
+              "windowSize": 21,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "onPress": [MockFunction],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`ActivityHistoryLevels should render with the flatlist loading 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ActivityHistoryLevels
+    copy={
+      Object {
+        "headerLeft": "",
+        "headerLevel": "",
+        "headerMid": "",
+        "headerRight": "",
+        "heading": "",
+      }
+    }
+    items={
+      Array [
+        Object {
+          "challenges": Array [
+            Object {
+              "earned": 1,
+              "milestones": 1,
+              "name": "long walk",
+              "score": "8000 steps",
+            },
+            Object {
+              "earned": 3,
+              "milestones": 2,
+              "name": "meditation",
+              "score": "08m 00s",
+            },
+            Object {
+              "earned": 1,
+              "milestones": 3,
+              "name": "short stroll",
+              "score": "1299 steps",
+            },
+          ],
+          "dayOfMonth": "13",
+          "dayOfWeek": "SAT",
+          "id": "1",
+          "level": 4,
+          "sources": Object {},
+          "steps": 4098,
+          "yucoin": 3,
+        },
+      ]
+    }
+    loading={true}
+    onPressClose={[MockFunction]}
+    onRefresh={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <GenericHeading
+          heading=""
+        />,
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "height": 130,
+              "paddingHorizontal": 30,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": 90,
+              }
+            }
+          >
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "color": "rgb(251,207,39)",
+                }
+              }
+            >
+              
+            </YuText>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": 112,
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(225,5,119)",
+                }
+              }
+            >
+              
+            </YuText>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "flex-start",
+                "flex": 1,
+                "height": "100%",
+                "justifyContent": "center",
+                "paddingLeft": 24,
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(225,5,119)",
+                }
+              }
+            >
+              
+            </YuText>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": 84,
+              }
+            }
+          >
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(225,5,119)",
+                }
+              }
+            >
+              
+            </YuText>
+          </View>
+        </View>,
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "height": 68,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgb(251,207,39)",
+                "height": "100%",
+                "width": 120,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgb(226,1,119)",
+                "flex": 1,
+                "height": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 320,
+                }
+              }
+            >
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "color": "white",
+                    "lineHeight": 68,
+                    "paddingLeft": 20,
+                  }
+                }
+              >
+                last 30 days
+              </YuText>
+            </View>
+          </View>
+        </View>,
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <FlatList
+            data={
+              Array [
+                Object {
+                  "challenges": Array [
+                    Object {
+                      "earned": 1,
+                      "milestones": 1,
+                      "name": "long walk",
+                      "score": "8000 steps",
+                    },
+                    Object {
+                      "earned": 3,
+                      "milestones": 2,
+                      "name": "meditation",
+                      "score": "08m 00s",
+                    },
+                    Object {
+                      "earned": 1,
+                      "milestones": 3,
+                      "name": "short stroll",
+                      "score": "1299 steps",
+                    },
+                  ],
+                  "dayOfMonth": "13",
+                  "dayOfWeek": "SAT",
+                  "id": "1",
+                  "level": 4,
+                  "sources": Object {},
+                  "steps": 4098,
+                  "yucoin": 3,
+                },
+              ]
+            }
+            disableVirtualization={false}
+            horizontal={false}
+            initialNumToRender={10}
+            keyExtractor={[Function]}
+            maxToRenderPerBatch={10}
+            numColumns={1}
+            onEndReachedThreshold={2}
+            onRefresh={[MockFunction]}
+            refreshing={true}
+            removeClippedSubviews={false}
+            renderItem={[Function]}
+            scrollEventThrottle={50}
+            updateCellsBatchingPeriod={50}
+            windowSize={21}
+          />
+        </View>,
+        <Close
+          onPress={[MockFunction]}
+        />,
+      ],
+      "style": Object {
+        "flex": 1,
+      },
+      "testID": "ACTIVITY_HISTORY_SCREEN",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "heading": "",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 90,
+                }
+              }
+            >
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "color": "rgb(251,207,39)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>,
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 112,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>,
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flex": 1,
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "paddingLeft": 24,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>,
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 84,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>,
+          ],
+          "style": Object {
+            "flexDirection": "row",
+            "height": 130,
+            "paddingHorizontal": 30,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                bold={true}
+                style={
+                  Object {
+                    "color": "rgb(251,207,39)",
+                  }
+                }
+              >
+                
+              </YuText>,
+              "style": Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": 90,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "bold": true,
+                "children": "",
+                "style": Object {
+                  "color": "rgb(251,207,39)",
+                },
+              },
+              "ref": null,
+              "rendered": "",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>,
+              "style": Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": 112,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "",
+                "style": Object {
+                  "color": "rgb(225,5,119)",
+                },
+              },
+              "ref": null,
+              "rendered": "",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>,
+              "style": Object {
+                "alignItems": "flex-start",
+                "flex": 1,
+                "height": "100%",
+                "justifyContent": "center",
+                "paddingLeft": 24,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "",
+                "style": Object {
+                  "color": "rgb(225,5,119)",
+                },
+              },
+              "ref": null,
+              "rendered": "",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>,
+              "style": Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": 84,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "",
+                "style": Object {
+                  "color": "rgb(225,5,119)",
+                },
+              },
+              "ref": null,
+              "rendered": "",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <View
+              style={
+                Object {
+                  "backgroundColor": "rgb(251,207,39)",
+                  "height": "100%",
+                  "width": 120,
+                }
+              }
+            />,
+            <View
+              style={
+                Object {
+                  "backgroundColor": "rgb(226,1,119)",
+                  "flex": 1,
+                  "height": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": 320,
+                  }
+                }
+              >
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "color": "white",
+                      "lineHeight": 68,
+                      "paddingLeft": 20,
+                    }
+                  }
+                >
+                  last 30 days
+                </YuText>
+              </View>
+            </View>,
+          ],
+          "style": Object {
+            "flexDirection": "row",
+            "height": 68,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "style": Object {
+                "backgroundColor": "rgb(251,207,39)",
+                "height": "100%",
+                "width": 120,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <View
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": 320,
+                  }
+                }
+              >
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "color": "white",
+                      "lineHeight": 68,
+                      "paddingLeft": 20,
+                    }
+                  }
+                >
+                  last 30 days
+                </YuText>
+              </View>,
+              "style": Object {
+                "backgroundColor": "rgb(226,1,119)",
+                "flex": 1,
+                "height": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "color": "white",
+                      "lineHeight": 68,
+                      "paddingLeft": 20,
+                    }
+                  }
+                >
+                  last 30 days
+                </YuText>,
+                "style": Object {
+                  "alignItems": "flex-start",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 320,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "bold": true,
+                  "children": "last 30 days",
+                  "style": Object {
+                    "color": "white",
+                    "lineHeight": 68,
+                    "paddingLeft": 20,
+                  },
+                },
+                "ref": null,
+                "rendered": "last 30 days",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <FlatList
+            data={
+              Array [
+                Object {
+                  "challenges": Array [
+                    Object {
+                      "earned": 1,
+                      "milestones": 1,
+                      "name": "long walk",
+                      "score": "8000 steps",
+                    },
+                    Object {
+                      "earned": 3,
+                      "milestones": 2,
+                      "name": "meditation",
+                      "score": "08m 00s",
+                    },
+                    Object {
+                      "earned": 1,
+                      "milestones": 3,
+                      "name": "short stroll",
+                      "score": "1299 steps",
+                    },
+                  ],
+                  "dayOfMonth": "13",
+                  "dayOfWeek": "SAT",
+                  "id": "1",
+                  "level": 4,
+                  "sources": Object {},
+                  "steps": 4098,
+                  "yucoin": 3,
+                },
+              ]
+            }
+            disableVirtualization={false}
+            horizontal={false}
+            initialNumToRender={10}
+            keyExtractor={[Function]}
+            maxToRenderPerBatch={10}
+            numColumns={1}
+            onEndReachedThreshold={2}
+            onRefresh={[MockFunction]}
+            refreshing={true}
+            removeClippedSubviews={false}
+            renderItem={[Function]}
+            scrollEventThrottle={50}
+            updateCellsBatchingPeriod={50}
+            windowSize={21}
+          />,
+          "style": Object {
+            "flex": 1,
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "data": Array [
+              Object {
+                "challenges": Array [
+                  Object {
+                    "earned": 1,
+                    "milestones": 1,
+                    "name": "long walk",
+                    "score": "8000 steps",
+                  },
+                  Object {
+                    "earned": 3,
+                    "milestones": 2,
+                    "name": "meditation",
+                    "score": "08m 00s",
+                  },
+                  Object {
+                    "earned": 1,
+                    "milestones": 3,
+                    "name": "short stroll",
+                    "score": "1299 steps",
+                  },
+                ],
+                "dayOfMonth": "13",
+                "dayOfWeek": "SAT",
+                "id": "1",
+                "level": 4,
+                "sources": Object {},
+                "steps": 4098,
+                "yucoin": 3,
+              },
+            ],
+            "disableVirtualization": false,
+            "horizontal": false,
+            "initialNumToRender": 10,
+            "keyExtractor": [Function],
+            "maxToRenderPerBatch": 10,
+            "numColumns": 1,
+            "onEndReachedThreshold": 2,
+            "onRefresh": [MockFunction],
+            "refreshing": true,
+            "removeClippedSubviews": false,
+            "renderItem": [Function],
+            "scrollEventThrottle": 50,
+            "updateCellsBatchingPeriod": 50,
+            "windowSize": 21,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "onPress": [MockFunction],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <GenericHeading
+            heading=""
+          />,
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "height": 130,
+                "paddingHorizontal": 30,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 90,
+                }
+              }
+            >
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "color": "rgb(251,207,39)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 112,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flex": 1,
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "paddingLeft": 24,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 84,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(225,5,119)",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>
+          </View>,
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "height": 68,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "rgb(251,207,39)",
+                  "height": "100%",
+                  "width": 120,
+                }
+              }
+            />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "rgb(226,1,119)",
+                  "flex": 1,
+                  "height": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": 320,
+                  }
+                }
+              >
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "color": "white",
+                      "lineHeight": 68,
+                      "paddingLeft": 20,
+                    }
+                  }
+                >
+                  last 30 days
+                </YuText>
+              </View>
+            </View>
+          </View>,
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <FlatList
+              data={
+                Array [
+                  Object {
+                    "challenges": Array [
+                      Object {
+                        "earned": 1,
+                        "milestones": 1,
+                        "name": "long walk",
+                        "score": "8000 steps",
+                      },
+                      Object {
+                        "earned": 3,
+                        "milestones": 2,
+                        "name": "meditation",
+                        "score": "08m 00s",
+                      },
+                      Object {
+                        "earned": 1,
+                        "milestones": 3,
+                        "name": "short stroll",
+                        "score": "1299 steps",
+                      },
+                    ],
+                    "dayOfMonth": "13",
+                    "dayOfWeek": "SAT",
+                    "id": "1",
+                    "level": 4,
+                    "sources": Object {},
+                    "steps": 4098,
+                    "yucoin": 3,
+                  },
+                ]
+              }
+              disableVirtualization={false}
+              horizontal={false}
+              initialNumToRender={10}
+              keyExtractor={[Function]}
+              maxToRenderPerBatch={10}
+              numColumns={1}
+              onEndReachedThreshold={2}
+              onRefresh={[MockFunction]}
+              refreshing={true}
+              removeClippedSubviews={false}
+              renderItem={[Function]}
+              scrollEventThrottle={50}
+              updateCellsBatchingPeriod={50}
+              windowSize={21}
+            />
+          </View>,
+          <Close
+            onPress={[MockFunction]}
+          />,
+        ],
+        "style": Object {
+          "flex": 1,
+        },
+        "testID": "ACTIVITY_HISTORY_SCREEN",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "heading": "",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": 90,
+                  }
+                }
+              >
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "color": "rgb(251,207,39)",
+                    }
+                  }
+                >
+                  
+                </YuText>
+              </View>,
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": 112,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(225,5,119)",
+                    }
+                  }
+                >
+                  
+                </YuText>
+              </View>,
+              <View
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "flex": 1,
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "paddingLeft": 24,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(225,5,119)",
+                    }
+                  }
+                >
+                  
+                </YuText>
+              </View>,
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": 84,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(225,5,119)",
+                    }
+                  }
+                >
+                  
+                </YuText>
+              </View>,
+            ],
+            "style": Object {
+              "flexDirection": "row",
+              "height": 130,
+              "paddingHorizontal": 30,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "color": "rgb(251,207,39)",
+                    }
+                  }
+                >
+                  
+                </YuText>,
+                "style": Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 90,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "bold": true,
+                  "children": "",
+                  "style": Object {
+                    "color": "rgb(251,207,39)",
+                  },
+                },
+                "ref": null,
+                "rendered": "",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "color": "rgb(225,5,119)",
+                    }
+                  }
+                >
+                  
+                </YuText>,
+                "style": Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 112,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "",
+                  "style": Object {
+                    "color": "rgb(225,5,119)",
+                  },
+                },
+                "ref": null,
+                "rendered": "",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "color": "rgb(225,5,119)",
+                    }
+                  }
+                >
+                  
+                </YuText>,
+                "style": Object {
+                  "alignItems": "flex-start",
+                  "flex": 1,
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "paddingLeft": 24,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "",
+                  "style": Object {
+                    "color": "rgb(225,5,119)",
+                  },
+                },
+                "ref": null,
+                "rendered": "",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "color": "rgb(225,5,119)",
+                    }
+                  }
+                >
+                  
+                </YuText>,
+                "style": Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": 84,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "",
+                  "style": Object {
+                    "color": "rgb(225,5,119)",
+                  },
+                },
+                "ref": null,
+                "rendered": "",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "rgb(251,207,39)",
+                    "height": "100%",
+                    "width": 120,
+                  }
+                }
+              />,
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "rgb(226,1,119)",
+                    "flex": 1,
+                    "height": "100%",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "flex-start",
+                      "height": "100%",
+                      "justifyContent": "center",
+                      "width": 320,
+                    }
+                  }
+                >
+                  <YuText
+                    bold={true}
+                    style={
+                      Object {
+                        "color": "white",
+                        "lineHeight": 68,
+                        "paddingLeft": 20,
+                      }
+                    }
+                  >
+                    last 30 days
+                  </YuText>
+                </View>
+              </View>,
+            ],
+            "style": Object {
+              "flexDirection": "row",
+              "height": 68,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "style": Object {
+                  "backgroundColor": "rgb(251,207,39)",
+                  "height": "100%",
+                  "width": 120,
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <View
+                  style={
+                    Object {
+                      "alignItems": "flex-start",
+                      "height": "100%",
+                      "justifyContent": "center",
+                      "width": 320,
+                    }
+                  }
+                >
+                  <YuText
+                    bold={true}
+                    style={
+                      Object {
+                        "color": "white",
+                        "lineHeight": 68,
+                        "paddingLeft": 20,
+                      }
+                    }
+                  >
+                    last 30 days
+                  </YuText>
+                </View>,
+                "style": Object {
+                  "backgroundColor": "rgb(226,1,119)",
+                  "flex": 1,
+                  "height": "100%",
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <YuText
+                    bold={true}
+                    style={
+                      Object {
+                        "color": "white",
+                        "lineHeight": 68,
+                        "paddingLeft": 20,
+                      }
+                    }
+                  >
+                    last 30 days
+                  </YuText>,
+                  "style": Object {
+                    "alignItems": "flex-start",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": 320,
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "bold": true,
+                    "children": "last 30 days",
+                    "style": Object {
+                      "color": "white",
+                      "lineHeight": 68,
+                      "paddingLeft": 20,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "last 30 days",
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <FlatList
+              data={
+                Array [
+                  Object {
+                    "challenges": Array [
+                      Object {
+                        "earned": 1,
+                        "milestones": 1,
+                        "name": "long walk",
+                        "score": "8000 steps",
+                      },
+                      Object {
+                        "earned": 3,
+                        "milestones": 2,
+                        "name": "meditation",
+                        "score": "08m 00s",
+                      },
+                      Object {
+                        "earned": 1,
+                        "milestones": 3,
+                        "name": "short stroll",
+                        "score": "1299 steps",
+                      },
+                    ],
+                    "dayOfMonth": "13",
+                    "dayOfWeek": "SAT",
+                    "id": "1",
+                    "level": 4,
+                    "sources": Object {},
+                    "steps": 4098,
+                    "yucoin": 3,
+                  },
+                ]
+              }
+              disableVirtualization={false}
+              horizontal={false}
+              initialNumToRender={10}
+              keyExtractor={[Function]}
+              maxToRenderPerBatch={10}
+              numColumns={1}
+              onEndReachedThreshold={2}
+              onRefresh={[MockFunction]}
+              refreshing={true}
+              removeClippedSubviews={false}
+              renderItem={[Function]}
+              scrollEventThrottle={50}
+              updateCellsBatchingPeriod={50}
+              windowSize={21}
+            />,
+            "style": Object {
+              "flex": 1,
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "data": Array [
+                Object {
+                  "challenges": Array [
+                    Object {
+                      "earned": 1,
+                      "milestones": 1,
+                      "name": "long walk",
+                      "score": "8000 steps",
+                    },
+                    Object {
+                      "earned": 3,
+                      "milestones": 2,
+                      "name": "meditation",
+                      "score": "08m 00s",
+                    },
+                    Object {
+                      "earned": 1,
+                      "milestones": 3,
+                      "name": "short stroll",
+                      "score": "1299 steps",
+                    },
+                  ],
+                  "dayOfMonth": "13",
+                  "dayOfWeek": "SAT",
+                  "id": "1",
+                  "level": 4,
+                  "sources": Object {},
+                  "steps": 4098,
+                  "yucoin": 3,
+                },
+              ],
+              "disableVirtualization": false,
+              "horizontal": false,
+              "initialNumToRender": 10,
+              "keyExtractor": [Function],
+              "maxToRenderPerBatch": 10,
+              "numColumns": 1,
+              "onEndReachedThreshold": 2,
+              "onRefresh": [MockFunction],
+              "refreshing": true,
+              "removeClippedSubviews": false,
+              "renderItem": [Function],
+              "scrollEventThrottle": 50,
+              "updateCellsBatchingPeriod": 50,
+              "windowSize": 21,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "onPress": [MockFunction],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

@@ -1,0 +1,351 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LeaderboardItem should render & slice leaderboard name 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <LeaderboardItem
+    isLoading={false}
+    name="leaderboardleaderboardleaderboard"
+    onPress={[MockFunction]}
+    status="active"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "activeOpacity": 0.2,
+      "children": Array [
+        <YuText
+          bold={false}
+          numberOfLines={1}
+          style={
+            Object {
+              "fontSize": 32,
+              "marginBottom": 20,
+            }
+          }
+        >
+          leaderbo...
+        </YuText>,
+        <LeaderboardCircle
+          isLoading={false}
+          status="active"
+        />,
+      ],
+      "onPress": [MockFunction],
+      "style": Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "marginHorizontal": 30,
+        "marginTop": 30,
+        "width": 130,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "bold": false,
+          "children": "leaderbo...",
+          "numberOfLines": 1,
+          "style": Object {
+            "fontSize": 32,
+            "marginBottom": 20,
+          },
+        },
+        "ref": null,
+        "rendered": "leaderbo...",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "isLoading": false,
+          "status": "active",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "activeOpacity": 0.2,
+        "children": Array [
+          <YuText
+            bold={false}
+            numberOfLines={1}
+            style={
+              Object {
+                "fontSize": 32,
+                "marginBottom": 20,
+              }
+            }
+          >
+            leaderbo...
+          </YuText>,
+          <LeaderboardCircle
+            isLoading={false}
+            status="active"
+          />,
+        ],
+        "onPress": [MockFunction],
+        "style": Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+          "marginHorizontal": 30,
+          "marginTop": 30,
+          "width": 130,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "bold": false,
+            "children": "leaderbo...",
+            "numberOfLines": 1,
+            "style": Object {
+              "fontSize": 32,
+              "marginBottom": 20,
+            },
+          },
+          "ref": null,
+          "rendered": "leaderbo...",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "isLoading": false,
+            "status": "active",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`LeaderboardItem should render 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <LeaderboardItem
+    isLoading={false}
+    name="leaderboard"
+    onPress={[MockFunction]}
+    status="active"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "activeOpacity": 0.2,
+      "children": Array [
+        <YuText
+          bold={false}
+          numberOfLines={1}
+          style={
+            Object {
+              "fontSize": 32,
+              "marginBottom": 20,
+            }
+          }
+        >
+          leaderboard
+        </YuText>,
+        <LeaderboardCircle
+          isLoading={false}
+          status="active"
+        />,
+      ],
+      "onPress": [MockFunction],
+      "style": Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "marginHorizontal": 30,
+        "marginTop": 30,
+        "width": 130,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "bold": false,
+          "children": "leaderboard",
+          "numberOfLines": 1,
+          "style": Object {
+            "fontSize": 32,
+            "marginBottom": 20,
+          },
+        },
+        "ref": null,
+        "rendered": "leaderboard",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "isLoading": false,
+          "status": "active",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "activeOpacity": 0.2,
+        "children": Array [
+          <YuText
+            bold={false}
+            numberOfLines={1}
+            style={
+              Object {
+                "fontSize": 32,
+                "marginBottom": 20,
+              }
+            }
+          >
+            leaderboard
+          </YuText>,
+          <LeaderboardCircle
+            isLoading={false}
+            status="active"
+          />,
+        ],
+        "onPress": [MockFunction],
+        "style": Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+          "marginHorizontal": 30,
+          "marginTop": 30,
+          "width": 130,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "bold": false,
+            "children": "leaderboard",
+            "numberOfLines": 1,
+            "style": Object {
+              "fontSize": 32,
+              "marginBottom": 20,
+            },
+          },
+          "ref": null,
+          "rendered": "leaderboard",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "isLoading": false,
+            "status": "active",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

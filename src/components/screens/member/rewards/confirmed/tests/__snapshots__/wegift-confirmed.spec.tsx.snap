@@ -1,0 +1,1743 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WegiftConfirmedScreen should render 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <WegiftRewardsConfirmed
+    coins={200}
+    description="test"
+    imageUrl=""
+    isLoadingConfirmAction={false}
+    onPressCancel={[MockFunction]}
+    onPressConfirm={[MockFunction]}
+    onPressPolicy={[MockFunction]}
+    onPressTerms={[MockFunction]}
+    onPressTopBar={[MockFunction]}
+    purchaseDate="29 May 2019"
+    redeemInstructions={
+      Array [
+        "Test instruction1",
+      ]
+    }
+    rewardName="test reward"
+    validDate="29 May 2021"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <TopBar
+          coins={200}
+          leftIcon="Back"
+          onPressLeftIcon={[MockFunction]}
+        />,
+        <Pad
+          height={10}
+        />,
+        <ScrollViewMock
+          contentContainerStyle={
+            Object {
+              "alignItems": "center",
+              "paddingHorizontal": 30,
+            }
+          }
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "height": 330,
+                "marginBottom": 100,
+                "marginTop": 200,
+                "width": 530,
+              }
+            }
+          >
+            <Image
+              onLoad={[Function]}
+              source={
+                Object {
+                  "uri": "",
+                }
+              }
+              style={
+                Object {
+                  "height": 330,
+                  "width": 530,
+                }
+              }
+            />
+            <ActivityIndicator
+              animating={true}
+              color="#999999"
+              hidesWhenStopped={true}
+              size="small"
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          >
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "color": "rgb(51,51,51)",
+                  "fontSize": 40,
+                }
+              }
+            >
+              test reward
+            </YuText>
+          </View>
+          <View
+            style={
+              Object {
+                "borderColor": "rgb(51,51,51)",
+                "borderWidth": 0.5,
+                "marginTop": 30,
+                "width": "100%",
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "marginTop": 30,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                  }
+                }
+              >
+                Purchased date
+              </YuText>
+            </View>
+            <View
+              style={
+                Object {
+                  "marginLeft": "auto",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                  }
+                }
+              >
+                29 May 2019
+              </YuText>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "marginTop": 30,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                  }
+                }
+              >
+                Valid date
+              </YuText>
+            </View>
+            <View
+              style={
+                Object {
+                  "marginLeft": "auto",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                  }
+                }
+              >
+                29 May 2021
+              </YuText>
+            </View>
+          </View>
+          <RewardItemContent
+            description="test"
+            instructions={
+              Array [
+                "Test instruction1",
+              ]
+            }
+            isLoadingSecondary={false}
+            labelCtaPrimary="see other rewards"
+            labelCtaSecondary="get voucher"
+            onPressCtaPrimary={[MockFunction]}
+            onPressCtaSecondary={[MockFunction]}
+            onPressPolicy={[MockFunction]}
+            onPressTerms={[MockFunction]}
+          />
+          <Pad
+            height={50}
+          />
+        </ScrollViewMock>,
+      ],
+      "style": Object {
+        "flex": 1,
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "coins": 200,
+          "leftIcon": "Back",
+          "onPressLeftIcon": [MockFunction],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "height": 10,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <View
+              style={
+                Object {
+                  "height": 330,
+                  "marginBottom": 100,
+                  "marginTop": 200,
+                  "width": 530,
+                }
+              }
+            >
+              <Image
+                onLoad={[Function]}
+                source={
+                  Object {
+                    "uri": "",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 330,
+                    "width": 530,
+                  }
+                }
+              />
+              <ActivityIndicator
+                animating={true}
+                color="#999999"
+                hidesWhenStopped={true}
+                size="small"
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+            </View>,
+            <View
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontSize": 40,
+                  }
+                }
+              >
+                test reward
+              </YuText>
+            </View>,
+            <View
+              style={
+                Object {
+                  "borderColor": "rgb(51,51,51)",
+                  "borderWidth": 0.5,
+                  "marginTop": 30,
+                  "width": "100%",
+                }
+              }
+            />,
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "marginTop": 30,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                    }
+                  }
+                >
+                  Purchased date
+                </YuText>
+              </View>
+              <View
+                style={
+                  Object {
+                    "marginLeft": "auto",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                    }
+                  }
+                >
+                  29 May 2019
+                </YuText>
+              </View>
+            </View>,
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "marginTop": 30,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                    }
+                  }
+                >
+                  Valid date
+                </YuText>
+              </View>
+              <View
+                style={
+                  Object {
+                    "marginLeft": "auto",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                    }
+                  }
+                >
+                  29 May 2021
+                </YuText>
+              </View>
+            </View>,
+            <RewardItemContent
+              description="test"
+              instructions={
+                Array [
+                  "Test instruction1",
+                ]
+              }
+              isLoadingSecondary={false}
+              labelCtaPrimary="see other rewards"
+              labelCtaSecondary="get voucher"
+              onPressCtaPrimary={[MockFunction]}
+              onPressCtaSecondary={[MockFunction]}
+              onPressPolicy={[MockFunction]}
+              onPressTerms={[MockFunction]}
+            />,
+            <Pad
+              height={50}
+            />,
+          ],
+          "contentContainerStyle": Object {
+            "alignItems": "center",
+            "paddingHorizontal": 30,
+          },
+          "style": Object {
+            "flex": 1,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <Image
+                  onLoad={[Function]}
+                  source={
+                    Object {
+                      "uri": "",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 330,
+                      "width": 530,
+                    }
+                  }
+                />,
+                <ActivityIndicator
+                  animating={true}
+                  color="#999999"
+                  hidesWhenStopped={true}
+                  size="small"
+                  style={
+                    Object {
+                      "bottom": 0,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />,
+              ],
+              "style": Object {
+                "height": 330,
+                "marginBottom": 100,
+                "marginTop": 200,
+                "width": 530,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "onLoad": [Function],
+                  "source": Object {
+                    "uri": "",
+                  },
+                  "style": Object {
+                    "height": 330,
+                    "width": 530,
+                  },
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animating": true,
+                  "color": "#999999",
+                  "hidesWhenStopped": true,
+                  "size": "small",
+                  "style": Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                bold={true}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontSize": 40,
+                  }
+                }
+              >
+                test reward
+              </YuText>,
+              "style": Object {
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "bold": true,
+                "children": "test reward",
+                "style": Object {
+                  "color": "rgb(51,51,51)",
+                  "fontSize": 40,
+                },
+              },
+              "ref": null,
+              "rendered": "test reward",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "style": Object {
+                "borderColor": "rgb(51,51,51)",
+                "borderWidth": 0.5,
+                "marginTop": 30,
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                      }
+                    }
+                  >
+                    Purchased date
+                  </YuText>
+                </View>,
+                <View
+                  style={
+                    Object {
+                      "marginLeft": "auto",
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                      }
+                    }
+                  >
+                    29 May 2019
+                  </YuText>
+                </View>,
+              ],
+              "style": Object {
+                "flexDirection": "row",
+                "marginTop": 30,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                      }
+                    }
+                  >
+                    Purchased date
+                  </YuText>,
+                  "style": Object {
+                    "flex": 1,
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "Purchased date",
+                    "style": Object {
+                      "fontSize": 32,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "Purchased date",
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                      }
+                    }
+                  >
+                    29 May 2019
+                  </YuText>,
+                  "style": Object {
+                    "marginLeft": "auto",
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "29 May 2019",
+                    "style": Object {
+                      "fontSize": 32,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "29 May 2019",
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                      }
+                    }
+                  >
+                    Valid date
+                  </YuText>
+                </View>,
+                <View
+                  style={
+                    Object {
+                      "marginLeft": "auto",
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                      }
+                    }
+                  >
+                    29 May 2021
+                  </YuText>
+                </View>,
+              ],
+              "style": Object {
+                "flexDirection": "row",
+                "marginTop": 30,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                      }
+                    }
+                  >
+                    Valid date
+                  </YuText>,
+                  "style": Object {
+                    "flex": 1,
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "Valid date",
+                    "style": Object {
+                      "fontSize": 32,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "Valid date",
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                      }
+                    }
+                  >
+                    29 May 2021
+                  </YuText>,
+                  "style": Object {
+                    "marginLeft": "auto",
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "29 May 2021",
+                    "style": Object {
+                      "fontSize": 32,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "29 May 2021",
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "description": "test",
+              "instructions": Array [
+                "Test instruction1",
+              ],
+              "isLoadingSecondary": false,
+              "labelCtaPrimary": "see other rewards",
+              "labelCtaSecondary": "get voucher",
+              "onPressCtaPrimary": [MockFunction],
+              "onPressCtaSecondary": [MockFunction],
+              "onPressPolicy": [MockFunction],
+              "onPressTerms": [MockFunction],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "height": 50,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [MockFunction],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <TopBar
+            coins={200}
+            leftIcon="Back"
+            onPressLeftIcon={[MockFunction]}
+          />,
+          <Pad
+            height={10}
+          />,
+          <ScrollViewMock
+            contentContainerStyle={
+              Object {
+                "alignItems": "center",
+                "paddingHorizontal": 30,
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "height": 330,
+                  "marginBottom": 100,
+                  "marginTop": 200,
+                  "width": 530,
+                }
+              }
+            >
+              <Image
+                onLoad={[Function]}
+                source={
+                  Object {
+                    "uri": "",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 330,
+                    "width": 530,
+                  }
+                }
+              />
+              <ActivityIndicator
+                animating={true}
+                color="#999999"
+                hidesWhenStopped={true}
+                size="small"
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+            >
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "color": "rgb(51,51,51)",
+                    "fontSize": 40,
+                  }
+                }
+              >
+                test reward
+              </YuText>
+            </View>
+            <View
+              style={
+                Object {
+                  "borderColor": "rgb(51,51,51)",
+                  "borderWidth": 0.5,
+                  "marginTop": 30,
+                  "width": "100%",
+                }
+              }
+            />
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "marginTop": 30,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                    }
+                  }
+                >
+                  Purchased date
+                </YuText>
+              </View>
+              <View
+                style={
+                  Object {
+                    "marginLeft": "auto",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                    }
+                  }
+                >
+                  29 May 2019
+                </YuText>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "marginTop": 30,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                    }
+                  }
+                >
+                  Valid date
+                </YuText>
+              </View>
+              <View
+                style={
+                  Object {
+                    "marginLeft": "auto",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                    }
+                  }
+                >
+                  29 May 2021
+                </YuText>
+              </View>
+            </View>
+            <RewardItemContent
+              description="test"
+              instructions={
+                Array [
+                  "Test instruction1",
+                ]
+              }
+              isLoadingSecondary={false}
+              labelCtaPrimary="see other rewards"
+              labelCtaSecondary="get voucher"
+              onPressCtaPrimary={[MockFunction]}
+              onPressCtaSecondary={[MockFunction]}
+              onPressPolicy={[MockFunction]}
+              onPressTerms={[MockFunction]}
+            />
+            <Pad
+              height={50}
+            />
+          </ScrollViewMock>,
+        ],
+        "style": Object {
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "coins": 200,
+            "leftIcon": "Back",
+            "onPressLeftIcon": [MockFunction],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "height": 10,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <View
+                style={
+                  Object {
+                    "height": 330,
+                    "marginBottom": 100,
+                    "marginTop": 200,
+                    "width": 530,
+                  }
+                }
+              >
+                <Image
+                  onLoad={[Function]}
+                  source={
+                    Object {
+                      "uri": "",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 330,
+                      "width": 530,
+                    }
+                  }
+                />
+                <ActivityIndicator
+                  animating={true}
+                  color="#999999"
+                  hidesWhenStopped={true}
+                  size="small"
+                  style={
+                    Object {
+                      "bottom": 0,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+              </View>,
+              <View
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "color": "rgb(51,51,51)",
+                      "fontSize": 40,
+                    }
+                  }
+                >
+                  test reward
+                </YuText>
+              </View>,
+              <View
+                style={
+                  Object {
+                    "borderColor": "rgb(51,51,51)",
+                    "borderWidth": 0.5,
+                    "marginTop": 30,
+                    "width": "100%",
+                  }
+                }
+              />,
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "marginTop": 30,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                      }
+                    }
+                  >
+                    Purchased date
+                  </YuText>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "marginLeft": "auto",
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                      }
+                    }
+                  >
+                    29 May 2019
+                  </YuText>
+                </View>
+              </View>,
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "marginTop": 30,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                      }
+                    }
+                  >
+                    Valid date
+                  </YuText>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "marginLeft": "auto",
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                      }
+                    }
+                  >
+                    29 May 2021
+                  </YuText>
+                </View>
+              </View>,
+              <RewardItemContent
+                description="test"
+                instructions={
+                  Array [
+                    "Test instruction1",
+                  ]
+                }
+                isLoadingSecondary={false}
+                labelCtaPrimary="see other rewards"
+                labelCtaSecondary="get voucher"
+                onPressCtaPrimary={[MockFunction]}
+                onPressCtaSecondary={[MockFunction]}
+                onPressPolicy={[MockFunction]}
+                onPressTerms={[MockFunction]}
+              />,
+              <Pad
+                height={50}
+              />,
+            ],
+            "contentContainerStyle": Object {
+              "alignItems": "center",
+              "paddingHorizontal": 30,
+            },
+            "style": Object {
+              "flex": 1,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Image
+                    onLoad={[Function]}
+                    source={
+                      Object {
+                        "uri": "",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 330,
+                        "width": 530,
+                      }
+                    }
+                  />,
+                  <ActivityIndicator
+                    animating={true}
+                    color="#999999"
+                    hidesWhenStopped={true}
+                    size="small"
+                    style={
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  />,
+                ],
+                "style": Object {
+                  "height": 330,
+                  "marginBottom": 100,
+                  "marginTop": 200,
+                  "width": 530,
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "onLoad": [Function],
+                    "source": Object {
+                      "uri": "",
+                    },
+                    "style": Object {
+                      "height": 330,
+                      "width": 530,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "animating": true,
+                    "color": "#999999",
+                    "hidesWhenStopped": true,
+                    "size": "small",
+                    "style": Object {
+                      "bottom": 0,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "color": "rgb(51,51,51)",
+                      "fontSize": 40,
+                    }
+                  }
+                >
+                  test reward
+                </YuText>,
+                "style": Object {
+                  "width": "100%",
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "bold": true,
+                  "children": "test reward",
+                  "style": Object {
+                    "color": "rgb(51,51,51)",
+                    "fontSize": 40,
+                  },
+                },
+                "ref": null,
+                "rendered": "test reward",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "style": Object {
+                  "borderColor": "rgb(51,51,51)",
+                  "borderWidth": 0.5,
+                  "marginTop": 30,
+                  "width": "100%",
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 32,
+                        }
+                      }
+                    >
+                      Purchased date
+                    </YuText>
+                  </View>,
+                  <View
+                    style={
+                      Object {
+                        "marginLeft": "auto",
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 32,
+                        }
+                      }
+                    >
+                      29 May 2019
+                    </YuText>
+                  </View>,
+                ],
+                "style": Object {
+                  "flexDirection": "row",
+                  "marginTop": 30,
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <YuText
+                      style={
+                        Object {
+                          "fontSize": 32,
+                        }
+                      }
+                    >
+                      Purchased date
+                    </YuText>,
+                    "style": Object {
+                      "flex": 1,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "Purchased date",
+                      "style": Object {
+                        "fontSize": 32,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "Purchased date",
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <YuText
+                      style={
+                        Object {
+                          "fontSize": 32,
+                        }
+                      }
+                    >
+                      29 May 2019
+                    </YuText>,
+                    "style": Object {
+                      "marginLeft": "auto",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "29 May 2019",
+                      "style": Object {
+                        "fontSize": 32,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "29 May 2019",
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 32,
+                        }
+                      }
+                    >
+                      Valid date
+                    </YuText>
+                  </View>,
+                  <View
+                    style={
+                      Object {
+                        "marginLeft": "auto",
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 32,
+                        }
+                      }
+                    >
+                      29 May 2021
+                    </YuText>
+                  </View>,
+                ],
+                "style": Object {
+                  "flexDirection": "row",
+                  "marginTop": 30,
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <YuText
+                      style={
+                        Object {
+                          "fontSize": 32,
+                        }
+                      }
+                    >
+                      Valid date
+                    </YuText>,
+                    "style": Object {
+                      "flex": 1,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "Valid date",
+                      "style": Object {
+                        "fontSize": 32,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "Valid date",
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <YuText
+                      style={
+                        Object {
+                          "fontSize": 32,
+                        }
+                      }
+                    >
+                      29 May 2021
+                    </YuText>,
+                    "style": Object {
+                      "marginLeft": "auto",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "29 May 2021",
+                      "style": Object {
+                        "fontSize": 32,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "29 May 2021",
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "description": "test",
+                "instructions": Array [
+                  "Test instruction1",
+                ],
+                "isLoadingSecondary": false,
+                "labelCtaPrimary": "see other rewards",
+                "labelCtaSecondary": "get voucher",
+                "onPressCtaPrimary": [MockFunction],
+                "onPressCtaSecondary": [MockFunction],
+                "onPressPolicy": [MockFunction],
+                "onPressTerms": [MockFunction],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 50,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [MockFunction],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
