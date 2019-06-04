@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import * as React from "react";
 import { NativeScrollEvent, NativeSyntheticEvent, SafeAreaView, ScrollView, View } from "react-native";
 import { NavBar, TopBar } from "../../../molecules";
 import styles from "./intro.styles";
@@ -18,7 +18,7 @@ interface IProps {
     onSetRef: (ref: ScrollView) => void;
 }
 
-class IntroScreen extends PureComponent<IProps> {
+class IntroScreen extends React.PureComponent<IProps> {
     public render() {
         const {
             isShowingTopBar,

@@ -1,10 +1,10 @@
 import { BUTTON_INTRO_SCREEN } from "@ids";
-import React, { PureComponent } from "react";
+import * as React from "react";
 import { Image, TouchableOpacity } from "react-native";
 import styles from "./screen-1.styles";
 import { IScreenProps } from "./screen.models";
 
-class OnboardingScreenOne extends PureComponent<IScreenProps> {
+class OnboardingScreenOne extends React.PureComponent<IScreenProps> {
     public render() {
         const { onPressNext } = this.props;
         return (

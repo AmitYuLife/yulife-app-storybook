@@ -2,7 +2,7 @@ import { AddUserFeedbackMutation, AddUserFeedbackMutationFunction } from "@graph
 import Logger from "@services/logging/logger";
 import * as React from "react";
 import { PureComponent } from "react";
-import { FeedbackModalScreen } from "../../screens";
+import { FeedbackScreen } from "../../screens";
 
 interface IProps {
     closeModal: () => void;
@@ -26,7 +26,7 @@ export default class FeedbackModal extends PureComponent<Props, IState> {
                     const { rating } = this.state;
 
                     return (
-                        <FeedbackModalScreen
+                        <FeedbackScreen
                             isSubmitting={loading}
                             onCancel={this.onCancel}
                             onRatingSelect={this.onRatingSelect}

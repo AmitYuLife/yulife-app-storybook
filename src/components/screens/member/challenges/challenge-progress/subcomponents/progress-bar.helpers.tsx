@@ -1,12 +1,12 @@
 import { Counter } from "@molecules/index";
-import React, { SFC } from "react";
+import * as React from "react";
 import { StyleSheet, Text } from "react-native";
 import { displaySecondsAsMinutes, padNum } from "../../../../../../services/utils";
 import Progress from "./progress";
 import { IProps } from "./progress-bar";
 import styles from "./progress-bar.styles";
 
-export const renderProgressBar: SFC<IProps> = ({ amount, goals, styleType, type }) => {
+export const renderProgressBar: React.SFC<IProps> = ({ amount, goals, styleType, type }) => {
     switch (goals.length) {
         case 1:
             return <Progress amount={amount} goal={goals[0]} styleType={styleType} type={type} />;
@@ -54,12 +54,7 @@ export const renderProgressBar: SFC<IProps> = ({ amount, goals, styleType, type 
     }
 };
 
-export const renderProgressLabel = ({
-    amount,
-    showCounter,
-    styleType = "black",
-    type
-}: Partial<IProps>): React.ReactNode => {
+export const renderProgressLabel = ({ amount, showCounter, styleType = "black", type }: Partial<IProps>) => {
     const textColorStyle = getProgressLabelTextColor(styleType);
 
     const typeText = type === "steps" && amount === 1 ? "step" : type;

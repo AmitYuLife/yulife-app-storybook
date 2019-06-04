@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import * as React from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import Svg, { Circle, Polygon } from "react-native-svg";
 import { padNum } from "../../../../../../services/utils";
@@ -20,7 +20,7 @@ interface IState {
     widthDefined: boolean;
 }
 
-class Progress extends Component<IProps, IState> {
+class Progress extends React.Component<IProps, IState> {
     public state: IState = {
         progressWidth: 0,
         widthDefined: false

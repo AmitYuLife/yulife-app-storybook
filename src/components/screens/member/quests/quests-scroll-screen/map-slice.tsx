@@ -2,8 +2,8 @@ import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { Style } from "../../../../../styles";
-import { IChallenge } from "../quests-screen/quests-screen";
 import { IMapSlice, LevelBubble, MAP_SLICE_HEIGHT } from "./assets";
+import { IChallenge } from "./quests-screen";
 
 interface IProps {
     currentLevel: number;

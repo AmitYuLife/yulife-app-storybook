@@ -1,0 +1,577 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Level should render with a lock button 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <LevelBubble
+    currentLevel={1}
+    index={0}
+    level={
+      Object {
+        "__typename": "Level",
+        "id": "123",
+        "isActive": false,
+        "isChestLevel": false,
+        "isDone": false,
+        "isNext": false,
+        "level": 3,
+        "levelChestId": "123",
+        "name": "name",
+        "nextAvailableAt": "30",
+        "onPress": [MockFunction],
+        "rating": 1,
+        "slots": Array [
+          Object {
+            "__typename": "LevelSlot",
+            "availableAtLevel": 7,
+            "id": "YU_LEVEL_0151_0",
+            "milestones": Array [],
+            "passive": null,
+            "rating": null,
+            "subtype": "brisk walk",
+            "timeLimit": 600,
+            "type": "move",
+            "unit": "steps",
+            "yuCoinAwarded": null,
+          },
+        ],
+      }
+    }
+    slice={
+      Object {
+        "episodeSettings": Object {
+          "navBarType": "light",
+          "offset": 0,
+          "topBarType": "default",
+        },
+        "id": "MAP_SLICE_W01E00",
+        "image": Object {
+          "testUri": "../../../assets/quest-slices/w1s0.png",
+        },
+        "navBarColour": "light",
+        "slots": Array [
+          Object {
+            "index": 0,
+            "left": 187,
+            "top": 8,
+          },
+        ],
+        "topBarType": "default",
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        null,
+        <TouchableOpacityWithState
+          onPress={[MockFunction]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderRadius": 100,
+              "height": 100,
+              "justifyContent": "center",
+              "left": 374,
+              "marginLeft": -50,
+              "position": "absolute",
+              "top": 16,
+              "width": 100,
+            }
+          }
+        >
+          <Lock
+            colour="rgb(79, 151, 139)"
+          />
+        </TouchableOpacityWithState>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      null,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Lock
+            colour="rgb(79, 151, 139)"
+          />,
+          "onPress": [MockFunction],
+          "style": Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "borderRadius": 100,
+            "height": 100,
+            "justifyContent": "center",
+            "left": 374,
+            "marginLeft": -50,
+            "position": "absolute",
+            "top": 16,
+            "width": 100,
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "colour": "rgb(79, 151, 139)",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          null,
+          <TouchableOpacityWithState
+            onPress={[MockFunction]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "borderRadius": 100,
+                "height": 100,
+                "justifyContent": "center",
+                "left": 374,
+                "marginLeft": -50,
+                "position": "absolute",
+                "top": 16,
+                "width": 100,
+              }
+            }
+          >
+            <Lock
+              colour="rgb(79, 151, 139)"
+            />
+          </TouchableOpacityWithState>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Lock
+              colour="rgb(79, 151, 139)"
+            />,
+            "onPress": [MockFunction],
+            "style": Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderRadius": 100,
+              "height": 100,
+              "justifyContent": "center",
+              "left": 374,
+              "marginLeft": -50,
+              "position": "absolute",
+              "top": 16,
+              "width": 100,
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "colour": "rgb(79, 151, 139)",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Level should render with a pulse 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <LevelBubble
+    currentLevel={1}
+    index={0}
+    level={
+      Object {
+        "__typename": "Level",
+        "id": "123",
+        "isActive": true,
+        "isChestLevel": false,
+        "isDone": false,
+        "isNext": false,
+        "level": 1,
+        "levelChestId": "123",
+        "name": "name",
+        "nextAvailableAt": "30",
+        "onPress": [MockFunction],
+        "rating": 1,
+        "slots": Array [
+          Object {
+            "__typename": "LevelSlot",
+            "availableAtLevel": 7,
+            "id": "YU_LEVEL_0151_0",
+            "milestones": Array [],
+            "passive": null,
+            "rating": null,
+            "subtype": "brisk walk",
+            "timeLimit": 600,
+            "type": "move",
+            "unit": "steps",
+            "yuCoinAwarded": null,
+          },
+        ],
+      }
+    }
+    slice={
+      Object {
+        "episodeSettings": Object {
+          "navBarType": "light",
+          "offset": 0,
+          "topBarType": "default",
+        },
+        "id": "MAP_SLICE_W01E00",
+        "image": Object {
+          "testUri": "../../../assets/quest-slices/w1s0.png",
+        },
+        "navBarColour": "light",
+        "slots": Array [
+          Object {
+            "index": 0,
+            "left": 187,
+            "top": 8,
+          },
+        ],
+        "topBarType": "default",
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        <Pulse
+          backgroundColor="rgb(145,0,76)"
+          interval={750}
+          pulseMaxSize={132}
+          size={106}
+          style={
+            Object {
+              "left": 374,
+              "top": 16,
+            }
+          }
+        />,
+        <TouchableOpacityWithState
+          onPress={[MockFunction]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "rgb(226, 1, 119)",
+              "borderRadius": 100,
+              "height": 100,
+              "justifyContent": "center",
+              "left": 374,
+              "marginLeft": -50,
+              "position": "absolute",
+              "top": 16,
+              "width": 100,
+            }
+          }
+        >
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 38,
+                "lineHeight": 38,
+              }
+            }
+          >
+            1
+          </YuText>
+        </TouchableOpacityWithState>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "backgroundColor": "rgb(145,0,76)",
+          "interval": 750,
+          "pulseMaxSize": 132,
+          "size": 106,
+          "style": Object {
+            "left": 374,
+            "top": 16,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 38,
+                "lineHeight": 38,
+              }
+            }
+          >
+            1
+          </YuText>,
+          "onPress": [MockFunction],
+          "style": Object {
+            "alignItems": "center",
+            "backgroundColor": "rgb(226, 1, 119)",
+            "borderRadius": 100,
+            "height": 100,
+            "justifyContent": "center",
+            "left": 374,
+            "marginLeft": -50,
+            "position": "absolute",
+            "top": 16,
+            "width": 100,
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "bold": true,
+            "children": 1,
+            "style": Object {
+              "color": "#ffffff",
+              "fontSize": 38,
+              "lineHeight": 38,
+            },
+          },
+          "ref": null,
+          "rendered": 1,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <Pulse
+            backgroundColor="rgb(145,0,76)"
+            interval={750}
+            pulseMaxSize={132}
+            size={106}
+            style={
+              Object {
+                "left": 374,
+                "top": 16,
+              }
+            }
+          />,
+          <TouchableOpacityWithState
+            onPress={[MockFunction]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgb(226, 1, 119)",
+                "borderRadius": 100,
+                "height": 100,
+                "justifyContent": "center",
+                "left": 374,
+                "marginLeft": -50,
+                "position": "absolute",
+                "top": 16,
+                "width": 100,
+              }
+            }
+          >
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 38,
+                  "lineHeight": 38,
+                }
+              }
+            >
+              1
+            </YuText>
+          </TouchableOpacityWithState>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "backgroundColor": "rgb(145,0,76)",
+            "interval": 750,
+            "pulseMaxSize": 132,
+            "size": 106,
+            "style": Object {
+              "left": 374,
+              "top": 16,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <YuText
+              bold={true}
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 38,
+                  "lineHeight": 38,
+                }
+              }
+            >
+              1
+            </YuText>,
+            "onPress": [MockFunction],
+            "style": Object {
+              "alignItems": "center",
+              "backgroundColor": "rgb(226, 1, 119)",
+              "borderRadius": 100,
+              "height": 100,
+              "justifyContent": "center",
+              "left": 374,
+              "marginLeft": -50,
+              "position": "absolute",
+              "top": 16,
+              "width": 100,
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "bold": true,
+              "children": 1,
+              "style": Object {
+                "color": "#ffffff",
+                "fontSize": 38,
+                "lineHeight": 38,
+              },
+            },
+            "ref": null,
+            "rendered": 1,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

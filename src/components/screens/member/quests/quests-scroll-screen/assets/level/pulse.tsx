@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Animated, Easing, StyleSheet, View } from "react-native";
 import { CIRCLE_SIZE } from "./level.styles";
 

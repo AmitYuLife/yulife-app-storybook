@@ -1,0 +1,900 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GenericScreen should render 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <GenericScreen
+    ctaLabel="label"
+    heading="heading"
+    isPrimaryLoading={false}
+    onPress={[MockFunction]}
+    subheading="subheading"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <YuText
+          bold={true}
+          style={
+            Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 70,
+              "textAlign": "center",
+            }
+          }
+        >
+          heading
+        </YuText>,
+        <YuText
+          style={
+            Object {
+              "color": "rgb(96,96,96)",
+              "fontSize": 32,
+              "marginLeft": 70,
+              "marginRight": 70,
+              "marginTop": 40,
+              "textAlign": "center",
+            }
+          }
+        >
+          subheading
+        </YuText>,
+        <Button
+          isLoading={false}
+          label="label"
+          onPress={[MockFunction]}
+          type="Primary"
+          wrapperStyle={
+            Object {
+              "marginTop": 88,
+            }
+          }
+        />,
+        null,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(255,255,255,0.9)",
+        "flex": 1,
+        "justifyContent": "center",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "bold": true,
+          "children": "heading",
+          "style": Object {
+            "color": "rgb(51,51,51)",
+            "fontSize": 70,
+            "textAlign": "center",
+          },
+        },
+        "ref": null,
+        "rendered": "heading",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": "subheading",
+          "style": Object {
+            "color": "rgb(96,96,96)",
+            "fontSize": 32,
+            "marginLeft": 70,
+            "marginRight": 70,
+            "marginTop": 40,
+            "textAlign": "center",
+          },
+        },
+        "ref": null,
+        "rendered": "subheading",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "isLoading": false,
+          "label": "label",
+          "onPress": [MockFunction],
+          "type": "Primary",
+          "wrapperStyle": Object {
+            "marginTop": 88,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      null,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontSize": 70,
+                "textAlign": "center",
+              }
+            }
+          >
+            heading
+          </YuText>,
+          <YuText
+            style={
+              Object {
+                "color": "rgb(96,96,96)",
+                "fontSize": 32,
+                "marginLeft": 70,
+                "marginRight": 70,
+                "marginTop": 40,
+                "textAlign": "center",
+              }
+            }
+          >
+            subheading
+          </YuText>,
+          <Button
+            isLoading={false}
+            label="label"
+            onPress={[MockFunction]}
+            type="Primary"
+            wrapperStyle={
+              Object {
+                "marginTop": 88,
+              }
+            }
+          />,
+          null,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "backgroundColor": "rgba(255,255,255,0.9)",
+          "flex": 1,
+          "justifyContent": "center",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "bold": true,
+            "children": "heading",
+            "style": Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 70,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "heading",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "subheading",
+            "style": Object {
+              "color": "rgb(96,96,96)",
+              "fontSize": 32,
+              "marginLeft": 70,
+              "marginRight": 70,
+              "marginTop": 40,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "subheading",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "isLoading": false,
+            "label": "label",
+            "onPress": [MockFunction],
+            "type": "Primary",
+            "wrapperStyle": Object {
+              "marginTop": 88,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        null,
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`GenericScreen should render with all buttons loading 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <GenericScreen
+    ctaLabel="label"
+    ctaLabelSecondary="label"
+    heading="heading"
+    isPrimaryLoading={true}
+    isSecondaryLoading={true}
+    onPress={[MockFunction]}
+    onPressSecondary={[MockFunction]}
+    subheading="subheading"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <YuText
+          bold={true}
+          style={
+            Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 70,
+              "textAlign": "center",
+            }
+          }
+        >
+          heading
+        </YuText>,
+        <YuText
+          style={
+            Object {
+              "color": "rgb(96,96,96)",
+              "fontSize": 32,
+              "marginLeft": 70,
+              "marginRight": 70,
+              "marginTop": 40,
+              "textAlign": "center",
+            }
+          }
+        >
+          subheading
+        </YuText>,
+        <Button
+          isLoading={true}
+          label="label"
+          onPress={[MockFunction]}
+          type="Primary"
+          wrapperStyle={
+            Object {
+              "marginTop": 88,
+            }
+          }
+        />,
+        <Button
+          isLoading={true}
+          label="label"
+          onPress={[MockFunction]}
+          type="Secondary"
+          wrapperStyle={
+            Object {
+              "marginTop": 30,
+            }
+          }
+        />,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(255,255,255,0.9)",
+        "flex": 1,
+        "justifyContent": "center",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "bold": true,
+          "children": "heading",
+          "style": Object {
+            "color": "rgb(51,51,51)",
+            "fontSize": 70,
+            "textAlign": "center",
+          },
+        },
+        "ref": null,
+        "rendered": "heading",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": "subheading",
+          "style": Object {
+            "color": "rgb(96,96,96)",
+            "fontSize": 32,
+            "marginLeft": 70,
+            "marginRight": 70,
+            "marginTop": 40,
+            "textAlign": "center",
+          },
+        },
+        "ref": null,
+        "rendered": "subheading",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "isLoading": true,
+          "label": "label",
+          "onPress": [MockFunction],
+          "type": "Primary",
+          "wrapperStyle": Object {
+            "marginTop": 88,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "isLoading": true,
+          "label": "label",
+          "onPress": [MockFunction],
+          "type": "Secondary",
+          "wrapperStyle": Object {
+            "marginTop": 30,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontSize": 70,
+                "textAlign": "center",
+              }
+            }
+          >
+            heading
+          </YuText>,
+          <YuText
+            style={
+              Object {
+                "color": "rgb(96,96,96)",
+                "fontSize": 32,
+                "marginLeft": 70,
+                "marginRight": 70,
+                "marginTop": 40,
+                "textAlign": "center",
+              }
+            }
+          >
+            subheading
+          </YuText>,
+          <Button
+            isLoading={true}
+            label="label"
+            onPress={[MockFunction]}
+            type="Primary"
+            wrapperStyle={
+              Object {
+                "marginTop": 88,
+              }
+            }
+          />,
+          <Button
+            isLoading={true}
+            label="label"
+            onPress={[MockFunction]}
+            type="Secondary"
+            wrapperStyle={
+              Object {
+                "marginTop": 30,
+              }
+            }
+          />,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "backgroundColor": "rgba(255,255,255,0.9)",
+          "flex": 1,
+          "justifyContent": "center",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "bold": true,
+            "children": "heading",
+            "style": Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 70,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "heading",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "subheading",
+            "style": Object {
+              "color": "rgb(96,96,96)",
+              "fontSize": 32,
+              "marginLeft": 70,
+              "marginRight": 70,
+              "marginTop": 40,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "subheading",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "isLoading": true,
+            "label": "label",
+            "onPress": [MockFunction],
+            "type": "Primary",
+            "wrapperStyle": Object {
+              "marginTop": 88,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "isLoading": true,
+            "label": "label",
+            "onPress": [MockFunction],
+            "type": "Secondary",
+            "wrapperStyle": Object {
+              "marginTop": 30,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`GenericScreen should render with secondary button 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <GenericScreen
+    ctaLabel="label"
+    ctaLabelSecondary="label"
+    heading="heading"
+    isPrimaryLoading={false}
+    onPress={[MockFunction]}
+    onPressSecondary={[MockFunction]}
+    subheading="subheading"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <YuText
+          bold={true}
+          style={
+            Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 70,
+              "textAlign": "center",
+            }
+          }
+        >
+          heading
+        </YuText>,
+        <YuText
+          style={
+            Object {
+              "color": "rgb(96,96,96)",
+              "fontSize": 32,
+              "marginLeft": 70,
+              "marginRight": 70,
+              "marginTop": 40,
+              "textAlign": "center",
+            }
+          }
+        >
+          subheading
+        </YuText>,
+        <Button
+          isLoading={false}
+          label="label"
+          onPress={[MockFunction]}
+          type="Primary"
+          wrapperStyle={
+            Object {
+              "marginTop": 88,
+            }
+          }
+        />,
+        <Button
+          label="label"
+          onPress={[MockFunction]}
+          type="Secondary"
+          wrapperStyle={
+            Object {
+              "marginTop": 30,
+            }
+          }
+        />,
+      ],
+      "style": Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(255,255,255,0.9)",
+        "flex": 1,
+        "justifyContent": "center",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "bold": true,
+          "children": "heading",
+          "style": Object {
+            "color": "rgb(51,51,51)",
+            "fontSize": 70,
+            "textAlign": "center",
+          },
+        },
+        "ref": null,
+        "rendered": "heading",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": "subheading",
+          "style": Object {
+            "color": "rgb(96,96,96)",
+            "fontSize": 32,
+            "marginLeft": 70,
+            "marginRight": 70,
+            "marginTop": 40,
+            "textAlign": "center",
+          },
+        },
+        "ref": null,
+        "rendered": "subheading",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "isLoading": false,
+          "label": "label",
+          "onPress": [MockFunction],
+          "type": "Primary",
+          "wrapperStyle": Object {
+            "marginTop": 88,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "isLoading": undefined,
+          "label": "label",
+          "onPress": [MockFunction],
+          "type": "Secondary",
+          "wrapperStyle": Object {
+            "marginTop": 30,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontSize": 70,
+                "textAlign": "center",
+              }
+            }
+          >
+            heading
+          </YuText>,
+          <YuText
+            style={
+              Object {
+                "color": "rgb(96,96,96)",
+                "fontSize": 32,
+                "marginLeft": 70,
+                "marginRight": 70,
+                "marginTop": 40,
+                "textAlign": "center",
+              }
+            }
+          >
+            subheading
+          </YuText>,
+          <Button
+            isLoading={false}
+            label="label"
+            onPress={[MockFunction]}
+            type="Primary"
+            wrapperStyle={
+              Object {
+                "marginTop": 88,
+              }
+            }
+          />,
+          <Button
+            label="label"
+            onPress={[MockFunction]}
+            type="Secondary"
+            wrapperStyle={
+              Object {
+                "marginTop": 30,
+              }
+            }
+          />,
+        ],
+        "style": Object {
+          "alignItems": "center",
+          "backgroundColor": "rgba(255,255,255,0.9)",
+          "flex": 1,
+          "justifyContent": "center",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "bold": true,
+            "children": "heading",
+            "style": Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 70,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "heading",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "subheading",
+            "style": Object {
+              "color": "rgb(96,96,96)",
+              "fontSize": 32,
+              "marginLeft": 70,
+              "marginRight": 70,
+              "marginTop": 40,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "subheading",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "isLoading": false,
+            "label": "label",
+            "onPress": [MockFunction],
+            "type": "Primary",
+            "wrapperStyle": Object {
+              "marginTop": 88,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "isLoading": undefined,
+            "label": "label",
+            "onPress": [MockFunction],
+            "type": "Secondary",
+            "wrapperStyle": Object {
+              "marginTop": 30,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

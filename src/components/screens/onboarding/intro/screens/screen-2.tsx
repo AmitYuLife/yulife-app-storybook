@@ -1,10 +1,10 @@
 import { BUTTON_INTRO_SCREEN } from "@ids";
-import React, { PureComponent } from "react";
+import * as React from "react";
 import { Image, TouchableOpacity, View } from "react-native";
 import styles from "./screen-2.styles";
 import { IScreenProps } from "./screen.models";
 
-class OnboardingScreenTwo extends PureComponent<IScreenProps> {
+class OnboardingScreenTwo extends React.PureComponent<IScreenProps> {
     public render() {
         const { onPressNext, onPressPrevious } = this.props;
         return (
@@ -16,17 +16,13 @@ class OnboardingScreenTwo extends PureComponent<IScreenProps> {
                             resizeMode="cover"
                             source={require("../../../../../../assets/intro/onboarding-app-2.png")}
                         />
-                        </View>
+                    </View>
                     <View style={styles.buttonsWrapper}>
-                        <TouchableOpacity
-                            onPress={onPressNext}
-                            style={styles.button}
-                            testID={BUTTON_INTRO_SCREEN(2)}
-                        />
-                        <TouchableOpacity
-                            onPress={onPressPrevious}
-                            style={styles.button}
-                        /></View></View></View>
+                        <TouchableOpacity onPress={onPressNext} style={styles.button} testID={BUTTON_INTRO_SCREEN(2)} />
+                        <TouchableOpacity onPress={onPressPrevious} style={styles.button} />
+                    </View>
+                </View>
+            </View>
         );
     }
 }

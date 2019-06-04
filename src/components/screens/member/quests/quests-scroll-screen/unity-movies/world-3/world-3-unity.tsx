@@ -1,5 +1,5 @@
 import { Text } from "@atoms/index";
-import React from "react";
+import * as React from "react";
 import { Animated, Image, SafeAreaView, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import worldData from "./world-3-unity.data";
 import styles from "./world-3-unity.styles";

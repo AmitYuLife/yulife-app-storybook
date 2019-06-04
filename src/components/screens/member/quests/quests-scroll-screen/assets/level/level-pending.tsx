@@ -1,6 +1,6 @@
 import { Style } from "@styles/index";
 import moment from "moment";
-import React, { PureComponent } from "react";
+import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { Text } from "../../../../../../atoms";
 import { getTime } from "./level.helpers";
@@ -14,7 +14,7 @@ interface IState {
     nextAvailable: number | null;
 }
 
-class LevelPending extends PureComponent<IProps, IState> {
+class LevelPending extends React.PureComponent<IProps, IState> {
     public state: IState = {
         nextAvailable: null
     };
@@ -48,7 +48,7 @@ class LevelPending extends PureComponent<IProps, IState> {
     private handleUpdateNextAvailable = () => {
         const nextAvailable = Math.abs(moment().diff(moment(this.props.nextAvailableAt), "seconds"));
         this.setState({ nextAvailable });
-    }
+    };
 }
 
 export default LevelPending;
