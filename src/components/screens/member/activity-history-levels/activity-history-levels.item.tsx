@@ -36,6 +36,14 @@ function showRating(challenge: IChallenge) {
     return !["streak", "streak completed", "chest", "bonus yucoin"].includes(challenge.name);
 }
 
+function renderCoinEarnedValue(value: string | number, props?: any) {
+    return (
+        <View style={styles.yuCoinEarnedWrapper} {...props}>
+            <Text style={styles.yuCoinEarned}>{value}</Text>
+        </View>
+    );
+}
+
 export default function ActivityHistoryLevelsItem({
     challenges,
     dayOfMonth,
@@ -94,7 +102,7 @@ export default function ActivityHistoryLevelsItem({
                     </View>
                     <View style={styles.starsColumn}>
                         <View style={styles.starsWrapper} />
-                        {renderSourcesValue(sources)}
+                        {renderSourcesColumnSpacing(sources, () => <View style={styles.starsWrapper} />)}
                         {challenges.map((challenge, key) => (
                             <View style={styles.starsWrapper} key={key}>
                                 {showRating(challenge) &&
@@ -107,19 +115,10 @@ export default function ActivityHistoryLevelsItem({
                         ))}
                     </View>
                     <View style={styles.yuCoinEarnedColumn}>
-                        <View style={styles.yuCoinEarnedWrapper}>
-                            <Text style={styles.yuCoinEarned}>{yucoin}</Text>
-                        </View>
-                        {challenges.length ? null : (
-                            <View style={styles.yuCoinEarnedWrapper}>
-                                <Text style={styles.yuCoinEarned}>0</Text>
-                            </View>
-                        )}
-                        {challenges.map(({ earned }, index) => (
-                            <View style={styles.yuCoinEarnedWrapper} key={index}>
-                                <Text style={styles.yuCoinEarned}>{earned}</Text>
-                            </View>
-                        ))}
+                        {renderCoinEarnedValue(yucoin)}
+                        {renderSourcesColumnSpacing(sources, () => renderCoinEarnedValue("-"))}
+                        {challenges.length ? null : renderCoinEarnedValue(0)}
+                        {challenges.map(({ earned }, index) => renderCoinEarnedValue(earned, { key: index }))}
                     </View>
                 </View>
                 <View style={styles.bottomDividerWrapper}>
@@ -130,12 +129,20 @@ export default function ActivityHistoryLevelsItem({
     );
 }
 
-function renderSourcesText(sources: Partial<Sources>) {
+function showSources(sources: Partial<Sources>) {
     if (!sources) {
-        return null;
+        return false;
     }
 
     if (!sources.garmin && !sources.fitbit) {
+        return false;
+    }
+
+    return true;
+}
+
+function renderSourcesText(sources: Partial<Sources>) {
+    if (!showSources(sources)) {
         return null;
     }
 
@@ -166,20 +173,16 @@ function renderSourcesText(sources: Partial<Sources>) {
     );
 }
 
-function renderSourcesValue(sources: Partial<Sources>) {
-    if (!sources) {
-        return null;
-    }
-
-    if (!sources.garmin && !sources.fitbit) {
+function renderSourcesColumnSpacing(sources: Partial<Sources>, render: () => React.ReactNode) {
+    if (!showSources(sources)) {
         return null;
     }
 
     return (
         <>
-            {!sources.device ? null : <View style={styles.yuCoinEarnedWrapper} />}
-            {!sources.fitbit ? null : <View style={styles.yuCoinEarnedWrapper} />}
-            {!sources.garmin ? null : <View style={styles.yuCoinEarnedWrapper} />}
+            {!sources.device ? null : render()}
+            {!sources.fitbit ? null : render()}
+            {!sources.garmin ? null : render()}
         </>
     );
 }
