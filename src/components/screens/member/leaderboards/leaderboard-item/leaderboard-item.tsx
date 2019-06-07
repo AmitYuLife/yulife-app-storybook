@@ -16,7 +16,7 @@ export interface ILeaderboardItemProps {
 
 export default function LeaderboardItem({ isCurrentUser, rank, name, steps, coins, sortBy }: ILeaderboardItemProps) {
     const currentUserStyle = isCurrentUser ? styles.textHighlighted : {};
-    const textStyleRightSmall = StyleSheet.flatten([styles.text, styles.textRight, styles.textSmall, currentUserStyle]);
+    const textStyleRightSmall = StyleSheet.flatten([styles.text, styles.textRight, currentUserStyle]);
 
     return (
         <View style={styles.wrapper}>
