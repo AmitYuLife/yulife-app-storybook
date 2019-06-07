@@ -91,7 +91,7 @@ ShallowWrapper {
             style={
               Object {
                 "fontFamily": "Bariol-Regular",
-                "fontSize": 28,
+                "fontSize": 36,
                 "lineHeight": 40,
                 "textAlign": "right",
               }
@@ -171,7 +171,7 @@ ShallowWrapper {
               style={
                 Object {
                   "fontFamily": "Bariol-Regular",
-                  "fontSize": 28,
+                  "fontSize": 36,
                   "lineHeight": 40,
                   "textAlign": "right",
                 }
@@ -301,7 +301,7 @@ ShallowWrapper {
               style={
                 Object {
                   "fontFamily": "Bariol-Regular",
-                  "fontSize": 28,
+                  "fontSize": 36,
                   "lineHeight": 40,
                   "textAlign": "right",
                 }
@@ -323,7 +323,7 @@ ShallowWrapper {
               "children": "1",
               "style": Object {
                 "fontFamily": "Bariol-Regular",
-                "fontSize": 28,
+                "fontSize": 36,
                 "lineHeight": 40,
                 "textAlign": "right",
               },
@@ -412,7 +412,7 @@ ShallowWrapper {
               style={
                 Object {
                   "fontFamily": "Bariol-Regular",
-                  "fontSize": 28,
+                  "fontSize": 36,
                   "lineHeight": 40,
                   "textAlign": "right",
                 }
@@ -492,7 +492,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "fontFamily": "Bariol-Regular",
-                    "fontSize": 28,
+                    "fontSize": 36,
                     "lineHeight": 40,
                     "textAlign": "right",
                   }
@@ -622,7 +622,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "fontFamily": "Bariol-Regular",
-                    "fontSize": 28,
+                    "fontSize": 36,
                     "lineHeight": 40,
                     "textAlign": "right",
                   }
@@ -644,7 +644,7 @@ ShallowWrapper {
                 "children": "1",
                 "style": Object {
                   "fontFamily": "Bariol-Regular",
-                  "fontSize": 28,
+                  "fontSize": 36,
                   "lineHeight": 40,
                   "textAlign": "right",
                 },
@@ -775,7 +775,7 @@ ShallowWrapper {
             style={
               Object {
                 "fontFamily": "Bariol-Regular",
-                "fontSize": 28,
+                "fontSize": 36,
                 "lineHeight": 40,
                 "textAlign": "right",
               }
@@ -856,7 +856,7 @@ ShallowWrapper {
               style={
                 Object {
                   "fontFamily": "Bariol-Regular",
-                  "fontSize": 28,
+                  "fontSize": 36,
                   "lineHeight": 40,
                   "textAlign": "right",
                 }
@@ -971,7 +971,7 @@ ShallowWrapper {
               style={
                 Object {
                   "fontFamily": "Bariol-Regular",
-                  "fontSize": 28,
+                  "fontSize": 36,
                   "lineHeight": 40,
                   "textAlign": "right",
                 }
@@ -993,7 +993,7 @@ ShallowWrapper {
               "children": "1",
               "style": Object {
                 "fontFamily": "Bariol-Regular",
-                "fontSize": 28,
+                "fontSize": 36,
                 "lineHeight": 40,
                 "textAlign": "right",
               },
@@ -1083,7 +1083,7 @@ ShallowWrapper {
               style={
                 Object {
                   "fontFamily": "Bariol-Regular",
-                  "fontSize": 28,
+                  "fontSize": 36,
                   "lineHeight": 40,
                   "textAlign": "right",
                 }
@@ -1164,7 +1164,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "fontFamily": "Bariol-Regular",
-                    "fontSize": 28,
+                    "fontSize": 36,
                     "lineHeight": 40,
                     "textAlign": "right",
                   }
@@ -1279,7 +1279,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "fontFamily": "Bariol-Regular",
-                    "fontSize": 28,
+                    "fontSize": 36,
                     "lineHeight": 40,
                     "textAlign": "right",
                   }
@@ -1301,7 +1301,7 @@ ShallowWrapper {
                 "children": "1",
                 "style": Object {
                   "fontFamily": "Bariol-Regular",
-                  "fontSize": 28,
+                  "fontSize": 36,
                   "lineHeight": 40,
                   "textAlign": "right",
                 },
@@ -1431,7 +1431,7 @@ ShallowWrapper {
             style={
               Object {
                 "fontFamily": "Bariol-Regular",
-                "fontSize": 28,
+                "fontSize": 36,
                 "lineHeight": 40,
                 "textAlign": "right",
               }
@@ -1511,7 +1511,7 @@ ShallowWrapper {
               style={
                 Object {
                   "fontFamily": "Bariol-Regular",
-                  "fontSize": 28,
+                  "fontSize": 36,
                   "lineHeight": 40,
                   "textAlign": "right",
                 }
@@ -1641,7 +1641,7 @@ ShallowWrapper {
               style={
                 Object {
                   "fontFamily": "Bariol-Regular",
-                  "fontSize": 28,
+                  "fontSize": 36,
                   "lineHeight": 40,
                   "textAlign": "right",
                 }
@@ -1663,7 +1663,7 @@ ShallowWrapper {
               "children": "5",
               "style": Object {
                 "fontFamily": "Bariol-Regular",
-                "fontSize": 28,
+                "fontSize": 36,
                 "lineHeight": 40,
                 "textAlign": "right",
               },
@@ -1752,7 +1752,7 @@ ShallowWrapper {
               style={
                 Object {
                   "fontFamily": "Bariol-Regular",
-                  "fontSize": 28,
+                  "fontSize": 36,
                   "lineHeight": 40,
                   "textAlign": "right",
                 }
@@ -1832,7 +1832,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "fontFamily": "Bariol-Regular",
-                    "fontSize": 28,
+                    "fontSize": 36,
                     "lineHeight": 40,
                     "textAlign": "right",
                   }
@@ -1962,7 +1962,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "fontFamily": "Bariol-Regular",
-                    "fontSize": 28,
+                    "fontSize": 36,
                     "lineHeight": 40,
                     "textAlign": "right",
                   }
@@ -1984,7 +1984,7 @@ ShallowWrapper {
                 "children": "5",
                 "style": Object {
                   "fontFamily": "Bariol-Regular",
-                  "fontSize": 28,
+                  "fontSize": 36,
                   "lineHeight": 40,
                   "textAlign": "right",
                 },
