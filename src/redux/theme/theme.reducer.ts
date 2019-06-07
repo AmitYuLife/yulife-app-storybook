@@ -90,8 +90,8 @@ const getCurrentWorldTheme = (
                     hasWhiteGlow: true,
                     isLight: false,
                     navBar: {
-                        offline: COLOURS.LIGHT,
-                        online: COLOURS.BLUE
+                        offline: COLOURS.BLUE,
+                        online: COLOURS.LIGHT
                     },
                     streakType: "ocean",
                     textStyle: { color: "rgb(51, 51, 51)" },

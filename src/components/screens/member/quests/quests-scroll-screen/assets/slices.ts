@@ -1089,7 +1089,7 @@ const WorldSlices: IMapSlice[] = [
         episodeSettings: episodeSettings.w4s7,
         id: "MAP_SLICE_W04E25",
         image: require("../../../../../../../assets/quest-slices/w4s25.png"),
-        navBarColour: COLOURS.LIGHT,
+        navBarColour: COLOURS.BLUE,
         slots: [],
         topBarType: TOP_BAR_TYPES.WHITE
     },
@@ -1097,7 +1097,7 @@ const WorldSlices: IMapSlice[] = [
         episodeSettings: episodeSettings.w4s7,
         id: "MAP_SLICE_W04E26",
         image: require("../../../../../../../assets/quest-slices/w4s26.png"),
-        navBarColour: COLOURS.LIGHT,
+        navBarColour: COLOURS.BLUE,
         slots: [{ index: 192, top: 8, left: 97 }, { index: 193, top: 8, left: 277 }],
         topBarType: TOP_BAR_TYPES.WHITE
     },
@@ -1105,7 +1105,7 @@ const WorldSlices: IMapSlice[] = [
         episodeSettings: episodeSettings.w4s7,
         id: "MAP_SLICE_W04E27",
         image: require("../../../../../../../assets/quest-slices/w4s27.png"),
-        navBarColour: COLOURS.LIGHT,
+        navBarColour: COLOURS.BLUE,
         slots: [
             { index: 194, bottom: 30, left: 187 },
             { index: 195, top: 30, left: 97 },
@@ -1117,7 +1117,7 @@ const WorldSlices: IMapSlice[] = [
         episodeSettings: episodeSettings.w4s7,
         id: "MAP_SLICE_W04E28",
         image: require("../../../../../../../assets/quest-slices/w4s28.png"),
-        navBarColour: COLOURS.LIGHT,
+        navBarColour: COLOURS.BLUE,
         slots: [{ index: 197, bottom: 8, left: 187 }, { index: 198, top: 30, left: 187 }],
         topBarType: TOP_BAR_TYPES.WHITE
     },
@@ -1125,9 +1125,9 @@ const WorldSlices: IMapSlice[] = [
         episodeSettings: episodeSettings.w4s7,
         id: "MAP_SLICE_W04E29",
         image: require("../../../../../../../assets/quest-slices/w4s29.png"),
-        navBarColour: COLOURS.LIGHT,
+        navBarColour: COLOURS.BLUE,
         slots: [],
-        topBarType: TOP_BAR_TYPES.WHITE
+        topBarType: TOP_BAR_TYPES.DEFAULT
     },
     // next episode
     {
@@ -1183,8 +1183,8 @@ export const loadingSlices: { [x: string]: IMapSlice } = {
     mountain: {
         id: "MAP_SLICE_W04_LOADING_01",
         image: require("../../../../../../../assets/quest-slices/loading/w4s1.png"),
-        navBarColour: COLOURS.LIGHT,
+        navBarColour: COLOURS.BLUE,
         slots: [],
-        topBarType: TOP_BAR_TYPES.MOUNTAIN
+        topBarType: TOP_BAR_TYPES.DEFAULT
     }
 };

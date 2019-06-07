@@ -143,7 +143,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         switch (getCurrentWorld(currentLevel)) {
             case 3:
                 return {
-                    initialScrollIndex: 88,
+                    initialScrollIndex: 87,
                     slices:
                         currentLevel < 200
                             ? [...mapSlices.slice(0, 116), loadingSlices.mountain]

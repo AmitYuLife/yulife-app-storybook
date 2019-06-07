@@ -116,14 +116,14 @@ const worldBubbleColours: IBubbleColours = {
         }
     },
     3: {
-        0: { available: "white", notAvailable: "rgb(66, 120, 165)" },
-        1: { available: "white", notAvailable: "rgb(66, 120, 165)" },
-        2: { available: "white", notAvailable: "rgb(66, 120, 165)" },
-        3: { available: "white", notAvailable: "rgb(66, 120, 165)" },
-        4: { available: "white", notAvailable: "rgb(66, 120, 165)" },
-        5: { available: "white", notAvailable: "rgb(66, 120, 165)" },
-        6: { available: "white", notAvailable: "rgb(66, 120, 165)" },
-        7: { available: "white", notAvailable: "rgb(66, 120, 165)" }
+        0: { available: "white", notAvailable: "rgb(158, 199, 243)" },
+        1: { available: "white", notAvailable: "rgb(158, 199, 243)" },
+        2: { available: "white", notAvailable: "rgb(158, 199, 243)" },
+        3: { available: "white", notAvailable: "rgb(158, 199, 243)" },
+        4: { available: "white", notAvailable: "rgb(158, 199, 243)" },
+        5: { available: "white", notAvailable: "rgb(158, 199, 243)" },
+        6: { available: "white", notAvailable: "rgb(158, 199, 243)" },
+        7: { available: "white", notAvailable: "rgb(158, 199, 243)" }
     }
 };
 
