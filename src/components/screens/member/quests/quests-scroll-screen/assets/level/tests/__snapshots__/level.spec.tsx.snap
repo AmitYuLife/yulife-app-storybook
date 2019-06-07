@@ -45,9 +45,7 @@ ShallowWrapper {
           "topBarType": "default",
         },
         "id": "MAP_SLICE_W01E00",
-        "image": Object {
-          "testUri": "../../../assets/quest-slices/w1s0.png",
-        },
+        "image": 1,
         "navBarColour": "light",
         "slots": Array [
           Object {
@@ -281,9 +279,7 @@ ShallowWrapper {
           "topBarType": "default",
         },
         "id": "MAP_SLICE_W01E00",
-        "image": Object {
-          "testUri": "../../../assets/quest-slices/w1s0.png",
-        },
+        "image": 1,
         "navBarColour": "light",
         "slots": Array [
           Object {

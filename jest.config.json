@@ -6,21 +6,11 @@
         "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "src/.+\\.(test|spec).(ts|tsx|js)$",
-    "moduleFileExtensions": [
-        "ts",
-        "tsx",
-        "js",
-        "jsx",
-        "json",
-        "node"
-    ],
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
     "modulePaths": ["<rootDir>"],
     "collectCoverage": true,
     "coverageDirectory": "./coverage/",
-    "coverageReporters": [
-        "lcov",
-        "text-summary"
-    ],
+    "coverageReporters": ["lcov", "text-summary"],
     "collectCoverageFrom": [
         "src/**/*.{ts,tsx}",
         "!src/**/*.{spec,stories}.{ts,tsx}",
@@ -35,6 +25,10 @@
         "!src/styles/**/*",
         "!src/services/**/*"
     ],
+    "moduleNameMapper": {
+        "^image![a-zA-Z0-9$_-]+$": "GlobalImageStub",
+        "^[@./a-zA-Z0-9$_-]+\\.(png|gif)$": "RelativeImageStub"
+    },
     "globals": {
         "ts-jest": {
             "useBabelrc": true

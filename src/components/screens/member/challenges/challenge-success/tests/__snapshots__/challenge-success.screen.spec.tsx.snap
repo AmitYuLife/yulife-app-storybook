@@ -44,11 +44,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-success/levelLine.png",
-              }
-            }
+            source={1}
           />
           <YuText
             style={
@@ -78,11 +74,7 @@ ShallowWrapper {
             />
           </View>
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-success/challenge-success.png",
-              }
-            }
+            source={1}
           />
           <YuText
             bold={true}
@@ -159,11 +151,7 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-success/levelLine.png",
-                }
-              }
+              source={1}
             />,
             <YuText
               style={
@@ -190,9 +178,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/challenge-success/levelLine.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -238,11 +224,7 @@ ShallowWrapper {
               />
             </View>,
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-success/challenge-success.png",
-                }
-              }
+              source={1}
             />,
             <YuText
               bold={true}
@@ -298,9 +280,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/challenge-success/challenge-success.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -409,11 +389,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-success/levelLine.png",
-                }
-              }
+              source={1}
             />
             <YuText
               style={
@@ -443,11 +419,7 @@ ShallowWrapper {
               />
             </View>
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-success/challenge-success.png",
-                }
-              }
+              source={1}
             />
             <YuText
               bold={true}
@@ -524,11 +496,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/challenge-success/levelLine.png",
-                  }
-                }
+                source={1}
               />,
               <YuText
                 style={
@@ -555,9 +523,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/challenge-success/levelLine.png",
-                },
+                "source": 1,
               },
               "ref": null,
               "rendered": null,
@@ -603,11 +569,7 @@ ShallowWrapper {
                 />
               </View>,
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/challenge-success/challenge-success.png",
-                  }
-                }
+                source={1}
               />,
               <YuText
                 bold={true}
@@ -663,9 +625,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/challenge-success/challenge-success.png",
-                },
+                "source": 1,
               },
               "ref": null,
               "rendered": null,
@@ -820,11 +780,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-success/levelLine.png",
-              }
-            }
+            source={1}
           />
           <YuText
             style={
@@ -854,11 +810,7 @@ ShallowWrapper {
             />
           </View>
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-success/challenge-success.png",
-              }
-            }
+            source={1}
           />
           <YuText
             bold={true}
@@ -935,11 +887,7 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-success/levelLine.png",
-                }
-              }
+              source={1}
             />,
             <YuText
               style={
@@ -966,9 +914,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/challenge-success/levelLine.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -1014,11 +960,7 @@ ShallowWrapper {
               />
             </View>,
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-success/challenge-success.png",
-                }
-              }
+              source={1}
             />,
             <YuText
               bold={true}
@@ -1074,9 +1016,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/challenge-success/challenge-success.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -1185,11 +1125,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-success/levelLine.png",
-                }
-              }
+              source={1}
             />
             <YuText
               style={
@@ -1219,11 +1155,7 @@ ShallowWrapper {
               />
             </View>
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-success/challenge-success.png",
-                }
-              }
+              source={1}
             />
             <YuText
               bold={true}
@@ -1300,11 +1232,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/challenge-success/levelLine.png",
-                  }
-                }
+                source={1}
               />,
               <YuText
                 style={
@@ -1331,9 +1259,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/challenge-success/levelLine.png",
-                },
+                "source": 1,
               },
               "ref": null,
               "rendered": null,
@@ -1379,11 +1305,7 @@ ShallowWrapper {
                 />
               </View>,
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/challenge-success/challenge-success.png",
-                  }
-                }
+                source={1}
               />,
               <YuText
                 bold={true}
@@ -1439,9 +1361,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/challenge-success/challenge-success.png",
-                },
+                "source": 1,
               },
               "ref": null,
               "rendered": null,

@@ -418,11 +418,7 @@ ShallowWrapper {
           first leaderboard
         </YuText>
         <Image
-          source={
-            Object {
-              "testUri": "../../../assets/leaderboards/arrow-down.png",
-            }
-          }
+          source={1}
         />
       </TouchableOpacity>,
       "style": Object {
@@ -454,11 +450,7 @@ ShallowWrapper {
             first leaderboard
           </YuText>,
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/arrow-down.png",
-              }
-            }
+            source={1}
           />,
         ],
         "onPress": [MockFunction],
@@ -493,9 +485,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/arrow-down.png",
-            },
+            "source": 1,
           },
           "ref": null,
           "rendered": null,
@@ -537,11 +527,7 @@ ShallowWrapper {
             first leaderboard
           </YuText>
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/arrow-down.png",
-              }
-            }
+            source={1}
           />
         </TouchableOpacity>,
         "style": Object {
@@ -573,11 +559,7 @@ ShallowWrapper {
               first leaderboard
             </YuText>,
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/arrow-down.png",
-                }
-              }
+              source={1}
             />,
           ],
           "onPress": [MockFunction],
@@ -612,9 +594,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/arrow-down.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -1066,11 +1046,7 @@ ShallowWrapper {
           first leaderboard
         </YuText>
         <Image
-          source={
-            Object {
-              "testUri": "../../../assets/leaderboards/arrow-up.png",
-            }
-          }
+          source={1}
         />
       </TouchableOpacity>,
       "style": Object {
@@ -1102,11 +1078,7 @@ ShallowWrapper {
             first leaderboard
           </YuText>,
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/arrow-up.png",
-              }
-            }
+            source={1}
           />,
         ],
         "onPress": [MockFunction],
@@ -1141,9 +1113,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/arrow-up.png",
-            },
+            "source": 1,
           },
           "ref": null,
           "rendered": null,
@@ -1185,11 +1155,7 @@ ShallowWrapper {
             first leaderboard
           </YuText>
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/arrow-up.png",
-              }
-            }
+            source={1}
           />
         </TouchableOpacity>,
         "style": Object {
@@ -1221,11 +1187,7 @@ ShallowWrapper {
               first leaderboard
             </YuText>,
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/arrow-up.png",
-                }
-              }
+              source={1}
             />,
           ],
           "onPress": [MockFunction],
@@ -1260,9 +1222,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/arrow-up.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -1714,11 +1674,7 @@ ShallowWrapper {
           first leaderboard
         </YuText>
         <Image
-          source={
-            Object {
-              "testUri": "../../../assets/leaderboards/arrow-down.png",
-            }
-          }
+          source={1}
         />
       </TouchableOpacity>,
       "style": Object {
@@ -1750,11 +1706,7 @@ ShallowWrapper {
             first leaderboard
           </YuText>,
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/arrow-down.png",
-              }
-            }
+            source={1}
           />,
         ],
         "onPress": [MockFunction],
@@ -1789,9 +1741,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/arrow-down.png",
-            },
+            "source": 1,
           },
           "ref": null,
           "rendered": null,
@@ -1833,11 +1783,7 @@ ShallowWrapper {
             first leaderboard
           </YuText>
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/arrow-down.png",
-              }
-            }
+            source={1}
           />
         </TouchableOpacity>,
         "style": Object {
@@ -1869,11 +1815,7 @@ ShallowWrapper {
               first leaderboard
             </YuText>,
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/arrow-down.png",
-                }
-              }
+              source={1}
             />,
           ],
           "onPress": [MockFunction],
@@ -1908,9 +1850,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/arrow-down.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,

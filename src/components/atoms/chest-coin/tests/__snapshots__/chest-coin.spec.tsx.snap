@@ -17,9 +17,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "source": Object {
-        "testUri": "../../../assets/chest-components/chest-coin.png",
-      },
+      "source": 1,
     },
     "ref": null,
     "rendered": null,
@@ -31,9 +29,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "source": Object {
-          "testUri": "../../../assets/chest-components/chest-coin.png",
-        },
+        "source": 1,
       },
       "ref": null,
       "rendered": null,

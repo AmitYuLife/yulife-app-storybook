@@ -49,11 +49,7 @@ ShallowWrapper {
         >
           <View>
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/first.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 28,
@@ -133,11 +129,7 @@ ShallowWrapper {
           >
             <View>
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/leaderboards/first.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 28,
@@ -208,11 +200,7 @@ ShallowWrapper {
           "props": Object {
             "children": <View>
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/leaderboards/first.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 28,
@@ -235,11 +223,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/leaderboards/first.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 28,
@@ -254,9 +238,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/leaderboards/first.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 28,
                   "width": 28,
@@ -388,11 +370,7 @@ ShallowWrapper {
           >
             <View>
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/leaderboards/first.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 28,
@@ -472,11 +450,7 @@ ShallowWrapper {
             >
               <View>
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/leaderboards/first.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 28,
@@ -547,11 +521,7 @@ ShallowWrapper {
             "props": Object {
               "children": <View>
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/leaderboards/first.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 28,
@@ -574,11 +544,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/leaderboards/first.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 28,
@@ -593,9 +559,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "source": Object {
-                    "testUri": "../../../assets/leaderboards/first.png",
-                  },
+                  "source": 1,
                   "style": Object {
                     "height": 28,
                     "width": 28,
@@ -1425,11 +1389,7 @@ ShallowWrapper {
         >
           <View>
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/first.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 28,
@@ -1509,11 +1469,7 @@ ShallowWrapper {
           >
             <View>
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/leaderboards/first.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 28,
@@ -1584,11 +1540,7 @@ ShallowWrapper {
           "props": Object {
             "children": <View>
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/leaderboards/first.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 28,
@@ -1611,11 +1563,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/leaderboards/first.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 28,
@@ -1630,9 +1578,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/leaderboards/first.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 28,
                   "width": 28,
@@ -1764,11 +1710,7 @@ ShallowWrapper {
           >
             <View>
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/leaderboards/first.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 28,
@@ -1848,11 +1790,7 @@ ShallowWrapper {
             >
               <View>
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/leaderboards/first.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 28,
@@ -1923,11 +1861,7 @@ ShallowWrapper {
             "props": Object {
               "children": <View>
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/leaderboards/first.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 28,
@@ -1950,11 +1884,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/leaderboards/first.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 28,
@@ -1969,9 +1899,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "source": Object {
-                    "testUri": "../../../assets/leaderboards/first.png",
-                  },
+                  "source": 1,
                   "style": Object {
                     "height": 28,
                     "width": 28,

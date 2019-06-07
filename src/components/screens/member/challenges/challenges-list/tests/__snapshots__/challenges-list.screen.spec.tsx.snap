@@ -38,11 +38,7 @@ ShallowWrapper {
         >
           <Image
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/challenges/forest.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 1334,
@@ -109,11 +105,7 @@ ShallowWrapper {
         "props": Object {
           "children": <Image
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/challenges/forest.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 1334,
@@ -137,9 +129,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "resizeMode": "cover",
-            "source": Object {
-              "testUri": "../../../assets/challenges/forest.png",
-            },
+            "source": 1,
             "style": Object {
               "height": 1334,
               "width": 750,
@@ -259,11 +249,7 @@ ShallowWrapper {
           >
             <Image
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/challenges/forest.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 1334,
@@ -330,11 +316,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Image
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/challenges/forest.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 1334,
@@ -358,9 +340,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "resizeMode": "cover",
-              "source": Object {
-                "testUri": "../../../assets/challenges/forest.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 1334,
                 "width": 750,
@@ -520,11 +500,7 @@ ShallowWrapper {
         >
           <Image
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/challenges/forest.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 1334,
@@ -591,11 +567,7 @@ ShallowWrapper {
         "props": Object {
           "children": <Image
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/challenges/forest.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 1334,
@@ -619,9 +591,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "resizeMode": "cover",
-            "source": Object {
-              "testUri": "../../../assets/challenges/forest.png",
-            },
+            "source": 1,
             "style": Object {
               "height": 1334,
               "width": 750,
@@ -741,11 +711,7 @@ ShallowWrapper {
           >
             <Image
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/challenges/forest.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 1334,
@@ -812,11 +778,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Image
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/challenges/forest.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 1334,
@@ -840,9 +802,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "resizeMode": "cover",
-              "source": Object {
-                "testUri": "../../../assets/challenges/forest.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 1334,
                 "width": 750,

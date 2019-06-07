@@ -160,11 +160,7 @@ ShallowWrapper {
         >
           <Image
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/challenges/forest.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 1334,
@@ -239,11 +235,7 @@ ShallowWrapper {
           }
         >
           <ErrorableImage
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-tile/squirrel.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "bottom": 0,
@@ -256,11 +248,7 @@ ShallowWrapper {
             width={212}
           />
           <ErrorableImage
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-tile/elephant.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "bottom": 0,
@@ -272,11 +260,7 @@ ShallowWrapper {
             width={260}
           />
           <ErrorableImage
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-tile/ostrich.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "bottom": 0,
@@ -289,11 +273,7 @@ ShallowWrapper {
             width={184}
           />
           <ErrorableImage
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-tile/bird.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "bottom": 0,
@@ -387,11 +367,7 @@ ShallowWrapper {
         "props": Object {
           "children": <Image
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/challenges/forest.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 1334,
@@ -415,9 +391,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "resizeMode": "cover",
-            "source": Object {
-              "testUri": "../../../assets/challenges/forest.png",
-            },
+            "source": 1,
             "style": Object {
               "height": 1334,
               "width": 750,
@@ -571,11 +545,7 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <ErrorableImage
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-tile/squirrel.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "bottom": 0,
@@ -588,11 +558,7 @@ ShallowWrapper {
               width={212}
             />,
             <ErrorableImage
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-tile/elephant.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "bottom": 0,
@@ -604,11 +570,7 @@ ShallowWrapper {
               width={260}
             />,
             <ErrorableImage
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-tile/ostrich.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "bottom": 0,
@@ -621,11 +583,7 @@ ShallowWrapper {
               width={184}
             />,
             <ErrorableImage
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-tile/bird.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "bottom": 0,
@@ -651,9 +609,7 @@ ShallowWrapper {
             "key": "0",
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/challenge-tile/squirrel.png",
-              },
+              "source": 1,
               "style": Object {
                 "bottom": 0,
                 "left": -32,
@@ -672,9 +628,7 @@ ShallowWrapper {
             "key": "1",
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/challenge-tile/elephant.png",
-              },
+              "source": 1,
               "style": Object {
                 "bottom": 0,
                 "position": "absolute",
@@ -692,9 +646,7 @@ ShallowWrapper {
             "key": "2",
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/challenge-tile/ostrich.png",
-              },
+              "source": 1,
               "style": Object {
                 "bottom": 0,
                 "left": 0,
@@ -713,9 +665,7 @@ ShallowWrapper {
             "key": "3",
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/challenge-tile/bird.png",
-              },
+              "source": 1,
               "style": Object {
                 "bottom": 0,
                 "position": "absolute",
@@ -915,11 +865,7 @@ ShallowWrapper {
           >
             <Image
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/challenges/forest.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 1334,
@@ -994,11 +940,7 @@ ShallowWrapper {
             }
           >
             <ErrorableImage
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-tile/squirrel.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "bottom": 0,
@@ -1011,11 +953,7 @@ ShallowWrapper {
               width={212}
             />
             <ErrorableImage
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-tile/elephant.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "bottom": 0,
@@ -1027,11 +965,7 @@ ShallowWrapper {
               width={260}
             />
             <ErrorableImage
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-tile/ostrich.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "bottom": 0,
@@ -1044,11 +978,7 @@ ShallowWrapper {
               width={184}
             />
             <ErrorableImage
-              source={
-                Object {
-                  "testUri": "../../../assets/challenge-tile/bird.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "bottom": 0,
@@ -1142,11 +1072,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Image
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/challenges/forest.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 1334,
@@ -1170,9 +1096,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "resizeMode": "cover",
-              "source": Object {
-                "testUri": "../../../assets/challenges/forest.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 1334,
                 "width": 750,
@@ -1326,11 +1250,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <ErrorableImage
-                source={
-                  Object {
-                    "testUri": "../../../assets/challenge-tile/squirrel.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "bottom": 0,
@@ -1343,11 +1263,7 @@ ShallowWrapper {
                 width={212}
               />,
               <ErrorableImage
-                source={
-                  Object {
-                    "testUri": "../../../assets/challenge-tile/elephant.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "bottom": 0,
@@ -1359,11 +1275,7 @@ ShallowWrapper {
                 width={260}
               />,
               <ErrorableImage
-                source={
-                  Object {
-                    "testUri": "../../../assets/challenge-tile/ostrich.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "bottom": 0,
@@ -1376,11 +1288,7 @@ ShallowWrapper {
                 width={184}
               />,
               <ErrorableImage
-                source={
-                  Object {
-                    "testUri": "../../../assets/challenge-tile/bird.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "bottom": 0,
@@ -1406,9 +1314,7 @@ ShallowWrapper {
               "key": "0",
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/challenge-tile/squirrel.png",
-                },
+                "source": 1,
                 "style": Object {
                   "bottom": 0,
                   "left": -32,
@@ -1427,9 +1333,7 @@ ShallowWrapper {
               "key": "1",
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/challenge-tile/elephant.png",
-                },
+                "source": 1,
                 "style": Object {
                   "bottom": 0,
                   "position": "absolute",
@@ -1447,9 +1351,7 @@ ShallowWrapper {
               "key": "2",
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/challenge-tile/ostrich.png",
-                },
+                "source": 1,
                 "style": Object {
                   "bottom": 0,
                   "left": 0,
@@ -1468,9 +1370,7 @@ ShallowWrapper {
               "key": "3",
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/challenge-tile/bird.png",
-                },
+                "source": 1,
                 "style": Object {
                   "bottom": 0,
                   "position": "absolute",

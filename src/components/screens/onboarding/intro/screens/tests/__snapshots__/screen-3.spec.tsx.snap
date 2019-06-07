@@ -46,11 +46,7 @@ ShallowWrapper {
         >
           <Image
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/intro/onboarding-app-3.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 973.8199999999999,
@@ -119,11 +115,7 @@ ShallowWrapper {
           >
             <Image
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/intro/onboarding-app-3.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 973.8199999999999,
@@ -176,11 +168,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Image
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/intro/onboarding-app-3.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 973.8199999999999,
@@ -207,9 +195,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "resizeMode": "cover",
-              "source": Object {
-                "testUri": "../../../assets/intro/onboarding-app-3.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 973.8199999999999,
                 "width": "100%",
@@ -325,11 +311,7 @@ ShallowWrapper {
           >
             <Image
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/intro/onboarding-app-3.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 973.8199999999999,
@@ -398,11 +380,7 @@ ShallowWrapper {
             >
               <Image
                 resizeMode="cover"
-                source={
-                  Object {
-                    "testUri": "../../../assets/intro/onboarding-app-3.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 973.8199999999999,
@@ -455,11 +433,7 @@ ShallowWrapper {
             "props": Object {
               "children": <Image
                 resizeMode="cover"
-                source={
-                  Object {
-                    "testUri": "../../../assets/intro/onboarding-app-3.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 973.8199999999999,
@@ -486,9 +460,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "resizeMode": "cover",
-                "source": Object {
-                  "testUri": "../../../assets/intro/onboarding-app-3.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 973.8199999999999,
                   "width": "100%",

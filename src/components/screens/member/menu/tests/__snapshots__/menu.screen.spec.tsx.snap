@@ -73,11 +73,7 @@ ShallowWrapper {
           >
             <Image
               resizeMode="contain"
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/close.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 26,
@@ -96,11 +92,7 @@ ShallowWrapper {
           >
             <Image
               resizeMode="contain"
-              source={
-                Object {
-                  "testUri": "../../../assets/menu/logo.png",
-                }
-              }
+              source={1}
               style={Object {}}
             />
           </View>
@@ -249,11 +241,7 @@ ShallowWrapper {
             >
               <Image
                 resizeMode="contain"
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/close.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 26,
@@ -272,11 +260,7 @@ ShallowWrapper {
             >
               <Image
                 resizeMode="contain"
-                source={
-                  Object {
-                    "testUri": "../../../assets/menu/logo.png",
-                  }
-                }
+                source={1}
                 style={Object {}}
               />
             </View>,
@@ -383,11 +367,7 @@ ShallowWrapper {
               "activeOpacity": 0.2,
               "children": <Image
                 resizeMode="contain"
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/close.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 26,
@@ -413,9 +393,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "resizeMode": "contain",
-                "source": Object {
-                  "testUri": "../../../assets/icons/close.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 26,
                   "width": 26,
@@ -434,11 +412,7 @@ ShallowWrapper {
             "props": Object {
               "children": <Image
                 resizeMode="contain"
-                source={
-                  Object {
-                    "testUri": "../../../assets/menu/logo.png",
-                  }
-                }
+                source={1}
                 style={Object {}}
               />,
               "style": Object {
@@ -453,9 +427,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "resizeMode": "contain",
-                "source": Object {
-                  "testUri": "../../../assets/menu/logo.png",
-                },
+                "source": 1,
                 "style": Object {},
               },
               "ref": null,
@@ -819,11 +791,7 @@ ShallowWrapper {
             >
               <Image
                 resizeMode="contain"
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/close.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 26,
@@ -842,11 +810,7 @@ ShallowWrapper {
             >
               <Image
                 resizeMode="contain"
-                source={
-                  Object {
-                    "testUri": "../../../assets/menu/logo.png",
-                  }
-                }
+                source={1}
                 style={Object {}}
               />
             </View>
@@ -995,11 +959,7 @@ ShallowWrapper {
               >
                 <Image
                   resizeMode="contain"
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/close.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 26,
@@ -1018,11 +978,7 @@ ShallowWrapper {
               >
                 <Image
                   resizeMode="contain"
-                  source={
-                    Object {
-                      "testUri": "../../../assets/menu/logo.png",
-                    }
-                  }
+                  source={1}
                   style={Object {}}
                 />
               </View>,
@@ -1129,11 +1085,7 @@ ShallowWrapper {
                 "activeOpacity": 0.2,
                 "children": <Image
                   resizeMode="contain"
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/close.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 26,
@@ -1159,9 +1111,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "resizeMode": "contain",
-                  "source": Object {
-                    "testUri": "../../../assets/icons/close.png",
-                  },
+                  "source": 1,
                   "style": Object {
                     "height": 26,
                     "width": 26,
@@ -1180,11 +1130,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <Image
                   resizeMode="contain"
-                  source={
-                    Object {
-                      "testUri": "../../../assets/menu/logo.png",
-                    }
-                  }
+                  source={1}
                   style={Object {}}
                 />,
                 "style": Object {
@@ -1199,9 +1145,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "resizeMode": "contain",
-                  "source": Object {
-                    "testUri": "../../../assets/menu/logo.png",
-                  },
+                  "source": 1,
                   "style": Object {},
                 },
                 "ref": null,
@@ -1604,11 +1548,7 @@ ShallowWrapper {
           >
             <Image
               resizeMode="contain"
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/close.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 26,
@@ -1627,11 +1567,7 @@ ShallowWrapper {
           >
             <Image
               resizeMode="contain"
-              source={
-                Object {
-                  "testUri": "../../../assets/menu/logo.png",
-                }
-              }
+              source={1}
               style={Object {}}
             />
           </View>
@@ -1700,11 +1636,7 @@ ShallowWrapper {
             >
               <Image
                 resizeMode="contain"
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/close.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 26,
@@ -1723,11 +1655,7 @@ ShallowWrapper {
             >
               <Image
                 resizeMode="contain"
-                source={
-                  Object {
-                    "testUri": "../../../assets/menu/logo.png",
-                  }
-                }
+                source={1}
                 style={Object {}}
               />
             </View>,
@@ -1751,11 +1679,7 @@ ShallowWrapper {
               "activeOpacity": 0.2,
               "children": <Image
                 resizeMode="contain"
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/close.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 26,
@@ -1781,9 +1705,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "resizeMode": "contain",
-                "source": Object {
-                  "testUri": "../../../assets/icons/close.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 26,
                   "width": 26,
@@ -1802,11 +1724,7 @@ ShallowWrapper {
             "props": Object {
               "children": <Image
                 resizeMode="contain"
-                source={
-                  Object {
-                    "testUri": "../../../assets/menu/logo.png",
-                  }
-                }
+                source={1}
                 style={Object {}}
               />,
               "style": Object {
@@ -1821,9 +1739,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "resizeMode": "contain",
-                "source": Object {
-                  "testUri": "../../../assets/menu/logo.png",
-                },
+                "source": 1,
                 "style": Object {},
               },
               "ref": null,
@@ -1970,11 +1886,7 @@ ShallowWrapper {
             >
               <Image
                 resizeMode="contain"
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/close.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 26,
@@ -1993,11 +1905,7 @@ ShallowWrapper {
             >
               <Image
                 resizeMode="contain"
-                source={
-                  Object {
-                    "testUri": "../../../assets/menu/logo.png",
-                  }
-                }
+                source={1}
                 style={Object {}}
               />
             </View>
@@ -2066,11 +1974,7 @@ ShallowWrapper {
               >
                 <Image
                   resizeMode="contain"
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/close.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 26,
@@ -2089,11 +1993,7 @@ ShallowWrapper {
               >
                 <Image
                   resizeMode="contain"
-                  source={
-                    Object {
-                      "testUri": "../../../assets/menu/logo.png",
-                    }
-                  }
+                  source={1}
                   style={Object {}}
                 />
               </View>,
@@ -2117,11 +2017,7 @@ ShallowWrapper {
                 "activeOpacity": 0.2,
                 "children": <Image
                   resizeMode="contain"
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/close.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 26,
@@ -2147,9 +2043,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "resizeMode": "contain",
-                  "source": Object {
-                    "testUri": "../../../assets/icons/close.png",
-                  },
+                  "source": 1,
                   "style": Object {
                     "height": 26,
                     "width": 26,
@@ -2168,11 +2062,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <Image
                   resizeMode="contain"
-                  source={
-                    Object {
-                      "testUri": "../../../assets/menu/logo.png",
-                    }
-                  }
+                  source={1}
                   style={Object {}}
                 />,
                 "style": Object {
@@ -2187,9 +2077,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "resizeMode": "contain",
-                  "source": Object {
-                    "testUri": "../../../assets/menu/logo.png",
-                  },
+                  "source": 1,
                   "style": Object {},
                 },
                 "ref": null,

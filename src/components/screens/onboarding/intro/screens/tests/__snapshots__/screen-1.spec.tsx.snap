@@ -24,11 +24,7 @@ ShallowWrapper {
       "children": <Image
         resizeMethod="resize"
         resizeMode="contain"
-        source={
-          Object {
-            "testUri": "../../../assets/intro/onboarding-app-1.png",
-          }
-        }
+        source={1}
         style={
           Object {
             "marginLeft": "auto",
@@ -52,9 +48,7 @@ ShallowWrapper {
       "props": Object {
         "resizeMethod": "resize",
         "resizeMode": "contain",
-        "source": Object {
-          "testUri": "../../../assets/intro/onboarding-app-1.png",
-        },
+        "source": 1,
         "style": Object {
           "marginLeft": "auto",
         },
@@ -75,11 +69,7 @@ ShallowWrapper {
         "children": <Image
           resizeMethod="resize"
           resizeMode="contain"
-          source={
-            Object {
-              "testUri": "../../../assets/intro/onboarding-app-1.png",
-            }
-          }
+          source={1}
           style={
             Object {
               "marginLeft": "auto",
@@ -103,9 +93,7 @@ ShallowWrapper {
         "props": Object {
           "resizeMethod": "resize",
           "resizeMode": "contain",
-          "source": Object {
-            "testUri": "../../../assets/intro/onboarding-app-1.png",
-          },
+          "source": 1,
           "style": Object {
             "marginLeft": "auto",
           },

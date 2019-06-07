@@ -31,11 +31,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />
         </TouchableOpacity>,
         <TouchableOpacity
@@ -48,11 +44,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />
         </TouchableOpacity>,
         <TouchableOpacity
@@ -65,11 +57,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />
         </TouchableOpacity>,
         <TouchableOpacity
@@ -82,11 +70,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starInactive.png",
-              }
-            }
+            source={1}
           />
         </TouchableOpacity>,
         <TouchableOpacity
@@ -99,11 +83,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starInactive.png",
-              }
-            }
+            source={1}
           />
         </TouchableOpacity>,
       ],
@@ -120,11 +100,7 @@ ShallowWrapper {
         "props": Object {
           "activeOpacity": 0.2,
           "children": <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />,
           "onPress": [Function],
           "style": Object {
@@ -137,9 +113,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/feedback/starActive.png",
-            },
+            "source": 1,
           },
           "ref": null,
           "rendered": null,
@@ -154,11 +128,7 @@ ShallowWrapper {
         "props": Object {
           "activeOpacity": 0.2,
           "children": <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />,
           "onPress": [Function],
           "style": Object {
@@ -171,9 +141,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/feedback/starActive.png",
-            },
+            "source": 1,
           },
           "ref": null,
           "rendered": null,
@@ -188,11 +156,7 @@ ShallowWrapper {
         "props": Object {
           "activeOpacity": 0.2,
           "children": <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />,
           "onPress": [Function],
           "style": Object {
@@ -205,9 +169,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/feedback/starActive.png",
-            },
+            "source": 1,
           },
           "ref": null,
           "rendered": null,
@@ -222,11 +184,7 @@ ShallowWrapper {
         "props": Object {
           "activeOpacity": 0.2,
           "children": <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starInactive.png",
-              }
-            }
+            source={1}
           />,
           "onPress": [Function],
           "style": Object {
@@ -239,9 +197,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/feedback/starInactive.png",
-            },
+            "source": 1,
           },
           "ref": null,
           "rendered": null,
@@ -256,11 +212,7 @@ ShallowWrapper {
         "props": Object {
           "activeOpacity": 0.2,
           "children": <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starInactive.png",
-              }
-            }
+            source={1}
           />,
           "onPress": [Function],
           "style": Object {
@@ -273,9 +225,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/feedback/starInactive.png",
-            },
+            "source": 1,
           },
           "ref": null,
           "rendered": null,
@@ -303,11 +253,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />
           </TouchableOpacity>,
           <TouchableOpacity
@@ -320,11 +266,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />
           </TouchableOpacity>,
           <TouchableOpacity
@@ -337,11 +279,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />
           </TouchableOpacity>,
           <TouchableOpacity
@@ -354,11 +292,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starInactive.png",
-                }
-              }
+              source={1}
             />
           </TouchableOpacity>,
           <TouchableOpacity
@@ -371,11 +305,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starInactive.png",
-                }
-              }
+              source={1}
             />
           </TouchableOpacity>,
         ],
@@ -392,11 +322,7 @@ ShallowWrapper {
           "props": Object {
             "activeOpacity": 0.2,
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />,
             "onPress": [Function],
             "style": Object {
@@ -409,9 +335,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -426,11 +350,7 @@ ShallowWrapper {
           "props": Object {
             "activeOpacity": 0.2,
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />,
             "onPress": [Function],
             "style": Object {
@@ -443,9 +363,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -460,11 +378,7 @@ ShallowWrapper {
           "props": Object {
             "activeOpacity": 0.2,
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />,
             "onPress": [Function],
             "style": Object {
@@ -477,9 +391,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -494,11 +406,7 @@ ShallowWrapper {
           "props": Object {
             "activeOpacity": 0.2,
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starInactive.png",
-                }
-              }
+              source={1}
             />,
             "onPress": [Function],
             "style": Object {
@@ -511,9 +419,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/feedback/starInactive.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -528,11 +434,7 @@ ShallowWrapper {
           "props": Object {
             "activeOpacity": 0.2,
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starInactive.png",
-                }
-              }
+              source={1}
             />,
             "onPress": [Function],
             "style": Object {
@@ -545,9 +447,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/feedback/starInactive.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -612,11 +512,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />
         </TouchableOpacity>,
         <TouchableOpacity
@@ -629,11 +525,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />
         </TouchableOpacity>,
         <TouchableOpacity
@@ -646,11 +538,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />
         </TouchableOpacity>,
         <TouchableOpacity
@@ -663,11 +551,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />
         </TouchableOpacity>,
         <TouchableOpacity
@@ -680,11 +564,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />
         </TouchableOpacity>,
       ],
@@ -701,11 +581,7 @@ ShallowWrapper {
         "props": Object {
           "activeOpacity": 0.2,
           "children": <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />,
           "onPress": [Function],
           "style": Object {
@@ -718,9 +594,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/feedback/starActive.png",
-            },
+            "source": 1,
           },
           "ref": null,
           "rendered": null,
@@ -735,11 +609,7 @@ ShallowWrapper {
         "props": Object {
           "activeOpacity": 0.2,
           "children": <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />,
           "onPress": [Function],
           "style": Object {
@@ -752,9 +622,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/feedback/starActive.png",
-            },
+            "source": 1,
           },
           "ref": null,
           "rendered": null,
@@ -769,11 +637,7 @@ ShallowWrapper {
         "props": Object {
           "activeOpacity": 0.2,
           "children": <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />,
           "onPress": [Function],
           "style": Object {
@@ -786,9 +650,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/feedback/starActive.png",
-            },
+            "source": 1,
           },
           "ref": null,
           "rendered": null,
@@ -803,11 +665,7 @@ ShallowWrapper {
         "props": Object {
           "activeOpacity": 0.2,
           "children": <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />,
           "onPress": [Function],
           "style": Object {
@@ -820,9 +678,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/feedback/starActive.png",
-            },
+            "source": 1,
           },
           "ref": null,
           "rendered": null,
@@ -837,11 +693,7 @@ ShallowWrapper {
         "props": Object {
           "activeOpacity": 0.2,
           "children": <Image
-            source={
-              Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              }
-            }
+            source={1}
           />,
           "onPress": [Function],
           "style": Object {
@@ -854,9 +706,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/feedback/starActive.png",
-            },
+            "source": 1,
           },
           "ref": null,
           "rendered": null,
@@ -884,11 +734,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />
           </TouchableOpacity>,
           <TouchableOpacity
@@ -901,11 +747,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />
           </TouchableOpacity>,
           <TouchableOpacity
@@ -918,11 +760,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />
           </TouchableOpacity>,
           <TouchableOpacity
@@ -935,11 +773,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />
           </TouchableOpacity>,
           <TouchableOpacity
@@ -952,11 +786,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />
           </TouchableOpacity>,
         ],
@@ -973,11 +803,7 @@ ShallowWrapper {
           "props": Object {
             "activeOpacity": 0.2,
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />,
             "onPress": [Function],
             "style": Object {
@@ -990,9 +816,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -1007,11 +831,7 @@ ShallowWrapper {
           "props": Object {
             "activeOpacity": 0.2,
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />,
             "onPress": [Function],
             "style": Object {
@@ -1024,9 +844,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -1041,11 +859,7 @@ ShallowWrapper {
           "props": Object {
             "activeOpacity": 0.2,
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />,
             "onPress": [Function],
             "style": Object {
@@ -1058,9 +872,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -1075,11 +887,7 @@ ShallowWrapper {
           "props": Object {
             "activeOpacity": 0.2,
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />,
             "onPress": [Function],
             "style": Object {
@@ -1092,9 +900,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,
@@ -1109,11 +915,7 @@ ShallowWrapper {
           "props": Object {
             "activeOpacity": 0.2,
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/feedback/starActive.png",
-                }
-              }
+              source={1}
             />,
             "onPress": [Function],
             "style": Object {
@@ -1126,9 +928,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/feedback/starActive.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,

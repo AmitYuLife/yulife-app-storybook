@@ -9,46 +9,38 @@ const defaultProps = {
 };
 
 describe("TopBar", () => {
-
     it("should render with default props", () => {
-        const actual = shallow(
-            <TopBar
-                {...defaultProps}
-            />
-        );
+        const actual = shallow(<TopBar {...defaultProps} />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render with menu label", () => {
-        const actual = shallow(
-            <TopBar
-                {...defaultProps}
-                menuLabel="Menu Label"
-            />
-        );
+        const actual = shallow(<TopBar {...defaultProps} menuLabel="Menu Label" leftIcon="Menu" />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render with timer", () => {
-        const actual = shallow(
-            <TopBar
-                {...defaultProps}
-                timer="11:58:00"
-            />
-        );
+        const actual = shallow(<TopBar {...defaultProps} timer="11:58:00" />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render with back button", () => {
-        const actual = shallow(
-            <TopBar
-                {...defaultProps}
-                leftIcon="Back"
-            />
-        );
+        const actual = shallow(<TopBar {...defaultProps} leftIcon="Back" />);
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render with name", () => {
+        const actual = shallow(<TopBar {...defaultProps} name="name test" leftIcon="Back" />);
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render with name", () => {
+        const actual = shallow(<TopBar {...defaultProps} name="name test" />);
 
         expect(actual).toMatchSnapshot();
     });

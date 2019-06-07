@@ -1,4 +1,4 @@
-import React, { SFC } from "react";
+import * as React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { View } from "react-native";
 import styles from "./list-picker.styles";
@@ -15,7 +15,7 @@ interface IProps {
     onPressCancel: () => void;
 }
 
-const ListPicker: SFC<IProps> = ({ items, instruction, onPressCancel }) => (
+const ListPicker: React.SFC<IProps> = ({ items, instruction, onPressCancel }) => (
     <View style={styles.wrapper}>
         <View style={styles.instructionWrapper}>
             <Text style={styles.instruction}>{instruction}</Text>

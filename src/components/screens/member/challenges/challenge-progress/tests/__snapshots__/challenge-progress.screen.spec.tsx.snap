@@ -38,11 +38,7 @@ ShallowWrapper {
         <Image
           resizeMethod="resize"
           resizeMode="cover"
-          source={
-            Object {
-              "testUri": "../../../assets/challenge-progress/otter.png",
-            }
-          }
+          source={1}
           style={
             Object {
               "bottom": 0,
@@ -116,9 +112,7 @@ ShallowWrapper {
         "props": Object {
           "resizeMethod": "resize",
           "resizeMode": "cover",
-          "source": Object {
-            "testUri": "../../../assets/challenge-progress/otter.png",
-          },
+          "source": 1,
           "style": Object {
             "bottom": 0,
             "height": "100%",
@@ -242,11 +236,7 @@ ShallowWrapper {
           <Image
             resizeMethod="resize"
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-progress/otter.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "bottom": 0,
@@ -320,9 +310,7 @@ ShallowWrapper {
           "props": Object {
             "resizeMethod": "resize",
             "resizeMode": "cover",
-            "source": Object {
-              "testUri": "../../../assets/challenge-progress/otter.png",
-            },
+            "source": 1,
             "style": Object {
               "bottom": 0,
               "height": "100%",
@@ -497,11 +485,7 @@ ShallowWrapper {
         <Image
           resizeMethod="resize"
           resizeMode="cover"
-          source={
-            Object {
-              "testUri": "../../../assets/challenge-progress/dolphin.png",
-            }
-          }
+          source={1}
           style={
             Object {
               "bottom": 0,
@@ -686,9 +670,7 @@ ShallowWrapper {
         "props": Object {
           "resizeMethod": "resize",
           "resizeMode": "cover",
-          "source": Object {
-            "testUri": "../../../assets/challenge-progress/dolphin.png",
-          },
+          "source": 1,
           "style": Object {
             "bottom": 0,
             "height": 1300,
@@ -1190,11 +1172,7 @@ ShallowWrapper {
           <Image
             resizeMethod="resize"
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-progress/dolphin.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "bottom": 0,
@@ -1379,9 +1357,7 @@ ShallowWrapper {
           "props": Object {
             "resizeMethod": "resize",
             "resizeMode": "cover",
-            "source": Object {
-              "testUri": "../../../assets/challenge-progress/dolphin.png",
-            },
+            "source": 1,
             "style": Object {
               "bottom": 0,
               "height": 1300,

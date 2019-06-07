@@ -33,25 +33,13 @@ ShallowWrapper {
         }
       >
         <Image
-          source={
-            Object {
-              "testUri": "../../../assets/quests/completed-star.png",
-            }
-          }
+          source={1}
         />
         <Image
-          source={
-            Object {
-              "testUri": "../../../assets/quests/completed-no-star.png",
-            }
-          }
+          source={1}
         />
         <Image
-          source={
-            Object {
-              "testUri": "../../../assets/quests/completed-no-star.png",
-            }
-          }
+          source={1}
         />
       </View>
     </View>
@@ -98,25 +86,13 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/quests/completed-star.png",
-              }
-            }
+            source={1}
           />
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/quests/completed-no-star.png",
-              }
-            }
+            source={1}
           />
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/quests/completed-no-star.png",
-              }
-            }
+            source={1}
           />
         </View>
       </View>,
@@ -150,25 +126,13 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/quests/completed-star.png",
-                }
-              }
+              source={1}
             />
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/quests/completed-no-star.png",
-                }
-              }
+              source={1}
             />
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/quests/completed-no-star.png",
-                }
-              }
+              source={1}
             />
           </View>,
         ],
@@ -202,25 +166,13 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/quests/completed-star.png",
-                  }
-                }
+                source={1}
               />,
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/quests/completed-no-star.png",
-                  }
-                }
+                source={1}
               />,
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/quests/completed-no-star.png",
-                  }
-                }
+                source={1}
               />,
             ],
             "style": Object {
@@ -236,9 +188,7 @@ ShallowWrapper {
               "key": "123_0",
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/quests/completed-star.png",
-                },
+                "source": 1,
               },
               "ref": null,
               "rendered": null,
@@ -249,9 +199,7 @@ ShallowWrapper {
               "key": "123_1",
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/quests/completed-no-star.png",
-                },
+                "source": 1,
               },
               "ref": null,
               "rendered": null,
@@ -262,9 +210,7 @@ ShallowWrapper {
               "key": "123_2",
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/quests/completed-no-star.png",
-                },
+                "source": 1,
               },
               "ref": null,
               "rendered": null,
@@ -313,25 +259,13 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/quests/completed-star.png",
-                }
-              }
+              source={1}
             />
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/quests/completed-no-star.png",
-                }
-              }
+              source={1}
             />
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/quests/completed-no-star.png",
-                }
-              }
+              source={1}
             />
           </View>
         </View>,
@@ -365,25 +299,13 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/quests/completed-star.png",
-                  }
-                }
+                source={1}
               />
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/quests/completed-no-star.png",
-                  }
-                }
+                source={1}
               />
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/quests/completed-no-star.png",
-                  }
-                }
+                source={1}
               />
             </View>,
           ],
@@ -417,25 +339,13 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/quests/completed-star.png",
-                    }
-                  }
+                  source={1}
                 />,
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/quests/completed-no-star.png",
-                    }
-                  }
+                  source={1}
                 />,
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/quests/completed-no-star.png",
-                    }
-                  }
+                  source={1}
                 />,
               ],
               "style": Object {
@@ -451,9 +361,7 @@ ShallowWrapper {
                 "key": "123_0",
                 "nodeType": "class",
                 "props": Object {
-                  "source": Object {
-                    "testUri": "../../../assets/quests/completed-star.png",
-                  },
+                  "source": 1,
                 },
                 "ref": null,
                 "rendered": null,
@@ -464,9 +372,7 @@ ShallowWrapper {
                 "key": "123_1",
                 "nodeType": "class",
                 "props": Object {
-                  "source": Object {
-                    "testUri": "../../../assets/quests/completed-no-star.png",
-                  },
+                  "source": 1,
                 },
                 "ref": null,
                 "rendered": null,
@@ -477,9 +383,7 @@ ShallowWrapper {
                 "key": "123_2",
                 "nodeType": "class",
                 "props": Object {
-                  "source": Object {
-                    "testUri": "../../../assets/quests/completed-no-star.png",
-                  },
+                  "source": 1,
                 },
                 "ref": null,
                 "rendered": null,

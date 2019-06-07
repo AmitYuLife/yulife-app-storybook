@@ -9,38 +9,20 @@ const defaultProps = {
 };
 
 describe("RewardTab", () => {
-
     it("inactive state should match snapshot", () => {
-        const actual = shallow(
-            <RewardTab
-                {...defaultProps}
-                label="purchased"
-            />
-        );
+        const actual = shallow(<RewardTab {...defaultProps} label="purchased" />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("active state should match snapshot", () => {
-        const actual = shallow(
-            <RewardTab
-                {...defaultProps}
-                isActive={true}
-                label="purchased"
-            />
-        );
+        const actual = shallow(<RewardTab {...defaultProps} isActive={true} label="purchased" />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("flipped state should match snapshot", () => {
-        const actual = shallow(
-            <RewardTab
-                {...defaultProps}
-                isFlipped={true}
-                label="purchased"
-            />
-        );
+        const actual = shallow(<RewardTab {...defaultProps} isFlipped={true} label="rewards" />);
 
         expect(actual).toMatchSnapshot();
     });

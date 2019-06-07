@@ -39,11 +39,7 @@ ShallowWrapper {
           onPress={[MockFunction]}
         />,
         <Image
-          source={
-            Object {
-              "testUri": "../../../assets/challenge-details/bird.png",
-            }
-          }
+          source={1}
           style={
             Object {
               "marginTop": -100,
@@ -133,9 +129,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "source": Object {
-            "testUri": "../../../assets/challenge-details/bird.png",
-          },
+          "source": 1,
           "style": Object {
             "marginTop": -100,
           },
@@ -268,11 +262,7 @@ ShallowWrapper {
             onPress={[MockFunction]}
           />,
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-details/bird.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "marginTop": -100,
@@ -362,9 +352,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/challenge-details/bird.png",
-            },
+            "source": 1,
             "style": Object {
               "marginTop": -100,
             },
@@ -549,11 +537,7 @@ ShallowWrapper {
           onPress={[MockFunction]}
         />,
         <Image
-          source={
-            Object {
-              "testUri": "../../../assets/challenge-details/bird.png",
-            }
-          }
+          source={1}
           style={
             Object {
               "marginTop": -100,
@@ -642,9 +626,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "source": Object {
-            "testUri": "../../../assets/challenge-details/bird.png",
-          },
+          "source": 1,
           "style": Object {
             "marginTop": -100,
           },
@@ -777,11 +759,7 @@ ShallowWrapper {
             onPress={[MockFunction]}
           />,
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-details/bird.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "marginTop": -100,
@@ -870,9 +848,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/challenge-details/bird.png",
-            },
+            "source": 1,
             "style": Object {
               "marginTop": -100,
             },
@@ -1056,11 +1032,7 @@ ShallowWrapper {
           onPress={[MockFunction]}
         />,
         <Image
-          source={
-            Object {
-              "testUri": "../../../assets/challenge-details/bird.png",
-            }
-          }
+          source={1}
           style={
             Object {
               "marginTop": -100,
@@ -1162,9 +1134,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "source": Object {
-            "testUri": "../../../assets/challenge-details/bird.png",
-          },
+          "source": 1,
           "style": Object {
             "marginTop": -100,
           },
@@ -1314,11 +1284,7 @@ ShallowWrapper {
             onPress={[MockFunction]}
           />,
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-details/bird.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "marginTop": -100,
@@ -1420,9 +1386,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/challenge-details/bird.png",
-            },
+            "source": 1,
             "style": Object {
               "marginTop": -100,
             },
@@ -1623,11 +1587,7 @@ ShallowWrapper {
           onPress={[MockFunction]}
         />,
         <Image
-          source={
-            Object {
-              "testUri": "../../../assets/challenge-details/meerkat.png",
-            }
-          }
+          source={1}
           style={
             Object {
               "marginTop": -100,
@@ -1717,9 +1677,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "source": Object {
-            "testUri": "../../../assets/challenge-details/meerkat.png",
-          },
+          "source": 1,
           "style": Object {
             "marginTop": -100,
           },
@@ -1852,11 +1810,7 @@ ShallowWrapper {
             onPress={[MockFunction]}
           />,
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/challenge-details/meerkat.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "marginTop": -100,
@@ -1946,9 +1900,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/challenge-details/meerkat.png",
-            },
+            "source": 1,
             "style": Object {
               "marginTop": -100,
             },
