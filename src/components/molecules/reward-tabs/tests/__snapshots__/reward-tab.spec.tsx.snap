@@ -220,7 +220,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <RewardTab
     isActive={false}
     isFlipped={true}
-    label="purchased"
+    label="rewards"
     onPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -247,7 +247,7 @@ ShallowWrapper {
         >
           <Coupon
             fill="rgb(51,51,51)"
-            hasCheckmark={true}
+            hasCheckmark={false}
           />
         </View>,
         <YuText
@@ -257,7 +257,7 @@ ShallowWrapper {
             }
           }
         >
-          purchased
+          rewards
         </YuText>,
       ],
       "onPress": [MockFunction],
@@ -278,7 +278,7 @@ ShallowWrapper {
         "props": Object {
           "children": <Coupon
             fill="rgb(51,51,51)"
-            hasCheckmark={true}
+            hasCheckmark={false}
           />,
           "style": Object {
             "marginLeft": 24,
@@ -291,7 +291,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "fill": "rgb(51,51,51)",
-            "hasCheckmark": true,
+            "hasCheckmark": false,
           },
           "ref": null,
           "rendered": null,
@@ -304,13 +304,13 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "purchased",
+          "children": "rewards",
           "style": Object {
             "color": "rgb(51,51,51)",
           },
         },
         "ref": null,
-        "rendered": "purchased",
+        "rendered": "rewards",
         "type": [Function],
       },
     ],
@@ -333,7 +333,7 @@ ShallowWrapper {
           >
             <Coupon
               fill="rgb(51,51,51)"
-              hasCheckmark={true}
+              hasCheckmark={false}
             />
           </View>,
           <YuText
@@ -343,7 +343,7 @@ ShallowWrapper {
               }
             }
           >
-            purchased
+            rewards
           </YuText>,
         ],
         "onPress": [MockFunction],
@@ -364,7 +364,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Coupon
               fill="rgb(51,51,51)"
-              hasCheckmark={true}
+              hasCheckmark={false}
             />,
             "style": Object {
               "marginLeft": 24,
@@ -377,7 +377,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "fill": "rgb(51,51,51)",
-              "hasCheckmark": true,
+              "hasCheckmark": false,
             },
             "ref": null,
             "rendered": null,
@@ -390,13 +390,13 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "purchased",
+            "children": "rewards",
             "style": Object {
               "color": "rgb(51,51,51)",
             },
           },
           "ref": null,
-          "rendered": "purchased",
+          "rendered": "rewards",
           "type": [Function],
         },
       ],

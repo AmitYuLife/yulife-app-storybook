@@ -487,7 +487,7 @@ storiesOf("Screens", module)
         />
     ))
     .add("12. Intro", () => <IntroScreen onPressLastCta={action("on press last press")} />)
-    .add("13b. QuestScreenOffline", () => (
+    .add("13. QuestScreenOffline", () => (
         <QuestsScreenOffline
             fitkitAvailable={boolean("FitKitAvailable", true)}
             onLeftMenuPress={action("on left menu press")}
@@ -523,7 +523,7 @@ storiesOf("Screens", module)
             isShowingPassiveMeditation={false}
         />
     ))
-    .add("16. Challenges List Completed", () => (
+    .add("15. Challenges List Completed", () => (
         <ChallengesHistoryScreen
             onLeftMenuPress={() => null}
             totalCoins={604}

@@ -18,11 +18,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": <Image
-        source={
-          Object {
-            "testUri": "../../../assets/rewards-confirmed/delivered.png",
-          }
-        }
+        source={1}
         style={
           Object {
             "height": 330,
@@ -43,9 +39,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "source": Object {
-          "testUri": "../../../assets/rewards-confirmed/delivered.png",
-        },
+        "source": 1,
         "style": Object {
           "height": 330,
           "width": 530,
@@ -64,11 +58,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": <Image
-          source={
-            Object {
-              "testUri": "../../../assets/rewards-confirmed/delivered.png",
-            }
-          }
+          source={1}
           style={
             Object {
               "height": 330,
@@ -89,9 +79,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "source": Object {
-            "testUri": "../../../assets/rewards-confirmed/delivered.png",
-          },
+          "source": 1,
           "style": Object {
             "height": 330,
             "width": 530,
@@ -144,11 +132,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": <Overlay
-        icon={
-          Object {
-            "testUri": "../../../assets/rewards-confirmed/failedIcon.png",
-          }
-        }
+        icon={1}
         text="purchase failed"
       />,
       "style": Array [
@@ -169,9 +153,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
-        "icon": Object {
-          "testUri": "../../../assets/rewards-confirmed/failedIcon.png",
-        },
+        "icon": 1,
         "text": "purchase failed",
       },
       "ref": null,
@@ -187,11 +169,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": <Overlay
-          icon={
-            Object {
-              "testUri": "../../../assets/rewards-confirmed/failedIcon.png",
-            }
-          }
+          icon={1}
           text="purchase failed"
         />,
         "style": Array [
@@ -212,9 +190,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "icon": Object {
-            "testUri": "../../../assets/rewards-confirmed/failedIcon.png",
-          },
+          "icon": 1,
           "text": "purchase failed",
         },
         "ref": null,
@@ -265,11 +241,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Image
-          source={
-            Object {
-              "testUri": "../../../assets/rewards-confirmed/pending.png",
-            }
-          }
+          source={1}
           style={
             Object {
               "height": 330,
@@ -278,11 +250,7 @@ ShallowWrapper {
           }
         />,
         <Overlay
-          icon={
-            Object {
-              "testUri": "../../../assets/icons/clock.png",
-            }
-          }
+          icon={1}
           text="purchase pending"
         />,
       ],
@@ -300,9 +268,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "source": Object {
-            "testUri": "../../../assets/rewards-confirmed/pending.png",
-          },
+          "source": 1,
           "style": Object {
             "height": 330,
             "width": 530,
@@ -317,9 +283,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "icon": Object {
-            "testUri": "../../../assets/icons/clock.png",
-          },
+          "icon": 1,
           "text": "purchase pending",
         },
         "ref": null,
@@ -337,11 +301,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/rewards-confirmed/pending.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 330,
@@ -350,11 +310,7 @@ ShallowWrapper {
             }
           />,
           <Overlay
-            icon={
-              Object {
-                "testUri": "../../../assets/icons/clock.png",
-              }
-            }
+            icon={1}
             text="purchase pending"
           />,
         ],
@@ -372,9 +328,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/rewards-confirmed/pending.png",
-            },
+            "source": 1,
             "style": Object {
               "height": 330,
               "width": 530,
@@ -389,9 +343,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "icon": Object {
-              "testUri": "../../../assets/icons/clock.png",
-            },
+            "icon": 1,
             "text": "purchase pending",
           },
           "ref": null,

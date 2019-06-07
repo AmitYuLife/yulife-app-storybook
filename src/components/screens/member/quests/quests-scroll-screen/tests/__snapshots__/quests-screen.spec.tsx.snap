@@ -69,9 +69,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E00",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s0.png",
-                },
+                "image": 1,
                 "navBarColour": "light",
                 "slots": Array [
                   Object {
@@ -89,9 +87,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E01",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s1.png",
-                },
+                "image": 1,
                 "navBarColour": "light",
                 "slots": Array [
                   Object {
@@ -124,9 +120,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E02",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s2.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -144,9 +138,7 @@ ShallowWrapper {
               },
               Object {
                 "id": "MAP_SLICE_W01E03",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s3.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [],
                 "topBarType": "default",
@@ -158,9 +150,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E04",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s4.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -183,9 +173,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E05",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s5.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -218,9 +206,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E06",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s6.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -233,9 +219,7 @@ ShallowWrapper {
               },
               Object {
                 "id": "MAP_SLICE_W01E07",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s7.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [],
                 "topBarType": "default",
@@ -247,9 +231,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E08",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s8.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -277,9 +259,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E09",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s9.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -307,9 +287,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E10",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s10.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -322,9 +300,7 @@ ShallowWrapper {
               },
               Object {
                 "id": "MAP_SLICE_W01E11",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s11.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [],
                 "topBarType": "default",
@@ -336,9 +312,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E12",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s12.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -366,9 +340,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E13",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s13.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -396,9 +368,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E14",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s14.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -416,9 +386,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E15",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s15.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -436,9 +404,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E16",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s16.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -461,9 +427,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E17",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s17.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -491,9 +455,7 @@ ShallowWrapper {
               },
               Object {
                 "id": "MAP_SLICE_W01E18",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s18.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [],
                 "topBarType": "default",
@@ -505,9 +467,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E19",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s19.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -535,9 +495,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E20",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s20.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -565,9 +523,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E21",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s21.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -580,9 +536,7 @@ ShallowWrapper {
               },
               Object {
                 "id": "MAP_SLICE_W01E22",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s22.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [],
                 "topBarType": "default",
@@ -594,9 +548,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E23",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s23.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -624,9 +576,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E24",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s24.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -654,9 +604,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E25",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s25.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -669,9 +617,7 @@ ShallowWrapper {
               },
               Object {
                 "id": "MAP_SLICE_W01_LOADING_01",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/loading/w1s1.png",
-                },
+                "image": 1,
                 "navBarColour": "light",
                 "slots": Array [],
                 "topBarType": "default",
@@ -781,9 +727,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E00",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s0.png",
-              },
+              "image": 1,
               "navBarColour": "light",
               "slots": Array [
                 Object {
@@ -801,9 +745,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E01",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s1.png",
-              },
+              "image": 1,
               "navBarColour": "light",
               "slots": Array [
                 Object {
@@ -836,9 +778,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E02",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s2.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -856,9 +796,7 @@ ShallowWrapper {
             },
             Object {
               "id": "MAP_SLICE_W01E03",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s3.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [],
               "topBarType": "default",
@@ -870,9 +808,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E04",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s4.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -895,9 +831,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E05",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s5.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -930,9 +864,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E06",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s6.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -945,9 +877,7 @@ ShallowWrapper {
             },
             Object {
               "id": "MAP_SLICE_W01E07",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s7.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [],
               "topBarType": "default",
@@ -959,9 +889,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E08",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s8.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -989,9 +917,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E09",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s9.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -1019,9 +945,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E10",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s10.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -1034,9 +958,7 @@ ShallowWrapper {
             },
             Object {
               "id": "MAP_SLICE_W01E11",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s11.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [],
               "topBarType": "default",
@@ -1048,9 +970,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E12",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s12.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -1078,9 +998,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E13",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s13.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -1108,9 +1026,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E14",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s14.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -1128,9 +1044,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E15",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s15.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -1148,9 +1062,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E16",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s16.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -1173,9 +1085,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E17",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s17.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -1203,9 +1113,7 @@ ShallowWrapper {
             },
             Object {
               "id": "MAP_SLICE_W01E18",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s18.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [],
               "topBarType": "default",
@@ -1217,9 +1125,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E19",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s19.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -1247,9 +1153,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E20",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s20.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -1277,9 +1181,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E21",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s21.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -1292,9 +1194,7 @@ ShallowWrapper {
             },
             Object {
               "id": "MAP_SLICE_W01E22",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s22.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [],
               "topBarType": "default",
@@ -1306,9 +1206,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E23",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s23.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -1336,9 +1234,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E24",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s24.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -1366,9 +1262,7 @@ ShallowWrapper {
                 "topBarType": "default",
               },
               "id": "MAP_SLICE_W01E25",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/w1s25.png",
-              },
+              "image": 1,
               "navBarColour": "dark",
               "slots": Array [
                 Object {
@@ -1381,9 +1275,7 @@ ShallowWrapper {
             },
             Object {
               "id": "MAP_SLICE_W01_LOADING_01",
-              "image": Object {
-                "testUri": "../../../assets/quest-slices/loading/w1s1.png",
-              },
+              "image": 1,
               "navBarColour": "light",
               "slots": Array [],
               "topBarType": "default",
@@ -1535,9 +1427,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E00",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s0.png",
-                  },
+                  "image": 1,
                   "navBarColour": "light",
                   "slots": Array [
                     Object {
@@ -1555,9 +1445,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E01",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s1.png",
-                  },
+                  "image": 1,
                   "navBarColour": "light",
                   "slots": Array [
                     Object {
@@ -1590,9 +1478,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E02",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s2.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -1610,9 +1496,7 @@ ShallowWrapper {
                 },
                 Object {
                   "id": "MAP_SLICE_W01E03",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s3.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [],
                   "topBarType": "default",
@@ -1624,9 +1508,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E04",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s4.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -1649,9 +1531,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E05",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s5.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -1684,9 +1564,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E06",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s6.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -1699,9 +1577,7 @@ ShallowWrapper {
                 },
                 Object {
                   "id": "MAP_SLICE_W01E07",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s7.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [],
                   "topBarType": "default",
@@ -1713,9 +1589,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E08",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s8.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -1743,9 +1617,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E09",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s9.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -1773,9 +1645,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E10",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s10.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -1788,9 +1658,7 @@ ShallowWrapper {
                 },
                 Object {
                   "id": "MAP_SLICE_W01E11",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s11.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [],
                   "topBarType": "default",
@@ -1802,9 +1670,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E12",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s12.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -1832,9 +1698,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E13",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s13.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -1862,9 +1726,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E14",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s14.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -1882,9 +1744,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E15",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s15.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -1902,9 +1762,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E16",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s16.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -1927,9 +1785,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E17",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s17.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -1957,9 +1813,7 @@ ShallowWrapper {
                 },
                 Object {
                   "id": "MAP_SLICE_W01E18",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s18.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [],
                   "topBarType": "default",
@@ -1971,9 +1825,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E19",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s19.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -2001,9 +1853,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E20",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s20.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -2031,9 +1881,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E21",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s21.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -2046,9 +1894,7 @@ ShallowWrapper {
                 },
                 Object {
                   "id": "MAP_SLICE_W01E22",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s22.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [],
                   "topBarType": "default",
@@ -2060,9 +1906,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E23",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s23.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -2090,9 +1934,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E24",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s24.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -2120,9 +1962,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E25",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s25.png",
-                  },
+                  "image": 1,
                   "navBarColour": "dark",
                   "slots": Array [
                     Object {
@@ -2135,9 +1975,7 @@ ShallowWrapper {
                 },
                 Object {
                   "id": "MAP_SLICE_W01_LOADING_01",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/loading/w1s1.png",
-                  },
+                  "image": 1,
                   "navBarColour": "light",
                   "slots": Array [],
                   "topBarType": "default",
@@ -2247,9 +2085,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E00",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s0.png",
-                },
+                "image": 1,
                 "navBarColour": "light",
                 "slots": Array [
                   Object {
@@ -2267,9 +2103,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E01",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s1.png",
-                },
+                "image": 1,
                 "navBarColour": "light",
                 "slots": Array [
                   Object {
@@ -2302,9 +2136,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E02",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s2.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2322,9 +2154,7 @@ ShallowWrapper {
               },
               Object {
                 "id": "MAP_SLICE_W01E03",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s3.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [],
                 "topBarType": "default",
@@ -2336,9 +2166,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E04",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s4.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2361,9 +2189,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E05",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s5.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2396,9 +2222,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E06",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s6.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2411,9 +2235,7 @@ ShallowWrapper {
               },
               Object {
                 "id": "MAP_SLICE_W01E07",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s7.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [],
                 "topBarType": "default",
@@ -2425,9 +2247,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E08",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s8.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2455,9 +2275,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E09",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s9.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2485,9 +2303,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E10",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s10.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2500,9 +2316,7 @@ ShallowWrapper {
               },
               Object {
                 "id": "MAP_SLICE_W01E11",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s11.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [],
                 "topBarType": "default",
@@ -2514,9 +2328,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E12",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s12.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2544,9 +2356,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E13",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s13.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2574,9 +2384,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E14",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s14.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2594,9 +2402,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E15",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s15.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2614,9 +2420,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E16",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s16.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2639,9 +2443,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E17",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s17.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2669,9 +2471,7 @@ ShallowWrapper {
               },
               Object {
                 "id": "MAP_SLICE_W01E18",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s18.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [],
                 "topBarType": "default",
@@ -2683,9 +2483,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E19",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s19.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2713,9 +2511,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E20",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s20.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2743,9 +2539,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E21",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s21.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2758,9 +2552,7 @@ ShallowWrapper {
               },
               Object {
                 "id": "MAP_SLICE_W01E22",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s22.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [],
                 "topBarType": "default",
@@ -2772,9 +2564,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E23",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s23.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2802,9 +2592,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E24",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s24.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2832,9 +2620,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E25",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s25.png",
-                },
+                "image": 1,
                 "navBarColour": "dark",
                 "slots": Array [
                   Object {
@@ -2847,9 +2633,7 @@ ShallowWrapper {
               },
               Object {
                 "id": "MAP_SLICE_W01_LOADING_01",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/loading/w1s1.png",
-                },
+                "image": 1,
                 "navBarColour": "light",
                 "slots": Array [],
                 "topBarType": "default",

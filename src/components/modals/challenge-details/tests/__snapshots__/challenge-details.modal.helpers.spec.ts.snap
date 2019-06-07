@@ -2,9 +2,7 @@
 
 exports[`ChallengeDetails helpers getImageAndStyle helper should return an image for each challenge type 1`] = `
 Object {
-  "source": Object {
-    "testUri": "../../../assets/challenge-details/squirrel.png",
-  },
+  "source": 1,
   "style": Object {
     "marginTop": -100,
   },
@@ -13,9 +11,7 @@ Object {
 
 exports[`ChallengeDetails helpers getImageAndStyle helper should return an image for each challenge type 2`] = `
 Object {
-  "source": Object {
-    "testUri": "../../../assets/challenge-details/ostrich.png",
-  },
+  "source": 1,
   "style": Object {
     "marginTop": -200,
   },
@@ -24,9 +20,7 @@ Object {
 
 exports[`ChallengeDetails helpers getImageAndStyle helper should return an image for each challenge type 3`] = `
 Object {
-  "source": Object {
-    "testUri": "../../../assets/challenge-details/bird.png",
-  },
+  "source": 1,
   "style": Object {
     "marginTop": -100,
   },
@@ -35,9 +29,7 @@ Object {
 
 exports[`ChallengeDetails helpers getImageAndStyle helper should return an image for each challenge type 4`] = `
 Object {
-  "source": Object {
-    "testUri": "../../../assets/challenge-details/elephant.png",
-  },
+  "source": 1,
   "style": Object {
     "marginTop": -100,
   },
@@ -46,9 +38,7 @@ Object {
 
 exports[`ChallengeDetails helpers getImageAndStyle helper should return an image for each challenge type 5`] = `
 Object {
-  "source": Object {
-    "testUri": "../../../assets/challenge-details/elephant.png",
-  },
+  "source": 1,
   "style": Object {
     "marginTop": -100,
   },

@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import * as React from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "../../atoms";
 import Assets, { BoxedHeart, Coins } from "./assets";
@@ -9,7 +9,7 @@ enum ICONS {
     COINS = "coins"
 }
 
-type Icon = "heart" | "coins";
+export type Icon = "heart" | "coins";
 
 interface IProps {
     onPress: () => void;
@@ -18,7 +18,7 @@ interface IProps {
     placeholder: string;
 }
 
-class Picker extends PureComponent<IProps> {
+class Picker extends React.PureComponent<IProps> {
     public static Icons = ICONS;
     public render() {
         const { onPress, label, icon, placeholder = "" } = this.props;

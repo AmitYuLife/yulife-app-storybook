@@ -71,11 +71,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/icons/triangle.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 60,
@@ -138,11 +134,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/pop-up-button.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 50,
@@ -189,11 +181,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -256,11 +244,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -289,11 +273,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -321,9 +301,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/icons/triangle.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 60,
                 "width": 60,
@@ -423,11 +401,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -453,11 +427,7 @@ ShallowWrapper {
             "props": Object {
               "activeOpacity": 0.2,
               "children": <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -477,9 +447,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/icons/pop-up-button.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 50,
                   "width": 50,
@@ -535,11 +503,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -602,11 +566,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -653,11 +613,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/triangle.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 60,
@@ -720,11 +676,7 @@ ShallowWrapper {
                 }
               >
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/pop-up-button.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 50,
@@ -753,11 +705,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/triangle.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 60,
@@ -785,9 +733,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 60,
                   "width": 60,
@@ -887,11 +833,7 @@ ShallowWrapper {
                 }
               >
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/pop-up-button.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 50,
@@ -917,11 +859,7 @@ ShallowWrapper {
               "props": Object {
                 "activeOpacity": 0.2,
                 "children": <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/pop-up-button.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 50,
@@ -941,9 +879,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "source": Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  },
+                  "source": 1,
                   "style": Object {
                     "height": 50,
                     "width": 50,
@@ -1051,11 +987,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/icons/triangle.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 60,
@@ -1118,11 +1050,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/pop-up-button.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 50,
@@ -1169,11 +1097,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -1236,11 +1160,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -1269,11 +1189,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -1301,9 +1217,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/icons/triangle.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 60,
                 "width": 60,
@@ -1403,11 +1317,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -1433,11 +1343,7 @@ ShallowWrapper {
             "props": Object {
               "activeOpacity": 0.2,
               "children": <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -1457,9 +1363,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/icons/pop-up-button.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 50,
                   "width": 50,
@@ -1515,11 +1419,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -1582,11 +1482,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -1633,11 +1529,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/triangle.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 60,
@@ -1700,11 +1592,7 @@ ShallowWrapper {
                 }
               >
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/pop-up-button.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 50,
@@ -1733,11 +1621,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/triangle.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 60,
@@ -1765,9 +1649,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 60,
                   "width": 60,
@@ -1867,11 +1749,7 @@ ShallowWrapper {
                 }
               >
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/pop-up-button.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 50,
@@ -1897,11 +1775,7 @@ ShallowWrapper {
               "props": Object {
                 "activeOpacity": 0.2,
                 "children": <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/pop-up-button.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 50,
@@ -1921,9 +1795,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "source": Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  },
+                  "source": 1,
                   "style": Object {
                     "height": 50,
                     "width": 50,
@@ -2026,11 +1898,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/icons/triangle.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 60,
@@ -2093,11 +1961,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/pop-up-button.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 50,
@@ -2139,11 +2003,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -2206,11 +2066,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -2239,11 +2095,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -2266,9 +2118,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/icons/triangle.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 60,
                 "width": 60,
@@ -2368,11 +2218,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -2398,11 +2244,7 @@ ShallowWrapper {
             "props": Object {
               "activeOpacity": 0.2,
               "children": <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -2422,9 +2264,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/icons/pop-up-button.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 50,
                   "width": 50,
@@ -2475,11 +2315,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -2542,11 +2378,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -2588,11 +2420,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/triangle.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 60,
@@ -2655,11 +2483,7 @@ ShallowWrapper {
                 }
               >
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/pop-up-button.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 50,
@@ -2688,11 +2512,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/triangle.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 60,
@@ -2715,9 +2535,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 60,
                   "width": 60,
@@ -2817,11 +2635,7 @@ ShallowWrapper {
                 }
               >
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/pop-up-button.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 50,
@@ -2847,11 +2661,7 @@ ShallowWrapper {
               "props": Object {
                 "activeOpacity": 0.2,
                 "children": <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/pop-up-button.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 50,
@@ -2871,9 +2681,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "source": Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  },
+                  "source": 1,
                   "style": Object {
                     "height": 50,
                     "width": 50,
@@ -2976,11 +2784,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/icons/triangle.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 60,
@@ -3043,11 +2847,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/pop-up-button.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 50,
@@ -3089,11 +2889,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -3156,11 +2952,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -3189,11 +2981,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -3216,9 +3004,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/icons/triangle.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 60,
                 "width": 60,
@@ -3318,11 +3104,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -3348,11 +3130,7 @@ ShallowWrapper {
             "props": Object {
               "activeOpacity": 0.2,
               "children": <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -3372,9 +3150,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/icons/pop-up-button.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 50,
                   "width": 50,
@@ -3425,11 +3201,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -3492,11 +3264,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 50,
@@ -3538,11 +3306,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/triangle.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 60,
@@ -3605,11 +3369,7 @@ ShallowWrapper {
                 }
               >
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/pop-up-button.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 50,
@@ -3638,11 +3398,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/triangle.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 60,
@@ -3665,9 +3421,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 60,
                   "width": 60,
@@ -3767,11 +3521,7 @@ ShallowWrapper {
                 }
               >
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/pop-up-button.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 50,
@@ -3797,11 +3547,7 @@ ShallowWrapper {
               "props": Object {
                 "activeOpacity": 0.2,
                 "children": <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/pop-up-button.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 50,
@@ -3821,9 +3567,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "source": Object {
-                    "testUri": "../../../assets/icons/pop-up-button.png",
-                  },
+                  "source": 1,
                   "style": Object {
                     "height": 50,
                     "width": 50,
@@ -3926,11 +3670,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/icons/triangle.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 60,
@@ -4002,11 +3742,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -4066,11 +3802,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -4093,9 +3825,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/icons/triangle.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 60,
                 "width": 60,
@@ -4217,11 +3947,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 60,
@@ -4293,11 +4019,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/triangle.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 60,
@@ -4357,11 +4079,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/triangle.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 60,
@@ -4384,9 +4102,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/icons/triangle.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 60,
                   "width": 60,

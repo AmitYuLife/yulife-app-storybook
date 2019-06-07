@@ -19,9 +19,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "source": Object {
-        "testUri": "../../../assets/star-inline/starFilled.png",
-      },
+      "source": 1,
       "style": undefined,
     },
     "ref": null,
@@ -34,9 +32,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "source": Object {
-          "testUri": "../../../assets/star-inline/starFilled.png",
-        },
+        "source": 1,
         "style": undefined,
       },
       "ref": null,
@@ -90,9 +86,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "source": Object {
-        "testUri": "../../../assets/star-inline/starFilled.png",
-      },
+      "source": 1,
       "style": Object {
         "height": 50,
       },
@@ -107,9 +101,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "source": Object {
-          "testUri": "../../../assets/star-inline/starFilled.png",
-        },
+        "source": 1,
         "style": Object {
           "height": 50,
         },
@@ -158,9 +150,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "source": Object {
-        "testUri": "../../../assets/star-inline/starEmpty.png",
-      },
+      "source": 1,
       "style": undefined,
     },
     "ref": null,
@@ -173,9 +163,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "source": Object {
-          "testUri": "../../../assets/star-inline/starEmpty.png",
-        },
+        "source": 1,
         "style": undefined,
       },
       "ref": null,

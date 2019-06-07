@@ -3,7 +3,6 @@ import * as React from "react";
 import ChallengesList from "../challenges-list";
 
 describe("ChallengesList", () => {
-
     it("should render when unlocked only first level", () => {
         const actual = shallow(
             <ChallengesList

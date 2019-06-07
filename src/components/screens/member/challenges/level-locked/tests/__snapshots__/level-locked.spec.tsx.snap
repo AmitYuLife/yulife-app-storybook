@@ -34,11 +34,7 @@ ShallowWrapper {
           }
         >
           <Image
-            source={
-              Object {
-                "testUri": "../../../assets/level-unavailable/level-unavailable.png",
-              }
-            }
+            source={1}
           />
         </View>,
         <YuText
@@ -75,11 +71,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <Image
-            source={
-              Object {
-                "testUri": "../../../assets/level-unavailable/level-unavailable.png",
-              }
-            }
+            source={1}
           />,
           "style": Object {
             "alignItems": "center",
@@ -96,9 +88,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "source": Object {
-              "testUri": "../../../assets/level-unavailable/level-unavailable.png",
-            },
+            "source": 1,
           },
           "ref": null,
           "rendered": null,
@@ -166,11 +156,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/level-unavailable/level-unavailable.png",
-                }
-              }
+              source={1}
             />
           </View>,
           <YuText
@@ -207,11 +193,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/level-unavailable/level-unavailable.png",
-                }
-              }
+              source={1}
             />,
             "style": Object {
               "alignItems": "center",
@@ -228,9 +210,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "source": Object {
-                "testUri": "../../../assets/level-unavailable/level-unavailable.png",
-              },
+              "source": 1,
             },
             "ref": null,
             "rendered": null,

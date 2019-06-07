@@ -102,11 +102,7 @@ ShallowWrapper {
         >
           <Image
             resizeMethod="scale"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "width": "100%",
@@ -131,11 +127,7 @@ ShallowWrapper {
         >
           <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/yucoin.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -263,11 +255,7 @@ ShallowWrapper {
         "props": Object {
           "children": <Image
             resizeMethod="scale"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "width": "100%",
@@ -289,9 +277,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "resizeMethod": "scale",
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/background.png",
-            },
+            "source": 1,
             "style": Object {
               "width": "100%",
             },
@@ -322,11 +308,7 @@ ShallowWrapper {
         "props": Object {
           "children": <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/yucoin.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -348,9 +330,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "resizeMode": "cover",
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/yucoin.png",
-            },
+            "source": 1,
             "style": Object {
               "height": 200,
               "width": "100%",
@@ -658,11 +638,7 @@ ShallowWrapper {
           >
             <Image
               resizeMethod="scale"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/background.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "width": "100%",
@@ -687,11 +663,7 @@ ShallowWrapper {
           >
             <ForwardRef
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/yucoin.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 200,
@@ -819,11 +791,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Image
               resizeMethod="scale"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/background.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "width": "100%",
@@ -845,9 +813,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "resizeMethod": "scale",
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              },
+              "source": 1,
               "style": Object {
                 "width": "100%",
               },
@@ -878,11 +844,7 @@ ShallowWrapper {
           "props": Object {
             "children": <ForwardRef
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/yucoin.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 200,
@@ -904,9 +866,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "resizeMode": "cover",
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/yucoin.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 200,
                 "width": "100%",
@@ -1319,11 +1279,7 @@ ShallowWrapper {
         >
           <Image
             resizeMethod="scale"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "width": "100%",
@@ -1348,11 +1304,7 @@ ShallowWrapper {
         >
           <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/yucoin.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -1508,11 +1460,7 @@ ShallowWrapper {
         "props": Object {
           "children": <Image
             resizeMethod="scale"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "width": "100%",
@@ -1534,9 +1482,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "resizeMethod": "scale",
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/background.png",
-            },
+            "source": 1,
             "style": Object {
               "width": "100%",
             },
@@ -1567,11 +1513,7 @@ ShallowWrapper {
         "props": Object {
           "children": <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/yucoin.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -1593,9 +1535,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "resizeMode": "cover",
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/yucoin.png",
-            },
+            "source": 1,
             "style": Object {
               "height": 200,
               "width": "100%",
@@ -1963,11 +1903,7 @@ ShallowWrapper {
           >
             <Image
               resizeMethod="scale"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/background.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "width": "100%",
@@ -1992,11 +1928,7 @@ ShallowWrapper {
           >
             <ForwardRef
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/yucoin.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 200,
@@ -2152,11 +2084,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Image
               resizeMethod="scale"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/background.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "width": "100%",
@@ -2178,9 +2106,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "resizeMethod": "scale",
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              },
+              "source": 1,
               "style": Object {
                 "width": "100%",
               },
@@ -2211,11 +2137,7 @@ ShallowWrapper {
           "props": Object {
             "children": <ForwardRef
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/yucoin.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 200,
@@ -2237,9 +2159,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "resizeMode": "cover",
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/yucoin.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 200,
                 "width": "100%",
@@ -2701,11 +2621,7 @@ ShallowWrapper {
         >
           <Image
             resizeMethod="scale"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "width": "100%",
@@ -2730,11 +2646,7 @@ ShallowWrapper {
         >
           <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/yucoin.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -2868,11 +2780,7 @@ ShallowWrapper {
         "props": Object {
           "children": <Image
             resizeMethod="scale"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "width": "100%",
@@ -2894,9 +2802,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "resizeMethod": "scale",
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/background.png",
-            },
+            "source": 1,
             "style": Object {
               "width": "100%",
             },
@@ -2927,11 +2833,7 @@ ShallowWrapper {
         "props": Object {
           "children": <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/yucoin.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -2953,9 +2855,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "resizeMode": "cover",
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/yucoin.png",
-            },
+            "source": 1,
             "style": Object {
               "height": 200,
               "width": "100%",
@@ -3294,11 +3194,7 @@ ShallowWrapper {
           >
             <Image
               resizeMethod="scale"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/background.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "width": "100%",
@@ -3323,11 +3219,7 @@ ShallowWrapper {
           >
             <ForwardRef
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/yucoin.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 200,
@@ -3461,11 +3353,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Image
               resizeMethod="scale"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/background.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "width": "100%",
@@ -3487,9 +3375,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "resizeMethod": "scale",
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              },
+              "source": 1,
               "style": Object {
                 "width": "100%",
               },
@@ -3520,11 +3406,7 @@ ShallowWrapper {
           "props": Object {
             "children": <ForwardRef
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/yucoin.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 200,
@@ -3546,9 +3428,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "resizeMode": "cover",
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/yucoin.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 200,
                 "width": "100%",
@@ -3992,11 +3872,7 @@ ShallowWrapper {
         >
           <Image
             resizeMethod="scale"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "width": "100%",
@@ -4021,11 +3897,7 @@ ShallowWrapper {
         >
           <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/yucoin.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -4145,11 +4017,7 @@ ShallowWrapper {
         "props": Object {
           "children": <Image
             resizeMethod="scale"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "width": "100%",
@@ -4171,9 +4039,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "resizeMethod": "scale",
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/background.png",
-            },
+            "source": 1,
             "style": Object {
               "width": "100%",
             },
@@ -4204,11 +4070,7 @@ ShallowWrapper {
         "props": Object {
           "children": <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/yucoin.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -4230,9 +4092,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "resizeMode": "cover",
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/yucoin.png",
-            },
+            "source": 1,
             "style": Object {
               "height": 200,
               "width": "100%",
@@ -4532,11 +4392,7 @@ ShallowWrapper {
           >
             <Image
               resizeMethod="scale"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/background.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "width": "100%",
@@ -4561,11 +4417,7 @@ ShallowWrapper {
           >
             <ForwardRef
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/yucoin.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 200,
@@ -4685,11 +4537,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Image
               resizeMethod="scale"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/background.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "width": "100%",
@@ -4711,9 +4559,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "resizeMethod": "scale",
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              },
+              "source": 1,
               "style": Object {
                 "width": "100%",
               },
@@ -4744,11 +4590,7 @@ ShallowWrapper {
           "props": Object {
             "children": <ForwardRef
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/yucoin.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 200,
@@ -4770,9 +4612,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "resizeMode": "cover",
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/yucoin.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 200,
                 "width": "100%",
@@ -5177,11 +5017,7 @@ ShallowWrapper {
         >
           <Image
             resizeMethod="scale"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "width": "100%",
@@ -5206,11 +5042,7 @@ ShallowWrapper {
         >
           <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/island.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -5366,11 +5198,7 @@ ShallowWrapper {
         "props": Object {
           "children": <Image
             resizeMethod="scale"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "width": "100%",
@@ -5392,9 +5220,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "resizeMethod": "scale",
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/background.png",
-            },
+            "source": 1,
             "style": Object {
               "width": "100%",
             },
@@ -5425,11 +5251,7 @@ ShallowWrapper {
         "props": Object {
           "children": <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/island.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -5451,9 +5273,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "resizeMode": "cover",
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/island.png",
-            },
+            "source": 1,
             "style": Object {
               "height": 200,
               "width": "100%",
@@ -5821,11 +5641,7 @@ ShallowWrapper {
           >
             <Image
               resizeMethod="scale"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/background.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "width": "100%",
@@ -5850,11 +5666,7 @@ ShallowWrapper {
           >
             <ForwardRef
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/island.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 200,
@@ -6010,11 +5822,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Image
               resizeMethod="scale"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/background.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "width": "100%",
@@ -6036,9 +5844,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "resizeMethod": "scale",
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              },
+              "source": 1,
               "style": Object {
                 "width": "100%",
               },
@@ -6069,11 +5875,7 @@ ShallowWrapper {
           "props": Object {
             "children": <ForwardRef
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/island.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 200,
@@ -6095,9 +5897,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "resizeMode": "cover",
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/island.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 200,
                 "width": "100%",
@@ -6570,11 +6370,7 @@ ShallowWrapper {
         >
           <Image
             resizeMethod="scale"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "width": "100%",
@@ -6599,11 +6395,7 @@ ShallowWrapper {
         >
           <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/steps.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -6759,11 +6551,7 @@ ShallowWrapper {
         "props": Object {
           "children": <Image
             resizeMethod="scale"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "width": "100%",
@@ -6785,9 +6573,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "resizeMethod": "scale",
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/background.png",
-            },
+            "source": 1,
             "style": Object {
               "width": "100%",
             },
@@ -6818,11 +6604,7 @@ ShallowWrapper {
         "props": Object {
           "children": <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/steps.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -6844,9 +6626,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "resizeMode": "cover",
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/steps.png",
-            },
+            "source": 1,
             "style": Object {
               "height": 200,
               "width": "100%",
@@ -7214,11 +6994,7 @@ ShallowWrapper {
           >
             <Image
               resizeMethod="scale"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/background.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "width": "100%",
@@ -7243,11 +7019,7 @@ ShallowWrapper {
           >
             <ForwardRef
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/steps.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 200,
@@ -7403,11 +7175,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Image
               resizeMethod="scale"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/background.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "width": "100%",
@@ -7429,9 +7197,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "resizeMethod": "scale",
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              },
+              "source": 1,
               "style": Object {
                 "width": "100%",
               },
@@ -7462,11 +7228,7 @@ ShallowWrapper {
           "props": Object {
             "children": <ForwardRef
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/steps.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 200,
@@ -7488,9 +7250,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "resizeMode": "cover",
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/steps.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 200,
                 "width": "100%",
@@ -7963,11 +7723,7 @@ ShallowWrapper {
         >
           <Image
             resizeMethod="scale"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "width": "100%",
@@ -7992,11 +7748,7 @@ ShallowWrapper {
         >
           <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/steps.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -8152,11 +7904,7 @@ ShallowWrapper {
         "props": Object {
           "children": <Image
             resizeMethod="scale"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "width": "100%",
@@ -8178,9 +7926,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "resizeMethod": "scale",
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/background.png",
-            },
+            "source": 1,
             "style": Object {
               "width": "100%",
             },
@@ -8211,11 +7957,7 @@ ShallowWrapper {
         "props": Object {
           "children": <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/leaderboards/steps.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "height": 200,
@@ -8237,9 +7979,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "resizeMode": "cover",
-            "source": Object {
-              "testUri": "../../../assets/leaderboards/steps.png",
-            },
+            "source": 1,
             "style": Object {
               "height": 200,
               "width": "100%",
@@ -8607,11 +8347,7 @@ ShallowWrapper {
           >
             <Image
               resizeMethod="scale"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/background.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "width": "100%",
@@ -8636,11 +8372,7 @@ ShallowWrapper {
           >
             <ForwardRef
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/steps.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 200,
@@ -8796,11 +8528,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Image
               resizeMethod="scale"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/background.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "width": "100%",
@@ -8822,9 +8550,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "resizeMethod": "scale",
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/background.png",
-              },
+              "source": 1,
               "style": Object {
                 "width": "100%",
               },
@@ -8855,11 +8581,7 @@ ShallowWrapper {
           "props": Object {
             "children": <ForwardRef
               resizeMode="cover"
-              source={
-                Object {
-                  "testUri": "../../../assets/leaderboards/steps.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 200,
@@ -8881,9 +8603,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "resizeMode": "cover",
-              "source": Object {
-                "testUri": "../../../assets/leaderboards/steps.png",
-              },
+              "source": 1,
               "style": Object {
                 "height": 200,
                 "width": "100%",

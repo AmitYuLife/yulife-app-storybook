@@ -6,7 +6,6 @@ export { default as Instruction } from "./instruction/instruction";
 export { default as LinkGroup } from "./link-group/link-group";
 export { default as ListPicker } from "./list-picker/list-picker";
 export { default as NavBar, ILabel, IColours, COLOURS } from "./nav-bar/nav-bar";
-export { default as AnimatedNavBar } from "./nav-bar/animated-nav-bar";
 export { default as Picker } from "./picker/picker";
 export { default as Streak } from "./streak/streak";
 export { default as TopBar } from "./top-bar/top-bar";
@@ -15,7 +14,6 @@ export { default as RewardsListItem } from "./rewards-list/rewards-list-item/rew
 export { default as RewardItemContent } from "./reward-item-content/reward-item-content";
 export { default as RewardsList } from "./rewards-list/rewards-list";
 export { default as RewardTabs } from "./reward-tabs/reward-tabs";
-export { default as OptimizedFlatList } from "./optimized-flat-list/optimized-flat-list";
 export { default as TouchableOpacityWithState } from "./touchable-opacity-delay/touchable-opacity-delay";
 export { default as Popup } from "./pop-up/pop-up";
 export { default as LeaderboardPopup } from "./pop-up/leaderboard-pop-up";

@@ -46,9 +46,7 @@ ShallowWrapper {
           "topBarType": "default",
         },
         "id": "MAP_SLICE_W01E00",
-        "image": Object {
-          "testUri": "../../../assets/quest-slices/w1s0.png",
-        },
+        "image": 1,
         "navBarColour": "light",
         "slots": Array [
           Object {
@@ -77,11 +75,7 @@ ShallowWrapper {
       "children": Array [
         <ForwardRef
           resizeMode="cover"
-          source={
-            Object {
-              "testUri": "../../../assets/quest-slices/w1s0.png",
-            }
-          }
+          source={1}
           style={
             Object {
               "bottom": 0,
@@ -145,9 +139,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E00",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s0.png",
-                },
+                "image": 1,
                 "navBarColour": "light",
                 "slots": Array [
                   Object {
@@ -174,9 +166,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "resizeMode": "cover",
-          "source": Object {
-            "testUri": "../../../assets/quest-slices/w1s0.png",
-          },
+          "source": 1,
           "style": Object {
             "bottom": 0,
             "height": 360,
@@ -309,9 +299,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E00",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s0.png",
-                  },
+                  "image": 1,
                   "navBarColour": "light",
                   "slots": Array [
                     Object {
@@ -376,9 +364,7 @@ ShallowWrapper {
                   "topBarType": "default",
                 },
                 "id": "MAP_SLICE_W01E00",
-                "image": Object {
-                  "testUri": "../../../assets/quest-slices/w1s0.png",
-                },
+                "image": 1,
                 "navBarColour": "light",
                 "slots": Array [
                   Object {
@@ -409,11 +395,7 @@ ShallowWrapper {
         "children": Array [
           <ForwardRef
             resizeMode="cover"
-            source={
-              Object {
-                "testUri": "../../../assets/quest-slices/w1s0.png",
-              }
-            }
+            source={1}
             style={
               Object {
                 "bottom": 0,
@@ -477,9 +459,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E00",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s0.png",
-                  },
+                  "image": 1,
                   "navBarColour": "light",
                   "slots": Array [
                     Object {
@@ -506,9 +486,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "resizeMode": "cover",
-            "source": Object {
-              "testUri": "../../../assets/quest-slices/w1s0.png",
-            },
+            "source": 1,
             "style": Object {
               "bottom": 0,
               "height": 360,
@@ -641,9 +619,7 @@ ShallowWrapper {
                       "topBarType": "default",
                     },
                     "id": "MAP_SLICE_W01E00",
-                    "image": Object {
-                      "testUri": "../../../assets/quest-slices/w1s0.png",
-                    },
+                    "image": 1,
                     "navBarColour": "light",
                     "slots": Array [
                       Object {
@@ -708,9 +684,7 @@ ShallowWrapper {
                     "topBarType": "default",
                   },
                   "id": "MAP_SLICE_W01E00",
-                  "image": Object {
-                    "testUri": "../../../assets/quest-slices/w1s0.png",
-                  },
+                  "image": 1,
                   "navBarColour": "light",
                   "slots": Array [
                     Object {

@@ -12,9 +12,7 @@ ShallowWrapper {
     screens={
       Array [
         Object {
-          "backgroundImage": Object {
-            "testUri": "../../../assets/meditation-set-up/ios1.png",
-          },
+          "backgroundImage": 1,
           "heading": "",
           "subheading": "",
         },
@@ -73,11 +71,7 @@ ShallowWrapper {
             >
               <Image
                 resizeMode="cover"
-                source={
-                  Object {
-                    "testUri": "../../../assets/meditation-set-up/ios1.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 1033.8500000000001,
@@ -165,11 +159,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../assets/icons/close.png",
-                }
-              }
+              source={1}
             />
           </TouchableOpacity>
         </View>,
@@ -226,11 +216,7 @@ ShallowWrapper {
               >
                 <Image
                   resizeMode="cover"
-                  source={
-                    Object {
-                      "testUri": "../../../assets/meditation-set-up/ios1.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 1033.8500000000001,
@@ -313,11 +299,7 @@ ShallowWrapper {
                 >
                   <Image
                     resizeMode="cover"
-                    source={
-                      Object {
-                        "testUri": "../../../assets/meditation-set-up/ios1.png",
-                      }
-                    }
+                    source={1}
                     style={
                       Object {
                         "height": 1033.8500000000001,
@@ -381,11 +363,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": <Image
                     resizeMode="cover"
-                    source={
-                      Object {
-                        "testUri": "../../../assets/meditation-set-up/ios1.png",
-                      }
-                    }
+                    source={1}
                     style={
                       Object {
                         "height": 1033.8500000000001,
@@ -409,9 +387,7 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "resizeMode": "cover",
-                    "source": Object {
-                      "testUri": "../../../assets/meditation-set-up/ios1.png",
-                    },
+                    "source": 1,
                     "style": Object {
                       "height": 1033.8500000000001,
                       "width": "100%",
@@ -539,11 +515,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/close.png",
-                  }
-                }
+                source={1}
               />
             </TouchableOpacity>,
           ],
@@ -590,11 +562,7 @@ ShallowWrapper {
             "props": Object {
               "activeOpacity": 0.2,
               "children": <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/close.png",
-                  }
-                }
+                source={1}
               />,
               "onPress": [MockFunction],
               "style": Object {
@@ -611,9 +579,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../assets/icons/close.png",
-                },
+                "source": 1,
               },
               "ref": null,
               "rendered": null,
@@ -705,11 +671,7 @@ ShallowWrapper {
               >
                 <Image
                   resizeMode="cover"
-                  source={
-                    Object {
-                      "testUri": "../../../assets/meditation-set-up/ios1.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 1033.8500000000001,
@@ -797,11 +759,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../assets/icons/close.png",
-                  }
-                }
+                source={1}
               />
             </TouchableOpacity>
           </View>,
@@ -858,11 +816,7 @@ ShallowWrapper {
                 >
                   <Image
                     resizeMode="cover"
-                    source={
-                      Object {
-                        "testUri": "../../../assets/meditation-set-up/ios1.png",
-                      }
-                    }
+                    source={1}
                     style={
                       Object {
                         "height": 1033.8500000000001,
@@ -945,11 +899,7 @@ ShallowWrapper {
                   >
                     <Image
                       resizeMode="cover"
-                      source={
-                        Object {
-                          "testUri": "../../../assets/meditation-set-up/ios1.png",
-                        }
-                      }
+                      source={1}
                       style={
                         Object {
                           "height": 1033.8500000000001,
@@ -1013,11 +963,7 @@ ShallowWrapper {
                   "props": Object {
                     "children": <Image
                       resizeMode="cover"
-                      source={
-                        Object {
-                          "testUri": "../../../assets/meditation-set-up/ios1.png",
-                        }
-                      }
+                      source={1}
                       style={
                         Object {
                           "height": 1033.8500000000001,
@@ -1041,9 +987,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "resizeMode": "cover",
-                      "source": Object {
-                        "testUri": "../../../assets/meditation-set-up/ios1.png",
-                      },
+                      "source": 1,
                       "style": Object {
                         "height": 1033.8500000000001,
                         "width": "100%",
@@ -1171,11 +1115,7 @@ ShallowWrapper {
                 }
               >
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/close.png",
-                    }
-                  }
+                  source={1}
                 />
               </TouchableOpacity>,
             ],
@@ -1222,11 +1162,7 @@ ShallowWrapper {
               "props": Object {
                 "activeOpacity": 0.2,
                 "children": <Image
-                  source={
-                    Object {
-                      "testUri": "../../../assets/icons/close.png",
-                    }
-                  }
+                  source={1}
                 />,
                 "onPress": [MockFunction],
                 "style": Object {
@@ -1243,9 +1179,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "source": Object {
-                    "testUri": "../../../assets/icons/close.png",
-                  },
+                  "source": 1,
                 },
                 "ref": null,
                 "rendered": null,
