@@ -72,7 +72,6 @@
 		3A701645212308CE007BE538 /* Mixpanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7015B8212308CD007BE538 /* Mixpanel.m */; };
 		3A701646212308CE007BE538 /* MPTweak.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7015B9212308CD007BE538 /* MPTweak.m */; };
 		3A701647212308CE007BE538 /* test_variant.json in Resources */ = {isa = PBXBuildFile; fileRef = 3A7015BA212308CD007BE538 /* test_variant.json */; };
-		3A701648212308CE007BE538 /* MixpanelWatchProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7015BC212308CD007BE538 /* MixpanelWatchProperties.m */; };
 		3A701649212308CE007BE538 /* Mixpanel+AutomaticTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7015C1212308CD007BE538 /* Mixpanel+AutomaticTracks.m */; };
 		3A70164A212308CE007BE538 /* MPTakeoverNotificationViewController~iphonelandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A7015C2212308CD007BE538 /* MPTakeoverNotificationViewController~iphonelandscape.xib */; };
 		3A70164B212308CE007BE538 /* UIApplication+AutomaticTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7015C3212308CD007BE538 /* UIApplication+AutomaticTracks.m */; };
@@ -149,10 +148,9 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		BE55738547FE45A793211840 /* libRNIntercom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAEEA81EB5F49559EB99517 /* libRNIntercom.a */; };
 		EBAA9B26F42B473A81BB43A3 /* Bariol-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 63DDB257B8034DF18D1D01CA /* Bariol-Regular.otf */; };
+		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		F40602917AEA4642963A2DC4 /* libRNSpringScrollView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7362EB49B3C41BB9766373F /* libRNSpringScrollView.a */; };
 		F7C6483916D3450C8AD04253 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D735CA38EBDC4E069BDE45DC /* libRNBlur.a */; };
-		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
-		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -281,20 +279,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 3D383D621EBD27B9005632C8;
 			remoteInfo = "double-conversion-tvOS";
-		};
-		2DF0FFEA2056DD460020B375 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9936F3131F5F2E4B0010BF04;
-			remoteInfo = privatedata;
-		};
-		2DF0FFEC2056DD460020B375 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
-			remoteInfo = "privatedata-tvOS";
 		};
 		3A23F4C4220C3DDF0020E03E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -464,19 +448,33 @@
 			remoteGlobalIDString = 3D3CD9321DE5FBEE00167DC4;
 			remoteInfo = "cxxreact-tvOS";
 		};
-		3DAD3EAC1DF850E9000B6D8A /* PBXContainerItemProxy */ = {
+		41946BF222AD90B300FE797D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 3D3CD90B1DE5FBD600167DC4;
-			remoteInfo = jschelpers;
+			remoteGlobalIDString = EDEBC6D6214B3E7000DD5AC8;
+			remoteInfo = jsi;
 		};
-		3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */ = {
+		41946BF422AD90B300FE797D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
-			remoteInfo = "jschelpers-tvOS";
+			remoteGlobalIDString = EDEBC73B214B45A300DD5AC8;
+			remoteInfo = jsiexecutor;
+		};
+		41946BF622AD90B300FE797D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ED296FB6214C9A0900B7C4FE;
+			remoteInfo = "jsi-tvOS";
+		};
+		41946BF822AD90B300FE797D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ED296FEE214C9CF800B7C4FE;
+			remoteInfo = "jsiexecutor-tvOS";
 		};
 		5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -672,7 +670,6 @@
 		3A7015B9212308CD007BE538 /* MPTweak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTweak.m; sourceTree = "<group>"; };
 		3A7015BA212308CD007BE538 /* test_variant.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_variant.json; sourceTree = "<group>"; };
 		3A7015BB212308CD007BE538 /* MPSwizzler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSwizzler.h; sourceTree = "<group>"; };
-		3A7015BC212308CD007BE538 /* MixpanelWatchProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelWatchProperties.m; sourceTree = "<group>"; };
 		3A7015BD212308CD007BE538 /* MPObjectSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPObjectSelector.h; sourceTree = "<group>"; };
 		3A7015BE212308CD007BE538 /* MPObjectSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPObjectSerializer.h; sourceTree = "<group>"; };
 		3A7015BF212308CD007BE538 /* MPEventBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEventBinding.h; sourceTree = "<group>"; };
@@ -757,7 +754,6 @@
 		3A70160E212308CE007BE538 /* MPSwizzler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSwizzler.m; sourceTree = "<group>"; };
 		3A70160F212308CE007BE538 /* MPDesignerEventBindingMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPDesignerEventBindingMessage.h; sourceTree = "<group>"; };
 		3A701610212308CE007BE538 /* MPObjectSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPObjectSelector.m; sourceTree = "<group>"; };
-		3A701611212308CE007BE538 /* MixpanelWatchProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixpanelWatchProperties.h; sourceTree = "<group>"; };
 		3A701612212308CE007BE538 /* MPTweak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTweak.h; sourceTree = "<group>"; };
 		3A701613212308CE007BE538 /* Mixpanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mixpanel.h; sourceTree = "<group>"; };
 		3A701614212308CE007BE538 /* MPConnectIntegrations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPConnectIntegrations.h; sourceTree = "<group>"; };
@@ -976,16 +972,16 @@
 				3DAD3EA71DF850E9000B6D8A /* libyoga.a */,
 				3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */,
 				3DAD3EAB1DF850E9000B6D8A /* libcxxreact.a */,
-				3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */,
-				3DAD3EAF1DF850E9000B6D8A /* libjschelpers.a */,
 				2DF0FFDF2056DD460020B375 /* libjsinspector.a */,
 				2DF0FFE12056DD460020B375 /* libjsinspector-tvOS.a */,
 				2DF0FFE32056DD460020B375 /* libthird-party.a */,
 				2DF0FFE52056DD460020B375 /* libthird-party.a */,
 				2DF0FFE72056DD460020B375 /* libdouble-conversion.a */,
 				2DF0FFE92056DD460020B375 /* libdouble-conversion.a */,
-				2DF0FFEB2056DD460020B375 /* libprivatedata.a */,
-				2DF0FFED2056DD460020B375 /* libprivatedata-tvOS.a */,
+				41946BF322AD90B300FE797D /* libjsi.a */,
+				41946BF522AD90B300FE797D /* libjsiexecutor.a */,
+				41946BF722AD90B300FE797D /* libjsi-tvOS.a */,
+				41946BF922AD90B300FE797D /* libjsiexecutor-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1041,164 +1037,162 @@
 		3A70156E212308CD007BE538 /* Mixpanel */ = {
 			isa = PBXGroup;
 			children = (
-				3A70156F212308CD007BE538 /* MPObjectSerializerContext.h */,
-				3A701570212308CD007BE538 /* MPABTestDesignerChangeResponseMessage.h */,
-				3A701571212308CD007BE538 /* MPPropertyDescription.h */,
-				3A701572212308CD007BE538 /* MPUIFontToNSDictionaryValueTransformer.m */,
-				3A701573212308CD007BE538 /* MPClassDescription.h */,
-				3A701574212308CD007BE538 /* MPLogger.h */,
-				3A701575212308CD007BE538 /* MPUIImageToNSDictionaryValueTransformer.m */,
-				3A701576212308CD007BE538 /* MPApplicationStateSerializer.h */,
-				3A701577212308CD007BE538 /* UIViewController+AutomaticTracks.m */,
 				3A701578212308CD007BE538 /* _MPTweakBindObserver.h */,
-				3A701579212308CD007BE538 /* UIColor+MPColor.m */,
-				3A70157A212308CD007BE538 /* MPABTestDesignerClearResponseMessage.m */,
-				3A70157B212308CD007BE538 /* MPCGAffineTransformToNSDictionaryValueTransformer.m */,
-				3A70157C212308CD007BE538 /* MPVariant.h */,
-				3A70157D212308CD007BE538 /* MixpanelExceptionHandler.m */,
-				3A70157E212308CD007BE538 /* MPABTestDesignerDisconnectMessage.m */,
-				3A70157F212308CD007BE538 /* MPABTestDesignerSnapshotRequestMessage.h */,
-				3A701580212308CD007BE538 /* MPEnumDescription.m */,
-				3A701581212308CD007BE538 /* MPABTestDesignerSnapshotResponseMessage.m */,
-				3A701582212308CD007BE538 /* SessionMetadata.m */,
-				3A701583212308CD007BE538 /* MPObjectSerializerConfig.m */,
-				3A701584212308CD007BE538 /* MPCGRectToNSDictionaryValueTransformer.m */,
-				3A701585212308CD007BE538 /* MPAbstractABTestDesignerMessage.h */,
-				3A701586212308CD007BE538 /* MPABTestDesignerDeviceInfoRequestMessage.h */,
-				3A701587212308CD007BE538 /* tvos.modulemap */,
-				3A701588212308CD007BE538 /* MPABTestDesignerClearRequestMessage.h */,
-				3A701589212308CD007BE538 /* MPABTestDesignerChangeRequestMessage.m */,
-				3A70158A212308CD007BE538 /* MPNSNumberToCGFloatValueTransformer.m */,
-				3A70158B212308CD007BE538 /* MPUITableViewBinding.m */,
-				3A70158C212308CD007BE538 /* MPMiniNotification.h */,
-				3A70158D212308CD007BE538 /* AutomaticEvents.m */,
-				3A70158E212308CD007BE538 /* MPNotificationViewController.h */,
-				3A70158F212308CD007BE538 /* UIImage+MPImageEffects.h */,
-				3A701590212308CD007BE538 /* MPABTestDesignerTweakResponseMessage.m */,
-				3A701591212308CD007BE538 /* Images */,
-				3A7015A0212308CD007BE538 /* NSThread+MPHelpers.h */,
-				3A7015A1212308CD007BE538 /* UIImage+MPAverageColor.h */,
-				3A7015A2212308CD007BE538 /* NSNotificationCenter+AutomaticTracks.m */,
-				3A7015A3212308CD007BE538 /* MPDesignerEventBindingResponseMesssage.m */,
-				3A7015A4212308CD007BE538 /* MixpanelPeoplePrivate.h */,
-				3A7015A5212308CD007BE538 /* MPDesignerSessionCollection.h */,
-				3A7015A6212308CD007BE538 /* MPTweakStore.h */,
-				3A7015A7212308CD007BE538 /* MPNSAttributedStringToNSDictionaryValueTransformer.m */,
-				3A7015A8212308CD007BE538 /* MPABTestDesignerTweakRequestMessage.h */,
-				3A7015A9212308CD007BE538 /* MPNetwork.h */,
-				3A7015AA212308CD007BE538 /* MixpanelPeople.h */,
-				3A7015AB212308CD007BE538 /* MPTakeoverNotification.h */,
-				3A7015AC212308CD007BE538 /* MPUIControlBinding.h */,
-				3A7015AD212308CD007BE538 /* MPNotification.h */,
-				3A7015AE212308CD007BE538 /* NSInvocation+MPHelpers.m */,
-				3A7015AF212308CD007BE538 /* UIView+MPHelpers.m */,
-				3A7015B0212308CD007BE538 /* MPCGSizeToNSDictionaryValueTransformer.m */,
-				3A7015B1212308CD007BE538 /* MPFoundation.h */,
-				3A7015B2212308CD007BE538 /* MPABTestDesignerConnection.m */,
-				3A7015B3212308CD007BE538 /* MPSwizzle.m */,
-				3A7015B4212308CD007BE538 /* MPObjectIdentifierProvider.h */,
-				3A7015B5212308CD007BE538 /* MPConnectIntegrations.m */,
-				3A7015B6212308CD007BE538 /* MPObjectIdentityProvider.m */,
-				3A7015B7212308CD007BE538 /* MPWebSocket.h */,
-				3A7015B8212308CD007BE538 /* Mixpanel.m */,
-				3A7015B9212308CD007BE538 /* MPTweak.m */,
-				3A7015BA212308CD007BE538 /* test_variant.json */,
-				3A7015BB212308CD007BE538 /* MPSwizzler.h */,
-				3A7015BC212308CD007BE538 /* MixpanelWatchProperties.m */,
-				3A7015BD212308CD007BE538 /* MPObjectSelector.h */,
-				3A7015BE212308CD007BE538 /* MPObjectSerializer.h */,
-				3A7015BF212308CD007BE538 /* MPEventBinding.h */,
-				3A7015C0212308CD007BE538 /* MPResources.h */,
-				3A7015C1212308CD007BE538 /* Mixpanel+AutomaticTracks.m */,
-				3A7015C2212308CD007BE538 /* MPTakeoverNotificationViewController~iphonelandscape.xib */,
-				3A7015C3212308CD007BE538 /* UIApplication+AutomaticTracks.m */,
-				3A7015C4212308CD007BE538 /* MPSequenceGenerator.m */,
-				3A7015C5212308CD007BE538 /* MPTweakInline.m */,
-				3A7015C6212308CD007BE538 /* MPNotificationButton.m */,
-				3A7015C7212308CD007BE538 /* MPABTestDesignerDeviceInfoResponseMessage.h */,
-				3A7015C8212308CD007BE538 /* MPTypeDescription.m */,
-				3A7015C9212308CD007BE538 /* MPABTestDesignerClearResponseMessage.h */,
 				3A7015CA212308CD007BE538 /* _MPTweakBindObserver.m */,
-				3A7015CB212308CD007BE538 /* UIColor+MPColor.h */,
-				3A7015CC212308CD007BE538 /* MPApplicationStateSerializer.m */,
-				3A7015CD212308CD007BE538 /* UIViewController+AutomaticTracks.h */,
-				3A7015CE212308CD007BE538 /* MPPassThroughValueTransformer.m */,
-				3A7015CF212308CD007BE538 /* MPTakeoverNotificationViewController~ipad.xib */,
-				3A7015D0212308CD007BE538 /* MPClassDescription.m */,
-				3A7015D1212308CD007BE538 /* MPPropertyDescription.m */,
-				3A7015D2212308CD007BE538 /* MPObjectSerializerContext.m */,
-				3A7015D3212308CD007BE538 /* MPABTestDesignerChangeResponseMessage.m */,
-				3A7015D4212308CD007BE538 /* MPABTestDesignerTweakResponseMessage.h */,
-				3A7015D5212308CD007BE538 /* UIImage+MPImageEffects.m */,
-				3A7015D6212308CD007BE538 /* MPNotificationViewController.m */,
-				3A7015D7212308CD007BE538 /* MPNetworkPrivate.h */,
-				3A7015D8212308CD007BE538 /* MPMiniNotification.m */,
-				3A7015D9212308CD007BE538 /* AutomaticEvents.h */,
-				3A7015DA212308CD007BE538 /* MPUITableViewBinding.h */,
-				3A7015DB212308CD007BE538 /* watchos.modulemap */,
-				3A7015DC212308CD007BE538 /* MPABTestDesignerClearRequestMessage.m */,
-				3A7015DD212308CD007BE538 /* MPABTestDesignerChangeRequestMessage.h */,
-				3A7015DE212308CD007BE538 /* MPUIEdgeInsetsToNSDictionaryValueTransformer.m */,
-				3A7015DF212308CD007BE538 /* MPObjectSerializerConfig.h */,
-				3A7015E0212308CD007BE538 /* MPAbstractABTestDesignerMessage.m */,
-				3A7015E1212308CD007BE538 /* MPABTestDesignerDeviceInfoRequestMessage.m */,
-				3A7015E2212308CD007BE538 /* ios.modulemap */,
-				3A7015E3212308CD007BE538 /* SessionMetadata.h */,
-				3A7015E4212308CD007BE538 /* MPABTestDesignerSnapshotResponseMessage.h */,
-				3A7015E5212308CD007BE538 /* MPEnumDescription.h */,
-				3A7015E6212308CD007BE538 /* MPVariant.m */,
-				3A7015E7212308CD007BE538 /* MPABTestDesignerDisconnectMessage.h */,
-				3A7015E8212308CD007BE538 /* MixpanelExceptionHandler.h */,
-				3A7015E9212308CD007BE538 /* MPABTestDesignerSnapshotRequestMessage.m */,
-				3A7015EA212308CD007BE538 /* MPUIColorToNSStringValueTransformer.m */,
-				3A7015EB212308CD007BE538 /* MPDesignerTrackMessage.m */,
-				3A7015EC212308CD007BE538 /* MPABTestDesignerConnection.h */,
-				3A7015ED212308CD007BE538 /* UIView+MPHelpers.h */,
-				3A7015EE212308CD007BE538 /* MPNotification.m */,
-				3A7015EF212308CD007BE538 /* NSInvocation+MPHelpers.h */,
-				3A7015F0212308CD007BE538 /* MPABTestDesignerMessage.h */,
-				3A7015F1212308CD007BE538 /* MPUIControlBinding.m */,
-				3A7015F2212308CD007BE538 /* MPTakeoverNotification.m */,
-				3A7015F3212308CD007BE538 /* MPCGPointToNSDictionaryValueTransformer.m */,
-				3A7015F4212308CD007BE538 /* MPNetwork.m */,
-				3A7015F5212308CD007BE538 /* MixpanelPeople.m */,
-				3A7015F6212308CD007BE538 /* MPABTestDesignerTweakRequestMessage.m */,
 				3A7015F7212308CD007BE538 /* app_extension_module.modulemap */,
-				3A7015F8212308CD007BE538 /* MPTweakStore.m */,
-				3A7015F9212308CE007BE538 /* MPTweakInlineInternal.h */,
-				3A7015FA212308CE007BE538 /* MPBOOLToNSNumberValueTransformer.m */,
-				3A7015FB212308CE007BE538 /* UIImage+MPAverageColor.m */,
-				3A7015FC212308CE007BE538 /* NSNotificationCenter+AutomaticTracks.h */,
-				3A7015FD212308CE007BE538 /* NSThread+MPHelpers.m */,
+				3A7015D9212308CD007BE538 /* AutomaticEvents.h */,
+				3A70158D212308CD007BE538 /* AutomaticEvents.m */,
 				3A7015FE212308CE007BE538 /* AutomaticTracksConstants.h */,
-				3A7015FF212308CE007BE538 /* MPTypeDescription.h */,
-				3A701600212308CE007BE538 /* MPTakeoverNotificationViewController~iphoneportrait.xib */,
-				3A701601212308CE007BE538 /* MPABTestDesignerDeviceInfoResponseMessage.m */,
-				3A701602212308CE007BE538 /* MPNotificationButton.h */,
-				3A701603212308CE007BE538 /* MPTweakInline.h */,
-				3A701604212308CE007BE538 /* MixpanelPrivate.h */,
-				3A701605212308CE007BE538 /* UIApplication+AutomaticTracks.h */,
-				3A701606212308CE007BE538 /* MPSequenceGenerator.h */,
+				3A701591212308CD007BE538 /* Images */,
+				3A7015E2212308CD007BE538 /* ios.modulemap */,
 				3A701607212308CE007BE538 /* macos.modulemap */,
-				3A701608212308CE007BE538 /* MPDesignerEventBindingRequestMesssage.m */,
-				3A701609212308CE007BE538 /* MPEventBinding.m */,
-				3A70160A212308CE007BE538 /* MPObjectSerializer.m */,
-				3A70160B212308CE007BE538 /* Mixpanel+AutomaticTracks.h */,
-				3A70160C212308CE007BE538 /* MPResources.m */,
-				3A70160D212308CE007BE538 /* MPValueTransformers.h */,
-				3A70160E212308CE007BE538 /* MPSwizzler.m */,
-				3A70160F212308CE007BE538 /* MPDesignerEventBindingMessage.h */,
-				3A701610212308CE007BE538 /* MPObjectSelector.m */,
-				3A701611212308CE007BE538 /* MixpanelWatchProperties.h */,
-				3A701612212308CE007BE538 /* MPTweak.h */,
 				3A701613212308CE007BE538 /* Mixpanel.h */,
-				3A701614212308CE007BE538 /* MPConnectIntegrations.h */,
-				3A701615212308CE007BE538 /* MPCGColorRefToNSStringValueTransformer.m */,
-				3A701616212308CE007BE538 /* MPWebSocket.m */,
-				3A701617212308CE007BE538 /* MPObjectIdentityProvider.h */,
+				3A7015B8212308CD007BE538 /* Mixpanel.m */,
+				3A70160B212308CE007BE538 /* Mixpanel+AutomaticTracks.h */,
+				3A7015C1212308CD007BE538 /* Mixpanel+AutomaticTracks.m */,
+				3A7015E8212308CD007BE538 /* MixpanelExceptionHandler.h */,
+				3A70157D212308CD007BE538 /* MixpanelExceptionHandler.m */,
+				3A7015AA212308CD007BE538 /* MixpanelPeople.h */,
+				3A7015F5212308CD007BE538 /* MixpanelPeople.m */,
+				3A7015A4212308CD007BE538 /* MixpanelPeoplePrivate.h */,
+				3A701604212308CE007BE538 /* MixpanelPrivate.h */,
+				3A701585212308CD007BE538 /* MPAbstractABTestDesignerMessage.h */,
+				3A7015E0212308CD007BE538 /* MPAbstractABTestDesignerMessage.m */,
+				3A7015DD212308CD007BE538 /* MPABTestDesignerChangeRequestMessage.h */,
+				3A701589212308CD007BE538 /* MPABTestDesignerChangeRequestMessage.m */,
+				3A701570212308CD007BE538 /* MPABTestDesignerChangeResponseMessage.h */,
+				3A7015D3212308CD007BE538 /* MPABTestDesignerChangeResponseMessage.m */,
+				3A701588212308CD007BE538 /* MPABTestDesignerClearRequestMessage.h */,
+				3A7015DC212308CD007BE538 /* MPABTestDesignerClearRequestMessage.m */,
+				3A7015C9212308CD007BE538 /* MPABTestDesignerClearResponseMessage.h */,
+				3A70157A212308CD007BE538 /* MPABTestDesignerClearResponseMessage.m */,
+				3A7015EC212308CD007BE538 /* MPABTestDesignerConnection.h */,
+				3A7015B2212308CD007BE538 /* MPABTestDesignerConnection.m */,
+				3A701586212308CD007BE538 /* MPABTestDesignerDeviceInfoRequestMessage.h */,
+				3A7015E1212308CD007BE538 /* MPABTestDesignerDeviceInfoRequestMessage.m */,
+				3A7015C7212308CD007BE538 /* MPABTestDesignerDeviceInfoResponseMessage.h */,
+				3A701601212308CE007BE538 /* MPABTestDesignerDeviceInfoResponseMessage.m */,
+				3A7015E7212308CD007BE538 /* MPABTestDesignerDisconnectMessage.h */,
+				3A70157E212308CD007BE538 /* MPABTestDesignerDisconnectMessage.m */,
+				3A7015F0212308CD007BE538 /* MPABTestDesignerMessage.h */,
+				3A70157F212308CD007BE538 /* MPABTestDesignerSnapshotRequestMessage.h */,
+				3A7015E9212308CD007BE538 /* MPABTestDesignerSnapshotRequestMessage.m */,
+				3A7015E4212308CD007BE538 /* MPABTestDesignerSnapshotResponseMessage.h */,
+				3A701581212308CD007BE538 /* MPABTestDesignerSnapshotResponseMessage.m */,
+				3A7015A8212308CD007BE538 /* MPABTestDesignerTweakRequestMessage.h */,
+				3A7015F6212308CD007BE538 /* MPABTestDesignerTweakRequestMessage.m */,
+				3A7015D4212308CD007BE538 /* MPABTestDesignerTweakResponseMessage.h */,
+				3A701590212308CD007BE538 /* MPABTestDesignerTweakResponseMessage.m */,
+				3A701576212308CD007BE538 /* MPApplicationStateSerializer.h */,
+				3A7015CC212308CD007BE538 /* MPApplicationStateSerializer.m */,
+				3A7015FA212308CE007BE538 /* MPBOOLToNSNumberValueTransformer.m */,
 				3A701618212308CE007BE538 /* MPCATransform3DToNSDictionaryValueTransformer.m */,
+				3A70157B212308CD007BE538 /* MPCGAffineTransformToNSDictionaryValueTransformer.m */,
+				3A701615212308CE007BE538 /* MPCGColorRefToNSStringValueTransformer.m */,
+				3A7015F3212308CD007BE538 /* MPCGPointToNSDictionaryValueTransformer.m */,
+				3A701584212308CD007BE538 /* MPCGRectToNSDictionaryValueTransformer.m */,
+				3A7015B0212308CD007BE538 /* MPCGSizeToNSDictionaryValueTransformer.m */,
+				3A701573212308CD007BE538 /* MPClassDescription.h */,
+				3A7015D0212308CD007BE538 /* MPClassDescription.m */,
+				3A701614212308CE007BE538 /* MPConnectIntegrations.h */,
+				3A7015B5212308CD007BE538 /* MPConnectIntegrations.m */,
+				3A70160F212308CE007BE538 /* MPDesignerEventBindingMessage.h */,
+				3A701608212308CE007BE538 /* MPDesignerEventBindingRequestMesssage.m */,
+				3A7015A3212308CD007BE538 /* MPDesignerEventBindingResponseMesssage.m */,
+				3A7015A5212308CD007BE538 /* MPDesignerSessionCollection.h */,
+				3A7015EB212308CD007BE538 /* MPDesignerTrackMessage.m */,
+				3A7015E5212308CD007BE538 /* MPEnumDescription.h */,
+				3A701580212308CD007BE538 /* MPEnumDescription.m */,
+				3A7015BF212308CD007BE538 /* MPEventBinding.h */,
+				3A701609212308CE007BE538 /* MPEventBinding.m */,
+				3A7015B1212308CD007BE538 /* MPFoundation.h */,
+				3A701574212308CD007BE538 /* MPLogger.h */,
+				3A70158C212308CD007BE538 /* MPMiniNotification.h */,
+				3A7015D8212308CD007BE538 /* MPMiniNotification.m */,
+				3A7015A9212308CD007BE538 /* MPNetwork.h */,
+				3A7015F4212308CD007BE538 /* MPNetwork.m */,
+				3A7015D7212308CD007BE538 /* MPNetworkPrivate.h */,
+				3A7015AD212308CD007BE538 /* MPNotification.h */,
+				3A7015EE212308CD007BE538 /* MPNotification.m */,
+				3A701602212308CE007BE538 /* MPNotificationButton.h */,
+				3A7015C6212308CD007BE538 /* MPNotificationButton.m */,
+				3A70158E212308CD007BE538 /* MPNotificationViewController.h */,
+				3A7015D6212308CD007BE538 /* MPNotificationViewController.m */,
+				3A7015A7212308CD007BE538 /* MPNSAttributedStringToNSDictionaryValueTransformer.m */,
+				3A70158A212308CD007BE538 /* MPNSNumberToCGFloatValueTransformer.m */,
+				3A7015B4212308CD007BE538 /* MPObjectIdentifierProvider.h */,
+				3A701617212308CE007BE538 /* MPObjectIdentityProvider.h */,
+				3A7015B6212308CD007BE538 /* MPObjectIdentityProvider.m */,
+				3A7015BD212308CD007BE538 /* MPObjectSelector.h */,
+				3A701610212308CE007BE538 /* MPObjectSelector.m */,
+				3A7015BE212308CD007BE538 /* MPObjectSerializer.h */,
+				3A70160A212308CE007BE538 /* MPObjectSerializer.m */,
+				3A7015DF212308CD007BE538 /* MPObjectSerializerConfig.h */,
+				3A701583212308CD007BE538 /* MPObjectSerializerConfig.m */,
+				3A70156F212308CD007BE538 /* MPObjectSerializerContext.h */,
+				3A7015D2212308CD007BE538 /* MPObjectSerializerContext.m */,
+				3A7015CE212308CD007BE538 /* MPPassThroughValueTransformer.m */,
+				3A701571212308CD007BE538 /* MPPropertyDescription.h */,
+				3A7015D1212308CD007BE538 /* MPPropertyDescription.m */,
+				3A7015C0212308CD007BE538 /* MPResources.h */,
+				3A70160C212308CE007BE538 /* MPResources.m */,
+				3A701606212308CE007BE538 /* MPSequenceGenerator.h */,
+				3A7015C4212308CD007BE538 /* MPSequenceGenerator.m */,
 				3A701619212308CE007BE538 /* MPSwizzle.h */,
+				3A7015B3212308CD007BE538 /* MPSwizzle.m */,
+				3A7015BB212308CD007BE538 /* MPSwizzler.h */,
+				3A70160E212308CE007BE538 /* MPSwizzler.m */,
+				3A7015AB212308CD007BE538 /* MPTakeoverNotification.h */,
+				3A7015F2212308CD007BE538 /* MPTakeoverNotification.m */,
+				3A7015CF212308CD007BE538 /* MPTakeoverNotificationViewController~ipad.xib */,
+				3A7015C2212308CD007BE538 /* MPTakeoverNotificationViewController~iphonelandscape.xib */,
+				3A701600212308CE007BE538 /* MPTakeoverNotificationViewController~iphoneportrait.xib */,
+				3A701612212308CE007BE538 /* MPTweak.h */,
+				3A7015B9212308CD007BE538 /* MPTweak.m */,
+				3A701603212308CE007BE538 /* MPTweakInline.h */,
+				3A7015C5212308CD007BE538 /* MPTweakInline.m */,
+				3A7015F9212308CE007BE538 /* MPTweakInlineInternal.h */,
+				3A7015A6212308CD007BE538 /* MPTweakStore.h */,
+				3A7015F8212308CD007BE538 /* MPTweakStore.m */,
+				3A7015FF212308CE007BE538 /* MPTypeDescription.h */,
+				3A7015C8212308CD007BE538 /* MPTypeDescription.m */,
+				3A7015EA212308CD007BE538 /* MPUIColorToNSStringValueTransformer.m */,
+				3A7015AC212308CD007BE538 /* MPUIControlBinding.h */,
+				3A7015F1212308CD007BE538 /* MPUIControlBinding.m */,
+				3A7015DE212308CD007BE538 /* MPUIEdgeInsetsToNSDictionaryValueTransformer.m */,
+				3A701572212308CD007BE538 /* MPUIFontToNSDictionaryValueTransformer.m */,
+				3A701575212308CD007BE538 /* MPUIImageToNSDictionaryValueTransformer.m */,
+				3A7015DA212308CD007BE538 /* MPUITableViewBinding.h */,
+				3A70158B212308CD007BE538 /* MPUITableViewBinding.m */,
+				3A70160D212308CE007BE538 /* MPValueTransformers.h */,
+				3A70157C212308CD007BE538 /* MPVariant.h */,
+				3A7015E6212308CD007BE538 /* MPVariant.m */,
+				3A7015B7212308CD007BE538 /* MPWebSocket.h */,
+				3A701616212308CE007BE538 /* MPWebSocket.m */,
+				3A7015EF212308CD007BE538 /* NSInvocation+MPHelpers.h */,
+				3A7015AE212308CD007BE538 /* NSInvocation+MPHelpers.m */,
+				3A7015FC212308CE007BE538 /* NSNotificationCenter+AutomaticTracks.h */,
+				3A7015A2212308CD007BE538 /* NSNotificationCenter+AutomaticTracks.m */,
+				3A7015A0212308CD007BE538 /* NSThread+MPHelpers.h */,
+				3A7015FD212308CE007BE538 /* NSThread+MPHelpers.m */,
+				3A7015E3212308CD007BE538 /* SessionMetadata.h */,
+				3A701582212308CD007BE538 /* SessionMetadata.m */,
 				3A70161A212308CE007BE538 /* snapshot_config.json */,
+				3A7015BA212308CD007BE538 /* test_variant.json */,
+				3A701587212308CD007BE538 /* tvos.modulemap */,
+				3A701605212308CE007BE538 /* UIApplication+AutomaticTracks.h */,
+				3A7015C3212308CD007BE538 /* UIApplication+AutomaticTracks.m */,
+				3A7015CB212308CD007BE538 /* UIColor+MPColor.h */,
+				3A701579212308CD007BE538 /* UIColor+MPColor.m */,
+				3A7015A1212308CD007BE538 /* UIImage+MPAverageColor.h */,
+				3A7015FB212308CE007BE538 /* UIImage+MPAverageColor.m */,
+				3A70158F212308CD007BE538 /* UIImage+MPImageEffects.h */,
+				3A7015D5212308CD007BE538 /* UIImage+MPImageEffects.m */,
+				3A7015ED212308CD007BE538 /* UIView+MPHelpers.h */,
+				3A7015AF212308CD007BE538 /* UIView+MPHelpers.m */,
+				3A7015CD212308CD007BE538 /* UIViewController+AutomaticTracks.h */,
+				3A701577212308CD007BE538 /* UIViewController+AutomaticTracks.m */,
+				3A7015DB212308CD007BE538 /* watchos.modulemap */,
 			);
 			name = Mixpanel;
 			path = YuLife/Mixpanel;
@@ -1745,20 +1739,6 @@
 			remoteRef = 2DF0FFE82056DD460020B375 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2DF0FFEB2056DD460020B375 /* libprivatedata.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libprivatedata.a;
-			remoteRef = 2DF0FFEA2056DD460020B375 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2DF0FFED2056DD460020B375 /* libprivatedata-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libprivatedata-tvOS.a";
-			remoteRef = 2DF0FFEC2056DD460020B375 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		3A23F4C5220C3DDF0020E03E /* libReactNativeTestFairy.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1927,18 +1907,32 @@
 			remoteRef = 3DAD3EAA1DF850E9000B6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */ = {
+		41946BF322AD90B300FE797D /* libjsi.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libjschelpers.a;
-			remoteRef = 3DAD3EAC1DF850E9000B6D8A /* PBXContainerItemProxy */;
+			path = libjsi.a;
+			remoteRef = 41946BF222AD90B300FE797D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3DAD3EAF1DF850E9000B6D8A /* libjschelpers.a */ = {
+		41946BF522AD90B300FE797D /* libjsiexecutor.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libjschelpers.a;
-			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
+			path = libjsiexecutor.a;
+			remoteRef = 41946BF422AD90B300FE797D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		41946BF722AD90B300FE797D /* libjsi-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libjsi-tvOS.a";
+			remoteRef = 41946BF622AD90B300FE797D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		41946BF922AD90B300FE797D /* libjsiexecutor-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libjsiexecutor-tvOS.a";
+			remoteRef = 41946BF822AD90B300FE797D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
@@ -2106,7 +2100,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A701648212308CE007BE538 /* MixpanelWatchProperties.m in Sources */,
 				3A70163F212308CE007BE538 /* UIView+MPHelpers.m in Sources */,
 				3A70161C212308CE007BE538 /* MPUIImageToNSDictionaryValueTransformer.m in Sources */,
 				3A701667212308CE007BE538 /* MPNetwork.m in Sources */,

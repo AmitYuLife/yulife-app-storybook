@@ -18,7 +18,7 @@
 #import "NSThread+MPHelpers.h"
 #endif
 #if defined(MIXPANEL_WATCHOS)
-#import "MixpanelWatchProperties.h"
+// #import "MixpanelWatchProperties.h"
 #import <WatchKit/WatchKit.h>
 #elif defined(MIXPANEL_MACOS)
 #import <IOKit/IOKitLib.h>
@@ -1301,7 +1301,7 @@ static NSString *defaultProjectToken;
 - (NSDictionary *)collectDeviceProperties
 {
 #if defined(MIXPANEL_WATCHOS)
-    return [MixpanelWatchProperties collectDeviceProperties];
+    // return [MixpanelWatchProperties collectDeviceProperties];
 #elif defined(MIXPANEL_MACOS)
     CGSize size = [NSScreen mainScreen].frame.size;
     return @{
