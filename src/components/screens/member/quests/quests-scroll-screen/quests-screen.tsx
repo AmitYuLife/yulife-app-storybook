@@ -80,7 +80,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         const { initialScrollIndex, slices } = this.getWorldData();
 
         return (
-            <SafeAreaView style={styles.wrapper} testID={QUESTS_SCREEN(currentLevel)}>
+            <SafeAreaView style={styles.wrapper} testID={QUESTS_SCREEN(getCurrentWorld(currentLevel))} >
                 <ScrollyQuest
                     currentLevel={currentLevel}
                     initialScrollIndex={initialScrollIndex}

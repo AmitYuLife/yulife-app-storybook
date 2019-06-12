@@ -1,3 +1,4 @@
+import { CHALLENGE_SCREEN } from "@ids";
 import { ChallengesList, IChallengesListProps, ILabel, NavBar, TopBar } from "@molecules/index";
 import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
@@ -23,7 +24,7 @@ export default function ChallengesListScreen({
     const { backgroundWrapperStyle, backgroundImage, navBarType, topBarType } = getWorldStyle(currentLevel) as any;
 
     return (
-        <SafeAreaView style={styles.wrapper}>
+        <SafeAreaView style={styles.wrapper} testID={CHALLENGE_SCREEN}>
             <SafeAreaView style={backgroundWrapperStyle}>
                 <Image resizeMode="cover" style={styles.background} source={backgroundImage} />
             </SafeAreaView>

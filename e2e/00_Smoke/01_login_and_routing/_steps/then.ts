@@ -1,20 +1,21 @@
 import {
+    ACTIVITY_HISTORY_SCREEN,
     BUTTON_LOGIN,
+    CHALLENGE_SCREEN,
     DAILY_STEPS_SCREEN,
     INPUT_LOGIN_EMAIL,
     INPUT_LOGIN_PASSWORD,
+    LEADERBOARD_SCREEN,
     MENU_ITEM,
     MENU_SCREEN,
     QUESTS_SCREEN,
     REWARDS_SCREEN,
     SETTINGS_SCREEN,
-    ACTIVITY_HISTORY_SCREEN,
-    LEADERBOARD_SCREEN,
     TAB_BUTTON,
     VIEW_CONFETTI_COIN,
     VIEW_TOP_RIGHT_COIN_COUNTER
 } from "@ids";
-import { expectIsVisibleViaID, expectIsVisibleViaText } from "@navigation";
+import { expectDoesNotExistViaText, expectIsVisibleViaID, expectIsVisibleViaText } from "@navigation";
 
 export const emailUnchanged = async (): Promise<void> => {
     const target = element(by.id(INPUT_LOGIN_EMAIL));
@@ -130,4 +131,20 @@ export const menuIsVisible = async (): Promise<void> => {
     await expectIsVisibleViaID(MENU_ITEM("activity history"));
     await expectIsVisibleViaID(MENU_ITEM("member zone"));
     await expectIsVisibleViaID(MENU_ITEM("leaderboard"));
+};
+
+export const challengeScreenIsVisible = async (): Promise<void> => {
+    await expectIsVisibleViaID(CHALLENGE_SCREEN);
+};
+
+export const unlockAtLevelVisible = (level: number) => async (): Promise<void> => {
+    await expectIsVisibleViaText(`unlock at level ${level}`);
+};
+
+export const challengeIsAvailable = (challenge: string) => async (): Promise<void> => {
+    await expectIsVisibleViaText(challenge);
+};
+
+export const challengeIsUnavailable = (challenge: string) => async (): Promise<void> => {
+    await expectDoesNotExistViaText(challenge);
 };
