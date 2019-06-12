@@ -6,6 +6,7 @@
 3. Build the detox IPA by running `npm run e2e:build`. This might take a while
 4. Start the RN server in e2e mode by running `npm run start:e2e`
 5. Run your tests by running `npm run e2e:run`
+    - You will need applesimutils installed for this - `brew install wix/brew/applesimutils`
 
 ## Commands
 - `npm run e2e:build` - builds 

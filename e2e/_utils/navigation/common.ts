@@ -33,6 +33,13 @@ export const expectIsVisibleViaText = async (label: string) => {
     return target;
 };
 
+export const expectDoesNotExistViaText = async (id: string) => {
+    const target = element(by.text(id));
+    await waitFor(target).toNotExist().withTimeout(5000);
+    await expect(target).toNotExist();
+    return target;
+};
+
 export const reset = async () => {
     await device.terminateApp();
     await device.launchApp({ delete: true });

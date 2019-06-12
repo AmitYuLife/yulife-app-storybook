@@ -1,3 +1,4 @@
+import { LEVEL_CHALLENGE_BUTTON } from "@ids";
 import { TouchableOpacityWithState } from "@molecules/index";
 import moment from "moment";
 import * as React from "react";
@@ -58,6 +59,7 @@ export default class LevelBubble extends React.PureComponent<IProps, IState> {
                             ...style
                         }
                     ])}
+                    testID={LEVEL_CHALLENGE_BUTTON(level.level)}
                 >
                     {getLevelButton(nextAvailable, currentLevel, level)}
                 </TouchableOpacityWithState>

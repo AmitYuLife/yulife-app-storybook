@@ -23,5 +23,6 @@ export enum DatabaseCollection {
     map_milestone_templates = "map_milestone_templates",
     history_user_consents = "history_user_consents",
     user_leaderboards = "user_leaderboards",
-    user_consents = "user_consents"
+    user_consents = "user_consents",
+    usertoggles = "usertoggles"
 }

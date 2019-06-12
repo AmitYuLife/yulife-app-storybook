@@ -3,6 +3,7 @@ import {
     BUTTON_INTRO_SCREEN,
     BUTTON_LOGIN,
     BUTTON_TOP_LEFT_BAR,
+    LEVEL_CHALLENGE_BUTTON,
     MENU_ITEM,
     TAB_BUTTON
 } from "@ids";
@@ -20,11 +21,13 @@ export const pressSkipOnHealth = async (): Promise<void> => {
     await target.tap();
 };
 
-export const pressNext5Times = async (): Promise<void> => {
+export const collectOnboardingYucoin = async (): Promise<void> => {
     const next = element(by.text("next"));
     await waitFor(next).toExist().withTimeout(5000);
     await next.tap();
+};
 
+export const pressNext5Times = async (): Promise<void> => {
     for (let i = 1; i <= 5; i++) {
         const target = element(by.id(BUTTON_INTRO_SCREEN(i)));
         await waitFor(target).toExist().withTimeout(5000);
@@ -64,6 +67,30 @@ export const pressOnSettings = async (): Promise<void> => {
 
 export const closeCurrentScreen = async (): Promise<void> => {
     const target = element(by.id(BUTTON_CLOSE));
+    await waitFor(target).toExist().withTimeout(5000);
+    await target.tap();
+};
+
+export const pressOnLevel = (level: number) => async (): Promise<void> => {
+    const target = element(by.id(LEVEL_CHALLENGE_BUTTON(level)));
+    await waitFor(target).toExist().withTimeout(5000);
+    await target.tap();
+};
+
+export const clickBackToMap = async (): Promise<void> => {
+    const target = element(by.id(BUTTON_TOP_LEFT_BAR));
+    await waitFor(target).toExist().withTimeout(5000);
+    await target.tap();
+};
+
+export const clickOnGotIt = async (): Promise<void> => {
+    const target = element(by.text("got it"));
+    await waitFor(target).toExist().withTimeout(5000);
+    await target.tap();
+};
+
+export const clickOnBack = async (): Promise<void> => {
+    const target = element(by.text("back"));
     await waitFor(target).toExist().withTimeout(5000);
     await target.tap();
 };
