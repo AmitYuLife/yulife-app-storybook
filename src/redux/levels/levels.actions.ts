@@ -76,6 +76,10 @@ export const challengeResetSuccessAction = () => ({
     type: CHALLENGE_RESET_SUCCESS
 });
 
+export const challengeResetFailAction = () => ({
+    type: CHALLENGE_RESET_FAIL
+});
+
 export const challengeCancelAction = () => ({
     type: CHALLENGE_CANCEL
 });
