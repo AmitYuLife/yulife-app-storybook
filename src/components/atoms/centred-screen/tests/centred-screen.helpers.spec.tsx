@@ -93,8 +93,8 @@ describe("getImageAndStyle", () => {
         expect(actual.style).toBeDefined();
     });
 
-    it("should return a mocked image for challenge failed mountain image ", () => {
-        const actual = getImageAndStyle("challenge_failed_mountain");
+    it("should return a mocked image for challenge mountain image ", () => {
+        const actual = getImageAndStyle("challenge_mountain");
 
         expect(actual.source).toBeDefined();
         expect(actual.style).toBeDefined();

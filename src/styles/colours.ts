@@ -103,6 +103,10 @@ export default {
     },
     streak: {
         finished: {
+            mountain: {
+                pressed: "rgb(239, 170, 170)",
+                unpressed: "rgb(239, 190, 200)"
+            },
             desert: {
                 pressed: "rgb(238,216,107)",
                 unpressed: "rgb(238,216,107)"

@@ -38,7 +38,19 @@ export default StyleSheet.create({
     } as TextStyle,
     wrapper: {
         alignItems: "center",
-        flex: 1,
         justifyContent: "center"
+    } as ViewStyle,
+    flex: {
+        flex: 1
+    } as ViewStyle,
+    centredScreenWrapper: {
+        flex: 1,
+        justifyContent: "flex-end",
+        alignItems: "center",
+        marginBottom: Style.SCALE_UP_AND_DOWN(240)
+    } as ViewStyle,
+    buttonWrapper: {
+        position: "absolute",
+        bottom: Style.SCALE_UP_AND_DOWN(96)
     } as ViewStyle
 });

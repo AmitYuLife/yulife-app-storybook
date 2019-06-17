@@ -27,359 +27,23 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
-        <Stars
-          isLeftHighlighted={true}
-          isMidHighlighted={true}
-          isRightHighlighted={false}
-        />,
         <View
           style={
             Object {
               "alignItems": "center",
-              "marginBottom": 40,
+              "justifyContent": "center",
             }
           }
         >
-          <Image
-            source={1}
-          />
-          <YuText
-            style={
-              Object {
-                "color": "rgb(168, 105, 22)",
-                "fontSize": 28,
-                "marginTop": -20,
-                "textAlign": "center",
-              }
-            }
-          >
-            level undefined
-          </YuText>
-        </View>,
-        <View>
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "marginBottom": -16,
-              }
-            }
-          >
-            <AnimatedCoinConfetti
-              coins={2}
-              type="challenge-success"
-            />
-          </View>
-          <Image
-            source={1}
-          />
-          <YuText
-            bold={true}
-            style={
-              Object {
-                "bottom": 40,
-                "color": "rgb(168, 105, 22)",
-                "fontSize": 50,
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "textAlign": "center",
-              }
-            }
-          >
-            6 minutes
-          </YuText>
-        </View>,
-        <View
-          style={
-            Object {
-              "marginTop": 20,
-            }
-          }
-        >
-          <YuText
-            style={
-              Object {
-                "color": "rgb(170,170,170)",
-                "fontSize": 30,
-                "textAlign": "center",
-              }
-            }
-          >
-            
-          </YuText>
-        </View>,
-        <Button
-          label=""
-          onPress={[MockFunction]}
-          type="PrimarySmall"
-          wrapperStyle={
-            Object {
-              "marginTop": 100,
-            }
-          }
-        />,
-      ],
-      "style": Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      },
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "isLeftHighlighted": true,
-          "isMidHighlighted": true,
-          "isRightHighlighted": false,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <Image
-              source={1}
-            />,
-            <YuText
-              style={
-                Object {
-                  "color": "rgb(168, 105, 22)",
-                  "fontSize": 28,
-                  "marginTop": -20,
-                  "textAlign": "center",
-                }
-              }
-            >
-              level undefined
-            </YuText>,
-          ],
-          "style": Object {
-            "alignItems": "center",
-            "marginBottom": 40,
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "source": 1,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "level undefined",
-              "style": Object {
-                "color": "rgb(168, 105, 22)",
-                "fontSize": 28,
-                "marginTop": -20,
-                "textAlign": "center",
-              },
-            },
-            "ref": null,
-            "rendered": "level undefined",
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "marginBottom": -16,
-                }
-              }
-            >
-              <AnimatedCoinConfetti
-                coins={2}
-                type="challenge-success"
-              />
-            </View>,
-            <Image
-              source={1}
-            />,
-            <YuText
-              bold={true}
-              style={
-                Object {
-                  "bottom": 40,
-                  "color": "rgb(168, 105, 22)",
-                  "fontSize": 50,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "textAlign": "center",
-                }
-              }
-            >
-              6 minutes
-            </YuText>,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <AnimatedCoinConfetti
-                coins={2}
-                type="challenge-success"
-              />,
-              "style": Object {
-                "alignItems": "center",
-                "marginBottom": -16,
-              },
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "coins": 2,
-                "type": "challenge-success",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "source": 1,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "bold": true,
-              "children": "6 minutes",
-              "style": Object {
-                "bottom": 40,
-                "color": "rgb(168, 105, 22)",
-                "fontSize": 50,
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "textAlign": "center",
-              },
-            },
-            "ref": null,
-            "rendered": "6 minutes",
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": <YuText
-            style={
-              Object {
-                "color": "rgb(170,170,170)",
-                "fontSize": 30,
-                "textAlign": "center",
-              }
-            }
-          >
-            
-          </YuText>,
-          "style": Object {
-            "marginTop": 20,
-          },
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": "",
-            "style": Object {
-              "color": "rgb(170,170,170)",
-              "fontSize": 30,
-              "textAlign": "center",
-            },
-          },
-          "ref": null,
-          "rendered": "",
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "label": "",
-          "onPress": [MockFunction],
-          "type": "PrimarySmall",
-          "wrapperStyle": Object {
-            "marginTop": 100,
-          },
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": Array [
           <Stars
             isLeftHighlighted={true}
             isMidHighlighted={true}
             isRightHighlighted={false}
-          />,
+            type={null}
+          />
           <View
             style={
               Object {
@@ -403,7 +67,7 @@ ShallowWrapper {
             >
               level undefined
             </YuText>
-          </View>,
+          </View>
           <View>
             <View
               style={
@@ -437,7 +101,7 @@ ShallowWrapper {
             >
               6 minutes
             </YuText>
-          </View>,
+          </View>
           <View
             style={
               Object {
@@ -456,7 +120,11 @@ ShallowWrapper {
             >
               
             </YuText>
-          </View>,
+          </View>
+        </View>,
+        <View
+          style={Object {}}
+        >
           <Button
             label=""
             onPress={[MockFunction]}
@@ -466,38 +134,41 @@ ShallowWrapper {
                 "marginTop": 100,
               }
             }
-          />,
-        ],
-        "style": Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-        },
+          />
+        </View>,
+      ],
+      "footerImage": null,
+      "style": Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
       },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "isLeftHighlighted": true,
-            "isMidHighlighted": true,
-            "isRightHighlighted": false,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Stars
+              isLeftHighlighted={true}
+              isMidHighlighted={true}
+              isRightHighlighted={false}
+              type={null}
+            />,
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "marginBottom": 40,
+                }
+              }
+            >
               <Image
                 source={1}
-              />,
+              />
               <YuText
                 style={
                   Object {
@@ -509,52 +180,9 @@ ShallowWrapper {
                 }
               >
                 level undefined
-              </YuText>,
-            ],
-            "style": Object {
-              "alignItems": "center",
-              "marginBottom": 40,
-            },
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "source": 1,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": "level undefined",
-                "style": Object {
-                  "color": "rgb(168, 105, 22)",
-                  "fontSize": 28,
-                  "marginTop": -20,
-                  "textAlign": "center",
-                },
-              },
-              "ref": null,
-              "rendered": "level undefined",
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
+              </YuText>
+            </View>,
+            <View>
               <View
                 style={
                   Object {
@@ -567,10 +195,10 @@ ShallowWrapper {
                   coins={2}
                   type="challenge-success"
                 />
-              </View>,
+              </View>
               <Image
                 source={1}
-              />,
+              />
               <YuText
                 bold={true}
                 style={
@@ -586,115 +214,276 @@ ShallowWrapper {
                 }
               >
                 6 minutes
-              </YuText>,
-            ],
+              </YuText>
+            </View>,
+            <View
+              style={
+                Object {
+                  "marginTop": 20,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(170,170,170)",
+                    "fontSize": 30,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "justifyContent": "center",
           },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <AnimatedCoinConfetti
-                  coins={2}
-                  type="challenge-success"
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "isLeftHighlighted": true,
+              "isMidHighlighted": true,
+              "isRightHighlighted": false,
+              "type": null,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <Image
+                  source={1}
                 />,
-                "style": Object {
-                  "alignItems": "center",
-                  "marginBottom": -16,
-                },
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 28,
+                      "marginTop": -20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  level undefined
+                </YuText>,
+              ],
+              "style": Object {
+                "alignItems": "center",
+                "marginBottom": 40,
               },
-              "ref": null,
-              "rendered": Object {
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
                 "instance": null,
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "coins": 2,
-                  "type": "challenge-success",
+                  "source": 1,
                 },
                 "ref": null,
                 "rendered": null,
                 "type": [Function],
               },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "source": 1,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "level undefined",
+                  "style": Object {
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 28,
+                    "marginTop": -20,
+                    "textAlign": "center",
+                  },
+                },
+                "ref": null,
+                "rendered": "level undefined",
+                "type": [Function],
               },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "marginBottom": -16,
+                    }
+                  }
+                >
+                  <AnimatedCoinConfetti
+                    coins={2}
+                    type="challenge-success"
+                  />
+                </View>,
+                <Image
+                  source={1}
+                />,
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "bottom": 40,
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 50,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  6 minutes
+                </YuText>,
+              ],
             },
-            Object {
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <AnimatedCoinConfetti
+                    coins={2}
+                    type="challenge-success"
+                  />,
+                  "style": Object {
+                    "alignItems": "center",
+                    "marginBottom": -16,
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "coins": 2,
+                    "type": "challenge-success",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "source": 1,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "bold": true,
+                  "children": "6 minutes",
+                  "style": Object {
+                    "bottom": 40,
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 50,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "textAlign": "center",
+                  },
+                },
+                "ref": null,
+                "rendered": "6 minutes",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "color": "rgb(170,170,170)",
+                    "fontSize": 30,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                
+              </YuText>,
+              "style": Object {
+                "marginTop": 20,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
               "instance": null,
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "bold": true,
-                "children": "6 minutes",
+                "children": "",
                 "style": Object {
-                  "bottom": 40,
-                  "color": "rgb(168, 105, 22)",
-                  "fontSize": 50,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
+                  "color": "rgb(170,170,170)",
+                  "fontSize": 30,
                   "textAlign": "center",
                 },
               },
               "ref": null,
-              "rendered": "6 minutes",
+              "rendered": "",
               "type": [Function],
             },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <YuText
-              style={
-                Object {
-                  "color": "rgb(170,170,170)",
-                  "fontSize": 30,
-                  "textAlign": "center",
-                }
-              }
-            >
-              
-            </YuText>,
-            "style": Object {
-              "marginTop": 20,
-            },
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "",
-              "style": Object {
-                "color": "rgb(170,170,170)",
-                "fontSize": 30,
-                "textAlign": "center",
-              },
-            },
-            "ref": null,
-            "rendered": "",
             "type": [Function],
           },
-          "type": [Function],
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Button
+            label=""
+            onPress={[MockFunction]}
+            type="PrimarySmall"
+            wrapperStyle={
+              Object {
+                "marginTop": 100,
+              }
+            }
+          />,
+          "style": Object {},
         },
-        Object {
+        "ref": null,
+        "rendered": Object {
           "instance": null,
           "key": undefined,
           "nodeType": "class",
@@ -708,6 +497,489 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Stars
+              isLeftHighlighted={true}
+              isMidHighlighted={true}
+              isRightHighlighted={false}
+              type={null}
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "marginBottom": 40,
+                }
+              }
+            >
+              <Image
+                source={1}
+              />
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 28,
+                    "marginTop": -20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                level undefined
+              </YuText>
+            </View>
+            <View>
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "marginBottom": -16,
+                  }
+                }
+              >
+                <AnimatedCoinConfetti
+                  coins={2}
+                  type="challenge-success"
+                />
+              </View>
+              <Image
+                source={1}
+              />
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "bottom": 40,
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 50,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                6 minutes
+              </YuText>
+            </View>
+            <View
+              style={
+                Object {
+                  "marginTop": 20,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(170,170,170)",
+                    "fontSize": 30,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>
+          </View>,
+          <View
+            style={Object {}}
+          >
+            <Button
+              label=""
+              onPress={[MockFunction]}
+              type="PrimarySmall"
+              wrapperStyle={
+                Object {
+                  "marginTop": 100,
+                }
+              }
+            />
+          </View>,
+        ],
+        "footerImage": null,
+        "style": Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Stars
+                isLeftHighlighted={true}
+                isMidHighlighted={true}
+                isRightHighlighted={false}
+                type={null}
+              />,
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "marginBottom": 40,
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                />
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 28,
+                      "marginTop": -20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  level undefined
+                </YuText>
+              </View>,
+              <View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "marginBottom": -16,
+                    }
+                  }
+                >
+                  <AnimatedCoinConfetti
+                    coins={2}
+                    type="challenge-success"
+                  />
+                </View>
+                <Image
+                  source={1}
+                />
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "bottom": 40,
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 50,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  6 minutes
+                </YuText>
+              </View>,
+              <View
+                style={
+                  Object {
+                    "marginTop": 20,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(170,170,170)",
+                      "fontSize": 30,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  
+                </YuText>
+              </View>,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "isLeftHighlighted": true,
+                "isMidHighlighted": true,
+                "isRightHighlighted": false,
+                "type": null,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Image
+                    source={1}
+                  />,
+                  <YuText
+                    style={
+                      Object {
+                        "color": "rgb(168, 105, 22)",
+                        "fontSize": 28,
+                        "marginTop": -20,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    level undefined
+                  </YuText>,
+                ],
+                "style": Object {
+                  "alignItems": "center",
+                  "marginBottom": 40,
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "level undefined",
+                    "style": Object {
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 28,
+                      "marginTop": -20,
+                      "textAlign": "center",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "level undefined",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "marginBottom": -16,
+                      }
+                    }
+                  >
+                    <AnimatedCoinConfetti
+                      coins={2}
+                      type="challenge-success"
+                    />
+                  </View>,
+                  <Image
+                    source={1}
+                  />,
+                  <YuText
+                    bold={true}
+                    style={
+                      Object {
+                        "bottom": 40,
+                        "color": "rgb(168, 105, 22)",
+                        "fontSize": 50,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    6 minutes
+                  </YuText>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <AnimatedCoinConfetti
+                      coins={2}
+                      type="challenge-success"
+                    />,
+                    "style": Object {
+                      "alignItems": "center",
+                      "marginBottom": -16,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "coins": 2,
+                      "type": "challenge-success",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "bold": true,
+                    "children": "6 minutes",
+                    "style": Object {
+                      "bottom": 40,
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 50,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "textAlign": "center",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "6 minutes",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "color": "rgb(170,170,170)",
+                      "fontSize": 30,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  
+                </YuText>,
+                "style": Object {
+                  "marginTop": 20,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "",
+                  "style": Object {
+                    "color": "rgb(170,170,170)",
+                    "fontSize": 30,
+                    "textAlign": "center",
+                  },
+                },
+                "ref": null,
+                "rendered": "",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Button
+              label=""
+              onPress={[MockFunction]}
+              type="PrimarySmall"
+              wrapperStyle={
+                Object {
+                  "marginTop": 100,
+                }
+              }
+            />,
+            "style": Object {},
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "",
+              "onPress": [MockFunction],
+              "type": "PrimarySmall",
+              "wrapperStyle": Object {
+                "marginTop": 100,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": [Function],
         },
       ],
@@ -763,359 +1035,23 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
-        <Stars
-          isLeftHighlighted={true}
-          isMidHighlighted={true}
-          isRightHighlighted={false}
-        />,
         <View
           style={
             Object {
               "alignItems": "center",
-              "marginBottom": 40,
+              "justifyContent": "center",
             }
           }
         >
-          <Image
-            source={1}
-          />
-          <YuText
-            style={
-              Object {
-                "color": "rgb(168, 105, 22)",
-                "fontSize": 28,
-                "marginTop": -20,
-                "textAlign": "center",
-              }
-            }
-          >
-            level undefined
-          </YuText>
-        </View>,
-        <View>
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "marginBottom": -16,
-              }
-            }
-          >
-            <AnimatedCoinConfetti
-              coins={2}
-              type="challenge-success"
-            />
-          </View>
-          <Image
-            source={1}
-          />
-          <YuText
-            bold={true}
-            style={
-              Object {
-                "bottom": 40,
-                "color": "rgb(168, 105, 22)",
-                "fontSize": 50,
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "textAlign": "center",
-              }
-            }
-          >
-            1180 steps
-          </YuText>
-        </View>,
-        <View
-          style={
-            Object {
-              "marginTop": 20,
-            }
-          }
-        >
-          <YuText
-            style={
-              Object {
-                "color": "rgb(170,170,170)",
-                "fontSize": 30,
-                "textAlign": "center",
-              }
-            }
-          >
-            
-          </YuText>
-        </View>,
-        <Button
-          label=""
-          onPress={[MockFunction]}
-          type="PrimarySmall"
-          wrapperStyle={
-            Object {
-              "marginTop": 100,
-            }
-          }
-        />,
-      ],
-      "style": Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      },
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "isLeftHighlighted": true,
-          "isMidHighlighted": true,
-          "isRightHighlighted": false,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <Image
-              source={1}
-            />,
-            <YuText
-              style={
-                Object {
-                  "color": "rgb(168, 105, 22)",
-                  "fontSize": 28,
-                  "marginTop": -20,
-                  "textAlign": "center",
-                }
-              }
-            >
-              level undefined
-            </YuText>,
-          ],
-          "style": Object {
-            "alignItems": "center",
-            "marginBottom": 40,
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "source": 1,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "level undefined",
-              "style": Object {
-                "color": "rgb(168, 105, 22)",
-                "fontSize": 28,
-                "marginTop": -20,
-                "textAlign": "center",
-              },
-            },
-            "ref": null,
-            "rendered": "level undefined",
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "marginBottom": -16,
-                }
-              }
-            >
-              <AnimatedCoinConfetti
-                coins={2}
-                type="challenge-success"
-              />
-            </View>,
-            <Image
-              source={1}
-            />,
-            <YuText
-              bold={true}
-              style={
-                Object {
-                  "bottom": 40,
-                  "color": "rgb(168, 105, 22)",
-                  "fontSize": 50,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "textAlign": "center",
-                }
-              }
-            >
-              1180 steps
-            </YuText>,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <AnimatedCoinConfetti
-                coins={2}
-                type="challenge-success"
-              />,
-              "style": Object {
-                "alignItems": "center",
-                "marginBottom": -16,
-              },
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "coins": 2,
-                "type": "challenge-success",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "source": 1,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "bold": true,
-              "children": "1180 steps",
-              "style": Object {
-                "bottom": 40,
-                "color": "rgb(168, 105, 22)",
-                "fontSize": 50,
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "textAlign": "center",
-              },
-            },
-            "ref": null,
-            "rendered": "1180 steps",
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": <YuText
-            style={
-              Object {
-                "color": "rgb(170,170,170)",
-                "fontSize": 30,
-                "textAlign": "center",
-              }
-            }
-          >
-            
-          </YuText>,
-          "style": Object {
-            "marginTop": 20,
-          },
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": "",
-            "style": Object {
-              "color": "rgb(170,170,170)",
-              "fontSize": 30,
-              "textAlign": "center",
-            },
-          },
-          "ref": null,
-          "rendered": "",
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "label": "",
-          "onPress": [MockFunction],
-          "type": "PrimarySmall",
-          "wrapperStyle": Object {
-            "marginTop": 100,
-          },
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": Array [
           <Stars
             isLeftHighlighted={true}
             isMidHighlighted={true}
             isRightHighlighted={false}
-          />,
+            type={null}
+          />
           <View
             style={
               Object {
@@ -1139,7 +1075,7 @@ ShallowWrapper {
             >
               level undefined
             </YuText>
-          </View>,
+          </View>
           <View>
             <View
               style={
@@ -1173,7 +1109,7 @@ ShallowWrapper {
             >
               1180 steps
             </YuText>
-          </View>,
+          </View>
           <View
             style={
               Object {
@@ -1192,7 +1128,11 @@ ShallowWrapper {
             >
               
             </YuText>
-          </View>,
+          </View>
+        </View>,
+        <View
+          style={Object {}}
+        >
           <Button
             label=""
             onPress={[MockFunction]}
@@ -1202,38 +1142,41 @@ ShallowWrapper {
                 "marginTop": 100,
               }
             }
-          />,
-        ],
-        "style": Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-        },
+          />
+        </View>,
+      ],
+      "footerImage": null,
+      "style": Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
       },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "isLeftHighlighted": true,
-            "isMidHighlighted": true,
-            "isRightHighlighted": false,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Stars
+              isLeftHighlighted={true}
+              isMidHighlighted={true}
+              isRightHighlighted={false}
+              type={null}
+            />,
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "marginBottom": 40,
+                }
+              }
+            >
               <Image
                 source={1}
-              />,
+              />
               <YuText
                 style={
                   Object {
@@ -1245,52 +1188,9 @@ ShallowWrapper {
                 }
               >
                 level undefined
-              </YuText>,
-            ],
-            "style": Object {
-              "alignItems": "center",
-              "marginBottom": 40,
-            },
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "source": 1,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": "level undefined",
-                "style": Object {
-                  "color": "rgb(168, 105, 22)",
-                  "fontSize": 28,
-                  "marginTop": -20,
-                  "textAlign": "center",
-                },
-              },
-              "ref": null,
-              "rendered": "level undefined",
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
+              </YuText>
+            </View>,
+            <View>
               <View
                 style={
                   Object {
@@ -1303,10 +1203,10 @@ ShallowWrapper {
                   coins={2}
                   type="challenge-success"
                 />
-              </View>,
+              </View>
               <Image
                 source={1}
-              />,
+              />
               <YuText
                 bold={true}
                 style={
@@ -1322,115 +1222,276 @@ ShallowWrapper {
                 }
               >
                 1180 steps
-              </YuText>,
-            ],
+              </YuText>
+            </View>,
+            <View
+              style={
+                Object {
+                  "marginTop": 20,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(170,170,170)",
+                    "fontSize": 30,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "justifyContent": "center",
           },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <AnimatedCoinConfetti
-                  coins={2}
-                  type="challenge-success"
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "isLeftHighlighted": true,
+              "isMidHighlighted": true,
+              "isRightHighlighted": false,
+              "type": null,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <Image
+                  source={1}
                 />,
-                "style": Object {
-                  "alignItems": "center",
-                  "marginBottom": -16,
-                },
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 28,
+                      "marginTop": -20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  level undefined
+                </YuText>,
+              ],
+              "style": Object {
+                "alignItems": "center",
+                "marginBottom": 40,
               },
-              "ref": null,
-              "rendered": Object {
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
                 "instance": null,
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "coins": 2,
-                  "type": "challenge-success",
+                  "source": 1,
                 },
                 "ref": null,
                 "rendered": null,
                 "type": [Function],
               },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "source": 1,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "level undefined",
+                  "style": Object {
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 28,
+                    "marginTop": -20,
+                    "textAlign": "center",
+                  },
+                },
+                "ref": null,
+                "rendered": "level undefined",
+                "type": [Function],
               },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "marginBottom": -16,
+                    }
+                  }
+                >
+                  <AnimatedCoinConfetti
+                    coins={2}
+                    type="challenge-success"
+                  />
+                </View>,
+                <Image
+                  source={1}
+                />,
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "bottom": 40,
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 50,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  1180 steps
+                </YuText>,
+              ],
             },
-            Object {
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <AnimatedCoinConfetti
+                    coins={2}
+                    type="challenge-success"
+                  />,
+                  "style": Object {
+                    "alignItems": "center",
+                    "marginBottom": -16,
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "coins": 2,
+                    "type": "challenge-success",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "source": 1,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "bold": true,
+                  "children": "1180 steps",
+                  "style": Object {
+                    "bottom": 40,
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 50,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "textAlign": "center",
+                  },
+                },
+                "ref": null,
+                "rendered": "1180 steps",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <YuText
+                style={
+                  Object {
+                    "color": "rgb(170,170,170)",
+                    "fontSize": 30,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                
+              </YuText>,
+              "style": Object {
+                "marginTop": 20,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
               "instance": null,
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "bold": true,
-                "children": "1180 steps",
+                "children": "",
                 "style": Object {
-                  "bottom": 40,
-                  "color": "rgb(168, 105, 22)",
-                  "fontSize": 50,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
+                  "color": "rgb(170,170,170)",
+                  "fontSize": 30,
                   "textAlign": "center",
                 },
               },
               "ref": null,
-              "rendered": "1180 steps",
+              "rendered": "",
               "type": [Function],
             },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <YuText
-              style={
-                Object {
-                  "color": "rgb(170,170,170)",
-                  "fontSize": 30,
-                  "textAlign": "center",
-                }
-              }
-            >
-              
-            </YuText>,
-            "style": Object {
-              "marginTop": 20,
-            },
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "",
-              "style": Object {
-                "color": "rgb(170,170,170)",
-                "fontSize": 30,
-                "textAlign": "center",
-              },
-            },
-            "ref": null,
-            "rendered": "",
             "type": [Function],
           },
-          "type": [Function],
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Button
+            label=""
+            onPress={[MockFunction]}
+            type="PrimarySmall"
+            wrapperStyle={
+              Object {
+                "marginTop": 100,
+              }
+            }
+          />,
+          "style": Object {},
         },
-        Object {
+        "ref": null,
+        "rendered": Object {
           "instance": null,
           "key": undefined,
           "nodeType": "class",
@@ -1444,6 +1505,489 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Stars
+              isLeftHighlighted={true}
+              isMidHighlighted={true}
+              isRightHighlighted={false}
+              type={null}
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "marginBottom": 40,
+                }
+              }
+            >
+              <Image
+                source={1}
+              />
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 28,
+                    "marginTop": -20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                level undefined
+              </YuText>
+            </View>
+            <View>
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "marginBottom": -16,
+                  }
+                }
+              >
+                <AnimatedCoinConfetti
+                  coins={2}
+                  type="challenge-success"
+                />
+              </View>
+              <Image
+                source={1}
+              />
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "bottom": 40,
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 50,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                1180 steps
+              </YuText>
+            </View>
+            <View
+              style={
+                Object {
+                  "marginTop": 20,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(170,170,170)",
+                    "fontSize": 30,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                
+              </YuText>
+            </View>
+          </View>,
+          <View
+            style={Object {}}
+          >
+            <Button
+              label=""
+              onPress={[MockFunction]}
+              type="PrimarySmall"
+              wrapperStyle={
+                Object {
+                  "marginTop": 100,
+                }
+              }
+            />
+          </View>,
+        ],
+        "footerImage": null,
+        "style": Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Stars
+                isLeftHighlighted={true}
+                isMidHighlighted={true}
+                isRightHighlighted={false}
+                type={null}
+              />,
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "marginBottom": 40,
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                />
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 28,
+                      "marginTop": -20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  level undefined
+                </YuText>
+              </View>,
+              <View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "marginBottom": -16,
+                    }
+                  }
+                >
+                  <AnimatedCoinConfetti
+                    coins={2}
+                    type="challenge-success"
+                  />
+                </View>
+                <Image
+                  source={1}
+                />
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "bottom": 40,
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 50,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  1180 steps
+                </YuText>
+              </View>,
+              <View
+                style={
+                  Object {
+                    "marginTop": 20,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(170,170,170)",
+                      "fontSize": 30,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  
+                </YuText>
+              </View>,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "isLeftHighlighted": true,
+                "isMidHighlighted": true,
+                "isRightHighlighted": false,
+                "type": null,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Image
+                    source={1}
+                  />,
+                  <YuText
+                    style={
+                      Object {
+                        "color": "rgb(168, 105, 22)",
+                        "fontSize": 28,
+                        "marginTop": -20,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    level undefined
+                  </YuText>,
+                ],
+                "style": Object {
+                  "alignItems": "center",
+                  "marginBottom": 40,
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "level undefined",
+                    "style": Object {
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 28,
+                      "marginTop": -20,
+                      "textAlign": "center",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "level undefined",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "marginBottom": -16,
+                      }
+                    }
+                  >
+                    <AnimatedCoinConfetti
+                      coins={2}
+                      type="challenge-success"
+                    />
+                  </View>,
+                  <Image
+                    source={1}
+                  />,
+                  <YuText
+                    bold={true}
+                    style={
+                      Object {
+                        "bottom": 40,
+                        "color": "rgb(168, 105, 22)",
+                        "fontSize": 50,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    1180 steps
+                  </YuText>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <AnimatedCoinConfetti
+                      coins={2}
+                      type="challenge-success"
+                    />,
+                    "style": Object {
+                      "alignItems": "center",
+                      "marginBottom": -16,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "coins": 2,
+                      "type": "challenge-success",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "bold": true,
+                    "children": "1180 steps",
+                    "style": Object {
+                      "bottom": 40,
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 50,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "textAlign": "center",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "1180 steps",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <YuText
+                  style={
+                    Object {
+                      "color": "rgb(170,170,170)",
+                      "fontSize": 30,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  
+                </YuText>,
+                "style": Object {
+                  "marginTop": 20,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "",
+                  "style": Object {
+                    "color": "rgb(170,170,170)",
+                    "fontSize": 30,
+                    "textAlign": "center",
+                  },
+                },
+                "ref": null,
+                "rendered": "",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Button
+              label=""
+              onPress={[MockFunction]}
+              type="PrimarySmall"
+              wrapperStyle={
+                Object {
+                  "marginTop": 100,
+                }
+              }
+            />,
+            "style": Object {},
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "",
+              "onPress": [MockFunction],
+              "type": "PrimarySmall",
+              "wrapperStyle": Object {
+                "marginTop": 100,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": [Function],
         },
       ],

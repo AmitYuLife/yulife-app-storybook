@@ -27,7 +27,9 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <Stars />,
+        <Stars
+          type={null}
+        />,
         <View
           style={
             Object {
@@ -105,7 +107,9 @@ ShallowWrapper {
         "instance": null,
         "key": undefined,
         "nodeType": "function",
-        "props": Object {},
+        "props": Object {
+          "type": null,
+        },
         "ref": null,
         "rendered": null,
         "type": [Function],
@@ -243,7 +247,9 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <Stars />,
+          <Stars
+            type={null}
+          />,
           <View
             style={
               Object {
@@ -321,7 +327,9 @@ ShallowWrapper {
           "instance": null,
           "key": undefined,
           "nodeType": "function",
-          "props": Object {},
+          "props": Object {
+            "type": null,
+          },
           "ref": null,
           "rendered": null,
           "type": [Function],

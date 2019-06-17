@@ -81,7 +81,7 @@ const SHORT_STROLL: IStyleSet[] = [
         navBarType: NavBar.Colours.LIGHT,
         progressBarType: "mountain-pink",
         source: assets.whiteBighornSheep,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(580) }]),
         topBarType: "default"
     }
 ];
@@ -153,7 +153,7 @@ const MEDITATION: IStyleSet[] = [
         navBarType: NavBar.Colours.LIGHT,
         progressBarType: "mountain-black",
         source: assets.owl,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(428) }]),
         topBarType: "default"
     }
 ];

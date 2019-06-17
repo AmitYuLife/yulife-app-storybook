@@ -42,6 +42,17 @@ export const getImageAndStyle = (challengeType: string, currentWorld = 0) => {
     }
 };
 
+export function getCardBackgroundColor(currentWorld: number) {
+    switch (currentWorld) {
+        case 3:
+            return "rgb(255, 239, 239)";
+        case 2:
+            return "rgb(255, 253, 231)";
+        default:
+            return "rgb(237, 251, 248)";
+    }
+}
+
 export const data = {
     ctaLabel: "take challenge",
     footer: "",

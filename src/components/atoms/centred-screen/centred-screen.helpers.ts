@@ -54,6 +54,12 @@ export const getImageAndStyle = (image: CenteredScreenImages) => {
                 source: require("../../../../assets/centred-screen/challenge_failed_desert.png"),
                 style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
             };
+
+        case "challenge_success_desert":
+            return {
+                source: require("../../../../assets/centred-screen/challenge_success_desert.png"),
+                style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest, styles.successImageDesert])
+            };
         case "mountain":
             return {
                 source: require("../../../../assets/centred-screen/mountain.png"),
@@ -64,9 +70,9 @@ export const getImageAndStyle = (image: CenteredScreenImages) => {
                 source: require("../../../../assets/centred-screen/gray_mountain.png"),
                 style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
             };
-        case "challenge_failed_mountain":
+        case "challenge_mountain":
             return {
-                source: require("../../../../assets/centred-screen/challenge_failed_mountain.png"),
+                source: require("../../../../assets/centred-screen/challenge_mountain.png"),
                 style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
             };
         default:

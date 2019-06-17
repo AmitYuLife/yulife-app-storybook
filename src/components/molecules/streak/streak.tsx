@@ -6,7 +6,7 @@ import { Pad, Text } from "../../atoms";
 import { Calendar } from "./assets";
 import styles, { getColour } from "./streak.styles";
 
-export type StreakTypes = "forest" | "ocean" | "desert";
+export type StreakTypes = "forest" | "ocean" | "desert" | "mountain";
 
 export interface IProps {
     currentStreak: number;
