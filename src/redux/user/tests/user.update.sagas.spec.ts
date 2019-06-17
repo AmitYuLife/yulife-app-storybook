@@ -46,7 +46,23 @@ describe("updateConnectionSaga", async () => {
         expect(actual.done).toEqual(false);
 
         actual = testSaga.next();
-        expected = put(updateConnectionFailed({ ...action.payload }));
+        expect(actual.done).toEqual(true);
+    });
+
+    it("should notify of failure when isConnected === true", async () => {
+        testConnection.isConnected = true;
+        const action = { payload: testConnection, type: UPDATE_CONNECTION_START };
+        const testSaga = updateConnectionSaga(action);
+
+        let actual: any = testSaga.next();
+        let expected: any = call(deleteConnectionWithClient, action.payload.name);
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next({
+            error: "something went wrong"
+        });
+        expected = put(updateConnectionFailed({ ...action.payload, isConnected: true }));
         expect(actual.value).toEqual(expected);
         expect(actual.done).toEqual(false);
 
@@ -80,7 +96,23 @@ describe("updateConnectionSaga", async () => {
         expect(actual.done).toEqual(false);
 
         actual = testSaga.next();
-        expected = put(updateConnectionFailed({ ...action.payload }));
+        expect(actual.done).toEqual(true);
+    });
+
+    it("should notify of failure when isConnected === false", async () => {
+        testConnection.isConnected = false;
+        const action = { payload: testConnection, type: UPDATE_CONNECTION_START };
+        const testSaga = updateConnectionSaga(action);
+
+        let actual: any = testSaga.next();
+        let expected: any = call(deleteConnectionWithClient, action.payload.name);
+        compareSagaActionsWithNoVisualDifference(actual, expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next({
+            error: "something went wrong"
+        });
+        expected = put(updateConnectionFailed({ ...action.payload, isConnected: false }));
         expect(actual.value).toEqual(expected);
         expect(actual.done).toEqual(false);
 
