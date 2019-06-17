@@ -2,7 +2,7 @@ import { LEVEL_CHALLENGE_BUTTON } from "@ids";
 import { TouchableOpacityWithState } from "@molecules/index";
 import moment from "moment";
 import * as React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Style } from "../../../../../../../styles";
 import { IChallenge } from "../../quests-screen";
 import { IMapSlice } from "../index";
@@ -50,19 +50,20 @@ export default class LevelBubble extends React.PureComponent<IProps, IState> {
                         style={style}
                     />
                 )}
-                <TouchableOpacityWithState
-                    onPress={level.onPress}
-                    style={StyleSheet.flatten([
-                        styles.bubble,
-                        {
-                            backgroundColor: bubbleBackgroundColor,
-                            ...style
-                        }
-                    ])}
-                    testID={LEVEL_CHALLENGE_BUTTON(level.level)}
-                >
-                    {getLevelButton(nextAvailable, currentLevel, level)}
-                </TouchableOpacityWithState>
+                <View style={StyleSheet.flatten([styles.bubble, style])}>
+                    <TouchableOpacityWithState
+                        onPress={level.onPress}
+                        style={StyleSheet.flatten([
+                            styles.bubbleButton,
+                            {
+                                backgroundColor: bubbleBackgroundColor
+                            }
+                        ])}
+                        testID={LEVEL_CHALLENGE_BUTTON(level.level)}
+                    >
+                        {getLevelButton(nextAvailable, currentLevel, level)}
+                    </TouchableOpacityWithState>
+                </View>
             </>
         );
     }

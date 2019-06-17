@@ -709,7 +709,7 @@ ShallowWrapper {
         "flex": 1,
         "height": 1334,
       },
-      "testID": "QUESTS_SCREEN_1",
+      "testID": "QUESTS_SCREEN_0",
     },
     "ref": null,
     "rendered": Array [
@@ -2067,7 +2067,7 @@ ShallowWrapper {
           "flex": 1,
           "height": 1334,
         },
-        "testID": "QUESTS_SCREEN_1",
+        "testID": "QUESTS_SCREEN_0",
       },
       "ref": null,
       "rendered": Array [

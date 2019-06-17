@@ -22,8 +22,18 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "activeOpacity": 0.2,
-      "children": Array [
+      "children": <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[MockFunction]}
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+            "width": "100%",
+          }
+        }
+      >
         <YuText
           bold={false}
           numberOfLines={1}
@@ -35,57 +45,21 @@ ShallowWrapper {
           }
         >
           leaderbo...
-        </YuText>,
+        </YuText>
         <LeaderboardCircle
           isLoading={false}
           status="active"
-        />,
-      ],
-      "onPress": [MockFunction],
+        />
+      </TouchableOpacity>,
       "style": Object {
-        "alignItems": "center",
-        "justifyContent": "center",
         "marginHorizontal": 30,
         "marginTop": 30,
+        "overflow": "hidden",
         "width": 130,
       },
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "bold": false,
-          "children": "leaderbo...",
-          "numberOfLines": 1,
-          "style": Object {
-            "fontSize": 32,
-            "marginBottom": 20,
-          },
-        },
-        "ref": null,
-        "rendered": "leaderbo...",
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "isLoading": false,
-          "status": "active",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "rendered": Object {
       "instance": null,
       "key": undefined,
       "nodeType": "class",
@@ -112,10 +86,9 @@ ShallowWrapper {
         "onPress": [MockFunction],
         "style": Object {
           "alignItems": "center",
+          "flex": 1,
           "justifyContent": "center",
-          "marginHorizontal": 30,
-          "marginTop": 30,
-          "width": 130,
+          "width": "100%",
         },
       },
       "ref": null,
@@ -150,6 +123,119 @@ ShallowWrapper {
           "type": [Function],
         },
       ],
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <TouchableOpacity
+          activeOpacity={0.2}
+          onPress={[MockFunction]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+              "width": "100%",
+            }
+          }
+        >
+          <YuText
+            bold={false}
+            numberOfLines={1}
+            style={
+              Object {
+                "fontSize": 32,
+                "marginBottom": 20,
+              }
+            }
+          >
+            leaderbo...
+          </YuText>
+          <LeaderboardCircle
+            isLoading={false}
+            status="active"
+          />
+        </TouchableOpacity>,
+        "style": Object {
+          "marginHorizontal": 30,
+          "marginTop": 30,
+          "overflow": "hidden",
+          "width": 130,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "activeOpacity": 0.2,
+          "children": Array [
+            <YuText
+              bold={false}
+              numberOfLines={1}
+              style={
+                Object {
+                  "fontSize": 32,
+                  "marginBottom": 20,
+                }
+              }
+            >
+              leaderbo...
+            </YuText>,
+            <LeaderboardCircle
+              isLoading={false}
+              status="active"
+            />,
+          ],
+          "onPress": [MockFunction],
+          "style": Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "bold": false,
+              "children": "leaderbo...",
+              "numberOfLines": 1,
+              "style": Object {
+                "fontSize": 32,
+                "marginBottom": 20,
+              },
+            },
+            "ref": null,
+            "rendered": "leaderbo...",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "isLoading": false,
+              "status": "active",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
       "type": [Function],
     },
   ],
@@ -197,8 +283,18 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "activeOpacity": 0.2,
-      "children": Array [
+      "children": <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[MockFunction]}
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+            "width": "100%",
+          }
+        }
+      >
         <YuText
           bold={false}
           numberOfLines={1}
@@ -210,57 +306,21 @@ ShallowWrapper {
           }
         >
           leaderboard
-        </YuText>,
+        </YuText>
         <LeaderboardCircle
           isLoading={false}
           status="active"
-        />,
-      ],
-      "onPress": [MockFunction],
+        />
+      </TouchableOpacity>,
       "style": Object {
-        "alignItems": "center",
-        "justifyContent": "center",
         "marginHorizontal": 30,
         "marginTop": 30,
+        "overflow": "hidden",
         "width": 130,
       },
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "bold": false,
-          "children": "leaderboard",
-          "numberOfLines": 1,
-          "style": Object {
-            "fontSize": 32,
-            "marginBottom": 20,
-          },
-        },
-        "ref": null,
-        "rendered": "leaderboard",
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "isLoading": false,
-          "status": "active",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "rendered": Object {
       "instance": null,
       "key": undefined,
       "nodeType": "class",
@@ -287,10 +347,9 @@ ShallowWrapper {
         "onPress": [MockFunction],
         "style": Object {
           "alignItems": "center",
+          "flex": 1,
           "justifyContent": "center",
-          "marginHorizontal": 30,
-          "marginTop": 30,
-          "width": 130,
+          "width": "100%",
         },
       },
       "ref": null,
@@ -325,6 +384,119 @@ ShallowWrapper {
           "type": [Function],
         },
       ],
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <TouchableOpacity
+          activeOpacity={0.2}
+          onPress={[MockFunction]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+              "width": "100%",
+            }
+          }
+        >
+          <YuText
+            bold={false}
+            numberOfLines={1}
+            style={
+              Object {
+                "fontSize": 32,
+                "marginBottom": 20,
+              }
+            }
+          >
+            leaderboard
+          </YuText>
+          <LeaderboardCircle
+            isLoading={false}
+            status="active"
+          />
+        </TouchableOpacity>,
+        "style": Object {
+          "marginHorizontal": 30,
+          "marginTop": 30,
+          "overflow": "hidden",
+          "width": 130,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "activeOpacity": 0.2,
+          "children": Array [
+            <YuText
+              bold={false}
+              numberOfLines={1}
+              style={
+                Object {
+                  "fontSize": 32,
+                  "marginBottom": 20,
+                }
+              }
+            >
+              leaderboard
+            </YuText>,
+            <LeaderboardCircle
+              isLoading={false}
+              status="active"
+            />,
+          ],
+          "onPress": [MockFunction],
+          "style": Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "bold": false,
+              "children": "leaderboard",
+              "numberOfLines": 1,
+              "style": Object {
+                "fontSize": 32,
+                "marginBottom": 20,
+              },
+            },
+            "ref": null,
+            "rendered": "leaderboard",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "isLoading": false,
+              "status": "active",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
       "type": [Function],
     },
   ],
