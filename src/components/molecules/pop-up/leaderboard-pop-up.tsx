@@ -6,6 +6,7 @@ import { GetMobileCopy_getMobileCopy_screens_popUp } from "../../../graphql/_cor
 import { ROUTES } from "../../../navigation/constants";
 import { Close } from "../../atoms";
 import { ILabel, NavBar, Popup, POPUPTYPE } from "../../molecules";
+import { IColours } from "../nav-bar/nav-bar";
 import styles from "./pop-up.styles";
 
 interface IProps {
@@ -13,6 +14,7 @@ interface IProps {
     hasNotification: boolean;
     labels?: ILabel[];
     onUpdateLeaderboardPopupVisibility: (payload: boolean) => void;
+    navbarColour: IColours;
 }
 
 interface IState {
@@ -32,18 +34,19 @@ export default class LeaderboardPopup extends React.PureComponent<IProps, IState
 
     public render() {
         const { viewRef } = this.state;
-        const { copy, hasNotification } = this.props;
-        const newLabels = this.getUpdateLabelsFunction();
+        const { copy, hasNotification, navbarColour } = this.props;
         return (
             <>
                 <View style={styles.popupWrapper} ref={this.setRef} onLayout={this.handleLayout} />
-                {viewRef ? <BlurView viewRef={viewRef} blurAmount={15} blurType="light" style={styles.bgBlur} /> : null}
+                {viewRef ? (
+                    <BlurView viewRef={viewRef} blurAmount={15} blurType="regular" style={styles.bgBlur} />
+                ) : null}
                 <View style={[styles.navBarWrapper, styles.zIndexWrapper]}>
                     <NavBar
                         activeIndex={0}
-                        colour={NavBar.Colours.DARKER}
+                        colour={navbarColour}
                         hasNotification={hasNotification}
-                        labels={newLabels}
+                        labels={this.getUpdateLabelsFunction()}
                     />
                 </View>
                 <Popup

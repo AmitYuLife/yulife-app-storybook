@@ -89,7 +89,7 @@ export default StyleSheet.create({
     } as ViewStyle,
     bgBlur: {
         ...StyleSheet.absoluteFillObject,
-        backgroundColor: Platform.OS === "android" ? "rgba(255,255,255,0.6)" : "transparent",
+        backgroundColor: Platform.OS === "android" ? "rgba(155,155,155,0.6)" : "transparent",
         zIndex: 2
     } as ViewStyle,
     navBarWrapper: {

@@ -1,6 +1,7 @@
 import { shallow } from "enzyme";
 import * as React from "react";
 import "react-native";
+import { COLOURS } from "../../nav-bar/nav-bar";
 import LeaderboardPopup from "../leaderboard-pop-up";
 
 const defaultProps = {
@@ -20,7 +21,8 @@ const defaultProps = {
         leaderboardHeading: "leaderboard heading test",
         leaderboardSubheading: "leaderboard subheading test"
     },
-    onUpdateLeaderboardPopupVisibility: jest.fn()
+    onUpdateLeaderboardPopupVisibility: jest.fn(),
+    navbarColour: COLOURS.BLUE
 };
 
 describe("LeaderboardPopup", () => {

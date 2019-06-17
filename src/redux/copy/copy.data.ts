@@ -174,8 +174,8 @@ export default {
         }
     },
     popUp: {
-        surgeHeading: "surge yucoin x2",
-        surgeSubheading: "passive steps and passive meditation are getting 2 times of yucoin!",
+        surgeHeading: "x2 yucoin surge!",
+        surgeSubheading: "you're getting twice as many yucoin for daily steps and meditation minutes",
         leaderboardHeading: "new leaderboard",
         leaderboardSubheading: "leaderboard is now part of nav bar"
     }
