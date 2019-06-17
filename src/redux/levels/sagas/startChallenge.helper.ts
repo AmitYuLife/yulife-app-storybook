@@ -11,6 +11,7 @@ import { getUserFeatures } from "../../user/user.selectors";
 import {
     CHALLENGE_CANCEL,
     CHALLENGE_TIME_UP,
+    challengeResetFailAction,
     challengeResetSuccessAction,
     challengeTimeUpAction,
     challengeUpdateSuccessAction
@@ -92,6 +93,8 @@ export default function* startChallenge({ isMeditation, levelSlotId, startDateTi
                 yield put(challengeResetSuccessAction());
                 inProgress = false;
             } catch (e) {
+                // console.log(e);
+                yield put(challengeResetFailAction());
                 yield spawn(() => Logger.logMixpanelError(e, "startChallenge"));
             }
         } else if (challengeTimeUp) {

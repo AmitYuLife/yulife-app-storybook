@@ -89,6 +89,9 @@ const levelsReducer = (state: ILevelsStore = initialState, action: SyncAction): 
         case CHALLENGE_RESET_SUCCESS:
             return challengeResetSuccess(state);
 
+        case CHALLENGE_RESET_FAIL:
+            return challengeResetFail(state);
+
         case PEDOMETER_UPDATES_SUCCESS:
             return pedometerUpdate(state, action.payload);
 
@@ -229,6 +232,14 @@ const challengeResetSuccess = (state: ILevelsStore): ILevelsStore => ({
     ...state,
     active: {
         ...initialState.active
+    }
+});
+
+const challengeResetFail = (state: ILevelsStore): ILevelsStore => ({
+    ...state,
+    active: {
+        ...state.active,
+        isLoading: false
     }
 });
 
