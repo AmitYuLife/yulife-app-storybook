@@ -13,9 +13,9 @@ export default function* updateConnectionSaga({ payload }: ReturnType<typeof upd
 
             if (result && result.data && result.data.deleteConnection) {
                 yield put(updateConnectionSuccess({ ...payload, isConnected: false }));
+            } else {
+                yield put(updateConnectionFailed(payload));
             }
-
-            yield put(updateConnectionFailed(payload));
         } catch (e) {
             yield put(updateConnectionFailed(payload));
             yield spawn(() => Logger.logMixpanelError(e, "updateConnectionSaga_onDisconnect"));
@@ -28,9 +28,9 @@ export default function* updateConnectionSaga({ payload }: ReturnType<typeof upd
             if (result && result.data && result.data.getNewConnectionLink) {
                 yield call(() => Linking.openURL(result.data.getNewConnectionLink));
                 yield put(updateConnectionSuccess({ ...payload, isConnected: true }));
+            } else {
+                yield put(updateConnectionFailed(payload));
             }
-
-            yield put(updateConnectionFailed(payload));
         } catch (e) {
             yield put(updateConnectionFailed(payload));
             yield spawn(() => Logger.logMixpanelError(e, "updateConnectionSaga_onConnect"));

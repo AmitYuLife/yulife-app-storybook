@@ -83,9 +83,11 @@ export const userReducer = (state: IUserStore = initialState, action: SyncAction
         case UPDATE_CONNECTION_START:
             return updateConnectionsLoading(state, action.payload, true);
 
-        case UPDATE_CONNECTION_SUCCESS:
         case UPDATE_CONNECTION_FAILED:
             return updateConnectionsLoading(state, action.payload, false);
+
+        case UPDATE_CONNECTION_SUCCESS:
+            return updateConnectionsSuccess(state, action.payload);
 
         case UPDATE_LEADERBOARD_POPUP_VISIBILITY:
             return updatePopupVisibility(state, action.payload, POPUPTYPE.LEADERBOARD);
@@ -159,6 +161,19 @@ const updateConnectionsLoading = (state: IUserStore, payload: any, isLoading: bo
     connections: state.connections.map((connection) => {
         if (connection.name === payload.name) {
             return { ...connection, isLoading };
+        }
+        return connection;
+    })
+});
+
+const updateConnectionsSuccess = (state: IUserStore, payload: any): IUserStore => ({
+    ...state,
+    connections: state.connections.map((connection) => {
+        if (connection.name === payload.name) {
+            return { ...connection,
+                isLoading: false,
+                isConnected: payload.isConnected
+            };
         }
         return connection;
     })
