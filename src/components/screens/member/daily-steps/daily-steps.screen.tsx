@@ -138,6 +138,7 @@ export default function DailyStepsScreen({
                 <LeaderboardPopup
                     copy={copy.popUpCopy}
                     hasNotification={hasNotification}
+                    navbarColour={navBar.online}
                     labels={labels}
                     onUpdateLeaderboardPopupVisibility={onUpdateLeaderboardPopupVisibility}
                 />
