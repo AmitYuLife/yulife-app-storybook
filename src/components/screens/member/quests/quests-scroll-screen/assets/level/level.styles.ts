@@ -11,7 +11,14 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         marginLeft: -CIRCLE_SIZE / 2,
         position: "absolute",
-        width: CIRCLE_SIZE
+        width: CIRCLE_SIZE,
+        overflow: "hidden"
+    },
+    bubbleButton: {
+        flex: 1,
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center"
     },
     text: {
         color: "#ffffff",
