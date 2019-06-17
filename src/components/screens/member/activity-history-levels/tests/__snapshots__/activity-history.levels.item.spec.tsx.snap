@@ -2394,6 +2394,7 @@ ShallowWrapper {
                       </YuText>
                     </View>,
                     null,
+                    null,
                     Array [
                       <View
                         style={
@@ -2501,6 +2502,7 @@ ShallowWrapper {
                     },
                     "type": [Function],
                   },
+                  null,
                   null,
                   Object {
                     "instance": null,
@@ -5018,6 +5020,7 @@ ShallowWrapper {
                         </YuText>
                       </View>,
                       null,
+                      null,
                       Array [
                         <View
                           style={
@@ -5125,6 +5128,7 @@ ShallowWrapper {
                       },
                       "type": [Function],
                     },
+                    null,
                     null,
                     Object {
                       "instance": null,
@@ -7479,6 +7483,7 @@ ShallowWrapper {
                       </YuText>
                     </View>,
                     null,
+                    null,
                     Array [
                       <View
                         style={
@@ -7586,6 +7591,7 @@ ShallowWrapper {
                     },
                     "type": [Function],
                   },
+                  null,
                   null,
                   Object {
                     "instance": null,
@@ -9878,6 +9884,7 @@ ShallowWrapper {
                         </YuText>
                       </View>,
                       null,
+                      null,
                       Array [
                         <View
                           style={
@@ -9985,6 +9992,7 @@ ShallowWrapper {
                       },
                       "type": [Function],
                     },
+                    null,
                     null,
                     Object {
                       "instance": null,
@@ -11064,6 +11072,7 @@ ShallowWrapper {
                         3
                       </YuText>
                     </View>,
+                    null,
                     <View
                       style={
                         Object {
@@ -11130,6 +11139,7 @@ ShallowWrapper {
                     },
                     "type": [Function],
                   },
+                  null,
                   Object {
                     "instance": null,
                     "key": undefined,
@@ -11157,13 +11167,13 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "function",
                       "props": Object {
-                        "children": "0",
+                        "children": 0,
                         "style": Object {
                           "lineHeight": 40,
                         },
                       },
                       "ref": null,
-                      "rendered": "0",
+                      "rendered": 0,
                       "type": [Function],
                     },
                     "type": [Function],
@@ -12090,6 +12100,7 @@ ShallowWrapper {
                           3
                         </YuText>
                       </View>,
+                      null,
                       <View
                         style={
                           Object {
@@ -12156,6 +12167,7 @@ ShallowWrapper {
                       },
                       "type": [Function],
                     },
+                    null,
                     Object {
                       "instance": null,
                       "key": undefined,
@@ -12183,13 +12195,13 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "function",
                         "props": Object {
-                          "children": "0",
+                          "children": 0,
                           "style": Object {
                             "lineHeight": 40,
                           },
                         },
                         "ref": null,
-                        "rendered": "0",
+                        "rendered": 0,
                         "type": [Function],
                       },
                       "type": [Function],
@@ -14433,6 +14445,7 @@ ShallowWrapper {
                       </YuText>
                     </View>,
                     null,
+                    null,
                     Array [
                       <View
                         style={
@@ -14540,6 +14553,7 @@ ShallowWrapper {
                     },
                     "type": [Function],
                   },
+                  null,
                   null,
                   Object {
                     "instance": null,
@@ -16832,6 +16846,7 @@ ShallowWrapper {
                         </YuText>
                       </View>,
                       null,
+                      null,
                       Array [
                         <View
                           style={
@@ -16939,6 +16954,7 @@ ShallowWrapper {
                       },
                       "type": [Function],
                     },
+                    null,
                     null,
                     Object {
                       "instance": null,

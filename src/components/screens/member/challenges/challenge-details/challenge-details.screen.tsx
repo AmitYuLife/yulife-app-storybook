@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Image, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { Button, Close, Text } from "../../../../atoms";
-import { data, getImageAndStyle } from "./challenge-details.helpers";
+import { data, getCardBackgroundColor, getImageAndStyle } from "./challenge-details.helpers";
 import styles from "./challenge-details.styles";
 import Milestones, { IMilestoneProps } from "./milestones";
 
@@ -34,7 +34,14 @@ export default function ChallengeDetailsScreen({
         <View style={styles.wrapper}>
             <Close onPress={onPressClose} />
             <Image {...getImageAndStyle(challengeType, currentWorld)} />
-            <View style={styles.contentWrapper}>
+            <View
+                style={StyleSheet.flatten([
+                    styles.contentWrapper,
+                    {
+                        backgroundColor: getCardBackgroundColor(currentWorld)
+                    }
+                ])}
+            >
                 <Text bold={true} style={styles.heading}>
                     {`${challengeType} / ${duration}`}
                 </Text>

@@ -23,6 +23,8 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <StarLeft
+          accentFill="#C4C4C4"
+          fill="#E2E2E2"
           isHighlighted={true}
         />,
         <View
@@ -33,10 +35,14 @@ ShallowWrapper {
           }
         >
           <StarMid
+            accentFill="#C4C4C4"
+            fill="#E2E2E2"
             isHighlighted={true}
           />
         </View>,
         <StarRight
+          accentFill="#C4C4C4"
+          fill="#E2E2E2"
           isHighlighted={true}
         />,
       ],
@@ -56,6 +62,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
+          "accentFill": "#C4C4C4",
+          "fill": "#E2E2E2",
           "isHighlighted": true,
         },
         "ref": null,
@@ -68,6 +76,8 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <StarMid
+            accentFill="#C4C4C4"
+            fill="#E2E2E2"
             isHighlighted={true}
           />,
           "style": Object {
@@ -80,6 +90,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "accentFill": "#C4C4C4",
+            "fill": "#E2E2E2",
             "isHighlighted": true,
           },
           "ref": null,
@@ -93,6 +105,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
+          "accentFill": "#C4C4C4",
+          "fill": "#E2E2E2",
           "isHighlighted": true,
         },
         "ref": null,
@@ -110,6 +124,8 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <StarLeft
+            accentFill="#C4C4C4"
+            fill="#E2E2E2"
             isHighlighted={true}
           />,
           <View
@@ -120,10 +136,14 @@ ShallowWrapper {
             }
           >
             <StarMid
+              accentFill="#C4C4C4"
+              fill="#E2E2E2"
               isHighlighted={true}
             />
           </View>,
           <StarRight
+            accentFill="#C4C4C4"
+            fill="#E2E2E2"
             isHighlighted={true}
           />,
         ],
@@ -143,6 +163,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "accentFill": "#C4C4C4",
+            "fill": "#E2E2E2",
             "isHighlighted": true,
           },
           "ref": null,
@@ -155,6 +177,8 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <StarMid
+              accentFill="#C4C4C4"
+              fill="#E2E2E2"
               isHighlighted={true}
             />,
             "style": Object {
@@ -167,6 +191,8 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "accentFill": "#C4C4C4",
+              "fill": "#E2E2E2",
               "isHighlighted": true,
             },
             "ref": null,
@@ -180,6 +206,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "accentFill": "#C4C4C4",
+            "fill": "#E2E2E2",
             "isHighlighted": true,
           },
           "ref": null,
@@ -230,7 +258,10 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <StarLeft />,
+        <StarLeft
+          accentFill="#C4C4C4"
+          fill="#E2E2E2"
+        />,
         <View
           style={
             Object {
@@ -238,9 +269,15 @@ ShallowWrapper {
             }
           }
         >
-          <StarMid />
+          <StarMid
+            accentFill="#C4C4C4"
+            fill="#E2E2E2"
+          />
         </View>,
-        <StarRight />,
+        <StarRight
+          accentFill="#C4C4C4"
+          fill="#E2E2E2"
+        />,
       ],
       "style": Object {
         "alignItems": "center",
@@ -258,6 +295,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
+          "accentFill": "#C4C4C4",
+          "fill": "#E2E2E2",
           "isHighlighted": undefined,
         },
         "ref": null,
@@ -269,7 +308,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <StarMid />,
+          "children": <StarMid
+            accentFill="#C4C4C4"
+            fill="#E2E2E2"
+          />,
           "style": Object {
             "marginTop": -8,
           },
@@ -280,6 +322,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "accentFill": "#C4C4C4",
+            "fill": "#E2E2E2",
             "isHighlighted": undefined,
           },
           "ref": null,
@@ -293,6 +337,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
+          "accentFill": "#C4C4C4",
+          "fill": "#E2E2E2",
           "isHighlighted": undefined,
         },
         "ref": null,
@@ -309,7 +355,10 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <StarLeft />,
+          <StarLeft
+            accentFill="#C4C4C4"
+            fill="#E2E2E2"
+          />,
           <View
             style={
               Object {
@@ -317,9 +366,15 @@ ShallowWrapper {
               }
             }
           >
-            <StarMid />
+            <StarMid
+              accentFill="#C4C4C4"
+              fill="#E2E2E2"
+            />
           </View>,
-          <StarRight />,
+          <StarRight
+            accentFill="#C4C4C4"
+            fill="#E2E2E2"
+          />,
         ],
         "style": Object {
           "alignItems": "center",
@@ -337,6 +392,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "accentFill": "#C4C4C4",
+            "fill": "#E2E2E2",
             "isHighlighted": undefined,
           },
           "ref": null,
@@ -348,7 +405,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <StarMid />,
+            "children": <StarMid
+              accentFill="#C4C4C4"
+              fill="#E2E2E2"
+            />,
             "style": Object {
               "marginTop": -8,
             },
@@ -359,6 +419,8 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "accentFill": "#C4C4C4",
+              "fill": "#E2E2E2",
               "isHighlighted": undefined,
             },
             "ref": null,
@@ -372,6 +434,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "accentFill": "#C4C4C4",
+            "fill": "#E2E2E2",
             "isHighlighted": undefined,
           },
           "ref": null,
@@ -427,6 +491,8 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <StarLeft
+          accentFill="#C4C4C4"
+          fill="#E2E2E2"
           isHighlighted={false}
         />,
         <View
@@ -437,10 +503,14 @@ ShallowWrapper {
           }
         >
           <StarMid
+            accentFill="#C4C4C4"
+            fill="#E2E2E2"
             isHighlighted={true}
           />
         </View>,
         <StarRight
+          accentFill="#C4C4C4"
+          fill="#E2E2E2"
           isHighlighted={false}
         />,
       ],
@@ -460,6 +530,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
+          "accentFill": "#C4C4C4",
+          "fill": "#E2E2E2",
           "isHighlighted": false,
         },
         "ref": null,
@@ -472,6 +544,8 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <StarMid
+            accentFill="#C4C4C4"
+            fill="#E2E2E2"
             isHighlighted={true}
           />,
           "style": Object {
@@ -484,6 +558,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "accentFill": "#C4C4C4",
+            "fill": "#E2E2E2",
             "isHighlighted": true,
           },
           "ref": null,
@@ -497,6 +573,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
+          "accentFill": "#C4C4C4",
+          "fill": "#E2E2E2",
           "isHighlighted": false,
         },
         "ref": null,
@@ -514,6 +592,8 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <StarLeft
+            accentFill="#C4C4C4"
+            fill="#E2E2E2"
             isHighlighted={false}
           />,
           <View
@@ -524,10 +604,14 @@ ShallowWrapper {
             }
           >
             <StarMid
+              accentFill="#C4C4C4"
+              fill="#E2E2E2"
               isHighlighted={true}
             />
           </View>,
           <StarRight
+            accentFill="#C4C4C4"
+            fill="#E2E2E2"
             isHighlighted={false}
           />,
         ],
@@ -547,6 +631,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "accentFill": "#C4C4C4",
+            "fill": "#E2E2E2",
             "isHighlighted": false,
           },
           "ref": null,
@@ -559,6 +645,8 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <StarMid
+              accentFill="#C4C4C4"
+              fill="#E2E2E2"
               isHighlighted={true}
             />,
             "style": Object {
@@ -571,6 +659,8 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "accentFill": "#C4C4C4",
+              "fill": "#E2E2E2",
               "isHighlighted": true,
             },
             "ref": null,
@@ -584,6 +674,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "accentFill": "#C4C4C4",
+            "fill": "#E2E2E2",
             "isHighlighted": false,
           },
           "ref": null,

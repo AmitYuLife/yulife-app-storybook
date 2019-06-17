@@ -93,7 +93,7 @@ const getCurrentWorldTheme = (
                         offline: COLOURS.BLUE,
                         online: COLOURS.LIGHT
                     },
-                    streakType: "ocean",
+                    streakType: "mountain",
                     textStyle: { color: "rgb(51, 51, 51)" },
                     topBarType: "default"
                 },

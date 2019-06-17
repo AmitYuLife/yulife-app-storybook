@@ -83,7 +83,7 @@ describe("CentredScreen", () => {
     });
 
     it("should render with a image for challenge failed on mountain world", () => {
-        const actual = shallow(<CentredScreen footerImage="challenge_failed_mountain" />);
+        const actual = shallow(<CentredScreen footerImage="challenge_mountain" />);
 
         expect(actual).toMatchSnapshot();
     });

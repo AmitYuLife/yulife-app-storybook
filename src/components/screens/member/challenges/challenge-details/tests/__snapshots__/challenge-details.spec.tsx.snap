@@ -1597,7 +1597,7 @@ ShallowWrapper {
         <View
           style={
             Object {
-              "backgroundColor": "rgb(237, 251, 248)",
+              "backgroundColor": "rgb(255, 253, 231)",
               "padding": 40,
               "width": 570,
             }
@@ -1717,7 +1717,7 @@ ShallowWrapper {
             />,
           ],
           "style": Object {
-            "backgroundColor": "rgb(237, 251, 248)",
+            "backgroundColor": "rgb(255, 253, 231)",
             "padding": 40,
             "width": 570,
           },
@@ -1820,7 +1820,7 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "backgroundColor": "rgb(237, 251, 248)",
+                "backgroundColor": "rgb(255, 253, 231)",
                 "padding": 40,
                 "width": 570,
               }
@@ -1940,7 +1940,7 @@ ShallowWrapper {
               />,
             ],
             "style": Object {
-              "backgroundColor": "rgb(237, 251, 248)",
+              "backgroundColor": "rgb(255, 253, 231)",
               "padding": 40,
               "width": 570,
             },
