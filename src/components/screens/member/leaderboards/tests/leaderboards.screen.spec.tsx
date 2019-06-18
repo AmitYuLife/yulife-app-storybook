@@ -6,6 +6,7 @@ import copy from "../../../../../redux/copy/copy.data";
 import LeaderboardsScreen from "../leaderboards.screen";
 
 const defaultProps = {
+    componentId: "1",
     activeLeaderboardIndex: 0,
     currentWorld: 0,
     initialScrollIndex: 0,

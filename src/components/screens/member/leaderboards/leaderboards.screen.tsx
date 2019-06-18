@@ -4,6 +4,7 @@ import * as React from "react";
 import { Image, SafeAreaView, StyleSheet, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
+import { Navigation } from "react-native-navigation";
 import { Loading } from "../../../atoms";
 import { COLOURS, ILabel, NavBar, TopBar, YulifeRefreshHeader } from "../../../molecules";
 import assets, { AssetType } from "./assets";
@@ -50,6 +51,7 @@ interface IProps {
     onRefuseConsent: () => void;
     copy: GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn;
     navbarColour: COLOURS;
+    componentId: string;
 }
 
 const initialState = {
@@ -64,21 +66,20 @@ export default class LeaderboardScreen extends React.PureComponent<IProps, IStat
 
     private timeout: NodeJS.Timer = null;
 
+    public constructor(props: IProps) {
+        super(props);
+        Navigation.events().bindComponent(this);
+    }
+
+    public componentDidMount() {
+        this.scrollToLevel();
+    }
+
+    public componentDidAppear() {
+        this.scrollToLevel();
+    }
+
     public componentDidUpdate(prevProps: IProps) {
-        const { isLoading, items, initialScrollIndex } = this.props;
-
-        if (!isLoading) {
-            this.timeout = global.setTimeout(() => {
-                if (this.largeList && items.length > 0 && initialScrollIndex !== -1) {
-                    try {
-                        this.largeList.scrollTo({ x: 0, y: initialScrollIndex * LEADERBOARD_ITEM_HEIGHT });
-                    } catch (err) {
-                        // console.log("err: ", err);
-                    }
-                }
-            }, 1000);
-        }
-
         if (
             prevProps.activeLeaderboardIndex === this.props.activeLeaderboardIndex &&
             prevProps.leaderboards.length &&
@@ -189,6 +190,21 @@ export default class LeaderboardScreen extends React.PureComponent<IProps, IStat
             </SafeAreaView>
         );
     }
+
+    private scrollToLevel = () => {
+        const { isLoading, items, initialScrollIndex } = this.props;
+        if (!isLoading) {
+            this.timeout = global.setTimeout(() => {
+                if (this.largeList && items.length > 0 && initialScrollIndex !== -1) {
+                    try {
+                        this.largeList.scrollTo({ x: 0, y: initialScrollIndex * LEADERBOARD_ITEM_HEIGHT });
+                    } catch (err) {
+                        // console.log("err: ", err);
+                    }
+                }
+            }, 1000);
+        }
+    };
 
     private toggleDropdown = () => {
         this.setState(({ isShowingDropdown }) => ({

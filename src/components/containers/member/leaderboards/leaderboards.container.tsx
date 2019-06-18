@@ -54,7 +54,8 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
             totalCoins,
             onLeftMenuPress,
             isOffline,
-            copy
+            copy,
+            componentId
         } = this.props;
         const currentWorld = getCurrentWorld(currentLevel);
         const navbarColour = getNavbarColourScheme(currentWorld);
@@ -95,6 +96,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
 
                     return (
                         <LeaderboardsScreen
+                            componentId={componentId}
                             currentWorld={currentWorld}
                             isLoading={loading}
                             initialScrollIndex={initialScrollIndex}
