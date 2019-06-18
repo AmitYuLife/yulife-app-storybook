@@ -5,6 +5,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <LeaderboardScreen
     activeLeaderboardIndex={0}
+    componentId="1"
     copy={
       Object {
         "ctaLabel": "give me leaderboards",
@@ -1182,6 +1183,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <LeaderboardScreen
     activeLeaderboardIndex={0}
+    componentId="1"
     copy={
       Object {
         "ctaLabel": "give me leaderboards",
@@ -2535,6 +2537,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <LeaderboardScreen
     activeLeaderboardIndex={0}
+    componentId="1"
     copy={
       Object {
         "ctaLabel": "give me leaderboards",
@@ -3775,6 +3778,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <LeaderboardScreen
     activeLeaderboardIndex={0}
+    componentId="1"
     copy={
       Object {
         "ctaLabel": "give me leaderboards",
@@ -4920,6 +4924,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <LeaderboardScreen
     activeLeaderboardIndex={0}
+    componentId="1"
     copy={
       Object {
         "ctaLabel": "give me leaderboards",
@@ -6273,6 +6278,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <LeaderboardScreen
     activeLeaderboardIndex={0}
+    componentId="1"
     copy={
       Object {
         "ctaLabel": "give me leaderboards",
@@ -7626,6 +7632,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <LeaderboardScreen
     activeLeaderboardIndex={0}
+    componentId="1"
     copy={
       Object {
         "ctaLabel": "give me leaderboards",
