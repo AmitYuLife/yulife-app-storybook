@@ -1,11 +1,11 @@
 import { shallow } from "enzyme";
 import * as React from "react";
 import "react-native";
-import Frame41 from "../41";
+import RedCircle from "../red-circle";
 
-describe("Frame41", () => {
+describe("RedCircle", () => {
     it("should render", () => {
-        const actual = shallow(<Frame41 />);
+        const actual = shallow(<RedCircle />);
 
         expect(actual).toMatchSnapshot();
     });
