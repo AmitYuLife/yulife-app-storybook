@@ -38,8 +38,8 @@ ShallowWrapper {
             }
           }
         >
-          <Image
-            source={1}
+          <LevelLine
+            colour={null}
           />
           <YuText
             style={
@@ -120,8 +120,8 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Image
-              source={1}
+            <LevelLine
+              colour={null}
             />,
             <YuText
               style={
@@ -146,9 +146,9 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "function",
             "props": Object {
-              "source": 1,
+              "colour": null,
             },
             "ref": null,
             "rendered": null,
@@ -258,8 +258,8 @@ ShallowWrapper {
               }
             }
           >
-            <Image
-              source={1}
+            <LevelLine
+              colour={null}
             />
             <YuText
               style={
@@ -340,8 +340,8 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Image
-                source={1}
+              <LevelLine
+                colour={null}
               />,
               <YuText
                 style={
@@ -366,9 +366,9 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "source": 1,
+                "colour": null,
               },
               "ref": null,
               "rendered": null,

@@ -52,13 +52,13 @@ export const getImageAndStyle = (image: CenteredScreenImages) => {
         case "challenge_failed_desert":
             return {
                 source: require("../../../../assets/centred-screen/challenge_failed_desert.png"),
-                style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
+                style: StyleSheet.flatten([styles.imageBase, styles.desertImage])
             };
 
         case "challenge_success_desert":
             return {
                 source: require("../../../../assets/centred-screen/challenge_success_desert.png"),
-                style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest, styles.successImageDesert])
+                style: StyleSheet.flatten([styles.imageBase, styles.desertImage])
             };
         case "mountain":
             return {

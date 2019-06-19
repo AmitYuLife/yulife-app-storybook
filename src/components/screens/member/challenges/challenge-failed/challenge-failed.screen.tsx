@@ -1,4 +1,4 @@
-import { Button, CentredScreen, Stars, Text } from "@atoms/index";
+import { Button, CentredScreen, LevelLine, Stars, Text } from "@atoms/index";
 import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import { Image, StyleSheet, View } from "react-native";
@@ -13,7 +13,7 @@ interface IProps {
 }
 
 export default function ChallengeFailedScreen({ level, onPress, copy }: IProps) {
-    const { backgroundImage, backgroundStyle, footerStyle, buttonType, starType } = getStyle(level);
+    const { backgroundImage, backgroundStyle, footerStyle, buttonType, starType, levelColour } = getStyle(level);
 
     return (
         <CentredScreen
@@ -22,7 +22,7 @@ export default function ChallengeFailedScreen({ level, onPress, copy }: IProps) 
         >
             <Stars type={starType} />
             <View style={styles.levelWrapper}>
-                <Image source={Assets.levelLine} />
+                <LevelLine colour={levelColour} />
                 <Text style={styles.level}>{`level ${level}`}</Text>
             </View>
             <Text bold={true} style={styles.heading}>
@@ -43,15 +43,17 @@ function getStyle(currentLevel: number): any {
                 backgroundStyle: { backgroundColor: "rgb(255, 226, 230)" },
                 buttonType: Button.Types.PRIMARY_SMALL,
                 footerStyle: styles.footerGray,
-                starType: "mountain"
+                starType: "mountain",
+                levelColour: "rgb(255, 213, 218)"
             };
         case 2:
             return {
                 backgroundImage: "challenge_failed_desert",
                 backgroundStyle: { backgroundColor: "#fffbcd" },
-                buttonType: Button.Types.PRIMARY_GREYSCALE_SMALL,
+                buttonType: Button.Types.PRIMARY_SMALL,
                 footerStyle: styles.footerGray,
-                starType: null
+                starType: null,
+                levelColour: null
             };
         case 1:
             return {
@@ -59,7 +61,8 @@ function getStyle(currentLevel: number): any {
                 backgroundStyle: null,
                 buttonType: Button.Types.PRIMARY_GREYSCALE_SMALL,
                 footerStyle: styles.footerWhite,
-                starType: null
+                starType: null,
+                levelColour: null
             };
         case 0:
         default:
@@ -68,7 +71,8 @@ function getStyle(currentLevel: number): any {
                 backgroundStyle: null,
                 buttonType: Button.Types.PRIMARY_GREYSCALE_SMALL,
                 footerStyle: styles.footerGray,
-                starType: null
+                starType: null,
+                levelColour: null
             };
     }
 }
