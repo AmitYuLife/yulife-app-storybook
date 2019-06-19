@@ -1,3 +1,4 @@
+import { REHYDRATE } from "redux-persist";
 import { POPUPTYPE } from "../../components/molecules";
 import {
     GetCurrentUser,
@@ -20,7 +21,7 @@ import {
     UPDATE_LEADERBOARD_CONSENT_START,
     UPDATE_LEADERBOARD_CONSENT_SUCCESS,
     UPDATE_LEADERBOARD_POPUP_VISIBILITY,
-    UPDATE_SURGE_POPUP_VISIBILITY,
+    // UPDATE_SURGE_POPUP_VISIBILITY,
     UPDATE_USER_CONSENT_SUCCESS
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
@@ -42,8 +43,14 @@ export interface IUserStore {
     features: IFeature;
     leaderboards: ILeaderboard[];
     popupVisibility: {
+        /**
+         *  Every time we'll add a new feature popup we'll add a new key here and mark it as true,
+         *  then on the `REHYDRATE` action type we'll look if the persisted state has that key.
+         *  If it does, it means there was no app update. If it doesn't, voila!
+         *  The first time someone installs the app also will be handled, as the first state comes from `initialState`
+         *  :thugmatt:
+         */
         leaderboard: boolean;
-        surge: boolean;
     };
 }
 
@@ -54,8 +61,7 @@ export const initialState: IUserStore = {
     features: {},
     leaderboards: [],
     popupVisibility: {
-        leaderboard: true,
-        surge: false
+        leaderboard: false
     }
 };
 
@@ -63,6 +69,13 @@ export const userReducer = (state: IUserStore = initialState, action: SyncAction
     switch (action.type) {
         case SET_USER_NO_ACCESS:
             return { ...state, archived: true };
+
+        case REHYDRATE:
+            // the first time app opens there is no data in the persisted state
+            if (action.payload && action.payload.user) {
+                return updatePersistedState(action.payload.user);
+            }
+            return state;
 
         case GET_USER_SUCCESS:
             return getUserSuccess(state, action.payload);
@@ -92,15 +105,32 @@ export const userReducer = (state: IUserStore = initialState, action: SyncAction
         case UPDATE_LEADERBOARD_POPUP_VISIBILITY:
             return updatePopupVisibility(state, action.payload, POPUPTYPE.LEADERBOARD);
 
-        case UPDATE_SURGE_POPUP_VISIBILITY:
-            return updatePopupVisibility(state, action.payload, POPUPTYPE.SURGE);
-
         default:
             return state;
     }
 };
 
 export default userReducer;
+
+/**
+ * Every time we add new keys to the reducer, they're not in the persisted object for all the previous version
+ * So we'll need to update it accordingly
+ * @param persistedState
+ */
+const updatePersistedState = (persistedState: IUserStore) => {
+    if (!persistedState.popupVisibility) {
+        // leaderboards is the first popup
+        return { ...persistedState, popupVisibility: { leaderboard: true } };
+    }
+
+    // const popupVisibilityKeys = Object.keys(persistedState.popupVisibility);
+
+    // if (!popupVisibilityKeys.includes("surge")) {
+    //     return { ...persistedState, popupVisibility: { ...persistedState.popupVisibility, surge: true } };
+    // }
+
+    return persistedState;
+};
 
 const getUserSuccess = (
     state: IUserStore,
@@ -170,10 +200,7 @@ const updateConnectionsSuccess = (state: IUserStore, payload: any): IUserStore =
     ...state,
     connections: state.connections.map((connection) => {
         if (connection.name === payload.name) {
-            return { ...connection,
-                isLoading: false,
-                isConnected: payload.isConnected
-            };
+            return { ...connection, isLoading: false, isConnected: payload.isConnected };
         }
         return connection;
     })
@@ -181,14 +208,6 @@ const updateConnectionsSuccess = (state: IUserStore, payload: any): IUserStore =
 
 const updatePopupVisibility = (state: IUserStore, payload: boolean, type: POPUPTYPE): IUserStore => {
     switch (type) {
-        case POPUPTYPE.SURGE:
-            return {
-                ...state,
-                popupVisibility: {
-                    ...state.popupVisibility,
-                    surge: payload
-                }
-            };
         case POPUPTYPE.LEADERBOARD:
             return {
                 ...state,
@@ -197,5 +216,7 @@ const updatePopupVisibility = (state: IUserStore, payload: boolean, type: POPUPT
                     leaderboard: payload
                 }
             };
+        default:
+            return state;
     }
 };
