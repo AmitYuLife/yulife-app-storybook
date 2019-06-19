@@ -12,8 +12,8 @@ export default StyleSheet.create({
         height: Style.SCALE_UP_AND_DOWN(300),
         marginBottom: Platform.OS === "ios" && Style.DEVICE_HEIGHT < 700 ? -20 : 0
     } as ImageStyle,
-    successImageDesert: {
-        marginBottom: -60
+    desertImage: {
+        height: Style.SCALE_UP_AND_DOWN(220)
     } as ImageStyle,
     imageWrapper: {
         bottom: 0,

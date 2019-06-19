@@ -11,6 +11,15 @@ const images = {
     completedStar: require("../../../../../../../../assets/quests/completed-star.png")
 };
 
+const getTextColor = (level: number) => {
+    switch (true) {
+        case level > 64 && level < 72:
+            return "rgb(233, 210, 10)";
+        default:
+            return "#fff";
+    }
+};
+
 const getLevelLockIcon = (currentLevel: number, level: IChallenge) => {
     switch (true) {
         case level.level === 20 && currentLevel < 18:
@@ -25,6 +34,7 @@ const getLevelLockIcon = (currentLevel: number, level: IChallenge) => {
         case level.level === 145 && currentLevel < 144:
         case level.level === 148 && currentLevel < 147:
         case level.level === 170 && currentLevel < 169:
+        case level.level === 191 && currentLevel < 190:
         case level.level === 195 && currentLevel < 194:
         case level.level === 198 && currentLevel < 197:
             return <DoubleLock colour={getLockColor(level.level)} />;
@@ -62,9 +72,10 @@ export default function getLevelButton(nextAvailable: number, currentLevel: numb
             </Text>
         );
     } else if (level.level < currentLevel) {
+        const color = getTextColor(level.level);
         return (
             <View style={{ flexDirection: "column" }}>
-                <Text style={StyleSheet.flatten([styles.text, { textAlign: "center" }])}>{level.level}</Text>
+                <Text style={StyleSheet.flatten([styles.text, { textAlign: "center", color }])}>{level.level}</Text>
                 <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
                     {Array.from({ length: 3 }).map((_, i) => (
                         <Image
