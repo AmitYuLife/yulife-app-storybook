@@ -16,6 +16,7 @@ import {
     UPDATE_USER_CONSENT_SUCCESS
 } from "@redux/user/user.actions";
 import { reduceUserFeatures } from "@redux/user/user.helpers";
+import { REHYDRATE } from "redux-persist";
 import { initialState, userReducer } from "../user.reducer";
 
 describe("userReducer", async () => {
@@ -25,6 +26,18 @@ describe("userReducer", async () => {
         const actualState = userReducer(initialState, {
             type: undefined,
             payload: null
+        });
+
+        expect(actualState).toEqual(expectedState);
+    });
+
+    it("should handle REHYDRATE correctly", async () => {
+        const { popupVisibility, ...persistedState } = initialState;
+        const expectedState = { ...initialState, popupVisibility: { leaderboard: true } };
+
+        const actualState = userReducer(persistedState as any, {
+            type: REHYDRATE,
+            payload: { user: persistedState }
         });
 
         expect(actualState).toEqual(expectedState);

@@ -9,6 +9,7 @@ import {
     GetMobileCopy_getMobileCopy_screens_dailyStepsFitKitAuthorise,
     GetMobileCopy_getMobileCopy_screens_popUp
 } from "../../../../graphql/_core/schema";
+import { IUserStore } from "../../../../redux/user/user.reducer";
 import { IConnectedScreenProps } from "../../../../typings";
 import { CentredScreen, Pad } from "../../../atoms";
 import { LeaderboardPopup, NavBar, Streak, SurgePopup, TopBar } from "../../../molecules";
@@ -42,10 +43,7 @@ interface IProps extends IConnectedScreenProps {
     };
     onUpdateSurgePopupVisibility?: (payload: boolean) => void;
     onUpdateLeaderboardPopupVisibility?: (payload: boolean) => void;
-    popupVisibility?: {
-        leaderboard: boolean;
-        surge: boolean;
-    };
+    popupVisibility?: IUserStore["popupVisibility"];
 }
 
 type Props = IProps & IDailyStepsOnlineProps & IDailyStepsOfflineProps;
@@ -76,8 +74,7 @@ export default function DailyStepsScreen({
     onUpdateLeaderboardPopupVisibility,
     onUpdateSurgePopupVisibility,
     popupVisibility = {
-        leaderboard: false,
-        surge: false
+        leaderboard: false
     }
 }: Props) {
     return (
@@ -88,7 +85,8 @@ export default function DailyStepsScreen({
         >
             <TopBar coins={totalCoins} type={topBarType} onPressLeftIcon={onLeftMenuPress} />
             <Pad height={getPadHeight(displayStreak)} />
-            {!popupVisibility.leaderboard && popupVisibility.surge ? (
+            {/** TODO: add surge condition: `!popupVisibility.leaderboard && popupVisibility.surge` */}
+            {false ? (
                 <SurgePopup
                     hasWhiteGlow={hasWhiteGlow}
                     onCoinPress={onCoinPress}
