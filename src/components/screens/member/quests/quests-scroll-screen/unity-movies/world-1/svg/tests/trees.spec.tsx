@@ -1,11 +1,11 @@
 import { shallow } from "enzyme";
 import * as React from "react";
 import "react-native";
-import Frame42 from "../42";
+import Trees from "../trees";
 
-describe("Frame42", () => {
+describe("Trees", () => {
     it("should render", () => {
-        const actual = shallow(<Frame42 />);
+        const actual = shallow(<Trees />);
 
         expect(actual).toMatchSnapshot();
     });
