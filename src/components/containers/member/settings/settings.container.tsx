@@ -94,6 +94,7 @@ class SettingsContainer extends PureComponent<IProps, IState> {
                 <DateTimePicker
                     date={modalDate}
                     mode="time"
+                    titleIOS="pick a time"
                     isVisible={isTimeModalVisible}
                     onConfirm={this.handleTimeModalConfirm}
                     onCancel={this.handleTimeModalCancel}
