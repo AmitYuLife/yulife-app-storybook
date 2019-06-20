@@ -9,6 +9,11 @@ import { getActiveLevel } from "../levels.selectors";
 export default function* endChallengeSaga() {
     const active = yield select(getActiveLevel);
 
+    if (active) {
+        const { milestones, milestonesLog, ...metaData } = active;
+        yield spawn(() => Logger.logMixpanelEvent("end_challenge_triggered", metaData));
+    }
+
     if (active.levelSlotId) {
         if (active.isCompleted) {
             yield put(challengeEndSuccessAction({ updateActiveChallenge: null }));

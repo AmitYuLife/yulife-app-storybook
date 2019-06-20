@@ -8,20 +8,19 @@ import { getActiveLevel } from "../../levels.selectors";
 import endChallengeSaga from "../endChallenge.saga";
 
 describe("End Challenge Saga endChallenge", () => {
-
     it("puts update for reset challenge if there is no levelSlotId", () => {
         const testSaga = endChallengeSaga();
 
         const getActiveEffect = testSaga.next();
-
         expect(getActiveEffect.value).toEqual(select(getActiveLevel));
 
-        const challengeResetSuccessEffect = testSaga.next({ levelSlotId: null });
+        const logEventEffect = testSaga.next({ levelSlotId: null, milestones: [], milestonesLog: [] });
+        expect(logEventEffect.done).toEqual(false);
 
+        const challengeResetSuccessEffect = testSaga.next({ levelSlotId: null });
         expect(challengeResetSuccessEffect.value).toEqual(put(challengeResetSuccessAction()));
 
         const doneEffect = testSaga.next();
-
         expect(doneEffect.done).toEqual(true);
     });
 
@@ -29,8 +28,10 @@ describe("End Challenge Saga endChallenge", () => {
         const testSaga = endChallengeSaga();
 
         const getActiveEffect = testSaga.next();
-
         expect(getActiveEffect.value).toEqual(select(getActiveLevel));
+
+        const logEventEffect = testSaga.next({ levelSlotId: 6, isCompleted: true, milestones: [], milestonesLog: [] });
+        expect(logEventEffect.done).toEqual(false);
 
         const endChallengeSuccessEffect = testSaga.next({ levelSlotId: 6, isCompleted: true });
 
@@ -38,26 +39,36 @@ describe("End Challenge Saga endChallenge", () => {
         expect(endChallengeSuccessEffect.value).toEqual(expected);
 
         const doneEffect = testSaga.next();
-
         expect(doneEffect.done).toEqual(true);
     });
 
     describe("challenge not completed", () => {
         let testSaga: any;
-        const canUpdateActiveChallenge = { data: { updateActiveChallenge: {
-                challenge: null,
-                levelSlot: null,
-                nextLevelAvailableAt: ""
-            } as UpdateActiveChallenge_updateActiveChallenge
-        }};
-        const cannotUpdateActiveChallenge = { data: { updateActiveChallenge: null as any }};
+        const canUpdateActiveChallenge = {
+            data: {
+                updateActiveChallenge: {
+                    challenge: null,
+                    levelSlot: null,
+                    nextLevelAvailableAt: ""
+                } as UpdateActiveChallenge_updateActiveChallenge
+            }
+        };
+        const cannotUpdateActiveChallenge = { data: { updateActiveChallenge: null as any } };
 
         beforeEach(() => {
             testSaga = endChallengeSaga();
             const getActiveEffect = testSaga.next();
             expect(getActiveEffect.value).toEqual(select(getActiveLevel));
 
-            const activeChallengeResult = { levelSlotId: "6", isCompleted: false };
+            const activeChallengeResult = {
+                levelSlotId: "6",
+                isCompleted: false,
+                milestones: [1, 2],
+                milestonesLog: [1, 2]
+            };
+
+            const logEventEffect = testSaga.next(activeChallengeResult);
+            expect(logEventEffect.done).toEqual(false);
 
             const userFeaturesEffect = testSaga.next(activeChallengeResult);
             expect(userFeaturesEffect.value).toEqual(select(getUserFeatures));
