@@ -260,14 +260,16 @@ class QuestsContainer extends PureComponent<Props, IState> {
         if (loading) {
             return <Loading />;
         }
-        const { challengesStatus } = this.props;
+
+        const formatedData = this.formatData(data.getCurrentWorld);
+
         return (
             <QuestsScrollScreen
                 {...props}
-                data={this.formatData(data.getCurrentWorld)}
+                data={formatedData}
                 hideUnity={this.hideUnity}
                 unity={unity}
-                activeLevel={getTheActiveLevel(challengesStatus, currentLevel)}
+                activeLevel={getTheActiveLevel(formatedData)}
             />
         );
     };
@@ -452,12 +454,8 @@ class QuestsContainer extends PureComponent<Props, IState> {
         });
     };
 }
-export function getTheActiveLevel(challengesStatus: any, currentLevel: number) {
-    const world = getCurrentWorld(currentLevel);
-    if (world === 0 || !challengesStatus.hasDone || !challengesStatus.isAvailable) {
-        return currentLevel;
-    }
-    return currentLevel - 1;
+export function getTheActiveLevel(formatedData: any[]) {
+    return formatedData.findIndex((level) => level.isNext && level.isActive) + 1;
 }
 
 const mapStateToProps = (state: IReduxState) => ({
