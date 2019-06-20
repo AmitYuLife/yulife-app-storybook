@@ -1,5 +1,5 @@
 import { bottomTabs, ROUTES } from "@navigation/constants";
-import { setNextRoot } from "@navigation/root";
+import { setAuthenticatedRoot } from "@navigation/root";
 import { TOKEN_EXPIRATION } from "@services/constants";
 import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import React, { Component } from "react";
@@ -111,7 +111,7 @@ export class LoginContainer extends Component<Props, IState> {
                 return;
             }
 
-            setNextRoot();
+            setAuthenticatedRoot(); // TODO: use setNextRoot when the right intro's ready
         };
 
         if (!authorised) {

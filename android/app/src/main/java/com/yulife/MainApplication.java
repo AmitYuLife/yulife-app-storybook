@@ -18,6 +18,7 @@ import com.testfairy.react.TestFairyPackage;
 import com.yulife.reactnative.fitkit.RNFitKitPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.bolan9999.SpringScrollViewPackage;
+import com.learnta.clear.ClearCachePackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -70,7 +71,8 @@ public class MainApplication extends NavigationApplication {
                 new RNFitKitPackage(),                      // react-native-fitkit
                 new TestFairyPackage(),                     // react-native-testfairy
                 new SpringScrollViewPackage(),              // react-native-large-list
-                new FastImageViewPackage()                  // react-native-fast-image
+                new FastImageViewPackage(),                 // react-native-fast-image
+                new ClearCachePackage()                     // react-native-clear-cache-demo
         );
     }
 }

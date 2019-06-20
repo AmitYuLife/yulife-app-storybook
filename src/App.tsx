@@ -20,28 +20,22 @@ Navigation.events().registerAppLaunchedListener(async () => {
     const RN = require("react-native");
 
     if (token) {
-        const FastImage = require("react-native-fast-image").default;
-        const mapAssets = require("./components/screens/member/quests/quests-scroll-screen/assets");
+        const Clear = require("react-native-clear-app-cache").default;
+        await Clear.clearAppCache(async () => {
+            const FastImage = require("react-native-fast-image").default;
+            const mapAssets = require("./components/screens/member/quests/quests-scroll-screen/assets");
 
-        await rootHandler.setNextRoot();
+            // preload quest map images
+            FastImage.preload(
+                mapAssets.mapSlices.map((item: any) => ({
+                    uri: RN.Image.resolveAssetSource(item.image).uri
+                }))
+            );
+        });
 
-        // preload quest map images
-        FastImage.preload(
-            mapAssets.mapSlices.map((item: any) => ({
-                uri: RN.Image.resolveAssetSource(item.image).uri
-            }))
-        );
+        await rootHandler.setAuthenticatedRoot(); // TODO: use setNextRoot when the right intro's ready
     } else {
         await rootHandler.setUnauthenticatedRoot();
-    }
-
-    const Config = require("react-native-config").default;
-    const TestFairy = require("react-native-testfairy");
-
-    // initialize TestFairy
-    if (Config.TESTFAIRY_ENABLED === "yes") {
-        TestFairy.enableVideo("wifi", "high", 0.4);
-        TestFairy.begin(Config.TESTFAIRY_KEY);
     }
 
     const handleDeepLink = require("./navigation/handleDeepLink").default;

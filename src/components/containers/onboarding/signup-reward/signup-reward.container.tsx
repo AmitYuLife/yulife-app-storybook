@@ -4,7 +4,7 @@ import { PureComponent } from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { GetMobileCopy_getMobileCopy_screens_signupReward as SignUpRewardCopy} from "../../../../graphql/_core/schema";
+import { GetMobileCopy_getMobileCopy_screens_signupReward as SignUpRewardCopy } from "../../../../graphql/_core/schema";
 import { AddHistoricalStepsMutationFunction } from "../../../../graphql/challenges/addHistoricalSteps.gql";
 import {
     addHistoricalStepsGql,
@@ -15,7 +15,7 @@ import UpsertOnboardingChallengeMutation, {
     UpsertOnboardingChallengeMutationType,
     UpsertOnboardingChallengeStateType
 } from "../../../../graphql/challenges/upsertOnboardingChallenge.gql";
-import { setNextRoot } from "../../../../navigation/root";
+import { setAuthenticatedRoot } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getUserStart } from "../../../../redux/user/user.actions";
@@ -106,11 +106,12 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps, IState> {
         this.setState({
             isLoading: false
         });
-        await setNextRoot();
+
+        await setAuthenticatedRoot(); // TODO: use setNextRoot when the right intro's ready
     };
 }
 
-const SignUpRewardContainer = (props: IProps & ConnectedState &ConnectedDispatch) => (
+const SignUpRewardContainer = (props: IProps & ConnectedState & ConnectedDispatch) => (
     <UpsertOnboardingChallengeMutation mutation={upsertOnboardingChallengeGql}>
         {(upsertOnboardingChallenge, args) => {
             return (
