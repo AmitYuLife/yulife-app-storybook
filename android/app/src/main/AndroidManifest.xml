@@ -16,7 +16,7 @@
 
     <application xmlns:tools="http://schemas.android.com/tools"
         android:name=".MainApplication"
-        android:allowBackup="false"
+        android:allowBackup="true"
         android:largeHeap="true"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/app_icon"
