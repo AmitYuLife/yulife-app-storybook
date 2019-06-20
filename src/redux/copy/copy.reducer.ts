@@ -31,12 +31,18 @@ const copyReducer = (state: ICopyStore = initialState, action: SyncAction): ICop
 export default copyReducer;
 
 const rehydrate = (persistedState: ICopyStore) => {
-    const defaultScreensLength = Object.keys(defaultData).length;
-    const persistedScreensLength = Object.keys(persistedState.screens).length - 1;
+    const defaultDataKeys = Object.keys(defaultData);
+    const persistedStateKeys = Object.keys(persistedState.screens);
 
-    if (defaultScreensLength > persistedScreensLength) {
+    if (defaultDataKeys.length > persistedStateKeys.length) {
         // when adding new screens, the persisted state doesn't have them
-        return { version: persistedState.version, screens: { ...persistedState.screens, ...defaultData } };
+        const result: any = {};
+        for (const key of defaultDataKeys) {
+            if (!(persistedState.screens as any)[key]) {
+                result[key] = (defaultData as any)[key];
+            }
+        }
+        return { version: persistedState.version, screens: { ...persistedState.screens, ...result } };
     }
 
     return persistedState;

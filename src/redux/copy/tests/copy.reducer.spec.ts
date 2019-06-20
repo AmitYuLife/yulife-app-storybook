@@ -21,7 +21,8 @@ describe("Copy reducer", async () => {
 
     it("should handle REHYDRATE correctly", () => {
         const expected: ICopyStore = initialState;
-        const actual = copyReducer(initialState, { type: REHYDRATE });
+        const payloadMock = { copy: { version: "", screens: { login: initialState.screens.login } } };
+        const actual = copyReducer(initialState, { type: REHYDRATE, payload: payloadMock });
 
         expect(actual).toEqual(expected);
     });
