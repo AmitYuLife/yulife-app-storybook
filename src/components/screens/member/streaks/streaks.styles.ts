@@ -1,4 +1,4 @@
-import { ImageStyle, Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../../styles";
 
 export default StyleSheet.create({
@@ -16,13 +16,14 @@ export default StyleSheet.create({
     } as ViewStyle,
     null: {},
     streak: {
-        ...StyleSheet.absoluteFillObject
+        ...StyleSheet.absoluteFillObject,
+        justifyContent: "center",
+        alignItems: "center"
     } as ImageStyle,
     streakLabel: {
         fontSize: Style.SCALE_UP_AND_DOWN(15),
         lineHeight: Style.SCALE_UP_AND_DOWN(15),
-        textAlign: "center",
-        width: Platform.select({ android: Style.SCALE_UP_AND_DOWN(37), ios: Style.SCALE_UP_AND_DOWN(41) })
+        textAlign: "center"
     } as TextStyle,
     streakLabelLast: {
         fontSize: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() ? 11 : 12),
@@ -30,7 +31,7 @@ export default StyleSheet.create({
         marginTop: 0
     } as TextStyle,
     streakWrapper: {
-        alignItems: "flex-start",
+        alignItems: "stretch",
         height: Style.SCALE_UP_AND_DOWN(41),
         justifyContent: "center",
         marginRight: Style.SCALE_UP_AND_DOWN(10),

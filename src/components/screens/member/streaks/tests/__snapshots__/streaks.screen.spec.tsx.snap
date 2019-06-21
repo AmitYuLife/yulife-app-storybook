@@ -684,7 +684,7 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "alignItems": "flex-start",
+                "alignItems": "stretch",
                 "height": 82,
                 "justifyContent": "center",
                 "marginRight": 20,
@@ -692,83 +692,41 @@ ShallowWrapper {
               }
             }
           >
-            <Image
-              source={1}
+            <View
               style={
                 Object {
+                  "alignItems": "center",
                   "bottom": 0,
+                  "justifyContent": "center",
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
-                }
-              }
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "alignItems": "flex-start",
-                "height": 82,
-                "justifyContent": "center",
-                "marginRight": 20,
-                "width": 82,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={
-                Object {
-                  "bottom": 0,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "alignItems": "flex-start",
-                "height": 82,
-                "justifyContent": "center",
-                "marginRight": 20,
-                "width": 82,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={
-                Object {
-                  "bottom": 0,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            />
-            <YuText
-              style={
-                Object {
-                  "fontSize": 30,
-                  "lineHeight": 30,
-                  "textAlign": "center",
-                  "width": 82,
                 }
               }
             >
-              3
-            </YuText>
+              <Image
+                source={1}
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+            </View>
           </View>
           <View
             style={
               Object {
-                "alignItems": "flex-start",
+                "alignItems": "stretch",
                 "height": 82,
                 "justifyContent": "center",
                 "marginRight": 20,
@@ -776,31 +734,145 @@ ShallowWrapper {
               }
             }
           >
-            <Image
-              source={1}
+            <View
               style={
                 Object {
+                  "alignItems": "center",
                   "bottom": 0,
+                  "justifyContent": "center",
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
                 }
               }
-            />
-            <YuText
+            >
+              <Image
+                source={1}
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "stretch",
+                "height": 82,
+                "justifyContent": "center",
+                "marginRight": 20,
+                "width": 82,
+              }
+            }
+          >
+            <View
               style={
                 Object {
-                  "fontSize": 24,
-                  "lineHeight": 22,
-                  "marginTop": 0,
-                  "textAlign": "center",
-                  "width": 82,
+                  "alignItems": "center",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
                 }
               }
             >
-              6
-            </YuText>
+              <Image
+                source={1}
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 30,
+                      "lineHeight": 30,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  3
+                </YuText>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "stretch",
+                "height": 82,
+                "justifyContent": "center",
+                "marginRight": 20,
+                "width": 82,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Image
+                source={1}
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 24,
+                      "lineHeight": 22,
+                      "marginTop": 0,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  6
+                </YuText>
+              </View>
+            </View>
           </View>
         </View>,
         <Button
@@ -931,7 +1003,7 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -939,83 +1011,41 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                source={1}
+              <View
                 style={
                   Object {
+                    "alignItems": "center",
                     "bottom": 0,
+                    "justifyContent": "center",
                     "left": 0,
                     "position": "absolute",
                     "right": 0,
                     "top": 0,
-                  }
-                }
-              />
-            </View>,
-            <View
-              style={
-                Object {
-                  "alignItems": "flex-start",
-                  "height": 82,
-                  "justifyContent": "center",
-                  "marginRight": 20,
-                  "width": 82,
-                }
-              }
-            >
-              <Image
-                source={1}
-                style={
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-            </View>,
-            <View
-              style={
-                Object {
-                  "alignItems": "flex-start",
-                  "height": 82,
-                  "justifyContent": "center",
-                  "marginRight": 20,
-                  "width": 82,
-                }
-              }
-            >
-              <Image
-                source={1}
-                style={
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-              <YuText
-                style={
-                  Object {
-                    "fontSize": 30,
-                    "lineHeight": 30,
-                    "textAlign": "center",
-                    "width": 82,
                   }
                 }
               >
-                3
-              </YuText>
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+              </View>
             </View>,
             <View
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -1023,31 +1053,145 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                source={1}
+              <View
                 style={
                   Object {
+                    "alignItems": "center",
                     "bottom": 0,
+                    "justifyContent": "center",
                     "left": 0,
                     "position": "absolute",
                     "right": 0,
                     "top": 0,
                   }
                 }
-              />
-              <YuText
+              >
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+              </View>
+            </View>,
+            <View
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "height": 82,
+                  "justifyContent": "center",
+                  "marginRight": 20,
+                  "width": 82,
+                }
+              }
+            >
+              <View
                 style={
                   Object {
-                    "fontSize": 24,
-                    "lineHeight": 22,
-                    "marginTop": 0,
-                    "textAlign": "center",
-                    "width": 82,
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
                   }
                 }
               >
-                6
-              </YuText>
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    3
+                  </YuText>
+                </View>
+              </View>
+            </View>,
+            <View
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "height": 82,
+                  "justifyContent": "center",
+                  "marginRight": 20,
+                  "width": 82,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 24,
+                        "lineHeight": 22,
+                        "marginTop": 0,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    6
+                  </YuText>
+                </View>
+              </View>
             </View>,
           ],
           "style": Object {
@@ -1062,23 +1206,38 @@ ShallowWrapper {
             "key": "0",
             "nodeType": "class",
             "props": Object {
-              "children": Array [
+              "children": <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
                 <Image
                   source={1}
+                />
+                <View
                   style={
                     Object {
+                      "alignItems": "center",
                       "bottom": 0,
+                      "justifyContent": "center",
                       "left": 0,
                       "position": "absolute",
                       "right": 0,
                       "top": 0,
                     }
                   }
-                />,
-                null,
-              ],
+                />
+              </View>,
               "style": Object {
-                "alignItems": "flex-start",
+                "alignItems": "stretch",
                 "height": 82,
                 "justifyContent": "center",
                 "marginRight": 20,
@@ -1086,27 +1245,75 @@ ShallowWrapper {
               },
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "source": 1,
-                  "style": Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Image
+                    source={1}
+                  />,
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  />,
+                ],
+                "style": Object {
+                  "alignItems": "center",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
                 },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
               },
-              null,
-            ],
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": null,
+                    "style": Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
             "type": [Function],
           },
           Object {
@@ -1114,23 +1321,38 @@ ShallowWrapper {
             "key": "1",
             "nodeType": "class",
             "props": Object {
-              "children": Array [
+              "children": <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
                 <Image
                   source={1}
+                />
+                <View
                   style={
                     Object {
+                      "alignItems": "center",
                       "bottom": 0,
+                      "justifyContent": "center",
                       "left": 0,
                       "position": "absolute",
                       "right": 0,
                       "top": 0,
                     }
                   }
-                />,
-                null,
-              ],
+                />
+              </View>,
               "style": Object {
-                "alignItems": "flex-start",
+                "alignItems": "stretch",
                 "height": 82,
                 "justifyContent": "center",
                 "marginRight": 20,
@@ -1138,27 +1360,75 @@ ShallowWrapper {
               },
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "source": 1,
-                  "style": Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Image
+                    source={1}
+                  />,
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  />,
+                ],
+                "style": Object {
+                  "alignItems": "center",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
                 },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
               },
-              null,
-            ],
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": null,
+                    "style": Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
             "type": [Function],
           },
           Object {
@@ -1166,34 +1436,50 @@ ShallowWrapper {
             "key": "2",
             "nodeType": "class",
             "props": Object {
-              "children": Array [
+              "children": <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
                 <Image
                   source={1}
+                />
+                <View
                   style={
                     Object {
+                      "alignItems": "center",
                       "bottom": 0,
+                      "justifyContent": "center",
                       "left": 0,
                       "position": "absolute",
                       "right": 0,
                       "top": 0,
                     }
                   }
-                />,
-                <YuText
-                  style={
-                    Object {
-                      "fontSize": 30,
-                      "lineHeight": 30,
-                      "textAlign": "center",
-                      "width": 82,
-                    }
-                  }
                 >
-                  3
-                </YuText>,
-              ],
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    3
+                  </YuText>
+                </View>
+              </View>,
               "style": Object {
-                "alignItems": "flex-start",
+                "alignItems": "stretch",
                 "height": 82,
                 "justifyContent": "center",
                 "marginRight": 20,
@@ -1201,43 +1487,112 @@ ShallowWrapper {
               },
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "source": 1,
-                  "style": Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Image
+                    source={1}
+                  />,
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      3
+                    </YuText>
+                  </View>,
+                ],
+                "style": Object {
+                  "alignItems": "center",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
                 },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": "3",
-                  "style": Object {
-                    "fontSize": 30,
-                    "lineHeight": 30,
-                    "textAlign": "center",
-                    "width": 82,
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
                   },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
                 },
-                "ref": null,
-                "rendered": "3",
-                "type": [Function],
-              },
-            ],
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      3
+                    </YuText>,
+                    "style": Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "3",
+                      "style": Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "3",
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
             "type": [Function],
           },
           Object {
@@ -1245,35 +1600,51 @@ ShallowWrapper {
             "key": "3",
             "nodeType": "class",
             "props": Object {
-              "children": Array [
+              "children": <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
                 <Image
                   source={1}
+                />
+                <View
                   style={
                     Object {
+                      "alignItems": "center",
                       "bottom": 0,
+                      "justifyContent": "center",
                       "left": 0,
                       "position": "absolute",
                       "right": 0,
                       "top": 0,
                     }
                   }
-                />,
-                <YuText
-                  style={
-                    Object {
-                      "fontSize": 24,
-                      "lineHeight": 22,
-                      "marginTop": 0,
-                      "textAlign": "center",
-                      "width": 82,
-                    }
-                  }
                 >
-                  6
-                </YuText>,
-              ],
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 24,
+                        "lineHeight": 22,
+                        "marginTop": 0,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    6
+                  </YuText>
+                </View>
+              </View>,
               "style": Object {
-                "alignItems": "flex-start",
+                "alignItems": "stretch",
                 "height": 82,
                 "justifyContent": "center",
                 "marginRight": 20,
@@ -1281,44 +1652,115 @@ ShallowWrapper {
               },
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "source": 1,
-                  "style": Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Image
+                    source={1}
+                  />,
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 24,
+                          "lineHeight": 22,
+                          "marginTop": 0,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      6
+                    </YuText>
+                  </View>,
+                ],
+                "style": Object {
+                  "alignItems": "center",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
                 },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": "6",
-                  "style": Object {
-                    "fontSize": 24,
-                    "lineHeight": 22,
-                    "marginTop": 0,
-                    "textAlign": "center",
-                    "width": 82,
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
                   },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
                 },
-                "ref": null,
-                "rendered": "6",
-                "type": [Function],
-              },
-            ],
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <YuText
+                      style={
+                        Object {
+                          "fontSize": 24,
+                          "lineHeight": 22,
+                          "marginTop": 0,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      6
+                    </YuText>,
+                    "style": Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "6",
+                      "style": Object {
+                        "fontSize": 24,
+                        "lineHeight": 22,
+                        "marginTop": 0,
+                        "textAlign": "center",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "6",
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
             "type": [Function],
           },
         ],
@@ -1404,7 +1846,7 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -1412,83 +1854,41 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                source={1}
+              <View
                 style={
                   Object {
+                    "alignItems": "center",
                     "bottom": 0,
+                    "justifyContent": "center",
                     "left": 0,
                     "position": "absolute",
                     "right": 0,
                     "top": 0,
-                  }
-                }
-              />
-            </View>
-            <View
-              style={
-                Object {
-                  "alignItems": "flex-start",
-                  "height": 82,
-                  "justifyContent": "center",
-                  "marginRight": 20,
-                  "width": 82,
-                }
-              }
-            >
-              <Image
-                source={1}
-                style={
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-            </View>
-            <View
-              style={
-                Object {
-                  "alignItems": "flex-start",
-                  "height": 82,
-                  "justifyContent": "center",
-                  "marginRight": 20,
-                  "width": 82,
-                }
-              }
-            >
-              <Image
-                source={1}
-                style={
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-              <YuText
-                style={
-                  Object {
-                    "fontSize": 30,
-                    "lineHeight": 30,
-                    "textAlign": "center",
-                    "width": 82,
                   }
                 }
               >
-                3
-              </YuText>
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+              </View>
             </View>
             <View
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -1496,31 +1896,145 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                source={1}
+              <View
                 style={
                   Object {
+                    "alignItems": "center",
                     "bottom": 0,
+                    "justifyContent": "center",
                     "left": 0,
                     "position": "absolute",
                     "right": 0,
                     "top": 0,
                   }
                 }
-              />
-              <YuText
+              >
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "height": 82,
+                  "justifyContent": "center",
+                  "marginRight": 20,
+                  "width": 82,
+                }
+              }
+            >
+              <View
                 style={
                   Object {
-                    "fontSize": 24,
-                    "lineHeight": 22,
-                    "marginTop": 0,
-                    "textAlign": "center",
-                    "width": 82,
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
                   }
                 }
               >
-                6
-              </YuText>
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    3
+                  </YuText>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "height": 82,
+                  "justifyContent": "center",
+                  "marginRight": 20,
+                  "width": 82,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 24,
+                        "lineHeight": 22,
+                        "marginTop": 0,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    6
+                  </YuText>
+                </View>
+              </View>
             </View>
           </View>,
           <Button
@@ -1651,7 +2165,7 @@ ShallowWrapper {
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "stretch",
                     "height": 82,
                     "justifyContent": "center",
                     "marginRight": 20,
@@ -1659,83 +2173,41 @@ ShallowWrapper {
                   }
                 }
               >
-                <Image
-                  source={1}
+                <View
                   style={
                     Object {
+                      "alignItems": "center",
                       "bottom": 0,
+                      "justifyContent": "center",
                       "left": 0,
                       "position": "absolute",
                       "right": 0,
                       "top": 0,
-                    }
-                  }
-                />
-              </View>,
-              <View
-                style={
-                  Object {
-                    "alignItems": "flex-start",
-                    "height": 82,
-                    "justifyContent": "center",
-                    "marginRight": 20,
-                    "width": 82,
-                  }
-                }
-              >
-                <Image
-                  source={1}
-                  style={
-                    Object {
-                      "bottom": 0,
-                      "left": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                    }
-                  }
-                />
-              </View>,
-              <View
-                style={
-                  Object {
-                    "alignItems": "flex-start",
-                    "height": 82,
-                    "justifyContent": "center",
-                    "marginRight": 20,
-                    "width": 82,
-                  }
-                }
-              >
-                <Image
-                  source={1}
-                  style={
-                    Object {
-                      "bottom": 0,
-                      "left": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                    }
-                  }
-                />
-                <YuText
-                  style={
-                    Object {
-                      "fontSize": 30,
-                      "lineHeight": 30,
-                      "textAlign": "center",
-                      "width": 82,
                     }
                   }
                 >
-                  3
-                </YuText>
+                  <Image
+                    source={1}
+                  />
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  />
+                </View>
               </View>,
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "stretch",
                     "height": 82,
                     "justifyContent": "center",
                     "marginRight": 20,
@@ -1743,31 +2215,145 @@ ShallowWrapper {
                   }
                 }
               >
-                <Image
-                  source={1}
+                <View
                   style={
                     Object {
+                      "alignItems": "center",
                       "bottom": 0,
+                      "justifyContent": "center",
                       "left": 0,
                       "position": "absolute",
                       "right": 0,
                       "top": 0,
                     }
                   }
-                />
-                <YuText
+                >
+                  <Image
+                    source={1}
+                  />
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  />
+                </View>
+              </View>,
+              <View
+                style={
+                  Object {
+                    "alignItems": "stretch",
+                    "height": 82,
+                    "justifyContent": "center",
+                    "marginRight": 20,
+                    "width": 82,
+                  }
+                }
+              >
+                <View
                   style={
                     Object {
-                      "fontSize": 24,
-                      "lineHeight": 22,
-                      "marginTop": 0,
-                      "textAlign": "center",
-                      "width": 82,
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
                     }
                   }
                 >
-                  6
-                </YuText>
+                  <Image
+                    source={1}
+                  />
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      3
+                    </YuText>
+                  </View>
+                </View>
+              </View>,
+              <View
+                style={
+                  Object {
+                    "alignItems": "stretch",
+                    "height": 82,
+                    "justifyContent": "center",
+                    "marginRight": 20,
+                    "width": 82,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <Image
+                    source={1}
+                  />
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 24,
+                          "lineHeight": 22,
+                          "marginTop": 0,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      6
+                    </YuText>
+                  </View>
+                </View>
               </View>,
             ],
             "style": Object {
@@ -1782,23 +2368,38 @@ ShallowWrapper {
               "key": "0",
               "nodeType": "class",
               "props": Object {
-                "children": Array [
+                "children": <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
                   <Image
                     source={1}
+                  />
+                  <View
                     style={
                       Object {
+                        "alignItems": "center",
                         "bottom": 0,
+                        "justifyContent": "center",
                         "left": 0,
                         "position": "absolute",
                         "right": 0,
                         "top": 0,
                       }
                     }
-                  />,
-                  null,
-                ],
+                  />
+                </View>,
                 "style": Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -1806,27 +2407,75 @@ ShallowWrapper {
                 },
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "source": 1,
-                    "style": Object {
-                      "bottom": 0,
-                      "left": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                    },
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <Image
+                      source={1}
+                    />,
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "bottom": 0,
+                          "justifyContent": "center",
+                          "left": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                        }
+                      }
+                    />,
+                  ],
+                  "style": Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
                   },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
                 },
-                null,
-              ],
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "source": 1,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": null,
+                      "style": Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
               "type": [Function],
             },
             Object {
@@ -1834,23 +2483,38 @@ ShallowWrapper {
               "key": "1",
               "nodeType": "class",
               "props": Object {
-                "children": Array [
+                "children": <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
                   <Image
                     source={1}
+                  />
+                  <View
                     style={
                       Object {
+                        "alignItems": "center",
                         "bottom": 0,
+                        "justifyContent": "center",
                         "left": 0,
                         "position": "absolute",
                         "right": 0,
                         "top": 0,
                       }
                     }
-                  />,
-                  null,
-                ],
+                  />
+                </View>,
                 "style": Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -1858,27 +2522,75 @@ ShallowWrapper {
                 },
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "source": 1,
-                    "style": Object {
-                      "bottom": 0,
-                      "left": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                    },
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <Image
+                      source={1}
+                    />,
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "bottom": 0,
+                          "justifyContent": "center",
+                          "left": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                        }
+                      }
+                    />,
+                  ],
+                  "style": Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
                   },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
                 },
-                null,
-              ],
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "source": 1,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": null,
+                      "style": Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
               "type": [Function],
             },
             Object {
@@ -1886,34 +2598,50 @@ ShallowWrapper {
               "key": "2",
               "nodeType": "class",
               "props": Object {
-                "children": Array [
+                "children": <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
                   <Image
                     source={1}
+                  />
+                  <View
                     style={
                       Object {
+                        "alignItems": "center",
                         "bottom": 0,
+                        "justifyContent": "center",
                         "left": 0,
                         "position": "absolute",
                         "right": 0,
                         "top": 0,
                       }
                     }
-                  />,
-                  <YuText
-                    style={
-                      Object {
-                        "fontSize": 30,
-                        "lineHeight": 30,
-                        "textAlign": "center",
-                        "width": 82,
-                      }
-                    }
                   >
-                    3
-                  </YuText>,
-                ],
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      3
+                    </YuText>
+                  </View>
+                </View>,
                 "style": Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -1921,43 +2649,112 @@ ShallowWrapper {
                 },
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "source": 1,
-                    "style": Object {
-                      "bottom": 0,
-                      "left": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                    },
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <Image
+                      source={1}
+                    />,
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "bottom": 0,
+                          "justifyContent": "center",
+                          "left": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                        }
+                      }
+                    >
+                      <YuText
+                        style={
+                          Object {
+                            "fontSize": 30,
+                            "lineHeight": 30,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        3
+                      </YuText>
+                    </View>,
+                  ],
+                  "style": Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
                   },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "children": "3",
-                    "style": Object {
-                      "fontSize": 30,
-                      "lineHeight": 30,
-                      "textAlign": "center",
-                      "width": 82,
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "source": 1,
                     },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
                   },
-                  "ref": null,
-                  "rendered": "3",
-                  "type": [Function],
-                },
-              ],
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <YuText
+                        style={
+                          Object {
+                            "fontSize": 30,
+                            "lineHeight": 30,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        3
+                      </YuText>,
+                      "style": Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "children": "3",
+                        "style": Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "3",
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
               "type": [Function],
             },
             Object {
@@ -1965,35 +2762,51 @@ ShallowWrapper {
               "key": "3",
               "nodeType": "class",
               "props": Object {
-                "children": Array [
+                "children": <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
                   <Image
                     source={1}
+                  />
+                  <View
                     style={
                       Object {
+                        "alignItems": "center",
                         "bottom": 0,
+                        "justifyContent": "center",
                         "left": 0,
                         "position": "absolute",
                         "right": 0,
                         "top": 0,
                       }
                     }
-                  />,
-                  <YuText
-                    style={
-                      Object {
-                        "fontSize": 24,
-                        "lineHeight": 22,
-                        "marginTop": 0,
-                        "textAlign": "center",
-                        "width": 82,
-                      }
-                    }
                   >
-                    6
-                  </YuText>,
-                ],
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 24,
+                          "lineHeight": 22,
+                          "marginTop": 0,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      6
+                    </YuText>
+                  </View>
+                </View>,
                 "style": Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -2001,44 +2814,115 @@ ShallowWrapper {
                 },
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "source": 1,
-                    "style": Object {
-                      "bottom": 0,
-                      "left": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                    },
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <Image
+                      source={1}
+                    />,
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "bottom": 0,
+                          "justifyContent": "center",
+                          "left": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                        }
+                      }
+                    >
+                      <YuText
+                        style={
+                          Object {
+                            "fontSize": 24,
+                            "lineHeight": 22,
+                            "marginTop": 0,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        6
+                      </YuText>
+                    </View>,
+                  ],
+                  "style": Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
                   },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "children": "6",
-                    "style": Object {
-                      "fontSize": 24,
-                      "lineHeight": 22,
-                      "marginTop": 0,
-                      "textAlign": "center",
-                      "width": 82,
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "source": 1,
                     },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
                   },
-                  "ref": null,
-                  "rendered": "6",
-                  "type": [Function],
-                },
-              ],
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <YuText
+                        style={
+                          Object {
+                            "fontSize": 24,
+                            "lineHeight": 22,
+                            "marginTop": 0,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        6
+                      </YuText>,
+                      "style": Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "children": "6",
+                        "style": Object {
+                          "fontSize": 24,
+                          "lineHeight": 22,
+                          "marginTop": 0,
+                          "textAlign": "center",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "6",
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
               "type": [Function],
             },
           ],
@@ -2724,7 +3608,7 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "alignItems": "flex-start",
+                "alignItems": "stretch",
                 "height": 82,
                 "justifyContent": "center",
                 "marginRight": 20,
@@ -2732,35 +3616,53 @@ ShallowWrapper {
               }
             }
           >
-            <Image
-              source={1}
+            <View
               style={
                 Object {
+                  "alignItems": "center",
                   "bottom": 0,
+                  "justifyContent": "center",
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
                 }
               }
-            />
-            <YuText
-              style={
-                Object {
-                  "fontSize": 30,
-                  "lineHeight": 30,
-                  "textAlign": "center",
-                  "width": 82,
-                }
-              }
             >
-              1
-            </YuText>
+              <Image
+                source={1}
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 30,
+                      "lineHeight": 30,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  1
+                </YuText>
+              </View>
+            </View>
           </View>
           <View
             style={
               Object {
-                "alignItems": "flex-start",
+                "alignItems": "stretch",
                 "height": 82,
                 "justifyContent": "center",
                 "marginRight": 20,
@@ -2768,35 +3670,53 @@ ShallowWrapper {
               }
             }
           >
-            <Image
-              source={1}
+            <View
               style={
                 Object {
+                  "alignItems": "center",
                   "bottom": 0,
+                  "justifyContent": "center",
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
                 }
               }
-            />
-            <YuText
-              style={
-                Object {
-                  "fontSize": 30,
-                  "lineHeight": 30,
-                  "textAlign": "center",
-                  "width": 82,
-                }
-              }
             >
-              2
-            </YuText>
+              <Image
+                source={1}
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 30,
+                      "lineHeight": 30,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  2
+                </YuText>
+              </View>
+            </View>
           </View>
           <View
             style={
               Object {
-                "alignItems": "flex-start",
+                "alignItems": "stretch",
                 "height": 82,
                 "justifyContent": "center",
                 "marginRight": 20,
@@ -2804,35 +3724,53 @@ ShallowWrapper {
               }
             }
           >
-            <Image
-              source={1}
+            <View
               style={
                 Object {
+                  "alignItems": "center",
                   "bottom": 0,
+                  "justifyContent": "center",
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
                 }
               }
-            />
-            <YuText
-              style={
-                Object {
-                  "fontSize": 30,
-                  "lineHeight": 30,
-                  "textAlign": "center",
-                  "width": 82,
-                }
-              }
             >
-              3
-            </YuText>
+              <Image
+                source={1}
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 30,
+                      "lineHeight": 30,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  3
+                </YuText>
+              </View>
+            </View>
           </View>
           <View
             style={
               Object {
-                "alignItems": "flex-start",
+                "alignItems": "stretch",
                 "height": 82,
                 "justifyContent": "center",
                 "marginRight": 20,
@@ -2840,31 +3778,49 @@ ShallowWrapper {
               }
             }
           >
-            <Image
-              source={1}
+            <View
               style={
                 Object {
+                  "alignItems": "center",
                   "bottom": 0,
+                  "justifyContent": "center",
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
                 }
               }
-            />
-            <YuText
-              style={
-                Object {
-                  "fontSize": 24,
-                  "lineHeight": 22,
-                  "marginTop": 0,
-                  "textAlign": "center",
-                  "width": 82,
-                }
-              }
             >
-              6
-            </YuText>
+              <Image
+                source={1}
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 24,
+                      "lineHeight": 22,
+                      "marginTop": 0,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  6
+                </YuText>
+              </View>
+            </View>
           </View>
         </View>,
         <Button
@@ -2995,7 +3951,7 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -3003,35 +3959,53 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                source={1}
+              <View
                 style={
                   Object {
+                    "alignItems": "center",
                     "bottom": 0,
+                    "justifyContent": "center",
                     "left": 0,
                     "position": "absolute",
                     "right": 0,
                     "top": 0,
                   }
                 }
-              />
-              <YuText
-                style={
-                  Object {
-                    "fontSize": 30,
-                    "lineHeight": 30,
-                    "textAlign": "center",
-                    "width": 82,
-                  }
-                }
               >
-                1
-              </YuText>
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    1
+                  </YuText>
+                </View>
+              </View>
             </View>,
             <View
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -3039,35 +4013,53 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                source={1}
+              <View
                 style={
                   Object {
+                    "alignItems": "center",
                     "bottom": 0,
+                    "justifyContent": "center",
                     "left": 0,
                     "position": "absolute",
                     "right": 0,
                     "top": 0,
                   }
                 }
-              />
-              <YuText
-                style={
-                  Object {
-                    "fontSize": 30,
-                    "lineHeight": 30,
-                    "textAlign": "center",
-                    "width": 82,
-                  }
-                }
               >
-                2
-              </YuText>
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    2
+                  </YuText>
+                </View>
+              </View>
             </View>,
             <View
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -3075,35 +4067,53 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                source={1}
+              <View
                 style={
                   Object {
+                    "alignItems": "center",
                     "bottom": 0,
+                    "justifyContent": "center",
                     "left": 0,
                     "position": "absolute",
                     "right": 0,
                     "top": 0,
                   }
                 }
-              />
-              <YuText
-                style={
-                  Object {
-                    "fontSize": 30,
-                    "lineHeight": 30,
-                    "textAlign": "center",
-                    "width": 82,
-                  }
-                }
               >
-                3
-              </YuText>
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    3
+                  </YuText>
+                </View>
+              </View>
             </View>,
             <View
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -3111,31 +4121,49 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                source={1}
+              <View
                 style={
                   Object {
+                    "alignItems": "center",
                     "bottom": 0,
+                    "justifyContent": "center",
                     "left": 0,
                     "position": "absolute",
                     "right": 0,
                     "top": 0,
                   }
                 }
-              />
-              <YuText
-                style={
-                  Object {
-                    "fontSize": 24,
-                    "lineHeight": 22,
-                    "marginTop": 0,
-                    "textAlign": "center",
-                    "width": 82,
-                  }
-                }
               >
-                6
-              </YuText>
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 24,
+                        "lineHeight": 22,
+                        "marginTop": 0,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    6
+                  </YuText>
+                </View>
+              </View>
             </View>,
           ],
           "style": Object {
@@ -3150,34 +4178,50 @@ ShallowWrapper {
             "key": "0",
             "nodeType": "class",
             "props": Object {
-              "children": Array [
+              "children": <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
                 <Image
                   source={1}
+                />
+                <View
                   style={
                     Object {
+                      "alignItems": "center",
                       "bottom": 0,
+                      "justifyContent": "center",
                       "left": 0,
                       "position": "absolute",
                       "right": 0,
                       "top": 0,
                     }
                   }
-                />,
-                <YuText
-                  style={
-                    Object {
-                      "fontSize": 30,
-                      "lineHeight": 30,
-                      "textAlign": "center",
-                      "width": 82,
-                    }
-                  }
                 >
-                  1
-                </YuText>,
-              ],
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    1
+                  </YuText>
+                </View>
+              </View>,
               "style": Object {
-                "alignItems": "flex-start",
+                "alignItems": "stretch",
                 "height": 82,
                 "justifyContent": "center",
                 "marginRight": 20,
@@ -3185,43 +4229,112 @@ ShallowWrapper {
               },
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "source": 1,
-                  "style": Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Image
+                    source={1}
+                  />,
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      1
+                    </YuText>
+                  </View>,
+                ],
+                "style": Object {
+                  "alignItems": "center",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
                 },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": "1",
-                  "style": Object {
-                    "fontSize": 30,
-                    "lineHeight": 30,
-                    "textAlign": "center",
-                    "width": 82,
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
                   },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
                 },
-                "ref": null,
-                "rendered": "1",
-                "type": [Function],
-              },
-            ],
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      1
+                    </YuText>,
+                    "style": Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "1",
+                      "style": Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "1",
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
             "type": [Function],
           },
           Object {
@@ -3229,34 +4342,50 @@ ShallowWrapper {
             "key": "1",
             "nodeType": "class",
             "props": Object {
-              "children": Array [
+              "children": <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
                 <Image
                   source={1}
+                />
+                <View
                   style={
                     Object {
+                      "alignItems": "center",
                       "bottom": 0,
+                      "justifyContent": "center",
                       "left": 0,
                       "position": "absolute",
                       "right": 0,
                       "top": 0,
                     }
                   }
-                />,
-                <YuText
-                  style={
-                    Object {
-                      "fontSize": 30,
-                      "lineHeight": 30,
-                      "textAlign": "center",
-                      "width": 82,
-                    }
-                  }
                 >
-                  2
-                </YuText>,
-              ],
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    2
+                  </YuText>
+                </View>
+              </View>,
               "style": Object {
-                "alignItems": "flex-start",
+                "alignItems": "stretch",
                 "height": 82,
                 "justifyContent": "center",
                 "marginRight": 20,
@@ -3264,43 +4393,112 @@ ShallowWrapper {
               },
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "source": 1,
-                  "style": Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Image
+                    source={1}
+                  />,
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      2
+                    </YuText>
+                  </View>,
+                ],
+                "style": Object {
+                  "alignItems": "center",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
                 },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": "2",
-                  "style": Object {
-                    "fontSize": 30,
-                    "lineHeight": 30,
-                    "textAlign": "center",
-                    "width": 82,
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
                   },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
                 },
-                "ref": null,
-                "rendered": "2",
-                "type": [Function],
-              },
-            ],
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      2
+                    </YuText>,
+                    "style": Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "2",
+                      "style": Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "2",
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
             "type": [Function],
           },
           Object {
@@ -3308,34 +4506,50 @@ ShallowWrapper {
             "key": "2",
             "nodeType": "class",
             "props": Object {
-              "children": Array [
+              "children": <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
                 <Image
                   source={1}
+                />
+                <View
                   style={
                     Object {
+                      "alignItems": "center",
                       "bottom": 0,
+                      "justifyContent": "center",
                       "left": 0,
                       "position": "absolute",
                       "right": 0,
                       "top": 0,
                     }
                   }
-                />,
-                <YuText
-                  style={
-                    Object {
-                      "fontSize": 30,
-                      "lineHeight": 30,
-                      "textAlign": "center",
-                      "width": 82,
-                    }
-                  }
                 >
-                  3
-                </YuText>,
-              ],
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    3
+                  </YuText>
+                </View>
+              </View>,
               "style": Object {
-                "alignItems": "flex-start",
+                "alignItems": "stretch",
                 "height": 82,
                 "justifyContent": "center",
                 "marginRight": 20,
@@ -3343,43 +4557,112 @@ ShallowWrapper {
               },
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "source": 1,
-                  "style": Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Image
+                    source={1}
+                  />,
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      3
+                    </YuText>
+                  </View>,
+                ],
+                "style": Object {
+                  "alignItems": "center",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
                 },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": "3",
-                  "style": Object {
-                    "fontSize": 30,
-                    "lineHeight": 30,
-                    "textAlign": "center",
-                    "width": 82,
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
                   },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
                 },
-                "ref": null,
-                "rendered": "3",
-                "type": [Function],
-              },
-            ],
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      3
+                    </YuText>,
+                    "style": Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "3",
+                      "style": Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "3",
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
             "type": [Function],
           },
           Object {
@@ -3387,35 +4670,51 @@ ShallowWrapper {
             "key": "3",
             "nodeType": "class",
             "props": Object {
-              "children": Array [
+              "children": <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
                 <Image
                   source={1}
+                />
+                <View
                   style={
                     Object {
+                      "alignItems": "center",
                       "bottom": 0,
+                      "justifyContent": "center",
                       "left": 0,
                       "position": "absolute",
                       "right": 0,
                       "top": 0,
                     }
                   }
-                />,
-                <YuText
-                  style={
-                    Object {
-                      "fontSize": 24,
-                      "lineHeight": 22,
-                      "marginTop": 0,
-                      "textAlign": "center",
-                      "width": 82,
-                    }
-                  }
                 >
-                  6
-                </YuText>,
-              ],
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 24,
+                        "lineHeight": 22,
+                        "marginTop": 0,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    6
+                  </YuText>
+                </View>
+              </View>,
               "style": Object {
-                "alignItems": "flex-start",
+                "alignItems": "stretch",
                 "height": 82,
                 "justifyContent": "center",
                 "marginRight": 20,
@@ -3423,44 +4722,115 @@ ShallowWrapper {
               },
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "source": 1,
-                  "style": Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Image
+                    source={1}
+                  />,
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 24,
+                          "lineHeight": 22,
+                          "marginTop": 0,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      6
+                    </YuText>
+                  </View>,
+                ],
+                "style": Object {
+                  "alignItems": "center",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
                 },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": "6",
-                  "style": Object {
-                    "fontSize": 24,
-                    "lineHeight": 22,
-                    "marginTop": 0,
-                    "textAlign": "center",
-                    "width": 82,
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
                   },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
                 },
-                "ref": null,
-                "rendered": "6",
-                "type": [Function],
-              },
-            ],
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <YuText
+                      style={
+                        Object {
+                          "fontSize": 24,
+                          "lineHeight": 22,
+                          "marginTop": 0,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      6
+                    </YuText>,
+                    "style": Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "6",
+                      "style": Object {
+                        "fontSize": 24,
+                        "lineHeight": 22,
+                        "marginTop": 0,
+                        "textAlign": "center",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "6",
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
             "type": [Function],
           },
         ],
@@ -3546,7 +4916,7 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -3554,35 +4924,53 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                source={1}
+              <View
                 style={
                   Object {
+                    "alignItems": "center",
                     "bottom": 0,
+                    "justifyContent": "center",
                     "left": 0,
                     "position": "absolute",
                     "right": 0,
                     "top": 0,
                   }
                 }
-              />
-              <YuText
-                style={
-                  Object {
-                    "fontSize": 30,
-                    "lineHeight": 30,
-                    "textAlign": "center",
-                    "width": 82,
-                  }
-                }
               >
-                1
-              </YuText>
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    1
+                  </YuText>
+                </View>
+              </View>
             </View>
             <View
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -3590,35 +4978,53 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                source={1}
+              <View
                 style={
                   Object {
+                    "alignItems": "center",
                     "bottom": 0,
+                    "justifyContent": "center",
                     "left": 0,
                     "position": "absolute",
                     "right": 0,
                     "top": 0,
                   }
                 }
-              />
-              <YuText
-                style={
-                  Object {
-                    "fontSize": 30,
-                    "lineHeight": 30,
-                    "textAlign": "center",
-                    "width": 82,
-                  }
-                }
               >
-                2
-              </YuText>
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    2
+                  </YuText>
+                </View>
+              </View>
             </View>
             <View
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -3626,35 +5032,53 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                source={1}
+              <View
                 style={
                   Object {
+                    "alignItems": "center",
                     "bottom": 0,
+                    "justifyContent": "center",
                     "left": 0,
                     "position": "absolute",
                     "right": 0,
                     "top": 0,
                   }
                 }
-              />
-              <YuText
-                style={
-                  Object {
-                    "fontSize": 30,
-                    "lineHeight": 30,
-                    "textAlign": "center",
-                    "width": 82,
-                  }
-                }
               >
-                3
-              </YuText>
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 30,
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    3
+                  </YuText>
+                </View>
+              </View>
             </View>
             <View
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -3662,31 +5086,49 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                source={1}
+              <View
                 style={
                   Object {
+                    "alignItems": "center",
                     "bottom": 0,
+                    "justifyContent": "center",
                     "left": 0,
                     "position": "absolute",
                     "right": 0,
                     "top": 0,
                   }
                 }
-              />
-              <YuText
-                style={
-                  Object {
-                    "fontSize": 24,
-                    "lineHeight": 22,
-                    "marginTop": 0,
-                    "textAlign": "center",
-                    "width": 82,
-                  }
-                }
               >
-                6
-              </YuText>
+                <Image
+                  source={1}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 24,
+                        "lineHeight": 22,
+                        "marginTop": 0,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    6
+                  </YuText>
+                </View>
+              </View>
             </View>
           </View>,
           <Button
@@ -3817,7 +5259,7 @@ ShallowWrapper {
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "stretch",
                     "height": 82,
                     "justifyContent": "center",
                     "marginRight": 20,
@@ -3825,35 +5267,53 @@ ShallowWrapper {
                   }
                 }
               >
-                <Image
-                  source={1}
+                <View
                   style={
                     Object {
+                      "alignItems": "center",
                       "bottom": 0,
+                      "justifyContent": "center",
                       "left": 0,
                       "position": "absolute",
                       "right": 0,
                       "top": 0,
                     }
                   }
-                />
-                <YuText
-                  style={
-                    Object {
-                      "fontSize": 30,
-                      "lineHeight": 30,
-                      "textAlign": "center",
-                      "width": 82,
-                    }
-                  }
                 >
-                  1
-                </YuText>
+                  <Image
+                    source={1}
+                  />
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      1
+                    </YuText>
+                  </View>
+                </View>
               </View>,
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "stretch",
                     "height": 82,
                     "justifyContent": "center",
                     "marginRight": 20,
@@ -3861,35 +5321,53 @@ ShallowWrapper {
                   }
                 }
               >
-                <Image
-                  source={1}
+                <View
                   style={
                     Object {
+                      "alignItems": "center",
                       "bottom": 0,
+                      "justifyContent": "center",
                       "left": 0,
                       "position": "absolute",
                       "right": 0,
                       "top": 0,
                     }
                   }
-                />
-                <YuText
-                  style={
-                    Object {
-                      "fontSize": 30,
-                      "lineHeight": 30,
-                      "textAlign": "center",
-                      "width": 82,
-                    }
-                  }
                 >
-                  2
-                </YuText>
+                  <Image
+                    source={1}
+                  />
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      2
+                    </YuText>
+                  </View>
+                </View>
               </View>,
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "stretch",
                     "height": 82,
                     "justifyContent": "center",
                     "marginRight": 20,
@@ -3897,35 +5375,53 @@ ShallowWrapper {
                   }
                 }
               >
-                <Image
-                  source={1}
+                <View
                   style={
                     Object {
+                      "alignItems": "center",
                       "bottom": 0,
+                      "justifyContent": "center",
                       "left": 0,
                       "position": "absolute",
                       "right": 0,
                       "top": 0,
                     }
                   }
-                />
-                <YuText
-                  style={
-                    Object {
-                      "fontSize": 30,
-                      "lineHeight": 30,
-                      "textAlign": "center",
-                      "width": 82,
-                    }
-                  }
                 >
-                  3
-                </YuText>
+                  <Image
+                    source={1}
+                  />
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      3
+                    </YuText>
+                  </View>
+                </View>
               </View>,
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "stretch",
                     "height": 82,
                     "justifyContent": "center",
                     "marginRight": 20,
@@ -3933,31 +5429,49 @@ ShallowWrapper {
                   }
                 }
               >
-                <Image
-                  source={1}
+                <View
                   style={
                     Object {
+                      "alignItems": "center",
                       "bottom": 0,
+                      "justifyContent": "center",
                       "left": 0,
                       "position": "absolute",
                       "right": 0,
                       "top": 0,
                     }
                   }
-                />
-                <YuText
-                  style={
-                    Object {
-                      "fontSize": 24,
-                      "lineHeight": 22,
-                      "marginTop": 0,
-                      "textAlign": "center",
-                      "width": 82,
-                    }
-                  }
                 >
-                  6
-                </YuText>
+                  <Image
+                    source={1}
+                  />
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 24,
+                          "lineHeight": 22,
+                          "marginTop": 0,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      6
+                    </YuText>
+                  </View>
+                </View>
               </View>,
             ],
             "style": Object {
@@ -3972,34 +5486,50 @@ ShallowWrapper {
               "key": "0",
               "nodeType": "class",
               "props": Object {
-                "children": Array [
+                "children": <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
                   <Image
                     source={1}
+                  />
+                  <View
                     style={
                       Object {
+                        "alignItems": "center",
                         "bottom": 0,
+                        "justifyContent": "center",
                         "left": 0,
                         "position": "absolute",
                         "right": 0,
                         "top": 0,
                       }
                     }
-                  />,
-                  <YuText
-                    style={
-                      Object {
-                        "fontSize": 30,
-                        "lineHeight": 30,
-                        "textAlign": "center",
-                        "width": 82,
-                      }
-                    }
                   >
-                    1
-                  </YuText>,
-                ],
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      1
+                    </YuText>
+                  </View>
+                </View>,
                 "style": Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -4007,43 +5537,112 @@ ShallowWrapper {
                 },
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "source": 1,
-                    "style": Object {
-                      "bottom": 0,
-                      "left": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                    },
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <Image
+                      source={1}
+                    />,
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "bottom": 0,
+                          "justifyContent": "center",
+                          "left": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                        }
+                      }
+                    >
+                      <YuText
+                        style={
+                          Object {
+                            "fontSize": 30,
+                            "lineHeight": 30,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        1
+                      </YuText>
+                    </View>,
+                  ],
+                  "style": Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
                   },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "children": "1",
-                    "style": Object {
-                      "fontSize": 30,
-                      "lineHeight": 30,
-                      "textAlign": "center",
-                      "width": 82,
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "source": 1,
                     },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
                   },
-                  "ref": null,
-                  "rendered": "1",
-                  "type": [Function],
-                },
-              ],
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <YuText
+                        style={
+                          Object {
+                            "fontSize": 30,
+                            "lineHeight": 30,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        1
+                      </YuText>,
+                      "style": Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "children": "1",
+                        "style": Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "1",
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
               "type": [Function],
             },
             Object {
@@ -4051,34 +5650,50 @@ ShallowWrapper {
               "key": "1",
               "nodeType": "class",
               "props": Object {
-                "children": Array [
+                "children": <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
                   <Image
                     source={1}
+                  />
+                  <View
                     style={
                       Object {
+                        "alignItems": "center",
                         "bottom": 0,
+                        "justifyContent": "center",
                         "left": 0,
                         "position": "absolute",
                         "right": 0,
                         "top": 0,
                       }
                     }
-                  />,
-                  <YuText
-                    style={
-                      Object {
-                        "fontSize": 30,
-                        "lineHeight": 30,
-                        "textAlign": "center",
-                        "width": 82,
-                      }
-                    }
                   >
-                    2
-                  </YuText>,
-                ],
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      2
+                    </YuText>
+                  </View>
+                </View>,
                 "style": Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -4086,43 +5701,112 @@ ShallowWrapper {
                 },
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "source": 1,
-                    "style": Object {
-                      "bottom": 0,
-                      "left": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                    },
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <Image
+                      source={1}
+                    />,
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "bottom": 0,
+                          "justifyContent": "center",
+                          "left": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                        }
+                      }
+                    >
+                      <YuText
+                        style={
+                          Object {
+                            "fontSize": 30,
+                            "lineHeight": 30,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        2
+                      </YuText>
+                    </View>,
+                  ],
+                  "style": Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
                   },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "children": "2",
-                    "style": Object {
-                      "fontSize": 30,
-                      "lineHeight": 30,
-                      "textAlign": "center",
-                      "width": 82,
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "source": 1,
                     },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
                   },
-                  "ref": null,
-                  "rendered": "2",
-                  "type": [Function],
-                },
-              ],
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <YuText
+                        style={
+                          Object {
+                            "fontSize": 30,
+                            "lineHeight": 30,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        2
+                      </YuText>,
+                      "style": Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "children": "2",
+                        "style": Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "2",
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
               "type": [Function],
             },
             Object {
@@ -4130,34 +5814,50 @@ ShallowWrapper {
               "key": "2",
               "nodeType": "class",
               "props": Object {
-                "children": Array [
+                "children": <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
                   <Image
                     source={1}
+                  />
+                  <View
                     style={
                       Object {
+                        "alignItems": "center",
                         "bottom": 0,
+                        "justifyContent": "center",
                         "left": 0,
                         "position": "absolute",
                         "right": 0,
                         "top": 0,
                       }
                     }
-                  />,
-                  <YuText
-                    style={
-                      Object {
-                        "fontSize": 30,
-                        "lineHeight": 30,
-                        "textAlign": "center",
-                        "width": 82,
-                      }
-                    }
                   >
-                    3
-                  </YuText>,
-                ],
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      3
+                    </YuText>
+                  </View>
+                </View>,
                 "style": Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -4165,43 +5865,112 @@ ShallowWrapper {
                 },
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "source": 1,
-                    "style": Object {
-                      "bottom": 0,
-                      "left": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                    },
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <Image
+                      source={1}
+                    />,
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "bottom": 0,
+                          "justifyContent": "center",
+                          "left": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                        }
+                      }
+                    >
+                      <YuText
+                        style={
+                          Object {
+                            "fontSize": 30,
+                            "lineHeight": 30,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        3
+                      </YuText>
+                    </View>,
+                  ],
+                  "style": Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
                   },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "children": "3",
-                    "style": Object {
-                      "fontSize": 30,
-                      "lineHeight": 30,
-                      "textAlign": "center",
-                      "width": 82,
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "source": 1,
                     },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
                   },
-                  "ref": null,
-                  "rendered": "3",
-                  "type": [Function],
-                },
-              ],
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <YuText
+                        style={
+                          Object {
+                            "fontSize": 30,
+                            "lineHeight": 30,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        3
+                      </YuText>,
+                      "style": Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "children": "3",
+                        "style": Object {
+                          "fontSize": 30,
+                          "lineHeight": 30,
+                          "textAlign": "center",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "3",
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
               "type": [Function],
             },
             Object {
@@ -4209,35 +5978,51 @@ ShallowWrapper {
               "key": "3",
               "nodeType": "class",
               "props": Object {
-                "children": Array [
+                "children": <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
                   <Image
                     source={1}
+                  />
+                  <View
                     style={
                       Object {
+                        "alignItems": "center",
                         "bottom": 0,
+                        "justifyContent": "center",
                         "left": 0,
                         "position": "absolute",
                         "right": 0,
                         "top": 0,
                       }
                     }
-                  />,
-                  <YuText
-                    style={
-                      Object {
-                        "fontSize": 24,
-                        "lineHeight": 22,
-                        "marginTop": 0,
-                        "textAlign": "center",
-                        "width": 82,
-                      }
-                    }
                   >
-                    6
-                  </YuText>,
-                ],
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 24,
+                          "lineHeight": 22,
+                          "marginTop": 0,
+                          "textAlign": "center",
+                        }
+                      }
+                    >
+                      6
+                    </YuText>
+                  </View>
+                </View>,
                 "style": Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "stretch",
                   "height": 82,
                   "justifyContent": "center",
                   "marginRight": 20,
@@ -4245,44 +6030,115 @@ ShallowWrapper {
                 },
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "source": 1,
-                    "style": Object {
-                      "bottom": 0,
-                      "left": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                    },
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <Image
+                      source={1}
+                    />,
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "bottom": 0,
+                          "justifyContent": "center",
+                          "left": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                        }
+                      }
+                    >
+                      <YuText
+                        style={
+                          Object {
+                            "fontSize": 24,
+                            "lineHeight": 22,
+                            "marginTop": 0,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        6
+                      </YuText>
+                    </View>,
+                  ],
+                  "style": Object {
+                    "alignItems": "center",
+                    "bottom": 0,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
                   },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "children": "6",
-                    "style": Object {
-                      "fontSize": 24,
-                      "lineHeight": 22,
-                      "marginTop": 0,
-                      "textAlign": "center",
-                      "width": 82,
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "source": 1,
                     },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
                   },
-                  "ref": null,
-                  "rendered": "6",
-                  "type": [Function],
-                },
-              ],
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <YuText
+                        style={
+                          Object {
+                            "fontSize": 24,
+                            "lineHeight": 22,
+                            "marginTop": 0,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        6
+                      </YuText>,
+                      "style": Object {
+                        "alignItems": "center",
+                        "bottom": 0,
+                        "justifyContent": "center",
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "children": "6",
+                        "style": Object {
+                          "fontSize": 24,
+                          "lineHeight": 22,
+                          "marginTop": 0,
+                          "textAlign": "center",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "6",
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
               "type": [Function],
             },
           ],
