@@ -80,7 +80,7 @@ export default function DailyStepsScreen({
     return (
         <CentredScreen
             footerImage={!isOnline || !hasPermission ? centredScreen.offline.image : centredScreen.online.image}
-            style={isOnline ? centredScreen.online.style : centredScreen.offline.style}
+            style={!isOnline || !hasPermission ? centredScreen.offline.style : centredScreen.online.style}
             testID={DAILY_STEPS_SCREEN}
         >
             <TopBar coins={totalCoins} type={topBarType} onPressLeftIcon={onLeftMenuPress} />

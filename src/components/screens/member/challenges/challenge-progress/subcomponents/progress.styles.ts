@@ -22,6 +22,12 @@ const styles = StyleSheet.create({
     barColorOceanWhite: {
         backgroundColor: Colours.progressBar.oceanWhite.shadow
     },
+    barColorForestWhite: {
+        backgroundColor: "rgb(253, 251, 251)"
+    },
+    barColorForestGreen: {
+        backgroundColor: "rgb(64, 135, 95)"
+    },
     goal: {
         alignItems: "flex-end",
         alignSelf: "stretch",
@@ -48,6 +54,15 @@ const styles = StyleSheet.create({
     },
     goalTextColorOceanWhite: {
         color: Colours.progressBar.oceanWhite.shadow
+    },
+    goalTextPink: {
+        color: "rgb(231, 116, 121)"
+    },
+    goalTextYellow: {
+        color: "rgb(241, 175, 0)"
+    },
+    goalTextGreen: {
+        color: "rgb(103, 184, 138)"
     },
     progress: {
         flex: 1,

@@ -22,10 +22,11 @@ export enum COLOURS {
     DESERT = "desert",
     LIGHT = "light",
     PINK = "pink",
-    MOUNTAIN = "mountain"
+    MOUNTAIN = "mountain",
+    FOREST = "forest"
 }
 
-export type IColours = "blue" | "dark" | "darker" | "desert" | "light" | "pink" | "mountain";
+export type IColours = "blue" | "dark" | "darker" | "desert" | "light" | "pink" | "mountain" | "forest";
 
 interface IProps {
     activeIndex: number;

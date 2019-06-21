@@ -1,7 +1,7 @@
 import { Style } from "../../../../../../../../styles";
 import { IChallenge } from "../../../quests-screen";
 import WorldSlices from "../../slices";
-import { getBackgroundColor, getButtonPosition, getTime } from "../level.helpers";
+import { getBackgroundColor, getButtonPosition, getShadow, getTime } from "../level.helpers";
 
 const nextAvailable = 0;
 
@@ -60,8 +60,8 @@ describe("getBackgroundColor", () => {
         expect(getBackgroundColor(nextAvailable, { ...level, level: 49 })).toBe("white");
     });
 
-    it("should return white", () => {
-        expect(getBackgroundColor(nextAvailable, { ...level, level: 1, isDone: true })).toBe("rgb(112, 222, 206)");
+    it("should return color for unavailable level of first world of first episode", () => {
+        expect(getBackgroundColor(nextAvailable, { ...level, level: 1, isDone: true })).toBe("rgb(93, 182, 138)");
     });
 });
 
@@ -88,5 +88,18 @@ describe("getTime", () => {
     });
     it("should return bottom position", () => {
         expect(getTime(59)).toEqual(":59");
+    });
+});
+
+describe("getShadow", () => {
+    it("should return bottom position", () => {
+        const actual = getShadow(17, { top: 0 });
+        expect(actual).toHaveProperty("top", -2);
+        expect(actual).toHaveProperty("backgroundColor", "rgb(253, 236, 75)");
+    });
+
+    it("should return null", () => {
+        const actual = getShadow(59, { top: 0 });
+        expect(actual).toBeNull();
     });
 });

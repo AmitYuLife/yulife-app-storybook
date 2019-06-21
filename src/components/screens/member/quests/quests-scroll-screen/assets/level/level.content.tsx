@@ -1,18 +1,16 @@
 import * as React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { getCurrentWorld } from "../../../../../../../services/utils";
 import { Chest, DoubleLock, Lock, Text } from "../../../../../../atoms";
 import { IChallenge } from "../../quests-screen";
 import LevelPending from "./level-pending";
+import LevelStar from "./level.star";
 import styles from "./level.styles";
-
-const images = {
-    completedNoStar: require("../../../../../../../../assets/quests/completed-no-star.png"),
-    completedStar: require("../../../../../../../../assets/quests/completed-star.png")
-};
 
 const getTextColor = (level: number) => {
     switch (true) {
+        case level > 14 && level < 22:
+            return "rgb(225, 210, 88)";
         case level > 64 && level < 72:
             return "rgb(233, 210, 10)";
         default:
@@ -20,13 +18,27 @@ const getTextColor = (level: number) => {
     }
 };
 
+const getStarColor = (level: number, isCompleted: boolean) => {
+    switch (true) {
+        case level > 71 && level < 100:
+        case level > 50 && level < 65:
+            return isCompleted ? "rgb(142, 227, 255)" : "rgba(142, 227, 255, 0.4)";
+        case level > 64 && level < 72:
+            return isCompleted ? "rgb(233, 210, 10)" : "rgba(233, 210, 10, 0.3)";
+        case level > 14 && level < 22:
+            return isCompleted ? "rgb(225, 210, 88)" : "rgba(225, 210, 88, 0.3)";
+        default:
+            return isCompleted ? "white" : "rgba(255,255,255, 0.4)";
+    }
+};
+
 const getLevelLockIcon = (currentLevel: number, level: IChallenge) => {
     switch (true) {
-        case level.level === 20 && currentLevel < 18:
-        case level.level === 41 && currentLevel < 39:
-        case level.level === 45 && currentLevel < 43:
-        case level.level === 48 && currentLevel < 46:
-        case level.level === 70 && currentLevel < 68:
+        case level.level === 20 && currentLevel < 19:
+        case level.level === 41 && currentLevel < 40:
+        case level.level === 45 && currentLevel < 44:
+        case level.level === 48 && currentLevel < 47:
+        case level.level === 70 && currentLevel < 69:
         case level.level === 91 && currentLevel < 89:
         case level.level === 95 && currentLevel < 94:
         case level.level === 98 && currentLevel < 97:
@@ -78,10 +90,7 @@ export default function getLevelButton(nextAvailable: number, currentLevel: numb
                 <Text style={StyleSheet.flatten([styles.text, { textAlign: "center", color }])}>{level.level}</Text>
                 <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
                     {Array.from({ length: 3 }).map((_, i) => (
-                        <Image
-                            key={`${level.id}_${i}`}
-                            source={level.rating > i ? images.completedStar : images.completedNoStar}
-                        />
+                        <LevelStar key={`${level.id}_${i}`} colour={getStarColor(level.level, level.rating > i)} />
                     ))}
                 </View>
             </View>
@@ -95,8 +104,11 @@ export default function getLevelButton(nextAvailable: number, currentLevel: numb
     }
 }
 
-function getLockColor(currentLevel: number) {
-    switch (getCurrentWorld(currentLevel)) {
+function getLockColor(level: number) {
+    if (level > 64 && level < 72) {
+        return "rgb(118, 82, 48)";
+    }
+    switch (getCurrentWorld(level)) {
         case 3:
             return "rgb(87, 133, 188)";
         case 2:
@@ -105,6 +117,6 @@ function getLockColor(currentLevel: number) {
             return "rgb(4, 40, 114)";
         case 0:
         default:
-            return "rgb(79, 151, 139)";
+            return "rgb(73, 133, 193)";
     }
 }

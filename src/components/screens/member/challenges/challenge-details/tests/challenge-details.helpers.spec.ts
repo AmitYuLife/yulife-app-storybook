@@ -31,8 +31,13 @@ describe("getCardBackgroundColor", () => {
         expect(actual).toEqual("rgb(255, 253, 231)");
     });
 
-    it("should return a default white color for other worlds", () => {
+    it("should return light green color for forest world", () => {
         const actual = getCardBackgroundColor(0);
+        expect(actual).toEqual("rgb(235, 255, 244)");
+    });
+
+    it("should return white color for ocean world", () => {
+        const actual = getCardBackgroundColor(1);
         expect(actual).toEqual("rgb(237, 251, 248)");
     });
 });

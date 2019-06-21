@@ -19,11 +19,11 @@ interface IStyleSet {
 
 const BRISK_WALK: IStyleSet[] = [
     {
-        backgroundColour: "rgb(255,255,255)",
+        backgroundColour: "rgb(242, 190, 177)",
         navBarType: "light",
-        progressBarType: "black",
+        progressBarType: "forest-brisk-walk",
         source: assets.squirrel,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(450) }]),
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(375) }]),
         topBarType: "default"
     },
     {
@@ -53,11 +53,11 @@ const BRISK_WALK: IStyleSet[] = [
 ];
 const SHORT_STROLL: IStyleSet[] = [
     {
-        backgroundColour: "rgb(255,255,255)",
+        backgroundColour: "rgb(255,240,156)",
         navBarType: "light",
-        progressBarType: "black",
-        source: assets.elephant,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(450) }]),
+        progressBarType: "forest-yellow",
+        source: assets.snail,
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(668) }]),
         topBarType: "default"
     },
     {
@@ -87,12 +87,12 @@ const SHORT_STROLL: IStyleSet[] = [
 ];
 const LONG_WALK: IStyleSet[] = [
     {
-        backgroundColour: "rgb(255,255,255)",
+        backgroundColour: "rgb(40,118,74)",
         navBarType: "light",
-        progressBarType: "black",
-        source: assets.ostrich,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
-        topBarType: "default"
+        progressBarType: "forest-white",
+        source: assets.rabbit,
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(615) }]),
+        topBarType: "white"
     },
     {
         backgroundColour: "rgb(124,215,237)",
@@ -121,12 +121,12 @@ const LONG_WALK: IStyleSet[] = [
 ];
 const MEDITATION: IStyleSet[] = [
     {
-        backgroundColour: "rgb(255,255,255)",
+        backgroundColour: "rgb(254,252,218)",
         instructionTextColour: "rgb(136,136,136)",
-        navBarType: "light",
-        progressBarType: "black",
+        navBarType: "forest",
+        progressBarType: "forest-yellow",
         source: assets.bird,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(668) }]),
         topBarType: "default"
     },
     {

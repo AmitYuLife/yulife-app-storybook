@@ -678,7 +678,7 @@ ShallowWrapper {
             source={1}
             style={
               Object {
-                "height": 600,
+                "height": 752,
                 "marginBottom": 0,
                 "width": "100%",
               }
@@ -707,7 +707,7 @@ ShallowWrapper {
             source={1}
             style={
               Object {
-                "height": 600,
+                "height": 752,
                 "marginBottom": 0,
                 "width": "100%",
               }
@@ -730,7 +730,7 @@ ShallowWrapper {
             "resizeMode": "cover",
             "source": 1,
             "style": Object {
-              "height": 600,
+              "height": 752,
               "marginBottom": 0,
               "width": "100%",
             },
@@ -768,7 +768,7 @@ ShallowWrapper {
               source={1}
               style={
                 Object {
-                  "height": 600,
+                  "height": 752,
                   "marginBottom": 0,
                   "width": "100%",
                 }
@@ -797,7 +797,7 @@ ShallowWrapper {
               source={1}
               style={
                 Object {
-                  "height": 600,
+                  "height": 752,
                   "marginBottom": 0,
                   "width": "100%",
                 }
@@ -820,7 +820,7 @@ ShallowWrapper {
               "resizeMode": "cover",
               "source": 1,
               "style": Object {
-                "height": 600,
+                "height": 752,
                 "marginBottom": 0,
                 "width": "100%",
               },
@@ -1968,7 +1968,7 @@ ShallowWrapper {
             source={1}
             style={
               Object {
-                "height": 600,
+                "height": 752,
                 "marginBottom": 0,
                 "width": "100%",
               }
@@ -1997,7 +1997,7 @@ ShallowWrapper {
             source={1}
             style={
               Object {
-                "height": 600,
+                "height": 752,
                 "marginBottom": 0,
                 "width": "100%",
               }
@@ -2020,7 +2020,7 @@ ShallowWrapper {
             "resizeMode": "cover",
             "source": 1,
             "style": Object {
-              "height": 600,
+              "height": 752,
               "marginBottom": 0,
               "width": "100%",
             },
@@ -2058,7 +2058,7 @@ ShallowWrapper {
               source={1}
               style={
                 Object {
-                  "height": 600,
+                  "height": 752,
                   "marginBottom": 0,
                   "width": "100%",
                 }
@@ -2087,7 +2087,7 @@ ShallowWrapper {
               source={1}
               style={
                 Object {
-                  "height": 600,
+                  "height": 752,
                   "marginBottom": 0,
                   "width": "100%",
                 }
@@ -2110,7 +2110,7 @@ ShallowWrapper {
               "resizeMode": "cover",
               "source": 1,
               "style": Object {
-                "height": 600,
+                "height": 752,
                 "marginBottom": 0,
                 "width": "100%",
               },

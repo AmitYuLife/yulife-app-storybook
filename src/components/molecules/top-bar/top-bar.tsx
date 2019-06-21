@@ -10,13 +10,14 @@ import { Back, Clock, Coins, Logo, Menu } from "./assets";
 import { formatSeconds, getStyle } from "./top-bar.helpers";
 import styles from "./top-bar.styles";
 
-export type TopBarTypes = "default" | "white" | "desert" | "demo" | "mountain";
+export type TopBarTypes = "default" | "white" | "desert" | "demo" | "mountain" | "forest";
 export enum TOP_BAR_TYPES {
     DEFAULT = "default",
     WHITE = "white",
     DESERT = "desert",
     DEMO = "demo",
-    MOUNTAIN = "mountain"
+    MOUNTAIN = "mountain",
+    FOREST = "forest"
 }
 
 interface IProps {

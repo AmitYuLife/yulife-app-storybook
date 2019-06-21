@@ -1,5 +1,6 @@
 import { Style } from "@styles/index";
 import { ImageStyle } from "react-native";
+import { isIphoneX } from "react-native-iphone-x-helper";
 
 interface ISlotSet {
     source: any;
@@ -10,8 +11,14 @@ interface ISlotSet {
 const BRISK_WALK: ISlotSet[] = [
     {
         source: require("../../../../../../assets/challenge-history/squirrel.png"),
-        style: { position: "absolute", left: Style.SCALE_UP_AND_DOWN(-16), top: 0, right: 0, bottom: 0 },
-        width: Style.SCALE_UP_AND_DOWN(106)
+        style: {
+            position: "absolute",
+            left: Style.SCALE_UP_AND_DOWN(30),
+            top: Style.SCALE_UP_AND_DOWN(15),
+            right: 0,
+            bottom: 0
+        },
+        width: Style.SCALE_UP_AND_DOWN(74)
     },
     {
         source: require("../../../../../../assets/challenge-history/otter.png"),
@@ -37,14 +44,14 @@ const BRISK_WALK: ISlotSet[] = [
 ];
 const SHORT_STROLL: ISlotSet[] = [
     {
-        source: require("../../../../../../assets/challenge-history/elephant.png"),
+        source: require("../../../../../../assets/challenge-history/snail.png"),
         style: {
             bottom: 0,
             position: "absolute",
-            right: Style.SCALE_UP_AND_DOWN(-36),
-            top: Style.SCALE_Y_UP_AND_DOWN(60)
+            right: Style.SCALE_UP_AND_DOWN(0),
+            top: Style.SCALE_Y_UP_AND_DOWN(100)
         },
-        width: Style.SCALE_UP_AND_DOWN(130)
+        width: Style.SCALE_UP_AND_DOWN(78)
     },
     {
         source: require("../../../../../../assets/challenge-history/tortoise.png"),
@@ -79,9 +86,15 @@ const SHORT_STROLL: ISlotSet[] = [
 ];
 const LONG_WALK: ISlotSet[] = [
     {
-        source: require("../../../../../../assets/challenge-history/ostrich.png"),
-        style: { position: "absolute", left: 0, top: Style.SCALE_Y_UP_AND_DOWN(140), right: 0, bottom: 0 },
-        width: Style.SCALE_UP_AND_DOWN(92)
+        source: require("../../../../../../assets/challenge-history/rabbit.png"),
+        style: {
+            position: "absolute",
+            left: Style.SCALE_UP_AND_DOWN(10),
+            top: Style.SCALE_Y_UP_AND_DOWN(150),
+            right: 0,
+            bottom: 0
+        },
+        width: Style.SCALE_UP_AND_DOWN(85)
     },
     {
         source: require("../../../../../../assets/challenge-history/whale.png"),
@@ -105,10 +118,10 @@ const MEDITATION: ISlotSet[] = [
         style: {
             bottom: 0,
             position: "absolute",
-            right: Style.SCALE_UP_AND_DOWN(-24),
-            top: Style.SCALE_Y_UP_AND_DOWN(220)
+            right: Style.SCALE_UP_AND_DOWN(10),
+            top: Style.SCALE_Y_UP_AND_DOWN(isIphoneX() ? 240 : 260)
         },
-        width: Style.SCALE_UP_AND_DOWN(92)
+        width: Style.SCALE_UP_AND_DOWN(72)
     },
     {
         source: require("../../../../../../assets/challenge-history/dolphin.png"),

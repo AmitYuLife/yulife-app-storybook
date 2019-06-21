@@ -14,7 +14,7 @@ ShallowWrapper {
       <YuText
         style={
           Object {
-            "color": "#fff",
+            "color": "rgb(225, 210, 88)",
             "fontSize": 38,
             "lineHeight": 38,
             "textAlign": "center",
@@ -32,14 +32,14 @@ ShallowWrapper {
           }
         }
       >
-        <Image
-          source={1}
+        <LevelStar
+          colour="rgb(225, 210, 88)"
         />
-        <Image
-          source={1}
+        <LevelStar
+          colour="rgba(225, 210, 88, 0.3)"
         />
-        <Image
-          source={1}
+        <LevelStar
+          colour="rgba(225, 210, 88, 0.3)"
         />
       </View>
     </View>
@@ -67,7 +67,7 @@ ShallowWrapper {
         <YuText
           style={
             Object {
-              "color": "#fff",
+              "color": "rgb(225, 210, 88)",
               "fontSize": 38,
               "lineHeight": 38,
               "textAlign": "center",
@@ -85,14 +85,14 @@ ShallowWrapper {
             }
           }
         >
-          <Image
-            source={1}
+          <LevelStar
+            colour="rgb(225, 210, 88)"
           />
-          <Image
-            source={1}
+          <LevelStar
+            colour="rgba(225, 210, 88, 0.3)"
           />
-          <Image
-            source={1}
+          <LevelStar
+            colour="rgba(225, 210, 88, 0.3)"
           />
         </View>
       </View>,
@@ -107,7 +107,7 @@ ShallowWrapper {
           <YuText
             style={
               Object {
-                "color": "#fff",
+                "color": "rgb(225, 210, 88)",
                 "fontSize": 38,
                 "lineHeight": 38,
                 "textAlign": "center",
@@ -125,14 +125,14 @@ ShallowWrapper {
               }
             }
           >
-            <Image
-              source={1}
+            <LevelStar
+              colour="rgb(225, 210, 88)"
             />
-            <Image
-              source={1}
+            <LevelStar
+              colour="rgba(225, 210, 88, 0.3)"
             />
-            <Image
-              source={1}
+            <LevelStar
+              colour="rgba(225, 210, 88, 0.3)"
             />
           </View>,
         ],
@@ -149,7 +149,7 @@ ShallowWrapper {
           "props": Object {
             "children": 21,
             "style": Object {
-              "color": "#fff",
+              "color": "rgb(225, 210, 88)",
               "fontSize": 38,
               "lineHeight": 38,
               "textAlign": "center",
@@ -165,14 +165,14 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Image
-                source={1}
+              <LevelStar
+                colour="rgb(225, 210, 88)"
               />,
-              <Image
-                source={1}
+              <LevelStar
+                colour="rgba(225, 210, 88, 0.3)"
               />,
-              <Image
-                source={1}
+              <LevelStar
+                colour="rgba(225, 210, 88, 0.3)"
               />,
             ],
             "style": Object {
@@ -186,9 +186,9 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": "123_0",
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "source": 1,
+                "colour": "rgb(225, 210, 88)",
               },
               "ref": null,
               "rendered": null,
@@ -197,9 +197,9 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": "123_1",
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "source": 1,
+                "colour": "rgba(225, 210, 88, 0.3)",
               },
               "ref": null,
               "rendered": null,
@@ -208,9 +208,9 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": "123_2",
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "source": 1,
+                "colour": "rgba(225, 210, 88, 0.3)",
               },
               "ref": null,
               "rendered": null,
@@ -240,7 +240,7 @@ ShallowWrapper {
           <YuText
             style={
               Object {
-                "color": "#fff",
+                "color": "rgb(225, 210, 88)",
                 "fontSize": 38,
                 "lineHeight": 38,
                 "textAlign": "center",
@@ -258,14 +258,14 @@ ShallowWrapper {
               }
             }
           >
-            <Image
-              source={1}
+            <LevelStar
+              colour="rgb(225, 210, 88)"
             />
-            <Image
-              source={1}
+            <LevelStar
+              colour="rgba(225, 210, 88, 0.3)"
             />
-            <Image
-              source={1}
+            <LevelStar
+              colour="rgba(225, 210, 88, 0.3)"
             />
           </View>
         </View>,
@@ -280,7 +280,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
-                  "color": "#fff",
+                  "color": "rgb(225, 210, 88)",
                   "fontSize": 38,
                   "lineHeight": 38,
                   "textAlign": "center",
@@ -298,14 +298,14 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                source={1}
+              <LevelStar
+                colour="rgb(225, 210, 88)"
               />
-              <Image
-                source={1}
+              <LevelStar
+                colour="rgba(225, 210, 88, 0.3)"
               />
-              <Image
-                source={1}
+              <LevelStar
+                colour="rgba(225, 210, 88, 0.3)"
               />
             </View>,
           ],
@@ -322,7 +322,7 @@ ShallowWrapper {
             "props": Object {
               "children": 21,
               "style": Object {
-                "color": "#fff",
+                "color": "rgb(225, 210, 88)",
                 "fontSize": 38,
                 "lineHeight": 38,
                 "textAlign": "center",
@@ -338,14 +338,14 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": Array [
-                <Image
-                  source={1}
+                <LevelStar
+                  colour="rgb(225, 210, 88)"
                 />,
-                <Image
-                  source={1}
+                <LevelStar
+                  colour="rgba(225, 210, 88, 0.3)"
                 />,
-                <Image
-                  source={1}
+                <LevelStar
+                  colour="rgba(225, 210, 88, 0.3)"
                 />,
               ],
               "style": Object {
@@ -359,9 +359,9 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": "123_0",
-                "nodeType": "class",
+                "nodeType": "function",
                 "props": Object {
-                  "source": 1,
+                  "colour": "rgb(225, 210, 88)",
                 },
                 "ref": null,
                 "rendered": null,
@@ -370,9 +370,9 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": "123_1",
-                "nodeType": "class",
+                "nodeType": "function",
                 "props": Object {
-                  "source": 1,
+                  "colour": "rgba(225, 210, 88, 0.3)",
                 },
                 "ref": null,
                 "rendered": null,
@@ -381,9 +381,9 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": "123_2",
-                "nodeType": "class",
+                "nodeType": "function",
                 "props": Object {
-                  "source": 1,
+                  "colour": "rgba(225, 210, 88, 0.3)",
                 },
                 "ref": null,
                 "rendered": null,
@@ -516,7 +516,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <View>
     <Lock
-      colour="rgb(79, 151, 139)"
+      colour="rgb(73, 133, 193)"
     />
   </View>,
   Symbol(enzyme.__renderer__): Object {
@@ -533,7 +533,7 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <Lock
-        colour="rgb(79, 151, 139)"
+        colour="rgb(73, 133, 193)"
       />,
     },
     "ref": null,
@@ -542,7 +542,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
-        "colour": "rgb(79, 151, 139)",
+        "colour": "rgb(73, 133, 193)",
       },
       "ref": null,
       "rendered": null,
@@ -557,7 +557,7 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <Lock
-          colour="rgb(79, 151, 139)"
+          colour="rgb(73, 133, 193)"
         />,
       },
       "ref": null,
@@ -566,7 +566,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "colour": "rgb(79, 151, 139)",
+          "colour": "rgb(73, 133, 193)",
         },
         "ref": null,
         "rendered": null,
@@ -774,7 +774,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <View>
     <Chest
-      colour="rgb(79, 151, 139)"
+      colour="rgb(73, 133, 193)"
     />
   </View>,
   Symbol(enzyme.__renderer__): Object {
@@ -791,7 +791,7 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <Chest
-        colour="rgb(79, 151, 139)"
+        colour="rgb(73, 133, 193)"
       />,
     },
     "ref": null,
@@ -800,7 +800,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
-        "colour": "rgb(79, 151, 139)",
+        "colour": "rgb(73, 133, 193)",
       },
       "ref": null,
       "rendered": null,
@@ -815,7 +815,7 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <Chest
-          colour="rgb(79, 151, 139)"
+          colour="rgb(73, 133, 193)"
         />,
       },
       "ref": null,
@@ -824,7 +824,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "colour": "rgb(79, 151, 139)",
+          "colour": "rgb(73, 133, 193)",
         },
         "ref": null,
         "rendered": null,

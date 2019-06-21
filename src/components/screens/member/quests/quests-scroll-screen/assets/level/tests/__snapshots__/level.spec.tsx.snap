@@ -40,21 +40,21 @@ ShallowWrapper {
     slice={
       Object {
         "episodeSettings": Object {
-          "navBarType": "light",
+          "navBarType": "forest",
           "offset": 0,
-          "topBarType": "default",
+          "topBarType": "forest",
         },
         "id": "MAP_SLICE_W01E00",
         "image": 1,
-        "navBarColour": "light",
+        "navBarColour": "forest",
         "slots": Array [
           Object {
-            "index": 0,
+            "index": 1,
             "left": 187,
             "top": 8,
           },
         ],
-        "topBarType": "default",
+        "topBarType": "forest",
       }
     }
   />,
@@ -73,6 +73,23 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         null,
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderRadius": 100,
+              "height": 100,
+              "justifyContent": "center",
+              "left": 374,
+              "marginLeft": -50,
+              "overflow": "hidden",
+              "position": "absolute",
+              "top": 14,
+              "width": 100,
+            }
+          }
+        />,
         <View
           style={
             Object {
@@ -103,7 +120,7 @@ ShallowWrapper {
             testID="LEVEL_CHALLENGE_BUTTON_3"
           >
             <Lock
-              colour="rgb(79, 151, 139)"
+              colour="rgb(73, 133, 193)"
             />
           </TouchableOpacityWithState>
         </View>,
@@ -112,6 +129,29 @@ ShallowWrapper {
     "ref": null,
     "rendered": Array [
       null,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "style": Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "borderRadius": 100,
+            "height": 100,
+            "justifyContent": "center",
+            "left": 374,
+            "marginLeft": -50,
+            "overflow": "hidden",
+            "position": "absolute",
+            "top": 14,
+            "width": 100,
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
       Object {
         "instance": null,
         "key": undefined,
@@ -131,7 +171,7 @@ ShallowWrapper {
             testID="LEVEL_CHALLENGE_BUTTON_3"
           >
             <Lock
-              colour="rgb(79, 151, 139)"
+              colour="rgb(73, 133, 193)"
             />
           </TouchableOpacityWithState>,
           "style": Object {
@@ -154,7 +194,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <Lock
-              colour="rgb(79, 151, 139)"
+              colour="rgb(73, 133, 193)"
             />,
             "onPress": [MockFunction],
             "style": Object {
@@ -172,7 +212,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "colour": "rgb(79, 151, 139)",
+              "colour": "rgb(73, 133, 193)",
             },
             "ref": null,
             "rendered": null,
@@ -193,6 +233,23 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           null,
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "borderRadius": 100,
+                "height": 100,
+                "justifyContent": "center",
+                "left": 374,
+                "marginLeft": -50,
+                "overflow": "hidden",
+                "position": "absolute",
+                "top": 14,
+                "width": 100,
+              }
+            }
+          />,
           <View
             style={
               Object {
@@ -223,7 +280,7 @@ ShallowWrapper {
               testID="LEVEL_CHALLENGE_BUTTON_3"
             >
               <Lock
-                colour="rgb(79, 151, 139)"
+                colour="rgb(73, 133, 193)"
               />
             </TouchableOpacityWithState>
           </View>,
@@ -232,6 +289,29 @@ ShallowWrapper {
       "ref": null,
       "rendered": Array [
         null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "style": Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderRadius": 100,
+              "height": 100,
+              "justifyContent": "center",
+              "left": 374,
+              "marginLeft": -50,
+              "overflow": "hidden",
+              "position": "absolute",
+              "top": 14,
+              "width": 100,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
         Object {
           "instance": null,
           "key": undefined,
@@ -251,7 +331,7 @@ ShallowWrapper {
               testID="LEVEL_CHALLENGE_BUTTON_3"
             >
               <Lock
-                colour="rgb(79, 151, 139)"
+                colour="rgb(73, 133, 193)"
               />
             </TouchableOpacityWithState>,
             "style": Object {
@@ -274,7 +354,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <Lock
-                colour="rgb(79, 151, 139)"
+                colour="rgb(73, 133, 193)"
               />,
               "onPress": [MockFunction],
               "style": Object {
@@ -292,7 +372,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "colour": "rgb(79, 151, 139)",
+                "colour": "rgb(73, 133, 193)",
               },
               "ref": null,
               "rendered": null,
@@ -368,21 +448,21 @@ ShallowWrapper {
     slice={
       Object {
         "episodeSettings": Object {
-          "navBarType": "light",
+          "navBarType": "forest",
           "offset": 0,
-          "topBarType": "default",
+          "topBarType": "forest",
         },
         "id": "MAP_SLICE_W01E00",
         "image": 1,
-        "navBarColour": "light",
+        "navBarColour": "forest",
         "slots": Array [
           Object {
-            "index": 0,
+            "index": 1,
             "left": 187,
             "top": 8,
           },
         ],
-        "topBarType": "default",
+        "topBarType": "forest",
       }
     }
   />,
@@ -412,6 +492,7 @@ ShallowWrapper {
             }
           }
         />,
+        null,
         <View
           style={
             Object {
@@ -477,6 +558,7 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
+      null,
       Object {
         "instance": null,
         "key": undefined,
@@ -593,6 +675,7 @@ ShallowWrapper {
               }
             }
           />,
+          null,
           <View
             style={
               Object {
@@ -658,6 +741,7 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
+        null,
         Object {
           "instance": null,
           "key": undefined,

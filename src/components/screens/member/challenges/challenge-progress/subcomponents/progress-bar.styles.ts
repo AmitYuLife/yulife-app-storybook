@@ -26,6 +26,9 @@ const styles = StyleSheet.create({
     stepsTextWhite: {
         color: Colours.progressBar.oceanWhite.heading
     },
+    stepsTextPink: {
+        color: "rgb(231, 116, 121)"
+    },
     timeLabel: {
         lineHeight: Platform.OS === "ios" ? Style.SCALE_UP_AND_DOWN(26) : Style.SCALE_UP_AND_DOWN(35),
         marginHorizontal: Style.SCALE_UP_AND_DOWN(5)

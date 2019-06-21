@@ -38,18 +38,18 @@ export interface IThemeStore {
 export const initialState: IThemeStore = {
     dailyStepsScreen: {
         centredScreen: {
-            offline: { image: "gray_forest", style: { backgroundColor: "#FFF" } },
-            online: { image: "large_forest", style: { backgroundColor: "#FFF" } }
+            offline: { image: "gray_forest", style: { backgroundColor: "rgb(235, 235, 235)" } },
+            online: { image: "large_forest", style: { backgroundColor: "rgb(255, 252, 216)" } }
         },
         hasWhiteGlow: false,
         isLight: false,
         navBar: {
-            offline: COLOURS.LIGHT,
-            online: COLOURS.LIGHT
+            offline: COLOURS.FOREST,
+            online: COLOURS.FOREST
         },
         streakType: "forest",
         textStyle: { color: "#333333" },
-        topBarType: "default"
+        topBarType: "forest"
     },
     questsOfflineScreen: {
         image: "forest",

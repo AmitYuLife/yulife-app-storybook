@@ -24,7 +24,8 @@ export type CenteredScreenImages =
     | "challenge_failed_desert"
     | "gray_mountain"
     | "mountain"
-    | "challenge_mountain";
+    | "challenge_mountain"
+    | "challenge_success_forest";
 
 export default function CenteredScreen({ children, footerImage, style, testID }: IProps) {
     return (

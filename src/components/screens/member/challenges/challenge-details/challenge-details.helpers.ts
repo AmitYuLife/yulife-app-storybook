@@ -8,13 +8,13 @@ const BRISK_WALK = [
     { source: assets.wolf, style: styles.image }
 ];
 const SHORT_STROLL = [
-    { source: assets.elephant, style: styles.image },
+    { source: assets.snail, style: styles.image },
     { source: assets.tortoise, style: styles.image },
     { source: assets.bighornSheep, style: styles.image },
     { source: assets.whiteBighornSheep, style: styles.image }
 ];
 const LONG_WALK = [
-    { source: assets.ostrich, style: styles.imageLongWalk },
+    { source: assets.rabbit, style: styles.imageLongWalk },
     { source: assets.whale, style: styles.imageLongWalk },
     { source: assets.desertFox, style: styles.imageLongWalk },
     { source: assets.deer, style: styles.imageLongWalk }
@@ -48,6 +48,8 @@ export function getCardBackgroundColor(currentWorld: number) {
             return "rgb(255, 239, 239)";
         case 2:
             return "rgb(255, 253, 231)";
+        case 0:
+            return "rgb(235, 255, 244)";
         default:
             return "rgb(237, 251, 248)";
     }

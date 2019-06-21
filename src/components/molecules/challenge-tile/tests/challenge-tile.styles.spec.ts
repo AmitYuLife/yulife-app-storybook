@@ -16,10 +16,10 @@ describe("Challenge Tile styles", () => {
             const squirrel = getImage(IMAGES.SQUIRREL);
             expect(squirrel).toBeDefined();
 
-            const elephant = getImage(IMAGES.ELEPHANT);
+            const elephant = getImageStyle(IMAGES.SNAIL);
             expect(elephant).toBeDefined();
 
-            const ostrich = getImage(IMAGES.OSTRICH);
+            const ostrich = getImage(IMAGES.RABBIT);
             expect(ostrich).toBeDefined();
         });
     });
@@ -35,10 +35,10 @@ describe("Challenge Tile styles", () => {
             const squirrel = getImageStyle(IMAGES.SQUIRREL);
             expect(squirrel).toMatchSnapshot();
 
-            const elephant = getImageStyle(IMAGES.ELEPHANT);
+            const elephant = getImageStyle(IMAGES.SNAIL);
             expect(elephant).toMatchSnapshot();
 
-            const ostrich = getImageStyle(IMAGES.OSTRICH);
+            const ostrich = getImageStyle(IMAGES.RABBIT);
             expect(ostrich).toMatchSnapshot();
         });
     });

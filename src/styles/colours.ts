@@ -52,6 +52,12 @@ export default {
             pressed: "rgba(84,12,0,0.6)",
             activeIcon: "rgb(118, 92, 50)"
         },
+        forest: {
+            active: "rgb(108, 205, 158)",
+            inactive: "rgb(108, 205, 158)",
+            pressed: "rgb(108, 205, 158)",
+            activeIcon: "rgb(51, 88, 66)"
+        },
         light: {
             active: "rgba(255,255,255,1)",
             inactive: "rgba(255,255,255,0.4)",
@@ -112,8 +118,8 @@ export default {
                 unpressed: "rgb(238,216,107)"
             },
             forest: {
-                pressed: "#81d1c4",
-                unpressed: "#99ded3"
+                pressed: "rgb(239, 190, 200)",
+                unpressed: "rgb(239, 190, 200)"
             },
             ocean: {
                 pressed: "#0E66A1",
