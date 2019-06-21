@@ -29,8 +29,7 @@ const StreaksSceen = ({
     primaryButtonLabel,
     onSubmit,
     timeRemaining,
-    onPressCtaSecondary,
-    reward
+    onPressCtaSecondary
 }: IProps) => (
     <View style={styles.wrapper}>
         <View>
@@ -59,7 +58,7 @@ const StreaksSceen = ({
                         <View style={styles.streak}>
                             <Image source={index < streakCompleted ? assets.streakFilled : assets.streakEmpty} />
                             <View style={styles.streak}>
-                                {renderStreakText(index, streakCompleted, streakMax, reward)}
+                                {renderStreakText(index, streakCompleted)}
                             </View>
                         </View>
                     </View>
@@ -84,16 +83,12 @@ const StreaksSceen = ({
     </View>
 );
 
-function renderStreakText(index: number, streakCompleted: number, streakMax: number, reward: string) {
+function renderStreakText(index: number, streakCompleted: number) {
     if (index < streakCompleted) {
         return null;
     }
 
-    if (index < streakMax - 1) {
-        return <Text style={styles.streakLabel}>{`${index + 1}`}</Text>;
-    }
-
-    return <Text style={StyleSheet.flatten([styles.streakLabel, styles.streakLabelLast])}>{reward}</Text>;
+    return <Text style={styles.streakLabel}>{`${index + 1}`}</Text>;
 }
 
 function getImage(streakCompleted: number, streakMax: number): ImageRequireSource {

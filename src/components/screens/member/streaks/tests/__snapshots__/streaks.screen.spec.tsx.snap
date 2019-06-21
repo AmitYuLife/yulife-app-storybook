@@ -862,14 +862,13 @@ ShallowWrapper {
                 <YuText
                   style={
                     Object {
-                      "fontSize": 24,
-                      "lineHeight": 22,
-                      "marginTop": 0,
+                      "fontSize": 30,
+                      "lineHeight": 30,
                       "textAlign": "center",
                     }
                   }
                 >
-                  6
+                  4
                 </YuText>
               </View>
             </View>
@@ -1181,14 +1180,13 @@ ShallowWrapper {
                   <YuText
                     style={
                       Object {
-                        "fontSize": 24,
-                        "lineHeight": 22,
-                        "marginTop": 0,
+                        "fontSize": 30,
+                        "lineHeight": 30,
                         "textAlign": "center",
                       }
                     }
                   >
-                    6
+                    4
                   </YuText>
                 </View>
               </View>
@@ -1632,14 +1630,13 @@ ShallowWrapper {
                   <YuText
                     style={
                       Object {
-                        "fontSize": 24,
-                        "lineHeight": 22,
-                        "marginTop": 0,
+                        "fontSize": 30,
+                        "lineHeight": 30,
                         "textAlign": "center",
                       }
                     }
                   >
-                    6
+                    4
                   </YuText>
                 </View>
               </View>,
@@ -1677,14 +1674,13 @@ ShallowWrapper {
                     <YuText
                       style={
                         Object {
-                          "fontSize": 24,
-                          "lineHeight": 22,
-                          "marginTop": 0,
+                          "fontSize": 30,
+                          "lineHeight": 30,
                           "textAlign": "center",
                         }
                       }
                     >
-                      6
+                      4
                     </YuText>
                   </View>,
                 ],
@@ -1719,14 +1715,13 @@ ShallowWrapper {
                     "children": <YuText
                       style={
                         Object {
-                          "fontSize": 24,
-                          "lineHeight": 22,
-                          "marginTop": 0,
+                          "fontSize": 30,
+                          "lineHeight": 30,
                           "textAlign": "center",
                         }
                       }
                     >
-                      6
+                      4
                     </YuText>,
                     "style": Object {
                       "alignItems": "center",
@@ -1744,16 +1739,15 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "function",
                     "props": Object {
-                      "children": "6",
+                      "children": "4",
                       "style": Object {
-                        "fontSize": 24,
-                        "lineHeight": 22,
-                        "marginTop": 0,
+                        "fontSize": 30,
+                        "lineHeight": 30,
                         "textAlign": "center",
                       },
                     },
                     "ref": null,
-                    "rendered": "6",
+                    "rendered": "4",
                     "type": [Function],
                   },
                   "type": [Function],
@@ -2024,14 +2018,13 @@ ShallowWrapper {
                   <YuText
                     style={
                       Object {
-                        "fontSize": 24,
-                        "lineHeight": 22,
-                        "marginTop": 0,
+                        "fontSize": 30,
+                        "lineHeight": 30,
                         "textAlign": "center",
                       }
                     }
                   >
-                    6
+                    4
                   </YuText>
                 </View>
               </View>
@@ -2343,14 +2336,13 @@ ShallowWrapper {
                     <YuText
                       style={
                         Object {
-                          "fontSize": 24,
-                          "lineHeight": 22,
-                          "marginTop": 0,
+                          "fontSize": 30,
+                          "lineHeight": 30,
                           "textAlign": "center",
                         }
                       }
                     >
-                      6
+                      4
                     </YuText>
                   </View>
                 </View>
@@ -2794,14 +2786,13 @@ ShallowWrapper {
                     <YuText
                       style={
                         Object {
-                          "fontSize": 24,
-                          "lineHeight": 22,
-                          "marginTop": 0,
+                          "fontSize": 30,
+                          "lineHeight": 30,
                           "textAlign": "center",
                         }
                       }
                     >
-                      6
+                      4
                     </YuText>
                   </View>
                 </View>,
@@ -2839,14 +2830,13 @@ ShallowWrapper {
                       <YuText
                         style={
                           Object {
-                            "fontSize": 24,
-                            "lineHeight": 22,
-                            "marginTop": 0,
+                            "fontSize": 30,
+                            "lineHeight": 30,
                             "textAlign": "center",
                           }
                         }
                       >
-                        6
+                        4
                       </YuText>
                     </View>,
                   ],
@@ -2881,14 +2871,13 @@ ShallowWrapper {
                       "children": <YuText
                         style={
                           Object {
-                            "fontSize": 24,
-                            "lineHeight": 22,
-                            "marginTop": 0,
+                            "fontSize": 30,
+                            "lineHeight": 30,
                             "textAlign": "center",
                           }
                         }
                       >
-                        6
+                        4
                       </YuText>,
                       "style": Object {
                         "alignItems": "center",
@@ -2906,16 +2895,15 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "function",
                       "props": Object {
-                        "children": "6",
+                        "children": "4",
                         "style": Object {
-                          "fontSize": 24,
-                          "lineHeight": 22,
-                          "marginTop": 0,
+                          "fontSize": 30,
+                          "lineHeight": 30,
                           "textAlign": "center",
                         },
                       },
                       "ref": null,
-                      "rendered": "6",
+                      "rendered": "4",
                       "type": [Function],
                     },
                     "type": [Function],
@@ -3810,14 +3798,13 @@ ShallowWrapper {
                 <YuText
                   style={
                     Object {
-                      "fontSize": 24,
-                      "lineHeight": 22,
-                      "marginTop": 0,
+                      "fontSize": 30,
+                      "lineHeight": 30,
                       "textAlign": "center",
                     }
                   }
                 >
-                  6
+                  4
                 </YuText>
               </View>
             </View>
@@ -4153,14 +4140,13 @@ ShallowWrapper {
                   <YuText
                     style={
                       Object {
-                        "fontSize": 24,
-                        "lineHeight": 22,
-                        "marginTop": 0,
+                        "fontSize": 30,
+                        "lineHeight": 30,
                         "textAlign": "center",
                       }
                     }
                   >
-                    6
+                    4
                   </YuText>
                 </View>
               </View>
@@ -4702,14 +4688,13 @@ ShallowWrapper {
                   <YuText
                     style={
                       Object {
-                        "fontSize": 24,
-                        "lineHeight": 22,
-                        "marginTop": 0,
+                        "fontSize": 30,
+                        "lineHeight": 30,
                         "textAlign": "center",
                       }
                     }
                   >
-                    6
+                    4
                   </YuText>
                 </View>
               </View>,
@@ -4747,14 +4732,13 @@ ShallowWrapper {
                     <YuText
                       style={
                         Object {
-                          "fontSize": 24,
-                          "lineHeight": 22,
-                          "marginTop": 0,
+                          "fontSize": 30,
+                          "lineHeight": 30,
                           "textAlign": "center",
                         }
                       }
                     >
-                      6
+                      4
                     </YuText>
                   </View>,
                 ],
@@ -4789,14 +4773,13 @@ ShallowWrapper {
                     "children": <YuText
                       style={
                         Object {
-                          "fontSize": 24,
-                          "lineHeight": 22,
-                          "marginTop": 0,
+                          "fontSize": 30,
+                          "lineHeight": 30,
                           "textAlign": "center",
                         }
                       }
                     >
-                      6
+                      4
                     </YuText>,
                     "style": Object {
                       "alignItems": "center",
@@ -4814,16 +4797,15 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "function",
                     "props": Object {
-                      "children": "6",
+                      "children": "4",
                       "style": Object {
-                        "fontSize": 24,
-                        "lineHeight": 22,
-                        "marginTop": 0,
+                        "fontSize": 30,
+                        "lineHeight": 30,
                         "textAlign": "center",
                       },
                     },
                     "ref": null,
-                    "rendered": "6",
+                    "rendered": "4",
                     "type": [Function],
                   },
                   "type": [Function],
@@ -5118,14 +5100,13 @@ ShallowWrapper {
                   <YuText
                     style={
                       Object {
-                        "fontSize": 24,
-                        "lineHeight": 22,
-                        "marginTop": 0,
+                        "fontSize": 30,
+                        "lineHeight": 30,
                         "textAlign": "center",
                       }
                     }
                   >
-                    6
+                    4
                   </YuText>
                 </View>
               </View>
@@ -5461,14 +5442,13 @@ ShallowWrapper {
                     <YuText
                       style={
                         Object {
-                          "fontSize": 24,
-                          "lineHeight": 22,
-                          "marginTop": 0,
+                          "fontSize": 30,
+                          "lineHeight": 30,
                           "textAlign": "center",
                         }
                       }
                     >
-                      6
+                      4
                     </YuText>
                   </View>
                 </View>
@@ -6010,14 +5990,13 @@ ShallowWrapper {
                     <YuText
                       style={
                         Object {
-                          "fontSize": 24,
-                          "lineHeight": 22,
-                          "marginTop": 0,
+                          "fontSize": 30,
+                          "lineHeight": 30,
                           "textAlign": "center",
                         }
                       }
                     >
-                      6
+                      4
                     </YuText>
                   </View>
                 </View>,
@@ -6055,14 +6034,13 @@ ShallowWrapper {
                       <YuText
                         style={
                           Object {
-                            "fontSize": 24,
-                            "lineHeight": 22,
-                            "marginTop": 0,
+                            "fontSize": 30,
+                            "lineHeight": 30,
                             "textAlign": "center",
                           }
                         }
                       >
-                        6
+                        4
                       </YuText>
                     </View>,
                   ],
@@ -6097,14 +6075,13 @@ ShallowWrapper {
                       "children": <YuText
                         style={
                           Object {
-                            "fontSize": 24,
-                            "lineHeight": 22,
-                            "marginTop": 0,
+                            "fontSize": 30,
+                            "lineHeight": 30,
                             "textAlign": "center",
                           }
                         }
                       >
-                        6
+                        4
                       </YuText>,
                       "style": Object {
                         "alignItems": "center",
@@ -6122,16 +6099,15 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "function",
                       "props": Object {
-                        "children": "6",
+                        "children": "4",
                         "style": Object {
-                          "fontSize": 24,
-                          "lineHeight": 22,
-                          "marginTop": 0,
+                          "fontSize": 30,
+                          "lineHeight": 30,
                           "textAlign": "center",
                         },
                       },
                       "ref": null,
-                      "rendered": "6",
+                      "rendered": "4",
                       "type": [Function],
                     },
                     "type": [Function],
