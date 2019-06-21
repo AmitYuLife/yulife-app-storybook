@@ -38,9 +38,7 @@ export default class LeaderboardPopup extends React.PureComponent<IProps, IState
         return (
             <>
                 <View style={styles.popupWrapper} ref={this.setRef} onLayout={this.handleLayout} />
-                {viewRef ? (
-                    <BlurView viewRef={viewRef} blurAmount={15} blurType="regular" style={styles.bgBlur} />
-                ) : null}
+                {viewRef ? <BlurView viewRef={viewRef} blurAmount={15} blurType="dark" style={styles.bgBlur} /> : null}
                 <View style={[styles.navBarWrapper, styles.zIndexWrapper]}>
                     <NavBar
                         activeIndex={0}

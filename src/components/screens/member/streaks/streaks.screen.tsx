@@ -56,11 +56,12 @@ const StreaksSceen = ({
                             index === streakMax ? styles.streakWrapperLast : null
                         ])}
                     >
-                        <Image
-                            style={styles.streak}
-                            source={index < streakCompleted ? assets.streakFilled : assets.streakEmpty}
-                        />
-                        {renderStreakText(index, streakCompleted, streakMax, reward)}
+                        <View style={styles.streak}>
+                            <Image source={index < streakCompleted ? assets.streakFilled : assets.streakEmpty} />
+                            <View style={styles.streak}>
+                                {renderStreakText(index, streakCompleted, streakMax, reward)}
+                            </View>
+                        </View>
                     </View>
                 ))
             )}
