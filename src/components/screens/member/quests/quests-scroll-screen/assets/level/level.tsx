@@ -7,7 +7,7 @@ import { Style } from "../../../../../../../styles";
 import { IChallenge } from "../../quests-screen";
 import { IMapSlice } from "../index";
 import getLevelButton from "./level.content";
-import { getBackgroundColor, getButtonPosition } from "./level.helpers";
+import { getBackgroundColor, getButtonPosition, getShadow } from "./level.helpers";
 import styles, { CIRCLE_SIZE } from "./level.styles";
 import Pulse from "./pulse";
 
@@ -38,6 +38,7 @@ export default class LevelBubble extends React.PureComponent<IProps, IState> {
         const { style } = this.state;
         const nextAvailable = !!level.nextAvailableAt ? moment().diff(moment(level.nextAvailableAt), "seconds") : 0;
         const bubbleBackgroundColor = getBackgroundColor(nextAvailable, level);
+        const shadowStyle = getShadow(level.level, style);
 
         return (
             <>
@@ -49,6 +50,9 @@ export default class LevelBubble extends React.PureComponent<IProps, IState> {
                         backgroundColor="rgb(145,0,76)"
                         style={style}
                     />
+                )}
+                {!shadowStyle || level.isActive ? null : (
+                    <View style={StyleSheet.flatten([styles.bubble, shadowStyle])} />
                 )}
                 <View style={StyleSheet.flatten([styles.bubble, style])}>
                     <TouchableOpacityWithState

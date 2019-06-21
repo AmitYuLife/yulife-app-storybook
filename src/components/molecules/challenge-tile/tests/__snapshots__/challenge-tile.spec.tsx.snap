@@ -314,7 +314,7 @@ ShallowWrapper {
       "activeOpacity": 0.2,
       "children": Array [
         <AnimalImage
-          image="elephant"
+          image="snail"
           isImageBackgroundFlipped={false}
           isLocked={false}
         />,
@@ -339,7 +339,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "image": "elephant",
+          "image": "snail",
           "isImageBackgroundFlipped": false,
           "isLocked": false,
         },
@@ -372,7 +372,7 @@ ShallowWrapper {
         "activeOpacity": 0.2,
         "children": Array [
           <AnimalImage
-            image="elephant"
+            image="snail"
             isImageBackgroundFlipped={false}
             isLocked={false}
           />,
@@ -397,7 +397,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "image": "elephant",
+            "image": "snail",
             "isImageBackgroundFlipped": false,
             "isLocked": false,
           },
@@ -470,7 +470,7 @@ ShallowWrapper {
       "activeOpacity": 0.2,
       "children": Array [
         <AnimalImage
-          image="ostrich"
+          image="rabbit"
           isImageBackgroundFlipped={false}
           isLocked={false}
         />,
@@ -495,7 +495,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "image": "ostrich",
+          "image": "rabbit",
           "isImageBackgroundFlipped": false,
           "isLocked": false,
         },
@@ -528,7 +528,7 @@ ShallowWrapper {
         "activeOpacity": 0.2,
         "children": Array [
           <AnimalImage
-            image="ostrich"
+            image="rabbit"
             isImageBackgroundFlipped={false}
             isLocked={false}
           />,
@@ -553,7 +553,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "image": "ostrich",
+            "image": "rabbit",
             "isImageBackgroundFlipped": false,
             "isLocked": false,
           },

@@ -90,6 +90,7 @@ export const renderProgressLabel = ({ amount, showCounter, styleType = "black", 
 const getProgressLabelTextColor = (styleType: IProps["styleType"]) => {
     switch (styleType) {
         case "ocean-white":
+        case "forest-white":
             return styles.stepsTextWhite;
         case "ocean-black":
         case "black":

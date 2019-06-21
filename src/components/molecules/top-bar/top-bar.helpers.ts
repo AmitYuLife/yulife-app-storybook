@@ -40,6 +40,12 @@ export function getStyle(type: TopBarTypes) {
                 logoColour: "rgb(108,59,38)",
                 textStyle: { color: "rgb(108,59,38)" }
             };
+        case "forest":
+            return {
+                colour: "rgb(51, 88, 66)",
+                logoColour: "rgb(51, 88, 66)",
+                textStyle: { color: "rgb(51, 88, 66)" }
+            };
         case "white":
             return {
                 colour: "#FFF",

@@ -17,6 +17,12 @@ export function getStyle(currentLevel: number) {
                 backgroundStyle: { backgroundColor: "rgb(255, 251, 205)" },
                 starType: null
             };
+        case 0:
+            return {
+                backgroundImage: "challenge_success_forest" as CenteredScreenImages,
+                backgroundStyle: { backgroundColor: "rgb(255, 251, 205)" },
+                starType: null
+            };
 
         default:
             return {

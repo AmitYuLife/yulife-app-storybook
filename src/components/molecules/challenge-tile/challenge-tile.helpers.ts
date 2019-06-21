@@ -35,24 +35,27 @@ export const getLockedImageStyle = (image: Images): ImageStyle => {
 
 export const getImageStyle = (image: Images): ImageStyle => {
     const position = {} as { bottom?: number; left?: number; right?: number; top?: number };
-    const topAdjust = Style.isShortAndroid() ? 0 : 0;
-
+    const dimensions = {} as { height?: number; width?: number };
     switch (image) {
         case IMAGES.SQUIRREL:
-            position.top = Style.SCALE_Y_UP_AND_DOWN(7 + topAdjust);
-            position.right = Style.SCALE_UP_AND_DOWN(15);
+            position.bottom = 0;
+            position.left = 0;
             break;
-        case IMAGES.OSTRICH:
-            position.top = 0 + topAdjust;
-            position.right = Style.SCALE_UP_AND_DOWN(27);
+        case IMAGES.RABBIT:
+            position.bottom = 0;
+            position.left = 0;
+            dimensions.height = 119;
+            dimensions.width = 101;
             break;
-        case IMAGES.ELEPHANT:
-            position.top = Style.SCALE_Y_UP_AND_DOWN(7 + topAdjust);
-            position.right = Style.SCALE_UP_AND_DOWN(9);
+        case IMAGES.SNAIL:
+            position.bottom = 0;
+            position.right = Style.SCALE_UP_AND_DOWN(5);
             break;
         case IMAGES.BIRD:
-            position.top = Style.SCALE_Y_UP_AND_DOWN(17 + topAdjust);
-            position.right = Style.SCALE_UP_AND_DOWN(10);
+            position.bottom = 0;
+            position.right = 0;
+            dimensions.width = 143;
+            dimensions.height = 99;
             break;
         case IMAGES.OTTER:
             position.bottom = 0;
@@ -109,7 +112,8 @@ export const getImageStyle = (image: Images): ImageStyle => {
     return StyleSheet.flatten([
         {
             position: "absolute",
-            ...position
+            ...position,
+            ...dimensions
         } as ImageStyle
     ]);
 };
@@ -118,10 +122,10 @@ export const getImage = (image: Images) => {
     switch (image) {
         case IMAGES.SQUIRREL:
             return assets.squirrel;
-        case IMAGES.ELEPHANT:
-            return assets.elephant;
-        case IMAGES.OSTRICH:
-            return assets.ostrich;
+        case IMAGES.SNAIL:
+            return assets.snail;
+        case IMAGES.RABBIT:
+            return assets.rabbit;
         case IMAGES.BIRD:
             return assets.bird;
         case IMAGES.OTTER:

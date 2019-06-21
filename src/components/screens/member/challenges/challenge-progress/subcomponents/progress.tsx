@@ -184,6 +184,36 @@ const getStyle = (styleType: ProgressBarTypes) => {
                 progressStarEmpty: "rgb(174, 219, 244)",
                 progressStarFilled: "#F1AF00"
             };
+        case "forest-brisk-walk":
+            return {
+                barColor: styles.barColorForestWhite,
+                goalTextColor: styles.goalTextPink,
+                progressColor: styles.progressColorBlack,
+                progressGoalEmpty: "rgb(253, 251, 251)",
+                progressGoalFilled: "#000",
+                progressStarEmpty: "#F1AF00",
+                progressStarFilled: "#F1AF00"
+            };
+        case "forest-yellow":
+            return {
+                barColor: styles.barColorForestWhite,
+                goalTextColor: styles.goalTextYellow,
+                progressColor: styles.progressColorBlack,
+                progressGoalEmpty: "rgb(253, 251, 251)",
+                progressGoalFilled: "#000",
+                progressStarEmpty: "#F1AF00",
+                progressStarFilled: "#F1AF00"
+            };
+        case "forest-white":
+            return {
+                barColor: styles.barColorForestGreen,
+                goalTextColor: styles.goalTextGreen,
+                progressColor: styles.progressColorOceanWhite,
+                progressGoalEmpty: "rgb(64, 135, 95)",
+                progressGoalFilled: "white",
+                progressStarEmpty: "white",
+                progressStarFilled: "#F1AF00"
+            };
         case "black":
         default:
             return {

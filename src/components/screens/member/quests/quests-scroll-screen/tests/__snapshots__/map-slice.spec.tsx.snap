@@ -41,21 +41,21 @@ ShallowWrapper {
     slice={
       Object {
         "episodeSettings": Object {
-          "navBarType": "light",
+          "navBarType": "forest",
           "offset": 0,
-          "topBarType": "default",
+          "topBarType": "forest",
         },
         "id": "MAP_SLICE_W01E00",
         "image": 1,
-        "navBarColour": "light",
+        "navBarColour": "forest",
         "slots": Array [
           Object {
-            "index": 0,
+            "index": 1,
             "left": 187,
             "top": 8,
           },
         ],
-        "topBarType": "default",
+        "topBarType": "forest",
       }
     }
   />,
@@ -134,21 +134,21 @@ ShallowWrapper {
             slice={
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "light",
+                  "navBarType": "forest",
                   "offset": 0,
-                  "topBarType": "default",
+                  "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E00",
                 "image": 1,
-                "navBarColour": "light",
+                "navBarColour": "forest",
                 "slots": Array [
                   Object {
-                    "index": 0,
+                    "index": 1,
                     "left": 187,
                     "top": 8,
                   },
                 ],
-                "topBarType": "default",
+                "topBarType": "forest",
               }
             }
           />
@@ -294,21 +294,21 @@ ShallowWrapper {
               slice={
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "light",
+                    "navBarType": "forest",
                     "offset": 0,
-                    "topBarType": "default",
+                    "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E00",
                   "image": 1,
-                  "navBarColour": "light",
+                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
-                      "index": 0,
+                      "index": 1,
                       "left": 187,
                       "top": 8,
                     },
                   ],
-                  "topBarType": "default",
+                  "topBarType": "forest",
                 }
               }
             />,
@@ -359,21 +359,21 @@ ShallowWrapper {
               },
               "slice": Object {
                 "episodeSettings": Object {
-                  "navBarType": "light",
+                  "navBarType": "forest",
                   "offset": 0,
-                  "topBarType": "default",
+                  "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E00",
                 "image": 1,
-                "navBarColour": "light",
+                "navBarColour": "forest",
                 "slots": Array [
                   Object {
-                    "index": 0,
+                    "index": 1,
                     "left": 187,
                     "top": 8,
                   },
                 ],
-                "topBarType": "default",
+                "topBarType": "forest",
               },
             },
             "ref": null,
@@ -454,21 +454,21 @@ ShallowWrapper {
               slice={
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "light",
+                    "navBarType": "forest",
                     "offset": 0,
-                    "topBarType": "default",
+                    "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E00",
                   "image": 1,
-                  "navBarColour": "light",
+                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
-                      "index": 0,
+                      "index": 1,
                       "left": 187,
                       "top": 8,
                     },
                   ],
-                  "topBarType": "default",
+                  "topBarType": "forest",
                 }
               }
             />
@@ -614,21 +614,21 @@ ShallowWrapper {
                 slice={
                   Object {
                     "episodeSettings": Object {
-                      "navBarType": "light",
+                      "navBarType": "forest",
                       "offset": 0,
-                      "topBarType": "default",
+                      "topBarType": "forest",
                     },
                     "id": "MAP_SLICE_W01E00",
                     "image": 1,
-                    "navBarColour": "light",
+                    "navBarColour": "forest",
                     "slots": Array [
                       Object {
-                        "index": 0,
+                        "index": 1,
                         "left": 187,
                         "top": 8,
                       },
                     ],
-                    "topBarType": "default",
+                    "topBarType": "forest",
                   }
                 }
               />,
@@ -679,21 +679,21 @@ ShallowWrapper {
                 },
                 "slice": Object {
                   "episodeSettings": Object {
-                    "navBarType": "light",
+                    "navBarType": "forest",
                     "offset": 0,
-                    "topBarType": "default",
+                    "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E00",
                   "image": 1,
-                  "navBarColour": "light",
+                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
-                      "index": 0,
+                      "index": 1,
                       "left": 187,
                       "top": 8,
                     },
                   ],
-                  "topBarType": "default",
+                  "topBarType": "forest",
                 },
               },
               "ref": null,

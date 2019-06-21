@@ -16,35 +16,35 @@ const worldBubbleColours: IBubbleColours = {
     0: {
         0: {
             available: "white",
-            notAvailable: "rgb(112, 222, 206)"
+            notAvailable: "rgb(93, 182, 138)"
         },
         1: {
             available: "white",
-            notAvailable: "rgb(112, 222, 206)"
+            notAvailable: "rgb(142, 225, 178)"
         },
         2: {
-            available: "rgb(253, 233, 57)",
-            notAvailable: "rgb(185, 225, 104)"
+            available: "rgb(253, 234, 56)",
+            notAvailable: "rgb(253, 249, 193)"
         },
         3: {
             available: "white",
-            notAvailable: "rgb(185, 225, 104)"
+            notAvailable: "rgb(93, 182, 138)"
         },
         4: {
             available: "white",
-            notAvailable: "rgb(185, 225, 104)"
+            notAvailable: "rgb(93, 182, 138)"
         },
         5: {
             available: "white",
-            notAvailable: "rgb(112, 222, 206)"
+            notAvailable: "rgb(93, 182, 138)"
         },
         6: {
             available: "white",
-            notAvailable: "rgb(112, 222, 206)"
+            notAvailable: "rgb(236, 210, 25)"
         },
         7: {
             available: "white",
-            notAvailable: "rgb(131, 178, 71)"
+            notAvailable: "rgb(255, 222, 20)"
         }
     },
     1: {
@@ -145,6 +145,31 @@ export function getBackgroundColor(nextAvailable: number, level: IChallenge): st
             return worldBubbleColours[world][episode].available;
         }
     }
+}
+
+export function getShadow(level: number, style: any) {
+    let newStyle = {
+        backgroundColor: ""
+    };
+    if (typeof style.top !== "undefined") {
+        newStyle = { ...style, top: style.top - 2 };
+    } else if (typeof style.bottom !== "undefined") {
+        newStyle = { ...style, bottom: style.bottom + 2 };
+    }
+    switch (true) {
+        case level > 0 && level < 5:
+        case level > 21 && level < 27:
+        case level > 28 && level < 36:
+            newStyle.backgroundColor = "white";
+            break;
+        case level === 17 || (level > 18 && level < 22):
+            newStyle.backgroundColor = "rgb(253, 236, 75)";
+            break;
+        default:
+            return null;
+    }
+
+    return newStyle;
 }
 
 export function getButtonPosition(slice: IMapSlice, index: number) {

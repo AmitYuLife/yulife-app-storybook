@@ -149,7 +149,7 @@ ShallowWrapper {
         <SafeAreaView
           style={
             Object {
-              "backgroundColor": "rgb(154, 231, 216)",
+              "backgroundColor": "rgb(255, 242, 142)",
               "bottom": 0,
               "left": 0,
               "position": "absolute",
@@ -239,38 +239,38 @@ ShallowWrapper {
             style={
               Object {
                 "bottom": 0,
-                "left": -32,
+                "left": 60,
                 "position": "absolute",
                 "right": 0,
-                "top": 0,
+                "top": 30,
               }
             }
-            width={212}
+            width={148}
           />
           <ErrorableImage
             source={1}
             style={
               Object {
                 "bottom": 0,
-                "position": "absolute",
-                "right": -72,
-                "top": 120,
-              }
-            }
-            width={260}
-          />
-          <ErrorableImage
-            source={1}
-            style={
-              Object {
-                "bottom": 0,
-                "left": 0,
                 "position": "absolute",
                 "right": 0,
-                "top": 280,
+                "top": 200,
               }
             }
-            width={184}
+            width={156}
+          />
+          <ErrorableImage
+            source={1}
+            style={
+              Object {
+                "bottom": 0,
+                "left": 20,
+                "position": "absolute",
+                "right": 0,
+                "top": 300,
+              }
+            }
+            width={170}
           />
           <ErrorableImage
             source={1}
@@ -278,11 +278,11 @@ ShallowWrapper {
               Object {
                 "bottom": 0,
                 "position": "absolute",
-                "right": -48,
-                "top": 440,
+                "right": 20,
+                "top": 520,
               }
             }
-            width={184}
+            width={144}
           />
         </View>,
         <View
@@ -308,7 +308,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
-                  "color": "rgba(226, 1, 119, 1)",
+                  "color": "rgba(255, 255, 255, 1)",
                   "marginVertical": 50,
                 }
               }
@@ -329,7 +329,7 @@ ShallowWrapper {
         >
           <NavBar
             activeIndex={1}
-            colour="light"
+            colour="forest"
             hasNotification={false}
             labels={
               Array [
@@ -376,7 +376,7 @@ ShallowWrapper {
             }
           />,
           "style": Object {
-            "backgroundColor": "rgb(154, 231, 216)",
+            "backgroundColor": "rgb(255, 242, 142)",
             "bottom": 0,
             "left": 0,
             "position": "absolute",
@@ -549,38 +549,38 @@ ShallowWrapper {
               style={
                 Object {
                   "bottom": 0,
-                  "left": -32,
+                  "left": 60,
                   "position": "absolute",
                   "right": 0,
-                  "top": 0,
+                  "top": 30,
                 }
               }
-              width={212}
+              width={148}
             />,
             <ErrorableImage
               source={1}
               style={
                 Object {
                   "bottom": 0,
-                  "position": "absolute",
-                  "right": -72,
-                  "top": 120,
-                }
-              }
-              width={260}
-            />,
-            <ErrorableImage
-              source={1}
-              style={
-                Object {
-                  "bottom": 0,
-                  "left": 0,
                   "position": "absolute",
                   "right": 0,
-                  "top": 280,
+                  "top": 200,
                 }
               }
-              width={184}
+              width={156}
+            />,
+            <ErrorableImage
+              source={1}
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 20,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 300,
+                }
+              }
+              width={170}
             />,
             <ErrorableImage
               source={1}
@@ -588,11 +588,11 @@ ShallowWrapper {
                 Object {
                   "bottom": 0,
                   "position": "absolute",
-                  "right": -48,
-                  "top": 440,
+                  "right": 20,
+                  "top": 520,
                 }
               }
-              width={184}
+              width={144}
             />,
           ],
           "style": Object {
@@ -612,12 +612,12 @@ ShallowWrapper {
               "source": 1,
               "style": Object {
                 "bottom": 0,
-                "left": -32,
+                "left": 60,
                 "position": "absolute",
                 "right": 0,
-                "top": 0,
+                "top": 30,
               },
-              "width": 212,
+              "width": 148,
             },
             "ref": null,
             "rendered": null,
@@ -632,10 +632,10 @@ ShallowWrapper {
               "style": Object {
                 "bottom": 0,
                 "position": "absolute",
-                "right": -72,
-                "top": 120,
+                "right": 0,
+                "top": 200,
               },
-              "width": 260,
+              "width": 156,
             },
             "ref": null,
             "rendered": null,
@@ -649,12 +649,12 @@ ShallowWrapper {
               "source": 1,
               "style": Object {
                 "bottom": 0,
-                "left": 0,
+                "left": 20,
                 "position": "absolute",
                 "right": 0,
-                "top": 280,
+                "top": 300,
               },
-              "width": 184,
+              "width": 170,
             },
             "ref": null,
             "rendered": null,
@@ -669,10 +669,10 @@ ShallowWrapper {
               "style": Object {
                 "bottom": 0,
                 "position": "absolute",
-                "right": -48,
-                "top": 440,
+                "right": 20,
+                "top": 520,
               },
-              "width": 184,
+              "width": 144,
             },
             "ref": null,
             "rendered": null,
@@ -699,7 +699,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
-                    "color": "rgba(226, 1, 119, 1)",
+                    "color": "rgba(255, 255, 255, 1)",
                     "marginVertical": 50,
                   }
                 }
@@ -740,7 +740,7 @@ ShallowWrapper {
               "children": <YuText
                 style={
                   Object {
-                    "color": "rgba(226, 1, 119, 1)",
+                    "color": "rgba(255, 255, 255, 1)",
                     "marginVertical": 50,
                   }
                 }
@@ -757,7 +757,7 @@ ShallowWrapper {
               "props": Object {
                 "children": "full history",
                 "style": Object {
-                  "color": "rgba(226, 1, 119, 1)",
+                  "color": "rgba(255, 255, 255, 1)",
                   "marginVertical": 50,
                 },
               },
@@ -777,7 +777,7 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={1}
-            colour="light"
+            colour="forest"
             hasNotification={false}
             labels={
               Array [
@@ -814,7 +814,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 1,
-            "colour": "light",
+            "colour": "forest",
             "hasNotification": false,
             "labels": Array [
               Object {
@@ -854,7 +854,7 @@ ShallowWrapper {
           <SafeAreaView
             style={
               Object {
-                "backgroundColor": "rgb(154, 231, 216)",
+                "backgroundColor": "rgb(255, 242, 142)",
                 "bottom": 0,
                 "left": 0,
                 "position": "absolute",
@@ -944,38 +944,38 @@ ShallowWrapper {
               style={
                 Object {
                   "bottom": 0,
-                  "left": -32,
+                  "left": 60,
                   "position": "absolute",
                   "right": 0,
-                  "top": 0,
+                  "top": 30,
                 }
               }
-              width={212}
+              width={148}
             />
             <ErrorableImage
               source={1}
               style={
                 Object {
                   "bottom": 0,
-                  "position": "absolute",
-                  "right": -72,
-                  "top": 120,
-                }
-              }
-              width={260}
-            />
-            <ErrorableImage
-              source={1}
-              style={
-                Object {
-                  "bottom": 0,
-                  "left": 0,
                   "position": "absolute",
                   "right": 0,
-                  "top": 280,
+                  "top": 200,
                 }
               }
-              width={184}
+              width={156}
+            />
+            <ErrorableImage
+              source={1}
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 20,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 300,
+                }
+              }
+              width={170}
             />
             <ErrorableImage
               source={1}
@@ -983,11 +983,11 @@ ShallowWrapper {
                 Object {
                   "bottom": 0,
                   "position": "absolute",
-                  "right": -48,
-                  "top": 440,
+                  "right": 20,
+                  "top": 520,
                 }
               }
-              width={184}
+              width={144}
             />
           </View>,
           <View
@@ -1013,7 +1013,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
-                    "color": "rgba(226, 1, 119, 1)",
+                    "color": "rgba(255, 255, 255, 1)",
                     "marginVertical": 50,
                   }
                 }
@@ -1034,7 +1034,7 @@ ShallowWrapper {
           >
             <NavBar
               activeIndex={1}
-              colour="light"
+              colour="forest"
               hasNotification={false}
               labels={
                 Array [
@@ -1081,7 +1081,7 @@ ShallowWrapper {
               }
             />,
             "style": Object {
-              "backgroundColor": "rgb(154, 231, 216)",
+              "backgroundColor": "rgb(255, 242, 142)",
               "bottom": 0,
               "left": 0,
               "position": "absolute",
@@ -1254,38 +1254,38 @@ ShallowWrapper {
                 style={
                   Object {
                     "bottom": 0,
-                    "left": -32,
+                    "left": 60,
                     "position": "absolute",
                     "right": 0,
-                    "top": 0,
+                    "top": 30,
                   }
                 }
-                width={212}
+                width={148}
               />,
               <ErrorableImage
                 source={1}
                 style={
                   Object {
                     "bottom": 0,
-                    "position": "absolute",
-                    "right": -72,
-                    "top": 120,
-                  }
-                }
-                width={260}
-              />,
-              <ErrorableImage
-                source={1}
-                style={
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
                     "position": "absolute",
                     "right": 0,
-                    "top": 280,
+                    "top": 200,
                   }
                 }
-                width={184}
+                width={156}
+              />,
+              <ErrorableImage
+                source={1}
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 20,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 300,
+                  }
+                }
+                width={170}
               />,
               <ErrorableImage
                 source={1}
@@ -1293,11 +1293,11 @@ ShallowWrapper {
                   Object {
                     "bottom": 0,
                     "position": "absolute",
-                    "right": -48,
-                    "top": 440,
+                    "right": 20,
+                    "top": 520,
                   }
                 }
-                width={184}
+                width={144}
               />,
             ],
             "style": Object {
@@ -1317,12 +1317,12 @@ ShallowWrapper {
                 "source": 1,
                 "style": Object {
                   "bottom": 0,
-                  "left": -32,
+                  "left": 60,
                   "position": "absolute",
                   "right": 0,
-                  "top": 0,
+                  "top": 30,
                 },
-                "width": 212,
+                "width": 148,
               },
               "ref": null,
               "rendered": null,
@@ -1337,10 +1337,10 @@ ShallowWrapper {
                 "style": Object {
                   "bottom": 0,
                   "position": "absolute",
-                  "right": -72,
-                  "top": 120,
+                  "right": 0,
+                  "top": 200,
                 },
-                "width": 260,
+                "width": 156,
               },
               "ref": null,
               "rendered": null,
@@ -1354,12 +1354,12 @@ ShallowWrapper {
                 "source": 1,
                 "style": Object {
                   "bottom": 0,
-                  "left": 0,
+                  "left": 20,
                   "position": "absolute",
                   "right": 0,
-                  "top": 280,
+                  "top": 300,
                 },
-                "width": 184,
+                "width": 170,
               },
               "ref": null,
               "rendered": null,
@@ -1374,10 +1374,10 @@ ShallowWrapper {
                 "style": Object {
                   "bottom": 0,
                   "position": "absolute",
-                  "right": -48,
-                  "top": 440,
+                  "right": 20,
+                  "top": 520,
                 },
-                "width": 184,
+                "width": 144,
               },
               "ref": null,
               "rendered": null,
@@ -1404,7 +1404,7 @@ ShallowWrapper {
                 <YuText
                   style={
                     Object {
-                      "color": "rgba(226, 1, 119, 1)",
+                      "color": "rgba(255, 255, 255, 1)",
                       "marginVertical": 50,
                     }
                   }
@@ -1445,7 +1445,7 @@ ShallowWrapper {
                 "children": <YuText
                   style={
                     Object {
-                      "color": "rgba(226, 1, 119, 1)",
+                      "color": "rgba(255, 255, 255, 1)",
                       "marginVertical": 50,
                     }
                   }
@@ -1462,7 +1462,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": "full history",
                   "style": Object {
-                    "color": "rgba(226, 1, 119, 1)",
+                    "color": "rgba(255, 255, 255, 1)",
                     "marginVertical": 50,
                   },
                 },
@@ -1482,7 +1482,7 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={1}
-              colour="light"
+              colour="forest"
               hasNotification={false}
               labels={
                 Array [
@@ -1519,7 +1519,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 1,
-              "colour": "light",
+              "colour": "forest",
               "hasNotification": false,
               "labels": Array [
                 Object {

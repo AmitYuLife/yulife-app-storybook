@@ -9,7 +9,10 @@ export type ProgressBarTypes =
     | "ocean-black"
     | "desert-brown"
     | "mountain-pink"
-    | "mountain-black";
+    | "mountain-black"
+    | "forest-brisk-walk"
+    | "forest-yellow"
+    | "forest-white";
 
 export interface IProps {
     amount: number;

@@ -116,10 +116,10 @@ function getWorldStyle(currentLevel: number) {
                 backgroundImage: require("../../../../../../assets/challenges/forest.png"),
                 backgroundWrapperStyle: StyleSheet.flatten([
                     StyleSheet.absoluteFillObject,
-                    { backgroundColor: "rgb(154, 231, 216)" }
+                    { backgroundColor: "rgb(255, 242, 142)" }
                 ]),
-                historyLinkColor: "rgba(226, 1, 119, 1)",
-                navBarType: NavBar.Colours.LIGHT,
+                historyLinkColor: "rgba(255, 255, 255, 1)",
+                navBarType: NavBar.Colours.FOREST,
                 topBarType: "default"
             };
     }

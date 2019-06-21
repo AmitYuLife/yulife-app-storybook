@@ -12,12 +12,12 @@ export const getImageAndStyle = (image: CenteredScreenImages) => {
         case "large_forest":
             return {
                 source: require("../../../../assets/centred-screen/largeForest.png"),
-                style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
+                style: StyleSheet.flatten([styles.imageBase, styles.imageNewForest])
             };
         case "gray_forest":
             return {
                 source: require("../../../../assets/centred-screen/gray-forest.png"),
-                style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
+                style: StyleSheet.flatten([styles.imageBase, styles.imageNewForest])
             };
         case "challenge_failed_forest":
             return {
@@ -74,6 +74,11 @@ export const getImageAndStyle = (image: CenteredScreenImages) => {
             return {
                 source: require("../../../../assets/centred-screen/challenge_mountain.png"),
                 style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest])
+            };
+        case "challenge_success_forest":
+            return {
+                source: require("../../../../assets/centred-screen/challenge_success_forest.png"),
+                style: StyleSheet.flatten([styles.imageBase, styles.challengeSuccess])
             };
         default:
             return { source: null, style: null };

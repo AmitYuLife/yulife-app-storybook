@@ -1,9 +1,9 @@
 export enum IMAGES {
     DOLPHIN = "dolphin",
     SQUIRREL = "squirrel",
-    ELEPHANT = "elephant",
+    RABBIT = "rabbit",
     BIRD = "bird",
-    OSTRICH = "ostrich",
+    SNAIL = "snail",
     OTTER = "otter",
     TORTOISE = "tortoise",
     WHALE = "whale",
@@ -20,9 +20,9 @@ export enum IMAGES {
 export type Images =
     | "dolphin"
     | "squirrel"
-    | "elephant"
+    | "rabbit"
     | "bird"
-    | "ostrich"
+    | "snail"
     | "otter"
     | "tortoise"
     | "whale"

@@ -15,6 +15,10 @@ export default StyleSheet.create({
     desertImage: {
         height: Style.SCALE_UP_AND_DOWN(220)
     } as ImageStyle,
+    imageNewForest: {
+        height: Style.SCALE_UP_AND_DOWN(376),
+        marginBottom: Platform.OS === "ios" && Style.DEVICE_HEIGHT < 700 ? -20 : 0
+    } as ImageStyle,
     imageWrapper: {
         bottom: 0,
         left: 0,
@@ -27,5 +31,9 @@ export default StyleSheet.create({
         backgroundColor: "white",
         flex: 1,
         flexDirection: "column"
-    } as ViewStyle
+    } as ViewStyle,
+    challengeSuccess: {
+        height: Style.SCALE_UP_AND_DOWN(262),
+        marginBottom: Platform.OS === "ios" && Style.DEVICE_HEIGHT < 700 ? -20 : 0
+    } as ImageStyle
 });

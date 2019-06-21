@@ -143,30 +143,30 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         switch (getCurrentWorld(currentLevel)) {
             case 3:
                 return {
-                    initialScrollIndex: 87,
+                    initialScrollIndex: 92,
                     slices:
                         currentLevel < 200
-                            ? [...mapSlices.slice(0, 116), loadingSlices.mountain]
-                            : mapSlices.slice(0, 128)
+                            ? [...mapSlices.slice(0, 121), loadingSlices.mountain]
+                            : mapSlices.slice(0, 134)
                 };
             case 2:
                 return {
-                    initialScrollIndex: 58,
+                    initialScrollIndex: 61,
                     slices:
-                        currentLevel < 150 ? [...mapSlices.slice(0, 84), loadingSlices.desert] : mapSlices.slice(0, 87)
+                        currentLevel < 150 ? [...mapSlices.slice(0, 89), loadingSlices.desert] : mapSlices.slice(0, 92)
                 };
             case 1:
                 return {
-                    initialScrollIndex: 29,
+                    initialScrollIndex: 30,
                     slices:
-                        currentLevel < 100 ? [...mapSlices.slice(0, 54), loadingSlices.ocean] : mapSlices.slice(0, 58)
+                        currentLevel < 100 ? [...mapSlices.slice(0, 57), loadingSlices.ocean] : mapSlices.slice(0, 61)
                 };
             case 0:
             default:
                 return {
                     initialScrollIndex: 0,
                     slices:
-                        currentLevel < 50 ? [...mapSlices.slice(0, 26), loadingSlices.forest] : mapSlices.slice(0, 29)
+                        currentLevel < 50 ? [...mapSlices.slice(0, 26), loadingSlices.forest] : mapSlices.slice(0, 30)
                 };
         }
     };
@@ -194,8 +194,8 @@ function getInitialState(currentLevel: number) {
         case 0:
         default:
             return {
-                navBarColour: COLOURS.LIGHT,
-                topBarType: "default" as TopBarTypes
+                navBarColour: COLOURS.FOREST,
+                topBarType: "forest" as TopBarTypes
             };
     }
 }
