@@ -1,3 +1,4 @@
+import { ILeaderboard } from "@app/redux/user/user.reducer";
 import { GetLeaderboardVariables } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
 import React, { PureComponent } from "react";
@@ -36,8 +37,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
     public state: IState = {
         isLoading: true,
         sortBy: "steps",
-        leaderboardId: null,
-        activeLeaderboardIndex: 0
+        ...getInitialLeaderboard(this.props.leaderboards)
     };
 
     public componentDidMount() {
@@ -45,7 +45,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
     }
 
     public render() {
-        const { sortBy, activeLeaderboardIndex } = this.state;
+        const { sortBy, activeLeaderboardIndex, leaderboardId } = this.state;
         const {
             leaderboards = [],
             hasNotification,
@@ -59,7 +59,6 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
         } = this.props;
         const currentWorld = getCurrentWorld(currentLevel);
         const navbarColour = getNavbarColourScheme(currentWorld);
-        const [companyLeaderboard, ...consentedLeaderboards] = leaderboards;
 
         if (isOffline) {
             return (
@@ -74,9 +73,6 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
             );
         }
 
-        const leaderboardId =
-            this.state.leaderboardId ||
-            (companyLeaderboard.consent ? companyLeaderboard.leaderboardId : consentedLeaderboards[0].leaderboardId);
         return (
             <GetLeaderboardQuery
                 query={getLeaderboardGql}
@@ -170,6 +166,17 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
         updateConsent({ leaderboardId: company.leaderboardId, consent: true });
     };
 }
+
+const getInitialLeaderboard = (leaderboards: ILeaderboard[]) => {
+    const leaderboardWithConsentIndex = leaderboards.findIndex(({ consent }) => consent);
+    const activeLeaderboardIndex = leaderboardWithConsentIndex !== -1 ? leaderboardWithConsentIndex : 0;
+    const leaderboard = leaderboards[activeLeaderboardIndex];
+
+    return {
+        leaderboardId: leaderboard.leaderboardId,
+        activeLeaderboardIndex
+    };
+};
 
 const mapStateToProps = (state: IReduxState) => ({
     copy: getCopy(state, "leaderboards"),
