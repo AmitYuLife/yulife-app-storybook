@@ -11,7 +11,8 @@ export default StyleSheet.create({
         flexDirection: "row",
         justifyContent: "flex-end",
         position: "relative",
-        width: "100%"
+        width: "100%",
+        marginTop: 20
     } as ViewStyle,
     backgroundImageBase: {
         width: "100%"
