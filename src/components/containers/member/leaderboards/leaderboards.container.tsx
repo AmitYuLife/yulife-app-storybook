@@ -9,7 +9,7 @@ import { COLOURS } from "../../../../components/molecules";
 import GetLeaderboardQuery, { getLeaderboardGql } from "../../../../graphql/member/getLeaderboard.gql";
 import { IMainTabsProps } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
-import { getOfflineState } from "../../../../redux/app/app.selectors";
+import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getCurrentLevel, getHasNotification } from "../../../../redux/levels/levels.selectors";
@@ -55,7 +55,8 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
             onLeftMenuPress,
             isOffline,
             copy,
-            componentId
+            componentId,
+            appState
         } = this.props;
         const currentWorld = getCurrentWorld(currentLevel);
         const navbarColour = getNavbarColourScheme(currentWorld);
@@ -115,6 +116,7 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                             copy={copy.turnBoardOn}
                             isMindfulAvailable={false}
                             navbarColour={navbarColour}
+                            appState={appState}
                         />
                     );
                 }}
@@ -185,7 +187,8 @@ const mapStateToProps = (state: IReduxState) => ({
     consentedLeaderboards: getConsentedLeaderboards(state),
     hasNotification: getHasNotification(state),
     currentLevel: getCurrentLevel(state),
-    isOffline: getOfflineState(state)
+    isOffline: getOfflineState(state),
+    appState: getAppState(state)
 });
 
 const mapDispatchToProps = {
