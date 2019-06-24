@@ -1,14 +1,24 @@
+import { AppStateStatus } from "react-native";
 import { createSelector } from "reselect";
 import { IReduxState } from "../_core/reducers";
 import { IAppStore } from "./app.reducer";
 
 const reducer = (state: IReduxState): IAppStore => state.app;
 
-const appStateSelector = (state: IAppStore): string => state.appState;
-export const getAppState = createSelector(reducer, appStateSelector);
+const appStateSelector = (state: IAppStore): AppStateStatus => state.appState;
+export const getAppState = createSelector(
+    reducer,
+    appStateSelector
+);
 
 const isOfflineSelector = (state: IAppStore): boolean => state.isOffline;
-export const getOfflineState = createSelector(reducer, isOfflineSelector);
+export const getOfflineState = createSelector(
+    reducer,
+    isOfflineSelector
+);
 
 const routeSelector = (state: IAppStore): string => state.currentRoute;
-export const getRouteState = createSelector(reducer, routeSelector);
+export const getRouteState = createSelector(
+    reducer,
+    routeSelector
+);

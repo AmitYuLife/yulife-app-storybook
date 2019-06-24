@@ -1,6 +1,7 @@
 import { shallow } from "enzyme";
 import * as React from "react";
 import "react-native";
+import { AppStateStatus } from "react-native";
 import { COLOURS } from "../../../../../components/molecules";
 import copy from "../../../../../redux/copy/copy.data";
 import LeaderboardsScreen from "../leaderboards.screen";
@@ -63,7 +64,8 @@ const defaultProps = {
     onRefuseConsent: jest.fn(),
     copy: copy.leaderboards.turnBoardOn,
     isMindfulAvailable: false,
-    navbarColour: COLOURS.LIGHT
+    navbarColour: COLOURS.LIGHT,
+    appState: "active" as AppStateStatus
 };
 
 describe("LeaderboardsScreen", () => {

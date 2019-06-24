@@ -1,4 +1,5 @@
 import { GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn } from "@app/graphql/_core/schema";
+import { IAppStore } from "@app/redux/app/app.reducer";
 import { ILeaderboard } from "@redux/user/user.reducer";
 import * as React from "react";
 import { Image, SafeAreaView, StyleSheet, View } from "react-native";
@@ -52,10 +53,12 @@ interface IProps {
     copy: GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn;
     navbarColour: COLOURS;
     componentId: string;
+    appState: IAppStore["appState"];
 }
 
 const initialState = {
-    isShowingDropdown: false
+    isShowingDropdown: false,
+    shouldScrollTo: true
 };
 
 type IState = typeof initialState;
@@ -82,14 +85,29 @@ export default class LeaderboardScreen extends React.PureComponent<IProps, IStat
     public componentDidUpdate(prevProps: IProps) {
         if (
             prevProps.activeLeaderboardIndex === this.props.activeLeaderboardIndex &&
-            prevProps.leaderboards.length &&
-            this.props.leaderboards.length &&
-            !prevProps.leaderboards[prevProps.activeLeaderboardIndex].consent &&
-            this.props.leaderboards[this.props.activeLeaderboardIndex].consent
+            !this.props.isLoading &&
+            (!prevProps.leaderboards[prevProps.activeLeaderboardIndex].consent &&
+                this.props.leaderboards[this.props.activeLeaderboardIndex].consent)
         ) {
             if (this.largeList) {
                 this.handleRefresh();
             }
+        }
+
+        if (this.state.shouldScrollTo && !this.props.isLoading) {
+            this.scrollToLevel();
+            this.setState({
+                shouldScrollTo: false
+            });
+        }
+
+        if (
+            prevProps.activeLeaderboardIndex !== this.props.activeLeaderboardIndex ||
+            (prevProps.appState.match(/inactive|background/) && this.props.appState === "active")
+        ) {
+            this.setState({
+                shouldScrollTo: true
+            });
         }
     }
 
@@ -243,7 +261,10 @@ export default class LeaderboardScreen extends React.PureComponent<IProps, IStat
 
     private handleRefresh = async () => {
         await this.props.onRefetch();
-        this.largeList.endRefresh();
+        await this.largeList.endRefresh();
+        this.setState({
+            shouldScrollTo: true
+        });
     };
 
     private onChangeActiveLeaderboard = (activePage: number) => {
@@ -251,16 +272,24 @@ export default class LeaderboardScreen extends React.PureComponent<IProps, IStat
     };
 
     private handleTabPress = (activeTab: string) => {
-        return () => {
+        return async () => {
             // add mindful mins refetch
             switch (activeTab) {
                 case "coins":
-                    return this.props.onHandleCoinsRefetch();
+                    await this.props.onHandleCoinsRefetch();
+                    break;
+
                 case "steps":
-                    return this.props.onHandleStepsRefetch();
+                    await this.props.onHandleStepsRefetch();
+                    break;
+
                 case "mindful":
-                    return this.props.onHandleMindfulMinsRefetch();
+                    await this.props.onHandleMindfulMinsRefetch();
+                    break;
             }
+            this.setState({
+                shouldScrollTo: true
+            });
         };
     };
 }
