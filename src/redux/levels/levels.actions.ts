@@ -63,6 +63,10 @@ export const challengeEndAction = () => ({
     type: CHALLENGE_END
 });
 
+export const challengeEndFailAction = () => ({
+    type: CHALLENGE_END_FAIL
+});
+
 export const challengeEndSuccessAction = (payload: UpdateActiveChallenge) => ({
     payload,
     type: CHALLENGE_END_SUCCESS
