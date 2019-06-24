@@ -36,7 +36,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="yulifeapp" android:host="yulife" />
-                <data android:scheme="https" android:host="${deepLinkHost}"/>
             </intent-filter>
         </activity>
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
