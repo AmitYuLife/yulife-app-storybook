@@ -61,19 +61,6 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
         const currentWorld = getCurrentWorld(currentLevel);
         const navbarColour = getNavbarColourScheme(currentWorld);
 
-        if (isOffline) {
-            return (
-                <LeaderboardOfflineScreen
-                    hasNotification={hasNotification}
-                    currentWorld={currentWorld}
-                    totalCoins={totalCoins}
-                    labels={labels}
-                    onLeftMenuPress={onLeftMenuPress}
-                    navbarColour={navbarColour}
-                />
-            );
-        }
-
         return (
             <GetLeaderboardQuery
                 query={getLeaderboardGql}
@@ -84,12 +71,26 @@ class LeaderboardsContainer extends PureComponent<Props, IState> {
                     const coinsRefetch = this.handleRefetch(refetch, "coins");
                     const stepsRefetch = this.handleRefetch(refetch, "steps");
                     const mindfulMinsRefetch = this.handleRefetch(refetch, "mindful");
-                    const initialScrollIndex =
-                        data &&
-                        data.getLeaderboard != null &&
-                        (data.getLeaderboard as any).findIndex(
-                            (item: any) => item.id === `lead_${data.getCurrentUser.id}`
+
+                    if (isOffline && (!data || !data.getLeaderboard)) {
+                        return (
+                            <LeaderboardOfflineScreen
+                                hasNotification={hasNotification}
+                                currentWorld={currentWorld}
+                                totalCoins={totalCoins}
+                                labels={labels}
+                                onLeftMenuPress={onLeftMenuPress}
+                                navbarColour={navbarColour}
+                            />
                         );
+                    }
+
+                    const initialScrollIndex =
+                        data && data.getLeaderboard != null
+                            ? (data.getLeaderboard as any).findIndex(
+                                  (item: any) => item.id === `lead_${data.getCurrentUser.id}`
+                              )
+                            : 0;
 
                     return (
                         <LeaderboardsScreen
