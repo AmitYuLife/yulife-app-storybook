@@ -12,7 +12,7 @@ export default StyleSheet.create({
         paddingLeft: Style.SCALE_UP_AND_DOWN(10),
         alignItems: "center",
         justifyContent: "center",
-        width: Style.SCALE_UP_AND_DOWN(32)
+        width: Style.SCALE_UP_AND_DOWN(42)
     } as ViewStyle,
     rankImage: {
         height: 28,
