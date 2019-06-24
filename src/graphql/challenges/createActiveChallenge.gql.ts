@@ -38,5 +38,6 @@ export const createActiveChallengeGql = gql`
 export default (levelSlotId: string) =>
     client().mutate<CreateActiveChallenge, CreateActiveChallengeVariables>({
         mutation: createActiveChallengeGql,
-        variables: { levelSlotId }
+        variables: { levelSlotId },
+        errorPolicy: "ignore"
     });
