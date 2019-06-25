@@ -20,7 +20,7 @@ interface IStyleSet {
 const BRISK_WALK: IStyleSet[] = [
     {
         backgroundColour: "rgb(242, 190, 177)",
-        navBarType: "light",
+        navBarType: "forest",
         progressBarType: "forest-brisk-walk",
         source: assets.squirrel,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(375) }]),
@@ -54,7 +54,7 @@ const BRISK_WALK: IStyleSet[] = [
 const SHORT_STROLL: IStyleSet[] = [
     {
         backgroundColour: "rgb(255,240,156)",
-        navBarType: "light",
+        navBarType: "forest",
         progressBarType: "forest-yellow",
         source: assets.snail,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(668) }]),
@@ -88,7 +88,7 @@ const SHORT_STROLL: IStyleSet[] = [
 const LONG_WALK: IStyleSet[] = [
     {
         backgroundColour: "rgb(40,118,74)",
-        navBarType: "light",
+        navBarType: "forest",
         progressBarType: "forest-white",
         source: assets.rabbit,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(615) }]),
