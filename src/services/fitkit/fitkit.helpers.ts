@@ -34,6 +34,7 @@ export const queryMindfulSessions = async (
 
         return results.map(transformSampleResultToPayload);
     } catch (e) {
+        Logger.logMixpanelEvent("raw_meditation_query_error", { error: e.message });
         return [];
     }
 };
@@ -74,6 +75,7 @@ export const querySteps = async (
 
         return { results: results.map(transformSampleResultToPayload as any), error: null };
     } catch (e) {
+        Logger.logMixpanelEvent("raw_steps_query_error", { error: e.message });
         return { results: [], error: e.message };
     }
 };
