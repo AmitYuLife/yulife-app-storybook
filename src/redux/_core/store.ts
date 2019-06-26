@@ -1,3 +1,4 @@
+import Logger from "@services/logging/logger";
 import { AsyncStorage } from "react-native";
 import Config from "react-native-config";
 import { applyMiddleware, compose, createStore, Store } from "redux";
@@ -16,7 +17,11 @@ const persistConfig = {
 const sagaMiddleware = createSagaMiddleware({
     onError: (error) => {
         // bugsnag().notify(error);
-        console.error(error); // tslint:disable-line
+        Logger.logMixpanelError(error, {
+            name: error.name,
+            stack: JSON.stringify(error.stack),
+            place: "onErrorSagaMiddleware"
+        });
     }
 });
 

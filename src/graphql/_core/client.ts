@@ -1,3 +1,4 @@
+import Logger from "@services/logging/logger";
 import { defaultDataIdFromObject, InMemoryCache, NormalizedCacheObject } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
@@ -11,9 +12,10 @@ import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import { getToken } from "../../services/storage";
 
-const httpLink = () => createHttpLink({
-    uri: `${Config.API_URL}/graphql`
-});
+const httpLink = () =>
+    createHttpLink({
+        uri: `${Config.API_URL}/graphql`
+    });
 
 const dataIdFromObject = (object: any) => {
     switch (object.__typename) {
@@ -71,9 +73,15 @@ const authMiddleware = setContext(async (_, { headers }) => {
     };
 });
 
-const errorAfterware = onError(() => {
-    // might wanna do something here
-    // console.log("Error ... ", error);
+const errorAfterware = onError((e) => {
+    Logger.logMixpanelError("graphqlErrorAfterware", {
+        networkError: {
+            message: e.networkError.message,
+            name: e.networkError.name
+        },
+        graphqErrors: JSON.stringify(e.graphQLErrors),
+        operationName: e.operation.operationName
+    });
 });
 
 let client: ApolloClient<NormalizedCacheObject>;
