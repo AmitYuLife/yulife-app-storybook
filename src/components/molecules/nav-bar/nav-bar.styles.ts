@@ -21,12 +21,12 @@ const styles = StyleSheet.create({
     } as ViewStyle,
     wrapper: {
         alignItems: "center",
-        height: 80,
+        height: Style.SCALE_UP_AND_DOWN(78),
         justifyContent: "flex-start",
-        width: 280
+        width: Style.SCALE_UP_AND_DOWN(280)
     } as ViewStyle,
     image: {
-        height: 113,
+        height: Style.SCALE_UP_AND_DOWN(113),
         position: "absolute",
         left: 0,
         right: 0,

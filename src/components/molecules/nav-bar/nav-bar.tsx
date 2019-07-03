@@ -1,6 +1,7 @@
 import { TAB_BUTTON } from "@ids";
-import { PureComponent } from "react";
+import { Style } from "@styles/index";
 import * as React from "react";
+import { PureComponent } from "react";
 import { Image, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import Svg from "react-native-svg";
 import { Text } from "../../atoms";
@@ -90,7 +91,11 @@ class NavBar extends PureComponent<IProps, IState> {
             <>
                 {hasImage ? <Image source={getImage(currentWorld)} style={styles.image} /> : null}
                 <View style={styles.wrapper}>
-                    <Svg width="252" height="62" viewBox="0 0 575 119">
+                    <Svg
+                        width={String(Style.SCALE_UP_AND_DOWN(252))}
+                        height={String(Style.SCALE_UP_AND_DOWN(62))}
+                        viewBox="0 0 575 119"
+                    >
                         <Lines activeIndex={activeIndex} colourScheme={colourScheme} />
                         <Giraffe
                             isPressed={pressed === 0}

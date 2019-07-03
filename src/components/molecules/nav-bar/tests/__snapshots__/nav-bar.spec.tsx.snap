@@ -48,17 +48,17 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             }
           }
         >
           <Svg
-            height="62"
+            height="124"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 575 119"
-            width="252"
+            width="504"
           >
             <Lines
               activeIndex={0}
@@ -290,10 +290,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={0}
@@ -515,9 +515,9 @@ ShallowWrapper {
           ],
           "style": Object {
             "alignItems": "center",
-            "height": 80,
+            "height": 156,
             "justifyContent": "flex-start",
-            "width": 280,
+            "width": 560,
           },
         },
         "ref": null,
@@ -590,10 +590,10 @@ ShallowWrapper {
                   isPressed={false}
                 />,
               ],
-              "height": "62",
+              "height": "124",
               "preserveAspectRatio": "xMidYMid meet",
               "viewBox": "0 0 575 119",
-              "width": "252",
+              "width": "504",
             },
             "ref": null,
             "rendered": Array [
@@ -1352,17 +1352,17 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "height": 80,
+                "height": 156,
                 "justifyContent": "flex-start",
-                "width": 280,
+                "width": 560,
               }
             }
           >
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={0}
@@ -1594,10 +1594,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height="62"
+                height="124"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 575 119"
-                width="252"
+                width="504"
               >
                 <Lines
                   activeIndex={0}
@@ -1819,9 +1819,9 @@ ShallowWrapper {
             ],
             "style": Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             },
           },
           "ref": null,
@@ -1894,10 +1894,10 @@ ShallowWrapper {
                     isPressed={false}
                   />,
                 ],
-                "height": "62",
+                "height": "124",
                 "preserveAspectRatio": "xMidYMid meet",
                 "viewBox": "0 0 575 119",
-                "width": "252",
+                "width": "504",
               },
               "ref": null,
               "rendered": Array [
@@ -2715,17 +2715,17 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             }
           }
         >
           <Svg
-            height="62"
+            height="124"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 575 119"
-            width="252"
+            width="504"
           >
             <Lines
               activeIndex={0}
@@ -2957,10 +2957,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={0}
@@ -3182,9 +3182,9 @@ ShallowWrapper {
           ],
           "style": Object {
             "alignItems": "center",
-            "height": 80,
+            "height": 156,
             "justifyContent": "flex-start",
-            "width": 280,
+            "width": 560,
           },
         },
         "ref": null,
@@ -3257,10 +3257,10 @@ ShallowWrapper {
                   isPressed={false}
                 />,
               ],
-              "height": "62",
+              "height": "124",
               "preserveAspectRatio": "xMidYMid meet",
               "viewBox": "0 0 575 119",
-              "width": "252",
+              "width": "504",
             },
             "ref": null,
             "rendered": Array [
@@ -4019,17 +4019,17 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "height": 80,
+                "height": 156,
                 "justifyContent": "flex-start",
-                "width": 280,
+                "width": 560,
               }
             }
           >
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={0}
@@ -4261,10 +4261,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height="62"
+                height="124"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 575 119"
-                width="252"
+                width="504"
               >
                 <Lines
                   activeIndex={0}
@@ -4486,9 +4486,9 @@ ShallowWrapper {
             ],
             "style": Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             },
           },
           "ref": null,
@@ -4561,10 +4561,10 @@ ShallowWrapper {
                     isPressed={false}
                   />,
                 ],
-                "height": "62",
+                "height": "124",
                 "preserveAspectRatio": "xMidYMid meet",
                 "viewBox": "0 0 575 119",
-                "width": "252",
+                "width": "504",
               },
               "ref": null,
               "rendered": Array [
@@ -5382,17 +5382,17 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             }
           }
         >
           <Svg
-            height="62"
+            height="124"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 575 119"
-            width="252"
+            width="504"
           >
             <Lines
               activeIndex={1}
@@ -5624,10 +5624,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={1}
@@ -5849,9 +5849,9 @@ ShallowWrapper {
           ],
           "style": Object {
             "alignItems": "center",
-            "height": 80,
+            "height": 156,
             "justifyContent": "flex-start",
-            "width": 280,
+            "width": 560,
           },
         },
         "ref": null,
@@ -5924,10 +5924,10 @@ ShallowWrapper {
                   isPressed={false}
                 />,
               ],
-              "height": "62",
+              "height": "124",
               "preserveAspectRatio": "xMidYMid meet",
               "viewBox": "0 0 575 119",
-              "width": "252",
+              "width": "504",
             },
             "ref": null,
             "rendered": Array [
@@ -6686,17 +6686,17 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "height": 80,
+                "height": 156,
                 "justifyContent": "flex-start",
-                "width": 280,
+                "width": 560,
               }
             }
           >
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={1}
@@ -6928,10 +6928,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height="62"
+                height="124"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 575 119"
-                width="252"
+                width="504"
               >
                 <Lines
                   activeIndex={1}
@@ -7153,9 +7153,9 @@ ShallowWrapper {
             ],
             "style": Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             },
           },
           "ref": null,
@@ -7228,10 +7228,10 @@ ShallowWrapper {
                     isPressed={false}
                   />,
                 ],
-                "height": "62",
+                "height": "124",
                 "preserveAspectRatio": "xMidYMid meet",
                 "viewBox": "0 0 575 119",
-                "width": "252",
+                "width": "504",
               },
               "ref": null,
               "rendered": Array [
@@ -8049,17 +8049,17 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             }
           }
         >
           <Svg
-            height="62"
+            height="124"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 575 119"
-            width="252"
+            width="504"
           >
             <Lines
               activeIndex={1}
@@ -8291,10 +8291,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={1}
@@ -8516,9 +8516,9 @@ ShallowWrapper {
           ],
           "style": Object {
             "alignItems": "center",
-            "height": 80,
+            "height": 156,
             "justifyContent": "flex-start",
-            "width": 280,
+            "width": 560,
           },
         },
         "ref": null,
@@ -8591,10 +8591,10 @@ ShallowWrapper {
                   isPressed={false}
                 />,
               ],
-              "height": "62",
+              "height": "124",
               "preserveAspectRatio": "xMidYMid meet",
               "viewBox": "0 0 575 119",
-              "width": "252",
+              "width": "504",
             },
             "ref": null,
             "rendered": Array [
@@ -9353,17 +9353,17 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "height": 80,
+                "height": 156,
                 "justifyContent": "flex-start",
-                "width": 280,
+                "width": 560,
               }
             }
           >
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={1}
@@ -9595,10 +9595,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height="62"
+                height="124"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 575 119"
-                width="252"
+                width="504"
               >
                 <Lines
                   activeIndex={1}
@@ -9820,9 +9820,9 @@ ShallowWrapper {
             ],
             "style": Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             },
           },
           "ref": null,
@@ -9895,10 +9895,10 @@ ShallowWrapper {
                     isPressed={false}
                   />,
                 ],
-                "height": "62",
+                "height": "124",
                 "preserveAspectRatio": "xMidYMid meet",
                 "viewBox": "0 0 575 119",
-                "width": "252",
+                "width": "504",
               },
               "ref": null,
               "rendered": Array [
@@ -10716,17 +10716,17 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             }
           }
         >
           <Svg
-            height="62"
+            height="124"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 575 119"
-            width="252"
+            width="504"
           >
             <Lines
               activeIndex={2}
@@ -10958,10 +10958,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={2}
@@ -11183,9 +11183,9 @@ ShallowWrapper {
           ],
           "style": Object {
             "alignItems": "center",
-            "height": 80,
+            "height": 156,
             "justifyContent": "flex-start",
-            "width": 280,
+            "width": 560,
           },
         },
         "ref": null,
@@ -11258,10 +11258,10 @@ ShallowWrapper {
                   isPressed={false}
                 />,
               ],
-              "height": "62",
+              "height": "124",
               "preserveAspectRatio": "xMidYMid meet",
               "viewBox": "0 0 575 119",
-              "width": "252",
+              "width": "504",
             },
             "ref": null,
             "rendered": Array [
@@ -12020,17 +12020,17 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "height": 80,
+                "height": 156,
                 "justifyContent": "flex-start",
-                "width": 280,
+                "width": 560,
               }
             }
           >
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={2}
@@ -12262,10 +12262,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height="62"
+                height="124"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 575 119"
-                width="252"
+                width="504"
               >
                 <Lines
                   activeIndex={2}
@@ -12487,9 +12487,9 @@ ShallowWrapper {
             ],
             "style": Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             },
           },
           "ref": null,
@@ -12562,10 +12562,10 @@ ShallowWrapper {
                     isPressed={false}
                   />,
                 ],
-                "height": "62",
+                "height": "124",
                 "preserveAspectRatio": "xMidYMid meet",
                 "viewBox": "0 0 575 119",
-                "width": "252",
+                "width": "504",
               },
               "ref": null,
               "rendered": Array [
@@ -13383,17 +13383,17 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             }
           }
         >
           <Svg
-            height="62"
+            height="124"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 575 119"
-            width="252"
+            width="504"
           >
             <Lines
               activeIndex={2}
@@ -13625,10 +13625,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={2}
@@ -13850,9 +13850,9 @@ ShallowWrapper {
           ],
           "style": Object {
             "alignItems": "center",
-            "height": 80,
+            "height": 156,
             "justifyContent": "flex-start",
-            "width": 280,
+            "width": 560,
           },
         },
         "ref": null,
@@ -13925,10 +13925,10 @@ ShallowWrapper {
                   isPressed={false}
                 />,
               ],
-              "height": "62",
+              "height": "124",
               "preserveAspectRatio": "xMidYMid meet",
               "viewBox": "0 0 575 119",
-              "width": "252",
+              "width": "504",
             },
             "ref": null,
             "rendered": Array [
@@ -14687,17 +14687,17 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "height": 80,
+                "height": 156,
                 "justifyContent": "flex-start",
-                "width": 280,
+                "width": 560,
               }
             }
           >
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={2}
@@ -14929,10 +14929,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height="62"
+                height="124"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 575 119"
-                width="252"
+                width="504"
               >
                 <Lines
                   activeIndex={2}
@@ -15154,9 +15154,9 @@ ShallowWrapper {
             ],
             "style": Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             },
           },
           "ref": null,
@@ -15229,10 +15229,10 @@ ShallowWrapper {
                     isPressed={false}
                   />,
                 ],
-                "height": "62",
+                "height": "124",
                 "preserveAspectRatio": "xMidYMid meet",
                 "viewBox": "0 0 575 119",
-                "width": "252",
+                "width": "504",
               },
               "ref": null,
               "rendered": Array [
@@ -16050,17 +16050,17 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             }
           }
         >
           <Svg
-            height="62"
+            height="124"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 575 119"
-            width="252"
+            width="504"
           >
             <Lines
               activeIndex={3}
@@ -16292,10 +16292,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={3}
@@ -16517,9 +16517,9 @@ ShallowWrapper {
           ],
           "style": Object {
             "alignItems": "center",
-            "height": 80,
+            "height": 156,
             "justifyContent": "flex-start",
-            "width": 280,
+            "width": 560,
           },
         },
         "ref": null,
@@ -16592,10 +16592,10 @@ ShallowWrapper {
                   isPressed={false}
                 />,
               ],
-              "height": "62",
+              "height": "124",
               "preserveAspectRatio": "xMidYMid meet",
               "viewBox": "0 0 575 119",
-              "width": "252",
+              "width": "504",
             },
             "ref": null,
             "rendered": Array [
@@ -17354,17 +17354,17 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "height": 80,
+                "height": 156,
                 "justifyContent": "flex-start",
-                "width": 280,
+                "width": 560,
               }
             }
           >
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={3}
@@ -17596,10 +17596,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height="62"
+                height="124"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 575 119"
-                width="252"
+                width="504"
               >
                 <Lines
                   activeIndex={3}
@@ -17821,9 +17821,9 @@ ShallowWrapper {
             ],
             "style": Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             },
           },
           "ref": null,
@@ -17896,10 +17896,10 @@ ShallowWrapper {
                     isPressed={false}
                   />,
                 ],
-                "height": "62",
+                "height": "124",
                 "preserveAspectRatio": "xMidYMid meet",
                 "viewBox": "0 0 575 119",
-                "width": "252",
+                "width": "504",
               },
               "ref": null,
               "rendered": Array [
@@ -18717,7 +18717,7 @@ ShallowWrapper {
           style={
             Object {
               "bottom": 0,
-              "height": 113,
+              "height": 226,
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -18729,17 +18729,17 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             }
           }
         >
           <Svg
-            height="62"
+            height="124"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 575 119"
-            width="252"
+            width="504"
           >
             <Lines
               activeIndex={0}
@@ -18971,7 +18971,7 @@ ShallowWrapper {
           "source": 1,
           "style": Object {
             "bottom": 0,
-            "height": 113,
+            "height": 226,
             "left": 0,
             "position": "absolute",
             "right": 0,
@@ -18989,10 +18989,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={0}
@@ -19214,9 +19214,9 @@ ShallowWrapper {
           ],
           "style": Object {
             "alignItems": "center",
-            "height": 80,
+            "height": 156,
             "justifyContent": "flex-start",
-            "width": 280,
+            "width": 560,
           },
         },
         "ref": null,
@@ -19289,10 +19289,10 @@ ShallowWrapper {
                   isPressed={false}
                 />,
               ],
-              "height": "62",
+              "height": "124",
               "preserveAspectRatio": "xMidYMid meet",
               "viewBox": "0 0 575 119",
-              "width": "252",
+              "width": "504",
             },
             "ref": null,
             "rendered": Array [
@@ -20051,7 +20051,7 @@ ShallowWrapper {
             style={
               Object {
                 "bottom": 0,
-                "height": 113,
+                "height": 226,
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
@@ -20063,17 +20063,17 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "height": 80,
+                "height": 156,
                 "justifyContent": "flex-start",
-                "width": 280,
+                "width": 560,
               }
             }
           >
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={0}
@@ -20305,7 +20305,7 @@ ShallowWrapper {
             "source": 1,
             "style": Object {
               "bottom": 0,
-              "height": 113,
+              "height": 226,
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -20323,10 +20323,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height="62"
+                height="124"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 575 119"
-                width="252"
+                width="504"
               >
                 <Lines
                   activeIndex={0}
@@ -20548,9 +20548,9 @@ ShallowWrapper {
             ],
             "style": Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             },
           },
           "ref": null,
@@ -20623,10 +20623,10 @@ ShallowWrapper {
                     isPressed={false}
                   />,
                 ],
-                "height": "62",
+                "height": "124",
                 "preserveAspectRatio": "xMidYMid meet",
                 "viewBox": "0 0 575 119",
-                "width": "252",
+                "width": "504",
               },
               "ref": null,
               "rendered": Array [
@@ -21444,7 +21444,7 @@ ShallowWrapper {
           style={
             Object {
               "bottom": 0,
-              "height": 113,
+              "height": 226,
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -21456,17 +21456,17 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             }
           }
         >
           <Svg
-            height="62"
+            height="124"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 575 119"
-            width="252"
+            width="504"
           >
             <Lines
               activeIndex={2}
@@ -21698,7 +21698,7 @@ ShallowWrapper {
           "source": 1,
           "style": Object {
             "bottom": 0,
-            "height": 113,
+            "height": 226,
             "left": 0,
             "position": "absolute",
             "right": 0,
@@ -21716,10 +21716,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={2}
@@ -21941,9 +21941,9 @@ ShallowWrapper {
           ],
           "style": Object {
             "alignItems": "center",
-            "height": 80,
+            "height": 156,
             "justifyContent": "flex-start",
-            "width": 280,
+            "width": 560,
           },
         },
         "ref": null,
@@ -22016,10 +22016,10 @@ ShallowWrapper {
                   isPressed={false}
                 />,
               ],
-              "height": "62",
+              "height": "124",
               "preserveAspectRatio": "xMidYMid meet",
               "viewBox": "0 0 575 119",
-              "width": "252",
+              "width": "504",
             },
             "ref": null,
             "rendered": Array [
@@ -22778,7 +22778,7 @@ ShallowWrapper {
             style={
               Object {
                 "bottom": 0,
-                "height": 113,
+                "height": 226,
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
@@ -22790,17 +22790,17 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "height": 80,
+                "height": 156,
                 "justifyContent": "flex-start",
-                "width": 280,
+                "width": 560,
               }
             }
           >
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={2}
@@ -23032,7 +23032,7 @@ ShallowWrapper {
             "source": 1,
             "style": Object {
               "bottom": 0,
-              "height": 113,
+              "height": 226,
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -23050,10 +23050,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height="62"
+                height="124"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 575 119"
-                width="252"
+                width="504"
               >
                 <Lines
                   activeIndex={2}
@@ -23275,9 +23275,9 @@ ShallowWrapper {
             ],
             "style": Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             },
           },
           "ref": null,
@@ -23350,10 +23350,10 @@ ShallowWrapper {
                     isPressed={false}
                   />,
                 ],
-                "height": "62",
+                "height": "124",
                 "preserveAspectRatio": "xMidYMid meet",
                 "viewBox": "0 0 575 119",
-                "width": "252",
+                "width": "504",
               },
               "ref": null,
               "rendered": Array [
@@ -24172,7 +24172,7 @@ ShallowWrapper {
           style={
             Object {
               "bottom": 0,
-              "height": 113,
+              "height": 226,
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -24184,17 +24184,17 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             }
           }
         >
           <Svg
-            height="62"
+            height="124"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 575 119"
-            width="252"
+            width="504"
           >
             <Lines
               activeIndex={0}
@@ -24426,7 +24426,7 @@ ShallowWrapper {
           "source": 1,
           "style": Object {
             "bottom": 0,
-            "height": 113,
+            "height": 226,
             "left": 0,
             "position": "absolute",
             "right": 0,
@@ -24444,10 +24444,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={0}
@@ -24669,9 +24669,9 @@ ShallowWrapper {
           ],
           "style": Object {
             "alignItems": "center",
-            "height": 80,
+            "height": 156,
             "justifyContent": "flex-start",
-            "width": 280,
+            "width": 560,
           },
         },
         "ref": null,
@@ -24744,10 +24744,10 @@ ShallowWrapper {
                   isPressed={false}
                 />,
               ],
-              "height": "62",
+              "height": "124",
               "preserveAspectRatio": "xMidYMid meet",
               "viewBox": "0 0 575 119",
-              "width": "252",
+              "width": "504",
             },
             "ref": null,
             "rendered": Array [
@@ -25506,7 +25506,7 @@ ShallowWrapper {
             style={
               Object {
                 "bottom": 0,
-                "height": 113,
+                "height": 226,
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
@@ -25518,17 +25518,17 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "height": 80,
+                "height": 156,
                 "justifyContent": "flex-start",
-                "width": 280,
+                "width": 560,
               }
             }
           >
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={0}
@@ -25760,7 +25760,7 @@ ShallowWrapper {
             "source": 1,
             "style": Object {
               "bottom": 0,
-              "height": 113,
+              "height": 226,
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -25778,10 +25778,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height="62"
+                height="124"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 575 119"
-                width="252"
+                width="504"
               >
                 <Lines
                   activeIndex={0}
@@ -26003,9 +26003,9 @@ ShallowWrapper {
             ],
             "style": Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             },
           },
           "ref": null,
@@ -26078,10 +26078,10 @@ ShallowWrapper {
                     isPressed={false}
                   />,
                 ],
-                "height": "62",
+                "height": "124",
                 "preserveAspectRatio": "xMidYMid meet",
                 "viewBox": "0 0 575 119",
-                "width": "252",
+                "width": "504",
               },
               "ref": null,
               "rendered": Array [
@@ -26900,7 +26900,7 @@ ShallowWrapper {
           style={
             Object {
               "bottom": 0,
-              "height": 113,
+              "height": 226,
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -26912,17 +26912,17 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             }
           }
         >
           <Svg
-            height="62"
+            height="124"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 575 119"
-            width="252"
+            width="504"
           >
             <Lines
               activeIndex={0}
@@ -27154,7 +27154,7 @@ ShallowWrapper {
           "source": 1,
           "style": Object {
             "bottom": 0,
-            "height": 113,
+            "height": 226,
             "left": 0,
             "position": "absolute",
             "right": 0,
@@ -27172,10 +27172,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={0}
@@ -27397,9 +27397,9 @@ ShallowWrapper {
           ],
           "style": Object {
             "alignItems": "center",
-            "height": 80,
+            "height": 156,
             "justifyContent": "flex-start",
-            "width": 280,
+            "width": 560,
           },
         },
         "ref": null,
@@ -27472,10 +27472,10 @@ ShallowWrapper {
                   isPressed={false}
                 />,
               ],
-              "height": "62",
+              "height": "124",
               "preserveAspectRatio": "xMidYMid meet",
               "viewBox": "0 0 575 119",
-              "width": "252",
+              "width": "504",
             },
             "ref": null,
             "rendered": Array [
@@ -28234,7 +28234,7 @@ ShallowWrapper {
             style={
               Object {
                 "bottom": 0,
-                "height": 113,
+                "height": 226,
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
@@ -28246,17 +28246,17 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "height": 80,
+                "height": 156,
                 "justifyContent": "flex-start",
-                "width": 280,
+                "width": 560,
               }
             }
           >
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={0}
@@ -28488,7 +28488,7 @@ ShallowWrapper {
             "source": 1,
             "style": Object {
               "bottom": 0,
-              "height": 113,
+              "height": 226,
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -28506,10 +28506,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height="62"
+                height="124"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 575 119"
-                width="252"
+                width="504"
               >
                 <Lines
                   activeIndex={0}
@@ -28731,9 +28731,9 @@ ShallowWrapper {
             ],
             "style": Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             },
           },
           "ref": null,
@@ -28806,10 +28806,10 @@ ShallowWrapper {
                     isPressed={false}
                   />,
                 ],
-                "height": "62",
+                "height": "124",
                 "preserveAspectRatio": "xMidYMid meet",
                 "viewBox": "0 0 575 119",
-                "width": "252",
+                "width": "504",
               },
               "ref": null,
               "rendered": Array [
@@ -29628,7 +29628,7 @@ ShallowWrapper {
           style={
             Object {
               "bottom": 0,
-              "height": 113,
+              "height": 226,
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -29640,17 +29640,17 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             }
           }
         >
           <Svg
-            height="62"
+            height="124"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 575 119"
-            width="252"
+            width="504"
           >
             <Lines
               activeIndex={0}
@@ -29882,7 +29882,7 @@ ShallowWrapper {
           "source": 1,
           "style": Object {
             "bottom": 0,
-            "height": 113,
+            "height": 226,
             "left": 0,
             "position": "absolute",
             "right": 0,
@@ -29900,10 +29900,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={0}
@@ -30125,9 +30125,9 @@ ShallowWrapper {
           ],
           "style": Object {
             "alignItems": "center",
-            "height": 80,
+            "height": 156,
             "justifyContent": "flex-start",
-            "width": 280,
+            "width": 560,
           },
         },
         "ref": null,
@@ -30200,10 +30200,10 @@ ShallowWrapper {
                   isPressed={false}
                 />,
               ],
-              "height": "62",
+              "height": "124",
               "preserveAspectRatio": "xMidYMid meet",
               "viewBox": "0 0 575 119",
-              "width": "252",
+              "width": "504",
             },
             "ref": null,
             "rendered": Array [
@@ -30962,7 +30962,7 @@ ShallowWrapper {
             style={
               Object {
                 "bottom": 0,
-                "height": 113,
+                "height": 226,
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
@@ -30974,17 +30974,17 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "height": 80,
+                "height": 156,
                 "justifyContent": "flex-start",
-                "width": 280,
+                "width": 560,
               }
             }
           >
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={0}
@@ -31216,7 +31216,7 @@ ShallowWrapper {
             "source": 1,
             "style": Object {
               "bottom": 0,
-              "height": 113,
+              "height": 226,
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -31234,10 +31234,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height="62"
+                height="124"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 575 119"
-                width="252"
+                width="504"
               >
                 <Lines
                   activeIndex={0}
@@ -31459,9 +31459,9 @@ ShallowWrapper {
             ],
             "style": Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             },
           },
           "ref": null,
@@ -31534,10 +31534,10 @@ ShallowWrapper {
                     isPressed={false}
                   />,
                 ],
-                "height": "62",
+                "height": "124",
                 "preserveAspectRatio": "xMidYMid meet",
                 "viewBox": "0 0 575 119",
-                "width": "252",
+                "width": "504",
               },
               "ref": null,
               "rendered": Array [
@@ -32356,7 +32356,7 @@ ShallowWrapper {
           style={
             Object {
               "bottom": 0,
-              "height": 113,
+              "height": 226,
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -32368,17 +32368,17 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             }
           }
         >
           <Svg
-            height="62"
+            height="124"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 575 119"
-            width="252"
+            width="504"
           >
             <Lines
               activeIndex={0}
@@ -32610,7 +32610,7 @@ ShallowWrapper {
           "source": 1,
           "style": Object {
             "bottom": 0,
-            "height": 113,
+            "height": 226,
             "left": 0,
             "position": "absolute",
             "right": 0,
@@ -32628,10 +32628,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={0}
@@ -32853,9 +32853,9 @@ ShallowWrapper {
           ],
           "style": Object {
             "alignItems": "center",
-            "height": 80,
+            "height": 156,
             "justifyContent": "flex-start",
-            "width": 280,
+            "width": 560,
           },
         },
         "ref": null,
@@ -32928,10 +32928,10 @@ ShallowWrapper {
                   isPressed={false}
                 />,
               ],
-              "height": "62",
+              "height": "124",
               "preserveAspectRatio": "xMidYMid meet",
               "viewBox": "0 0 575 119",
-              "width": "252",
+              "width": "504",
             },
             "ref": null,
             "rendered": Array [
@@ -33690,7 +33690,7 @@ ShallowWrapper {
             style={
               Object {
                 "bottom": 0,
-                "height": 113,
+                "height": 226,
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
@@ -33702,17 +33702,17 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "height": 80,
+                "height": 156,
                 "justifyContent": "flex-start",
-                "width": 280,
+                "width": 560,
               }
             }
           >
             <Svg
-              height="62"
+              height="124"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 575 119"
-              width="252"
+              width="504"
             >
               <Lines
                 activeIndex={0}
@@ -33944,7 +33944,7 @@ ShallowWrapper {
             "source": 1,
             "style": Object {
               "bottom": 0,
-              "height": 113,
+              "height": 226,
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -33962,10 +33962,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Svg
-                height="62"
+                height="124"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 575 119"
-                width="252"
+                width="504"
               >
                 <Lines
                   activeIndex={0}
@@ -34187,9 +34187,9 @@ ShallowWrapper {
             ],
             "style": Object {
               "alignItems": "center",
-              "height": 80,
+              "height": 156,
               "justifyContent": "flex-start",
-              "width": 280,
+              "width": 560,
             },
           },
           "ref": null,
@@ -34262,10 +34262,10 @@ ShallowWrapper {
                     isPressed={false}
                   />,
                 ],
-                "height": "62",
+                "height": "124",
                 "preserveAspectRatio": "xMidYMid meet",
                 "viewBox": "0 0 575 119",
-                "width": "252",
+                "width": "504",
               },
               "ref": null,
               "rendered": Array [
