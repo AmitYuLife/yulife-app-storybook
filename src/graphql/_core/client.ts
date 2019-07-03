@@ -1,4 +1,3 @@
-import Logger from "@services/logging/logger";
 import { defaultDataIdFromObject, InMemoryCache, NormalizedCacheObject } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
@@ -73,15 +72,9 @@ const authMiddleware = setContext(async (_, { headers }) => {
     };
 });
 
-const errorAfterware = onError((e) => {
-    Logger.logMixpanelError("graphqlErrorAfterware", {
-        networkError: {
-            message: e.networkError.message,
-            name: e.networkError.name
-        },
-        graphqErrors: JSON.stringify(e.graphQLErrors),
-        operationName: e.operation.operationName
-    });
+const errorAfterware = onError(() => {
+    // might wanna do something here
+    // console.log("Error ... ", error);
 });
 
 let client: ApolloClient<NormalizedCacheObject>;

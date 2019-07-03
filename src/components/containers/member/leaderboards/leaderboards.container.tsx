@@ -1,9 +1,10 @@
 import { ILeaderboard } from "@app/redux/user/user.reducer";
 import { GetLeaderboardVariables } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
-import React, { PureComponent } from "react";
-import { Linking } from "react-native";
+import React from "react";
+import { BackHandler, Linking, NativeEventSubscription } from "react-native";
 import Config from "react-native-config";
+import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { COLOURS } from "../../../../components/molecules";
 import GetLeaderboardQuery, { getLeaderboardGql } from "../../../../graphql/member/getLeaderboard.gql";
@@ -33,15 +34,55 @@ interface IState {
 
 type Props = ConnectedState & ConnectedDispatch & IProps & IMainTabsProps;
 
-class LeaderboardsContainer extends PureComponent<Props, IState> {
+class LeaderboardsContainer extends React.Component<Props, IState> {
     public state: IState = {
         isLoading: true,
         sortBy: "steps",
         ...getInitialLeaderboard(this.props.leaderboards)
     };
+    private backHandler: NativeEventSubscription;
+    private backPressed: number = 0;
+    private isActive: boolean = true;
+
+    constructor(props: Props) {
+        super(props);
+        Navigation.events().bindComponent(this);
+    }
+
+    public componentDidAppear() {
+        this.isActive = true;
+        this.backPressed = 0;
+        this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
+            if (this.backPressed > 0) {
+                return false;
+            }
+
+            this.backPressed += 1;
+            return true;
+        });
+    }
+
+    public componentDidDisappear() {
+        this.isActive = false;
+        if (this.backHandler) {
+            this.backHandler.remove();
+        }
+    }
 
     public componentDidMount() {
         setTimeout(() => this.setState({ isLoading: false }), 250);
+    }
+
+    public shouldComponentUpdate(nextProps: Props, nextState: IState) {
+        return (
+            this.isActive &&
+            (nextState.isLoading !== this.state.isLoading ||
+                nextProps.totalCoins !== this.props.totalCoins ||
+                nextProps.hasNotification !== this.props.hasNotification ||
+                nextProps.currentLevel !== this.props.currentLevel ||
+                nextProps.isOffline !== this.props.isOffline ||
+                nextProps.appState !== this.props.appState)
+        );
     }
 
     public render() {

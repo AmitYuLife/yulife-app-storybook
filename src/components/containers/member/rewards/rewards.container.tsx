@@ -90,7 +90,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
 
         return (
             <RewardsListScreen
-                data={data.getRewards || []}
+                data={data && data.getRewards ? data.getRewards : []}
                 hasNotification={hasNotification}
                 labels={labels}
                 onItemPress={this.handleRewardDetailsItemPress}
@@ -160,7 +160,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
     // all related to the purchases tab
     private renderPurchases = ({ loading, data, refetch }: GetAllPurchasesResultType) => {
         const { hasNotification, labels, onLeftMenuPress, totalCoins, copy, currentLevel } = this.props;
-        const items = this.formatPuchaseItem(data.getAllPurchases);
+        const items = this.formatPuchaseItem(data && data.getAllPurchases ? data.getAllPurchases : []);
         const currentWorld = getCurrentWorld(currentLevel);
         const navbarColour = getNavbarColourScheme(currentWorld);
 
