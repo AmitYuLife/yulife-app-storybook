@@ -3,13 +3,12 @@ import { IMainTabsProps } from "@navigation/root";
 import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import { getCurrentWorld } from "@services/utils";
 import moment from "moment";
-import { PureComponent } from "react";
 import React from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
-import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
+import { getOfflineState } from "../../../../redux/app/app.selectors";
 import { getDailyEarnedCoins, getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { startDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
@@ -37,12 +36,13 @@ interface IState {
     lastUpdate?: string;
 }
 
-class DailyStepsContainer extends PureComponent<Props, IState> {
+class DailyStepsContainer extends React.Component<Props, IState> {
     public state: IState = {
         dailyStepsLoading: true
     };
     private backHandler: NativeEventSubscription;
     private backPressed: number = 0;
+    private isActive: boolean = true;
 
     constructor(props: Props) {
         super(props);
@@ -50,6 +50,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     public componentDidAppear() {
+        this.isActive = true;
         this.backPressed = 0;
         this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
             if (this.backPressed > 0) {
@@ -63,6 +64,7 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
     }
 
     public componentDidDisappear() {
+        this.isActive = false;
         if (this.backHandler) {
             this.backHandler.remove();
         }
@@ -80,13 +82,28 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
         }));
     }
 
+    public shouldComponentUpdate(nextProps: Props, nextState: IState) {
+        return (
+            this.isActive &&
+            (nextState.dailyStepsLoading !== this.state.dailyStepsLoading ||
+                nextProps.currentLevel !== this.props.currentLevel ||
+                nextProps.dailyEarnedCoins !== this.props.dailyEarnedCoins ||
+                nextProps.dailySteps !== this.props.dailySteps ||
+                nextProps.displayEarnMore !== this.props.displayEarnMore ||
+                nextProps.hasNotification !== this.props.hasNotification ||
+                nextProps.isFetching !== this.props.isFetching ||
+                nextProps.lastUpdated !== this.props.lastUpdated ||
+                nextProps.offline !== this.props.offline)
+        );
+    }
+
     public render() {
         return (
             <FitKitAvailable>
                 {({ available, authorised, authorise, loading }) => {
                     const {
                         currentLevel,
-                        challengesStatus,
+                        displayEarnMore,
                         dailyEarnedCoins,
                         dailySteps,
                         features = {},
@@ -104,7 +121,6 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
                     } = this.props;
                     const { dailyStepsLoading, lastUpdate } = this.state;
                     const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
-                    const displayEarnMore = challengesStatus.isAvailable;
 
                     return (
                         <DailyStepsScreen
@@ -197,11 +213,10 @@ class DailyStepsContainer extends PureComponent<Props, IState> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    appState: getAppState(state),
-    challengesStatus: getChallengesStatus(state),
     currentLevel: getCurrentLevel(state),
     dailyEarnedCoins: getDailyEarnedCoins(state),
     dailySteps: getDailySteps(state),
+    displayEarnMore: getChallengesStatus(state).isAvailable,
     features: getUserFeatures(state),
     hasNotification: getHasNotification(state),
     isFetching: getDailyStepsIsFetching(state),
@@ -212,8 +227,7 @@ const mapStateToProps = (state: IReduxState) => ({
     totalCoins: getTotalCoins(state),
     copy: getCopy(state, "dailyStepsFitKitAuthorise"),
     popUpCopy: getCopy(state, "popUp"),
-    popupVisibility: getVisiblePopups(state),
-    state
+    popupVisibility: getVisiblePopups(state)
 });
 
 const mapDispatchToProps = {

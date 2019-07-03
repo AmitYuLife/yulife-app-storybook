@@ -1,11 +1,9 @@
 import { GetCurrentWorld_getCurrentWorld } from "@graphql/_core/schema";
 import { bottomTabs } from "@navigation/constants";
-import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import { getCurrentWorld } from "@services/utils";
 import moment from "moment";
 import React from "react";
-import { PureComponent } from "react";
-import { BackHandler, NativeEventSubscription } from "react-native";
+import { BackHandler, NativeEventSubscription, Platform, PlatformIOSStatic } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import GetCurrentWorld, {
@@ -103,12 +101,13 @@ interface IState {
     unity: number;
 }
 
-class QuestsContainer extends PureComponent<Props, IState> {
+class QuestsContainer extends React.Component<Props, IState> {
     public state: IState = {
         unity: null
     };
     private backHandler: NativeEventSubscription;
     private backPressed: number = 0;
+    private isActive: boolean = true;
 
     constructor(props: Props) {
         super(props);
@@ -116,6 +115,7 @@ class QuestsContainer extends PureComponent<Props, IState> {
     }
 
     public componentDidAppear() {
+        this.isActive = true;
         this.backPressed = 0;
         this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
             if (this.backPressed > 0) {
@@ -128,36 +128,61 @@ class QuestsContainer extends PureComponent<Props, IState> {
     }
 
     public componentDidDisappear() {
+        this.isActive = false;
         if (this.backHandler) {
             this.backHandler.remove();
         }
     }
 
+    public shouldComponentUpdate(nextProps: Props, nextState: IState) {
+        return (
+            this.isActive &&
+            (nextState.unity !== this.state.unity ||
+                nextProps.currentLevel !== this.props.currentLevel ||
+                nextProps.nextLevelAvailableAt !== this.props.nextLevelAvailableAt ||
+                nextProps.offline !== this.props.offline ||
+                nextProps.totalCoins !== this.props.totalCoins ||
+                nextProps.activeLevel.levelSlotId !== this.props.activeLevel.levelSlotId ||
+                nextProps.activeLevel.isLoading !== this.props.activeLevel.isLoading ||
+                nextProps.activeLevel.score !== this.props.activeLevel.score ||
+                nextProps.activeLevel.timeUp !== this.props.activeLevel.timeUp ||
+                nextProps.activeLevel.status !== this.props.activeLevel.status ||
+                nextProps.challengesStatus.available !== this.props.challengesStatus.available ||
+                nextProps.challengesStatus.done !== this.props.challengesStatus.done)
+        );
+    }
+
     public render() {
         const { labels, offline, onLeftMenuPress, totalCoins, theme } = this.props;
 
-        return (
-            <FitKitAvailable>
-                {({ available }) => {
-                    if (!available || offline) {
-                        return (
-                            <QuestsScreenOffline
-                                fitkitAvailable={available}
-                                totalCoins={totalCoins}
-                                labels={labels}
-                                onLeftMenuPress={onLeftMenuPress}
-                                theme={theme.questsOffline}
-                            />
-                        );
-                    }
+        if ((Platform as PlatformIOSStatic).isPad) {
+            return (
+                <QuestsScreenOffline
+                    fitkitAvailable={false}
+                    totalCoins={totalCoins}
+                    labels={labels}
+                    onLeftMenuPress={onLeftMenuPress}
+                    theme={theme.questsOffline}
+                />
+            );
+        }
 
-                    return (
-                        <GetCurrentWorld query={getCurrentWorldGql} fetchPolicy="network-only">
-                            {this.renderCurrentWorld}
-                        </GetCurrentWorld>
-                    );
-                }}
-            </FitKitAvailable>
+        if (offline) {
+            return (
+                <QuestsScreenOffline
+                    fitkitAvailable={true}
+                    totalCoins={totalCoins}
+                    labels={labels}
+                    onLeftMenuPress={onLeftMenuPress}
+                    theme={theme.questsOffline}
+                />
+            );
+        }
+
+        return (
+            <GetCurrentWorld query={getCurrentWorldGql} fetchPolicy="network-only">
+                {this.renderCurrentWorld}
+            </GetCurrentWorld>
         );
     }
 

@@ -1,7 +1,6 @@
 import { BUTTON_TOP_LEFT_BAR } from "@ids";
 import moment from "moment";
 import * as React from "react";
-import { Component } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Colours } from "../../../styles";
 import { Dim, Text } from "../../atoms";
@@ -53,7 +52,7 @@ interface IState {
     endsIn: string;
 }
 
-class TopBar extends Component<IProps, IState> {
+class TopBar extends React.Component<IProps, IState> {
     public static LeftIcon = LEFT_ICON_TYPES;
     public state: IState = {
         endsIn: null
