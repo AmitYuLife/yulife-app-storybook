@@ -51,6 +51,7 @@ export default class RewardsListScreen extends React.PureComponent<IRewardsListS
                         onRefresh={this.handleRefresh}
                         renderEmpty={Loading}
                         refreshHeader={YulifeRefreshHeader}
+                        renderFooter={this.renderFooter}
                     />
                 </View>
                 <View style={styles.navBarWrapper}>
@@ -107,4 +108,6 @@ export default class RewardsListScreen extends React.PureComponent<IRewardsListS
     };
 
     private getHeight = () => Style.SCALE_UP_AND_DOWN(150);
+
+    private renderFooter = () => <View style={styles.footer} />;
 }

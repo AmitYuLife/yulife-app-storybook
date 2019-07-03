@@ -95,7 +95,7 @@ ShallowWrapper {
           style={
             Object {
               "flex": 1,
-              "marginBottom": 105,
+              "marginBottom": 158,
               "paddingHorizontal": 30,
             }
           }
@@ -125,6 +125,7 @@ ShallowWrapper {
             onRefresh={[Function]}
             refreshHeader={[Function]}
             renderEmpty={[Function]}
+            renderFooter={[Function]}
             renderIndexPath={[Function]}
             renderSection={[Function]}
             updateTimeInterval={150}
@@ -134,7 +135,6 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "rgb(255,255,255)",
               "bottom": 0,
               "left": 0,
               "paddingBottom": 34,
@@ -233,13 +233,14 @@ ShallowWrapper {
             onRefresh={[Function]}
             refreshHeader={[Function]}
             renderEmpty={[Function]}
+            renderFooter={[Function]}
             renderIndexPath={[Function]}
             renderSection={[Function]}
             updateTimeInterval={150}
           />,
           "style": Object {
             "flex": 1,
-            "marginBottom": 105,
+            "marginBottom": 158,
             "paddingHorizontal": 30,
           },
         },
@@ -271,6 +272,7 @@ ShallowWrapper {
             "onRefresh": [Function],
             "refreshHeader": [Function],
             "renderEmpty": [Function],
+            "renderFooter": [Function],
             "renderIndexPath": [Function],
             "renderSection": [Function],
             "updateTimeInterval": 150,
@@ -295,7 +297,6 @@ ShallowWrapper {
           />,
           "style": Object {
             "alignItems": "center",
-            "backgroundColor": "rgb(255,255,255)",
             "bottom": 0,
             "left": 0,
             "paddingBottom": 34,
@@ -355,7 +356,7 @@ ShallowWrapper {
             style={
               Object {
                 "flex": 1,
-                "marginBottom": 105,
+                "marginBottom": 158,
                 "paddingHorizontal": 30,
               }
             }
@@ -385,6 +386,7 @@ ShallowWrapper {
               onRefresh={[Function]}
               refreshHeader={[Function]}
               renderEmpty={[Function]}
+              renderFooter={[Function]}
               renderIndexPath={[Function]}
               renderSection={[Function]}
               updateTimeInterval={150}
@@ -394,7 +396,6 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "rgb(255,255,255)",
                 "bottom": 0,
                 "left": 0,
                 "paddingBottom": 34,
@@ -493,13 +494,14 @@ ShallowWrapper {
               onRefresh={[Function]}
               refreshHeader={[Function]}
               renderEmpty={[Function]}
+              renderFooter={[Function]}
               renderIndexPath={[Function]}
               renderSection={[Function]}
               updateTimeInterval={150}
             />,
             "style": Object {
               "flex": 1,
-              "marginBottom": 105,
+              "marginBottom": 158,
               "paddingHorizontal": 30,
             },
           },
@@ -531,6 +533,7 @@ ShallowWrapper {
               "onRefresh": [Function],
               "refreshHeader": [Function],
               "renderEmpty": [Function],
+              "renderFooter": [Function],
               "renderIndexPath": [Function],
               "renderSection": [Function],
               "updateTimeInterval": 150,
@@ -555,7 +558,6 @@ ShallowWrapper {
             />,
             "style": Object {
               "alignItems": "center",
-              "backgroundColor": "rgb(255,255,255)",
               "bottom": 0,
               "left": 0,
               "paddingBottom": 34,
@@ -692,7 +694,7 @@ ShallowWrapper {
           style={
             Object {
               "flex": 1,
-              "marginBottom": 105,
+              "marginBottom": 158,
               "paddingHorizontal": 30,
             }
           }
@@ -712,6 +714,7 @@ ShallowWrapper {
             onRefresh={[Function]}
             refreshHeader={[Function]}
             renderEmpty={[Function]}
+            renderFooter={[Function]}
             renderIndexPath={[Function]}
             renderSection={[Function]}
             updateTimeInterval={150}
@@ -721,7 +724,6 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "rgb(255,255,255)",
               "bottom": 0,
               "left": 0,
               "paddingBottom": 34,
@@ -810,13 +812,14 @@ ShallowWrapper {
             onRefresh={[Function]}
             refreshHeader={[Function]}
             renderEmpty={[Function]}
+            renderFooter={[Function]}
             renderIndexPath={[Function]}
             renderSection={[Function]}
             updateTimeInterval={150}
           />,
           "style": Object {
             "flex": 1,
-            "marginBottom": 105,
+            "marginBottom": 158,
             "paddingHorizontal": 30,
           },
         },
@@ -838,6 +841,7 @@ ShallowWrapper {
             "onRefresh": [Function],
             "refreshHeader": [Function],
             "renderEmpty": [Function],
+            "renderFooter": [Function],
             "renderIndexPath": [Function],
             "renderSection": [Function],
             "updateTimeInterval": 150,
@@ -862,7 +866,6 @@ ShallowWrapper {
           />,
           "style": Object {
             "alignItems": "center",
-            "backgroundColor": "rgb(255,255,255)",
             "bottom": 0,
             "left": 0,
             "paddingBottom": 34,
@@ -922,7 +925,7 @@ ShallowWrapper {
             style={
               Object {
                 "flex": 1,
-                "marginBottom": 105,
+                "marginBottom": 158,
                 "paddingHorizontal": 30,
               }
             }
@@ -942,6 +945,7 @@ ShallowWrapper {
               onRefresh={[Function]}
               refreshHeader={[Function]}
               renderEmpty={[Function]}
+              renderFooter={[Function]}
               renderIndexPath={[Function]}
               renderSection={[Function]}
               updateTimeInterval={150}
@@ -951,7 +955,6 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "rgb(255,255,255)",
                 "bottom": 0,
                 "left": 0,
                 "paddingBottom": 34,
@@ -1040,13 +1043,14 @@ ShallowWrapper {
               onRefresh={[Function]}
               refreshHeader={[Function]}
               renderEmpty={[Function]}
+              renderFooter={[Function]}
               renderIndexPath={[Function]}
               renderSection={[Function]}
               updateTimeInterval={150}
             />,
             "style": Object {
               "flex": 1,
-              "marginBottom": 105,
+              "marginBottom": 158,
               "paddingHorizontal": 30,
             },
           },
@@ -1068,6 +1072,7 @@ ShallowWrapper {
               "onRefresh": [Function],
               "refreshHeader": [Function],
               "renderEmpty": [Function],
+              "renderFooter": [Function],
               "renderIndexPath": [Function],
               "renderSection": [Function],
               "updateTimeInterval": 150,
@@ -1092,7 +1097,6 @@ ShallowWrapper {
             />,
             "style": Object {
               "alignItems": "center",
-              "backgroundColor": "rgb(255,255,255)",
               "bottom": 0,
               "left": 0,
               "paddingBottom": 34,

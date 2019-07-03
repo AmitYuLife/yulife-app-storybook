@@ -5,12 +5,11 @@ import { Style } from "../../../../../styles";
 export default StyleSheet.create({
     listWrapper: {
         flex: 1,
-        marginBottom: isIphoneX() ? 80 : 105,
+        marginBottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 45 : 79),
         paddingHorizontal: Style.SCALE_UP_AND_DOWN(15)
     } as ViewStyle,
     navBarWrapper: {
         alignItems: "center",
-        backgroundColor: "rgb(255,255,255)",
         bottom: 0,
         left: 0,
         paddingBottom: Style.SCALE_UP_AND_DOWN(17),
@@ -25,5 +24,8 @@ export default StyleSheet.create({
     wrapper: {
         flex: 1,
         flexDirection: "column"
+    } as ViewStyle,
+    footer: {
+        height: Style.SCALE_UP_AND_DOWN(28)
     } as ViewStyle
 });

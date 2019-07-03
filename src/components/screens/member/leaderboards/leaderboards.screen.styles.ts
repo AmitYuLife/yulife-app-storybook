@@ -34,6 +34,9 @@ export default StyleSheet.create({
         flex: 1,
         overflow: "hidden"
     } as ViewStyle,
+    footer: {
+        height: Style.SCALE_UP_AND_DOWN(28)
+    } as ViewStyle,
     leaderboardList: {
         position: "absolute",
         bottom: 0,
@@ -42,7 +45,7 @@ export default StyleSheet.create({
         top: 0
     } as ViewStyle,
     listWrapperMargin: {
-        marginBottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 70 : 113),
+        marginBottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 45 : 79),
         alignItems: "center"
     } as ViewStyle,
     wrapper: {
