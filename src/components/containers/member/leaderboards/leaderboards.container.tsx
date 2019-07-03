@@ -42,7 +42,6 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
     };
     private backHandler: NativeEventSubscription;
     private backPressed: number = 0;
-    private isActive: boolean = true;
 
     constructor(props: Props) {
         super(props);
@@ -50,7 +49,6 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
     }
 
     public componentDidAppear() {
-        this.isActive = true;
         this.backPressed = 0;
         this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
             if (this.backPressed > 0) {
@@ -63,7 +61,6 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
     }
 
     public componentDidDisappear() {
-        this.isActive = false;
         if (this.backHandler) {
             this.backHandler.remove();
         }
@@ -75,13 +72,15 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
 
     public shouldComponentUpdate(nextProps: Props, nextState: IState) {
         return (
-            this.isActive &&
-            (nextState.isLoading !== this.state.isLoading ||
-                nextProps.totalCoins !== this.props.totalCoins ||
-                nextProps.hasNotification !== this.props.hasNotification ||
-                nextProps.currentLevel !== this.props.currentLevel ||
-                nextProps.isOffline !== this.props.isOffline ||
-                nextProps.appState !== this.props.appState)
+            nextState.isLoading !== this.state.isLoading ||
+            nextState.sortBy !== this.state.sortBy ||
+            nextState.leaderboardId !== this.state.leaderboardId ||
+            nextState.activeLeaderboardIndex !== this.state.activeLeaderboardIndex ||
+            nextProps.totalCoins !== this.props.totalCoins ||
+            nextProps.hasNotification !== this.props.hasNotification ||
+            nextProps.currentLevel !== this.props.currentLevel ||
+            nextProps.isOffline !== this.props.isOffline ||
+            nextProps.appState !== this.props.appState
         );
     }
 

@@ -42,7 +42,6 @@ class DailyStepsContainer extends React.Component<Props, IState> {
     };
     private backHandler: NativeEventSubscription;
     private backPressed: number = 0;
-    private isActive: boolean = true;
 
     constructor(props: Props) {
         super(props);
@@ -50,7 +49,6 @@ class DailyStepsContainer extends React.Component<Props, IState> {
     }
 
     public componentDidAppear() {
-        this.isActive = true;
         this.backPressed = 0;
         this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
             if (this.backPressed > 0) {
@@ -64,7 +62,6 @@ class DailyStepsContainer extends React.Component<Props, IState> {
     }
 
     public componentDidDisappear() {
-        this.isActive = false;
         if (this.backHandler) {
             this.backHandler.remove();
         }
@@ -84,16 +81,15 @@ class DailyStepsContainer extends React.Component<Props, IState> {
 
     public shouldComponentUpdate(nextProps: Props, nextState: IState) {
         return (
-            this.isActive &&
-            (nextState.dailyStepsLoading !== this.state.dailyStepsLoading ||
-                nextProps.currentLevel !== this.props.currentLevel ||
-                nextProps.dailyEarnedCoins !== this.props.dailyEarnedCoins ||
-                nextProps.dailySteps !== this.props.dailySteps ||
-                nextProps.displayEarnMore !== this.props.displayEarnMore ||
-                nextProps.hasNotification !== this.props.hasNotification ||
-                nextProps.isFetching !== this.props.isFetching ||
-                nextProps.lastUpdated !== this.props.lastUpdated ||
-                nextProps.offline !== this.props.offline)
+            nextState.dailyStepsLoading !== this.state.dailyStepsLoading ||
+            nextProps.currentLevel !== this.props.currentLevel ||
+            nextProps.dailyEarnedCoins !== this.props.dailyEarnedCoins ||
+            nextProps.dailySteps !== this.props.dailySteps ||
+            nextProps.displayEarnMore !== this.props.displayEarnMore ||
+            nextProps.hasNotification !== this.props.hasNotification ||
+            nextProps.isFetching !== this.props.isFetching ||
+            nextProps.lastUpdated !== this.props.lastUpdated ||
+            nextProps.offline !== this.props.offline
         );
     }
 

@@ -107,7 +107,6 @@ class QuestsContainer extends React.Component<Props, IState> {
     };
     private backHandler: NativeEventSubscription;
     private backPressed: number = 0;
-    private isActive: boolean = true;
 
     constructor(props: Props) {
         super(props);
@@ -115,7 +114,6 @@ class QuestsContainer extends React.Component<Props, IState> {
     }
 
     public componentDidAppear() {
-        this.isActive = true;
         this.backPressed = 0;
         this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
             if (this.backPressed > 0) {
@@ -128,7 +126,6 @@ class QuestsContainer extends React.Component<Props, IState> {
     }
 
     public componentDidDisappear() {
-        this.isActive = false;
         if (this.backHandler) {
             this.backHandler.remove();
         }
@@ -136,19 +133,18 @@ class QuestsContainer extends React.Component<Props, IState> {
 
     public shouldComponentUpdate(nextProps: Props, nextState: IState) {
         return (
-            this.isActive &&
-            (nextState.unity !== this.state.unity ||
-                nextProps.currentLevel !== this.props.currentLevel ||
-                nextProps.nextLevelAvailableAt !== this.props.nextLevelAvailableAt ||
-                nextProps.offline !== this.props.offline ||
-                nextProps.totalCoins !== this.props.totalCoins ||
-                nextProps.activeLevel.levelSlotId !== this.props.activeLevel.levelSlotId ||
-                nextProps.activeLevel.isLoading !== this.props.activeLevel.isLoading ||
-                nextProps.activeLevel.score !== this.props.activeLevel.score ||
-                nextProps.activeLevel.timeUp !== this.props.activeLevel.timeUp ||
-                nextProps.activeLevel.status !== this.props.activeLevel.status ||
-                nextProps.challengesStatus.available !== this.props.challengesStatus.available ||
-                nextProps.challengesStatus.done !== this.props.challengesStatus.done)
+            nextState.unity !== this.state.unity ||
+            nextProps.currentLevel !== this.props.currentLevel ||
+            nextProps.nextLevelAvailableAt !== this.props.nextLevelAvailableAt ||
+            nextProps.offline !== this.props.offline ||
+            nextProps.totalCoins !== this.props.totalCoins ||
+            nextProps.activeLevel.levelSlotId !== this.props.activeLevel.levelSlotId ||
+            nextProps.activeLevel.isLoading !== this.props.activeLevel.isLoading ||
+            nextProps.activeLevel.score !== this.props.activeLevel.score ||
+            nextProps.activeLevel.timeUp !== this.props.activeLevel.timeUp ||
+            nextProps.activeLevel.status !== this.props.activeLevel.status ||
+            nextProps.challengesStatus.available !== this.props.challengesStatus.available ||
+            nextProps.challengesStatus.done !== this.props.challengesStatus.done
         );
     }
 
