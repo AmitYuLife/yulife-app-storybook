@@ -1,4 +1,5 @@
 import RNFitKit from "@services/fitkit/fitkit.service";
+import Logger from "@services/logging/logger";
 import { getCurrentWorld } from "@services/utils";
 import moment from "moment";
 import { queryMindfulSessions } from "../../services/fitkit/fitkit.helpers";
@@ -46,7 +47,13 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
     try {
         const start = moment(startDateTime).format();
         const end = moment(endDateTime).format();
+
+        if (features.loggingEnabled) {
+            Logger.logMixpanelEvent("debug_query_pedometer_from_date", { startDateTime, endDateTime, start, end });
+        }
+
         const results = await RNFitKit.queryPedometerFromDate(start, end);
+
         return {
             value: results && results.steps > score ? results.steps : score
         };
