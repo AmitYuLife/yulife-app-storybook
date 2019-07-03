@@ -179,6 +179,7 @@ export default class LeaderboardScreen extends React.PureComponent<IProps, IStat
                             ref={this.setLargeListRef}
                             renderIndexPath={this.renderIndexPath}
                             heightForIndexPath={this.getHeight}
+                            renderFooter={this.renderFooter}
                             showsVerticalScrollIndicator={false}
                             data={[{ items }]}
                             onRefresh={this.handleRefresh}
@@ -235,6 +236,10 @@ export default class LeaderboardScreen extends React.PureComponent<IProps, IStat
     };
 
     private getHeight = () => LEADERBOARD_ITEM_HEIGHT;
+
+    private renderFooter = () => {
+        return <View style={styles.footer} />;
+    };
 
     private renderIndexPath = ({ row }: IndexPath) => {
         const { items, initialScrollIndex, sortBy } = this.props;

@@ -55,6 +55,7 @@ export default class RewardsPurchasedScreen extends React.PureComponent<IProps> 
                         onRefresh={this.handleRefresh}
                         renderEmpty={this.renderEmpty}
                         refreshHeader={YulifeRefreshHeader}
+                        renderFooter={this.renderFooter}
                     />
                 </View>
                 <View style={styles.navBarWrapper}>
@@ -108,4 +109,6 @@ export default class RewardsPurchasedScreen extends React.PureComponent<IProps> 
     };
 
     private getHeight = () => Style.SCALE_UP_AND_DOWN(74);
+
+    private renderFooter = () => <View style={styles.footer} />;
 }

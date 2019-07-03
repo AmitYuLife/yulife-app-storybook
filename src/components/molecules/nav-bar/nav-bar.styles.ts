@@ -4,8 +4,9 @@ import { Style } from "../../../styles";
 const styles = StyleSheet.create({
     labelsWrapper: {
         flexDirection: "row",
-        height: "100%",
+        height: Style.SCALE_UP_AND_DOWN(62),
         position: "absolute",
+        bottom: 0,
         width: "100%"
     } as ViewStyle,
     text: {
@@ -24,6 +25,9 @@ const styles = StyleSheet.create({
         height: Style.SCALE_UP_AND_DOWN(78),
         justifyContent: "flex-start",
         width: Style.SCALE_UP_AND_DOWN(280)
+    } as ViewStyle,
+    outerWrapper: {
+        justifyContent: "flex-end"
     } as ViewStyle,
     image: {
         height: Style.SCALE_UP_AND_DOWN(113),

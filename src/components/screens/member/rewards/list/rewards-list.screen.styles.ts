@@ -5,17 +5,19 @@ import { Style } from "../../../../../styles";
 export default StyleSheet.create({
     listWrapper: {
         flex: 1,
-        marginBottom: isIphoneX() ? 80 : 105
+        marginBottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 45 : 79)
     } as ViewStyle,
     navBarWrapper: {
         alignItems: "center",
-        backgroundColor: "rgb(255,255,255)",
         bottom: 0,
         left: 0,
         paddingBottom: Style.SCALE_UP_AND_DOWN(17),
         paddingTop: Style.SCALE_UP_AND_DOWN(8),
         position: "absolute",
         right: 0
+    } as ViewStyle,
+    footer: {
+        height: Style.SCALE_UP_AND_DOWN(28)
     } as ViewStyle,
     rewardTabsWrapper: {
         alignItems: "center",
