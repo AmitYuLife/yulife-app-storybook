@@ -6,10 +6,10 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <LeaderboardConsent
     copy={
       Object {
-        "ctaLabel": "give me leaderboards",
+        "ctaLabel": "yes please!",
         "ctaLabelSecondary": "no thanks",
-        "heading": "turn on leaderboard?",
-        "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+        "heading": "join this leaderboard?",
+        "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
       }
     }
     isLoading={true}
@@ -54,12 +54,12 @@ ShallowWrapper {
             }
           }
         >
-          We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.
+          This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?
         </YuText>,
         <Button
           disabled={true}
           isLoading={true}
-          label="give me leaderboards"
+          label="yes please!"
           onPress={[MockFunction]}
           type="Primary"
           wrapperStyle={
@@ -117,7 +117,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+          "children": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
           "style": Object {
             "fontSize": 30,
             "lineHeight": 44,
@@ -126,7 +126,7 @@ ShallowWrapper {
           },
         },
         "ref": null,
-        "rendered": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+        "rendered": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
         "type": [Function],
       },
       Object {
@@ -136,7 +136,7 @@ ShallowWrapper {
         "props": Object {
           "disabled": true,
           "isLoading": true,
-          "label": "give me leaderboards",
+          "label": "yes please!",
           "onPress": [MockFunction],
           "type": "Primary",
           "wrapperStyle": Object {
@@ -209,12 +209,12 @@ ShallowWrapper {
               }
             }
           >
-            We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.
+            This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?
           </YuText>,
           <Button
             disabled={true}
             isLoading={true}
-            label="give me leaderboards"
+            label="yes please!"
             onPress={[MockFunction]}
             type="Primary"
             wrapperStyle={
@@ -272,7 +272,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+            "children": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
             "style": Object {
               "fontSize": 30,
               "lineHeight": 44,
@@ -281,7 +281,7 @@ ShallowWrapper {
             },
           },
           "ref": null,
-          "rendered": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+          "rendered": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
           "type": [Function],
         },
         Object {
@@ -291,7 +291,7 @@ ShallowWrapper {
           "props": Object {
             "disabled": true,
             "isLoading": true,
-            "label": "give me leaderboards",
+            "label": "yes please!",
             "onPress": [MockFunction],
             "type": "Primary",
             "wrapperStyle": Object {
@@ -363,10 +363,10 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <LeaderboardConsent
     copy={
       Object {
-        "ctaLabel": "give me leaderboards",
+        "ctaLabel": "yes please!",
         "ctaLabelSecondary": "no thanks",
-        "heading": "turn on leaderboard?",
-        "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+        "heading": "join this leaderboard?",
+        "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
       }
     }
     isLoading={false}
@@ -411,12 +411,12 @@ ShallowWrapper {
             }
           }
         >
-          We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.
+          This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?
         </YuText>,
         <Button
           disabled={false}
           isLoading={false}
-          label="give me leaderboards"
+          label="yes please!"
           onPress={[MockFunction]}
           type="Primary"
           wrapperStyle={
@@ -474,7 +474,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+          "children": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
           "style": Object {
             "fontSize": 30,
             "lineHeight": 44,
@@ -483,7 +483,7 @@ ShallowWrapper {
           },
         },
         "ref": null,
-        "rendered": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+        "rendered": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
         "type": [Function],
       },
       Object {
@@ -493,7 +493,7 @@ ShallowWrapper {
         "props": Object {
           "disabled": false,
           "isLoading": false,
-          "label": "give me leaderboards",
+          "label": "yes please!",
           "onPress": [MockFunction],
           "type": "Primary",
           "wrapperStyle": Object {
@@ -566,12 +566,12 @@ ShallowWrapper {
               }
             }
           >
-            We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.
+            This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?
           </YuText>,
           <Button
             disabled={false}
             isLoading={false}
-            label="give me leaderboards"
+            label="yes please!"
             onPress={[MockFunction]}
             type="Primary"
             wrapperStyle={
@@ -629,7 +629,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+            "children": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
             "style": Object {
               "fontSize": 30,
               "lineHeight": 44,
@@ -638,7 +638,7 @@ ShallowWrapper {
             },
           },
           "ref": null,
-          "rendered": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+          "rendered": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
           "type": [Function],
         },
         Object {
@@ -648,7 +648,7 @@ ShallowWrapper {
           "props": Object {
             "disabled": false,
             "isLoading": false,
-            "label": "give me leaderboards",
+            "label": "yes please!",
             "onPress": [MockFunction],
             "type": "Primary",
             "wrapperStyle": Object {

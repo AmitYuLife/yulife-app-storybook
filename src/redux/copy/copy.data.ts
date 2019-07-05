@@ -4,7 +4,7 @@ export default {
         heading: "welcome!",
         subheading: "Let's begin the journey of making you the best of yu!",
         ctaLabel: "log in",
-        ctaLabelSecondary: "sign up"
+        ctaLabelSecondary: "Sign up"
     },
     noAccess: {
         heading: "sorry!",
@@ -29,18 +29,17 @@ export default {
             ctaLabel: "back"
         },
         turnBoardOn: {
-            heading: "turn on leaderboard?",
+            heading: "join this leaderboard?",
             subheading:
-                "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
-            ctaLabel: "give me leaderboards",
+                "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
+            ctaLabel: "yes please!",
             ctaLabelSecondary: "no thanks"
         },
         turnBoardOff: {
             ctaLabel: "keep it on!",
             ctaLabelSecondary: "turn it off",
             heading: "turn it off?",
-            subheading:
-                "This means you won’t be able to see how well you’re doing compared to others in your business or workspace."
+            subheading: "This means you won’t be able to access this leaderboard."
         },
         invite: {
             headingBeforeName: "join",

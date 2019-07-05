@@ -9,10 +9,10 @@ ShallowWrapper {
     componentId="1"
     copy={
       Object {
-        "ctaLabel": "give me leaderboards",
+        "ctaLabel": "yes please!",
         "ctaLabelSecondary": "no thanks",
-        "heading": "turn on leaderboard?",
-        "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+        "heading": "join this leaderboard?",
+        "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
       }
     }
     currentWorld={0}
@@ -171,10 +171,10 @@ ShallowWrapper {
           <LeaderboardConsent
             copy={
               Object {
-                "ctaLabel": "give me leaderboards",
+                "ctaLabel": "yes please!",
                 "ctaLabelSecondary": "no thanks",
-                "heading": "turn on leaderboard?",
-                "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+                "heading": "join this leaderboard?",
+                "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
               }
             }
             isLoading={false}
@@ -449,10 +449,10 @@ ShallowWrapper {
             <LeaderboardConsent
               copy={
                 Object {
-                  "ctaLabel": "give me leaderboards",
+                  "ctaLabel": "yes please!",
                   "ctaLabelSecondary": "no thanks",
-                  "heading": "turn on leaderboard?",
-                  "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+                  "heading": "join this leaderboard?",
+                  "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
                 }
               }
               isLoading={false}
@@ -498,10 +498,10 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "copy": Object {
-                "ctaLabel": "give me leaderboards",
+                "ctaLabel": "yes please!",
                 "ctaLabelSecondary": "no thanks",
-                "heading": "turn on leaderboard?",
-                "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+                "heading": "join this leaderboard?",
+                "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
               },
               "isLoading": false,
               "onAllowLeaderboard": [Function],
@@ -709,10 +709,10 @@ ShallowWrapper {
             <LeaderboardConsent
               copy={
                 Object {
-                  "ctaLabel": "give me leaderboards",
+                  "ctaLabel": "yes please!",
                   "ctaLabelSecondary": "no thanks",
-                  "heading": "turn on leaderboard?",
-                  "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+                  "heading": "join this leaderboard?",
+                  "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
                 }
               }
               isLoading={false}
@@ -987,10 +987,10 @@ ShallowWrapper {
               <LeaderboardConsent
                 copy={
                   Object {
-                    "ctaLabel": "give me leaderboards",
+                    "ctaLabel": "yes please!",
                     "ctaLabelSecondary": "no thanks",
-                    "heading": "turn on leaderboard?",
-                    "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+                    "heading": "join this leaderboard?",
+                    "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
                   }
                 }
                 isLoading={false}
@@ -1036,10 +1036,10 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "copy": Object {
-                  "ctaLabel": "give me leaderboards",
+                  "ctaLabel": "yes please!",
                   "ctaLabelSecondary": "no thanks",
-                  "heading": "turn on leaderboard?",
-                  "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+                  "heading": "join this leaderboard?",
+                  "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
                 },
                 "isLoading": false,
                 "onAllowLeaderboard": [Function],
@@ -1192,10 +1192,10 @@ ShallowWrapper {
     componentId="1"
     copy={
       Object {
-        "ctaLabel": "give me leaderboards",
+        "ctaLabel": "yes please!",
         "ctaLabelSecondary": "no thanks",
-        "heading": "turn on leaderboard?",
-        "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+        "heading": "join this leaderboard?",
+        "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
       }
     }
     currentWorld={0}
@@ -2557,10 +2557,10 @@ ShallowWrapper {
     componentId="1"
     copy={
       Object {
-        "ctaLabel": "give me leaderboards",
+        "ctaLabel": "yes please!",
         "ctaLabelSecondary": "no thanks",
-        "heading": "turn on leaderboard?",
-        "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+        "heading": "join this leaderboard?",
+        "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
       }
     }
     currentWorld={0}
@@ -3809,10 +3809,10 @@ ShallowWrapper {
     componentId="1"
     copy={
       Object {
-        "ctaLabel": "give me leaderboards",
+        "ctaLabel": "yes please!",
         "ctaLabelSecondary": "no thanks",
-        "heading": "turn on leaderboard?",
-        "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+        "heading": "join this leaderboard?",
+        "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
       }
     }
     currentWorld={0}
@@ -4960,10 +4960,10 @@ ShallowWrapper {
     componentId="1"
     copy={
       Object {
-        "ctaLabel": "give me leaderboards",
+        "ctaLabel": "yes please!",
         "ctaLabelSecondary": "no thanks",
-        "heading": "turn on leaderboard?",
-        "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+        "heading": "join this leaderboard?",
+        "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
       }
     }
     currentWorld={0}
@@ -6325,10 +6325,10 @@ ShallowWrapper {
     componentId="1"
     copy={
       Object {
-        "ctaLabel": "give me leaderboards",
+        "ctaLabel": "yes please!",
         "ctaLabelSecondary": "no thanks",
-        "heading": "turn on leaderboard?",
-        "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+        "heading": "join this leaderboard?",
+        "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
       }
     }
     currentWorld={0}
@@ -7690,10 +7690,10 @@ ShallowWrapper {
     componentId="1"
     copy={
       Object {
-        "ctaLabel": "give me leaderboards",
+        "ctaLabel": "yes please!",
         "ctaLabelSecondary": "no thanks",
-        "heading": "turn on leaderboard?",
-        "subheading": "We enjoy a bit of friendly competition. By turning on leaderboards, others within your organisation or workspace will be able to see summary details of your activity.  You’ll be able to stop sharing your activity at any time in your settings.",
+        "heading": "join this leaderboard?",
+        "subheading": "This will let us share details about your activity with other members on this leaderboard. If you change your mind, you can opt out at any point in settings. Ready to compete?",
       }
     }
     currentWorld={0}
