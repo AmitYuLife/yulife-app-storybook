@@ -17,11 +17,6 @@ const persistConfig = {
 const sagaMiddleware = createSagaMiddleware({
     onError: (error) => {
         // bugsnag().notify(error);
-        Logger.logMixpanelError(error, {
-            name: error.name,
-            stack: JSON.stringify(error.stack),
-            place: "onErrorSagaMiddleware"
-        });
     }
 });
 
