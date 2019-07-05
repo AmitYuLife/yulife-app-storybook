@@ -1,9 +1,10 @@
 import { GetCurrentWorld_getCurrentWorld } from "@graphql/_core/schema";
 import { bottomTabs } from "@navigation/constants";
 import { getCurrentWorld } from "@services/utils";
+import { Style } from "@styles/index";
 import moment from "moment";
 import React from "react";
-import { BackHandler, NativeEventSubscription, Platform, PlatformIOSStatic } from "react-native";
+import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import GetCurrentWorld, {
@@ -151,7 +152,7 @@ class QuestsContainer extends React.Component<Props, IState> {
     public render() {
         const { labels, offline, onLeftMenuPress, totalCoins, theme } = this.props;
 
-        if ((Platform as PlatformIOSStatic).isPad) {
+        if (Style.isIPad()) {
             return (
                 <QuestsScreenOffline
                     fitkitAvailable={false}

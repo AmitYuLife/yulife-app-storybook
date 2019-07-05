@@ -1,16 +1,32 @@
 import { Dimensions, PixelRatio, Platform } from "react-native";
+import DeviceInfo from "react-native-device-info";
 
 const pixelRatio = PixelRatio.get();
 const x = Dimensions.get("window").width;
 const y = Dimensions.get("window").height;
 
-const isIphoneX = () => (
-    Platform.OS === "ios" && y === 812
-);
+const isIPad = () => {
+    if (Platform.OS === "ios") {
+        return (
+            DeviceInfo.getDeviceId()
+                .toLowerCase()
+                .includes("ipad") ||
+            DeviceInfo.getDeviceName()
+                .toLowerCase()
+                .includes("ipad") ||
+            DeviceInfo.getModel()
+                .toLowerCase()
+                .includes("ipad")
+        );
+    }
+    return false;
+};
 
-const isIphoneXPlus = () => ( // XS Max, XR
-    Platform.OS === "ios" && y === 896
-);
+const isIphoneX = () => Platform.OS === "ios" && y === 812;
+
+const isIphoneXPlus = () =>
+    // XS Max, XR
+    Platform.OS === "ios" && y === 896;
 
 const isAnyIphoneX = () => isIphoneX() || isIphoneXPlus();
 
@@ -38,9 +54,7 @@ const isThinIOS = () => {
     return Platform.OS === "ios" && x < 400;
 };
 
-const isShortAndWideAndroid = () => (
-    Platform.OS === "android" && (Style.PIXEL_RATIO <= 2 || x / y >= 0.6)
-);
+const isShortAndWideAndroid = () => Platform.OS === "android" && (Style.PIXEL_RATIO <= 2 || x / y >= 0.6);
 
 const BASE_HEIGHT = 667;
 const scaledPixel = +(x / 375).toFixed(3);
@@ -72,7 +86,8 @@ const Style = {
     isShortToMediumAndroid,
     isTallAndroid,
     isThinIOS,
-    isXShortAndroid
+    isXShortAndroid,
+    isIPad
 };
 
 export default Style;

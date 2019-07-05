@@ -2,6 +2,7 @@ import { bottomTabs, ROUTES } from "@navigation/constants";
 import { setAuthenticatedRoot } from "@navigation/root";
 import { TOKEN_EXPIRATION } from "@services/constants";
 import { FitKitAvailable } from "@services/fitkit/fitkit.service";
+import { Style } from "@styles/index";
 import React, { Component } from "react";
 import { Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
@@ -151,7 +152,11 @@ export class LoginContainer extends Component<Props, IState> {
                     await setToken(results.data.loginUser.token);
                     this.props.loginUserSuccess(results.data);
 
-                    await this.navigateToNext(authorised, results.data.loginUser.user.redeemedOnboarding);
+                    // no need to send the user to healthkit-connect if device is an ipad
+                    await this.navigateToNext(
+                        Style.isIPad() ? true : authorised,
+                        results.data.loginUser.user.redeemedOnboarding
+                    );
                 }
             } catch (e) {
                 // tslint:disable-next-line
