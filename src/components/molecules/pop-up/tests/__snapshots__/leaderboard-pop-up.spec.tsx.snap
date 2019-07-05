@@ -50,8 +50,9 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <View
-          onLayout={[Function]}
+        <TouchableOpacity
+          activeOpacity={0.2}
+          onPress={[Function]}
           style={
             Object {
               "bottom": 0,
@@ -61,8 +62,20 @@ ShallowWrapper {
               "top": 0,
             }
           }
-        />,
-        null,
+        >
+          <View
+            onLayout={[Function]}
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+        </TouchableOpacity>,
         <View
           style={
             Array [
@@ -126,14 +139,6 @@ ShallowWrapper {
           }
           type="leaderboard"
         />,
-        <Close
-          onPress={[Function]}
-          style={
-            Object {
-              "zIndex": 2,
-            }
-          }
-        />,
       ],
     },
     "ref": null,
@@ -143,7 +148,23 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "onLayout": [Function],
+          "activeOpacity": 0.2,
+          "children": Array [
+            <View
+              onLayout={[Function]}
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />,
+            null,
+          ],
+          "onPress": [Function],
           "style": Object {
             "bottom": 0,
             "left": 0,
@@ -152,11 +173,30 @@ ShallowWrapper {
             "top": 0,
           },
         },
-        "ref": [Function],
-        "rendered": null,
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "onLayout": [Function],
+              "style": Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+            },
+            "ref": [Function],
+            "rendered": null,
+            "type": [Function],
+          },
+          null,
+        ],
         "type": [Function],
       },
-      null,
       Object {
         "instance": null,
         "key": undefined,
@@ -257,20 +297,6 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "onPress": [Function],
-          "style": Object {
-            "zIndex": 2,
-          },
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
     ],
     "type": Symbol(react.fragment),
   },
@@ -281,8 +307,9 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <View
-            onLayout={[Function]}
+          <TouchableOpacity
+            activeOpacity={0.2}
+            onPress={[Function]}
             style={
               Object {
                 "bottom": 0,
@@ -292,8 +319,20 @@ ShallowWrapper {
                 "top": 0,
               }
             }
-          />,
-          null,
+          >
+            <View
+              onLayout={[Function]}
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+          </TouchableOpacity>,
           <View
             style={
               Array [
@@ -357,14 +396,6 @@ ShallowWrapper {
             }
             type="leaderboard"
           />,
-          <Close
-            onPress={[Function]}
-            style={
-              Object {
-                "zIndex": 2,
-              }
-            }
-          />,
         ],
       },
       "ref": null,
@@ -374,7 +405,23 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "onLayout": [Function],
+            "activeOpacity": 0.2,
+            "children": Array [
+              <View
+                onLayout={[Function]}
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />,
+              null,
+            ],
+            "onPress": [Function],
             "style": Object {
               "bottom": 0,
               "left": 0,
@@ -383,11 +430,30 @@ ShallowWrapper {
               "top": 0,
             },
           },
-          "ref": [Function],
-          "rendered": null,
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "onLayout": [Function],
+                "style": Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+              },
+              "ref": [Function],
+              "rendered": null,
+              "type": [Function],
+            },
+            null,
+          ],
           "type": [Function],
         },
-        null,
         Object {
           "instance": null,
           "key": undefined,
@@ -488,20 +554,6 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "onPress": [Function],
-            "style": Object {
-              "zIndex": 2,
-            },
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
       ],
       "type": Symbol(react.fragment),
     },
@@ -578,8 +630,9 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <View
-          onLayout={[Function]}
+        <TouchableOpacity
+          activeOpacity={0.2}
+          onPress={[Function]}
           style={
             Object {
               "bottom": 0,
@@ -589,8 +642,20 @@ ShallowWrapper {
               "top": 0,
             }
           }
-        />,
-        null,
+        >
+          <View
+            onLayout={[Function]}
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+        </TouchableOpacity>,
         <View
           style={
             Array [
@@ -654,14 +719,6 @@ ShallowWrapper {
           }
           type="leaderboard"
         />,
-        <Close
-          onPress={[Function]}
-          style={
-            Object {
-              "zIndex": 2,
-            }
-          }
-        />,
       ],
     },
     "ref": null,
@@ -671,7 +728,23 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "onLayout": [Function],
+          "activeOpacity": 0.2,
+          "children": Array [
+            <View
+              onLayout={[Function]}
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />,
+            null,
+          ],
+          "onPress": [Function],
           "style": Object {
             "bottom": 0,
             "left": 0,
@@ -680,11 +753,30 @@ ShallowWrapper {
             "top": 0,
           },
         },
-        "ref": [Function],
-        "rendered": null,
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "onLayout": [Function],
+              "style": Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+            },
+            "ref": [Function],
+            "rendered": null,
+            "type": [Function],
+          },
+          null,
+        ],
         "type": [Function],
       },
-      null,
       Object {
         "instance": null,
         "key": undefined,
@@ -785,20 +877,6 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "onPress": [Function],
-          "style": Object {
-            "zIndex": 2,
-          },
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
     ],
     "type": Symbol(react.fragment),
   },
@@ -809,8 +887,9 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <View
-            onLayout={[Function]}
+          <TouchableOpacity
+            activeOpacity={0.2}
+            onPress={[Function]}
             style={
               Object {
                 "bottom": 0,
@@ -820,8 +899,20 @@ ShallowWrapper {
                 "top": 0,
               }
             }
-          />,
-          null,
+          >
+            <View
+              onLayout={[Function]}
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+          </TouchableOpacity>,
           <View
             style={
               Array [
@@ -885,14 +976,6 @@ ShallowWrapper {
             }
             type="leaderboard"
           />,
-          <Close
-            onPress={[Function]}
-            style={
-              Object {
-                "zIndex": 2,
-              }
-            }
-          />,
         ],
       },
       "ref": null,
@@ -902,7 +985,23 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "onLayout": [Function],
+            "activeOpacity": 0.2,
+            "children": Array [
+              <View
+                onLayout={[Function]}
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />,
+              null,
+            ],
+            "onPress": [Function],
             "style": Object {
               "bottom": 0,
               "left": 0,
@@ -911,11 +1010,30 @@ ShallowWrapper {
               "top": 0,
             },
           },
-          "ref": [Function],
-          "rendered": null,
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "onLayout": [Function],
+                "style": Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+              },
+              "ref": [Function],
+              "rendered": null,
+              "type": [Function],
+            },
+            null,
+          ],
           "type": [Function],
         },
-        null,
         Object {
           "instance": null,
           "key": undefined,
@@ -1011,20 +1129,6 @@ ShallowWrapper {
               "bottom": 120,
             },
             "type": "leaderboard",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "onPress": [Function],
-            "style": Object {
-              "zIndex": 2,
-            },
           },
           "ref": null,
           "rendered": null,

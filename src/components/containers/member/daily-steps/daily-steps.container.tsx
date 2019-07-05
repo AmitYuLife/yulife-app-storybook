@@ -89,7 +89,8 @@ class DailyStepsContainer extends React.Component<Props, IState> {
             nextProps.hasNotification !== this.props.hasNotification ||
             nextProps.isFetching !== this.props.isFetching ||
             nextProps.lastUpdated !== this.props.lastUpdated ||
-            nextProps.offline !== this.props.offline
+            nextProps.offline !== this.props.offline ||
+            nextProps.popupVisibility.leaderboard !== this.props.popupVisibility.leaderboard
         );
     }
 

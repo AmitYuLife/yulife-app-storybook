@@ -1,10 +1,9 @@
 import * as React from "react";
-import { findNodeHandle, View } from "react-native";
+import { findNodeHandle, StyleSheet, TouchableOpacity, View } from "react-native";
 import { BlurView } from "react-native-blur";
 import { Navigation } from "react-native-navigation";
 import { GetMobileCopy_getMobileCopy_screens_popUp } from "../../../graphql/_core/schema";
 import { ROUTES } from "../../../navigation/constants";
-import { Close } from "../../atoms";
 import { ILabel, NavBar, Popup, POPUPTYPE } from "../../molecules";
 import { IColours } from "../nav-bar/nav-bar";
 import styles from "./pop-up.styles";
@@ -37,8 +36,12 @@ export default class LeaderboardPopup extends React.PureComponent<IProps, IState
         const { copy, hasNotification, navbarColour } = this.props;
         return (
             <>
-                <View style={styles.popupWrapper} ref={this.setRef} onLayout={this.handleLayout} />
-                {viewRef ? <BlurView viewRef={viewRef} blurAmount={15} blurType="dark" style={styles.bgBlur} /> : null}
+                <TouchableOpacity style={StyleSheet.absoluteFillObject} onPress={this.updateLeaderboardVisibility}>
+                    <View style={styles.popupWrapper} ref={this.setRef} onLayout={this.handleLayout} />
+                    {viewRef ? (
+                        <BlurView viewRef={viewRef} blurAmount={15} blurType="dark" style={styles.bgBlur} />
+                    ) : null}
+                </TouchableOpacity>
                 <View style={[styles.navBarWrapper, styles.zIndexWrapper]}>
                     <NavBar
                         activeIndex={0}
@@ -56,7 +59,6 @@ export default class LeaderboardPopup extends React.PureComponent<IProps, IState
                     onPress={this.pressPopupButton}
                     caretPosition={{ left: 70 }}
                 />
-                <Close style={styles.zIndexWrapper} onPress={this.updateLeaderboardVisibility} />
             </>
         );
     }
