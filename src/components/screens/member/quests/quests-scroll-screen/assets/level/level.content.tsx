@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { getCurrentWorld } from "../../../../../../../services/utils";
 import { Chest, DoubleLock, Lock, Text } from "../../../../../../atoms";
 import { IChallenge } from "../../quests-screen";
-import LevelPending from "./level-pending";
+import { getTime } from "./level.helpers";
 import LevelStar from "./level.star";
 import styles from "./level.styles";
 
@@ -67,12 +67,25 @@ export default function getLevelButton(nextAvailable: number, currentLevel: numb
             </Text>
         );
     } else if (level.level === currentLevel) {
-        return nextAvailable < 0 ? (
-            <LevelPending
-                nextAvailableAt={level.nextAvailableAt}
-                textFill={!level.isActive ? "rgb(79, 151,139)" : "white"}
-            />
-        ) : (
+        if (nextAvailable < 0) {
+            const style = StyleSheet.flatten([
+                styles.textPending,
+                { color: !level.isActive ? "rgb(79, 151,139)" : "white" }
+            ]);
+            const nextAvailableFormatted = getTime(Math.abs(nextAvailable));
+
+            return (
+                <View style={{ flexDirection: "column" }}>
+                    <Text style={style} bold={true}>
+                        in
+                    </Text>
+                    <Text style={style} bold={true}>
+                        {nextAvailableFormatted}
+                    </Text>
+                </View>
+            );
+        }
+        return (
             <Text style={styles.text} bold={true}>
                 {level.level}
             </Text>

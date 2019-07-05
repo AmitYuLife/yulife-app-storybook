@@ -19,26 +19,51 @@ interface IProps {
 }
 
 interface IState {
-    style: {
-        bottom?: number;
-        left: number;
-        top?: number;
-    };
-    pulseValue: number;
+    nextAvailable: number | null;
 }
 
-export default class LevelBubble extends React.PureComponent<IProps, IState> {
+export default class LevelBubble extends React.Component<IProps, IState> {
     public state: IState = {
-        pulseValue: 50,
-        style: getButtonPosition(this.props.slice, this.props.index)
+        nextAvailable: null
     };
+    private interval: NodeJS.Timer;
+    private style = getButtonPosition(this.props.slice, this.props.index);
+
+    public componentDidMount() {
+        const level = this.props.level;
+        const nextAvailable = !!level.nextAvailableAt ? moment().diff(moment(level.nextAvailableAt), "seconds") : 0;
+
+        if (nextAvailable < 0) {
+            this.setState({ nextAvailable }, () => {
+                this.interval = global.setInterval(this.handleUpdateNextAvailable, 1000);
+            });
+        }
+    }
+
+    public componentWillUnmount() {
+        if (this.interval) {
+            global.clearInterval(this.interval);
+        }
+    }
+
+    public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
+        return (
+            nextState.nextAvailable !== this.state.nextAvailable ||
+            nextProps.currentLevel !== this.props.currentLevel ||
+            nextProps.currentLevel !== this.props.currentLevel ||
+            nextProps.level.isActive !== this.props.level.isActive ||
+            nextProps.level.isDone !== this.props.level.isDone ||
+            nextProps.level.isNext !== this.props.level.isNext ||
+            nextProps.level.nextAvailableAt !== this.props.level.nextAvailableAt ||
+            nextProps.level.rating !== this.props.level.rating
+        );
+    }
 
     public render() {
+        const { nextAvailable } = this.state;
         const { currentLevel, level } = this.props;
-        const { style } = this.state;
-        const nextAvailable = !!level.nextAvailableAt ? moment().diff(moment(level.nextAvailableAt), "seconds") : 0;
         const bubbleBackgroundColor = getBackgroundColor(nextAvailable, level);
-        const shadowStyle = getShadow(level.level, style);
+        const shadowStyle = getShadow(level.level, this.style);
 
         return (
             <>
@@ -48,13 +73,13 @@ export default class LevelBubble extends React.PureComponent<IProps, IState> {
                         pulseMaxSize={Style.SCALE_UP_AND_DOWN(66)}
                         interval={nextAvailable < 0 ? 1250 : 750}
                         backgroundColor="rgb(145,0,76)"
-                        style={style}
+                        style={this.style}
                     />
                 )}
                 {!shadowStyle || level.isActive ? null : (
                     <View style={StyleSheet.flatten([styles.bubble, shadowStyle])} />
                 )}
-                <View style={StyleSheet.flatten([styles.bubble, style])}>
+                <View style={StyleSheet.flatten([styles.bubble, this.style])}>
                     <TouchableOpacityWithState
                         onPress={level.onPress}
                         style={StyleSheet.flatten([
@@ -71,4 +96,17 @@ export default class LevelBubble extends React.PureComponent<IProps, IState> {
             </>
         );
     }
+
+    private handleUpdateNextAvailable = () => {
+        const nextAvailable = moment().diff(moment(this.props.level.nextAvailableAt), "seconds");
+
+        if (nextAvailable < 0) {
+            this.setState({ nextAvailable });
+        } else {
+            if (this.interval) {
+                global.clearInterval(this.interval);
+            }
+            this.setState({ nextAvailable: null });
+        }
+    };
 }

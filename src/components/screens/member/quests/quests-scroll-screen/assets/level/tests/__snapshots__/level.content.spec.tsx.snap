@@ -424,10 +424,40 @@ exports[`LevelContent should render LevelPending 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <View>
-    <LevelPending
-      nextAvailableAt="30"
-      textFill="rgb(79, 151,139)"
-    />
+    <View
+      style={
+        Object {
+          "flexDirection": "column",
+        }
+      }
+    >
+      <YuText
+        bold={true}
+        style={
+          Object {
+            "color": "rgb(79, 151,139)",
+            "fontSize": 22,
+            "lineHeight": 22,
+            "textAlign": "center",
+          }
+        }
+      >
+        in
+      </YuText>
+      <YuText
+        bold={true}
+        style={
+          Object {
+            "color": "rgb(79, 151,139)",
+            "fontSize": 22,
+            "lineHeight": 22,
+            "textAlign": "center",
+          }
+        }
+      >
+        06:57:09
+      </YuText>
+    </View>
   </View>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -442,10 +472,40 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": <LevelPending
-        nextAvailableAt="30"
-        textFill="rgb(79, 151,139)"
-      />,
+      "children": <View
+        style={
+          Object {
+            "flexDirection": "column",
+          }
+        }
+      >
+        <YuText
+          bold={true}
+          style={
+            Object {
+              "color": "rgb(79, 151,139)",
+              "fontSize": 22,
+              "lineHeight": 22,
+              "textAlign": "center",
+            }
+          }
+        >
+          in
+        </YuText>
+        <YuText
+          bold={true}
+          style={
+            Object {
+              "color": "rgb(79, 151,139)",
+              "fontSize": 22,
+              "lineHeight": 22,
+              "textAlign": "center",
+            }
+          }
+        >
+          06:57:09
+        </YuText>
+      </View>,
     },
     "ref": null,
     "rendered": Object {
@@ -453,11 +513,77 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "nextAvailableAt": "30",
-        "textFill": "rgb(79, 151,139)",
+        "children": Array [
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "rgb(79, 151,139)",
+                "fontSize": 22,
+                "lineHeight": 22,
+                "textAlign": "center",
+              }
+            }
+          >
+            in
+          </YuText>,
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "rgb(79, 151,139)",
+                "fontSize": 22,
+                "lineHeight": 22,
+                "textAlign": "center",
+              }
+            }
+          >
+            06:57:09
+          </YuText>,
+        ],
+        "style": Object {
+          "flexDirection": "column",
+        },
       },
       "ref": null,
-      "rendered": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "bold": true,
+            "children": "in",
+            "style": Object {
+              "color": "rgb(79, 151,139)",
+              "fontSize": 22,
+              "lineHeight": 22,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "in",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "bold": true,
+            "children": "06:57:09",
+            "style": Object {
+              "color": "rgb(79, 151,139)",
+              "fontSize": 22,
+              "lineHeight": 22,
+              "textAlign": "center",
+            },
+          },
+          "ref": null,
+          "rendered": "06:57:09",
+          "type": [Function],
+        },
+      ],
       "type": [Function],
     },
     "type": "View",
@@ -468,10 +594,40 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
-        "children": <LevelPending
-          nextAvailableAt="30"
-          textFill="rgb(79, 151,139)"
-        />,
+        "children": <View
+          style={
+            Object {
+              "flexDirection": "column",
+            }
+          }
+        >
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "rgb(79, 151,139)",
+                "fontSize": 22,
+                "lineHeight": 22,
+                "textAlign": "center",
+              }
+            }
+          >
+            in
+          </YuText>
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "rgb(79, 151,139)",
+                "fontSize": 22,
+                "lineHeight": 22,
+                "textAlign": "center",
+              }
+            }
+          >
+            06:57:09
+          </YuText>
+        </View>,
       },
       "ref": null,
       "rendered": Object {
@@ -479,11 +635,77 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "nextAvailableAt": "30",
-          "textFill": "rgb(79, 151,139)",
+          "children": Array [
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "color": "rgb(79, 151,139)",
+                  "fontSize": 22,
+                  "lineHeight": 22,
+                  "textAlign": "center",
+                }
+              }
+            >
+              in
+            </YuText>,
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "color": "rgb(79, 151,139)",
+                  "fontSize": 22,
+                  "lineHeight": 22,
+                  "textAlign": "center",
+                }
+              }
+            >
+              06:57:09
+            </YuText>,
+          ],
+          "style": Object {
+            "flexDirection": "column",
+          },
         },
         "ref": null,
-        "rendered": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "bold": true,
+              "children": "in",
+              "style": Object {
+                "color": "rgb(79, 151,139)",
+                "fontSize": 22,
+                "lineHeight": 22,
+                "textAlign": "center",
+              },
+            },
+            "ref": null,
+            "rendered": "in",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "bold": true,
+              "children": "06:57:09",
+              "style": Object {
+                "color": "rgb(79, 151,139)",
+                "fontSize": 22,
+                "lineHeight": 22,
+                "textAlign": "center",
+              },
+            },
+            "ref": null,
+            "rendered": "06:57:09",
+            "type": [Function],
+          },
+        ],
         "type": [Function],
       },
       "type": "View",

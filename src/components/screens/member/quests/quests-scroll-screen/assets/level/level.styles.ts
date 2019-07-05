@@ -24,6 +24,12 @@ const styles = StyleSheet.create({
         color: "#ffffff",
         fontSize: Style.SCALE_UP_AND_DOWN(19),
         lineHeight: Style.SCALE_UP_AND_DOWN(19)
+    },
+    textPending: {
+        color: "#ffffff",
+        fontSize: Style.SCALE_UP_AND_DOWN(11),
+        lineHeight: Style.SCALE_UP_AND_DOWN(11),
+        textAlign: "center"
     }
 });
 
