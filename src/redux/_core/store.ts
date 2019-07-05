@@ -1,4 +1,3 @@
-import Logger from "@services/logging/logger";
 import { AsyncStorage } from "react-native";
 import Config from "react-native-config";
 import { applyMiddleware, compose, createStore, Store } from "redux";
