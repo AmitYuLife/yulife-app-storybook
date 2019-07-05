@@ -15,7 +15,7 @@ const persistConfig = {
 };
 
 const sagaMiddleware = createSagaMiddleware({
-    onError: (error) => {
+    onError: () => {
         // bugsnag().notify(error);
     }
 });
