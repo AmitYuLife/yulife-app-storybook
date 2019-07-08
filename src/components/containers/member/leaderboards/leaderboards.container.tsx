@@ -1,6 +1,7 @@
 import { ILeaderboard } from "@app/redux/user/user.reducer";
 import { GetLeaderboardVariables } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
+import { Style } from "@styles/index";
 import React from "react";
 import { BackHandler, Linking, NativeEventSubscription } from "react-native";
 import Config from "react-native-config";
@@ -102,6 +103,19 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
         } = this.props;
         const currentWorld = getCurrentWorld(currentLevel);
         const navbarColour = getNavbarColourScheme(currentWorld);
+
+        if (Style.isIPad()) {
+            return (
+                <LeaderboardOfflineScreen
+                    hasNotification={hasNotification}
+                    currentWorld={currentWorld}
+                    totalCoins={totalCoins}
+                    labels={labels}
+                    onLeftMenuPress={onLeftMenuPress}
+                    navbarColour={navbarColour}
+                />
+            );
+        }
 
         return (
             <GetLeaderboardQuery
