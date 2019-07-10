@@ -128,7 +128,7 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
                     const stepsRefetch = this.handleRefetch(refetch, "steps");
                     const mindfulMinsRefetch = this.handleRefetch(refetch, "mindful");
 
-                    if (isOffline && (!data || !data.getLeaderboard)) {
+                    if (isOffline && !(data && data.getLeaderboard)) {
                         return (
                             <LeaderboardOfflineScreen
                                 hasNotification={hasNotification}
