@@ -1,3 +1,5 @@
+import { getToken } from "@services/storage";
+import { DATE_FORMAT_WITH_TZ } from "@services/utils";
 import { defaultDataIdFromObject, InMemoryCache, NormalizedCacheObject } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
@@ -9,7 +11,6 @@ import moment from "moment";
 import { AsyncStorage } from "react-native";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
-import { getToken } from "../../services/storage";
 
 const httpLink = () =>
     createHttpLink({
@@ -67,7 +68,7 @@ const authMiddleware = setContext(async (_, { headers }) => {
             ...headers,
             ...defaultHeaders,
             authorization: token ? `Bearer ${token}` : "",
-            date: moment().format()
+            date: moment().format(DATE_FORMAT_WITH_TZ)
         }
     };
 });

@@ -1,6 +1,6 @@
 import RNFitKit from "@services/fitkit/fitkit.service";
 import Logger from "@services/logging/logger";
-import { getCurrentWorld } from "@services/utils";
+import { DATE_FORMAT_WITH_TZ, getCurrentWorld, getMomentStringWithTz } from "@services/utils";
 import moment from "moment";
 import { queryMindfulSessions } from "../../services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.selectors";
@@ -10,8 +10,8 @@ const MAX_AVAILABLE = 4;
 export async function getEndResult({ startDateTime, endDateTime, subtype, score }: IActiveLevel, features: any = {}) {
     if (subtype === "meditation") {
         try {
-            const start = moment(startDateTime).format();
-            const end = moment(endDateTime).format();
+            const start = getMomentStringWithTz(startDateTime);
+            const end = getMomentStringWithTz(endDateTime);
             const queryResult = await queryMindfulSessions(start, end, features.disableUserEntries);
 
             if (queryResult.length > 0) {
@@ -20,11 +20,11 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
                 };
             } else {
                 const startOfDay = moment(startDateTime)
-                    .startOf("day")
-                    .format();
+                    .subtract(2, "hours")
+                    .format(DATE_FORMAT_WITH_TZ);
                 const endLater = moment(endDateTime)
                     .add(2, "hours")
-                    .format();
+                    .format(DATE_FORMAT_WITH_TZ);
                 const queryResultAllDay = await queryMindfulSessions(startOfDay, endLater, features.disableUserEntries);
 
                 if (queryResultAllDay.length > 0) {
@@ -45,8 +45,8 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
     }
 
     try {
-        const start = moment(startDateTime).format();
-        const end = moment(endDateTime).format();
+        const start = getMomentStringWithTz(startDateTime);
+        const end = getMomentStringWithTz(endDateTime);
 
         if (features.loggingEnabled) {
             Logger.logMixpanelEvent("debug_query_pedometer_from_date", { startDateTime, endDateTime, start, end });

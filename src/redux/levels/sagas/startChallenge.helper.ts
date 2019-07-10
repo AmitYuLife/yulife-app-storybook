@@ -2,6 +2,7 @@ import cancelActiveChallengeWithClient from "@graphql/challenges/cancelActiveCha
 import updateActiveChallengeWithClient from "@graphql/challenges/updateActiveChallenge.gql";
 import { queryMindfulSessions } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
+import { DATE_FORMAT_WITH_TZ } from "@services/utils";
 import { pathOr } from "@services/utils";
 import moment from "moment";
 import { delay } from "redux-saga";
@@ -18,7 +19,7 @@ import {
 } from "../levels.actions";
 
 export function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, endDateTime: string) {
-    const start = moment(startDateTime).format();
+    const start = moment(startDateTime).format(DATE_FORMAT_WITH_TZ);
     const end = moment(endDateTime);
 
     while (moment().isBefore(end)) {
@@ -28,7 +29,12 @@ export function* startMindfulnessTracking(levelSlotId: string, startDateTime: st
 
         try {
             const features = yield select(getUserFeatures);
-            const queryResult = yield call(queryMindfulSessions, start, end.format(), features.disableUserEntries);
+            const queryResult = yield call(
+                queryMindfulSessions,
+                start,
+                end.format(DATE_FORMAT_WITH_TZ),
+                features.disableUserEntries
+            );
 
             if (queryResult.length > 0) {
                 const results = {

@@ -2,6 +2,7 @@ import RNFitKit, { FitKitTypes, PedometerResponse, SampleQueryResult } from "@se
 import moment from "moment";
 import { ChallengePayload } from "../../graphql/_core/schema";
 import Logger from "../logging/logger";
+import { DATE_FORMAT_WITH_TZ } from "../utils";
 
 export const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
     endDateTime: moment(results.endTime).format(),
@@ -50,14 +51,14 @@ export const querySteps = async (
                 ? moment()
                       .subtract(start, "days")
                       .startOf("day")
-                      .format()
+                      .format(DATE_FORMAT_WITH_TZ)
                 : moment(start)
                       .startOf("day")
-                      .format();
+                      .format(DATE_FORMAT_WITH_TZ);
         const endTime = moment()
             .subtract(end, "days")
             .endOf("day")
-            .format();
+            .format(DATE_FORMAT_WITH_TZ);
         const results = await RNFitKit.aggregateQuery({
             aggregateBy: {
                 bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
