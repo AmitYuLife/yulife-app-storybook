@@ -252,7 +252,6 @@ export default class LeaderboardScreen extends React.PureComponent<IProps, IStat
                     isCurrentUser={row === initialScrollIndex}
                     sortBy={sortBy}
                     rank={row + 1}
-                    key={item.id}
                 />
             );
         }
