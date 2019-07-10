@@ -37,6 +37,12 @@ interface IState {
 }
 
 class DailyStepsContainer extends React.Component<Props, IState> {
+    public static getDerivedStateFromProps(props: Props) {
+        return {
+            dailyStepsLoading: false,
+            lastUpdate: props.lastUpdated ? moment(props.lastUpdated).format("ddd D MMM, HH:mm") : "unknown"
+        };
+    }
     public state: IState = {
         dailyStepsLoading: true
     };
@@ -65,18 +71,6 @@ class DailyStepsContainer extends React.Component<Props, IState> {
         if (this.backHandler) {
             this.backHandler.remove();
         }
-    }
-
-    public componentDidUpdate(prevProps: Props) {
-        const { lastUpdated } = this.props;
-
-        this.setState((state) => ({
-            dailyStepsLoading: false,
-            lastUpdate:
-                prevProps.lastUpdated !== lastUpdated
-                    ? moment(lastUpdated).format("ddd D MMM, HH:mm")
-                    : state.lastUpdate
-        }));
     }
 
     public shouldComponentUpdate(nextProps: Props, nextState: IState) {
