@@ -14,6 +14,12 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
             const end = getMomentStringWithTz(endDateTime);
             const queryResult = await queryMindfulSessions(start, end, features.disableUserEntries);
 
+            // the way the 3rd party apps like calm/headspace write to the history is not always consistent
+            // if someone's got their timezone changed
+            // sometimes it might happen that the meditation was written in the wrong period
+            // the agreed solution for the beginning was to query the timeframe we've got at first
+            // then if there are no results, make another query for the whole day
+            // as of july 2019, it's changed to 2 hours before and 2 hours later
             if (queryResult.length > 0) {
                 return {
                     value: Math.floor(queryResult.reduce((acc: number, item: any) => acc + item.value, 0))

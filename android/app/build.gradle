@@ -105,7 +105,6 @@ android {
 dependencies {
     def reactNativeVersion = safeExtGet("reactNativeVersion", "+")
 
-    implementation project(':react-native-clear-app-cache')
     implementation project(':react-native-device-info')
     implementation project(':react-native-push-notification')
     implementation project(':react-native-blur')
