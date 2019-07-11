@@ -20,19 +20,6 @@ Navigation.events().registerAppLaunchedListener(async () => {
     const RN = require("react-native");
 
     if (token) {
-        const Clear = require("react-native-clear-app-cache").default;
-        await Clear.clearAppCache(async () => {
-            const FastImage = require("react-native-fast-image").default;
-            const mapAssets = require("./components/screens/member/quests/quests-scroll-screen/assets");
-
-            // preload quest map images
-            FastImage.preload(
-                mapAssets.mapSlices.map((item: any) => ({
-                    uri: RN.Image.resolveAssetSource(item.image).uri
-                }))
-            );
-        });
-
         await rootHandler.setAuthenticatedRoot(); // TODO: use setNextRoot when the right intro's ready
     } else {
         await rootHandler.setUnauthenticatedRoot();

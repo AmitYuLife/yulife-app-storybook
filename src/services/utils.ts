@@ -1,5 +1,8 @@
 import moment from "moment";
 
+export const DATE_FORMAT_WITH_TZ = "YYYY-MM-DDTHH:mm:ssZ";
+export const DATE_FORMAT_WITHOUT_TZ = "YYYY-MM-DDTHH:mm:ss";
+
 type PathOr = <T>(obj: { [x: string]: any }, key: string | string[], defaultValue?: T, p?: number) => T | any;
 export const pathOr: PathOr = (obj, key, def, p) => {
     p = 0;
@@ -73,4 +76,12 @@ export function displaySecondsAsMinutes(amount: number): { minutes: number; seco
         minutes,
         seconds
     };
+}
+
+export function getMomentStringWithTz(date: string) {
+    const hasTimezone = date.length === 25;
+
+    return hasTimezone
+        ? moment.parseZone(date).format(DATE_FORMAT_WITH_TZ)
+        : moment(date, DATE_FORMAT_WITHOUT_TZ).format(DATE_FORMAT_WITH_TZ);
 }
