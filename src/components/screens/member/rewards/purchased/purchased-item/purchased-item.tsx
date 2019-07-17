@@ -27,7 +27,7 @@ const RewardsPurchasedItem: SFC<IRewardsPurchasedItemProps> = ({ day, month, rew
             <Text style={styles.month}>{month}</Text>
         </View>
         <View style={styles.contentWrapper}>
-            <Text bold={true} style={styles.reward}>
+            <Text numberOfLines={1} ellipsizeMode="tail" bold={true} style={styles.reward}>
                 {reward}
             </Text>
             <Text style={styles.cost}>{cost}</Text>

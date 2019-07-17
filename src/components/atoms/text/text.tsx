@@ -1,12 +1,11 @@
 import * as React from "react";
 import { SFC } from "react";
-import { StyleSheet, Text, TextStyle } from "react-native";
+import { StyleSheet, Text, TextProps, TextStyle } from "react-native";
 import styles from "./text.styles";
 
-interface IProps {
+interface IProps extends TextProps {
     bold?: boolean;
     style?: TextStyle;
-    numberOfLines?: number;
     testID?: string;
 }
 
