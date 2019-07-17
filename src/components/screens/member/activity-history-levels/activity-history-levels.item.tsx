@@ -2,6 +2,7 @@ import { StarInline, Text } from "@atoms/index";
 import { GetActivityHistory_getActivityHistoryWithLevels_sources as Sources } from "@graphql/_core/schema";
 import * as React from "react";
 import { View } from "react-native";
+import { getTime } from "../../../../services/utils";
 import styles from "./activity-history-levels.styles";
 
 export interface IChallenge {
@@ -20,6 +21,8 @@ export interface ItemProps {
     steps: number;
     sources?: Partial<Sources>;
     yucoin: number;
+    mindfulSeconds?: number;
+    mindfulYucoin?: number;
 }
 
 function getLabel(challenge: IChallenge) {
@@ -51,9 +54,12 @@ export default function ActivityHistoryLevelsItem({
     level,
     steps,
     sources,
-    yucoin
+    yucoin,
+    mindfulSeconds,
+    mindfulYucoin
 }: ItemProps) {
     const typeText = steps === 1 ? "step" : "steps";
+    const mindfulTotal = getTime(mindfulSeconds);
     return (
         <View style={styles.listItemWrapper}>
             <View style={styles.levelWrapper}>
@@ -83,6 +89,15 @@ export default function ActivityHistoryLevelsItem({
                                 {`${steps} ${typeText}`}
                             </Text>
                         </View>
+
+                        {!mindfulSeconds ? null : (
+                            <View style={styles.activityLabelWrapper}>
+                                <Text numberOfLines={1} style={styles.activityLabel}>
+                                    {`${mindfulTotal} mindful mins`}
+                                </Text>
+                            </View>
+                        )}
+
                         {renderSourcesText(sources)}
                         {!challenges.length ? (
                             <View style={styles.activityLabelWrapper}>
@@ -102,7 +117,10 @@ export default function ActivityHistoryLevelsItem({
                     </View>
                     <View style={styles.starsColumn}>
                         <View style={styles.starsWrapper} />
-                        {renderSourcesColumnSpacing(sources, () => <View style={styles.starsWrapper} />)}
+                        {renderSourcesColumnSpacing(sources, () => (
+                            <View style={styles.starsWrapper} />
+                        ))}
+                        {!mindfulSeconds ? null : <View style={styles.starsWrapper} />}
                         {challenges.map((challenge, key) => (
                             <View style={styles.starsWrapper} key={key}>
                                 {showRating(challenge) &&
@@ -116,6 +134,7 @@ export default function ActivityHistoryLevelsItem({
                     </View>
                     <View style={styles.yuCoinEarnedColumn}>
                         {renderCoinEarnedValue(yucoin)}
+                        {!mindfulSeconds ? null : renderCoinEarnedValue(mindfulYucoin || "0")}
                         {renderSourcesColumnSpacing(sources, () => renderCoinEarnedValue("-"))}
                         {challenges.length ? null : renderCoinEarnedValue(0)}
                         {challenges.map(({ earned }, index) => renderCoinEarnedValue(earned, { key: index }))}

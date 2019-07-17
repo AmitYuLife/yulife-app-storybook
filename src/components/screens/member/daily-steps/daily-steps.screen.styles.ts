@@ -33,5 +33,10 @@ export default StyleSheet.create({
     } as TextStyle,
     whiteText: {
         color: "#FFF"
-    } as TextStyle
+    } as TextStyle,
+    counterWrapper: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center"
+    } as ViewStyle
 });
