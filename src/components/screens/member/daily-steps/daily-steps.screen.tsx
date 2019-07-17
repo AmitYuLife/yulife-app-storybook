@@ -44,6 +44,7 @@ interface IProps extends IConnectedScreenProps {
     onUpdateSurgePopupVisibility?: (payload: boolean) => void;
     onUpdateLeaderboardPopupVisibility?: (payload: boolean) => void;
     popupVisibility?: IUserStore["popupVisibility"];
+    mindfulSeconds?: number;
 }
 
 type Props = IProps & IDailyStepsOnlineProps & IDailyStepsOfflineProps;
@@ -75,7 +76,8 @@ export default function DailyStepsScreen({
     onUpdateSurgePopupVisibility,
     popupVisibility = {
         leaderboard: false
-    }
+    },
+    mindfulSeconds
 }: Props) {
     return (
         <CentredScreen
@@ -120,6 +122,7 @@ export default function DailyStepsScreen({
                     steps={steps}
                     onCtaPress={onCtaPress}
                     textStyle={textStyle}
+                    mindfulSeconds={mindfulSeconds}
                 />
             )}
             {!displayStreak ? null : (

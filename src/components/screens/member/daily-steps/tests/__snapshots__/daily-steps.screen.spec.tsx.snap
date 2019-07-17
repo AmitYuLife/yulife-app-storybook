@@ -1018,6 +1018,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "coinsToday": 0,
+          "mindfulSeconds": undefined,
           "onCtaPress": [MockFunction],
           "showCounter": false,
           "steps": 0,
@@ -1208,6 +1209,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "coinsToday": 0,
+            "mindfulSeconds": undefined,
             "onCtaPress": [MockFunction],
             "showCounter": false,
             "steps": 0,
@@ -1486,6 +1488,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "coinsToday": 0,
+          "mindfulSeconds": undefined,
           "onCtaPress": [MockFunction],
           "showCounter": false,
           "steps": 0,
@@ -1654,6 +1657,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "coinsToday": 0,
+            "mindfulSeconds": undefined,
             "onCtaPress": [MockFunction],
             "showCounter": false,
             "steps": 0,

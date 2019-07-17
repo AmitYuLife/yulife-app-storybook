@@ -141,6 +141,7 @@ class DailyStepsContainer extends React.Component<Props, IState> {
                             onUpdateLeaderboardPopupVisibility={this.props.updateLeaderboardPopupVisibility}
                             onUpdateSurgePopupVisibility={this.props.updateSurgePopupVisibility}
                             popupVisibility={popupVisibility}
+                            mindfulSeconds={null}
                         />
                     );
                 }}

@@ -55,4 +55,10 @@ describe("ActivityHistoryLevelsItem", () => {
 
         expect(actual).toMatchSnapshot();
     });
+
+    it("should render with a mindful seconds & mindful yucoin of 0", () => {
+        const actual = shallow(<ActivityHistoryLevelsItem {...defaultProps} mindfulSeconds={2000} challenges={[]} />);
+
+        expect(actual).toMatchSnapshot();
+    });
 });
