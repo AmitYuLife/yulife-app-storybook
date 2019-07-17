@@ -64,10 +64,13 @@ ShallowWrapper {
         >
           <YuText
             bold={true}
+            ellipsizeMode="tail"
+            numberOfLines={1}
             style={
               Object {
                 "fontSize": 40,
                 "lineHeight": 44,
+                "paddingRight": 10,
               }
             }
           >
@@ -189,10 +192,13 @@ ShallowWrapper {
           "children": Array [
             <YuText
               bold={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
               style={
                 Object {
                   "fontSize": 40,
                   "lineHeight": 44,
+                  "paddingRight": 10,
                 }
               }
             >
@@ -222,9 +228,12 @@ ShallowWrapper {
             "props": Object {
               "bold": true,
               "children": "£10 Nike VOUCHER",
+              "ellipsizeMode": "tail",
+              "numberOfLines": 1,
               "style": Object {
                 "fontSize": 40,
                 "lineHeight": 44,
+                "paddingRight": 10,
               },
             },
             "ref": null,
@@ -334,10 +343,13 @@ ShallowWrapper {
           >
             <YuText
               bold={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
               style={
                 Object {
                   "fontSize": 40,
                   "lineHeight": 44,
+                  "paddingRight": 10,
                 }
               }
             >
@@ -459,10 +471,13 @@ ShallowWrapper {
             "children": Array [
               <YuText
                 bold={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
                 style={
                   Object {
                     "fontSize": 40,
                     "lineHeight": 44,
+                    "paddingRight": 10,
                   }
                 }
               >
@@ -492,9 +507,12 @@ ShallowWrapper {
               "props": Object {
                 "bold": true,
                 "children": "£10 Nike VOUCHER",
+                "ellipsizeMode": "tail",
+                "numberOfLines": 1,
                 "style": Object {
                   "fontSize": 40,
                   "lineHeight": 44,
+                  "paddingRight": 10,
                 },
               },
               "ref": null,
@@ -646,10 +664,13 @@ ShallowWrapper {
         >
           <YuText
             bold={true}
+            ellipsizeMode="tail"
+            numberOfLines={1}
             style={
               Object {
                 "fontSize": 40,
                 "lineHeight": 44,
+                "paddingRight": 10,
               }
             }
           >
@@ -771,10 +792,13 @@ ShallowWrapper {
           "children": Array [
             <YuText
               bold={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
               style={
                 Object {
                   "fontSize": 40,
                   "lineHeight": 44,
+                  "paddingRight": 10,
                 }
               }
             >
@@ -804,9 +828,12 @@ ShallowWrapper {
             "props": Object {
               "bold": true,
               "children": "£10 Nike VOUCHER",
+              "ellipsizeMode": "tail",
+              "numberOfLines": 1,
               "style": Object {
                 "fontSize": 40,
                 "lineHeight": 44,
+                "paddingRight": 10,
               },
             },
             "ref": null,
@@ -916,10 +943,13 @@ ShallowWrapper {
           >
             <YuText
               bold={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
               style={
                 Object {
                   "fontSize": 40,
                   "lineHeight": 44,
+                  "paddingRight": 10,
                 }
               }
             >
@@ -1041,10 +1071,13 @@ ShallowWrapper {
             "children": Array [
               <YuText
                 bold={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
                 style={
                   Object {
                     "fontSize": 40,
                     "lineHeight": 44,
+                    "paddingRight": 10,
                   }
                 }
               >
@@ -1074,9 +1107,12 @@ ShallowWrapper {
               "props": Object {
                 "bold": true,
                 "children": "£10 Nike VOUCHER",
+                "ellipsizeMode": "tail",
+                "numberOfLines": 1,
                 "style": Object {
                   "fontSize": 40,
                   "lineHeight": 44,
+                  "paddingRight": 10,
                 },
               },
               "ref": null,

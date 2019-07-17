@@ -22,7 +22,8 @@ export default StyleSheet.create({
     } as TextStyle,
     reward: {
         fontSize: Style.SCALE_UP_AND_DOWN(20),
-        lineHeight: Style.SCALE_UP_AND_DOWN(22)
+        lineHeight: Style.SCALE_UP_AND_DOWN(22),
+        paddingRight: 10
     } as TextStyle,
     statusBase: {
         fontSize: Style.SCALE_UP_AND_DOWN(14)
