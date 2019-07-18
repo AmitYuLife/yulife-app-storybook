@@ -26,7 +26,8 @@ jest.mock("react-native-fitkit", () => ({
 
 jest.mock("react-native-device-info", () => ({
     getUniqueID: jest.fn(),
-    getVersion: jest.fn()
+    getVersion: jest.fn(),
+    getTimezone: jest.fn()
 }));
 
 jest.mock("react-native-push-notification", () => ({

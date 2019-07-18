@@ -1,6 +1,6 @@
 import RNFitKit from "@services/fitkit/fitkit.service";
 import Logger from "@services/logging/logger";
-import { DATE_FORMAT_WITH_TZ, getCurrentWorld, getMomentStringWithTz } from "@services/utils";
+import { DATE_FORMAT_WITH_TZ, getCurrentWorld, getStartAndEndDateTimesWithTimezone } from "@services/utils";
 import moment from "moment";
 import { queryMindfulSessions } from "../../services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.selectors";
@@ -10,8 +10,12 @@ const MAX_AVAILABLE = 4;
 export async function getEndResult({ startDateTime, endDateTime, subtype, score }: IActiveLevel, features: any = {}) {
     if (subtype === "meditation") {
         try {
-            const start = getMomentStringWithTz(startDateTime);
-            const end = getMomentStringWithTz(endDateTime);
+            const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
+
+            if (features.loggingEnabled) {
+                Logger.logMixpanelEvent("debug_get_end_result_meditation", { startDateTime, endDateTime, start, end });
+            }
+
             const queryResult = await queryMindfulSessions(start, end, features.disableUserEntries);
 
             // the way the 3rd party apps like calm/headspace write to the history is not always consistent
@@ -51,8 +55,7 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
     }
 
     try {
-        const start = getMomentStringWithTz(startDateTime);
-        const end = getMomentStringWithTz(endDateTime);
+        const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
 
         if (features.loggingEnabled) {
             Logger.logMixpanelEvent("debug_query_pedometer_from_date", { startDateTime, endDateTime, start, end });
