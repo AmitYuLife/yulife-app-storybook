@@ -17,18 +17,15 @@ interface IProps {
 }
 
 export default function ChallengeSuccessScreen({ level, onPressCta, rating, reward, score, unit, copy }: IProps) {
-    const { backgroundImage, backgroundStyle, starType } = getStyle(level);
+    const { backgroundImage, backgroundStyle } = getStyle(level);
 
     return (
         <CentredScreen style={StyleSheet.flatten([styles.wrapper, backgroundStyle])} footerImage={backgroundImage}>
-            <Stars
-                type={starType}
-                isLeftHighlighted={rating > 0}
-                isMidHighlighted={rating > 1}
-                isRightHighlighted={rating > 2}
-            />
+            <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
             <View style={styles.levelWrapper}>
-                <LevelLine colour={"rgb(251, 207, 39)"} />
+                <View style={styles.levelLineWrapper}>
+                    <LevelLine colour={"rgb(251, 207, 39)"} />
+                </View>
                 <Text style={styles.level}>{`level ${level}`}</Text>
             </View>
             <View>

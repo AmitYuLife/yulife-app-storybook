@@ -19,8 +19,16 @@ export default StyleSheet.create({
         marginTop: Style.SCALE_UP_AND_DOWN(-10),
         textAlign: "center"
     } as TextStyle,
+    levelLineWrapper: {
+        position: "absolute",
+        left: 0,
+        right: 0,
+        bottom: Style.SCALE_UP_AND_DOWN(3),
+        overflow: "visible"
+    } as ViewStyle,
     levelWrapper: {
         alignItems: "center",
+        width: Style.SCALE_UP_AND_DOWN(137),
         marginBottom: Style.SCALE_UP_AND_DOWN(20)
     } as ViewStyle,
     plusPointsWrapper: {
