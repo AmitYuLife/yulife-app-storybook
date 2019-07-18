@@ -85,3 +85,28 @@ export function getMomentStringWithTz(date: string) {
         ? moment.parseZone(date).format(DATE_FORMAT_WITH_TZ)
         : moment(date, DATE_FORMAT_WITHOUT_TZ).format(DATE_FORMAT_WITH_TZ);
 }
+
+export function getStartAndEndDateTimesWithTimezone(startDateTime: string, endDateTime: string) {
+    // NOTE: Some of the moment methods work in React Native and others don't.
+    // ¯\_(ツ)_/¯ ¯\_(ツ)_/¯ ¯\_(ツ)_/¯
+    // .isUtcOffset from moment was failing on some XR devices
+    // The returned result might still not come on some devices with the timezone
+    // That's why we double check on the fitkit
+
+    // Check if the startDateTime has a timezone and add it to the endDateTime if it doesn't have it
+    const hasTimezone = startDateTime.length === 25;
+
+    if (hasTimezone) {
+        const timezone = startDateTime.slice(-6);
+
+        return {
+            start: startDateTime,
+            end: endDateTime.length === 25 ? endDateTime : `${endDateTime}${timezone}`
+        };
+    }
+
+    return {
+        start: moment(startDateTime, DATE_FORMAT_WITHOUT_TZ).format(DATE_FORMAT_WITH_TZ),
+        end: moment(endDateTime, DATE_FORMAT_WITHOUT_TZ).format(DATE_FORMAT_WITH_TZ)
+    };
+}
