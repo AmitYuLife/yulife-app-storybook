@@ -1536,8 +1536,7 @@ ShallowWrapper {
             source={1}
             style={
               Object {
-                "height": 600,
-                "marginBottom": 0,
+                "height": 440,
                 "width": "100%",
               }
             }
@@ -1565,8 +1564,7 @@ ShallowWrapper {
             source={1}
             style={
               Object {
-                "height": 600,
-                "marginBottom": 0,
+                "height": 440,
                 "width": "100%",
               }
             }
@@ -1588,8 +1586,7 @@ ShallowWrapper {
             "resizeMode": "cover",
             "source": 1,
             "style": Object {
-              "height": 600,
-              "marginBottom": 0,
+              "height": 440,
               "width": "100%",
             },
           },
@@ -1626,8 +1623,7 @@ ShallowWrapper {
               source={1}
               style={
                 Object {
-                  "height": 600,
-                  "marginBottom": 0,
+                  "height": 440,
                   "width": "100%",
                 }
               }
@@ -1655,8 +1651,7 @@ ShallowWrapper {
               source={1}
               style={
                 Object {
-                  "height": 600,
-                  "marginBottom": 0,
+                  "height": 440,
                   "width": "100%",
                 }
               }
@@ -1678,8 +1673,7 @@ ShallowWrapper {
               "resizeMode": "cover",
               "source": 1,
               "style": Object {
-                "height": 600,
-                "marginBottom": 0,
+                "height": 440,
                 "width": "100%",
               },
             },

@@ -31,7 +31,17 @@ export default StyleSheet.create({
     } as TextStyle,
     levelWrapper: {
         alignItems: "center",
-        marginBottom: Style.SCALE_UP_AND_DOWN(24)
+        marginTop: Style.SCALE_UP_AND_DOWN(5),
+        marginBottom: Style.SCALE_UP_AND_DOWN(24),
+        width: Style.SCALE_UP_AND_DOWN(137),
+        overflow: "visible"
+    } as ViewStyle,
+    levelLineWrapper: {
+        position: "absolute",
+        left: 0,
+        right: 0,
+        bottom: Style.SCALE_UP_AND_DOWN(3),
+        overflow: "visible"
     } as ViewStyle,
     wrapper: {
         alignItems: "center",

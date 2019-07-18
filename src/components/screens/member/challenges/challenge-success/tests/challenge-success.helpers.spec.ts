@@ -5,13 +5,12 @@ describe("getStyle", () => {
         const actual = getStyle(160);
         expect(actual).toEqual({
             backgroundImage: "challenge_mountain",
-            backgroundStyle: { backgroundColor: "rgb(255, 226, 230)" },
-            starType: "mountain"
+            backgroundStyle: { backgroundColor: "rgb(255, 226, 230)" }
         });
     });
 
-    it("should return star type of null", () => {
-        const actual = getStyle(1);
-        expect(actual).toHaveProperty("starType", null);
+    it("should return backgroundStyle of null", () => {
+        const actual = getStyle(51);
+        expect(actual).toHaveProperty("backgroundStyle", null);
     });
 });
