@@ -6,7 +6,7 @@ export default StyleSheet.create({
         marginTop: Style.SCALE_UP_AND_DOWN(27)
     } as ImageStyle,
     footer: {
-        fontSize: Style.SCALE_UP_AND_DOWN(15),
+        fontSize: Style.SCALE_UP_AND_DOWN(25),
         lineHeight: Style.SCALE_UP_AND_DOWN(22),
         marginBottom: Style.SCALE_UP_AND_DOWN(100),
         marginTop: Style.SCALE_UP_AND_DOWN(97),
@@ -14,7 +14,7 @@ export default StyleSheet.create({
         width: Style.SCALE_UP_AND_DOWN(100)
     } as TextStyle,
     footerGray: {
-        color: "rgb(170,170,170)"
+        color: "rgb(110,110,110)"
     } as TextStyle,
     footerWhite: {
         color: "rgb(255,255,255)"
