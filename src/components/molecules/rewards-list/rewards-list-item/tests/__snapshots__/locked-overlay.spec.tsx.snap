@@ -186,7 +186,6 @@ ShallowWrapper {
               "source": [Function],
               "style": [Function],
               "testID": [Function],
-              "tintColor": [Function],
             },
             "render": [Function],
             "resizeMode": Object {
@@ -392,7 +391,6 @@ ShallowWrapper {
                 "source": [Function],
                 "style": [Function],
                 "testID": [Function],
-                "tintColor": [Function],
               },
               "render": [Function],
               "resizeMode": Object {
@@ -649,7 +647,6 @@ ShallowWrapper {
               "source": [Function],
               "style": [Function],
               "testID": [Function],
-              "tintColor": [Function],
             },
             "render": [Function],
             "resizeMode": Object {
@@ -855,7 +852,6 @@ ShallowWrapper {
                 "source": [Function],
                 "style": [Function],
                 "testID": [Function],
-                "tintColor": [Function],
               },
               "render": [Function],
               "resizeMode": Object {

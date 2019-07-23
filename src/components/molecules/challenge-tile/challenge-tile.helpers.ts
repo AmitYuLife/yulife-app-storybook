@@ -6,24 +6,26 @@ import { Images, IMAGES } from "./challenge-tile.types";
 export const getLockedImageStyle = (image: Images): ImageStyle => {
     const position = {} as { bottom?: number; left?: number; right?: number; top?: number };
     switch (image) {
-        case IMAGES.WOLF:
-            position.left = 0;
-            position.bottom = 0;
-            break;
-        case IMAGES.DEER:
-            position.left = 0;
-            position.bottom = 0;
-            break;
         case IMAGES.WHITE_BIGHORN_SHEEP:
+        case IMAGES.OWL:
+        case IMAGES.BIRD:
+        case IMAGES.DOLPHIN:
+        case IMAGES.TORTOISE:
+        case IMAGES.BIGHORN_SHEEP:
             position.right = 0;
             position.bottom = 0;
             break;
-        case IMAGES.OWL:
-            position.right = 0;
+        case IMAGES.WOLF:
+        case IMAGES.DEER:
+        case IMAGES.SQUIRREL:
+        case IMAGES.RABBIT:
+        case IMAGES.WHALE:
+        case IMAGES.OTTER:
+            position.left = 0;
             position.bottom = 0;
             break;
         default:
-            return null;
+            position.bottom = 0;
     }
     return StyleSheet.flatten([
         {

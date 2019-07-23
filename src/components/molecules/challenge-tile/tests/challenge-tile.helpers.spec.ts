@@ -37,8 +37,8 @@ describe("getLockedImageStyle", () => {
         expect(getLockedImageStyle("wolf")).toBeDefined();
     });
 
-    it("should return null if input is unknown", () => {
-        expect(getLockedImageStyle("rabbit")).toBe(null);
+    it("should return bottom as 0 for default value", () => {
+        expect(getLockedImageStyle("rabbit")).toHaveProperty("bottom", 0);
     });
 
     it("should return bottom & right of 0", () => {
