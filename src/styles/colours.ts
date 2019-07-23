@@ -53,7 +53,7 @@ export default {
             activeIcon: "rgb(118, 92, 50)"
         },
         forest: {
-            active: "rgba(255,255,255,1)",
+            active: "rgb(108, 205, 158)",
             inactive: "rgb(108, 205, 158)",
             pressed: "rgb(108, 205, 158)",
             activeIcon: "rgb(51, 88, 66)"
