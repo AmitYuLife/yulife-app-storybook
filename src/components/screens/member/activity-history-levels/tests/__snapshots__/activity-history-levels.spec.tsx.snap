@@ -142,9 +142,9 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "flex-end",
-                "flex": 1,
                 "height": "100%",
                 "justifyContent": "center",
+                "width": 92,
               }
             }
           >
@@ -361,9 +361,9 @@ ShallowWrapper {
               style={
                 Object {
                   "alignItems": "flex-end",
-                  "flex": 1,
                   "height": "100%",
                   "justifyContent": "center",
+                  "width": 92,
                 }
               }
             >
@@ -519,9 +519,9 @@ ShallowWrapper {
               </YuText>,
               "style": Object {
                 "alignItems": "flex-end",
-                "flex": 1,
                 "height": "100%",
                 "justifyContent": "center",
+                "width": 92,
               },
             },
             "ref": null,
@@ -914,9 +914,9 @@ ShallowWrapper {
               style={
                 Object {
                   "alignItems": "flex-end",
-                  "flex": 1,
                   "height": "100%",
                   "justifyContent": "center",
+                  "width": 92,
                 }
               }
             >
@@ -1133,9 +1133,9 @@ ShallowWrapper {
                 style={
                   Object {
                     "alignItems": "flex-end",
-                    "flex": 1,
                     "height": "100%",
                     "justifyContent": "center",
+                    "width": 92,
                   }
                 }
               >
@@ -1291,9 +1291,9 @@ ShallowWrapper {
                 </YuText>,
                 "style": Object {
                   "alignItems": "flex-end",
-                  "flex": 1,
                   "height": "100%",
                   "justifyContent": "center",
+                  "width": 92,
                 },
               },
               "ref": null,
@@ -1766,9 +1766,9 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "flex-end",
-                "flex": 1,
                 "height": "100%",
                 "justifyContent": "center",
+                "width": 92,
               }
             }
           >
@@ -1985,9 +1985,9 @@ ShallowWrapper {
               style={
                 Object {
                   "alignItems": "flex-end",
-                  "flex": 1,
                   "height": "100%",
                   "justifyContent": "center",
+                  "width": 92,
                 }
               }
             >
@@ -2143,9 +2143,9 @@ ShallowWrapper {
               </YuText>,
               "style": Object {
                 "alignItems": "flex-end",
-                "flex": 1,
                 "height": "100%",
                 "justifyContent": "center",
+                "width": 92,
               },
             },
             "ref": null,
@@ -2538,9 +2538,9 @@ ShallowWrapper {
               style={
                 Object {
                   "alignItems": "flex-end",
-                  "flex": 1,
                   "height": "100%",
                   "justifyContent": "center",
+                  "width": 92,
                 }
               }
             >
@@ -2757,9 +2757,9 @@ ShallowWrapper {
                 style={
                   Object {
                     "alignItems": "flex-end",
-                    "flex": 1,
                     "height": "100%",
                     "justifyContent": "center",
+                    "width": 92,
                   }
                 }
               >
@@ -2915,9 +2915,9 @@ ShallowWrapper {
                 </YuText>,
                 "style": Object {
                   "alignItems": "flex-end",
-                  "flex": 1,
                   "height": "100%",
                   "justifyContent": "center",
+                  "width": 92,
                 },
               },
               "ref": null,

@@ -89,7 +89,7 @@ export default StyleSheet.create({
         color: "rgb(225,5,119)"
     } as TextStyle,
     headerFourWrapper: {
-        flex: 1,
+        width: Style.SCALE_UP_AND_DOWN(46),
         alignItems: "flex-end"
     } as ViewStyle,
     headerOneWrapper: {
