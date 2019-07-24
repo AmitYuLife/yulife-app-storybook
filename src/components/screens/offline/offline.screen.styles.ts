@@ -1,0 +1,33 @@
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { Style } from "../../../styles";
+
+export default StyleSheet.create({
+    contentWrapper: {
+        alignItems: "center",
+        justifyContent: "center",
+        ...StyleSheet.absoluteFillObject
+    } as ViewStyle,
+    image: {
+        height: Style.DEVICE_HEIGHT,
+        width: Style.DEVICE_WIDTH
+    } as ImageStyle,
+    heading: {
+        color: "rgb(51,51,51)",
+        fontSize: Style.SCALE_UP_AND_DOWN(35),
+        textAlign: "center"
+    } as TextStyle,
+    subheading: {
+        color: "rgb(96,96,96)",
+        fontSize: Style.SCALE_UP_AND_DOWN(16),
+        marginLeft: Style.SCALE_UP_AND_DOWN(35),
+        marginRight: Style.SCALE_UP_AND_DOWN(35),
+        marginTop: Style.SCALE_UP_AND_DOWN(20),
+        textAlign: "center"
+    } as TextStyle,
+    wrapper: {
+        ...StyleSheet.absoluteFillObject
+    } as ViewStyle,
+    buttonWrapper: {
+        marginTop: Style.SCALE_UP_AND_DOWN(22)
+    } as ViewStyle
+});

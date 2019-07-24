@@ -266,6 +266,16 @@ export const setLoadingRoot = async () =>
         }
     });
 
+export const setOfflineRoot = async () =>
+    Navigation.setRoot({
+        root: {
+            component: {
+                id: ROUTES.offline,
+                name: ROUTES.offline
+            }
+        }
+    });
+
 export const setNextRoot = async () => {
     const hasSeenIntro = await getIntro();
 

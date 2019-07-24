@@ -96,7 +96,6 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
             currentLevel,
             totalCoins,
             onLeftMenuPress,
-            isOffline,
             copy,
             componentId,
             appState
@@ -127,19 +126,6 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
                     const coinsRefetch = this.handleRefetch(refetch, "coins");
                     const stepsRefetch = this.handleRefetch(refetch, "steps");
                     const mindfulMinsRefetch = this.handleRefetch(refetch, "mindful");
-
-                    if (isOffline && !(data && data.getLeaderboard)) {
-                        return (
-                            <LeaderboardOfflineScreen
-                                hasNotification={hasNotification}
-                                currentWorld={currentWorld}
-                                totalCoins={totalCoins}
-                                labels={labels}
-                                onLeftMenuPress={onLeftMenuPress}
-                                navbarColour={navbarColour}
-                            />
-                        );
-                    }
 
                     const initialScrollIndex =
                         data && data.getLeaderboard != null

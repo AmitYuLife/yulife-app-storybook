@@ -1,6 +1,7 @@
 import { SyncAction } from "../_core/types";
 
 export const SHOW_MAINTENANCE = "SHOW_MAINTENANCE";
+export const CHECK_CONNECTION = "CHECK_CONNECTION";
 export const UPDATE_APP_STATE = "UPDATE_APP_STATE";
 export const UPDATE_NAVIGATION_STATE = "UPDATE_NAVIGATION_STATE";
 export const UPDATE_OFFLINE_STATE = "UPDATE_OFFLINE_STATE";

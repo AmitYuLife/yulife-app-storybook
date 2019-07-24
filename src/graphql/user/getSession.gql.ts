@@ -13,5 +13,6 @@ export const getSessionGql = gql`
 
 export default () =>
     client().query<getSession>({
-        query: getSessionGql
+        query: getSessionGql,
+        fetchPolicy: "network-only"
     });

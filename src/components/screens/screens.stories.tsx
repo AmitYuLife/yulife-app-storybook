@@ -20,7 +20,6 @@ import {
     IntroScreen,
     LoginScreen,
     NoAccessScreen,
-    QuestsScreenOffline,
     ResetPasswordScreen,
     ResetPasswordSuccessScreen,
     SignUpRewardScreen,
@@ -487,28 +486,7 @@ storiesOf("Screens", module)
         />
     ))
     .add("12. Intro", () => <IntroScreen onPressLastCta={action("on press last press")} />)
-    .add("13. QuestScreenOffline", () => (
-        <QuestsScreenOffline
-            fitkitAvailable={boolean("FitKitAvailable", true)}
-            onLeftMenuPress={action("on left menu press")}
-            theme={{
-                image: "desert",
-                navBarType: COLOURS.DARK
-            }}
-            totalCoins={number(
-                "TotalCoins",
-                4,
-                {
-                    max: 999999,
-                    min: 0,
-                    range: true,
-                    step: 1
-                },
-                "QuestScreenOffline"
-            )}
-        />
-    ))
-    .add("14. Today Yucoin", () => (
+    .add("13. Today Yucoin", () => (
         <TodayYucoinScreen
             steps={number("steps", 6543)}
             dailyStepsEarned={number("dailyStepsEarned", 3)}
@@ -523,7 +501,7 @@ storiesOf("Screens", module)
             isShowingPassiveMeditation={false}
         />
     ))
-    .add("15. Challenges List Completed", () => (
+    .add("14. Challenges List Completed", () => (
         <ChallengesHistoryScreen
             onLeftMenuPress={() => null}
             totalCoins={604}
