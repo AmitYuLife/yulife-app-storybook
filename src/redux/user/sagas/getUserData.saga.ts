@@ -5,7 +5,6 @@ import { call, put, spawn } from "redux-saga/effects";
 import { getUserSuccess, setUserNoAccessAction } from "../user.actions";
 
 import setLoggerIdentity from "./setLoggerIdentity.helper";
-import setTestFairyId from "./setTestFairyId.helper";
 
 export default function* getUserDataSaga() {
     try {
@@ -14,7 +13,6 @@ export default function* getUserDataSaga() {
         if (token) {
             const { data } = yield call(getCurrentUserWithClient);
 
-            yield spawn(setTestFairyId, data.getCurrentUser.id);
             yield spawn(
                 setLoggerIdentity,
                 data.getCurrentUser.id,

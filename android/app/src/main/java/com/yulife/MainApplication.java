@@ -14,7 +14,6 @@ import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
 import com.robinpowered.react.Intercom.IntercomPackage;
 import com.kevinejohn.RNMixpanel.RNMixpanel;
-import com.testfairy.react.TestFairyPackage;
 import com.yulife.reactnative.fitkit.RNFitKitPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.bolan9999.SpringScrollViewPackage;
@@ -68,7 +67,6 @@ public class MainApplication extends NavigationApplication {
                 new ReactNativePushNotificationPackage(),   // react-native-push-notifications
                 BugsnagReactNative.getPackage(),            // bugsnag-react-native
                 new RNFitKitPackage(),                      // react-native-fitkit
-                new TestFairyPackage(),                     // react-native-testfairy
                 new SpringScrollViewPackage(),              // react-native-large-list
                 new FastImageViewPackage()                  // react-native-fast-image
         );
