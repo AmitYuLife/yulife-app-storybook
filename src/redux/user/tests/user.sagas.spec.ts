@@ -24,7 +24,6 @@ import loginUserSuccessSaga from "../sagas/loginUserSuccess.saga";
 import logOutSaga from "../sagas/logOut.saga";
 import openMemberZoneSaga from "../sagas/openMemberZone.saga";
 import setLoggerIdentity from "../sagas/setLoggerIdentity.helper";
-import setTestFairyId from "../sagas/setTestFairyId.helper";
 import setUserNoAccessSaga from "../sagas/setUserNoAccess.saga";
 import { getUserSuccess, LOGIN_USER_SUCCESS, setUserNoAccessAction, updateUserConsentSuccess } from "../user.actions";
 
@@ -108,11 +107,6 @@ describe("getUserDataSaga", async () => {
         expect(actual.done).toEqual(false);
 
         actual = testSaga.next(data);
-        expected = spawn(setTestFairyId, data.data.getCurrentUser.id);
-        expect(actual.value).toEqual(expected);
-        expect(actual.done).toEqual(false);
-
-        actual = testSaga.next(data);
         expected = spawn(
             setLoggerIdentity,
             data.data.getCurrentUser.id,
@@ -146,11 +140,6 @@ describe("getUserDataSaga", async () => {
         expect(actual.done).toEqual(false);
 
         actual = testSaga.next(data);
-        expected = spawn(setTestFairyId, data.data.getCurrentUser.id);
-        expect(actual.value).toEqual(expected);
-        expect(actual.done).toEqual(false);
-
-        actual = testSaga.next(data);
         expected = spawn(
             setLoggerIdentity,
             data.data.getCurrentUser.id,
@@ -171,13 +160,10 @@ describe("loginUserSuccessSaga", async () => {
     it("should call loginUserSuccessSaga correctly", async () => {
         const testSaga = loginUserSuccessSaga({ payload: loginSuccessFixture, type: LOGIN_USER_SUCCESS });
         const { user, intercomHash } = loginSuccessFixture.loginUser;
-        let actual: any = testSaga.next();
-        let expected: any = spawn(setTestFairyId, user.id);
-        expect(actual.value).toEqual(expected);
-        expect(actual.done).toEqual(false);
 
-        actual = testSaga.next();
-        expected = call(setLoggerIdentity, user.id, user.membershipType, intercomHash);
+        let actual: any = testSaga.next();
+        const expected: any = call(setLoggerIdentity, user.id, user.membershipType, intercomHash);
+
         expect(actual.value).toEqual(expected);
         expect(actual.done).toEqual(false);
 

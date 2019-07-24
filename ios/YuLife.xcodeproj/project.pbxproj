@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -133,7 +132,6 @@
 		3A85BDDB2121DA530081B400 /* Intercom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A85BDAD2121DA520081B400 /* Intercom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3A85BE302122D9CA0081B400 /* Intercom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A85BE2F2122D9CA0081B400 /* Intercom.framework */; };
 		3AA5311B213558C700C88415 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA5311A213558C700C88415 /* HealthKit.framework */; };
-		5CD3F0623EBF4402BF961CF0 /* libReactNativeTestFairy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 001704067A0E4CACA7C87720 /* libReactNativeTestFairy.a */; };
 		5DD9F6AA5BA7418987C4008B /* Bariol-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58BDFA96FD7F4A21A586A35D /* Bariol-Light.otf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		626D821749E2410E8A7A0AA6 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C1D49D004D347FA95FF1B84 /* OpenSans-Bold.ttf */; };
@@ -279,13 +277,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 3D383D621EBD27B9005632C8;
 			remoteInfo = "double-conversion-tvOS";
-		};
-		3A23F4C4220C3DDF0020E03E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 94B7DD6A97C04116BE7BA37F /* ReactNativeTestFairy.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 42959838203B471F00E34882;
-			remoteInfo = ReactNativeTestFairy;
 		};
 		3A34E0C8210A32FF0022EAAA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -577,7 +568,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		001704067A0E4CACA7C87720 /* libReactNativeTestFairy.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeTestFairy.a; sourceTree = "<group>"; };
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
@@ -802,7 +792,6 @@
 		839148B686214E20A8B6335A /* FastImage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = FastImage.xcodeproj; path = "../node_modules/react-native-fast-image/ios/FastImage.xcodeproj"; sourceTree = "<group>"; };
 		8680205BCB6C46FEB6D2A697 /* libReactNativeConfig.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeConfig.a; sourceTree = "<group>"; };
 		8B09107DFCFA44CD95F0F5B1 /* libFastImage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libFastImage.a; sourceTree = "<group>"; };
-		94B7DD6A97C04116BE7BA37F /* ReactNativeTestFairy.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeTestFairy.xcodeproj; path = "../node_modules/react-native-testfairy/ios/ReactNativeTestFairy.xcodeproj"; sourceTree = "<group>"; };
 		94DF73C12153899D00E53652 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		9903AC7FFDE9457B9E58F46A /* Bariol-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Bariol-Bold.otf"; path = "../assets/fonts/Bariol-Bold.otf"; sourceTree = "<group>"; };
 		9CEA0C1210E94195AB404DCF /* OpenSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Light.ttf"; path = "../assets/fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
@@ -867,7 +856,6 @@
 				946712F42236B117000E0D1C /* libRNFitKit.a in Frameworks */,
 				361D6BD0B022419E81A2465F /* libz.tbd in Frameworks */,
 				6CD5C3E6AC854A25BF61D1BB /* libRNDeviceInfo.a in Frameworks */,
-				5CD3F0623EBF4402BF961CF0 /* libReactNativeTestFairy.a in Frameworks */,
 				855F79BE322746398ED2316B /* libFastImage.a in Frameworks */,
 				F40602917AEA4642963A2DC4 /* libRNSpringScrollView.a in Frameworks */,
 			);
@@ -1014,14 +1002,6 @@
 				430E9C4E2A5F4D87A698BF3D /* libz.tbd */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3A23F496220C3DDF0020E03E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3A23F4C5220C3DDF0020E03E /* libReactNativeTestFairy.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		3A34E09F210A32FF0022EAAA /* Products */ = {
@@ -1338,7 +1318,6 @@
 				A23499BFDAA5480F982F1227 /* BugsnagReactNative.xcodeproj */,
 				E36B50194DAB4CBE82680CE6 /* RNFitKit.xcodeproj */,
 				B518BC259B444B63AE8B3482 /* RNDeviceInfo.xcodeproj */,
-				94B7DD6A97C04116BE7BA37F /* ReactNativeTestFairy.xcodeproj */,
 				839148B686214E20A8B6335A /* FastImage.xcodeproj */,
 				6CAB6F50704040D78292952D /* RNSpringScrollView.xcodeproj */,
 			);
@@ -1589,10 +1568,6 @@
 					ProjectRef = 3A34E09E210A32FF0022EAAA /* ReactNativeNavigation.xcodeproj */;
 				},
 				{
-					ProductGroup = 3A23F496220C3DDF0020E03E /* Products */;
-					ProjectRef = 94B7DD6A97C04116BE7BA37F /* ReactNativeTestFairy.xcodeproj */;
-				},
-				{
 					ProductGroup = 3AA682662120C2D90036CBD0 /* Products */;
 					ProjectRef = 67B634C5C9AB4C64921C5198 /* RNBlur.xcodeproj */;
 				},
@@ -1747,13 +1722,6 @@
 			fileType = archive.ar;
 			path = "libdouble-conversion.a";
 			remoteRef = 2DF0FFE82056DD460020B375 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3A23F4C5220C3DDF0020E03E /* libReactNativeTestFairy.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libReactNativeTestFairy.a;
-			remoteRef = 3A23F4C4220C3DDF0020E03E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3A34E0C9210A32FF0022EAAA /* libReactNativeNavigation.a */ = {
@@ -2226,7 +2194,6 @@
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
 					"$(SRCROOT)/../node_modules/react-native-fitkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
-					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-spring-scrollview/ios/SpringScrollView",
 					"$(SRCROOT)/../node_modules/react-native-clear-app-cache/ios/RCTClearCacheModule",
@@ -2236,19 +2203,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2274,7 +2228,6 @@
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
 					"$(SRCROOT)/../node_modules/react-native-fitkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
-					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-spring-scrollview/ios/SpringScrollView",
 					"$(SRCROOT)/../node_modules/react-native-clear-app-cache/ios/RCTClearCacheModule",
@@ -2284,19 +2237,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2330,7 +2270,6 @@
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
 					"$(SRCROOT)/../node_modules/react-native-fitkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
-					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-spring-scrollview/ios/SpringScrollView",
 					"$(SRCROOT)/../node_modules/react-native-clear-app-cache/ios/RCTClearCacheModule",
@@ -2378,7 +2317,6 @@
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
 					"$(SRCROOT)/../node_modules/react-native-fitkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
-					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-spring-scrollview/ios/SpringScrollView",
 					"$(SRCROOT)/../node_modules/react-native-clear-app-cache/ios/RCTClearCacheModule",

@@ -29,6 +29,5 @@
             "@mockclient": ["./e2e/_utils/mock/client"]
         }
     },
-    "exclude": ["e2e", "node_modules"],
-    "typeRoots": ["src/declarations.d.ts"]
+    "exclude": ["e2e", "node_modules"]
 }
