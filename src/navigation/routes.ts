@@ -26,6 +26,10 @@ export default [
         name: ROUTES.signUp,
         component: require("../components/containers/sign-up/sign-up.container").default
     },
+    {
+        name: ROUTES.offline,
+        component: require("../components/containers/offline/offline.container").default
+    },
 
     // onboarding screens
     {

@@ -6,6 +6,7 @@ export const ROUTES = {
     resetPassword: "yulife.ResetPassword",
     resetPasswordSuccess: "yulife.ResetPasswordSuccess",
     signUp: "yulife.SignUp",
+    offline: "yulife.Offline",
 
     // onboarding screens
     onboardingFitKitConnect: "yulife.onboarding.FitKitConnect",

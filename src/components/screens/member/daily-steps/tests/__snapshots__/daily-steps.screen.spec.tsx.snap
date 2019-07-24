@@ -2221,9 +2221,16 @@ ShallowWrapper {
             isLoading={false}
           />
         </TouchableOpacityWithState>,
-        <DailyStepsOffline
-          isLight={false}
-          lastUpdate="thing"
+        <DailyStepsOnline
+          coinsToday={0}
+          onCtaPress={[MockFunction]}
+          showCounter={false}
+          steps={0}
+          textStyle={
+            Object {
+              "color": "#333333",
+            }
+          }
         />,
         null,
         <View
@@ -2308,8 +2315,14 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "isLight": false,
-          "lastUpdate": "thing",
+          "coinsToday": 0,
+          "mindfulSeconds": undefined,
+          "onCtaPress": [MockFunction],
+          "showCounter": false,
+          "steps": 0,
+          "textStyle": Object {
+            "color": "#333333",
+          },
         },
         "ref": null,
         "rendered": null,
@@ -2377,9 +2390,16 @@ ShallowWrapper {
               isLoading={false}
             />
           </TouchableOpacityWithState>,
-          <DailyStepsOffline
-            isLight={false}
-            lastUpdate="thing"
+          <DailyStepsOnline
+            coinsToday={0}
+            onCtaPress={[MockFunction]}
+            showCounter={false}
+            steps={0}
+            textStyle={
+              Object {
+                "color": "#333333",
+              }
+            }
           />,
           null,
           <View
@@ -2464,8 +2484,14 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "isLight": false,
-            "lastUpdate": "thing",
+            "coinsToday": 0,
+            "mindfulSeconds": undefined,
+            "onCtaPress": [MockFunction],
+            "showCounter": false,
+            "steps": 0,
+            "textStyle": Object {
+              "color": "#333333",
+            },
           },
           "ref": null,
           "rendered": null,

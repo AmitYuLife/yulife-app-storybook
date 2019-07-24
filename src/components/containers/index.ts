@@ -5,6 +5,7 @@ export { default as ResetPasswordContainer } from "./reset-password/reset-passwo
 export { default as ResetPasswordSuccessContainer } from "./reset-password/reset-password-success.container";
 export { default as SignUpContainer } from "./sign-up/sign-up.container";
 export { default as NoAccessContainer } from "./no-access/no-access.container";
+export { default as AppOfflineContainer } from "./offline/offline.container";
 
 // onboarding containers
 export { default as FitKitConnectContainer } from "./onboarding/fitkit-connect/fitkit-connect.container";
