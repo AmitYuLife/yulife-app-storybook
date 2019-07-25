@@ -4,9 +4,10 @@ import { MODALS } from "@navigation/constants";
 import { getRouteState } from "@redux/app/app.selectors";
 import { querySteps } from "@services/fitkit/fitkit.helpers";
 import moment from "moment";
-import { call, select } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 import { getUserFeatures } from "../../../user/user.selectors";
-import { getLastUpdated } from "../../daily-steps.selectors";
+import { stepsSinceLastUpdateSuccess } from "../../daily-steps.actions";
+import { getLastUpdatedBeforeToday } from "../../daily-steps.selectors";
 import sendStepsSinceLastUpdated from "../sendStepsSinceLastUpdated.saga";
 
 describe("Daily Steps Saga sendStepsSinceLastUpdated", () => {
@@ -17,10 +18,23 @@ describe("Daily Steps Saga sendStepsSinceLastUpdated", () => {
 
         const getLastUpdatedEffect = testSaga.next();
 
-        expect(getLastUpdatedEffect.value).toEqual(select(getLastUpdated));
+        expect(getLastUpdatedEffect.value).toEqual(select(getLastUpdatedBeforeToday));
 
         expect(getLastUpdatedEffect.done).toEqual(false);
         const doneEffect = testSaga.next(moment().subtract(2, "seconds").format());
+        expect(doneEffect.done).toEqual(true);
+    });
+
+    it("does nothing if the last steps update is empty", () => {
+
+        const testSaga = sendStepsSinceLastUpdated();
+
+        const getLastUpdatedEffect = testSaga.next();
+
+        expect(getLastUpdatedEffect.value).toEqual(select(getLastUpdatedBeforeToday));
+
+        expect(getLastUpdatedEffect.done).toEqual(false);
+        const doneEffect = testSaga.next(null);
         expect(doneEffect.done).toEqual(true);
     });
 
@@ -31,7 +45,7 @@ describe("Daily Steps Saga sendStepsSinceLastUpdated", () => {
 
         const getLastUpdatedEffect = testSaga.next();
 
-        expect(getLastUpdatedEffect.value).toEqual(select(getLastUpdated));
+        expect(getLastUpdatedEffect.value).toEqual(select(getLastUpdatedBeforeToday));
         expect(getLastUpdatedEffect.done).toEqual(false);
 
         const userFeaturesEffect = testSaga.next(lastUpdated);
@@ -54,7 +68,7 @@ describe("Daily Steps Saga sendStepsSinceLastUpdated", () => {
             testSaga = sendStepsSinceLastUpdated();
             const getLastUpdatedEffect = testSaga.next();
 
-            expect(getLastUpdatedEffect.value).toEqual(select(getLastUpdated));
+            expect(getLastUpdatedEffect.value).toEqual(select(getLastUpdatedBeforeToday));
             expect(getLastUpdatedEffect.done).toEqual(false);
 
             const userFeaturesEffect = testSaga.next(lastUpdated);
@@ -71,14 +85,7 @@ describe("Daily Steps Saga sendStepsSinceLastUpdated", () => {
                 endDateTime: challengeEndTime,
                 value: 89
             };
-        });
 
-        it("adds historical steps", () => {
-            const addStepsEffect = testSaga.next({ results: [challengeResult] });
-            expect(addStepsEffect.value).toEqual(call(addHistoricalSteps as any, [challengeResult], true));
-        });
-
-        it("does not try show the collect reward modal if it is already displayed", () => {
             const addStepsEffect = testSaga.next({ results: [challengeResult] });
             expect(addStepsEffect.value).toEqual(call(addHistoricalSteps as any, [challengeResult], true));
 
@@ -89,9 +96,21 @@ describe("Daily Steps Saga sendStepsSinceLastUpdated", () => {
             };
             const getRouteEffect = testSaga.next({ data: { addHistoricalSteps: historicalSteps } });
             expect(getRouteEffect.value).toEqual(select(getRouteState));
+        });
 
-            const showModalEffect = testSaga.next(MODALS.collectReward);
-            expect(showModalEffect.done).toEqual(true);
+        it("adds historical steps and shows modal", () => {
+            testSaga.next(MODALS.generic);
+            const putSuccessEffect = testSaga.next();
+            expect(putSuccessEffect.value).toEqual(put(stepsSinceLastUpdateSuccess()));
+            const doneEffect = testSaga.next();
+            expect(doneEffect.done).toEqual(true);
+        });
+
+        it("does not try show the collect reward modal if it is already displayed", () => {
+            const putSuccessEffect = testSaga.next(MODALS.collectReward);
+            expect(putSuccessEffect.value).toEqual(put(stepsSinceLastUpdateSuccess()));
+            const doneEffect = testSaga.next();
+            expect(doneEffect.done).toEqual(true);
         });
     });
 });
