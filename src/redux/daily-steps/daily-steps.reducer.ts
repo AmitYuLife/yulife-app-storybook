@@ -9,7 +9,11 @@ import { LoginUser } from "../../graphql/_core/schema";
 import { pathOr } from "../../services/utils";
 import { PEDOMETER_UPDATES_NO_NEW_DATA, PEDOMETER_UPDATES_START } from "../pedometer/pedometer.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
-import { UPDATE_DAILY_STEPS_FAILED, UPDATE_DAILY_STEPS_SUCCESS } from "./daily-steps.actions";
+import {
+    STEPS_SINCE_LAST_UPDATED_SUCCESS,
+    UPDATE_DAILY_STEPS_FAILED,
+    UPDATE_DAILY_STEPS_SUCCESS
+} from "./daily-steps.actions";
 
 type ExchangeRate = GetCurrentUser_getCurrentUser_passiveChallenge_exchange;
 
@@ -18,6 +22,17 @@ export interface IDailyStepsStore {
     exchangeRate: ExchangeRate;
     isFetching: boolean;
     lastUpdated: string;
+    /**
+     * When the app is opened first thing in the day, there is a steps gap betwen yesterday's lastUpdated
+     * and midnight this morning. This value `lastUpdatedBeforeToday` records that gap.
+     *
+     * We can't use `lastUpdated` for that, because as soon as the app opens,
+     * the pedometer starts, and `lastUpdated` is set to now.
+     *
+     * A null value indicates there is no known steps gap before the current value of `lastUpdated`,
+     * in which case we can use `lastUpdated` as the last step update.
+     */
+    lastUpdatedBeforeToday: string;
 }
 
 export const initialState: IDailyStepsStore = {
@@ -29,7 +44,8 @@ export const initialState: IDailyStepsStore = {
     isFetching: true,
     lastUpdated: moment()
         .startOf("day")
-        .format()
+        .format(),
+    lastUpdatedBeforeToday: null
 };
 
 const dailyStepsReducer = (state: IDailyStepsStore = initialState, action: any): IDailyStepsStore => {
@@ -58,6 +74,9 @@ const dailyStepsReducer = (state: IDailyStepsStore = initialState, action: any):
         case LOGIN_USER_SUCCESS:
             return loginUserSuccess(state, action.payload);
 
+        case STEPS_SINCE_LAST_UPDATED_SUCCESS:
+            return { ...state, lastUpdatedBeforeToday: null };
+
         default:
             return state;
     }
@@ -77,7 +96,12 @@ const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailySte
         .format();
 
     if (lastUpdated !== today) {
-        return { ...persistedState, dailySteps: 0, isFetching: true };
+        return {
+            ...persistedState,
+            dailySteps: 0,
+            isFetching: true,
+            lastUpdatedBeforeToday: persistedState.lastUpdatedBeforeToday || lastUpdated
+        };
     }
 
     return { ...persistedState };
