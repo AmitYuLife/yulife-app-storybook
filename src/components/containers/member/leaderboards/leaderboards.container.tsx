@@ -141,7 +141,7 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
                             isLoading={loading}
                             initialScrollIndex={initialScrollIndex}
                             leaderboards={leaderboards || []}
-                            items={data.getLeaderboard || []}
+                            items={data && data.getLeaderboard ? data.getLeaderboard : []}
                             onHandleCoinsRefetch={coinsRefetch}
                             onHandleStepsRefetch={stepsRefetch}
                             onHandleMindfulMinsRefetch={mindfulMinsRefetch}

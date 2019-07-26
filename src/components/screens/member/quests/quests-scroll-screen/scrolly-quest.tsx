@@ -64,7 +64,9 @@ class ScrollyQuest extends React.PureComponent<IProps> {
         const result = [];
 
         for (const slot of slots) {
-            result.push(levels[slot.index]);
+            if (levels[slot.index]) {
+                result.push(levels[slot.index]);
+            }
         }
 
         return result;

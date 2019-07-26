@@ -283,7 +283,7 @@ class QuestsContainer extends React.Component<Props, IState> {
             return <Loading />;
         }
 
-        const formatedData = this.formatData(data.getCurrentWorld);
+        const formatedData = this.formatData(data && data.getCurrentWorld ? data.getCurrentWorld : []);
 
         return (
             <QuestsScrollScreen
