@@ -11,7 +11,6 @@ export const ROUTES = {
     // onboarding screens
     onboardingFitKitConnect: "yulife.onboarding.FitKitConnect",
     onboardingSignUpReward: "yulife.onboarding.SignUpReward",
-    onboardingIntro: "yulife.onboarding.Intro",
 
     // member screens
     menu: "yulife.menu",

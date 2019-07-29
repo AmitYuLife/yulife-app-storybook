@@ -1,7 +1,6 @@
 import { Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { ILabel } from "../components/molecules";
-import { getIntro } from "../services/storage";
 import { Style } from "../styles";
 import { bottomTabs, ROUTES } from "./constants";
 
@@ -230,22 +229,6 @@ export const setUnauthenticatedRoot = async (passProps?: any) =>
         }
     });
 
-export const setIntroRoot = async () =>
-    Navigation.setRoot({
-        root: {
-            stack: {
-                children: [
-                    {
-                        component: {
-                            id: ROUTES.onboardingIntro,
-                            name: ROUTES.onboardingIntro
-                        }
-                    }
-                ]
-            }
-        }
-    });
-
 export const setNoAccessRoot = async () =>
     Navigation.setRoot({
         root: {
@@ -275,13 +258,3 @@ export const setOfflineRoot = async () =>
             }
         }
     });
-
-export const setNextRoot = async () => {
-    const hasSeenIntro = await getIntro();
-
-    if (hasSeenIntro) {
-        setAuthenticatedRoot();
-    } else {
-        setIntroRoot();
-    }
-};
