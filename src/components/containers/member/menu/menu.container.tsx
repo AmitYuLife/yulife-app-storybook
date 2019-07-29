@@ -1,5 +1,4 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
-import { setIntroRoot } from "@navigation/root";
 import * as React from "react";
 import { PureComponent } from "react";
 import DeviceInfo from "react-native-device-info";
@@ -50,12 +49,6 @@ class MenuContainer extends PureComponent<Props> {
                     },
                     {
                         condition: true,
-                        label: "play intro",
-                        onPress: this.handlePressLink(LINKS.PLAY),
-                        source: assets[LINKS.PLAY]
-                    },
-                    {
-                        condition: true,
                         label: "chat",
                         onPress: this.handlePressLink(LINKS.CHAT),
                         source: assets[LINKS.CHAT]
@@ -96,23 +89,10 @@ class MenuContainer extends PureComponent<Props> {
             case LINKS.MEMBER:
                 this.handleMemberZone();
                 return null;
-            case LINKS.PLAY:
-                setIntroRoot();
-                return null;
             default:
                 return null;
         }
     };
-
-    // private handleModal = (name: string) => {
-    //     Navigation.showModal({
-    //         component: {
-    //             id: name,
-    //             name
-    //         }
-    //     });
-    //     setTimeout(this.handleClose, 1000);
-    // }
 
     private handleMemberZone = () => {
         this.handleClose();

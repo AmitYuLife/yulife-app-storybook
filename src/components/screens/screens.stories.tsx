@@ -17,7 +17,6 @@ import {
     ChallengeSuccessScreen,
     DailyStepsScreen,
     FitKitConnectScreen,
-    IntroScreen,
     LoginScreen,
     NoAccessScreen,
     ResetPasswordScreen,
@@ -485,8 +484,7 @@ storiesOf("Screens", module)
             }}
         />
     ))
-    .add("12. Intro", () => <IntroScreen onPressLastCta={action("on press last press")} />)
-    .add("13. Today Yucoin", () => (
+    .add("12. Today Yucoin", () => (
         <TodayYucoinScreen
             steps={number("steps", 6543)}
             dailyStepsEarned={number("dailyStepsEarned", 3)}
@@ -501,7 +499,7 @@ storiesOf("Screens", module)
             isShowingPassiveMeditation={false}
         />
     ))
-    .add("14. Challenges List Completed", () => (
+    .add("13. Challenges List Completed", () => (
         <ChallengesHistoryScreen
             onLeftMenuPress={() => null}
             totalCoins={604}

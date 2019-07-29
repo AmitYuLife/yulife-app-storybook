@@ -40,10 +40,6 @@ export default [
         name: ROUTES.onboardingFitKitConnect,
         component: require("../components/containers/onboarding/fitkit-connect/fitkit-connect.container").default
     },
-    {
-        name: ROUTES.onboardingIntro,
-        component: require("../components/containers/onboarding/intro/intro.container").default
-    },
 
     // member screens
     {
