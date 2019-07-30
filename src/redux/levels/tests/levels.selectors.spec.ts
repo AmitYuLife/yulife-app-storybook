@@ -1,3 +1,4 @@
+import moment from "moment";
 import { initialState, IReduxState } from "../../_core/reducers";
 import { initialState as initialLevelsState } from "../levels.reducer";
 import {
@@ -9,14 +10,20 @@ import {
 } from "../levels.selectors";
 
 describe("Levels Selectors", () => {
-
-    const testAvailabilityForLevel = (level: number, done: number, available: number, isAvailable: boolean) => {
+    const testAvailabilityForLevel = (
+        level: number,
+        done: number,
+        available: number,
+        isAvailable: boolean,
+        nextLevelAvailableAt: string = ""
+    ) => {
         const updatedState: IReduxState = {
             ...initialState,
             levels: {
                 ...initialLevelsState,
                 level,
-                challengesDoneToday: done
+                challengesDoneToday: done,
+                nextLevelAvailableAt
             }
         };
 
@@ -38,6 +45,15 @@ describe("Levels Selectors", () => {
             testAvailabilityForLevel(16, 0, 1, true);
             testAvailabilityForLevel(50, 0, 1, true);
             testAvailabilityForLevel(50, 1, 1, false);
+        });
+
+        it("no more challanges available in the same day if user pass level 49", () => {
+            const nextDay = moment()
+                .add(1, "day")
+                .format();
+            testAvailabilityForLevel(51, 1, 2, false, nextDay);
+            testAvailabilityForLevel(101, 2, 3, false, nextDay);
+            testAvailabilityForLevel(151, 3, 4, false, nextDay);
         });
 
         it("from world 51 to world 100 allows you to take two challenges a day", () => {
@@ -65,7 +81,7 @@ describe("Levels Selectors", () => {
         });
     });
 
-    it ("getCurrentLevel returns the current level", () => {
+    it("getCurrentLevel returns the current level", () => {
         const updatedState: IReduxState = {
             ...initialState,
             levels: {
@@ -80,7 +96,7 @@ describe("Levels Selectors", () => {
         expect(actual).toEqual(16);
     });
 
-    it ("getNextLevelAvailableAt returns when the next level will be available", () => {
+    it("getNextLevelAvailableAt returns when the next level will be available", () => {
         const updatedState: IReduxState = {
             ...initialState,
             levels: {
@@ -94,7 +110,7 @@ describe("Levels Selectors", () => {
         expect(actual).toEqual("sometimelater");
     });
 
-    it ("getActiveLevel returns the number of the active level", () => {
+    it("getActiveLevel returns the number of the active level", () => {
         const updatedState: IReduxState = {
             ...initialState,
             levels: {
@@ -111,7 +127,7 @@ describe("Levels Selectors", () => {
         expect(actual.level).toEqual(54);
     });
 
-    it ("getHasNotification returns whether there should be a notification", () => {
+    it("getHasNotification returns whether there should be a notification", () => {
         const updatedState: IReduxState = {
             ...initialState,
             levels: {

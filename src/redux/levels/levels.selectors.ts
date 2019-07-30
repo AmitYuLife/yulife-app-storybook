@@ -1,6 +1,6 @@
 import { CreateActiveChallenge_createActiveChallenge_levelSlot_milestones } from "../../graphql/_core/schema";
 import { IReduxState } from "../_core/reducers";
-import { getChallengesAmountAvailable } from "./levels.helpers";
+import { getChallengesAmountAvailable, isChallengeAvailable } from "./levels.helpers";
 
 export interface IActiveLevel {
     chest: {
@@ -40,7 +40,7 @@ export const getChallengesStatus = (state: IReduxState): ITodayChallengesStatus 
         available,
         done,
         hasDone: done > 0,
-        isAvailable: done < available
+        isAvailable: isChallengeAvailable(state.levels.level, done, available, state.levels.nextLevelAvailableAt)
     };
 };
 export const getCurrentLevel = (state: IReduxState): number => state.levels.level;
