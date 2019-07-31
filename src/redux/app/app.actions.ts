@@ -1,5 +1,7 @@
 import { SyncAction } from "../_core/types";
 
+export const AUTHENTICATED = "AUTHENTICATED";
+export const UNAUTHENTICATED = "UNAUTHENTICATED";
 export const SHOW_MAINTENANCE = "SHOW_MAINTENANCE";
 export const CHECK_CONNECTION = "CHECK_CONNECTION";
 export const UPDATE_APP_STATE = "UPDATE_APP_STATE";
@@ -19,4 +21,12 @@ export const updateNavigationState = (route: string): SyncAction<string> => ({
 export const updateOfflineState = (isOffline: boolean): SyncAction<boolean> => ({
     payload: isOffline,
     type: UPDATE_OFFLINE_STATE
+});
+
+export const setAuthenticated = () => ({
+    type: AUTHENTICATED
+});
+
+export const setUnauthenticated = () => ({
+    type: UNAUTHENTICATED
 });

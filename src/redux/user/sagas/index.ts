@@ -27,7 +27,7 @@ import updateLeaderboardConsentSaga from "./updateLeaderboardConsent.saga";
 import updateUserConsentSaga from "./updateUserConsent.saga";
 
 export default [
-    takeLatest("INIT", fetchUserOnAppStateChangeSaga),
+    takeLatest("AUTHENTICATED", fetchUserOnAppStateChangeSaga),
     takeLatest(GET_USER_START, getUserDataSaga),
     takeLatest(GET_USER_SUCCESS, showLeaderboardInviteOnGetUserSaga),
     takeLatest(SET_USER_NO_ACCESS, setUserNoAccessSaga),

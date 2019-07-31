@@ -12,7 +12,7 @@ import GetCurrentWorld, {
     GetCurrentWorldResultType
 } from "../../../../graphql/challenges/getCurrentWorld.gql";
 import { MODALS, ROUTES } from "../../../../navigation/constants";
-import { IMainTabsProps } from "../../../../navigation/root";
+import { IMainTabsProps, labels, onLeftMenuPress } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
@@ -150,7 +150,7 @@ class QuestsContainer extends React.Component<Props, IState> {
     }
 
     public render() {
-        const { labels, offline, onLeftMenuPress, totalCoins, theme } = this.props;
+        const { offline, totalCoins, theme } = this.props;
 
         if (Style.isIPad()) {
             return (
@@ -202,8 +202,6 @@ class QuestsContainer extends React.Component<Props, IState> {
             componentId,
             currentLevel,
             features,
-            labels,
-            onLeftMenuPress,
             totalCoins,
             copy
         } = this.props;
@@ -379,7 +377,7 @@ class QuestsContainer extends React.Component<Props, IState> {
     };
 
     private showLevelCompleteModal = (level: GetCurrentWorld_getCurrentWorld) => {
-        const { componentId, labels } = this.props;
+        const { componentId } = this.props;
 
         const passProps = {
             labels,
@@ -406,7 +404,7 @@ class QuestsContainer extends React.Component<Props, IState> {
     };
 
     private goToChallengesList = (level: GetCurrentWorld_getCurrentWorld) => {
-        const { componentId, labels } = this.props;
+        const { componentId } = this.props;
 
         Navigation.push(componentId, {
             component: {

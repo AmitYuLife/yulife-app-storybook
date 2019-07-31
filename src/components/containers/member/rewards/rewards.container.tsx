@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 import { COLOURS } from "../../../../components/molecules";
 import { GetAllPurchases_getAllPurchases, GetRewards_getRewards } from "../../../../graphql/_core/schema";
 import { MODALS, ROUTES } from "../../../../navigation/constants";
-import { IMainTabsProps } from "../../../../navigation/root";
+import { IMainTabsProps, labels, onLeftMenuPress } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
@@ -84,7 +84,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
 
     // all related to the rewards tab
     private renderRewards = ({ loading, data, refetch }: GetRewardsResultType) => {
-        const { hasNotification, labels, onLeftMenuPress, totalCoins, currentLevel } = this.props;
+        const { hasNotification, totalCoins, currentLevel } = this.props;
         const currentWorld = getCurrentWorld(currentLevel);
         const navbarColour = getNavbarColourScheme(currentWorld);
 
@@ -159,7 +159,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
 
     // all related to the purchases tab
     private renderPurchases = ({ loading, data, refetch }: GetAllPurchasesResultType) => {
-        const { hasNotification, labels, onLeftMenuPress, totalCoins, copy, currentLevel } = this.props;
+        const { hasNotification, totalCoins, copy, currentLevel } = this.props;
         const items = this.formatPuchaseItem(data && data.getAllPurchases ? data.getAllPurchases : []);
         const currentWorld = getCurrentWorld(currentLevel);
         const navbarColour = getNavbarColourScheme(currentWorld);

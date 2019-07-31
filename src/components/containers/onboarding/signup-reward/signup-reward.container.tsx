@@ -17,6 +17,7 @@ import UpsertOnboardingChallengeMutation, {
 } from "../../../../graphql/challenges/upsertOnboardingChallenge.gql";
 import { setAuthenticatedRoot } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
+import { setAuthenticated } from "../../../../redux/app/app.actions";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getUserStart } from "../../../../redux/user/user.actions";
 import Logger from "../../../../services/logging/logger";
@@ -107,7 +108,7 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps, IState> {
             isLoading: false
         });
 
-        await setAuthenticatedRoot(); // TODO: use setNextRoot when the right intro's ready
+        await setAuthenticatedRoot(this.props.setAuthenticated);
     };
 }
 
@@ -130,7 +131,8 @@ const mapStateToProps = (state: IReduxState) => ({
 });
 
 const mapDispatchToProps = {
-    getUserStart
+    getUserStart,
+    setAuthenticated
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(

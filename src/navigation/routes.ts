@@ -1,11 +1,6 @@
 import { MODALS, ROUTES } from "./constants";
 
 export default [
-    // root screens
-    {
-        name: ROUTES.loading,
-        component: require("../components/containers/app-loading/app-loading.container").default
-    },
     {
         name: ROUTES.noAccess,
         component: require("../components/containers/no-access/no-access.container").default
@@ -55,10 +50,12 @@ export default [
         component: require("../components/containers/member/daily-steps/daily-steps.container").default
     },
     {
+        lazyLoad: true,
         name: ROUTES.quests,
         component: require("../components/containers/member/quests/quests.container").default
     },
     {
+        lazyLoad: true,
         name: ROUTES.rewards,
         component: require("../components/containers/member/rewards/rewards.container").default
     },
@@ -67,6 +64,7 @@ export default [
         component: require("../components/containers/member/activity-history/activity-history.container").default
     },
     {
+        lazyLoad: true,
         name: ROUTES.leaderboards,
         component: require("../components/containers/member/leaderboards/leaderboards.container").default
     },

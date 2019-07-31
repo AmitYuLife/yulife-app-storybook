@@ -9,7 +9,7 @@ import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { COLOURS } from "../../../../components/molecules";
 import GetLeaderboardQuery, { getLeaderboardGql } from "../../../../graphql/member/getLeaderboard.gql";
-import { IMainTabsProps } from "../../../../navigation/root";
+import { IMainTabsProps, labels, onLeftMenuPress } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
@@ -92,10 +92,8 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
         const {
             leaderboards = [],
             hasNotification,
-            labels,
             currentLevel,
             totalCoins,
-            onLeftMenuPress,
             copy,
             componentId,
             appState
@@ -212,7 +210,13 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
     };
 }
 
-const getInitialLeaderboard = (leaderboards: ILeaderboard[]) => {
+const getInitialLeaderboard = (leaderboards?: ILeaderboard[]) => {
+    if (!leaderboards || !leaderboards.length) {
+        return {
+            leaderboardId: "",
+            activeLeaderboardIndex: 0
+        };
+    }
     const leaderboardWithConsentIndex = leaderboards.findIndex(({ consent }) => consent);
     const activeLeaderboardIndex = leaderboardWithConsentIndex !== -1 ? leaderboardWithConsentIndex : 0;
     const leaderboard = leaderboards[activeLeaderboardIndex];

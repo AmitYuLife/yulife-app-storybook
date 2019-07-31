@@ -1,5 +1,5 @@
 import { MODALS } from "@navigation/constants";
-import { IMainTabsProps } from "@navigation/root";
+import { IMainTabsProps, labels, onLeftMenuPress } from "@navigation/root";
 import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import { getCurrentWorld } from "@services/utils";
 import React from "react";
@@ -84,9 +84,7 @@ class DailyStepsContainer extends React.Component<Props> {
                         features = {},
                         hasNotification,
                         isFetching,
-                        labels,
                         offline,
-                        onLeftMenuPress,
                         streaks,
                         theme,
                         totalCoins,
@@ -149,13 +147,12 @@ class DailyStepsContainer extends React.Component<Props> {
     };
 
     private onCta = () => {
-        this.props.labels[1].onPress();
+        labels[1].onPress();
     };
 
     private onStreak = () => {
         const {
-            streaks: { currentStreak, isDoneToday, maxStreak, reward, nextStreakAvailableAt },
-            labels
+            streaks: { currentStreak, isDoneToday, maxStreak, reward, nextStreakAvailableAt }
         } = this.props;
         const modalName = MODALS.streaks;
 

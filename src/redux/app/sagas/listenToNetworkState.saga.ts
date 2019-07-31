@@ -10,9 +10,13 @@ export default function* listenToNetworkStateSaga() {
     yield put(updateOfflineState(!isConnected));
 
     const networkChannel = yield call(appNetworkChannel);
-    let networkType = "";
+    const connectionInfo = yield call(() => NetInfo.getConnectionInfo());
+
+    let networkType = connectionInfo.type;
+
     while (true) {
         const network: ConnectionInfo = yield take(networkChannel);
+
         if (network.type !== networkType) {
             networkType = network.type;
             yield call(checkConnectionSaga);

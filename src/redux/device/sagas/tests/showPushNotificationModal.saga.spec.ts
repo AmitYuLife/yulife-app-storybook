@@ -1,4 +1,5 @@
 import { compareSagaActionsWithNoVisualDifference } from "jest/tests-utils";
+import { Navigation } from "react-native-navigation";
 import { call, select } from "redux-saga/effects";
 import { MODALS } from "../../../../navigation/constants";
 import { getRouteState } from "../../../app/app.selectors";

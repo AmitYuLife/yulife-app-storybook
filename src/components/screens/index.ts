@@ -49,3 +49,5 @@ export { default as AviosRewardDetailsScreen } from "./member/rewards/details/av
 
 export { default as GenericScreen } from "./member/generic-screen/generic.screen";
 export { default as FeedbackScreen } from "./member/feedback/feedback.screen";
+
+export { default as SplashScreen } from "./splash/splash.screen";

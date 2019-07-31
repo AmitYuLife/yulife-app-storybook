@@ -4,7 +4,7 @@ import { getQueryStringObject } from "@services/utils";
 import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "./constants";
-import { labels, setLoadingRoot, setUnauthenticatedRoot } from "./root";
+import { labels, setUnauthenticatedRoot } from "./root";
 
 export default async function handleDeepLink(fullUrl: string, hasToken: boolean) {
     const url = fullUrl.replace("yulifeapp://yulife/", "").replace(Config.JOIN_URL, "");
@@ -47,7 +47,6 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean)
             if (!hasToken) {
                 const props = getQueryStringObject(url);
                 if (props.redirectUrl === "/member") {
-                    await setLoadingRoot();
                     await setUnauthenticatedRoot(props);
                 }
             }

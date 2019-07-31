@@ -2,6 +2,7 @@ import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
 import * as React from "react";
 import { PureComponent } from "react";
 import { EmitterSubscription, Keyboard, KeyboardAvoidingView, Platform, View } from "react-native";
+import * as Animatable from "react-native-animatable";
 import { GetMobileCopy_getMobileCopy_screens_login as LoginCopy } from "../../../graphql/_core/schema";
 import { Blurb, Button, CentredScreen, Heading, Pad, TextInput, TextInputError } from "../../atoms";
 import { LinkGroup } from "../../molecules";
@@ -68,45 +69,47 @@ class LoginScreen extends PureComponent<IProps, IState> {
 
         return (
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.kAV}>
-                <CentredScreen footerImage="forest">
-                    {this.state.isShowingKeyboard ? null : (
-                        <View>
-                            <Pad height={100} />
-                            <Heading label={copy.heading} size={Heading.Sizes.LARGE} />
-                            <Blurb label={copy.subheading} />
-                        </View>
-                    )}
-                    <Pad height={44} />
-                    <TextInput
-                        testID={INPUT_LOGIN_EMAIL}
-                        errorMessage={emailError}
-                        hasError={!!emailError}
-                        onChange={onEmailChange}
-                        type={TextInput.Types.EMAIL}
-                        value={email}
-                    />
-                    <Pad height={12} />
-                    <TextInput
-                        testID={INPUT_LOGIN_PASSWORD}
-                        errorMessage={passwordError}
-                        hasError={!!passwordError}
-                        onChange={onPasswordChange}
-                        value={password}
-                        type={TextInput.Types.PASSWORD}
-                    />
-                    {!!loginError && <TextInputError>{loginError}</TextInputError>}
-                    <Pad height={44} />
-                    <Button
-                        testID={BUTTON_LOGIN}
-                        isLoading={isLoggingIn}
-                        disabled={isLoggingIn || disabled}
-                        label={copy.ctaLabel}
-                        onPress={onLogInPress}
-                        type={Button.Types.PRIMARY}
-                    />
-                    <Pad height={15} />
-                    <LinkGroup data={this.getLinks()} />
-                </CentredScreen>
+                <Animatable.View duration={1000} animation="fadeIn" style={{ flex: 1 }}>
+                    <CentredScreen footerImage="forest">
+                        {this.state.isShowingKeyboard ? null : (
+                            <View>
+                                <Pad height={100} />
+                                <Heading label={copy.heading} size={Heading.Sizes.LARGE} />
+                                <Blurb label={copy.subheading} />
+                            </View>
+                        )}
+                        <Pad height={44} />
+                        <TextInput
+                            testID={INPUT_LOGIN_EMAIL}
+                            errorMessage={emailError}
+                            hasError={!!emailError}
+                            onChange={onEmailChange}
+                            type={TextInput.Types.EMAIL}
+                            value={email}
+                        />
+                        <Pad height={12} />
+                        <TextInput
+                            testID={INPUT_LOGIN_PASSWORD}
+                            errorMessage={passwordError}
+                            hasError={!!passwordError}
+                            onChange={onPasswordChange}
+                            value={password}
+                            type={TextInput.Types.PASSWORD}
+                        />
+                        {!!loginError && <TextInputError>{loginError}</TextInputError>}
+                        <Pad height={44} />
+                        <Button
+                            testID={BUTTON_LOGIN}
+                            isLoading={isLoggingIn}
+                            disabled={isLoggingIn || disabled}
+                            label={copy.ctaLabel}
+                            onPress={onLogInPress}
+                            type={Button.Types.PRIMARY}
+                        />
+                        <Pad height={15} />
+                        <LinkGroup data={this.getLinks()} />
+                    </CentredScreen>
+                </Animatable.View>
             </KeyboardAvoidingView>
         );
     }
@@ -116,7 +119,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
     };
 
     private getLinks = () => {
-        const { onResetPasswordPress, onSignUpPress, copy} = this.props;
+        const { onResetPasswordPress, onSignUpPress, copy } = this.props;
         return [
             {
                 label: "Forgot password",
