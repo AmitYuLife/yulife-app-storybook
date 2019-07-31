@@ -1,26 +1,12 @@
-import { Loading } from "@atoms/index";
-import { persistor, store } from "@redux/_core/store";
 import { ApolloClient } from "apollo-client";
-import { Component, ComponentClass } from "react";
+import { ComponentClass } from "react";
 import React from "react";
 import { ApolloProvider } from "react-apollo";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
 
-const withProvider = (WrappedComponent: ComponentClass, client: ApolloClient<{}>) => {
-    return class extends Component {
-        public render() {
-            return (
-                <ApolloProvider client={client}>
-                    <Provider store={store}>
-                        <PersistGate loading={<Loading />} persistor={persistor}>
-                            <WrappedComponent {...this.props} />
-                        </PersistGate>
-                    </Provider>
-                </ApolloProvider>
-            );
-        }
-    };
-};
+const withProvider = (WrappedComponent: ComponentClass, client: ApolloClient<{}>) => (props: any) => (
+    <ApolloProvider client={client}>
+        <WrappedComponent {...props} />
+    </ApolloProvider>
+);
 
 export default withProvider;

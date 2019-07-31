@@ -4,7 +4,7 @@ import { TOKEN_EXPIRATION } from "@services/constants";
 import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import { Style } from "@styles/index";
 import React, { Component } from "react";
-import { Platform } from "react-native";
+import { Keyboard, Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import {
@@ -14,6 +14,7 @@ import {
 } from "../../../graphql/_core/schema";
 import LoginUserMutation, { loginUserGql, LoginUserMutationFunction } from "../../../graphql/user/loginUser.gql";
 import { IReduxState } from "../../../redux/_core/reducers";
+import { setAuthenticated } from "../../../redux/app/app.actions";
 import { getCopy } from "../../../redux/copy/copy.selectors";
 import { loginUserSuccess } from "../../../redux/user/user.actions";
 import { setToken } from "../../../services/storage";
@@ -112,8 +113,10 @@ export class LoginContainer extends Component<Props, IState> {
                 return;
             }
 
-            setAuthenticatedRoot(); // TODO: use setNextRoot when the right intro's ready
+            setAuthenticatedRoot(this.props.setAuthenticated); // TODO: use setNextRoot when the right intro's ready
         };
+
+        Keyboard.dismiss();
 
         if (!authorised) {
             const route = ROUTES.onboardingFitKitConnect;
@@ -214,7 +217,8 @@ const mapStateToProps = (state: IReduxState) => ({
 });
 
 const mapDispatchToProps = {
-    loginUserSuccess
+    loginUserSuccess,
+    setAuthenticated
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(

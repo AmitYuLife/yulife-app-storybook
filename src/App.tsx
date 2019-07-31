@@ -1,49 +1,42 @@
-/* tslint:disable */
-const Navigation = require("react-native-navigation").Navigation;
-const registerScreens = require("./navigation/index").default;
+import { Navigation } from "react-native-navigation";
+import registerScreens from "./navigation/index";
+import { migrateOldAppVersionToken } from "./services/storage";
 
-// register all the screens
-registerScreens();
+const LOADING_ROUTE = "yulife.Loading";
+
+Navigation.registerComponent(
+    LOADING_ROUTE,
+    () => require("./components/containers/app-loading/app-loading.container").default
+);
 
 Navigation.events().registerAppLaunchedListener(async () => {
-    setDefaultOptions();
-
-    const rootHandler = require("./navigation/root");
-
-    await rootHandler.setLoadingRoot();
-
-    const storageHandler = require("./services/storage");
-
-    await storageHandler.migrateOldAppVersionToken();
-
-    const token = await storageHandler.getToken();
-    const RN = require("react-native");
-
-    if (token) {
-        await rootHandler.setAuthenticatedRoot(); // TODO: use setNextRoot when the right intro's ready
-    } else {
-        await rootHandler.setUnauthenticatedRoot();
-    }
-
-    const handleDeepLink = require("./navigation/handleDeepLink").default;
-
-    if (RN.Platform.OS === "android") {
-        try {
-            const url = await RN.Linking.getInitialURL();
-
-            if (url) {
-                await handleDeepLink(url, !!token);
+    await Navigation.setRoot({
+        root: {
+            component: {
+                id: LOADING_ROUTE,
+                name: LOADING_ROUTE
             }
-        } catch (e) {
-            // console.log(e.message);
         }
-    } else {
-        RN.Linking.addEventListener("url", ({ url }: any) => handleDeepLink(url, !!token));
-    }
+    });
+
+    await migrateOldAppVersionToken();
+
+    // register all the screens
+    registerScreens();
+
+    setDefaultOptions();
 });
 
 function setDefaultOptions() {
     Navigation.setDefaultOptions({
+        animations: {
+            setRoot: {
+                waitForRender: true
+            },
+            push: {
+                waitForRender: true
+            }
+        },
         bottomTabs: {
             animate: false,
             drawBehind: true,

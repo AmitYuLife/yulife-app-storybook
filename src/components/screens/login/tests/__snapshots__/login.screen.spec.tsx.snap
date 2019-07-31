@@ -40,85 +40,27 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "behavior": "padding",
-      "children": <CenteredScreen
-        footerImage="forest"
-      >
-        <View>
-          <Pad
-            height={100}
-          />
-          <Heading
-            label=""
-            size="large"
-          />
-          <Blurb
-            label=""
-          />
-        </View>
-        <Pad
-          height={44}
-        />
-        <TextInput
-          errorMessage=""
-          hasError={false}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_EMAIL"
-          type="Email"
-          value=""
-        />
-        <Pad
-          height={12}
-        />
-        <TextInput
-          errorMessage=""
-          hasError={false}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_PASSWORD"
-          type="Password"
-          value=""
-        />
-        <Pad
-          height={44}
-        />
-        <Button
-          disabled={false}
-          isLoading={false}
-          label=""
-          onPress={[MockFunction]}
-          testID="BUTTON_LOGIN"
-          type="Primary"
-        />
-        <Pad
-          height={15}
-        />
-        <LinkGroup
-          data={
-            Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ]
+      "children": <withAnimatable(View)
+        animation="fadeIn"
+        delay={0}
+        direction="normal"
+        duration={1000}
+        iterationCount={1}
+        iterationDelay={0}
+        onAnimationBegin={[Function]}
+        onAnimationEnd={[Function]}
+        onTransitionBegin={[Function]}
+        onTransitionEnd={[Function]}
+        style={
+          Object {
+            "flex": 1,
           }
-        />
-      </CenteredScreen>,
-      "enabled": true,
-      "keyboardVerticalOffset": 0,
-      "style": Object {
-        "flex": 1,
-      },
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
+        }
+        useNativeDriver={false}
+      >
+        <CenteredScreen
+          footerImage="forest"
+        >
           <View>
             <Pad
               height={100}
@@ -130,10 +72,10 @@ ShallowWrapper {
             <Blurb
               label=""
             />
-          </View>,
+          </View>
           <Pad
             height={44}
-          />,
+          />
           <TextInput
             errorMessage=""
             hasError={false}
@@ -141,10 +83,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_EMAIL"
             type="Email"
             value=""
-          />,
+          />
           <Pad
             height={12}
-          />,
+          />
           <TextInput
             errorMessage=""
             hasError={false}
@@ -152,11 +94,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_PASSWORD"
             type="Password"
             value=""
-          />,
-          false,
+          />
           <Pad
             height={44}
-          />,
+          />
           <Button
             disabled={false}
             isLoading={false}
@@ -164,10 +105,10 @@ ShallowWrapper {
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
             type="Primary"
-          />,
+          />
           <Pad
             height={15}
-          />,
+          />
           <LinkGroup
             data={
               Array [
@@ -181,194 +122,22 @@ ShallowWrapper {
                 },
               ]
             }
-          />,
-        ],
-        "footerImage": "forest",
+          />
+        </CenteredScreen>
+      </withAnimatable(View)>,
+      "enabled": true,
+      "keyboardVerticalOffset": 0,
+      "style": Object {
+        "flex": 1,
       },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <Pad
-                height={100}
-              />,
-              <Heading
-                label=""
-                size="large"
-              />,
-              <Blurb
-                label=""
-              />,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "height": 100,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "label": "",
-                "size": "large",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "label": "",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "",
-            "hasError": false,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_EMAIL",
-            "type": "Email",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 12,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "",
-            "hasError": false,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_PASSWORD",
-            "type": "Password",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        false,
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "disabled": false,
-            "isLoading": false,
-            "label": "",
-            "onPress": [MockFunction],
-            "testID": "BUTTON_LOGIN",
-            "type": "Primary",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 15,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "data": Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
     },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "ref": null,
+    "rendered": Object {
       "instance": null,
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "behavior": "padding",
+        "animation": "fadeIn",
         "children": <CenteredScreen
           footerImage="forest"
         >
@@ -435,11 +204,21 @@ ShallowWrapper {
             }
           />
         </CenteredScreen>,
-        "enabled": true,
-        "keyboardVerticalOffset": 0,
+        "delay": 0,
+        "direction": "normal",
+        "duration": 1000,
+        "easing": undefined,
+        "iterationCount": 1,
+        "iterationDelay": 0,
+        "onAnimationBegin": [Function],
+        "onAnimationEnd": [Function],
+        "onTransitionBegin": [Function],
+        "onTransitionEnd": [Function],
         "style": Object {
           "flex": 1,
         },
+        "transition": undefined,
+        "useNativeDriver": false,
       },
       "ref": null,
       "rendered": Object {
@@ -687,6 +466,447 @@ ShallowWrapper {
             "type": [Function],
           },
         ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "behavior": "padding",
+        "children": <withAnimatable(View)
+          animation="fadeIn"
+          delay={0}
+          direction="normal"
+          duration={1000}
+          iterationCount={1}
+          iterationDelay={0}
+          onAnimationBegin={[Function]}
+          onAnimationEnd={[Function]}
+          onTransitionBegin={[Function]}
+          onTransitionEnd={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          useNativeDriver={false}
+        >
+          <CenteredScreen
+            footerImage="forest"
+          >
+            <View>
+              <Pad
+                height={100}
+              />
+              <Heading
+                label=""
+                size="large"
+              />
+              <Blurb
+                label=""
+              />
+            </View>
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value=""
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={false}
+              isLoading={false}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>
+        </withAnimatable(View)>,
+        "enabled": true,
+        "keyboardVerticalOffset": 0,
+        "style": Object {
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "animation": "fadeIn",
+          "children": <CenteredScreen
+            footerImage="forest"
+          >
+            <View>
+              <Pad
+                height={100}
+              />
+              <Heading
+                label=""
+                size="large"
+              />
+              <Blurb
+                label=""
+              />
+            </View>
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value=""
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={false}
+              isLoading={false}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>,
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1000,
+          "easing": undefined,
+          "iterationCount": 1,
+          "iterationDelay": 0,
+          "onAnimationBegin": [Function],
+          "onAnimationEnd": [Function],
+          "onTransitionBegin": [Function],
+          "onTransitionEnd": [Function],
+          "style": Object {
+            "flex": 1,
+          },
+          "transition": undefined,
+          "useNativeDriver": false,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <View>
+                <Pad
+                  height={100}
+                />
+                <Heading
+                  label=""
+                  size="large"
+                />
+                <Blurb
+                  label=""
+                />
+              </View>,
+              <Pad
+                height={44}
+              />,
+              <TextInput
+                errorMessage=""
+                hasError={false}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_EMAIL"
+                type="Email"
+                value=""
+              />,
+              <Pad
+                height={12}
+              />,
+              <TextInput
+                errorMessage=""
+                hasError={false}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_PASSWORD"
+                type="Password"
+                value=""
+              />,
+              false,
+              <Pad
+                height={44}
+              />,
+              <Button
+                disabled={false}
+                isLoading={false}
+                label=""
+                onPress={[MockFunction]}
+                testID="BUTTON_LOGIN"
+                type="Primary"
+              />,
+              <Pad
+                height={15}
+              />,
+              <LinkGroup
+                data={
+                  Array [
+                    Object {
+                      "label": "Forgot password",
+                      "onPress": [MockFunction],
+                    },
+                    Object {
+                      "label": "",
+                      "onPress": [MockFunction],
+                    },
+                  ]
+                }
+              />,
+            ],
+            "footerImage": "forest",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Pad
+                    height={100}
+                  />,
+                  <Heading
+                    label=""
+                    size="large"
+                  />,
+                  <Blurb
+                    label=""
+                  />,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "height": 100,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "label": "",
+                    "size": "large",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "label": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "",
+                "hasError": false,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_EMAIL",
+                "type": "Email",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 12,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "",
+                "hasError": false,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_PASSWORD",
+                "type": "Password",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            false,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "disabled": false,
+                "isLoading": false,
+                "label": "",
+                "onPress": [MockFunction],
+                "testID": "BUTTON_LOGIN",
+                "type": "Primary",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 15,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "data": Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
         "type": [Function],
       },
       "type": [Function],
@@ -754,85 +974,27 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "behavior": null,
-      "children": <CenteredScreen
-        footerImage="forest"
-      >
-        <View>
-          <Pad
-            height={100}
-          />
-          <Heading
-            label=""
-            size="large"
-          />
-          <Blurb
-            label=""
-          />
-        </View>
-        <Pad
-          height={44}
-        />
-        <TextInput
-          errorMessage=""
-          hasError={false}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_EMAIL"
-          type="Email"
-          value=""
-        />
-        <Pad
-          height={12}
-        />
-        <TextInput
-          errorMessage=""
-          hasError={false}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_PASSWORD"
-          type="Password"
-          value=""
-        />
-        <Pad
-          height={44}
-        />
-        <Button
-          disabled={true}
-          isLoading={true}
-          label=""
-          onPress={[MockFunction]}
-          testID="BUTTON_LOGIN"
-          type="Primary"
-        />
-        <Pad
-          height={15}
-        />
-        <LinkGroup
-          data={
-            Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ]
+      "children": <withAnimatable(View)
+        animation="fadeIn"
+        delay={0}
+        direction="normal"
+        duration={1000}
+        iterationCount={1}
+        iterationDelay={0}
+        onAnimationBegin={[Function]}
+        onAnimationEnd={[Function]}
+        onTransitionBegin={[Function]}
+        onTransitionEnd={[Function]}
+        style={
+          Object {
+            "flex": 1,
           }
-        />
-      </CenteredScreen>,
-      "enabled": true,
-      "keyboardVerticalOffset": 0,
-      "style": Object {
-        "flex": 1,
-      },
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
+        }
+        useNativeDriver={false}
+      >
+        <CenteredScreen
+          footerImage="forest"
+        >
           <View>
             <Pad
               height={100}
@@ -844,10 +1006,10 @@ ShallowWrapper {
             <Blurb
               label=""
             />
-          </View>,
+          </View>
           <Pad
             height={44}
-          />,
+          />
           <TextInput
             errorMessage=""
             hasError={false}
@@ -855,10 +1017,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_EMAIL"
             type="Email"
             value=""
-          />,
+          />
           <Pad
             height={12}
-          />,
+          />
           <TextInput
             errorMessage=""
             hasError={false}
@@ -866,11 +1028,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_PASSWORD"
             type="Password"
             value=""
-          />,
-          false,
+          />
           <Pad
             height={44}
-          />,
+          />
           <Button
             disabled={true}
             isLoading={true}
@@ -878,10 +1039,10 @@ ShallowWrapper {
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
             type="Primary"
-          />,
+          />
           <Pad
             height={15}
-          />,
+          />
           <LinkGroup
             data={
               Array [
@@ -895,194 +1056,22 @@ ShallowWrapper {
                 },
               ]
             }
-          />,
-        ],
-        "footerImage": "forest",
+          />
+        </CenteredScreen>
+      </withAnimatable(View)>,
+      "enabled": true,
+      "keyboardVerticalOffset": 0,
+      "style": Object {
+        "flex": 1,
       },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <Pad
-                height={100}
-              />,
-              <Heading
-                label=""
-                size="large"
-              />,
-              <Blurb
-                label=""
-              />,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "height": 100,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "label": "",
-                "size": "large",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "label": "",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "",
-            "hasError": false,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_EMAIL",
-            "type": "Email",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 12,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "",
-            "hasError": false,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_PASSWORD",
-            "type": "Password",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        false,
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "disabled": true,
-            "isLoading": true,
-            "label": "",
-            "onPress": [MockFunction],
-            "testID": "BUTTON_LOGIN",
-            "type": "Primary",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 15,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "data": Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
     },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "ref": null,
+    "rendered": Object {
       "instance": null,
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "behavior": null,
+        "animation": "fadeIn",
         "children": <CenteredScreen
           footerImage="forest"
         >
@@ -1149,11 +1138,21 @@ ShallowWrapper {
             }
           />
         </CenteredScreen>,
-        "enabled": true,
-        "keyboardVerticalOffset": 0,
+        "delay": 0,
+        "direction": "normal",
+        "duration": 1000,
+        "easing": undefined,
+        "iterationCount": 1,
+        "iterationDelay": 0,
+        "onAnimationBegin": [Function],
+        "onAnimationEnd": [Function],
+        "onTransitionBegin": [Function],
+        "onTransitionEnd": [Function],
         "style": Object {
           "flex": 1,
         },
+        "transition": undefined,
+        "useNativeDriver": false,
       },
       "ref": null,
       "rendered": Object {
@@ -1401,6 +1400,447 @@ ShallowWrapper {
             "type": [Function],
           },
         ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "behavior": null,
+        "children": <withAnimatable(View)
+          animation="fadeIn"
+          delay={0}
+          direction="normal"
+          duration={1000}
+          iterationCount={1}
+          iterationDelay={0}
+          onAnimationBegin={[Function]}
+          onAnimationEnd={[Function]}
+          onTransitionBegin={[Function]}
+          onTransitionEnd={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          useNativeDriver={false}
+        >
+          <CenteredScreen
+            footerImage="forest"
+          >
+            <View>
+              <Pad
+                height={100}
+              />
+              <Heading
+                label=""
+                size="large"
+              />
+              <Blurb
+                label=""
+              />
+            </View>
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value=""
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={true}
+              isLoading={true}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>
+        </withAnimatable(View)>,
+        "enabled": true,
+        "keyboardVerticalOffset": 0,
+        "style": Object {
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "animation": "fadeIn",
+          "children": <CenteredScreen
+            footerImage="forest"
+          >
+            <View>
+              <Pad
+                height={100}
+              />
+              <Heading
+                label=""
+                size="large"
+              />
+              <Blurb
+                label=""
+              />
+            </View>
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value=""
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={true}
+              isLoading={true}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>,
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1000,
+          "easing": undefined,
+          "iterationCount": 1,
+          "iterationDelay": 0,
+          "onAnimationBegin": [Function],
+          "onAnimationEnd": [Function],
+          "onTransitionBegin": [Function],
+          "onTransitionEnd": [Function],
+          "style": Object {
+            "flex": 1,
+          },
+          "transition": undefined,
+          "useNativeDriver": false,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <View>
+                <Pad
+                  height={100}
+                />
+                <Heading
+                  label=""
+                  size="large"
+                />
+                <Blurb
+                  label=""
+                />
+              </View>,
+              <Pad
+                height={44}
+              />,
+              <TextInput
+                errorMessage=""
+                hasError={false}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_EMAIL"
+                type="Email"
+                value=""
+              />,
+              <Pad
+                height={12}
+              />,
+              <TextInput
+                errorMessage=""
+                hasError={false}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_PASSWORD"
+                type="Password"
+                value=""
+              />,
+              false,
+              <Pad
+                height={44}
+              />,
+              <Button
+                disabled={true}
+                isLoading={true}
+                label=""
+                onPress={[MockFunction]}
+                testID="BUTTON_LOGIN"
+                type="Primary"
+              />,
+              <Pad
+                height={15}
+              />,
+              <LinkGroup
+                data={
+                  Array [
+                    Object {
+                      "label": "Forgot password",
+                      "onPress": [MockFunction],
+                    },
+                    Object {
+                      "label": "",
+                      "onPress": [MockFunction],
+                    },
+                  ]
+                }
+              />,
+            ],
+            "footerImage": "forest",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Pad
+                    height={100}
+                  />,
+                  <Heading
+                    label=""
+                    size="large"
+                  />,
+                  <Blurb
+                    label=""
+                  />,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "height": 100,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "label": "",
+                    "size": "large",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "label": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "",
+                "hasError": false,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_EMAIL",
+                "type": "Email",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 12,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "",
+                "hasError": false,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_PASSWORD",
+                "type": "Password",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            false,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "disabled": true,
+                "isLoading": true,
+                "label": "",
+                "onPress": [MockFunction],
+                "testID": "BUTTON_LOGIN",
+                "type": "Primary",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 15,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "data": Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
         "type": [Function],
       },
       "type": [Function],
@@ -1468,85 +1908,27 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "behavior": null,
-      "children": <CenteredScreen
-        footerImage="forest"
-      >
-        <View>
-          <Pad
-            height={100}
-          />
-          <Heading
-            label=""
-            size="large"
-          />
-          <Blurb
-            label=""
-          />
-        </View>
-        <Pad
-          height={44}
-        />
-        <TextInput
-          errorMessage=""
-          hasError={false}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_EMAIL"
-          type="Email"
-          value=""
-        />
-        <Pad
-          height={12}
-        />
-        <TextInput
-          errorMessage=""
-          hasError={false}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_PASSWORD"
-          type="Password"
-          value=""
-        />
-        <Pad
-          height={44}
-        />
-        <Button
-          disabled={true}
-          isLoading={true}
-          label=""
-          onPress={[MockFunction]}
-          testID="BUTTON_LOGIN"
-          type="Primary"
-        />
-        <Pad
-          height={15}
-        />
-        <LinkGroup
-          data={
-            Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ]
+      "children": <withAnimatable(View)
+        animation="fadeIn"
+        delay={0}
+        direction="normal"
+        duration={1000}
+        iterationCount={1}
+        iterationDelay={0}
+        onAnimationBegin={[Function]}
+        onAnimationEnd={[Function]}
+        onTransitionBegin={[Function]}
+        onTransitionEnd={[Function]}
+        style={
+          Object {
+            "flex": 1,
           }
-        />
-      </CenteredScreen>,
-      "enabled": true,
-      "keyboardVerticalOffset": 0,
-      "style": Object {
-        "flex": 1,
-      },
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
+        }
+        useNativeDriver={false}
+      >
+        <CenteredScreen
+          footerImage="forest"
+        >
           <View>
             <Pad
               height={100}
@@ -1558,10 +1940,10 @@ ShallowWrapper {
             <Blurb
               label=""
             />
-          </View>,
+          </View>
           <Pad
             height={44}
-          />,
+          />
           <TextInput
             errorMessage=""
             hasError={false}
@@ -1569,10 +1951,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_EMAIL"
             type="Email"
             value=""
-          />,
+          />
           <Pad
             height={12}
-          />,
+          />
           <TextInput
             errorMessage=""
             hasError={false}
@@ -1580,11 +1962,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_PASSWORD"
             type="Password"
             value=""
-          />,
-          false,
+          />
           <Pad
             height={44}
-          />,
+          />
           <Button
             disabled={true}
             isLoading={true}
@@ -1592,10 +1973,10 @@ ShallowWrapper {
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
             type="Primary"
-          />,
+          />
           <Pad
             height={15}
-          />,
+          />
           <LinkGroup
             data={
               Array [
@@ -1609,194 +1990,22 @@ ShallowWrapper {
                 },
               ]
             }
-          />,
-        ],
-        "footerImage": "forest",
+          />
+        </CenteredScreen>
+      </withAnimatable(View)>,
+      "enabled": true,
+      "keyboardVerticalOffset": 0,
+      "style": Object {
+        "flex": 1,
       },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <Pad
-                height={100}
-              />,
-              <Heading
-                label=""
-                size="large"
-              />,
-              <Blurb
-                label=""
-              />,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "height": 100,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "label": "",
-                "size": "large",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "label": "",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "",
-            "hasError": false,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_EMAIL",
-            "type": "Email",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 12,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "",
-            "hasError": false,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_PASSWORD",
-            "type": "Password",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        false,
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "disabled": true,
-            "isLoading": true,
-            "label": "",
-            "onPress": [MockFunction],
-            "testID": "BUTTON_LOGIN",
-            "type": "Primary",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 15,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "data": Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
     },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "ref": null,
+    "rendered": Object {
       "instance": null,
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "behavior": null,
+        "animation": "fadeIn",
         "children": <CenteredScreen
           footerImage="forest"
         >
@@ -1863,11 +2072,21 @@ ShallowWrapper {
             }
           />
         </CenteredScreen>,
-        "enabled": true,
-        "keyboardVerticalOffset": 0,
+        "delay": 0,
+        "direction": "normal",
+        "duration": 1000,
+        "easing": undefined,
+        "iterationCount": 1,
+        "iterationDelay": 0,
+        "onAnimationBegin": [Function],
+        "onAnimationEnd": [Function],
+        "onTransitionBegin": [Function],
+        "onTransitionEnd": [Function],
         "style": Object {
           "flex": 1,
         },
+        "transition": undefined,
+        "useNativeDriver": false,
       },
       "ref": null,
       "rendered": Object {
@@ -2119,6 +2338,447 @@ ShallowWrapper {
       },
       "type": [Function],
     },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "behavior": null,
+        "children": <withAnimatable(View)
+          animation="fadeIn"
+          delay={0}
+          direction="normal"
+          duration={1000}
+          iterationCount={1}
+          iterationDelay={0}
+          onAnimationBegin={[Function]}
+          onAnimationEnd={[Function]}
+          onTransitionBegin={[Function]}
+          onTransitionEnd={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          useNativeDriver={false}
+        >
+          <CenteredScreen
+            footerImage="forest"
+          >
+            <View>
+              <Pad
+                height={100}
+              />
+              <Heading
+                label=""
+                size="large"
+              />
+              <Blurb
+                label=""
+              />
+            </View>
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value=""
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={true}
+              isLoading={true}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>
+        </withAnimatable(View)>,
+        "enabled": true,
+        "keyboardVerticalOffset": 0,
+        "style": Object {
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "animation": "fadeIn",
+          "children": <CenteredScreen
+            footerImage="forest"
+          >
+            <View>
+              <Pad
+                height={100}
+              />
+              <Heading
+                label=""
+                size="large"
+              />
+              <Blurb
+                label=""
+              />
+            </View>
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value=""
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={true}
+              isLoading={true}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>,
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1000,
+          "easing": undefined,
+          "iterationCount": 1,
+          "iterationDelay": 0,
+          "onAnimationBegin": [Function],
+          "onAnimationEnd": [Function],
+          "onTransitionBegin": [Function],
+          "onTransitionEnd": [Function],
+          "style": Object {
+            "flex": 1,
+          },
+          "transition": undefined,
+          "useNativeDriver": false,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <View>
+                <Pad
+                  height={100}
+                />
+                <Heading
+                  label=""
+                  size="large"
+                />
+                <Blurb
+                  label=""
+                />
+              </View>,
+              <Pad
+                height={44}
+              />,
+              <TextInput
+                errorMessage=""
+                hasError={false}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_EMAIL"
+                type="Email"
+                value=""
+              />,
+              <Pad
+                height={12}
+              />,
+              <TextInput
+                errorMessage=""
+                hasError={false}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_PASSWORD"
+                type="Password"
+                value=""
+              />,
+              false,
+              <Pad
+                height={44}
+              />,
+              <Button
+                disabled={true}
+                isLoading={true}
+                label=""
+                onPress={[MockFunction]}
+                testID="BUTTON_LOGIN"
+                type="Primary"
+              />,
+              <Pad
+                height={15}
+              />,
+              <LinkGroup
+                data={
+                  Array [
+                    Object {
+                      "label": "Forgot password",
+                      "onPress": [MockFunction],
+                    },
+                    Object {
+                      "label": "",
+                      "onPress": [MockFunction],
+                    },
+                  ]
+                }
+              />,
+            ],
+            "footerImage": "forest",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Pad
+                    height={100}
+                  />,
+                  <Heading
+                    label=""
+                    size="large"
+                  />,
+                  <Blurb
+                    label=""
+                  />,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "height": 100,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "label": "",
+                    "size": "large",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "label": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "",
+                "hasError": false,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_EMAIL",
+                "type": "Email",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 12,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "",
+                "hasError": false,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_PASSWORD",
+                "type": "Password",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            false,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "disabled": true,
+                "isLoading": true,
+                "label": "",
+                "onPress": [MockFunction],
+                "testID": "BUTTON_LOGIN",
+                "type": "Primary",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 15,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "data": Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      "type": [Function],
+    },
   ],
   Symbol(enzyme.__options__): Object {
     "adapter": ReactSixteenAdapter {
@@ -2182,85 +2842,27 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "behavior": null,
-      "children": <CenteredScreen
-        footerImage="forest"
-      >
-        <View>
-          <Pad
-            height={100}
-          />
-          <Heading
-            label=""
-            size="large"
-          />
-          <Blurb
-            label=""
-          />
-        </View>
-        <Pad
-          height={44}
-        />
-        <TextInput
-          errorMessage=""
-          hasError={false}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_EMAIL"
-          type="Email"
-          value=""
-        />
-        <Pad
-          height={12}
-        />
-        <TextInput
-          errorMessage=""
-          hasError={false}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_PASSWORD"
-          type="Password"
-          value=""
-        />
-        <Pad
-          height={44}
-        />
-        <Button
-          disabled={false}
-          isLoading={false}
-          label=""
-          onPress={[MockFunction]}
-          testID="BUTTON_LOGIN"
-          type="Primary"
-        />
-        <Pad
-          height={15}
-        />
-        <LinkGroup
-          data={
-            Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ]
+      "children": <withAnimatable(View)
+        animation="fadeIn"
+        delay={0}
+        direction="normal"
+        duration={1000}
+        iterationCount={1}
+        iterationDelay={0}
+        onAnimationBegin={[Function]}
+        onAnimationEnd={[Function]}
+        onTransitionBegin={[Function]}
+        onTransitionEnd={[Function]}
+        style={
+          Object {
+            "flex": 1,
           }
-        />
-      </CenteredScreen>,
-      "enabled": true,
-      "keyboardVerticalOffset": 0,
-      "style": Object {
-        "flex": 1,
-      },
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
+        }
+        useNativeDriver={false}
+      >
+        <CenteredScreen
+          footerImage="forest"
+        >
           <View>
             <Pad
               height={100}
@@ -2272,10 +2874,10 @@ ShallowWrapper {
             <Blurb
               label=""
             />
-          </View>,
+          </View>
           <Pad
             height={44}
-          />,
+          />
           <TextInput
             errorMessage=""
             hasError={false}
@@ -2283,10 +2885,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_EMAIL"
             type="Email"
             value=""
-          />,
+          />
           <Pad
             height={12}
-          />,
+          />
           <TextInput
             errorMessage=""
             hasError={false}
@@ -2294,11 +2896,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_PASSWORD"
             type="Password"
             value=""
-          />,
-          false,
+          />
           <Pad
             height={44}
-          />,
+          />
           <Button
             disabled={false}
             isLoading={false}
@@ -2306,10 +2907,10 @@ ShallowWrapper {
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
             type="Primary"
-          />,
+          />
           <Pad
             height={15}
-          />,
+          />
           <LinkGroup
             data={
               Array [
@@ -2323,194 +2924,22 @@ ShallowWrapper {
                 },
               ]
             }
-          />,
-        ],
-        "footerImage": "forest",
+          />
+        </CenteredScreen>
+      </withAnimatable(View)>,
+      "enabled": true,
+      "keyboardVerticalOffset": 0,
+      "style": Object {
+        "flex": 1,
       },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <Pad
-                height={100}
-              />,
-              <Heading
-                label=""
-                size="large"
-              />,
-              <Blurb
-                label=""
-              />,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "height": 100,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "label": "",
-                "size": "large",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "label": "",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "",
-            "hasError": false,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_EMAIL",
-            "type": "Email",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 12,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "",
-            "hasError": false,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_PASSWORD",
-            "type": "Password",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        false,
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "disabled": false,
-            "isLoading": false,
-            "label": "",
-            "onPress": [MockFunction],
-            "testID": "BUTTON_LOGIN",
-            "type": "Primary",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 15,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "data": Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
     },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "ref": null,
+    "rendered": Object {
       "instance": null,
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "behavior": null,
+        "animation": "fadeIn",
         "children": <CenteredScreen
           footerImage="forest"
         >
@@ -2577,11 +3006,21 @@ ShallowWrapper {
             }
           />
         </CenteredScreen>,
-        "enabled": true,
-        "keyboardVerticalOffset": 0,
+        "delay": 0,
+        "direction": "normal",
+        "duration": 1000,
+        "easing": undefined,
+        "iterationCount": 1,
+        "iterationDelay": 0,
+        "onAnimationBegin": [Function],
+        "onAnimationEnd": [Function],
+        "onTransitionBegin": [Function],
+        "onTransitionEnd": [Function],
         "style": Object {
           "flex": 1,
         },
+        "transition": undefined,
+        "useNativeDriver": false,
       },
       "ref": null,
       "rendered": Object {
@@ -2833,6 +3272,447 @@ ShallowWrapper {
       },
       "type": [Function],
     },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "behavior": null,
+        "children": <withAnimatable(View)
+          animation="fadeIn"
+          delay={0}
+          direction="normal"
+          duration={1000}
+          iterationCount={1}
+          iterationDelay={0}
+          onAnimationBegin={[Function]}
+          onAnimationEnd={[Function]}
+          onTransitionBegin={[Function]}
+          onTransitionEnd={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          useNativeDriver={false}
+        >
+          <CenteredScreen
+            footerImage="forest"
+          >
+            <View>
+              <Pad
+                height={100}
+              />
+              <Heading
+                label=""
+                size="large"
+              />
+              <Blurb
+                label=""
+              />
+            </View>
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value=""
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={false}
+              isLoading={false}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>
+        </withAnimatable(View)>,
+        "enabled": true,
+        "keyboardVerticalOffset": 0,
+        "style": Object {
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "animation": "fadeIn",
+          "children": <CenteredScreen
+            footerImage="forest"
+          >
+            <View>
+              <Pad
+                height={100}
+              />
+              <Heading
+                label=""
+                size="large"
+              />
+              <Blurb
+                label=""
+              />
+            </View>
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value=""
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={false}
+              isLoading={false}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>,
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1000,
+          "easing": undefined,
+          "iterationCount": 1,
+          "iterationDelay": 0,
+          "onAnimationBegin": [Function],
+          "onAnimationEnd": [Function],
+          "onTransitionBegin": [Function],
+          "onTransitionEnd": [Function],
+          "style": Object {
+            "flex": 1,
+          },
+          "transition": undefined,
+          "useNativeDriver": false,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <View>
+                <Pad
+                  height={100}
+                />
+                <Heading
+                  label=""
+                  size="large"
+                />
+                <Blurb
+                  label=""
+                />
+              </View>,
+              <Pad
+                height={44}
+              />,
+              <TextInput
+                errorMessage=""
+                hasError={false}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_EMAIL"
+                type="Email"
+                value=""
+              />,
+              <Pad
+                height={12}
+              />,
+              <TextInput
+                errorMessage=""
+                hasError={false}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_PASSWORD"
+                type="Password"
+                value=""
+              />,
+              false,
+              <Pad
+                height={44}
+              />,
+              <Button
+                disabled={false}
+                isLoading={false}
+                label=""
+                onPress={[MockFunction]}
+                testID="BUTTON_LOGIN"
+                type="Primary"
+              />,
+              <Pad
+                height={15}
+              />,
+              <LinkGroup
+                data={
+                  Array [
+                    Object {
+                      "label": "Forgot password",
+                      "onPress": [MockFunction],
+                    },
+                    Object {
+                      "label": "",
+                      "onPress": [MockFunction],
+                    },
+                  ]
+                }
+              />,
+            ],
+            "footerImage": "forest",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Pad
+                    height={100}
+                  />,
+                  <Heading
+                    label=""
+                    size="large"
+                  />,
+                  <Blurb
+                    label=""
+                  />,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "height": 100,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "label": "",
+                    "size": "large",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "label": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "",
+                "hasError": false,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_EMAIL",
+                "type": "Email",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 12,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "",
+                "hasError": false,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_PASSWORD",
+                "type": "Password",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            false,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "disabled": false,
+                "isLoading": false,
+                "label": "",
+                "onPress": [MockFunction],
+                "testID": "BUTTON_LOGIN",
+                "type": "Primary",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 15,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "data": Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      "type": [Function],
+    },
   ],
   Symbol(enzyme.__options__): Object {
     "adapter": ReactSixteenAdapter {
@@ -2896,77 +3776,30 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "behavior": null,
-      "children": <CenteredScreen
-        footerImage="forest"
-      >
-        <Pad
-          height={44}
-        />
-        <TextInput
-          errorMessage=""
-          hasError={false}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_EMAIL"
-          type="Email"
-          value=""
-        />
-        <Pad
-          height={12}
-        />
-        <TextInput
-          errorMessage=""
-          hasError={false}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_PASSWORD"
-          type="Password"
-          value=""
-        />
-        <Pad
-          height={44}
-        />
-        <Button
-          disabled={false}
-          isLoading={false}
-          label=""
-          onPress={[MockFunction]}
-          testID="BUTTON_LOGIN"
-          type="Primary"
-        />
-        <Pad
-          height={15}
-        />
-        <LinkGroup
-          data={
-            Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ]
+      "children": <withAnimatable(View)
+        animation="fadeIn"
+        delay={0}
+        direction="normal"
+        duration={1000}
+        iterationCount={1}
+        iterationDelay={0}
+        onAnimationBegin={[Function]}
+        onAnimationEnd={[Function]}
+        onTransitionBegin={[Function]}
+        onTransitionEnd={[Function]}
+        style={
+          Object {
+            "flex": 1,
           }
-        />
-      </CenteredScreen>,
-      "enabled": true,
-      "keyboardVerticalOffset": 0,
-      "style": Object {
-        "flex": 1,
-      },
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
-          null,
+        }
+        useNativeDriver={false}
+      >
+        <CenteredScreen
+          footerImage="forest"
+        >
           <Pad
             height={44}
-          />,
+          />
           <TextInput
             errorMessage=""
             hasError={false}
@@ -2974,10 +3807,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_EMAIL"
             type="Email"
             value=""
-          />,
+          />
           <Pad
             height={12}
-          />,
+          />
           <TextInput
             errorMessage=""
             hasError={false}
@@ -2985,11 +3818,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_PASSWORD"
             type="Password"
             value=""
-          />,
-          false,
+          />
           <Pad
             height={44}
-          />,
+          />
           <Button
             disabled={false}
             isLoading={false}
@@ -2997,10 +3829,10 @@ ShallowWrapper {
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
             type="Primary"
-          />,
+          />
           <Pad
             height={15}
-          />,
+          />
           <LinkGroup
             data={
               Array [
@@ -3014,138 +3846,22 @@ ShallowWrapper {
                 },
               ]
             }
-          />,
-        ],
-        "footerImage": "forest",
+          />
+        </CenteredScreen>
+      </withAnimatable(View)>,
+      "enabled": true,
+      "keyboardVerticalOffset": 0,
+      "style": Object {
+        "flex": 1,
       },
-      "ref": null,
-      "rendered": Array [
-        null,
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "",
-            "hasError": false,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_EMAIL",
-            "type": "Email",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 12,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "",
-            "hasError": false,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_PASSWORD",
-            "type": "Password",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        false,
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "disabled": false,
-            "isLoading": false,
-            "label": "",
-            "onPress": [MockFunction],
-            "testID": "BUTTON_LOGIN",
-            "type": "Primary",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 15,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "data": Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
     },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "ref": null,
+    "rendered": Object {
       "instance": null,
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "behavior": null,
+        "animation": "fadeIn",
         "children": <CenteredScreen
           footerImage="forest"
         >
@@ -3200,11 +3916,21 @@ ShallowWrapper {
             }
           />
         </CenteredScreen>,
-        "enabled": true,
-        "keyboardVerticalOffset": 0,
+        "delay": 0,
+        "direction": "normal",
+        "duration": 1000,
+        "easing": undefined,
+        "iterationCount": 1,
+        "iterationDelay": 0,
+        "onAnimationBegin": [Function],
+        "onAnimationEnd": [Function],
+        "onTransitionBegin": [Function],
+        "onTransitionEnd": [Function],
         "style": Object {
           "flex": 1,
         },
+        "transition": undefined,
+        "useNativeDriver": false,
       },
       "ref": null,
       "rendered": Object {
@@ -3389,6 +4115,356 @@ ShallowWrapper {
       },
       "type": [Function],
     },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "behavior": null,
+        "children": <withAnimatable(View)
+          animation="fadeIn"
+          delay={0}
+          direction="normal"
+          duration={1000}
+          iterationCount={1}
+          iterationDelay={0}
+          onAnimationBegin={[Function]}
+          onAnimationEnd={[Function]}
+          onTransitionBegin={[Function]}
+          onTransitionEnd={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          useNativeDriver={false}
+        >
+          <CenteredScreen
+            footerImage="forest"
+          >
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value=""
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={false}
+              isLoading={false}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>
+        </withAnimatable(View)>,
+        "enabled": true,
+        "keyboardVerticalOffset": 0,
+        "style": Object {
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "animation": "fadeIn",
+          "children": <CenteredScreen
+            footerImage="forest"
+          >
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value=""
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={false}
+              isLoading={false}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>,
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1000,
+          "easing": undefined,
+          "iterationCount": 1,
+          "iterationDelay": 0,
+          "onAnimationBegin": [Function],
+          "onAnimationEnd": [Function],
+          "onTransitionBegin": [Function],
+          "onTransitionEnd": [Function],
+          "style": Object {
+            "flex": 1,
+          },
+          "transition": undefined,
+          "useNativeDriver": false,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              null,
+              <Pad
+                height={44}
+              />,
+              <TextInput
+                errorMessage=""
+                hasError={false}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_EMAIL"
+                type="Email"
+                value=""
+              />,
+              <Pad
+                height={12}
+              />,
+              <TextInput
+                errorMessage=""
+                hasError={false}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_PASSWORD"
+                type="Password"
+                value=""
+              />,
+              false,
+              <Pad
+                height={44}
+              />,
+              <Button
+                disabled={false}
+                isLoading={false}
+                label=""
+                onPress={[MockFunction]}
+                testID="BUTTON_LOGIN"
+                type="Primary"
+              />,
+              <Pad
+                height={15}
+              />,
+              <LinkGroup
+                data={
+                  Array [
+                    Object {
+                      "label": "Forgot password",
+                      "onPress": [MockFunction],
+                    },
+                    Object {
+                      "label": "",
+                      "onPress": [MockFunction],
+                    },
+                  ]
+                }
+              />,
+            ],
+            "footerImage": "forest",
+          },
+          "ref": null,
+          "rendered": Array [
+            null,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "",
+                "hasError": false,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_EMAIL",
+                "type": "Email",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 12,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "",
+                "hasError": false,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_PASSWORD",
+                "type": "Password",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            false,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "disabled": false,
+                "isLoading": false,
+                "label": "",
+                "onPress": [MockFunction],
+                "testID": "BUTTON_LOGIN",
+                "type": "Primary",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 15,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "data": Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      "type": [Function],
+    },
   ],
   Symbol(enzyme.__options__): Object {
     "adapter": ReactSixteenAdapter {
@@ -3452,85 +4528,27 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "behavior": null,
-      "children": <CenteredScreen
-        footerImage="forest"
-      >
-        <View>
-          <Pad
-            height={100}
-          />
-          <Heading
-            label=""
-            size="large"
-          />
-          <Blurb
-            label=""
-          />
-        </View>
-        <Pad
-          height={44}
-        />
-        <TextInput
-          errorMessage="Not a valid email"
-          hasError={true}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_EMAIL"
-          type="Email"
-          value="e"
-        />
-        <Pad
-          height={12}
-        />
-        <TextInput
-          errorMessage=""
-          hasError={false}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_PASSWORD"
-          type="Password"
-          value=""
-        />
-        <Pad
-          height={44}
-        />
-        <Button
-          disabled={true}
-          isLoading={true}
-          label=""
-          onPress={[MockFunction]}
-          testID="BUTTON_LOGIN"
-          type="Primary"
-        />
-        <Pad
-          height={15}
-        />
-        <LinkGroup
-          data={
-            Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ]
+      "children": <withAnimatable(View)
+        animation="fadeIn"
+        delay={0}
+        direction="normal"
+        duration={1000}
+        iterationCount={1}
+        iterationDelay={0}
+        onAnimationBegin={[Function]}
+        onAnimationEnd={[Function]}
+        onTransitionBegin={[Function]}
+        onTransitionEnd={[Function]}
+        style={
+          Object {
+            "flex": 1,
           }
-        />
-      </CenteredScreen>,
-      "enabled": true,
-      "keyboardVerticalOffset": 0,
-      "style": Object {
-        "flex": 1,
-      },
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
+        }
+        useNativeDriver={false}
+      >
+        <CenteredScreen
+          footerImage="forest"
+        >
           <View>
             <Pad
               height={100}
@@ -3542,10 +4560,10 @@ ShallowWrapper {
             <Blurb
               label=""
             />
-          </View>,
+          </View>
           <Pad
             height={44}
-          />,
+          />
           <TextInput
             errorMessage="Not a valid email"
             hasError={true}
@@ -3553,10 +4571,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_EMAIL"
             type="Email"
             value="e"
-          />,
+          />
           <Pad
             height={12}
-          />,
+          />
           <TextInput
             errorMessage=""
             hasError={false}
@@ -3564,11 +4582,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_PASSWORD"
             type="Password"
             value=""
-          />,
-          false,
+          />
           <Pad
             height={44}
-          />,
+          />
           <Button
             disabled={true}
             isLoading={true}
@@ -3576,10 +4593,10 @@ ShallowWrapper {
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
             type="Primary"
-          />,
+          />
           <Pad
             height={15}
-          />,
+          />
           <LinkGroup
             data={
               Array [
@@ -3593,194 +4610,22 @@ ShallowWrapper {
                 },
               ]
             }
-          />,
-        ],
-        "footerImage": "forest",
+          />
+        </CenteredScreen>
+      </withAnimatable(View)>,
+      "enabled": true,
+      "keyboardVerticalOffset": 0,
+      "style": Object {
+        "flex": 1,
       },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <Pad
-                height={100}
-              />,
-              <Heading
-                label=""
-                size="large"
-              />,
-              <Blurb
-                label=""
-              />,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "height": 100,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "label": "",
-                "size": "large",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "label": "",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "Not a valid email",
-            "hasError": true,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_EMAIL",
-            "type": "Email",
-            "value": "e",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 12,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "",
-            "hasError": false,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_PASSWORD",
-            "type": "Password",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        false,
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "disabled": true,
-            "isLoading": true,
-            "label": "",
-            "onPress": [MockFunction],
-            "testID": "BUTTON_LOGIN",
-            "type": "Primary",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 15,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "data": Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
     },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "ref": null,
+    "rendered": Object {
       "instance": null,
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "behavior": null,
+        "animation": "fadeIn",
         "children": <CenteredScreen
           footerImage="forest"
         >
@@ -3847,11 +4692,21 @@ ShallowWrapper {
             }
           />
         </CenteredScreen>,
-        "enabled": true,
-        "keyboardVerticalOffset": 0,
+        "delay": 0,
+        "direction": "normal",
+        "duration": 1000,
+        "easing": undefined,
+        "iterationCount": 1,
+        "iterationDelay": 0,
+        "onAnimationBegin": [Function],
+        "onAnimationEnd": [Function],
+        "onTransitionBegin": [Function],
+        "onTransitionEnd": [Function],
         "style": Object {
           "flex": 1,
         },
+        "transition": undefined,
+        "useNativeDriver": false,
       },
       "ref": null,
       "rendered": Object {
@@ -4103,6 +4958,447 @@ ShallowWrapper {
       },
       "type": [Function],
     },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "behavior": null,
+        "children": <withAnimatable(View)
+          animation="fadeIn"
+          delay={0}
+          direction="normal"
+          duration={1000}
+          iterationCount={1}
+          iterationDelay={0}
+          onAnimationBegin={[Function]}
+          onAnimationEnd={[Function]}
+          onTransitionBegin={[Function]}
+          onTransitionEnd={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          useNativeDriver={false}
+        >
+          <CenteredScreen
+            footerImage="forest"
+          >
+            <View>
+              <Pad
+                height={100}
+              />
+              <Heading
+                label=""
+                size="large"
+              />
+              <Blurb
+                label=""
+              />
+            </View>
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage="Not a valid email"
+              hasError={true}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value="e"
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={true}
+              isLoading={true}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>
+        </withAnimatable(View)>,
+        "enabled": true,
+        "keyboardVerticalOffset": 0,
+        "style": Object {
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "animation": "fadeIn",
+          "children": <CenteredScreen
+            footerImage="forest"
+          >
+            <View>
+              <Pad
+                height={100}
+              />
+              <Heading
+                label=""
+                size="large"
+              />
+              <Blurb
+                label=""
+              />
+            </View>
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage="Not a valid email"
+              hasError={true}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value="e"
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={true}
+              isLoading={true}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>,
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1000,
+          "easing": undefined,
+          "iterationCount": 1,
+          "iterationDelay": 0,
+          "onAnimationBegin": [Function],
+          "onAnimationEnd": [Function],
+          "onTransitionBegin": [Function],
+          "onTransitionEnd": [Function],
+          "style": Object {
+            "flex": 1,
+          },
+          "transition": undefined,
+          "useNativeDriver": false,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <View>
+                <Pad
+                  height={100}
+                />
+                <Heading
+                  label=""
+                  size="large"
+                />
+                <Blurb
+                  label=""
+                />
+              </View>,
+              <Pad
+                height={44}
+              />,
+              <TextInput
+                errorMessage="Not a valid email"
+                hasError={true}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_EMAIL"
+                type="Email"
+                value="e"
+              />,
+              <Pad
+                height={12}
+              />,
+              <TextInput
+                errorMessage=""
+                hasError={false}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_PASSWORD"
+                type="Password"
+                value=""
+              />,
+              false,
+              <Pad
+                height={44}
+              />,
+              <Button
+                disabled={true}
+                isLoading={true}
+                label=""
+                onPress={[MockFunction]}
+                testID="BUTTON_LOGIN"
+                type="Primary"
+              />,
+              <Pad
+                height={15}
+              />,
+              <LinkGroup
+                data={
+                  Array [
+                    Object {
+                      "label": "Forgot password",
+                      "onPress": [MockFunction],
+                    },
+                    Object {
+                      "label": "",
+                      "onPress": [MockFunction],
+                    },
+                  ]
+                }
+              />,
+            ],
+            "footerImage": "forest",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Pad
+                    height={100}
+                  />,
+                  <Heading
+                    label=""
+                    size="large"
+                  />,
+                  <Blurb
+                    label=""
+                  />,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "height": 100,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "label": "",
+                    "size": "large",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "label": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "Not a valid email",
+                "hasError": true,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_EMAIL",
+                "type": "Email",
+                "value": "e",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 12,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "",
+                "hasError": false,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_PASSWORD",
+                "type": "Password",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            false,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "disabled": true,
+                "isLoading": true,
+                "label": "",
+                "onPress": [MockFunction],
+                "testID": "BUTTON_LOGIN",
+                "type": "Primary",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 15,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "data": Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      "type": [Function],
+    },
   ],
   Symbol(enzyme.__options__): Object {
     "adapter": ReactSixteenAdapter {
@@ -4166,85 +5462,27 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "behavior": null,
-      "children": <CenteredScreen
-        footerImage="forest"
-      >
-        <View>
-          <Pad
-            height={100}
-          />
-          <Heading
-            label=""
-            size="large"
-          />
-          <Blurb
-            label=""
-          />
-        </View>
-        <Pad
-          height={44}
-        />
-        <TextInput
-          errorMessage=""
-          hasError={false}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_EMAIL"
-          type="Email"
-          value=""
-        />
-        <Pad
-          height={12}
-        />
-        <TextInput
-          errorMessage="Please enter password"
-          hasError={true}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_PASSWORD"
-          type="Password"
-          value=""
-        />
-        <Pad
-          height={44}
-        />
-        <Button
-          disabled={true}
-          isLoading={true}
-          label=""
-          onPress={[MockFunction]}
-          testID="BUTTON_LOGIN"
-          type="Primary"
-        />
-        <Pad
-          height={15}
-        />
-        <LinkGroup
-          data={
-            Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ]
+      "children": <withAnimatable(View)
+        animation="fadeIn"
+        delay={0}
+        direction="normal"
+        duration={1000}
+        iterationCount={1}
+        iterationDelay={0}
+        onAnimationBegin={[Function]}
+        onAnimationEnd={[Function]}
+        onTransitionBegin={[Function]}
+        onTransitionEnd={[Function]}
+        style={
+          Object {
+            "flex": 1,
           }
-        />
-      </CenteredScreen>,
-      "enabled": true,
-      "keyboardVerticalOffset": 0,
-      "style": Object {
-        "flex": 1,
-      },
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
+        }
+        useNativeDriver={false}
+      >
+        <CenteredScreen
+          footerImage="forest"
+        >
           <View>
             <Pad
               height={100}
@@ -4256,10 +5494,10 @@ ShallowWrapper {
             <Blurb
               label=""
             />
-          </View>,
+          </View>
           <Pad
             height={44}
-          />,
+          />
           <TextInput
             errorMessage=""
             hasError={false}
@@ -4267,10 +5505,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_EMAIL"
             type="Email"
             value=""
-          />,
+          />
           <Pad
             height={12}
-          />,
+          />
           <TextInput
             errorMessage="Please enter password"
             hasError={true}
@@ -4278,11 +5516,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_PASSWORD"
             type="Password"
             value=""
-          />,
-          false,
+          />
           <Pad
             height={44}
-          />,
+          />
           <Button
             disabled={true}
             isLoading={true}
@@ -4290,10 +5527,10 @@ ShallowWrapper {
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
             type="Primary"
-          />,
+          />
           <Pad
             height={15}
-          />,
+          />
           <LinkGroup
             data={
               Array [
@@ -4307,194 +5544,22 @@ ShallowWrapper {
                 },
               ]
             }
-          />,
-        ],
-        "footerImage": "forest",
+          />
+        </CenteredScreen>
+      </withAnimatable(View)>,
+      "enabled": true,
+      "keyboardVerticalOffset": 0,
+      "style": Object {
+        "flex": 1,
       },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <Pad
-                height={100}
-              />,
-              <Heading
-                label=""
-                size="large"
-              />,
-              <Blurb
-                label=""
-              />,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "height": 100,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "label": "",
-                "size": "large",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "label": "",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "",
-            "hasError": false,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_EMAIL",
-            "type": "Email",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 12,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "Please enter password",
-            "hasError": true,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_PASSWORD",
-            "type": "Password",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        false,
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "disabled": true,
-            "isLoading": true,
-            "label": "",
-            "onPress": [MockFunction],
-            "testID": "BUTTON_LOGIN",
-            "type": "Primary",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 15,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "data": Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
     },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "ref": null,
+    "rendered": Object {
       "instance": null,
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "behavior": null,
+        "animation": "fadeIn",
         "children": <CenteredScreen
           footerImage="forest"
         >
@@ -4561,11 +5626,21 @@ ShallowWrapper {
             }
           />
         </CenteredScreen>,
-        "enabled": true,
-        "keyboardVerticalOffset": 0,
+        "delay": 0,
+        "direction": "normal",
+        "duration": 1000,
+        "easing": undefined,
+        "iterationCount": 1,
+        "iterationDelay": 0,
+        "onAnimationBegin": [Function],
+        "onAnimationEnd": [Function],
+        "onTransitionBegin": [Function],
+        "onTransitionEnd": [Function],
         "style": Object {
           "flex": 1,
         },
+        "transition": undefined,
+        "useNativeDriver": false,
       },
       "ref": null,
       "rendered": Object {
@@ -4817,6 +5892,447 @@ ShallowWrapper {
       },
       "type": [Function],
     },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "behavior": null,
+        "children": <withAnimatable(View)
+          animation="fadeIn"
+          delay={0}
+          direction="normal"
+          duration={1000}
+          iterationCount={1}
+          iterationDelay={0}
+          onAnimationBegin={[Function]}
+          onAnimationEnd={[Function]}
+          onTransitionBegin={[Function]}
+          onTransitionEnd={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          useNativeDriver={false}
+        >
+          <CenteredScreen
+            footerImage="forest"
+          >
+            <View>
+              <Pad
+                height={100}
+              />
+              <Heading
+                label=""
+                size="large"
+              />
+              <Blurb
+                label=""
+              />
+            </View>
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value=""
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage="Please enter password"
+              hasError={true}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={true}
+              isLoading={true}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>
+        </withAnimatable(View)>,
+        "enabled": true,
+        "keyboardVerticalOffset": 0,
+        "style": Object {
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "animation": "fadeIn",
+          "children": <CenteredScreen
+            footerImage="forest"
+          >
+            <View>
+              <Pad
+                height={100}
+              />
+              <Heading
+                label=""
+                size="large"
+              />
+              <Blurb
+                label=""
+              />
+            </View>
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value=""
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage="Please enter password"
+              hasError={true}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={true}
+              isLoading={true}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>,
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1000,
+          "easing": undefined,
+          "iterationCount": 1,
+          "iterationDelay": 0,
+          "onAnimationBegin": [Function],
+          "onAnimationEnd": [Function],
+          "onTransitionBegin": [Function],
+          "onTransitionEnd": [Function],
+          "style": Object {
+            "flex": 1,
+          },
+          "transition": undefined,
+          "useNativeDriver": false,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <View>
+                <Pad
+                  height={100}
+                />
+                <Heading
+                  label=""
+                  size="large"
+                />
+                <Blurb
+                  label=""
+                />
+              </View>,
+              <Pad
+                height={44}
+              />,
+              <TextInput
+                errorMessage=""
+                hasError={false}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_EMAIL"
+                type="Email"
+                value=""
+              />,
+              <Pad
+                height={12}
+              />,
+              <TextInput
+                errorMessage="Please enter password"
+                hasError={true}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_PASSWORD"
+                type="Password"
+                value=""
+              />,
+              false,
+              <Pad
+                height={44}
+              />,
+              <Button
+                disabled={true}
+                isLoading={true}
+                label=""
+                onPress={[MockFunction]}
+                testID="BUTTON_LOGIN"
+                type="Primary"
+              />,
+              <Pad
+                height={15}
+              />,
+              <LinkGroup
+                data={
+                  Array [
+                    Object {
+                      "label": "Forgot password",
+                      "onPress": [MockFunction],
+                    },
+                    Object {
+                      "label": "",
+                      "onPress": [MockFunction],
+                    },
+                  ]
+                }
+              />,
+            ],
+            "footerImage": "forest",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Pad
+                    height={100}
+                  />,
+                  <Heading
+                    label=""
+                    size="large"
+                  />,
+                  <Blurb
+                    label=""
+                  />,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "height": 100,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "label": "",
+                    "size": "large",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "label": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "",
+                "hasError": false,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_EMAIL",
+                "type": "Email",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 12,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "Please enter password",
+                "hasError": true,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_PASSWORD",
+                "type": "Password",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            false,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "disabled": true,
+                "isLoading": true,
+                "label": "",
+                "onPress": [MockFunction],
+                "testID": "BUTTON_LOGIN",
+                "type": "Primary",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 15,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "data": Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      "type": [Function],
+    },
   ],
   Symbol(enzyme.__options__): Object {
     "adapter": ReactSixteenAdapter {
@@ -4880,88 +6396,27 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "behavior": null,
-      "children": <CenteredScreen
-        footerImage="forest"
-      >
-        <View>
-          <Pad
-            height={100}
-          />
-          <Heading
-            label=""
-            size="large"
-          />
-          <Blurb
-            label=""
-          />
-        </View>
-        <Pad
-          height={44}
-        />
-        <TextInput
-          errorMessage=""
-          hasError={false}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_EMAIL"
-          type="Email"
-          value=""
-        />
-        <Pad
-          height={12}
-        />
-        <TextInput
-          errorMessage=""
-          hasError={false}
-          onChange={[MockFunction]}
-          testID="INPUT_LOGIN_PASSWORD"
-          type="Password"
-          value=""
-        />
-        <TextInputError>
-          Bergatron error
-        </TextInputError>
-        <Pad
-          height={44}
-        />
-        <Button
-          disabled={false}
-          isLoading={false}
-          label=""
-          onPress={[MockFunction]}
-          testID="BUTTON_LOGIN"
-          type="Primary"
-        />
-        <Pad
-          height={15}
-        />
-        <LinkGroup
-          data={
-            Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ]
+      "children": <withAnimatable(View)
+        animation="fadeIn"
+        delay={0}
+        direction="normal"
+        duration={1000}
+        iterationCount={1}
+        iterationDelay={0}
+        onAnimationBegin={[Function]}
+        onAnimationEnd={[Function]}
+        onTransitionBegin={[Function]}
+        onTransitionEnd={[Function]}
+        style={
+          Object {
+            "flex": 1,
           }
-        />
-      </CenteredScreen>,
-      "enabled": true,
-      "keyboardVerticalOffset": 0,
-      "style": Object {
-        "flex": 1,
-      },
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
+        }
+        useNativeDriver={false}
+      >
+        <CenteredScreen
+          footerImage="forest"
+        >
           <View>
             <Pad
               height={100}
@@ -4973,10 +6428,10 @@ ShallowWrapper {
             <Blurb
               label=""
             />
-          </View>,
+          </View>
           <Pad
             height={44}
-          />,
+          />
           <TextInput
             errorMessage=""
             hasError={false}
@@ -4984,10 +6439,10 @@ ShallowWrapper {
             testID="INPUT_LOGIN_EMAIL"
             type="Email"
             value=""
-          />,
+          />
           <Pad
             height={12}
-          />,
+          />
           <TextInput
             errorMessage=""
             hasError={false}
@@ -4995,13 +6450,13 @@ ShallowWrapper {
             testID="INPUT_LOGIN_PASSWORD"
             type="Password"
             value=""
-          />,
+          />
           <TextInputError>
             Bergatron error
-          </TextInputError>,
+          </TextInputError>
           <Pad
             height={44}
-          />,
+          />
           <Button
             disabled={false}
             isLoading={false}
@@ -5009,10 +6464,10 @@ ShallowWrapper {
             onPress={[MockFunction]}
             testID="BUTTON_LOGIN"
             type="Primary"
-          />,
+          />
           <Pad
             height={15}
-          />,
+          />
           <LinkGroup
             data={
               Array [
@@ -5026,204 +6481,22 @@ ShallowWrapper {
                 },
               ]
             }
-          />,
-        ],
-        "footerImage": "forest",
+          />
+        </CenteredScreen>
+      </withAnimatable(View)>,
+      "enabled": true,
+      "keyboardVerticalOffset": 0,
+      "style": Object {
+        "flex": 1,
       },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <Pad
-                height={100}
-              />,
-              <Heading
-                label=""
-                size="large"
-              />,
-              <Blurb
-                label=""
-              />,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "height": 100,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "label": "",
-                "size": "large",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "label": "",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "",
-            "hasError": false,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_EMAIL",
-            "type": "Email",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 12,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "errorMessage": "",
-            "hasError": false,
-            "onChange": [MockFunction],
-            "testID": "INPUT_LOGIN_PASSWORD",
-            "type": "Password",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": "Bergatron error",
-          },
-          "ref": null,
-          "rendered": "Bergatron error",
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 44,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "disabled": false,
-            "isLoading": false,
-            "label": "",
-            "onPress": [MockFunction],
-            "testID": "BUTTON_LOGIN",
-            "type": "Primary",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 15,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "data": Array [
-              Object {
-                "label": "Forgot password",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "label": "",
-                "onPress": [MockFunction],
-              },
-            ],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
     },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "ref": null,
+    "rendered": Object {
       "instance": null,
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "behavior": null,
+        "animation": "fadeIn",
         "children": <CenteredScreen
           footerImage="forest"
         >
@@ -5293,11 +6566,21 @@ ShallowWrapper {
             }
           />
         </CenteredScreen>,
-        "enabled": true,
-        "keyboardVerticalOffset": 0,
+        "delay": 0,
+        "direction": "normal",
+        "duration": 1000,
+        "easing": undefined,
+        "iterationCount": 1,
+        "iterationDelay": 0,
+        "onAnimationBegin": [Function],
+        "onAnimationEnd": [Function],
+        "onTransitionBegin": [Function],
+        "onTransitionEnd": [Function],
         "style": Object {
           "flex": 1,
         },
+        "transition": undefined,
+        "useNativeDriver": false,
       },
       "ref": null,
       "rendered": Object {
@@ -5557,6 +6840,465 @@ ShallowWrapper {
             "type": [Function],
           },
         ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "behavior": null,
+        "children": <withAnimatable(View)
+          animation="fadeIn"
+          delay={0}
+          direction="normal"
+          duration={1000}
+          iterationCount={1}
+          iterationDelay={0}
+          onAnimationBegin={[Function]}
+          onAnimationEnd={[Function]}
+          onTransitionBegin={[Function]}
+          onTransitionEnd={[Function]}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          useNativeDriver={false}
+        >
+          <CenteredScreen
+            footerImage="forest"
+          >
+            <View>
+              <Pad
+                height={100}
+              />
+              <Heading
+                label=""
+                size="large"
+              />
+              <Blurb
+                label=""
+              />
+            </View>
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value=""
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <TextInputError>
+              Bergatron error
+            </TextInputError>
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={false}
+              isLoading={false}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>
+        </withAnimatable(View)>,
+        "enabled": true,
+        "keyboardVerticalOffset": 0,
+        "style": Object {
+          "flex": 1,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "animation": "fadeIn",
+          "children": <CenteredScreen
+            footerImage="forest"
+          >
+            <View>
+              <Pad
+                height={100}
+              />
+              <Heading
+                label=""
+                size="large"
+              />
+              <Blurb
+                label=""
+              />
+            </View>
+            <Pad
+              height={44}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_EMAIL"
+              type="Email"
+              value=""
+            />
+            <Pad
+              height={12}
+            />
+            <TextInput
+              errorMessage=""
+              hasError={false}
+              onChange={[MockFunction]}
+              testID="INPUT_LOGIN_PASSWORD"
+              type="Password"
+              value=""
+            />
+            <TextInputError>
+              Bergatron error
+            </TextInputError>
+            <Pad
+              height={44}
+            />
+            <Button
+              disabled={false}
+              isLoading={false}
+              label=""
+              onPress={[MockFunction]}
+              testID="BUTTON_LOGIN"
+              type="Primary"
+            />
+            <Pad
+              height={15}
+            />
+            <LinkGroup
+              data={
+                Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ]
+              }
+            />
+          </CenteredScreen>,
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1000,
+          "easing": undefined,
+          "iterationCount": 1,
+          "iterationDelay": 0,
+          "onAnimationBegin": [Function],
+          "onAnimationEnd": [Function],
+          "onTransitionBegin": [Function],
+          "onTransitionEnd": [Function],
+          "style": Object {
+            "flex": 1,
+          },
+          "transition": undefined,
+          "useNativeDriver": false,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <View>
+                <Pad
+                  height={100}
+                />
+                <Heading
+                  label=""
+                  size="large"
+                />
+                <Blurb
+                  label=""
+                />
+              </View>,
+              <Pad
+                height={44}
+              />,
+              <TextInput
+                errorMessage=""
+                hasError={false}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_EMAIL"
+                type="Email"
+                value=""
+              />,
+              <Pad
+                height={12}
+              />,
+              <TextInput
+                errorMessage=""
+                hasError={false}
+                onChange={[MockFunction]}
+                testID="INPUT_LOGIN_PASSWORD"
+                type="Password"
+                value=""
+              />,
+              <TextInputError>
+                Bergatron error
+              </TextInputError>,
+              <Pad
+                height={44}
+              />,
+              <Button
+                disabled={false}
+                isLoading={false}
+                label=""
+                onPress={[MockFunction]}
+                testID="BUTTON_LOGIN"
+                type="Primary"
+              />,
+              <Pad
+                height={15}
+              />,
+              <LinkGroup
+                data={
+                  Array [
+                    Object {
+                      "label": "Forgot password",
+                      "onPress": [MockFunction],
+                    },
+                    Object {
+                      "label": "",
+                      "onPress": [MockFunction],
+                    },
+                  ]
+                }
+              />,
+            ],
+            "footerImage": "forest",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Pad
+                    height={100}
+                  />,
+                  <Heading
+                    label=""
+                    size="large"
+                  />,
+                  <Blurb
+                    label=""
+                  />,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "height": 100,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "label": "",
+                    "size": "large",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "label": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "",
+                "hasError": false,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_EMAIL",
+                "type": "Email",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 12,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "errorMessage": "",
+                "hasError": false,
+                "onChange": [MockFunction],
+                "testID": "INPUT_LOGIN_PASSWORD",
+                "type": "Password",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "Bergatron error",
+              },
+              "ref": null,
+              "rendered": "Bergatron error",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 44,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "disabled": false,
+                "isLoading": false,
+                "label": "",
+                "onPress": [MockFunction],
+                "testID": "BUTTON_LOGIN",
+                "type": "Primary",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "height": 15,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "data": Array [
+                  Object {
+                    "label": "Forgot password",
+                    "onPress": [MockFunction],
+                  },
+                  Object {
+                    "label": "",
+                    "onPress": [MockFunction],
+                  },
+                ],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
         "type": [Function],
       },
       "type": [Function],

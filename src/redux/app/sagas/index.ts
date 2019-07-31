@@ -1,4 +1,4 @@
-import { takeLatest } from "redux-saga";
+import { takeLatest } from "redux-saga/effects";
 import { CHECK_CONNECTION, SHOW_MAINTENANCE } from "../app.actions";
 
 import checkConnectionSaga from "./checkConnection.saga";
@@ -9,8 +9,8 @@ import showMaintenanceSaga from "./showMaintenance.saga";
 
 export default [
     takeLatest("INIT", listenToAppStateSaga),
-    takeLatest("INIT", listenToNetworkStateSaga),
     takeLatest("INIT", listenToNavigationSaga),
+    takeLatest("AUTHENTICATED", listenToNetworkStateSaga),
     // takeEvery("*", logBreadcrumbsSaga),
     takeLatest(SHOW_MAINTENANCE, showMaintenanceSaga),
     takeLatest(CHECK_CONNECTION, checkConnectionSaga)

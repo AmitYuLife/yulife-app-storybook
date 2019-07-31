@@ -4,6 +4,7 @@ import {
     leaderboards,
     loginSuccessFixture
 } from "@redux/user/tests/user.test.fixtures";
+import { Navigation } from "react-native-navigation";
 import { call, race, select, take } from "redux-saga/effects";
 import { compareSagaActionsWithNoVisualDifference } from "../../../../jest/tests-utils";
 import { MODALS, ROUTES } from "../../../navigation/constants";

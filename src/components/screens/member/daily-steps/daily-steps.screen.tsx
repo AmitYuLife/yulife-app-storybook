@@ -4,6 +4,7 @@ import { TouchableOpacityWithState } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
 import { Platform, View } from "react-native";
+import * as Animatable from "react-native-animatable";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import {
     GetMobileCopy_getMobileCopy_screens_dailyStepsFitKitAuthorise,
@@ -78,78 +79,80 @@ export default function DailyStepsScreen({
     mindfulSeconds
 }: Props) {
     return (
-        <CentredScreen
-            footerImage={!isOnline || !hasPermission ? centredScreen.offline.image : centredScreen.online.image}
-            style={!isOnline || !hasPermission ? centredScreen.offline.style : centredScreen.online.style}
-            testID={DAILY_STEPS_SCREEN}
-        >
-            <TopBar coins={totalCoins} type={topBarType} onPressLeftIcon={onLeftMenuPress} />
-            <Pad height={getPadHeight(displayStreak)} />
-            {/** TODO: add surge condition: `!popupVisibility.leaderboard && popupVisibility.surge` */}
-            {false ? (
-                <SurgePopup
-                    hasWhiteGlow={hasWhiteGlow}
-                    onCoinPress={onCoinPress}
-                    isOnline={isOnline}
-                    hasPermission={hasPermission}
-                    isLoading={true}
-                    copy={copy.popUpCopy}
-                    onUpdateSurgePopupVisibility={onUpdateSurgePopupVisibility}
-                />
-            ) : (
-                <TouchableOpacityWithState onPress={onCoinPress} activeOpacity={1}>
-                    <YuCoin
+        <Animatable.View duration={750} animation="fadeIn" style={{ flex: 1 }}>
+            <CentredScreen
+                footerImage={!isOnline || !hasPermission ? centredScreen.offline.image : centredScreen.online.image}
+                style={!isOnline || !hasPermission ? centredScreen.offline.style : centredScreen.online.style}
+                testID={DAILY_STEPS_SCREEN}
+            >
+                <TopBar coins={totalCoins} type={topBarType} onPressLeftIcon={onLeftMenuPress} />
+                <Pad height={getPadHeight(displayStreak)} />
+                {/** TODO: add surge condition: `!popupVisibility.leaderboard && popupVisibility.surge` */}
+                {false ? (
+                    <SurgePopup
                         hasWhiteGlow={hasWhiteGlow}
-                        isLoading={isLoading}
-                        isGrayScale={!hasPermission || (!isOnline && !isLoading)}
+                        onCoinPress={onCoinPress}
+                        isOnline={isOnline}
+                        hasPermission={hasPermission}
+                        isLoading={true}
+                        copy={copy.popUpCopy}
+                        onUpdateSurgePopupVisibility={onUpdateSurgePopupVisibility}
                     />
-                </TouchableOpacityWithState>
-            )}
-            {isLoading ? (
-                <DailyStepsLoading />
-            ) : !fitKitAvailable ? (
-                <DailyStepsFitKitUnavailable />
-            ) : !hasPermission ? (
-                <DailyStepsFitKitAuthorise onPress={onAuthoriseFitKitPress} copy={copy.copy} />
-            ) : (
-                <DailyStepsOnline
-                    coinsToday={coinsToday}
-                    showCounter={showCounter}
-                    steps={steps}
-                    onCtaPress={onCtaPress}
-                    textStyle={textStyle}
-                    mindfulSeconds={mindfulSeconds}
-                />
-            )}
-            {!displayStreak ? null : (
-                <Streak
-                    isFinished={isDoneToday}
-                    isOnline={isOnline}
-                    onPress={onStreakPress}
-                    currentStreak={currentStreak}
-                    maxStreak={maxStreak}
-                    type={streakType}
-                />
-            )}
-            {popupVisibility.leaderboard ? (
-                <LeaderboardPopup
-                    copy={copy.popUpCopy}
-                    hasNotification={hasNotification}
-                    navbarColour={navBar.online}
-                    labels={labels}
-                    onUpdateLeaderboardPopupVisibility={onUpdateLeaderboardPopupVisibility}
-                />
-            ) : (
-                <View style={styles.navBarWrapper}>
-                    <NavBar
-                        activeIndex={0}
-                        colour={!fitKitAvailable || !hasPermission || !isOnline ? navBar.offline : navBar.online}
+                ) : (
+                    <TouchableOpacityWithState onPress={onCoinPress} activeOpacity={1}>
+                        <YuCoin
+                            hasWhiteGlow={hasWhiteGlow}
+                            isLoading={isLoading}
+                            isGrayScale={!hasPermission || (!isOnline && !isLoading)}
+                        />
+                    </TouchableOpacityWithState>
+                )}
+                {isLoading ? (
+                    <DailyStepsLoading />
+                ) : !fitKitAvailable ? (
+                    <DailyStepsFitKitUnavailable />
+                ) : !hasPermission ? (
+                    <DailyStepsFitKitAuthorise onPress={onAuthoriseFitKitPress} copy={copy.copy} />
+                ) : (
+                    <DailyStepsOnline
+                        coinsToday={coinsToday}
+                        showCounter={showCounter}
+                        steps={steps}
+                        onCtaPress={onCtaPress}
+                        textStyle={textStyle}
+                        mindfulSeconds={mindfulSeconds}
+                    />
+                )}
+                {!displayStreak ? null : (
+                    <Streak
+                        isFinished={isDoneToday}
+                        isOnline={isOnline}
+                        onPress={onStreakPress}
+                        currentStreak={currentStreak}
+                        maxStreak={maxStreak}
+                        type={streakType}
+                    />
+                )}
+                {popupVisibility.leaderboard ? (
+                    <LeaderboardPopup
+                        copy={copy.popUpCopy}
                         hasNotification={hasNotification}
+                        navbarColour={navBar.online}
                         labels={labels}
+                        onUpdateLeaderboardPopupVisibility={onUpdateLeaderboardPopupVisibility}
                     />
-                </View>
-            )}
-        </CentredScreen>
+                ) : (
+                    <View style={styles.navBarWrapper}>
+                        <NavBar
+                            activeIndex={0}
+                            colour={!fitKitAvailable || !hasPermission || !isOnline ? navBar.offline : navBar.online}
+                            hasNotification={hasNotification}
+                            labels={labels}
+                        />
+                    </View>
+                )}
+            </CentredScreen>
+        </Animatable.View>
     );
 }
 

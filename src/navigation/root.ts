@@ -17,7 +17,7 @@ export interface IMainTabsProps {
     onLeftMenuPress: () => void;
 }
 
-const onLeftMenuPress = () => {
+export function onLeftMenuPress() {
     Navigation.mergeOptions(ROUTES.menu, {
         sideMenu: {
             left: {
@@ -30,7 +30,7 @@ const onLeftMenuPress = () => {
             visible: true
         }
     });
-};
+}
 
 export const labels = [
     {
@@ -91,7 +91,7 @@ export const labels = [
     }
 ];
 
-export const setAuthenticatedRoot = async () => {
+export async function setAuthenticatedRoot(dispatchAuthenticatedEvent?: () => void) {
     await Navigation.setRoot({
         root: {
             sideMenu: {
@@ -105,10 +105,6 @@ export const setAuthenticatedRoot = async () => {
                                             component: {
                                                 id: ROUTES.dailySteps,
                                                 name: ROUTES.dailySteps,
-                                                passProps: {
-                                                    labels,
-                                                    onLeftMenuPress
-                                                },
                                                 options: { bottomTabs }
                                             }
                                         }
@@ -123,10 +119,6 @@ export const setAuthenticatedRoot = async () => {
                                             component: {
                                                 id: ROUTES.quests,
                                                 name: ROUTES.quests,
-                                                passProps: {
-                                                    labels,
-                                                    onLeftMenuPress
-                                                },
                                                 options: { bottomTabs }
                                             }
                                         }
@@ -141,10 +133,6 @@ export const setAuthenticatedRoot = async () => {
                                             component: {
                                                 id: ROUTES.leaderboards,
                                                 name: ROUTES.leaderboards,
-                                                passProps: {
-                                                    labels,
-                                                    onLeftMenuPress
-                                                },
                                                 options: { bottomTabs }
                                             }
                                         }
@@ -159,10 +147,6 @@ export const setAuthenticatedRoot = async () => {
                                             component: {
                                                 id: ROUTES.rewards,
                                                 name: ROUTES.rewards,
-                                                passProps: {
-                                                    labels,
-                                                    onLeftMenuPress
-                                                },
                                                 options: { bottomTabs }
                                             }
                                         }
@@ -210,10 +194,14 @@ export const setAuthenticatedRoot = async () => {
             }
         });
     }
-};
 
-export const setUnauthenticatedRoot = async (passProps?: any) =>
-    Navigation.setRoot({
+    if (dispatchAuthenticatedEvent) {
+        dispatchAuthenticatedEvent();
+    }
+}
+
+export async function setUnauthenticatedRoot(passProps: any = {}, dispatchUnauthenticatedEvent?: () => void) {
+    await Navigation.setRoot({
         root: {
             stack: {
                 children: [
@@ -229,7 +217,12 @@ export const setUnauthenticatedRoot = async (passProps?: any) =>
         }
     });
 
-export const setNoAccessRoot = async () =>
+    if (dispatchUnauthenticatedEvent) {
+        dispatchUnauthenticatedEvent();
+    }
+}
+
+export async function setNoAccessRoot() {
     Navigation.setRoot({
         root: {
             component: {
@@ -238,19 +231,10 @@ export const setNoAccessRoot = async () =>
             }
         }
     });
+}
 
-export const setLoadingRoot = async () =>
-    Navigation.setRoot({
-        root: {
-            component: {
-                id: ROUTES.loading,
-                name: ROUTES.loading
-            }
-        }
-    });
-
-export const setOfflineRoot = async () =>
-    Navigation.setRoot({
+export async function setOfflineRoot() {
+    await Navigation.setRoot({
         root: {
             component: {
                 id: ROUTES.offline,
@@ -258,3 +242,4 @@ export const setOfflineRoot = async () =>
             }
         }
     });
+}
