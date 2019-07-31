@@ -63,7 +63,7 @@
     "react-native-config": "^0.11.5",
     "react-native-device-info": "^1.4.2",
     "react-native-fast-image": "^6.1.1",
-    "react-native-fitkit": "ssh://git@gitlab.com:yu-life/react-native-fitkit.git#76155107cccbbf17382ecbc3c925bc608b86220a",
+    "react-native-fitkit": "ssh://git@gitlab.com:yu-life/react-native-fitkit.git#1edfe488ab41c2aa7f3f7b1f252635898813484a",
     "react-native-intercom": "^12.0.0",
     "react-native-iphone-x-helper": "1.0.3",
     "react-native-largelist-v3": "^3.0.14",

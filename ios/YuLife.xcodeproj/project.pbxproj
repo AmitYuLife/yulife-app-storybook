@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -140,6 +141,7 @@
 		8470B5A883B14DAEB00B99CD /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8680205BCB6C46FEB6D2A697 /* libReactNativeConfig.a */; };
 		855F79BE322746398ED2316B /* libFastImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B09107DFCFA44CD95F0F5B1 /* libFastImage.a */; };
 		946712F42236B117000E0D1C /* libRNFitKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA5311921354EAE00C88415 /* libRNFitKit.a */; };
+		9494BAF322F227FD0036F56B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9494BAF222F227FD0036F56B /* LaunchScreen.storyboard */; };
 		94DF73CA21538A1900E53652 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DF73C72153899D00E53652 /* libRCTPushNotification.a */; };
 		96ACEAB1A8F2402ABD8CC95C /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C16438F77A940059B8ACB7A /* OpenSans-Regular.ttf */; };
 		A3335D14F85D42C8A71DB717 /* libBugsnagReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 741B056F3798488EB651C6D6 /* libBugsnagReactNative.a */; };
@@ -792,6 +794,7 @@
 		839148B686214E20A8B6335A /* FastImage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = FastImage.xcodeproj; path = "../node_modules/react-native-fast-image/ios/FastImage.xcodeproj"; sourceTree = "<group>"; };
 		8680205BCB6C46FEB6D2A697 /* libReactNativeConfig.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeConfig.a; sourceTree = "<group>"; };
 		8B09107DFCFA44CD95F0F5B1 /* libFastImage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libFastImage.a; sourceTree = "<group>"; };
+		9494BAF222F227FD0036F56B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94DF73C12153899D00E53652 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		9903AC7FFDE9457B9E58F46A /* Bariol-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Bariol-Bold.otf"; path = "../assets/fonts/Bariol-Bold.otf"; sourceTree = "<group>"; };
 		9CEA0C1210E94195AB404DCF /* OpenSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Light.ttf"; path = "../assets/fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
@@ -955,6 +958,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				9494BAF222F227FD0036F56B /* LaunchScreen.storyboard */,
 			);
 			name = YuLife;
 			sourceTree = "<group>";
@@ -1241,7 +1245,6 @@
 				0BACDC9E77C6424F9F3382BF /* libRNMixpanel.a */,
 				741B056F3798488EB651C6D6 /* libBugsnagReactNative.a */,
 				E1C3838907B2431AB27CACE8 /* libRNDeviceInfo.a */,
-				001704067A0E4CACA7C87720 /* libReactNativeTestFairy.a */,
 				8B09107DFCFA44CD95F0F5B1 /* libFastImage.a */,
 				C7362EB49B3C41BB9766373F /* libRNSpringScrollView.a */,
 				70F8D23AEF3B40C2BCFD401A /* libRCTClearCacheModule.a */,
@@ -2011,6 +2014,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9494BAF322F227FD0036F56B /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3A701679212308CE007BE538 /* snapshot_config.json in Resources */,
 				3A701637212308CE007BE538 /* MPCloseButton@3x.png in Resources */,
@@ -2201,9 +2205,7 @@
 				INFOPLIST_FILE = YuLifeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2235,9 +2237,7 @@
 				INFOPLIST_FILE = YuLifeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2251,7 +2251,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = YuLife/YuLife.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
@@ -2299,7 +2298,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = YuLife/YuLife.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 739BJV2T6V;
