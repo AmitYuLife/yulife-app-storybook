@@ -4,10 +4,11 @@ import { ApolloClient } from "apollo-client";
 import * as React from "react";
 import { PureComponent } from "react";
 import { ApolloConsumer } from "react-apollo";
+import { Linking } from "react-native";
+import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
-import { MODALS } from "../../../../../navigation/constants";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { getDailySteps } from "../../../../../redux/daily-steps/daily-steps.selectors";
@@ -107,7 +108,7 @@ class ChallengesListContainerWithClient extends PureComponent<Props, IState> {
                         milestones={milestones}
                         onPressCta={this.handleSubmitChallenge}
                         onPressClose={hideOverlay}
-                        onPressSetUp={challengeType === "meditation" ? this.showMeditationSetUpModal : null}
+                        onPressSetUp={challengeType === "meditation" ? this.openMeditationURL : null}
                         unit={unit}
                     />
                 )}
@@ -115,13 +116,13 @@ class ChallengesListContainerWithClient extends PureComponent<Props, IState> {
         );
     }
 
-    private showMeditationSetUpModal = () => {
-        Navigation.showModal({
-            component: {
-                id: MODALS.meditationSetUp,
-                name: MODALS.meditationSetUp
-            }
-        });
+    private openMeditationURL = async () => {
+        const url = Config.MEDITATION_SETUP_URL;
+        const supported = await Linking.canOpenURL(url);
+
+        if (supported) {
+            await Linking.openURL(url);
+        }
     };
 
     private handleSubmitChallenge = () => {

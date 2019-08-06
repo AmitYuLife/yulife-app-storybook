@@ -37,7 +37,6 @@ export { default as ChallengesListScreen } from "./member/challenges/challenges-
 export { default as ChallengesHistoryScreen } from "./member/challenges/challenges-history/challenges-history.screen";
 export { default as ChallengeCompleteScreen } from "./member/challenges/challenge-complete/challenge-complete.screen";
 export { default as LevelLockedScreen } from "./member/challenges/level-locked/level-locked.screen";
-export { default as MeditationSetUpScreen } from "./member/meditation-set-up/meditation-set-up.screen";
 
 // rewards screens
 export { default as AviosRewardConfirmedScreen } from "./member/rewards/confirmed/avios-confirmed.screen";

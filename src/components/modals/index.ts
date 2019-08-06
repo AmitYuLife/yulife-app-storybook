@@ -9,7 +9,6 @@ export { default as GenericModal } from "./generic-modal/generic-modal";
 export { default as GenericConnectionErrorModal } from "./generic-modal/generic-connection-error-modal";
 export { default as LeaderboardInviteModal } from "./leaderboard-invite/leaderboard-invite.modal";
 export { default as LevelUnavailableModal } from "./level-unavailable/level-unavailable.modal";
-export { default as MeditationSetUpModal } from "./meditation-set-up/meditation-set-up.modal";
 export { default as PushNotificationsModal } from "./push-notifications/push-notifications.modal";
 export { default as StreaksModal } from "./streaks/streaks.modal";
 export { default as TodayYucoinModal } from "./today-yucoin/today-yucoin.modal";
