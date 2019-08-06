@@ -144,10 +144,6 @@ export default [
         component: require("../components/modals/level-unavailable/level-unavailable.modal").default
     },
     {
-        name: MODALS.meditationSetUp,
-        component: require("../components/modals/meditation-set-up/meditation-set-up.modal").default
-    },
-    {
         name: MODALS.pushNotifications,
         component: require("../components/modals/push-notifications/push-notifications.modal").default
     },
