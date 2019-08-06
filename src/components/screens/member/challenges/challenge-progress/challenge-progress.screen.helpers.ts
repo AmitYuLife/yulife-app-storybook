@@ -9,7 +9,6 @@ import { ProgressBarTypes } from "./subcomponents/progress-bar";
 
 interface IStyleSet {
     backgroundColour: string;
-    instructionTextColour?: string;
     topBarType: TopBarTypes;
     navBarType: IColours;
     progressBarType: ProgressBarTypes;
@@ -122,7 +121,6 @@ const LONG_WALK: IStyleSet[] = [
 const MEDITATION: IStyleSet[] = [
     {
         backgroundColour: "rgb(254,252,218)",
-        instructionTextColour: "rgb(136,136,136)",
         navBarType: "forest",
         progressBarType: "forest-yellow",
         source: assets.bird,
@@ -131,7 +129,6 @@ const MEDITATION: IStyleSet[] = [
     },
     {
         backgroundColour: "rgb(255,255,255)",
-        instructionTextColour: "rgb(136,136,136)",
         navBarType: "light",
         progressBarType: "black",
         source: assets.dolphin,
@@ -140,7 +137,6 @@ const MEDITATION: IStyleSet[] = [
     },
     {
         backgroundColour: "#aedaec",
-        instructionTextColour: "rgb(80,142,205)",
         navBarType: "desert",
         progressBarType: "ocean-black",
         source: assets.camel,
@@ -149,7 +145,6 @@ const MEDITATION: IStyleSet[] = [
     },
     {
         backgroundColour: "rgb(167, 210, 255)",
-        instructionTextColour: "rgb(80, 142, 205)",
         navBarType: NavBar.Colours.LIGHT,
         progressBarType: "mountain-black",
         source: assets.owl,

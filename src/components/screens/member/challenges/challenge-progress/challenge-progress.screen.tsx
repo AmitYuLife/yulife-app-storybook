@@ -1,7 +1,9 @@
+import { Text } from "@atoms/index";
+import { NavBar, TopBar } from "@molecules/index";
 import * as React from "react";
-import { Image, Platform, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Platform, SafeAreaView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
-import { NavBar, TopBar } from "../../../../molecules";
+import assets from "./assets";
 import { getWorldStyle } from "./challenge-progress.screen.helpers";
 import styles from "./challenge-progress.screen.styles";
 import ProgressBar from "./subcomponents/progress-bar";
@@ -36,15 +38,10 @@ export default function ChallengeProgressScreen({
     userProgress,
     totalCoins
 }: IProps) {
-    const {
-        backgroundColour,
-        instructionTextColour,
-        navBarType,
-        progressBarType,
-        source,
-        style,
-        topBarType
-    } = getWorldStyle(challengeType, currentWorld);
+    const { backgroundColour, navBarType, progressBarType, source, style, topBarType } = getWorldStyle(
+        challengeType,
+        currentWorld
+    );
 
     return (
         <SafeAreaView style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}>
@@ -65,33 +62,35 @@ export default function ChallengeProgressScreen({
                     type={unit}
                 />
             </View>
-            {challengeType !== "meditation" ? null : (
-                <View style={styles.instructionWrapper}>
-                    <View style={{ flexDirection: "row" }}>
-                        <Text style={StyleSheet.flatten([styles.instruction, { color: instructionTextColour }])}>
-                            Complete a meditation session with
+            {challengeType === "meditation" && !userProgress ? (
+                <View style={styles.meditationInstructionsWrapper}>
+                    <View style={styles.instructionWrapper}>
+                        <Text style={styles.instructionHeading} bold={true}>
+                            Choose
                         </Text>
-                        <TouchableOpacity onPress={onCalmPress} style={{ paddingLeft: 4 }}>
-                            <Text style={styles.instructionBold}>Calm</Text>
-                        </TouchableOpacity>
-                        <Text style={StyleSheet.flatten([styles.instruction, { color: instructionTextColour }])}>
-                            ,
+                        <Text style={styles.instructionSubheading} bold={true}>
+                            an app to start
                         </Text>
+                        <Text style={styles.instructionText}>
+                            Or use any meditation app that integrates with{" "}
+                            {Platform.OS === "ios" ? "apple health" : "google fit"}.
+                        </Text>
+                        <Text style={styles.instructionText}>Results will be shown here.</Text>
                     </View>
-                    <View style={{ flexDirection: "row" }}>
-                        <TouchableOpacity onPress={onHeadspacePress} style={{ paddingRight: 4 }}>
-                            <Text style={styles.instructionBold}>Headspace</Text>
+                    <View style={styles.logoWrapper}>
+                        <TouchableOpacity onPress={onHeadspacePress}>
+                            <Image
+                                style={StyleSheet.flatten([styles.logo, styles.headspaceBorder])}
+                                source={assets.headspace}
+                            />
                         </TouchableOpacity>
-                        <Text style={StyleSheet.flatten([styles.instruction, { color: instructionTextColour }])}>
-                            or any other meditation app
-                        </Text>
+                        <TouchableOpacity onPress={onCalmPress}>
+                            <Image style={styles.logo} source={assets.calm} />
+                        </TouchableOpacity>
                     </View>
-                    <Text style={StyleSheet.flatten([styles.instruction, { color: instructionTextColour }])}>
-                        that integrates with {Platform.OS === "ios" ? "apple health" : "google fit"}, within the next
-                        hour. Results will be shown here.
-                    </Text>
                 </View>
-            )}
+            ) : null}
+
             <View style={styles.navBarWrapper}>
                 <NavBar
                     colour={navBarType}

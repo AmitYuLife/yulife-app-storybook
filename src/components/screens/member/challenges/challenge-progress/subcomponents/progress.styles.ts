@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     goalTextColorBlack: {
-        color: Colours.progressBar.black.shadow
+        color: Colours.progressBar.black.heading
     },
     goalTextColorDesertBrown: {
         color: "rgb(252,194,116)"
