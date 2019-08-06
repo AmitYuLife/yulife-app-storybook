@@ -71,6 +71,10 @@ export const renderProgressLabel = ({ amount, showCounter, styleType = "black", 
             );
 
         case "minutes":
+            if (amount === 0) {
+                return null;
+            }
+
             const { minutes, seconds } = displaySecondsAsMinutes(amount);
 
             return (

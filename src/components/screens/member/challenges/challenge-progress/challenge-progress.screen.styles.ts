@@ -9,20 +9,32 @@ export default StyleSheet.create({
         right: 0,
         width: "100%"
     } as ImageStyle,
-    instruction: {
-        fontSize: Style.SCALE_UP_AND_DOWN(13),
-        lineHeight: Style.SCALE_UP_AND_DOWN(20)
-    } as TextStyle,
-    instructionBold: {
-        color: "rgb(51,51,51)",
-        fontSize: Style.SCALE_UP_AND_DOWN(13),
-        lineHeight: Style.SCALE_UP_AND_DOWN(20)
-    } as TextStyle,
     instructionWrapper: {
+        flex: 1,
+        flexBasis: Style.SCALE_UP_AND_DOWN(40),
         marginLeft: Style.SCALE_UP_AND_DOWN(16),
-        marginTop: Style.SCALE_UP_AND_DOWN(Style.isAndroid() ? -24 : -34),
-        width: Style.SCALE_UP_AND_DOWN(280)
+        marginTop: Style.SCALE_UP_AND_DOWN(-30),
+        borderRightWidth: 1,
+        paddingRight: Style.SCALE_UP_AND_DOWN(20),
+        borderRightColor: "black"
     } as ViewStyle,
+    instructionHeading: {
+        fontSize: Style.SCALE_UP_AND_DOWN(40),
+        lineHeight: Style.SCALE_UP_AND_DOWN(40),
+        marginBottom: -6,
+        color: "black"
+    } as TextStyle,
+    instructionSubheading: {
+        color: "black",
+        fontSize: Style.SCALE_UP_AND_DOWN(25)
+    } as TextStyle,
+    instructionText: {
+        fontSize: Style.SCALE_UP_AND_DOWN(14),
+        lineHeight: Style.SCALE_UP_AND_DOWN(20),
+        width: Style.SCALE_UP_AND_DOWN(190),
+        textAlignVertical: "bottom",
+        color: "black"
+    } as TextStyle,
     navBarWrapper: {
         alignItems: "center",
         bottom: Style.SCALE_UP_AND_DOWN(19),
@@ -34,5 +46,27 @@ export default StyleSheet.create({
     } as ViewStyle,
     wrapper: {
         flex: 1
+    } as ViewStyle,
+    logo: {
+        height: Style.SCALE_UP_AND_DOWN(60),
+        width: Style.SCALE_UP_AND_DOWN(60)
+    } as ImageStyle,
+    headspaceBorder: {
+        borderWidth: 1,
+        borderColor: "rgba(230, 230, 230, 0.6)",
+        borderRadius: Style.SCALE_UP_AND_DOWN(16),
+        marginRight: 10
+    } as ImageStyle,
+    logoWrapper: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "flex-end",
+        marginTop: Style.SCALE_UP_AND_DOWN(5)
+    } as ViewStyle,
+    meditationInstructionsWrapper: {
+        width: "100%",
+        marginTop: -40,
+        flexDirection: "row"
     } as ViewStyle
 });

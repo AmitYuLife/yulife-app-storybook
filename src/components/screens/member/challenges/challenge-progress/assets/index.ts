@@ -16,7 +16,9 @@ const assets = {
     deer: require("../../../../../../../assets/challenge-progress/deer.png"),
     owl: require("../../../../../../../assets/challenge-progress/owl.png"),
     whiteBighornSheep: require("../../../../../../../assets/challenge-progress/whiteBighornSheep.png"),
-    wolf: require("../../../../../../../assets/challenge-progress/wolf.png")
+    wolf: require("../../../../../../../assets/challenge-progress/wolf.png"),
+    calm: require("../../../../../../../assets/icons/calm.png"),
+    headspace: require("../../../../../../../assets/icons/headspace.png")
 };
 
 export default assets;
