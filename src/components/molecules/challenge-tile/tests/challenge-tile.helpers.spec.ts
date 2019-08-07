@@ -1,4 +1,5 @@
 import { getImage, getImageStyle, getLockedImageStyle } from "../challenge-tile.helpers";
+import { Images } from "../challenge-tile.types";
 
 describe("getImage", () => {
     it("should return null for an undefined input", () => {
@@ -37,8 +38,9 @@ describe("getLockedImageStyle", () => {
         expect(getLockedImageStyle("wolf")).toBeDefined();
     });
 
-    it("should return bottom as 0 for default value", () => {
-        expect(getLockedImageStyle("rabbit")).toHaveProperty("bottom", 0);
+    it("should return bottom of 0", () => {
+        expect(getLockedImageStyle("" as Images)).toHaveProperty("position", "absolute");
+        expect(getLockedImageStyle("" as Images)).toHaveProperty("bottom", 0);
     });
 
     it("should return bottom & right of 0", () => {

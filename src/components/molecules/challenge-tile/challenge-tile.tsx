@@ -116,17 +116,17 @@ const ContentWrapper: SFC<Partial<Props>> = ({ challengeType, duration, reward }
 
 const Content: SFC<Partial<Props>> = ({ challengeType, duration, reward }) => (
     <View style={styles.contentWrapper}>
-        <View>
+        <View style={styles.contentTitleWrapper}>
             <Text bold={true} style={styles.contentTitle}>
                 {challengeType}
             </Text>
         </View>
-        <View style={styles.contentTextWrapper}>
+        <View style={styles.contentDurationWrapper}>
             <Text bold={true} style={styles.contentTitle}>
                 {duration}
             </Text>
         </View>
-        <View style={styles.contentTextWrapper}>
+        <View style={styles.contentRewardWrapper}>
             <Text style={styles.contentReward}>{reward} yucoin</Text>
         </View>
     </View>
