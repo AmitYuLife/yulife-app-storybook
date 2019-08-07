@@ -15,11 +15,17 @@ jest.mock("react-native-intercom", () => {}, { virtual: true });
 jest.mock("react-native-fitkit", () => ({
     // As strange as it is to use moment in a config file, this ensures that at whatever point this
     // mock method is used it will return a recently completed 5 minute activity worth 54 points.
-    sampleQuery: jest.fn(() => ([{
-        endDateTime: moment().subtract(1, "minute").format(),
-        startDateTime: moment().subtract(6, "minute").format(),
-        value: 54
-    }])),
+    sampleQuery: jest.fn(() => [
+        {
+            endDateTime: moment()
+                .subtract(1, "minute")
+                .format(),
+            startDateTime: moment()
+                .subtract(6, "minute")
+                .format(),
+            value: 54
+        }
+    ]),
     queryPedometerFromDate: jest.fn(() => ({ steps: 75 })),
     FitKitTypes: { Types: {} }
 }));
@@ -27,7 +33,8 @@ jest.mock("react-native-fitkit", () => ({
 jest.mock("react-native-device-info", () => ({
     getUniqueID: jest.fn(),
     getVersion: jest.fn(),
-    getTimezone: jest.fn()
+    getTimezone: jest.fn(),
+    getDeviceName: jest.fn()
 }));
 
 jest.mock("react-native-push-notification", () => ({

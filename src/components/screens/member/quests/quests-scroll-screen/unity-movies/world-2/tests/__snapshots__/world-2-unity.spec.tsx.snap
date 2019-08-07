@@ -22,33 +22,273 @@ ShallowWrapper {
       "children": <SafeAreaView
         style={
           Object {
-            "flex": 1,
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
           }
         }
       >
-        <SafeAreaView
+        <withAnimatable(View)
+          animation="wrapperAnimation"
+          delay={0}
+          direction="normal"
+          duration={12000}
+          iterationCount={1}
+          iterationDelay={0}
+          onAnimationBegin={[Function]}
+          onAnimationEnd={[Function]}
+          onTransitionBegin={[Function]}
+          onTransitionEnd={[Function]}
           style={
             Object {
-              "backgroundColor": "rgb(255,255,255)",
+              "backgroundColor": "rgb(133,226,236)",
               "bottom": 0,
+              "height": 1414,
               "left": 0,
               "position": "absolute",
               "right": 0,
               "top": 0,
             }
           }
+          useNativeDriver={true}
         >
-          <Image
-            resizeMode="cover"
-            source={1}
+          <withAnimatable(View)
+            animation="orangeCircleAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
             style={
               Object {
-                "height": 1334,
+                "alignItems": "center",
+                "height": 500,
+                "position": "absolute",
+                "top": 240,
                 "width": 750,
               }
             }
+            useNativeDriver={true}
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 300,
+                  "position": "absolute",
+                  "top": -80,
+                  "width": 300,
+                  "zIndex": 2,
+                }
+              }
+            >
+              <Trees />
+            </View>
+            <withAnimatable(View)
+              animation="scaleIconAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              style={
+                Object {
+                  "height": 160,
+                  "left": 80,
+                  "position": "absolute",
+                  "top": 150,
+                  "width": 204,
+                  "zIndex": 2,
+                }
+              }
+              useNativeDriver={true}
+            >
+              <Corals />
+            </withAnimatable(View)>
+            <OrangeCircle />
+            <RedCircleWithLine />
+          </withAnimatable(View)>
+          <withAnimatable(View)
+            animation="pulseAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgb(226,1,119)",
+                "borderRadius": 100,
+                "height": 100,
+                "justifyContent": "center",
+                "left": 375,
+                "marginLeft": -50,
+                "position": "absolute",
+                "right": 0,
+                "top": 254,
+                "width": 100,
+                "zIndex": 3,
+              }
+            }
+            useNativeDriver={true}
+          >
+            <Pulse
+              backgroundColor="rgb(145,0,76)"
+              interval={1250}
+              pulseMaxSize={66}
+              size={106}
+              style={
+                Object {
+                  "bottom": 0,
+                }
+              }
+            />
+          </withAnimatable(View)>
+          <withAnimatable(View)
+            animation="bubbleAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgb(226,1,119)",
+                "borderRadius": 100,
+                "height": 100,
+                "justifyContent": "center",
+                "left": 375,
+                "marginLeft": -50,
+                "position": "absolute",
+                "right": 0,
+                "top": 254,
+                "width": 100,
+                "zIndex": 3,
+              }
+            }
+            useNativeDriver={true}
           />
-        </SafeAreaView>
+          <withAnimatable(FastImage)
+            animation="imageAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            source={1}
+            style={
+              Object {
+                "height": 360,
+                "width": "100%",
+              }
+            }
+            useNativeDriver={true}
+          />
+          <withAnimatable(FastImage)
+            animation="imageAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            source={1}
+            style={
+              Object {
+                "height": 360,
+                "width": "100%",
+              }
+            }
+            useNativeDriver={true}
+          />
+          <withAnimatable(FastImage)
+            animation="imageAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            source={1}
+            style={
+              Object {
+                "height": 360,
+                "width": "100%",
+              }
+            }
+            useNativeDriver={true}
+          />
+          <withAnimatable(FastImage)
+            animation="imageAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            source={1}
+            style={
+              Object {
+                "height": 360,
+                "width": "100%",
+              }
+            }
+            useNativeDriver={true}
+          />
+          <withAnimatable(FastImage)
+            animation="imageAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            source={1}
+            style={
+              Object {
+                "height": 360,
+                "width": "100%",
+              }
+            }
+            useNativeDriver={true}
+          />
+        </withAnimatable(View)>
         <AnimatedComponent
           style={
             Array [
@@ -56,7 +296,7 @@ ShallowWrapper {
                 "opacity": 0,
               },
               Object {
-                "bottom": 120,
+                "bottom": 80,
                 "left": 0,
                 "position": "absolute",
                 "width": 750,
@@ -93,6 +333,15 @@ ShallowWrapper {
         </AnimatedComponent>
       </SafeAreaView>,
       "onPress": [MockFunction],
+      "style": Object {
+        "backgroundColor": "rgb(133,226,236)",
+        "bottom": 0,
+        "height": 1414,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      },
     },
     "ref": null,
     "rendered": Object {
@@ -101,29 +350,265 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <SafeAreaView
+          <withAnimatable(View)
+            animation="wrapperAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
             style={
               Object {
-                "backgroundColor": "rgb(255,255,255)",
+                "backgroundColor": "rgb(133,226,236)",
                 "bottom": 0,
+                "height": 1414,
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
                 "top": 0,
               }
             }
+            useNativeDriver={true}
           >
-            <Image
-              resizeMode="cover"
-              source={1}
+            <withAnimatable(View)
+              animation="orangeCircleAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
               style={
                 Object {
-                  "height": 1334,
+                  "alignItems": "center",
+                  "height": 500,
+                  "position": "absolute",
+                  "top": 240,
                   "width": 750,
                 }
               }
+              useNativeDriver={true}
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 300,
+                    "position": "absolute",
+                    "top": -80,
+                    "width": 300,
+                    "zIndex": 2,
+                  }
+                }
+              >
+                <Trees />
+              </View>
+              <withAnimatable(View)
+                animation="scaleIconAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                style={
+                  Object {
+                    "height": 160,
+                    "left": 80,
+                    "position": "absolute",
+                    "top": 150,
+                    "width": 204,
+                    "zIndex": 2,
+                  }
+                }
+                useNativeDriver={true}
+              >
+                <Corals />
+              </withAnimatable(View)>
+              <OrangeCircle />
+              <RedCircleWithLine />
+            </withAnimatable(View)>
+            <withAnimatable(View)
+              animation="pulseAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "rgb(226,1,119)",
+                  "borderRadius": 100,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "left": 375,
+                  "marginLeft": -50,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 254,
+                  "width": 100,
+                  "zIndex": 3,
+                }
+              }
+              useNativeDriver={true}
+            >
+              <Pulse
+                backgroundColor="rgb(145,0,76)"
+                interval={1250}
+                pulseMaxSize={66}
+                size={106}
+                style={
+                  Object {
+                    "bottom": 0,
+                  }
+                }
+              />
+            </withAnimatable(View)>
+            <withAnimatable(View)
+              animation="bubbleAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "rgb(226,1,119)",
+                  "borderRadius": 100,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "left": 375,
+                  "marginLeft": -50,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 254,
+                  "width": 100,
+                  "zIndex": 3,
+                }
+              }
+              useNativeDriver={true}
             />
-          </SafeAreaView>,
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+          </withAnimatable(View)>,
           <AnimatedComponent
             style={
               Array [
@@ -131,7 +616,7 @@ ShallowWrapper {
                   "opacity": 0,
                 },
                 Object {
-                  "bottom": 120,
+                  "bottom": 80,
                   "left": 0,
                   "position": "absolute",
                   "width": 750,
@@ -168,7 +653,11 @@ ShallowWrapper {
           </AnimatedComponent>,
         ],
         "style": Object {
-          "flex": 1,
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
         },
       },
       "ref": null,
@@ -178,42 +667,668 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Image
-              resizeMode="cover"
-              source={1}
-              style={
-                Object {
-                  "height": 1334,
-                  "width": 750,
+            "animation": "wrapperAnimation",
+            "children": Array [
+              <withAnimatable(View)
+                animation="orangeCircleAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 500,
+                    "position": "absolute",
+                    "top": 240,
+                    "width": 750,
+                  }
                 }
-              }
-            />,
+                useNativeDriver={true}
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "height": 300,
+                      "position": "absolute",
+                      "top": -80,
+                      "width": 300,
+                      "zIndex": 2,
+                    }
+                  }
+                >
+                  <Trees />
+                </View>
+                <withAnimatable(View)
+                  animation="scaleIconAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  style={
+                    Object {
+                      "height": 160,
+                      "left": 80,
+                      "position": "absolute",
+                      "top": 150,
+                      "width": 204,
+                      "zIndex": 2,
+                    }
+                  }
+                  useNativeDriver={true}
+                >
+                  <Corals />
+                </withAnimatable(View)>
+                <OrangeCircle />
+                <RedCircleWithLine />
+              </withAnimatable(View)>,
+              <withAnimatable(View)
+                animation="pulseAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "rgb(226,1,119)",
+                    "borderRadius": 100,
+                    "height": 100,
+                    "justifyContent": "center",
+                    "left": 375,
+                    "marginLeft": -50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 254,
+                    "width": 100,
+                    "zIndex": 3,
+                  }
+                }
+                useNativeDriver={true}
+              >
+                <Pulse
+                  backgroundColor="rgb(145,0,76)"
+                  interval={1250}
+                  pulseMaxSize={66}
+                  size={106}
+                  style={
+                    Object {
+                      "bottom": 0,
+                    }
+                  }
+                />
+              </withAnimatable(View)>,
+              <withAnimatable(View)
+                animation="bubbleAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "rgb(226,1,119)",
+                    "borderRadius": 100,
+                    "height": 100,
+                    "justifyContent": "center",
+                    "left": 375,
+                    "marginLeft": -50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 254,
+                    "width": 100,
+                    "zIndex": 3,
+                  }
+                }
+                useNativeDriver={true}
+              />,
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />,
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />,
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />,
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />,
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />,
+            ],
+            "delay": 0,
+            "direction": "normal",
+            "duration": 12000,
+            "easing": undefined,
+            "iterationCount": 1,
+            "iterationDelay": 0,
+            "onAnimationBegin": [Function],
+            "onAnimationEnd": [Function],
+            "onTransitionBegin": [Function],
+            "onTransitionEnd": [Function],
             "style": Object {
-              "backgroundColor": "rgb(255,255,255)",
+              "backgroundColor": "rgb(133,226,236)",
               "bottom": 0,
+              "height": 1414,
               "left": 0,
               "position": "absolute",
               "right": 0,
               "top": 0,
             },
+            "transition": undefined,
+            "useNativeDriver": true,
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "resizeMode": "cover",
-              "source": 1,
-              "style": Object {
-                "height": 1334,
-                "width": 750,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "orangeCircleAnimation",
+                "children": Array [
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 300,
+                        "position": "absolute",
+                        "top": -80,
+                        "width": 300,
+                        "zIndex": 2,
+                      }
+                    }
+                  >
+                    <Trees />
+                  </View>,
+                  <withAnimatable(View)
+                    animation="scaleIconAnimation"
+                    delay={0}
+                    direction="normal"
+                    duration={12000}
+                    iterationCount={1}
+                    iterationDelay={0}
+                    onAnimationBegin={[Function]}
+                    onAnimationEnd={[Function]}
+                    onTransitionBegin={[Function]}
+                    onTransitionEnd={[Function]}
+                    style={
+                      Object {
+                        "height": 160,
+                        "left": 80,
+                        "position": "absolute",
+                        "top": 150,
+                        "width": 204,
+                        "zIndex": 2,
+                      }
+                    }
+                    useNativeDriver={true}
+                  >
+                    <Corals />
+                  </withAnimatable(View)>,
+                  <OrangeCircle />,
+                  <RedCircleWithLine />,
+                ],
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "style": Object {
+                  "alignItems": "center",
+                  "height": 500,
+                  "position": "absolute",
+                  "top": 240,
+                  "width": 750,
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
               },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <Trees />,
+                    "style": Object {
+                      "alignItems": "center",
+                      "height": 300,
+                      "position": "absolute",
+                      "top": -80,
+                      "width": 300,
+                      "zIndex": 2,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "animation": "scaleIconAnimation",
+                    "children": <Corals />,
+                    "delay": 0,
+                    "direction": "normal",
+                    "duration": 12000,
+                    "easing": undefined,
+                    "iterationCount": 1,
+                    "iterationDelay": 0,
+                    "onAnimationBegin": [Function],
+                    "onAnimationEnd": [Function],
+                    "onTransitionBegin": [Function],
+                    "onTransitionEnd": [Function],
+                    "style": Object {
+                      "height": 160,
+                      "left": 80,
+                      "position": "absolute",
+                      "top": 150,
+                      "width": 204,
+                      "zIndex": 2,
+                    },
+                    "transition": undefined,
+                    "useNativeDriver": true,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
             },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "pulseAnimation",
+                "children": <Pulse
+                  backgroundColor="rgb(145,0,76)"
+                  interval={1250}
+                  pulseMaxSize={66}
+                  size={106}
+                  style={
+                    Object {
+                      "bottom": 0,
+                    }
+                  }
+                />,
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "style": Object {
+                  "alignItems": "center",
+                  "backgroundColor": "rgb(226,1,119)",
+                  "borderRadius": 100,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "left": 375,
+                  "marginLeft": -50,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 254,
+                  "width": 100,
+                  "zIndex": 3,
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "backgroundColor": "rgb(145,0,76)",
+                  "interval": 1250,
+                  "pulseMaxSize": 66,
+                  "size": 106,
+                  "style": Object {
+                    "bottom": 0,
+                  },
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "bubbleAnimation",
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "style": Object {
+                  "alignItems": "center",
+                  "backgroundColor": "rgb(226,1,119)",
+                  "borderRadius": 100,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "left": 375,
+                  "marginLeft": -50,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 254,
+                  "width": 100,
+                  "zIndex": 3,
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "imageAnimation",
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "source": 1,
+                "style": Object {
+                  "height": 360,
+                  "width": "100%",
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "imageAnimation",
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "source": 1,
+                "style": Object {
+                  "height": 360,
+                  "width": "100%",
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "imageAnimation",
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "source": 1,
+                "style": Object {
+                  "height": 360,
+                  "width": "100%",
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "imageAnimation",
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "source": 1,
+                "style": Object {
+                  "height": 360,
+                  "width": "100%",
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "imageAnimation",
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "source": 1,
+                "style": Object {
+                  "height": 360,
+                  "width": "100%",
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
         Object {
@@ -254,7 +1369,7 @@ ShallowWrapper {
                 "opacity": 0,
               },
               Object {
-                "bottom": 120,
+                "bottom": 80,
                 "left": 0,
                 "position": "absolute",
                 "width": 750,
@@ -316,33 +1431,273 @@ ShallowWrapper {
         "children": <SafeAreaView
           style={
             Object {
-              "flex": 1,
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
             }
           }
         >
-          <SafeAreaView
+          <withAnimatable(View)
+            animation="wrapperAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
             style={
               Object {
-                "backgroundColor": "rgb(255,255,255)",
+                "backgroundColor": "rgb(133,226,236)",
                 "bottom": 0,
+                "height": 1414,
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
                 "top": 0,
               }
             }
+            useNativeDriver={true}
           >
-            <Image
-              resizeMode="cover"
-              source={1}
+            <withAnimatable(View)
+              animation="orangeCircleAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
               style={
                 Object {
-                  "height": 1334,
+                  "alignItems": "center",
+                  "height": 500,
+                  "position": "absolute",
+                  "top": 240,
                   "width": 750,
                 }
               }
+              useNativeDriver={true}
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 300,
+                    "position": "absolute",
+                    "top": -80,
+                    "width": 300,
+                    "zIndex": 2,
+                  }
+                }
+              >
+                <Trees />
+              </View>
+              <withAnimatable(View)
+                animation="scaleIconAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                style={
+                  Object {
+                    "height": 160,
+                    "left": 80,
+                    "position": "absolute",
+                    "top": 150,
+                    "width": 204,
+                    "zIndex": 2,
+                  }
+                }
+                useNativeDriver={true}
+              >
+                <Corals />
+              </withAnimatable(View)>
+              <OrangeCircle />
+              <RedCircleWithLine />
+            </withAnimatable(View)>
+            <withAnimatable(View)
+              animation="pulseAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "rgb(226,1,119)",
+                  "borderRadius": 100,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "left": 375,
+                  "marginLeft": -50,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 254,
+                  "width": 100,
+                  "zIndex": 3,
+                }
+              }
+              useNativeDriver={true}
+            >
+              <Pulse
+                backgroundColor="rgb(145,0,76)"
+                interval={1250}
+                pulseMaxSize={66}
+                size={106}
+                style={
+                  Object {
+                    "bottom": 0,
+                  }
+                }
+              />
+            </withAnimatable(View)>
+            <withAnimatable(View)
+              animation="bubbleAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "rgb(226,1,119)",
+                  "borderRadius": 100,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "left": 375,
+                  "marginLeft": -50,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 254,
+                  "width": 100,
+                  "zIndex": 3,
+                }
+              }
+              useNativeDriver={true}
             />
-          </SafeAreaView>
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+          </withAnimatable(View)>
           <AnimatedComponent
             style={
               Array [
@@ -350,7 +1705,7 @@ ShallowWrapper {
                   "opacity": 0,
                 },
                 Object {
-                  "bottom": 120,
+                  "bottom": 80,
                   "left": 0,
                   "position": "absolute",
                   "width": 750,
@@ -387,6 +1742,15 @@ ShallowWrapper {
           </AnimatedComponent>
         </SafeAreaView>,
         "onPress": [MockFunction],
+        "style": Object {
+          "backgroundColor": "rgb(133,226,236)",
+          "bottom": 0,
+          "height": 1414,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
       },
       "ref": null,
       "rendered": Object {
@@ -395,29 +1759,265 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <SafeAreaView
+            <withAnimatable(View)
+              animation="wrapperAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
               style={
                 Object {
-                  "backgroundColor": "rgb(255,255,255)",
+                  "backgroundColor": "rgb(133,226,236)",
                   "bottom": 0,
+                  "height": 1414,
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
                 }
               }
+              useNativeDriver={true}
             >
-              <Image
-                resizeMode="cover"
-                source={1}
+              <withAnimatable(View)
+                animation="orangeCircleAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
                 style={
                   Object {
-                    "height": 1334,
+                    "alignItems": "center",
+                    "height": 500,
+                    "position": "absolute",
+                    "top": 240,
                     "width": 750,
                   }
                 }
+                useNativeDriver={true}
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "height": 300,
+                      "position": "absolute",
+                      "top": -80,
+                      "width": 300,
+                      "zIndex": 2,
+                    }
+                  }
+                >
+                  <Trees />
+                </View>
+                <withAnimatable(View)
+                  animation="scaleIconAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  style={
+                    Object {
+                      "height": 160,
+                      "left": 80,
+                      "position": "absolute",
+                      "top": 150,
+                      "width": 204,
+                      "zIndex": 2,
+                    }
+                  }
+                  useNativeDriver={true}
+                >
+                  <Corals />
+                </withAnimatable(View)>
+                <OrangeCircle />
+                <RedCircleWithLine />
+              </withAnimatable(View)>
+              <withAnimatable(View)
+                animation="pulseAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "rgb(226,1,119)",
+                    "borderRadius": 100,
+                    "height": 100,
+                    "justifyContent": "center",
+                    "left": 375,
+                    "marginLeft": -50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 254,
+                    "width": 100,
+                    "zIndex": 3,
+                  }
+                }
+                useNativeDriver={true}
+              >
+                <Pulse
+                  backgroundColor="rgb(145,0,76)"
+                  interval={1250}
+                  pulseMaxSize={66}
+                  size={106}
+                  style={
+                    Object {
+                      "bottom": 0,
+                    }
+                  }
+                />
+              </withAnimatable(View)>
+              <withAnimatable(View)
+                animation="bubbleAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "rgb(226,1,119)",
+                    "borderRadius": 100,
+                    "height": 100,
+                    "justifyContent": "center",
+                    "left": 375,
+                    "marginLeft": -50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 254,
+                    "width": 100,
+                    "zIndex": 3,
+                  }
+                }
+                useNativeDriver={true}
               />
-            </SafeAreaView>,
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />
+            </withAnimatable(View)>,
             <AnimatedComponent
               style={
                 Array [
@@ -425,7 +2025,7 @@ ShallowWrapper {
                     "opacity": 0,
                   },
                   Object {
-                    "bottom": 120,
+                    "bottom": 80,
                     "left": 0,
                     "position": "absolute",
                     "width": 750,
@@ -462,7 +2062,11 @@ ShallowWrapper {
             </AnimatedComponent>,
           ],
           "style": Object {
-            "flex": 1,
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
           },
         },
         "ref": null,
@@ -472,42 +2076,668 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <Image
-                resizeMode="cover"
-                source={1}
-                style={
-                  Object {
-                    "height": 1334,
-                    "width": 750,
+              "animation": "wrapperAnimation",
+              "children": Array [
+                <withAnimatable(View)
+                  animation="orangeCircleAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "height": 500,
+                      "position": "absolute",
+                      "top": 240,
+                      "width": 750,
+                    }
                   }
-                }
-              />,
+                  useNativeDriver={true}
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 300,
+                        "position": "absolute",
+                        "top": -80,
+                        "width": 300,
+                        "zIndex": 2,
+                      }
+                    }
+                  >
+                    <Trees />
+                  </View>
+                  <withAnimatable(View)
+                    animation="scaleIconAnimation"
+                    delay={0}
+                    direction="normal"
+                    duration={12000}
+                    iterationCount={1}
+                    iterationDelay={0}
+                    onAnimationBegin={[Function]}
+                    onAnimationEnd={[Function]}
+                    onTransitionBegin={[Function]}
+                    onTransitionEnd={[Function]}
+                    style={
+                      Object {
+                        "height": 160,
+                        "left": 80,
+                        "position": "absolute",
+                        "top": 150,
+                        "width": 204,
+                        "zIndex": 2,
+                      }
+                    }
+                    useNativeDriver={true}
+                  >
+                    <Corals />
+                  </withAnimatable(View)>
+                  <OrangeCircle />
+                  <RedCircleWithLine />
+                </withAnimatable(View)>,
+                <withAnimatable(View)
+                  animation="pulseAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "rgb(226,1,119)",
+                      "borderRadius": 100,
+                      "height": 100,
+                      "justifyContent": "center",
+                      "left": 375,
+                      "marginLeft": -50,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 254,
+                      "width": 100,
+                      "zIndex": 3,
+                    }
+                  }
+                  useNativeDriver={true}
+                >
+                  <Pulse
+                    backgroundColor="rgb(145,0,76)"
+                    interval={1250}
+                    pulseMaxSize={66}
+                    size={106}
+                    style={
+                      Object {
+                        "bottom": 0,
+                      }
+                    }
+                  />
+                </withAnimatable(View)>,
+                <withAnimatable(View)
+                  animation="bubbleAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "rgb(226,1,119)",
+                      "borderRadius": 100,
+                      "height": 100,
+                      "justifyContent": "center",
+                      "left": 375,
+                      "marginLeft": -50,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 254,
+                      "width": 100,
+                      "zIndex": 3,
+                    }
+                  }
+                  useNativeDriver={true}
+                />,
+                <withAnimatable(FastImage)
+                  animation="imageAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  source={1}
+                  style={
+                    Object {
+                      "height": 360,
+                      "width": "100%",
+                    }
+                  }
+                  useNativeDriver={true}
+                />,
+                <withAnimatable(FastImage)
+                  animation="imageAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  source={1}
+                  style={
+                    Object {
+                      "height": 360,
+                      "width": "100%",
+                    }
+                  }
+                  useNativeDriver={true}
+                />,
+                <withAnimatable(FastImage)
+                  animation="imageAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  source={1}
+                  style={
+                    Object {
+                      "height": 360,
+                      "width": "100%",
+                    }
+                  }
+                  useNativeDriver={true}
+                />,
+                <withAnimatable(FastImage)
+                  animation="imageAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  source={1}
+                  style={
+                    Object {
+                      "height": 360,
+                      "width": "100%",
+                    }
+                  }
+                  useNativeDriver={true}
+                />,
+                <withAnimatable(FastImage)
+                  animation="imageAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  source={1}
+                  style={
+                    Object {
+                      "height": 360,
+                      "width": "100%",
+                    }
+                  }
+                  useNativeDriver={true}
+                />,
+              ],
+              "delay": 0,
+              "direction": "normal",
+              "duration": 12000,
+              "easing": undefined,
+              "iterationCount": 1,
+              "iterationDelay": 0,
+              "onAnimationBegin": [Function],
+              "onAnimationEnd": [Function],
+              "onTransitionBegin": [Function],
+              "onTransitionEnd": [Function],
               "style": Object {
-                "backgroundColor": "rgb(255,255,255)",
+                "backgroundColor": "rgb(133,226,236)",
                 "bottom": 0,
+                "height": 1414,
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
                 "top": 0,
               },
+              "transition": undefined,
+              "useNativeDriver": true,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "resizeMode": "cover",
-                "source": 1,
-                "style": Object {
-                  "height": 1334,
-                  "width": 750,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "orangeCircleAnimation",
+                  "children": Array [
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "height": 300,
+                          "position": "absolute",
+                          "top": -80,
+                          "width": 300,
+                          "zIndex": 2,
+                        }
+                      }
+                    >
+                      <Trees />
+                    </View>,
+                    <withAnimatable(View)
+                      animation="scaleIconAnimation"
+                      delay={0}
+                      direction="normal"
+                      duration={12000}
+                      iterationCount={1}
+                      iterationDelay={0}
+                      onAnimationBegin={[Function]}
+                      onAnimationEnd={[Function]}
+                      onTransitionBegin={[Function]}
+                      onTransitionEnd={[Function]}
+                      style={
+                        Object {
+                          "height": 160,
+                          "left": 80,
+                          "position": "absolute",
+                          "top": 150,
+                          "width": 204,
+                          "zIndex": 2,
+                        }
+                      }
+                      useNativeDriver={true}
+                    >
+                      <Corals />
+                    </withAnimatable(View)>,
+                    <OrangeCircle />,
+                    <RedCircleWithLine />,
+                  ],
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "style": Object {
+                    "alignItems": "center",
+                    "height": 500,
+                    "position": "absolute",
+                    "top": 240,
+                    "width": 750,
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
                 },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <Trees />,
+                      "style": Object {
+                        "alignItems": "center",
+                        "height": 300,
+                        "position": "absolute",
+                        "top": -80,
+                        "width": 300,
+                        "zIndex": 2,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "animation": "scaleIconAnimation",
+                      "children": <Corals />,
+                      "delay": 0,
+                      "direction": "normal",
+                      "duration": 12000,
+                      "easing": undefined,
+                      "iterationCount": 1,
+                      "iterationDelay": 0,
+                      "onAnimationBegin": [Function],
+                      "onAnimationEnd": [Function],
+                      "onTransitionBegin": [Function],
+                      "onTransitionEnd": [Function],
+                      "style": Object {
+                        "height": 160,
+                        "left": 80,
+                        "position": "absolute",
+                        "top": 150,
+                        "width": 204,
+                        "zIndex": 2,
+                      },
+                      "transition": undefined,
+                      "useNativeDriver": true,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
               },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "pulseAnimation",
+                  "children": <Pulse
+                    backgroundColor="rgb(145,0,76)"
+                    interval={1250}
+                    pulseMaxSize={66}
+                    size={106}
+                    style={
+                      Object {
+                        "bottom": 0,
+                      }
+                    }
+                  />,
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "style": Object {
+                    "alignItems": "center",
+                    "backgroundColor": "rgb(226,1,119)",
+                    "borderRadius": 100,
+                    "height": 100,
+                    "justifyContent": "center",
+                    "left": 375,
+                    "marginLeft": -50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 254,
+                    "width": 100,
+                    "zIndex": 3,
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "backgroundColor": "rgb(145,0,76)",
+                    "interval": 1250,
+                    "pulseMaxSize": 66,
+                    "size": 106,
+                    "style": Object {
+                      "bottom": 0,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "bubbleAnimation",
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "style": Object {
+                    "alignItems": "center",
+                    "backgroundColor": "rgb(226,1,119)",
+                    "borderRadius": 100,
+                    "height": 100,
+                    "justifyContent": "center",
+                    "left": 375,
+                    "marginLeft": -50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 254,
+                    "width": 100,
+                    "zIndex": 3,
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "imageAnimation",
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "source": 1,
+                  "style": Object {
+                    "height": 360,
+                    "width": "100%",
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "imageAnimation",
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "source": 1,
+                  "style": Object {
+                    "height": 360,
+                    "width": "100%",
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "imageAnimation",
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "source": 1,
+                  "style": Object {
+                    "height": 360,
+                    "width": "100%",
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "imageAnimation",
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "source": 1,
+                  "style": Object {
+                    "height": 360,
+                    "width": "100%",
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "imageAnimation",
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "source": 1,
+                  "style": Object {
+                    "height": 360,
+                    "width": "100%",
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
             "type": [Function],
           },
           Object {
@@ -548,7 +2778,7 @@ ShallowWrapper {
                   "opacity": 0,
                 },
                 Object {
-                  "bottom": 120,
+                  "bottom": 80,
                   "left": 0,
                   "position": "absolute",
                   "width": 750,
@@ -646,33 +2876,273 @@ ShallowWrapper {
       "children": <SafeAreaView
         style={
           Object {
-            "flex": 1,
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
           }
         }
       >
-        <SafeAreaView
+        <withAnimatable(View)
+          animation="wrapperAnimation"
+          delay={0}
+          direction="normal"
+          duration={12000}
+          iterationCount={1}
+          iterationDelay={0}
+          onAnimationBegin={[Function]}
+          onAnimationEnd={[Function]}
+          onTransitionBegin={[Function]}
+          onTransitionEnd={[Function]}
           style={
             Object {
-              "backgroundColor": "rgb(255,255,255)",
+              "backgroundColor": "rgb(133,226,236)",
               "bottom": 0,
+              "height": 1414,
               "left": 0,
               "position": "absolute",
               "right": 0,
               "top": 0,
             }
           }
+          useNativeDriver={true}
         >
-          <Image
-            resizeMode="cover"
-            source={1}
+          <withAnimatable(View)
+            animation="orangeCircleAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
             style={
               Object {
-                "height": 1334,
+                "alignItems": "center",
+                "height": 500,
+                "position": "absolute",
+                "top": 240,
                 "width": 750,
               }
             }
+            useNativeDriver={true}
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 300,
+                  "position": "absolute",
+                  "top": -80,
+                  "width": 300,
+                  "zIndex": 2,
+                }
+              }
+            >
+              <Trees />
+            </View>
+            <withAnimatable(View)
+              animation="scaleIconAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              style={
+                Object {
+                  "height": 160,
+                  "left": 80,
+                  "position": "absolute",
+                  "top": 150,
+                  "width": 204,
+                  "zIndex": 2,
+                }
+              }
+              useNativeDriver={true}
+            >
+              <Corals />
+            </withAnimatable(View)>
+            <OrangeCircle />
+            <RedCircleWithLine />
+          </withAnimatable(View)>
+          <withAnimatable(View)
+            animation="pulseAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgb(226,1,119)",
+                "borderRadius": 100,
+                "height": 100,
+                "justifyContent": "center",
+                "left": 375,
+                "marginLeft": -50,
+                "position": "absolute",
+                "right": 0,
+                "top": 254,
+                "width": 100,
+                "zIndex": 3,
+              }
+            }
+            useNativeDriver={true}
+          >
+            <Pulse
+              backgroundColor="rgb(145,0,76)"
+              interval={1250}
+              pulseMaxSize={66}
+              size={106}
+              style={
+                Object {
+                  "bottom": 0,
+                }
+              }
+            />
+          </withAnimatable(View)>
+          <withAnimatable(View)
+            animation="bubbleAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgb(226,1,119)",
+                "borderRadius": 100,
+                "height": 100,
+                "justifyContent": "center",
+                "left": 375,
+                "marginLeft": -50,
+                "position": "absolute",
+                "right": 0,
+                "top": 254,
+                "width": 100,
+                "zIndex": 3,
+              }
+            }
+            useNativeDriver={true}
           />
-        </SafeAreaView>
+          <withAnimatable(FastImage)
+            animation="imageAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            source={1}
+            style={
+              Object {
+                "height": 360,
+                "width": "100%",
+              }
+            }
+            useNativeDriver={true}
+          />
+          <withAnimatable(FastImage)
+            animation="imageAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            source={1}
+            style={
+              Object {
+                "height": 360,
+                "width": "100%",
+              }
+            }
+            useNativeDriver={true}
+          />
+          <withAnimatable(FastImage)
+            animation="imageAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            source={1}
+            style={
+              Object {
+                "height": 360,
+                "width": "100%",
+              }
+            }
+            useNativeDriver={true}
+          />
+          <withAnimatable(FastImage)
+            animation="imageAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            source={1}
+            style={
+              Object {
+                "height": 360,
+                "width": "100%",
+              }
+            }
+            useNativeDriver={true}
+          />
+          <withAnimatable(FastImage)
+            animation="imageAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
+            source={1}
+            style={
+              Object {
+                "height": 360,
+                "width": "100%",
+              }
+            }
+            useNativeDriver={true}
+          />
+        </withAnimatable(View)>
         <AnimatedComponent
           style={
             Array [
@@ -680,7 +3150,7 @@ ShallowWrapper {
                 "opacity": 0,
               },
               Object {
-                "bottom": 120,
+                "bottom": 80,
                 "left": 0,
                 "position": "absolute",
                 "width": 750,
@@ -717,6 +3187,15 @@ ShallowWrapper {
         </AnimatedComponent>
       </SafeAreaView>,
       "onPress": [MockFunction],
+      "style": Object {
+        "backgroundColor": "rgb(133,226,236)",
+        "bottom": 0,
+        "height": 1414,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      },
     },
     "ref": null,
     "rendered": Object {
@@ -725,29 +3204,265 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <SafeAreaView
+          <withAnimatable(View)
+            animation="wrapperAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
             style={
               Object {
-                "backgroundColor": "rgb(255,255,255)",
+                "backgroundColor": "rgb(133,226,236)",
                 "bottom": 0,
+                "height": 1414,
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
                 "top": 0,
               }
             }
+            useNativeDriver={true}
           >
-            <Image
-              resizeMode="cover"
-              source={1}
+            <withAnimatable(View)
+              animation="orangeCircleAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
               style={
                 Object {
-                  "height": 1334,
+                  "alignItems": "center",
+                  "height": 500,
+                  "position": "absolute",
+                  "top": 240,
                   "width": 750,
                 }
               }
+              useNativeDriver={true}
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 300,
+                    "position": "absolute",
+                    "top": -80,
+                    "width": 300,
+                    "zIndex": 2,
+                  }
+                }
+              >
+                <Trees />
+              </View>
+              <withAnimatable(View)
+                animation="scaleIconAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                style={
+                  Object {
+                    "height": 160,
+                    "left": 80,
+                    "position": "absolute",
+                    "top": 150,
+                    "width": 204,
+                    "zIndex": 2,
+                  }
+                }
+                useNativeDriver={true}
+              >
+                <Corals />
+              </withAnimatable(View)>
+              <OrangeCircle />
+              <RedCircleWithLine />
+            </withAnimatable(View)>
+            <withAnimatable(View)
+              animation="pulseAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "rgb(226,1,119)",
+                  "borderRadius": 100,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "left": 375,
+                  "marginLeft": -50,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 254,
+                  "width": 100,
+                  "zIndex": 3,
+                }
+              }
+              useNativeDriver={true}
+            >
+              <Pulse
+                backgroundColor="rgb(145,0,76)"
+                interval={1250}
+                pulseMaxSize={66}
+                size={106}
+                style={
+                  Object {
+                    "bottom": 0,
+                  }
+                }
+              />
+            </withAnimatable(View)>
+            <withAnimatable(View)
+              animation="bubbleAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "rgb(226,1,119)",
+                  "borderRadius": 100,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "left": 375,
+                  "marginLeft": -50,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 254,
+                  "width": 100,
+                  "zIndex": 3,
+                }
+              }
+              useNativeDriver={true}
             />
-          </SafeAreaView>,
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+          </withAnimatable(View)>,
           <AnimatedComponent
             style={
               Array [
@@ -755,7 +3470,7 @@ ShallowWrapper {
                   "opacity": 0,
                 },
                 Object {
-                  "bottom": 120,
+                  "bottom": 80,
                   "left": 0,
                   "position": "absolute",
                   "width": 750,
@@ -792,7 +3507,11 @@ ShallowWrapper {
           </AnimatedComponent>,
         ],
         "style": Object {
-          "flex": 1,
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
         },
       },
       "ref": null,
@@ -802,42 +3521,668 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Image
-              resizeMode="cover"
-              source={1}
-              style={
-                Object {
-                  "height": 1334,
-                  "width": 750,
+            "animation": "wrapperAnimation",
+            "children": Array [
+              <withAnimatable(View)
+                animation="orangeCircleAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 500,
+                    "position": "absolute",
+                    "top": 240,
+                    "width": 750,
+                  }
                 }
-              }
-            />,
+                useNativeDriver={true}
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "height": 300,
+                      "position": "absolute",
+                      "top": -80,
+                      "width": 300,
+                      "zIndex": 2,
+                    }
+                  }
+                >
+                  <Trees />
+                </View>
+                <withAnimatable(View)
+                  animation="scaleIconAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  style={
+                    Object {
+                      "height": 160,
+                      "left": 80,
+                      "position": "absolute",
+                      "top": 150,
+                      "width": 204,
+                      "zIndex": 2,
+                    }
+                  }
+                  useNativeDriver={true}
+                >
+                  <Corals />
+                </withAnimatable(View)>
+                <OrangeCircle />
+                <RedCircleWithLine />
+              </withAnimatable(View)>,
+              <withAnimatable(View)
+                animation="pulseAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "rgb(226,1,119)",
+                    "borderRadius": 100,
+                    "height": 100,
+                    "justifyContent": "center",
+                    "left": 375,
+                    "marginLeft": -50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 254,
+                    "width": 100,
+                    "zIndex": 3,
+                  }
+                }
+                useNativeDriver={true}
+              >
+                <Pulse
+                  backgroundColor="rgb(145,0,76)"
+                  interval={1250}
+                  pulseMaxSize={66}
+                  size={106}
+                  style={
+                    Object {
+                      "bottom": 0,
+                    }
+                  }
+                />
+              </withAnimatable(View)>,
+              <withAnimatable(View)
+                animation="bubbleAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "rgb(226,1,119)",
+                    "borderRadius": 100,
+                    "height": 100,
+                    "justifyContent": "center",
+                    "left": 375,
+                    "marginLeft": -50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 254,
+                    "width": 100,
+                    "zIndex": 3,
+                  }
+                }
+                useNativeDriver={true}
+              />,
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />,
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />,
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />,
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />,
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />,
+            ],
+            "delay": 0,
+            "direction": "normal",
+            "duration": 12000,
+            "easing": undefined,
+            "iterationCount": 1,
+            "iterationDelay": 0,
+            "onAnimationBegin": [Function],
+            "onAnimationEnd": [Function],
+            "onTransitionBegin": [Function],
+            "onTransitionEnd": [Function],
             "style": Object {
-              "backgroundColor": "rgb(255,255,255)",
+              "backgroundColor": "rgb(133,226,236)",
               "bottom": 0,
+              "height": 1414,
               "left": 0,
               "position": "absolute",
               "right": 0,
               "top": 0,
             },
+            "transition": undefined,
+            "useNativeDriver": true,
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "resizeMode": "cover",
-              "source": 1,
-              "style": Object {
-                "height": 1334,
-                "width": 750,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "orangeCircleAnimation",
+                "children": Array [
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 300,
+                        "position": "absolute",
+                        "top": -80,
+                        "width": 300,
+                        "zIndex": 2,
+                      }
+                    }
+                  >
+                    <Trees />
+                  </View>,
+                  <withAnimatable(View)
+                    animation="scaleIconAnimation"
+                    delay={0}
+                    direction="normal"
+                    duration={12000}
+                    iterationCount={1}
+                    iterationDelay={0}
+                    onAnimationBegin={[Function]}
+                    onAnimationEnd={[Function]}
+                    onTransitionBegin={[Function]}
+                    onTransitionEnd={[Function]}
+                    style={
+                      Object {
+                        "height": 160,
+                        "left": 80,
+                        "position": "absolute",
+                        "top": 150,
+                        "width": 204,
+                        "zIndex": 2,
+                      }
+                    }
+                    useNativeDriver={true}
+                  >
+                    <Corals />
+                  </withAnimatable(View)>,
+                  <OrangeCircle />,
+                  <RedCircleWithLine />,
+                ],
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "style": Object {
+                  "alignItems": "center",
+                  "height": 500,
+                  "position": "absolute",
+                  "top": 240,
+                  "width": 750,
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
               },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <Trees />,
+                    "style": Object {
+                      "alignItems": "center",
+                      "height": 300,
+                      "position": "absolute",
+                      "top": -80,
+                      "width": 300,
+                      "zIndex": 2,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "animation": "scaleIconAnimation",
+                    "children": <Corals />,
+                    "delay": 0,
+                    "direction": "normal",
+                    "duration": 12000,
+                    "easing": undefined,
+                    "iterationCount": 1,
+                    "iterationDelay": 0,
+                    "onAnimationBegin": [Function],
+                    "onAnimationEnd": [Function],
+                    "onTransitionBegin": [Function],
+                    "onTransitionEnd": [Function],
+                    "style": Object {
+                      "height": 160,
+                      "left": 80,
+                      "position": "absolute",
+                      "top": 150,
+                      "width": 204,
+                      "zIndex": 2,
+                    },
+                    "transition": undefined,
+                    "useNativeDriver": true,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
             },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "pulseAnimation",
+                "children": <Pulse
+                  backgroundColor="rgb(145,0,76)"
+                  interval={1250}
+                  pulseMaxSize={66}
+                  size={106}
+                  style={
+                    Object {
+                      "bottom": 0,
+                    }
+                  }
+                />,
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "style": Object {
+                  "alignItems": "center",
+                  "backgroundColor": "rgb(226,1,119)",
+                  "borderRadius": 100,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "left": 375,
+                  "marginLeft": -50,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 254,
+                  "width": 100,
+                  "zIndex": 3,
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "backgroundColor": "rgb(145,0,76)",
+                  "interval": 1250,
+                  "pulseMaxSize": 66,
+                  "size": 106,
+                  "style": Object {
+                    "bottom": 0,
+                  },
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "bubbleAnimation",
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "style": Object {
+                  "alignItems": "center",
+                  "backgroundColor": "rgb(226,1,119)",
+                  "borderRadius": 100,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "left": 375,
+                  "marginLeft": -50,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 254,
+                  "width": 100,
+                  "zIndex": 3,
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "imageAnimation",
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "source": 1,
+                "style": Object {
+                  "height": 360,
+                  "width": "100%",
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "imageAnimation",
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "source": 1,
+                "style": Object {
+                  "height": 360,
+                  "width": "100%",
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "imageAnimation",
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "source": 1,
+                "style": Object {
+                  "height": 360,
+                  "width": "100%",
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "imageAnimation",
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "source": 1,
+                "style": Object {
+                  "height": 360,
+                  "width": "100%",
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "animation": "imageAnimation",
+                "delay": 0,
+                "direction": "normal",
+                "duration": 12000,
+                "easing": undefined,
+                "iterationCount": 1,
+                "iterationDelay": 0,
+                "onAnimationBegin": [Function],
+                "onAnimationEnd": [Function],
+                "onTransitionBegin": [Function],
+                "onTransitionEnd": [Function],
+                "source": 1,
+                "style": Object {
+                  "height": 360,
+                  "width": "100%",
+                },
+                "transition": undefined,
+                "useNativeDriver": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
         Object {
@@ -878,7 +4223,7 @@ ShallowWrapper {
                 "opacity": 0,
               },
               Object {
-                "bottom": 120,
+                "bottom": 80,
                 "left": 0,
                 "position": "absolute",
                 "width": 750,
@@ -940,33 +4285,273 @@ ShallowWrapper {
         "children": <SafeAreaView
           style={
             Object {
-              "flex": 1,
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
             }
           }
         >
-          <SafeAreaView
+          <withAnimatable(View)
+            animation="wrapperAnimation"
+            delay={0}
+            direction="normal"
+            duration={12000}
+            iterationCount={1}
+            iterationDelay={0}
+            onAnimationBegin={[Function]}
+            onAnimationEnd={[Function]}
+            onTransitionBegin={[Function]}
+            onTransitionEnd={[Function]}
             style={
               Object {
-                "backgroundColor": "rgb(255,255,255)",
+                "backgroundColor": "rgb(133,226,236)",
                 "bottom": 0,
+                "height": 1414,
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
                 "top": 0,
               }
             }
+            useNativeDriver={true}
           >
-            <Image
-              resizeMode="cover"
-              source={1}
+            <withAnimatable(View)
+              animation="orangeCircleAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
               style={
                 Object {
-                  "height": 1334,
+                  "alignItems": "center",
+                  "height": 500,
+                  "position": "absolute",
+                  "top": 240,
                   "width": 750,
                 }
               }
+              useNativeDriver={true}
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 300,
+                    "position": "absolute",
+                    "top": -80,
+                    "width": 300,
+                    "zIndex": 2,
+                  }
+                }
+              >
+                <Trees />
+              </View>
+              <withAnimatable(View)
+                animation="scaleIconAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                style={
+                  Object {
+                    "height": 160,
+                    "left": 80,
+                    "position": "absolute",
+                    "top": 150,
+                    "width": 204,
+                    "zIndex": 2,
+                  }
+                }
+                useNativeDriver={true}
+              >
+                <Corals />
+              </withAnimatable(View)>
+              <OrangeCircle />
+              <RedCircleWithLine />
+            </withAnimatable(View)>
+            <withAnimatable(View)
+              animation="pulseAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "rgb(226,1,119)",
+                  "borderRadius": 100,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "left": 375,
+                  "marginLeft": -50,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 254,
+                  "width": 100,
+                  "zIndex": 3,
+                }
+              }
+              useNativeDriver={true}
+            >
+              <Pulse
+                backgroundColor="rgb(145,0,76)"
+                interval={1250}
+                pulseMaxSize={66}
+                size={106}
+                style={
+                  Object {
+                    "bottom": 0,
+                  }
+                }
+              />
+            </withAnimatable(View)>
+            <withAnimatable(View)
+              animation="bubbleAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "rgb(226,1,119)",
+                  "borderRadius": 100,
+                  "height": 100,
+                  "justifyContent": "center",
+                  "left": 375,
+                  "marginLeft": -50,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 254,
+                  "width": 100,
+                  "zIndex": 3,
+                }
+              }
+              useNativeDriver={true}
             />
-          </SafeAreaView>
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+            <withAnimatable(FastImage)
+              animation="imageAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
+              source={1}
+              style={
+                Object {
+                  "height": 360,
+                  "width": "100%",
+                }
+              }
+              useNativeDriver={true}
+            />
+          </withAnimatable(View)>
           <AnimatedComponent
             style={
               Array [
@@ -974,7 +4559,7 @@ ShallowWrapper {
                   "opacity": 0,
                 },
                 Object {
-                  "bottom": 120,
+                  "bottom": 80,
                   "left": 0,
                   "position": "absolute",
                   "width": 750,
@@ -1011,6 +4596,15 @@ ShallowWrapper {
           </AnimatedComponent>
         </SafeAreaView>,
         "onPress": [MockFunction],
+        "style": Object {
+          "backgroundColor": "rgb(133,226,236)",
+          "bottom": 0,
+          "height": 1414,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
       },
       "ref": null,
       "rendered": Object {
@@ -1019,29 +4613,265 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <SafeAreaView
+            <withAnimatable(View)
+              animation="wrapperAnimation"
+              delay={0}
+              direction="normal"
+              duration={12000}
+              iterationCount={1}
+              iterationDelay={0}
+              onAnimationBegin={[Function]}
+              onAnimationEnd={[Function]}
+              onTransitionBegin={[Function]}
+              onTransitionEnd={[Function]}
               style={
                 Object {
-                  "backgroundColor": "rgb(255,255,255)",
+                  "backgroundColor": "rgb(133,226,236)",
                   "bottom": 0,
+                  "height": 1414,
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
                 }
               }
+              useNativeDriver={true}
             >
-              <Image
-                resizeMode="cover"
-                source={1}
+              <withAnimatable(View)
+                animation="orangeCircleAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
                 style={
                   Object {
-                    "height": 1334,
+                    "alignItems": "center",
+                    "height": 500,
+                    "position": "absolute",
+                    "top": 240,
                     "width": 750,
                   }
                 }
+                useNativeDriver={true}
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "height": 300,
+                      "position": "absolute",
+                      "top": -80,
+                      "width": 300,
+                      "zIndex": 2,
+                    }
+                  }
+                >
+                  <Trees />
+                </View>
+                <withAnimatable(View)
+                  animation="scaleIconAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  style={
+                    Object {
+                      "height": 160,
+                      "left": 80,
+                      "position": "absolute",
+                      "top": 150,
+                      "width": 204,
+                      "zIndex": 2,
+                    }
+                  }
+                  useNativeDriver={true}
+                >
+                  <Corals />
+                </withAnimatable(View)>
+                <OrangeCircle />
+                <RedCircleWithLine />
+              </withAnimatable(View)>
+              <withAnimatable(View)
+                animation="pulseAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "rgb(226,1,119)",
+                    "borderRadius": 100,
+                    "height": 100,
+                    "justifyContent": "center",
+                    "left": 375,
+                    "marginLeft": -50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 254,
+                    "width": 100,
+                    "zIndex": 3,
+                  }
+                }
+                useNativeDriver={true}
+              >
+                <Pulse
+                  backgroundColor="rgb(145,0,76)"
+                  interval={1250}
+                  pulseMaxSize={66}
+                  size={106}
+                  style={
+                    Object {
+                      "bottom": 0,
+                    }
+                  }
+                />
+              </withAnimatable(View)>
+              <withAnimatable(View)
+                animation="bubbleAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "rgb(226,1,119)",
+                    "borderRadius": 100,
+                    "height": 100,
+                    "justifyContent": "center",
+                    "left": 375,
+                    "marginLeft": -50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 254,
+                    "width": 100,
+                    "zIndex": 3,
+                  }
+                }
+                useNativeDriver={true}
               />
-            </SafeAreaView>,
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />
+              <withAnimatable(FastImage)
+                animation="imageAnimation"
+                delay={0}
+                direction="normal"
+                duration={12000}
+                iterationCount={1}
+                iterationDelay={0}
+                onAnimationBegin={[Function]}
+                onAnimationEnd={[Function]}
+                onTransitionBegin={[Function]}
+                onTransitionEnd={[Function]}
+                source={1}
+                style={
+                  Object {
+                    "height": 360,
+                    "width": "100%",
+                  }
+                }
+                useNativeDriver={true}
+              />
+            </withAnimatable(View)>,
             <AnimatedComponent
               style={
                 Array [
@@ -1049,7 +4879,7 @@ ShallowWrapper {
                     "opacity": 0,
                   },
                   Object {
-                    "bottom": 120,
+                    "bottom": 80,
                     "left": 0,
                     "position": "absolute",
                     "width": 750,
@@ -1086,7 +4916,11 @@ ShallowWrapper {
             </AnimatedComponent>,
           ],
           "style": Object {
-            "flex": 1,
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
           },
         },
         "ref": null,
@@ -1096,42 +4930,668 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <Image
-                resizeMode="cover"
-                source={1}
-                style={
-                  Object {
-                    "height": 1334,
-                    "width": 750,
+              "animation": "wrapperAnimation",
+              "children": Array [
+                <withAnimatable(View)
+                  animation="orangeCircleAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "height": 500,
+                      "position": "absolute",
+                      "top": 240,
+                      "width": 750,
+                    }
                   }
-                }
-              />,
+                  useNativeDriver={true}
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 300,
+                        "position": "absolute",
+                        "top": -80,
+                        "width": 300,
+                        "zIndex": 2,
+                      }
+                    }
+                  >
+                    <Trees />
+                  </View>
+                  <withAnimatable(View)
+                    animation="scaleIconAnimation"
+                    delay={0}
+                    direction="normal"
+                    duration={12000}
+                    iterationCount={1}
+                    iterationDelay={0}
+                    onAnimationBegin={[Function]}
+                    onAnimationEnd={[Function]}
+                    onTransitionBegin={[Function]}
+                    onTransitionEnd={[Function]}
+                    style={
+                      Object {
+                        "height": 160,
+                        "left": 80,
+                        "position": "absolute",
+                        "top": 150,
+                        "width": 204,
+                        "zIndex": 2,
+                      }
+                    }
+                    useNativeDriver={true}
+                  >
+                    <Corals />
+                  </withAnimatable(View)>
+                  <OrangeCircle />
+                  <RedCircleWithLine />
+                </withAnimatable(View)>,
+                <withAnimatable(View)
+                  animation="pulseAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "rgb(226,1,119)",
+                      "borderRadius": 100,
+                      "height": 100,
+                      "justifyContent": "center",
+                      "left": 375,
+                      "marginLeft": -50,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 254,
+                      "width": 100,
+                      "zIndex": 3,
+                    }
+                  }
+                  useNativeDriver={true}
+                >
+                  <Pulse
+                    backgroundColor="rgb(145,0,76)"
+                    interval={1250}
+                    pulseMaxSize={66}
+                    size={106}
+                    style={
+                      Object {
+                        "bottom": 0,
+                      }
+                    }
+                  />
+                </withAnimatable(View)>,
+                <withAnimatable(View)
+                  animation="bubbleAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "rgb(226,1,119)",
+                      "borderRadius": 100,
+                      "height": 100,
+                      "justifyContent": "center",
+                      "left": 375,
+                      "marginLeft": -50,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 254,
+                      "width": 100,
+                      "zIndex": 3,
+                    }
+                  }
+                  useNativeDriver={true}
+                />,
+                <withAnimatable(FastImage)
+                  animation="imageAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  source={1}
+                  style={
+                    Object {
+                      "height": 360,
+                      "width": "100%",
+                    }
+                  }
+                  useNativeDriver={true}
+                />,
+                <withAnimatable(FastImage)
+                  animation="imageAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  source={1}
+                  style={
+                    Object {
+                      "height": 360,
+                      "width": "100%",
+                    }
+                  }
+                  useNativeDriver={true}
+                />,
+                <withAnimatable(FastImage)
+                  animation="imageAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  source={1}
+                  style={
+                    Object {
+                      "height": 360,
+                      "width": "100%",
+                    }
+                  }
+                  useNativeDriver={true}
+                />,
+                <withAnimatable(FastImage)
+                  animation="imageAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  source={1}
+                  style={
+                    Object {
+                      "height": 360,
+                      "width": "100%",
+                    }
+                  }
+                  useNativeDriver={true}
+                />,
+                <withAnimatable(FastImage)
+                  animation="imageAnimation"
+                  delay={0}
+                  direction="normal"
+                  duration={12000}
+                  iterationCount={1}
+                  iterationDelay={0}
+                  onAnimationBegin={[Function]}
+                  onAnimationEnd={[Function]}
+                  onTransitionBegin={[Function]}
+                  onTransitionEnd={[Function]}
+                  source={1}
+                  style={
+                    Object {
+                      "height": 360,
+                      "width": "100%",
+                    }
+                  }
+                  useNativeDriver={true}
+                />,
+              ],
+              "delay": 0,
+              "direction": "normal",
+              "duration": 12000,
+              "easing": undefined,
+              "iterationCount": 1,
+              "iterationDelay": 0,
+              "onAnimationBegin": [Function],
+              "onAnimationEnd": [Function],
+              "onTransitionBegin": [Function],
+              "onTransitionEnd": [Function],
               "style": Object {
-                "backgroundColor": "rgb(255,255,255)",
+                "backgroundColor": "rgb(133,226,236)",
                 "bottom": 0,
+                "height": 1414,
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
                 "top": 0,
               },
+              "transition": undefined,
+              "useNativeDriver": true,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "resizeMode": "cover",
-                "source": 1,
-                "style": Object {
-                  "height": 1334,
-                  "width": 750,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "orangeCircleAnimation",
+                  "children": Array [
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "height": 300,
+                          "position": "absolute",
+                          "top": -80,
+                          "width": 300,
+                          "zIndex": 2,
+                        }
+                      }
+                    >
+                      <Trees />
+                    </View>,
+                    <withAnimatable(View)
+                      animation="scaleIconAnimation"
+                      delay={0}
+                      direction="normal"
+                      duration={12000}
+                      iterationCount={1}
+                      iterationDelay={0}
+                      onAnimationBegin={[Function]}
+                      onAnimationEnd={[Function]}
+                      onTransitionBegin={[Function]}
+                      onTransitionEnd={[Function]}
+                      style={
+                        Object {
+                          "height": 160,
+                          "left": 80,
+                          "position": "absolute",
+                          "top": 150,
+                          "width": 204,
+                          "zIndex": 2,
+                        }
+                      }
+                      useNativeDriver={true}
+                    >
+                      <Corals />
+                    </withAnimatable(View)>,
+                    <OrangeCircle />,
+                    <RedCircleWithLine />,
+                  ],
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "style": Object {
+                    "alignItems": "center",
+                    "height": 500,
+                    "position": "absolute",
+                    "top": 240,
+                    "width": 750,
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
                 },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <Trees />,
+                      "style": Object {
+                        "alignItems": "center",
+                        "height": 300,
+                        "position": "absolute",
+                        "top": -80,
+                        "width": 300,
+                        "zIndex": 2,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "animation": "scaleIconAnimation",
+                      "children": <Corals />,
+                      "delay": 0,
+                      "direction": "normal",
+                      "duration": 12000,
+                      "easing": undefined,
+                      "iterationCount": 1,
+                      "iterationDelay": 0,
+                      "onAnimationBegin": [Function],
+                      "onAnimationEnd": [Function],
+                      "onTransitionBegin": [Function],
+                      "onTransitionEnd": [Function],
+                      "style": Object {
+                        "height": 160,
+                        "left": 80,
+                        "position": "absolute",
+                        "top": 150,
+                        "width": 204,
+                        "zIndex": 2,
+                      },
+                      "transition": undefined,
+                      "useNativeDriver": true,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
               },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "pulseAnimation",
+                  "children": <Pulse
+                    backgroundColor="rgb(145,0,76)"
+                    interval={1250}
+                    pulseMaxSize={66}
+                    size={106}
+                    style={
+                      Object {
+                        "bottom": 0,
+                      }
+                    }
+                  />,
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "style": Object {
+                    "alignItems": "center",
+                    "backgroundColor": "rgb(226,1,119)",
+                    "borderRadius": 100,
+                    "height": 100,
+                    "justifyContent": "center",
+                    "left": 375,
+                    "marginLeft": -50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 254,
+                    "width": 100,
+                    "zIndex": 3,
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "backgroundColor": "rgb(145,0,76)",
+                    "interval": 1250,
+                    "pulseMaxSize": 66,
+                    "size": 106,
+                    "style": Object {
+                      "bottom": 0,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "bubbleAnimation",
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "style": Object {
+                    "alignItems": "center",
+                    "backgroundColor": "rgb(226,1,119)",
+                    "borderRadius": 100,
+                    "height": 100,
+                    "justifyContent": "center",
+                    "left": 375,
+                    "marginLeft": -50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 254,
+                    "width": 100,
+                    "zIndex": 3,
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "imageAnimation",
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "source": 1,
+                  "style": Object {
+                    "height": 360,
+                    "width": "100%",
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "imageAnimation",
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "source": 1,
+                  "style": Object {
+                    "height": 360,
+                    "width": "100%",
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "imageAnimation",
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "source": 1,
+                  "style": Object {
+                    "height": 360,
+                    "width": "100%",
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "imageAnimation",
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "source": 1,
+                  "style": Object {
+                    "height": 360,
+                    "width": "100%",
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "animation": "imageAnimation",
+                  "delay": 0,
+                  "direction": "normal",
+                  "duration": 12000,
+                  "easing": undefined,
+                  "iterationCount": 1,
+                  "iterationDelay": 0,
+                  "onAnimationBegin": [Function],
+                  "onAnimationEnd": [Function],
+                  "onTransitionBegin": [Function],
+                  "onTransitionEnd": [Function],
+                  "source": 1,
+                  "style": Object {
+                    "height": 360,
+                    "width": "100%",
+                  },
+                  "transition": undefined,
+                  "useNativeDriver": true,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
             "type": [Function],
           },
           Object {
@@ -1172,7 +5632,7 @@ ShallowWrapper {
                   "opacity": 0,
                 },
                 Object {
-                  "bottom": 120,
+                  "bottom": 80,
                   "left": 0,
                   "position": "absolute",
                   "width": 750,

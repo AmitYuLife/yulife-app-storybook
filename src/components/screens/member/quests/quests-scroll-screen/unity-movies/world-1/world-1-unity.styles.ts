@@ -1,7 +1,11 @@
 import { Colours, Style } from "@styles/index";
-import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import DeviceInfo from "react-native-device-info";
 import { isIphoneX } from "react-native-iphone-x-helper";
+import { MAP_SLICE_HEIGHT } from "../../assets";
 import { CIRCLE_SIZE } from "../../assets/level/level.styles";
+
+const deviceName = DeviceInfo.getDeviceName() || "";
 
 const styles = StyleSheet.create({
     bigText: {
@@ -21,6 +25,10 @@ const styles = StyleSheet.create({
         position: "absolute",
         width: Style.DEVICE_WIDTH
     } as ViewStyle,
+    image: {
+        height: MAP_SLICE_HEIGHT,
+        width: "100%"
+    } as ImageStyle,
     bubble: {
         alignItems: "center",
         borderRadius: CIRCLE_SIZE,
@@ -30,28 +38,31 @@ const styles = StyleSheet.create({
         position: "absolute",
         left: Style.DEVICE_WIDTH / 2,
         right: 0,
-        top: isIphoneX() || Platform.OS === "android" ? 120 : Style.SCALE_Y_UP_AND_DOWN(100),
+        top:
+            isIphoneX() || deviceName.toLowerCase().includes("iphone x")
+                ? Style.SCALE_UP_AND_DOWN(122)
+                : Style.SCALE_UP_AND_DOWN(127),
         zIndex: 3,
         width: CIRCLE_SIZE,
         backgroundColor: Colours.darkHotPink
     } as ViewStyle,
     orangeBubble: {
         position: "absolute",
-        height: Style.DEVICE_HEIGHT,
+        alignItems: "center",
+        height: Style.SCALE_UP_AND_DOWN(250),
         width: Style.DEVICE_WIDTH,
-        left: 0,
-        right: 0,
-        top: isIphoneX() ? -50 : -75
+        top:
+            isIphoneX() || deviceName.toLowerCase().includes("iphone x")
+                ? Style.SCALE_UP_AND_DOWN(170)
+                : Style.SCALE_UP_AND_DOWN(120)
     } as ViewStyle,
     treesWrapper: {
         zIndex: 2,
+        height: Style.SCALE_UP_AND_DOWN(150),
+        width: Style.SCALE_UP_AND_DOWN(150),
+        alignItems: "center",
         position: "absolute",
-        height: Style.DEVICE_HEIGHT,
-        width: Style.DEVICE_WIDTH,
-        top: -20,
-        bottom: 0,
-        left: 0,
-        right: 0
+        top: Style.SCALE_UP_AND_DOWN(-40)
     } as ViewStyle,
     wrapper: {
         ...StyleSheet.absoluteFillObject,

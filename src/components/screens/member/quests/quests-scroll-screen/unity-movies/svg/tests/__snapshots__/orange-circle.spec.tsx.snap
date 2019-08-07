@@ -21,10 +21,10 @@ ShallowWrapper {
         <LinearGradient
           gradientUnits="userSpaceOnUse"
           id="SVGID_5_"
-          x1="375"
-          x2="375"
-          y1="777.6974"
-          y2="358.0952"
+          x1="100"
+          x2="100"
+          y1="300"
+          y2="25"
         >
           <Stop
             offset="1.129295e-03"
@@ -38,21 +38,16 @@ ShallowWrapper {
           />
         </LinearGradient>
         <Circle
-          cx="375"
-          cy="562.4"
+          cx="200"
+          cy="200"
           fill="url(#SVGID_5_)"
-          r="221"
+          r="200"
         />
       </G>,
-      "height": "1334",
+      "height": "500",
       "preserveAspectRatio": "xMidYMid meet",
-      "style": Object {
-        "left": 0,
-        "position": "absolute",
-        "top": 50,
-      },
-      "viewBox": "0 0 750 1334",
-      "width": "750",
+      "viewBox": "0 0 400 400",
+      "width": "500",
     },
     "ref": null,
     "rendered": Object {
@@ -64,10 +59,10 @@ ShallowWrapper {
           <LinearGradient
             gradientUnits="userSpaceOnUse"
             id="SVGID_5_"
-            x1="375"
-            x2="375"
-            y1="777.6974"
-            y2="358.0952"
+            x1="100"
+            x2="100"
+            y1="300"
+            y2="25"
           >
             <Stop
               offset="1.129295e-03"
@@ -81,10 +76,10 @@ ShallowWrapper {
             />
           </LinearGradient>,
           <Circle
-            cx="375"
-            cy="562.4"
+            cx="200"
+            cy="200"
             fill="url(#SVGID_5_)"
-            r="221"
+            r="200"
           />,
         ],
       },
@@ -109,10 +104,10 @@ ShallowWrapper {
             ],
             "gradientUnits": "userSpaceOnUse",
             "id": "SVGID_5_",
-            "x1": "375",
-            "x2": "375",
-            "y1": "777.6974",
-            "y2": "358.0952",
+            "x1": "100",
+            "x2": "100",
+            "y1": "300",
+            "y2": "25",
           },
           "ref": null,
           "rendered": Array [
@@ -150,10 +145,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "cx": "375",
-            "cy": "562.4",
+            "cx": "200",
+            "cy": "200",
             "fill": "url(#SVGID_5_)",
-            "r": "221",
+            "r": "200",
           },
           "ref": null,
           "rendered": null,
@@ -174,10 +169,10 @@ ShallowWrapper {
           <LinearGradient
             gradientUnits="userSpaceOnUse"
             id="SVGID_5_"
-            x1="375"
-            x2="375"
-            y1="777.6974"
-            y2="358.0952"
+            x1="100"
+            x2="100"
+            y1="300"
+            y2="25"
           >
             <Stop
               offset="1.129295e-03"
@@ -191,21 +186,16 @@ ShallowWrapper {
             />
           </LinearGradient>
           <Circle
-            cx="375"
-            cy="562.4"
+            cx="200"
+            cy="200"
             fill="url(#SVGID_5_)"
-            r="221"
+            r="200"
           />
         </G>,
-        "height": "1334",
+        "height": "500",
         "preserveAspectRatio": "xMidYMid meet",
-        "style": Object {
-          "left": 0,
-          "position": "absolute",
-          "top": 50,
-        },
-        "viewBox": "0 0 750 1334",
-        "width": "750",
+        "viewBox": "0 0 400 400",
+        "width": "500",
       },
       "ref": null,
       "rendered": Object {
@@ -217,10 +207,10 @@ ShallowWrapper {
             <LinearGradient
               gradientUnits="userSpaceOnUse"
               id="SVGID_5_"
-              x1="375"
-              x2="375"
-              y1="777.6974"
-              y2="358.0952"
+              x1="100"
+              x2="100"
+              y1="300"
+              y2="25"
             >
               <Stop
                 offset="1.129295e-03"
@@ -234,10 +224,10 @@ ShallowWrapper {
               />
             </LinearGradient>,
             <Circle
-              cx="375"
-              cy="562.4"
+              cx="200"
+              cy="200"
               fill="url(#SVGID_5_)"
-              r="221"
+              r="200"
             />,
           ],
         },
@@ -262,10 +252,10 @@ ShallowWrapper {
               ],
               "gradientUnits": "userSpaceOnUse",
               "id": "SVGID_5_",
-              "x1": "375",
-              "x2": "375",
-              "y1": "777.6974",
-              "y2": "358.0952",
+              "x1": "100",
+              "x2": "100",
+              "y1": "300",
+              "y2": "25",
             },
             "ref": null,
             "rendered": Array [
@@ -303,10 +293,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "cx": "375",
-              "cy": "562.4",
+              "cx": "200",
+              "cy": "200",
               "fill": "url(#SVGID_5_)",
-              "r": "221",
+              "r": "200",
             },
             "ref": null,
             "rendered": null,
