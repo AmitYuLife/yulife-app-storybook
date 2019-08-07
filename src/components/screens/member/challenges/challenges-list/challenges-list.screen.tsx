@@ -13,37 +13,60 @@ interface IProps extends IChallengesListProps {
     totalCoins: number;
 }
 
-export default function ChallengesListScreen({
-    challenges,
-    currentLevel,
-    labels,
-    onPressLeftIcon,
-    totalCoins,
-    name
-}: IProps) {
-    const { backgroundWrapperStyle, backgroundImage, navBarType, topBarType } = getWorldStyle(currentLevel) as any;
+interface IState {
+    hideChallengeTiles: boolean;
+}
 
-    return (
-        <SafeAreaView style={styles.wrapper} testID={CHALLENGE_SCREEN}>
-            <SafeAreaView style={backgroundWrapperStyle}>
-                <Image resizeMode="cover" style={styles.background} source={backgroundImage} />
+export default class ChallengesListScreen extends React.PureComponent<IProps, IState> {
+    public timeout: NodeJS.Timer = null;
+    public state = {
+        hideChallengeTiles: true
+    };
+
+    public componentWillUnmount() {
+        if (this.timeout) {
+            global.clearTimeout(this.timeout);
+        }
+    }
+
+    public render() {
+        const { challenges, currentLevel, labels, onPressLeftIcon, totalCoins, name } = this.props;
+        const { backgroundWrapperStyle, backgroundImage, navBarType, topBarType } = getWorldStyle(currentLevel) as any;
+
+        return (
+            <SafeAreaView style={styles.wrapper} testID={CHALLENGE_SCREEN}>
+                <SafeAreaView style={backgroundWrapperStyle}>
+                    <Image
+                        onLayout={this.showChallengeTiles}
+                        resizeMode="cover"
+                        style={styles.background}
+                        source={backgroundImage}
+                    />
+                </SafeAreaView>
+                <View style={styles.challengeSetWrapper}>
+                    {this.state.hideChallengeTiles ? null : <ChallengesList challenges={challenges} />}
+                </View>
+                <TopBar
+                    type={topBarType}
+                    leftIcon="Back"
+                    menuLabel="map"
+                    name={name}
+                    coins={totalCoins}
+                    onPressLeftIcon={onPressLeftIcon}
+                />
+                <View style={styles.navBarWrapper}>
+                    <NavBar activeIndex={1} colour={navBarType} labels={labels} />
+                </View>
             </SafeAreaView>
-            <View style={styles.challengeSetWrapper}>
-                <ChallengesList challenges={challenges} />
-            </View>
-            <TopBar
-                type={topBarType}
-                leftIcon="Back"
-                menuLabel="map"
-                name={name}
-                coins={totalCoins}
-                onPressLeftIcon={onPressLeftIcon}
-            />
-            <View style={styles.navBarWrapper}>
-                <NavBar activeIndex={1} colour={navBarType} labels={labels} />
-            </View>
-        </SafeAreaView>
-    );
+        );
+    }
+
+    private showChallengeTiles = () => {
+        this.timeout = global.setTimeout(() => {
+            this.setState({ hideChallengeTiles: false });
+            this.timeout = null;
+        }, 120);
+    };
 }
 
 function getWorldStyle(currentLevel: number) {
