@@ -1,8 +1,17 @@
 import { Text } from "@atoms/index";
 import * as React from "react";
-import { Animated, Image, SafeAreaView, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { Animated, SafeAreaView, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import * as Animatable from "react-native-animatable";
+import FastImage from "react-native-fast-image";
+import { CIRCLE_SIZE } from "../../assets/level/level.styles";
+import Pulse from "../../assets/level/pulse";
+import { Corals, OrangeCircle, Pyramid, RedCircle, Trees } from "../svg";
+import { initializeAnimation } from "../world-animations";
+import assets from "./assets";
 import worldData from "./world-3-unity.data";
 import styles from "./world-3-unity.styles";
+
+const AnimatableFastImage = Animatable.createAnimatableComponent(FastImage);
 
 interface IState {
     textIndex: 0 | 1;
@@ -19,6 +28,10 @@ class World2Unity extends React.PureComponent<IProps, IState> {
         textIndex: 0
     } as IState;
     private textOpacity = new Animated.Value(0);
+
+    public componentWillMount() {
+        initializeAnimation();
+    }
 
     public animateText = () => {
         this.animateTextDelay = global.setTimeout(() => this.changeTextOpacity(1).start(this.animateText2), 3000);
@@ -56,20 +69,95 @@ class World2Unity extends React.PureComponent<IProps, IState> {
         const { onSkip } = this.props;
 
         return (
-            <TouchableWithoutFeedback onPress={onSkip}>
-                <SafeAreaView style={styles.wrapper}>
-                    <SafeAreaView
-                        style={StyleSheet.flatten([
-                            StyleSheet.absoluteFillObject,
-                            { backgroundColor: "rgb(255,255,255)" }
-                        ])}
+            <TouchableWithoutFeedback style={styles.wrapper} onPress={onSkip}>
+                <SafeAreaView style={StyleSheet.absoluteFill}>
+                    <Animatable.View
+                        style={styles.wrapper}
+                        duration={12000}
+                        animation="wrapperAnimation"
+                        useNativeDriver={true}
                     >
-                        <Image
-                            resizeMode="cover"
-                            style={styles.background}
-                            source={require("../../../../../../../../assets/unity/unity-3.png")}
+                        <Animatable.View
+                            style={styles.orangeBubble}
+                            animation="orangeCircleAnimation"
+                            duration={12000}
+                            useNativeDriver={true}
+                        >
+                            <View style={styles.treesWrapper}>
+                                <Trees />
+                            </View>
+                            <View style={styles.coralsWrapper}>
+                                <Corals />
+                            </View>
+                            <Animatable.View
+                                style={styles.pyramidWrapper}
+                                useNativeDriver={true}
+                                animation="scaleIconAnimation"
+                                duration={12000}
+                            >
+                                <Pyramid />
+                            </Animatable.View>
+                            <OrangeCircle />
+                            <RedCircle />
+                        </Animatable.View>
+                        <Animatable.View
+                            style={styles.bubble}
+                            useNativeDriver={true}
+                            animation="pulseAnimation"
+                            duration={12000}
+                        >
+                            <Pulse
+                                size={CIRCLE_SIZE + 6}
+                                pulseMaxSize={66}
+                                interval={1250}
+                                backgroundColor="rgb(145,0,76)"
+                                style={{
+                                    bottom: 0
+                                }}
+                            />
+                        </Animatable.View>
+                        <Animatable.View
+                            useNativeDriver={true}
+                            style={styles.bubble}
+                            animation="bubbleAnimation"
+                            duration={12000}
                         />
-                    </SafeAreaView>
+                        <AnimatableFastImage
+                            animation="imageAnimation"
+                            duration={12000}
+                            useNativeDriver={true}
+                            source={assets[0]}
+                            style={styles.image}
+                        />
+                        <AnimatableFastImage
+                            animation="imageAnimation"
+                            duration={12000}
+                            useNativeDriver={true}
+                            source={assets[1]}
+                            style={styles.image}
+                        />
+                        <AnimatableFastImage
+                            animation="imageAnimation"
+                            duration={12000}
+                            useNativeDriver={true}
+                            source={assets[2]}
+                            style={styles.image}
+                        />
+                        <AnimatableFastImage
+                            animation="imageAnimation"
+                            duration={12000}
+                            useNativeDriver={true}
+                            source={assets[3]}
+                            style={styles.image}
+                        />
+                        <AnimatableFastImage
+                            animation="imageAnimation"
+                            duration={12000}
+                            useNativeDriver={true}
+                            source={assets[4]}
+                            style={styles.image}
+                        />
+                    </Animatable.View>
                     <Animated.View style={[{ opacity: this.textOpacity }, styles.textWrapper]}>
                         <Text bold={true} style={StyleSheet.flatten([styles.bigText, styles.center])}>
                             {worldData.heading[textIndex]}

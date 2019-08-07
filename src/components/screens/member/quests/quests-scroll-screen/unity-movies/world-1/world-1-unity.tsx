@@ -1,16 +1,17 @@
 import * as React from "react";
 import { Animated, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import * as Animatable from "react-native-animatable";
+import FastImage from "react-native-fast-image";
 import { Text } from "../../../../../../atoms";
-import { MAP_SLICE_HEIGHT } from "../../assets";
 import { CIRCLE_SIZE } from "../../assets/level/level.styles";
 import Pulse from "../../assets/level/pulse";
-import OrangeCircle from "./svg/orange-circle";
-import RedCircle from "./svg/red-circle";
-import Trees from "./svg/trees";
-import { initializeAnimation } from "./world-1-animation";
+import { OrangeCircle, RedCircle, Trees } from "../svg";
+import { initializeAnimation } from "../world-animations";
+import assets from "./assets";
 import world1UnityData from "./world-1-unity.data";
 import styles from "./world-1-unity.styles";
+
+const AnimatableFastImage = Animatable.createAnimatableComponent(FastImage);
 
 interface IState {
     textIndex: 0 | 1;
@@ -85,7 +86,7 @@ class World1Unity extends React.PureComponent<IProps, IState> {
                             <Animatable.View
                                 style={styles.treesWrapper}
                                 useNativeDriver={true}
-                                animation="treesAnimation"
+                                animation="scaleIconAnimation"
                                 duration={12000}
                             >
                                 <Trees />
@@ -116,40 +117,40 @@ class World1Unity extends React.PureComponent<IProps, IState> {
                             duration={12000}
                         />
 
-                        <Animatable.Image
-                            duration={12000}
+                        <AnimatableFastImage
                             animation="imageAnimation"
+                            duration={12000}
                             useNativeDriver={true}
-                            source={require("../../../../../../../../assets/quest-slices/w1s28.png")}
-                            style={{ height: MAP_SLICE_HEIGHT, width: "100%" }}
+                            source={assets[0]}
+                            style={styles.image}
                         />
-                        <Animatable.Image
-                            duration={12000}
+                        <AnimatableFastImage
                             animation="imageAnimation"
+                            duration={12000}
                             useNativeDriver={true}
-                            source={require("../../../../../../../../assets/quest-slices/w1s27.png")}
-                            style={{ height: MAP_SLICE_HEIGHT, width: "100%" }}
+                            source={assets[1]}
+                            style={styles.image}
                         />
-                        <Animatable.Image
-                            duration={12000}
+                        <AnimatableFastImage
                             animation="imageAnimation"
+                            duration={12000}
                             useNativeDriver={true}
-                            source={require("../../../../../../../../assets/quest-slices/w1s26.png")}
-                            style={{ height: MAP_SLICE_HEIGHT, width: "100%" }}
+                            source={assets[2]}
+                            style={styles.image}
                         />
-                        <Animatable.Image
-                            duration={12000}
+                        <AnimatableFastImage
                             animation="imageAnimation"
+                            duration={12000}
                             useNativeDriver={true}
-                            source={require("../../../../../../../../assets/quest-slices/w1s25.png")}
-                            style={{ height: MAP_SLICE_HEIGHT, width: "100%" }}
+                            source={assets[3]}
+                            style={styles.image}
                         />
-                        <Animatable.Image
-                            duration={12000}
+                        <AnimatableFastImage
                             animation="imageAnimation"
+                            duration={12000}
                             useNativeDriver={true}
-                            source={require("../../../../../../../../assets/quest-slices/w1s24.png")}
-                            style={{ height: MAP_SLICE_HEIGHT, width: "100%" }}
+                            source={assets[4]}
+                            style={styles.image}
                         />
                     </Animatable.View>
                     <Animated.View style={[{ opacity: this.textOpacity }, styles.textWrapper]}>

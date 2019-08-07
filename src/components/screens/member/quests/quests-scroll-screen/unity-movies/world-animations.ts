@@ -1,15 +1,19 @@
 import { Style } from "@styles/index";
 import { Platform } from "react-native";
 import * as Animatable from "react-native-animatable";
+import DeviceInfo from "react-native-device-info";
 import { isIphoneX } from "react-native-iphone-x-helper";
+
+const deviceName = DeviceInfo.getDeviceName() || "";
 
 const scaleAsZero = Platform.OS === "ios" ? 0 : 0.1;
 
-const translateValue = isIphoneX()
-    ? 200
-    : Platform.OS === "android"
-    ? Style.SCALE_Y_UP_AND_DOWN(120)
-    : Style.SCALE_Y_UP_AND_DOWN(125);
+const translateValue =
+    Platform.OS === "android"
+        ? Style.SCALE_Y_UP_AND_DOWN(93)
+        : isIphoneX() || deviceName.toLowerCase().includes("iphone x")
+        ? Style.SCALE_UP_AND_DOWN(158)
+        : Style.SCALE_UP_AND_DOWN(98);
 
 export function initializeAnimation() {
     Animatable.initializeRegistryWithDefinitions({
@@ -50,7 +54,7 @@ export function initializeAnimation() {
             0.97: { scaleX: scaleAsZero, scaleY: scaleAsZero, opacity: 0 },
             1: { scaleX: scaleAsZero, scaleY: scaleAsZero }
         },
-        treesAnimation: {
+        scaleIconAnimation: {
             0: { scaleX: scaleAsZero, scaleY: scaleAsZero, opacity: 0 },
             0.12: { scaleX: scaleAsZero, scaleY: scaleAsZero, opacity: 0 },
             0.19: { scaleX: 1, scaleY: 1, opacity: 1 },

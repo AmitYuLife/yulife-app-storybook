@@ -19,8 +19,8 @@ ShallowWrapper {
     "props": Object {
       "children": <G>
         <Circle
-          cx="375"
-          cy="490"
+          cx="100"
+          cy="70"
           fill="#E20177"
           r="8.5"
         />
@@ -28,21 +28,20 @@ ShallowWrapper {
           fill="none"
           stroke="#E20177"
           strokeWidth="3"
-          x1="375"
-          x2="375"
-          y1="490"
-          y2="534.7"
+          x1="100"
+          x2="100"
+          y1="70"
+          y2="114.7"
         />
       </G>,
-      "height": "1334",
+      "height": "200",
       "preserveAspectRatio": "xMidYMid meet",
       "style": Object {
-        "left": 0,
         "position": "absolute",
-        "top": 40,
+        "top": 100,
       },
-      "viewBox": "0 0 750 1334",
-      "width": "750",
+      "viewBox": "0 0 200 200",
+      "width": "200",
     },
     "ref": null,
     "rendered": Object {
@@ -52,8 +51,8 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Circle
-            cx="375"
-            cy="490"
+            cx="100"
+            cy="70"
             fill="#E20177"
             r="8.5"
           />,
@@ -61,10 +60,10 @@ ShallowWrapper {
             fill="none"
             stroke="#E20177"
             strokeWidth="3"
-            x1="375"
-            x2="375"
-            y1="490"
-            y2="534.7"
+            x1="100"
+            x2="100"
+            y1="70"
+            y2="114.7"
           />,
         ],
       },
@@ -75,8 +74,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "cx": "375",
-            "cy": "490",
+            "cx": "100",
+            "cy": "70",
             "fill": "#E20177",
             "r": "8.5",
           },
@@ -92,10 +91,10 @@ ShallowWrapper {
             "fill": "none",
             "stroke": "#E20177",
             "strokeWidth": "3",
-            "x1": "375",
-            "x2": "375",
-            "y1": "490",
-            "y2": "534.7",
+            "x1": "100",
+            "x2": "100",
+            "y1": "70",
+            "y2": "114.7",
           },
           "ref": null,
           "rendered": null,
@@ -114,8 +113,8 @@ ShallowWrapper {
       "props": Object {
         "children": <G>
           <Circle
-            cx="375"
-            cy="490"
+            cx="100"
+            cy="70"
             fill="#E20177"
             r="8.5"
           />
@@ -123,21 +122,20 @@ ShallowWrapper {
             fill="none"
             stroke="#E20177"
             strokeWidth="3"
-            x1="375"
-            x2="375"
-            y1="490"
-            y2="534.7"
+            x1="100"
+            x2="100"
+            y1="70"
+            y2="114.7"
           />
         </G>,
-        "height": "1334",
+        "height": "200",
         "preserveAspectRatio": "xMidYMid meet",
         "style": Object {
-          "left": 0,
           "position": "absolute",
-          "top": 40,
+          "top": 100,
         },
-        "viewBox": "0 0 750 1334",
-        "width": "750",
+        "viewBox": "0 0 200 200",
+        "width": "200",
       },
       "ref": null,
       "rendered": Object {
@@ -147,8 +145,8 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Circle
-              cx="375"
-              cy="490"
+              cx="100"
+              cy="70"
               fill="#E20177"
               r="8.5"
             />,
@@ -156,10 +154,10 @@ ShallowWrapper {
               fill="none"
               stroke="#E20177"
               strokeWidth="3"
-              x1="375"
-              x2="375"
-              y1="490"
-              y2="534.7"
+              x1="100"
+              x2="100"
+              y1="70"
+              y2="114.7"
             />,
           ],
         },
@@ -170,8 +168,8 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "cx": "375",
-              "cy": "490",
+              "cx": "100",
+              "cy": "70",
               "fill": "#E20177",
               "r": "8.5",
             },
@@ -187,10 +185,10 @@ ShallowWrapper {
               "fill": "none",
               "stroke": "#E20177",
               "strokeWidth": "3",
-              "x1": "375",
-              "x2": "375",
-              "y1": "490",
-              "y2": "534.7",
+              "x1": "100",
+              "x2": "100",
+              "y1": "70",
+              "y2": "114.7",
             },
             "ref": null,
             "rendered": null,
