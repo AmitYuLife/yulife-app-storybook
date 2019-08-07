@@ -367,18 +367,6 @@ export interface GetNewConnectionLinkVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: SyncConnections
-// ====================================================
-
-export interface SyncConnections {
-  syncConnections: boolean | null;
-}
-
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL query operation: GetMobileCopy
 // ====================================================
 
@@ -585,18 +573,17 @@ export interface GetMobileCopy_getMobileCopy_screens_pushNotification_turnNotifi
   subheading: string | null;
 }
 
+export interface GetMobileCopy_getMobileCopy_screens_pushNotification {
+  toSettings: GetMobileCopy_getMobileCopy_screens_pushNotification_toSettings | null;
+  fromChallenge: GetMobileCopy_getMobileCopy_screens_pushNotification_fromChallenge | null;
+  turnNotificationOn: GetMobileCopy_getMobileCopy_screens_pushNotification_turnNotificationOn | null;
+}
+
 export interface GetMobileCopy_getMobileCopy_screens_popUp {
   surgeHeading: string | null;
   surgeSubheading: string | null;
   leaderboardHeading: string | null;
   leaderboardSubheading: string | null;
-
-}
-
-export interface GetMobileCopy_getMobileCopy_screens_pushNotification {
-  toSettings: GetMobileCopy_getMobileCopy_screens_pushNotification_toSettings | null;
-  fromChallenge: GetMobileCopy_getMobileCopy_screens_pushNotification_fromChallenge | null;
-  turnNotificationOn: GetMobileCopy_getMobileCopy_screens_pushNotification_turnNotificationOn | null;
 }
 
 export interface GetMobileCopy_getMobileCopy_screens {
