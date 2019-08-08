@@ -168,6 +168,12 @@ export const getMobileCopyGql = gql`
                         subheading
                     }
                 }
+                popUp {
+                    surgeHeading
+                    surgeSubheading
+                    leaderboardHeading
+                    leaderboardSubheading
+                }
             }
         }
     }
