@@ -1,3 +1,4 @@
+import Loading from "@atoms/loading/loading";
 import { COLOURS, NavBar, RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
@@ -73,7 +74,12 @@ export default class RewardsPurchasedScreen extends React.PureComponent<IProps> 
     }
 
     private renderEmpty = () => {
-        const { onLeftTabPress, copy } = this.props;
+        const { onLeftTabPress, loading, copy } = this.props;
+
+        if (loading) {
+            return <Loading />;
+        }
+
         return <PurchasesEmpty onCtaPress={onLeftTabPress} copy={copy.empty} />;
     };
 
