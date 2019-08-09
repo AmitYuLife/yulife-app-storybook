@@ -28,6 +28,20 @@ export default function DailyStepsOnline({
 
     return (
         <View style={styles.dailyStepsOnlineWrapper}>
+            {showCounter ? (
+                <View style={styles.counterWrapper}>
+                    <Counter value={steps} textStyle={textStyle} textAfterValue={counterType} />
+                    {mindfulSeconds ? (
+                        <Text style={textStyle}>{mindfulSeconds ? ` | ${mindfulTotal} mindful mins` : ""}</Text>
+                    ) : null}
+                </View>
+            ) : (
+                <Text style={textStyle}>
+                    {steps} {counterType}
+                    {mindfulSeconds ? ` | ${mindfulTotal} mindful mins` : ""}
+                </Text>
+            )}
+            <Pad height={8} />
             <Text>
                 {showCounter ? (
                     <Counter duration={1200} value={coinsToday} textStyle={flattenStyle} />
@@ -40,23 +54,6 @@ export default function DailyStepsOnline({
                 <Text style={flattenStyle}>{`coin `}</Text>
                 <Text style={flattenStyle}>today</Text>
             </Text>
-            <Pad height={8} />
-            {showCounter ? (
-                <View style={styles.counterWrapper}>
-                    <Counter value={steps} textStyle={textStyle} textAfterValue={counterType} />
-                    {mindfulSeconds ? (
-                        <Text style={textStyle}>{mindfulSeconds ? ` | ${mindfulTotal} mindful mins` : ""}</Text>
-                    ) : null}
-                </View>
-            ) : (
-                <>
-                    <Text style={textStyle}>
-                        {steps} {counterType}
-                        {mindfulSeconds ? ` | ${mindfulTotal} mindful mins` : ""}
-                    </Text>
-                </>
-            )}
-
             <Pad height={22} />
             {!onCtaPress ? null : <Button onPress={onCtaPress} type={Button.Types.PRIMARY_MEDIUM} label="earn more" />}
         </View>

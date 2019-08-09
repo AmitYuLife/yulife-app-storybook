@@ -24,6 +24,15 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <YuText>
+          123456
+           
+          steps
+          
+        </YuText>,
+        <Pad
+          height={8}
+        />,
+        <YuText>
           <YuText
             style={
               Object {
@@ -63,17 +72,6 @@ ShallowWrapper {
           </YuText>
         </YuText>,
         <Pad
-          height={8}
-        />,
-        <React.Fragment>
-          <YuText>
-            123456
-             
-            steps
-            
-          </YuText>
-        </React.Fragment>,
-        <Pad
           height={22}
         />,
         <Button
@@ -89,6 +87,39 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            123456,
+            " ",
+            "steps",
+            "",
+          ],
+          "style": undefined,
+        },
+        "ref": null,
+        "rendered": Array [
+          123456,
+          " ",
+          "steps",
+          "",
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "height": 8,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
       Object {
         "instance": null,
         "key": undefined,
@@ -201,54 +232,6 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 8,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "children": <YuText>
-            123456
-             
-            steps
-            
-          </YuText>,
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": Array [
-              123456,
-              " ",
-              "steps",
-              "",
-            ],
-            "style": undefined,
-          },
-          "ref": null,
-          "rendered": Array [
-            123456,
-            " ",
-            "steps",
-            "",
-          ],
-          "type": [Function],
-        },
-        "type": Symbol(react.fragment),
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
           "height": 22,
         },
         "ref": null,
@@ -278,6 +261,15 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
+          <YuText>
+            123456
+             
+            steps
+            
+          </YuText>,
+          <Pad
+            height={8}
+          />,
           <YuText>
             <YuText
               style={
@@ -318,17 +310,6 @@ ShallowWrapper {
             </YuText>
           </YuText>,
           <Pad
-            height={8}
-          />,
-          <React.Fragment>
-            <YuText>
-              123456
-               
-              steps
-              
-            </YuText>
-          </React.Fragment>,
-          <Pad
             height={22}
           />,
           <Button
@@ -344,6 +325,39 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              123456,
+              " ",
+              "steps",
+              "",
+            ],
+            "style": undefined,
+          },
+          "ref": null,
+          "rendered": Array [
+            123456,
+            " ",
+            "steps",
+            "",
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "height": 8,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
         Object {
           "instance": null,
           "key": undefined,
@@ -450,54 +464,6 @@ ShallowWrapper {
             },
           ],
           "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "height": 8,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": <YuText>
-              123456
-               
-              steps
-              
-            </YuText>,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": Array [
-                123456,
-                " ",
-                "steps",
-                "",
-              ],
-              "style": undefined,
-            },
-            "ref": null,
-            "rendered": Array [
-              123456,
-              " ",
-              "steps",
-              "",
-            ],
-            "type": [Function],
-          },
-          "type": Symbol(react.fragment),
         },
         Object {
           "instance": null,

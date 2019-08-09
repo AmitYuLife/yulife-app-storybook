@@ -24,8 +24,9 @@ export default class AppLoadingContainer extends PureComponent<IProps, IState> {
     constructor(props: IProps) {
         super(props);
 
-        (Text as any).defaultProps = (Text as any).defaultProps || {};
-        (Text as any).defaultProps.allowFontScaling = false;
+        if (Platform.OS === "ios") {
+            (Text as any).defaultProps = { ...((Text as any).defaultProps || {}), allowFontScaling: false };
+        }
     }
 
     public async componentWillMount() {
