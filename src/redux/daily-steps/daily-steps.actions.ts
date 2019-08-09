@@ -4,7 +4,6 @@ import { SyncAction } from "../_core/types";
 export const START_DAILY_STEPS = "START_DAILY_STEPS";
 export const UPDATE_DAILY_STEPS_SUCCESS = "UPDATE_DAILY_STEPS_SUCCESS";
 export const UPDATE_DAILY_STEPS_FAILED = "UPDATE_DAILY_STEPS_FAILED";
-export const GET_HISTORICAL_DATA = "GET_HISTORICAL_DATA";
 export const STEPS_SINCE_LAST_UPDATED_SUCCESS = "STEPS_SINCE_LAST_UPDATED_SUCCESS";
 
 export const startDailySteps = (): SyncAction => ({

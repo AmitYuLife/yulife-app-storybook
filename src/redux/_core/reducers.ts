@@ -13,6 +13,10 @@ import notificationsReducer, {
     initialState as initialNotificationsState,
     INotificationsStore
 } from "../notifications/notifications.reducer";
+import onboardingReducer, {
+    initialState as initialOnboardingState,
+    IOnboardingStore
+} from "../onboarding/onboarding.reducer";
 import pedometerReducer, {
     initialState as initialPedometerState,
     IPedometerStore
@@ -28,6 +32,7 @@ export interface IReduxState {
     device: IDeviceStore;
     levels: ILevelsStore;
     notifications: INotificationsStore;
+    onboarding: IOnboardingStore;
     pedometer: IPedometerStore;
     streaks: IStreaksStore;
     theme: IThemeStore;
@@ -42,6 +47,7 @@ export const initialState: IReduxState = {
     device: initialDeviceState,
     levels: initialLevelsState,
     notifications: initialNotificationsState,
+    onboarding: initialOnboardingState,
     pedometer: initialPedometerState,
     streaks: initialStreaksState,
     theme: initialThemeState,
@@ -56,6 +62,7 @@ const combinedReducers = combineReducers({
     device: deviceReducer,
     levels: levelsReducer,
     notifications: notificationsReducer,
+    onboarding: onboardingReducer,
     pedometer: pedometerReducer,
     streaks: streaksReducer,
     theme: themeReducer,

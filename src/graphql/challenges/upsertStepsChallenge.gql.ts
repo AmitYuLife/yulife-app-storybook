@@ -17,9 +17,11 @@ export const upsertPassiveChallengeGql = gql`
     }
 `;
 
-export default (payload: ChallengePayload[]) =>
+const upsertPassiveChallenge = (payload: ChallengePayload[]) =>
     client().mutate<UpsertPassiveChallenge, UpsertPassiveChallengeVariables>({
         mutation: upsertPassiveChallengeGql,
         variables: { payload },
         errorPolicy: "ignore"
     });
+
+export default upsertPassiveChallenge;

@@ -56,9 +56,9 @@ export interface IUserStore {
 
 export const initialState: IUserStore = {
     archived: false,
-    connections: [],
     consent: {},
     features: {},
+    connections: [],
     leaderboards: [],
     popupVisibility: {
         leaderboard: false

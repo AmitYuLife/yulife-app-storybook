@@ -18,8 +18,10 @@ export type AddHistoricalStepsMutationFunction = MutationFn<AddHistoricalSteps, 
 
 export class AddHistoricalStepsMutation extends Mutation<AddHistoricalSteps, AddHistoricalStepsVariables> {}
 
-export default (payload: ChallengePayload[], shouldAward: boolean = true) =>
+const addHistoricalSteps = (payload: ChallengePayload[], shouldAward: boolean = true) =>
     client().mutate<AddHistoricalSteps, AddHistoricalStepsVariables>({
         mutation: addHistoricalStepsGql,
         variables: { payload, shouldAward }
     });
+
+export default addHistoricalSteps;

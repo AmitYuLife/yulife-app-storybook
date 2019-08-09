@@ -1,5 +1,6 @@
 import { GetActivityHistoryQuery } from "@graphql/user";
 import { querySteps } from "@services/fitkit/fitkit.helpers";
+import moment from "moment";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
@@ -72,7 +73,10 @@ class ActivityHistoryContainer extends PureComponent<Props> {
         Logger.logEvent("activity_history_updated");
 
         if (features.canUpdateActivityHistory) {
-            const { results, error } = await querySteps(30, 1, features.disableUserEntries);
+            const start = moment().subtract(30, "days");
+            const end = moment().subtract(1, "days");
+
+            const { results, error } = await querySteps(start, end, features.disableUserEntries);
 
             if (results && !!results.length) {
                 try {

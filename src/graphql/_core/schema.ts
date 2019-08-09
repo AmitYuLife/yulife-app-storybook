@@ -1123,6 +1123,7 @@ export interface GetCurrentUser_getCurrentUser {
   id: string | null;
   archived: boolean | null;
   onboardingDate: string | null;
+  redeemedOnboarding: boolean | null;
   membershipType: string | null;
   challengesDoneToday: number | null;
   connections: (GetCurrentUser_getCurrentUser_connections | null)[] | null;
