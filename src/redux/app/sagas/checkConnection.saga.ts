@@ -1,8 +1,10 @@
 import getSession from "@graphql/user/getSession.gql";
+import { ROUTES } from "@navigation/constants";
 import { setAuthenticatedRoot, setOfflineRoot } from "@navigation/root";
 import { getToken } from "@services/storage";
 import { delay } from "redux-saga";
-import { call, race } from "redux-saga/effects";
+import { call, race, select } from "redux-saga/effects";
+import { getRouteState } from "../app.selectors";
 
 export default function* checkConnectionSaga() {
     const token = yield call(getToken);
@@ -14,10 +16,19 @@ export default function* checkConnectionSaga() {
                 token: call(getSession)
             });
 
+            const currentRoute = yield select(getRouteState);
+            const isCurrentlyOffline = currentRoute === ROUTES.offline;
+
             if (response.timeout) {
-                yield call(setOfflineRoot);
+                // there is no need to call `setRoot` if it is already offline
+                if (!isCurrentlyOffline) {
+                    yield call(setOfflineRoot);
+                }
             } else {
-                yield call(setAuthenticatedRoot);
+                // there is no need to call `setRoot` if it is already online
+                if (isCurrentlyOffline) {
+                    yield call(setAuthenticatedRoot);
+                }
             }
         } catch {
             yield call(setOfflineRoot);

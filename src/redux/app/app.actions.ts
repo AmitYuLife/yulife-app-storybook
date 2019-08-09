@@ -1,5 +1,6 @@
 import { SyncAction } from "../_core/types";
 
+export const SET_MAIN_ROOT = "SET_MAIN_ROOT";
 export const AUTHENTICATED = "AUTHENTICATED";
 export const UNAUTHENTICATED = "UNAUTHENTICATED";
 export const SHOW_MAINTENANCE = "SHOW_MAINTENANCE";
@@ -29,4 +30,9 @@ export const setAuthenticated = () => ({
 
 export const setUnauthenticated = () => ({
     type: UNAUTHENTICATED
+});
+
+export const setMainRoot = (url: string) => ({
+    payload: url,
+    type: SET_MAIN_ROOT
 });
