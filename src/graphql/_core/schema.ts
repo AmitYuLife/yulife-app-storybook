@@ -20,6 +20,7 @@ export interface AddHistoricalSteps {
 export interface AddHistoricalStepsVariables {
   payload?: (ChallengePayload | null)[] | null;
   shouldAward?: boolean | null;
+  refreshWearables?: boolean | null;
 }
 
 

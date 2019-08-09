@@ -36,7 +36,7 @@ export default function* sendStepsSinceLastUpdatedSaga() {
             if (results.length > 0) {
                 while (!isUpdated) {
                     try {
-                        const res = yield call(addHistoricalSteps, results, true);
+                        const res = yield call(addHistoricalSteps, results, true, true);
                         const response: HistoricalSteps = pathOr<HistoricalSteps>(res, "data.addHistoricalSteps", {
                             endDateTime: "",
                             startDateTime: "",
