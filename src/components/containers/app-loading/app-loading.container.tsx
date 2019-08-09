@@ -1,9 +1,6 @@
-import handleDeepLink from "@navigation/handleDeepLink";
-import { setAuthenticatedRoot, setUnauthenticatedRoot } from "@navigation/root";
 import { persistor, store } from "@redux/_core/store";
-import { AUTHENTICATED, UNAUTHENTICATED } from "@redux/app/app.actions";
+import { setMainRoot } from "@redux/app/app.actions";
 import { SplashScreen } from "@screens/index";
-import { getToken } from "@services/storage";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Linking, Platform, StyleSheet, View } from "react-native";
@@ -16,8 +13,7 @@ interface IProps {
 const initialState = {
     renderPersistor: false,
     animationEnded: false,
-    url: "",
-    hasToken: false
+    url: ""
 };
 
 type IState = typeof initialState;
@@ -27,10 +23,6 @@ export default class AppLoadingContainer extends PureComponent<IProps, IState> {
     private interval: NodeJS.Timer;
 
     public async componentWillMount() {
-        const token = await getToken();
-
-        this.setState({ hasToken: !!token });
-
         if (Platform.OS === "android") {
             try {
                 const url = await Linking.getInitialURL();
@@ -94,16 +86,8 @@ export default class AppLoadingContainer extends PureComponent<IProps, IState> {
     };
 
     private handleInitialAuhtorization = async () => {
-        const { hasToken, url } = this.state;
+        const { url } = this.state;
 
-        if (hasToken) {
-            await setAuthenticatedRoot(() => store.dispatch({ type: AUTHENTICATED }));
-        } else {
-            await setUnauthenticatedRoot(() => store.dispatch({ type: UNAUTHENTICATED }));
-        }
-
-        if (!!url) {
-            await handleDeepLink(url, hasToken);
-        }
+        store.dispatch(setMainRoot(url));
     };
 }

@@ -200,7 +200,7 @@ export async function setAuthenticatedRoot(dispatchAuthenticatedEvent?: () => vo
     }
 }
 
-export async function setUnauthenticatedRoot(passProps: any = {}, dispatchUnauthenticatedEvent?: () => void) {
+export async function setUnauthenticatedRoot(passProps: any = {}) {
     await Navigation.setRoot({
         root: {
             stack: {
@@ -216,10 +216,6 @@ export async function setUnauthenticatedRoot(passProps: any = {}, dispatchUnauth
             }
         }
     });
-
-    if (dispatchUnauthenticatedEvent) {
-        dispatchUnauthenticatedEvent();
-    }
 }
 
 export async function setNoAccessRoot() {

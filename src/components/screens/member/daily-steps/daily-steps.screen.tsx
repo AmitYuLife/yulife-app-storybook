@@ -31,7 +31,6 @@ interface IProps extends IConnectedScreenProps {
     hasPermission: boolean;
     isDoneToday?: boolean;
     isLoading: boolean;
-    isOnline: boolean;
     maxStreak?: number;
     onAuthoriseFitKitPress: () => void;
     onCoinPress: () => void;
@@ -58,7 +57,6 @@ export default function DailyStepsScreen({
     hasPermission,
     isDoneToday,
     isLoading,
-    isOnline,
     labels,
     maxStreak,
     onAuthoriseFitKitPress,
@@ -81,8 +79,8 @@ export default function DailyStepsScreen({
     return (
         <Animatable.View duration={750} animation="fadeIn" style={{ flex: 1 }}>
             <CentredScreen
-                footerImage={!isOnline || !hasPermission ? centredScreen.offline.image : centredScreen.online.image}
-                style={!isOnline || !hasPermission ? centredScreen.offline.style : centredScreen.online.style}
+                footerImage={!hasPermission ? centredScreen.offline.image : centredScreen.online.image}
+                style={!hasPermission ? centredScreen.offline.style : centredScreen.online.style}
                 testID={DAILY_STEPS_SCREEN}
             >
                 <TopBar coins={totalCoins} type={topBarType} onPressLeftIcon={onLeftMenuPress} />
@@ -92,7 +90,7 @@ export default function DailyStepsScreen({
                     <SurgePopup
                         hasWhiteGlow={hasWhiteGlow}
                         onCoinPress={onCoinPress}
-                        isOnline={isOnline}
+                        isOnline={true}
                         hasPermission={hasPermission}
                         isLoading={true}
                         copy={copy.popUpCopy}
@@ -100,11 +98,7 @@ export default function DailyStepsScreen({
                     />
                 ) : (
                     <TouchableOpacityWithState onPress={onCoinPress} activeOpacity={1}>
-                        <YuCoin
-                            hasWhiteGlow={hasWhiteGlow}
-                            isLoading={isLoading}
-                            isGrayScale={!hasPermission || (!isOnline && !isLoading)}
-                        />
+                        <YuCoin hasWhiteGlow={hasWhiteGlow} isLoading={isLoading} isGrayScale={!hasPermission} />
                     </TouchableOpacityWithState>
                 )}
                 {isLoading ? (
@@ -126,7 +120,7 @@ export default function DailyStepsScreen({
                 {!displayStreak ? null : (
                     <Streak
                         isFinished={isDoneToday}
-                        isOnline={isOnline}
+                        isOnline={true}
                         onPress={onStreakPress}
                         currentStreak={currentStreak}
                         maxStreak={maxStreak}
@@ -145,7 +139,7 @@ export default function DailyStepsScreen({
                     <View style={styles.navBarWrapper}>
                         <NavBar
                             activeIndex={0}
-                            colour={!fitKitAvailable || !hasPermission || !isOnline ? navBar.offline : navBar.online}
+                            colour={!fitKitAvailable || !hasPermission ? navBar.offline : navBar.online}
                             hasNotification={hasNotification}
                             labels={labels}
                         />

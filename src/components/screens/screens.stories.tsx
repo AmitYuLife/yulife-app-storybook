@@ -138,7 +138,6 @@ storiesOf("Screens", module)
             hasPermission={boolean("FitKit Permission?", true, "DailySteps")}
             isDoneToday={boolean("Done Today?", false, "DailySteps")}
             isLoading={boolean("Loading Daily Steps?", false, "DailySteps")}
-            isOnline={boolean("Online?", true, "DailySteps")}
             maxStreak={4}
             onAuthoriseFitKitPress={action("on authorise fitkit press")}
             onCoinPress={action("on coin press")}

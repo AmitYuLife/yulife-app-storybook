@@ -14,7 +14,6 @@ import GetCurrentWorld, {
 import { MODALS, ROUTES } from "../../../../navigation/constants";
 import { IMainTabsProps, labels, onLeftMenuPress } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
-import { getOfflineState } from "../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import {
@@ -137,7 +136,6 @@ class QuestsContainer extends React.Component<Props, IState> {
             nextState.unity !== this.state.unity ||
             nextProps.currentLevel !== this.props.currentLevel ||
             nextProps.nextLevelAvailableAt !== this.props.nextLevelAvailableAt ||
-            nextProps.offline !== this.props.offline ||
             nextProps.totalCoins !== this.props.totalCoins ||
             nextProps.activeLevel.levelSlotId !== this.props.activeLevel.levelSlotId ||
             nextProps.activeLevel.isLoading !== this.props.activeLevel.isLoading ||
@@ -150,24 +148,12 @@ class QuestsContainer extends React.Component<Props, IState> {
     }
 
     public render() {
-        const { offline, totalCoins, theme } = this.props;
+        const { totalCoins, theme } = this.props;
 
         if (Style.isIPad()) {
             return (
                 <QuestsScreenOffline
                     fitkitAvailable={false}
-                    totalCoins={totalCoins}
-                    labels={labels}
-                    onLeftMenuPress={onLeftMenuPress}
-                    theme={theme.questsOffline}
-                />
-            );
-        }
-
-        if (offline) {
-            return (
-                <QuestsScreenOffline
-                    fitkitAvailable={true}
                     totalCoins={totalCoins}
                     labels={labels}
                     onLeftMenuPress={onLeftMenuPress}
@@ -484,7 +470,6 @@ const mapStateToProps = (state: IReduxState) => ({
     currentLevel: getCurrentLevel(state),
     features: getUserFeatures(state),
     nextLevelAvailableAt: getNextLevelAvailableAt(state),
-    offline: getOfflineState(state),
     totalCoins: getTotalCoins(state),
     theme: {
         questsOffline: getQuestsOfflineTheme(state)

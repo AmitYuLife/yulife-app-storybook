@@ -7,7 +7,6 @@ import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
-import { getOfflineState } from "../../../../redux/app/app.selectors";
 import { getDailyEarnedCoins, getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { startDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
@@ -67,7 +66,6 @@ class DailyStepsContainer extends React.Component<Props> {
             nextProps.hasNotification !== this.props.hasNotification ||
             nextProps.isFetching !== this.props.isFetching ||
             nextProps.lastUpdated !== this.props.lastUpdated ||
-            nextProps.offline !== this.props.offline ||
             nextProps.popupVisibility.leaderboard !== this.props.popupVisibility.leaderboard
         );
     }
@@ -84,7 +82,6 @@ class DailyStepsContainer extends React.Component<Props> {
                         features = {},
                         hasNotification,
                         isFetching,
-                        offline,
                         streaks,
                         theme,
                         totalCoins,
@@ -106,7 +103,6 @@ class DailyStepsContainer extends React.Component<Props> {
                             hasPermission={authorised}
                             isDoneToday={streaks.isDoneToday}
                             isLoading={isFetching || loading}
-                            isOnline={!offline}
                             labels={labels}
                             maxStreak={streaks.maxStreak}
                             onAuthoriseFitKitPress={() => authorise(FitKitPermissions)}
@@ -192,7 +188,6 @@ const mapStateToProps = (state: IReduxState) => ({
     hasNotification: getHasNotification(state),
     isFetching: getDailyStepsIsFetching(state),
     lastUpdated: getLastUpdated(state),
-    offline: getOfflineState(state),
     streaks: getStreaks(state),
     theme: getDailyStepsTheme(state),
     totalCoins: getTotalCoins(state),

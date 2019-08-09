@@ -14,7 +14,6 @@ const defaultProps = {
     hasPermission: true,
     isDoneToday: false,
     isLoading: false,
-    isOnline: true,
     labels: [] as ILabel[],
     lastUpdate: "thing",
     maxStreak: 4,
@@ -139,29 +138,6 @@ describe("DailyStepsScreen", () => {
             <DailyStepsScreen
                 {...defaultProps}
                 fitKitAvailable={false}
-                copy={{
-                    copy: {
-                        permission: "",
-                        permissionCta: ""
-                    },
-                    popUpCopy: {
-                        leaderboardHeading: "",
-                        leaderboardSubheading: "",
-                        surgeHeading: "",
-                        surgeSubheading: ""
-                    }
-                }}
-            />
-        );
-
-        expect(actual).toMatchSnapshot();
-    });
-
-    it("should render offline screen", () => {
-        const actual = shallow(
-            <DailyStepsScreen
-                {...defaultProps}
-                isOnline={false}
                 copy={{
                     copy: {
                         permission: "",
