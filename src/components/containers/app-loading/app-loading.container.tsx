@@ -3,7 +3,7 @@ import { setMainRoot } from "@redux/app/app.actions";
 import { SplashScreen } from "@screens/index";
 import * as React from "react";
 import { PureComponent } from "react";
-import { Linking, Platform, StyleSheet, View } from "react-native";
+import { Linking, Platform, StyleSheet, Text, View } from "react-native";
 import { PersistGate } from "redux-persist/integration/react";
 
 interface IProps {
@@ -15,12 +15,18 @@ const initialState = {
     animationEnded: false,
     url: ""
 };
-
 type IState = typeof initialState;
 
 export default class AppLoadingContainer extends PureComponent<IProps, IState> {
     public state = initialState;
     private interval: NodeJS.Timer;
+
+    constructor(props: IProps) {
+        super(props);
+
+        (Text as any).defaultProps = (Text as any).defaultProps || {};
+        (Text as any).defaultProps.allowFontScaling = false;
+    }
 
     public async componentWillMount() {
         if (Platform.OS === "android") {
