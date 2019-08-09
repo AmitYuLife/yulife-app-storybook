@@ -57,7 +57,15 @@ class WegiftRewardsConfirmed extends React.PureComponent<Props, IState> {
                 <Pad height={10} />
                 <ScrollView style={styles.wrapper} contentContainerStyle={styles.contentWrapper}>
                     <View style={styles.imageWrapper}>
-                        <Image onLoad={this.handleLoadImage} style={styles.image} source={{ uri: imageUrl }} />
+                        <Image
+                            onLoad={this.handleLoadImage}
+                            style={styles.image}
+                            source={
+                                imageUrl
+                                    ? { uri: imageUrl }
+                                    : require("../../../../../../assets/rewards-confirmed/delivered.png")
+                            }
+                        />
                         <ActivityIndicator animating={!hasLoaded} style={styles.activityIndicator} />
                     </View>
                     <View style={styles.rewardNameWrapper}>

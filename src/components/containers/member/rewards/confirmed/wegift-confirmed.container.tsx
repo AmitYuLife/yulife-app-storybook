@@ -31,16 +31,7 @@ class WegiftRewardConfirmedContainer extends Component<Props, IState> {
     public render() {
         const {
             totalCoins,
-            purchase: {
-                name,
-                reward: {
-                    redeem_steps: { steps },
-                    card_image_url,
-                    description
-                },
-                createdAt,
-                expiry_date
-            }
+            purchase: { name, reward, createdAt, expiry_date }
         } = this.props;
         const { isAccessingUrl } = this.state;
         const purchaseDate = moment(new Date(createdAt).toISOString()).format("DD MMM YYYY");
@@ -49,11 +40,11 @@ class WegiftRewardConfirmedContainer extends Component<Props, IState> {
         return (
             <WegiftRewardConfirmedScreen
                 rewardName={name}
-                redeemInstructions={steps}
-                description={description}
+                redeemInstructions={(reward && reward.redeem_steps.steps) || []}
+                description={(reward && reward.description) || ""}
                 purchaseDate={purchaseDate}
                 validDate={validDate}
-                imageUrl={card_image_url}
+                imageUrl={(reward && reward.card_image_url) || ""}
                 coins={totalCoins}
                 onPressCancel={this.goToRewards}
                 onPressConfirm={this.linkToUrl}
