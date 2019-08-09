@@ -118,7 +118,7 @@ function getWorldStyle(currentLevel: number) {
                     StyleSheet.absoluteFillObject,
                     { backgroundColor: "rgb(255, 242, 142)" }
                 ]),
-                historyLinkColor: "rgba(255, 255, 255, 1)",
+                historyLinkColor: "rgba(226, 1, 119, 1)",
                 navBarType: NavBar.Colours.FOREST,
                 topBarType: "default"
             };
