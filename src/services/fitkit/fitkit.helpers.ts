@@ -1,5 +1,5 @@
 import RNFitKit, { FitKitTypes, PedometerResponse, SampleQueryResult } from "@services/fitkit/fitkit.service";
-import moment from "moment";
+import moment, { Moment } from "moment";
 import { ChallengePayload } from "../../graphql/_core/schema";
 import Logger from "../logging/logger";
 import { DATE_FORMAT_WITH_TZ } from "../utils";
@@ -41,24 +41,13 @@ export const queryMindfulSessions = async (
 };
 
 export const querySteps = async (
-    start: number | string,
-    end: number,
+    start: Moment,
+    end: Moment,
     disableUserEntries = true
 ): Promise<{ results: ChallengePayload[]; error: string }> => {
     try {
-        const startTime =
-            typeof start === "number"
-                ? moment()
-                      .subtract(start, "days")
-                      .startOf("day")
-                      .format(DATE_FORMAT_WITH_TZ)
-                : moment(start)
-                      .startOf("day")
-                      .format(DATE_FORMAT_WITH_TZ);
-        const endTime = moment()
-            .subtract(end, "days")
-            .endOf("day")
-            .format(DATE_FORMAT_WITH_TZ);
+        const startTime = start.startOf("day").format(DATE_FORMAT_WITH_TZ);
+        const endTime = end.endOf("day").format(DATE_FORMAT_WITH_TZ);
         const results = await RNFitKit.aggregateQuery({
             aggregateBy: {
                 bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
@@ -79,4 +68,11 @@ export const querySteps = async (
         Logger.logMixpanelEvent("raw_steps_query_error", { error: e.message });
         return { results: [], error: e.message };
     }
+};
+
+export const queryHistoricalData = async (onboardingDate: Moment) => {
+    const start = onboardingDate.clone().subtract(60, "days");
+    const end = onboardingDate.clone().subtract(1, "days");
+
+    return querySteps(start, end, false);
 };

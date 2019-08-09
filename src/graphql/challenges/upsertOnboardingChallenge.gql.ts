@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import { Mutation, MutationFn, MutationResult, MutationState } from "react-apollo";
+import client from "../_core/client";
 import { UpsertOnboardingChallenge } from "../_core/schema";
 
 export const upsertOnboardingChallengeGql = gql`
@@ -12,10 +12,7 @@ export const upsertOnboardingChallengeGql = gql`
     }
 `;
 
-export type UpsertOnboardingChallengeStateType = MutationState<UpsertOnboardingChallenge>;
+const upsertOnboardingChallenge = () =>
+    client().mutate<UpsertOnboardingChallenge>({ mutation: upsertOnboardingChallengeGql });
 
-export type UpsertOnboardingChallengeMutationType = MutationFn<UpsertOnboardingChallenge>;
-
-export type UpsertOnboardingChallengeResultType = MutationResult<UpsertOnboardingChallenge>;
-
-export default class UpsertOnboardingChallengeMutation extends Mutation<UpsertOnboardingChallenge> {}
+export default upsertOnboardingChallenge;

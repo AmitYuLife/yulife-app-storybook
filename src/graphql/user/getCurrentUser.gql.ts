@@ -12,6 +12,7 @@ export const getCurrentUserGql = gql`
             id
             archived
             onboardingDate
+            redeemedOnboarding
             membershipType
             challengesDoneToday
             connections {

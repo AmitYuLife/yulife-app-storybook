@@ -7,6 +7,7 @@ import deviceSagas from "../device/sagas";
 import levelsSagas from "../levels/sagas";
 import loggingSagas from "../logging/logging.sagas";
 import notificationsSagas from "../notifications/sagas";
+import onboardingSagas from "../onboarding/sagas";
 import pedometerSagas from "../pedometer/sagas";
 import streaksSagas from "../streaks/sagas";
 import tokenSagas from "../token/token.sagas";
@@ -22,6 +23,7 @@ export default function* allSagas() {
         ...levelsSagas,
         ...loggingSagas,
         ...notificationsSagas,
+        ...onboardingSagas,
         ...pedometerSagas,
         ...streaksSagas,
         ...tokenSagas,

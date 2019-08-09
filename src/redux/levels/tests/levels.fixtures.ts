@@ -45,7 +45,8 @@ export const currentUser: GetCurrentUser = {
         activeChallenge: null,
         activeStreak: null,
         todayActivity: null,
-        leaderboards: null
+        leaderboards: null,
+        redeemedOnboarding: true
     }
 };
 

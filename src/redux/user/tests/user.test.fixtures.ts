@@ -98,7 +98,8 @@ export const currentUserFixture: GetCurrentUser = {
         passiveChallenge: null,
         todayActivity: null,
         userFeatures: [],
-        onboardingDate: null
+        onboardingDate: null,
+        redeemedOnboarding: true
     }
 };
 

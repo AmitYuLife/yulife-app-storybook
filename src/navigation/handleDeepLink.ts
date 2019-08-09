@@ -1,5 +1,5 @@
 import { store } from "@redux/_core/store";
-import { GET_HISTORICAL_DATA } from "@redux/daily-steps/daily-steps.actions";
+import { GET_HISTORICAL_DATA } from "@redux/onboarding/onboarding.actions";
 import { getQueryStringObject } from "@services/utils";
 import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";

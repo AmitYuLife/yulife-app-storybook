@@ -1,27 +1,13 @@
-import { querySteps } from "@services/fitkit/fitkit.helpers";
 import * as React from "react";
 import { PureComponent } from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { GetMobileCopy_getMobileCopy_screens_signupReward as SignUpRewardCopy } from "../../../../graphql/_core/schema";
-import { AddHistoricalStepsMutationFunction } from "../../../../graphql/challenges/addHistoricalSteps.gql";
-import {
-    addHistoricalStepsGql,
-    AddHistoricalStepsMutation
-} from "../../../../graphql/challenges/addHistoricalSteps.gql";
-import UpsertOnboardingChallengeMutation, {
-    upsertOnboardingChallengeGql,
-    UpsertOnboardingChallengeMutationType,
-    UpsertOnboardingChallengeStateType
-} from "../../../../graphql/challenges/upsertOnboardingChallenge.gql";
 import { setAuthenticatedRoot } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { setAuthenticated } from "../../../../redux/app/app.actions";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
-import { getUserStart } from "../../../../redux/user/user.actions";
-import Logger from "../../../../services/logging/logger";
-import { Loading } from "../../../atoms";
+import { getIsOnboarding, getOnboardingReward } from "../../../../redux/onboarding/onboarding.selectors";
 import { SignUpRewardScreen } from "../../../screens";
 
 // TODO find where these props actually come from in RNN types
@@ -32,29 +18,18 @@ interface IProps {
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
-interface IState {
-    isLoading: boolean;
-}
+type Props = IProps & ConnectedState & ConnectedDispatch;
 
-interface IChildProps extends UpsertOnboardingChallengeStateType, ConnectedState, ConnectedDispatch, IProps {
-    upsertOnboardingChallenge: UpsertOnboardingChallengeMutationType;
-}
-
-class SignUpRewardContainerChild extends PureComponent<IChildProps, IState> {
-    public state = {
-        isLoading: false
-    };
+class SignUpRewardContainer extends PureComponent<Props> {
     private backHandler: NativeEventSubscription;
 
-    constructor(props: IChildProps) {
+    constructor(props: Props) {
         super(props);
         Navigation.events().bindComponent(this);
     }
 
     public componentDidAppear() {
         this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => true);
-        this.props.upsertOnboardingChallenge();
-        this.props.getUserStart();
     }
 
     public componentDidDisappear() {
@@ -62,76 +37,30 @@ class SignUpRewardContainerChild extends PureComponent<IChildProps, IState> {
     }
 
     public render() {
-        const { isLoading } = this.state;
-        const { loading, data, error, copy } = this.props;
-
-        // TODO: handle errors
-        if (error) {
-            return null;
-        }
-
-        if (!data || !data.upsertPassiveChallenge) {
-            return <Loading />;
-        }
+        const { copy, isLoading, yucoinAwarded } = this.props;
 
         return (
-            <AddHistoricalStepsMutation mutation={addHistoricalStepsGql}>
-                {(addHistoricalSteps) => (
-                    <SignUpRewardScreen
-                        isLoading={loading || isLoading}
-                        onCollectPress={this.onCollect(addHistoricalSteps)}
-                        reward={data.upsertPassiveChallenge.challenge.yuCoinAwarded}
-                        copy={copy}
-                    />
-                )}
-            </AddHistoricalStepsMutation>
+            <SignUpRewardScreen
+                isLoading={isLoading}
+                onCollectPress={this.onCollect}
+                reward={yucoinAwarded}
+                copy={copy}
+            />
         );
     }
 
-    private onCollect = (addHistoricalSteps: AddHistoricalStepsMutationFunction) => async () => {
-        try {
-            this.setState({
-                isLoading: true
-            });
-            const { results: payload } = await querySteps(60, 1, false);
-
-            if (payload.length > 0) {
-                await addHistoricalSteps({
-                    variables: { payload, shouldAward: false }
-                });
-            }
-        } catch (e) {
-            Logger.logIntercomEvent("historical_steps_sync_failed", { message: e.message });
-        }
-
-        this.setState({
-            isLoading: false
-        });
-
+    private onCollect = async () => {
         await setAuthenticatedRoot(this.props.setAuthenticated);
     };
 }
 
-const SignUpRewardContainer = (props: IProps & ConnectedState & ConnectedDispatch) => (
-    <UpsertOnboardingChallengeMutation mutation={upsertOnboardingChallengeGql}>
-        {(upsertOnboardingChallenge, args) => {
-            return (
-                <SignUpRewardContainerChild
-                    upsertOnboardingChallenge={upsertOnboardingChallenge}
-                    {...props}
-                    {...args}
-                />
-            );
-        }}
-    </UpsertOnboardingChallengeMutation>
-);
-
 const mapStateToProps = (state: IReduxState) => ({
-    copy: getCopy(state, "signupReward") as SignUpRewardCopy
+    copy: getCopy(state, "signupReward"),
+    yucoinAwarded: getOnboardingReward(state),
+    isLoading: getIsOnboarding(state)
 });
 
 const mapDispatchToProps = {
-    getUserStart,
     setAuthenticated
 };
 
