@@ -69,11 +69,7 @@ ShallowWrapper {
           >
             <Image
               onLoad={[Function]}
-              source={
-                Object {
-                  "uri": "",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 330,
@@ -280,11 +276,7 @@ ShallowWrapper {
             >
               <Image
                 onLoad={[Function]}
-                source={
-                  Object {
-                    "uri": "",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 330,
@@ -460,11 +452,7 @@ ShallowWrapper {
               "children": Array [
                 <Image
                   onLoad={[Function]}
-                  source={
-                    Object {
-                      "uri": "",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 330,
@@ -503,9 +491,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "onLoad": [Function],
-                  "source": Object {
-                    "uri": "",
-                  },
+                  "source": 1,
                   "style": Object {
                     "height": 330,
                     "width": 530,
@@ -914,11 +900,7 @@ ShallowWrapper {
             >
               <Image
                 onLoad={[Function]}
-                source={
-                  Object {
-                    "uri": "",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 330,
@@ -1125,11 +1107,7 @@ ShallowWrapper {
               >
                 <Image
                   onLoad={[Function]}
-                  source={
-                    Object {
-                      "uri": "",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 330,
@@ -1305,11 +1283,7 @@ ShallowWrapper {
                 "children": Array [
                   <Image
                     onLoad={[Function]}
-                    source={
-                      Object {
-                        "uri": "",
-                      }
-                    }
+                    source={1}
                     style={
                       Object {
                         "height": 330,
@@ -1348,9 +1322,7 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "onLoad": [Function],
-                    "source": Object {
-                      "uri": "",
-                    },
+                    "source": 1,
                     "style": Object {
                       "height": 330,
                       "width": 530,
