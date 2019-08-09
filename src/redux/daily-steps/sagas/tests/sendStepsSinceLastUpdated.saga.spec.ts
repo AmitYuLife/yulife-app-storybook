@@ -100,7 +100,7 @@ describe("Daily Steps Saga sendStepsSinceLastUpdated", () => {
             };
 
             const addStepsEffect = testSaga.next({ results: [challengeResult] });
-            expect(addStepsEffect.value).toEqual(call(addHistoricalSteps as any, [challengeResult], true));
+            expect(addStepsEffect.value).toEqual(call(addHistoricalSteps as any, [challengeResult], true, true));
 
             const historicalSteps = {
                 endDateTime: challengeResult.endDateTime,
