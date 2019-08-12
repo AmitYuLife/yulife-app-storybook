@@ -12,7 +12,6 @@
         "skipLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@app/*": ["./src/*"],
             "@atoms/*": ["./src/components/atoms/*"],
             "@containers/*": ["./src/components/containers/*"],
             "@modals/*": ["./src/components/modals/*"],
@@ -26,6 +25,7 @@
             "@styles/*": ["./src/styles/*"],
             "@e2e/*": ["./src/e2e/*"],
             "@ids": ["./e2e/_utils/navigation/ids"],
+            "@app/*": ["./src/*"],
             "@mockclient": ["./e2e/_utils/mock/client"]
         }
     },
