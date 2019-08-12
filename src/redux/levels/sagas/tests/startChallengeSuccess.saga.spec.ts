@@ -1,11 +1,11 @@
-import { call } from "redux-saga/effects";
-import { challengeStartSuccessAction } from "../../levels.actions";
+import { call, put, select } from "redux-saga/effects";
+import { getSteps } from "../../../pedometer/pedometer.selectors";
+import { challengeStartSuccessAction, pedometerStepsChallengeStarted } from "../../levels.actions";
 import { startChallengePayload } from "../../tests/levels.fixtures";
 import startChallenge from "../startChallenge.helper";
 import startChallengeSuccessSaga from "../startChallengeSuccess.saga";
 
 describe("Start Challenge Success Saga startChallengeSuccess", () => {
-
     it("starts challenge", () => {
         const testSaga = startChallengeSuccessSaga({
             payload: startChallengePayload
@@ -20,7 +20,16 @@ describe("Start Challenge Success Saga startChallengeSuccess", () => {
             startDateTime: startChallengePayload.createActiveChallenge.challenge.startDateTime
         };
 
-        expect(startChallengeEffect.value).toEqual(call(startChallenge as any, challageData ));
+        expect(startChallengeEffect.value).toEqual(select(getSteps));
+
+        const mockInitialSteps = 333;
+        const updateSteps = testSaga.next(mockInitialSteps);
+
+        expect(updateSteps.value).toEqual(put(pedometerStepsChallengeStarted(mockInitialSteps)));
+
+        const selectSteps = testSaga.next();
+
+        expect(selectSteps.value).toEqual(call(startChallenge as any, challageData));
 
         const doneEffect = testSaga.next();
 

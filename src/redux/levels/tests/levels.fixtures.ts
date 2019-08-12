@@ -104,6 +104,5 @@ export const startChallengePayload: ChallengeStartPayload = {
         nextLevelAvailableAt: "",
         chest: null
     },
-    initialPedometerResult: 654,
     levelSlotId: "39"
 };

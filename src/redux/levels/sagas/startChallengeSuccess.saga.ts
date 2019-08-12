@@ -1,5 +1,6 @@
-import { call } from "redux-saga/effects";
-import { challengeStartSuccessAction } from "../levels.actions";
+import { call, put, select } from "redux-saga/effects";
+import { getSteps } from "../../pedometer/pedometer.selectors";
+import { challengeStartSuccessAction, pedometerStepsChallengeStarted } from "../levels.actions";
 import startChallenge from "./startChallenge.helper";
 
 export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeof challengeStartSuccessAction>) {
@@ -10,6 +11,9 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
         },
         levelSlotId
     } = payload;
+
+    const initialPedometerSteps = yield select(getSteps);
+    yield put(pedometerStepsChallengeStarted(initialPedometerSteps));
 
     if (startDateTime && endDateTime && subtype) {
         yield call(startChallenge, {

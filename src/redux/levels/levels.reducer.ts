@@ -17,7 +17,7 @@ import {
     CHALLENGE_TIME_UP,
     CHALLENGE_UPDATE_SUCCESS
 } from "./levels.actions";
-import { ChallengeStartPayload } from "./levels.actions";
+import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload } from "./levels.actions";
 import { IActiveLevel } from "./levels.selectors";
 
 export interface ILevelsStore {
@@ -95,6 +95,9 @@ const levelsReducer = (state: ILevelsStore = initialState, action: SyncAction): 
         case PEDOMETER_UPDATES_SUCCESS:
             return pedometerUpdate(state, action.payload);
 
+        case CHALLENGE_START_INITIAL_STEPS:
+            return { ...state, active: { ...state.active, initialPedometerResult: action.payload } };
+
         default:
             return state;
     }
@@ -156,7 +159,7 @@ const isCancellingChallenge = (state: ILevelsStore): ILevelsStore => ({
 
 const challengeStartSuccess = (
     state: ILevelsStore,
-    { createActiveChallenge: { challenge, levelSlot, chest }, initialPedometerResult = 0 }: ChallengeStartPayload
+    { createActiveChallenge: { challenge, levelSlot, chest } }: ChallengeStartPayload
 ): ILevelsStore => ({
     ...state,
     active: {
@@ -166,7 +169,6 @@ const challengeStartSuccess = (
             value: pathOr<number>(chest, "value", initialState.active.chest.value)
         },
         endDateTime: challenge.endDateTime,
-        initialPedometerResult,
         level: challenge.level,
         levelSlotId: challenge.levelSlotId,
         milestones: levelSlot.milestones,
