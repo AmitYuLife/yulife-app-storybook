@@ -6,6 +6,11 @@ export default {
         ctaLabel: "log in",
         ctaLabelSecondary: "Sign up"
     },
+    offline: {
+        heading: "you're offline",
+        subheading: "Check your internet connection.",
+        ctaLabel: "try again"
+    },
     noAccess: {
         heading: "sorry!",
         subheading: "You are not able to use this app at the moment."

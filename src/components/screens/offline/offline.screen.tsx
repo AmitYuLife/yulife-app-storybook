@@ -1,40 +1,61 @@
-import { Button, Text } from "@atoms/index";
-import { store } from "@redux/_core/store";
+import { Button, CentredScreen, Text } from "@atoms/index";
+import { GetMobileCopy_getMobileCopy_screens_offline as OfflineCopy } from "@graphql/_core/schema";
 import * as React from "react";
-import { Image, ImageSourcePropType, View } from "react-native";
-import { CHECK_CONNECTION } from "../../../redux/app/app.actions";
+import { StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 import { getCurrentWorld } from "../../../services/utils";
+import { CenteredScreenImages } from "../../atoms/centred-screen/centred-screen";
 import styles from "./offline.screen.styles";
 
-const onPress = () => store.dispatch({ type: CHECK_CONNECTION });
+interface IProps {
+    level: number;
+    onPress: () => void;
+    copy: OfflineCopy;
+}
 
-export default function OfflineScreen({ level }: any) {
+export default function OfflineScreen({ copy, level, onPress }: IProps) {
     const currentWorld = getCurrentWorld(level);
+    const { centerScreenStyle, textStyle } = getWorldStyle(currentWorld);
+
     return (
-        <View style={styles.wrapper}>
-            <Image style={styles.image} source={getOfflineImage(currentWorld)} />
-            <View style={styles.contentWrapper}>
-                <Text style={styles.heading} bold={true}>
-                    you're offline
-                </Text>
-                <Text style={styles.subheading}>Check your internet connection.</Text>
-                <View style={styles.buttonWrapper}>
-                    <Button onPress={onPress} type={Button.Types.PRIMARY_MEDIUM} label="try again" />
+        <CentredScreen {...centerScreenStyle}>
+            <View style={styles.wrapper}>
+                <View style={styles.contentWrapper}>
+                    <Text style={StyleSheet.flatten([styles.heading, textStyle])} bold={true}>
+                        {copy.heading}
+                    </Text>
+                    <Text style={StyleSheet.flatten([styles.subheading, textStyle])}>{copy.subheading}</Text>
+                    <View style={styles.buttonWrapper}>
+                        <Button onPress={onPress} type={Button.Types.PRIMARY_MEDIUM} label={copy.ctaLabel} />
+                    </View>
                 </View>
             </View>
-        </View>
+        </CentredScreen>
     );
 }
 
-function getOfflineImage(currentWorld: number): ImageSourcePropType {
+function getWorldStyle(
+    currentWorld: number
+): { textStyle: TextStyle; centerScreenStyle: { footerImage: CenteredScreenImages; style: ViewStyle } } {
     switch (currentWorld) {
         case 3:
-            return require("../../../../assets/quests-offline/mountain.png");
+            return {
+                textStyle: {},
+                centerScreenStyle: { footerImage: "gray_mountain", style: { backgroundColor: "rgb(235,235,235)" } }
+            };
         case 2:
-            return require("../../../../assets/quests-offline/desert.png");
+            return {
+                textStyle: {},
+                centerScreenStyle: { footerImage: "gray_desert", style: { backgroundColor: "rgb(235,235,235)" } }
+            };
         case 1:
-            return require("../../../../assets/quests-offline/ocean.png");
+            return {
+                textStyle: { color: "white" },
+                centerScreenStyle: { footerImage: "gray_ocean", style: { backgroundColor: "#747474" } }
+            };
         default:
-            return require("../../../../assets/quests-offline/forest.png");
+            return {
+                textStyle: {},
+                centerScreenStyle: { footerImage: "gray_forest", style: { backgroundColor: "rgb(235, 235, 235)" } }
+            };
     }
 }
