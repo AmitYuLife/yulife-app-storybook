@@ -121,7 +121,7 @@ export default {
     challenges: {
         failed: {
             ctaLabel: "got it",
-            footer: "Try again.",
+            footer: "Try again!",
             heading: "you didn’t make it"
         },
         completed: {

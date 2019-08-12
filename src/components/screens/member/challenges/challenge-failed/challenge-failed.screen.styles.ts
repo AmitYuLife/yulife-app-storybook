@@ -11,13 +11,8 @@ export default StyleSheet.create({
         marginBottom: Style.SCALE_UP_AND_DOWN(100),
         marginTop: Style.SCALE_UP_AND_DOWN(97),
         textAlign: "center",
-        width: Style.SCALE_UP_AND_DOWN(100)
-    } as TextStyle,
-    footerGray: {
-        color: "rgb(110,110,110)"
-    } as TextStyle,
-    footerWhite: {
-        color: "rgb(255,255,255)"
+        width: "100%",
+        color: "rgb(85,85,85)"
     } as TextStyle,
     heading: {
         color: "rgb(51,51,51)",

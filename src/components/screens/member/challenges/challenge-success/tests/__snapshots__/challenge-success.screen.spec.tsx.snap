@@ -116,7 +116,7 @@ ShallowWrapper {
           <YuText
             style={
               Object {
-                "color": "rgb(110,110,110)",
+                "color": "rgb(85,85,85)",
                 "fontSize": 50,
                 "textAlign": "center",
               }
@@ -364,7 +364,7 @@ ShallowWrapper {
           "children": <YuText
             style={
               Object {
-                "color": "rgb(110,110,110)",
+                "color": "rgb(85,85,85)",
                 "fontSize": 50,
                 "textAlign": "center",
               }
@@ -384,7 +384,7 @@ ShallowWrapper {
           "props": Object {
             "children": "",
             "style": Object {
-              "color": "rgb(110,110,110)",
+              "color": "rgb(85,85,85)",
               "fontSize": 50,
               "textAlign": "center",
             },
@@ -507,7 +507,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
-                  "color": "rgb(110,110,110)",
+                  "color": "rgb(85,85,85)",
                   "fontSize": 50,
                   "textAlign": "center",
                 }
@@ -755,7 +755,7 @@ ShallowWrapper {
             "children": <YuText
               style={
                 Object {
-                  "color": "rgb(110,110,110)",
+                  "color": "rgb(85,85,85)",
                   "fontSize": 50,
                   "textAlign": "center",
                 }
@@ -775,7 +775,7 @@ ShallowWrapper {
             "props": Object {
               "children": "",
               "style": Object {
-                "color": "rgb(110,110,110)",
+                "color": "rgb(85,85,85)",
                 "fontSize": 50,
                 "textAlign": "center",
               },
@@ -944,7 +944,7 @@ ShallowWrapper {
           <YuText
             style={
               Object {
-                "color": "rgb(110,110,110)",
+                "color": "rgb(85,85,85)",
                 "fontSize": 50,
                 "textAlign": "center",
               }
@@ -1192,7 +1192,7 @@ ShallowWrapper {
           "children": <YuText
             style={
               Object {
-                "color": "rgb(110,110,110)",
+                "color": "rgb(85,85,85)",
                 "fontSize": 50,
                 "textAlign": "center",
               }
@@ -1212,7 +1212,7 @@ ShallowWrapper {
           "props": Object {
             "children": "",
             "style": Object {
-              "color": "rgb(110,110,110)",
+              "color": "rgb(85,85,85)",
               "fontSize": 50,
               "textAlign": "center",
             },
@@ -1335,7 +1335,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
-                  "color": "rgb(110,110,110)",
+                  "color": "rgb(85,85,85)",
                   "fontSize": 50,
                   "textAlign": "center",
                 }
@@ -1583,7 +1583,7 @@ ShallowWrapper {
             "children": <YuText
               style={
                 Object {
-                  "color": "rgb(110,110,110)",
+                  "color": "rgb(85,85,85)",
                   "fontSize": 50,
                   "textAlign": "center",
                 }
@@ -1603,7 +1603,7 @@ ShallowWrapper {
             "props": Object {
               "children": "",
               "style": Object {
-                "color": "rgb(110,110,110)",
+                "color": "rgb(85,85,85)",
                 "fontSize": 50,
                 "textAlign": "center",
               },

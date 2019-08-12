@@ -6,7 +6,7 @@ export default StyleSheet.create({
         marginTop: Style.SCALE_UP_AND_DOWN(50)
     } as ViewStyle,
     footer: {
-        color: "rgb(110,110,110)",
+        color: "rgb(85,85,85)",
         fontSize: Style.SCALE_UP_AND_DOWN(25),
         textAlign: "center"
     } as TextStyle,
