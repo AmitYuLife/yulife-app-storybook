@@ -32,6 +32,10 @@ export const setUnauthenticated = () => ({
     type: UNAUTHENTICATED
 });
 
+export const checkConnection = () => ({
+    type: CHECK_CONNECTION
+});
+
 export const setMainRoot = (url: string) => ({
     payload: url,
     type: SET_MAIN_ROOT

@@ -13,6 +13,11 @@ export const getMobileCopyGql = gql`
                     ctaLabel
                     ctaLabelSecondary
                 }
+                offline {
+                    heading
+                    subheading
+                    ctaLabel
+                }
                 noAccess {
                     heading
                     subheading

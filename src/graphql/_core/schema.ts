@@ -378,6 +378,12 @@ export interface GetMobileCopy_getMobileCopy_screens_login {
   ctaLabelSecondary: string | null;
 }
 
+export interface GetMobileCopy_getMobileCopy_screens_offline {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+}
+
 export interface GetMobileCopy_getMobileCopy_screens_noAccess {
   heading: string | null;
   subheading: string | null;
@@ -589,6 +595,7 @@ export interface GetMobileCopy_getMobileCopy_screens_popUp {
 
 export interface GetMobileCopy_getMobileCopy_screens {
   login: GetMobileCopy_getMobileCopy_screens_login | null;
+  offline: GetMobileCopy_getMobileCopy_screens_offline | null;
   noAccess: GetMobileCopy_getMobileCopy_screens_noAccess | null;
   resetPassword: GetMobileCopy_getMobileCopy_screens_resetPassword | null;
   signupReward: GetMobileCopy_getMobileCopy_screens_signupReward | null;
