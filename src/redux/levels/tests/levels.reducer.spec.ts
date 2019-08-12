@@ -65,7 +65,6 @@ describe("Daily Steps Reducer", () => {
             active: {
                 ...initialState.active,
                 endDateTime: startChallengePayload.createActiveChallenge.challenge.endDateTime,
-                initialPedometerResult: startChallengePayload.initialPedometerResult,
                 level: startChallengePayload.createActiveChallenge.challenge.level,
                 levelSlotId: startChallengePayload.createActiveChallenge.challenge.levelSlotId,
                 milestones: startChallengePayload.createActiveChallenge.levelSlot.milestones,

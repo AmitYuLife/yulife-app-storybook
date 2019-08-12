@@ -47,7 +47,6 @@ describe("Levels Actions", () => {
     describe("challengeStartSuccuss action", () => {
         const actual = challengeStartSuccessAction({
             createActiveChallenge: null,
-            initialPedometerResult: 54,
             levelSlotId: "51"
         });
 

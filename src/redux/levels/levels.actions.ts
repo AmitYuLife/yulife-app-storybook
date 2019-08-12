@@ -10,6 +10,7 @@ export const CHALLENGE_SUBMIT_UNITY = "CHALLENGE_SUBMIT_UNITY";
 export const CHALLENGE_START = "CHALLENGE_START";
 export const CHALLENGE_START_SUCCESS = "CHALLENGE_START_SUCCESS";
 export const CHALLENGE_START_FAIL = "CHALLENGE_START_FAIL";
+export const CHALLENGE_START_INITIAL_STEPS = "CHALLENGE_START_INITIAL_STEPS";
 
 export const CHALLENGE_UPDATE_SUCCESS = "CHALLENGE_UPDATE_SUCCESS";
 export const CHALLENGE_UPDATE_FAIL = "CHALLENGE_UPDATE_FAIL";
@@ -40,10 +41,15 @@ export const challengeStartAction = (payload: CreateActiveChallengeVariables) =>
     type: CHALLENGE_START
 });
 
-export type ChallengeStartPayload = CreateActiveChallenge & { initialPedometerResult: number, levelSlotId: string };
+export type ChallengeStartPayload = CreateActiveChallenge & { levelSlotId: string };
 export const challengeStartSuccessAction = (payload: ChallengeStartPayload) => ({
     payload,
     type: CHALLENGE_START_SUCCESS
+});
+
+export const pedometerStepsChallengeStarted = (payload: number) => ({
+    payload,
+    type: CHALLENGE_START_INITIAL_STEPS
 });
 
 export const challengeUpdateSuccessAction = (payload: UpdateActiveChallenge) => ({

@@ -11,7 +11,6 @@ import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
-import { getDailySteps } from "../../../../../redux/daily-steps/daily-steps.selectors";
 import { challengeStartSuccessAction } from "../../../../../redux/levels/levels.actions";
 import { getCurrentLevel } from "../../../../../redux/levels/levels.selectors";
 import { BlurProvider, IToggleBlur } from "../../../../atoms";
@@ -139,7 +138,6 @@ class ChallengesListContainerWithClient extends PureComponent<Props, IState> {
                 if (data && data.createActiveChallenge) {
                     this.props.challengeStartSuccessAction({
                         ...data,
-                        initialPedometerResult: this.props.dailySteps,
                         levelSlotId
                     });
                     await this.onNavPress();
@@ -170,7 +168,6 @@ class ChallengesListContainerWithClient extends PureComponent<Props, IState> {
 
 const mapStateToProps = (state: IReduxState) => ({
     currentLevel: getCurrentLevel(state),
-    dailySteps: getDailySteps(state),
     totalCoins: getTotalCoins(state)
 });
 

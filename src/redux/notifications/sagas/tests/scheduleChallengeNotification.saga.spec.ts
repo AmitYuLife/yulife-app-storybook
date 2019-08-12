@@ -17,7 +17,6 @@ describe("Challenge Notification Saga scheduleChallengeNotificationSaga", () => 
                 nextLevelAvailableAt: "mock",
                 chest: null
             },
-            initialPedometerResult: 1,
             levelSlotId: "string"
         };
 
@@ -43,7 +42,6 @@ describe("Challenge Notification Saga scheduleChallengeNotificationSaga", () => 
                     nextLevelAvailableAt: "mock",
                     chest: null
                 },
-                initialPedometerResult: 1,
                 levelSlotId: "string"
             };
 
@@ -91,7 +89,6 @@ function scheduleLocalNotificationBasedOnPlatformOs(platform: PlatformOSType) {
             nextLevelAvailableAt: "mock",
             chest: null
         },
-        initialPedometerResult: 1,
         levelSlotId: "string"
     };
 
