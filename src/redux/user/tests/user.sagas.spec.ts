@@ -32,29 +32,24 @@ describe("fetchUserOnAppStateChangeSaga", async () => {
         const testSaga = fetchUserOnAppStateChangeSaga();
 
         let actual: any = testSaga.next();
-        let expected: any = call(appStateChannel);
-        expect(actual.value).toEqual(expected);
+        expect(actual.value).toEqual(call(getUserData));
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next({});
+        expect(actual.value).toEqual(call(appStateChannel));
         expect(actual.done).toEqual(false);
 
         const mockChannel = channel();
         actual = testSaga.next(mockChannel);
-        expected = select(getActiveLevel);
-        expect(actual.value).toEqual(expected);
-        expect(actual.done).toEqual(false);
-
-        actual = testSaga.next({ levelSlotId: "something" });
-        expected = take(mockChannel);
-        expect(actual.value).toEqual(expected);
+        expect(actual.value).toEqual(take(mockChannel));
         expect(actual.done).toEqual(false);
 
         actual = testSaga.next("active");
-        expected = select(getActiveLevel);
-        expect(actual.value).toEqual(expected);
+        expect(actual.value).toEqual(select(getActiveLevel));
         expect(actual.done).toEqual(false);
 
         actual = testSaga.next({});
-        expected = call(getUserData);
-        expect(actual.value).toEqual(expected);
+        expect(actual.value).toEqual(call(getUserData));
         expect(actual.done).toEqual(false);
     });
 });
