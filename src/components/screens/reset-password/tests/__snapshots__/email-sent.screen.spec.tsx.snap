@@ -1,9 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ResetPassword should render 1`] = `
+exports[`EmailSentScreen should render 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ResetPasswordSuccessScreen
+  Symbol(enzyme.__unrendered__): <EmailSentScreen
+    copy={
+      Object {
+        "ctaLabel": "return to login",
+        "heading": "email sent",
+        "subheading": "Check your inbox! If \${email} matches our records, a password recovery email is on way. If you do not receive an email, please contact support@yulife.com",
+      }
+    }
+    email="test@yulife.com"
     onLogInPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -21,9 +29,10 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Pad
-          height={120}
+          height={100}
         />,
         <Heading
+          bold={true}
           label="email sent"
           style={
             Object {
@@ -32,10 +41,16 @@ ShallowWrapper {
           }
         />,
         <Pad
-          height={60}
+          height={10}
+        />,
+        <Blurb
+          label="Check your inbox! If test@yulife.com matches our records, a password recovery email is on way. If you do not receive an email, please contact support@yulife.com"
+        />,
+        <Pad
+          height={45}
         />,
         <Button
-          label="return to log in"
+          label="return to login"
           onPress={[MockFunction]}
           type="Primary"
         />,
@@ -49,7 +64,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 120,
+          "height": 100,
         },
         "ref": null,
         "rendered": null,
@@ -60,6 +75,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "bold": true,
           "label": "email sent",
           "style": Object {
             "color": "rgb(51,51,51)",
@@ -74,7 +90,29 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 60,
+          "height": 10,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "label": "Check your inbox! If test@yulife.com matches our records, a password recovery email is on way. If you do not receive an email, please contact support@yulife.com",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "height": 45,
         },
         "ref": null,
         "rendered": null,
@@ -85,7 +123,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "label": "return to log in",
+          "label": "return to login",
           "onPress": [MockFunction],
           "type": "Primary",
         },
@@ -104,9 +142,10 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Pad
-            height={120}
+            height={100}
           />,
           <Heading
+            bold={true}
             label="email sent"
             style={
               Object {
@@ -115,10 +154,16 @@ ShallowWrapper {
             }
           />,
           <Pad
-            height={60}
+            height={10}
+          />,
+          <Blurb
+            label="Check your inbox! If test@yulife.com matches our records, a password recovery email is on way. If you do not receive an email, please contact support@yulife.com"
+          />,
+          <Pad
+            height={45}
           />,
           <Button
-            label="return to log in"
+            label="return to login"
             onPress={[MockFunction]}
             type="Primary"
           />,
@@ -132,7 +177,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 120,
+            "height": 100,
           },
           "ref": null,
           "rendered": null,
@@ -143,6 +188,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "bold": true,
             "label": "email sent",
             "style": Object {
               "color": "rgb(51,51,51)",
@@ -157,7 +203,29 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 60,
+            "height": 10,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "label": "Check your inbox! If test@yulife.com matches our records, a password recovery email is on way. If you do not receive an email, please contact support@yulife.com",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "height": 45,
           },
           "ref": null,
           "rendered": null,
@@ -168,7 +236,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "label": "return to log in",
+            "label": "return to login",
             "onPress": [MockFunction],
             "type": "Primary",
           },

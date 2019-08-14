@@ -75,7 +75,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
                             <View>
                                 <Pad height={100} />
                                 <Heading label={copy.heading} size={Heading.Sizes.LARGE} />
-                                <Blurb label={copy.subheading} />
+                                <Blurb label={copy.subheading} wrapperStyle={styles.blurbWrapper}/>
                             </View>
                         )}
                         <Pad height={44} />

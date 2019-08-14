@@ -17,7 +17,7 @@ const SignUpRewardScreen: SFC<IProps> = ({ isLoading, onCollectPress, reward, co
         <CoinConfetti coins={reward} />
         <Heading style={styles.heading} label={copy.heading} />
         <Pad height={10} />
-        <Blurb wrapperStyle={styles.blurbWrapper} label={copy.subheading} />
+        <Blurb label={copy.subheading} />
         <Pad height={26} />
         <Button
             type={Button.Types.PRIMARY_SMALL}

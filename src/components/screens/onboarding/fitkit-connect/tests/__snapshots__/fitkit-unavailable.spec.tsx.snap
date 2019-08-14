@@ -40,11 +40,6 @@ ShallowWrapper {
         />,
         <Blurb
           label=""
-          wrapperStyle={
-            Object {
-              "paddingHorizontal": 80,
-            }
-          }
         />,
       ],
     },
@@ -78,9 +73,6 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "label": "",
-          "wrapperStyle": Object {
-            "paddingHorizontal": 80,
-          },
         },
         "ref": null,
         "rendered": null,
@@ -104,11 +96,6 @@ ShallowWrapper {
           />,
           <Blurb
             label=""
-            wrapperStyle={
-              Object {
-                "paddingHorizontal": 80,
-              }
-            }
           />,
         ],
       },
@@ -142,9 +129,6 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "label": "",
-            "wrapperStyle": Object {
-              "paddingHorizontal": 80,
-            },
           },
           "ref": null,
           "rendered": null,

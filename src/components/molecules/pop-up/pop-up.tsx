@@ -68,10 +68,7 @@ class PopUp extends React.PureComponent<IProps, any> {
     private getHeaderText = () => {
         const {
             type,
-            copy = {
-                surgeHeading: "x2 yucoin surge!",
-                leaderboardHeading: "leaderboards"
-            }
+            copy
         } = this.props;
         switch (type) {
             case POPUPTYPE.SURGE:
@@ -84,10 +81,7 @@ class PopUp extends React.PureComponent<IProps, any> {
     private getBodyText = () => {
         const {
             type,
-            copy = {
-                surgeSubheading: "you're getting twice as many yucoin for daily steps and meditation minutes",
-                leaderboardSubheading: "press here to view your company leaderboard and any custom leaderboards"
-            }
+            copy
         } = this.props;
         switch (type) {
             case POPUPTYPE.SURGE:

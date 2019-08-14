@@ -2,7 +2,6 @@ import * as React from "react";
 import { SFC } from "react";
 import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "../../../../graphql/_core/schema";
 import { Blurb, Button, Heading, Pad } from "../../../atoms";
-import styles from "./fitkit-connect.screen.styles";
 
 interface IProps {
     connecting: boolean;
@@ -14,7 +13,7 @@ const FitKitAvailable: SFC<IProps> = ({ connecting, onConnectPress, copy }) => (
     <>
         <Heading label={copy.heading} />
         <Pad height={14} />
-        <Blurb label={copy.blurb} wrapperStyle={styles.blurbWrapper} />
+        <Blurb label={copy.blurb} />
         <Pad height={34} />
         <Button
             isLoading={connecting}

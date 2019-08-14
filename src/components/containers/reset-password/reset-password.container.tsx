@@ -94,8 +94,11 @@ class ResetPasswordContainer extends PureComponent<Props, IState> {
                 if (results && results.data) {
                     await Navigation.push(this.props.componentId, {
                         component: {
-                            name: ROUTES.resetPasswordSuccess,
-                            options: { bottomTabs }
+                            name: ROUTES.emailSent,
+                            options: { bottomTabs },
+                            passProps: {
+                                email
+                            }
                         }
                     });
                 }

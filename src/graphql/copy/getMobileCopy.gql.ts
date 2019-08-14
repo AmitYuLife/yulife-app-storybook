@@ -26,6 +26,11 @@ export const getMobileCopyGql = gql`
                     heading
                     ctaLabel
                 }
+                emailSent {
+                    heading
+                    subheading
+                    ctaLabel
+                }
                 signupReward {
                     heading
                     subheading
