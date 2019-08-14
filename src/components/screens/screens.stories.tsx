@@ -1,7 +1,8 @@
-import { COLOURS } from "@app/components/molecules";
-import { StreakTypes } from "@app/components/molecules/streak/streak";
-import { TopBarTypes } from "@app/components/molecules/top-bar/top-bar";
-import { ICentredScreen } from "@app/redux/theme/theme.reducer";
+import { COLOURS } from "@molecules/index";
+import { StreakTypes } from "@molecules/streak/streak";
+import { TopBarTypes } from "@molecules/top-bar/top-bar";
+import Copy from "@redux/copy/copy.data.ts";
+import { ICentredScreen } from "@redux/theme/theme.reducer";
 import { action } from "@storybook/addon-actions";
 import { boolean, number, object, select, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
@@ -16,11 +17,11 @@ import {
     ChallengesListScreen,
     ChallengeSuccessScreen,
     DailyStepsScreen,
+    EmailSentScreen,
     FitKitConnectScreen,
     LoginScreen,
     NoAccessScreen,
     ResetPasswordScreen,
-    ResetPasswordSuccessScreen,
     SignUpRewardScreen,
     TodayYucoinScreen
 } from "./index";
@@ -42,12 +43,7 @@ storiesOf("Screens", module)
             onSignUpPress={action("on signup press")}
             password=""
             passwordError=""
-            copy={{
-                heading: "",
-                subheading: "",
-                ctaLabel: "",
-                ctaLabelSecondary: ""
-            }}
+            copy={Copy.login}
         />
     ))
     .add("3a. Reset Password", () => (
@@ -59,13 +55,16 @@ storiesOf("Screens", module)
             onCancelPress={action("on cancel press")}
             onEmailChange={action("on email change")}
             onSubmitPress={action("on submit press")}
-            copy={{
-                heading: "",
-                ctaLabel: ""
-            }}
+            copy={Copy.resetPassword}
         />
     ))
-    .add("3b. Reset Password Success", () => <ResetPasswordSuccessScreen onLogInPress={action("on login press")} />)
+    .add("3b. Reset Password Success", () => (
+        <EmailSentScreen
+            email="test@yulife.com"
+            onLogInPress={action("on login press")}
+            copy={Copy.emailSent}
+        />
+    ))
     .add("4. FitKit Connect", () => (
         <FitKitConnectScreen
             connecting={boolean("Connecting?", false, "FitKit")}

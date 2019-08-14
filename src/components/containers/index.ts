@@ -2,7 +2,7 @@
 export { default as AppLoadingContainer } from "./app-loading/app-loading.container";
 export { default as LoginContainer } from "./login/login.container";
 export { default as ResetPasswordContainer } from "./reset-password/reset-password.container";
-export { default as ResetPasswordSuccessContainer } from "./reset-password/reset-password-success.container";
+export { default as EmailSentContainer } from "./reset-password/email-sent.container";
 export { default as SignUpContainer } from "./sign-up/sign-up.container";
 export { default as NoAccessContainer } from "./no-access/no-access.container";
 export { default as AppOfflineContainer } from "./offline/offline.container";

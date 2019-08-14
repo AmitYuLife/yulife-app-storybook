@@ -14,8 +14,8 @@ export default [
         component: require("../components/containers/reset-password/reset-password.container").default
     },
     {
-        name: ROUTES.resetPasswordSuccess,
-        component: require("../components/containers/reset-password/reset-password-success.container").default
+        name: ROUTES.emailSent,
+        component: require("../components/containers/reset-password/email-sent.container").default
     },
     {
         name: ROUTES.signUp,

@@ -14,6 +14,6 @@ export default StyleSheet.create({
         textAlign: "center"
     } as TextStyle,
     wrapper: {
-        paddingHorizontal: Style.SCALE_UP_AND_DOWN(85)
+        paddingHorizontal: Style.SCALE_UP_AND_DOWN(40)
     } as ViewStyle
 });

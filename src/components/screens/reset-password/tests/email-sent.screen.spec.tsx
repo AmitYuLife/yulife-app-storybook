@@ -1,14 +1,17 @@
+import copyData from "@redux/copy/copy.data";
 import { shallow } from "enzyme";
 import * as React from "react";
 import "react-native";
-import ResetPasswordSuccessScreen from "../reset-password-success.screen";
+import EmailSentScreen from "../email-sent.screen";
 
-describe("ResetPassword", () => {
+describe("EmailSentScreen", () => {
 
     it("should render", () => {
         const actual = shallow(
-            <ResetPasswordSuccessScreen
+            <EmailSentScreen
                 onLogInPress={jest.fn()}
+                copy={copyData.emailSent}
+                email="test@yulife.com"
             />
         );
 

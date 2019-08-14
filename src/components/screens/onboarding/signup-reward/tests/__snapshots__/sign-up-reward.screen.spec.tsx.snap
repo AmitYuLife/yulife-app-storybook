@@ -48,11 +48,6 @@ ShallowWrapper {
         />,
         <Blurb
           label=""
-          wrapperStyle={
-            Object {
-              "paddingHorizontal": 88,
-            }
-          }
         />,
         <Pad
           height={26}
@@ -122,9 +117,6 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "label": "",
-          "wrapperStyle": Object {
-            "paddingHorizontal": 88,
-          },
         },
         "ref": null,
         "rendered": null,
@@ -185,11 +177,6 @@ ShallowWrapper {
           />,
           <Blurb
             label=""
-            wrapperStyle={
-              Object {
-                "paddingHorizontal": 88,
-              }
-            }
           />,
           <Pad
             height={26}
@@ -259,9 +246,6 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "label": "",
-            "wrapperStyle": Object {
-              "paddingHorizontal": 88,
-            },
           },
           "ref": null,
           "rendered": null,

@@ -394,6 +394,12 @@ export interface GetMobileCopy_getMobileCopy_screens_resetPassword {
   ctaLabel: string | null;
 }
 
+export interface GetMobileCopy_getMobileCopy_screens_emailSent {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+}
+
 export interface GetMobileCopy_getMobileCopy_screens_signupReward {
   heading: string | null;
   subheading: string | null;
@@ -598,6 +604,7 @@ export interface GetMobileCopy_getMobileCopy_screens {
   offline: GetMobileCopy_getMobileCopy_screens_offline | null;
   noAccess: GetMobileCopy_getMobileCopy_screens_noAccess | null;
   resetPassword: GetMobileCopy_getMobileCopy_screens_resetPassword | null;
+  emailSent: GetMobileCopy_getMobileCopy_screens_emailSent | null;
   signupReward: GetMobileCopy_getMobileCopy_screens_signupReward | null;
   leaderboards: GetMobileCopy_getMobileCopy_screens_leaderboards | null;
   activityHistoryLevels: GetMobileCopy_getMobileCopy_screens_activityHistoryLevels | null;

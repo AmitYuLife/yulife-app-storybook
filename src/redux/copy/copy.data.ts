@@ -19,6 +19,12 @@ export default {
         heading: "reset password",
         ctaLabel: "Back"
     },
+    emailSent: {
+        heading: "email sent",
+        subheading: "Check your inbox! If ${email} matches our records, a password recovery email is on way."
+            + " If you do not receive an email, please contact support@yulife.com",
+        ctaLabel: "return to login"
+    },
     signupReward: {
         heading: "sign up bonus",
         subheading:

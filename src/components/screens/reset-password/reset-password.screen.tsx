@@ -27,7 +27,7 @@ const ResetPasswordScreen: SFC<IProps> = ({
 }) => (
     <CentredScreen footerImage="forest">
         <Pad height={120} />
-        <Heading style={styles.heading} label={copy.heading} />
+        <Heading style={styles.heading} label={copy.heading} bold={true} />
         <Pad height={90} />
         <TextInput
             errorMessage={emailError}

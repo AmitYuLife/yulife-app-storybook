@@ -33,7 +33,7 @@ ShallowWrapper {
         test
       </Text>,
       "style": Object {
-        "paddingHorizontal": 170,
+        "paddingHorizontal": 80,
       },
     },
     "ref": null,
@@ -77,7 +77,7 @@ ShallowWrapper {
           test
         </Text>,
         "style": Object {
-          "paddingHorizontal": 170,
+          "paddingHorizontal": 80,
         },
       },
       "ref": null,

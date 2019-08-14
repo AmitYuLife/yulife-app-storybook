@@ -3,7 +3,7 @@ export const ROUTES = {
     noAccess: "yulife.NoAccess",
     login: "yulife.Login",
     resetPassword: "yulife.ResetPassword",
-    resetPasswordSuccess: "yulife.ResetPasswordSuccess",
+    emailSent: "yulife.EmailSent",
     signUp: "yulife.SignUp",
     offline: "yulife.Offline",
 
