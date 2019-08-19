@@ -7,7 +7,7 @@ import { Style } from "../../../../../../../styles";
 import { IChallenge } from "../../quests-screen";
 import { IMapSlice } from "../index";
 import getLevelButton from "./level.content";
-import { getBackgroundColor, getButtonPosition, getShadow } from "./level.helpers";
+import { getBackgroundColor, getButtonPosition, getShadowColor, getShadowPosition } from "./level.helpers";
 import styles, { CIRCLE_SIZE } from "./level.styles";
 import Pulse from "./pulse";
 
@@ -27,7 +27,8 @@ export default class LevelBubble extends React.Component<IProps, IState> {
         nextAvailable: null
     };
     private interval: NodeJS.Timer;
-    private style = getButtonPosition(this.props.slice, this.props.index);
+    private style = getButtonPosition(this.props.slice, this.props.index, false);
+    private pulseStyle = getButtonPosition(this.props.slice, this.props.index, true);
 
     public componentDidMount() {
         const level = this.props.level;
@@ -63,8 +64,8 @@ export default class LevelBubble extends React.Component<IProps, IState> {
         const { nextAvailable } = this.state;
         const { currentLevel, level } = this.props;
         const bubbleBackgroundColor = getBackgroundColor(nextAvailable, level);
-        const shadowStyle = getShadow(level.level, this.style);
-
+        const shadowStyle = getShadowPosition(this.style);
+        const shadowColor = getShadowColor(level.level);
         return (
             <>
                 {!level.isActive ? null : (
@@ -73,11 +74,13 @@ export default class LevelBubble extends React.Component<IProps, IState> {
                         pulseMaxSize={Style.SCALE_UP_AND_DOWN(66)}
                         interval={nextAvailable < 0 ? 1250 : 750}
                         backgroundColor="rgb(145,0,76)"
-                        style={this.style}
+                        style={this.pulseStyle}
                     />
                 )}
-                {!shadowStyle || level.isActive ? null : (
-                    <View style={StyleSheet.flatten([styles.bubble, shadowStyle])} />
+                {!shadowColor || level.isActive ? null : (
+                    <View style={StyleSheet.flatten([styles.bubble, shadowStyle])}>
+                        <View style={[styles.bubbleButton, shadowColor]} />
+                    </View>
                 )}
                 <View style={StyleSheet.flatten([styles.bubble, this.style])}>
                     <TouchableOpacityWithState
@@ -88,6 +91,12 @@ export default class LevelBubble extends React.Component<IProps, IState> {
                                 backgroundColor: bubbleBackgroundColor
                             }
                         ])}
+                        hitSlop={{
+                            top: Style.SCALE_UP_AND_DOWN(10),
+                            left: Style.SCALE_UP_AND_DOWN(10),
+                            right: Style.SCALE_UP_AND_DOWN(10),
+                            bottom: Style.SCALE_UP_AND_DOWN(10)
+                        }}
                         testID={LEVEL_CHALLENGE_BUTTON(level.level)}
                     >
                         {getLevelButton(nextAvailable, currentLevel, level)}
