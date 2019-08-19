@@ -64,7 +64,7 @@ class StreaksModal extends PureComponent<Props, IState> {
             <CollectAwardMutation mutation={collectAwardGql}>
                 {(collectAward) => {
                     const onSubmit =
-                        streakCompleted === streakMax && streakAwardId
+                        streakAwardId
                             ? async () => {
                                   try {
                                       this.setState({
@@ -97,7 +97,9 @@ class StreaksModal extends PureComponent<Props, IState> {
                             subHeading={this.getSubHeading()}
                             primaryButtonLabel={this.getLabelCtaPrimary()}
                             streakAwardId={streakAwardId}
-                            streakCompleted={streakCompleted}
+                            // If there is an award, it must be for a full streak, so display
+                            // the full streak even if it is not full right now
+                            streakCompleted={streakAwardId ? streakMax : streakCompleted}
                             streakMax={streakMax}
                             onSubmit={onSubmit}
                             reward={reward}
