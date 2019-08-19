@@ -1,7 +1,7 @@
 import { Style } from "../../../../../../../../styles";
 import { IChallenge } from "../../../quests-screen";
 import WorldSlices from "../../slices";
-import { getBackgroundColor, getButtonPosition, getShadow, getTime } from "../level.helpers";
+import { getBackgroundColor, getButtonPosition, getShadowColor, getShadowPosition, getTime } from "../level.helpers";
 
 const nextAvailable = 0;
 
@@ -91,15 +91,14 @@ describe("getTime", () => {
     });
 });
 
-describe("getShadow", () => {
+describe("getShadowPosition and getShadowPosition", () => {
     it("should return bottom position", () => {
-        const actual = getShadow(17, { top: 0 });
-        expect(actual).toHaveProperty("top", -2);
-        expect(actual).toHaveProperty("backgroundColor", "rgb(253, 236, 75)");
+        const actual = getShadowPosition({ top: 0 });
+        expect(actual).toHaveProperty("top", -4);
     });
 
     it("should return null", () => {
-        const actual = getShadow(59, { top: 0 });
-        expect(actual).toBeNull();
+        const actual = getShadowColor(17);
+        expect(actual).toHaveProperty("backgroundColor", "rgb(253, 236, 75)");
     });
 });

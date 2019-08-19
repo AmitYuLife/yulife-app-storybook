@@ -12,6 +12,12 @@ interface IBubbleColours {
     };
 }
 
+interface IPosition {
+    left: number;
+    bottom?: number;
+    top?: number;
+}
+
 const worldBubbleColours: IBubbleColours = {
     0: {
         0: {
@@ -147,15 +153,10 @@ export function getBackgroundColor(nextAvailable: number, level: IChallenge): st
     }
 }
 
-export function getShadow(level: number, style: any) {
-    let newStyle = {
+export function getShadowColor(level: number) {
+    const newStyle = {
         backgroundColor: ""
     };
-    if (typeof style.top !== "undefined") {
-        newStyle = { ...style, top: style.top - 2 };
-    } else if (typeof style.bottom !== "undefined") {
-        newStyle = { ...style, bottom: style.bottom + 2 };
-    }
     switch (true) {
         case level > 0 && level < 5:
         case level > 21 && level < 27:
@@ -172,16 +173,30 @@ export function getShadow(level: number, style: any) {
     return newStyle;
 }
 
-export function getButtonPosition(slice: IMapSlice, index: number) {
+export function getShadowPosition(style: any) {
+    let newStyle = {
+        position: "absolute" as "absolute"
+    };
+    if (typeof style.top !== "undefined") {
+        newStyle = { ...style, top: style.top - Style.SCALE_UP_AND_DOWN(2) };
+    } else if (typeof style.bottom !== "undefined") {
+        newStyle = { ...style, bottom: style.bottom + Style.SCALE_UP_AND_DOWN(2) };
+    }
+
+    return newStyle;
+}
+
+export function getButtonPosition(slice: IMapSlice, index: number, isPulse?: boolean) {
+    const highDensityRepositionValue = Style.PIXEL_RATIO >= 3 && !isPulse ? Style.SCALE_UP_AND_DOWN(10) : 0;
     const record = slice.slots[index];
-    const style: any = {
-        left: Style.SCALE_UP_AND_DOWN(record.left)
+    const style: IPosition = {
+        left: Style.SCALE_UP_AND_DOWN(record.left) - highDensityRepositionValue
     };
 
     if (typeof record.bottom !== "undefined") {
-        style.bottom = Style.SCALE_UP_AND_DOWN(record.bottom);
+        style.bottom = Style.SCALE_UP_AND_DOWN(record.bottom) - highDensityRepositionValue;
     } else if (typeof record.top !== "undefined") {
-        style.top = Style.SCALE_UP_AND_DOWN(record.top);
+        style.top = Style.SCALE_UP_AND_DOWN(record.top) - highDensityRepositionValue;
     } else {
         style.bottom = 0;
     }

@@ -4,7 +4,7 @@ import { Style } from "../../../styles";
 const styles = StyleSheet.create({
     labelsWrapper: {
         flexDirection: "row",
-        height: Style.SCALE_UP_AND_DOWN(62),
+        height: Style.SCALE_UP_AND_DOWN(82),
         position: "absolute",
         bottom: 0,
         width: "100%"

@@ -1,8 +1,8 @@
 import { BUTTON_TOP_LEFT_BAR } from "@ids";
+import { Colours, Style } from "@styles/index";
 import moment from "moment";
 import * as React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Colours } from "../../../styles";
 import { Dim, Text } from "../../atoms";
 import Counter from "../counter/counter";
 import { Back, Clock, Coins, Logo, Menu } from "./assets";
@@ -114,7 +114,6 @@ class TopBar extends React.Component<IProps, IState> {
         }
 
         const { colour, logoColour, textStyle } = getStyle(type);
-
         return (
             <View style={styles.wrapper}>
                 <TouchableOpacity
@@ -122,6 +121,16 @@ class TopBar extends React.Component<IProps, IState> {
                     onPress={onPressLeftIcon}
                     testID={BUTTON_TOP_LEFT_BAR}
                     accessibilityLabel={leftIcon}
+                    hitSlop={
+                        Style.PIXEL_RATIO >= 3
+                            ? {
+                                  top: Style.SCALE_UP_AND_DOWN(10),
+                                  left: Style.SCALE_UP_AND_DOWN(10),
+                                  right: Style.SCALE_UP_AND_DOWN(10),
+                                  bottom: Style.SCALE_UP_AND_DOWN(10)
+                              }
+                            : {}
+                    }
                 >
                     {renderLeftIcon(leftIcon, colour)}
                     {!menuLabel ? null : (
