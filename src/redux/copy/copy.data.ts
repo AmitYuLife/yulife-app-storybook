@@ -21,8 +21,9 @@ export default {
     },
     emailSent: {
         heading: "email sent",
-        subheading: "Check your inbox! If ${email} matches our records, a password recovery email is on way."
-            + " If you do not receive an email, please contact support@yulife.com",
+        subheading:
+            "Check your inbox! If ${email} matches our records, a password recovery email is on way." +
+            " If you do not receive an email, please contact support@yulife.com",
         ctaLabel: "return to login"
     },
     signupReward: {
@@ -126,8 +127,8 @@ export default {
     },
     challenges: {
         failed: {
-            ctaLabel: "got it",
-            footer: "Try again!",
+            ctaLabel: "okay, got it",
+            footer: "so close! why not try again?",
             heading: "you didn’t make it"
         },
         completed: {

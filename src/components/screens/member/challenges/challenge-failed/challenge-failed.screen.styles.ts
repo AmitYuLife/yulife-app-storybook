@@ -16,14 +16,20 @@ export default StyleSheet.create({
     } as TextStyle,
     heading: {
         color: "rgb(51,51,51)",
-        fontSize: Style.SCALE_UP_AND_DOWN(40)
+        fontSize: Style.SCALE_UP_AND_DOWN(40),
+        marginBottom: Style.SCALE_UP_AND_DOWN(16),
+        marginTop: Style.SCALE_UP_AND_DOWN(6)
     } as TextStyle,
     level: {
-        color: "rgb(201, 201, 201)",
+        color: "#333333",
         fontSize: Style.SCALE_UP_AND_DOWN(14),
         marginTop: Style.SCALE_UP_AND_DOWN(-10),
         textAlign: "center"
     } as TextStyle,
+    ratingWrapper: {
+        alignItems: "center",
+        marginTop: Style.SCALE_UP_AND_DOWN(40)
+    } as ViewStyle,
     levelWrapper: {
         alignItems: "center",
         marginTop: Style.SCALE_UP_AND_DOWN(5),
@@ -39,8 +45,16 @@ export default StyleSheet.create({
         overflow: "visible"
     } as ViewStyle,
     wrapper: {
-        alignItems: "center",
         flex: 1,
-        justifyContent: "center"
+        justifyContent: "flex-start",
+        alignItems: "center"
+    } as ViewStyle,
+    secondaryText: {
+        fontSize: Style.SCALE_UP_AND_DOWN(20),
+        lineHeight: Style.SCALE_UP_AND_DOWN(24)
+    } as TextStyle,
+    cta: {
+        position: "absolute",
+        bottom: Style.SCALE_UP_AND_DOWN(96)
     } as ViewStyle
 });
