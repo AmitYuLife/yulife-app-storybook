@@ -29,6 +29,11 @@ describe("Register Intercom And Mixpanel Saga", () => {
         compareSagaActionsWithNoVisualDifference(actual, expected);
 
         actual = testSaga.next();
+        expected = spawn((token: string) => ({ token }), mock.payload.deviceToken);
+
+        compareSagaActionsWithNoVisualDifference(actual, expected);
+
+        actual = testSaga.next();
         expect(actual.done).toEqual(true);
     });
 });
