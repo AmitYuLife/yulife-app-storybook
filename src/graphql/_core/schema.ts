@@ -660,6 +660,33 @@ export interface ResetDataVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: AddDeviceToken
+// ====================================================
+
+export interface AddDeviceToken_addDeviceToken {
+  userId: string | null;
+  deviceToken: string | null;
+  deviceId: string | null;
+  subscribed: boolean | null;
+  os: OS | null;
+}
+
+export interface AddDeviceToken {
+  addDeviceToken: AddDeviceToken_addDeviceToken | null;
+}
+
+export interface AddDeviceTokenVariables {
+  deviceToken: string;
+  os: OS;
+  deviceId: string;
+  subscribed: boolean;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: CollectAward
 // ====================================================
 
@@ -1562,6 +1589,11 @@ export interface UserStatus {
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+export enum OS {
+  android = "android",
+  ios = "ios",
+}
 
 export enum IntercomHashMethod {
   android = "android",
