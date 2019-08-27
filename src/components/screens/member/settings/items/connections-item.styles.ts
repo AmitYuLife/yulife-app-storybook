@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
         fontFamily: Style.FONT_FAMILY_PRIMARY,
         fontSize: Style.SCALE_UP_AND_DOWN(16)
     } as TextStyle,
+    textSmall: {
+        fontFamily: Style.FONT_FAMILY_PRIMARY,
+        fontSize: Style.SCALE_UP_AND_DOWN(14)
+    } as TextStyle,
     wrapper: {
         alignItems: "center",
         backgroundColor: "white",

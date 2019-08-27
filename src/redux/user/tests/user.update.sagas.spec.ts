@@ -22,7 +22,8 @@ import { compareSagaActionsWithNoVisualDifference } from "../../../../jest/tests
 
 const testConnection: Connection = {
     name: "testConnection",
-    isConnected: true
+    isConnected: true,
+    lastUpdated: null
 };
 
 describe("updateConnectionSaga", async () => {

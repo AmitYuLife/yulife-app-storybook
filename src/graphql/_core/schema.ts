@@ -1074,6 +1074,7 @@ export interface GetActivityHistoryVariables {
 export interface GetCurrentUser_getCurrentUser_connections {
   name: string | null;
   isConnected: boolean | null;
+  lastUpdated: number | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_userFeatures {
@@ -1237,6 +1238,7 @@ export interface getSession {
 export interface LoginUser_loginUser_user_connections {
   name: string | null;
   isConnected: boolean | null;
+  lastUpdated: number | null;
 }
 
 export interface LoginUser_loginUser_user_userFeatures {
