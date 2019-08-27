@@ -5,10 +5,10 @@ import "react-native";
 import EmailSentScreen from "../email-sent.screen";
 
 describe("EmailSentScreen", () => {
-
     it("should render", () => {
         const actual = shallow(
             <EmailSentScreen
+                onResendEmailPress={jest.fn()}
                 onLogInPress={jest.fn()}
                 copy={copyData.emailSent}
                 email="test@yulife.com"

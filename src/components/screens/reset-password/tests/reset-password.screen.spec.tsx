@@ -13,7 +13,9 @@ const defaultProps = {
     onSubmitPress: jest.fn(),
     copy: {
         heading: "",
-        ctaLabel: ""
+        subheading: "",
+        ctaLabel: "",
+        ctaLabelSecondary: ""
     }
 };
 

@@ -118,7 +118,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -203,7 +203,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -295,7 +295,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -475,7 +475,7 @@ ShallowWrapper {
             "props": Object {
               "data": Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -580,7 +580,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -665,7 +665,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -757,7 +757,7 @@ ShallowWrapper {
                 data={
                   Array [
                     Object {
-                      "label": "Forgot password",
+                      "label": "need help logging in?",
                       "onPress": [MockFunction],
                     },
                     Object {
@@ -937,7 +937,7 @@ ShallowWrapper {
               "props": Object {
                 "data": Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -1098,7 +1098,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -1183,7 +1183,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -1275,7 +1275,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -1455,7 +1455,7 @@ ShallowWrapper {
             "props": Object {
               "data": Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -1560,7 +1560,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -1645,7 +1645,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -1737,7 +1737,7 @@ ShallowWrapper {
                 data={
                   Array [
                     Object {
-                      "label": "Forgot password",
+                      "label": "need help logging in?",
                       "onPress": [MockFunction],
                     },
                     Object {
@@ -1917,7 +1917,7 @@ ShallowWrapper {
               "props": Object {
                 "data": Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -2078,7 +2078,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -2163,7 +2163,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -2255,7 +2255,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -2435,7 +2435,7 @@ ShallowWrapper {
             "props": Object {
               "data": Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -2540,7 +2540,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -2625,7 +2625,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -2717,7 +2717,7 @@ ShallowWrapper {
                 data={
                   Array [
                     Object {
-                      "label": "Forgot password",
+                      "label": "need help logging in?",
                       "onPress": [MockFunction],
                     },
                     Object {
@@ -2897,7 +2897,7 @@ ShallowWrapper {
               "props": Object {
                 "data": Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -3058,7 +3058,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -3143,7 +3143,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -3235,7 +3235,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -3415,7 +3415,7 @@ ShallowWrapper {
             "props": Object {
               "data": Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -3520,7 +3520,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -3605,7 +3605,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -3697,7 +3697,7 @@ ShallowWrapper {
                 data={
                   Array [
                     Object {
-                      "label": "Forgot password",
+                      "label": "need help logging in?",
                       "onPress": [MockFunction],
                     },
                     Object {
@@ -3877,7 +3877,7 @@ ShallowWrapper {
               "props": Object {
                 "data": Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -4021,7 +4021,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -4089,7 +4089,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -4165,7 +4165,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -4281,7 +4281,7 @@ ShallowWrapper {
             "props": Object {
               "data": Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -4369,7 +4369,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -4437,7 +4437,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -4513,7 +4513,7 @@ ShallowWrapper {
                 data={
                   Array [
                     Object {
-                      "label": "Forgot password",
+                      "label": "need help logging in?",
                       "onPress": [MockFunction],
                     },
                     Object {
@@ -4629,7 +4629,7 @@ ShallowWrapper {
               "props": Object {
                 "data": Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -4790,7 +4790,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -4875,7 +4875,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -4967,7 +4967,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -5147,7 +5147,7 @@ ShallowWrapper {
             "props": Object {
               "data": Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -5252,7 +5252,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -5337,7 +5337,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -5429,7 +5429,7 @@ ShallowWrapper {
                 data={
                   Array [
                     Object {
-                      "label": "Forgot password",
+                      "label": "need help logging in?",
                       "onPress": [MockFunction],
                     },
                     Object {
@@ -5609,7 +5609,7 @@ ShallowWrapper {
               "props": Object {
                 "data": Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -5770,7 +5770,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -5855,7 +5855,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -5947,7 +5947,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -6127,7 +6127,7 @@ ShallowWrapper {
             "props": Object {
               "data": Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -6232,7 +6232,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -6317,7 +6317,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -6409,7 +6409,7 @@ ShallowWrapper {
                 data={
                   Array [
                     Object {
-                      "label": "Forgot password",
+                      "label": "need help logging in?",
                       "onPress": [MockFunction],
                     },
                     Object {
@@ -6589,7 +6589,7 @@ ShallowWrapper {
               "props": Object {
                 "data": Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -6753,7 +6753,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -6841,7 +6841,7 @@ ShallowWrapper {
             data={
               Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -6935,7 +6935,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -7125,7 +7125,7 @@ ShallowWrapper {
             "props": Object {
               "data": Array [
                 Object {
-                  "label": "Forgot password",
+                  "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
                 Object {
@@ -7233,7 +7233,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -7321,7 +7321,7 @@ ShallowWrapper {
               data={
                 Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {
@@ -7415,7 +7415,7 @@ ShallowWrapper {
                 data={
                   Array [
                     Object {
-                      "label": "Forgot password",
+                      "label": "need help logging in?",
                       "onPress": [MockFunction],
                     },
                     Object {
@@ -7605,7 +7605,7 @@ ShallowWrapper {
               "props": Object {
                 "data": Array [
                   Object {
-                    "label": "Forgot password",
+                    "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
                   Object {

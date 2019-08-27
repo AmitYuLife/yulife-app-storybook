@@ -1,7 +1,8 @@
 import * as React from "react";
 import { SFC } from "react";
-import { GetMobileCopy_getMobileCopy_screens_resetPassword as ResetPasswordCopy} from "../../../graphql/_core/schema";
-import { Button, CentredScreen, Heading, Pad, TextInput } from "../../atoms";
+import {
+    GetMobileCopy_getMobileCopy_screens_needHelpLoggingIn as ResetPasswordCopy } from "../../../graphql/_core/schema";
+import { Blurb, Button, CentredScreen, Heading, Pad, TextInput } from "../../atoms";
 import styles from "./reset-password.screen.styles";
 
 interface IProps {
@@ -27,8 +28,10 @@ const ResetPasswordScreen: SFC<IProps> = ({
 }) => (
     <CentredScreen footerImage="forest">
         <Pad height={120} />
-        <Heading style={styles.heading} label={copy.heading} bold={true} />
-        <Pad height={90} />
+        <Heading style={styles.heading} label={copy.heading} />
+        <Pad height={9} />
+        <Blurb wrapperStyle={styles.blurbWrapper} label={copy.subheading} />
+        <Pad height={21} />
         <TextInput
             errorMessage={emailError}
             hasError={!!emailError}
@@ -40,12 +43,12 @@ const ResetPasswordScreen: SFC<IProps> = ({
         <Button
             isLoading={isSubmitting}
             disabled={disableSubmit || isSubmitting}
-            label={isSubmitting ? "submitting ..." : "send me the link"}
+            label={isSubmitting ? "submitting ..." : copy.ctaLabel}
             onPress={onSubmitPress}
             type={Button.Types.PRIMARY}
         />
         <Pad height={10} />
-        <Button label={copy.ctaLabel} type={Button.Types.LINK} onPress={onCancelPress} />
+        <Button label={copy.ctaLabelSecondary} type={Button.Types.LINK} onPress={onCancelPress} />
     </CentredScreen>
 );
 

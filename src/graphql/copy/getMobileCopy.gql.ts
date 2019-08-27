@@ -26,10 +26,17 @@ export const getMobileCopyGql = gql`
                     heading
                     ctaLabel
                 }
+                needHelpLoggingIn {
+                    heading
+                    subheading
+                    ctaLabel
+                    ctaLabelSecondary
+                }
                 emailSent {
                     heading
                     subheading
                     ctaLabel
+                    ctaLabelSecondary
                 }
                 signupReward {
                     heading

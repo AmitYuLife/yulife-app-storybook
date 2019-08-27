@@ -1,16 +1,19 @@
-import { bottomTabs, ROUTES } from "@navigation/constants";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { GetMobileCopy_getMobileCopy_screens_resetPassword as ResetPasswordCopy} from "../../../graphql/_core/schema";
+import {
+    GetMobileCopy_getMobileCopy_screens_emailSent as EmailSentCopy,
+    GetMobileCopy_getMobileCopy_screens_needHelpLoggingIn as ResetPasswordCopy
+} from "../../../graphql/_core/schema";
+
 import SendMagicLinkMutation, {
     sendMagicLinkGql,
     SendMagicLinkMutationFunction
 } from "../../../graphql/user/sendMagicLink.gql";
 import { IReduxState } from "../../../redux/_core/reducers";
 import { getCopy } from "../../../redux/copy/copy.selectors";
-import { ResetPasswordScreen } from "../../screens";
+import { EmailSentScreen, ResetPasswordScreen } from "../../screens";
 import { validateEmail } from "../login/login.helpers";
 
 // TODO find where these props actually come from in RNN types
@@ -21,6 +24,7 @@ interface IProps {
 interface IState {
     email: string;
     emailError: string;
+    wasEmailSent: boolean;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -28,19 +32,30 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 type Props = IProps & ConnectedState;
 
 class ResetPasswordContainer extends PureComponent<Props, IState> {
-
     public state: IState = {
         email: "",
-        emailError: ""
+        emailError: "",
+        wasEmailSent: false
     };
 
     public render() {
         return (
             <SendMagicLinkMutation mutation={sendMagicLinkGql}>
                 {(sendMagicLink, { loading }) => {
-                    const { email, emailError } = this.state;
-                    const { copy } = this.props;
+                    const { wasEmailSent, email, emailError } = this.state;
+                    const { copy, copyEmailSent } = this.props;
                     const disableSubmit = email === "" || emailError !== "";
+
+                    if (wasEmailSent) {
+                        return (
+                            <EmailSentScreen
+                                email={email}
+                                onLogInPress={this.onLogIn}
+                                onResendEmailPress={() => this.onSubmit(sendMagicLink)}
+                                copy={copyEmailSent}
+                            />
+                        );
+                    }
 
                     return (
                         <ResetPasswordScreen
@@ -58,6 +73,10 @@ class ResetPasswordContainer extends PureComponent<Props, IState> {
             </SendMagicLinkMutation>
         );
     }
+
+    private onLogIn = async () => {
+        await Navigation.popToRoot(this.props.componentId);
+    };
 
     private onCancel = () => {
         Navigation.pop(this.props.componentId);
@@ -92,15 +111,7 @@ class ResetPasswordContainer extends PureComponent<Props, IState> {
                 });
 
                 if (results && results.data) {
-                    await Navigation.push(this.props.componentId, {
-                        component: {
-                            name: ROUTES.emailSent,
-                            options: { bottomTabs },
-                            passProps: {
-                                email
-                            }
-                        }
-                    });
+                    this.setState({ wasEmailSent: true });
                 }
             } catch (e) {
                 // tslint:disable-next-line
@@ -111,7 +122,8 @@ class ResetPasswordContainer extends PureComponent<Props, IState> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    copy: getCopy(state, "resetPassword") as ResetPasswordCopy
+    copy: getCopy(state, "needHelpLoggingIn") as ResetPasswordCopy,
+    copyEmailSent: getCopy(state, "emailSent") as EmailSentCopy
 });
 
 export default connect<ConnectedState, {}>(
