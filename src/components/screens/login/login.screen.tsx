@@ -122,7 +122,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
         const { onResetPasswordPress, onSignUpPress, copy } = this.props;
         return [
             {
-                label: "Forgot password",
+                label: "need help logging in?",
                 onPress: onResetPasswordPress
             },
             {

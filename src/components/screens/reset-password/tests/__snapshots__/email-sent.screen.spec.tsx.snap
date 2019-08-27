@@ -7,12 +7,14 @@ ShallowWrapper {
     copy={
       Object {
         "ctaLabel": "return to login",
+        "ctaLabelSecondary": "resend email",
         "heading": "email sent",
         "subheading": "Check your inbox! If \${email} matches our records, a password recovery email is on way. If you do not receive an email, please contact support@yulife.com",
       }
     }
     email="test@yulife.com"
     onLogInPress={[MockFunction]}
+    onResendEmailPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -37,6 +39,7 @@ ShallowWrapper {
           style={
             Object {
               "color": "rgb(51,51,51)",
+              "fontFamily": "Bariol-Bold",
             }
           }
         />,
@@ -53,6 +56,11 @@ ShallowWrapper {
           label="return to login"
           onPress={[MockFunction]}
           type="Primary"
+        />,
+        <Button
+          label="resend email"
+          onPress={[MockFunction]}
+          type="Link"
         />,
       ],
       "footerImage": "forest",
@@ -79,6 +87,7 @@ ShallowWrapper {
           "label": "email sent",
           "style": Object {
             "color": "rgb(51,51,51)",
+            "fontFamily": "Bariol-Bold",
           },
         },
         "ref": null,
@@ -131,6 +140,19 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "label": "resend email",
+          "onPress": [MockFunction],
+          "type": "Link",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
     ],
     "type": [Function],
   },
@@ -150,6 +172,7 @@ ShallowWrapper {
             style={
               Object {
                 "color": "rgb(51,51,51)",
+                "fontFamily": "Bariol-Bold",
               }
             }
           />,
@@ -166,6 +189,11 @@ ShallowWrapper {
             label="return to login"
             onPress={[MockFunction]}
             type="Primary"
+          />,
+          <Button
+            label="resend email"
+            onPress={[MockFunction]}
+            type="Link"
           />,
         ],
         "footerImage": "forest",
@@ -192,6 +220,7 @@ ShallowWrapper {
             "label": "email sent",
             "style": Object {
               "color": "rgb(51,51,51)",
+              "fontFamily": "Bariol-Bold",
             },
           },
           "ref": null,
@@ -239,6 +268,19 @@ ShallowWrapper {
             "label": "return to login",
             "onPress": [MockFunction],
             "type": "Primary",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "resend email",
+            "onPress": [MockFunction],
+            "type": "Link",
           },
           "ref": null,
           "rendered": null,

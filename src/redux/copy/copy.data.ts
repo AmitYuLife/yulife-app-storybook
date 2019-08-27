@@ -15,16 +15,25 @@ export default {
         heading: "sorry!",
         subheading: "You are not able to use this app at the moment."
     },
-    resetPassword: {
+    resetPassword: { // should be deleted after it will be removed from server-side(required for 1.9 compatibility)
         heading: "reset password",
         ctaLabel: "Back"
+    },
+    needHelpLoggingIn: {
+        heading: "need help?",
+        subheading:
+            "No problem! Enter your account email and we will send a magic link" +
+            " straight to your inbox, no password necessary!",
+        ctaLabel: "email me a magic link",
+        ctaLabelSecondary: "back"
     },
     emailSent: {
         heading: "email sent",
         subheading:
             "Check your inbox! If ${email} matches our records, a password recovery email is on way." +
             " If you do not receive an email, please contact support@yulife.com",
-        ctaLabel: "return to login"
+        ctaLabel: "return to login",
+        ctaLabelSecondary: "resend email"
     },
     signupReward: {
         heading: "sign up bonus",

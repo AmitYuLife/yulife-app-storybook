@@ -38,6 +38,7 @@ export interface IState {
     password: string;
     passwordError: string;
     isUsingOtp: boolean;
+    wasLoginCalled: boolean;
 }
 
 type Props = IOwnProps & ConnectedState & ConnectedDispatch;
@@ -62,24 +63,32 @@ export class LoginContainer extends Component<Props, IState> {
         emailError: "",
         isUsingOtp: false,
         password: "",
-        passwordError: ""
+        passwordError: "",
+        wasLoginCalled: false
     };
 
     public render() {
-        const { email, emailError, passwordError, password } = this.state;
+        const { wasLoginCalled, isUsingOtp, email, emailError, passwordError, password } = this.state;
         const { copy } = this.props;
 
         return (
             <FitKitAvailable>
-                {({ authorised }) => (
+                {({ authorised, loading: fitkitLoading }) => (
                     <LoginUserMutation mutation={loginUserGql}>
                         {(loginUser, { error, loading }) => {
+                            // checking for !fitkitLoading to wait until authorised will be assigned,
+                            // otherwise it will be assigned with undefined
+                            // that will lead to infinite loading on FitKitConnect screen.
+                            if (isUsingOtp && !fitkitLoading && !wasLoginCalled) {
+                                this.setState({ wasLoginCalled: true }, () => this.onLogIn(loginUser, authorised));
+                            }
+
                             return (
                                 <LoginScreen
-                                    disabled={!this.isFormValid()}
+                                    disabled={!this.isFormValid() || wasLoginCalled}
                                     email={email}
                                     emailError={emailError}
-                                    isLoggingIn={loading}
+                                    isLoggingIn={loading || wasLoginCalled}
                                     loginError={error && trimGraphQLError(error.message)}
                                     onEmailChange={this.onEmailChange}
                                     onResetPasswordPress={this.onResetPassword}
@@ -139,7 +148,7 @@ export class LoginContainer extends Component<Props, IState> {
     private onLogIn = async (loginUser: LoginUserMutationFunction, authorised: boolean) => {
         const { email, isUsingOtp, password } = this.state;
 
-        if (this.isFormValid()) {
+        if (this.isFormValid() || isUsingOtp) {
             try {
                 const results = await loginUser({
                     variables: {
