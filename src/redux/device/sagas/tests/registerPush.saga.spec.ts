@@ -68,7 +68,7 @@ describe("Register Push registerPushSaga", () => {
         const mockChannel = channel();
         actual = testSaga.next(mockChannel);
         expected = spawn(() => {
-            Mixpanel.initPushHandling(Config.GCM_SENDER_ID);
+            Mixpanel.initPushHandling(Config.INTERCOM_GCM_SENDER_ID);
         });
         compareSagaActionsWithNoVisualDifference(actual, expected);
 

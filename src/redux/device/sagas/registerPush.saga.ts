@@ -13,7 +13,7 @@ export default function* registerPushSaga() {
     if (Platform.OS === "android") {
         yield spawn(() => {
             try {
-                Mixpanel.initPushHandling(Config.GCM_SENDER_ID);
+                Mixpanel.initPushHandling(Config.INTERCOM_GCM_SENDER_ID);
             } catch (e) {
                 // console.log(e);
             }

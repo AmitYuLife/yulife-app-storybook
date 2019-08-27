@@ -14,7 +14,7 @@ export function createPushNotificationsChannel() {
                 emitter(result);
             },
             requestPermissions: Platform.OS === "android",
-            senderID: Config.GCM_SENDER_ID
+            senderID: Config.INTERCOM_GCM_SENDER_ID
         });
 
         // PushNotification.popInitialNotification((notification) => {
