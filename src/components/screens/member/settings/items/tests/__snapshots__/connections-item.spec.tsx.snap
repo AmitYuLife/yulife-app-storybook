@@ -3,7 +3,7 @@
 exports[`ConnectionItem should render 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <NotificationsItem
+  Symbol(enzyme.__unrendered__): <ConnectionsItem
     isConnected={true}
     isLoading={false}
     name="fitbit"
@@ -79,37 +79,45 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <YuText
-            style={
-              Object {
-                "fontFamily": "Bariol-Regular",
-                "fontSize": 32,
+          "children": Array [
+            <YuText
+              style={
+                Object {
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                }
               }
-            }
-          >
-            fitbit
-          </YuText>,
+            >
+              fitbit
+            </YuText>,
+            undefined,
+            false,
+          ],
           "style": Object {
             "flex": 1,
             "paddingLeft": 20,
           },
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": "fitbit",
-            "style": Object {
-              "fontFamily": "Bariol-Regular",
-              "fontSize": 32,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "fitbit",
+              "style": Object {
+                "fontFamily": "Bariol-Regular",
+                "fontSize": 32,
+              },
             },
+            "ref": null,
+            "rendered": "fitbit",
+            "type": [Function],
           },
-          "ref": null,
-          "rendered": "fitbit",
-          "type": [Function],
-        },
+          undefined,
+          false,
+        ],
         "type": [Function],
       },
       Object {
@@ -220,37 +228,45 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <YuText
-              style={
-                Object {
-                  "fontFamily": "Bariol-Regular",
-                  "fontSize": 32,
+            "children": Array [
+              <YuText
+                style={
+                  Object {
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                  }
                 }
-              }
-            >
-              fitbit
-            </YuText>,
+              >
+                fitbit
+              </YuText>,
+              undefined,
+              false,
+            ],
             "style": Object {
               "flex": 1,
               "paddingLeft": 20,
             },
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "fitbit",
-              "style": Object {
-                "fontFamily": "Bariol-Regular",
-                "fontSize": 32,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "fitbit",
+                "style": Object {
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                },
               },
+              "ref": null,
+              "rendered": "fitbit",
+              "type": [Function],
             },
-            "ref": null,
-            "rendered": "fitbit",
-            "type": [Function],
-          },
+            undefined,
+            false,
+          ],
           "type": [Function],
         },
         Object {
@@ -324,7 +340,7 @@ ShallowWrapper {
 exports[`ConnectionItem should render item a loading indicator 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <NotificationsItem
+  Symbol(enzyme.__unrendered__): <ConnectionsItem
     isConnected={true}
     isLoading={true}
     name="fitbit"
@@ -395,37 +411,45 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <YuText
-            style={
-              Object {
-                "fontFamily": "Bariol-Regular",
-                "fontSize": 32,
+          "children": Array [
+            <YuText
+              style={
+                Object {
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                }
               }
-            }
-          >
-            fitbit
-          </YuText>,
+            >
+              fitbit
+            </YuText>,
+            undefined,
+            false,
+          ],
           "style": Object {
             "flex": 1,
             "paddingLeft": 20,
           },
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": "fitbit",
-            "style": Object {
-              "fontFamily": "Bariol-Regular",
-              "fontSize": 32,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "fitbit",
+              "style": Object {
+                "fontFamily": "Bariol-Regular",
+                "fontSize": 32,
+              },
             },
+            "ref": null,
+            "rendered": "fitbit",
+            "type": [Function],
           },
-          "ref": null,
-          "rendered": "fitbit",
-          "type": [Function],
-        },
+          undefined,
+          false,
+        ],
         "type": [Function],
       },
       Object {
@@ -523,37 +547,45 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <YuText
-              style={
-                Object {
-                  "fontFamily": "Bariol-Regular",
-                  "fontSize": 32,
+            "children": Array [
+              <YuText
+                style={
+                  Object {
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
+                  }
                 }
-              }
-            >
-              fitbit
-            </YuText>,
+              >
+                fitbit
+              </YuText>,
+              undefined,
+              false,
+            ],
             "style": Object {
               "flex": 1,
               "paddingLeft": 20,
             },
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "fitbit",
-              "style": Object {
-                "fontFamily": "Bariol-Regular",
-                "fontSize": 32,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "fitbit",
+                "style": Object {
+                  "fontFamily": "Bariol-Regular",
+                  "fontSize": 32,
+                },
               },
+              "ref": null,
+              "rendered": "fitbit",
+              "type": [Function],
             },
-            "ref": null,
-            "rendered": "fitbit",
-            "type": [Function],
-          },
+            undefined,
+            false,
+          ],
           "type": [Function],
         },
         Object {
