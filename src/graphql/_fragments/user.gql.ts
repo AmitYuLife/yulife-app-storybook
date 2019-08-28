@@ -1,5 +1,4 @@
 import gql from "graphql-tag";
-import { userStatusFragmentGql } from "./userStatus.gql";
 
 export const userFragmentGql = gql`
     fragment User on User {
@@ -15,15 +14,12 @@ export const userFragmentGql = gql`
         connections {
             name
             isConnected
+            lastUpdated
         }
         __typename
         userFeatures {
             name
             value
         }
-        userStatus {
-            ...UserStatus
-        }
     }
-    ${userStatusFragmentGql}
 `;

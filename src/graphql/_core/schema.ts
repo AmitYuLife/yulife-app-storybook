@@ -1533,25 +1533,12 @@ export interface ChallengeTemplate {
 export interface User_connections {
   name: string | null;
   isConnected: boolean | null;
+  lastUpdated: number | null;
 }
 
 export interface User_userFeatures {
   name: string | null;
   value: boolean | null;
-}
-
-export interface User_userStatus_currentActiveChallenge {
-  challengeId: string | null;
-  challengeTemplateId: string | null;
-}
-
-export interface User_userStatus {
-  currentActiveChallenge: User_userStatus_currentActiveChallenge | null;
-  customerId: string | null;
-  totalCoins: number | null;
-  totalXP: number | null;
-  level: number | null;
-  __typename: "UserStatus";
 }
 
 export interface User {
@@ -1567,29 +1554,6 @@ export interface User {
   connections: (User_connections | null)[] | null;
   __typename: "User";
   userFeatures: (User_userFeatures | null)[] | null;
-  userStatus: User_userStatus | null;
-}
-
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: UserStatus
-// ====================================================
-
-export interface UserStatus_currentActiveChallenge {
-  challengeId: string | null;
-  challengeTemplateId: string | null;
-}
-
-export interface UserStatus {
-  currentActiveChallenge: UserStatus_currentActiveChallenge | null;
-  customerId: string | null;
-  totalCoins: number | null;
-  totalXP: number | null;
-  level: number | null;
-  __typename: "UserStatus";
 }
 
 /* tslint:disable */
