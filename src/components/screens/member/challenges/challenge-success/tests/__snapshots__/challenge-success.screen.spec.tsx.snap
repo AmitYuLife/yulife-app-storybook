@@ -30,48 +30,73 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <Stars
-          isLeftHighlighted={true}
-          isMidHighlighted={true}
-          isRightHighlighted={false}
-        />,
         <View
           style={
             Object {
               "alignItems": "center",
-              "marginBottom": 40,
-              "width": 274,
+              "marginTop": 80,
             }
           }
         >
+          <Stars
+            isLeftHighlighted={true}
+            isMidHighlighted={true}
+            isRightHighlighted={false}
+          />
           <View
             style={
               Object {
-                "bottom": 6,
-                "left": 0,
+                "alignItems": "center",
+                "marginBottom": 48,
+                "marginTop": 10,
                 "overflow": "visible",
-                "position": "absolute",
-                "right": 0,
+                "width": 274,
               }
             }
           >
-            <LevelLine
-              colour="rgb(251, 207, 39)"
-            />
+            <View
+              style={
+                Object {
+                  "bottom": 6,
+                  "left": 0,
+                  "overflow": "visible",
+                  "position": "absolute",
+                  "right": 0,
+                }
+              }
+            >
+              <LevelLine
+                colour="rgb(251, 207, 39)"
+              />
+            </View>
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(168, 105, 22)",
+                  "fontSize": 28,
+                  "marginTop": -20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              level undefined
+            </YuText>
           </View>
-          <YuText
-            style={
-              Object {
-                "color": "rgb(168, 105, 22)",
-                "fontSize": 28,
-                "marginTop": -20,
-                "textAlign": "center",
-              }
-            }
-          >
-            level undefined
-          </YuText>
         </View>,
+        <YuText
+          bold={true}
+          style={
+            Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 80,
+              "marginBottom": 32,
+              "marginTop": 12,
+              "textTransform": "lowercase",
+            }
+          }
+        >
+          
+        </YuText>,
         <View>
           <View
             style={
@@ -106,32 +131,14 @@ ShallowWrapper {
             6 minutes
           </YuText>
         </View>,
-        <View
-          style={
-            Object {
-              "marginTop": 20,
-            }
-          }
-        >
-          <YuText
-            style={
-              Object {
-                "color": "rgb(85,85,85)",
-                "fontSize": 50,
-                "textAlign": "center",
-              }
-            }
-          >
-            
-          </YuText>
-        </View>,
         <Button
           label=""
           onPress={[MockFunction]}
           type="PrimarySmall"
           wrapperStyle={
             Object {
-              "marginTop": 100,
+              "bottom": 192,
+              "position": "absolute",
             }
           }
         />,
@@ -140,7 +147,7 @@ ShallowWrapper {
       "style": Object {
         "alignItems": "center",
         "flex": 1,
-        "justifyContent": "center",
+        "justifyContent": "flex-start",
       },
     },
     "ref": null,
@@ -148,54 +155,57 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "isLeftHighlighted": true,
-          "isMidHighlighted": true,
-          "isRightHighlighted": false,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
         "nodeType": "class",
         "props": Object {
           "children": Array [
+            <Stars
+              isLeftHighlighted={true}
+              isMidHighlighted={true}
+              isRightHighlighted={false}
+            />,
             <View
               style={
                 Object {
-                  "bottom": 6,
-                  "left": 0,
+                  "alignItems": "center",
+                  "marginBottom": 48,
+                  "marginTop": 10,
                   "overflow": "visible",
-                  "position": "absolute",
-                  "right": 0,
+                  "width": 274,
                 }
               }
             >
-              <LevelLine
-                colour="rgb(251, 207, 39)"
-              />
+              <View
+                style={
+                  Object {
+                    "bottom": 6,
+                    "left": 0,
+                    "overflow": "visible",
+                    "position": "absolute",
+                    "right": 0,
+                  }
+                }
+              >
+                <LevelLine
+                  colour="rgb(251, 207, 39)"
+                />
+              </View>
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 28,
+                    "marginTop": -20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                level undefined
+              </YuText>
             </View>,
-            <YuText
-              style={
-                Object {
-                  "color": "rgb(168, 105, 22)",
-                  "fontSize": 28,
-                  "marginTop": -20,
-                  "textAlign": "center",
-                }
-              }
-            >
-              level undefined
-            </YuText>,
           ],
           "style": Object {
             "alignItems": "center",
-            "marginBottom": 40,
-            "width": 274,
+            "marginTop": 80,
           },
         },
         "ref": null,
@@ -203,51 +213,130 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "function",
             "props": Object {
-              "children": <LevelLine
-                colour="rgb(251, 207, 39)"
-              />,
-              "style": Object {
-                "bottom": 6,
-                "left": 0,
-                "overflow": "visible",
-                "position": "absolute",
-                "right": 0,
-              },
+              "isLeftHighlighted": true,
+              "isMidHighlighted": true,
+              "isRightHighlighted": false,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "colour": "rgb(251, 207, 39)",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            "rendered": null,
             "type": [Function],
           },
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "function",
+            "nodeType": "class",
             "props": Object {
-              "children": "level undefined",
+              "children": Array [
+                <View
+                  style={
+                    Object {
+                      "bottom": 6,
+                      "left": 0,
+                      "overflow": "visible",
+                      "position": "absolute",
+                      "right": 0,
+                    }
+                  }
+                >
+                  <LevelLine
+                    colour="rgb(251, 207, 39)"
+                  />
+                </View>,
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 28,
+                      "marginTop": -20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  level undefined
+                </YuText>,
+              ],
               "style": Object {
-                "color": "rgb(168, 105, 22)",
-                "fontSize": 28,
-                "marginTop": -20,
-                "textAlign": "center",
+                "alignItems": "center",
+                "marginBottom": 48,
+                "marginTop": 10,
+                "overflow": "visible",
+                "width": 274,
               },
             },
             "ref": null,
-            "rendered": "level undefined",
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <LevelLine
+                    colour="rgb(251, 207, 39)"
+                  />,
+                  "style": Object {
+                    "bottom": 6,
+                    "left": 0,
+                    "overflow": "visible",
+                    "position": "absolute",
+                    "right": 0,
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "colour": "rgb(251, 207, 39)",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "level undefined",
+                  "style": Object {
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 28,
+                    "marginTop": -20,
+                    "textAlign": "center",
+                  },
+                },
+                "ref": null,
+                "rendered": "level undefined",
+                "type": [Function],
+              },
+            ],
             "type": [Function],
           },
         ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "bold": true,
+          "children": "",
+          "style": Object {
+            "color": "rgb(51,51,51)",
+            "fontSize": 80,
+            "marginBottom": 32,
+            "marginTop": 12,
+            "textTransform": "lowercase",
+          },
+        },
+        "ref": null,
+        "rendered": "",
         "type": [Function],
       },
       Object {
@@ -361,50 +450,12 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <YuText
-            style={
-              Object {
-                "color": "rgb(85,85,85)",
-                "fontSize": 50,
-                "textAlign": "center",
-              }
-            }
-          >
-            
-          </YuText>,
-          "style": Object {
-            "marginTop": 20,
-          },
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": "",
-            "style": Object {
-              "color": "rgb(85,85,85)",
-              "fontSize": 50,
-              "textAlign": "center",
-            },
-          },
-          "ref": null,
-          "rendered": "",
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
           "label": "",
           "onPress": [MockFunction],
           "type": "PrimarySmall",
           "wrapperStyle": Object {
-            "marginTop": 100,
+            "bottom": 192,
+            "position": "absolute",
           },
         },
         "ref": null,
@@ -421,48 +472,73 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <Stars
-            isLeftHighlighted={true}
-            isMidHighlighted={true}
-            isRightHighlighted={false}
-          />,
           <View
             style={
               Object {
                 "alignItems": "center",
-                "marginBottom": 40,
-                "width": 274,
+                "marginTop": 80,
               }
             }
           >
+            <Stars
+              isLeftHighlighted={true}
+              isMidHighlighted={true}
+              isRightHighlighted={false}
+            />
             <View
               style={
                 Object {
-                  "bottom": 6,
-                  "left": 0,
+                  "alignItems": "center",
+                  "marginBottom": 48,
+                  "marginTop": 10,
                   "overflow": "visible",
-                  "position": "absolute",
-                  "right": 0,
+                  "width": 274,
                 }
               }
             >
-              <LevelLine
-                colour="rgb(251, 207, 39)"
-              />
+              <View
+                style={
+                  Object {
+                    "bottom": 6,
+                    "left": 0,
+                    "overflow": "visible",
+                    "position": "absolute",
+                    "right": 0,
+                  }
+                }
+              >
+                <LevelLine
+                  colour="rgb(251, 207, 39)"
+                />
+              </View>
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 28,
+                    "marginTop": -20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                level undefined
+              </YuText>
             </View>
-            <YuText
-              style={
-                Object {
-                  "color": "rgb(168, 105, 22)",
-                  "fontSize": 28,
-                  "marginTop": -20,
-                  "textAlign": "center",
-                }
-              }
-            >
-              level undefined
-            </YuText>
           </View>,
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontSize": 80,
+                "marginBottom": 32,
+                "marginTop": 12,
+                "textTransform": "lowercase",
+              }
+            }
+          >
+            
+          </YuText>,
           <View>
             <View
               style={
@@ -497,32 +573,14 @@ ShallowWrapper {
               6 minutes
             </YuText>
           </View>,
-          <View
-            style={
-              Object {
-                "marginTop": 20,
-              }
-            }
-          >
-            <YuText
-              style={
-                Object {
-                  "color": "rgb(85,85,85)",
-                  "fontSize": 50,
-                  "textAlign": "center",
-                }
-              }
-            >
-              
-            </YuText>
-          </View>,
           <Button
             label=""
             onPress={[MockFunction]}
             type="PrimarySmall"
             wrapperStyle={
               Object {
-                "marginTop": 100,
+                "bottom": 192,
+                "position": "absolute",
               }
             }
           />,
@@ -531,7 +589,7 @@ ShallowWrapper {
         "style": Object {
           "alignItems": "center",
           "flex": 1,
-          "justifyContent": "center",
+          "justifyContent": "flex-start",
         },
       },
       "ref": null,
@@ -539,54 +597,57 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "isLeftHighlighted": true,
-            "isMidHighlighted": true,
-            "isRightHighlighted": false,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
           "nodeType": "class",
           "props": Object {
             "children": Array [
+              <Stars
+                isLeftHighlighted={true}
+                isMidHighlighted={true}
+                isRightHighlighted={false}
+              />,
               <View
                 style={
                   Object {
-                    "bottom": 6,
-                    "left": 0,
+                    "alignItems": "center",
+                    "marginBottom": 48,
+                    "marginTop": 10,
                     "overflow": "visible",
-                    "position": "absolute",
-                    "right": 0,
+                    "width": 274,
                   }
                 }
               >
-                <LevelLine
-                  colour="rgb(251, 207, 39)"
-                />
+                <View
+                  style={
+                    Object {
+                      "bottom": 6,
+                      "left": 0,
+                      "overflow": "visible",
+                      "position": "absolute",
+                      "right": 0,
+                    }
+                  }
+                >
+                  <LevelLine
+                    colour="rgb(251, 207, 39)"
+                  />
+                </View>
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 28,
+                      "marginTop": -20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  level undefined
+                </YuText>
               </View>,
-              <YuText
-                style={
-                  Object {
-                    "color": "rgb(168, 105, 22)",
-                    "fontSize": 28,
-                    "marginTop": -20,
-                    "textAlign": "center",
-                  }
-                }
-              >
-                level undefined
-              </YuText>,
             ],
             "style": Object {
               "alignItems": "center",
-              "marginBottom": 40,
-              "width": 274,
+              "marginTop": 80,
             },
           },
           "ref": null,
@@ -594,51 +655,130 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "children": <LevelLine
-                  colour="rgb(251, 207, 39)"
-                />,
-                "style": Object {
-                  "bottom": 6,
-                  "left": 0,
-                  "overflow": "visible",
-                  "position": "absolute",
-                  "right": 0,
-                },
+                "isLeftHighlighted": true,
+                "isMidHighlighted": true,
+                "isRightHighlighted": false,
               },
               "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "colour": "rgb(251, 207, 39)",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
+              "rendered": null,
               "type": [Function],
             },
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "function",
+              "nodeType": "class",
               "props": Object {
-                "children": "level undefined",
+                "children": Array [
+                  <View
+                    style={
+                      Object {
+                        "bottom": 6,
+                        "left": 0,
+                        "overflow": "visible",
+                        "position": "absolute",
+                        "right": 0,
+                      }
+                    }
+                  >
+                    <LevelLine
+                      colour="rgb(251, 207, 39)"
+                    />
+                  </View>,
+                  <YuText
+                    style={
+                      Object {
+                        "color": "rgb(168, 105, 22)",
+                        "fontSize": 28,
+                        "marginTop": -20,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    level undefined
+                  </YuText>,
+                ],
                 "style": Object {
-                  "color": "rgb(168, 105, 22)",
-                  "fontSize": 28,
-                  "marginTop": -20,
-                  "textAlign": "center",
+                  "alignItems": "center",
+                  "marginBottom": 48,
+                  "marginTop": 10,
+                  "overflow": "visible",
+                  "width": 274,
                 },
               },
               "ref": null,
-              "rendered": "level undefined",
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <LevelLine
+                      colour="rgb(251, 207, 39)"
+                    />,
+                    "style": Object {
+                      "bottom": 6,
+                      "left": 0,
+                      "overflow": "visible",
+                      "position": "absolute",
+                      "right": 0,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "colour": "rgb(251, 207, 39)",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "level undefined",
+                    "style": Object {
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 28,
+                      "marginTop": -20,
+                      "textAlign": "center",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "level undefined",
+                  "type": [Function],
+                },
+              ],
               "type": [Function],
             },
           ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "bold": true,
+            "children": "",
+            "style": Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 80,
+              "marginBottom": 32,
+              "marginTop": 12,
+              "textTransform": "lowercase",
+            },
+          },
+          "ref": null,
+          "rendered": "",
           "type": [Function],
         },
         Object {
@@ -752,50 +892,12 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <YuText
-              style={
-                Object {
-                  "color": "rgb(85,85,85)",
-                  "fontSize": 50,
-                  "textAlign": "center",
-                }
-              }
-            >
-              
-            </YuText>,
-            "style": Object {
-              "marginTop": 20,
-            },
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "",
-              "style": Object {
-                "color": "rgb(85,85,85)",
-                "fontSize": 50,
-                "textAlign": "center",
-              },
-            },
-            "ref": null,
-            "rendered": "",
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
             "label": "",
             "onPress": [MockFunction],
             "type": "PrimarySmall",
             "wrapperStyle": Object {
-              "marginTop": 100,
+              "bottom": 192,
+              "position": "absolute",
             },
           },
           "ref": null,
@@ -858,48 +960,73 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <Stars
-          isLeftHighlighted={true}
-          isMidHighlighted={true}
-          isRightHighlighted={false}
-        />,
         <View
           style={
             Object {
               "alignItems": "center",
-              "marginBottom": 40,
-              "width": 274,
+              "marginTop": 80,
             }
           }
         >
+          <Stars
+            isLeftHighlighted={true}
+            isMidHighlighted={true}
+            isRightHighlighted={false}
+          />
           <View
             style={
               Object {
-                "bottom": 6,
-                "left": 0,
+                "alignItems": "center",
+                "marginBottom": 48,
+                "marginTop": 10,
                 "overflow": "visible",
-                "position": "absolute",
-                "right": 0,
+                "width": 274,
               }
             }
           >
-            <LevelLine
-              colour="rgb(251, 207, 39)"
-            />
+            <View
+              style={
+                Object {
+                  "bottom": 6,
+                  "left": 0,
+                  "overflow": "visible",
+                  "position": "absolute",
+                  "right": 0,
+                }
+              }
+            >
+              <LevelLine
+                colour="rgb(251, 207, 39)"
+              />
+            </View>
+            <YuText
+              style={
+                Object {
+                  "color": "rgb(168, 105, 22)",
+                  "fontSize": 28,
+                  "marginTop": -20,
+                  "textAlign": "center",
+                }
+              }
+            >
+              level undefined
+            </YuText>
           </View>
-          <YuText
-            style={
-              Object {
-                "color": "rgb(168, 105, 22)",
-                "fontSize": 28,
-                "marginTop": -20,
-                "textAlign": "center",
-              }
-            }
-          >
-            level undefined
-          </YuText>
         </View>,
+        <YuText
+          bold={true}
+          style={
+            Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 80,
+              "marginBottom": 32,
+              "marginTop": 12,
+              "textTransform": "lowercase",
+            }
+          }
+        >
+          
+        </YuText>,
         <View>
           <View
             style={
@@ -934,32 +1061,14 @@ ShallowWrapper {
             1180 steps
           </YuText>
         </View>,
-        <View
-          style={
-            Object {
-              "marginTop": 20,
-            }
-          }
-        >
-          <YuText
-            style={
-              Object {
-                "color": "rgb(85,85,85)",
-                "fontSize": 50,
-                "textAlign": "center",
-              }
-            }
-          >
-            
-          </YuText>
-        </View>,
         <Button
           label=""
           onPress={[MockFunction]}
           type="PrimarySmall"
           wrapperStyle={
             Object {
-              "marginTop": 100,
+              "bottom": 192,
+              "position": "absolute",
             }
           }
         />,
@@ -968,7 +1077,7 @@ ShallowWrapper {
       "style": Object {
         "alignItems": "center",
         "flex": 1,
-        "justifyContent": "center",
+        "justifyContent": "flex-start",
       },
     },
     "ref": null,
@@ -976,54 +1085,57 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "isLeftHighlighted": true,
-          "isMidHighlighted": true,
-          "isRightHighlighted": false,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
         "nodeType": "class",
         "props": Object {
           "children": Array [
+            <Stars
+              isLeftHighlighted={true}
+              isMidHighlighted={true}
+              isRightHighlighted={false}
+            />,
             <View
               style={
                 Object {
-                  "bottom": 6,
-                  "left": 0,
+                  "alignItems": "center",
+                  "marginBottom": 48,
+                  "marginTop": 10,
                   "overflow": "visible",
-                  "position": "absolute",
-                  "right": 0,
+                  "width": 274,
                 }
               }
             >
-              <LevelLine
-                colour="rgb(251, 207, 39)"
-              />
+              <View
+                style={
+                  Object {
+                    "bottom": 6,
+                    "left": 0,
+                    "overflow": "visible",
+                    "position": "absolute",
+                    "right": 0,
+                  }
+                }
+              >
+                <LevelLine
+                  colour="rgb(251, 207, 39)"
+                />
+              </View>
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 28,
+                    "marginTop": -20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                level undefined
+              </YuText>
             </View>,
-            <YuText
-              style={
-                Object {
-                  "color": "rgb(168, 105, 22)",
-                  "fontSize": 28,
-                  "marginTop": -20,
-                  "textAlign": "center",
-                }
-              }
-            >
-              level undefined
-            </YuText>,
           ],
           "style": Object {
             "alignItems": "center",
-            "marginBottom": 40,
-            "width": 274,
+            "marginTop": 80,
           },
         },
         "ref": null,
@@ -1031,51 +1143,130 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "function",
             "props": Object {
-              "children": <LevelLine
-                colour="rgb(251, 207, 39)"
-              />,
-              "style": Object {
-                "bottom": 6,
-                "left": 0,
-                "overflow": "visible",
-                "position": "absolute",
-                "right": 0,
-              },
+              "isLeftHighlighted": true,
+              "isMidHighlighted": true,
+              "isRightHighlighted": false,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "colour": "rgb(251, 207, 39)",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            "rendered": null,
             "type": [Function],
           },
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "function",
+            "nodeType": "class",
             "props": Object {
-              "children": "level undefined",
+              "children": Array [
+                <View
+                  style={
+                    Object {
+                      "bottom": 6,
+                      "left": 0,
+                      "overflow": "visible",
+                      "position": "absolute",
+                      "right": 0,
+                    }
+                  }
+                >
+                  <LevelLine
+                    colour="rgb(251, 207, 39)"
+                  />
+                </View>,
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 28,
+                      "marginTop": -20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  level undefined
+                </YuText>,
+              ],
               "style": Object {
-                "color": "rgb(168, 105, 22)",
-                "fontSize": 28,
-                "marginTop": -20,
-                "textAlign": "center",
+                "alignItems": "center",
+                "marginBottom": 48,
+                "marginTop": 10,
+                "overflow": "visible",
+                "width": 274,
               },
             },
             "ref": null,
-            "rendered": "level undefined",
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <LevelLine
+                    colour="rgb(251, 207, 39)"
+                  />,
+                  "style": Object {
+                    "bottom": 6,
+                    "left": 0,
+                    "overflow": "visible",
+                    "position": "absolute",
+                    "right": 0,
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "colour": "rgb(251, 207, 39)",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "level undefined",
+                  "style": Object {
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 28,
+                    "marginTop": -20,
+                    "textAlign": "center",
+                  },
+                },
+                "ref": null,
+                "rendered": "level undefined",
+                "type": [Function],
+              },
+            ],
             "type": [Function],
           },
         ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "bold": true,
+          "children": "",
+          "style": Object {
+            "color": "rgb(51,51,51)",
+            "fontSize": 80,
+            "marginBottom": 32,
+            "marginTop": 12,
+            "textTransform": "lowercase",
+          },
+        },
+        "ref": null,
+        "rendered": "",
         "type": [Function],
       },
       Object {
@@ -1189,50 +1380,12 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <YuText
-            style={
-              Object {
-                "color": "rgb(85,85,85)",
-                "fontSize": 50,
-                "textAlign": "center",
-              }
-            }
-          >
-            
-          </YuText>,
-          "style": Object {
-            "marginTop": 20,
-          },
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": "",
-            "style": Object {
-              "color": "rgb(85,85,85)",
-              "fontSize": 50,
-              "textAlign": "center",
-            },
-          },
-          "ref": null,
-          "rendered": "",
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
           "label": "",
           "onPress": [MockFunction],
           "type": "PrimarySmall",
           "wrapperStyle": Object {
-            "marginTop": 100,
+            "bottom": 192,
+            "position": "absolute",
           },
         },
         "ref": null,
@@ -1249,48 +1402,73 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <Stars
-            isLeftHighlighted={true}
-            isMidHighlighted={true}
-            isRightHighlighted={false}
-          />,
           <View
             style={
               Object {
                 "alignItems": "center",
-                "marginBottom": 40,
-                "width": 274,
+                "marginTop": 80,
               }
             }
           >
+            <Stars
+              isLeftHighlighted={true}
+              isMidHighlighted={true}
+              isRightHighlighted={false}
+            />
             <View
               style={
                 Object {
-                  "bottom": 6,
-                  "left": 0,
+                  "alignItems": "center",
+                  "marginBottom": 48,
+                  "marginTop": 10,
                   "overflow": "visible",
-                  "position": "absolute",
-                  "right": 0,
+                  "width": 274,
                 }
               }
             >
-              <LevelLine
-                colour="rgb(251, 207, 39)"
-              />
+              <View
+                style={
+                  Object {
+                    "bottom": 6,
+                    "left": 0,
+                    "overflow": "visible",
+                    "position": "absolute",
+                    "right": 0,
+                  }
+                }
+              >
+                <LevelLine
+                  colour="rgb(251, 207, 39)"
+                />
+              </View>
+              <YuText
+                style={
+                  Object {
+                    "color": "rgb(168, 105, 22)",
+                    "fontSize": 28,
+                    "marginTop": -20,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                level undefined
+              </YuText>
             </View>
-            <YuText
-              style={
-                Object {
-                  "color": "rgb(168, 105, 22)",
-                  "fontSize": 28,
-                  "marginTop": -20,
-                  "textAlign": "center",
-                }
-              }
-            >
-              level undefined
-            </YuText>
           </View>,
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "color": "rgb(51,51,51)",
+                "fontSize": 80,
+                "marginBottom": 32,
+                "marginTop": 12,
+                "textTransform": "lowercase",
+              }
+            }
+          >
+            
+          </YuText>,
           <View>
             <View
               style={
@@ -1325,32 +1503,14 @@ ShallowWrapper {
               1180 steps
             </YuText>
           </View>,
-          <View
-            style={
-              Object {
-                "marginTop": 20,
-              }
-            }
-          >
-            <YuText
-              style={
-                Object {
-                  "color": "rgb(85,85,85)",
-                  "fontSize": 50,
-                  "textAlign": "center",
-                }
-              }
-            >
-              
-            </YuText>
-          </View>,
           <Button
             label=""
             onPress={[MockFunction]}
             type="PrimarySmall"
             wrapperStyle={
               Object {
-                "marginTop": 100,
+                "bottom": 192,
+                "position": "absolute",
               }
             }
           />,
@@ -1359,7 +1519,7 @@ ShallowWrapper {
         "style": Object {
           "alignItems": "center",
           "flex": 1,
-          "justifyContent": "center",
+          "justifyContent": "flex-start",
         },
       },
       "ref": null,
@@ -1367,54 +1527,57 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "isLeftHighlighted": true,
-            "isMidHighlighted": true,
-            "isRightHighlighted": false,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
           "nodeType": "class",
           "props": Object {
             "children": Array [
+              <Stars
+                isLeftHighlighted={true}
+                isMidHighlighted={true}
+                isRightHighlighted={false}
+              />,
               <View
                 style={
                   Object {
-                    "bottom": 6,
-                    "left": 0,
+                    "alignItems": "center",
+                    "marginBottom": 48,
+                    "marginTop": 10,
                     "overflow": "visible",
-                    "position": "absolute",
-                    "right": 0,
+                    "width": 274,
                   }
                 }
               >
-                <LevelLine
-                  colour="rgb(251, 207, 39)"
-                />
+                <View
+                  style={
+                    Object {
+                      "bottom": 6,
+                      "left": 0,
+                      "overflow": "visible",
+                      "position": "absolute",
+                      "right": 0,
+                    }
+                  }
+                >
+                  <LevelLine
+                    colour="rgb(251, 207, 39)"
+                  />
+                </View>
+                <YuText
+                  style={
+                    Object {
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 28,
+                      "marginTop": -20,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  level undefined
+                </YuText>
               </View>,
-              <YuText
-                style={
-                  Object {
-                    "color": "rgb(168, 105, 22)",
-                    "fontSize": 28,
-                    "marginTop": -20,
-                    "textAlign": "center",
-                  }
-                }
-              >
-                level undefined
-              </YuText>,
             ],
             "style": Object {
               "alignItems": "center",
-              "marginBottom": 40,
-              "width": 274,
+              "marginTop": 80,
             },
           },
           "ref": null,
@@ -1422,51 +1585,130 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "children": <LevelLine
-                  colour="rgb(251, 207, 39)"
-                />,
-                "style": Object {
-                  "bottom": 6,
-                  "left": 0,
-                  "overflow": "visible",
-                  "position": "absolute",
-                  "right": 0,
-                },
+                "isLeftHighlighted": true,
+                "isMidHighlighted": true,
+                "isRightHighlighted": false,
               },
               "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "colour": "rgb(251, 207, 39)",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
+              "rendered": null,
               "type": [Function],
             },
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "function",
+              "nodeType": "class",
               "props": Object {
-                "children": "level undefined",
+                "children": Array [
+                  <View
+                    style={
+                      Object {
+                        "bottom": 6,
+                        "left": 0,
+                        "overflow": "visible",
+                        "position": "absolute",
+                        "right": 0,
+                      }
+                    }
+                  >
+                    <LevelLine
+                      colour="rgb(251, 207, 39)"
+                    />
+                  </View>,
+                  <YuText
+                    style={
+                      Object {
+                        "color": "rgb(168, 105, 22)",
+                        "fontSize": 28,
+                        "marginTop": -20,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    level undefined
+                  </YuText>,
+                ],
                 "style": Object {
-                  "color": "rgb(168, 105, 22)",
-                  "fontSize": 28,
-                  "marginTop": -20,
-                  "textAlign": "center",
+                  "alignItems": "center",
+                  "marginBottom": 48,
+                  "marginTop": 10,
+                  "overflow": "visible",
+                  "width": 274,
                 },
               },
               "ref": null,
-              "rendered": "level undefined",
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <LevelLine
+                      colour="rgb(251, 207, 39)"
+                    />,
+                    "style": Object {
+                      "bottom": 6,
+                      "left": 0,
+                      "overflow": "visible",
+                      "position": "absolute",
+                      "right": 0,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "colour": "rgb(251, 207, 39)",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "level undefined",
+                    "style": Object {
+                      "color": "rgb(168, 105, 22)",
+                      "fontSize": 28,
+                      "marginTop": -20,
+                      "textAlign": "center",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "level undefined",
+                  "type": [Function],
+                },
+              ],
               "type": [Function],
             },
           ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "bold": true,
+            "children": "",
+            "style": Object {
+              "color": "rgb(51,51,51)",
+              "fontSize": 80,
+              "marginBottom": 32,
+              "marginTop": 12,
+              "textTransform": "lowercase",
+            },
+          },
+          "ref": null,
+          "rendered": "",
           "type": [Function],
         },
         Object {
@@ -1580,50 +1822,12 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <YuText
-              style={
-                Object {
-                  "color": "rgb(85,85,85)",
-                  "fontSize": 50,
-                  "textAlign": "center",
-                }
-              }
-            >
-              
-            </YuText>,
-            "style": Object {
-              "marginTop": 20,
-            },
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "",
-              "style": Object {
-                "color": "rgb(85,85,85)",
-                "fontSize": 50,
-                "textAlign": "center",
-              },
-            },
-            "ref": null,
-            "rendered": "",
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
             "label": "",
             "onPress": [MockFunction],
             "type": "PrimarySmall",
             "wrapperStyle": Object {
-              "marginTop": 100,
+              "bottom": 192,
+              "position": "absolute",
             },
           },
           "ref": null,

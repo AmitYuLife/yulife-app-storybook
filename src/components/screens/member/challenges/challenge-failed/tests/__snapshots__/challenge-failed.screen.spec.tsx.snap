@@ -84,6 +84,7 @@ ShallowWrapper {
               "fontSize": 80,
               "marginBottom": 32,
               "marginTop": 12,
+              "textTransform": "lowercase",
             }
           }
         >
@@ -292,6 +293,7 @@ ShallowWrapper {
             "fontSize": 80,
             "marginBottom": 32,
             "marginTop": 12,
+            "textTransform": "lowercase",
           },
         },
         "ref": null,
@@ -397,6 +399,7 @@ ShallowWrapper {
                 "fontSize": 80,
                 "marginBottom": 32,
                 "marginTop": 12,
+                "textTransform": "lowercase",
               }
             }
           >
@@ -605,6 +608,7 @@ ShallowWrapper {
               "fontSize": 80,
               "marginBottom": 32,
               "marginTop": 12,
+              "textTransform": "lowercase",
             },
           },
           "ref": null,
