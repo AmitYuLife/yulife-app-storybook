@@ -18,16 +18,21 @@ interface IProps {
 
 export default function ChallengeSuccessScreen({ level, onPressCta, rating, reward, score, unit, copy }: IProps) {
     const { backgroundImage, backgroundStyle } = getStyle(level);
-
     return (
         <CentredScreen style={StyleSheet.flatten([styles.wrapper, backgroundStyle])} footerImage={backgroundImage}>
-            <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
-            <View style={styles.levelWrapper}>
-                <View style={styles.levelLineWrapper}>
-                    <LevelLine colour={"rgb(251, 207, 39)"} />
+            <View style={styles.ratingWrapper}>
+                <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
+                <View style={styles.levelWrapper}>
+                    <View style={styles.levelLineWrapper}>
+                        <LevelLine colour={"rgb(251, 207, 39)"} />
+                    </View>
+                    <Text style={styles.level}>{`level ${level}`}</Text>
                 </View>
-                <Text style={styles.level}>{`level ${level}`}</Text>
             </View>
+
+            <Text bold={true} style={styles.heading}>
+                {copy.footer}
+            </Text>
             <View>
                 <View style={styles.plusPointsWrapper}>
                     <AnimatedPlusPoints type="challenge-success" coins={reward} />
@@ -37,14 +42,12 @@ export default function ChallengeSuccessScreen({ level, onPressCta, rating, rewa
                     {renderScore(score, unit)}
                 </Text>
             </View>
-            <View style={styles.footerWrapper}>
-                <Text style={styles.footer}>{copy.footer}</Text>
-            </View>
+
             <Button
                 label={copy.ctaLabel}
                 onPress={onPressCta}
                 type={Button.Types.PRIMARY_SMALL}
-                wrapperStyle={styles.ctaWrapper}
+                wrapperStyle={styles.cta}
             />
         </CentredScreen>
     );

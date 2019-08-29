@@ -1,24 +1,13 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../../../styles";
 
-export default StyleSheet.create({
-    face: {
-        marginTop: Style.SCALE_UP_AND_DOWN(27)
-    } as ImageStyle,
-    footer: {
-        fontSize: Style.SCALE_UP_AND_DOWN(25),
-        lineHeight: Style.SCALE_UP_AND_DOWN(22),
-        marginBottom: Style.SCALE_UP_AND_DOWN(100),
-        marginTop: Style.SCALE_UP_AND_DOWN(97),
-        textAlign: "center",
-        width: "100%",
-        color: "rgb(85,85,85)"
-    } as TextStyle,
+export const commonStyles = StyleSheet.create({
     heading: {
         color: "rgb(51,51,51)",
         fontSize: Style.SCALE_UP_AND_DOWN(40),
         marginBottom: Style.SCALE_UP_AND_DOWN(16),
-        marginTop: Style.SCALE_UP_AND_DOWN(6)
+        marginTop: Style.SCALE_UP_AND_DOWN(6),
+        textTransform: "lowercase"
     } as TextStyle,
     level: {
         color: "#333333",
@@ -49,12 +38,16 @@ export default StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: "center"
     } as ViewStyle,
-    secondaryText: {
-        fontSize: Style.SCALE_UP_AND_DOWN(20),
-        lineHeight: Style.SCALE_UP_AND_DOWN(24)
-    } as TextStyle,
     cta: {
         position: "absolute",
         bottom: Style.SCALE_UP_AND_DOWN(96)
     } as ViewStyle
+});
+
+export default StyleSheet.create({
+    ...commonStyles,
+    secondaryText: {
+        fontSize: Style.SCALE_UP_AND_DOWN(20),
+        lineHeight: Style.SCALE_UP_AND_DOWN(24)
+    } as TextStyle
 });
