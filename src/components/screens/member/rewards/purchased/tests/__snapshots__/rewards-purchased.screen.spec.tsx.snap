@@ -53,7 +53,7 @@ ShallowWrapper {
     }
     labels={Array []}
     loading={false}
-    navbarColour="light"
+    navbarColour="darker"
     onLeftMenuPress={[MockFunction]}
     onLeftTabPress={[MockFunction]}
     onRightTabPress={[MockFunction]}
@@ -135,19 +135,14 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "bottom": 0,
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             }
           }
         >
           <NavBar
             activeIndex={3}
-            colour="light"
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
             labels={Array []}
           />
@@ -290,19 +285,14 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={3}
-            colour="light"
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
             labels={Array []}
           />,
           "style": Object {
             "alignItems": "center",
-            "bottom": 0,
-            "left": 0,
-            "paddingBottom": 34,
-            "paddingTop": 16,
-            "position": "absolute",
-            "right": 0,
+            "height": 30,
+            "paddingBottom": 50,
           },
         },
         "ref": null,
@@ -312,9 +302,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 3,
-            "colour": "light",
-            "currentWorld": undefined,
-            "hasImage": true,
+            "colour": "darker",
             "hasNotification": false,
             "labels": Array [],
           },
@@ -396,19 +384,14 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "bottom": 0,
-                "left": 0,
-                "paddingBottom": 34,
-                "paddingTop": 16,
-                "position": "absolute",
-                "right": 0,
+                "height": 30,
+                "paddingBottom": 50,
               }
             }
           >
             <NavBar
               activeIndex={3}
-              colour="light"
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
               labels={Array []}
             />
@@ -551,19 +534,14 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={3}
-              colour="light"
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
               labels={Array []}
             />,
             "style": Object {
               "alignItems": "center",
-              "bottom": 0,
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             },
           },
           "ref": null,
@@ -573,9 +551,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 3,
-              "colour": "light",
-              "currentWorld": undefined,
-              "hasImage": true,
+              "colour": "darker",
               "hasNotification": false,
               "labels": Array [],
             },
@@ -652,7 +628,7 @@ ShallowWrapper {
     data={Array []}
     labels={Array []}
     loading={false}
-    navbarColour="light"
+    navbarColour="darker"
     onLeftMenuPress={[MockFunction]}
     onLeftTabPress={[MockFunction]}
     onRightTabPress={[MockFunction]}
@@ -724,19 +700,14 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "bottom": 0,
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             }
           }
         >
           <NavBar
             activeIndex={3}
-            colour="light"
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
             labels={Array []}
           />
@@ -859,19 +830,14 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={3}
-            colour="light"
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
             labels={Array []}
           />,
           "style": Object {
             "alignItems": "center",
-            "bottom": 0,
-            "left": 0,
-            "paddingBottom": 34,
-            "paddingTop": 16,
-            "position": "absolute",
-            "right": 0,
+            "height": 30,
+            "paddingBottom": 50,
           },
         },
         "ref": null,
@@ -881,9 +847,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 3,
-            "colour": "light",
-            "currentWorld": undefined,
-            "hasImage": true,
+            "colour": "darker",
             "hasNotification": false,
             "labels": Array [],
           },
@@ -955,19 +919,14 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "bottom": 0,
-                "left": 0,
-                "paddingBottom": 34,
-                "paddingTop": 16,
-                "position": "absolute",
-                "right": 0,
+                "height": 30,
+                "paddingBottom": 50,
               }
             }
           >
             <NavBar
               activeIndex={3}
-              colour="light"
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
               labels={Array []}
             />
@@ -1090,19 +1049,14 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={3}
-              colour="light"
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
               labels={Array []}
             />,
             "style": Object {
               "alignItems": "center",
-              "bottom": 0,
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             },
           },
           "ref": null,
@@ -1112,9 +1066,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 3,
-              "colour": "light",
-              "currentWorld": undefined,
-              "hasImage": true,
+              "colour": "darker",
               "hasNotification": false,
               "labels": Array [],
             },

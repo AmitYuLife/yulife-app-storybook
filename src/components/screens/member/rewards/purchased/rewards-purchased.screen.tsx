@@ -37,7 +37,6 @@ export default class RewardsPurchasedScreen extends React.PureComponent<IProps> 
             onRightTabPress,
             onLeftMenuPress,
             totalCoins,
-            currentWorld,
             navbarColour
         } = this.props;
 
@@ -62,8 +61,6 @@ export default class RewardsPurchasedScreen extends React.PureComponent<IProps> 
                 <View style={styles.navBarWrapper}>
                     <NavBar
                         activeIndex={3}
-                        hasImage={true}
-                        currentWorld={currentWorld}
                         colour={navbarColour || NavBar.Colours.DARKER}
                         hasNotification={hasNotification}
                         labels={labels}

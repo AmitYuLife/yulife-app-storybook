@@ -6,7 +6,6 @@ import assets from "./assets";
 import styles from "./leaderboards.screen.styles";
 
 interface IProps {
-    currentWorld: number;
     labels: ILabel[];
     hasNotification: boolean;
     totalCoins: number;
@@ -17,7 +16,6 @@ interface IProps {
 export default function LeaderboardOfflineScrreen({
     hasNotification,
     totalCoins,
-    currentWorld,
     labels,
     onLeftMenuPress,
     navbarColour
@@ -36,8 +34,6 @@ export default function LeaderboardOfflineScrreen({
             <View style={styles.navbarWrapper}>
                 <NavBar
                     activeIndex={2}
-                    hasImage={true}
-                    currentWorld={currentWorld}
                     hasNotification={hasNotification}
                     labels={labels}
                     colour={navbarColour}

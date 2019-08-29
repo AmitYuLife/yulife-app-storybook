@@ -55,14 +55,9 @@ export default StyleSheet.create({
         backgroundColor: "rgb(236, 236, 236)"
     } as ViewStyle,
     navbarWrapper: {
-        alignItems: "center",
-        justifyContent: "center",
-        bottom: 0,
-        left: 0,
-        paddingBottom: Style.SCALE_UP_AND_DOWN(17),
-        paddingTop: Style.SCALE_UP_AND_DOWN(8),
-        position: "absolute",
-        right: 0
+        height: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 25 : 15),
+        paddingBottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 0 : 25),
+        alignItems: "center"
     } as ViewStyle,
     leaderboardOfflineWrapper: { justifyContent: "center", alignItems: "center", flex: 1 } as ViewStyle,
     leaderboardOfflineImage: { position: "absolute", bottom: 0, left: 0, right: 0, width: "100%" } as ImageStyle,

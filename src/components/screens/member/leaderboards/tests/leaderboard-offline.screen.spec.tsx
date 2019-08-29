@@ -27,7 +27,7 @@ const defaultProps = {
     hasNotification: false,
     totalCoins: 5,
     onLeftMenuPress: jest.fn(),
-    navbarColour: COLOURS.LIGHT
+    navbarColour: COLOURS.DARKER
 };
 
 describe("LeaderboardOfflineScreen", () => {

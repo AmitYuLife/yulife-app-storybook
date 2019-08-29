@@ -64,7 +64,7 @@ ShallowWrapper {
         },
       ]
     }
-    navbarColour="light"
+    navbarColour="darker"
     onAllowLeaderboard={[MockFunction]}
     onHandleCoinsRefetch={[MockFunction]}
     onHandleMindfulMinsRefetch={[MockFunction]}
@@ -206,22 +206,16 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "bottom": 0,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             }
           }
         >
           <NavBar
             activeIndex={2}
-            colour="light"
-            currentWorld={0}
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={
               Array [
                 Object {
@@ -548,10 +542,9 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={2}
-            colour="light"
-            currentWorld={0}
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={
               Array [
                 Object {
@@ -575,13 +568,8 @@ ShallowWrapper {
           />,
           "style": Object {
             "alignItems": "center",
-            "bottom": 0,
-            "justifyContent": "center",
-            "left": 0,
-            "paddingBottom": 34,
-            "paddingTop": 16,
-            "position": "absolute",
-            "right": 0,
+            "height": 30,
+            "paddingBottom": 50,
           },
         },
         "ref": null,
@@ -591,10 +579,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 2,
-            "colour": "light",
-            "currentWorld": 0,
-            "hasImage": true,
+            "colour": "darker",
             "hasNotification": false,
+            "hasWhiteBackground": true,
             "labels": Array [
               Object {
                 "name": "yucoin",
@@ -745,22 +732,16 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "bottom": 0,
-                "justifyContent": "center",
-                "left": 0,
-                "paddingBottom": 34,
-                "paddingTop": 16,
-                "position": "absolute",
-                "right": 0,
+                "height": 30,
+                "paddingBottom": 50,
               }
             }
           >
             <NavBar
               activeIndex={2}
-              colour="light"
-              currentWorld={0}
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={
                 Array [
                   Object {
@@ -1087,10 +1068,9 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={2}
-              colour="light"
-              currentWorld={0}
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={
                 Array [
                   Object {
@@ -1114,13 +1094,8 @@ ShallowWrapper {
             />,
             "style": Object {
               "alignItems": "center",
-              "bottom": 0,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             },
           },
           "ref": null,
@@ -1130,10 +1105,9 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 2,
-              "colour": "light",
-              "currentWorld": 0,
-              "hasImage": true,
+              "colour": "darker",
               "hasNotification": false,
+              "hasWhiteBackground": true,
               "labels": Array [
                 Object {
                   "name": "yucoin",
@@ -1249,7 +1223,7 @@ ShallowWrapper {
         },
       ]
     }
-    navbarColour="light"
+    navbarColour="darker"
     onAllowLeaderboard={[MockFunction]}
     onHandleCoinsRefetch={[MockFunction]}
     onHandleMindfulMinsRefetch={[MockFunction]}
@@ -1420,22 +1394,16 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "bottom": 0,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             }
           }
         >
           <NavBar
             activeIndex={2}
-            colour="light"
-            currentWorld={0}
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={
               Array [
                 Object {
@@ -1824,10 +1792,9 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={2}
-            colour="light"
-            currentWorld={0}
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={
               Array [
                 Object {
@@ -1851,13 +1818,8 @@ ShallowWrapper {
           />,
           "style": Object {
             "alignItems": "center",
-            "bottom": 0,
-            "justifyContent": "center",
-            "left": 0,
-            "paddingBottom": 34,
-            "paddingTop": 16,
-            "position": "absolute",
-            "right": 0,
+            "height": 30,
+            "paddingBottom": 50,
           },
         },
         "ref": null,
@@ -1867,10 +1829,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 2,
-            "colour": "light",
-            "currentWorld": 0,
-            "hasImage": true,
+            "colour": "darker",
             "hasNotification": false,
+            "hasWhiteBackground": true,
             "labels": Array [
               Object {
                 "name": "yucoin",
@@ -2050,22 +2011,16 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "bottom": 0,
-                "justifyContent": "center",
-                "left": 0,
-                "paddingBottom": 34,
-                "paddingTop": 16,
-                "position": "absolute",
-                "right": 0,
+                "height": 30,
+                "paddingBottom": 50,
               }
             }
           >
             <NavBar
               activeIndex={2}
-              colour="light"
-              currentWorld={0}
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={
                 Array [
                   Object {
@@ -2454,10 +2409,9 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={2}
-              colour="light"
-              currentWorld={0}
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={
                 Array [
                   Object {
@@ -2481,13 +2435,8 @@ ShallowWrapper {
             />,
             "style": Object {
               "alignItems": "center",
-              "bottom": 0,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             },
           },
           "ref": null,
@@ -2497,10 +2446,9 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 2,
-              "colour": "light",
-              "currentWorld": 0,
-              "hasImage": true,
+              "colour": "darker",
               "hasNotification": false,
+              "hasWhiteBackground": true,
               "labels": Array [
                 Object {
                   "name": "yucoin",
@@ -2605,7 +2553,7 @@ ShallowWrapper {
       ]
     }
     leaderboards={Array []}
-    navbarColour="light"
+    navbarColour="darker"
     onAllowLeaderboard={[MockFunction]}
     onHandleCoinsRefetch={[MockFunction]}
     onHandleMindfulMinsRefetch={[MockFunction]}
@@ -2754,22 +2702,16 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "bottom": 0,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             }
           }
         >
           <NavBar
             activeIndex={2}
-            colour="light"
-            currentWorld={0}
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={
               Array [
                 Object {
@@ -3129,10 +3071,9 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={2}
-            colour="light"
-            currentWorld={0}
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={
               Array [
                 Object {
@@ -3156,13 +3097,8 @@ ShallowWrapper {
           />,
           "style": Object {
             "alignItems": "center",
-            "bottom": 0,
-            "justifyContent": "center",
-            "left": 0,
-            "paddingBottom": 34,
-            "paddingTop": 16,
-            "position": "absolute",
-            "right": 0,
+            "height": 30,
+            "paddingBottom": 50,
           },
         },
         "ref": null,
@@ -3172,10 +3108,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 2,
-            "colour": "light",
-            "currentWorld": 0,
-            "hasImage": true,
+            "colour": "darker",
             "hasNotification": false,
+            "hasWhiteBackground": true,
             "labels": Array [
               Object {
                 "name": "yucoin",
@@ -3333,22 +3268,16 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "bottom": 0,
-                "justifyContent": "center",
-                "left": 0,
-                "paddingBottom": 34,
-                "paddingTop": 16,
-                "position": "absolute",
-                "right": 0,
+                "height": 30,
+                "paddingBottom": 50,
               }
             }
           >
             <NavBar
               activeIndex={2}
-              colour="light"
-              currentWorld={0}
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={
                 Array [
                   Object {
@@ -3708,10 +3637,9 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={2}
-              colour="light"
-              currentWorld={0}
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={
                 Array [
                   Object {
@@ -3735,13 +3663,8 @@ ShallowWrapper {
             />,
             "style": Object {
               "alignItems": "center",
-              "bottom": 0,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             },
           },
           "ref": null,
@@ -3751,10 +3674,9 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 2,
-              "colour": "light",
-              "currentWorld": 0,
-              "hasImage": true,
+              "colour": "darker",
               "hasNotification": false,
+              "hasWhiteBackground": true,
               "labels": Array [
                 Object {
                   "name": "yucoin",
@@ -3870,7 +3792,7 @@ ShallowWrapper {
         },
       ]
     }
-    navbarColour="light"
+    navbarColour="darker"
     onAllowLeaderboard={[MockFunction]}
     onHandleCoinsRefetch={[MockFunction]}
     onHandleMindfulMinsRefetch={[MockFunction]}
@@ -4004,22 +3926,16 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "bottom": 0,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             }
           }
         >
           <NavBar
             activeIndex={2}
-            colour="light"
-            currentWorld={0}
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={
               Array [
                 Object {
@@ -4338,10 +4254,9 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={2}
-            colour="light"
-            currentWorld={0}
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={
               Array [
                 Object {
@@ -4365,13 +4280,8 @@ ShallowWrapper {
           />,
           "style": Object {
             "alignItems": "center",
-            "bottom": 0,
-            "justifyContent": "center",
-            "left": 0,
-            "paddingBottom": 34,
-            "paddingTop": 16,
-            "position": "absolute",
-            "right": 0,
+            "height": 30,
+            "paddingBottom": 50,
           },
         },
         "ref": null,
@@ -4381,10 +4291,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 2,
-            "colour": "light",
-            "currentWorld": 0,
-            "hasImage": true,
+            "colour": "darker",
             "hasNotification": false,
+            "hasWhiteBackground": true,
             "labels": Array [
               Object {
                 "name": "yucoin",
@@ -4527,22 +4436,16 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "bottom": 0,
-                "justifyContent": "center",
-                "left": 0,
-                "paddingBottom": 34,
-                "paddingTop": 16,
-                "position": "absolute",
-                "right": 0,
+                "height": 30,
+                "paddingBottom": 50,
               }
             }
           >
             <NavBar
               activeIndex={2}
-              colour="light"
-              currentWorld={0}
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={
                 Array [
                   Object {
@@ -4861,10 +4764,9 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={2}
-              colour="light"
-              currentWorld={0}
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={
                 Array [
                   Object {
@@ -4888,13 +4790,8 @@ ShallowWrapper {
             />,
             "style": Object {
               "alignItems": "center",
-              "bottom": 0,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             },
           },
           "ref": null,
@@ -4904,10 +4801,9 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 2,
-              "colour": "light",
-              "currentWorld": 0,
-              "hasImage": true,
+              "colour": "darker",
               "hasNotification": false,
+              "hasWhiteBackground": true,
               "labels": Array [
                 Object {
                   "name": "yucoin",
@@ -5023,7 +4919,7 @@ ShallowWrapper {
         },
       ]
     }
-    navbarColour="light"
+    navbarColour="darker"
     onAllowLeaderboard={[MockFunction]}
     onHandleCoinsRefetch={[MockFunction]}
     onHandleMindfulMinsRefetch={[MockFunction]}
@@ -5194,22 +5090,16 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "bottom": 0,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             }
           }
         >
           <NavBar
             activeIndex={2}
-            colour="light"
-            currentWorld={0}
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={
               Array [
                 Object {
@@ -5598,10 +5488,9 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={2}
-            colour="light"
-            currentWorld={0}
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={
               Array [
                 Object {
@@ -5625,13 +5514,8 @@ ShallowWrapper {
           />,
           "style": Object {
             "alignItems": "center",
-            "bottom": 0,
-            "justifyContent": "center",
-            "left": 0,
-            "paddingBottom": 34,
-            "paddingTop": 16,
-            "position": "absolute",
-            "right": 0,
+            "height": 30,
+            "paddingBottom": 50,
           },
         },
         "ref": null,
@@ -5641,10 +5525,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 2,
-            "colour": "light",
-            "currentWorld": 0,
-            "hasImage": true,
+            "colour": "darker",
             "hasNotification": false,
+            "hasWhiteBackground": true,
             "labels": Array [
               Object {
                 "name": "yucoin",
@@ -5824,22 +5707,16 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "bottom": 0,
-                "justifyContent": "center",
-                "left": 0,
-                "paddingBottom": 34,
-                "paddingTop": 16,
-                "position": "absolute",
-                "right": 0,
+                "height": 30,
+                "paddingBottom": 50,
               }
             }
           >
             <NavBar
               activeIndex={2}
-              colour="light"
-              currentWorld={0}
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={
                 Array [
                   Object {
@@ -6228,10 +6105,9 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={2}
-              colour="light"
-              currentWorld={0}
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={
                 Array [
                   Object {
@@ -6255,13 +6131,8 @@ ShallowWrapper {
             />,
             "style": Object {
               "alignItems": "center",
-              "bottom": 0,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             },
           },
           "ref": null,
@@ -6271,10 +6142,9 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 2,
-              "colour": "light",
-              "currentWorld": 0,
-              "hasImage": true,
+              "colour": "darker",
               "hasNotification": false,
+              "hasWhiteBackground": true,
               "labels": Array [
                 Object {
                   "name": "yucoin",
@@ -6390,7 +6260,7 @@ ShallowWrapper {
         },
       ]
     }
-    navbarColour="light"
+    navbarColour="darker"
     onAllowLeaderboard={[MockFunction]}
     onHandleCoinsRefetch={[MockFunction]}
     onHandleMindfulMinsRefetch={[MockFunction]}
@@ -6561,22 +6431,16 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "bottom": 0,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             }
           }
         >
           <NavBar
             activeIndex={2}
-            colour="light"
-            currentWorld={0}
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={
               Array [
                 Object {
@@ -6965,10 +6829,9 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={2}
-            colour="light"
-            currentWorld={0}
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={
               Array [
                 Object {
@@ -6992,13 +6855,8 @@ ShallowWrapper {
           />,
           "style": Object {
             "alignItems": "center",
-            "bottom": 0,
-            "justifyContent": "center",
-            "left": 0,
-            "paddingBottom": 34,
-            "paddingTop": 16,
-            "position": "absolute",
-            "right": 0,
+            "height": 30,
+            "paddingBottom": 50,
           },
         },
         "ref": null,
@@ -7008,10 +6866,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 2,
-            "colour": "light",
-            "currentWorld": 0,
-            "hasImage": true,
+            "colour": "darker",
             "hasNotification": false,
+            "hasWhiteBackground": true,
             "labels": Array [
               Object {
                 "name": "yucoin",
@@ -7191,22 +7048,16 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "bottom": 0,
-                "justifyContent": "center",
-                "left": 0,
-                "paddingBottom": 34,
-                "paddingTop": 16,
-                "position": "absolute",
-                "right": 0,
+                "height": 30,
+                "paddingBottom": 50,
               }
             }
           >
             <NavBar
               activeIndex={2}
-              colour="light"
-              currentWorld={0}
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={
                 Array [
                   Object {
@@ -7595,10 +7446,9 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={2}
-              colour="light"
-              currentWorld={0}
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={
                 Array [
                   Object {
@@ -7622,13 +7472,8 @@ ShallowWrapper {
             />,
             "style": Object {
               "alignItems": "center",
-              "bottom": 0,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             },
           },
           "ref": null,
@@ -7638,10 +7483,9 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 2,
-              "colour": "light",
-              "currentWorld": 0,
-              "hasImage": true,
+              "colour": "darker",
               "hasNotification": false,
+              "hasWhiteBackground": true,
               "labels": Array [
                 Object {
                   "name": "yucoin",
@@ -7757,7 +7601,7 @@ ShallowWrapper {
         },
       ]
     }
-    navbarColour="light"
+    navbarColour="darker"
     onAllowLeaderboard={[MockFunction]}
     onHandleCoinsRefetch={[MockFunction]}
     onHandleMindfulMinsRefetch={[MockFunction]}
@@ -7928,22 +7772,16 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "bottom": 0,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             }
           }
         >
           <NavBar
             activeIndex={2}
-            colour="light"
-            currentWorld={0}
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={
               Array [
                 Object {
@@ -8332,10 +8170,9 @@ ShallowWrapper {
         "props": Object {
           "children": <NavBar
             activeIndex={2}
-            colour="light"
-            currentWorld={0}
-            hasImage={true}
+            colour="darker"
             hasNotification={false}
+            hasWhiteBackground={true}
             labels={
               Array [
                 Object {
@@ -8359,13 +8196,8 @@ ShallowWrapper {
           />,
           "style": Object {
             "alignItems": "center",
-            "bottom": 0,
-            "justifyContent": "center",
-            "left": 0,
-            "paddingBottom": 34,
-            "paddingTop": 16,
-            "position": "absolute",
-            "right": 0,
+            "height": 30,
+            "paddingBottom": 50,
           },
         },
         "ref": null,
@@ -8375,10 +8207,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "activeIndex": 2,
-            "colour": "light",
-            "currentWorld": 0,
-            "hasImage": true,
+            "colour": "darker",
             "hasNotification": false,
+            "hasWhiteBackground": true,
             "labels": Array [
               Object {
                 "name": "yucoin",
@@ -8558,22 +8389,16 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "bottom": 0,
-                "justifyContent": "center",
-                "left": 0,
-                "paddingBottom": 34,
-                "paddingTop": 16,
-                "position": "absolute",
-                "right": 0,
+                "height": 30,
+                "paddingBottom": 50,
               }
             }
           >
             <NavBar
               activeIndex={2}
-              colour="light"
-              currentWorld={0}
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={
                 Array [
                   Object {
@@ -8962,10 +8787,9 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={2}
-              colour="light"
-              currentWorld={0}
-              hasImage={true}
+              colour="darker"
               hasNotification={false}
+              hasWhiteBackground={true}
               labels={
                 Array [
                   Object {
@@ -8989,13 +8813,8 @@ ShallowWrapper {
             />,
             "style": Object {
               "alignItems": "center",
-              "bottom": 0,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingBottom": 34,
-              "paddingTop": 16,
-              "position": "absolute",
-              "right": 0,
+              "height": 30,
+              "paddingBottom": 50,
             },
           },
           "ref": null,
@@ -9005,10 +8824,9 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 2,
-              "colour": "light",
-              "currentWorld": 0,
-              "hasImage": true,
+              "colour": "darker",
               "hasNotification": false,
+              "hasWhiteBackground": true,
               "labels": Array [
                 Object {
                   "name": "yucoin",

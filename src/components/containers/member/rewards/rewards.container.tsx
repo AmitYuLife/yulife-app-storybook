@@ -21,7 +21,6 @@ import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getCurrentLevel, getHasNotification } from "../../../../redux/levels/levels.selectors";
 import Logger from "../../../../services/logging/logger";
 import { formatMoney } from "../../../../services/money";
-import { getCurrentWorld } from "../../../../services/utils";
 import { PurchasedListScreen, RewardsListScreen } from "../../../screens";
 
 type Tab = "rewards" | "purchases";
@@ -70,8 +69,8 @@ class RewardsContainer extends PureComponent<Props, IState> {
         return tab === "rewards" ? (
             <GetRewardsQuery>{this.renderRewards}</GetRewardsQuery>
         ) : (
-            <GetAllPurchasesQuery>{this.renderPurchases}</GetAllPurchasesQuery>
-        );
+                <GetAllPurchasesQuery>{this.renderPurchases}</GetAllPurchasesQuery>
+            );
     }
 
     private handleTabChange = (tab: Tab, componentId: string = "") => {
@@ -84,9 +83,8 @@ class RewardsContainer extends PureComponent<Props, IState> {
 
     // all related to the rewards tab
     private renderRewards = ({ loading, data, refetch }: GetRewardsResultType) => {
-        const { hasNotification, totalCoins, currentLevel } = this.props;
-        const currentWorld = getCurrentWorld(currentLevel);
-        const navbarColour = getNavbarColourScheme(currentWorld);
+        const { hasNotification, totalCoins } = this.props;
+        const navbarColour = COLOURS.DARKER;
 
         return (
             <RewardsListScreen
@@ -99,7 +97,6 @@ class RewardsContainer extends PureComponent<Props, IState> {
                 onRightTabPress={() => this.handleTabChange("purchases")}
                 loading={loading}
                 totalCoins={totalCoins}
-                currentWorld={currentWorld}
                 navbarColour={navbarColour}
             />
         );
@@ -159,10 +156,9 @@ class RewardsContainer extends PureComponent<Props, IState> {
 
     // all related to the purchases tab
     private renderPurchases = ({ loading, data, refetch }: GetAllPurchasesResultType) => {
-        const { hasNotification, totalCoins, copy, currentLevel } = this.props;
+        const { hasNotification, totalCoins, copy } = this.props;
         const items = this.formatPuchaseItem(data && data.getAllPurchases ? data.getAllPurchases : []);
-        const currentWorld = getCurrentWorld(currentLevel);
-        const navbarColour = getNavbarColourScheme(currentWorld);
+        const navbarColour = COLOURS.DARKER;
 
         return (
             <PurchasedListScreen
@@ -175,7 +171,6 @@ class RewardsContainer extends PureComponent<Props, IState> {
                 loading={loading}
                 totalCoins={totalCoins}
                 copy={copy}
-                currentWorld={currentWorld}
                 navbarColour={navbarColour}
             />
         );
@@ -243,16 +238,3 @@ const mapStateToProps = (state: IReduxState) => ({
 });
 
 export default connect<ConnectedState>(mapStateToProps)(RewardsContainer);
-
-function getNavbarColourScheme(currentWorld: number): COLOURS {
-    switch (currentWorld) {
-        case 3:
-            return COLOURS.MOUNTAIN;
-        case 2:
-            return COLOURS.DESERT;
-        case 1:
-        case 0:
-        default:
-            return COLOURS.LIGHT;
-    }
-}

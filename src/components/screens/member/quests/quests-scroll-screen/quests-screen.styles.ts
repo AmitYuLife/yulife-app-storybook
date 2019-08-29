@@ -18,9 +18,9 @@ function scrollViewAdjustPosition() {
 export default StyleSheet.create({
     navBarWrapper: {
         alignItems: "center",
-        bottom: Style.SCALE_UP_AND_DOWN(17),
+        bottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 20 : 10),
+        paddingBottom: Style.SCALE_UP_AND_DOWN(15),
         left: 0,
-        paddingTop: Style.SCALE_UP_AND_DOWN(10),
         position: "absolute",
         right: 0
     } as ViewStyle,

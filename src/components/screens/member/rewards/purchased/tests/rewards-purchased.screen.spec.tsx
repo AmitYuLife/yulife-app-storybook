@@ -29,7 +29,7 @@ const defaultProps = {
         notEnoughCoins: { heading: "", subheading: "", ctaLabel: "" },
         aviosConfirmed: { title: "", message: "", cancelButtonText: "" }
     },
-    navbarColour: COLOURS.LIGHT
+    navbarColour: COLOURS.DARKER
 };
 
 describe("RewardsPurchasedScreen", () => {

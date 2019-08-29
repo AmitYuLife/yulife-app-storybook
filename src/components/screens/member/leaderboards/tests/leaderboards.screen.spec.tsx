@@ -64,7 +64,7 @@ const defaultProps = {
     onRefuseConsent: jest.fn(),
     copy: copy.leaderboards.turnBoardOn,
     isMindfulAvailable: false,
-    navbarColour: COLOURS.LIGHT,
+    navbarColour: COLOURS.DARKER,
     appState: "active" as AppStateStatus
 };
 

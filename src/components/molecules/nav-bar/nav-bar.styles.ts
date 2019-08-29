@@ -1,10 +1,10 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../styles";
 
 const styles = StyleSheet.create({
     labelsWrapper: {
         flexDirection: "row",
-        height: Style.SCALE_UP_AND_DOWN(82),
+        height: Style.SCALE_UP_AND_DOWN(51),
         position: "absolute",
         bottom: 0,
         width: "100%"
@@ -17,26 +17,19 @@ const styles = StyleSheet.create({
     } as TextStyle,
     textWrapper: {
         alignItems: "center",
+        height: Style.SCALE_UP_AND_DOWN(60),
         flex: 1,
         justifyContent: "flex-end"
     } as ViewStyle,
     wrapper: {
         alignItems: "center",
-        height: Style.SCALE_UP_AND_DOWN(78),
+        height: Style.SCALE_UP_AND_DOWN(70),
         justifyContent: "flex-start",
         width: Style.SCALE_UP_AND_DOWN(280)
     } as ViewStyle,
     outerWrapper: {
         justifyContent: "flex-end"
-    } as ViewStyle,
-    image: {
-        height: Style.SCALE_UP_AND_DOWN(113),
-        position: "absolute",
-        left: 0,
-        right: 0,
-        bottom: 0,
-        width: Style.DEVICE_WIDTH
-    } as ImageStyle
+    } as ViewStyle
 });
 
 export function getLabelAdjustment(index: number) {

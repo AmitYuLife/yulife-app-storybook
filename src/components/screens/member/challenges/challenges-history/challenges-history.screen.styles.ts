@@ -4,6 +4,7 @@ import {
     StyleSheet,
     ViewStyle
 } from "react-native";
+import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../../styles";
 
 export default StyleSheet.create({
@@ -56,7 +57,7 @@ export default StyleSheet.create({
     } as ViewStyle,
     navBarWrapper: {
         alignItems: "center",
-        bottom: Style.SCALE_UP_AND_DOWN(19),
+        bottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 37 : 27),
         position: "absolute",
         width: Style.DEVICE_WIDTH
     } as ViewStyle,

@@ -24,7 +24,7 @@ export default function Treasure({
                     cx="520"
                     cy="55"
                     r="55"
-                    fillOpacity={hasWhiteBackground ? "0.1" : "0.5"}
+                    fillOpacity={hasWhiteBackground ? "0.2" : "0.5"}
                 />
                 <Rect
                     fill={fill}

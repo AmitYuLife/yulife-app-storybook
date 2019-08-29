@@ -29,7 +29,7 @@ export default StyleSheet.create({
     } as ViewStyle,
     navBarWrapper: {
         alignItems: "center",
-        bottom: Style.SCALE_UP_AND_DOWN(18),
+        bottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 37 : 27),
         justifyContent: "center",
         left: 0,
         position: "absolute",
