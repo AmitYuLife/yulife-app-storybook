@@ -158,9 +158,7 @@ export function getShadowColor(level: number) {
         backgroundColor: ""
     };
     switch (true) {
-        case level > 0 && level < 5:
         case level > 21 && level < 27:
-        case level > 28 && level < 36:
             newStyle.backgroundColor = "white";
             break;
         case level === 17 || (level > 18 && level < 22):

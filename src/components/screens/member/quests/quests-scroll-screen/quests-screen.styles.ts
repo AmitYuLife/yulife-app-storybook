@@ -5,14 +5,8 @@ import { Style } from "../../../../../styles";
 function scrollViewAdjustPosition() {
     if (isIphoneX()) {
         return {
-            bottom: -46,
+            bottom: -10,
             top: -36
-        };
-    }
-    if (Platform.OS === "ios") {
-        return {
-            bottom: -20,
-            top: 0
         };
     }
     return {

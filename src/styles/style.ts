@@ -56,6 +56,18 @@ const isThinIOS = () => {
 
 const isShortAndWideAndroid = () => Platform.OS === "android" && (Style.PIXEL_RATIO <= 2 || x / y >= 0.6);
 
+const isShortToMediumAndroidAndHighScaledPixel = () => {
+    return isShortToMediumAndroid() && scaledPixel > 1.06;
+};
+
+const isTallAndLowScaledPixelAndroid = () => {
+    return isTallAndroid() && scaledPixel < 0.98;
+};
+
+const isShortAndLowScaledPixelAndroid = () => {
+    return Platform.OS === "android" && y <= 690 && scaledPixel < 0.98;
+};
+
 const BASE_HEIGHT = 667;
 const scaledPixel = +(x / 375).toFixed(3);
 const scaledYPixel = +(y / 667).toFixed(3);
@@ -87,7 +99,10 @@ const Style = {
     isTallAndroid,
     isThinIOS,
     isXShortAndroid,
-    isIPad
+    isIPad,
+    isShortToMediumAndroidAndHighScaledPixel,
+    isTallAndLowScaledPixelAndroid,
+    isShortAndLowScaledPixelAndroid
 };
 
 export default Style;

@@ -25,6 +25,24 @@ export function getCurrentWorld(currentLevel: number) {
     return Math.floor((currentLevel - 1) / 50);
 }
 
+export function getCurrentEpisode(currentLevel: number) {
+    if (currentLevel % 50 === 0) {
+        return (currentLevel / 50) * 8 - 1;
+    }
+    if (currentLevel <= 49) {
+        return Math.floor((currentLevel - 1) / 7);
+    } else if (
+        (currentLevel >= 51 && currentLevel <= 99) ||
+        (currentLevel >= 101 && currentLevel <= 149) ||
+        (currentLevel >= 151 && currentLevel <= 199)
+    ) {
+        return (
+            Math.floor((currentLevel - 1 - Math.floor((currentLevel - 1) / 50) * 50) / 7) +
+            getCurrentWorld(currentLevel) * 8
+        );
+    }
+}
+
 export function getQueryStringObject(fullUrl: string) {
     const urlArray = fullUrl.split("?");
     const url = urlArray[1] || urlArray[0];

@@ -615,6 +615,12 @@ ShallowWrapper {
         },
       ]
     }
+    offsets={
+      Array [
+        1,
+        2,
+      ]
+    }
     setFlatListRef={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -1207,6 +1213,7 @@ ShallowWrapper {
             },
           ]
         }
+        decelerationRate="fast"
         directionalLockEnabled={true}
         disableVirtualization={false}
         getItemLayout={[Function]}
@@ -1222,6 +1229,12 @@ ShallowWrapper {
         renderItem={[Function]}
         scrollEventThrottle={50}
         showsVerticalScrollIndicator={false}
+        snapToOffsets={
+          Array [
+            1,
+            2,
+          ]
+        }
         updateCellsBatchingPeriod={50}
         viewabilityConfig={
           Object {
@@ -1230,10 +1243,10 @@ ShallowWrapper {
             "waitForInteraction": true,
           }
         }
-        windowSize={61}
+        windowSize={21}
       />,
       "style": Object {
-        "bottom": -20,
+        "bottom": 0,
         "left": 0,
         "position": "absolute",
         "right": 0,
@@ -1820,6 +1833,7 @@ ShallowWrapper {
             "topBarType": "forest",
           },
         ],
+        "decelerationRate": "fast",
         "directionalLockEnabled": true,
         "disableVirtualization": false,
         "getItemLayout": [Function],
@@ -1836,13 +1850,17 @@ ShallowWrapper {
         "renderItem": [Function],
         "scrollEventThrottle": 50,
         "showsVerticalScrollIndicator": false,
+        "snapToOffsets": Array [
+          1,
+          2,
+        ],
         "updateCellsBatchingPeriod": 50,
         "viewabilityConfig": Object {
           "minimumViewTime": 400,
           "viewAreaCoveragePercentThreshold": 95,
           "waitForInteraction": true,
         },
-        "windowSize": 61,
+        "windowSize": 21,
       },
       "ref": [MockFunction],
       "rendered": null,
@@ -2433,6 +2451,7 @@ ShallowWrapper {
               },
             ]
           }
+          decelerationRate="fast"
           directionalLockEnabled={true}
           disableVirtualization={false}
           getItemLayout={[Function]}
@@ -2448,6 +2467,12 @@ ShallowWrapper {
           renderItem={[Function]}
           scrollEventThrottle={50}
           showsVerticalScrollIndicator={false}
+          snapToOffsets={
+            Array [
+              1,
+              2,
+            ]
+          }
           updateCellsBatchingPeriod={50}
           viewabilityConfig={
             Object {
@@ -2456,10 +2481,10 @@ ShallowWrapper {
               "waitForInteraction": true,
             }
           }
-          windowSize={61}
+          windowSize={21}
         />,
         "style": Object {
-          "bottom": -20,
+          "bottom": 0,
           "left": 0,
           "position": "absolute",
           "right": 0,
@@ -3046,6 +3071,7 @@ ShallowWrapper {
               "topBarType": "forest",
             },
           ],
+          "decelerationRate": "fast",
           "directionalLockEnabled": true,
           "disableVirtualization": false,
           "getItemLayout": [Function],
@@ -3062,13 +3088,17 @@ ShallowWrapper {
           "renderItem": [Function],
           "scrollEventThrottle": 50,
           "showsVerticalScrollIndicator": false,
+          "snapToOffsets": Array [
+            1,
+            2,
+          ],
           "updateCellsBatchingPeriod": 50,
           "viewabilityConfig": Object {
             "minimumViewTime": 400,
             "viewAreaCoveragePercentThreshold": 95,
             "waitForInteraction": true,
           },
-          "windowSize": 61,
+          "windowSize": 21,
         },
         "ref": [MockFunction],
         "rendered": null,
