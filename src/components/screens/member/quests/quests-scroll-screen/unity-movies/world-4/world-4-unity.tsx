@@ -22,7 +22,6 @@ interface IProps {
 }
 
 class World2Unity extends React.PureComponent<IProps, IState> {
-    public animateFramesDelay: NodeJS.Timer;
     public animateTextDelay: NodeJS.Timer;
     public state = {
         textIndex: 0
@@ -58,9 +57,6 @@ class World2Unity extends React.PureComponent<IProps, IState> {
     public componentWillUnmount() {
         if (this.animateTextDelay) {
             clearTimeout(this.animateTextDelay);
-        }
-        if (this.animateFramesDelay) {
-            clearTimeout(this.animateFramesDelay);
         }
     }
 

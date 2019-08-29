@@ -1,7 +1,7 @@
 // import { Style } from "@styles/index";
 import { QUESTS_SCREEN } from "@ids";
 import { TopBarTypes } from "@molecules/top-bar/top-bar";
-import { getCurrentWorld } from "@services/utils";
+import { getCurrentEpisode, getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import { PureComponent } from "react";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
@@ -10,6 +10,7 @@ import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/sc
 import { IConnectedScreenProps } from "../../../../../typings";
 import { COLOURS, IColours, NavBar, TopBar } from "../../../../molecules";
 import { IMapSlice, loadingSlices, mapSlices } from "./assets";
+import offsets from "./assets/offsets";
 import styles from "./quests-screen.styles";
 import ScrollyQuest from "./scrolly-quest";
 import getUnity from "./unity-movies/unity";
@@ -30,6 +31,8 @@ interface IProps extends IConnectedScreenProps {
     hideUnity?: () => void | null;
     unity: number;
 }
+
+type CurrentWorld = 0 | 1 | 2 | 3;
 
 interface IState {
     UI: {
@@ -58,7 +61,7 @@ class QuestsScreen extends PureComponent<IProps, IState> {
     }
 
     public componentDidUpdate(prevProps: IProps) {
-        if (prevProps.hideUnity && !this.props.hideUnity) {
+        if (prevProps.unity && !this.props.unity) {
             this.scrollToActiveLevel();
         }
     }
@@ -77,15 +80,16 @@ class QuestsScreen extends PureComponent<IProps, IState> {
             );
         }
 
-        const { initialScrollIndex, slices } = this.getWorldData();
+        const { initialScrollIndex, slices, snapOffsets } = this.getWorldData();
 
         return (
-            <SafeAreaView style={styles.wrapper} testID={QUESTS_SCREEN(getCurrentWorld(currentLevel))} >
+            <SafeAreaView style={styles.wrapper} testID={QUESTS_SCREEN(getCurrentWorld(currentLevel))}>
                 <ScrollyQuest
                     currentLevel={currentLevel}
                     initialScrollIndex={initialScrollIndex}
                     data={slices}
                     levels={data}
+                    offsets={snapOffsets}
                     onViewableItemsChanged={this.handleViewableItemsChanged}
                     setFlatListRef={this.setFlatListRef}
                 />
@@ -106,24 +110,27 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         const result = mapSlices.find((slice) => slice.slots.some((item) => item.index === activeLevel - 1));
 
         if (result && result.episodeSettings) {
-            const { navBarType, offset, topBarType } = result.episodeSettings;
+            const { navBarType, topBarType } = result.episodeSettings;
 
             global.setTimeout(() => {
                 if (this.flatList) {
-                    this.setState({ UI: { topBarType, navBarColour: navBarType } }, () =>
+                    this.setState({ UI: { topBarType, navBarColour: navBarType } }, () => {
+                        const currentWorld = getCurrentWorld(this.props.activeLevel);
+                        const currentEpisode = getCurrentEpisode(this.props.activeLevel);
                         this.flatList.scrollToOffset({
-                            animated: true,
-                            offset
-                        })
-                    );
+                            offset:
+                                offsets[activeLevel % 50 === 0 ? "withUnity" : "withoutUnity"][
+                                    currentWorld as CurrentWorld
+                                ][currentEpisode]
+                        });
+                    });
                 }
-            }, 1200);
+            }, 600);
         }
     };
 
     private handleSkipUnity = () => {
         this.props.hideUnity();
-        this.scrollToActiveLevel();
     };
 
     private handleViewableItemsChanged: ViewabilityConfigCallbackPair["onViewableItemsChanged"] = ({
@@ -147,26 +154,30 @@ class QuestsScreen extends PureComponent<IProps, IState> {
                     slices:
                         currentLevel < 200
                             ? [...mapSlices.slice(0, 121), loadingSlices.mountain]
-                            : mapSlices.slice(0, 134)
+                            : mapSlices.slice(0, 134),
+                    snapOffsets: offsets.withUnity[3]
                 };
             case 2:
                 return {
                     initialScrollIndex: 61,
                     slices:
-                        currentLevel < 150 ? [...mapSlices.slice(0, 89), loadingSlices.desert] : mapSlices.slice(0, 92)
+                        currentLevel < 150 ? [...mapSlices.slice(0, 89), loadingSlices.desert] : mapSlices.slice(0, 92),
+                    snapOffsets: currentLevel < 150 ? offsets.withUnity[2] : offsets.withoutUnity[2]
                 };
             case 1:
                 return {
                     initialScrollIndex: 30,
                     slices:
-                        currentLevel < 100 ? [...mapSlices.slice(0, 57), loadingSlices.ocean] : mapSlices.slice(0, 61)
+                        currentLevel < 100 ? [...mapSlices.slice(0, 57), loadingSlices.ocean] : mapSlices.slice(0, 61),
+                    snapOffsets: currentLevel < 100 ? offsets.withUnity[1] : offsets.withoutUnity[1]
                 };
             case 0:
             default:
                 return {
                     initialScrollIndex: 0,
                     slices:
-                        currentLevel < 50 ? [...mapSlices.slice(0, 26), loadingSlices.forest] : mapSlices.slice(0, 30)
+                        currentLevel < 50 ? [...mapSlices.slice(0, 26), loadingSlices.forest] : mapSlices.slice(0, 30),
+                    snapOffsets: currentLevel < 50 ? offsets.withUnity[0] : offsets.withoutUnity[0]
                 };
         }
     };

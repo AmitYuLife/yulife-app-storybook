@@ -13,6 +13,7 @@ interface IProps {
     levels: IChallenge[];
     onViewableItemsChanged?: any;
     setFlatListRef: (ref: any) => void;
+    offsets: number[];
 }
 
 class ScrollyQuest extends React.PureComponent<IProps> {
@@ -23,7 +24,7 @@ class ScrollyQuest extends React.PureComponent<IProps> {
     };
 
     public render() {
-        const { data, initialScrollIndex, onViewableItemsChanged, setFlatListRef } = this.props;
+        const { data, initialScrollIndex, onViewableItemsChanged, setFlatListRef, offsets } = this.props;
 
         return (
             <View style={styles.scrollViewWrapper}>
@@ -40,7 +41,8 @@ class ScrollyQuest extends React.PureComponent<IProps> {
                     onViewableItemsChanged={onViewableItemsChanged}
                     viewabilityConfig={this.viewabilityConfig}
                     initialNumToRender={8}
-                    windowSize={61}
+                    decelerationRate={"fast"}
+                    snapToOffsets={offsets}
                     directionalLockEnabled={true}
                 />
             </View>

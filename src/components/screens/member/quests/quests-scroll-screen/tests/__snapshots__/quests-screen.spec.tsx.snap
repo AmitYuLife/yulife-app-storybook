@@ -663,6 +663,18 @@ ShallowWrapper {
               },
             ]
           }
+          offsets={
+            Array [
+              0,
+              1220,
+              2660,
+              4040,
+              5600,
+              6800,
+              8080,
+              9480,
+            ]
+          }
           onViewableItemsChanged={[Function]}
           setFlatListRef={[Function]}
         />,
@@ -1322,6 +1334,16 @@ ShallowWrapper {
                 },
               ],
             },
+          ],
+          "offsets": Array [
+            0,
+            1220,
+            2660,
+            4040,
+            5600,
+            6800,
+            8080,
+            9480,
           ],
           "onViewableItemsChanged": [Function],
           "setFlatListRef": [Function],
@@ -2031,6 +2053,18 @@ ShallowWrapper {
                 },
               ]
             }
+            offsets={
+              Array [
+                0,
+                1220,
+                2660,
+                4040,
+                5600,
+                6800,
+                8080,
+                9480,
+              ]
+            }
             onViewableItemsChanged={[Function]}
             setFlatListRef={[Function]}
           />,
@@ -2690,6 +2724,16 @@ ShallowWrapper {
                   },
                 ],
               },
+            ],
+            "offsets": Array [
+              0,
+              1220,
+              2660,
+              4040,
+              5600,
+              6800,
+              8080,
+              9480,
             ],
             "onViewableItemsChanged": [Function],
             "setFlatListRef": [Function],

@@ -10,6 +10,7 @@ const defaultProps = {
     data: WorldSlices.slice(0, 28),
     initialScrollIndex: 0,
     setFlatListRef: jest.fn(),
+    offsets: [1, 2],
     levels: [
         {
             isActive: false,

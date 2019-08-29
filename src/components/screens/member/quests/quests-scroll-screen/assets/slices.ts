@@ -1,4 +1,5 @@
 import { TOP_BAR_TYPES, TopBarTypes } from "@molecules/top-bar/top-bar";
+import { isIphoneX as getIsIphone } from "react-native-iphone-x-helper";
 import { COLOURS, IColours } from "../../../../../molecules/nav-bar/nav-bar";
 import { episodeSettings, IEpisodeSettings } from "./slices.settings";
 
@@ -17,6 +18,8 @@ export interface IMapSlice {
     navBarColour: IColours;
     topBarType: TopBarTypes;
 }
+
+const isIphoneX = getIsIphone();
 
 const interstitialsSlices: { [x: string]: IMapSlice[] } = {
     ocean: [
@@ -57,14 +60,14 @@ const interstitialsSlices: { [x: string]: IMapSlice[] } = {
             image: require("../../../../../../../assets/quest-slices/interstitials/w4s0.png"),
             navBarColour: COLOURS.LIGHT,
             slots: [],
-            topBarType: TOP_BAR_TYPES.DEFAULT
+            topBarType: TOP_BAR_TYPES.WHITE
         },
         {
             id: "MAP_SLICE_W04_INTERSTITIALS_02",
             image: require("../../../../../../../assets/quest-slices/interstitials/w4s1.png"),
             navBarColour: COLOURS.LIGHT,
             slots: [],
-            topBarType: TOP_BAR_TYPES.DEFAULT
+            topBarType: TOP_BAR_TYPES.WHITE
         }
     ]
 };
@@ -221,7 +224,7 @@ const WorldSlices: IMapSlice[] = [
         episodeSettings: episodeSettings.w1s5,
         id: "MAP_SLICE_W01E15",
         image: require("../../../../../../../assets/quest-slices/w1s15.png"),
-        navBarColour: COLOURS.FOREST,
+        navBarColour: isIphoneX ? COLOURS.DARK : COLOURS.FOREST,
         slots: [],
         topBarType: TOP_BAR_TYPES.WHITE
     },
@@ -229,7 +232,7 @@ const WorldSlices: IMapSlice[] = [
         episodeSettings: episodeSettings.w1s5,
         id: "MAP_SLICE_W01E16",
         image: require("../../../../../../../assets/quest-slices/w1s16.png"),
-        navBarColour: COLOURS.FOREST,
+        navBarColour: isIphoneX ? COLOURS.DARK : COLOURS.FOREST,
         slots: [{ index: 28, left: 187, top: 88 }, { index: 29, left: 187, top: 8 }],
         topBarType: TOP_BAR_TYPES.WHITE
     },
@@ -237,7 +240,7 @@ const WorldSlices: IMapSlice[] = [
         episodeSettings: episodeSettings.w1s5,
         id: "MAP_SLICE_W01E17",
         image: require("../../../../../../../assets/quest-slices/w1s17.png"),
-        navBarColour: COLOURS.FOREST,
+        navBarColour: isIphoneX ? COLOURS.DARK : COLOURS.FOREST,
         slots: [
             { index: 30, left: 187, bottom: 30 },
             { top: 8, index: 31, left: 283 },
@@ -250,7 +253,7 @@ const WorldSlices: IMapSlice[] = [
         episodeSettings: episodeSettings.w1s5,
         id: "MAP_SLICE_W01E18",
         image: require("../../../../../../../assets/quest-slices/w1s18.png"),
-        navBarColour: COLOURS.FOREST,
+        navBarColour: isIphoneX ? COLOURS.DARK : COLOURS.FOREST,
         slots: [
             {
                 index: 34,
@@ -556,7 +559,7 @@ const WorldSlices: IMapSlice[] = [
             { index: 87, left: 93, top: 40 },
             { index: 89, left: 283, top: 40 }
         ],
-        topBarType: TOP_BAR_TYPES.DEFAULT
+        topBarType: TOP_BAR_TYPES.WHITE
     },
     {
         episodeSettings: episodeSettings.w2s6,
@@ -564,7 +567,7 @@ const WorldSlices: IMapSlice[] = [
         image: require("../../../../../../../assets/quest-slices/w2s20.png"),
         navBarColour: COLOURS.LIGHT,
         slots: [{ bottom: 0, index: 90, left: 187 }, { index: 91, left: 187, top: 40 }],
-        topBarType: TOP_BAR_TYPES.DEFAULT
+        topBarType: TOP_BAR_TYPES.WHITE
     },
     // next episode
     {
@@ -613,14 +616,14 @@ const WorldSlices: IMapSlice[] = [
     {
         id: "MAP_SLICE_W02E26",
         image: require("../../../../../../../assets/quest-slices/w2s26.png"),
-        navBarColour: COLOURS.LIGHT,
+        navBarColour: COLOURS.DARK,
         slots: [],
         topBarType: TOP_BAR_TYPES.WHITE
     },
     {
         id: "MAP_SLICE_W02E27",
         image: require("../../../../../../../assets/quest-slices/w2s27.png"),
-        navBarColour: COLOURS.LIGHT,
+        navBarColour: COLOURS.DARK,
         slots: [],
         topBarType: TOP_BAR_TYPES.WHITE
     },
@@ -628,7 +631,7 @@ const WorldSlices: IMapSlice[] = [
         episodeSettings: episodeSettings.w2s8,
         id: "MAP_SLICE_W02E28",
         image: require("../../../../../../../assets/quest-slices/w2s28.png"),
-        navBarColour: COLOURS.LIGHT,
+        navBarColour: COLOURS.DARK,
         slots: [{ bottom: 10, index: 99, left: 187 }],
         topBarType: TOP_BAR_TYPES.WHITE
     },
@@ -886,7 +889,7 @@ const WorldSlices: IMapSlice[] = [
         episodeSettings: episodeSettings.w3s7,
         id: "MAP_SLICE_W03E25",
         image: require("../../../../../../../assets/quest-slices/w3s25.png"),
-        navBarColour: COLOURS.DESERT,
+        navBarColour: COLOURS.LIGHT,
         slots: [{ bottom: 0, index: 148, left: 187 }],
         topBarType: TOP_BAR_TYPES.WHITE
     },
@@ -894,24 +897,24 @@ const WorldSlices: IMapSlice[] = [
     {
         id: "MAP_SLICE_W03E26",
         image: require("../../../../../../../assets/quest-slices/w3s26.png"),
-        navBarColour: COLOURS.DESERT,
+        navBarColour: COLOURS.LIGHT,
         slots: [],
-        topBarType: TOP_BAR_TYPES.DESERT
+        topBarType: TOP_BAR_TYPES.WHITE
     },
     {
         id: "MAP_SLICE_W03E27",
         image: require("../../../../../../../assets/quest-slices/w3s27.png"),
-        navBarColour: COLOURS.DESERT,
+        navBarColour: COLOURS.LIGHT,
         slots: [],
-        topBarType: TOP_BAR_TYPES.DESERT
+        topBarType: TOP_BAR_TYPES.WHITE
     },
     {
         episodeSettings: episodeSettings.w3s8,
         id: "MAP_SLICE_W03E28",
         image: require("../../../../../../../assets/quest-slices/w3s28.png"),
-        navBarColour: COLOURS.DESERT,
+        navBarColour: COLOURS.LIGHT,
         slots: [{ bottom: 10, index: 149, left: 187 }],
-        topBarType: TOP_BAR_TYPES.DESERT
+        topBarType: TOP_BAR_TYPES.WHITE
     },
 
     // OCEAN TO DESERT INTERSTITIALS
@@ -926,7 +929,7 @@ const WorldSlices: IMapSlice[] = [
         image: require("../../../../../../../assets/quest-slices/w4s0.png"),
         navBarColour: COLOURS.LIGHT,
         slots: [{ index: 151, top: 8, left: 187 }],
-        topBarType: TOP_BAR_TYPES.WHITE
+        topBarType: TOP_BAR_TYPES.DEFAULT
     },
     {
         episodeSettings: episodeSettings.w4s1,
@@ -939,7 +942,7 @@ const WorldSlices: IMapSlice[] = [
             { index: 153, bottom: 36, left: 280 },
             { index: 154, top: 8, left: 187 }
         ],
-        topBarType: TOP_BAR_TYPES.WHITE
+        topBarType: TOP_BAR_TYPES.DEFAULT
     },
     {
         episodeSettings: episodeSettings.w4s1,
@@ -947,14 +950,14 @@ const WorldSlices: IMapSlice[] = [
         image: require("../../../../../../../assets/quest-slices/w4s2.png"),
         navBarColour: COLOURS.LIGHT,
         slots: [{ index: 155, bottom: 36, left: 187 }, { index: 156, top: 10, left: 187 }],
-        topBarType: TOP_BAR_TYPES.WHITE
+        topBarType: TOP_BAR_TYPES.DEFAULT
     },
     {
         id: "MAP_SLICE_W04E03",
         image: require("../../../../../../../assets/quest-slices/w4s3.png"),
         navBarColour: COLOURS.LIGHT,
         slots: [],
-        topBarType: TOP_BAR_TYPES.WHITE
+        topBarType: TOP_BAR_TYPES.DEFAULT
     },
 
     // next episode
@@ -964,7 +967,7 @@ const WorldSlices: IMapSlice[] = [
         image: require("../../../../../../../assets/quest-slices/w4s4.png"),
         navBarColour: COLOURS.LIGHT,
         slots: [{ index: 157, bottom: 45, left: 95 }, { index: 158, top: 8, left: 187 }],
-        topBarType: TOP_BAR_TYPES.WHITE
+        topBarType: TOP_BAR_TYPES.DEFAULT
     },
     {
         episodeSettings: episodeSettings.w4s2,
@@ -1177,7 +1180,7 @@ const WorldSlices: IMapSlice[] = [
         episodeSettings: episodeSettings.w4s7,
         id: "MAP_SLICE_W04E27",
         image: require("../../../../../../../assets/quest-slices/w4s27.png"),
-        navBarColour: COLOURS.BLUE,
+        navBarColour: COLOURS.LIGHT,
         slots: [],
         topBarType: TOP_BAR_TYPES.DEFAULT
     },

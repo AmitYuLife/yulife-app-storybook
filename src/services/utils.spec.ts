@@ -1,5 +1,5 @@
 import moment from "moment";
-import { DATE_FORMAT_WITH_TZ, getStartAndEndDateTimesWithTimezone } from "./utils";
+import { DATE_FORMAT_WITH_TZ, getCurrentEpisode, getStartAndEndDateTimesWithTimezone } from "./utils";
 
 describe("Utils", () => {
     describe("getStartAndEndDateTimesWithTimezone", () => {
@@ -32,5 +32,37 @@ describe("Utils", () => {
                 expect(actual.end).toEqual(end);
             });
         }
+    });
+
+    describe("getCurrentEpisode", () => {
+        it("should return correct episodes of unity levels", () => {
+            const forestUnity = getCurrentEpisode(50);
+            const oceanUnity = getCurrentEpisode(100);
+            const desertUnity = getCurrentEpisode(150);
+            const mountainUnity = getCurrentEpisode(200);
+
+            expect(forestUnity).toEqual(7);
+            expect(oceanUnity).toEqual(15);
+            expect(desertUnity).toEqual(23);
+            expect(mountainUnity).toEqual(31);
+        });
+
+        it("should return correct episodes for non-unity levels", () => {
+            const level57 = getCurrentEpisode(57);
+            const level92 = getCurrentEpisode(92);
+            const level93 = getCurrentEpisode(93);
+            const level99 = getCurrentEpisode(99);
+            const level45 = getCurrentEpisode(45);
+            const level135 = getCurrentEpisode(135);
+            const level151 = getCurrentEpisode(151);
+
+            expect(level57).toEqual(8);
+            expect(level92).toEqual(13);
+            expect(level93).toEqual(14);
+            expect(level99).toEqual(14);
+            expect(level45).toEqual(6);
+            expect(level135).toEqual(20);
+            expect(level151).toEqual(24);
+        });
     });
 });
