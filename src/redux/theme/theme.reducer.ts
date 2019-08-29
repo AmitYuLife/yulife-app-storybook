@@ -53,7 +53,7 @@ export const initialState: IThemeStore = {
     },
     questsOfflineScreen: {
         image: "forest",
-        navBarType: COLOURS.LIGHT
+        navBarType: COLOURS.DARKER
     }
 };
 
@@ -99,7 +99,7 @@ const getCurrentWorldTheme = (
                 },
                 questsOfflineScreen: {
                     image: "mountain",
-                    navBarType: COLOURS.LIGHT
+                    navBarType: COLOURS.DARKER
                 }
             };
         case 2:

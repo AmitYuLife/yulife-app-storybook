@@ -83,7 +83,7 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "bottom": 38,
+              "bottom": 54,
               "position": "absolute",
               "width": 750,
             }
@@ -200,7 +200,7 @@ ShallowWrapper {
           />,
           "style": Object {
             "alignItems": "center",
-            "bottom": 38,
+            "bottom": 54,
             "position": "absolute",
             "width": 750,
           },
@@ -281,7 +281,7 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "bottom": 38,
+                "bottom": 54,
                 "position": "absolute",
                 "width": 750,
               }
@@ -398,7 +398,7 @@ ShallowWrapper {
             />,
             "style": Object {
               "alignItems": "center",
-              "bottom": 38,
+              "bottom": 54,
               "position": "absolute",
               "width": 750,
             },
@@ -530,7 +530,7 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "bottom": 38,
+              "bottom": 54,
               "position": "absolute",
               "width": 750,
             }
@@ -647,7 +647,7 @@ ShallowWrapper {
           />,
           "style": Object {
             "alignItems": "center",
-            "bottom": 38,
+            "bottom": 54,
             "position": "absolute",
             "width": 750,
           },
@@ -728,7 +728,7 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "bottom": 38,
+                "bottom": 54,
                 "position": "absolute",
                 "width": 750,
               }
@@ -845,7 +845,7 @@ ShallowWrapper {
             />,
             "style": Object {
               "alignItems": "center",
-              "bottom": 38,
+              "bottom": 54,
               "position": "absolute",
               "width": 750,
             },

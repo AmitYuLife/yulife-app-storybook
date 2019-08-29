@@ -687,9 +687,9 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "bottom": 34,
+              "bottom": 20,
               "left": 0,
-              "paddingTop": 20,
+              "paddingBottom": 30,
               "position": "absolute",
               "right": 0,
             }
@@ -1397,9 +1397,9 @@ ShallowWrapper {
           />,
           "style": Object {
             "alignItems": "center",
-            "bottom": 34,
+            "bottom": 20,
             "left": 0,
-            "paddingTop": 20,
+            "paddingBottom": 30,
             "position": "absolute",
             "right": 0,
           },
@@ -2077,9 +2077,9 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "bottom": 34,
+                "bottom": 20,
                 "left": 0,
-                "paddingTop": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
                 "right": 0,
               }
@@ -2787,9 +2787,9 @@ ShallowWrapper {
             />,
             "style": Object {
               "alignItems": "center",
-              "bottom": 34,
+              "bottom": 20,
               "left": 0,
-              "paddingTop": 20,
+              "paddingBottom": 30,
               "position": "absolute",
               "right": 0,
             },

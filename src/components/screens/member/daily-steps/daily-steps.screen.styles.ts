@@ -1,4 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../styles";
 
 export default StyleSheet.create({
@@ -21,7 +22,8 @@ export default StyleSheet.create({
         width: Style.SCALE_UP_AND_DOWN(235)
     } as TextStyle,
     navBarWrapper: {
-        bottom: Style.SCALE_UP_AND_DOWN(17),
+        bottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 20 : 10),
+        paddingBottom: Style.SCALE_UP_AND_DOWN(15),
         position: "absolute"
     } as ViewStyle,
     permissionText: {

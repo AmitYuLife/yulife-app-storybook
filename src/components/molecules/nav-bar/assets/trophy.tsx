@@ -18,7 +18,7 @@ export default function Trophy({ colourScheme, isActive, isPressed, hasHiddenIco
                     cx="363"
                     cy="55"
                     r="55"
-                    fillOpacity={hasWhiteBackground ? "0.1" : "0.5"}
+                    fillOpacity={hasWhiteBackground ? "0.2" : "0.5"}
                 />
                 <Path
                     fill={fill}

@@ -17,7 +17,6 @@ import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getCurrentLevel, getHasNotification } from "../../../../redux/levels/levels.selectors";
 import { updateLeaderboardConsent } from "../../../../redux/user/user.actions";
 import { getAllLeaderboards, getConsentedLeaderboards } from "../../../../redux/user/user.selectors";
-import { getCurrentWorld } from "../../../../services/utils";
 import { LeaderboardOfflineScreen, LeaderboardsScreen } from "../../../screens";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -92,20 +91,17 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
         const {
             leaderboards = [],
             hasNotification,
-            currentLevel,
             totalCoins,
             copy,
             componentId,
             appState
         } = this.props;
-        const currentWorld = getCurrentWorld(currentLevel);
-        const navbarColour = getNavbarColourScheme(currentWorld);
+        const navbarColour = COLOURS.DARKER;
 
         if (Style.isIPad()) {
             return (
                 <LeaderboardOfflineScreen
                     hasNotification={hasNotification}
-                    currentWorld={currentWorld}
                     totalCoins={totalCoins}
                     labels={labels}
                     onLeftMenuPress={onLeftMenuPress}
@@ -128,14 +124,13 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
                     const initialScrollIndex =
                         data && data.getLeaderboard != null
                             ? (data.getLeaderboard as any).findIndex(
-                                  (item: any) => item.id === `lead_${data.getCurrentUser.id}`
-                              )
+                                (item: any) => item.id === `lead_${data.getCurrentUser.id}`
+                            )
                             : 0;
 
                     return (
                         <LeaderboardsScreen
                             componentId={componentId}
-                            currentWorld={currentWorld}
                             isLoading={loading}
                             initialScrollIndex={initialScrollIndex}
                             leaderboards={leaderboards || []}
@@ -246,16 +241,3 @@ export default connect<ConnectedState, ConnectedDispatch>(
     mapStateToProps,
     mapDispatchToProps
 )(LeaderboardsContainer);
-
-function getNavbarColourScheme(currentWorld: number): COLOURS {
-    switch (currentWorld) {
-        case 3:
-            return COLOURS.MOUNTAIN;
-        case 2:
-            return COLOURS.DESERT;
-        case 1:
-        case 0:
-        default:
-            return COLOURS.LIGHT;
-    }
-}

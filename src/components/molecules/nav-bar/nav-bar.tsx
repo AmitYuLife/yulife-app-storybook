@@ -2,12 +2,12 @@ import { TAB_BUTTON } from "@ids";
 import { Style } from "@styles/index";
 import * as React from "react";
 import { PureComponent } from "react";
-import { Image, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import Svg from "react-native-svg";
 import { Text } from "../../atoms";
 import { Giraffe, Lines, Notification, Scroll, Treasure } from "./assets";
 import Trophy from "./assets/trophy";
-import { getIconColour, getImage, getNavBarColourScheme } from "./nav-bar.helpers";
+import { getIconColour, getNavBarColourScheme } from "./nav-bar.helpers";
 import styles, { getLabelAdjustment } from "./nav-bar.styles";
 
 export interface ILabel {
@@ -33,9 +33,7 @@ interface IProps {
     activeIndex: number;
     hasNotification?: boolean;
     hasWhiteBackground?: boolean;
-    hasImage?: boolean;
     labels?: ILabel[];
-    currentWorld?: number;
     colour?: IColours;
     onDismissPress?: () => void;
 }
@@ -79,9 +77,7 @@ class NavBar extends PureComponent<IProps, IState> {
             activeIndex,
             hasNotification,
             hasWhiteBackground,
-            hasImage,
             labels,
-            currentWorld,
             onDismissPress
         } = this.props;
         const { pressed } = this.state;
@@ -89,11 +85,6 @@ class NavBar extends PureComponent<IProps, IState> {
 
         return (
             <>
-                {hasImage ? (
-                    <View style={styles.image} pointerEvents="none">
-                        <Image source={getImage(currentWorld)} style={styles.image} />
-                    </View>
-                ) : null}
                 <View style={styles.outerWrapper}>
                     <View style={styles.wrapper}>
                         <Svg

@@ -21,9 +21,9 @@ export const getTextStyle = ({ isActive, isPressed, colour }: IGetTextStyle) => 
         if (isActive) {
             color = Colours.navBar.darker.active;
         } else if (isPressed) {
-            color = Colours.navBar.dark.active;
+            color = Colours.navBar.darker.active;
         } else {
-            color = Colours.navBar.dark.active;
+            color = Colours.navBar.darker.active;
         }
     } else if (colour === NavBar.Colours.DARK) {
         if (isActive) {
@@ -71,17 +71,17 @@ export function getNavBarColourScheme(colour: string): INavBarColourScheme {
             return Colours.navBar.dark;
         case NavBar.Colours.BLUE:
             return Colours.navBar.blue;
-        case NavBar.Colours.DARKER:
-            return Colours.navBar.darker;
+        case NavBar.Colours.LIGHT:
+            return Colours.navBar.light;
         case NavBar.Colours.MOUNTAIN:
             return Colours.navBar.mountain;
         case NavBar.Colours.BLUE:
             return Colours.navBar.blue;
         case NavBar.Colours.FOREST:
             return Colours.navBar.forest;
-        case NavBar.Colours.LIGHT:
+        case NavBar.Colours.DARKER:
         default:
-            return Colours.navBar.light;
+            return Colours.navBar.darker;
     }
 }
 
@@ -95,19 +95,5 @@ export function getIconColour(scheme: INavBarColourScheme, isActive: boolean, is
         return scheme.pressed;
     } else {
         return scheme.inactive;
-    }
-}
-
-export function getImage(currentWorld: number) {
-    switch (currentWorld) {
-        case 3:
-            return require("../../../../assets/navbar/mountain.png");
-        case 2:
-            return require("../../../../assets/navbar/desert.png");
-        case 1:
-            return require("../../../../assets/navbar/ocean.png");
-        case 0:
-        default:
-            return require("../../../../assets/navbar/forest.png");
     }
 }

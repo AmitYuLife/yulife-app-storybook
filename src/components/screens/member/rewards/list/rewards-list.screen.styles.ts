@@ -8,13 +8,9 @@ export default StyleSheet.create({
         marginBottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 45 : 79)
     } as ViewStyle,
     navBarWrapper: {
-        alignItems: "center",
-        bottom: 0,
-        left: 0,
-        paddingBottom: Style.SCALE_UP_AND_DOWN(17),
-        paddingTop: Style.SCALE_UP_AND_DOWN(8),
-        position: "absolute",
-        right: 0
+        height: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 25 : 15),
+        paddingBottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 0 : 25),
+        alignItems: "center"
     } as ViewStyle,
     footer: {
         height: Style.SCALE_UP_AND_DOWN(28)

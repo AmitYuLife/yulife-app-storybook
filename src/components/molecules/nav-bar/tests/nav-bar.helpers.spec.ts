@@ -36,7 +36,7 @@ describe("getNavBarColourScheme", () => {
     });
 
     it("should return the default color scheme", () => {
-        expect(getNavBarColourScheme("what")).toEqual(Colours.navBar.light);
+        expect(getNavBarColourScheme("what")).toEqual(Colours.navBar.darker);
     });
 });
 

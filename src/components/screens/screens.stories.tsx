@@ -175,7 +175,7 @@ storiesOf("Screens", module)
                 isLight: false,
                 navBar: {
                     offline: COLOURS.LIGHT,
-                    online: COLOURS.LIGHT
+                    online: COLOURS.DARKER
                 },
                 streakType: "forest" as StreakTypes,
                 textStyle: { color: "#333333" },

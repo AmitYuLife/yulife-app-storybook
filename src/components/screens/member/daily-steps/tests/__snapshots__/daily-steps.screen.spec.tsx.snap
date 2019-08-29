@@ -53,7 +53,7 @@ ShallowWrapper {
         "isLight": false,
         "navBar": Object {
           "offline": "light",
-          "online": "light",
+          "online": "darker",
         },
         "streakType": "forest",
         "textStyle": Object {
@@ -117,7 +117,8 @@ ShallowWrapper {
         <View
           style={
             Object {
-              "bottom": 34,
+              "bottom": 20,
+              "paddingBottom": 30,
               "position": "absolute",
             }
           }
@@ -184,7 +185,8 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               }
             }
@@ -286,7 +288,8 @@ ShallowWrapper {
               labels={Array []}
             />,
             "style": Object {
-              "bottom": 34,
+              "bottom": 20,
+              "paddingBottom": 30,
               "position": "absolute",
             },
           },
@@ -358,7 +361,8 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               }
             }
@@ -425,7 +429,8 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "bottom": 34,
+                  "bottom": 20,
+                  "paddingBottom": 30,
                   "position": "absolute",
                 }
               }
@@ -527,7 +532,8 @@ ShallowWrapper {
                 labels={Array []}
               />,
               "style": Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               },
             },
@@ -629,7 +635,7 @@ ShallowWrapper {
         "isLight": false,
         "navBar": Object {
           "offline": "light",
-          "online": "light",
+          "online": "darker",
         },
         "streakType": "forest",
         "textStyle": Object {
@@ -685,7 +691,8 @@ ShallowWrapper {
         <View
           style={
             Object {
-              "bottom": 34,
+              "bottom": 20,
+              "paddingBottom": 30,
               "position": "absolute",
             }
           }
@@ -744,7 +751,8 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               }
             }
@@ -840,7 +848,8 @@ ShallowWrapper {
               labels={Array []}
             />,
             "style": Object {
-              "bottom": 34,
+              "bottom": 20,
+              "paddingBottom": 30,
               "position": "absolute",
             },
           },
@@ -904,7 +913,8 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               }
             }
@@ -963,7 +973,8 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "bottom": 34,
+                  "bottom": 20,
+                  "paddingBottom": 30,
                   "position": "absolute",
                 }
               }
@@ -1059,7 +1070,8 @@ ShallowWrapper {
                 labels={Array []}
               />,
               "style": Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               },
             },
@@ -1162,7 +1174,7 @@ ShallowWrapper {
         "isLight": false,
         "navBar": Object {
           "offline": "light",
-          "online": "light",
+          "online": "darker",
         },
         "streakType": "forest",
         "textStyle": Object {
@@ -1236,14 +1248,15 @@ ShallowWrapper {
         <View
           style={
             Object {
-              "bottom": 34,
+              "bottom": 20,
+              "paddingBottom": 30,
               "position": "absolute",
             }
           }
         >
           <NavBar
             activeIndex={0}
-            colour="light"
+            colour="darker"
             hasNotification={false}
             labels={Array []}
           />
@@ -1312,14 +1325,15 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               }
             }
           >
             <NavBar
               activeIndex={0}
-              colour="light"
+              colour="darker"
               hasNotification={false}
               labels={Array []}
             />
@@ -1427,12 +1441,13 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={0}
-              colour="light"
+              colour="darker"
               hasNotification={false}
               labels={Array []}
             />,
             "style": Object {
-              "bottom": 34,
+              "bottom": 20,
+              "paddingBottom": 30,
               "position": "absolute",
             },
           },
@@ -1443,7 +1458,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 0,
-              "colour": "light",
+              "colour": "darker",
               "hasNotification": false,
               "labels": Array [],
             },
@@ -1514,14 +1529,15 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               }
             }
           >
             <NavBar
               activeIndex={0}
-              colour="light"
+              colour="darker"
               hasNotification={false}
               labels={Array []}
             />
@@ -1590,14 +1606,15 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "bottom": 34,
+                  "bottom": 20,
+                  "paddingBottom": 30,
                   "position": "absolute",
                 }
               }
             >
               <NavBar
                 activeIndex={0}
-                colour="light"
+                colour="darker"
                 hasNotification={false}
                 labels={Array []}
               />
@@ -1705,12 +1722,13 @@ ShallowWrapper {
             "props": Object {
               "children": <NavBar
                 activeIndex={0}
-                colour="light"
+                colour="darker"
                 hasNotification={false}
                 labels={Array []}
               />,
               "style": Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               },
             },
@@ -1721,7 +1739,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "activeIndex": 0,
-                "colour": "light",
+                "colour": "darker",
                 "hasNotification": false,
                 "labels": Array [],
               },
@@ -1812,7 +1830,7 @@ ShallowWrapper {
         "isLight": false,
         "navBar": Object {
           "offline": "light",
-          "online": "light",
+          "online": "darker",
         },
         "streakType": "forest",
         "textStyle": Object {
@@ -1878,14 +1896,15 @@ ShallowWrapper {
         <View
           style={
             Object {
-              "bottom": 34,
+              "bottom": 20,
+              "paddingBottom": 30,
               "position": "absolute",
             }
           }
         >
           <NavBar
             activeIndex={0}
-            colour="light"
+            colour="darker"
             hasNotification={false}
             labels={Array []}
           />
@@ -1947,14 +1966,15 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               }
             }
           >
             <NavBar
               activeIndex={0}
-              colour="light"
+              colour="darker"
               hasNotification={false}
               labels={Array []}
             />
@@ -2047,12 +2067,13 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={0}
-              colour="light"
+              colour="darker"
               hasNotification={false}
               labels={Array []}
             />,
             "style": Object {
-              "bottom": 34,
+              "bottom": 20,
+              "paddingBottom": 30,
               "position": "absolute",
             },
           },
@@ -2063,7 +2084,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 0,
-              "colour": "light",
+              "colour": "darker",
               "hasNotification": false,
               "labels": Array [],
             },
@@ -2126,14 +2147,15 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               }
             }
           >
             <NavBar
               activeIndex={0}
-              colour="light"
+              colour="darker"
               hasNotification={false}
               labels={Array []}
             />
@@ -2195,14 +2217,15 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "bottom": 34,
+                  "bottom": 20,
+                  "paddingBottom": 30,
                   "position": "absolute",
                 }
               }
             >
               <NavBar
                 activeIndex={0}
-                colour="light"
+                colour="darker"
                 hasNotification={false}
                 labels={Array []}
               />
@@ -2295,12 +2318,13 @@ ShallowWrapper {
             "props": Object {
               "children": <NavBar
                 activeIndex={0}
-                colour="light"
+                colour="darker"
                 hasNotification={false}
                 labels={Array []}
               />,
               "style": Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               },
             },
@@ -2311,7 +2335,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "activeIndex": 0,
-                "colour": "light",
+                "colour": "darker",
                 "hasNotification": false,
                 "labels": Array [],
               },
@@ -2402,7 +2426,7 @@ ShallowWrapper {
         "isLight": false,
         "navBar": Object {
           "offline": "light",
-          "online": "light",
+          "online": "darker",
         },
         "streakType": "forest",
         "textStyle": Object {
@@ -2458,14 +2482,15 @@ ShallowWrapper {
         <View
           style={
             Object {
-              "bottom": 34,
+              "bottom": 20,
+              "paddingBottom": 30,
               "position": "absolute",
             }
           }
         >
           <NavBar
             activeIndex={0}
-            colour="light"
+            colour="darker"
             hasNotification={false}
             labels={Array []}
           />
@@ -2517,14 +2542,15 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               }
             }
           >
             <NavBar
               activeIndex={0}
-              colour="light"
+              colour="darker"
               hasNotification={false}
               labels={Array []}
             />
@@ -2608,12 +2634,13 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={0}
-              colour="light"
+              colour="darker"
               hasNotification={false}
               labels={Array []}
             />,
             "style": Object {
-              "bottom": 34,
+              "bottom": 20,
+              "paddingBottom": 30,
               "position": "absolute",
             },
           },
@@ -2624,7 +2651,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 0,
-              "colour": "light",
+              "colour": "darker",
               "hasNotification": false,
               "labels": Array [],
             },
@@ -2677,14 +2704,15 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               }
             }
           >
             <NavBar
               activeIndex={0}
-              colour="light"
+              colour="darker"
               hasNotification={false}
               labels={Array []}
             />
@@ -2736,14 +2764,15 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "bottom": 34,
+                  "bottom": 20,
+                  "paddingBottom": 30,
                   "position": "absolute",
                 }
               }
             >
               <NavBar
                 activeIndex={0}
-                colour="light"
+                colour="darker"
                 hasNotification={false}
                 labels={Array []}
               />
@@ -2827,12 +2856,13 @@ ShallowWrapper {
             "props": Object {
               "children": <NavBar
                 activeIndex={0}
-                colour="light"
+                colour="darker"
                 hasNotification={false}
                 labels={Array []}
               />,
               "style": Object {
-                "bottom": 34,
+                "bottom": 20,
+                "paddingBottom": 30,
                 "position": "absolute",
               },
             },
@@ -2843,7 +2873,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "activeIndex": 0,
-                "colour": "light",
+                "colour": "darker",
                 "hasNotification": false,
                 "labels": Array [],
               },

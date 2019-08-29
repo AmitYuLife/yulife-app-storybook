@@ -16,7 +16,6 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
     onRightTabPress: () => void;
     onItemPress: (item: GetRewards_getRewards) => void;
     loading: boolean;
-    currentWorld?: number;
     navbarColour: COLOURS;
 }
 
@@ -32,7 +31,6 @@ export default class RewardsListScreen extends React.PureComponent<IRewardsListS
             onRightTabPress,
             onLeftMenuPress,
             totalCoins,
-            currentWorld,
             navbarColour
         } = this.props;
 
@@ -59,8 +57,7 @@ export default class RewardsListScreen extends React.PureComponent<IRewardsListS
                         activeIndex={3}
                         colour={navbarColour || NavBar.Colours.DARKER}
                         hasNotification={hasNotification}
-                        hasImage={true}
-                        currentWorld={currentWorld}
+                        hasWhiteBackground={true}
                         labels={labels}
                     />
                 </View>

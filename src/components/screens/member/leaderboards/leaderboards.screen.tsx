@@ -30,7 +30,6 @@ export interface IItem {
 
 interface IProps {
     activeLeaderboardIndex: number;
-    currentWorld: number;
     initialScrollIndex: number;
     labels: ILabel[];
     leaderboards: ILeaderboard[];
@@ -127,7 +126,6 @@ export default class LeaderboardScreen extends React.PureComponent<IProps, IStat
             totalCoins,
             leaderboards,
             sortBy,
-            currentWorld,
             labels,
             onLeftMenuPress,
             onPrivacyPolicyPress,
@@ -174,19 +172,19 @@ export default class LeaderboardScreen extends React.PureComponent<IProps, IStat
                     ) : isLoading ? (
                         <Loading />
                     ) : (
-                        <LargeList
-                            style={styles.list}
-                            ref={this.setLargeListRef}
-                            renderIndexPath={this.renderIndexPath}
-                            heightForIndexPath={this.getHeight}
-                            renderFooter={this.renderFooter}
-                            showsVerticalScrollIndicator={false}
-                            data={[{ items }]}
-                            onRefresh={this.handleRefresh}
-                            renderEmpty={Loading}
-                            refreshHeader={YulifeRefreshHeader}
-                        />
-                    )}
+                                <LargeList
+                                    style={styles.list}
+                                    ref={this.setLargeListRef}
+                                    renderIndexPath={this.renderIndexPath}
+                                    heightForIndexPath={this.getHeight}
+                                    renderFooter={this.renderFooter}
+                                    showsVerticalScrollIndicator={false}
+                                    data={[{ items }]}
+                                    onRefresh={this.handleRefresh}
+                                    renderEmpty={Loading}
+                                    refreshHeader={YulifeRefreshHeader}
+                                />
+                            )}
                     <LeaderboardDropdown
                         activePage={activeLeaderboardIndex}
                         initialScrollIndex={activeLeaderboardIndex}
@@ -199,9 +197,8 @@ export default class LeaderboardScreen extends React.PureComponent<IProps, IStat
                 <View style={styles.navbarWrapper}>
                     <NavBar
                         activeIndex={2}
-                        hasImage={true}
+                        hasWhiteBackground={true}
                         colour={navbarColour}
-                        currentWorld={currentWorld}
                         hasNotification={hasNotification}
                         labels={labels}
                     />
