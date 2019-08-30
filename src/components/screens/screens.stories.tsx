@@ -61,8 +61,8 @@ storiesOf("Screens", module)
     .add("3b. Reset Password Success", () => (
         <EmailSentScreen
             email="test@yulife.com"
-            onLogInPress={action("on login press")}
-            onResendEmailPress={action("on resend email press")}
+            onCtaPress={action("on login press")}
+            onSecondaryCtaPress={action("on resend email press")}
             copy={Copy.emailSent}
         />
     ))

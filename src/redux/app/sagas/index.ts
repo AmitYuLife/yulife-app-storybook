@@ -3,6 +3,7 @@ import { AUTHENTICATED, CHECK_CONNECTION, SET_MAIN_ROOT, SHOW_MAINTENANCE } from
 
 import checkConnectionSaga from "./checkConnection.saga";
 import listenToAppStateSaga from "./listenToAppState.saga";
+import listenToIOSLinkingSaga from "./listenToIOSLinking.saga";
 import listenToNavigationSaga from "./listenToNavigation.saga";
 import listenToNetworkStateSaga from "./listenToNetworkState.saga";
 import setMainRootSaga from "./setMainRoot.saga";
@@ -11,6 +12,7 @@ import showMaintenanceSaga from "./showMaintenance.saga";
 export default [
     takeLatest("INIT", listenToAppStateSaga),
     takeLatest("INIT", listenToNavigationSaga),
+    takeLatest("INIT", listenToIOSLinkingSaga),
     takeLatest(SET_MAIN_ROOT, setMainRootSaga),
     takeLatest(AUTHENTICATED, listenToNetworkStateSaga),
     // takeEvery("*", logBreadcrumbsSaga),
