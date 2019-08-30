@@ -7,14 +7,14 @@ ShallowWrapper {
     copy={
       Object {
         "ctaLabel": "return to login",
-        "ctaLabelSecondary": "resend email",
+        "ctaLabelSecondary": "back",
         "heading": "email sent",
         "subheading": "Check your inbox! If \${email} matches our records, a password recovery email is on way. If you do not receive an email, please contact support@yulife.com",
       }
     }
     email="test@yulife.com"
-    onLogInPress={[MockFunction]}
-    onResendEmailPress={[MockFunction]}
+    onCtaPress={[MockFunction]}
+    onSecondaryCtaPress={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -31,10 +31,9 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Pad
-          height={100}
+          height={120}
         />,
         <Heading
-          bold={true}
           label="email sent"
           style={
             Object {
@@ -44,7 +43,7 @@ ShallowWrapper {
           }
         />,
         <Pad
-          height={10}
+          height={9}
         />,
         <Blurb
           label="Check your inbox! If test@yulife.com matches our records, a password recovery email is on way. If you do not receive an email, please contact support@yulife.com"
@@ -57,8 +56,11 @@ ShallowWrapper {
           onPress={[MockFunction]}
           type="Primary"
         />,
+        <Pad
+          height={10}
+        />,
         <Button
-          label="resend email"
+          label="back"
           onPress={[MockFunction]}
           type="Link"
         />,
@@ -72,7 +74,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 100,
+          "height": 120,
         },
         "ref": null,
         "rendered": null,
@@ -83,7 +85,6 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "bold": true,
           "label": "email sent",
           "style": Object {
             "color": "rgb(51,51,51)",
@@ -99,7 +100,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "height": 10,
+          "height": 9,
         },
         "ref": null,
         "rendered": null,
@@ -143,9 +144,20 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "height": 10,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "label": "resend email",
+          "label": "back",
           "onPress": [MockFunction],
           "type": "Link",
         },
@@ -164,10 +176,9 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Pad
-            height={100}
+            height={120}
           />,
           <Heading
-            bold={true}
             label="email sent"
             style={
               Object {
@@ -177,7 +188,7 @@ ShallowWrapper {
             }
           />,
           <Pad
-            height={10}
+            height={9}
           />,
           <Blurb
             label="Check your inbox! If test@yulife.com matches our records, a password recovery email is on way. If you do not receive an email, please contact support@yulife.com"
@@ -190,8 +201,11 @@ ShallowWrapper {
             onPress={[MockFunction]}
             type="Primary"
           />,
+          <Pad
+            height={10}
+          />,
           <Button
-            label="resend email"
+            label="back"
             onPress={[MockFunction]}
             type="Link"
           />,
@@ -205,7 +219,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 100,
+            "height": 120,
           },
           "ref": null,
           "rendered": null,
@@ -216,7 +230,6 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "bold": true,
             "label": "email sent",
             "style": Object {
               "color": "rgb(51,51,51)",
@@ -232,7 +245,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "height": 10,
+            "height": 9,
           },
           "ref": null,
           "rendered": null,
@@ -276,9 +289,20 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "height": 10,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "label": "resend email",
+            "label": "back",
             "onPress": [MockFunction],
             "type": "Link",
           },

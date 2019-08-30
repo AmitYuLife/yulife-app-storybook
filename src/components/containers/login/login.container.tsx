@@ -32,40 +32,34 @@ interface IOwnProps {
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
-export interface IState {
-    email: string;
-    emailError: string;
-    password: string;
-    passwordError: string;
-    isUsingOtp: boolean;
-    wasLoginCalled: boolean;
-}
-
 type Props = IOwnProps & ConnectedState & ConnectedDispatch;
 
-export class LoginContainer extends Component<Props, IState> {
-    public static getDerivedStateFromProps(props: Props) {
-        if (props.otp && props.otp.length > 10) {
-            return {
-                email: props.email,
-                emailError: "",
-                isUsingOtp: true,
-                password: props.otp,
-                passwordError: ""
-            };
-        }
+const initialState = {
+    email: "",
+    emailError: "",
+    isUsingOtp: false,
+    password: "",
+    passwordError: "",
+    wasLoginCalled: false
+};
 
-        return {};
+type State = typeof initialState;
+
+export class LoginContainer extends Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+
+        const otpState = {
+            email: props.email,
+            emailError: "",
+            isUsingOtp: true,
+            password: "PASSWORD", // show a better formatted password instead of a 200 length OTP
+            passwordError: "",
+            wasLoginCalled: false
+        };
+
+        this.state = props.otp && props.otp.length > 10 ? otpState : initialState;
     }
-
-    public state: IState = {
-        email: "",
-        emailError: "",
-        isUsingOtp: false,
-        password: "",
-        passwordError: "",
-        wasLoginCalled: false
-    };
 
     public render() {
         const { wasLoginCalled, isUsingOtp, email, emailError, passwordError, password } = this.state;
@@ -148,6 +142,12 @@ export class LoginContainer extends Component<Props, IState> {
     private onLogIn = async (loginUser: LoginUserMutationFunction, authorised: boolean) => {
         const { email, isUsingOtp, password } = this.state;
 
+        const handleError = () => {
+            if (isUsingOtp) {
+                this.setState({ wasLoginCalled: false, isUsingOtp: false });
+            }
+        };
+
         if (this.isFormValid() || isUsingOtp) {
             try {
                 const results = await loginUser({
@@ -155,7 +155,7 @@ export class LoginContainer extends Component<Props, IState> {
                         email: email.toLowerCase(),
                         intercomHashMethod: Platform.OS as IntercomHashMethod,
                         method: isUsingOtp ? LoginMethod.OTP : LoginMethod.PASSWORD,
-                        password,
+                        password: isUsingOtp ? this.props.otp : password,
                         tokenExpiration: TOKEN_EXPIRATION
                     }
                 });
@@ -169,10 +169,11 @@ export class LoginContainer extends Component<Props, IState> {
                         Style.isIPad() ? true : authorised,
                         results.data.loginUser.user.redeemedOnboarding
                     );
+                } else {
+                    handleError();
                 }
             } catch (e) {
-                // tslint:disable-next-line
-                // console.log(e);
+                handleError();
             }
         }
     };

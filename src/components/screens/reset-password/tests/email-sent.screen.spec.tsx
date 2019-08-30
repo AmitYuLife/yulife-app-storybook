@@ -8,8 +8,8 @@ describe("EmailSentScreen", () => {
     it("should render", () => {
         const actual = shallow(
             <EmailSentScreen
-                onResendEmailPress={jest.fn()}
-                onLogInPress={jest.fn()}
+                onSecondaryCtaPress={jest.fn()}
+                onCtaPress={jest.fn()}
                 copy={copyData.emailSent}
                 email="test@yulife.com"
             />

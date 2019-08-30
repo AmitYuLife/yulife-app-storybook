@@ -50,8 +50,8 @@ class ResetPasswordContainer extends PureComponent<Props, IState> {
                         return (
                             <EmailSentScreen
                                 email={email}
-                                onLogInPress={this.onLogIn}
-                                onResendEmailPress={() => this.onSubmit(sendMagicLink)}
+                                onCtaPress={this.onLogIn}
+                                onSecondaryCtaPress={this.onEmailSentBackPress}
                                 copy={copyEmailSent}
                             />
                         );
@@ -80,6 +80,10 @@ class ResetPasswordContainer extends PureComponent<Props, IState> {
 
     private onCancel = () => {
         Navigation.pop(this.props.componentId);
+    };
+
+    private onEmailSentBackPress = () => {
+        this.setState({ wasEmailSent: false });
     };
 
     private onEmailChange = (email: string) => {

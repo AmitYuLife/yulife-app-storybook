@@ -4,7 +4,7 @@ export default {
         heading: "welcome!",
         subheading: "Let's begin the journey of making you the best of yu!",
         ctaLabel: "log in",
-        ctaLabelSecondary: "Sign up"
+        ctaLabelSecondary: "sign up"
     },
     offline: {
         heading: "you're offline",
@@ -17,7 +17,7 @@ export default {
     },
     resetPassword: { // should be deleted after it will be removed from server-side(required for 1.9 compatibility)
         heading: "reset password",
-        ctaLabel: "Back"
+        ctaLabel: "back"
     },
     needHelpLoggingIn: {
         heading: "need help?",
@@ -33,7 +33,7 @@ export default {
             "Check your inbox! If ${email} matches our records, a password recovery email is on way." +
             " If you do not receive an email, please contact support@yulife.com",
         ctaLabel: "return to login",
-        ctaLabelSecondary: "resend email"
+        ctaLabelSecondary: "back"
     },
     signupReward: {
         heading: "sign up bonus",

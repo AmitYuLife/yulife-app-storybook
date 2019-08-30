@@ -5,7 +5,12 @@ import { ConnectionInfo, NetInfo } from "react-native";
 import { call, put } from "redux-saga/effects";
 import { setAuthenticated, setUnauthenticated } from "../app.actions";
 
-export default function* setMainRootSaga({ payload }: any) {
+interface IMainRootPayload {
+    payload: string;
+    type: string;
+}
+
+export default function* setMainRootSaga({ payload }: IMainRootPayload) {
     const token = yield call(getToken);
 
     if (token) {

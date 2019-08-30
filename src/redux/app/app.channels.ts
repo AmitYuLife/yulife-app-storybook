@@ -1,4 +1,4 @@
-import { AppState, NetInfo } from "react-native";
+import { AppState, Linking, NetInfo } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { eventChannel } from "redux-saga";
 
@@ -30,5 +30,17 @@ export function appNavigationChannel() {
     return eventChannel((emitter) => {
         Navigation.events().registerComponentDidAppearListener(emitter);
         return () => null;
+    });
+}
+
+export function iosLinkingChannel() {
+    return eventChannel((emitter) => {
+        Linking.addEventListener("url", emitter);
+
+        const unlisten = () => {
+            Linking.removeEventListener("url", emitter);
+        };
+
+        return unlisten;
     });
 }

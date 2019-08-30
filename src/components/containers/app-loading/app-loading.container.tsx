@@ -40,8 +40,6 @@ export default class AppLoadingContainer extends PureComponent<IProps, IState> {
             } catch (e) {
                 // console.log(e.message);
             }
-        } else {
-            Linking.addEventListener("url", ({ url }: any) => this.setState({ url }));
         }
     }
 
