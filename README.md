@@ -192,6 +192,27 @@ Run it with cmd-space or from launcher ("React Native Debugger").
 
 Once running, press cmd-d in the emulator and select "Start remote JS debugging" from the menu.
 
+## Releasing
+
+### Test builds
+
+To create a test build from a given commit, make a tag which starts `test-branch-` e.g.
+
+```sh
+git tag test-branch-my-new-feature-1
+git push origin --tags
+```
+
+A tip is to append a number in case you will need more than one build per feature.
+
+### Release Candidates
+
+To create a release, branch or tag with a name such as `release/[major].[minor]` e.g. `release/1.9`.
+
+To add bugfixes to an existing release just commit to that branch. No need to increment the version, the patch version automatically incrememnts with each build so the final version number will be something like `1.9.3214`.
+
+Bitrise will automatically build the candidate and submit it to the appstores for the yulife engineering team. After testing in production we manually progress it to the whole company and finally the public.
+
 ## StoryBook
 
 This project provides a StoryBook server. To access it, run the following `start` command instead
