@@ -66,7 +66,13 @@ class DailyStepsContainer extends React.Component<Props> {
             nextProps.hasNotification !== this.props.hasNotification ||
             nextProps.isFetching !== this.props.isFetching ||
             nextProps.lastUpdated !== this.props.lastUpdated ||
-            nextProps.popupVisibility.leaderboard !== this.props.popupVisibility.leaderboard
+            nextProps.popupVisibility.leaderboard !== this.props.popupVisibility.leaderboard ||
+            nextProps.totalCoins !== this.props.totalCoins ||
+            nextProps.streaks.displayStreak !== this.props.streaks.displayStreak ||
+            nextProps.streaks.isAvailable !== this.props.streaks.isAvailable ||
+            nextProps.streaks.currentStreak !== this.props.streaks.currentStreak ||
+            nextProps.streaks.isDoneToday !== this.props.streaks.isDoneToday ||
+            nextProps.streaks.maxStreak !== this.props.streaks.maxStreak
         );
     }
 
