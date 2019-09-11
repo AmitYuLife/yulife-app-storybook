@@ -40,16 +40,15 @@ class RewardsListItem extends PureComponent<IProps, IState> {
                 style={StyleSheet.flatten([styles.wrapper, hasLoaded ? {} : styles.wrapperLoading])}
             >
                 <>
-                    <View
-                        style={{
-                            ...StyleSheet.absoluteFillObject,
-                            backgroundColor: "#bebebe"
-                        }}
+                    <FastImage
+                        resizeMode="cover"
+                        style={[styles.imageBackground, { opacity: isLocked ? 0.3 : 1 }]}
+                        source={require("../../../../../assets/rewards/reward-placeholder.png")}
                     />
                     <FastImage
                         resizeMode="cover"
                         style={[styles.imageBackground, { opacity: isLocked ? 0.3 : 1 }]}
-                        onLoad={this.handleLoadEnd}
+                        onLoadEnd={this.handleLoadEnd}
                         source={getCloudinaryUrl(`reward/background/${code}`, {
                             height: 150,
                             transformation: [{ effect: isLocked ? "grayscale" : null }],
