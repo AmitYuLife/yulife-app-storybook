@@ -69,6 +69,7 @@ class SettingsContainer extends PureComponent<IProps, IState> {
             isVisible: features.showConnections,
             items: connections.map((c) => ({
                 ...c,
+                lastUpdated: features.showLastSynced ? c.lastUpdated : null,
                 onPress: this.handleConnectionItemPress(c)
             })),
             name: "connections"

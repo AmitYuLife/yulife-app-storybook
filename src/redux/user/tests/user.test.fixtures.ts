@@ -44,7 +44,7 @@ export const loginSuccessFixture: LoginUser = {
                 currentLevel: 1,
                 nextLevelAvailableAt: ""
             },
-            connections: [{ name: "garmin", isConnected: false }],
+            connections: [{ name: "garmin", isConnected: false, lastUpdated: 1539086400 }],
             id: "1234567890",
             leaderboards,
             membershipType: "yulife",
@@ -84,7 +84,7 @@ export const currentUserFixture: GetCurrentUser = {
             currentLevel: 1,
             nextLevelAvailableAt: ""
         },
-        connections: [{ name: "garmin", isConnected: false }],
+        connections: [{ name: "garmin", isConnected: false, lastUpdated: 1539086400 }],
         id: "1234567890",
         leaderboards,
         membershipType: "yulife",

@@ -27,6 +27,7 @@ export interface INotificationsSectionItem extends IYulifeNotification {
 export interface IConnectionsSectionItem {
     name: string;
     isConnected: boolean;
+    lastUpdated?: number;
     isLoading: boolean;
     onPress: () => void;
 }

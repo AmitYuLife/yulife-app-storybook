@@ -18,6 +18,7 @@ export const getCurrentUserGql = gql`
             connections {
                 name
                 isConnected
+                lastUpdated
             }
             userFeatures {
                 name

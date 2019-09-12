@@ -32,6 +32,7 @@ export const loginUserGql = gql`
                 connections {
                     name
                     isConnected
+                    lastUpdated
                 }
                 userFeatures {
                     name

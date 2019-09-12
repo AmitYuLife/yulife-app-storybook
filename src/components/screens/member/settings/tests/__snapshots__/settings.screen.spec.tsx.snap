@@ -127,7 +127,7 @@ ShallowWrapper {
                 }
               }
             >
-              <NotificationsItem
+              <ConnectionsItem
                 isConnected={false}
                 isLoading={false}
                 name="fitbit"
@@ -245,7 +245,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <NotificationsItem
+                <ConnectionsItem
                   isConnected={false}
                   isLoading={false}
                   name="fitbit"
@@ -403,7 +403,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  <NotificationsItem
+                  <ConnectionsItem
                     isConnected={false}
                     isLoading={false}
                     name="fitbit"
@@ -434,7 +434,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": Array [
-                    <NotificationsItem
+                    <ConnectionsItem
                       isConnected={false}
                       isLoading={false}
                       name="fitbit"
@@ -644,7 +644,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <NotificationsItem
+                <ConnectionsItem
                   isConnected={false}
                   isLoading={false}
                   name="fitbit"
@@ -762,7 +762,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  <NotificationsItem
+                  <ConnectionsItem
                     isConnected={false}
                     isLoading={false}
                     name="fitbit"
@@ -920,7 +920,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    <NotificationsItem
+                    <ConnectionsItem
                       isConnected={false}
                       isLoading={false}
                       name="fitbit"
@@ -951,7 +951,7 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "children": Array [
-                      <NotificationsItem
+                      <ConnectionsItem
                         isConnected={false}
                         isLoading={false}
                         name="fitbit"
@@ -1242,7 +1242,7 @@ ShallowWrapper {
                 }
               }
             >
-              <NotificationsItem
+              <ConnectionsItem
                 isConnected={false}
                 isLoading={false}
                 name="fitbit"
@@ -1331,7 +1331,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <NotificationsItem
+                <ConnectionsItem
                   isConnected={false}
                   isLoading={false}
                   name="fitbit"
@@ -1461,7 +1461,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  <NotificationsItem
+                  <ConnectionsItem
                     isConnected={false}
                     isLoading={false}
                     name="fitbit"
@@ -1492,7 +1492,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": Array [
-                    <NotificationsItem
+                    <ConnectionsItem
                       isConnected={false}
                       isLoading={false}
                       name="fitbit"
@@ -1615,7 +1615,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <NotificationsItem
+                <ConnectionsItem
                   isConnected={false}
                   isLoading={false}
                   name="fitbit"
@@ -1704,7 +1704,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  <NotificationsItem
+                  <ConnectionsItem
                     isConnected={false}
                     isLoading={false}
                     name="fitbit"
@@ -1834,7 +1834,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    <NotificationsItem
+                    <ConnectionsItem
                       isConnected={false}
                       isLoading={false}
                       name="fitbit"
@@ -1865,7 +1865,7 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "children": Array [
-                      <NotificationsItem
+                      <ConnectionsItem
                         isConnected={false}
                         isLoading={false}
                         name="fitbit"
