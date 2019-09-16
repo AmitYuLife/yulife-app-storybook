@@ -69,8 +69,8 @@ class RewardsContainer extends PureComponent<Props, IState> {
         return tab === "rewards" ? (
             <GetRewardsQuery>{this.renderRewards}</GetRewardsQuery>
         ) : (
-                <GetAllPurchasesQuery>{this.renderPurchases}</GetAllPurchasesQuery>
-            );
+            <GetAllPurchasesQuery>{this.renderPurchases}</GetAllPurchasesQuery>
+        );
     }
 
     private handleTabChange = (tab: Tab, componentId: string = "") => {
@@ -133,7 +133,7 @@ class RewardsContainer extends PureComponent<Props, IState> {
                         ctaLabel: copy.lockedReward.ctaLabel,
                         heading: copy.lockedReward.heading,
                         onPress: () => Navigation.dismissModal(MODALS.rewards),
-                        subheading: copy.lockedReward.subheading
+                        subheading: copy.lockedReward.subheading.replace("${rewardName}", reward.name)
                     }
                 }
             });

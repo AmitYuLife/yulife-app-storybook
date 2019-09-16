@@ -15,7 +15,8 @@ export default {
         heading: "sorry!",
         subheading: "You are not able to use this app at the moment."
     },
-    resetPassword: { // should be deleted after it will be removed from server-side(required for 1.9 compatibility)
+    resetPassword: {
+        // should be deleted after it will be removed from server-side(required for 1.9 compatibility)
         heading: "reset password",
         ctaLabel: "back"
     },
@@ -96,9 +97,9 @@ export default {
             ctaLabel: "check rewards"
         },
         lockedReward: {
-            ctaLabel: "check other rewards",
-            heading: "the voucher is locked",
-            subheading: "access coming soon"
+            ctaLabel: "back to rewards",
+            heading: "update in progress",
+            subheading: "we are updating your ${rewardName} rewards experience, check back soon!"
         },
         voucherNotAvailable: {
             ctaLabel: "check other rewards",
