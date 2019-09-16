@@ -3,7 +3,6 @@ import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../styles";
 
 const styles = StyleSheet.create({
-
     rightColumnWrapper: {
         marginLeft: "auto",
         marginTop: Style.SCALE_UP_AND_DOWN(37)
@@ -13,15 +12,7 @@ const styles = StyleSheet.create({
         height: "100%",
         transform: [
             {
-                translateY: Platform.OS === "android"
-                    ? Style.isXShortAndroid()
-                        ? 10
-                        : Style.isShortAndroid()
-                            ? 20
-                            : 50
-                    : isIphoneX()
-                        ? 60
-                        : 20
+                translateY: Platform.OS === "android" ? (Style.isXShortAndroid() ? 10 : 20) : isIphoneX() ? 60 : 20
             }
         ],
         width: "100%"
