@@ -92,8 +92,11 @@ export const getImageStyle = (image: Images): ImageStyle => {
             position.right = 0;
             break;
         case IMAGES.WOLF:
+            const androidMultiplier = Style.isShortAndroid() || Style.isXShortAndroid() ? 0.8 : 1;
             position.left = 0;
             position.bottom = 0;
+            dimensions.height = Style.SCALE_UP_AND_DOWN(134 * androidMultiplier);
+            dimensions.width = Style.SCALE_UP_AND_DOWN(108 * androidMultiplier);
             break;
         case IMAGES.DEER:
             position.left = 0;
