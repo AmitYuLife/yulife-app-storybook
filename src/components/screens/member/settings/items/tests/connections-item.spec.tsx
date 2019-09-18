@@ -7,7 +7,8 @@ const defaultProps = {
     name: "fitbit",
     isConnected: true,
     isLoading: false,
-    onPress: jest.fn()
+    onPress: jest.fn(),
+    onPressInfo: jest.fn()
 };
 
 describe("ConnectionItem", () => {

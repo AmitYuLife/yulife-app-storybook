@@ -30,6 +30,7 @@ export interface IConnectionsSectionItem {
     lastUpdated?: number;
     isLoading: boolean;
     onPress: () => void;
+    onPressInfo: () => void;
 }
 
 interface ISettingSection<T> {

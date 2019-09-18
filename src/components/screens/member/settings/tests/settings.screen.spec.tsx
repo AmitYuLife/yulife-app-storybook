@@ -30,6 +30,7 @@ const defaultProps = {
                     isConnected: false,
                     name: "fitbit",
                     onPress: jest.fn(),
+                    onPressInfo: jest.fn(),
                     isLoading: false
                 }
             ],
@@ -42,6 +43,7 @@ const defaultProps = {
                     isLoading: false,
                     name: "klsdfjlaskdjf",
                     onPress: jest.fn(),
+                    onPressInfo: jest.fn(),
                     status: "active" as ILeaderboardSectionItem["status"]
                 }
             ],

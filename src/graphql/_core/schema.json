@@ -834,6 +834,18 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "settingsInfo",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "MobileCopyScreen",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -14184,9 +14196,9 @@
   "extensions": {
     "tracing": {
       "version": 1,
-      "startTime": "2019-08-28T08:31:25.838Z",
-      "endTime": "2019-08-28T08:31:25.994Z",
-      "duration": 156038582,
+      "startTime": "2019-09-12T13:37:55.056Z",
+      "endTime": "2019-09-12T13:37:55.138Z",
+      "duration": 82071156,
       "execution": {
         "resolvers": []
       }

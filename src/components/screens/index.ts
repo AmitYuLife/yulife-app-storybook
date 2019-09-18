@@ -46,6 +46,7 @@ export { default as WegiftRewardDetailsScreen } from "./member/rewards/details/w
 export { default as WegiftRewardConfirmedScreen } from "./member/rewards/confirmed/wegift-confirmed.screen";
 export { default as AviosRewardDetailsScreen } from "./member/rewards/details/avios-details.screen";
 
+export { default as InfoScreen } from "./member/info-screen/info.screen";
 export { default as GenericScreen } from "./member/generic-screen/generic.screen";
 export { default as FeedbackScreen } from "./member/feedback/feedback.screen";
 
