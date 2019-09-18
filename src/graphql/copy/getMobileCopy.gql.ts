@@ -191,6 +191,11 @@ export const getMobileCopyGql = gql`
                     leaderboardHeading
                     leaderboardSubheading
                 }
+                settingsInfo {
+                    heading
+                    subheading
+                    ctaLabel
+                }
             }
         }
     }

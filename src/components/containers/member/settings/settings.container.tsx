@@ -70,7 +70,8 @@ class SettingsContainer extends PureComponent<IProps, IState> {
             items: connections.map((c) => ({
                 ...c,
                 lastUpdated: features.showLastSynced ? c.lastUpdated : null,
-                onPress: this.handleConnectionItemPress(c)
+                onPress: this.handleConnectionItemPress(c),
+                onPressInfo: this.handleConnectionInfoPress(c)
             })),
             name: "connections"
         } as any;
@@ -106,6 +107,25 @@ class SettingsContainer extends PureComponent<IProps, IState> {
 
     private handleConnectionItemPress = (c: Connection) => () => {
         this.props.updateConnectionStart(c);
+    };
+
+    private handleConnectionInfoPress = (c: Connection) => () => {
+        const {
+            copySettings: { heading, subheading, ctaLabel }
+        } = this.props;
+        Navigation.showModal({
+            component: {
+                id: MODALS.info,
+                name: MODALS.info,
+                passProps: {
+                    onPress: () => Navigation.dismissModal(MODALS.info),
+                    type: c.name,
+                    heading: heading.replace("${connection}", c.name.charAt(0).toUpperCase() + c.name.slice(1)),
+                    subheading,
+                    ctaLabel
+                }
+            }
+        });
     };
 
     private handleUpdateLeaderboardConsent = (l: Leaderboard) => () => {
@@ -195,7 +215,8 @@ const mapStateToProps = (state: IReduxState) => ({
     features: getUserFeatures(state),
     leaderboards: getAcceptedLeaderboards(state),
     notifications: getNotifications(state),
-    copyLeaderBoard: getCopy(state, "leaderboards")
+    copyLeaderBoard: getCopy(state, "leaderboards"),
+    copySettings: getCopy(state, "settingsInfo")
 });
 
 const mapDispatchToProps = {

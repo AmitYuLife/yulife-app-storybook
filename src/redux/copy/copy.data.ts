@@ -199,5 +199,12 @@ export default {
         surgeSubheading: "you're getting twice as many yucoin for daily steps and meditation minutes",
         leaderboardHeading: "new leaderboard",
         leaderboardSubheading: "leaderboard is now part of nav bar"
+    },
+    settingsInfo: {
+        heading:
+            "Your yulife app will capture step data from both your phone’s health app and your ${connection} device.",
+        subheading:
+            "If you look at your activity history, you will be able to see the steps count from both. yucoin will be awarded for whichever step count is higher, and that is what steps will be displayed on the app home screen as well.",
+        ctaLabel: "okay, got it"
     }
 };

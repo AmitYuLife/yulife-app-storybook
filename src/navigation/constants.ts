@@ -49,7 +49,8 @@ export const MODALS = {
     pushNotifications: "yulife.modals.PushNotifications",
     rewards: "yulife.modals.Rewards",
     streaks: "yulife.modals.Streaks",
-    todayYucoin: "yulife.modals.todayYucoin"
+    todayYucoin: "yulife.modals.todayYucoin",
+    info: "yulife.modals.info"
 };
 
 export const bottomTabs = {

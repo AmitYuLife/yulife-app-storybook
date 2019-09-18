@@ -32,6 +32,7 @@ ShallowWrapper {
               "isLoading": false,
               "name": "fitbit",
               "onPress": [MockFunction],
+              "onPressInfo": [MockFunction],
             },
           ],
           "name": "connections",
@@ -43,6 +44,7 @@ ShallowWrapper {
               "isLoading": false,
               "name": "klsdfjlaskdjf",
               "onPress": [MockFunction],
+              "onPressInfo": [MockFunction],
               "status": "active",
             },
           ],
@@ -132,6 +134,7 @@ ShallowWrapper {
                 isLoading={false}
                 name="fitbit"
                 onPress={[MockFunction]}
+                onPressInfo={[MockFunction]}
               />
             </View>
           </View>
@@ -160,6 +163,7 @@ ShallowWrapper {
                 isLoading={false}
                 name="klsdfjlaskdjf"
                 onPress={[MockFunction]}
+                onPressInfo={[MockFunction]}
                 status="active"
               />
             </View>
@@ -250,6 +254,7 @@ ShallowWrapper {
                   isLoading={false}
                   name="fitbit"
                   onPress={[MockFunction]}
+                  onPressInfo={[MockFunction]}
                 />
               </View>
             </View>,
@@ -278,6 +283,7 @@ ShallowWrapper {
                   isLoading={false}
                   name="klsdfjlaskdjf"
                   onPress={[MockFunction]}
+                  onPressInfo={[MockFunction]}
                   status="active"
                 />
               </View>
@@ -408,6 +414,7 @@ ShallowWrapper {
                     isLoading={false}
                     name="fitbit"
                     onPress={[MockFunction]}
+                    onPressInfo={[MockFunction]}
                   />
                 </View>,
               ],
@@ -439,6 +446,7 @@ ShallowWrapper {
                       isLoading={false}
                       name="fitbit"
                       onPress={[MockFunction]}
+                      onPressInfo={[MockFunction]}
                     />,
                   ],
                   "style": Object {
@@ -459,6 +467,7 @@ ShallowWrapper {
                       "isLoading": false,
                       "name": "fitbit",
                       "onPress": [MockFunction],
+                      "onPressInfo": [MockFunction],
                     },
                     "ref": null,
                     "rendered": null,
@@ -494,6 +503,7 @@ ShallowWrapper {
                     isLoading={false}
                     name="klsdfjlaskdjf"
                     onPress={[MockFunction]}
+                    onPressInfo={[MockFunction]}
                     status="active"
                   />
                 </View>,
@@ -525,6 +535,7 @@ ShallowWrapper {
                       isLoading={false}
                       name="klsdfjlaskdjf"
                       onPress={[MockFunction]}
+                      onPressInfo={[MockFunction]}
                       status="active"
                     />,
                   ],
@@ -546,6 +557,7 @@ ShallowWrapper {
                       "isLoading": false,
                       "name": "klsdfjlaskdjf",
                       "onPress": [MockFunction],
+                      "onPressInfo": [MockFunction],
                       "status": "active",
                     },
                     "ref": null,
@@ -649,6 +661,7 @@ ShallowWrapper {
                   isLoading={false}
                   name="fitbit"
                   onPress={[MockFunction]}
+                  onPressInfo={[MockFunction]}
                 />
               </View>
             </View>
@@ -677,6 +690,7 @@ ShallowWrapper {
                   isLoading={false}
                   name="klsdfjlaskdjf"
                   onPress={[MockFunction]}
+                  onPressInfo={[MockFunction]}
                   status="active"
                 />
               </View>
@@ -767,6 +781,7 @@ ShallowWrapper {
                     isLoading={false}
                     name="fitbit"
                     onPress={[MockFunction]}
+                    onPressInfo={[MockFunction]}
                   />
                 </View>
               </View>,
@@ -795,6 +810,7 @@ ShallowWrapper {
                     isLoading={false}
                     name="klsdfjlaskdjf"
                     onPress={[MockFunction]}
+                    onPressInfo={[MockFunction]}
                     status="active"
                   />
                 </View>
@@ -925,6 +941,7 @@ ShallowWrapper {
                       isLoading={false}
                       name="fitbit"
                       onPress={[MockFunction]}
+                      onPressInfo={[MockFunction]}
                     />
                   </View>,
                 ],
@@ -956,6 +973,7 @@ ShallowWrapper {
                         isLoading={false}
                         name="fitbit"
                         onPress={[MockFunction]}
+                        onPressInfo={[MockFunction]}
                       />,
                     ],
                     "style": Object {
@@ -976,6 +994,7 @@ ShallowWrapper {
                         "isLoading": false,
                         "name": "fitbit",
                         "onPress": [MockFunction],
+                        "onPressInfo": [MockFunction],
                       },
                       "ref": null,
                       "rendered": null,
@@ -1011,6 +1030,7 @@ ShallowWrapper {
                       isLoading={false}
                       name="klsdfjlaskdjf"
                       onPress={[MockFunction]}
+                      onPressInfo={[MockFunction]}
                       status="active"
                     />
                   </View>,
@@ -1042,6 +1062,7 @@ ShallowWrapper {
                         isLoading={false}
                         name="klsdfjlaskdjf"
                         onPress={[MockFunction]}
+                        onPressInfo={[MockFunction]}
                         status="active"
                       />,
                     ],
@@ -1063,6 +1084,7 @@ ShallowWrapper {
                         "isLoading": false,
                         "name": "klsdfjlaskdjf",
                         "onPress": [MockFunction],
+                        "onPressInfo": [MockFunction],
                         "status": "active",
                       },
                       "ref": null,
@@ -1147,6 +1169,7 @@ ShallowWrapper {
               "isLoading": false,
               "name": "fitbit",
               "onPress": [MockFunction],
+              "onPressInfo": [MockFunction],
             },
           ],
           "name": "connections",
@@ -1158,6 +1181,7 @@ ShallowWrapper {
               "isLoading": false,
               "name": "klsdfjlaskdjf",
               "onPress": [MockFunction],
+              "onPressInfo": [MockFunction],
               "status": "active",
             },
           ],
@@ -1247,6 +1271,7 @@ ShallowWrapper {
                 isLoading={false}
                 name="fitbit"
                 onPress={[MockFunction]}
+                onPressInfo={[MockFunction]}
               />
             </View>
           </View>
@@ -1336,6 +1361,7 @@ ShallowWrapper {
                   isLoading={false}
                   name="fitbit"
                   onPress={[MockFunction]}
+                  onPressInfo={[MockFunction]}
                 />
               </View>
             </View>,
@@ -1466,6 +1492,7 @@ ShallowWrapper {
                     isLoading={false}
                     name="fitbit"
                     onPress={[MockFunction]}
+                    onPressInfo={[MockFunction]}
                   />
                 </View>,
               ],
@@ -1497,6 +1524,7 @@ ShallowWrapper {
                       isLoading={false}
                       name="fitbit"
                       onPress={[MockFunction]}
+                      onPressInfo={[MockFunction]}
                     />,
                   ],
                   "style": Object {
@@ -1517,6 +1545,7 @@ ShallowWrapper {
                       "isLoading": false,
                       "name": "fitbit",
                       "onPress": [MockFunction],
+                      "onPressInfo": [MockFunction],
                     },
                     "ref": null,
                     "rendered": null,
@@ -1620,6 +1649,7 @@ ShallowWrapper {
                   isLoading={false}
                   name="fitbit"
                   onPress={[MockFunction]}
+                  onPressInfo={[MockFunction]}
                 />
               </View>
             </View>
@@ -1709,6 +1739,7 @@ ShallowWrapper {
                     isLoading={false}
                     name="fitbit"
                     onPress={[MockFunction]}
+                    onPressInfo={[MockFunction]}
                   />
                 </View>
               </View>,
@@ -1839,6 +1870,7 @@ ShallowWrapper {
                       isLoading={false}
                       name="fitbit"
                       onPress={[MockFunction]}
+                      onPressInfo={[MockFunction]}
                     />
                   </View>,
                 ],
@@ -1870,6 +1902,7 @@ ShallowWrapper {
                         isLoading={false}
                         name="fitbit"
                         onPress={[MockFunction]}
+                        onPressInfo={[MockFunction]}
                       />,
                     ],
                     "style": Object {
@@ -1890,6 +1923,7 @@ ShallowWrapper {
                         "isLoading": false,
                         "name": "fitbit",
                         "onPress": [MockFunction],
+                        "onPressInfo": [MockFunction],
                       },
                       "ref": null,
                       "rendered": null,
