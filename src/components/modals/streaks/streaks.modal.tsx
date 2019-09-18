@@ -56,7 +56,6 @@ class StreaksModal extends PureComponent<Props, IState> {
             onPressCtaSecondary,
             reward,
             streakAwardId,
-            streakCompleted,
             streakMax
         } = this.props;
 
@@ -97,9 +96,7 @@ class StreaksModal extends PureComponent<Props, IState> {
                             subHeading={this.getSubHeading()}
                             primaryButtonLabel={this.getLabelCtaPrimary()}
                             streakAwardId={streakAwardId}
-                            // If there is an award, it must be for a full streak, so display
-                            // the full streak even if it is not full right now
-                            streakCompleted={streakAwardId ? streakMax : streakCompleted}
+                            streakCompleted={this.getStreakCompleted()}
                             streakMax={streakMax}
                             onSubmit={onSubmit}
                             reward={reward}
@@ -120,7 +117,8 @@ class StreaksModal extends PureComponent<Props, IState> {
     };
 
     private getLabelCtaPrimary = () => {
-        const { streakCompleted, streakMax, isDoneToday, reward, streakAwardId, copy } = this.props;
+        const { streakMax, isDoneToday, reward, streakAwardId, copy } = this.props;
+        const streakCompleted = this.getStreakCompleted();
 
         if (streakCompleted === streakMax) {
             if (!streakAwardId) {
@@ -135,7 +133,8 @@ class StreaksModal extends PureComponent<Props, IState> {
     };
 
     private getSubHeading = () => {
-        const { isDoneToday, streakCompleted, streakMax, reward, streakAwardId, copy } = this.props;
+        const { isDoneToday, streakMax, reward, streakAwardId, copy } = this.props;
+        const streakCompleted = this.getStreakCompleted();
 
         if (streakCompleted === streakMax) {
             if (!streakAwardId) {
@@ -150,7 +149,8 @@ class StreaksModal extends PureComponent<Props, IState> {
     };
 
     private getHeading = () => {
-        const { isDoneToday, streakCompleted, streakMax, copy } = this.props;
+        const { isDoneToday, streakMax, copy } = this.props;
+        const streakCompleted = this.getStreakCompleted();
 
         if (streakCompleted === streakMax) {
             return copy.headingCompleted;
@@ -160,6 +160,13 @@ class StreaksModal extends PureComponent<Props, IState> {
             return copy.headingStartStreakDay.replace("${streakCompleted}", (streakCompleted + 1).toString());
         }
     };
+
+    private getStreakCompleted = () => {
+        const { streakAwardId, streakCompleted, streakMax } = this.props;
+        // If there is an award, it must be for a full streak, so display
+        // the full streak even if it is not full right now
+        return streakAwardId ? streakMax : streakCompleted;
+    }
 }
 
 const mapStateToProps = (state: IReduxState) => ({
