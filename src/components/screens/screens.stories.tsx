@@ -204,25 +204,49 @@ storiesOf("Screens", module)
                         challengeType: "brisk walk",
                         currentWorld: 0,
                         duration: "10 mins",
-                        reward: "0-3"
+                        reward: "0-3",
+                        id: "0",
+                        isLocked: boolean("isLocked", false),
+                        minimumLevel: 7,
+                        onPress: action("challenge press"),
+                        milestones: [{ target: 50, reward: 50 }],
+                        unit: "steps"
                     },
                     {
                         challengeType: "long walk",
                         currentWorld: 0,
                         duration: "30 mins",
-                        reward: "0-6"
+                        reward: "0-6",
+                        id: "1",
+                        isLocked: boolean("isLocked", false),
+                        minimumLevel: 7,
+                        onPress: action("challenge press"),
+                        milestones: [{ target: 50, reward: 50 }],
+                        unit: "steps"
                     },
                     {
                         challengeType: "short stroll",
                         currentWorld: 0,
                         duration: "5 mins",
-                        reward: "0-1"
+                        reward: "0-1",
+                        id: "2",
+                        isLocked: boolean("isLocked", false),
+                        minimumLevel: 7,
+                        onPress: action("challenge press"),
+                        milestones: [{ target: 50, reward: 50 }],
+                        unit: "steps"
                     },
                     {
                         challengeType: "meditation",
                         currentWorld: 0,
                         duration: "3-10 mins",
-                        reward: "0-3"
+                        reward: "0-3",
+                        id: "3",
+                        isLocked: boolean("isLocked", false),
+                        minimumLevel: 7,
+                        onPress: action("challenge press"),
+                        milestones: [{ target: 50, reward: 50 }],
+                        unit: "steps"
                     }
                 ],
                 "ChallengesList"

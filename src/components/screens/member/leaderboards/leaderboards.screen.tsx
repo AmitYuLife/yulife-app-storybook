@@ -15,6 +15,7 @@ import LeaderboardToggle from "./leaderboard-dropdown/leaderboard-toggle";
 import LeaderboardItem from "./leaderboard-item/leaderboard-item";
 import { LEADERBOARD_ITEM_HEIGHT } from "./leaderboard-item/leaderboard-item.styles";
 import LeaderboardTabs from "./leaderboard-tabs/leaderboard-tabs";
+import { shouldLeaderboardUpdate } from "./leaderboards.screen.helpers";
 import styles from "./leaderboards.screen.styles";
 
 export type LeaderboardTypes = "coins" | "steps";
@@ -28,7 +29,7 @@ export interface IItem {
     steps: number;
 }
 
-interface IProps {
+export interface ILeaderboardsScreenProps {
     activeLeaderboardIndex: number;
     initialScrollIndex: number;
     labels: ILabel[];
@@ -60,15 +61,15 @@ const initialState = {
     shouldScrollTo: true
 };
 
-type IState = typeof initialState;
+export type ILeaderboardsScreenState = typeof initialState;
 
-export default class LeaderboardScreen extends React.PureComponent<IProps, IState> {
+export default class LeaderboardScreen extends React.Component<ILeaderboardsScreenProps, ILeaderboardsScreenState> {
     public largeList: LargeList;
     public state = initialState;
 
     private timeout: NodeJS.Timer = null;
 
-    public constructor(props: IProps) {
+    public constructor(props: ILeaderboardsScreenProps) {
         super(props);
         Navigation.events().bindComponent(this);
     }
@@ -81,7 +82,16 @@ export default class LeaderboardScreen extends React.PureComponent<IProps, IStat
         this.scrollToLevel();
     }
 
-    public componentDidUpdate(prevProps: IProps) {
+    public shouldComponentUpdate(nextProps: ILeaderboardsScreenProps, nextState: ILeaderboardsScreenState) {
+        return shouldLeaderboardUpdate({
+            nextProps,
+            nextState,
+            currentProps: this.props,
+            currentState: this.state
+        });
+    }
+
+    public componentDidUpdate(prevProps: ILeaderboardsScreenProps) {
         if (
             prevProps.activeLeaderboardIndex === this.props.activeLeaderboardIndex &&
             !this.props.isLoading &&
@@ -172,19 +182,19 @@ export default class LeaderboardScreen extends React.PureComponent<IProps, IStat
                     ) : isLoading ? (
                         <Loading />
                     ) : (
-                                <LargeList
-                                    style={styles.list}
-                                    ref={this.setLargeListRef}
-                                    renderIndexPath={this.renderIndexPath}
-                                    heightForIndexPath={this.getHeight}
-                                    renderFooter={this.renderFooter}
-                                    showsVerticalScrollIndicator={false}
-                                    data={[{ items }]}
-                                    onRefresh={this.handleRefresh}
-                                    renderEmpty={Loading}
-                                    refreshHeader={YulifeRefreshHeader}
-                                />
-                            )}
+                        <LargeList
+                            style={styles.list}
+                            ref={this.setLargeListRef}
+                            renderIndexPath={this.renderIndexPath}
+                            heightForIndexPath={this.getHeight}
+                            renderFooter={this.renderFooter}
+                            showsVerticalScrollIndicator={false}
+                            data={[{ items }]}
+                            onRefresh={this.handleRefresh}
+                            renderEmpty={Loading}
+                            refreshHeader={YulifeRefreshHeader}
+                        />
+                    )}
                     <LeaderboardDropdown
                         activePage={activeLeaderboardIndex}
                         initialScrollIndex={activeLeaderboardIndex}
@@ -244,12 +254,7 @@ export default class LeaderboardScreen extends React.PureComponent<IProps, IStat
 
         if (item) {
             return (
-                <LeaderboardItem
-                    {...item}
-                    isCurrentUser={row === initialScrollIndex}
-                    sortBy={sortBy}
-                    rank={row + 1}
-                />
+                <LeaderboardItem {...item} isCurrentUser={row === initialScrollIndex} sortBy={sortBy} rank={row + 1} />
             );
         }
 

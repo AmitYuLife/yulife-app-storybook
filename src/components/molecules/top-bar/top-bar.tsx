@@ -59,7 +59,7 @@ class TopBar extends React.Component<IProps, IState> {
     };
     private interval: NodeJS.Timer = null;
 
-    public shouldComponentUpdate(nextProps: IProps) {
+    public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
         if (nextProps.timer && !this.interval) {
             this.interval = global.setInterval(() => {
                 const duration = moment(nextProps.timer).diff(moment(), "seconds");
@@ -73,7 +73,16 @@ class TopBar extends React.Component<IProps, IState> {
             }, 1000);
         }
 
-        return true;
+        return (
+            this.props.coins !== nextProps.coins ||
+            this.props.leftIcon !== nextProps.leftIcon ||
+            this.props.menuLabel !== nextProps.menuLabel ||
+            this.props.middleLabel !== nextProps.middleLabel ||
+            this.props.name !== nextProps.name ||
+            this.props.timer !== nextProps.timer ||
+            this.props.type !== nextProps.type ||
+            this.state.endsIn !== nextState.endsIn
+        );
     }
 
     public componentWillUnmount() {

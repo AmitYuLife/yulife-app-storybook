@@ -3,6 +3,7 @@ import { ChallengesList, IChallengesListProps, ILabel, NavBar, TopBar } from "@m
 import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import { Image, SafeAreaView, StyleSheet, View } from "react-native";
+import { IMilestoneProps } from "../challenge-details/milestones";
 import styles from "./challenges-list.screen.styles";
 
 interface IProps extends IChallengesListProps {
@@ -11,17 +12,39 @@ interface IProps extends IChallengesListProps {
     name: string;
     onPressLeftIcon: () => void;
     totalCoins: number;
+    challenges: IFormattedChallenge[];
+}
+
+interface IFormattedChallenge extends IMilestoneProps {
+    challengeType: string;
+    currentWorld: number;
+    duration: string;
+    id: string;
+    isLocked: boolean;
+    minimumLevel: number;
+    onPress: () => void;
+    reward: string;
 }
 
 interface IState {
     hideChallengeTiles: boolean;
 }
 
-export default class ChallengesListScreen extends React.PureComponent<IProps, IState> {
+export default class ChallengesListScreen extends React.Component<IProps, IState> {
     public timeout: NodeJS.Timer = null;
     public state = {
         hideChallengeTiles: true
     };
+
+    public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
+        return (
+            this.props.currentLevel !== nextProps.currentLevel ||
+            this.props.totalCoins !== nextProps.totalCoins ||
+            this.state.hideChallengeTiles !== nextState.hideChallengeTiles ||
+            (!!(this.props.challenges[0] && nextProps.challenges[0]) &&
+                this.props.challenges[0].id !== nextProps.challenges[0].id)
+        );
+    }
 
     public componentWillUnmount() {
         if (this.timeout) {
