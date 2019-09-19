@@ -18,7 +18,7 @@ interface IOwnProps {
 
 type Props = IOwnProps & IMilestoneProps;
 
-export default function ChallengeDetailsScreen({
+function ChallengeDetailsScreen({
     challengeType,
     currentWorld = 0,
     duration,
@@ -69,3 +69,5 @@ export default function ChallengeDetailsScreen({
         </View>
     );
 }
+
+export default React.memo(ChallengeDetailsScreen);

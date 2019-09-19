@@ -4,11 +4,11 @@ import { IMapSlice, MAP_SLICE_HEIGHT } from "./assets";
 import MapSlice from "./map-slice";
 import { IChallenge } from "./quests-screen";
 import styles from "./quests-screen.styles";
+import { shouldScrollyQuestUpdate } from "./scrolly-quest.helpers";
 
-interface IProps {
+export interface IScrollQuestProps {
     data: IMapSlice[];
     initialScrollIndex: number;
-    isMapVisible?: boolean;
     currentLevel: number;
     levels: IChallenge[];
     onViewableItemsChanged?: any;
@@ -16,12 +16,16 @@ interface IProps {
     offsets: number[];
 }
 
-class ScrollyQuest extends React.PureComponent<IProps> {
+class ScrollyQuest extends React.Component<IScrollQuestProps> {
     private viewabilityConfig = {
         minimumViewTime: 400,
         viewAreaCoveragePercentThreshold: 95,
         waitForInteraction: true
     };
+
+    public shouldComponentUpdate(nextProps: IScrollQuestProps) {
+        return shouldScrollyQuestUpdate(this.props, nextProps);
+    }
 
     public render() {
         const { data, initialScrollIndex, onViewableItemsChanged, setFlatListRef, offsets } = this.props;

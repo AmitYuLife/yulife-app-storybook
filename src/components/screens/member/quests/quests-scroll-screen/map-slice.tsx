@@ -21,7 +21,11 @@ interface IProps {
     slice: IMapSlice;
 }
 
-export default class MapSlice extends React.PureComponent<IProps> {
+export default class MapSlice extends React.Component<IProps> {
+    public shouldComponentUpdate(nextProps: IProps) {
+        return this.props.currentLevel !== nextProps.currentLevel || this.props.slice.id !== nextProps.slice.id;
+    }
+
     public render() {
         const { levels, slice } = this.props;
 

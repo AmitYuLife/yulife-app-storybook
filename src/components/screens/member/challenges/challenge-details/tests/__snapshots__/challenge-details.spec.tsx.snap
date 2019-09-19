@@ -3,7 +3,7 @@
 exports[`ChallengeDetailsScreen should render 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ChallengeDetailsScreen
+  Symbol(enzyme.__unrendered__): <UNDEFINED
     challengeType="meditation"
     currentWorld={0}
     duration="50 seconds"
@@ -500,7 +500,7 @@ ShallowWrapper {
 exports[`ChallengeDetailsScreen should render with a secondary button 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ChallengeDetailsScreen
+  Symbol(enzyme.__unrendered__): <UNDEFINED
     challengeType="meditation"
     currentWorld={0}
     duration="50 seconds"
@@ -996,7 +996,7 @@ ShallowWrapper {
 exports[`ChallengeDetailsScreen should render with an error 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ChallengeDetailsScreen
+  Symbol(enzyme.__unrendered__): <UNDEFINED
     challengeType="meditation"
     currentWorld={0}
     duration="50 seconds"
@@ -1551,7 +1551,7 @@ ShallowWrapper {
 exports[`ChallengeDetailsScreen should render with an image for brisk walk 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ChallengeDetailsScreen
+  Symbol(enzyme.__unrendered__): <UNDEFINED
     challengeType="brisk walk"
     currentWorld={2}
     duration="50 seconds"

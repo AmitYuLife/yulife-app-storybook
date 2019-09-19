@@ -82,7 +82,9 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
             nextProps.isOffline !== this.props.isOffline ||
             nextProps.appState !== this.props.appState ||
             nextProps.consentedLeaderboards.length !== this.props.consentedLeaderboards.length ||
-            nextProps.leaderboards.length !== this.props.leaderboards.length
+            nextProps.leaderboards.length !== this.props.leaderboards.length ||
+            nextProps.leaderboards[nextState.activeLeaderboardIndex].isLoading !==
+                this.props.leaderboards[nextState.activeLeaderboardIndex].isLoading
         );
     }
 

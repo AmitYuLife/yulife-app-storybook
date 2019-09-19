@@ -23,14 +23,16 @@ export default class LeaderboardDropdown extends React.PureComponent<IProps> {
         if (prevProps.isShowingDropdown && !this.props.isShowingDropdown) {
             Animated.timing(this.state.translateY, {
                 duration: 300,
-                toValue: -Style.DEVICE_HEIGHT
+                toValue: -Style.DEVICE_HEIGHT,
+                useNativeDriver: true
             }).start();
         }
 
         if (!prevProps.isShowingDropdown && this.props.isShowingDropdown) {
             Animated.timing(this.state.translateY, {
                 duration: 300,
-                toValue: 0
+                toValue: 0,
+                useNativeDriver: true
             }).start();
         }
     }

@@ -3,7 +3,6 @@ import { QUESTS_SCREEN } from "@ids";
 import { TopBarTypes } from "@molecules/top-bar/top-bar";
 import { getCurrentEpisode, getCurrentWorld } from "@services/utils";
 import * as React from "react";
-import { PureComponent } from "react";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
@@ -41,7 +40,7 @@ interface IState {
     };
 }
 
-class QuestsScreen extends PureComponent<IProps, IState> {
+class QuestsScreen extends React.Component<IProps, IState> {
     public state: IState = {
         UI: getInitialState(this.props.currentLevel)
     };
@@ -64,6 +63,17 @@ class QuestsScreen extends PureComponent<IProps, IState> {
         if (prevProps.unity && !this.props.unity) {
             this.scrollToActiveLevel();
         }
+    }
+
+    public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
+        return (
+            this.props.activeLevel !== nextProps.activeLevel ||
+            this.props.currentLevel !== nextProps.currentLevel ||
+            this.props.unity !== nextProps.unity ||
+            this.props.totalCoins !== nextProps.totalCoins ||
+            this.state.UI.navBarColour !== nextState.UI.navBarColour ||
+            this.state.UI.topBarType !== nextState.UI.topBarType
+        );
     }
 
     public render() {

@@ -47,7 +47,11 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": null,
-    "type": [Function],
+    "type": Object {
+      "$$typeof": Symbol(react.memo),
+      "compare": null,
+      "type": [Function],
+    },
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -70,7 +74,11 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": null,
-      "type": [Function],
+      "type": Object {
+        "$$typeof": Symbol(react.memo),
+        "compare": null,
+        "type": [Function],
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {
@@ -140,7 +148,11 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": null,
-    "type": [Function],
+    "type": Object {
+      "$$typeof": Symbol(react.memo),
+      "compare": null,
+      "type": [Function],
+    },
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -162,7 +174,11 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": null,
-      "type": [Function],
+      "type": Object {
+        "$$typeof": Symbol(react.memo),
+        "compare": null,
+        "type": [Function],
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {
