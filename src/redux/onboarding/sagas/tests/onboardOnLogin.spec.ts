@@ -1,4 +1,5 @@
-import { call } from "redux-saga/effects";
+import { setShowIntro } from "@redux/onboarding/onboarding.actions";
+import { call, put } from "redux-saga/effects";
 import onboardOnLogin from "../onboardOnLogin.saga";
 import redeemOnboarding from "../redeemOnboarding.helper";
 
@@ -14,6 +15,7 @@ describe("Onboarding Saga: onboardOnLogin", () => {
         const saga = onboardOnLogin({ payload: { loginUser: { user: { redeemedOnboarding: false } } } } as any);
 
         expect(saga.next().done).toEqual(false);
+        expect(saga.next().value).toEqual(put(setShowIntro(true)));
         expect(saga.next().value).toEqual(call(redeemOnboarding));
         expect(saga.next().done).toEqual(true);
     });

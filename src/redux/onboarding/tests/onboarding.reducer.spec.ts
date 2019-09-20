@@ -24,7 +24,7 @@ describe("Onboarding Reducer", () => {
         },
         {
             name: "handles SET_REDEEMED_ONBOARDING",
-            expected: { ...initialState, redeemedOnboarding: true, isOnboarding: false, reward: 100 },
+            expected: { ...initialState, redeemedOnboarding: true, reward: 100, isOnboarding: false },
             action: { type: SET_REDEEMED_ONBOARDING, payload: 100 }
         },
         {

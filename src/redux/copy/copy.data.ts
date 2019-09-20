@@ -206,5 +206,49 @@ export default {
         subheading:
             "If you look at your activity history, you will be able to see the steps count from both. yucoin will be awarded for whichever step count is higher, and that is what steps will be displayed on the app home screen as well.",
         ctaLabel: "okay, got it"
+    },
+    intro: {
+        welcome: {
+            heading: "Welcome to the yuniverse",
+            descriptionOne: "Welcome to the yuniverse",
+            descriptionTwo: "Here, you are rewarded for every step you take, and every meditation break.",
+            descriptionThree: "Let us show you around the forest...",
+            ctaLabel: "let’s begin"
+        },
+        yucoin: {
+            heading: "Here’s your yucoin bank!",
+            subheading: "Every time you open the app, we'll sync your steps and reward you in yucoin.",
+            ctaLabel: "Got it"
+        },
+        dailyStepsCTA: {
+            heading: "Today’s steps and yucoin",
+            subheading: "For every 2000 steps, you earn 1 yucoin.",
+            ctaLabel: "Got it"
+        },
+        questsNav: {
+            heading: "Earn bonus yucoin!",
+            subheading: "Complete a daily challenge by tapping here.",
+            ctaLabel: "Got it"
+        },
+        todaysYucoin: {
+            heading: "Check out your daily progress",
+            subheading: "Tap here to see all the activities you have earned yucoin for today.",
+            ctaLabel: "Got it"
+        },
+        leaderboardsNav: {
+            heading: "You're moving on up!",
+            subheading: "See where you rank for the last 30 days of steps, mindfulness minutes, and yucoin.",
+            ctaLabel: "Got it"
+        },
+        streaks: {
+            heading: "You're on a streak!",
+            subheading: "Keep it going: Complete challenges for 5 consecutive days, and earn a bonus 40 yucoin.",
+            ctaLabel: "Got it"
+        },
+        rewardsNav: {
+            heading: "Your rewards are waiting!",
+            subheading: "Redeem your yucoin for rewards, or claim discounts just for being a member of yulife.",
+            ctaLabel: "Got it"
+        }
     }
 };

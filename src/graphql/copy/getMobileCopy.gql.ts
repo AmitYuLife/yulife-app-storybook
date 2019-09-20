@@ -196,6 +196,50 @@ export const getMobileCopyGql = gql`
                     subheading
                     ctaLabel
                 }
+                intro {
+                    welcome {
+                        heading
+                        descriptionOne
+                        descriptionTwo
+                        descriptionThree
+                        ctaLabel
+                    }
+                    yucoin {
+                        heading
+                        subheading
+                        ctaLabel
+                    }
+                    dailyStepsCTA {
+                        heading
+                        subheading
+                        ctaLabel
+                    }
+                    questsNav {
+                        heading
+                        subheading
+                        ctaLabel
+                    }
+                    todaysYucoin {
+                        heading
+                        subheading
+                        ctaLabel
+                    }
+                    leaderboardsNav {
+                        heading
+                        subheading
+                        ctaLabel
+                    }
+                    streaks {
+                        heading
+                        subheading
+                        ctaLabel
+                    }
+                    rewardsNav {
+                        heading
+                        subheading
+                        ctaLabel
+                    }
+                }
             }
         }
     }

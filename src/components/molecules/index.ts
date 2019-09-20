@@ -18,4 +18,5 @@ export { default as TouchableOpacityWithState } from "./touchable-opacity-delay/
 export { default as Popup } from "./pop-up/pop-up";
 export { default as LeaderboardPopup } from "./pop-up/leaderboard-pop-up";
 export { default as SurgePopup } from "./pop-up/surge-pop-up";
+export { default as Tooltip } from "./tooltip/tooltip";
 export { POPUPTYPE } from "./pop-up/pop-up";

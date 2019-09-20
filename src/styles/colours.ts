@@ -64,10 +64,10 @@ export default {
             pressed: "rgba(255,255,255,0.2)",
             activeIcon: "rgb(51, 88, 84)"
         },
-        pink: {
-            active: "rgb(232,49,129)",
-            inactive: "rgba(232,49,129,0.4)",
-            pressed: "rgba(232,49,129,0.6)"
+        highlight: {
+            active: "rgb(227, 13, 118)",
+            inactive: "rgb(227, 13, 118)",
+            pressed: "rgb(227, 13, 118)"
         },
         mountain: {
             active: "rgb(150, 179, 204)",

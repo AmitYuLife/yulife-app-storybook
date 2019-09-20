@@ -3,7 +3,7 @@ import { Colours, Style } from "@styles/index";
 import moment from "moment";
 import * as React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Dim, Text } from "../../atoms";
+import { Text } from "../../atoms";
 import Counter from "../counter/counter";
 import { Back, Clock, Coins, Logo, Menu } from "./assets";
 import { formatSeconds, getStyle } from "./top-bar.helpers";
@@ -165,12 +165,10 @@ class TopBar extends React.Component<IProps, IState> {
         return (
             <View style={styles.wrapper}>
                 <View style={styles.menuWrapper}>
-                    <Menu />
-                    <Dim />
+                    <Menu color="rgb(51, 88, 66)" />
                 </View>
                 <View>
-                    <Logo />
-                    <Dim />
+                    <Logo color={"rgb(51, 88, 66)"} />
                 </View>
                 <View style={styles.coinsWrapper}>
                     <Text

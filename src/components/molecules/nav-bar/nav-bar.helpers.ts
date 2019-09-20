@@ -79,6 +79,8 @@ export function getNavBarColourScheme(colour: string): INavBarColourScheme {
             return Colours.navBar.blue;
         case NavBar.Colours.FOREST:
             return Colours.navBar.forest;
+        case NavBar.Colours.PINK:
+            return Colours.navBar.highlight;
         case NavBar.Colours.DARKER:
         default:
             return Colours.navBar.darker;

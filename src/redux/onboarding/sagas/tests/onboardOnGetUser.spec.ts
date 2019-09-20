@@ -1,5 +1,6 @@
+import { setShowIntro } from "@redux/onboarding/onboarding.actions";
 import moment from "moment";
-import { call, select } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 import { getIsHistoricalDataCollected, getIsOnboardingRedeemed } from "../../onboarding.selectors";
 import onboardOnGetUser from "../onboardOnGetUser.saga";
 import redeemOnboarding from "../redeemOnboarding.helper";
@@ -23,6 +24,7 @@ describe("Onboarding Saga: onboardOnGetUser", () => {
         expect(saga.next(false).value).toEqual(select(getIsOnboardingRedeemed));
         expect(saga.next(false).value).toEqual(call(sendHistoricalData, moment("2019-07-07T12:12:12")));
         expect(saga.next().value).toEqual(call(redeemOnboarding));
+        expect(saga.next().value).toEqual(put(setShowIntro(true)));
         expect(saga.next().done).toEqual(true);
     });
 });

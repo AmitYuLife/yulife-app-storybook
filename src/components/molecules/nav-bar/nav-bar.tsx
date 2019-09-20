@@ -1,5 +1,5 @@
 import { TAB_BUTTON } from "@ids";
-import { Style } from "@styles/index";
+import { Colours, Style } from "@styles/index";
 import * as React from "react";
 import { PureComponent } from "react";
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
@@ -36,7 +36,10 @@ interface IProps {
     labels?: ILabel[];
     colour?: IColours;
     onDismissPress?: () => void;
+    highlightedLabel?: HighlightedLabel;
 }
+
+type HighlightedLabel = "yucoin" | "quests" | "leaderboard" | "rewards";
 
 interface IState {
     pressed: number;
@@ -78,7 +81,8 @@ class NavBar extends PureComponent<IProps, IState> {
             hasNotification,
             hasWhiteBackground,
             labels,
-            onDismissPress
+            onDismissPress,
+            highlightedLabel
         } = this.props;
         const { pressed } = this.state;
         const colourScheme = getNavBarColourScheme(colour);
@@ -96,14 +100,14 @@ class NavBar extends PureComponent<IProps, IState> {
                             <Giraffe
                                 isPressed={pressed === 0}
                                 isActive={activeIndex === 0}
-                                colourScheme={colourScheme}
+                                colourScheme={highlightedLabel === "yucoin" ? Colours.navBar.highlight : colourScheme}
                                 hasDismiss={!!onDismissPress}
                                 hasWhiteBackground={hasWhiteBackground}
                             />
                             <Scroll
                                 isPressed={pressed === 1}
                                 isActive={activeIndex === 1}
-                                colourScheme={colourScheme}
+                                colourScheme={highlightedLabel === "quests" ? Colours.navBar.highlight : colourScheme}
                                 hasDismiss={!!onDismissPress}
                                 hasWhiteBackground={hasWhiteBackground}
                             />
@@ -111,14 +115,16 @@ class NavBar extends PureComponent<IProps, IState> {
                             <Trophy
                                 isPressed={pressed === 2}
                                 isActive={activeIndex === 2}
-                                colourScheme={colourScheme}
+                                colourScheme={
+                                    highlightedLabel === "leaderboard" ? Colours.navBar.highlight : colourScheme
+                                }
                                 hasDismiss={!!onDismissPress}
                                 hasWhiteBackground={hasWhiteBackground}
                             />
                             <Treasure
                                 isPressed={pressed === 3}
                                 isActive={activeIndex === 3}
-                                colourScheme={colourScheme}
+                                colourScheme={highlightedLabel === "rewards" ? Colours.navBar.highlight : colourScheme}
                                 hasDismiss={!!onDismissPress}
                                 hasWhiteBackground={hasWhiteBackground}
                             />
@@ -141,7 +147,9 @@ class NavBar extends PureComponent<IProps, IState> {
                                                     styles.text,
                                                     {
                                                         color: getIconColour(
-                                                            colourScheme,
+                                                            highlightedLabel === name
+                                                                ? Colours.navBar.highlight
+                                                                : colourScheme,
                                                             activeIndex === index,
                                                             pressed === index
                                                         )
