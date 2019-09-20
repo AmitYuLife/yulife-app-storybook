@@ -2,20 +2,22 @@ import { REHYDRATE } from "redux-persist";
 import { GetCurrentUser, LoginUser } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
-import { SET_HISTORICAL_DATA_COLLECTED, SET_REDEEMED_ONBOARDING } from "./onboarding.actions";
+import { SET_HISTORICAL_DATA_COLLECTED, SET_REDEEMED_ONBOARDING, SET_SHOW_INTRO } from "./onboarding.actions";
 
 export interface IOnboardingStore {
     redeemedOnboarding: boolean;
     historicalDataCollected: boolean;
     reward: number;
     isOnboarding: boolean;
+    showIntro: boolean;
 }
 
 export const initialState: IOnboardingStore = {
     redeemedOnboarding: false,
     historicalDataCollected: false,
     reward: 0,
-    isOnboarding: true
+    isOnboarding: true,
+    showIntro: false
 };
 
 export const userReducer = (state: IOnboardingStore = initialState, action: SyncAction): IOnboardingStore => {
@@ -28,6 +30,7 @@ export const userReducer = (state: IOnboardingStore = initialState, action: Sync
                 } else if (action.payload.user) {
                     // this is a new reducer, so for an old user it won't be in the persisted state
                     return {
+                        showIntro: false,
                         redeemedOnboarding: true,
                         historicalDataCollected: true,
                         reward: 200,
@@ -39,6 +42,9 @@ export const userReducer = (state: IOnboardingStore = initialState, action: Sync
 
         case SET_HISTORICAL_DATA_COLLECTED:
             return { ...state, historicalDataCollected: true };
+
+        case SET_SHOW_INTRO:
+            return setShowIntro(state, action.payload);
 
         case SET_REDEEMED_ONBOARDING:
             return setRedeemedOnboarding(state, action.payload);
@@ -62,6 +68,9 @@ export default userReducer;
  * @param persistedState
  */
 const updatePersistedState = (persistedState: IOnboardingStore) => {
+    if (typeof persistedState.showIntro === "undefined") {
+        return { ...persistedState, showIntro: false };
+    }
     return persistedState;
 };
 
@@ -70,6 +79,11 @@ const setRedeemedOnboarding = (state: IOnboardingStore, reward: number) => ({
     redeemedOnboarding: true,
     isOnboarding: false,
     reward
+});
+
+const setShowIntro = (state: IOnboardingStore, showIntro: boolean) => ({
+    ...state,
+    showIntro
 });
 
 const getUserSuccess = (

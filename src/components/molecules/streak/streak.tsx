@@ -12,6 +12,7 @@ export interface IProps {
     currentStreak: number;
     isFinished: boolean;
     isOnline: boolean;
+    isDim?: boolean;
     maxStreak: number;
     onPress: () => void;
     type: StreakTypes;
@@ -36,7 +37,7 @@ class Streak extends PureComponent<IProps, IState> {
     }
 
     public render() {
-        const { isFinished, isOnline, currentStreak, maxStreak, type } = this.props;
+        const { isFinished, isOnline, currentStreak, maxStreak, type, isDim } = this.props;
         const { isPressed } = this.state;
         const backgroundColor = getColour(type, isFinished, isPressed, isOnline);
 
@@ -51,6 +52,7 @@ class Streak extends PureComponent<IProps, IState> {
                         scale={0.5}
                     />
                     <Pad width={isIphoneX() ? 30 : 15} />
+                    {isDim ? <View style={styles.dim} /> : null}
                 </View>
             </TouchableWithoutFeedback>
         );

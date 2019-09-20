@@ -1,5 +1,7 @@
+import { IntroContainer } from "@containers/index";
 import { MODALS } from "@navigation/constants";
 import { IMainTabsProps, labels, onLeftMenuPress } from "@navigation/root";
+import { getShowIntro } from "@redux/onboarding/onboarding.selectors";
 import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import { getCurrentWorld } from "@services/utils";
 import React from "react";
@@ -72,7 +74,8 @@ class DailyStepsContainer extends React.Component<Props> {
             nextProps.streaks.isAvailable !== this.props.streaks.isAvailable ||
             nextProps.streaks.currentStreak !== this.props.streaks.currentStreak ||
             nextProps.streaks.isDoneToday !== this.props.streaks.isDoneToday ||
-            nextProps.streaks.maxStreak !== this.props.streaks.maxStreak
+            nextProps.streaks.maxStreak !== this.props.streaks.maxStreak ||
+            nextProps.showIntro !== this.props.showIntro
         );
     }
 
@@ -93,10 +96,31 @@ class DailyStepsContainer extends React.Component<Props> {
                         totalCoins,
                         copy,
                         popUpCopy,
-                        popupVisibility
+                        popupVisibility,
+                        showIntro
                     } = this.props;
                     const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
-
+                    if (showIntro) {
+                        return (
+                            <IntroContainer
+                                coinsToday={dailyEarnedCoins}
+                                showCounter={features.showCounter}
+                                displayStreak={displayStreak}
+                                currentStreak={streaks.currentStreak}
+                                isDoneToday={streaks.isDoneToday}
+                                isLoading={isFetching || loading}
+                                labels={labels}
+                                maxStreak={streaks.maxStreak}
+                                onCoinPress={this.onCoinPress}
+                                onCtaPress={displayEarnMore ? this.onCta : null}
+                                onLeftMenuPress={onLeftMenuPress}
+                                onStreakPress={this.onStreak}
+                                steps={dailySteps}
+                                theme={theme}
+                                totalCoins={totalCoins}
+                            />
+                        );
+                    }
                     return (
                         <DailyStepsScreen
                             coinsToday={dailyEarnedCoins}
@@ -199,7 +223,8 @@ const mapStateToProps = (state: IReduxState) => ({
     totalCoins: getTotalCoins(state),
     copy: getCopy(state, "dailyStepsFitKitAuthorise"),
     popUpCopy: getCopy(state, "popUp"),
-    popupVisibility: getVisiblePopups(state)
+    popupVisibility: getVisiblePopups(state),
+    showIntro: getShowIntro(state)
 });
 
 const mapDispatchToProps = {

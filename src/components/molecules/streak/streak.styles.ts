@@ -23,6 +23,13 @@ export function getColour(type: IProps["type"], isFinished: boolean, isPressed: 
 }
 
 export default StyleSheet.create({
+    dim: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: "#000000",
+        opacity: 0.2,
+        borderBottomLeftRadius: Style.SCALE_UP_AND_DOWN(55),
+        borderTopLeftRadius: Style.SCALE_UP_AND_DOWN(55)
+    } as ViewStyle,
     text: {
         color: "white",
         fontSize: Style.SCALE_UP_AND_DOWN(18),

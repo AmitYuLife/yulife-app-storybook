@@ -613,6 +613,67 @@ export interface GetMobileCopy_getMobileCopy_screens_settingsInfo {
   ctaLabel: string | null;
 }
 
+export interface GetMobileCopy_getMobileCopy_screens_intro_welcome {
+  heading: string | null;
+  descriptionOne: string | null;
+  descriptionTwo: string | null;
+  descriptionThree: string | null;
+  ctaLabel: string | null;
+}
+
+export interface GetMobileCopy_getMobileCopy_screens_intro_yucoin {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+}
+
+export interface GetMobileCopy_getMobileCopy_screens_intro_dailyStepsCTA {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+}
+
+export interface GetMobileCopy_getMobileCopy_screens_intro_questsNav {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+}
+
+export interface GetMobileCopy_getMobileCopy_screens_intro_todaysYucoin {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+}
+
+export interface GetMobileCopy_getMobileCopy_screens_intro_leaderboardsNav {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+}
+
+export interface GetMobileCopy_getMobileCopy_screens_intro_streaks {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+}
+
+export interface GetMobileCopy_getMobileCopy_screens_intro_rewardsNav {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+}
+
+export interface GetMobileCopy_getMobileCopy_screens_intro {
+  welcome: GetMobileCopy_getMobileCopy_screens_intro_welcome | null;
+  yucoin: GetMobileCopy_getMobileCopy_screens_intro_yucoin | null;
+  dailyStepsCTA: GetMobileCopy_getMobileCopy_screens_intro_dailyStepsCTA | null;
+  questsNav: GetMobileCopy_getMobileCopy_screens_intro_questsNav | null;
+  todaysYucoin: GetMobileCopy_getMobileCopy_screens_intro_todaysYucoin | null;
+  leaderboardsNav: GetMobileCopy_getMobileCopy_screens_intro_leaderboardsNav | null;
+  streaks: GetMobileCopy_getMobileCopy_screens_intro_streaks | null;
+  rewardsNav: GetMobileCopy_getMobileCopy_screens_intro_rewardsNav | null;
+}
+
 export interface GetMobileCopy_getMobileCopy_screens {
   login: GetMobileCopy_getMobileCopy_screens_login | null;
   offline: GetMobileCopy_getMobileCopy_screens_offline | null;
@@ -631,6 +692,7 @@ export interface GetMobileCopy_getMobileCopy_screens {
   pushNotification: GetMobileCopy_getMobileCopy_screens_pushNotification | null;
   popUp: GetMobileCopy_getMobileCopy_screens_popUp | null;
   settingsInfo: GetMobileCopy_getMobileCopy_screens_settingsInfo | null;
+  intro: GetMobileCopy_getMobileCopy_screens_intro | null;
 }
 
 export interface GetMobileCopy_getMobileCopy {

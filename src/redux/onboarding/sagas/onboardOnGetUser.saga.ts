@@ -1,10 +1,11 @@
 import Logger from "@services/logging/logger";
 import moment from "moment";
-import { call, select, spawn } from "redux-saga/effects";
+import { call, put, select, spawn } from "redux-saga/effects";
 
 import { getUserSuccess } from "../../user/user.actions";
 import { getIsHistoricalDataCollected, getIsOnboardingRedeemed } from "../onboarding.selectors";
 
+import { setShowIntro } from "../onboarding.actions";
 import redeemOnboarding from "./redeemOnboarding.helper";
 import sendHistoricalData from "./sendHistoricalData.helper";
 
@@ -23,6 +24,7 @@ export default function* onboardOnGetUser({ payload }: ReturnType<typeof getUser
 
         if (!isOnboardingRedeemed) {
             yield call(redeemOnboarding);
+            yield put(setShowIntro(true));
         }
     } catch (e) {
         yield spawn(() => Logger.logMixpanelError(e, "onboardOnGetUser"));

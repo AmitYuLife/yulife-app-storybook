@@ -97,6 +97,7 @@ ShallowWrapper {
           <Pad
             width={15}
           />,
+          null,
         ],
         "style": Object {
           "alignItems": "center",
@@ -165,6 +166,7 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
+        null,
       ],
       "type": [Function],
     },
@@ -249,6 +251,7 @@ ShallowWrapper {
             <Pad
               width={15}
             />,
+            null,
           ],
           "style": Object {
             "alignItems": "center",
@@ -317,6 +320,7 @@ ShallowWrapper {
             "rendered": null,
             "type": [Function],
           },
+          null,
         ],
         "type": [Function],
       },
@@ -442,6 +446,7 @@ ShallowWrapper {
           <Pad
             width={15}
           />,
+          null,
         ],
         "style": Object {
           "alignItems": "center",
@@ -510,6 +515,7 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
+        null,
       ],
       "type": [Function],
     },
@@ -594,6 +600,7 @@ ShallowWrapper {
             <Pad
               width={15}
             />,
+            null,
           ],
           "style": Object {
             "alignItems": "center",
@@ -662,6 +669,7 @@ ShallowWrapper {
             "rendered": null,
             "type": [Function],
           },
+          null,
         ],
         "type": [Function],
       },
@@ -787,6 +795,7 @@ ShallowWrapper {
           <Pad
             width={15}
           />,
+          null,
         ],
         "style": Object {
           "alignItems": "center",
@@ -855,6 +864,7 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
+        null,
       ],
       "type": [Function],
     },
@@ -939,6 +949,7 @@ ShallowWrapper {
             <Pad
               width={15}
             />,
+            null,
           ],
           "style": Object {
             "alignItems": "center",
@@ -1007,6 +1018,7 @@ ShallowWrapper {
             "rendered": null,
             "type": [Function],
           },
+          null,
         ],
         "type": [Function],
       },
@@ -1132,6 +1144,7 @@ ShallowWrapper {
           <Pad
             width={15}
           />,
+          null,
         ],
         "style": Object {
           "alignItems": "center",
@@ -1200,6 +1213,7 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
+        null,
       ],
       "type": [Function],
     },
@@ -1284,6 +1298,7 @@ ShallowWrapper {
             <Pad
               width={15}
             />,
+            null,
           ],
           "style": Object {
             "alignItems": "center",
@@ -1352,6 +1367,7 @@ ShallowWrapper {
             "rendered": null,
             "type": [Function],
           },
+          null,
         ],
         "type": [Function],
       },
@@ -1477,6 +1493,7 @@ ShallowWrapper {
           <Pad
             width={15}
           />,
+          null,
         ],
         "style": Object {
           "alignItems": "center",
@@ -1545,6 +1562,7 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
+        null,
       ],
       "type": [Function],
     },
@@ -1629,6 +1647,7 @@ ShallowWrapper {
             <Pad
               width={15}
             />,
+            null,
           ],
           "style": Object {
             "alignItems": "center",
@@ -1697,6 +1716,7 @@ ShallowWrapper {
             "rendered": null,
             "type": [Function],
           },
+          null,
         ],
         "type": [Function],
       },
