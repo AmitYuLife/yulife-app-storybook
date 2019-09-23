@@ -1,6 +1,7 @@
 import { deleteConnectionWithClient, getNewConnectionLinkWithClient } from "@graphql/connections";
 import Logger from "@services/logging/logger";
 import { Linking } from "react-native";
+import { delay } from "redux-saga";
 import { call, put, spawn } from "redux-saga/effects";
 
 import { updateConnectionFailed, updateConnectionStart, updateConnectionSuccess } from "../user.actions";
@@ -27,6 +28,7 @@ export default function* updateConnectionSaga({ payload }: ReturnType<typeof upd
 
             if (result && result.data && result.data.getNewConnectionLink) {
                 yield call(() => Linking.openURL(result.data.getNewConnectionLink));
+                yield delay(350);
                 yield put(updateConnectionSuccess({ ...payload, isConnected: true }));
             } else {
                 yield put(updateConnectionFailed(payload));

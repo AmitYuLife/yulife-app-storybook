@@ -92,6 +92,7 @@ describe("updateConnectionSaga", async () => {
         expect(actual.done).toEqual(false);
 
         actual = testSaga.next();
+        actual = testSaga.next();
         expected = put(updateConnectionSuccess({ ...action.payload, isConnected: true }));
         expect(actual.value).toEqual(expected);
         expect(actual.done).toEqual(false);
