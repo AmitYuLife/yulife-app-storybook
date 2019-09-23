@@ -95,8 +95,9 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
         if (
             prevProps.activeLeaderboardIndex === this.props.activeLeaderboardIndex &&
             !this.props.isLoading &&
-            (!prevProps.leaderboards[prevProps.activeLeaderboardIndex].consent &&
-                this.props.leaderboards[this.props.activeLeaderboardIndex].consent)
+            this.props.leaderboards[this.props.activeLeaderboardIndex] &&
+            prevProps.leaderboards[prevProps.activeLeaderboardIndex].consent
+                !== this.props.leaderboards[this.props.activeLeaderboardIndex].consent
         ) {
             if (this.largeList) {
                 this.handleRefresh();
