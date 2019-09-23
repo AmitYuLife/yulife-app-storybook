@@ -90,14 +90,7 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
 
     public render() {
         const { sortBy, activeLeaderboardIndex, leaderboardId } = this.state;
-        const {
-            leaderboards = [],
-            hasNotification,
-            totalCoins,
-            copy,
-            componentId,
-            appState
-        } = this.props;
+        const { leaderboards = [], hasNotification, totalCoins, copy, componentId, appState } = this.props;
         const navbarColour = COLOURS.DARKER;
 
         if (Style.isIPad()) {
@@ -126,8 +119,8 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
                     const initialScrollIndex =
                         data && data.getLeaderboard != null
                             ? (data.getLeaderboard as any).findIndex(
-                                (item: any) => item.id === `lead_${data.getCurrentUser.id}`
-                            )
+                                  (item: any) => item.id === `lead_${data.getCurrentUser.id}`
+                              )
                             : 0;
 
                     return (

@@ -13,42 +13,49 @@ ShallowWrapper {
         "heading": "",
       }
     }
+    isAllDataLoaded={true}
     items={
       Array [
         Object {
-          "challenges": Array [
+          "items": Array [
             Object {
-              "earned": 1,
-              "milestones": 1,
-              "name": "long walk",
-              "score": "8000 steps",
-            },
-            Object {
-              "earned": 3,
-              "milestones": 2,
-              "name": "meditation",
-              "score": "08m 00s",
-            },
-            Object {
-              "earned": 1,
-              "milestones": 3,
-              "name": "short stroll",
-              "score": "1299 steps",
+              "challenges": Array [
+                Object {
+                  "earned": 1,
+                  "milestones": 1,
+                  "name": "long walk",
+                  "score": "8000 steps",
+                },
+                Object {
+                  "earned": 3,
+                  "milestones": 2,
+                  "name": "meditation",
+                  "score": "08m 00s",
+                },
+                Object {
+                  "earned": 1,
+                  "milestones": 3,
+                  "name": "short stroll",
+                  "score": "1299 steps",
+                },
+              ],
+              "dayOfMonth": "13",
+              "dayOfWeek": "SAT",
+              "id": "1",
+              "level": 4,
+              "sources": Object {},
+              "steps": 4098,
+              "yucoin": 3,
             },
           ],
-          "dayOfMonth": "13",
-          "dayOfWeek": "SAT",
-          "id": "1",
-          "level": 4,
-          "sources": Object {},
-          "steps": 4098,
-          "yucoin": 3,
+          "title": "January 2019",
         },
       ]
     }
     loading={false}
     onPressClose={[MockFunction]}
     onRefresh={[MockFunction]}
+    onSetLargelistRef={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -162,109 +169,62 @@ ShallowWrapper {
         <View
           style={
             Object {
-              "flexDirection": "row",
-              "height": 68,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "rgb(251,207,39)",
-                "height": "100%",
-                "width": 120,
-              }
-            }
-          />
-          <View
-            style={
-              Object {
-                "backgroundColor": "rgb(226,1,119)",
-                "flex": 1,
-                "height": "100%",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "flex-start",
-                  "height": "100%",
-                  "justifyContent": "center",
-                  "width": 320,
-                }
-              }
-            >
-              <YuText
-                bold={true}
-                style={
-                  Object {
-                    "color": "white",
-                    "lineHeight": 68,
-                    "paddingLeft": 20,
-                  }
-                }
-              >
-                last 30 days
-              </YuText>
-            </View>
-          </View>
-        </View>,
-        <View
-          style={
-            Object {
               "flex": 1,
             }
           }
         >
-          <FlatList
+          <LargeList
+            allLoaded={false}
             data={
               Array [
                 Object {
-                  "challenges": Array [
+                  "items": Array [
                     Object {
-                      "earned": 1,
-                      "milestones": 1,
-                      "name": "long walk",
-                      "score": "8000 steps",
-                    },
-                    Object {
-                      "earned": 3,
-                      "milestones": 2,
-                      "name": "meditation",
-                      "score": "08m 00s",
-                    },
-                    Object {
-                      "earned": 1,
-                      "milestones": 3,
-                      "name": "short stroll",
-                      "score": "1299 steps",
+                      "challenges": Array [
+                        Object {
+                          "earned": 1,
+                          "milestones": 1,
+                          "name": "long walk",
+                          "score": "8000 steps",
+                        },
+                        Object {
+                          "earned": 3,
+                          "milestones": 2,
+                          "name": "meditation",
+                          "score": "08m 00s",
+                        },
+                        Object {
+                          "earned": 1,
+                          "milestones": 3,
+                          "name": "short stroll",
+                          "score": "1299 steps",
+                        },
+                      ],
+                      "dayOfMonth": "13",
+                      "dayOfWeek": "SAT",
+                      "id": "1",
+                      "level": 4,
+                      "sources": Object {},
+                      "steps": 4098,
+                      "yucoin": 3,
                     },
                   ],
-                  "dayOfMonth": "13",
-                  "dayOfWeek": "SAT",
-                  "id": "1",
-                  "level": 4,
-                  "sources": Object {},
-                  "steps": 4098,
-                  "yucoin": 3,
+                  "title": "January 2019",
                 },
               ]
             }
-            disableVirtualization={false}
-            horizontal={false}
-            initialNumToRender={10}
-            keyExtractor={[Function]}
-            maxToRenderPerBatch={10}
-            numColumns={1}
-            onEndReachedThreshold={2}
+            groupCount={4}
+            groupMinHeight={444.6666666666667}
+            heightForIndexPath={[Function]}
+            heightForSection={[Function]}
+            loadingFooter={[Function]}
+            onLoading={[Function]}
             onRefresh={[MockFunction]}
-            refreshing={false}
-            removeClippedSubviews={false}
-            renderItem={[Function]}
-            scrollEventThrottle={50}
-            updateCellsBatchingPeriod={50}
-            windowSize={21}
+            refreshHeader={[Function]}
+            renderEmpty={[Function]}
+            renderIndexPath={[Function]}
+            renderSection={[Function]}
+            updateTimeInterval={150}
           />
         </View>,
         <Close
@@ -549,209 +509,58 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": Array [
-            <View
-              style={
-                Object {
-                  "backgroundColor": "rgb(251,207,39)",
-                  "height": "100%",
-                  "width": 120,
-                }
-              }
-            />,
-            <View
-              style={
-                Object {
-                  "backgroundColor": "rgb(226,1,119)",
-                  "flex": 1,
-                  "height": "100%",
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "flex-start",
-                    "height": "100%",
-                    "justifyContent": "center",
-                    "width": 320,
-                  }
-                }
-              >
-                <YuText
-                  bold={true}
-                  style={
-                    Object {
-                      "color": "white",
-                      "lineHeight": 68,
-                      "paddingLeft": 20,
-                    }
-                  }
-                >
-                  last 30 days
-                </YuText>
-              </View>
-            </View>,
-          ],
-          "style": Object {
-            "flexDirection": "row",
-            "height": 68,
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "style": Object {
-                "backgroundColor": "rgb(251,207,39)",
-                "height": "100%",
-                "width": 120,
-              },
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <View
-                style={
-                  Object {
-                    "alignItems": "flex-start",
-                    "height": "100%",
-                    "justifyContent": "center",
-                    "width": 320,
-                  }
-                }
-              >
-                <YuText
-                  bold={true}
-                  style={
-                    Object {
-                      "color": "white",
-                      "lineHeight": 68,
-                      "paddingLeft": 20,
-                    }
-                  }
-                >
-                  last 30 days
-                </YuText>
-              </View>,
-              "style": Object {
-                "backgroundColor": "rgb(226,1,119)",
-                "flex": 1,
-                "height": "100%",
-              },
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <YuText
-                  bold={true}
-                  style={
-                    Object {
-                      "color": "white",
-                      "lineHeight": 68,
-                      "paddingLeft": 20,
-                    }
-                  }
-                >
-                  last 30 days
-                </YuText>,
-                "style": Object {
-                  "alignItems": "flex-start",
-                  "height": "100%",
-                  "justifyContent": "center",
-                  "width": 320,
-                },
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "bold": true,
-                  "children": "last 30 days",
-                  "style": Object {
-                    "color": "white",
-                    "lineHeight": 68,
-                    "paddingLeft": 20,
-                  },
-                },
-                "ref": null,
-                "rendered": "last 30 days",
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": <FlatList
+          "children": <LargeList
+            allLoaded={false}
             data={
               Array [
                 Object {
-                  "challenges": Array [
+                  "items": Array [
                     Object {
-                      "earned": 1,
-                      "milestones": 1,
-                      "name": "long walk",
-                      "score": "8000 steps",
-                    },
-                    Object {
-                      "earned": 3,
-                      "milestones": 2,
-                      "name": "meditation",
-                      "score": "08m 00s",
-                    },
-                    Object {
-                      "earned": 1,
-                      "milestones": 3,
-                      "name": "short stroll",
-                      "score": "1299 steps",
+                      "challenges": Array [
+                        Object {
+                          "earned": 1,
+                          "milestones": 1,
+                          "name": "long walk",
+                          "score": "8000 steps",
+                        },
+                        Object {
+                          "earned": 3,
+                          "milestones": 2,
+                          "name": "meditation",
+                          "score": "08m 00s",
+                        },
+                        Object {
+                          "earned": 1,
+                          "milestones": 3,
+                          "name": "short stroll",
+                          "score": "1299 steps",
+                        },
+                      ],
+                      "dayOfMonth": "13",
+                      "dayOfWeek": "SAT",
+                      "id": "1",
+                      "level": 4,
+                      "sources": Object {},
+                      "steps": 4098,
+                      "yucoin": 3,
                     },
                   ],
-                  "dayOfMonth": "13",
-                  "dayOfWeek": "SAT",
-                  "id": "1",
-                  "level": 4,
-                  "sources": Object {},
-                  "steps": 4098,
-                  "yucoin": 3,
+                  "title": "January 2019",
                 },
               ]
             }
-            disableVirtualization={false}
-            horizontal={false}
-            initialNumToRender={10}
-            keyExtractor={[Function]}
-            maxToRenderPerBatch={10}
-            numColumns={1}
-            onEndReachedThreshold={2}
+            groupCount={4}
+            groupMinHeight={444.6666666666667}
+            heightForIndexPath={[Function]}
+            heightForSection={[Function]}
+            loadingFooter={[Function]}
+            onLoading={[Function]}
             onRefresh={[MockFunction]}
-            refreshing={false}
-            removeClippedSubviews={false}
-            renderItem={[Function]}
-            scrollEventThrottle={50}
-            updateCellsBatchingPeriod={50}
-            windowSize={21}
+            refreshHeader={[Function]}
+            renderEmpty={[Function]}
+            renderIndexPath={[Function]}
+            renderSection={[Function]}
+            updateTimeInterval={150}
           />,
           "style": Object {
             "flex": 1,
@@ -763,53 +572,57 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "allLoaded": false,
             "data": Array [
               Object {
-                "challenges": Array [
+                "items": Array [
                   Object {
-                    "earned": 1,
-                    "milestones": 1,
-                    "name": "long walk",
-                    "score": "8000 steps",
-                  },
-                  Object {
-                    "earned": 3,
-                    "milestones": 2,
-                    "name": "meditation",
-                    "score": "08m 00s",
-                  },
-                  Object {
-                    "earned": 1,
-                    "milestones": 3,
-                    "name": "short stroll",
-                    "score": "1299 steps",
+                    "challenges": Array [
+                      Object {
+                        "earned": 1,
+                        "milestones": 1,
+                        "name": "long walk",
+                        "score": "8000 steps",
+                      },
+                      Object {
+                        "earned": 3,
+                        "milestones": 2,
+                        "name": "meditation",
+                        "score": "08m 00s",
+                      },
+                      Object {
+                        "earned": 1,
+                        "milestones": 3,
+                        "name": "short stroll",
+                        "score": "1299 steps",
+                      },
+                    ],
+                    "dayOfMonth": "13",
+                    "dayOfWeek": "SAT",
+                    "id": "1",
+                    "level": 4,
+                    "sources": Object {},
+                    "steps": 4098,
+                    "yucoin": 3,
                   },
                 ],
-                "dayOfMonth": "13",
-                "dayOfWeek": "SAT",
-                "id": "1",
-                "level": 4,
-                "sources": Object {},
-                "steps": 4098,
-                "yucoin": 3,
+                "title": "January 2019",
               },
             ],
-            "disableVirtualization": false,
-            "horizontal": false,
-            "initialNumToRender": 10,
-            "keyExtractor": [Function],
-            "maxToRenderPerBatch": 10,
-            "numColumns": 1,
-            "onEndReachedThreshold": 2,
+            "groupCount": 4,
+            "groupMinHeight": 444.6666666666667,
+            "heightForIndexPath": [Function],
+            "heightForSection": [Function],
+            "loadingFooter": [Function],
+            "onLoading": [Function],
             "onRefresh": [MockFunction],
-            "refreshing": false,
-            "removeClippedSubviews": false,
-            "renderItem": [Function],
-            "scrollEventThrottle": 50,
-            "updateCellsBatchingPeriod": 50,
-            "windowSize": 21,
+            "refreshHeader": [Function],
+            "renderEmpty": [Function],
+            "renderIndexPath": [Function],
+            "renderSection": [Function],
+            "updateTimeInterval": 150,
           },
-          "ref": null,
+          "ref": [MockFunction],
           "rendered": null,
           "type": [Function],
         },
@@ -934,109 +747,62 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "flexDirection": "row",
-                "height": 68,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "backgroundColor": "rgb(251,207,39)",
-                  "height": "100%",
-                  "width": 120,
-                }
-              }
-            />
-            <View
-              style={
-                Object {
-                  "backgroundColor": "rgb(226,1,119)",
-                  "flex": 1,
-                  "height": "100%",
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "flex-start",
-                    "height": "100%",
-                    "justifyContent": "center",
-                    "width": 320,
-                  }
-                }
-              >
-                <YuText
-                  bold={true}
-                  style={
-                    Object {
-                      "color": "white",
-                      "lineHeight": 68,
-                      "paddingLeft": 20,
-                    }
-                  }
-                >
-                  last 30 days
-                </YuText>
-              </View>
-            </View>
-          </View>,
-          <View
-            style={
-              Object {
                 "flex": 1,
               }
             }
           >
-            <FlatList
+            <LargeList
+              allLoaded={false}
               data={
                 Array [
                   Object {
-                    "challenges": Array [
+                    "items": Array [
                       Object {
-                        "earned": 1,
-                        "milestones": 1,
-                        "name": "long walk",
-                        "score": "8000 steps",
-                      },
-                      Object {
-                        "earned": 3,
-                        "milestones": 2,
-                        "name": "meditation",
-                        "score": "08m 00s",
-                      },
-                      Object {
-                        "earned": 1,
-                        "milestones": 3,
-                        "name": "short stroll",
-                        "score": "1299 steps",
+                        "challenges": Array [
+                          Object {
+                            "earned": 1,
+                            "milestones": 1,
+                            "name": "long walk",
+                            "score": "8000 steps",
+                          },
+                          Object {
+                            "earned": 3,
+                            "milestones": 2,
+                            "name": "meditation",
+                            "score": "08m 00s",
+                          },
+                          Object {
+                            "earned": 1,
+                            "milestones": 3,
+                            "name": "short stroll",
+                            "score": "1299 steps",
+                          },
+                        ],
+                        "dayOfMonth": "13",
+                        "dayOfWeek": "SAT",
+                        "id": "1",
+                        "level": 4,
+                        "sources": Object {},
+                        "steps": 4098,
+                        "yucoin": 3,
                       },
                     ],
-                    "dayOfMonth": "13",
-                    "dayOfWeek": "SAT",
-                    "id": "1",
-                    "level": 4,
-                    "sources": Object {},
-                    "steps": 4098,
-                    "yucoin": 3,
+                    "title": "January 2019",
                   },
                 ]
               }
-              disableVirtualization={false}
-              horizontal={false}
-              initialNumToRender={10}
-              keyExtractor={[Function]}
-              maxToRenderPerBatch={10}
-              numColumns={1}
-              onEndReachedThreshold={2}
+              groupCount={4}
+              groupMinHeight={444.6666666666667}
+              heightForIndexPath={[Function]}
+              heightForSection={[Function]}
+              loadingFooter={[Function]}
+              onLoading={[Function]}
               onRefresh={[MockFunction]}
-              refreshing={false}
-              removeClippedSubviews={false}
-              renderItem={[Function]}
-              scrollEventThrottle={50}
-              updateCellsBatchingPeriod={50}
-              windowSize={21}
+              refreshHeader={[Function]}
+              renderEmpty={[Function]}
+              renderIndexPath={[Function]}
+              renderSection={[Function]}
+              updateTimeInterval={150}
             />
           </View>,
           <Close
@@ -1321,209 +1087,58 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": Array [
-              <View
-                style={
-                  Object {
-                    "backgroundColor": "rgb(251,207,39)",
-                    "height": "100%",
-                    "width": 120,
-                  }
-                }
-              />,
-              <View
-                style={
-                  Object {
-                    "backgroundColor": "rgb(226,1,119)",
-                    "flex": 1,
-                    "height": "100%",
-                  }
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "alignItems": "flex-start",
-                      "height": "100%",
-                      "justifyContent": "center",
-                      "width": 320,
-                    }
-                  }
-                >
-                  <YuText
-                    bold={true}
-                    style={
-                      Object {
-                        "color": "white",
-                        "lineHeight": 68,
-                        "paddingLeft": 20,
-                      }
-                    }
-                  >
-                    last 30 days
-                  </YuText>
-                </View>
-              </View>,
-            ],
-            "style": Object {
-              "flexDirection": "row",
-              "height": 68,
-            },
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "style": Object {
-                  "backgroundColor": "rgb(251,207,39)",
-                  "height": "100%",
-                  "width": 120,
-                },
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <View
-                  style={
-                    Object {
-                      "alignItems": "flex-start",
-                      "height": "100%",
-                      "justifyContent": "center",
-                      "width": 320,
-                    }
-                  }
-                >
-                  <YuText
-                    bold={true}
-                    style={
-                      Object {
-                        "color": "white",
-                        "lineHeight": 68,
-                        "paddingLeft": 20,
-                      }
-                    }
-                  >
-                    last 30 days
-                  </YuText>
-                </View>,
-                "style": Object {
-                  "backgroundColor": "rgb(226,1,119)",
-                  "flex": 1,
-                  "height": "100%",
-                },
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <YuText
-                    bold={true}
-                    style={
-                      Object {
-                        "color": "white",
-                        "lineHeight": 68,
-                        "paddingLeft": 20,
-                      }
-                    }
-                  >
-                    last 30 days
-                  </YuText>,
-                  "style": Object {
-                    "alignItems": "flex-start",
-                    "height": "100%",
-                    "justifyContent": "center",
-                    "width": 320,
-                  },
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "bold": true,
-                    "children": "last 30 days",
-                    "style": Object {
-                      "color": "white",
-                      "lineHeight": 68,
-                      "paddingLeft": 20,
-                    },
-                  },
-                  "ref": null,
-                  "rendered": "last 30 days",
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <FlatList
+            "children": <LargeList
+              allLoaded={false}
               data={
                 Array [
                   Object {
-                    "challenges": Array [
+                    "items": Array [
                       Object {
-                        "earned": 1,
-                        "milestones": 1,
-                        "name": "long walk",
-                        "score": "8000 steps",
-                      },
-                      Object {
-                        "earned": 3,
-                        "milestones": 2,
-                        "name": "meditation",
-                        "score": "08m 00s",
-                      },
-                      Object {
-                        "earned": 1,
-                        "milestones": 3,
-                        "name": "short stroll",
-                        "score": "1299 steps",
+                        "challenges": Array [
+                          Object {
+                            "earned": 1,
+                            "milestones": 1,
+                            "name": "long walk",
+                            "score": "8000 steps",
+                          },
+                          Object {
+                            "earned": 3,
+                            "milestones": 2,
+                            "name": "meditation",
+                            "score": "08m 00s",
+                          },
+                          Object {
+                            "earned": 1,
+                            "milestones": 3,
+                            "name": "short stroll",
+                            "score": "1299 steps",
+                          },
+                        ],
+                        "dayOfMonth": "13",
+                        "dayOfWeek": "SAT",
+                        "id": "1",
+                        "level": 4,
+                        "sources": Object {},
+                        "steps": 4098,
+                        "yucoin": 3,
                       },
                     ],
-                    "dayOfMonth": "13",
-                    "dayOfWeek": "SAT",
-                    "id": "1",
-                    "level": 4,
-                    "sources": Object {},
-                    "steps": 4098,
-                    "yucoin": 3,
+                    "title": "January 2019",
                   },
                 ]
               }
-              disableVirtualization={false}
-              horizontal={false}
-              initialNumToRender={10}
-              keyExtractor={[Function]}
-              maxToRenderPerBatch={10}
-              numColumns={1}
-              onEndReachedThreshold={2}
+              groupCount={4}
+              groupMinHeight={444.6666666666667}
+              heightForIndexPath={[Function]}
+              heightForSection={[Function]}
+              loadingFooter={[Function]}
+              onLoading={[Function]}
               onRefresh={[MockFunction]}
-              refreshing={false}
-              removeClippedSubviews={false}
-              renderItem={[Function]}
-              scrollEventThrottle={50}
-              updateCellsBatchingPeriod={50}
-              windowSize={21}
+              refreshHeader={[Function]}
+              renderEmpty={[Function]}
+              renderIndexPath={[Function]}
+              renderSection={[Function]}
+              updateTimeInterval={150}
             />,
             "style": Object {
               "flex": 1,
@@ -1535,53 +1150,57 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
+              "allLoaded": false,
               "data": Array [
                 Object {
-                  "challenges": Array [
+                  "items": Array [
                     Object {
-                      "earned": 1,
-                      "milestones": 1,
-                      "name": "long walk",
-                      "score": "8000 steps",
-                    },
-                    Object {
-                      "earned": 3,
-                      "milestones": 2,
-                      "name": "meditation",
-                      "score": "08m 00s",
-                    },
-                    Object {
-                      "earned": 1,
-                      "milestones": 3,
-                      "name": "short stroll",
-                      "score": "1299 steps",
+                      "challenges": Array [
+                        Object {
+                          "earned": 1,
+                          "milestones": 1,
+                          "name": "long walk",
+                          "score": "8000 steps",
+                        },
+                        Object {
+                          "earned": 3,
+                          "milestones": 2,
+                          "name": "meditation",
+                          "score": "08m 00s",
+                        },
+                        Object {
+                          "earned": 1,
+                          "milestones": 3,
+                          "name": "short stroll",
+                          "score": "1299 steps",
+                        },
+                      ],
+                      "dayOfMonth": "13",
+                      "dayOfWeek": "SAT",
+                      "id": "1",
+                      "level": 4,
+                      "sources": Object {},
+                      "steps": 4098,
+                      "yucoin": 3,
                     },
                   ],
-                  "dayOfMonth": "13",
-                  "dayOfWeek": "SAT",
-                  "id": "1",
-                  "level": 4,
-                  "sources": Object {},
-                  "steps": 4098,
-                  "yucoin": 3,
+                  "title": "January 2019",
                 },
               ],
-              "disableVirtualization": false,
-              "horizontal": false,
-              "initialNumToRender": 10,
-              "keyExtractor": [Function],
-              "maxToRenderPerBatch": 10,
-              "numColumns": 1,
-              "onEndReachedThreshold": 2,
+              "groupCount": 4,
+              "groupMinHeight": 444.6666666666667,
+              "heightForIndexPath": [Function],
+              "heightForSection": [Function],
+              "loadingFooter": [Function],
+              "onLoading": [Function],
               "onRefresh": [MockFunction],
-              "refreshing": false,
-              "removeClippedSubviews": false,
-              "renderItem": [Function],
-              "scrollEventThrottle": 50,
-              "updateCellsBatchingPeriod": 50,
-              "windowSize": 21,
+              "refreshHeader": [Function],
+              "renderEmpty": [Function],
+              "renderIndexPath": [Function],
+              "renderSection": [Function],
+              "updateTimeInterval": 150,
             },
-            "ref": null,
+            "ref": [MockFunction],
             "rendered": null,
             "type": [Function],
           },
@@ -1637,42 +1256,49 @@ ShallowWrapper {
         "heading": "",
       }
     }
+    isAllDataLoaded={true}
     items={
       Array [
         Object {
-          "challenges": Array [
+          "items": Array [
             Object {
-              "earned": 1,
-              "milestones": 1,
-              "name": "long walk",
-              "score": "8000 steps",
-            },
-            Object {
-              "earned": 3,
-              "milestones": 2,
-              "name": "meditation",
-              "score": "08m 00s",
-            },
-            Object {
-              "earned": 1,
-              "milestones": 3,
-              "name": "short stroll",
-              "score": "1299 steps",
+              "challenges": Array [
+                Object {
+                  "earned": 1,
+                  "milestones": 1,
+                  "name": "long walk",
+                  "score": "8000 steps",
+                },
+                Object {
+                  "earned": 3,
+                  "milestones": 2,
+                  "name": "meditation",
+                  "score": "08m 00s",
+                },
+                Object {
+                  "earned": 1,
+                  "milestones": 3,
+                  "name": "short stroll",
+                  "score": "1299 steps",
+                },
+              ],
+              "dayOfMonth": "13",
+              "dayOfWeek": "SAT",
+              "id": "1",
+              "level": 4,
+              "sources": Object {},
+              "steps": 4098,
+              "yucoin": 3,
             },
           ],
-          "dayOfMonth": "13",
-          "dayOfWeek": "SAT",
-          "id": "1",
-          "level": 4,
-          "sources": Object {},
-          "steps": 4098,
-          "yucoin": 3,
+          "title": "January 2019",
         },
       ]
     }
     loading={true}
     onPressClose={[MockFunction]}
     onRefresh={[MockFunction]}
+    onSetLargelistRef={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1786,109 +1412,62 @@ ShallowWrapper {
         <View
           style={
             Object {
-              "flexDirection": "row",
-              "height": 68,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "rgb(251,207,39)",
-                "height": "100%",
-                "width": 120,
-              }
-            }
-          />
-          <View
-            style={
-              Object {
-                "backgroundColor": "rgb(226,1,119)",
-                "flex": 1,
-                "height": "100%",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "flex-start",
-                  "height": "100%",
-                  "justifyContent": "center",
-                  "width": 320,
-                }
-              }
-            >
-              <YuText
-                bold={true}
-                style={
-                  Object {
-                    "color": "white",
-                    "lineHeight": 68,
-                    "paddingLeft": 20,
-                  }
-                }
-              >
-                last 30 days
-              </YuText>
-            </View>
-          </View>
-        </View>,
-        <View
-          style={
-            Object {
               "flex": 1,
             }
           }
         >
-          <FlatList
+          <LargeList
+            allLoaded={false}
             data={
               Array [
                 Object {
-                  "challenges": Array [
+                  "items": Array [
                     Object {
-                      "earned": 1,
-                      "milestones": 1,
-                      "name": "long walk",
-                      "score": "8000 steps",
-                    },
-                    Object {
-                      "earned": 3,
-                      "milestones": 2,
-                      "name": "meditation",
-                      "score": "08m 00s",
-                    },
-                    Object {
-                      "earned": 1,
-                      "milestones": 3,
-                      "name": "short stroll",
-                      "score": "1299 steps",
+                      "challenges": Array [
+                        Object {
+                          "earned": 1,
+                          "milestones": 1,
+                          "name": "long walk",
+                          "score": "8000 steps",
+                        },
+                        Object {
+                          "earned": 3,
+                          "milestones": 2,
+                          "name": "meditation",
+                          "score": "08m 00s",
+                        },
+                        Object {
+                          "earned": 1,
+                          "milestones": 3,
+                          "name": "short stroll",
+                          "score": "1299 steps",
+                        },
+                      ],
+                      "dayOfMonth": "13",
+                      "dayOfWeek": "SAT",
+                      "id": "1",
+                      "level": 4,
+                      "sources": Object {},
+                      "steps": 4098,
+                      "yucoin": 3,
                     },
                   ],
-                  "dayOfMonth": "13",
-                  "dayOfWeek": "SAT",
-                  "id": "1",
-                  "level": 4,
-                  "sources": Object {},
-                  "steps": 4098,
-                  "yucoin": 3,
+                  "title": "January 2019",
                 },
               ]
             }
-            disableVirtualization={false}
-            horizontal={false}
-            initialNumToRender={10}
-            keyExtractor={[Function]}
-            maxToRenderPerBatch={10}
-            numColumns={1}
-            onEndReachedThreshold={2}
+            groupCount={4}
+            groupMinHeight={444.6666666666667}
+            heightForIndexPath={[Function]}
+            heightForSection={[Function]}
+            loadingFooter={[Function]}
+            onLoading={[Function]}
             onRefresh={[MockFunction]}
-            refreshing={true}
-            removeClippedSubviews={false}
-            renderItem={[Function]}
-            scrollEventThrottle={50}
-            updateCellsBatchingPeriod={50}
-            windowSize={21}
+            refreshHeader={[Function]}
+            renderEmpty={[Function]}
+            renderIndexPath={[Function]}
+            renderSection={[Function]}
+            updateTimeInterval={150}
           />
         </View>,
         <Close
@@ -2173,209 +1752,58 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": Array [
-            <View
-              style={
-                Object {
-                  "backgroundColor": "rgb(251,207,39)",
-                  "height": "100%",
-                  "width": 120,
-                }
-              }
-            />,
-            <View
-              style={
-                Object {
-                  "backgroundColor": "rgb(226,1,119)",
-                  "flex": 1,
-                  "height": "100%",
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "flex-start",
-                    "height": "100%",
-                    "justifyContent": "center",
-                    "width": 320,
-                  }
-                }
-              >
-                <YuText
-                  bold={true}
-                  style={
-                    Object {
-                      "color": "white",
-                      "lineHeight": 68,
-                      "paddingLeft": 20,
-                    }
-                  }
-                >
-                  last 30 days
-                </YuText>
-              </View>
-            </View>,
-          ],
-          "style": Object {
-            "flexDirection": "row",
-            "height": 68,
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "style": Object {
-                "backgroundColor": "rgb(251,207,39)",
-                "height": "100%",
-                "width": 120,
-              },
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <View
-                style={
-                  Object {
-                    "alignItems": "flex-start",
-                    "height": "100%",
-                    "justifyContent": "center",
-                    "width": 320,
-                  }
-                }
-              >
-                <YuText
-                  bold={true}
-                  style={
-                    Object {
-                      "color": "white",
-                      "lineHeight": 68,
-                      "paddingLeft": 20,
-                    }
-                  }
-                >
-                  last 30 days
-                </YuText>
-              </View>,
-              "style": Object {
-                "backgroundColor": "rgb(226,1,119)",
-                "flex": 1,
-                "height": "100%",
-              },
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <YuText
-                  bold={true}
-                  style={
-                    Object {
-                      "color": "white",
-                      "lineHeight": 68,
-                      "paddingLeft": 20,
-                    }
-                  }
-                >
-                  last 30 days
-                </YuText>,
-                "style": Object {
-                  "alignItems": "flex-start",
-                  "height": "100%",
-                  "justifyContent": "center",
-                  "width": 320,
-                },
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "bold": true,
-                  "children": "last 30 days",
-                  "style": Object {
-                    "color": "white",
-                    "lineHeight": 68,
-                    "paddingLeft": 20,
-                  },
-                },
-                "ref": null,
-                "rendered": "last 30 days",
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": <FlatList
+          "children": <LargeList
+            allLoaded={false}
             data={
               Array [
                 Object {
-                  "challenges": Array [
+                  "items": Array [
                     Object {
-                      "earned": 1,
-                      "milestones": 1,
-                      "name": "long walk",
-                      "score": "8000 steps",
-                    },
-                    Object {
-                      "earned": 3,
-                      "milestones": 2,
-                      "name": "meditation",
-                      "score": "08m 00s",
-                    },
-                    Object {
-                      "earned": 1,
-                      "milestones": 3,
-                      "name": "short stroll",
-                      "score": "1299 steps",
+                      "challenges": Array [
+                        Object {
+                          "earned": 1,
+                          "milestones": 1,
+                          "name": "long walk",
+                          "score": "8000 steps",
+                        },
+                        Object {
+                          "earned": 3,
+                          "milestones": 2,
+                          "name": "meditation",
+                          "score": "08m 00s",
+                        },
+                        Object {
+                          "earned": 1,
+                          "milestones": 3,
+                          "name": "short stroll",
+                          "score": "1299 steps",
+                        },
+                      ],
+                      "dayOfMonth": "13",
+                      "dayOfWeek": "SAT",
+                      "id": "1",
+                      "level": 4,
+                      "sources": Object {},
+                      "steps": 4098,
+                      "yucoin": 3,
                     },
                   ],
-                  "dayOfMonth": "13",
-                  "dayOfWeek": "SAT",
-                  "id": "1",
-                  "level": 4,
-                  "sources": Object {},
-                  "steps": 4098,
-                  "yucoin": 3,
+                  "title": "January 2019",
                 },
               ]
             }
-            disableVirtualization={false}
-            horizontal={false}
-            initialNumToRender={10}
-            keyExtractor={[Function]}
-            maxToRenderPerBatch={10}
-            numColumns={1}
-            onEndReachedThreshold={2}
+            groupCount={4}
+            groupMinHeight={444.6666666666667}
+            heightForIndexPath={[Function]}
+            heightForSection={[Function]}
+            loadingFooter={[Function]}
+            onLoading={[Function]}
             onRefresh={[MockFunction]}
-            refreshing={true}
-            removeClippedSubviews={false}
-            renderItem={[Function]}
-            scrollEventThrottle={50}
-            updateCellsBatchingPeriod={50}
-            windowSize={21}
+            refreshHeader={[Function]}
+            renderEmpty={[Function]}
+            renderIndexPath={[Function]}
+            renderSection={[Function]}
+            updateTimeInterval={150}
           />,
           "style": Object {
             "flex": 1,
@@ -2387,53 +1815,57 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "allLoaded": false,
             "data": Array [
               Object {
-                "challenges": Array [
+                "items": Array [
                   Object {
-                    "earned": 1,
-                    "milestones": 1,
-                    "name": "long walk",
-                    "score": "8000 steps",
-                  },
-                  Object {
-                    "earned": 3,
-                    "milestones": 2,
-                    "name": "meditation",
-                    "score": "08m 00s",
-                  },
-                  Object {
-                    "earned": 1,
-                    "milestones": 3,
-                    "name": "short stroll",
-                    "score": "1299 steps",
+                    "challenges": Array [
+                      Object {
+                        "earned": 1,
+                        "milestones": 1,
+                        "name": "long walk",
+                        "score": "8000 steps",
+                      },
+                      Object {
+                        "earned": 3,
+                        "milestones": 2,
+                        "name": "meditation",
+                        "score": "08m 00s",
+                      },
+                      Object {
+                        "earned": 1,
+                        "milestones": 3,
+                        "name": "short stroll",
+                        "score": "1299 steps",
+                      },
+                    ],
+                    "dayOfMonth": "13",
+                    "dayOfWeek": "SAT",
+                    "id": "1",
+                    "level": 4,
+                    "sources": Object {},
+                    "steps": 4098,
+                    "yucoin": 3,
                   },
                 ],
-                "dayOfMonth": "13",
-                "dayOfWeek": "SAT",
-                "id": "1",
-                "level": 4,
-                "sources": Object {},
-                "steps": 4098,
-                "yucoin": 3,
+                "title": "January 2019",
               },
             ],
-            "disableVirtualization": false,
-            "horizontal": false,
-            "initialNumToRender": 10,
-            "keyExtractor": [Function],
-            "maxToRenderPerBatch": 10,
-            "numColumns": 1,
-            "onEndReachedThreshold": 2,
+            "groupCount": 4,
+            "groupMinHeight": 444.6666666666667,
+            "heightForIndexPath": [Function],
+            "heightForSection": [Function],
+            "loadingFooter": [Function],
+            "onLoading": [Function],
             "onRefresh": [MockFunction],
-            "refreshing": true,
-            "removeClippedSubviews": false,
-            "renderItem": [Function],
-            "scrollEventThrottle": 50,
-            "updateCellsBatchingPeriod": 50,
-            "windowSize": 21,
+            "refreshHeader": [Function],
+            "renderEmpty": [Function],
+            "renderIndexPath": [Function],
+            "renderSection": [Function],
+            "updateTimeInterval": 150,
           },
-          "ref": null,
+          "ref": [MockFunction],
           "rendered": null,
           "type": [Function],
         },
@@ -2558,109 +1990,62 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "flexDirection": "row",
-                "height": 68,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "backgroundColor": "rgb(251,207,39)",
-                  "height": "100%",
-                  "width": 120,
-                }
-              }
-            />
-            <View
-              style={
-                Object {
-                  "backgroundColor": "rgb(226,1,119)",
-                  "flex": 1,
-                  "height": "100%",
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "flex-start",
-                    "height": "100%",
-                    "justifyContent": "center",
-                    "width": 320,
-                  }
-                }
-              >
-                <YuText
-                  bold={true}
-                  style={
-                    Object {
-                      "color": "white",
-                      "lineHeight": 68,
-                      "paddingLeft": 20,
-                    }
-                  }
-                >
-                  last 30 days
-                </YuText>
-              </View>
-            </View>
-          </View>,
-          <View
-            style={
-              Object {
                 "flex": 1,
               }
             }
           >
-            <FlatList
+            <LargeList
+              allLoaded={false}
               data={
                 Array [
                   Object {
-                    "challenges": Array [
+                    "items": Array [
                       Object {
-                        "earned": 1,
-                        "milestones": 1,
-                        "name": "long walk",
-                        "score": "8000 steps",
-                      },
-                      Object {
-                        "earned": 3,
-                        "milestones": 2,
-                        "name": "meditation",
-                        "score": "08m 00s",
-                      },
-                      Object {
-                        "earned": 1,
-                        "milestones": 3,
-                        "name": "short stroll",
-                        "score": "1299 steps",
+                        "challenges": Array [
+                          Object {
+                            "earned": 1,
+                            "milestones": 1,
+                            "name": "long walk",
+                            "score": "8000 steps",
+                          },
+                          Object {
+                            "earned": 3,
+                            "milestones": 2,
+                            "name": "meditation",
+                            "score": "08m 00s",
+                          },
+                          Object {
+                            "earned": 1,
+                            "milestones": 3,
+                            "name": "short stroll",
+                            "score": "1299 steps",
+                          },
+                        ],
+                        "dayOfMonth": "13",
+                        "dayOfWeek": "SAT",
+                        "id": "1",
+                        "level": 4,
+                        "sources": Object {},
+                        "steps": 4098,
+                        "yucoin": 3,
                       },
                     ],
-                    "dayOfMonth": "13",
-                    "dayOfWeek": "SAT",
-                    "id": "1",
-                    "level": 4,
-                    "sources": Object {},
-                    "steps": 4098,
-                    "yucoin": 3,
+                    "title": "January 2019",
                   },
                 ]
               }
-              disableVirtualization={false}
-              horizontal={false}
-              initialNumToRender={10}
-              keyExtractor={[Function]}
-              maxToRenderPerBatch={10}
-              numColumns={1}
-              onEndReachedThreshold={2}
+              groupCount={4}
+              groupMinHeight={444.6666666666667}
+              heightForIndexPath={[Function]}
+              heightForSection={[Function]}
+              loadingFooter={[Function]}
+              onLoading={[Function]}
               onRefresh={[MockFunction]}
-              refreshing={true}
-              removeClippedSubviews={false}
-              renderItem={[Function]}
-              scrollEventThrottle={50}
-              updateCellsBatchingPeriod={50}
-              windowSize={21}
+              refreshHeader={[Function]}
+              renderEmpty={[Function]}
+              renderIndexPath={[Function]}
+              renderSection={[Function]}
+              updateTimeInterval={150}
             />
           </View>,
           <Close
@@ -2945,209 +2330,58 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": Array [
-              <View
-                style={
-                  Object {
-                    "backgroundColor": "rgb(251,207,39)",
-                    "height": "100%",
-                    "width": 120,
-                  }
-                }
-              />,
-              <View
-                style={
-                  Object {
-                    "backgroundColor": "rgb(226,1,119)",
-                    "flex": 1,
-                    "height": "100%",
-                  }
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "alignItems": "flex-start",
-                      "height": "100%",
-                      "justifyContent": "center",
-                      "width": 320,
-                    }
-                  }
-                >
-                  <YuText
-                    bold={true}
-                    style={
-                      Object {
-                        "color": "white",
-                        "lineHeight": 68,
-                        "paddingLeft": 20,
-                      }
-                    }
-                  >
-                    last 30 days
-                  </YuText>
-                </View>
-              </View>,
-            ],
-            "style": Object {
-              "flexDirection": "row",
-              "height": 68,
-            },
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "style": Object {
-                  "backgroundColor": "rgb(251,207,39)",
-                  "height": "100%",
-                  "width": 120,
-                },
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <View
-                  style={
-                    Object {
-                      "alignItems": "flex-start",
-                      "height": "100%",
-                      "justifyContent": "center",
-                      "width": 320,
-                    }
-                  }
-                >
-                  <YuText
-                    bold={true}
-                    style={
-                      Object {
-                        "color": "white",
-                        "lineHeight": 68,
-                        "paddingLeft": 20,
-                      }
-                    }
-                  >
-                    last 30 days
-                  </YuText>
-                </View>,
-                "style": Object {
-                  "backgroundColor": "rgb(226,1,119)",
-                  "flex": 1,
-                  "height": "100%",
-                },
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <YuText
-                    bold={true}
-                    style={
-                      Object {
-                        "color": "white",
-                        "lineHeight": 68,
-                        "paddingLeft": 20,
-                      }
-                    }
-                  >
-                    last 30 days
-                  </YuText>,
-                  "style": Object {
-                    "alignItems": "flex-start",
-                    "height": "100%",
-                    "justifyContent": "center",
-                    "width": 320,
-                  },
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "bold": true,
-                    "children": "last 30 days",
-                    "style": Object {
-                      "color": "white",
-                      "lineHeight": 68,
-                      "paddingLeft": 20,
-                    },
-                  },
-                  "ref": null,
-                  "rendered": "last 30 days",
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <FlatList
+            "children": <LargeList
+              allLoaded={false}
               data={
                 Array [
                   Object {
-                    "challenges": Array [
+                    "items": Array [
                       Object {
-                        "earned": 1,
-                        "milestones": 1,
-                        "name": "long walk",
-                        "score": "8000 steps",
-                      },
-                      Object {
-                        "earned": 3,
-                        "milestones": 2,
-                        "name": "meditation",
-                        "score": "08m 00s",
-                      },
-                      Object {
-                        "earned": 1,
-                        "milestones": 3,
-                        "name": "short stroll",
-                        "score": "1299 steps",
+                        "challenges": Array [
+                          Object {
+                            "earned": 1,
+                            "milestones": 1,
+                            "name": "long walk",
+                            "score": "8000 steps",
+                          },
+                          Object {
+                            "earned": 3,
+                            "milestones": 2,
+                            "name": "meditation",
+                            "score": "08m 00s",
+                          },
+                          Object {
+                            "earned": 1,
+                            "milestones": 3,
+                            "name": "short stroll",
+                            "score": "1299 steps",
+                          },
+                        ],
+                        "dayOfMonth": "13",
+                        "dayOfWeek": "SAT",
+                        "id": "1",
+                        "level": 4,
+                        "sources": Object {},
+                        "steps": 4098,
+                        "yucoin": 3,
                       },
                     ],
-                    "dayOfMonth": "13",
-                    "dayOfWeek": "SAT",
-                    "id": "1",
-                    "level": 4,
-                    "sources": Object {},
-                    "steps": 4098,
-                    "yucoin": 3,
+                    "title": "January 2019",
                   },
                 ]
               }
-              disableVirtualization={false}
-              horizontal={false}
-              initialNumToRender={10}
-              keyExtractor={[Function]}
-              maxToRenderPerBatch={10}
-              numColumns={1}
-              onEndReachedThreshold={2}
+              groupCount={4}
+              groupMinHeight={444.6666666666667}
+              heightForIndexPath={[Function]}
+              heightForSection={[Function]}
+              loadingFooter={[Function]}
+              onLoading={[Function]}
               onRefresh={[MockFunction]}
-              refreshing={true}
-              removeClippedSubviews={false}
-              renderItem={[Function]}
-              scrollEventThrottle={50}
-              updateCellsBatchingPeriod={50}
-              windowSize={21}
+              refreshHeader={[Function]}
+              renderEmpty={[Function]}
+              renderIndexPath={[Function]}
+              renderSection={[Function]}
+              updateTimeInterval={150}
             />,
             "style": Object {
               "flex": 1,
@@ -3159,53 +2393,57 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
+              "allLoaded": false,
               "data": Array [
                 Object {
-                  "challenges": Array [
+                  "items": Array [
                     Object {
-                      "earned": 1,
-                      "milestones": 1,
-                      "name": "long walk",
-                      "score": "8000 steps",
-                    },
-                    Object {
-                      "earned": 3,
-                      "milestones": 2,
-                      "name": "meditation",
-                      "score": "08m 00s",
-                    },
-                    Object {
-                      "earned": 1,
-                      "milestones": 3,
-                      "name": "short stroll",
-                      "score": "1299 steps",
+                      "challenges": Array [
+                        Object {
+                          "earned": 1,
+                          "milestones": 1,
+                          "name": "long walk",
+                          "score": "8000 steps",
+                        },
+                        Object {
+                          "earned": 3,
+                          "milestones": 2,
+                          "name": "meditation",
+                          "score": "08m 00s",
+                        },
+                        Object {
+                          "earned": 1,
+                          "milestones": 3,
+                          "name": "short stroll",
+                          "score": "1299 steps",
+                        },
+                      ],
+                      "dayOfMonth": "13",
+                      "dayOfWeek": "SAT",
+                      "id": "1",
+                      "level": 4,
+                      "sources": Object {},
+                      "steps": 4098,
+                      "yucoin": 3,
                     },
                   ],
-                  "dayOfMonth": "13",
-                  "dayOfWeek": "SAT",
-                  "id": "1",
-                  "level": 4,
-                  "sources": Object {},
-                  "steps": 4098,
-                  "yucoin": 3,
+                  "title": "January 2019",
                 },
               ],
-              "disableVirtualization": false,
-              "horizontal": false,
-              "initialNumToRender": 10,
-              "keyExtractor": [Function],
-              "maxToRenderPerBatch": 10,
-              "numColumns": 1,
-              "onEndReachedThreshold": 2,
+              "groupCount": 4,
+              "groupMinHeight": 444.6666666666667,
+              "heightForIndexPath": [Function],
+              "heightForSection": [Function],
+              "loadingFooter": [Function],
+              "onLoading": [Function],
               "onRefresh": [MockFunction],
-              "refreshing": true,
-              "removeClippedSubviews": false,
-              "renderItem": [Function],
-              "scrollEventThrottle": 50,
-              "updateCellsBatchingPeriod": 50,
-              "windowSize": 21,
+              "refreshHeader": [Function],
+              "renderEmpty": [Function],
+              "renderIndexPath": [Function],
+              "renderSection": [Function],
+              "updateTimeInterval": 150,
             },
-            "ref": null,
+            "ref": [MockFunction],
             "rendered": null,
             "type": [Function],
           },
