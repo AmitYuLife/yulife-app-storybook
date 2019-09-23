@@ -1,10 +1,12 @@
 import { GetCurrentWorld_getCurrentWorld } from "@graphql/_core/schema";
 import { bottomTabs } from "@navigation/constants";
+import { ChallengeType } from "@screens/member/challenges/challenge-progress/challenge-progress.screen";
 import { getCurrentWorld } from "@services/utils";
 import { Style } from "@styles/index";
 import moment from "moment";
 import React from "react";
-import { BackHandler, NativeEventSubscription } from "react-native";
+import { BackHandler, Linking, NativeEventSubscription } from "react-native";
+import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import GetCurrentWorld, {
@@ -16,12 +18,12 @@ import { IMainTabsProps, labels, onLeftMenuPress } from "../../../../navigation/
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
+import { submitUnityAction } from "../../../../redux/levels/levels.actions";
 import {
     challengeCancelAction,
     challengeEndAction,
     challengeResetAction
 } from "../../../../redux/levels/levels.actions";
-import { submitUnityAction } from "../../../../redux/levels/levels.actions";
 import {
     getActiveLevel,
     getChallengesStatus,
@@ -34,8 +36,9 @@ import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { openCalm, openHeadspace } from "../../../../services/app-link";
 import BlurProvider from "../../../atoms/blur/blur-provider";
 import Loading from "../../../atoms/loading/loading";
-import { ChallengeCompleteModal, GenericModal } from "../../../modals";
+import { ChallengeCompleteModal } from "../../../modals";
 import {
+    ChallengeExitScreen,
     ChallengeFailedScreen,
     ChallengeProgressScreen,
     ChallengeSuccessScreen,
@@ -249,14 +252,13 @@ class QuestsContainer extends React.Component<Props, IState> {
                         />
                     )}
                     renderOverlay={({ hideOverlay }) => (
-                        <GenericModal
-                            onPress={hideOverlay}
-                            heading={copy.exitChallenge.heading}
-                            subheading={copy.exitChallenge.subheading}
-                            ctaLabel={copy.exitChallenge.ctaLabel}
-                            onPressSecondary={this.props.challengeCancelAction}
-                            isSecondaryLoading={isLoading}
-                            ctaLabelSecondary={copy.exitChallenge.ctaLabelSecondary}
+                        <ChallengeExitScreen
+                            onClose={hideOverlay}
+                            onPressExit={this.props.challengeCancelAction}
+                            onOpenURL={this.openMeditationURL}
+                            isCancelling={isLoading}
+                            challengeType={subtype as ChallengeType}
+                            copy={copy.newExitChallenge}
                         />
                     )}
                 />
@@ -278,6 +280,15 @@ class QuestsContainer extends React.Component<Props, IState> {
                 activeLevel={getTheActiveLevel(formatedData)}
             />
         );
+    };
+
+    private openMeditationURL = async () => {
+        const url = Config.MEDITATION_SETUP_URL;
+        const supported = await Linking.canOpenURL(url);
+
+        if (supported) {
+            await Linking.openURL(url);
+        }
     };
 
     private hideUnity = () => {
