@@ -1128,6 +1128,7 @@ export interface GetActivityHistory_getActivityHistoryWithLevels {
   yucoin: number | null;
   dayOfMonth: string | null;
   dayOfWeek: string | null;
+  monthAndYear: string | null;
   level: number | null;
   challenges: (GetActivityHistory_getActivityHistoryWithLevels_challenges | null)[] | null;
 }
@@ -1138,6 +1139,7 @@ export interface GetActivityHistory {
 
 export interface GetActivityHistoryVariables {
   monthsAgo?: number | null;
+  isFullActivity?: boolean | null;
 }
 
 

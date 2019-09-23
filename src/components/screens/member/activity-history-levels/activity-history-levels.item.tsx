@@ -18,6 +18,7 @@ export interface ItemProps {
     dayOfMonth: string;
     dayOfWeek: string;
     level?: number;
+    monthAndYear?: string;
     steps: number;
     sources?: Partial<Sources>;
     yucoin: number;

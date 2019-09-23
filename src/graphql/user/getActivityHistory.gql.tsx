@@ -1,11 +1,11 @@
 import gql from "graphql-tag";
 import * as React from "react";
 import { Query, QueryProps, QueryResult } from "react-apollo";
-import { GetActivityHistory } from "../_core/schema";
+import { GetActivityHistory, GetActivityHistoryVariables } from "../_core/schema";
 
 export const getActivityHistoryGql = gql`
-    query GetActivityHistory($monthsAgo: Int) {
-        getActivityHistoryWithLevels(monthsAgo: $monthsAgo) {
+    query GetActivityHistory($monthsAgo: Int, $isFullActivity: Boolean) {
+        getActivityHistoryWithLevels(monthsAgo: $monthsAgo, isFullActivity: $isFullActivity) {
             id
             steps
             sources {
@@ -16,6 +16,7 @@ export const getActivityHistoryGql = gql`
             yucoin
             dayOfMonth
             dayOfWeek
+            monthAndYear
             level
             challenges {
                 id
@@ -28,8 +29,10 @@ export const getActivityHistoryGql = gql`
     }
 `;
 
-export type GetActivityHistoryResultType = QueryResult<GetActivityHistory>;
+export type GetActivityHistoryResultType = QueryResult<GetActivityHistory, GetActivityHistoryVariables>;
 
-export default function GetActivityHistoryQuery(props: Partial<QueryProps<GetActivityHistory>>) {
-    return <Query {...props as any} query={getActivityHistoryGql} />;
+export default function GetActivityHistoryQuery(
+    props: Partial<QueryProps<GetActivityHistory, GetActivityHistoryVariables>>
+) {
+    return <Query {...(props as any)} query={getActivityHistoryGql} />;
 }

@@ -6,6 +6,7 @@ const defaultProps = {
     loading: false,
     onPressClose: jest.fn(),
     onRefresh: jest.fn(),
+    onSetLargelistRef: jest.fn(),
     copy: {
         headerLeft: "",
         headerLevel: "",
@@ -13,33 +14,39 @@ const defaultProps = {
         headerRight: "",
         heading: ""
     },
+    isAllDataLoaded: true,
     items: [
         {
-            id: "1",
-            dayOfMonth: "13",
-            dayOfWeek: "SAT",
-            level: 4,
-            steps: 4098,
-            sources: {},
-            yucoin: 3,
-            challenges: [
+            title: "January 2019",
+            items: [
                 {
-                    earned: 1,
-                    milestones: 1,
-                    name: "long walk",
-                    score: "8000 steps"
-                },
-                {
-                    earned: 3,
-                    milestones: 2,
-                    name: "meditation",
-                    score: "08m 00s"
-                },
-                {
-                    earned: 1,
-                    milestones: 3,
-                    name: "short stroll",
-                    score: "1299 steps"
+                    id: "1",
+                    dayOfMonth: "13",
+                    dayOfWeek: "SAT",
+                    level: 4,
+                    steps: 4098,
+                    sources: {},
+                    yucoin: 3,
+                    challenges: [
+                        {
+                            earned: 1,
+                            milestones: 1,
+                            name: "long walk",
+                            score: "8000 steps"
+                        },
+                        {
+                            earned: 3,
+                            milestones: 2,
+                            name: "meditation",
+                            score: "08m 00s"
+                        },
+                        {
+                            earned: 1,
+                            milestones: 3,
+                            name: "short stroll",
+                            score: "1299 steps"
+                        }
+                    ]
                 }
             ]
         }
