@@ -552,12 +552,20 @@ export interface GetMobileCopy_getMobileCopy_screens_challenges_success {
   footer: string | null;
 }
 
+export interface GetMobileCopy_getMobileCopy_screens_challenges_newExitChallenge {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+  ctaLabelSecondary: string | null;
+}
+
 export interface GetMobileCopy_getMobileCopy_screens_challenges {
   failed: GetMobileCopy_getMobileCopy_screens_challenges_failed | null;
   completed: GetMobileCopy_getMobileCopy_screens_challenges_completed | null;
   exitChallenge: GetMobileCopy_getMobileCopy_screens_challenges_exitChallenge | null;
   showChestModal: GetMobileCopy_getMobileCopy_screens_challenges_showChestModal | null;
   success: GetMobileCopy_getMobileCopy_screens_challenges_success | null;
+  newExitChallenge: GetMobileCopy_getMobileCopy_screens_challenges_newExitChallenge | null;
 }
 
 export interface GetMobileCopy_getMobileCopy_screens_streak {

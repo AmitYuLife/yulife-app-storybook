@@ -152,6 +152,12 @@ export const getMobileCopyGql = gql`
                         ctaLabel
                         footer
                     }
+                    newExitChallenge {
+                        heading
+                        subheading
+                        ctaLabel
+                        ctaLabelSecondary
+                    }
                 }
                 streak {
                     ctaLabelDone

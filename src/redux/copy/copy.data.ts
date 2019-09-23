@@ -160,6 +160,13 @@ export default {
         success: {
             ctaLabel: "collect",
             footer: "Well done!"
+        },
+        newExitChallenge: {
+            heading: "settings",
+            subheading:
+                "Complete a meditation session with Calm, Headspace or any other meditation app that integrates with apple health, within the next hour. Results will be shown here.",
+            ctaLabel: "exit challenge",
+            ctaLabelSecondary: "set up tutorial"
         }
     },
     streak: {
