@@ -43,8 +43,7 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
     public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
         // Check if there are items first then check if there are new items for current month
         return (
-            (Boolean(this.props.items.length) &&
-                this.props.items[0].items.length !== nextProps.items[0].items.length) ||
+            (!!this.props.items.length && this.props.items[0].items.length !== nextProps.items[0].items.length) ||
             this.props.items.length !== nextProps.items.length ||
             this.props.loading !== nextProps.loading ||
             this.state.willGetMoreData !== nextState.willGetMoreData ||
@@ -57,7 +56,7 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
         const { isAllDataLoaded, willGetMoreData, fetchTries } = this.state;
         const { items } = this.props;
         const wasLoading = !this.props.loading && prevProps.loading;
-        // Make sure there items.length > 0 before checking oldes items for level of 1
+        // Make sure there items.length > 0 before checking oldest items for level of 1
         const hasLevel1Item =
             Boolean(items.length) && items[items.length - 1].items.findIndex((level) => level.level === 1) !== -1;
         const hasSameNumberOfItems = this.props.items.length === prevProps.items.length;
@@ -68,7 +67,7 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
             });
         }
 
-        // as long as there are more items, should finish loading
+        // as long as there are more items, should stop fetching
         if (!hasSameNumberOfItems && willGetMoreData) {
             return this.setState({
                 willGetMoreData: false,

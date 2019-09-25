@@ -66,8 +66,9 @@ class ActivityHistoryContainer extends PureComponent<Props, IState> {
                             };
 
                             return (
+                                // return empty array if data.getActivityHistoryWithLevels is undefined
                                 <ActivityHistoryLevels
-                                    items={groupDatesByMonth(data.getActivityHistoryWithLevels) || []}
+                                    items={groupDatesByMonth(data.getActivityHistoryWithLevels || [])}
                                     loading={loading}
                                     onPressClose={this.handleClose}
                                     onFetchMoreData={this.fetchMoreData}
