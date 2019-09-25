@@ -27,7 +27,8 @@ const defaultProps = {
         voucherNotAvailable: { heading: "", subheading: "", ctaLabel: "" },
         offline: { heading: "", subheading: "", ctaLabel: "" },
         notEnoughCoins: { heading: "", subheading: "", ctaLabel: "" },
-        aviosConfirmed: { title: "", message: "", cancelButtonText: "" }
+        aviosConfirmed: { title: "", message: "", cancelButtonText: "" },
+        newLockedReward: { heading: "", subheading: "", ctaLabel: "" }
     },
     navbarColour: COLOURS.DARKER
 };

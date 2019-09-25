@@ -114,6 +114,11 @@ export const getMobileCopyGql = gql`
                         message
                         cancelButtonText
                     }
+                    newLockedReward {
+                        ctaLabel
+                        heading
+                        subheading
+                    }
                 }
                 fitkitConnect {
                     blurb

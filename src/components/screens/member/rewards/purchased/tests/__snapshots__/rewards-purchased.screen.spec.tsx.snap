@@ -21,6 +21,11 @@ ShallowWrapper {
           "heading": "",
           "subheading": "",
         },
+        "newLockedReward": Object {
+          "ctaLabel": "",
+          "heading": "",
+          "subheading": "",
+        },
         "notEnoughCoins": Object {
           "ctaLabel": "",
           "heading": "",
@@ -604,6 +609,11 @@ ShallowWrapper {
           "subheading": "",
         },
         "lockedReward": Object {
+          "ctaLabel": "",
+          "heading": "",
+          "subheading": "",
+        },
+        "newLockedReward": Object {
           "ctaLabel": "",
           "heading": "",
           "subheading": "",
