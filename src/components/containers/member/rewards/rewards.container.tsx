@@ -130,10 +130,10 @@ class RewardsContainer extends PureComponent<Props, IState> {
                     id: MODALS.rewards,
                     name: MODALS.rewards,
                     passProps: {
-                        ctaLabel: copy.lockedReward.ctaLabel,
-                        heading: copy.lockedReward.heading,
+                        ctaLabel: copy.newLockedReward.ctaLabel,
+                        heading: copy.newLockedReward.heading,
                         onPress: () => Navigation.dismissModal(MODALS.rewards),
-                        subheading: copy.lockedReward.subheading.replace("${rewardName}", reward.name)
+                        subheading: copy.newLockedReward.subheading.replace("${rewardName}", reward.name)
                     }
                 }
             });

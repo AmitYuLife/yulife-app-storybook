@@ -121,6 +121,11 @@ export default {
             message:
                 "Your ${amount} AVIOS points will appear on your account within the next 24hrs. We will email you as soon as they are there.",
             cancelButtonText: "OK, got it"
+        },
+        newLockedReward: {
+            ctaLabel: "back to rewards",
+            heading: "update in progress",
+            subheading: "we are updating your ${rewardName} rewards experience, check back soon!"
         }
     },
     fitkitConnect: {

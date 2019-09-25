@@ -501,6 +501,12 @@ export interface GetMobileCopy_getMobileCopy_screens_purchases_aviosConfirmed {
   cancelButtonText: string | null;
 }
 
+export interface GetMobileCopy_getMobileCopy_screens_purchases_newLockedReward {
+  ctaLabel: string | null;
+  heading: string | null;
+  subheading: string | null;
+}
+
 export interface GetMobileCopy_getMobileCopy_screens_purchases {
   empty: GetMobileCopy_getMobileCopy_screens_purchases_empty | null;
   lockedReward: GetMobileCopy_getMobileCopy_screens_purchases_lockedReward | null;
@@ -508,6 +514,7 @@ export interface GetMobileCopy_getMobileCopy_screens_purchases {
   offline: GetMobileCopy_getMobileCopy_screens_purchases_offline | null;
   notEnoughCoins: GetMobileCopy_getMobileCopy_screens_purchases_notEnoughCoins | null;
   aviosConfirmed: GetMobileCopy_getMobileCopy_screens_purchases_aviosConfirmed | null;
+  newLockedReward: GetMobileCopy_getMobileCopy_screens_purchases_newLockedReward | null;
 }
 
 export interface GetMobileCopy_getMobileCopy_screens_fitkitConnect {
