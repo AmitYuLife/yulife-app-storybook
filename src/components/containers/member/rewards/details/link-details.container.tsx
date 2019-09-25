@@ -1,3 +1,4 @@
+import { RedeemRewardFunctionType, RedeemRewardMutation } from "@graphql/rewards";
 import * as React from "react";
 import { Component } from "react";
 import { Alert, Linking } from "react-native";
@@ -48,24 +49,29 @@ class LinkRewardDetailsContainer extends Component<Props> {
         const labelCtaPrimary = uiSettings.ctaLabel || "claim reward";
 
         return (
-            <WegiftRewardDetailsScreen
-                uiSettings={uiSettings}
-                code={code}
-                linkType={link_type}
-                cost={0}
-                rewardValue={0}
-                rewardCurrency={currency_code}
-                description={description}
-                instructions={steps}
-                onPressCtaPrimary={this.handleSubmit}
-                labelCtaPrimary={labelCtaPrimary}
-                onPressTerms={this.openPDFs("terms")}
-                onPressPolicy={this.openPDFs("policy")}
-                coins={totalCoins}
-                onPressTopBar={this.handleRewardsPress}
-                onLeftTabPress={this.handleRewardsPress}
-                onRightTabPress={this.handlePurchasesPress}
-            />
+            <RedeemRewardMutation>
+                {(redeemReward, { loading }) => (
+                    <WegiftRewardDetailsScreen
+                        uiSettings={uiSettings}
+                        code={code}
+                        linkType={link_type}
+                        cost={0}
+                        rewardValue={0}
+                        rewardCurrency={currency_code}
+                        description={description}
+                        instructions={steps}
+                        isLoading={loading}
+                        onPressCtaPrimary={this.handleSubmit(redeemReward)}
+                        labelCtaPrimary={labelCtaPrimary}
+                        onPressTerms={this.openPDFs("terms")}
+                        onPressPolicy={this.openPDFs("policy")}
+                        coins={totalCoins}
+                        onPressTopBar={this.handleRewardsPress}
+                        onLeftTabPress={this.handleRewardsPress}
+                        onRightTabPress={this.handlePurchasesPress}
+                    />
+                )}
+            </RedeemRewardMutation>
         );
     }
 
@@ -88,10 +94,12 @@ class LinkRewardDetailsContainer extends Component<Props> {
         }
     };
 
-    private handleSubmit = () => {
+    private handleSubmit = (redeemReward: RedeemRewardFunctionType) => () => {
         const {
-            reward: { name, availability, code, uiSettings = {} as any }
+            reward: { name, availability, code, uiSettings = {} as any, available_denominations }
         } = this.props;
+
+        const [{ value }] = available_denominations;
 
         Alert.alert(
             uiSettings.alertHeading || "Claim reward",
@@ -100,6 +108,12 @@ class LinkRewardDetailsContainer extends Component<Props> {
                 { text: uiSettings.alertCancelLabel || "Cancel", style: "cancel" },
                 {
                     onPress: async () => {
+                        try {
+                            await redeemReward({ variables: { id: code, amount: value } });
+                        } catch (e) {
+                            Logger.logMixpanelError(e, "linkRewardDetailsContainer");
+                        }
+
                         const supported = await Linking.canOpenURL(availability);
 
                         if (supported) {
@@ -110,6 +124,12 @@ class LinkRewardDetailsContainer extends Component<Props> {
                                 reward_yucoin_spent: 0
                             });
                             await Linking.openURL(availability);
+                        } else {
+                            // Record the fact that the user didn't see the link.
+                            Logger.logEvent("reward_redeem_link_unsupported", {
+                                reward_code: code,
+                                reward_name: name
+                            });
                         }
                     },
                     text: uiSettings.alertOkLabel || "OK"
