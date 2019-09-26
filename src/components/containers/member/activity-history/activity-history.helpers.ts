@@ -30,7 +30,11 @@ export function countSources(sources: Partial<Sources>) {
     }
     let sourceCount = 0;
     for (const source in sources) {
-        if (sources[source as keyof Sources] !== null && source !== "__typename") {
+        if (
+            sources[source as keyof Sources] !== null &&
+            sources[source as keyof Sources] !== 0 &&
+            source !== "__typename"
+        ) {
             sourceCount += 1;
         }
     }
