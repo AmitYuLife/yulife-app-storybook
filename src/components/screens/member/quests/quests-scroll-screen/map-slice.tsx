@@ -15,6 +15,7 @@ export interface IChallenge extends GetCurrentWorld_getCurrentWorld {
 }
 
 interface IProps {
+    activeLevel: number;
     currentLevel: number;
     levels: IChallenge[];
     onPress?: () => void;
@@ -23,7 +24,11 @@ interface IProps {
 
 export default class MapSlice extends React.Component<IProps> {
     public shouldComponentUpdate(nextProps: IProps) {
-        return this.props.currentLevel !== nextProps.currentLevel || this.props.slice.id !== nextProps.slice.id;
+        return (
+            this.props.currentLevel !== nextProps.currentLevel ||
+            this.props.slice.id !== nextProps.slice.id ||
+            this.props.activeLevel !== nextProps.activeLevel
+        );
     }
 
     public render() {

@@ -59,6 +59,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <ScrollyQuest
+          activeLevel={1}
           currentLevel={1}
           data={
             Array [
@@ -735,6 +736,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "activeLevel": 1,
           "currentLevel": 1,
           "data": Array [
             Object {
@@ -1449,6 +1451,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <ScrollyQuest
+            activeLevel={1}
             currentLevel={1}
             data={
               Array [
@@ -2125,6 +2128,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "activeLevel": 1,
             "currentLevel": 1,
             "data": Array [
               Object {

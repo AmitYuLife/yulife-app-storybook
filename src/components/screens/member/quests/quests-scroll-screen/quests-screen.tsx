@@ -78,7 +78,7 @@ class QuestsScreen extends React.Component<IProps, IState> {
 
     public render() {
         const { UI } = this.state;
-        const { currentLevel, data, labels, onLeftMenuPress, unity, totalCoins } = this.props;
+        const { activeLevel, currentLevel, data, labels, onLeftMenuPress, unity, totalCoins } = this.props;
 
         if (unity) {
             const currentWorld = getCurrentWorld(unity);
@@ -96,6 +96,7 @@ class QuestsScreen extends React.Component<IProps, IState> {
             <SafeAreaView style={styles.wrapper} testID={QUESTS_SCREEN(getCurrentWorld(currentLevel))}>
                 <ScrollyQuest
                     currentLevel={currentLevel}
+                    activeLevel={activeLevel}
                     initialScrollIndex={initialScrollIndex}
                     data={slices}
                     levels={data}

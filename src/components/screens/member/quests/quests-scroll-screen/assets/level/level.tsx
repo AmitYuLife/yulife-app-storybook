@@ -51,7 +51,6 @@ export default class LevelBubble extends React.Component<IProps, IState> {
         return (
             nextState.nextAvailable !== this.state.nextAvailable ||
             nextProps.currentLevel !== this.props.currentLevel ||
-            nextProps.currentLevel !== this.props.currentLevel ||
             nextProps.level.isActive !== this.props.level.isActive ||
             nextProps.level.isDone !== this.props.level.isDone ||
             nextProps.level.isNext !== this.props.level.isNext ||
