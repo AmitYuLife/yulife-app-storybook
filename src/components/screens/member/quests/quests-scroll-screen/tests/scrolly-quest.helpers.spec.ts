@@ -4,7 +4,8 @@ import { IChallenge } from "../quests-screen";
 import { shouldScrollyQuestUpdate } from "../scrolly-quest.helpers";
 
 const currentProps = {
-    currentLevel: 0,
+    currentLevel: 1,
+    activeLevel: 1,
     setFlatListRef: jest.fn(),
     offsets: [100],
     initialScrollIndex: 1,

@@ -7,6 +7,7 @@ import { IChallenge } from "../quests-screen";
 
 const defaultProps = {
     currentLevel: 1,
+    activeLevel: 1,
     slice: WorldSlices[0],
     levels: [
         {

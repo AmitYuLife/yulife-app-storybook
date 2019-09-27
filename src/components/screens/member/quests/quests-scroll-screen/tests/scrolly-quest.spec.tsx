@@ -7,6 +7,7 @@ import ScrollyQuest from "../scrolly-quest";
 
 const defaultProps = {
     currentLevel: 1,
+    activeLevel: 1,
     data: WorldSlices.slice(0, 28),
     initialScrollIndex: 0,
     setFlatListRef: jest.fn(),

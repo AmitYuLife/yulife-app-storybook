@@ -9,6 +9,7 @@ import { shouldScrollyQuestUpdate } from "./scrolly-quest.helpers";
 export interface IScrollQuestProps {
     data: IMapSlice[];
     initialScrollIndex: number;
+    activeLevel: number;
     currentLevel: number;
     levels: IChallenge[];
     onViewableItemsChanged?: any;
@@ -56,7 +57,12 @@ class ScrollyQuest extends React.Component<IScrollQuestProps> {
     private keyExtractor = (level: IMapSlice) => level.id;
 
     private renderItem: ListRenderItem<IMapSlice> = ({ item }) => (
-        <MapSlice currentLevel={this.props.currentLevel} levels={this.getSlicedLevels(item)} slice={item} />
+        <MapSlice
+            activeLevel={this.props.activeLevel}
+            currentLevel={this.props.currentLevel}
+            levels={this.getSlicedLevels(item)}
+            slice={item}
+        />
     );
 
     private getItemLayout = (_: any, index: number) => ({
