@@ -42,6 +42,9 @@ class TodayYucoinContainer extends PureComponent<Props> {
                         challenge: null,
                         levelSlot: null
                     });
+
+                    const surgeMultiplier = exchangeRate && exchangeRate.yucoin;
+
                     const activeChallenge: ChallengeToday =
                         challenge && challenge.incomingData
                             ? {
@@ -66,8 +69,8 @@ class TodayYucoinContainer extends PureComponent<Props> {
                             showCta={challengesStatus.isAvailable}
                             ctaLabel={this.getCtaLabel(challengesStatus.done, !!activeChallenge)}
                             isShowingPassiveMeditation={false}
-                            isStepsSurge={false}
-                            isMeditationSurge={false}
+                            isStepsSurge={surgeMultiplier > 1}
+                            isMeditationSurge={surgeMultiplier > 1}
                         />
                     );
                 }}

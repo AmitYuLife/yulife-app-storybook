@@ -373,7 +373,8 @@ ShallowWrapper {
                       }
                     }
                   >
-                    6:40 mindful minutes
+                    6:
+                                        40 mindful minutes
                   </YuText>
                   <React.Fragment>
                     <View
@@ -384,7 +385,7 @@ ShallowWrapper {
                           "borderRadius": 40,
                           "borderWidth": 2,
                           "justifyContent": "center",
-                          "marginLeft": 10,
+                          "marginLeft": 18,
                           "paddingHorizontal": 16,
                           "paddingVertical": 8,
                         }
@@ -429,7 +430,8 @@ ShallowWrapper {
                       }
                     }
                   >
-                    2 yucoin for 15 min
+                    2 yucoin for
+                                        15 min
                   </YuText>
                 </View>
                 <View
@@ -999,7 +1001,8 @@ ShallowWrapper {
                         }
                       }
                     >
-                      6:40 mindful minutes
+                      6:
+                                        40 mindful minutes
                     </YuText>
                     <React.Fragment>
                       <View
@@ -1010,7 +1013,7 @@ ShallowWrapper {
                             "borderRadius": 40,
                             "borderWidth": 2,
                             "justifyContent": "center",
-                            "marginLeft": 10,
+                            "marginLeft": 18,
                             "paddingHorizontal": 16,
                             "paddingVertical": 8,
                           }
@@ -1055,7 +1058,8 @@ ShallowWrapper {
                         }
                       }
                     >
-                      2 yucoin for 15 min
+                      2 yucoin for
+                                        15 min
                     </YuText>
                   </View>
                   <View
@@ -1705,7 +1709,8 @@ ShallowWrapper {
                           }
                         }
                       >
-                        6:40 mindful minutes
+                        6:
+                                        40 mindful minutes
                       </YuText>
                       <React.Fragment>
                         <View
@@ -1716,7 +1721,7 @@ ShallowWrapper {
                               "borderRadius": 40,
                               "borderWidth": 2,
                               "justifyContent": "center",
-                              "marginLeft": 10,
+                              "marginLeft": 18,
                               "paddingHorizontal": 16,
                               "paddingVertical": 8,
                             }
@@ -1761,7 +1766,8 @@ ShallowWrapper {
                           }
                         }
                       >
-                        2 yucoin for 15 min
+                        2 yucoin for
+                                        15 min
                       </YuText>
                     </View>
                     <View
@@ -2294,7 +2300,8 @@ ShallowWrapper {
                             }
                           }
                         >
-                          6:40 mindful minutes
+                          6:
+                                        40 mindful minutes
                         </YuText>
                         <React.Fragment>
                           <View
@@ -2305,7 +2312,7 @@ ShallowWrapper {
                                 "borderRadius": 40,
                                 "borderWidth": 2,
                                 "justifyContent": "center",
-                                "marginLeft": 10,
+                                "marginLeft": 18,
                                 "paddingHorizontal": 16,
                                 "paddingVertical": 8,
                               }
@@ -2350,7 +2357,8 @@ ShallowWrapper {
                             }
                           }
                         >
-                          2 yucoin for 15 min
+                          2 yucoin for
+                                        15 min
                         </YuText>
                       </View>
                       <View
@@ -3079,7 +3087,8 @@ ShallowWrapper {
                               }
                             }
                           >
-                            6:40 mindful minutes
+                            6:
+                                        40 mindful minutes
                           </YuText>
                           <React.Fragment>
                             <View
@@ -3090,7 +3099,7 @@ ShallowWrapper {
                                   "borderRadius": 40,
                                   "borderWidth": 2,
                                   "justifyContent": "center",
-                                  "marginLeft": 10,
+                                  "marginLeft": 18,
                                   "paddingHorizontal": 16,
                                   "paddingVertical": 8,
                                 }
@@ -3135,7 +3144,8 @@ ShallowWrapper {
                               }
                             }
                           >
-                            2 yucoin for 15 min
+                            2 yucoin for
+                                        15 min
                           </YuText>
                         </View>,
                         <View
@@ -3249,7 +3259,8 @@ ShallowWrapper {
                                 }
                               }
                             >
-                              6:40 mindful minutes
+                              6:
+                                        40 mindful minutes
                             </YuText>,
                             <React.Fragment>
                               <View
@@ -3260,7 +3271,7 @@ ShallowWrapper {
                                     "borderRadius": 40,
                                     "borderWidth": 2,
                                     "justifyContent": "center",
-                                    "marginLeft": 10,
+                                    "marginLeft": 18,
                                     "paddingHorizontal": 16,
                                     "paddingVertical": 8,
                                   }
@@ -3301,13 +3312,15 @@ ShallowWrapper {
                             "key": undefined,
                             "nodeType": "function",
                             "props": Object {
-                              "children": "6:40 mindful minutes",
+                              "children": "6:
+                                        40 mindful minutes",
                               "style": Object {
                                 "fontSize": 32,
                               },
                             },
                             "ref": null,
-                            "rendered": "6:40 mindful minutes",
+                            "rendered": "6:
+                                        40 mindful minutes",
                             "type": [Function],
                           },
                           Object {
@@ -3323,7 +3336,7 @@ ShallowWrapper {
                                     "borderRadius": 40,
                                     "borderWidth": 2,
                                     "justifyContent": "center",
-                                    "marginLeft": 10,
+                                    "marginLeft": 18,
                                     "paddingHorizontal": 16,
                                     "paddingVertical": 8,
                                   }
@@ -3363,7 +3376,7 @@ ShallowWrapper {
                                   "borderRadius": 40,
                                   "borderWidth": 2,
                                   "justifyContent": "center",
-                                  "marginLeft": 10,
+                                  "marginLeft": 18,
                                   "paddingHorizontal": 16,
                                   "paddingVertical": 8,
                                 },
@@ -3419,7 +3432,8 @@ ShallowWrapper {
                               }
                             }
                           >
-                            2 yucoin for 15 min
+                            2 yucoin for
+                                        15 min
                           </YuText>,
                           "style": Object {
                             "flexDirection": "row",
@@ -3432,14 +3446,16 @@ ShallowWrapper {
                           "key": undefined,
                           "nodeType": "function",
                           "props": Object {
-                            "children": "2 yucoin for 15 min",
+                            "children": "2 yucoin for
+                                        15 min",
                             "style": Object {
                               "color": "rgb(170,170,170)",
                               "fontSize": 26,
                             },
                           },
                           "ref": null,
-                          "rendered": "2 yucoin for 15 min",
+                          "rendered": "2 yucoin for
+                                        15 min",
                           "type": [Function],
                         },
                         "type": [Function],
@@ -4774,7 +4790,8 @@ ShallowWrapper {
                         }
                       }
                     >
-                      6:40 mindful minutes
+                      6:
+                                        40 mindful minutes
                     </YuText>
                     <React.Fragment>
                       <View
@@ -4785,7 +4802,7 @@ ShallowWrapper {
                             "borderRadius": 40,
                             "borderWidth": 2,
                             "justifyContent": "center",
-                            "marginLeft": 10,
+                            "marginLeft": 18,
                             "paddingHorizontal": 16,
                             "paddingVertical": 8,
                           }
@@ -4830,7 +4847,8 @@ ShallowWrapper {
                         }
                       }
                     >
-                      2 yucoin for 15 min
+                      2 yucoin for
+                                        15 min
                     </YuText>
                   </View>
                   <View
@@ -5400,7 +5418,8 @@ ShallowWrapper {
                           }
                         }
                       >
-                        6:40 mindful minutes
+                        6:
+                                        40 mindful minutes
                       </YuText>
                       <React.Fragment>
                         <View
@@ -5411,7 +5430,7 @@ ShallowWrapper {
                               "borderRadius": 40,
                               "borderWidth": 2,
                               "justifyContent": "center",
-                              "marginLeft": 10,
+                              "marginLeft": 18,
                               "paddingHorizontal": 16,
                               "paddingVertical": 8,
                             }
@@ -5456,7 +5475,8 @@ ShallowWrapper {
                           }
                         }
                       >
-                        2 yucoin for 15 min
+                        2 yucoin for
+                                        15 min
                       </YuText>
                     </View>
                     <View
@@ -6106,7 +6126,8 @@ ShallowWrapper {
                             }
                           }
                         >
-                          6:40 mindful minutes
+                          6:
+                                        40 mindful minutes
                         </YuText>
                         <React.Fragment>
                           <View
@@ -6117,7 +6138,7 @@ ShallowWrapper {
                                 "borderRadius": 40,
                                 "borderWidth": 2,
                                 "justifyContent": "center",
-                                "marginLeft": 10,
+                                "marginLeft": 18,
                                 "paddingHorizontal": 16,
                                 "paddingVertical": 8,
                               }
@@ -6162,7 +6183,8 @@ ShallowWrapper {
                             }
                           }
                         >
-                          2 yucoin for 15 min
+                          2 yucoin for
+                                        15 min
                         </YuText>
                       </View>
                       <View
@@ -6695,7 +6717,8 @@ ShallowWrapper {
                               }
                             }
                           >
-                            6:40 mindful minutes
+                            6:
+                                        40 mindful minutes
                           </YuText>
                           <React.Fragment>
                             <View
@@ -6706,7 +6729,7 @@ ShallowWrapper {
                                   "borderRadius": 40,
                                   "borderWidth": 2,
                                   "justifyContent": "center",
-                                  "marginLeft": 10,
+                                  "marginLeft": 18,
                                   "paddingHorizontal": 16,
                                   "paddingVertical": 8,
                                 }
@@ -6751,7 +6774,8 @@ ShallowWrapper {
                               }
                             }
                           >
-                            2 yucoin for 15 min
+                            2 yucoin for
+                                        15 min
                           </YuText>
                         </View>
                         <View
@@ -7480,7 +7504,8 @@ ShallowWrapper {
                                 }
                               }
                             >
-                              6:40 mindful minutes
+                              6:
+                                        40 mindful minutes
                             </YuText>
                             <React.Fragment>
                               <View
@@ -7491,7 +7516,7 @@ ShallowWrapper {
                                     "borderRadius": 40,
                                     "borderWidth": 2,
                                     "justifyContent": "center",
-                                    "marginLeft": 10,
+                                    "marginLeft": 18,
                                     "paddingHorizontal": 16,
                                     "paddingVertical": 8,
                                   }
@@ -7536,7 +7561,8 @@ ShallowWrapper {
                                 }
                               }
                             >
-                              2 yucoin for 15 min
+                              2 yucoin for
+                                        15 min
                             </YuText>
                           </View>,
                           <View
@@ -7650,7 +7676,8 @@ ShallowWrapper {
                                   }
                                 }
                               >
-                                6:40 mindful minutes
+                                6:
+                                        40 mindful minutes
                               </YuText>,
                               <React.Fragment>
                                 <View
@@ -7661,7 +7688,7 @@ ShallowWrapper {
                                       "borderRadius": 40,
                                       "borderWidth": 2,
                                       "justifyContent": "center",
-                                      "marginLeft": 10,
+                                      "marginLeft": 18,
                                       "paddingHorizontal": 16,
                                       "paddingVertical": 8,
                                     }
@@ -7702,13 +7729,15 @@ ShallowWrapper {
                               "key": undefined,
                               "nodeType": "function",
                               "props": Object {
-                                "children": "6:40 mindful minutes",
+                                "children": "6:
+                                        40 mindful minutes",
                                 "style": Object {
                                   "fontSize": 32,
                                 },
                               },
                               "ref": null,
-                              "rendered": "6:40 mindful minutes",
+                              "rendered": "6:
+                                        40 mindful minutes",
                               "type": [Function],
                             },
                             Object {
@@ -7724,7 +7753,7 @@ ShallowWrapper {
                                       "borderRadius": 40,
                                       "borderWidth": 2,
                                       "justifyContent": "center",
-                                      "marginLeft": 10,
+                                      "marginLeft": 18,
                                       "paddingHorizontal": 16,
                                       "paddingVertical": 8,
                                     }
@@ -7764,7 +7793,7 @@ ShallowWrapper {
                                     "borderRadius": 40,
                                     "borderWidth": 2,
                                     "justifyContent": "center",
-                                    "marginLeft": 10,
+                                    "marginLeft": 18,
                                     "paddingHorizontal": 16,
                                     "paddingVertical": 8,
                                   },
@@ -7820,7 +7849,8 @@ ShallowWrapper {
                                 }
                               }
                             >
-                              2 yucoin for 15 min
+                              2 yucoin for
+                                        15 min
                             </YuText>,
                             "style": Object {
                               "flexDirection": "row",
@@ -7833,14 +7863,16 @@ ShallowWrapper {
                             "key": undefined,
                             "nodeType": "function",
                             "props": Object {
-                              "children": "2 yucoin for 15 min",
+                              "children": "2 yucoin for
+                                        15 min",
                               "style": Object {
                                 "color": "rgb(170,170,170)",
                                 "fontSize": 26,
                               },
                             },
                             "ref": null,
-                            "rendered": "2 yucoin for 15 min",
+                            "rendered": "2 yucoin for
+                                        15 min",
                             "type": [Function],
                           },
                           "type": [Function],
@@ -9076,7 +9108,7 @@ ShallowWrapper {
                         "borderRadius": 40,
                         "borderWidth": 2,
                         "justifyContent": "center",
-                        "marginLeft": 10,
+                        "marginLeft": 18,
                         "paddingHorizontal": 16,
                         "paddingVertical": 8,
                       }
@@ -9090,7 +9122,8 @@ ShallowWrapper {
                         }
                       }
                     >
-                      Surge x2
+                      Surge x
+                      2
                     </YuText>
                   </View>
                 </React.Fragment>
@@ -9559,7 +9592,7 @@ ShallowWrapper {
                           "borderRadius": 40,
                           "borderWidth": 2,
                           "justifyContent": "center",
-                          "marginLeft": 10,
+                          "marginLeft": 18,
                           "paddingHorizontal": 16,
                           "paddingVertical": 8,
                         }
@@ -9573,7 +9606,8 @@ ShallowWrapper {
                           }
                         }
                       >
-                        Surge x2
+                        Surge x
+                        2
                       </YuText>
                     </View>
                   </React.Fragment>
@@ -10122,7 +10156,7 @@ ShallowWrapper {
                             "borderRadius": 40,
                             "borderWidth": 2,
                             "justifyContent": "center",
-                            "marginLeft": 10,
+                            "marginLeft": 18,
                             "paddingHorizontal": 16,
                             "paddingVertical": 8,
                           }
@@ -10136,7 +10170,8 @@ ShallowWrapper {
                             }
                           }
                         >
-                          Surge x2
+                          Surge x
+                          2
                         </YuText>
                       </View>
                     </React.Fragment>
@@ -10568,7 +10603,7 @@ ShallowWrapper {
                               "borderRadius": 40,
                               "borderWidth": 2,
                               "justifyContent": "center",
-                              "marginLeft": 10,
+                              "marginLeft": 18,
                               "paddingHorizontal": 16,
                               "paddingVertical": 8,
                             }
@@ -10582,7 +10617,8 @@ ShallowWrapper {
                               }
                             }
                           >
-                            Surge x2
+                            Surge x
+                            2
                           </YuText>
                         </View>
                       </React.Fragment>
@@ -10786,7 +10822,7 @@ ShallowWrapper {
                                 "borderRadius": 40,
                                 "borderWidth": 2,
                                 "justifyContent": "center",
-                                "marginLeft": 10,
+                                "marginLeft": 18,
                                 "paddingHorizontal": 16,
                                 "paddingVertical": 8,
                               }
@@ -10800,7 +10836,8 @@ ShallowWrapper {
                                 }
                               }
                             >
-                              Surge x2
+                              Surge x
+                              2
                             </YuText>
                           </View>
                         </React.Fragment>,
@@ -10849,7 +10886,7 @@ ShallowWrapper {
                                 "borderRadius": 40,
                                 "borderWidth": 2,
                                 "justifyContent": "center",
-                                "marginLeft": 10,
+                                "marginLeft": 18,
                                 "paddingHorizontal": 16,
                                 "paddingVertical": 8,
                               }
@@ -10863,7 +10900,8 @@ ShallowWrapper {
                                 }
                               }
                             >
-                              Surge x2
+                              Surge x
+                              2
                             </YuText>
                           </View>,
                         },
@@ -10881,7 +10919,8 @@ ShallowWrapper {
                                 }
                               }
                             >
-                              Surge x2
+                              Surge x
+                              2
                             </YuText>,
                             "style": Object {
                               "alignItems": "center",
@@ -10889,7 +10928,7 @@ ShallowWrapper {
                               "borderRadius": 40,
                               "borderWidth": 2,
                               "justifyContent": "center",
-                              "marginLeft": 10,
+                              "marginLeft": 18,
                               "paddingHorizontal": 16,
                               "paddingVertical": 8,
                             },
@@ -10900,14 +10939,20 @@ ShallowWrapper {
                             "key": undefined,
                             "nodeType": "function",
                             "props": Object {
-                              "children": "Surge x2",
+                              "children": Array [
+                                "Surge x",
+                                2,
+                              ],
                               "style": Object {
                                 "color": "rgb(216, 139, 37)",
                                 "fontSize": 26,
                               },
                             },
                             "ref": null,
-                            "rendered": "Surge x2",
+                            "rendered": Array [
+                              "Surge x",
+                              2,
+                            ],
                             "type": [Function],
                           },
                           "type": [Function],
@@ -12301,7 +12346,7 @@ ShallowWrapper {
                           "borderRadius": 40,
                           "borderWidth": 2,
                           "justifyContent": "center",
-                          "marginLeft": 10,
+                          "marginLeft": 18,
                           "paddingHorizontal": 16,
                           "paddingVertical": 8,
                         }
@@ -12315,7 +12360,8 @@ ShallowWrapper {
                           }
                         }
                       >
-                        Surge x2
+                        Surge x
+                        2
                       </YuText>
                     </View>
                   </React.Fragment>
@@ -12784,7 +12830,7 @@ ShallowWrapper {
                             "borderRadius": 40,
                             "borderWidth": 2,
                             "justifyContent": "center",
-                            "marginLeft": 10,
+                            "marginLeft": 18,
                             "paddingHorizontal": 16,
                             "paddingVertical": 8,
                           }
@@ -12798,7 +12844,8 @@ ShallowWrapper {
                             }
                           }
                         >
-                          Surge x2
+                          Surge x
+                          2
                         </YuText>
                       </View>
                     </React.Fragment>
@@ -13347,7 +13394,7 @@ ShallowWrapper {
                               "borderRadius": 40,
                               "borderWidth": 2,
                               "justifyContent": "center",
-                              "marginLeft": 10,
+                              "marginLeft": 18,
                               "paddingHorizontal": 16,
                               "paddingVertical": 8,
                             }
@@ -13361,7 +13408,8 @@ ShallowWrapper {
                               }
                             }
                           >
-                            Surge x2
+                            Surge x
+                            2
                           </YuText>
                         </View>
                       </React.Fragment>
@@ -13793,7 +13841,7 @@ ShallowWrapper {
                                 "borderRadius": 40,
                                 "borderWidth": 2,
                                 "justifyContent": "center",
-                                "marginLeft": 10,
+                                "marginLeft": 18,
                                 "paddingHorizontal": 16,
                                 "paddingVertical": 8,
                               }
@@ -13807,7 +13855,8 @@ ShallowWrapper {
                                 }
                               }
                             >
-                              Surge x2
+                              Surge x
+                              2
                             </YuText>
                           </View>
                         </React.Fragment>
@@ -14011,7 +14060,7 @@ ShallowWrapper {
                                   "borderRadius": 40,
                                   "borderWidth": 2,
                                   "justifyContent": "center",
-                                  "marginLeft": 10,
+                                  "marginLeft": 18,
                                   "paddingHorizontal": 16,
                                   "paddingVertical": 8,
                                 }
@@ -14025,7 +14074,8 @@ ShallowWrapper {
                                   }
                                 }
                               >
-                                Surge x2
+                                Surge x
+                                2
                               </YuText>
                             </View>
                           </React.Fragment>,
@@ -14074,7 +14124,7 @@ ShallowWrapper {
                                   "borderRadius": 40,
                                   "borderWidth": 2,
                                   "justifyContent": "center",
-                                  "marginLeft": 10,
+                                  "marginLeft": 18,
                                   "paddingHorizontal": 16,
                                   "paddingVertical": 8,
                                 }
@@ -14088,7 +14138,8 @@ ShallowWrapper {
                                   }
                                 }
                               >
-                                Surge x2
+                                Surge x
+                                2
                               </YuText>
                             </View>,
                           },
@@ -14106,7 +14157,8 @@ ShallowWrapper {
                                   }
                                 }
                               >
-                                Surge x2
+                                Surge x
+                                2
                               </YuText>,
                               "style": Object {
                                 "alignItems": "center",
@@ -14114,7 +14166,7 @@ ShallowWrapper {
                                 "borderRadius": 40,
                                 "borderWidth": 2,
                                 "justifyContent": "center",
-                                "marginLeft": 10,
+                                "marginLeft": 18,
                                 "paddingHorizontal": 16,
                                 "paddingVertical": 8,
                               },
@@ -14125,14 +14177,20 @@ ShallowWrapper {
                               "key": undefined,
                               "nodeType": "function",
                               "props": Object {
-                                "children": "Surge x2",
+                                "children": Array [
+                                  "Surge x",
+                                  2,
+                                ],
                                 "style": Object {
                                   "color": "rgb(216, 139, 37)",
                                   "fontSize": 26,
                                 },
                               },
                               "ref": null,
-                              "rendered": "Surge x2",
+                              "rendered": Array [
+                                "Surge x",
+                                2,
+                              ],
                               "type": [Function],
                             },
                             "type": [Function],

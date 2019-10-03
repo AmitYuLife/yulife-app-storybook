@@ -113,7 +113,7 @@ export default function TodayYucoinScreen({
                             {!isStepsSurge ? null : (
                                 <>
                                     <View style={styles.surgeWrapper}>
-                                        <Text style={styles.surge}>Surge x2</Text>
+                                        <Text style={styles.surge}>Surge x{exchangeRate.yucoin}</Text>
                                     </View>
                                 </>
                             )}
@@ -153,9 +153,10 @@ export default function TodayYucoinScreen({
                         {!isShowingPassiveMeditation ? null : (
                             <>
                                 <View style={styles.passiveChallengeWrapper}>
-                                    <Text style={styles.steps}>{`${meditationSecondsDisplay.minutes}:${
-                                        meditationSecondsDisplay.seconds
-                                    } mindful minutes`}</Text>
+                                    <Text style={styles.steps}>
+                                        {`${meditationSecondsDisplay.minutes}:
+                                        ${meditationSecondsDisplay.seconds} mindful minutes`}
+                                    </Text>
                                     {!isMeditationSurge ? null : (
                                         <>
                                             <View style={styles.surgeWrapper}>
@@ -167,9 +168,8 @@ export default function TodayYucoinScreen({
                                 </View>
                                 <View style={styles.passiveChallengeInstructionsWrapper}>
                                     <Text style={styles.passiveChallengeInstructions}>
-                                        {`${meditationExchangeRate.yucoin} yucoin for ${
-                                            meditationExchangeRateDisplay.minutes
-                                        } min`}
+                                        {`${meditationExchangeRate.yucoin} yucoin for
+                                        ${meditationExchangeRateDisplay.minutes} min`}
                                     </Text>
                                 </View>
                                 <View style={styles.progressWrapper}>
