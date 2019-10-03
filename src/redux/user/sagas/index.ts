@@ -1,5 +1,5 @@
 import { takeLatest } from "redux-saga/effects";
-import { AUTHENTICATED } from "../../app/app.actions";
+import { AUTHENTICATED, UPDATE_APP_STATE } from "../../app/app.actions";
 import { CHALLENGE_RESET_SUCCESS } from "../../levels/levels.actions";
 import {
     FITKIT_CONSENT_AUTHORISED,
@@ -14,6 +14,7 @@ import {
     UPDATE_USER_CONSENT
 } from "../user.actions";
 
+import fetchConnectionsSaga from "./fetchConnectionsSaga.sagas";
 import fetchUserOnAppStateChangeSaga from "./fetchUserOnAppStateChange.saga";
 import fitKitConsentAuthorisedSaga from "./fitKitConsentAuthorised.saga";
 import getUserDataSaga from "./getUserData.saga";
@@ -40,5 +41,6 @@ export default [
     takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
     takeLatest(LOGOUT, logOutSaga),
     takeLatest(OPEN_MEMBER_ZONE, openMemberZoneSaga),
-    takeLatest(UPDATE_CONNECTION_START, updateConnectionSaga)
+    takeLatest(UPDATE_CONNECTION_START, updateConnectionSaga),
+    takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga)
 ];
