@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
         borderRadius: Style.SCALE_UP_AND_DOWN(20),
         borderColor: "rgb(216, 139, 37)",
         borderWidth: Style.SCALE_UP_AND_DOWN(1),
-        marginLeft: 10
+        marginLeft: Style.SCALE_UP_AND_DOWN(9)
     } as ViewStyle,
     surge: {
         fontSize: Style.SCALE_UP_AND_DOWN(13),
