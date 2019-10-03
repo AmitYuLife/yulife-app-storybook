@@ -1,6 +1,8 @@
-import { deleteConnectionWithClient } from "@graphql/connections";
+import { deleteConnectionWithClient, getCurrentUserConnectionsWithClient } from "@graphql/connections";
 import updateLeaderboardConsentGql from "@graphql/member/updateLeaderboardConsent.gql";
 import updateMemberConsentGql from "@graphql/member/updateMemberConsent.gql";
+import { UPDATE_APP_STATE } from "@redux/app/app.actions";
+import { getActiveLevel } from "@redux/levels/levels.selectors";
 import getUserData from "@redux/user/sagas/getUserData.saga";
 import updateConnectionSaga from "@redux/user/sagas/updateConnection.saga";
 import updateLeaderboardConsentSaga from "@redux/user/sagas/updateLeaderboardConsent.saga";
@@ -15,10 +17,11 @@ import {
     updateLeaderboardConsentSuccess,
     updateUserConsentSuccess
 } from "@redux/user/user.actions";
-import { Connection } from "@redux/user/user.selectors";
-import { Linking } from "react-native";
-import { call, put } from "redux-saga/effects";
+import { Connection, getUserConnections } from "@redux/user/user.selectors";
+import { AppStateStatus, Linking } from "react-native";
+import { call, put, select } from "redux-saga/effects";
 import { compareSagaActionsWithNoVisualDifference } from "../../../../jest/tests-utils";
+import fetchConnectionsSaga from "../sagas/fetchConnectionsSaga.sagas";
 
 const testConnection: Connection = {
     name: "testConnection",
@@ -89,12 +92,6 @@ describe("updateConnectionSaga", async () => {
         actual = testSaga.next(response);
         expected = call(() => Linking.openURL(response.data.getNewConnectionLink));
         compareSagaActionsWithNoVisualDifference(actual, expected);
-        expect(actual.done).toEqual(false);
-
-        actual = testSaga.next();
-        actual = testSaga.next();
-        expected = put(updateConnectionSuccess({ ...action.payload, isConnected: true }));
-        expect(actual.value).toEqual(expected);
         expect(actual.done).toEqual(false);
 
         actual = testSaga.next();
@@ -182,5 +179,64 @@ describe("updateUserConsentSaga", async () => {
 
         actual = testSaga.next();
         expect(actual.done).toEqual(true);
+    });
+});
+
+describe("fetchConnectionsSaga", async () => {
+    it("should call fetchConnectionsSaga correctly", async () => {
+        const action = {
+            payload: "active" as AppStateStatus,
+            type: UPDATE_APP_STATE
+        };
+        const testSaga = fetchConnectionsSaga(action);
+        const mockActiveLevel = {
+            level: 1,
+            levelSlotId: "YULIFE_SHORT_STROLL_1"
+        };
+        const mockConnections = [
+            {
+                name: "fitbit",
+                isConnected: false,
+                isLoading: true,
+                lastUpdated: 123124112124
+            },
+            {
+                name: "garmin",
+                isConnected: false,
+                isLoading: false,
+                lastUpdated: 241241
+            }
+        ];
+
+        let actual: any = testSaga.next();
+        let expected: any = select(getActiveLevel);
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next(mockActiveLevel);
+        expected = select(getUserConnections);
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next(mockConnections);
+        expected = call(getCurrentUserConnectionsWithClient);
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next([
+            {
+                name: "fitbit",
+                isConnected: false,
+                isLoading: true,
+                lastUpdated: 123124112124
+            }
+        ]);
+        expected = put(
+            updateConnectionSuccess({
+                name: "fitbit",
+                isConnected: false,
+                lastUpdated: 123124112124
+            })
+        );
     });
 });
