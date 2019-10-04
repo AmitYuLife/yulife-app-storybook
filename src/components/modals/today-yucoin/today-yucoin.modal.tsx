@@ -1,3 +1,4 @@
+import { getUserFeatures } from "@redux/user/user.selectors";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Platform } from "react-native";
@@ -28,7 +29,7 @@ type Props = IProps & ConnectedState;
 
 class TodayYucoinContainer extends PureComponent<Props> {
     public render() {
-        const { challengesStatus, dailyStepsEarned, exchangeRate, steps } = this.props;
+        const { challengesStatus, dailyStepsEarned, exchangeRate, features, steps } = this.props;
 
         return (
             <GetCurrentUserQuery
@@ -69,8 +70,8 @@ class TodayYucoinContainer extends PureComponent<Props> {
                             showCta={challengesStatus.isAvailable}
                             ctaLabel={this.getCtaLabel(challengesStatus.done, !!activeChallenge)}
                             isShowingPassiveMeditation={false}
-                            isStepsSurge={surgeMultiplier > 1}
-                            isMeditationSurge={surgeMultiplier > 1}
+                            isStepsSurge={features.showSurge && surgeMultiplier > 1}
+                            isMeditationSurge={features.showSurge && surgeMultiplier > 1}
                         />
                     );
                 }}
@@ -99,7 +100,8 @@ const mapStateToProps = (state: IReduxState) => ({
     challengesStatus: getChallengesStatus(state),
     dailyStepsEarned: getDailyStepsCoins(state),
     exchangeRate: getExchangeRate(state),
-    steps: getDailySteps(state)
+    steps: getDailySteps(state),
+    features: getUserFeatures(state)
 });
 
 export default connect<ConnectedState>(mapStateToProps)(TodayYucoinContainer);
