@@ -1,6 +1,9 @@
+import BlurProvider from "@atoms/blur/blur-provider";
 import { RedeemRewardFunctionType, RedeemRewardMutation } from "@graphql/rewards";
-import * as React from "react";
+import ListPicker from "@molecules/list-picker/list-picker";
+import { getUserFeatures } from "@redux/user/user.selectors";
 import { Component } from "react";
+import * as React from "react";
 import { Alert, Linking } from "react-native";
 import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
@@ -27,6 +30,11 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
 class WegiftRewardDetailsContainer extends Component<Props> {
+    public state = {
+        yucoin: this.props.reward.available_denominations[0].yuCoin,
+        rewardValue: this.props.reward.available_denominations[0].value
+    };
+
     public componentDidMount() {
         const { reward } = this.props;
         // TODO: Move to sagas
@@ -40,6 +48,7 @@ class WegiftRewardDetailsContainer extends Component<Props> {
     }
 
     public render() {
+        const { yucoin, rewardValue } = this.state;
         const {
             totalCoins,
             reward: {
@@ -49,10 +58,11 @@ class WegiftRewardDetailsContainer extends Component<Props> {
                 redeem_steps: { steps },
                 available_denominations,
                 uiSettings
-            }
+            },
+            features
         } = this.props;
-        const [{ yuCoin, value }] = available_denominations;
-        const labelCtaPrimary = `buy with ${yuCoin} yucoin`;
+        const labelCtaPrimary = `buy with ${yucoin} yucoin`;
+        const showWegiftPicker = features.showWegiftPicker;
 
         return (
             <RedeemRewardMutation>
@@ -62,23 +72,54 @@ class WegiftRewardDetailsContainer extends Component<Props> {
                     };
 
                     return (
-                        <WegiftRewardDetailsScreen
-                            uiSettings={uiSettings}
-                            code={code}
-                            cost={yuCoin}
-                            rewardValue={value}
-                            rewardCurrency={currency_code}
-                            description={description}
-                            instructions={steps}
-                            onPressCtaPrimary={handleSubmit}
-                            labelCtaPrimary={labelCtaPrimary}
-                            onPressTerms={this.openPDFs("terms")}
-                            onPressPolicy={this.openPDFs("policy")}
-                            coins={totalCoins}
-                            isLoading={loading}
-                            onPressTopBar={this.handleRewardsPress}
-                            onLeftTabPress={this.handleRewardsPress}
-                            onRightTabPress={this.handlePurchasesPress}
+                        <BlurProvider
+                            type={BlurProvider.Types.DARK}
+                            render={({ toggleOverlay }) => (
+                                <WegiftRewardDetailsScreen
+                                    availableDenomitations={available_denominations}
+                                    uiSettings={uiSettings}
+                                    code={code}
+                                    cost={yucoin}
+                                    rewardValue={rewardValue}
+                                    rewardCurrency={currency_code}
+                                    description={description}
+                                    instructions={steps}
+                                    onPressCtaPrimary={handleSubmit}
+                                    onPressPicker={() => {
+                                        if (showWegiftPicker) {
+                                            toggleOverlay();
+                                        }
+                                    }}
+                                    showWegiftPicker={showWegiftPicker}
+                                    labelCtaPrimary={labelCtaPrimary}
+                                    onPressTerms={this.openPDFs("terms")}
+                                    onPressPolicy={this.openPDFs("policy")}
+                                    coins={totalCoins}
+                                    isLoading={loading}
+                                    onPressTopBar={this.handleRewardsPress}
+                                    onLeftTabPress={this.handleRewardsPress}
+                                    onRightTabPress={this.handlePurchasesPress}
+                                />
+                            )}
+                            renderOverlay={({ toggleOverlay }) => {
+                                if (!showWegiftPicker) {
+                                    return null;
+                                }
+                                return (
+                                    <ListPicker
+                                        onPressCancel={toggleOverlay}
+                                        instruction="Select the amount"
+                                        items={available_denominations.map(({ yuCoin, value }) => ({
+                                            id: String(value),
+                                            label: `£${value.toFixed(2)} - ${yuCoin} yucoin`,
+                                            onPress: () => {
+                                                this.setState({ yucoin: yuCoin, rewardValue: value });
+                                                toggleOverlay();
+                                            }
+                                        }))}
+                                    />
+                                );
+                            }}
                         />
                     );
                 }}
@@ -107,17 +148,16 @@ class WegiftRewardDetailsContainer extends Component<Props> {
 
     private handleRewardPurchase = (redeemReward: RedeemRewardFunctionType) => {
         const { offline, reward, totalCoins, copy } = this.props;
-
-        const [{ value, yuCoin }] = reward.available_denominations;
+        const { yucoin, rewardValue } = this.state;
         Alert.alert(
             "Confirm purchase",
-            `You'll purchase ${reward.name} £${value.toFixed(2)} voucher with ${yuCoin} yucoin.`,
+            `You'll purchase ${reward.name} £${rewardValue.toFixed(2)} voucher with ${yucoin} yucoin.`,
             [
                 { text: "Cancel", style: "cancel" },
                 {
                     onPress: async () => {
                         try {
-                            const result = await redeemReward({ variables: { id: reward.code, amount: value } });
+                            const result = await redeemReward({ variables: { id: reward.code, amount: rewardValue } });
 
                             if ((result as { data: RedeemReward }).data.redeemReward) {
                                 this.props.getUserStart();
@@ -145,7 +185,7 @@ class WegiftRewardDetailsContainer extends Component<Props> {
                                 passProps.ctaLabel = copy.offline.ctaLabel;
                                 passProps.heading = copy.offline.heading;
                                 passProps.subheading = copy.offline.subheading;
-                            } else if (totalCoins < yuCoin) {
+                            } else if (totalCoins < yucoin) {
                                 passProps.ctaLabel = copy.notEnoughCoins.ctaLabel;
                                 passProps.heading = copy.notEnoughCoins.heading;
                                 passProps.subheading = copy.notEnoughCoins.subheading;
@@ -170,7 +210,8 @@ class WegiftRewardDetailsContainer extends Component<Props> {
 const mapStateToProps = (state: IReduxState) => ({
     offline: getOfflineState(state),
     totalCoins: getTotalCoins(state),
-    copy: getCopy(state, "purchases")
+    copy: getCopy(state, "purchases"),
+    features: getUserFeatures(state)
 });
 
 const mapDispatchToProps = {

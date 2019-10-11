@@ -5,7 +5,9 @@ import RewardItemContent from "../reward-item-content";
 
 const defaultProps = {
     labelCtaPrimary: "Label 1",
-    onPressCtaPrimary: jest.fn()
+    onPressCtaPrimary: jest.fn(),
+    onPressPicker: jest.fn(),
+    rewardValue: 0
 };
 
 describe("RewardItemContent", () => {

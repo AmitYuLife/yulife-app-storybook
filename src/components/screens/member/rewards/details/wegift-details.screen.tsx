@@ -1,13 +1,16 @@
 import * as React from "react";
-import { SFC } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
-import { GetRewards_getRewards_uiSettings } from "../../../../../graphql/_core/schema";
+import {
+    GetRewards_getRewards_available_denominations as Denomitation,
+    GetRewards_getRewards_uiSettings as UiSettings
+} from "../../../../../graphql/_core/schema";
 import { Pad } from "../../../../atoms";
 import { RewardItemContent, RewardsListItem, RewardTabs, TopBar } from "../../../../molecules";
 import styles from "./wegift-details.screen.styles";
 
 interface IProps {
-    uiSettings: GetRewards_getRewards_uiSettings;
+    uiSettings: UiSettings;
+    availableDenomitations: Denomitation[];
     code: string;
     cost: number;
     rewardValue: number;
@@ -15,9 +18,11 @@ interface IProps {
     description: string;
     instructions: string[];
     onPressCtaPrimary: () => void;
+    onPressPicker?: () => void;
     labelCtaPrimary: string;
     linkType?: string;
     isLoading?: boolean;
+    showWegiftPicker?: boolean;
     onPressTerms: () => void;
     onPressPolicy: () => void;
     coins: number;
@@ -26,8 +31,9 @@ interface IProps {
     onRightTabPress: () => void;
 }
 
-const WegiftDetailsScreen: SFC<IProps> = ({
+const WegiftDetailsScreen: React.SFC<IProps> = ({
     uiSettings,
+    availableDenomitations = [],
     code,
     cost,
     rewardValue,
@@ -38,12 +44,14 @@ const WegiftDetailsScreen: SFC<IProps> = ({
     labelCtaPrimary,
     linkType,
     isLoading,
+    onPressPicker,
     onPressTerms,
     onPressPolicy,
     onPressTopBar,
     coins,
     onLeftTabPress,
-    onRightTabPress
+    onRightTabPress,
+    showWegiftPicker = false
 }) => (
     <SafeAreaView style={styles.wrapper}>
         <View>
@@ -56,13 +64,15 @@ const WegiftDetailsScreen: SFC<IProps> = ({
             <RewardsListItem
                 settings={uiSettings}
                 cost={cost}
-                linkType={linkType}
                 rewardValue={rewardValue}
+                linkType={linkType}
                 rewardCurrency={rewardCurrency}
                 code={code}
             />
             <View style={styles.scrollViewContentWrapper}>
                 <RewardItemContent
+                    rewardValue={rewardValue}
+                    onPressPicker={showWegiftPicker && availableDenomitations.length > 1 ? onPressPicker : null}
                     isLoadingPrimary={isLoading}
                     description={description}
                     instructions={instructions}

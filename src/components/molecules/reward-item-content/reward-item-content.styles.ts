@@ -25,6 +25,10 @@ export default StyleSheet.create({
         fontSize: Style.SCALE_UP_AND_DOWN(16),
         lineHeight: Style.SCALE_UP_AND_DOWN(23)
     } as TextStyle,
+    pickerWrapper: {
+        marginTop: Style.SCALE_UP_AND_DOWN(10),
+        width: "100%"
+    } as ViewStyle,
     primaryWrapper: {
         alignItems: "center",
         alignSelf: "center",
