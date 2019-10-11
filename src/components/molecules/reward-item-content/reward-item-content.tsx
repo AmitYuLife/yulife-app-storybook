@@ -1,12 +1,13 @@
+import { Button, Text } from "@atoms/index";
+import { Instruction, Picker } from "@molecules/index";
 import * as React from "react";
 import { SFC } from "react";
 import { View } from "react-native";
-import { Button, Text } from "../../atoms";
-import { Instruction } from "../../molecules";
 import LinkGroup from "../link-group/link-group";
 import styles from "./reward-item-content.styles";
 
 interface IProps {
+    rewardValue?: number;
     description?: string;
     instructions?: string[];
     labelCtaPrimary: string;
@@ -14,6 +15,7 @@ interface IProps {
     labelCtaTertiary?: string;
     isLoadingPrimary?: boolean;
     isLoadingSecondary?: boolean;
+    onPressPicker?: () => void | null;
     onPressCtaPrimary: () => void;
     onPressCtaSecondary?: () => void;
     onPressCtaTertiary?: () => void;
@@ -22,6 +24,7 @@ interface IProps {
 }
 
 const RewardItemContent: SFC<IProps> = ({
+    rewardValue,
     description = "",
     instructions = [],
     onPressCtaPrimary,
@@ -30,6 +33,7 @@ const RewardItemContent: SFC<IProps> = ({
     labelCtaPrimary,
     labelCtaSecondary,
     labelCtaTertiary,
+    onPressPicker,
     onPressTerms,
     onPressPolicy,
     isLoadingPrimary,
@@ -61,6 +65,16 @@ const RewardItemContent: SFC<IProps> = ({
                     ))}
                 </View>
             </>
+        )}
+        {!onPressPicker ? null : (
+            <View style={styles.pickerWrapper}>
+                <Picker
+                    placeholder="amount"
+                    label={`£${rewardValue.toFixed(2)}`}
+                    onPress={onPressPicker}
+                    icon={Picker.Icons.COINS}
+                />
+            </View>
         )}
         <Button
             wrapperStyle={styles.primaryWrapper}

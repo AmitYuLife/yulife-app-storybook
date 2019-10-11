@@ -1,7 +1,10 @@
 import { shallow } from "enzyme";
 import * as React from "react";
 import "react-native";
-import { GetRewards_getRewards_uiSettings } from "../../../../../../graphql/_core/schema";
+import {
+    GetRewards_getRewards_available_denominations,
+    GetRewards_getRewards_uiSettings
+} from "../../../../../../graphql/_core/schema";
 import WegiftDetailsScreen from "../wegift-details.screen";
 
 const defaultProps = {
@@ -29,8 +32,10 @@ const defaultProps = {
     onPressTerms: jest.fn(),
     onPressTopBar: jest.fn(),
     onRightTabPress: jest.fn(),
+    onPressPicker: jest.fn(),
     rewardCurrency: "AVIOS",
     rewardValue: 123,
+    availableDenomitations: [] as GetRewards_getRewards_available_denominations[],
     uiSettings: {
         __typename: "RewardUiSettings",
         logoHeight: 1234,

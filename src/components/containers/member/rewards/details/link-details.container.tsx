@@ -43,7 +43,8 @@ class LinkRewardDetailsContainer extends Component<Props> {
                 description,
                 redeem_steps: { steps },
                 uiSettings,
-                link_type
+                link_type,
+                available_denominations
             }
         } = this.props;
         const labelCtaPrimary = uiSettings.ctaLabel || "claim reward";
@@ -52,6 +53,8 @@ class LinkRewardDetailsContainer extends Component<Props> {
             <RedeemRewardMutation>
                 {(redeemReward, { loading }) => (
                     <WegiftRewardDetailsScreen
+                        availableDenomitations={available_denominations}
+                        onPressPicker={() => ({})}
                         uiSettings={uiSettings}
                         code={code}
                         linkType={link_type}

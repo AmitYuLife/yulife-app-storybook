@@ -4,6 +4,7 @@ exports[`RewardsListScreen should render without data 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <WegiftDetailsScreen
+    availableDenomitations={Array []}
     code="1234"
     coins={123}
     cost={1234}
@@ -32,6 +33,7 @@ ShallowWrapper {
     onItemPress={[MockFunction]}
     onLeftTabPress={[MockFunction]}
     onPressCtaPrimary={[MockFunction]}
+    onPressPicker={[MockFunction]}
     onPressPolicy={[MockFunction]}
     onPressTerms={[MockFunction]}
     onPressTopBar={[MockFunction]}
@@ -119,8 +121,10 @@ ShallowWrapper {
               }
               labelCtaPrimary="CTA Primary"
               onPressCtaPrimary={[MockFunction]}
+              onPressPicker={null}
               onPressPolicy={[MockFunction]}
               onPressTerms={[MockFunction]}
+              rewardValue={123}
             />
           </View>
           <Pad
@@ -229,8 +233,10 @@ ShallowWrapper {
                 }
                 labelCtaPrimary="CTA Primary"
                 onPressCtaPrimary={[MockFunction]}
+                onPressPicker={null}
                 onPressPolicy={[MockFunction]}
                 onPressTerms={[MockFunction]}
+                rewardValue={123}
               />
             </View>,
             <Pad
@@ -279,8 +285,10 @@ ShallowWrapper {
                 }
                 labelCtaPrimary="CTA Primary"
                 onPressCtaPrimary={[MockFunction]}
+                onPressPicker={null}
                 onPressPolicy={[MockFunction]}
                 onPressTerms={[MockFunction]}
+                rewardValue={123}
               />,
               "style": Object {
                 "paddingHorizontal": 30,
@@ -301,8 +309,10 @@ ShallowWrapper {
                 "isLoadingPrimary": undefined,
                 "labelCtaPrimary": "CTA Primary",
                 "onPressCtaPrimary": [MockFunction],
+                "onPressPicker": null,
                 "onPressPolicy": [MockFunction],
                 "onPressTerms": [MockFunction],
+                "rewardValue": 123,
               },
               "ref": null,
               "rendered": null,
@@ -393,8 +403,10 @@ ShallowWrapper {
                 }
                 labelCtaPrimary="CTA Primary"
                 onPressCtaPrimary={[MockFunction]}
+                onPressPicker={null}
                 onPressPolicy={[MockFunction]}
                 onPressTerms={[MockFunction]}
+                rewardValue={123}
               />
             </View>
             <Pad
@@ -503,8 +515,10 @@ ShallowWrapper {
                   }
                   labelCtaPrimary="CTA Primary"
                   onPressCtaPrimary={[MockFunction]}
+                  onPressPicker={null}
                   onPressPolicy={[MockFunction]}
                   onPressTerms={[MockFunction]}
+                  rewardValue={123}
                 />
               </View>,
               <Pad
@@ -553,8 +567,10 @@ ShallowWrapper {
                   }
                   labelCtaPrimary="CTA Primary"
                   onPressCtaPrimary={[MockFunction]}
+                  onPressPicker={null}
                   onPressPolicy={[MockFunction]}
                   onPressTerms={[MockFunction]}
+                  rewardValue={123}
                 />,
                 "style": Object {
                   "paddingHorizontal": 30,
@@ -575,8 +591,10 @@ ShallowWrapper {
                   "isLoadingPrimary": undefined,
                   "labelCtaPrimary": "CTA Primary",
                   "onPressCtaPrimary": [MockFunction],
+                  "onPressPicker": null,
                   "onPressPolicy": [MockFunction],
                   "onPressTerms": [MockFunction],
+                  "rewardValue": 123,
                 },
                 "ref": null,
                 "rendered": null,
