@@ -71,6 +71,8 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
     }
 
     public shouldComponentUpdate(nextProps: Props, nextState: IState) {
+        const nextLeaderboards = nextProps.leaderboards;
+        const currentLeaderboards = this.props.leaderboards;
         return (
             nextState.isLoading !== this.state.isLoading ||
             nextState.sortBy !== this.state.sortBy ||
@@ -82,9 +84,15 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
             nextProps.isOffline !== this.props.isOffline ||
             nextProps.appState !== this.props.appState ||
             nextProps.consentedLeaderboards.length !== this.props.consentedLeaderboards.length ||
-            nextProps.leaderboards.length !== this.props.leaderboards.length ||
-            nextProps.leaderboards[nextState.activeLeaderboardIndex].isLoading !==
-                this.props.leaderboards[nextState.activeLeaderboardIndex].isLoading
+            (!!(nextLeaderboards && currentLeaderboards) && nextLeaderboards.length !== currentLeaderboards.length) ||
+            (!!(
+                nextLeaderboards &&
+                currentLeaderboards &&
+                nextLeaderboards[nextState.activeLeaderboardIndex] &&
+                currentLeaderboards[this.state.activeLeaderboardIndex]
+            ) &&
+                nextLeaderboards[nextState.activeLeaderboardIndex].isLoading !==
+                    currentLeaderboards[this.state.activeLeaderboardIndex].isLoading)
         );
     }
 
