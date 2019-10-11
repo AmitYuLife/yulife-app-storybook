@@ -125,7 +125,7 @@ export default {
         newLockedReward: {
             ctaLabel: "back to rewards",
             heading: "update in progress",
-            subheading: "we are updating your ${rewardName} rewards experience, check back soon!"
+            subheading: "We are updating your ${rewardName} rewards experience, check back soon!"
         }
     },
     fitkitConnect: {
