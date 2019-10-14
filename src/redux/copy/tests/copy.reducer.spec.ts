@@ -20,11 +20,60 @@ describe("Copy reducer", async () => {
     });
 
     it("should handle REHYDRATE correctly", () => {
-        const expected: ICopyStore = initialState;
-        const payloadMock = { copy: { version: "", screens: { login: initialState.screens.login } } };
-        const actual = copyReducer(initialState, { type: REHYDRATE, payload: payloadMock });
+        const scenarios = [
+            {
+                mockScreens: {
+                    login: {
+                        heading: "welcome changed!",
+                        ctaLabel: "log in changed"
+                    }
+                },
+                expected: {
+                    version: initialState.version,
+                    screens: {
+                        ...initialState.screens,
+                        login: {
+                            heading: "welcome changed!",
+                            subheading: "Let's begin the journey of making you the best of yu!",
+                            ctaLabel: "log in changed",
+                            ctaLabelSecondary: "sign up"
+                        }
+                    }
+                }
+            },
+            {
+                mockScreens: {
+                    challenges: {
+                        completed: {
+                            ctaLabel: "see result",
+                            heading: "changed!!!"
+                        }
+                    }
+                },
+                expected: {
+                    version: initialState.version,
+                    screens: {
+                        ...initialState.screens,
+                        challenges: {
+                            ...initialState.screens.challenges,
+                            completed: {
+                                ctaLabel: "see result",
+                                heading: "changed!!!"
+                            }
+                        }
+                    }
+                }
+            }
+        ];
 
-        expect(actual).toEqual(expected);
+        for (const { mockScreens, expected } of scenarios) {
+            const actual = copyReducer(initialState, {
+                type: REHYDRATE,
+                payload: { copy: { version: "", screens: mockScreens } }
+            });
+
+            expect(actual).toStrictEqual(expected);
+        }
     });
 
     it("should handle UPDATE_COPY correctly", () => {
