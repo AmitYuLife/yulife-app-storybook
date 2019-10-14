@@ -32,18 +32,21 @@ export default copyReducer;
 
 const rehydrate = (persistedState: ICopyStore) => {
     const defaultDataKeys = Object.keys(defaultData);
-    const persistedStateKeys = Object.keys(persistedState.screens);
 
-    if (defaultDataKeys.length > persistedStateKeys.length) {
-        // when adding new screens, the persisted state doesn't have them
-        const result: any = {};
-        for (const key of defaultDataKeys) {
-            if (!(persistedState.screens as any)[key]) {
-                result[key] = (defaultData as any)[key];
-            }
+    const state: any = { version: persistedState.version, screens: {} };
+
+    for (const key of defaultDataKeys) {
+        const defaultCopy = (defaultData as any)[key];
+        const persistedCopy = (persistedState.screens as any)[key];
+
+        if (!persistedCopy) {
+            // if the key is not in the persisted state, it means it's a new copy object
+            state.screens[key] = defaultCopy;
+        } else {
+            // else persisted copy is fine
+            state.screens[key] = { ...defaultCopy, ...persistedCopy };
         }
-        return { version: persistedState.version, screens: { ...persistedState.screens, ...result } };
     }
 
-    return persistedState;
+    return state;
 };
