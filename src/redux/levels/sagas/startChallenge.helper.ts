@@ -33,7 +33,7 @@ export function* startMindfulnessTracking(levelSlotId: string, startDateTime: st
                 queryMindfulSessions,
                 start,
                 end.format(DATE_FORMAT_WITH_TZ),
-                features.disableUserEntries
+                features
             );
 
             if (queryResult.length > 0) {

@@ -30,7 +30,7 @@ export default function* sendStepsSinceLastUpdatedSaga() {
                 querySteps,
                 momentLastUpdatedBeforeToday,
                 moment().subtract(1, "day"),
-                features.disableUserEntries
+                features
             );
 
             if (results.length > 0) {
