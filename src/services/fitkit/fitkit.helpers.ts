@@ -19,17 +19,23 @@ export const transformSampleResultToPayload = (item: SampleQueryResult): Challen
 export const queryMindfulSessions = async (
     startTime: string,
     endTime: string,
-    disableUserEntries = true
+    { disableUserEntries = true, loggingEnabled = false }: { [name: string]: boolean } = {}
 ): Promise<ChallengePayload[]> => {
     try {
-        const results = await RNFitKit.sampleQuery({
+        const args = {
             disableUserEntries,
             endTime,
             startTime,
             type: FitKitTypes.Types.MindfulSession
-        });
+        };
 
-        if (results && results.length > 0) {
+        if (loggingEnabled) {
+            Logger.logMixpanelEvent("raw_meditation_query_args", args);
+        }
+
+        const results = await RNFitKit.sampleQuery(args);
+
+        if (loggingEnabled && results && results.length > 0) {
             Logger.logMixpanelEvent("raw_meditation_query_results", { results });
         }
 
@@ -43,12 +49,12 @@ export const queryMindfulSessions = async (
 export const querySteps = async (
     start: Moment,
     end: Moment,
-    disableUserEntries = true
+    { disableUserEntries = true, loggingEnabled = false }: { [name: string]: boolean } = {}
 ): Promise<{ results: ChallengePayload[]; error: string }> => {
     try {
         const startTime = start.startOf("day").format(DATE_FORMAT_WITH_TZ);
         const endTime = end.endOf("day").format(DATE_FORMAT_WITH_TZ);
-        const results = await RNFitKit.aggregateQuery({
+        const args = {
             aggregateBy: {
                 bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
                 type: FitKitTypes.AggregateType.Time
@@ -57,9 +63,15 @@ export const querySteps = async (
             endTime,
             startTime,
             type: FitKitTypes.Types.StepCount
-        });
+        };
 
-        if (results && results.length > 0) {
+        if (loggingEnabled) {
+            Logger.logMixpanelEvent("raw_steps_query_args", args);
+        }
+
+        const results = await RNFitKit.aggregateQuery(args);
+
+        if (loggingEnabled && results && results.length > 0) {
             Logger.logMixpanelEvent("raw_steps_query_results", { results });
         }
 
@@ -74,5 +86,5 @@ export const queryHistoricalData = async (onboardingDate: Moment) => {
     const start = onboardingDate.clone().subtract(60, "days");
     const end = onboardingDate.clone().subtract(1, "days");
 
-    return querySteps(start, end, false);
+    return querySteps(start, end, { disableUserEntries: false  });
 };

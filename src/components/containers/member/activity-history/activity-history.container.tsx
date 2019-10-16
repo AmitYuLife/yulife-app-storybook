@@ -114,7 +114,7 @@ class ActivityHistoryContainer extends PureComponent<Props, IState> {
             const start = moment().subtract(30, "days");
             const end = moment().subtract(1, "days");
 
-            const { results, error } = await querySteps(start, end, features.disableUserEntries);
+            const { results, error } = await querySteps(start, end, features);
 
             if (results && !!results.length) {
                 try {

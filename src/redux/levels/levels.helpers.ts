@@ -16,7 +16,7 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
                 Logger.logMixpanelEvent("debug_get_end_result_meditation", { startDateTime, endDateTime, start, end });
             }
 
-            const queryResult = await queryMindfulSessions(start, end, features.disableUserEntries);
+            const queryResult = await queryMindfulSessions(start, end, features);
 
             // the way the 3rd party apps like calm/headspace write to the history is not always consistent
             // if someone's got their timezone changed
@@ -35,7 +35,7 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
                 const endLater = moment(endDateTime)
                     .add(2, "hours")
                     .format(DATE_FORMAT_WITH_TZ);
-                const queryResultAllDay = await queryMindfulSessions(startOfDay, endLater, features.disableUserEntries);
+                const queryResultAllDay = await queryMindfulSessions(startOfDay, endLater, features);
 
                 if (queryResultAllDay.length > 0) {
                     return {

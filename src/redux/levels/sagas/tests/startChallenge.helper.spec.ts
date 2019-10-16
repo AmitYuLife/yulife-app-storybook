@@ -11,7 +11,6 @@ import { updateActiveChallenge as activeChallenge } from "../../tests/levels.fix
 import { startMindfulnessTracking, startStepsTracking } from "../startChallenge.helper";
 
 describe("Start Challenge Helper", () => {
-
     describe("start mindfulness tracking", () => {
         let testFunction: any;
         let challengeResult: ChallengePayload;
@@ -29,8 +28,9 @@ describe("Start Challenge Helper", () => {
             const featuresEffect = testFunction.next();
             expect(featuresEffect.value).toEqual(select(getUserFeatures));
 
-            const queryEffect = testFunction.next({ disableUserEntries: true });
-            expect(queryEffect.value).toEqual(call(queryMindfulSessions, start, end, true));
+            const features = { disableUserEntries: true };
+            const queryEffect = testFunction.next(features);
+            expect(queryEffect.value).toEqual(call(queryMindfulSessions, start, end, features));
 
             challengeResult = {
                 startDateTime: start,
@@ -44,7 +44,7 @@ describe("Start Challenge Helper", () => {
             const expected = call(updateActiveChallengeWithClient, "16", challengeResult);
             expect(updateChallengeEffect.value).toEqual(expected);
 
-            const challengeUpdateSuccessEffect = testFunction.next({data: activeChallenge});
+            const challengeUpdateSuccessEffect = testFunction.next({ data: activeChallenge });
             expect(challengeUpdateSuccessEffect.value).toEqual(put(challengeUpdateSuccessAction(activeChallenge)));
 
             const checkForUpdatesEffect = testFunction.next();
@@ -71,7 +71,7 @@ describe("Start Challenge Helper", () => {
                 }
             } as any;
 
-            const challengeUpdateSuccessEffect = testFunction.next({data: completedChallenge});
+            const challengeUpdateSuccessEffect = testFunction.next({ data: completedChallenge });
             expect(challengeUpdateSuccessEffect.value).toEqual(put(challengeUpdateSuccessAction(completedChallenge)));
 
             const cancelPushEffect = testFunction.next();
