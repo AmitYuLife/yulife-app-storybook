@@ -1,6 +1,5 @@
 import { MODALS } from "@navigation/constants";
 import { IReduxState } from "@redux/_core/reducers";
-import { getRouteState } from "@redux/app/app.selectors";
 import { UpdateNofiticationPayload, updateNotificationSettings } from "@redux/notifications/notifications.actions";
 import { getNotifications } from "@redux/notifications/notifications.selectors";
 import { updateConnectionStart, updateLeaderboardConsent } from "@redux/user/user.actions";
@@ -12,7 +11,6 @@ import {
     Leaderboard
 } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
-import { Style } from "@styles/index";
 import moment from "moment";
 import * as React from "react";
 import { PureComponent } from "react";
@@ -41,30 +39,6 @@ class SettingsContainer extends PureComponent<IProps, IState> {
         isTimeModalVisible: false,
         modalDate: null,
         selectedNotification: null
-    };
-
-    private animations = {
-        push: {
-            content: {
-                x: {
-                    from: -Style.DEVICE_WIDTH,
-                    to: 0,
-                    duration: 300
-                }
-            },
-            // prevents some flashing
-            waitForRender: true
-        },
-        pop: {
-            content: {
-                x: {
-                    from: 0,
-                    to: -Style.DEVICE_WIDTH,
-                    duration: 300
-                }
-            },
-            waitForRender: true
-        }
     };
 
     public render() {
@@ -137,22 +111,18 @@ class SettingsContainer extends PureComponent<IProps, IState> {
 
     private handleConnectionInfoPress = (c: Connection) => () => {
         const {
-            copySettings: { heading, subheading, ctaLabel },
-            currentRoute
+            copySettings: { heading, subheading, ctaLabel }
         } = this.props;
-        Navigation.push(currentRoute, {
+        Navigation.showModal({
             component: {
                 id: MODALS.info,
                 name: MODALS.info,
                 passProps: {
-                    onPress: () => Navigation.pop(MODALS.info),
+                    onPress: () => Navigation.dismissModal(MODALS.info),
                     type: c.name,
                     heading: heading.replace("${connection}", c.name.charAt(0).toUpperCase() + c.name.slice(1)),
                     subheading,
                     ctaLabel
-                },
-                options: {
-                    animations: this.animations
                 }
             }
         });
@@ -241,7 +211,6 @@ class SettingsContainer extends PureComponent<IProps, IState> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    currentRoute: getRouteState(state),
     connections: getUserConnections(state),
     features: getUserFeatures(state),
     leaderboards: getAcceptedLeaderboards(state),
