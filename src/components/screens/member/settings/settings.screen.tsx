@@ -52,7 +52,9 @@ export default class SettingsScreen extends PureComponent<IProps> {
         return (
             <SafeAreaView style={styles.wrapper} testID={SETTINGS_SCREEN}>
                 <GenericHeading heading={data.heading} hidesBorder={true} />
-                <ScrollView style={styles.scrollView}>{sections.map(this.renderSection)}</ScrollView>
+                <ScrollView contentContainerStyle={styles.scrollContentContainer} style={styles.scrollView}>
+                    {sections.map(this.renderSection)}
+                </ScrollView>
                 <Close onPress={onPressClose} />
             </SafeAreaView>
         );

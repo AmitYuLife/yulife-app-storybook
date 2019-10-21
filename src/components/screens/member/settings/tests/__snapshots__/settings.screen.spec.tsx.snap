@@ -72,6 +72,11 @@ ShallowWrapper {
           hidesBorder={true}
         />,
         <ScrollViewMock
+          contentContainerStyle={
+            Object {
+              "paddingBottom": 60,
+            }
+          }
           style={
             Object {
               "flex": 1,
@@ -289,6 +294,9 @@ ShallowWrapper {
               </View>
             </View>,
           ],
+          "contentContainerStyle": Object {
+            "paddingBottom": 60,
+          },
           "style": Object {
             "flex": 1,
           },
@@ -599,6 +607,11 @@ ShallowWrapper {
             hidesBorder={true}
           />,
           <ScrollViewMock
+            contentContainerStyle={
+              Object {
+                "paddingBottom": 60,
+              }
+            }
             style={
               Object {
                 "flex": 1,
@@ -816,6 +829,9 @@ ShallowWrapper {
                 </View>
               </View>,
             ],
+            "contentContainerStyle": Object {
+              "paddingBottom": 60,
+            },
             "style": Object {
               "flex": 1,
             },
@@ -1209,6 +1225,11 @@ ShallowWrapper {
           hidesBorder={true}
         />,
         <ScrollViewMock
+          contentContainerStyle={
+            Object {
+              "paddingBottom": 60,
+            }
+          }
           style={
             Object {
               "flex": 1,
@@ -1367,6 +1388,9 @@ ShallowWrapper {
             </View>,
             null,
           ],
+          "contentContainerStyle": Object {
+            "paddingBottom": 60,
+          },
           "style": Object {
             "flex": 1,
           },
@@ -1587,6 +1611,11 @@ ShallowWrapper {
             hidesBorder={true}
           />,
           <ScrollViewMock
+            contentContainerStyle={
+              Object {
+                "paddingBottom": 60,
+              }
+            }
             style={
               Object {
                 "flex": 1,
@@ -1745,6 +1774,9 @@ ShallowWrapper {
               </View>,
               null,
             ],
+            "contentContainerStyle": Object {
+              "paddingBottom": 60,
+            },
             "style": Object {
               "flex": 1,
             },

@@ -15,6 +15,9 @@ export default StyleSheet.create({
         marginHorizontal: Style.SCALE_UP_AND_DOWN(15),
         marginTop: Style.SCALE_UP_AND_DOWN(15)
     } as ViewStyle,
+    scrollContentContainer: {
+        paddingBottom: Style.SCALE_UP_AND_DOWN(30)
+    } as ViewStyle,
     scrollView: {
         flex: 1
     } as ViewStyle,
