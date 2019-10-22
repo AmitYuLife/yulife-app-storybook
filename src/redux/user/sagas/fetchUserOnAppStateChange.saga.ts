@@ -1,7 +1,6 @@
 import { call, select, take } from "redux-saga/effects";
 import { appStateChannel } from "../../app/app.channels";
 import { getActiveLevel } from "../../levels/levels.selectors";
-
 import getUserData from "./getUserData.saga";
 
 export default function* fetchUserOnAppStateChangeSaga() {

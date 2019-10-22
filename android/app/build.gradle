@@ -103,6 +103,7 @@ android {
 }
 
 dependencies {
+    implementation project(':@wootric_react-native-wootric')
     def reactNativeVersion = safeExtGet("reactNativeVersion", "+")
 
     implementation project(':react-native-device-info')

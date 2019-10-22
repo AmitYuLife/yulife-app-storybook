@@ -11,6 +11,25 @@ jest.mock("react-native-config", () => ({
 }));
 
 jest.mock("react-native-intercom", () => {}, { virtual: true });
+jest.mock(
+    "@wootric/react-native-wootric",
+    () => ({
+        configureWithClientID: () => ({}),
+        setEndUserEmail: () => ({}),
+        setSurveyImmediately: () => ({}),
+        setEndUserCreatedAt: () => ({}),
+        setEndUserExternalId: () => ({}),
+        setEndUserPhoneNumber: () => ({}),
+        setEndUserProperties: () => ({}),
+        showOptOut: () => ({}),
+        setFirstSurveyAfter: () => ({}),
+        setCustomLanguage: () => ({}),
+        setCustomProductName: () => ({}),
+        setCustomAudience: () => ({}),
+        showSurvey: () => ({})
+    }),
+    {}
+);
 
 jest.mock("react-native-fitkit", () => ({
     // As strange as it is to use moment in a config file, this ensures that at whatever point this

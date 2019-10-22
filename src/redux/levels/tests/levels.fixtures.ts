@@ -33,6 +33,12 @@ export const currentUser: GetCurrentUser = {
     getCurrentUser: {
         __typename: "User",
         id: "abcdefghijklmnop",
+        wootricId: "YUWOO123",
+        createdAt: "2019-01-01",
+        businessAccountId: "ABC",
+        business: {
+            businessAccountName: "yulife"
+        },
         archived: false,
         onboardingDate: "2019-01-01",
         membershipType: "Yulife",
@@ -69,8 +75,14 @@ export const loginUser: LoginUser = {
         user: {
             __typename: "User",
             id: "abcdefghijklmnop",
+            wootricId: "YUWOO123",
+            createdAt: "2019-01-01",
+            businessAccountId: "ABC",
+            business: {
+                businessAccountName: "yulife"
+            },
             archived: false,
-            businessAccountId:  "hfjdjhjdgjfd",
+            onboardingDate: "2019-01-01",
             membershipType: "Yulife",
             challengesDoneToday: 1,
             connections: null,

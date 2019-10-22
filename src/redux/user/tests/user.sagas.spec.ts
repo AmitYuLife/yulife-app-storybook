@@ -25,6 +25,7 @@ import logOutSaga from "../sagas/logOut.saga";
 import openMemberZoneSaga from "../sagas/openMemberZone.saga";
 import setLoggerIdentity from "../sagas/setLoggerIdentity.helper";
 import setUserNoAccessSaga from "../sagas/setUserNoAccess.saga";
+import setWootricIdentity from "../sagas/setWootricIdentity.helper";
 import { getUserSuccess, LOGIN_USER_SUCCESS, setUserNoAccessAction, updateUserConsentSuccess } from "../user.actions";
 
 describe("fetchUserOnAppStateChangeSaga", async () => {
@@ -106,7 +107,16 @@ describe("getUserDataSaga", async () => {
             setLoggerIdentity,
             data.data.getCurrentUser.id,
             data.data.getCurrentUser.membershipType,
+            data.data.getCurrentUser.wootricId,
             currentUserFixture.getIntercomHash
+        );
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next(data);
+        expected = spawn(
+            setWootricIdentity,
+            data.data.getCurrentUser
         );
         expect(actual.value).toEqual(expected);
         expect(actual.done).toEqual(false);
@@ -139,7 +149,16 @@ describe("getUserDataSaga", async () => {
             setLoggerIdentity,
             data.data.getCurrentUser.id,
             data.data.getCurrentUser.membershipType,
+            data.data.getCurrentUser.wootricId,
             currentUserFixture.getIntercomHash
+        );
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next(data);
+        expected = spawn(
+            setWootricIdentity,
+            data.data.getCurrentUser
         );
         expect(actual.value).toEqual(expected);
         expect(actual.done).toEqual(false);
@@ -157,9 +176,13 @@ describe("loginUserSuccessSaga", async () => {
         const { user, intercomHash } = loginSuccessFixture.loginUser;
 
         let actual: any = testSaga.next();
-        const expected: any = call(setLoggerIdentity, user.id, user.membershipType, intercomHash);
+        const expectedLogger: any = call(setLoggerIdentity, user.id, user.membershipType, user.wootricId, intercomHash);
+        expect(actual.value).toEqual(expectedLogger);
+        expect(actual.done).toEqual(false);
 
-        expect(actual.value).toEqual(expected);
+        actual = testSaga.next();
+        const expectedWootric: any = call(setWootricIdentity, user);
+        expect(actual.value).toEqual(expectedWootric);
         expect(actual.done).toEqual(false);
 
         actual = testSaga.next();
@@ -226,7 +249,8 @@ describe("setLoggerIdentity", async () => {
         const userId = "1";
         const membershipType = "1";
         const hash = "1";
-        const testSaga = setLoggerIdentity(userId, membershipType, hash);
+        const wootricId = "YUWOO123";
+        const testSaga = setLoggerIdentity(userId, membershipType, wootricId, hash);
 
         let actual: any = testSaga.next();
         let expected: any = call(Logger.setIntercomHash, hash);
@@ -239,7 +263,7 @@ describe("setLoggerIdentity", async () => {
         expect(actual.done).toEqual(false);
 
         actual = testSaga.next();
-        expected = call(Logger.setUserProperties, { app_version: undefined, membershipType }, true);
+        expected = call(Logger.setUserProperties, { app_version: undefined, membershipType, wootricId }, true);
         expect(actual.value).toEqual(expected);
         expect(actual.done).toEqual(false);
 
@@ -250,7 +274,8 @@ describe("setLoggerIdentity", async () => {
     it("should call setLoggerIdentity correctly without hash", async () => {
         const userId = "1";
         const membershipType = "1";
-        const testSaga = setLoggerIdentity(userId, membershipType);
+        const wootricId = "YUWOO123";
+        const testSaga = setLoggerIdentity(userId, membershipType, wootricId);
 
         let actual: any = testSaga.next();
         let expected: any = call(Logger.setUserId, userId);
@@ -258,7 +283,7 @@ describe("setLoggerIdentity", async () => {
         expect(actual.done).toEqual(false);
 
         actual = testSaga.next();
-        expected = call(Logger.setUserProperties, { app_version: undefined, membershipType }, true);
+        expected = call(Logger.setUserProperties, { app_version: undefined, membershipType, wootricId }, true);
         expect(actual.value).toEqual(expected);
         expect(actual.done).toEqual(false);
 

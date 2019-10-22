@@ -1,4 +1,6 @@
 rootProject.name = 'YuLife'
+include ':@wootric_react-native-wootric'
+project(':@wootric_react-native-wootric').projectDir = new File(rootProject.projectDir, '../node_modules/@wootric/react-native-wootric/android')
 include ':react-native-spring-scrollview'
 project(':react-native-spring-scrollview').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-spring-scrollview/android')
 include ':react-native-fast-image'

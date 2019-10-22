@@ -1,9 +1,11 @@
+import { userFragmentGql } from "@graphql/_fragments/user.gql";
 import gql from "graphql-tag";
 import { Mutation, MutationFn, MutationResult } from "react-apollo";
-
 import { LoginUser, LoginUserVariables } from "../_core/schema";
 
 export const loginUserGql = gql`
+    ${userFragmentGql}
+
     mutation LoginUser(
         $email: String!
         $password: String!
@@ -23,90 +25,7 @@ export const loginUserGql = gql`
             message
             intercomHash
             user {
-                __typename
-                id
-                archived
-                businessAccountId
-                membershipType
-                challengesDoneToday
-                connections {
-                    name
-                    isConnected
-                    lastUpdated
-                }
-                userFeatures {
-                    name
-                    value
-                }
-                mobileConsent {
-                    mobileHealth
-                    marketing
-                    pushNotifications
-                    companyLeaderboard
-                    workspaceLeaderboard
-                }
-                redeemedOnboarding
-                coinLedger {
-                    currentBalance
-                    currentLevel
-                    nextLevelAvailableAt
-                }
-                passiveChallenge {
-                    exchange {
-                        yucoin
-                        steps
-                    }
-                }
-                activeChallenge {
-                    challenge {
-                        levelSlotId
-                        status
-                        endDateTime
-                        startDateTime
-                        rating
-                        subtype
-                        incomingData {
-                            steps
-                            meditation
-                        }
-                    }
-                    levelSlot {
-                        subtype
-                        unit
-                        milestones {
-                            id
-                            XP
-                            coins
-                            target {
-                                steps
-                                meditation
-                            }
-                        }
-                    }
-                }
-                activeStreak {
-                    id
-                    type
-                    value
-                    maxStreak
-                    streakAwardId
-                    streak
-                    nextStreakAvailableAt
-                }
-                todayActivity {
-                    id
-                    earned
-                    milestones
-                    name
-                    score
-                }
-                leaderboards {
-                    leaderboardId
-                    name
-                    consent
-                    hasAccepted
-                    inviteFrom
-                }
+                ...User
             }
         }
     }

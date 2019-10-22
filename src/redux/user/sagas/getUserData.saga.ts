@@ -5,6 +5,7 @@ import { call, put, spawn } from "redux-saga/effects";
 import { getUserSuccess, setUserNoAccessAction } from "../user.actions";
 
 import setLoggerIdentity from "./setLoggerIdentity.helper";
+import setWootricIdentity from "./setWootricIdentity.helper";
 
 export default function* getUserDataSaga() {
     try {
@@ -17,8 +18,11 @@ export default function* getUserDataSaga() {
                 setLoggerIdentity,
                 data.getCurrentUser.id,
                 data.getCurrentUser.membershipType,
+                data.getCurrentUser.wootricId,
                 data.getIntercomHash
             );
+
+            yield spawn(setWootricIdentity, data.getCurrentUser);
 
             const isArchived = pathOr<boolean>(data, "getCurrentUser.archived", false);
 

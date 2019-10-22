@@ -44,6 +44,7 @@
     "set-bitrise-build-number": "node scripts/set-bitrise-build-number.js"
   },
   "dependencies": {
+    "@wootric/react-native-wootric": "git+https://github.com/Wootric/react-native-wootric.git#ds-update-project",
     "apollo-boost": "^0.1.15",
     "apollo-cache-persist": "^0.1.1",
     "apollo-link": "^1.2.2",

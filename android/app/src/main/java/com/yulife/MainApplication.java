@@ -17,6 +17,7 @@ import com.kevinejohn.RNMixpanel.RNMixpanel;
 import com.yulife.reactnative.fitkit.RNFitKitPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.bolan9999.SpringScrollViewPackage;
+import com.reactlibrary.RNWootricPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -68,6 +69,7 @@ public class MainApplication extends NavigationApplication {
                 BugsnagReactNative.getPackage(),            // bugsnag-react-native
                 new RNFitKitPackage(),                      // react-native-fitkit
                 new SpringScrollViewPackage(),              // react-native-large-list
+                new RNWootricPackage(),                     // react-native-wootric
                 new FastImageViewPackage()                  // react-native-fast-image
         );
     }
