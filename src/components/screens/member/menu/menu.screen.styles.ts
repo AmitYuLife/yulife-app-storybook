@@ -13,7 +13,7 @@ export default StyleSheet.create({
         justifyContent: "center",
         position: "absolute",
         right: 0,
-        top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 30 : 10),
+        top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 40 : 10),
         width: Style.SCALE_UP_AND_DOWN(46)
     } as ViewStyle,
     iconWrapper: {

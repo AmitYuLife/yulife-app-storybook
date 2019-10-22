@@ -83,7 +83,9 @@ export default function DailyStepsScreen({
                 style={!hasPermission ? centredScreen.offline.style : centredScreen.online.style}
                 testID={DAILY_STEPS_SCREEN}
             >
-                <TopBar coins={totalCoins} type={topBarType} onPressLeftIcon={onLeftMenuPress} />
+                <View style={styles.topbarWrapper}>
+                    <TopBar coins={totalCoins} type={topBarType} onPressLeftIcon={onLeftMenuPress} />
+                </View>
                 <Pad height={getPadHeight(displayStreak)} />
                 {/** TODO: add surge condition: `!popupVisibility.leaderboard && popupVisibility.surge` */}
                 {false ? (
