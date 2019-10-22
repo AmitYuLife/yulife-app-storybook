@@ -87,11 +87,24 @@ ShallowWrapper {
         }
         testID="DAILY_STEPS_SCREEN"
       >
-        <TopBar
-          coins={1234}
-          onPressLeftIcon={[MockFunction]}
-          type="default"
-        />
+        <View
+          style={
+            Object {
+              "left": 0,
+              "paddingBottom": 16,
+              "paddingTop": 40,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <TopBar
+            coins={1234}
+            onPressLeftIcon={[MockFunction]}
+            type="default"
+          />
+        </View>
         <Pad
           height={60}
         />
@@ -154,11 +167,24 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <TopBar
-            coins={1234}
-            onPressLeftIcon={[MockFunction]}
-            type="default"
-          />,
+          <View
+            style={
+              Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />
+          </View>,
           <Pad
             height={60}
           />,
@@ -212,12 +238,34 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "coins": 1234,
-            "onPressLeftIcon": [MockFunction],
-            "type": "default",
+            "children": <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />,
+            "style": Object {
+              "left": 0,
+              "paddingBottom": 16,
+              "paddingTop": 40,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
           },
           "ref": null,
-          "rendered": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "coins": 1234,
+              "onPressLeftIcon": [MockFunction],
+              "type": "default",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": [Function],
         },
         Object {
@@ -331,11 +379,24 @@ ShallowWrapper {
           }
           testID="DAILY_STEPS_SCREEN"
         >
-          <TopBar
-            coins={1234}
-            onPressLeftIcon={[MockFunction]}
-            type="default"
-          />
+          <View
+            style={
+              Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />
+          </View>
           <Pad
             height={60}
           />
@@ -398,11 +459,24 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": Array [
-            <TopBar
-              coins={1234}
-              onPressLeftIcon={[MockFunction]}
-              type="default"
-            />,
+            <View
+              style={
+                Object {
+                  "left": 0,
+                  "paddingBottom": 16,
+                  "paddingTop": 40,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <TopBar
+                coins={1234}
+                onPressLeftIcon={[MockFunction]}
+                type="default"
+              />
+            </View>,
             <Pad
               height={60}
             />,
@@ -456,12 +530,34 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "coins": 1234,
-              "onPressLeftIcon": [MockFunction],
-              "type": "default",
+              "children": <TopBar
+                coins={1234}
+                onPressLeftIcon={[MockFunction]}
+                type="default"
+              />,
+              "style": Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
             },
             "ref": null,
-            "rendered": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "coins": 1234,
+                "onPressLeftIcon": [MockFunction],
+                "type": "default",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             "type": [Function],
           },
           Object {
@@ -669,11 +765,24 @@ ShallowWrapper {
         }
         testID="DAILY_STEPS_SCREEN"
       >
-        <TopBar
-          coins={1234}
-          onPressLeftIcon={[MockFunction]}
-          type="default"
-        />
+        <View
+          style={
+            Object {
+              "left": 0,
+              "paddingBottom": 16,
+              "paddingTop": 40,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <TopBar
+            coins={1234}
+            onPressLeftIcon={[MockFunction]}
+            type="default"
+          />
+        </View>
         <Pad
           height={60}
         />
@@ -728,11 +837,24 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <TopBar
-            coins={1234}
-            onPressLeftIcon={[MockFunction]}
-            type="default"
-          />,
+          <View
+            style={
+              Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />
+          </View>,
           <Pad
             height={60}
           />,
@@ -778,12 +900,34 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "coins": 1234,
-            "onPressLeftIcon": [MockFunction],
-            "type": "default",
+            "children": <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />,
+            "style": Object {
+              "left": 0,
+              "paddingBottom": 16,
+              "paddingTop": 40,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
           },
           "ref": null,
-          "rendered": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "coins": 1234,
+              "onPressLeftIcon": [MockFunction],
+              "type": "default",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": [Function],
         },
         Object {
@@ -891,11 +1035,24 @@ ShallowWrapper {
           }
           testID="DAILY_STEPS_SCREEN"
         >
-          <TopBar
-            coins={1234}
-            onPressLeftIcon={[MockFunction]}
-            type="default"
-          />
+          <View
+            style={
+              Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />
+          </View>
           <Pad
             height={60}
           />
@@ -950,11 +1107,24 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": Array [
-            <TopBar
-              coins={1234}
-              onPressLeftIcon={[MockFunction]}
-              type="default"
-            />,
+            <View
+              style={
+                Object {
+                  "left": 0,
+                  "paddingBottom": 16,
+                  "paddingTop": 40,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <TopBar
+                coins={1234}
+                onPressLeftIcon={[MockFunction]}
+                type="default"
+              />
+            </View>,
             <Pad
               height={60}
             />,
@@ -1000,12 +1170,34 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "coins": 1234,
-              "onPressLeftIcon": [MockFunction],
-              "type": "default",
+              "children": <TopBar
+                coins={1234}
+                onPressLeftIcon={[MockFunction]}
+                type="default"
+              />,
+              "style": Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
             },
             "ref": null,
-            "rendered": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "coins": 1234,
+                "onPressLeftIcon": [MockFunction],
+                "type": "default",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             "type": [Function],
           },
           Object {
@@ -1208,11 +1400,24 @@ ShallowWrapper {
         }
         testID="DAILY_STEPS_SCREEN"
       >
-        <TopBar
-          coins={1234}
-          onPressLeftIcon={[MockFunction]}
-          type="default"
-        />
+        <View
+          style={
+            Object {
+              "left": 0,
+              "paddingBottom": 16,
+              "paddingTop": 40,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <TopBar
+            coins={1234}
+            onPressLeftIcon={[MockFunction]}
+            type="default"
+          />
+        </View>
         <Pad
           height={80}
         />
@@ -1285,11 +1490,24 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <TopBar
-            coins={1234}
-            onPressLeftIcon={[MockFunction]}
-            type="default"
-          />,
+          <View
+            style={
+              Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />
+          </View>,
           <Pad
             height={80}
           />,
@@ -1352,12 +1570,34 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "coins": 1234,
-            "onPressLeftIcon": [MockFunction],
-            "type": "default",
+            "children": <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />,
+            "style": Object {
+              "left": 0,
+              "paddingBottom": 16,
+              "paddingTop": 40,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
           },
           "ref": null,
-          "rendered": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "coins": 1234,
+              "onPressLeftIcon": [MockFunction],
+              "type": "default",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": [Function],
         },
         Object {
@@ -1489,11 +1729,24 @@ ShallowWrapper {
           }
           testID="DAILY_STEPS_SCREEN"
         >
-          <TopBar
-            coins={1234}
-            onPressLeftIcon={[MockFunction]}
-            type="default"
-          />
+          <View
+            style={
+              Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />
+          </View>
           <Pad
             height={80}
           />
@@ -1566,11 +1819,24 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": Array [
-            <TopBar
-              coins={1234}
-              onPressLeftIcon={[MockFunction]}
-              type="default"
-            />,
+            <View
+              style={
+                Object {
+                  "left": 0,
+                  "paddingBottom": 16,
+                  "paddingTop": 40,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <TopBar
+                coins={1234}
+                onPressLeftIcon={[MockFunction]}
+                type="default"
+              />
+            </View>,
             <Pad
               height={80}
             />,
@@ -1633,12 +1899,34 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "coins": 1234,
-              "onPressLeftIcon": [MockFunction],
-              "type": "default",
+              "children": <TopBar
+                coins={1234}
+                onPressLeftIcon={[MockFunction]}
+                type="default"
+              />,
+              "style": Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
             },
             "ref": null,
-            "rendered": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "coins": 1234,
+                "onPressLeftIcon": [MockFunction],
+                "type": "default",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             "type": [Function],
           },
           Object {
@@ -1864,11 +2152,24 @@ ShallowWrapper {
         }
         testID="DAILY_STEPS_SCREEN"
       >
-        <TopBar
-          coins={1234}
-          onPressLeftIcon={[MockFunction]}
-          type="default"
-        />
+        <View
+          style={
+            Object {
+              "left": 0,
+              "paddingBottom": 16,
+              "paddingTop": 40,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <TopBar
+            coins={1234}
+            onPressLeftIcon={[MockFunction]}
+            type="default"
+          />
+        </View>
         <Pad
           height={60}
         />
@@ -1933,11 +2234,24 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <TopBar
-            coins={1234}
-            onPressLeftIcon={[MockFunction]}
-            type="default"
-          />,
+          <View
+            style={
+              Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />
+          </View>,
           <Pad
             height={60}
           />,
@@ -1993,12 +2307,34 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "coins": 1234,
-            "onPressLeftIcon": [MockFunction],
-            "type": "default",
+            "children": <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />,
+            "style": Object {
+              "left": 0,
+              "paddingBottom": 16,
+              "paddingTop": 40,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
           },
           "ref": null,
-          "rendered": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "coins": 1234,
+              "onPressLeftIcon": [MockFunction],
+              "type": "default",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": [Function],
         },
         Object {
@@ -2115,11 +2451,24 @@ ShallowWrapper {
           }
           testID="DAILY_STEPS_SCREEN"
         >
-          <TopBar
-            coins={1234}
-            onPressLeftIcon={[MockFunction]}
-            type="default"
-          />
+          <View
+            style={
+              Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />
+          </View>
           <Pad
             height={60}
           />
@@ -2184,11 +2533,24 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": Array [
-            <TopBar
-              coins={1234}
-              onPressLeftIcon={[MockFunction]}
-              type="default"
-            />,
+            <View
+              style={
+                Object {
+                  "left": 0,
+                  "paddingBottom": 16,
+                  "paddingTop": 40,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <TopBar
+                coins={1234}
+                onPressLeftIcon={[MockFunction]}
+                type="default"
+              />
+            </View>,
             <Pad
               height={60}
             />,
@@ -2244,12 +2606,34 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "coins": 1234,
-              "onPressLeftIcon": [MockFunction],
-              "type": "default",
+              "children": <TopBar
+                coins={1234}
+                onPressLeftIcon={[MockFunction]}
+                type="default"
+              />,
+              "style": Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
             },
             "ref": null,
-            "rendered": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "coins": 1234,
+                "onPressLeftIcon": [MockFunction],
+                "type": "default",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             "type": [Function],
           },
           Object {
@@ -2460,11 +2844,24 @@ ShallowWrapper {
         }
         testID="DAILY_STEPS_SCREEN"
       >
-        <TopBar
-          coins={1234}
-          onPressLeftIcon={[MockFunction]}
-          type="default"
-        />
+        <View
+          style={
+            Object {
+              "left": 0,
+              "paddingBottom": 16,
+              "paddingTop": 40,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <TopBar
+            coins={1234}
+            onPressLeftIcon={[MockFunction]}
+            type="default"
+          />
+        </View>
         <Pad
           height={60}
         />
@@ -2519,11 +2916,24 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <TopBar
-            coins={1234}
-            onPressLeftIcon={[MockFunction]}
-            type="default"
-          />,
+          <View
+            style={
+              Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />
+          </View>,
           <Pad
             height={60}
           />,
@@ -2569,12 +2979,34 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "coins": 1234,
-            "onPressLeftIcon": [MockFunction],
-            "type": "default",
+            "children": <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />,
+            "style": Object {
+              "left": 0,
+              "paddingBottom": 16,
+              "paddingTop": 40,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
           },
           "ref": null,
-          "rendered": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "coins": 1234,
+              "onPressLeftIcon": [MockFunction],
+              "type": "default",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": [Function],
         },
         Object {
@@ -2682,11 +3114,24 @@ ShallowWrapper {
           }
           testID="DAILY_STEPS_SCREEN"
         >
-          <TopBar
-            coins={1234}
-            onPressLeftIcon={[MockFunction]}
-            type="default"
-          />
+          <View
+            style={
+              Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <TopBar
+              coins={1234}
+              onPressLeftIcon={[MockFunction]}
+              type="default"
+            />
+          </View>
           <Pad
             height={60}
           />
@@ -2741,11 +3186,24 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": Array [
-            <TopBar
-              coins={1234}
-              onPressLeftIcon={[MockFunction]}
-              type="default"
-            />,
+            <View
+              style={
+                Object {
+                  "left": 0,
+                  "paddingBottom": 16,
+                  "paddingTop": 40,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <TopBar
+                coins={1234}
+                onPressLeftIcon={[MockFunction]}
+                type="default"
+              />
+            </View>,
             <Pad
               height={60}
             />,
@@ -2791,12 +3249,34 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "coins": 1234,
-              "onPressLeftIcon": [MockFunction],
-              "type": "default",
+              "children": <TopBar
+                coins={1234}
+                onPressLeftIcon={[MockFunction]}
+                type="default"
+              />,
+              "style": Object {
+                "left": 0,
+                "paddingBottom": 16,
+                "paddingTop": 40,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
             },
             "ref": null,
-            "rendered": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "coins": 1234,
+                "onPressLeftIcon": [MockFunction],
+                "type": "default",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             "type": [Function],
           },
           Object {
