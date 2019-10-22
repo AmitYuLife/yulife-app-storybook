@@ -37,7 +37,6 @@ export const loginSuccessFixture: LoginUser = {
                 nextStreakAvailableAt: ""
             },
             archived: false,
-            businessAccountId: "abcdefghijkl",
             challengesDoneToday: 0,
             coinLedger: {
                 currentBalance: 15,
@@ -46,6 +45,12 @@ export const loginSuccessFixture: LoginUser = {
             },
             connections: [{ name: "garmin", isConnected: false, lastUpdated: 1539086400 }],
             id: "1234567890",
+            wootricId: "YUWOO123",
+            createdAt: "2019-01-01",
+            businessAccountId: "ABC",
+            business: {
+                businessAccountName: "yulife"
+            },
             leaderboards,
             membershipType: "yulife",
             mobileConsent: {
@@ -58,7 +63,8 @@ export const loginSuccessFixture: LoginUser = {
             passiveChallenge: null,
             redeemedOnboarding: false,
             todayActivity: null,
-            userFeatures: []
+            userFeatures: [],
+            onboardingDate: null
         }
     }
 };
@@ -86,6 +92,12 @@ export const currentUserFixture: GetCurrentUser = {
         },
         connections: [{ name: "garmin", isConnected: false, lastUpdated: 1539086400 }],
         id: "1234567890",
+        wootricId: "YUWOO123",
+        createdAt: "2019-01-01",
+        businessAccountId: "ABC",
+        business: {
+            businessAccountName: "yulife"
+        },
         leaderboards,
         membershipType: "yulife",
         mobileConsent: {

@@ -1181,6 +1181,10 @@ export interface GetActivityHistoryVariables {
 // GraphQL query operation: GetCurrentUser
 // ====================================================
 
+export interface GetCurrentUser_getCurrentUser_business {
+  businessAccountName: string | null;
+}
+
 export interface GetCurrentUser_getCurrentUser_connections {
   name: string | null;
   isConnected: boolean | null;
@@ -1284,8 +1288,12 @@ export interface GetCurrentUser_getCurrentUser {
   __typename: "User";
   id: string | null;
   archived: boolean | null;
+  createdAt: string | null;
   onboardingDate: string | null;
   redeemedOnboarding: boolean | null;
+  businessAccountId: string | null;
+  business: GetCurrentUser_getCurrentUser_business | null;
+  wootricId: string | null;
   membershipType: string | null;
   challengesDoneToday: number | null;
   connections: (GetCurrentUser_getCurrentUser_connections | null)[] | null;
@@ -1345,6 +1353,10 @@ export interface getSession {
 // GraphQL mutation operation: LoginUser
 // ====================================================
 
+export interface LoginUser_loginUser_user_business {
+  businessAccountName: string | null;
+}
+
 export interface LoginUser_loginUser_user_connections {
   name: string | null;
   isConnected: boolean | null;
@@ -1385,6 +1397,7 @@ export interface LoginUser_loginUser_user_activeChallenge_challenge_incomingData
 }
 
 export interface LoginUser_loginUser_user_activeChallenge_challenge {
+  level: number | null;
   levelSlotId: string | null;
   status: string | null;
   endDateTime: string | null;
@@ -1447,13 +1460,17 @@ export interface LoginUser_loginUser_user {
   __typename: "User";
   id: string | null;
   archived: boolean | null;
+  createdAt: string | null;
+  onboardingDate: string | null;
+  redeemedOnboarding: boolean | null;
   businessAccountId: string | null;
+  business: LoginUser_loginUser_user_business | null;
+  wootricId: string | null;
   membershipType: string | null;
   challengesDoneToday: number | null;
   connections: (LoginUser_loginUser_user_connections | null)[] | null;
   userFeatures: (LoginUser_loginUser_user_userFeatures | null)[] | null;
   mobileConsent: LoginUser_loginUser_user_mobileConsent | null;
-  redeemedOnboarding: boolean | null;
   coinLedger: LoginUser_loginUser_user_coinLedger | null;
   passiveChallenge: LoginUser_loginUser_user_passiveChallenge | null;
   activeChallenge: LoginUser_loginUser_user_activeChallenge | null;
@@ -1642,6 +1659,10 @@ export interface ChallengeTemplate {
 // GraphQL fragment: User
 // ====================================================
 
+export interface User_business {
+  businessAccountName: string | null;
+}
+
 export interface User_connections {
   name: string | null;
   isConnected: boolean | null;
@@ -1653,19 +1674,115 @@ export interface User_userFeatures {
   value: boolean | null;
 }
 
-export interface User {
+export interface User_mobileConsent {
+  mobileHealth: boolean | null;
+  marketing: boolean | null;
+  pushNotifications: boolean | null;
+  companyLeaderboard: boolean | null;
+  workspaceLeaderboard: boolean | null;
+}
+
+export interface User_coinLedger {
+  currentBalance: number | null;
+  currentLevel: number | null;
+  nextLevelAvailableAt: string | null;
+}
+
+export interface User_passiveChallenge_exchange {
+  yucoin: number | null;
+  steps: number | null;
+}
+
+export interface User_passiveChallenge {
+  exchange: User_passiveChallenge_exchange | null;
+}
+
+export interface User_activeChallenge_challenge_incomingData {
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface User_activeChallenge_challenge {
+  level: number | null;
+  levelSlotId: string | null;
+  status: string | null;
+  endDateTime: string | null;
+  startDateTime: string | null;
+  rating: number | null;
+  subtype: string | null;
+  incomingData: User_activeChallenge_challenge_incomingData | null;
+}
+
+export interface User_activeChallenge_levelSlot_milestones_target {
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface User_activeChallenge_levelSlot_milestones {
   id: string | null;
-  businessAccountId: string | null;
-  membershipType: string | null;
-  email: string | null;
-  firstName: string | null;
-  lastName: string | null;
-  dateOfBirth: string | null;
-  smokerStatus: string | null;
-  bmi: string | null;
-  connections: (User_connections | null)[] | null;
+  XP: number | null;
+  coins: number | null;
+  target: User_activeChallenge_levelSlot_milestones_target | null;
+}
+
+export interface User_activeChallenge_levelSlot {
+  subtype: string | null;
+  unit: string | null;
+  milestones: (User_activeChallenge_levelSlot_milestones | null)[] | null;
+}
+
+export interface User_activeChallenge {
+  challenge: User_activeChallenge_challenge | null;
+  levelSlot: User_activeChallenge_levelSlot | null;
+}
+
+export interface User_activeStreak {
+  id: string | null;
+  type: string | null;
+  value: number | null;
+  maxStreak: number | null;
+  streakAwardId: string | null;
+  streak: number | null;
+  nextStreakAvailableAt: string | null;
+}
+
+export interface User_todayActivity {
+  id: string | null;
+  earned: number | null;
+  milestones: number | null;
+  name: string | null;
+  score: string | null;
+}
+
+export interface User_leaderboards {
+  leaderboardId: string | null;
+  name: string | null;
+  consent: boolean | null;
+  hasAccepted: boolean | null;
+  inviteFrom: string | null;
+}
+
+export interface User {
   __typename: "User";
+  id: string | null;
+  archived: boolean | null;
+  createdAt: string | null;
+  onboardingDate: string | null;
+  redeemedOnboarding: boolean | null;
+  businessAccountId: string | null;
+  business: User_business | null;
+  wootricId: string | null;
+  membershipType: string | null;
+  challengesDoneToday: number | null;
+  connections: (User_connections | null)[] | null;
   userFeatures: (User_userFeatures | null)[] | null;
+  mobileConsent: User_mobileConsent | null;
+  coinLedger: User_coinLedger | null;
+  passiveChallenge: User_passiveChallenge | null;
+  activeChallenge: User_activeChallenge | null;
+  activeStreak: User_activeStreak | null;
+  todayActivity: (User_todayActivity | null)[] | null;
+  leaderboards: (User_leaderboards | null)[] | null;
 }
 
 /* tslint:disable */

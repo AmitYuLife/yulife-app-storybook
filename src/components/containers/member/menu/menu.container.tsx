@@ -1,4 +1,5 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
+import Wootric from "@services/wootric";
 import * as React from "react";
 import { PureComponent } from "react";
 import DeviceInfo from "react-native-device-info";
@@ -54,6 +55,13 @@ class MenuContainer extends PureComponent<Props> {
                         source: assets[LINKS.CHAT]
                     },
                     {
+                        // TODO:ENG-95 true for easy testing, remove
+                        condition: features.surveyInMenu,
+                        label: "feedback",
+                        onPress: this.handlePressLink(LINKS.SURVEY),
+                        source: assets[LINKS.SURVEY]
+                    },
+                    {
                         condition: true,
                         label: "log out",
                         onPress: this.handlePressLink(LINKS.LOGOUT),
@@ -76,6 +84,9 @@ class MenuContainer extends PureComponent<Props> {
                 return null;
             case LINKS.CHAT:
                 this.handleIntercom();
+                return null;
+            case LINKS.SURVEY:
+                this.handleSurvey();
                 return null;
             case LINKS.DEBUG:
                 this.handlePush(ROUTES.debug);
@@ -141,6 +152,10 @@ class MenuContainer extends PureComponent<Props> {
             callback();
         }
     };
+
+    private handleSurvey() {
+        Wootric.showSurvey();
+    }
 }
 
 const mapStateToProps = (state: IReduxState) => ({
