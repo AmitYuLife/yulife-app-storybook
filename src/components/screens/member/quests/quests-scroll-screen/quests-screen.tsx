@@ -4,6 +4,7 @@ import { TopBarTypes } from "@molecules/top-bar/top-bar";
 import { getCurrentEpisode, getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
+import { isIphoneX } from "react-native-iphone-x-helper";
 import { Navigation } from "react-native-navigation";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
@@ -157,29 +158,34 @@ class QuestsScreen extends React.Component<IProps, IState> {
 
     private getWorldData = () => {
         const { currentLevel } = this.props;
+        const iphoneX = isIphoneX();
 
         switch (getCurrentWorld(currentLevel)) {
             case 3:
                 return {
-                    initialScrollIndex: 92,
+                    initialScrollIndex: iphoneX ? 93 : 92,
                     slices:
                         currentLevel < 200
-                            ? [...mapSlices.slice(0, 121), loadingSlices.mountain]
-                            : mapSlices.slice(0, 134),
+                            ? [...mapSlices.slice(0, iphoneX ? 122 : 121), loadingSlices.mountain]
+                            : mapSlices.slice(0, iphoneX ? 136 : 134),
                     snapOffsets: offsets.withUnity[3]
                 };
             case 2:
                 return {
-                    initialScrollIndex: 61,
+                    initialScrollIndex: iphoneX ? 62 : 61,
                     slices:
-                        currentLevel < 150 ? [...mapSlices.slice(0, 89), loadingSlices.desert] : mapSlices.slice(0, 92),
+                        currentLevel < 150
+                            ? [...mapSlices.slice(0, iphoneX ? 90 : 89), loadingSlices.desert]
+                            : mapSlices.slice(0, iphoneX ? 94 : 92),
                     snapOffsets: currentLevel < 150 ? offsets.withUnity[2] : offsets.withoutUnity[2]
                 };
             case 1:
                 return {
-                    initialScrollIndex: 30,
+                    initialScrollIndex: iphoneX ? 31 : 30,
                     slices:
-                        currentLevel < 100 ? [...mapSlices.slice(0, 57), loadingSlices.ocean] : mapSlices.slice(0, 61),
+                        currentLevel < 100
+                            ? [...mapSlices.slice(0, iphoneX ? 58 : 57), loadingSlices.ocean]
+                            : mapSlices.slice(0, iphoneX ? 63 : 61),
                     snapOffsets: currentLevel < 100 ? offsets.withUnity[1] : offsets.withoutUnity[1]
                 };
             case 0:
@@ -187,7 +193,9 @@ class QuestsScreen extends React.Component<IProps, IState> {
                 return {
                     initialScrollIndex: 0,
                     slices:
-                        currentLevel < 50 ? [...mapSlices.slice(0, 26), loadingSlices.forest] : mapSlices.slice(0, 30),
+                        currentLevel < 50
+                            ? [...mapSlices.slice(0, iphoneX ? 27 : 26), loadingSlices.forest]
+                            : mapSlices.slice(0, iphoneX ? 32 : 30),
                     snapOffsets: currentLevel < 50 ? offsets.withUnity[0] : offsets.withoutUnity[0]
                 };
         }

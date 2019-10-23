@@ -21,7 +21,16 @@ export interface IMapSlice {
 
 const isIphoneX = getIsIphone();
 
-const interstitialsSlices: { [x: string]: IMapSlice[] } = {
+export const interstitialsSlices: { [x: string]: IMapSlice[] } = {
+    forest: [
+        {
+            id: "MAP_SLICE_W01_INTERSTITIALS_01",
+            image: require("../../../../../../../assets/quest-slices/interstitials/w1s0.png"),
+            navBarColour: COLOURS.FOREST,
+            slots: [],
+            topBarType: TOP_BAR_TYPES.FOREST
+        }
+    ],
     ocean: [
         {
             id: "MAP_SLICE_W02_INTERSTITIALS_01",
@@ -65,6 +74,16 @@ const interstitialsSlices: { [x: string]: IMapSlice[] } = {
         {
             id: "MAP_SLICE_W04_INTERSTITIALS_02",
             image: require("../../../../../../../assets/quest-slices/interstitials/w4s1.png"),
+            navBarColour: COLOURS.LIGHT,
+            slots: [],
+            topBarType: TOP_BAR_TYPES.WHITE
+        }
+    ],
+    // just didn't know what to name it yet
+    last: [
+        {
+            id: "MAP_SLICE_W05_INTERSTITIALS_01",
+            image: require("../../../../../../../assets/quest-slices/interstitials/w5s0.png"),
             navBarColour: COLOURS.LIGHT,
             slots: [],
             topBarType: TOP_BAR_TYPES.WHITE
@@ -1210,8 +1229,8 @@ const WorldSlices: IMapSlice[] = [
         topBarType: TOP_BAR_TYPES.WHITE
     }
 ];
-
-export default WorldSlices;
+// placeholder interstitials for mountain
+export default isIphoneX ? [...interstitialsSlices.forest, ...WorldSlices, ...interstitialsSlices.last] : WorldSlices;
 
 export const loadingSlices: { [x: string]: IMapSlice } = {
     forest: {
