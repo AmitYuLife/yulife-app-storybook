@@ -2,8 +2,10 @@ import { GetCurrentWorld_getCurrentWorld } from "@app/graphql/_core/schema";
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import FastImage from "react-native-fast-image";
+import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../../styles";
 import { IMapSlice, LevelBubble, MAP_SLICE_HEIGHT } from "./assets";
+import { HALF_MAP_SLICE_HEIGHT } from "./assets/slices.settings";
 import { IChallenge } from "./quests-screen";
 
 export interface IChallenge extends GetCurrentWorld_getCurrentWorld {
@@ -33,9 +35,10 @@ export default class MapSlice extends React.Component<IProps> {
 
     public render() {
         const { levels, slice } = this.props;
+        const hasForestInterstitial = isIphoneX() && slice.id === "MAP_SLICE_W01_INTERSTITIALS_01";
 
         return (
-            <View key={slice.id} style={styles.wrapper}>
+            <View key={slice.id} style={hasForestInterstitial ? styles.halfMapSliceWrapper : styles.wrapper}>
                 <FastImage source={slice.image} style={styles.image} />
                 <View style={styles.levelButtonWrapper}>{levels.map(this.mapLevels)}</View>
             </View>
@@ -65,5 +68,8 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         height: MAP_SLICE_HEIGHT
+    },
+    halfMapSliceWrapper: {
+        height: HALF_MAP_SLICE_HEIGHT
     }
 });

@@ -1,6 +1,8 @@
 import * as React from "react";
 import { FlatList, ListRenderItem, View } from "react-native";
+import { isIphoneX } from "react-native-iphone-x-helper";
 import { IMapSlice, MAP_SLICE_HEIGHT } from "./assets";
+import { HALF_MAP_SLICE_HEIGHT } from "./assets/slices.settings";
 import MapSlice from "./map-slice";
 import { IChallenge } from "./quests-screen";
 import styles from "./quests-screen.styles";
@@ -65,11 +67,20 @@ class ScrollyQuest extends React.Component<IScrollQuestProps> {
         />
     );
 
-    private getItemLayout = (_: any, index: number) => ({
-        index,
-        length: MAP_SLICE_HEIGHT,
-        offset: MAP_SLICE_HEIGHT * index
-    });
+    private getItemLayout = (_: any, index: number) => {
+        if (index === 0 && isIphoneX()) {
+            return {
+                index,
+                length: HALF_MAP_SLICE_HEIGHT,
+                offset: 0
+            };
+        }
+        return {
+            index,
+            length: MAP_SLICE_HEIGHT,
+            offset: MAP_SLICE_HEIGHT * index
+        };
+    };
 
     private getSlicedLevels = ({ slots }: IMapSlice) => {
         const { levels } = this.props;
