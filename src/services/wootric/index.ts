@@ -10,6 +10,7 @@ interface IUserIdentity {
     createdAt: string;
     membershipType: string;
     currentLevel: number;
+    hasBusinessLeaderboard: boolean;
 }
 
 class WootricClient {
@@ -39,12 +40,15 @@ class WootricClient {
         RNWootric.setEndUserEmail(user.wootricId);
         RNWootric.setEndUserCreatedAt(moment.parseZone(user.createdAt).unix());
         RNWootric.setEndUserProperties({
+            wootric_id: user.wootricId,
             app_version: this.appVersion,
-            first_seen: user.createdAt,
-            last_seen: moment().format(),
+            created_at: user.createdAt,
+            last_request_at: moment().format(),
             current_level: "" + user.currentLevel, // Cast to string, to avoid android casting as a float
-            business_account_id: user.businessAccountId,
-            company_name: user.businessAccountName
+            businessAccountId: user.businessAccountId,
+            company_name: user.businessAccountName,
+            membershipType: user.membershipType,
+            business_leaderboard: user.hasBusinessLeaderboard
         });
 
         this.userDetailsSet = true;
