@@ -16,11 +16,16 @@ export const getVisiblePopups = (state: IReduxState) => state.user.popupVisibili
 export const getAcceptedLeaderboards = (state: IReduxState) => state.user.leaderboards.filter((l) => l.hasAccepted);
 export const getConsentedLeaderboards = (state: IReduxState) =>
     state.user.leaderboards.reduce((prev, curr) => {
-        // company leaderboard has 32 chars (and it should be first), custom leaderboards have 38
-        if (curr.leaderboardId.length === 32 && curr.consent) {
+        if (checkIsCompanyLeaderbaord(curr)) {
             return [curr, ...prev];
         } else if (curr.consent) {
             return [...prev, curr];
         }
         return prev;
     }, []);
+export const hasBusinessLeaderboardConsent = (state: IReduxState) =>
+    !!state.user.leaderboards.find(checkIsCompanyLeaderbaord);
+
+const checkIsCompanyLeaderbaord = (board: GetCurrentUser_getCurrentUser_leaderboards) =>
+    // company leaderboard has 32 chars (and it should be first), custom leaderboards have 38
+    board.leaderboardId.length === 32 && board.consent;
