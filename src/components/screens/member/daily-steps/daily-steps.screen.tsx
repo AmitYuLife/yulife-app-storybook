@@ -160,7 +160,7 @@ function getPadHeight(displayStreak: boolean) {
         return displayStreak ? 80 : 60;
     }
     if (Style.isShortToMediumAndroid()) {
-        return displayStreak ? 60 : 40;
+        return displayStreak ? 100 : 80;
     }
-    return displayStreak ? 100 : 80;
+    return displayStreak ? 140 : 120;
 }
