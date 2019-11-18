@@ -489,7 +489,7 @@ ShallowWrapper {
           style={
             Object {
               "bottom": 0,
-              "height": 1300,
+              "height": 1330,
               "left": 0,
               "position": "absolute",
               "right": 0,
@@ -562,7 +562,7 @@ ShallowWrapper {
           "source": 1,
           "style": Object {
             "bottom": 0,
-            "height": 1300,
+            "height": 1330,
             "left": 0,
             "position": "absolute",
             "right": 0,
@@ -687,7 +687,7 @@ ShallowWrapper {
             style={
               Object {
                 "bottom": 0,
-                "height": 1300,
+                "height": 1330,
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
@@ -760,7 +760,7 @@ ShallowWrapper {
             "source": 1,
             "style": Object {
               "bottom": 0,
-              "height": 1300,
+              "height": 1330,
               "left": 0,
               "position": "absolute",
               "right": 0,

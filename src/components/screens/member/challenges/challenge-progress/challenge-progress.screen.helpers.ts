@@ -22,7 +22,7 @@ const BRISK_WALK: IStyleSet[] = [
         navBarType: "forest",
         progressBarType: "forest-brisk-walk",
         source: assets.squirrel,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(375) }]),
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(399) }]),
         topBarType: "default"
     },
     {
@@ -56,7 +56,7 @@ const SHORT_STROLL: IStyleSet[] = [
         navBarType: "forest",
         progressBarType: "forest-yellow",
         source: assets.snail,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(668) }]),
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(600) }]),
         topBarType: "default"
     },
     {
@@ -98,7 +98,7 @@ const LONG_WALK: IStyleSet[] = [
         navBarType: "light",
         progressBarType: "ocean-black",
         source: assets.whale,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(650) }]),
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(539) }]),
         topBarType: "default"
     },
     {
@@ -106,7 +106,7 @@ const LONG_WALK: IStyleSet[] = [
         navBarType: "desert",
         progressBarType: "ocean-white",
         source: assets.desertFox,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(475) }]),
         topBarType: "white"
     },
     {
@@ -132,7 +132,7 @@ const MEDITATION: IStyleSet[] = [
         navBarType: "light",
         progressBarType: "black",
         source: assets.dolphin,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(650) }]),
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(665) }]),
         topBarType: "default"
     },
     {
@@ -140,7 +140,7 @@ const MEDITATION: IStyleSet[] = [
         navBarType: "desert",
         progressBarType: "ocean-black",
         source: assets.camel,
-        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
+        style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(332) }]),
         topBarType: "default"
     },
     {
