@@ -17,7 +17,12 @@ const defaultProps = {
         left: 0,
         right: 0
     },
-    copy: copyData.intro
+    copy: copyData.intro,
+    surgeIntro: {
+        visibility: false,
+        rate: 2,
+        activity: "meditation"
+    } as any
 };
 
 describe("Tooltip", () => {
@@ -65,6 +70,38 @@ describe("Tooltip", () => {
 
     it("should render todays yucoin tooltip", () => {
         const actual = shallow(<Tooltip {...defaultProps} type="TodaysYucoin" />);
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render surge tooltip", () => {
+        const actual = shallow(<Tooltip {...defaultProps} type="Surge" />);
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render surge tooltip with meditation minutes copy", () => {
+        const actual = shallow(
+            <Tooltip
+                surgeIntro={{ ...defaultProps.surgeIntro, visibility: true }}
+                isShowingPassiveMeditation={true}
+                {...defaultProps}
+                type="Surge"
+            />
+        );
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it("should render surge tooltip with steps & meditation minutes copy", () => {
+        const actual = shallow(
+            <Tooltip
+                surgeIntro={{ ...defaultProps.surgeIntro, visibility: true, activity: "all" }}
+                isShowingPassiveMeditation={true}
+                {...defaultProps}
+                type="Surge"
+            />
+        );
 
         expect(actual).toMatchSnapshot();
     });

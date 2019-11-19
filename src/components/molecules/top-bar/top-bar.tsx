@@ -28,6 +28,7 @@ interface IProps {
     leftIcon?: LeftIconTypes;
     middleLabel?: string;
     type?: TopBarTypes;
+    shouldHighlightCoins?: boolean;
 }
 
 export enum LEFT_ICON_TYPES {
@@ -116,7 +117,14 @@ class TopBar extends React.Component<IProps, IState> {
     };
 
     public render() {
-        const { coins, leftIcon = "Menu", menuLabel, onPressLeftIcon, type = "default" } = this.props;
+        const {
+            coins,
+            leftIcon = "Menu",
+            menuLabel,
+            onPressLeftIcon,
+            type = "default",
+            shouldHighlightCoins = false
+        } = this.props;
 
         if (type === "demo") {
             return this.renderDemo();
@@ -151,10 +159,17 @@ class TopBar extends React.Component<IProps, IState> {
                 {this.renderCenter(colour, logoColour, textStyle)}
                 <View style={styles.coinsWrapper}>
                     <View style={styles.coinsTextWrapper}>
-                        <Counter value={coins || 0} textStyle={StyleSheet.flatten([styles.coinsText, textStyle])} />
+                        <Counter
+                            value={coins || 0}
+                            textStyle={StyleSheet.flatten([
+                                styles.coinsText,
+                                textStyle,
+                                shouldHighlightCoins ? { color: Colours.darkHotPink } : null
+                            ])}
+                        />
                     </View>
                     <View style={styles.coinsLogoWrapper}>
-                        <Coins color={colour} />
+                        <Coins color={shouldHighlightCoins ? Colours.darkHotPink : colour} />
                     </View>
                 </View>
             </View>

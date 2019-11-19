@@ -13,6 +13,7 @@ export const getUserConsent = (state: IReduxState) => state.user.consent;
 export const getUserFeatures = (state: IReduxState) => state.user.features;
 export const getAllLeaderboards = (state: IReduxState) => state.user.leaderboards;
 export const getVisiblePopups = (state: IReduxState) => state.user.popupVisibility;
+export const getSurgeIntro = (state: IReduxState) => state.user.surgeIntro;
 export const getAcceptedLeaderboards = (state: IReduxState) => state.user.leaderboards.filter((l) => l.hasAccepted);
 export const getConsentedLeaderboards = (state: IReduxState) =>
     state.user.leaderboards.reduce((prev, curr) => {

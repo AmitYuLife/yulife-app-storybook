@@ -220,7 +220,17 @@ export const getMobileCopyGql = gql`
                         subheading
                         ctaLabel
                     }
+                    yucoinWithMeditation {
+                        heading
+                        subheading
+                        ctaLabel
+                    }
                     dailyStepsCTA {
+                        heading
+                        subheading
+                        ctaLabel
+                    }
+                    dailyStepsWithMeditationCTA {
                         heading
                         subheading
                         ctaLabel
@@ -246,6 +256,11 @@ export const getMobileCopyGql = gql`
                         ctaLabel
                     }
                     rewardsNav {
+                        heading
+                        subheading
+                        ctaLabel
+                    }
+                    surge {
                         heading
                         subheading
                         ctaLabel

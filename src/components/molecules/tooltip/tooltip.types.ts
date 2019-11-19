@@ -6,7 +6,8 @@ export enum TOOLTIP_TYPES {
     TODAYS_YUCOIN = "TodaysYucoin",
     LEADERBOARD = "Leaderboard",
     STREAKS = "Streaks",
-    REWARDS = "Rewards"
+    REWARDS = "Rewards",
+    SURGE = "Surge"
 }
 
 export type TooltipTypes =
@@ -17,4 +18,5 @@ export type TooltipTypes =
     | "TodaysYucoin"
     | "Leaderboard"
     | "Streaks"
-    | "Rewards";
+    | "Rewards"
+    | "Surge";

@@ -1,17 +1,10 @@
 import { initialState, IReduxState } from "../../_core/reducers";
 import { initialState as dailyStepsInitialState } from "../daily-steps.reducer";
-import {
-    getDailySteps,
-    getDailyStepsIsFetching,
-    getExchangeRate,
-    getLastUpdated
-} from "../daily-steps.selectors";
+import { getDailySteps, getDailyStepsIsFetching, getExchangeRate, getLastUpdated } from "../daily-steps.selectors";
 
-describe ("Daily Steps Selectors", () => {
-
-    describe ("getDailySteps selector", () => {
-
-        it ("returns the user's daily steps of current day", () => {
+describe("Daily Steps Selectors", () => {
+    describe("getDailySteps selector", () => {
+        it("returns the user's daily steps of current day", () => {
             const updatedState: IReduxState = {
                 ...initialState,
                 dailySteps: {
@@ -27,9 +20,8 @@ describe ("Daily Steps Selectors", () => {
         });
     });
 
-    describe ("getLastUpdated selector", () => {
-
-        it ("returns the time the user's daily steps were last updated", () => {
+    describe("getLastUpdated selector", () => {
+        it("returns the time the user's daily steps were last updated", () => {
             const updatedState: IReduxState = {
                 ...initialState,
                 dailySteps: {
@@ -45,16 +37,16 @@ describe ("Daily Steps Selectors", () => {
         });
     });
 
-    describe ("getExchangeRate selector", () => {
-
-        it ("returns the exchange rate of steps to yucoin", () => {
+    describe("getExchangeRate selector", () => {
+        it("returns the exchange rate of steps to yucoin", () => {
             const updatedState: IReduxState = {
                 ...initialState,
                 dailySteps: {
                     ...dailyStepsInitialState,
                     exchangeRate: {
                         steps: 50,
-                        yucoin: 1
+                        yucoin: 1,
+                        meditation: null
                     }
                 }
             };
@@ -67,9 +59,8 @@ describe ("Daily Steps Selectors", () => {
         });
     });
 
-    describe ("getDailyStepsIsFetching selector", () => {
-
-        it ("returns whether the daily steps are fetching", () => {
+    describe("getDailyStepsIsFetching selector", () => {
+        it("returns whether the daily steps are fetching", () => {
             const updatedState: IReduxState = {
                 ...initialState,
                 dailySteps: {

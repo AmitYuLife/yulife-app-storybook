@@ -1,5 +1,6 @@
 import { Text } from "@atoms/index";
 import { GetMobileCopy_getMobileCopy_screens_intro } from "@graphql/_core/schema";
+import { IUserStore } from "@redux/user/user.reducer";
 import * as React from "react";
 import { Image, StyleProp, StyleSheet, TouchableOpacity, View, ViewStyle } from "react-native";
 import assets from "./assets";
@@ -15,6 +16,8 @@ interface IProps {
     caretStyle?: StyleProp<ViewStyle>;
     onPressCta: () => void;
     copy: GetMobileCopy_getMobileCopy_screens_intro;
+    isShowingPassiveMeditation?: boolean;
+    surgeIntro?: IUserStore["surgeIntro"];
 }
 
 export type CaretDirection = "left" | "right" | "top" | "bottom";
@@ -60,9 +63,9 @@ export default class Tooltip extends React.PureComponent<IProps> {
         const { copy, type } = this.props;
         switch (type) {
             case TOOLTIP_TYPES.COINS:
-                return copy.yucoin.heading;
+                return copy.yucoinWithMeditation.heading;
             case TOOLTIP_TYPES.DAILY_STEPS_CTA:
-                return copy.dailyStepsCTA.heading;
+                return copy.dailyStepsWithMeditationCTA.heading;
             case TOOLTIP_TYPES.QUESTS_NAV:
                 return copy.questsNav.heading;
             case TOOLTIP_TYPES.TODAYS_YUCOIN:
@@ -73,6 +76,8 @@ export default class Tooltip extends React.PureComponent<IProps> {
                 return copy.streaks.heading;
             case TOOLTIP_TYPES.REWARDS:
                 return copy.rewardsNav.heading;
+            case TOOLTIP_TYPES.SURGE:
+                return copy.surge.heading;
         }
     };
 
@@ -80,9 +85,9 @@ export default class Tooltip extends React.PureComponent<IProps> {
         const { copy, type } = this.props;
         switch (type) {
             case TOOLTIP_TYPES.COINS:
-                return copy.yucoin.subheading;
+                return copy.yucoinWithMeditation.subheading;
             case TOOLTIP_TYPES.DAILY_STEPS_CTA:
-                return copy.dailyStepsCTA.subheading;
+                return copy.dailyStepsWithMeditationCTA.subheading;
             case TOOLTIP_TYPES.QUESTS_NAV:
                 return copy.questsNav.subheading;
             case TOOLTIP_TYPES.TODAYS_YUCOIN:
@@ -93,6 +98,23 @@ export default class Tooltip extends React.PureComponent<IProps> {
                 return copy.streaks.subheading;
             case TOOLTIP_TYPES.REWARDS:
                 return copy.rewardsNav.subheading;
+            case TOOLTIP_TYPES.SURGE:
+                return this.getSurgeText(copy.surge.subheading);
+        }
+    };
+
+    private getSurgeText = (copy: string) => {
+        const { isShowingPassiveMeditation, surgeIntro } = this.props;
+        if (isShowingPassiveMeditation && surgeIntro.activity === "all") {
+            return copy
+                .replace("${surgeActivity}", "steps and mindfulness minutes")
+                .replace("${multiplier}", `X${surgeIntro.rate}`);
+        } else if (isShowingPassiveMeditation && surgeIntro.activity === "meditation") {
+            return copy
+                .replace("${surgeActivity}", "mindfulness minutes")
+                .replace("${multiplier}", `X${surgeIntro.rate}`);
+        } else {
+            return copy.replace("${surgeActivity}", "steps").replace("${multiplier}", `X${surgeIntro.rate}`);
         }
     };
 }

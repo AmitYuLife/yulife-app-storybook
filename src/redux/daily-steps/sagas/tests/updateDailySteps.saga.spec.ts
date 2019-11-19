@@ -1,5 +1,5 @@
 
-import upsertStepsChallenge from "@graphql/challenges/upsertStepsChallenge.gql";
+import upsertStepsChallenge from "@graphql/challenges/upsertPassiveChallenge.gql";
 import moment from "moment";
 import { PedometerResponse } from "react-native-fitkit";
 import { call, put } from "redux-saga/effects";

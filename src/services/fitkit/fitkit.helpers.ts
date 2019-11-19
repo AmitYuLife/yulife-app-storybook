@@ -86,5 +86,15 @@ export const queryHistoricalData = async (onboardingDate: Moment) => {
     const start = onboardingDate.clone().subtract(60, "days");
     const end = onboardingDate.clone().subtract(1, "days");
 
-    return querySteps(start, end, { disableUserEntries: false  });
+    return querySteps(start, end, { disableUserEntries: false });
+};
+
+export const queryHistoricalMeditationData = async (
+    onboardingDate: Moment,
+    userFeature: { [name: string]: boolean }
+) => {
+    const start = onboardingDate.clone().subtract(60, "days");
+    const end = onboardingDate.clone().subtract(1, "days");
+
+    return queryMindfulSessions(start.format(), end.format(), userFeature);
 };

@@ -3,22 +3,38 @@ import moment from "moment";
 import { call, put, select, spawn } from "redux-saga/effects";
 
 import { getUserSuccess } from "../../user/user.actions";
-import { getIsHistoricalDataCollected, getIsOnboardingRedeemed } from "../onboarding.selectors";
+import {
+    getIsHistoricalDataCollected,
+    getIsHistoricalMeditationDataCollected,
+    getIsOnboardingRedeemed
+} from "../onboarding.selectors";
 
+import { getUserFeatures } from "../../user/user.selectors";
 import { setShowIntro } from "../onboarding.actions";
 import redeemOnboarding from "./redeemOnboarding.helper";
 import sendHistoricalData from "./sendHistoricalData.helper";
+import { sendHistoricalMeditationData } from "./sendHistoricalData.helper";
 
 export default function* onboardOnGetUser({ payload }: ReturnType<typeof getUserSuccess>) {
     try {
+        const features = yield select(getUserFeatures);
         const isHistoricalDataCollected = yield select(getIsHistoricalDataCollected);
+        const isHistoricalMeditationDataCollected = yield select(getIsHistoricalMeditationDataCollected);
         const isOnboardingRedeemed = yield select(getIsOnboardingRedeemed);
 
-        if (!isHistoricalDataCollected) {
+        if (!isHistoricalDataCollected || !isHistoricalMeditationDataCollected) {
             const onboardingDate = payload && payload.getCurrentUser ? payload.getCurrentUser.onboardingDate : null;
 
             if (onboardingDate && onboardingDate.length === 19) {
-                yield call(sendHistoricalData, moment(onboardingDate));
+                const onboardingMoment = moment(onboardingDate);
+
+                if (!isHistoricalDataCollected) {
+                    yield call(sendHistoricalData, onboardingMoment);
+                }
+
+                if (!isHistoricalMeditationDataCollected && features.usePassiveMeditation) {
+                    yield call(sendHistoricalMeditationData, onboardingMoment);
+                }
             }
         }
 

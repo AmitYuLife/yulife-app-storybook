@@ -25,6 +25,8 @@ export const getActivityHistoryGql = gql`
                 name
                 score
             }
+            mindfulSeconds
+            mindfulYucoin
         }
     }
 `;

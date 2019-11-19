@@ -2,7 +2,7 @@ import { StarInline, Text } from "@atoms/index";
 import { GetActivityHistory_getActivityHistoryWithLevels_sources as Sources } from "@graphql/_core/schema";
 import * as React from "react";
 import { View } from "react-native";
-import { getTime } from "../../../../services/utils";
+import { displaySecondsAsMinutes, padNum } from "../../../../services/utils";
 import styles from "./activity-history-levels.styles";
 
 export interface IChallenge {
@@ -60,7 +60,11 @@ export default function ActivityHistoryLevelsItem({
     mindfulYucoin
 }: ItemProps) {
     const typeText = steps === 1 ? "step" : "steps";
-    const mindfulTotal = getTime(mindfulSeconds);
+    const mindfulTotal = displaySecondsAsMinutes(mindfulSeconds);
+    const mindfulTotalToDisplay =
+        mindfulTotal.minutes === 1
+            ? `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} mindful min`
+            : `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} mindful mins`;
     return (
         <View style={styles.listItemWrapper}>
             <View style={styles.levelWrapper}>
@@ -94,7 +98,7 @@ export default function ActivityHistoryLevelsItem({
                         {!mindfulSeconds ? null : (
                             <View style={styles.activityLabelWrapper}>
                                 <Text numberOfLines={1} style={styles.activityLabel}>
-                                    {`${mindfulTotal} mindful mins`}
+                                    {mindfulTotalToDisplay}
                                 </Text>
                             </View>
                         )}

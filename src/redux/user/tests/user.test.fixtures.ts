@@ -60,7 +60,8 @@ export const loginSuccessFixture: LoginUser = {
                 pushNotifications: null,
                 workspaceLeaderboard: null
             },
-            passiveChallenge: null,
+            passiveSteps: null,
+            passiveMeditation: null,
             redeemedOnboarding: false,
             todayActivity: null,
             userFeatures: [],
@@ -107,7 +108,8 @@ export const currentUserFixture: GetCurrentUser = {
             pushNotifications: null,
             workspaceLeaderboard: null
         },
-        passiveChallenge: null,
+        passiveSteps: null,
+        passiveMeditation: null,
         todayActivity: null,
         userFeatures: [],
         onboardingDate: null,

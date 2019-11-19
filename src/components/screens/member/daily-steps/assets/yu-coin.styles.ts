@@ -22,7 +22,7 @@ export const svgSpecs = {
     height: "109",
     style: {
         alignItems: "center",
-        borderRadius: (106) / 2,
+        borderRadius: 106 / 2,
         justifyContent: "center",
         overflow: "hidden"
     } as ViewStyle,

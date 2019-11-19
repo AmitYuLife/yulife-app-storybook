@@ -17,6 +17,11 @@ ShallowWrapper {
           "heading": "Today’s steps and yucoin",
           "subheading": "For every 2000 steps, you earn 1 yucoin.",
         },
+        "dailyStepsWithMeditationCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
+        },
         "leaderboardsNav": Object {
           "ctaLabel": "Got it",
           "heading": "You're moving on up!",
@@ -37,6 +42,11 @@ ShallowWrapper {
           "heading": "You're on a streak!",
           "subheading": "Keep it going: Complete challenges for 5 consecutive days, and earn a bonus 40 yucoin.",
         },
+        "surge": Object {
+          "ctaLabel": "Got it",
+          "heading": "It’s surge time!",
+          "subheading": "Your daily \${surgeActivity} are earning \${multiplier} yucoin right now.",
+        },
         "todaysYucoin": Object {
           "ctaLabel": "Got it",
           "heading": "Check out your daily progress",
@@ -54,6 +64,11 @@ ShallowWrapper {
           "heading": "Here’s your yucoin bank!",
           "subheading": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
         },
+        "yucoinWithMeditation": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
+        },
       }
     }
     onPressCta={[MockFunction]}
@@ -61,6 +76,13 @@ ShallowWrapper {
       Object {
         "left": 0,
         "right": 0,
+      }
+    }
+    surgeIntro={
+      Object {
+        "activity": "meditation",
+        "rate": 2,
+        "visibility": false,
       }
     }
     type="Coins"
@@ -152,7 +174,7 @@ ShallowWrapper {
               }
             }
           >
-            Every time you open the app, we'll sync your steps and reward you in yucoin.
+            Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.
           </YuText>
           <TouchableOpacity
             activeOpacity={0.6}
@@ -282,7 +304,7 @@ ShallowWrapper {
                 }
               }
             >
-              Every time you open the app, we'll sync your steps and reward you in yucoin.
+              Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.
             </YuText>
             <TouchableOpacity
               activeOpacity={0.6}
@@ -398,7 +420,7 @@ ShallowWrapper {
                   }
                 }
               >
-                Every time you open the app, we'll sync your steps and reward you in yucoin.
+                Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.
               </YuText>,
               <TouchableOpacity
                 activeOpacity={0.6}
@@ -514,7 +536,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "children": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
+                "children": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
                 "style": Object {
                   "fontSize": 32,
                   "lineHeight": 48,
@@ -522,7 +544,7 @@ ShallowWrapper {
                 },
               },
               "ref": null,
-              "rendered": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
+              "rendered": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
               "type": [Function],
             },
             Object {
@@ -724,7 +746,7 @@ ShallowWrapper {
                 }
               }
             >
-              Every time you open the app, we'll sync your steps and reward you in yucoin.
+              Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.
             </YuText>
             <TouchableOpacity
               activeOpacity={0.6}
@@ -854,7 +876,7 @@ ShallowWrapper {
                   }
                 }
               >
-                Every time you open the app, we'll sync your steps and reward you in yucoin.
+                Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.
               </YuText>
               <TouchableOpacity
                 activeOpacity={0.6}
@@ -970,7 +992,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  Every time you open the app, we'll sync your steps and reward you in yucoin.
+                  Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.
                 </YuText>,
                 <TouchableOpacity
                   activeOpacity={0.6}
@@ -1086,7 +1108,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "function",
                 "props": Object {
-                  "children": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
+                  "children": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
                   "style": Object {
                     "fontSize": 32,
                     "lineHeight": 48,
@@ -1094,7 +1116,7 @@ ShallowWrapper {
                   },
                 },
                 "ref": null,
-                "rendered": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
+                "rendered": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
                 "type": [Function],
               },
               Object {
@@ -1256,6 +1278,11 @@ ShallowWrapper {
           "heading": "Today’s steps and yucoin",
           "subheading": "For every 2000 steps, you earn 1 yucoin.",
         },
+        "dailyStepsWithMeditationCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
+        },
         "leaderboardsNav": Object {
           "ctaLabel": "Got it",
           "heading": "You're moving on up!",
@@ -1276,6 +1303,11 @@ ShallowWrapper {
           "heading": "You're on a streak!",
           "subheading": "Keep it going: Complete challenges for 5 consecutive days, and earn a bonus 40 yucoin.",
         },
+        "surge": Object {
+          "ctaLabel": "Got it",
+          "heading": "It’s surge time!",
+          "subheading": "Your daily \${surgeActivity} are earning \${multiplier} yucoin right now.",
+        },
         "todaysYucoin": Object {
           "ctaLabel": "Got it",
           "heading": "Check out your daily progress",
@@ -1293,6 +1325,11 @@ ShallowWrapper {
           "heading": "Here’s your yucoin bank!",
           "subheading": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
         },
+        "yucoinWithMeditation": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
+        },
       }
     }
     onPressCta={[MockFunction]}
@@ -1300,6 +1337,13 @@ ShallowWrapper {
       Object {
         "left": 0,
         "right": 0,
+      }
+    }
+    surgeIntro={
+      Object {
+        "activity": "meditation",
+        "rate": 2,
+        "visibility": false,
       }
     }
     type="DailyStepsCta"
@@ -1391,7 +1435,7 @@ ShallowWrapper {
               }
             }
           >
-            For every 2000 steps, you earn 1 yucoin.
+            For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.
           </YuText>
           <TouchableOpacity
             activeOpacity={0.6}
@@ -1521,7 +1565,7 @@ ShallowWrapper {
                 }
               }
             >
-              For every 2000 steps, you earn 1 yucoin.
+              For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.
             </YuText>
             <TouchableOpacity
               activeOpacity={0.6}
@@ -1637,7 +1681,7 @@ ShallowWrapper {
                   }
                 }
               >
-                For every 2000 steps, you earn 1 yucoin.
+                For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.
               </YuText>,
               <TouchableOpacity
                 activeOpacity={0.6}
@@ -1753,7 +1797,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "children": "For every 2000 steps, you earn 1 yucoin.",
+                "children": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
                 "style": Object {
                   "fontSize": 32,
                   "lineHeight": 48,
@@ -1761,7 +1805,7 @@ ShallowWrapper {
                 },
               },
               "ref": null,
-              "rendered": "For every 2000 steps, you earn 1 yucoin.",
+              "rendered": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
               "type": [Function],
             },
             Object {
@@ -1963,7 +2007,7 @@ ShallowWrapper {
                 }
               }
             >
-              For every 2000 steps, you earn 1 yucoin.
+              For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.
             </YuText>
             <TouchableOpacity
               activeOpacity={0.6}
@@ -2093,7 +2137,7 @@ ShallowWrapper {
                   }
                 }
               >
-                For every 2000 steps, you earn 1 yucoin.
+                For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.
               </YuText>
               <TouchableOpacity
                 activeOpacity={0.6}
@@ -2209,7 +2253,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  For every 2000 steps, you earn 1 yucoin.
+                  For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.
                 </YuText>,
                 <TouchableOpacity
                   activeOpacity={0.6}
@@ -2325,7 +2369,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "function",
                 "props": Object {
-                  "children": "For every 2000 steps, you earn 1 yucoin.",
+                  "children": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
                   "style": Object {
                     "fontSize": 32,
                     "lineHeight": 48,
@@ -2333,7 +2377,7 @@ ShallowWrapper {
                   },
                 },
                 "ref": null,
-                "rendered": "For every 2000 steps, you earn 1 yucoin.",
+                "rendered": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
                 "type": [Function],
               },
               Object {
@@ -2495,6 +2539,11 @@ ShallowWrapper {
           "heading": "Today’s steps and yucoin",
           "subheading": "For every 2000 steps, you earn 1 yucoin.",
         },
+        "dailyStepsWithMeditationCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
+        },
         "leaderboardsNav": Object {
           "ctaLabel": "Got it",
           "heading": "You're moving on up!",
@@ -2515,6 +2564,11 @@ ShallowWrapper {
           "heading": "You're on a streak!",
           "subheading": "Keep it going: Complete challenges for 5 consecutive days, and earn a bonus 40 yucoin.",
         },
+        "surge": Object {
+          "ctaLabel": "Got it",
+          "heading": "It’s surge time!",
+          "subheading": "Your daily \${surgeActivity} are earning \${multiplier} yucoin right now.",
+        },
         "todaysYucoin": Object {
           "ctaLabel": "Got it",
           "heading": "Check out your daily progress",
@@ -2532,6 +2586,11 @@ ShallowWrapper {
           "heading": "Here’s your yucoin bank!",
           "subheading": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
         },
+        "yucoinWithMeditation": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
+        },
       }
     }
     onPressCta={[MockFunction]}
@@ -2539,6 +2598,13 @@ ShallowWrapper {
       Object {
         "left": 0,
         "right": 0,
+      }
+    }
+    surgeIntro={
+      Object {
+        "activity": "meditation",
+        "rate": 2,
+        "visibility": false,
       }
     }
     type="Leaderboard"
@@ -3734,6 +3800,11 @@ ShallowWrapper {
           "heading": "Today’s steps and yucoin",
           "subheading": "For every 2000 steps, you earn 1 yucoin.",
         },
+        "dailyStepsWithMeditationCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
+        },
         "leaderboardsNav": Object {
           "ctaLabel": "Got it",
           "heading": "You're moving on up!",
@@ -3754,6 +3825,11 @@ ShallowWrapper {
           "heading": "You're on a streak!",
           "subheading": "Keep it going: Complete challenges for 5 consecutive days, and earn a bonus 40 yucoin.",
         },
+        "surge": Object {
+          "ctaLabel": "Got it",
+          "heading": "It’s surge time!",
+          "subheading": "Your daily \${surgeActivity} are earning \${multiplier} yucoin right now.",
+        },
         "todaysYucoin": Object {
           "ctaLabel": "Got it",
           "heading": "Check out your daily progress",
@@ -3771,6 +3847,11 @@ ShallowWrapper {
           "heading": "Here’s your yucoin bank!",
           "subheading": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
         },
+        "yucoinWithMeditation": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
+        },
       }
     }
     onPressCta={[MockFunction]}
@@ -3778,6 +3859,13 @@ ShallowWrapper {
       Object {
         "left": 0,
         "right": 0,
+      }
+    }
+    surgeIntro={
+      Object {
+        "activity": "meditation",
+        "rate": 2,
+        "visibility": false,
       }
     }
     type="QuestsNav"
@@ -4973,6 +5061,11 @@ ShallowWrapper {
           "heading": "Today’s steps and yucoin",
           "subheading": "For every 2000 steps, you earn 1 yucoin.",
         },
+        "dailyStepsWithMeditationCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
+        },
         "leaderboardsNav": Object {
           "ctaLabel": "Got it",
           "heading": "You're moving on up!",
@@ -4993,6 +5086,11 @@ ShallowWrapper {
           "heading": "You're on a streak!",
           "subheading": "Keep it going: Complete challenges for 5 consecutive days, and earn a bonus 40 yucoin.",
         },
+        "surge": Object {
+          "ctaLabel": "Got it",
+          "heading": "It’s surge time!",
+          "subheading": "Your daily \${surgeActivity} are earning \${multiplier} yucoin right now.",
+        },
         "todaysYucoin": Object {
           "ctaLabel": "Got it",
           "heading": "Check out your daily progress",
@@ -5010,6 +5108,11 @@ ShallowWrapper {
           "heading": "Here’s your yucoin bank!",
           "subheading": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
         },
+        "yucoinWithMeditation": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
+        },
       }
     }
     onPressCta={[MockFunction]}
@@ -5017,6 +5120,13 @@ ShallowWrapper {
       Object {
         "left": 0,
         "right": 0,
+      }
+    }
+    surgeIntro={
+      Object {
+        "activity": "meditation",
+        "rate": 2,
+        "visibility": false,
       }
     }
     type="Rewards"
@@ -6212,6 +6322,11 @@ ShallowWrapper {
           "heading": "Today’s steps and yucoin",
           "subheading": "For every 2000 steps, you earn 1 yucoin.",
         },
+        "dailyStepsWithMeditationCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
+        },
         "leaderboardsNav": Object {
           "ctaLabel": "Got it",
           "heading": "You're moving on up!",
@@ -6232,6 +6347,11 @@ ShallowWrapper {
           "heading": "You're on a streak!",
           "subheading": "Keep it going: Complete challenges for 5 consecutive days, and earn a bonus 40 yucoin.",
         },
+        "surge": Object {
+          "ctaLabel": "Got it",
+          "heading": "It’s surge time!",
+          "subheading": "Your daily \${surgeActivity} are earning \${multiplier} yucoin right now.",
+        },
         "todaysYucoin": Object {
           "ctaLabel": "Got it",
           "heading": "Check out your daily progress",
@@ -6249,6 +6369,11 @@ ShallowWrapper {
           "heading": "Here’s your yucoin bank!",
           "subheading": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
         },
+        "yucoinWithMeditation": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
+        },
       }
     }
     onPressCta={[MockFunction]}
@@ -6256,6 +6381,13 @@ ShallowWrapper {
       Object {
         "left": 0,
         "right": 0,
+      }
+    }
+    surgeIntro={
+      Object {
+        "activity": "meditation",
+        "rate": 2,
+        "visibility": false,
       }
     }
     type="Streaks"
@@ -7434,7 +7566,7 @@ ShallowWrapper {
 }
 `;
 
-exports[`Tooltip should render todays yucoin tooltip 1`] = `
+exports[`Tooltip should render surge tooltip 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Tooltip
@@ -7450,6 +7582,11 @@ ShallowWrapper {
           "ctaLabel": "Got it",
           "heading": "Today’s steps and yucoin",
           "subheading": "For every 2000 steps, you earn 1 yucoin.",
+        },
+        "dailyStepsWithMeditationCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
         },
         "leaderboardsNav": Object {
           "ctaLabel": "Got it",
@@ -7471,6 +7608,11 @@ ShallowWrapper {
           "heading": "You're on a streak!",
           "subheading": "Keep it going: Complete challenges for 5 consecutive days, and earn a bonus 40 yucoin.",
         },
+        "surge": Object {
+          "ctaLabel": "Got it",
+          "heading": "It’s surge time!",
+          "subheading": "Your daily \${surgeActivity} are earning \${multiplier} yucoin right now.",
+        },
         "todaysYucoin": Object {
           "ctaLabel": "Got it",
           "heading": "Check out your daily progress",
@@ -7488,6 +7630,11 @@ ShallowWrapper {
           "heading": "Here’s your yucoin bank!",
           "subheading": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
         },
+        "yucoinWithMeditation": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
+        },
       }
     }
     onPressCta={[MockFunction]}
@@ -7495,6 +7642,3798 @@ ShallowWrapper {
       Object {
         "left": 0,
         "right": 0,
+      }
+    }
+    surgeIntro={
+      Object {
+        "activity": "meditation",
+        "rate": 2,
+        "visibility": false,
+      }
+    }
+    type="Surge"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "rgb(157, 157, 157)",
+              "borderRadius": 8,
+              "bottom": -8,
+              "height": 40,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": 576,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 8,
+              "justifyContent": "center",
+              "padding": 32,
+              "width": 576,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": -40,
+                "justifyContent": "center",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "transform": Array [
+                  Object {
+                    "rotate": "180deg",
+                  },
+                ],
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 48,
+                  "width": 48,
+                }
+              }
+            />
+          </View>
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "fontSize": 32,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              }
+            }
+          >
+            It’s surge time!
+          </YuText>
+          <YuText
+            style={
+              Object {
+                "fontSize": 32,
+                "lineHeight": 48,
+                "marginBottom": 16,
+              }
+            }
+          >
+            Your daily steps are earning X2 yucoin right now.
+          </YuText>
+          <TouchableOpacity
+            activeOpacity={0.6}
+            onPress={[MockFunction]}
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "#E30D76",
+                    "fontSize": 32,
+                    "lineHeight": 48,
+                  }
+                }
+              >
+                Got it
+              </YuText>
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 32,
+                    "marginLeft": 16,
+                    "width": 32,
+                  }
+                }
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>,
+      "style": Array [
+        Object {
+          "justifyContent": "center",
+          "position": "absolute",
+        },
+        Object {
+          "left": 0,
+          "right": 0,
+        },
+      ],
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgb(157, 157, 157)",
+                "borderRadius": 8,
+                "bottom": -8,
+                "height": 40,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": 576,
+              }
+            }
+          />,
+          <View
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "justifyContent": "center",
+                "padding": 32,
+                "width": 576,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "bottom": -40,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "transform": Array [
+                    Object {
+                      "rotate": "180deg",
+                    },
+                  ],
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 48,
+                    "width": 48,
+                  }
+                }
+              />
+            </View>
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "fontSize": 32,
+                  "lineHeight": 32,
+                  "marginBottom": 16,
+                }
+              }
+            >
+              It’s surge time!
+            </YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 32,
+                  "lineHeight": 48,
+                  "marginBottom": 16,
+                }
+              }
+            >
+              Your daily steps are earning X2 yucoin right now.
+            </YuText>
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={[MockFunction]}
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "#E30D76",
+                      "fontSize": 32,
+                      "lineHeight": 48,
+                    }
+                  }
+                >
+                  Got it
+                </YuText>
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 32,
+                      "marginLeft": 16,
+                      "width": 32,
+                    }
+                  }
+                />
+              </View>
+            </TouchableOpacity>
+          </View>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "style": Object {
+              "backgroundColor": "rgb(157, 157, 157)",
+              "borderRadius": 8,
+              "bottom": -8,
+              "height": 40,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": 576,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": -40,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "transform": Array [
+                      Object {
+                        "rotate": "180deg",
+                      },
+                    ],
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 48,
+                      "width": 48,
+                    }
+                  }
+                />
+              </View>,
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 32,
+                    "marginBottom": 16,
+                  }
+                }
+              >
+                It’s surge time!
+              </YuText>,
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 48,
+                    "marginBottom": 16,
+                  }
+                }
+              >
+                Your daily steps are earning X2 yucoin right now.
+              </YuText>,
+              <TouchableOpacity
+                activeOpacity={0.6}
+                onPress={[MockFunction]}
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "color": "#E30D76",
+                        "fontSize": 32,
+                        "lineHeight": 48,
+                      }
+                    }
+                  >
+                    Got it
+                  </YuText>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginLeft": 16,
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>
+              </TouchableOpacity>,
+            ],
+            "style": Object {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 8,
+              "justifyContent": "center",
+              "padding": 32,
+              "width": 576,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 48,
+                      "width": 48,
+                    }
+                  }
+                />,
+                "style": Object {
+                  "alignItems": "center",
+                  "bottom": -40,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "transform": Array [
+                    Object {
+                      "rotate": "180deg",
+                    },
+                  ],
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "source": 1,
+                  "style": Object {
+                    "height": 48,
+                    "width": 48,
+                  },
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "bold": true,
+                "children": "It’s surge time!",
+                "style": Object {
+                  "fontSize": 32,
+                  "lineHeight": 32,
+                  "marginBottom": 16,
+                },
+              },
+              "ref": null,
+              "rendered": "It’s surge time!",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "Your daily steps are earning X2 yucoin right now.",
+                "style": Object {
+                  "fontSize": 32,
+                  "lineHeight": 48,
+                  "marginBottom": 16,
+                },
+              },
+              "ref": null,
+              "rendered": "Your daily steps are earning X2 yucoin right now.",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "activeOpacity": 0.6,
+                "children": <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "color": "#E30D76",
+                        "fontSize": 32,
+                        "lineHeight": 48,
+                      }
+                    }
+                  >
+                    Got it
+                  </YuText>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginLeft": 16,
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>,
+                "onPress": [MockFunction],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <YuText
+                      style={
+                        Object {
+                          "color": "#E30D76",
+                          "fontSize": 32,
+                          "lineHeight": 48,
+                        }
+                      }
+                    >
+                      Got it
+                    </YuText>,
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginLeft": 16,
+                          "width": 32,
+                        }
+                      }
+                    />,
+                  ],
+                  "style": Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "Got it",
+                      "style": Object {
+                        "color": "#E30D76",
+                        "fontSize": 32,
+                        "lineHeight": 48,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "Got it",
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "source": 1,
+                      "style": Object {
+                        "height": 32,
+                        "marginLeft": 16,
+                        "width": 32,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgb(157, 157, 157)",
+                "borderRadius": 8,
+                "bottom": -8,
+                "height": 40,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": 576,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "justifyContent": "center",
+                "padding": 32,
+                "width": 576,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "bottom": -40,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "transform": Array [
+                    Object {
+                      "rotate": "180deg",
+                    },
+                  ],
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 48,
+                    "width": 48,
+                  }
+                }
+              />
+            </View>
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "fontSize": 32,
+                  "lineHeight": 32,
+                  "marginBottom": 16,
+                }
+              }
+            >
+              It’s surge time!
+            </YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 32,
+                  "lineHeight": 48,
+                  "marginBottom": 16,
+                }
+              }
+            >
+              Your daily steps are earning X2 yucoin right now.
+            </YuText>
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={[MockFunction]}
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "#E30D76",
+                      "fontSize": 32,
+                      "lineHeight": 48,
+                    }
+                  }
+                >
+                  Got it
+                </YuText>
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 32,
+                      "marginLeft": 16,
+                      "width": 32,
+                    }
+                  }
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>,
+        "style": Array [
+          Object {
+            "justifyContent": "center",
+            "position": "absolute",
+          },
+          Object {
+            "left": 0,
+            "right": 0,
+          },
+        ],
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <View
+              style={
+                Object {
+                  "backgroundColor": "rgb(157, 157, 157)",
+                  "borderRadius": 8,
+                  "bottom": -8,
+                  "height": 40,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "width": 576,
+                }
+              }
+            />,
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 8,
+                  "justifyContent": "center",
+                  "padding": 32,
+                  "width": 576,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": -40,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "transform": Array [
+                      Object {
+                        "rotate": "180deg",
+                      },
+                    ],
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 48,
+                      "width": 48,
+                    }
+                  }
+                />
+              </View>
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 32,
+                    "marginBottom": 16,
+                  }
+                }
+              >
+                It’s surge time!
+              </YuText>
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 48,
+                    "marginBottom": 16,
+                  }
+                }
+              >
+                Your daily steps are earning X2 yucoin right now.
+              </YuText>
+              <TouchableOpacity
+                activeOpacity={0.6}
+                onPress={[MockFunction]}
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "color": "#E30D76",
+                        "fontSize": 32,
+                        "lineHeight": 48,
+                      }
+                    }
+                  >
+                    Got it
+                  </YuText>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginLeft": 16,
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>
+              </TouchableOpacity>
+            </View>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "style": Object {
+                "backgroundColor": "rgb(157, 157, 157)",
+                "borderRadius": 8,
+                "bottom": -8,
+                "height": 40,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": 576,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": -40,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "transform": Array [
+                        Object {
+                          "rotate": "180deg",
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 48,
+                        "width": 48,
+                      }
+                    }
+                  />
+                </View>,
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "fontSize": 32,
+                      "lineHeight": 32,
+                      "marginBottom": 16,
+                    }
+                  }
+                >
+                  It’s surge time!
+                </YuText>,
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                      "lineHeight": 48,
+                      "marginBottom": 16,
+                    }
+                  }
+                >
+                  Your daily steps are earning X2 yucoin right now.
+                </YuText>,
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  onPress={[MockFunction]}
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "color": "#E30D76",
+                          "fontSize": 32,
+                          "lineHeight": 48,
+                        }
+                      }
+                    >
+                      Got it
+                    </YuText>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginLeft": 16,
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>
+                </TouchableOpacity>,
+              ],
+              "style": Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "justifyContent": "center",
+                "padding": 32,
+                "width": 576,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 48,
+                        "width": 48,
+                      }
+                    }
+                  />,
+                  "style": Object {
+                    "alignItems": "center",
+                    "bottom": -40,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "transform": Array [
+                      Object {
+                        "rotate": "180deg",
+                      },
+                    ],
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
+                    "style": Object {
+                      "height": 48,
+                      "width": 48,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "bold": true,
+                  "children": "It’s surge time!",
+                  "style": Object {
+                    "fontSize": 32,
+                    "lineHeight": 32,
+                    "marginBottom": 16,
+                  },
+                },
+                "ref": null,
+                "rendered": "It’s surge time!",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "Your daily steps are earning X2 yucoin right now.",
+                  "style": Object {
+                    "fontSize": 32,
+                    "lineHeight": 48,
+                    "marginBottom": 16,
+                  },
+                },
+                "ref": null,
+                "rendered": "Your daily steps are earning X2 yucoin right now.",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "activeOpacity": 0.6,
+                  "children": <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "color": "#E30D76",
+                          "fontSize": 32,
+                          "lineHeight": 48,
+                        }
+                      }
+                    >
+                      Got it
+                    </YuText>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginLeft": 16,
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>,
+                  "onPress": [MockFunction],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <YuText
+                        style={
+                          Object {
+                            "color": "#E30D76",
+                            "fontSize": 32,
+                            "lineHeight": 48,
+                          }
+                        }
+                      >
+                        Got it
+                      </YuText>,
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginLeft": 16,
+                            "width": 32,
+                          }
+                        }
+                      />,
+                    ],
+                    "style": Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "children": "Got it",
+                        "style": Object {
+                          "color": "#E30D76",
+                          "fontSize": 32,
+                          "lineHeight": 48,
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "Got it",
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "source": 1,
+                        "style": Object {
+                          "height": 32,
+                          "marginLeft": 16,
+                          "width": 32,
+                        },
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                  ],
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Tooltip should render surge tooltip with meditation minutes copy 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Tooltip
+    caretDirection="bottom"
+    caretStyle={
+      Object {
+        "left": 0,
+      }
+    }
+    copy={
+      Object {
+        "dailyStepsCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, you earn 1 yucoin.",
+        },
+        "dailyStepsWithMeditationCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
+        },
+        "leaderboardsNav": Object {
+          "ctaLabel": "Got it",
+          "heading": "You're moving on up!",
+          "subheading": "See where you rank for the last 30 days of steps, mindfulness minutes, and yucoin.",
+        },
+        "questsNav": Object {
+          "ctaLabel": "Got it",
+          "heading": "Earn bonus yucoin!",
+          "subheading": "Complete a daily challenge by tapping here.",
+        },
+        "rewardsNav": Object {
+          "ctaLabel": "Got it",
+          "heading": "Your rewards are waiting!",
+          "subheading": "Redeem your yucoin for rewards, or claim discounts just for being a member of yulife.",
+        },
+        "streaks": Object {
+          "ctaLabel": "Got it",
+          "heading": "You're on a streak!",
+          "subheading": "Keep it going: Complete challenges for 5 consecutive days, and earn a bonus 40 yucoin.",
+        },
+        "surge": Object {
+          "ctaLabel": "Got it",
+          "heading": "It’s surge time!",
+          "subheading": "Your daily \${surgeActivity} are earning \${multiplier} yucoin right now.",
+        },
+        "todaysYucoin": Object {
+          "ctaLabel": "Got it",
+          "heading": "Check out your daily progress",
+          "subheading": "Tap here to see all the activities you have earned yucoin for today.",
+        },
+        "welcome": Object {
+          "ctaLabel": "let’s begin",
+          "descriptionOne": "Welcome to the yuniverse",
+          "descriptionThree": "Let us show you around the forest...",
+          "descriptionTwo": "Here, you are rewarded for every step you take, and every meditation break.",
+          "heading": "Welcome to the yuniverse",
+        },
+        "yucoin": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
+        },
+        "yucoinWithMeditation": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
+        },
+      }
+    }
+    isShowingPassiveMeditation={true}
+    onPressCta={[MockFunction]}
+    positionStyle={
+      Object {
+        "left": 0,
+        "right": 0,
+      }
+    }
+    surgeIntro={
+      Object {
+        "activity": "meditation",
+        "rate": 2,
+        "visibility": false,
+      }
+    }
+    type="Surge"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "rgb(157, 157, 157)",
+              "borderRadius": 8,
+              "bottom": -8,
+              "height": 40,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": 576,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 8,
+              "justifyContent": "center",
+              "padding": 32,
+              "width": 576,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": -40,
+                "justifyContent": "center",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "transform": Array [
+                  Object {
+                    "rotate": "180deg",
+                  },
+                ],
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 48,
+                  "width": 48,
+                }
+              }
+            />
+          </View>
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "fontSize": 32,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              }
+            }
+          >
+            It’s surge time!
+          </YuText>
+          <YuText
+            style={
+              Object {
+                "fontSize": 32,
+                "lineHeight": 48,
+                "marginBottom": 16,
+              }
+            }
+          >
+            Your daily mindfulness minutes are earning X2 yucoin right now.
+          </YuText>
+          <TouchableOpacity
+            activeOpacity={0.6}
+            onPress={[MockFunction]}
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "#E30D76",
+                    "fontSize": 32,
+                    "lineHeight": 48,
+                  }
+                }
+              >
+                Got it
+              </YuText>
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 32,
+                    "marginLeft": 16,
+                    "width": 32,
+                  }
+                }
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>,
+      "style": Array [
+        Object {
+          "justifyContent": "center",
+          "position": "absolute",
+        },
+        Object {
+          "left": 0,
+          "right": 0,
+        },
+      ],
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgb(157, 157, 157)",
+                "borderRadius": 8,
+                "bottom": -8,
+                "height": 40,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": 576,
+              }
+            }
+          />,
+          <View
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "justifyContent": "center",
+                "padding": 32,
+                "width": 576,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "bottom": -40,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "transform": Array [
+                    Object {
+                      "rotate": "180deg",
+                    },
+                  ],
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 48,
+                    "width": 48,
+                  }
+                }
+              />
+            </View>
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "fontSize": 32,
+                  "lineHeight": 32,
+                  "marginBottom": 16,
+                }
+              }
+            >
+              It’s surge time!
+            </YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 32,
+                  "lineHeight": 48,
+                  "marginBottom": 16,
+                }
+              }
+            >
+              Your daily mindfulness minutes are earning X2 yucoin right now.
+            </YuText>
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={[MockFunction]}
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "#E30D76",
+                      "fontSize": 32,
+                      "lineHeight": 48,
+                    }
+                  }
+                >
+                  Got it
+                </YuText>
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 32,
+                      "marginLeft": 16,
+                      "width": 32,
+                    }
+                  }
+                />
+              </View>
+            </TouchableOpacity>
+          </View>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "style": Object {
+              "backgroundColor": "rgb(157, 157, 157)",
+              "borderRadius": 8,
+              "bottom": -8,
+              "height": 40,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": 576,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": -40,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "transform": Array [
+                      Object {
+                        "rotate": "180deg",
+                      },
+                    ],
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 48,
+                      "width": 48,
+                    }
+                  }
+                />
+              </View>,
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 32,
+                    "marginBottom": 16,
+                  }
+                }
+              >
+                It’s surge time!
+              </YuText>,
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 48,
+                    "marginBottom": 16,
+                  }
+                }
+              >
+                Your daily mindfulness minutes are earning X2 yucoin right now.
+              </YuText>,
+              <TouchableOpacity
+                activeOpacity={0.6}
+                onPress={[MockFunction]}
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "color": "#E30D76",
+                        "fontSize": 32,
+                        "lineHeight": 48,
+                      }
+                    }
+                  >
+                    Got it
+                  </YuText>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginLeft": 16,
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>
+              </TouchableOpacity>,
+            ],
+            "style": Object {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 8,
+              "justifyContent": "center",
+              "padding": 32,
+              "width": 576,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 48,
+                      "width": 48,
+                    }
+                  }
+                />,
+                "style": Object {
+                  "alignItems": "center",
+                  "bottom": -40,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "transform": Array [
+                    Object {
+                      "rotate": "180deg",
+                    },
+                  ],
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "source": 1,
+                  "style": Object {
+                    "height": 48,
+                    "width": 48,
+                  },
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "bold": true,
+                "children": "It’s surge time!",
+                "style": Object {
+                  "fontSize": 32,
+                  "lineHeight": 32,
+                  "marginBottom": 16,
+                },
+              },
+              "ref": null,
+              "rendered": "It’s surge time!",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "Your daily mindfulness minutes are earning X2 yucoin right now.",
+                "style": Object {
+                  "fontSize": 32,
+                  "lineHeight": 48,
+                  "marginBottom": 16,
+                },
+              },
+              "ref": null,
+              "rendered": "Your daily mindfulness minutes are earning X2 yucoin right now.",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "activeOpacity": 0.6,
+                "children": <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "color": "#E30D76",
+                        "fontSize": 32,
+                        "lineHeight": 48,
+                      }
+                    }
+                  >
+                    Got it
+                  </YuText>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginLeft": 16,
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>,
+                "onPress": [MockFunction],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <YuText
+                      style={
+                        Object {
+                          "color": "#E30D76",
+                          "fontSize": 32,
+                          "lineHeight": 48,
+                        }
+                      }
+                    >
+                      Got it
+                    </YuText>,
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginLeft": 16,
+                          "width": 32,
+                        }
+                      }
+                    />,
+                  ],
+                  "style": Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "Got it",
+                      "style": Object {
+                        "color": "#E30D76",
+                        "fontSize": 32,
+                        "lineHeight": 48,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "Got it",
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "source": 1,
+                      "style": Object {
+                        "height": 32,
+                        "marginLeft": 16,
+                        "width": 32,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgb(157, 157, 157)",
+                "borderRadius": 8,
+                "bottom": -8,
+                "height": 40,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": 576,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "justifyContent": "center",
+                "padding": 32,
+                "width": 576,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "bottom": -40,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "transform": Array [
+                    Object {
+                      "rotate": "180deg",
+                    },
+                  ],
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 48,
+                    "width": 48,
+                  }
+                }
+              />
+            </View>
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "fontSize": 32,
+                  "lineHeight": 32,
+                  "marginBottom": 16,
+                }
+              }
+            >
+              It’s surge time!
+            </YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 32,
+                  "lineHeight": 48,
+                  "marginBottom": 16,
+                }
+              }
+            >
+              Your daily mindfulness minutes are earning X2 yucoin right now.
+            </YuText>
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={[MockFunction]}
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "#E30D76",
+                      "fontSize": 32,
+                      "lineHeight": 48,
+                    }
+                  }
+                >
+                  Got it
+                </YuText>
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 32,
+                      "marginLeft": 16,
+                      "width": 32,
+                    }
+                  }
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>,
+        "style": Array [
+          Object {
+            "justifyContent": "center",
+            "position": "absolute",
+          },
+          Object {
+            "left": 0,
+            "right": 0,
+          },
+        ],
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <View
+              style={
+                Object {
+                  "backgroundColor": "rgb(157, 157, 157)",
+                  "borderRadius": 8,
+                  "bottom": -8,
+                  "height": 40,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "width": 576,
+                }
+              }
+            />,
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 8,
+                  "justifyContent": "center",
+                  "padding": 32,
+                  "width": 576,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": -40,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "transform": Array [
+                      Object {
+                        "rotate": "180deg",
+                      },
+                    ],
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 48,
+                      "width": 48,
+                    }
+                  }
+                />
+              </View>
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 32,
+                    "marginBottom": 16,
+                  }
+                }
+              >
+                It’s surge time!
+              </YuText>
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 48,
+                    "marginBottom": 16,
+                  }
+                }
+              >
+                Your daily mindfulness minutes are earning X2 yucoin right now.
+              </YuText>
+              <TouchableOpacity
+                activeOpacity={0.6}
+                onPress={[MockFunction]}
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "color": "#E30D76",
+                        "fontSize": 32,
+                        "lineHeight": 48,
+                      }
+                    }
+                  >
+                    Got it
+                  </YuText>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginLeft": 16,
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>
+              </TouchableOpacity>
+            </View>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "style": Object {
+                "backgroundColor": "rgb(157, 157, 157)",
+                "borderRadius": 8,
+                "bottom": -8,
+                "height": 40,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": 576,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": -40,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "transform": Array [
+                        Object {
+                          "rotate": "180deg",
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 48,
+                        "width": 48,
+                      }
+                    }
+                  />
+                </View>,
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "fontSize": 32,
+                      "lineHeight": 32,
+                      "marginBottom": 16,
+                    }
+                  }
+                >
+                  It’s surge time!
+                </YuText>,
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                      "lineHeight": 48,
+                      "marginBottom": 16,
+                    }
+                  }
+                >
+                  Your daily mindfulness minutes are earning X2 yucoin right now.
+                </YuText>,
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  onPress={[MockFunction]}
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "color": "#E30D76",
+                          "fontSize": 32,
+                          "lineHeight": 48,
+                        }
+                      }
+                    >
+                      Got it
+                    </YuText>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginLeft": 16,
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>
+                </TouchableOpacity>,
+              ],
+              "style": Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "justifyContent": "center",
+                "padding": 32,
+                "width": 576,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 48,
+                        "width": 48,
+                      }
+                    }
+                  />,
+                  "style": Object {
+                    "alignItems": "center",
+                    "bottom": -40,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "transform": Array [
+                      Object {
+                        "rotate": "180deg",
+                      },
+                    ],
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
+                    "style": Object {
+                      "height": 48,
+                      "width": 48,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "bold": true,
+                  "children": "It’s surge time!",
+                  "style": Object {
+                    "fontSize": 32,
+                    "lineHeight": 32,
+                    "marginBottom": 16,
+                  },
+                },
+                "ref": null,
+                "rendered": "It’s surge time!",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "Your daily mindfulness minutes are earning X2 yucoin right now.",
+                  "style": Object {
+                    "fontSize": 32,
+                    "lineHeight": 48,
+                    "marginBottom": 16,
+                  },
+                },
+                "ref": null,
+                "rendered": "Your daily mindfulness minutes are earning X2 yucoin right now.",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "activeOpacity": 0.6,
+                  "children": <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "color": "#E30D76",
+                          "fontSize": 32,
+                          "lineHeight": 48,
+                        }
+                      }
+                    >
+                      Got it
+                    </YuText>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginLeft": 16,
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>,
+                  "onPress": [MockFunction],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <YuText
+                        style={
+                          Object {
+                            "color": "#E30D76",
+                            "fontSize": 32,
+                            "lineHeight": 48,
+                          }
+                        }
+                      >
+                        Got it
+                      </YuText>,
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginLeft": 16,
+                            "width": 32,
+                          }
+                        }
+                      />,
+                    ],
+                    "style": Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "children": "Got it",
+                        "style": Object {
+                          "color": "#E30D76",
+                          "fontSize": 32,
+                          "lineHeight": 48,
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "Got it",
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "source": 1,
+                        "style": Object {
+                          "height": 32,
+                          "marginLeft": 16,
+                          "width": 32,
+                        },
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                  ],
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Tooltip should render surge tooltip with steps & meditation minutes copy 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Tooltip
+    caretDirection="bottom"
+    caretStyle={
+      Object {
+        "left": 0,
+      }
+    }
+    copy={
+      Object {
+        "dailyStepsCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, you earn 1 yucoin.",
+        },
+        "dailyStepsWithMeditationCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
+        },
+        "leaderboardsNav": Object {
+          "ctaLabel": "Got it",
+          "heading": "You're moving on up!",
+          "subheading": "See where you rank for the last 30 days of steps, mindfulness minutes, and yucoin.",
+        },
+        "questsNav": Object {
+          "ctaLabel": "Got it",
+          "heading": "Earn bonus yucoin!",
+          "subheading": "Complete a daily challenge by tapping here.",
+        },
+        "rewardsNav": Object {
+          "ctaLabel": "Got it",
+          "heading": "Your rewards are waiting!",
+          "subheading": "Redeem your yucoin for rewards, or claim discounts just for being a member of yulife.",
+        },
+        "streaks": Object {
+          "ctaLabel": "Got it",
+          "heading": "You're on a streak!",
+          "subheading": "Keep it going: Complete challenges for 5 consecutive days, and earn a bonus 40 yucoin.",
+        },
+        "surge": Object {
+          "ctaLabel": "Got it",
+          "heading": "It’s surge time!",
+          "subheading": "Your daily \${surgeActivity} are earning \${multiplier} yucoin right now.",
+        },
+        "todaysYucoin": Object {
+          "ctaLabel": "Got it",
+          "heading": "Check out your daily progress",
+          "subheading": "Tap here to see all the activities you have earned yucoin for today.",
+        },
+        "welcome": Object {
+          "ctaLabel": "let’s begin",
+          "descriptionOne": "Welcome to the yuniverse",
+          "descriptionThree": "Let us show you around the forest...",
+          "descriptionTwo": "Here, you are rewarded for every step you take, and every meditation break.",
+          "heading": "Welcome to the yuniverse",
+        },
+        "yucoin": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
+        },
+        "yucoinWithMeditation": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
+        },
+      }
+    }
+    isShowingPassiveMeditation={true}
+    onPressCta={[MockFunction]}
+    positionStyle={
+      Object {
+        "left": 0,
+        "right": 0,
+      }
+    }
+    surgeIntro={
+      Object {
+        "activity": "meditation",
+        "rate": 2,
+        "visibility": false,
+      }
+    }
+    type="Surge"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "rgb(157, 157, 157)",
+              "borderRadius": 8,
+              "bottom": -8,
+              "height": 40,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": 576,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 8,
+              "justifyContent": "center",
+              "padding": 32,
+              "width": 576,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "bottom": -40,
+                "justifyContent": "center",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "transform": Array [
+                  Object {
+                    "rotate": "180deg",
+                  },
+                ],
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 48,
+                  "width": 48,
+                }
+              }
+            />
+          </View>
+          <YuText
+            bold={true}
+            style={
+              Object {
+                "fontSize": 32,
+                "lineHeight": 32,
+                "marginBottom": 16,
+              }
+            }
+          >
+            It’s surge time!
+          </YuText>
+          <YuText
+            style={
+              Object {
+                "fontSize": 32,
+                "lineHeight": 48,
+                "marginBottom": 16,
+              }
+            }
+          >
+            Your daily mindfulness minutes are earning X2 yucoin right now.
+          </YuText>
+          <TouchableOpacity
+            activeOpacity={0.6}
+            onPress={[MockFunction]}
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "color": "#E30D76",
+                    "fontSize": 32,
+                    "lineHeight": 48,
+                  }
+                }
+              >
+                Got it
+              </YuText>
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 32,
+                    "marginLeft": 16,
+                    "width": 32,
+                  }
+                }
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>,
+      "style": Array [
+        Object {
+          "justifyContent": "center",
+          "position": "absolute",
+        },
+        Object {
+          "left": 0,
+          "right": 0,
+        },
+      ],
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgb(157, 157, 157)",
+                "borderRadius": 8,
+                "bottom": -8,
+                "height": 40,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": 576,
+              }
+            }
+          />,
+          <View
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "justifyContent": "center",
+                "padding": 32,
+                "width": 576,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "bottom": -40,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "transform": Array [
+                    Object {
+                      "rotate": "180deg",
+                    },
+                  ],
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 48,
+                    "width": 48,
+                  }
+                }
+              />
+            </View>
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "fontSize": 32,
+                  "lineHeight": 32,
+                  "marginBottom": 16,
+                }
+              }
+            >
+              It’s surge time!
+            </YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 32,
+                  "lineHeight": 48,
+                  "marginBottom": 16,
+                }
+              }
+            >
+              Your daily mindfulness minutes are earning X2 yucoin right now.
+            </YuText>
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={[MockFunction]}
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "#E30D76",
+                      "fontSize": 32,
+                      "lineHeight": 48,
+                    }
+                  }
+                >
+                  Got it
+                </YuText>
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 32,
+                      "marginLeft": 16,
+                      "width": 32,
+                    }
+                  }
+                />
+              </View>
+            </TouchableOpacity>
+          </View>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "style": Object {
+              "backgroundColor": "rgb(157, 157, 157)",
+              "borderRadius": 8,
+              "bottom": -8,
+              "height": 40,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "width": 576,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": -40,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "transform": Array [
+                      Object {
+                        "rotate": "180deg",
+                      },
+                    ],
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 48,
+                      "width": 48,
+                    }
+                  }
+                />
+              </View>,
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 32,
+                    "marginBottom": 16,
+                  }
+                }
+              >
+                It’s surge time!
+              </YuText>,
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 48,
+                    "marginBottom": 16,
+                  }
+                }
+              >
+                Your daily mindfulness minutes are earning X2 yucoin right now.
+              </YuText>,
+              <TouchableOpacity
+                activeOpacity={0.6}
+                onPress={[MockFunction]}
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "color": "#E30D76",
+                        "fontSize": 32,
+                        "lineHeight": 48,
+                      }
+                    }
+                  >
+                    Got it
+                  </YuText>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginLeft": 16,
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>
+              </TouchableOpacity>,
+            ],
+            "style": Object {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 8,
+              "justifyContent": "center",
+              "padding": 32,
+              "width": 576,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 48,
+                      "width": 48,
+                    }
+                  }
+                />,
+                "style": Object {
+                  "alignItems": "center",
+                  "bottom": -40,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "transform": Array [
+                    Object {
+                      "rotate": "180deg",
+                    },
+                  ],
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "source": 1,
+                  "style": Object {
+                    "height": 48,
+                    "width": 48,
+                  },
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "bold": true,
+                "children": "It’s surge time!",
+                "style": Object {
+                  "fontSize": 32,
+                  "lineHeight": 32,
+                  "marginBottom": 16,
+                },
+              },
+              "ref": null,
+              "rendered": "It’s surge time!",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "Your daily mindfulness minutes are earning X2 yucoin right now.",
+                "style": Object {
+                  "fontSize": 32,
+                  "lineHeight": 48,
+                  "marginBottom": 16,
+                },
+              },
+              "ref": null,
+              "rendered": "Your daily mindfulness minutes are earning X2 yucoin right now.",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "activeOpacity": 0.6,
+                "children": <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "color": "#E30D76",
+                        "fontSize": 32,
+                        "lineHeight": 48,
+                      }
+                    }
+                  >
+                    Got it
+                  </YuText>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginLeft": 16,
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>,
+                "onPress": [MockFunction],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <YuText
+                      style={
+                        Object {
+                          "color": "#E30D76",
+                          "fontSize": 32,
+                          "lineHeight": 48,
+                        }
+                      }
+                    >
+                      Got it
+                    </YuText>,
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginLeft": 16,
+                          "width": 32,
+                        }
+                      }
+                    />,
+                  ],
+                  "style": Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "Got it",
+                      "style": Object {
+                        "color": "#E30D76",
+                        "fontSize": 32,
+                        "lineHeight": 48,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "Got it",
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "source": 1,
+                      "style": Object {
+                        "height": 32,
+                        "marginLeft": 16,
+                        "width": 32,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgb(157, 157, 157)",
+                "borderRadius": 8,
+                "bottom": -8,
+                "height": 40,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": 576,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "justifyContent": "center",
+                "padding": 32,
+                "width": 576,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "bottom": -40,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "transform": Array [
+                    Object {
+                      "rotate": "180deg",
+                    },
+                  ],
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 48,
+                    "width": 48,
+                  }
+                }
+              />
+            </View>
+            <YuText
+              bold={true}
+              style={
+                Object {
+                  "fontSize": 32,
+                  "lineHeight": 32,
+                  "marginBottom": 16,
+                }
+              }
+            >
+              It’s surge time!
+            </YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 32,
+                  "lineHeight": 48,
+                  "marginBottom": 16,
+                }
+              }
+            >
+              Your daily mindfulness minutes are earning X2 yucoin right now.
+            </YuText>
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={[MockFunction]}
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "color": "#E30D76",
+                      "fontSize": 32,
+                      "lineHeight": 48,
+                    }
+                  }
+                >
+                  Got it
+                </YuText>
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 32,
+                      "marginLeft": 16,
+                      "width": 32,
+                    }
+                  }
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>,
+        "style": Array [
+          Object {
+            "justifyContent": "center",
+            "position": "absolute",
+          },
+          Object {
+            "left": 0,
+            "right": 0,
+          },
+        ],
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <View
+              style={
+                Object {
+                  "backgroundColor": "rgb(157, 157, 157)",
+                  "borderRadius": 8,
+                  "bottom": -8,
+                  "height": 40,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "width": 576,
+                }
+              }
+            />,
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 8,
+                  "justifyContent": "center",
+                  "padding": 32,
+                  "width": 576,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "bottom": -40,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "transform": Array [
+                      Object {
+                        "rotate": "180deg",
+                      },
+                    ],
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 48,
+                      "width": 48,
+                    }
+                  }
+                />
+              </View>
+              <YuText
+                bold={true}
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 32,
+                    "marginBottom": 16,
+                  }
+                }
+              >
+                It’s surge time!
+              </YuText>
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 48,
+                    "marginBottom": 16,
+                  }
+                }
+              >
+                Your daily mindfulness minutes are earning X2 yucoin right now.
+              </YuText>
+              <TouchableOpacity
+                activeOpacity={0.6}
+                onPress={[MockFunction]}
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <YuText
+                    style={
+                      Object {
+                        "color": "#E30D76",
+                        "fontSize": 32,
+                        "lineHeight": 48,
+                      }
+                    }
+                  >
+                    Got it
+                  </YuText>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginLeft": 16,
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>
+              </TouchableOpacity>
+            </View>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "style": Object {
+                "backgroundColor": "rgb(157, 157, 157)",
+                "borderRadius": 8,
+                "bottom": -8,
+                "height": 40,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "width": 576,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": -40,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "transform": Array [
+                        Object {
+                          "rotate": "180deg",
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 48,
+                        "width": 48,
+                      }
+                    }
+                  />
+                </View>,
+                <YuText
+                  bold={true}
+                  style={
+                    Object {
+                      "fontSize": 32,
+                      "lineHeight": 32,
+                      "marginBottom": 16,
+                    }
+                  }
+                >
+                  It’s surge time!
+                </YuText>,
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                      "lineHeight": 48,
+                      "marginBottom": 16,
+                    }
+                  }
+                >
+                  Your daily mindfulness minutes are earning X2 yucoin right now.
+                </YuText>,
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  onPress={[MockFunction]}
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "color": "#E30D76",
+                          "fontSize": 32,
+                          "lineHeight": 48,
+                        }
+                      }
+                    >
+                      Got it
+                    </YuText>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginLeft": 16,
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>
+                </TouchableOpacity>,
+              ],
+              "style": Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "justifyContent": "center",
+                "padding": 32,
+                "width": 576,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 48,
+                        "width": 48,
+                      }
+                    }
+                  />,
+                  "style": Object {
+                    "alignItems": "center",
+                    "bottom": -40,
+                    "justifyContent": "center",
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "transform": Array [
+                      Object {
+                        "rotate": "180deg",
+                      },
+                    ],
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "source": 1,
+                    "style": Object {
+                      "height": 48,
+                      "width": 48,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "bold": true,
+                  "children": "It’s surge time!",
+                  "style": Object {
+                    "fontSize": 32,
+                    "lineHeight": 32,
+                    "marginBottom": 16,
+                  },
+                },
+                "ref": null,
+                "rendered": "It’s surge time!",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "Your daily mindfulness minutes are earning X2 yucoin right now.",
+                  "style": Object {
+                    "fontSize": 32,
+                    "lineHeight": 48,
+                    "marginBottom": 16,
+                  },
+                },
+                "ref": null,
+                "rendered": "Your daily mindfulness minutes are earning X2 yucoin right now.",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "activeOpacity": 0.6,
+                  "children": <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <YuText
+                      style={
+                        Object {
+                          "color": "#E30D76",
+                          "fontSize": 32,
+                          "lineHeight": 48,
+                        }
+                      }
+                    >
+                      Got it
+                    </YuText>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginLeft": 16,
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>,
+                  "onPress": [MockFunction],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <YuText
+                        style={
+                          Object {
+                            "color": "#E30D76",
+                            "fontSize": 32,
+                            "lineHeight": 48,
+                          }
+                        }
+                      >
+                        Got it
+                      </YuText>,
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginLeft": 16,
+                            "width": 32,
+                          }
+                        }
+                      />,
+                    ],
+                    "style": Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "children": "Got it",
+                        "style": Object {
+                          "color": "#E30D76",
+                          "fontSize": 32,
+                          "lineHeight": 48,
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "Got it",
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "source": 1,
+                        "style": Object {
+                          "height": 32,
+                          "marginLeft": 16,
+                          "width": 32,
+                        },
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                  ],
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Tooltip should render todays yucoin tooltip 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Tooltip
+    caretDirection="bottom"
+    caretStyle={
+      Object {
+        "left": 0,
+      }
+    }
+    copy={
+      Object {
+        "dailyStepsCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, you earn 1 yucoin.",
+        },
+        "dailyStepsWithMeditationCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
+        },
+        "leaderboardsNav": Object {
+          "ctaLabel": "Got it",
+          "heading": "You're moving on up!",
+          "subheading": "See where you rank for the last 30 days of steps, mindfulness minutes, and yucoin.",
+        },
+        "questsNav": Object {
+          "ctaLabel": "Got it",
+          "heading": "Earn bonus yucoin!",
+          "subheading": "Complete a daily challenge by tapping here.",
+        },
+        "rewardsNav": Object {
+          "ctaLabel": "Got it",
+          "heading": "Your rewards are waiting!",
+          "subheading": "Redeem your yucoin for rewards, or claim discounts just for being a member of yulife.",
+        },
+        "streaks": Object {
+          "ctaLabel": "Got it",
+          "heading": "You're on a streak!",
+          "subheading": "Keep it going: Complete challenges for 5 consecutive days, and earn a bonus 40 yucoin.",
+        },
+        "surge": Object {
+          "ctaLabel": "Got it",
+          "heading": "It’s surge time!",
+          "subheading": "Your daily \${surgeActivity} are earning \${multiplier} yucoin right now.",
+        },
+        "todaysYucoin": Object {
+          "ctaLabel": "Got it",
+          "heading": "Check out your daily progress",
+          "subheading": "Tap here to see all the activities you have earned yucoin for today.",
+        },
+        "welcome": Object {
+          "ctaLabel": "let’s begin",
+          "descriptionOne": "Welcome to the yuniverse",
+          "descriptionThree": "Let us show you around the forest...",
+          "descriptionTwo": "Here, you are rewarded for every step you take, and every meditation break.",
+          "heading": "Welcome to the yuniverse",
+        },
+        "yucoin": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
+        },
+        "yucoinWithMeditation": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
+        },
+      }
+    }
+    onPressCta={[MockFunction]}
+    positionStyle={
+      Object {
+        "left": 0,
+        "right": 0,
+      }
+    }
+    surgeIntro={
+      Object {
+        "activity": "meditation",
+        "rate": 2,
+        "visibility": false,
       }
     }
     type="TodaysYucoin"
@@ -8690,6 +12629,11 @@ ShallowWrapper {
           "heading": "Today’s steps and yucoin",
           "subheading": "For every 2000 steps, you earn 1 yucoin.",
         },
+        "dailyStepsWithMeditationCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
+        },
         "leaderboardsNav": Object {
           "ctaLabel": "Got it",
           "heading": "You're moving on up!",
@@ -8710,6 +12654,11 @@ ShallowWrapper {
           "heading": "You're on a streak!",
           "subheading": "Keep it going: Complete challenges for 5 consecutive days, and earn a bonus 40 yucoin.",
         },
+        "surge": Object {
+          "ctaLabel": "Got it",
+          "heading": "It’s surge time!",
+          "subheading": "Your daily \${surgeActivity} are earning \${multiplier} yucoin right now.",
+        },
         "todaysYucoin": Object {
           "ctaLabel": "Got it",
           "heading": "Check out your daily progress",
@@ -8727,6 +12676,11 @@ ShallowWrapper {
           "heading": "Here’s your yucoin bank!",
           "subheading": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
         },
+        "yucoinWithMeditation": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
+        },
       }
     }
     onPressCta={[MockFunction]}
@@ -8734,6 +12688,13 @@ ShallowWrapper {
       Object {
         "left": 0,
         "right": 0,
+      }
+    }
+    surgeIntro={
+      Object {
+        "activity": "meditation",
+        "rate": 2,
+        "visibility": false,
       }
     }
     type="Welcome"

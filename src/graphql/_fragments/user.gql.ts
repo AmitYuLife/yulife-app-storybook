@@ -37,11 +37,21 @@ export const userFragmentGql = gql`
             currentLevel
             nextLevelAvailableAt
         }
-        passiveChallenge {
+        passiveSteps: passiveChallenge {
             exchange {
                 yucoin
                 steps
+                meditation
             }
+            isMainSurge
+        }
+        passiveMeditation: passiveChallenge(id: MEDITATION) {
+            exchange {
+                yucoin
+                steps
+                meditation
+            }
+            isMainSurge
         }
         activeChallenge {
             challenge {

@@ -2,8 +2,12 @@ import addHistoricalSteps from "@graphql/challenges/addHistoricalSteps.gql";
 import { queryHistoricalData } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { Moment } from "moment";
-import { call, put, spawn } from "redux-saga/effects";
-import { SET_HISTORICAL_DATA_COLLECTED } from "../onboarding.actions";
+import { call, put, select, spawn } from "redux-saga/effects";
+import { PassiveChallengeType } from "../../../graphql/_core/schema";
+import addHistoricalData from "../../../graphql/challenges/addHistoricalData.gql";
+import { queryHistoricalMeditationData } from "../../../services/fitkit/fitkit.helpers";
+import { getUserFeatures } from "../../user/user.selectors";
+import { setHistoricalDataCollected, setHistoricalMeditationDataCollected } from "../onboarding.actions";
 
 export default function* sendHistoricalData(onboardingDate: Moment) {
     try {
@@ -11,9 +15,24 @@ export default function* sendHistoricalData(onboardingDate: Moment) {
 
         if (!!results.length) {
             yield call(addHistoricalSteps, results, false);
-            yield put({ type: SET_HISTORICAL_DATA_COLLECTED });
+            yield put(setHistoricalDataCollected());
         }
     } catch (e) {
         yield spawn(() => Logger.logEvent("historical_steps_sync_failed", { message: e.message }));
+    }
+}
+
+export function* sendHistoricalMeditationData(onboardingDate: Moment) {
+    try {
+        const userFeatures = yield select(getUserFeatures);
+
+        const results = yield call(queryHistoricalMeditationData, onboardingDate, userFeatures);
+
+        if (!!results.length) {
+            yield call(addHistoricalData, results, PassiveChallengeType.MEDITATION);
+            yield put(setHistoricalMeditationDataCollected());
+        }
+    } catch (e) {
+        yield spawn(() => Logger.logEvent("historical_meditation_sync_failed", { message: e.message }));
     }
 }

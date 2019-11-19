@@ -1,4 +1,8 @@
 import { combineReducers } from "redux";
+import dailyMeditationReducer, {
+    IDailyMeditationStore,
+    initialState as initialDailyMeditation
+} from "../daily-meditation/daily-meditation.reducer";
 
 import appReducer, { IAppStore, initialState as initialAppState } from "../app/app.reducer";
 import coinsReducer, { ICoinsStore, initialState as initialCoinsState } from "../coins/coins.reducer";
@@ -38,6 +42,7 @@ export interface IReduxState {
     theme: IThemeStore;
     user: IUserStore;
     copy: ICopyStore;
+    dailyMeditation: IDailyMeditationStore;
 }
 
 export const initialState: IReduxState = {
@@ -52,7 +57,8 @@ export const initialState: IReduxState = {
     streaks: initialStreaksState,
     theme: initialThemeState,
     user: initialUserState,
-    copy: initialCopyState
+    copy: initialCopyState,
+    dailyMeditation: initialDailyMeditation
 };
 
 const combinedReducers = combineReducers({
@@ -67,7 +73,8 @@ const combinedReducers = combineReducers({
     streaks: streaksReducer,
     theme: themeReducer,
     user: userReducer,
-    copy: copyReducer
+    copy: copyReducer,
+    dailyMeditation: dailyMeditationReducer
 });
 
 export default combinedReducers;

@@ -24,14 +24,18 @@ ShallowWrapper {
     hasPermission={false}
     isDoneToday={false}
     isLoading={false}
+    isOnSurge={false}
+    isShowingPassiveMeditation={true}
     labels={Array []}
     lastUpdate="thing"
     maxStreak={4}
+    meditation={0}
     onAuthoriseFitKitPress={[MockFunction]}
     onCoinPress={[MockFunction]}
     onCtaPress={[MockFunction]}
     onLeftMenuPress={[MockFunction]}
     onStreakPress={[MockFunction]}
+    shouldDisplaySurge={false}
     steps={0}
     theme={
       Object {
@@ -702,14 +706,18 @@ ShallowWrapper {
     hasPermission={true}
     isDoneToday={false}
     isLoading={false}
+    isOnSurge={false}
+    isShowingPassiveMeditation={true}
     labels={Array []}
     lastUpdate="thing"
     maxStreak={4}
+    meditation={0}
     onAuthoriseFitKitPress={[MockFunction]}
     onCoinPress={[MockFunction]}
     onCtaPress={[MockFunction]}
     onLeftMenuPress={[MockFunction]}
     onStreakPress={[MockFunction]}
+    shouldDisplaySurge={false}
     steps={0}
     theme={
       Object {
@@ -1337,14 +1345,18 @@ ShallowWrapper {
     hasPermission={true}
     isDoneToday={false}
     isLoading={false}
+    isOnSurge={false}
+    isShowingPassiveMeditation={true}
     labels={Array []}
     lastUpdate="thing"
     maxStreak={4}
+    meditation={0}
     onAuthoriseFitKitPress={[MockFunction]}
     onCoinPress={[MockFunction]}
     onCtaPress={[MockFunction]}
     onLeftMenuPress={[MockFunction]}
     onStreakPress={[MockFunction]}
+    shouldDisplaySurge={false}
     steps={0}
     theme={
       Object {
@@ -1433,6 +1445,7 @@ ShallowWrapper {
         </TouchableOpacityWithState>
         <DailyStepsOnline
           coinsToday={0}
+          isShowingPassiveMeditation={true}
           onCtaPress={[MockFunction]}
           showCounter={false}
           steps={0}
@@ -1523,6 +1536,7 @@ ShallowWrapper {
           </TouchableOpacityWithState>,
           <DailyStepsOnline
             coinsToday={0}
+            isShowingPassiveMeditation={true}
             onCtaPress={[MockFunction]}
             showCounter={false}
             steps={0}
@@ -1646,6 +1660,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "coinsToday": 0,
+            "isShowingPassiveMeditation": true,
             "mindfulSeconds": undefined,
             "onCtaPress": [MockFunction],
             "showCounter": false,
@@ -1762,6 +1777,7 @@ ShallowWrapper {
           </TouchableOpacityWithState>
           <DailyStepsOnline
             coinsToday={0}
+            isShowingPassiveMeditation={true}
             onCtaPress={[MockFunction]}
             showCounter={false}
             steps={0}
@@ -1852,6 +1868,7 @@ ShallowWrapper {
             </TouchableOpacityWithState>,
             <DailyStepsOnline
               coinsToday={0}
+              isShowingPassiveMeditation={true}
               onCtaPress={[MockFunction]}
               showCounter={false}
               steps={0}
@@ -1975,6 +1992,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "coinsToday": 0,
+              "isShowingPassiveMeditation": true,
               "mindfulSeconds": undefined,
               "onCtaPress": [MockFunction],
               "showCounter": false,
@@ -2089,14 +2107,18 @@ ShallowWrapper {
     hasPermission={true}
     isDoneToday={false}
     isLoading={false}
+    isOnSurge={false}
+    isShowingPassiveMeditation={true}
     labels={Array []}
     lastUpdate="thing"
     maxStreak={4}
+    meditation={0}
     onAuthoriseFitKitPress={[MockFunction]}
     onCoinPress={[MockFunction]}
     onCtaPress={[MockFunction]}
     onLeftMenuPress={[MockFunction]}
     onStreakPress={[MockFunction]}
+    shouldDisplaySurge={false}
     steps={0}
     theme={
       Object {
@@ -2185,6 +2207,7 @@ ShallowWrapper {
         </TouchableOpacityWithState>
         <DailyStepsOnline
           coinsToday={0}
+          isShowingPassiveMeditation={true}
           onCtaPress={[MockFunction]}
           showCounter={false}
           steps={0}
@@ -2267,6 +2290,7 @@ ShallowWrapper {
           </TouchableOpacityWithState>,
           <DailyStepsOnline
             coinsToday={0}
+            isShowingPassiveMeditation={true}
             onCtaPress={[MockFunction]}
             showCounter={false}
             steps={0}
@@ -2383,6 +2407,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "coinsToday": 0,
+            "isShowingPassiveMeditation": true,
             "mindfulSeconds": undefined,
             "onCtaPress": [MockFunction],
             "showCounter": false,
@@ -2484,6 +2509,7 @@ ShallowWrapper {
           </TouchableOpacityWithState>
           <DailyStepsOnline
             coinsToday={0}
+            isShowingPassiveMeditation={true}
             onCtaPress={[MockFunction]}
             showCounter={false}
             steps={0}
@@ -2566,6 +2592,7 @@ ShallowWrapper {
             </TouchableOpacityWithState>,
             <DailyStepsOnline
               coinsToday={0}
+              isShowingPassiveMeditation={true}
               onCtaPress={[MockFunction]}
               showCounter={false}
               steps={0}
@@ -2682,6 +2709,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "coinsToday": 0,
+              "isShowingPassiveMeditation": true,
               "mindfulSeconds": undefined,
               "onCtaPress": [MockFunction],
               "showCounter": false,
@@ -2781,14 +2809,18 @@ ShallowWrapper {
     hasPermission={true}
     isDoneToday={false}
     isLoading={true}
+    isOnSurge={false}
+    isShowingPassiveMeditation={true}
     labels={Array []}
     lastUpdate="thing"
     maxStreak={4}
+    meditation={0}
     onAuthoriseFitKitPress={[MockFunction]}
     onCoinPress={[MockFunction]}
     onCtaPress={[MockFunction]}
     onLeftMenuPress={[MockFunction]}
     onStreakPress={[MockFunction]}
+    shouldDisplaySurge={false}
     steps={0}
     theme={
       Object {

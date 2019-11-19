@@ -1,15 +1,21 @@
 import gql from "graphql-tag";
 import client from "../_core/client";
-import { ChallengePayload, UpsertPassiveChallenge, UpsertPassiveChallengeVariables } from "../_core/schema";
+import {
+    ChallengePayload,
+    PassiveChallengeType,
+    UpsertPassiveChallenge,
+    UpsertPassiveChallengeVariables
+} from "../_core/schema";
 
 export const upsertPassiveChallengeGql = gql`
-    mutation UpsertPassiveChallenge($payload: [ChallengePayload]) {
-        upsertPassiveChallenge(type: STEPS, payload: $payload) {
+    mutation UpsertPassiveChallenge($payload: [ChallengePayload], $type: PassiveChallengeType!) {
+        upsertPassiveChallenge(type: $type, payload: $payload) {
             challenge {
                 updatedAt
                 yuCoinAwarded
                 incomingData {
                     steps
+                    meditation
                 }
             }
             totalCoins
@@ -17,10 +23,10 @@ export const upsertPassiveChallengeGql = gql`
     }
 `;
 
-const upsertPassiveChallenge = (payload: ChallengePayload[]) =>
+const upsertPassiveChallenge = (payload: ChallengePayload[], type = PassiveChallengeType.STEPS) =>
     client().mutate<UpsertPassiveChallenge, UpsertPassiveChallengeVariables>({
         mutation: upsertPassiveChallengeGql,
-        variables: { payload },
+        variables: { payload, type },
         errorPolicy: "ignore"
     });
 

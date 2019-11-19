@@ -232,9 +232,19 @@ export default {
             subheading: "Every time you open the app, we'll sync your steps and reward you in yucoin.",
             ctaLabel: "Got it"
         },
+        yucoinWithMeditation: {
+            heading: "Here’s your yucoin bank!",
+            subheading: "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
+            ctaLabel: "Got it"
+        },
         dailyStepsCTA: {
             heading: "Today’s steps and yucoin",
             subheading: "For every 2000 steps, you earn 1 yucoin.",
+            ctaLabel: "Got it"
+        },
+        dailyStepsWithMeditationCTA: {
+            heading: "Today’s steps and yucoin",
+            subheading: "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
             ctaLabel: "Got it"
         },
         questsNav: {
@@ -260,6 +270,11 @@ export default {
         rewardsNav: {
             heading: "Your rewards are waiting!",
             subheading: "Redeem your yucoin for rewards, or claim discounts just for being a member of yulife.",
+            ctaLabel: "Got it"
+        },
+        surge: {
+            heading: "It’s surge time!",
+            subheading: "Your daily ${surgeActivity} are earning ${multiplier} yucoin right now.",
             ctaLabel: "Got it"
         }
     }

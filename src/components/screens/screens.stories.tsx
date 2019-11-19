@@ -155,6 +155,8 @@ storiesOf("Screens", module)
                 },
                 "DailySteps"
             )}
+            mindfulSeconds={100}
+            isShowingPassiveMeditation={true}
             totalCoins={number(
                 "TotalCoins",
                 4,
@@ -517,7 +519,7 @@ storiesOf("Screens", module)
         <TodayYucoinScreen
             steps={number("steps", 6543)}
             dailyStepsEarned={number("dailyStepsEarned", 3)}
-            exchangeRate={{ steps: 2000, yucoin: 1 }}
+            exchangeRate={{ steps: 2000, yucoin: 1, meditation: 0 }}
             challenges={[]}
             activeChallenge={null}
             loading={false}

@@ -21,7 +21,7 @@ const defaultProps = {
     onStreakPress: jest.fn(),
     showCounter: false,
     steps: 2000,
-    onSetOnboardingDone: jest.fn(),
+    onSetIntroDone: jest.fn(),
     theme: {
         centredScreen: {
             offline: { image: "gray_forest", style: { backgroundColor: "#FFF" } } as ICentredScreen,
@@ -37,7 +37,25 @@ const defaultProps = {
         textStyle: { color: "#333333" },
         topBarType: "default" as TopBarTypes
     },
-    copy: copyData.intro
+    copy: copyData.intro,
+    stepsExchangeRate: {
+        yucoin: 1,
+        steps: 4000
+    },
+    meditationExchangeRate: {
+        yucoin: 1,
+        meditation: 3600
+    },
+    shouldDisplaySurge: true,
+    showIntro: true,
+    surgeIntro: {
+        visibility: true,
+        rate: 1,
+        activity: "all" as any
+    },
+    isOnSurge: false,
+    isShowingPassiveMeditation: false,
+    totalCoins: 200
 };
 
 describe("IntroScreen", () => {
