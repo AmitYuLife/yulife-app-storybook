@@ -2,7 +2,7 @@ import { Button, Pad, Text } from "@atoms/index";
 import { Counter } from "@molecules/index";
 import * as React from "react";
 import { StyleSheet, TextStyle, View } from "react-native";
-import { getTime } from "../../../../services/utils";
+import { displaySecondsAsMinutes, padNum } from "../../../../services/utils";
 import styles from "./daily-steps.screen.styles";
 
 export interface IProps {
@@ -12,6 +12,7 @@ export interface IProps {
     steps: number;
     textStyle?: TextStyle;
     mindfulSeconds?: number;
+    isShowingPassiveMeditation?: boolean;
 }
 
 export default function DailyStepsOnline({
@@ -20,25 +21,30 @@ export default function DailyStepsOnline({
     onCtaPress,
     steps,
     textStyle,
-    mindfulSeconds = 0
+    mindfulSeconds,
+    isShowingPassiveMeditation
 }: IProps) {
     const flattenStyle = StyleSheet.flatten([styles.heading, textStyle]);
     const counterType = steps === 1 ? "step" : "steps";
-    const mindfulTotal = getTime(mindfulSeconds);
+    const mindfulTotal = displaySecondsAsMinutes(mindfulSeconds);
+    const mindfulTotalToDisplay =
+        mindfulTotal.minutes === 1
+            ? ` | ${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} mindful min`
+            : ` | ${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} mindful mins`;
 
     return (
         <View style={styles.dailyStepsOnlineWrapper}>
             {showCounter ? (
                 <View style={styles.counterWrapper}>
                     <Counter value={steps} textStyle={textStyle} textAfterValue={counterType} />
-                    {mindfulSeconds ? (
-                        <Text style={textStyle}>{mindfulSeconds ? ` | ${mindfulTotal} mindful mins` : ""}</Text>
+                    {isShowingPassiveMeditation && mindfulSeconds > 0 ? (
+                        <Text style={textStyle}>{mindfulSeconds ? mindfulTotalToDisplay : ""}</Text>
                     ) : null}
                 </View>
             ) : (
                 <Text style={textStyle}>
                     {steps} {counterType}
-                    {mindfulSeconds ? ` | ${mindfulTotal} mindful mins` : ""}
+                    {isShowingPassiveMeditation && mindfulSeconds > 0 ? mindfulTotalToDisplay : ""}
                 </Text>
             )}
             <Pad height={8} />

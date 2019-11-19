@@ -1,4 +1,7 @@
 import updateMemberConsentGql from "@graphql/member/updateMemberConsent.gql";
+import { getMeditationExchangeRate } from "@redux/daily-meditation/daily-meditation.selectors";
+import { getExchangeRate } from "@redux/daily-steps/daily-steps.selectors";
+import { currentUser } from "@redux/levels/tests/levels.fixtures";
 import { currentUserFixture, loginSuccessFixture } from "@redux/user/tests/user.test.fixtures";
 import { Linking } from "react-native";
 import { channel } from "redux-saga";
@@ -18,15 +21,24 @@ import { getActiveLevel } from "../../levels/levels.selectors";
 import { stopPedometerUpdates } from "../../pedometer/pedometer.actions";
 import fetchUserOnAppStateChangeSaga from "../sagas/fetchUserOnAppStateChange.saga";
 import fitKitConsentAuthorisedSaga from "../sagas/fitKitConsentAuthorised.saga";
-import getUserData from "../sagas/getUserData.saga";
 import getUserDataSaga from "../sagas/getUserData.saga";
+import getUserData from "../sagas/getUserData.saga";
 import loginUserSuccessSaga from "../sagas/loginUserSuccess.saga";
 import logOutSaga from "../sagas/logOut.saga";
 import openMemberZoneSaga from "../sagas/openMemberZone.saga";
 import setLoggerIdentity from "../sagas/setLoggerIdentity.helper";
 import setUserNoAccessSaga from "../sagas/setUserNoAccess.saga";
 import setWootricIdentity from "../sagas/setWootricIdentity.helper";
-import { getUserSuccess, LOGIN_USER_SUCCESS, setUserNoAccessAction, updateUserConsentSuccess } from "../user.actions";
+import showSurgeIntroSaga from "../sagas/showSurgeIntro.saga";
+import {
+    GET_USER_SUCCESS,
+    getUserSuccess,
+    LOGIN_USER_SUCCESS,
+    setShowSurgeIntro,
+    setUserNoAccessAction,
+    updateUserConsentSuccess
+} from "../user.actions";
+import { getUserFeatures } from "../user.selectors";
 
 describe("fetchUserOnAppStateChangeSaga", async () => {
     it("should call fetchUserOnAppStateChangeSaga correctly in 1 full cycle", async () => {
@@ -114,10 +126,7 @@ describe("getUserDataSaga", async () => {
         expect(actual.done).toEqual(false);
 
         actual = testSaga.next(data);
-        expected = spawn(
-            setWootricIdentity,
-            data.data.getCurrentUser
-        );
+        expected = spawn(setWootricIdentity, data.data.getCurrentUser);
         expect(actual.value).toEqual(expected);
         expect(actual.done).toEqual(false);
 
@@ -156,10 +165,7 @@ describe("getUserDataSaga", async () => {
         expect(actual.done).toEqual(false);
 
         actual = testSaga.next(data);
-        expected = spawn(
-            setWootricIdentity,
-            data.data.getCurrentUser
-        );
+        expected = spawn(setWootricIdentity, data.data.getCurrentUser);
         expect(actual.value).toEqual(expected);
         expect(actual.done).toEqual(false);
 
@@ -330,5 +336,96 @@ describe("setUserNoAccessSaga", async () => {
 
         actual = testSaga.next(ROUTES.noAccess);
         expect(actual.done).toEqual(true);
+    });
+});
+
+describe("showSurgeIntroSaga", async () => {
+    const data = {
+        payload: {
+            ...currentUser,
+            getCurrentUser: {
+                ...currentUser.getCurrentUser,
+                passiveSteps: { exchange: { yucoin: 2, steps: 2000, meditation: null as any } },
+                passiveMeditation: { exchange: { yucoin: 2, meditation: 300, steps: null as any } }
+            }
+        }
+    };
+
+    const features = { showSurge: true, usePassiveMeditation: true };
+    const exchangeRate = { yucoin: 1, steps: 2000, meditation: 300 };
+
+    it("should call showSurgeSaga correctly", async () => {
+        const testSaga = showSurgeIntroSaga();
+
+        let actual: any = testSaga.next();
+        let expected: any = select(getExchangeRate);
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next(exchangeRate);
+        expected = select(getMeditationExchangeRate);
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next(exchangeRate);
+        expected = take(GET_USER_SUCCESS);
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next(data);
+        expected = select(getUserFeatures);
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next(features);
+        expected = put(
+            setShowSurgeIntro({
+                visibility: true,
+                activity: "all",
+                rate: 2
+            })
+        );
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+    });
+
+    it("should not put setShowSurgeIntro", async () => {
+        const testSaga = showSurgeIntroSaga();
+
+        const newData = {
+            payload: {
+                ...currentUser,
+                getCurrentUser: {
+                    ...currentUser.getCurrentUser,
+                    passiveSteps: { exchange: { yucoin: 1, steps: 2000, meditation: null as any } },
+                    passiveMeditation: { exchange: { yucoin: 1, meditation: 300, steps: null as any } }
+                }
+            }
+        };
+
+        let actual: any = testSaga.next();
+        let expected: any = select(getExchangeRate);
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next(exchangeRate);
+        expected = select(getMeditationExchangeRate);
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next(exchangeRate);
+        expected = take(GET_USER_SUCCESS);
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next(newData);
+        expected = select(getUserFeatures);
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
+
+        actual = testSaga.next(features);
+        expected = select(getExchangeRate);
+        expect(actual.value).toEqual(expected);
+        expect(actual.done).toEqual(false);
     });
 });

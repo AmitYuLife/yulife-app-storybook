@@ -5,6 +5,7 @@ import {
     UpdateLeaderboardConsentVariables,
     UpdateMemberConsent
 } from "../../graphql/_core/schema";
+import { IUserStore } from "./user.reducer";
 import { Connection } from "./user.selectors";
 
 export interface ISetIsUpdatingLeaderboardPayload {
@@ -29,6 +30,7 @@ export const UPDATE_LEADERBOARD_POPUP_VISIBILITY = "UPDATE_LEADERBOARD_POPUP_VIS
 export const UPDATE_SURGE_POPUP_VISIBILITY = "UPDATE_SURGE_POPUP_VISIBILITY";
 export const LOGOUT = "LOGOUT";
 export const OPEN_MEMBER_ZONE = "OPEN_MEMBER_ZONE";
+export const SET_SHOW_SURGE_INTRO = "SET_SHOW_SURGE_INTRO";
 
 export const fitKitConsentAuthorised = () => ({
     type: FITKIT_CONSENT_AUTHORISED
@@ -107,5 +109,10 @@ export const updateLeaderboardPopupVisibility = (payload: boolean) => ({
 
 export const updateSurgePopupVisibility = (payload: boolean) => ({
     type: UPDATE_SURGE_POPUP_VISIBILITY,
+    payload
+});
+
+export const setShowSurgeIntro = (payload: IUserStore["surgeIntro"]) => ({
+    type: SET_SHOW_SURGE_INTRO,
     payload
 });

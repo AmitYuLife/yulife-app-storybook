@@ -44,6 +44,7 @@ interface IProps extends IConnectedScreenProps {
     onUpdateLeaderboardPopupVisibility?: (payload: boolean) => void;
     popupVisibility?: IUserStore["popupVisibility"];
     mindfulSeconds?: number;
+    isShowingPassiveMeditation: boolean;
 }
 
 type Props = IProps & IDailyStepsOnlineProps;
@@ -74,7 +75,8 @@ export default function DailyStepsScreen({
     popupVisibility = {
         leaderboard: false
     },
-    mindfulSeconds
+    mindfulSeconds,
+    isShowingPassiveMeditation
 }: Props) {
     return (
         <Animatable.View duration={750} animation="fadeIn" style={{ flex: 1 }}>
@@ -117,6 +119,7 @@ export default function DailyStepsScreen({
                         onCtaPress={onCtaPress}
                         textStyle={textStyle}
                         mindfulSeconds={mindfulSeconds}
+                        isShowingPassiveMeditation={isShowingPassiveMeditation}
                     />
                 )}
                 {!displayStreak ? null : (

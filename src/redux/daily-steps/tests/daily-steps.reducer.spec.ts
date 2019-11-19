@@ -6,7 +6,6 @@ import stepsReducer, { IDailyStepsStore, initialState } from "../daily-steps.red
 import { upsertStepsSuccessFixture } from "./daily-steps.fixtures";
 
 describe("Daily Steps Reducer", () => {
-
     it("handles an action of unknown type", () => {
         const expected: IDailyStepsStore = initialState;
         const actual = stepsReducer(initialState, { type: undefined });
@@ -16,7 +15,7 @@ describe("Daily Steps Reducer", () => {
 
     it("updates the store when the daily steps have been updated", () => {
         const localData: UpsertPassiveChallenge = { ...upsertStepsSuccessFixture };
-        localData.upsertPassiveChallenge.challenge.incomingData = { steps: 4321 };
+        localData.upsertPassiveChallenge.challenge.incomingData = { steps: 4321, meditation: 333 };
 
         const expected: IDailyStepsStore = {
             ...initialState,

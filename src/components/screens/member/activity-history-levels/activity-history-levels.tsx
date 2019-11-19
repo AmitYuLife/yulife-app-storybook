@@ -195,10 +195,11 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
         const sourceCount = countSources(item.sources);
         const sourceHeight = sourceCount * Style.SCALE_UP_AND_DOWN(23);
         const dividers = Style.SCALE_UP_AND_DOWN(40);
+        const mindfulSecondsHeight = item.mindfulSeconds ? Style.SCALE_UP_AND_DOWN(23) : 0;
         const challengeHeight = item.challenges.length
             ? item.challenges.length * Style.SCALE_UP_AND_DOWN(23)
             : Style.SCALE_UP_AND_DOWN(23);
-        const height = challengeHeight + Style.SCALE_UP_AND_DOWN(23) + sourceHeight + dividers;
+        const height = challengeHeight + Style.SCALE_UP_AND_DOWN(23) + sourceHeight + dividers + mindfulSecondsHeight;
         return height;
     };
 }

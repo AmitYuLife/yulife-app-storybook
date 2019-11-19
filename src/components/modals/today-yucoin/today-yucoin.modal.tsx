@@ -1,4 +1,3 @@
-import { getUserFeatures } from "@redux/user/user.selectors";
 import * as React from "react";
 import { PureComponent } from "react";
 import { Platform } from "react-native";
@@ -10,9 +9,14 @@ import {
 } from "../../../graphql/_core/schema";
 import { getCurrentUserGql, GetCurrentUserQuery } from "../../../graphql/user/getCurrentUser.gql";
 import { IReduxState } from "../../../redux/_core/reducers";
-import { getDailyStepsCoins } from "../../../redux/coins/coins.selectors";
+import { getDailyMeditationCoins, getDailyStepsCoins } from "../../../redux/coins/coins.selectors";
+import {
+    getDailyMeditation,
+    getMeditationExchangeRate
+} from "../../../redux/daily-meditation/daily-meditation.selectors";
 import { getDailySteps, getExchangeRate } from "../../../redux/daily-steps/daily-steps.selectors";
 import { getChallengesStatus } from "../../../redux/levels/levels.selectors";
+import { getUserFeatures } from "../../../redux/user/user.selectors";
 import { pathOr } from "../../../services/utils";
 import { TodayYucoinScreen } from "../../screens";
 
@@ -29,7 +33,17 @@ type Props = IProps & ConnectedState;
 
 class TodayYucoinContainer extends PureComponent<Props> {
     public render() {
-        const { challengesStatus, dailyStepsEarned, exchangeRate, features, steps } = this.props;
+        const {
+            challengesStatus,
+            dailyStepsEarned,
+            exchangeRate,
+            steps,
+            features,
+            dailyMeditation,
+            dailyMeditationEarned,
+            isShowingPassiveMeditation,
+            meditationExchangeRate
+        } = this.props;
 
         return (
             <GetCurrentUserQuery
@@ -45,6 +59,7 @@ class TodayYucoinContainer extends PureComponent<Props> {
                     });
 
                     const surgeMultiplier = exchangeRate && exchangeRate.yucoin;
+                    const meditationSurgeMultiplier = meditationExchangeRate && meditationExchangeRate.yucoin;
 
                     const activeChallenge: ChallengeToday =
                         challenge && challenge.incomingData
@@ -69,9 +84,12 @@ class TodayYucoinContainer extends PureComponent<Props> {
                             onPressClose={this.handleClose}
                             showCta={challengesStatus.isAvailable}
                             ctaLabel={this.getCtaLabel(challengesStatus.done, !!activeChallenge)}
-                            isShowingPassiveMeditation={false}
+                            isShowingPassiveMeditation={isShowingPassiveMeditation}
                             isStepsSurge={features.showSurge && surgeMultiplier > 1}
-                            isMeditationSurge={features.showSurge && surgeMultiplier > 1}
+                            isMeditationSurge={isShowingPassiveMeditation && meditationSurgeMultiplier > 1}
+                            meditationSeconds={dailyMeditation}
+                            dailyMeditationEarned={dailyMeditationEarned}
+                            meditationExchangeRate={meditationExchangeRate}
                         />
                     );
                 }}
@@ -100,7 +118,11 @@ const mapStateToProps = (state: IReduxState) => ({
     challengesStatus: getChallengesStatus(state),
     dailyStepsEarned: getDailyStepsCoins(state),
     exchangeRate: getExchangeRate(state),
+    meditationExchangeRate: getMeditationExchangeRate(state),
     steps: getDailySteps(state),
+    dailyMeditation: getDailyMeditation(state),
+    dailyMeditationEarned: getDailyMeditationCoins(state),
+    isShowingPassiveMeditation: getUserFeatures(state).usePassiveMeditation,
     features: getUserFeatures(state)
 });
 

@@ -3,19 +3,15 @@ import * as React from "react";
 import { ActivityIndicator, SafeAreaView, ScrollView, View } from "react-native";
 import Svg, { Rect } from "react-native-svg";
 import { GetCurrentUser_getCurrentUser_todayActivity } from "../../../../graphql/_core/schema";
+import { ExchangeRateMeditation } from "../../../../redux/daily-meditation/daily-meditation.selectors";
 import { ExchangeRate } from "../../../../redux/daily-steps/daily-steps.selectors";
-import { displaySecondsAsMinutes } from "../../../../services/utils";
+import { displaySecondsAsMinutes, padNum } from "../../../../services/utils";
 import { Colours, Style } from "../../../../styles";
 import { Glow } from "../daily-steps/assets/yu-coin-subcomponents";
 import Check from "./assets/check";
 import styles from "./today-yucoin.screen.styles";
 
 type ChallengeToday = GetCurrentUser_getCurrentUser_todayActivity;
-
-interface IMeditationExchangeRate {
-    seconds: number;
-    yucoin: number;
-}
 
 interface IProps {
     loading: boolean;
@@ -28,10 +24,10 @@ interface IProps {
     challenges: ChallengeToday[];
     dailyStepsEarned: number;
     exchangeRate: ExchangeRate;
-    meditationExchangeRate?: IMeditationExchangeRate;
+    meditationExchangeRate?: ExchangeRateMeditation;
     isStepsSurge?: boolean;
     isMeditationSurge?: boolean;
-    dailyMeditationSecondsEarned?: number;
+    dailyMeditationEarned?: number;
     meditationSeconds?: number;
     isShowingPassiveMeditation: boolean;
 }
@@ -57,17 +53,18 @@ export default function TodayYucoinScreen({
     challenges,
     ctaLabel,
     dailyStepsEarned,
-    exchangeRate = { steps: 2000, yucoin: 1 },
+    exchangeRate = { steps: 2000, yucoin: 1, meditation: 0 },
     loading,
     onPressClose,
     onPressCta,
     showCta,
     steps = 0,
     meditationExchangeRate = {
-        seconds: 180,
-        yucoin: 2
+        steps: 0,
+        meditation: 300,
+        yucoin: 1
     },
-    dailyMeditationSecondsEarned = 0,
+    dailyMeditationEarned = 0,
     meditationSeconds = 0,
     isShowingPassiveMeditation,
     isStepsSurge,
@@ -77,8 +74,12 @@ export default function TodayYucoinScreen({
     const progressBarWidth = Style.SCALE_UP_AND_DOWN(275);
     const typeText = steps === 1 ? "step" : "steps";
 
-    const meditationExchangeRateDisplay = displaySecondsAsMinutes(meditationExchangeRate.seconds);
-    const meditationSecondsDisplay = displaySecondsAsMinutes(meditationSeconds);
+    const meditationExchangeRateDisplay = displaySecondsAsMinutes(meditationExchangeRate.meditation);
+    const mindfulTotal = displaySecondsAsMinutes(meditationSeconds);
+    const mindfulTotalToDisplay =
+        mindfulTotal.minutes === 1
+            ? `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} mindful minute`
+            : `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} mindful minutes`;
 
     return (
         <SafeAreaView style={styles.wrapper}>
@@ -150,26 +151,25 @@ export default function TodayYucoinScreen({
                         <Pad height={20} />
 
                         {/* meditation passive activity */}
-                        {!isShowingPassiveMeditation ? null : (
+                        {!isShowingPassiveMeditation || meditationSeconds < 1 ? null : (
                             <>
                                 <View style={styles.passiveChallengeWrapper}>
-                                    <Text style={styles.steps}>
-                                        {`${meditationSecondsDisplay.minutes}:
-                                        ${meditationSecondsDisplay.seconds} mindful minutes`}
-                                    </Text>
+                                    <Text style={styles.steps}>{mindfulTotalToDisplay}</Text>
                                     {!isMeditationSurge ? null : (
                                         <>
                                             <View style={styles.surgeWrapper}>
-                                                <Text style={styles.surge}>Surge x2</Text>
+                                                <Text style={styles.surge}>
+                                                    Surge x{meditationExchangeRate.yucoin}
+                                                </Text>
                                             </View>
                                         </>
                                     )}
-                                    <Text style={styles.yucoinsEarned}>{dailyMeditationSecondsEarned}</Text>
+                                    <Text style={styles.yucoinsEarned}>{dailyMeditationEarned}</Text>
                                 </View>
                                 <View style={styles.passiveChallengeInstructionsWrapper}>
                                     <Text style={styles.passiveChallengeInstructions}>
-                                        {`${meditationExchangeRate.yucoin} yucoin for
-                                        ${meditationExchangeRateDisplay.minutes} min`}
+                                        {`${meditationExchangeRate.yucoin} yucoin for ${
+                                            meditationExchangeRateDisplay.minutes} min`}
                                     </Text>
                                 </View>
                                 <View style={styles.progressWrapper}>
@@ -178,7 +178,8 @@ export default function TodayYucoinScreen({
                                         <Rect
                                             y="4"
                                             width={Math.floor(
-                                                progressBarWidth * (meditationSeconds / meditationExchangeRate.seconds)
+                                                progressBarWidth *
+                                                    (meditationSeconds / (meditationExchangeRate.meditation * 3))
                                             )}
                                             height="4"
                                             fill="black"
@@ -188,8 +189,15 @@ export default function TodayYucoinScreen({
                                         {Array.from({ length: 3 }).map((_, index) => (
                                             <View style={styles.checkWrapper} key={index}>
                                                 <Check
-                                                    isFilling={meditationSeconds / 60 >= index + 1}
-                                                    fillProgress={(meditationSeconds / (60 * (index + 1))) * 100}
+                                                    isFilling={
+                                                        meditationSeconds / meditationExchangeRate.meditation >=
+                                                        index + 1
+                                                    }
+                                                    fillProgress={
+                                                        (meditationSeconds /
+                                                            (meditationExchangeRate.meditation * (index + 1))) *
+                                                        100
+                                                    }
                                                 />
                                             </View>
                                         ))}

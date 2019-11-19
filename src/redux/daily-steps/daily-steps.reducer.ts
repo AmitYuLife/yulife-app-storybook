@@ -2,7 +2,7 @@ import moment from "moment";
 import { REHYDRATE } from "redux-persist";
 import {
     GetCurrentUser,
-    GetCurrentUser_getCurrentUser_passiveChallenge_exchange,
+    GetCurrentUser_getCurrentUser_passiveSteps_exchange,
     UpsertPassiveChallenge
 } from "../../graphql/_core/schema";
 import { LoginUser } from "../../graphql/_core/schema";
@@ -15,7 +15,7 @@ import {
     UPDATE_DAILY_STEPS_SUCCESS
 } from "./daily-steps.actions";
 
-type ExchangeRate = GetCurrentUser_getCurrentUser_passiveChallenge_exchange;
+type ExchangeRate = GetCurrentUser_getCurrentUser_passiveSteps_exchange;
 
 export interface IDailyStepsStore {
     dailySteps: number;
@@ -39,7 +39,8 @@ export const initialState: IDailyStepsStore = {
     dailySteps: 0,
     exchangeRate: {
         steps: 2000,
-        yucoin: 1
+        yucoin: 1,
+        meditation: null
     },
     isFetching: true,
     lastUpdated: moment()
@@ -122,10 +123,10 @@ const updateDailyStepsSuccess = (
 
 const getUserSuccess = (state: IDailyStepsStore, res: GetCurrentUser) => ({
     ...state,
-    exchangeRate: pathOr<ExchangeRate>(res, "getCurrentUser.passiveChallenge.exchange", initialState.exchangeRate)
+    exchangeRate: pathOr<ExchangeRate>(res, "getCurrentUser.passiveSteps.exchange", initialState.exchangeRate)
 });
 
 const loginUserSuccess = (state: IDailyStepsStore, res: LoginUser) => ({
     ...state,
-    exchangeRate: pathOr<ExchangeRate>(res, "loginUser.user.passiveChallenge.exchange", initialState.exchangeRate)
+    exchangeRate: pathOr<ExchangeRate>(res, "loginUser.user.passiveSteps.exchange", initialState.exchangeRate)
 });

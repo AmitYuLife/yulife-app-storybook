@@ -1,4 +1,4 @@
-import upsertStepsChallenge from "@graphql/challenges/upsertStepsChallenge.gql";
+import upsertStepsChallenge from "@graphql/challenges/upsertPassiveChallenge.gql";
 import { mapPedometerResults } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { call, put, spawn } from "redux-saga/effects";

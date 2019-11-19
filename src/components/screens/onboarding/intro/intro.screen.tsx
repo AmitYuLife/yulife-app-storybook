@@ -2,7 +2,7 @@ import { IThemeStore } from "@app/redux/theme/theme.reducer";
 import { IConnectedScreenProps } from "@app/typings";
 import { DAILY_STEPS_SCREEN } from "@ids";
 import { Streak, Tooltip, TouchableOpacityWithState } from "@molecules/index";
-import { TOP_BAR_TYPES } from "@molecules/top-bar/top-bar";
+import { IUserStore } from "@redux/user/user.reducer";
 import { Style } from "@styles/index";
 import * as React from "react";
 import { LayoutChangeEvent, Platform, StyleSheet, View } from "react-native";
@@ -24,10 +24,15 @@ interface IProps extends Partial<IConnectedScreenProps> {
     isLoading: boolean;
     maxStreak?: number;
     onCoinPress: () => void;
-    onSetOnboardingDone: () => void;
+    onSetIntroDone: () => void;
     onStreakPress?: () => void;
     theme: IThemeStore["dailyStepsScreen"];
     copy: GetMobileCopy_getMobileCopy_screens_intro;
+    shouldDisplaySurge: boolean;
+    surgeIntro: IUserStore["surgeIntro"];
+    showIntro: boolean;
+    isShowingPassiveMeditation: boolean;
+    totalCoins: number;
 }
 
 type Props = IProps & IDailyStepsOnlineProps;
@@ -45,15 +50,23 @@ export default function IntroScreen({
     onStreakPress,
     showCounter = false,
     steps,
-    onSetOnboardingDone,
-    theme: { centredScreen, streakType, textStyle },
-    copy
+    onSetIntroDone,
+    theme: { centredScreen, streakType, textStyle, topBarType, navBar },
+    copy,
+    shouldDisplaySurge,
+    showIntro,
+    surgeIntro,
+    isShowingPassiveMeditation,
+    totalCoins
 }: Props) {
     const [dailyStepsPosition, setDailyStepsPosition] = React.useState(0);
     const [yucoinPosition, setYucoinPosition] = React.useState(0);
-    const [activeIndex, setActiveIndex] = React.useState(0);
+    const [activeIndex, setActiveIndex] = React.useState(
+        shouldDisplaySurge && surgeIntro.visibility && !showIntro ? 8 : 0
+    );
     const onPressCta = () => {
-        return activeIndex === 7 ? onSetOnboardingDone() : setActiveIndex(activeIndex + 1);
+        const stopIndex = showIntro && !surgeIntro.visibility ? 7 : 8;
+        return activeIndex === stopIndex ? onSetIntroDone() : setActiveIndex(activeIndex + 1);
     };
     const tooltipProps = getTooltipProps(activeIndex, dailyStepsPosition, yucoinPosition);
     return (
@@ -69,11 +82,11 @@ export default function IntroScreen({
                         activeIndex === 1 ? styles.zIndex : null
                     ])}
                 >
-                    <TopBar coins={200} type={activeIndex === 1 ? TOP_BAR_TYPES.DEMO : TOP_BAR_TYPES.FOREST} />
+                    <TopBar coins={totalCoins} type={topBarType} shouldHighlightCoins={activeIndex === 1} />
                 </View>
                 <Pad height={getPadHeight(true)} />
                 <View
-                    style={activeIndex === 4 || activeIndex === 2 ? styles.zIndex : null}
+                    style={activeIndex === 8 || activeIndex === 4 || activeIndex === 2 ? styles.zIndex : null}
                     onLayout={(event: LayoutChangeEvent) =>
                         setYucoinPosition(event.nativeEvent.layout.height + event.nativeEvent.layout.y + 10)
                     }
@@ -105,7 +118,7 @@ export default function IntroScreen({
                         highlightedLabel={getHighlightedLabel(activeIndex)}
                         labels={labels}
                         activeIndex={0}
-                        colour={"dark"}
+                        colour={navBar.online}
                     />
                 </View>
                 <Streak
@@ -117,8 +130,14 @@ export default function IntroScreen({
                     maxStreak={maxStreak}
                     type={streakType}
                 />
-                {dailyStepsPosition && (activeIndex >= 0 && activeIndex <= 7) ? (
-                    <Tooltip copy={copy} {...tooltipProps} onPressCta={onPressCta} />
+                {dailyStepsPosition && (activeIndex >= 0 && activeIndex <= 8) ? (
+                    <Tooltip
+                        copy={copy}
+                        {...tooltipProps}
+                        onPressCta={onPressCta}
+                        surgeIntro={surgeIntro}
+                        isShowingPassiveMeditation={isShowingPassiveMeditation}
+                    />
                 ) : null}
             </CentredScreen>
         </Animatable.View>

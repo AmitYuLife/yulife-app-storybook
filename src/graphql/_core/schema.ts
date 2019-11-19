@@ -4,6 +4,52 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: AddData
+// ====================================================
+
+export interface AddData_addData {
+  endDateTime: string | null;
+  startDateTime: string | null;
+  yucoin: number | null;
+}
+
+export interface AddData {
+  addData: AddData_addData | null;
+}
+
+export interface AddDataVariables {
+  payload?: (ChallengePayload | null)[] | null;
+  type?: PassiveChallengeType | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: AddHistoricalData
+// ====================================================
+
+export interface AddHistoricalData_addHistoricalData {
+  endDateTime: string | null;
+  startDateTime: string | null;
+  yucoin: number | null;
+}
+
+export interface AddHistoricalData {
+  addHistoricalData: AddHistoricalData_addHistoricalData | null;
+}
+
+export interface AddHistoricalDataVariables {
+  payload?: (ChallengePayload | null)[] | null;
+  type?: PassiveChallengeType | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: AddHistoricalSteps
 // ====================================================
 
@@ -310,6 +356,7 @@ export interface UpsertOnboardingChallenge {
 
 export interface UpsertPassiveChallenge_upsertPassiveChallenge_challenge_incomingData {
   steps: number | null;
+  meditation: number | null;
 }
 
 export interface UpsertPassiveChallenge_upsertPassiveChallenge_challenge {
@@ -329,6 +376,7 @@ export interface UpsertPassiveChallenge {
 
 export interface UpsertPassiveChallengeVariables {
   payload?: (ChallengePayload | null)[] | null;
+  type: PassiveChallengeType;
 }
 
 
@@ -666,7 +714,19 @@ export interface GetMobileCopy_getMobileCopy_screens_intro_yucoin {
   ctaLabel: string | null;
 }
 
+export interface GetMobileCopy_getMobileCopy_screens_intro_yucoinWithMeditation {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+}
+
 export interface GetMobileCopy_getMobileCopy_screens_intro_dailyStepsCTA {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+}
+
+export interface GetMobileCopy_getMobileCopy_screens_intro_dailyStepsWithMeditationCTA {
   heading: string | null;
   subheading: string | null;
   ctaLabel: string | null;
@@ -702,15 +762,24 @@ export interface GetMobileCopy_getMobileCopy_screens_intro_rewardsNav {
   ctaLabel: string | null;
 }
 
+export interface GetMobileCopy_getMobileCopy_screens_intro_surge {
+  heading: string | null;
+  subheading: string | null;
+  ctaLabel: string | null;
+}
+
 export interface GetMobileCopy_getMobileCopy_screens_intro {
   welcome: GetMobileCopy_getMobileCopy_screens_intro_welcome | null;
   yucoin: GetMobileCopy_getMobileCopy_screens_intro_yucoin | null;
+  yucoinWithMeditation: GetMobileCopy_getMobileCopy_screens_intro_yucoinWithMeditation | null;
   dailyStepsCTA: GetMobileCopy_getMobileCopy_screens_intro_dailyStepsCTA | null;
+  dailyStepsWithMeditationCTA: GetMobileCopy_getMobileCopy_screens_intro_dailyStepsWithMeditationCTA | null;
   questsNav: GetMobileCopy_getMobileCopy_screens_intro_questsNav | null;
   todaysYucoin: GetMobileCopy_getMobileCopy_screens_intro_todaysYucoin | null;
   leaderboardsNav: GetMobileCopy_getMobileCopy_screens_intro_leaderboardsNav | null;
   streaks: GetMobileCopy_getMobileCopy_screens_intro_streaks | null;
   rewardsNav: GetMobileCopy_getMobileCopy_screens_intro_rewardsNav | null;
+  surge: GetMobileCopy_getMobileCopy_screens_intro_surge | null;
 }
 
 export interface GetMobileCopy_getMobileCopy_screens {
@@ -1162,6 +1231,8 @@ export interface GetActivityHistory_getActivityHistoryWithLevels {
   monthAndYear: string | null;
   level: number | null;
   challenges: (GetActivityHistory_getActivityHistoryWithLevels_challenges | null)[] | null;
+  mindfulSeconds: number | null;
+  mindfulYucoin: number | null;
 }
 
 export interface GetActivityHistory {
@@ -1210,13 +1281,26 @@ export interface GetCurrentUser_getCurrentUser_coinLedger {
   nextLevelAvailableAt: string | null;
 }
 
-export interface GetCurrentUser_getCurrentUser_passiveChallenge_exchange {
+export interface GetCurrentUser_getCurrentUser_passiveSteps_exchange {
   yucoin: number | null;
   steps: number | null;
+  meditation: number | null;
 }
 
-export interface GetCurrentUser_getCurrentUser_passiveChallenge {
-  exchange: GetCurrentUser_getCurrentUser_passiveChallenge_exchange | null;
+export interface GetCurrentUser_getCurrentUser_passiveSteps {
+  exchange: GetCurrentUser_getCurrentUser_passiveSteps_exchange | null;
+  isMainSurge: boolean | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_passiveMeditation_exchange {
+  yucoin: number | null;
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_passiveMeditation {
+  exchange: GetCurrentUser_getCurrentUser_passiveMeditation_exchange | null;
+  isMainSurge: boolean | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge_incomingData {
@@ -1300,7 +1384,8 @@ export interface GetCurrentUser_getCurrentUser {
   userFeatures: (GetCurrentUser_getCurrentUser_userFeatures | null)[] | null;
   mobileConsent: GetCurrentUser_getCurrentUser_mobileConsent | null;
   coinLedger: GetCurrentUser_getCurrentUser_coinLedger | null;
-  passiveChallenge: GetCurrentUser_getCurrentUser_passiveChallenge | null;
+  passiveSteps: GetCurrentUser_getCurrentUser_passiveSteps | null;
+  passiveMeditation: GetCurrentUser_getCurrentUser_passiveMeditation | null;
   activeChallenge: GetCurrentUser_getCurrentUser_activeChallenge | null;
   activeStreak: GetCurrentUser_getCurrentUser_activeStreak | null;
   todayActivity: (GetCurrentUser_getCurrentUser_todayActivity | null)[] | null;
@@ -1382,13 +1467,26 @@ export interface LoginUser_loginUser_user_coinLedger {
   nextLevelAvailableAt: string | null;
 }
 
-export interface LoginUser_loginUser_user_passiveChallenge_exchange {
+export interface LoginUser_loginUser_user_passiveSteps_exchange {
   yucoin: number | null;
   steps: number | null;
+  meditation: number | null;
 }
 
-export interface LoginUser_loginUser_user_passiveChallenge {
-  exchange: LoginUser_loginUser_user_passiveChallenge_exchange | null;
+export interface LoginUser_loginUser_user_passiveSteps {
+  exchange: LoginUser_loginUser_user_passiveSteps_exchange | null;
+  isMainSurge: boolean | null;
+}
+
+export interface LoginUser_loginUser_user_passiveMeditation_exchange {
+  yucoin: number | null;
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface LoginUser_loginUser_user_passiveMeditation {
+  exchange: LoginUser_loginUser_user_passiveMeditation_exchange | null;
+  isMainSurge: boolean | null;
 }
 
 export interface LoginUser_loginUser_user_activeChallenge_challenge_incomingData {
@@ -1472,7 +1570,8 @@ export interface LoginUser_loginUser_user {
   userFeatures: (LoginUser_loginUser_user_userFeatures | null)[] | null;
   mobileConsent: LoginUser_loginUser_user_mobileConsent | null;
   coinLedger: LoginUser_loginUser_user_coinLedger | null;
-  passiveChallenge: LoginUser_loginUser_user_passiveChallenge | null;
+  passiveSteps: LoginUser_loginUser_user_passiveSteps | null;
+  passiveMeditation: LoginUser_loginUser_user_passiveMeditation | null;
   activeChallenge: LoginUser_loginUser_user_activeChallenge | null;
   activeStreak: LoginUser_loginUser_user_activeStreak | null;
   todayActivity: (LoginUser_loginUser_user_todayActivity | null)[] | null;
@@ -1688,13 +1787,26 @@ export interface User_coinLedger {
   nextLevelAvailableAt: string | null;
 }
 
-export interface User_passiveChallenge_exchange {
+export interface User_passiveSteps_exchange {
   yucoin: number | null;
   steps: number | null;
+  meditation: number | null;
 }
 
-export interface User_passiveChallenge {
-  exchange: User_passiveChallenge_exchange | null;
+export interface User_passiveSteps {
+  exchange: User_passiveSteps_exchange | null;
+  isMainSurge: boolean | null;
+}
+
+export interface User_passiveMeditation_exchange {
+  yucoin: number | null;
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface User_passiveMeditation {
+  exchange: User_passiveMeditation_exchange | null;
+  isMainSurge: boolean | null;
 }
 
 export interface User_activeChallenge_challenge_incomingData {
@@ -1778,7 +1890,8 @@ export interface User {
   userFeatures: (User_userFeatures | null)[] | null;
   mobileConsent: User_mobileConsent | null;
   coinLedger: User_coinLedger | null;
-  passiveChallenge: User_passiveChallenge | null;
+  passiveSteps: User_passiveSteps | null;
+  passiveMeditation: User_passiveMeditation | null;
   activeChallenge: User_activeChallenge | null;
   activeStreak: User_activeStreak | null;
   todayActivity: (User_todayActivity | null)[] | null;
@@ -1791,6 +1904,12 @@ export interface User {
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+export enum PassiveChallengeType {
+  MEDITATION = "MEDITATION",
+  ONBOARDING = "ONBOARDING",
+  STEPS = "STEPS",
+}
 
 export enum OS {
   android = "android",

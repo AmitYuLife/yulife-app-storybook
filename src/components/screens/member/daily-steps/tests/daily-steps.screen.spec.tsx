@@ -23,6 +23,8 @@ const defaultProps = {
     onLeftMenuPress: jest.fn(),
     onStreakPress: jest.fn(),
     steps: 0,
+    meditation: 0,
+    isShowingPassiveMeditation: true,
     totalCoins: 1234,
     theme: {
         centredScreen: {
@@ -38,7 +40,9 @@ const defaultProps = {
         streakType: "forest" as StreakTypes,
         textStyle: { color: "#333333" },
         topBarType: "default" as TopBarTypes
-    }
+    },
+    isOnSurge: false,
+    shouldDisplaySurge: false
 };
 
 describe("DailyStepsScreen", () => {

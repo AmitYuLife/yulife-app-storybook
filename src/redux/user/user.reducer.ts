@@ -13,6 +13,7 @@ import { SyncAction } from "../_core/types";
 import {
     GET_USER_SUCCESS,
     LOGIN_USER_SUCCESS,
+    SET_SHOW_SURGE_INTRO,
     SET_USER_NO_ACCESS,
     UPDATE_CONNECTION_FAILED,
     UPDATE_CONNECTION_START,
@@ -36,6 +37,8 @@ export type ILeaderboard = GetCurrentUser_getCurrentUser_leaderboards & {
 
 type Connection = GetCurrentUser_getCurrentUser_connections & { isLoading?: boolean };
 
+type SurgeActivity = "steps" | "meditation" | "all" | null;
+
 export interface IUserStore {
     archived: boolean;
     connections: Connection[];
@@ -52,6 +55,11 @@ export interface IUserStore {
          */
         leaderboard: boolean;
     };
+    surgeIntro: {
+        visibility: boolean;
+        activity: SurgeActivity;
+        rate: number;
+    };
 }
 
 export const initialState: IUserStore = {
@@ -62,6 +70,11 @@ export const initialState: IUserStore = {
     leaderboards: [],
     popupVisibility: {
         leaderboard: false
+    },
+    surgeIntro: {
+        visibility: false,
+        activity: null,
+        rate: 1
     }
 };
 
@@ -105,6 +118,9 @@ export const userReducer = (state: IUserStore = initialState, action: SyncAction
         case UPDATE_LEADERBOARD_POPUP_VISIBILITY:
             return updatePopupVisibility(state, action.payload, POPUPTYPE.LEADERBOARD);
 
+        case SET_SHOW_SURGE_INTRO:
+            return updateSurgeIntro(state, action.payload);
+
         default:
             return state;
     }
@@ -128,6 +144,16 @@ const updatePersistedState = (persistedState: IUserStore) => {
     // if (!popupVisibilityKeys.includes("surge")) {
     //     return { ...persistedState, popupVisibility: { ...persistedState.popupVisibility, surge: true } };
     // }
+    if (!persistedState.surgeIntro) {
+        return {
+            ...persistedState,
+            surgeIntro: {
+                visibility: false,
+                activity: null as SurgeActivity,
+                rate: 1
+            }
+        };
+    }
 
     return persistedState;
 };
@@ -220,3 +246,8 @@ const updatePopupVisibility = (state: IUserStore, payload: boolean, type: POPUPT
             return state;
     }
 };
+
+const updateSurgeIntro = (state: IUserStore, surgeIntro: IUserStore["surgeIntro"]) => ({
+    ...state,
+    surgeIntro
+});

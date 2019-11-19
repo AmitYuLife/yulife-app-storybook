@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getDailyEarnedCoins, getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
+import { getDailyMeditation } from "../../../../redux/daily-meditation/daily-meditation.selectors";
 import { startDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
 import {
     getDailySteps,
@@ -22,7 +23,7 @@ import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions
 import { getStreaks } from "../../../../redux/streaks/streaks.selectors";
 import { getDailyStepsTheme } from "../../../../redux/theme/theme.selectors";
 import { updateLeaderboardPopupVisibility, updateSurgePopupVisibility } from "../../../../redux/user/user.actions";
-import { getUserFeatures, getVisiblePopups } from "../../../../redux/user/user.selectors";
+import { getSurgeIntro, getUserFeatures, getVisiblePopups } from "../../../../redux/user/user.selectors";
 import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
 import { DailyStepsScreen } from "../../../screens";
 
@@ -60,6 +61,8 @@ class DailyStepsContainer extends React.Component<Props> {
     }
 
     public shouldComponentUpdate(nextProps: Props) {
+        const thisSurgeIntro = this.props.surgeIntro;
+        const nextSurgeIntro = nextProps.surgeIntro;
         return (
             nextProps.currentLevel !== this.props.currentLevel ||
             nextProps.dailyEarnedCoins !== this.props.dailyEarnedCoins ||
@@ -75,6 +78,14 @@ class DailyStepsContainer extends React.Component<Props> {
             nextProps.streaks.currentStreak !== this.props.streaks.currentStreak ||
             nextProps.streaks.isDoneToday !== this.props.streaks.isDoneToday ||
             nextProps.streaks.maxStreak !== this.props.streaks.maxStreak ||
+            nextProps.dailyMeditation !== this.props.dailyMeditation ||
+            !!(
+                nextProps.surgeIntro &&
+                this.props.surgeIntro &&
+                (nextSurgeIntro.rate !== thisSurgeIntro.rate ||
+                    nextSurgeIntro.activity !== thisSurgeIntro.activity ||
+                    nextSurgeIntro.visibility !== thisSurgeIntro.visibility)
+            ) ||
             nextProps.showIntro !== this.props.showIntro
         );
     }
@@ -88,6 +99,7 @@ class DailyStepsContainer extends React.Component<Props> {
                         displayEarnMore,
                         dailyEarnedCoins,
                         dailySteps,
+                        dailyMeditation,
                         features = {},
                         hasNotification,
                         isFetching,
@@ -97,12 +109,15 @@ class DailyStepsContainer extends React.Component<Props> {
                         copy,
                         popUpCopy,
                         popupVisibility,
-                        showIntro
+                        showIntro,
+                        surgeIntro
                     } = this.props;
+                    const shouldDisplaySurge = features.showSurge;
                     const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
-                    if (showIntro) {
+                    if (showIntro || surgeIntro.visibility) {
                         return (
                             <IntroContainer
+                                shouldDisplaySurge={shouldDisplaySurge}
                                 coinsToday={dailyEarnedCoins}
                                 showCounter={features.showCounter}
                                 displayStreak={displayStreak}
@@ -118,6 +133,9 @@ class DailyStepsContainer extends React.Component<Props> {
                                 steps={dailySteps}
                                 theme={theme}
                                 totalCoins={totalCoins}
+                                showIntro={showIntro}
+                                surgeIntro={surgeIntro}
+                                isShowingPassiveMeditation={features.usePassiveMeditation}
                             />
                         );
                     }
@@ -147,7 +165,8 @@ class DailyStepsContainer extends React.Component<Props> {
                             onUpdateLeaderboardPopupVisibility={this.props.updateLeaderboardPopupVisibility}
                             onUpdateSurgePopupVisibility={this.props.updateSurgePopupVisibility}
                             popupVisibility={popupVisibility}
-                            mindfulSeconds={null}
+                            mindfulSeconds={dailyMeditation}
+                            isShowingPassiveMeditation={features.usePassiveMeditation}
                         />
                     );
                 }}
@@ -214,6 +233,7 @@ const mapStateToProps = (state: IReduxState) => ({
     dailyEarnedCoins: getDailyEarnedCoins(state),
     dailySteps: getDailySteps(state),
     displayEarnMore: getChallengesStatus(state).isAvailable,
+    dailyMeditation: getDailyMeditation(state),
     features: getUserFeatures(state),
     hasNotification: getHasNotification(state),
     isFetching: getDailyStepsIsFetching(state),
@@ -224,7 +244,8 @@ const mapStateToProps = (state: IReduxState) => ({
     copy: getCopy(state, "dailyStepsFitKitAuthorise"),
     popUpCopy: getCopy(state, "popUp"),
     popupVisibility: getVisiblePopups(state),
-    showIntro: getShowIntro(state)
+    showIntro: getShowIntro(state),
+    surgeIntro: getSurgeIntro(state)
 });
 
 const mapDispatchToProps = {

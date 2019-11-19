@@ -12,6 +12,11 @@ ShallowWrapper {
           "heading": "Today’s steps and yucoin",
           "subheading": "For every 2000 steps, you earn 1 yucoin.",
         },
+        "dailyStepsWithMeditationCTA": Object {
+          "ctaLabel": "Got it",
+          "heading": "Today’s steps and yucoin",
+          "subheading": "For every 2000 steps, or 5 mindfulness minutes, you earn 1 yucoin.",
+        },
         "leaderboardsNav": Object {
           "ctaLabel": "Got it",
           "heading": "You're moving on up!",
@@ -32,6 +37,11 @@ ShallowWrapper {
           "heading": "You're on a streak!",
           "subheading": "Keep it going: Complete challenges for 5 consecutive days, and earn a bonus 40 yucoin.",
         },
+        "surge": Object {
+          "ctaLabel": "Got it",
+          "heading": "It’s surge time!",
+          "subheading": "Your daily \${surgeActivity} are earning \${multiplier} yucoin right now.",
+        },
         "todaysYucoin": Object {
           "ctaLabel": "Got it",
           "heading": "Check out your daily progress",
@@ -49,20 +59,48 @@ ShallowWrapper {
           "heading": "Here’s your yucoin bank!",
           "subheading": "Every time you open the app, we'll sync your steps and reward you in yucoin.",
         },
+        "yucoinWithMeditation": Object {
+          "ctaLabel": "Got it",
+          "heading": "Here’s your yucoin bank!",
+          "subheading": "Every time you open the app, we'll sync your steps and mindfulness minutes, and reward you in yucoin.",
+        },
       }
     }
     currentStreak={0}
     displayStreak={true}
     isDoneToday={false}
     isLoading={false}
+    isOnSurge={false}
+    isShowingPassiveMeditation={false}
     labels={Array []}
     maxStreak={4}
+    meditationExchangeRate={
+      Object {
+        "meditation": 3600,
+        "yucoin": 1,
+      }
+    }
     onCoinPress={[MockFunction]}
     onCtaPress={[MockFunction]}
-    onSetOnboardingDone={[MockFunction]}
+    onSetIntroDone={[MockFunction]}
     onStreakPress={[MockFunction]}
+    shouldDisplaySurge={true}
     showCounter={false}
+    showIntro={true}
     steps={2000}
+    stepsExchangeRate={
+      Object {
+        "steps": 4000,
+        "yucoin": 1,
+      }
+    }
+    surgeIntro={
+      Object {
+        "activity": "all",
+        "rate": 1,
+        "visibility": true,
+      }
+    }
     theme={
       Object {
         "centredScreen": Object {
@@ -92,6 +130,7 @@ ShallowWrapper {
         "topBarType": "default",
       }
     }
+    totalCoins={200}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -125,7 +164,8 @@ ShallowWrapper {
         >
           <TopBar
             coins={200}
-            type="forest"
+            shouldHighlightCoins={false}
+            type="default"
           />
         </View>
         <Pad
@@ -190,7 +230,7 @@ ShallowWrapper {
         >
           <NavBar
             activeIndex={0}
-            colour="dark"
+            colour="darker"
             labels={Array []}
           />
         </View>
@@ -236,7 +276,8 @@ ShallowWrapper {
           >
             <TopBar
               coins={200}
-              type="forest"
+              shouldHighlightCoins={false}
+              type="default"
             />
           </View>,
           <Pad
@@ -301,7 +342,7 @@ ShallowWrapper {
           >
             <NavBar
               activeIndex={0}
-              colour="dark"
+              colour="darker"
               labels={Array []}
             />
           </View>,
@@ -331,7 +372,8 @@ ShallowWrapper {
           "props": Object {
             "children": <TopBar
               coins={200}
-              type="forest"
+              shouldHighlightCoins={false}
+              type="default"
             />,
             "style": Object {
               "width": "100%",
@@ -344,7 +386,8 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "coins": 200,
-              "type": "forest",
+              "shouldHighlightCoins": false,
+              "type": "default",
             },
             "ref": null,
             "rendered": null,
@@ -480,7 +523,7 @@ ShallowWrapper {
           "props": Object {
             "children": <NavBar
               activeIndex={0}
-              colour="dark"
+              colour="darker"
               labels={Array []}
             />,
             "style": Object {
@@ -496,7 +539,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "activeIndex": 0,
-              "colour": "dark",
+              "colour": "darker",
               "highlightedLabel": undefined,
               "labels": Array [],
             },
@@ -554,7 +597,8 @@ ShallowWrapper {
           >
             <TopBar
               coins={200}
-              type="forest"
+              shouldHighlightCoins={false}
+              type="default"
             />
           </View>
           <Pad
@@ -619,7 +663,7 @@ ShallowWrapper {
           >
             <NavBar
               activeIndex={0}
-              colour="dark"
+              colour="darker"
               labels={Array []}
             />
           </View>
@@ -665,7 +709,8 @@ ShallowWrapper {
             >
               <TopBar
                 coins={200}
-                type="forest"
+                shouldHighlightCoins={false}
+                type="default"
               />
             </View>,
             <Pad
@@ -730,7 +775,7 @@ ShallowWrapper {
             >
               <NavBar
                 activeIndex={0}
-                colour="dark"
+                colour="darker"
                 labels={Array []}
               />
             </View>,
@@ -760,7 +805,8 @@ ShallowWrapper {
             "props": Object {
               "children": <TopBar
                 coins={200}
-                type="forest"
+                shouldHighlightCoins={false}
+                type="default"
               />,
               "style": Object {
                 "width": "100%",
@@ -773,7 +819,8 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "coins": 200,
-                "type": "forest",
+                "shouldHighlightCoins": false,
+                "type": "default",
               },
               "ref": null,
               "rendered": null,
@@ -909,7 +956,7 @@ ShallowWrapper {
             "props": Object {
               "children": <NavBar
                 activeIndex={0}
-                colour="dark"
+                colour="darker"
                 labels={Array []}
               />,
               "style": Object {
@@ -925,7 +972,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "activeIndex": 0,
-                "colour": "dark",
+                "colour": "darker",
                 "highlightedLabel": undefined,
                 "labels": Array [],
               },

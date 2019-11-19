@@ -6,6 +6,8 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <DailyStepsOnline
     coinsToday={5}
     hasWhiteText={false}
+    isShowingPassiveMeditation={true}
+    meditation={333}
     onCtaPress={[MockFunction]}
     steps={123456}
   />,

@@ -59,6 +59,14 @@ export function getTooltipProps(index: number, dailyStepsTop: number, yucoinTop:
                 caretDirection: "bottom" as CaretDirection,
                 caretStyle: tooltipStyles.rewardsCaret
             };
+        case 8:
+            return {
+                type: TOOLTIP_TYPES.SURGE,
+                positionStyle: StyleSheet.flatten([
+                    tooltipStyles.dailyStepsCtaTooltip,
+                    { top: yucoinTop - Style.SCALE_UP_AND_DOWN(30) }
+                ])
+            };
     }
 }
 
