@@ -16,7 +16,7 @@ export default StyleSheet.create({
         height: Style.SCALE_UP_AND_DOWN(220)
     } as ImageStyle,
     imageNewForest: {
-        height: Style.SCALE_UP_AND_DOWN(247),
+        height: Style.SCALE_UP_AND_DOWN(312),
         marginBottom: Platform.OS === "ios" && Style.DEVICE_HEIGHT < 700 ? -20 : 0
     } as ImageStyle,
     imageWrapper: {
