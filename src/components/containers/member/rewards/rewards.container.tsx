@@ -223,6 +223,8 @@ class RewardsContainer extends PureComponent<Props, IState> {
         switch (currencyType) {
             case "AVIOS":
                 return `${formatMoney(num)} AVIOS`;
+            case "HUGGG":
+                return name;
             case "GBP":
             default:
                 return `£${formatMoney(num)} ${name} VOUCHER`;
