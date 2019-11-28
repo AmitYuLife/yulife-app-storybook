@@ -30,6 +30,7 @@ interface IProps {
     dailyMeditationEarned?: number;
     meditationSeconds?: number;
     isShowingPassiveMeditation: boolean;
+    passiveMeditationAwardedMilestonesLength: number;
 }
 
 function getLabel(challenge: ChallengeToday, isActive: boolean = false) {
@@ -68,7 +69,8 @@ export default function TodayYucoinScreen({
     meditationSeconds = 0,
     isShowingPassiveMeditation,
     isStepsSurge,
-    isMeditationSurge
+    isMeditationSurge,
+    passiveMeditationAwardedMilestonesLength
 }: IProps) {
     const showNoChallengeDone = !challenges.length && !activeChallenge;
     const progressBarWidth = Style.SCALE_UP_AND_DOWN(275);
@@ -179,28 +181,32 @@ export default function TodayYucoinScreen({
                                             y="4"
                                             width={Math.floor(
                                                 progressBarWidth *
-                                                    (meditationSeconds / (meditationExchangeRate.meditation * 3))
+                                                    (meditationSeconds /
+                                                        (meditationExchangeRate.meditation *
+                                                            passiveMeditationAwardedMilestonesLength))
                                             )}
                                             height="4"
                                             fill="black"
                                         />
                                     </Svg>
                                     <View style={styles.checksWrapper}>
-                                        {Array.from({ length: 3 }).map((_, index) => (
-                                            <View style={styles.checkWrapper} key={index}>
-                                                <Check
-                                                    isFilling={
-                                                        meditationSeconds / meditationExchangeRate.meditation >=
-                                                        index + 1
-                                                    }
-                                                    fillProgress={
-                                                        (meditationSeconds /
-                                                            (meditationExchangeRate.meditation * (index + 1))) *
-                                                        100
-                                                    }
-                                                />
-                                            </View>
-                                        ))}
+                                        {Array.from({ length: passiveMeditationAwardedMilestonesLength }).map(
+                                            (_, index) => (
+                                                <View style={styles.checkWrapper} key={index}>
+                                                    <Check
+                                                        isFilling={
+                                                            meditationSeconds / meditationExchangeRate.meditation >=
+                                                            index + 1
+                                                        }
+                                                        fillProgress={
+                                                            (meditationSeconds /
+                                                                (meditationExchangeRate.meditation * (index + 1))) *
+                                                            100
+                                                        }
+                                                    />
+                                                </View>
+                                            )
+                                        )}
                                     </View>
                                 </View>
                             </>

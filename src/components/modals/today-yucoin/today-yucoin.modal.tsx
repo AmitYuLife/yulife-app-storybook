@@ -12,6 +12,7 @@ import { IReduxState } from "../../../redux/_core/reducers";
 import { getDailyMeditationCoins, getDailyStepsCoins } from "../../../redux/coins/coins.selectors";
 import {
     getDailyMeditation,
+    getMeditationAwardedMilestonesLength,
     getMeditationExchangeRate
 } from "../../../redux/daily-meditation/daily-meditation.selectors";
 import { getDailySteps, getExchangeRate } from "../../../redux/daily-steps/daily-steps.selectors";
@@ -42,7 +43,8 @@ class TodayYucoinContainer extends PureComponent<Props> {
             dailyMeditation,
             dailyMeditationEarned,
             isShowingPassiveMeditation,
-            meditationExchangeRate
+            meditationExchangeRate,
+            passiveMeditationAwardedMilestonesLength
         } = this.props;
 
         return (
@@ -90,6 +92,7 @@ class TodayYucoinContainer extends PureComponent<Props> {
                             meditationSeconds={dailyMeditation}
                             dailyMeditationEarned={dailyMeditationEarned}
                             meditationExchangeRate={meditationExchangeRate}
+                            passiveMeditationAwardedMilestonesLength={passiveMeditationAwardedMilestonesLength}
                         />
                     );
                 }}
@@ -119,6 +122,7 @@ const mapStateToProps = (state: IReduxState) => ({
     dailyStepsEarned: getDailyStepsCoins(state),
     exchangeRate: getExchangeRate(state),
     meditationExchangeRate: getMeditationExchangeRate(state),
+    passiveMeditationAwardedMilestonesLength: getMeditationAwardedMilestonesLength(state),
     steps: getDailySteps(state),
     dailyMeditation: getDailyMeditation(state),
     dailyMeditationEarned: getDailyMeditationCoins(state),

@@ -528,6 +528,7 @@ storiesOf("Screens", module)
             onPressCta={action("pressed cta")}
             onPressClose={action("pressed close")}
             isShowingPassiveMeditation={false}
+            passiveMeditationAwardedMilestonesLength={0}
         />
     ))
     .add("13. Challenges List Completed", () => (

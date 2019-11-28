@@ -37,7 +37,8 @@ const defaultProps = {
     isMeditationSurge: false,
     dailyMeditationSecondsEarned: 0,
     meditationSeconds: 0,
-    isShowingPassiveMeditation: false
+    isShowingPassiveMeditation: false,
+    passiveMeditationAwardedMilestonesLength: 0
 };
 
 describe("TodayYucoinScreen", () => {
