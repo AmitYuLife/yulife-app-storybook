@@ -9,9 +9,11 @@ import {
     UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
     UPDATE_DAILY_MEDITATION_SUCCESS
 } from "./daily-meditation.actions";
+import { PassiveMeditationMilestones } from "./daily-meditation.selectors";
 export interface IDailyMeditationStore {
     dailyMeditation: number;
     exchangeRate: ExchangeRate;
+    meditationPassiveMilestones: PassiveMeditationMilestones;
     lastUpdated: string;
     /**
      * When the app is opened first thing in the day, there is a meditation gap betwen yesterday's lastUpdated
@@ -33,6 +35,7 @@ export const initialState: IDailyMeditationStore = {
         steps: null,
         meditation: 300
     },
+    meditationPassiveMilestones: [],
     lastUpdated: moment()
         .startOf("day")
         .format(),
@@ -103,7 +106,12 @@ const updatePersistedState = (state: IDailyMeditationStore, persistedState: IDai
 
 const getUserSuccess = (state: IDailyMeditationStore, res: GetCurrentUser) => ({
     ...state,
-    exchangeRate: pathOr<ExchangeRate>(res, "getCurrentUser.passiveMeditation.exchange", initialState.exchangeRate)
+    exchangeRate: pathOr<ExchangeRate>(res, "getCurrentUser.passiveMeditation.exchange", initialState.exchangeRate),
+    meditationPassiveMilestones: pathOr<PassiveMeditationMilestones>(
+        res,
+        "getCurrentUser.passiveMeditation.levelSlot.milestones",
+        initialState.meditationPassiveMilestones
+    )
 });
 
 const loginUserSuccess = (state: IDailyMeditationStore, res: LoginUser) => ({

@@ -1298,8 +1298,27 @@ export interface GetCurrentUser_getCurrentUser_passiveMeditation_exchange {
   meditation: number | null;
 }
 
+export interface GetCurrentUser_getCurrentUser_passiveMeditation_levelSlot_milestones_target {
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_passiveMeditation_levelSlot_milestones {
+  id: string | null;
+  XP: number | null;
+  coins: number | null;
+  target: GetCurrentUser_getCurrentUser_passiveMeditation_levelSlot_milestones_target | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_passiveMeditation_levelSlot {
+  subtype: string | null;
+  unit: string | null;
+  milestones: (GetCurrentUser_getCurrentUser_passiveMeditation_levelSlot_milestones | null)[] | null;
+}
+
 export interface GetCurrentUser_getCurrentUser_passiveMeditation {
   exchange: GetCurrentUser_getCurrentUser_passiveMeditation_exchange | null;
+  levelSlot: GetCurrentUser_getCurrentUser_passiveMeditation_levelSlot | null;
   isMainSurge: boolean | null;
 }
 
@@ -1484,8 +1503,27 @@ export interface LoginUser_loginUser_user_passiveMeditation_exchange {
   meditation: number | null;
 }
 
+export interface LoginUser_loginUser_user_passiveMeditation_levelSlot_milestones_target {
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface LoginUser_loginUser_user_passiveMeditation_levelSlot_milestones {
+  id: string | null;
+  XP: number | null;
+  coins: number | null;
+  target: LoginUser_loginUser_user_passiveMeditation_levelSlot_milestones_target | null;
+}
+
+export interface LoginUser_loginUser_user_passiveMeditation_levelSlot {
+  subtype: string | null;
+  unit: string | null;
+  milestones: (LoginUser_loginUser_user_passiveMeditation_levelSlot_milestones | null)[] | null;
+}
+
 export interface LoginUser_loginUser_user_passiveMeditation {
   exchange: LoginUser_loginUser_user_passiveMeditation_exchange | null;
+  levelSlot: LoginUser_loginUser_user_passiveMeditation_levelSlot | null;
   isMainSurge: boolean | null;
 }
 
@@ -1804,8 +1842,27 @@ export interface User_passiveMeditation_exchange {
   meditation: number | null;
 }
 
+export interface User_passiveMeditation_levelSlot_milestones_target {
+  steps: number | null;
+  meditation: number | null;
+}
+
+export interface User_passiveMeditation_levelSlot_milestones {
+  id: string | null;
+  XP: number | null;
+  coins: number | null;
+  target: User_passiveMeditation_levelSlot_milestones_target | null;
+}
+
+export interface User_passiveMeditation_levelSlot {
+  subtype: string | null;
+  unit: string | null;
+  milestones: (User_passiveMeditation_levelSlot_milestones | null)[] | null;
+}
+
 export interface User_passiveMeditation {
   exchange: User_passiveMeditation_exchange | null;
+  levelSlot: User_passiveMeditation_levelSlot | null;
   isMainSurge: boolean | null;
 }
 

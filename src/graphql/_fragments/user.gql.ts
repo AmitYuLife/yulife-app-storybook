@@ -51,6 +51,19 @@ export const userFragmentGql = gql`
                 steps
                 meditation
             }
+            levelSlot {
+                subtype
+                unit
+                milestones {
+                    id
+                    XP
+                    coins
+                    target {
+                        steps
+                        meditation
+                    }
+                }
+            }
             isMainSurge
         }
         activeChallenge {

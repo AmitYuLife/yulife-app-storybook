@@ -50,6 +50,7 @@ ShallowWrapper {
     meditationSeconds={400}
     onPressClose={[MockFunction]}
     onPressCta={[MockFunction]}
+    passiveMeditationAwardedMilestonesLength={0}
     showCta={false}
     steps={0}
   />,
@@ -472,7 +473,7 @@ ShallowWrapper {
                       height="4"
                       rx={0}
                       ry={0}
-                      width={81}
+                      width={Infinity}
                       x={0}
                       y="4"
                     />
@@ -488,47 +489,7 @@ ShallowWrapper {
                         "top": 9,
                       }
                     }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "flex-end",
-                          "flex": 1,
-                        }
-                      }
-                    >
-                      <Check
-                        fillProgress={44.44444444444444}
-                        isFilling={false}
-                      />
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "flex-end",
-                          "flex": 1,
-                        }
-                      }
-                    >
-                      <Check
-                        fillProgress={22.22222222222222}
-                        isFilling={false}
-                      />
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "flex-end",
-                          "flex": 1,
-                        }
-                      }
-                    >
-                      <Check
-                        fillProgress={14.814814814814813}
-                        isFilling={false}
-                      />
-                    </View>
-                  </View>
+                  />
                 </View>
               </React.Fragment>
             </View>
@@ -1099,7 +1060,7 @@ ShallowWrapper {
                         height="4"
                         rx={0}
                         ry={0}
-                        width={81}
+                        width={Infinity}
                         x={0}
                         y="4"
                       />
@@ -1115,47 +1076,7 @@ ShallowWrapper {
                           "top": 9,
                         }
                       }
-                    >
-                      <View
-                        style={
-                          Object {
-                            "alignItems": "flex-end",
-                            "flex": 1,
-                          }
-                        }
-                      >
-                        <Check
-                          fillProgress={44.44444444444444}
-                          isFilling={false}
-                        />
-                      </View>
-                      <View
-                        style={
-                          Object {
-                            "alignItems": "flex-end",
-                            "flex": 1,
-                          }
-                        }
-                      >
-                        <Check
-                          fillProgress={22.22222222222222}
-                          isFilling={false}
-                        />
-                      </View>
-                      <View
-                        style={
-                          Object {
-                            "alignItems": "flex-end",
-                            "flex": 1,
-                          }
-                        }
-                      >
-                        <Check
-                          fillProgress={14.814814814814813}
-                          isFilling={false}
-                        />
-                      </View>
-                    </View>
+                    />
                   </View>
                 </React.Fragment>
               </View>
@@ -1806,7 +1727,7 @@ ShallowWrapper {
                           height="4"
                           rx={0}
                           ry={0}
-                          width={81}
+                          width={Infinity}
                           x={0}
                           y="4"
                         />
@@ -1822,47 +1743,7 @@ ShallowWrapper {
                             "top": 9,
                           }
                         }
-                      >
-                        <View
-                          style={
-                            Object {
-                              "alignItems": "flex-end",
-                              "flex": 1,
-                            }
-                          }
-                        >
-                          <Check
-                            fillProgress={44.44444444444444}
-                            isFilling={false}
-                          />
-                        </View>
-                        <View
-                          style={
-                            Object {
-                              "alignItems": "flex-end",
-                              "flex": 1,
-                            }
-                          }
-                        >
-                          <Check
-                            fillProgress={22.22222222222222}
-                            isFilling={false}
-                          />
-                        </View>
-                        <View
-                          style={
-                            Object {
-                              "alignItems": "flex-end",
-                              "flex": 1,
-                            }
-                          }
-                        >
-                          <Check
-                            fillProgress={14.814814814814813}
-                            isFilling={false}
-                          />
-                        </View>
-                      </View>
+                      />
                     </View>
                   </React.Fragment>
                 </View>,
@@ -2396,7 +2277,7 @@ ShallowWrapper {
                             height="4"
                             rx={0}
                             ry={0}
-                            width={81}
+                            width={Infinity}
                             x={0}
                             y="4"
                           />
@@ -2412,47 +2293,7 @@ ShallowWrapper {
                               "top": 9,
                             }
                           }
-                        >
-                          <View
-                            style={
-                              Object {
-                                "alignItems": "flex-end",
-                                "flex": 1,
-                              }
-                            }
-                          >
-                            <Check
-                              fillProgress={44.44444444444444}
-                              isFilling={false}
-                            />
-                          </View>
-                          <View
-                            style={
-                              Object {
-                                "alignItems": "flex-end",
-                                "flex": 1,
-                              }
-                            }
-                          >
-                            <Check
-                              fillProgress={22.22222222222222}
-                              isFilling={false}
-                            />
-                          </View>
-                          <View
-                            style={
-                              Object {
-                                "alignItems": "flex-end",
-                                "flex": 1,
-                              }
-                            }
-                          >
-                            <Check
-                              fillProgress={14.814814814814813}
-                              isFilling={false}
-                            />
-                          </View>
-                        </View>
+                        />
                       </View>
                     </React.Fragment>,
                   ],
@@ -3182,7 +3023,7 @@ ShallowWrapper {
                               height="4"
                               rx={0}
                               ry={0}
-                              width={81}
+                              width={Infinity}
                               x={0}
                               y="4"
                             />
@@ -3198,47 +3039,7 @@ ShallowWrapper {
                                 "top": 9,
                               }
                             }
-                          >
-                            <View
-                              style={
-                                Object {
-                                  "alignItems": "flex-end",
-                                  "flex": 1,
-                                }
-                              }
-                            >
-                              <Check
-                                fillProgress={44.44444444444444}
-                                isFilling={false}
-                              />
-                            </View>
-                            <View
-                              style={
-                                Object {
-                                  "alignItems": "flex-end",
-                                  "flex": 1,
-                                }
-                              }
-                            >
-                              <Check
-                                fillProgress={22.22222222222222}
-                                isFilling={false}
-                              />
-                            </View>
-                            <View
-                              style={
-                                Object {
-                                  "alignItems": "flex-end",
-                                  "flex": 1,
-                                }
-                              }
-                            >
-                              <Check
-                                fillProgress={14.814814814814813}
-                                isFilling={false}
-                              />
-                            </View>
-                          </View>
+                          />
                         </View>,
                       ],
                     },
@@ -3491,7 +3292,7 @@ ShallowWrapper {
                                 height="4"
                                 rx={0}
                                 ry={0}
-                                width={81}
+                                width={Infinity}
                                 x={0}
                                 y="4"
                               />
@@ -3507,47 +3308,7 @@ ShallowWrapper {
                                   "top": 9,
                                 }
                               }
-                            >
-                              <View
-                                style={
-                                  Object {
-                                    "alignItems": "flex-end",
-                                    "flex": 1,
-                                  }
-                                }
-                              >
-                                <Check
-                                  fillProgress={44.44444444444444}
-                                  isFilling={false}
-                                />
-                              </View>
-                              <View
-                                style={
-                                  Object {
-                                    "alignItems": "flex-end",
-                                    "flex": 1,
-                                  }
-                                }
-                              >
-                                <Check
-                                  fillProgress={22.22222222222222}
-                                  isFilling={false}
-                                />
-                              </View>
-                              <View
-                                style={
-                                  Object {
-                                    "alignItems": "flex-end",
-                                    "flex": 1,
-                                  }
-                                }
-                              >
-                                <Check
-                                  fillProgress={14.814814814814813}
-                                  isFilling={false}
-                                />
-                              </View>
-                            </View>,
+                            />,
                           ],
                           "style": Object {
                             "alignItems": "flex-end",
@@ -3580,7 +3341,7 @@ ShallowWrapper {
                                   height="4"
                                   rx={0}
                                   ry={0}
-                                  width={81}
+                                  width={Infinity}
                                   x={0}
                                   y="4"
                                 />,
@@ -3620,7 +3381,7 @@ ShallowWrapper {
                                   "height": "4",
                                   "rx": 0,
                                   "ry": 0,
-                                  "width": 81,
+                                  "width": Infinity,
                                   "x": 0,
                                   "y": "4",
                                 },
@@ -3636,47 +3397,7 @@ ShallowWrapper {
                             "key": undefined,
                             "nodeType": "class",
                             "props": Object {
-                              "children": Array [
-                                <View
-                                  style={
-                                    Object {
-                                      "alignItems": "flex-end",
-                                      "flex": 1,
-                                    }
-                                  }
-                                >
-                                  <Check
-                                    fillProgress={44.44444444444444}
-                                    isFilling={false}
-                                  />
-                                </View>,
-                                <View
-                                  style={
-                                    Object {
-                                      "alignItems": "flex-end",
-                                      "flex": 1,
-                                    }
-                                  }
-                                >
-                                  <Check
-                                    fillProgress={22.22222222222222}
-                                    isFilling={false}
-                                  />
-                                </View>,
-                                <View
-                                  style={
-                                    Object {
-                                      "alignItems": "flex-end",
-                                      "flex": 1,
-                                    }
-                                  }
-                                >
-                                  <Check
-                                    fillProgress={14.814814814814813}
-                                    isFilling={false}
-                                  />
-                                </View>,
-                              ],
+                              "children": Array [],
                               "style": Object {
                                 "alignSelf": "flex-end",
                                 "flexDirection": "row",
@@ -3687,95 +3408,7 @@ ShallowWrapper {
                               },
                             },
                             "ref": null,
-                            "rendered": Array [
-                              Object {
-                                "instance": null,
-                                "key": "0",
-                                "nodeType": "class",
-                                "props": Object {
-                                  "children": <Check
-                                    fillProgress={44.44444444444444}
-                                    isFilling={false}
-                                  />,
-                                  "style": Object {
-                                    "alignItems": "flex-end",
-                                    "flex": 1,
-                                  },
-                                },
-                                "ref": null,
-                                "rendered": Object {
-                                  "instance": null,
-                                  "key": undefined,
-                                  "nodeType": "function",
-                                  "props": Object {
-                                    "fillProgress": 44.44444444444444,
-                                    "isFilling": false,
-                                  },
-                                  "ref": null,
-                                  "rendered": null,
-                                  "type": [Function],
-                                },
-                                "type": [Function],
-                              },
-                              Object {
-                                "instance": null,
-                                "key": "1",
-                                "nodeType": "class",
-                                "props": Object {
-                                  "children": <Check
-                                    fillProgress={22.22222222222222}
-                                    isFilling={false}
-                                  />,
-                                  "style": Object {
-                                    "alignItems": "flex-end",
-                                    "flex": 1,
-                                  },
-                                },
-                                "ref": null,
-                                "rendered": Object {
-                                  "instance": null,
-                                  "key": undefined,
-                                  "nodeType": "function",
-                                  "props": Object {
-                                    "fillProgress": 22.22222222222222,
-                                    "isFilling": false,
-                                  },
-                                  "ref": null,
-                                  "rendered": null,
-                                  "type": [Function],
-                                },
-                                "type": [Function],
-                              },
-                              Object {
-                                "instance": null,
-                                "key": "2",
-                                "nodeType": "class",
-                                "props": Object {
-                                  "children": <Check
-                                    fillProgress={14.814814814814813}
-                                    isFilling={false}
-                                  />,
-                                  "style": Object {
-                                    "alignItems": "flex-end",
-                                    "flex": 1,
-                                  },
-                                },
-                                "ref": null,
-                                "rendered": Object {
-                                  "instance": null,
-                                  "key": undefined,
-                                  "nodeType": "function",
-                                  "props": Object {
-                                    "fillProgress": 14.814814814814813,
-                                    "isFilling": false,
-                                  },
-                                  "ref": null,
-                                  "rendered": null,
-                                  "type": [Function],
-                                },
-                                "type": [Function],
-                              },
-                            ],
+                            "rendered": Array [],
                             "type": [Function],
                           },
                         ],
@@ -4887,7 +4520,7 @@ ShallowWrapper {
                         height="4"
                         rx={0}
                         ry={0}
-                        width={81}
+                        width={Infinity}
                         x={0}
                         y="4"
                       />
@@ -4903,47 +4536,7 @@ ShallowWrapper {
                           "top": 9,
                         }
                       }
-                    >
-                      <View
-                        style={
-                          Object {
-                            "alignItems": "flex-end",
-                            "flex": 1,
-                          }
-                        }
-                      >
-                        <Check
-                          fillProgress={44.44444444444444}
-                          isFilling={false}
-                        />
-                      </View>
-                      <View
-                        style={
-                          Object {
-                            "alignItems": "flex-end",
-                            "flex": 1,
-                          }
-                        }
-                      >
-                        <Check
-                          fillProgress={22.22222222222222}
-                          isFilling={false}
-                        />
-                      </View>
-                      <View
-                        style={
-                          Object {
-                            "alignItems": "flex-end",
-                            "flex": 1,
-                          }
-                        }
-                      >
-                        <Check
-                          fillProgress={14.814814814814813}
-                          isFilling={false}
-                        />
-                      </View>
-                    </View>
+                    />
                   </View>
                 </React.Fragment>
               </View>
@@ -5514,7 +5107,7 @@ ShallowWrapper {
                           height="4"
                           rx={0}
                           ry={0}
-                          width={81}
+                          width={Infinity}
                           x={0}
                           y="4"
                         />
@@ -5530,47 +5123,7 @@ ShallowWrapper {
                             "top": 9,
                           }
                         }
-                      >
-                        <View
-                          style={
-                            Object {
-                              "alignItems": "flex-end",
-                              "flex": 1,
-                            }
-                          }
-                        >
-                          <Check
-                            fillProgress={44.44444444444444}
-                            isFilling={false}
-                          />
-                        </View>
-                        <View
-                          style={
-                            Object {
-                              "alignItems": "flex-end",
-                              "flex": 1,
-                            }
-                          }
-                        >
-                          <Check
-                            fillProgress={22.22222222222222}
-                            isFilling={false}
-                          />
-                        </View>
-                        <View
-                          style={
-                            Object {
-                              "alignItems": "flex-end",
-                              "flex": 1,
-                            }
-                          }
-                        >
-                          <Check
-                            fillProgress={14.814814814814813}
-                            isFilling={false}
-                          />
-                        </View>
-                      </View>
+                      />
                     </View>
                   </React.Fragment>
                 </View>
@@ -6221,7 +5774,7 @@ ShallowWrapper {
                             height="4"
                             rx={0}
                             ry={0}
-                            width={81}
+                            width={Infinity}
                             x={0}
                             y="4"
                           />
@@ -6237,47 +5790,7 @@ ShallowWrapper {
                               "top": 9,
                             }
                           }
-                        >
-                          <View
-                            style={
-                              Object {
-                                "alignItems": "flex-end",
-                                "flex": 1,
-                              }
-                            }
-                          >
-                            <Check
-                              fillProgress={44.44444444444444}
-                              isFilling={false}
-                            />
-                          </View>
-                          <View
-                            style={
-                              Object {
-                                "alignItems": "flex-end",
-                                "flex": 1,
-                              }
-                            }
-                          >
-                            <Check
-                              fillProgress={22.22222222222222}
-                              isFilling={false}
-                            />
-                          </View>
-                          <View
-                            style={
-                              Object {
-                                "alignItems": "flex-end",
-                                "flex": 1,
-                              }
-                            }
-                          >
-                            <Check
-                              fillProgress={14.814814814814813}
-                              isFilling={false}
-                            />
-                          </View>
-                        </View>
+                        />
                       </View>
                     </React.Fragment>
                   </View>,
@@ -6811,7 +6324,7 @@ ShallowWrapper {
                               height="4"
                               rx={0}
                               ry={0}
-                              width={81}
+                              width={Infinity}
                               x={0}
                               y="4"
                             />
@@ -6827,47 +6340,7 @@ ShallowWrapper {
                                 "top": 9,
                               }
                             }
-                          >
-                            <View
-                              style={
-                                Object {
-                                  "alignItems": "flex-end",
-                                  "flex": 1,
-                                }
-                              }
-                            >
-                              <Check
-                                fillProgress={44.44444444444444}
-                                isFilling={false}
-                              />
-                            </View>
-                            <View
-                              style={
-                                Object {
-                                  "alignItems": "flex-end",
-                                  "flex": 1,
-                                }
-                              }
-                            >
-                              <Check
-                                fillProgress={22.22222222222222}
-                                isFilling={false}
-                              />
-                            </View>
-                            <View
-                              style={
-                                Object {
-                                  "alignItems": "flex-end",
-                                  "flex": 1,
-                                }
-                              }
-                            >
-                              <Check
-                                fillProgress={14.814814814814813}
-                                isFilling={false}
-                              />
-                            </View>
-                          </View>
+                          />
                         </View>
                       </React.Fragment>,
                     ],
@@ -7597,7 +7070,7 @@ ShallowWrapper {
                                 height="4"
                                 rx={0}
                                 ry={0}
-                                width={81}
+                                width={Infinity}
                                 x={0}
                                 y="4"
                               />
@@ -7613,47 +7086,7 @@ ShallowWrapper {
                                   "top": 9,
                                 }
                               }
-                            >
-                              <View
-                                style={
-                                  Object {
-                                    "alignItems": "flex-end",
-                                    "flex": 1,
-                                  }
-                                }
-                              >
-                                <Check
-                                  fillProgress={44.44444444444444}
-                                  isFilling={false}
-                                />
-                              </View>
-                              <View
-                                style={
-                                  Object {
-                                    "alignItems": "flex-end",
-                                    "flex": 1,
-                                  }
-                                }
-                              >
-                                <Check
-                                  fillProgress={22.22222222222222}
-                                  isFilling={false}
-                                />
-                              </View>
-                              <View
-                                style={
-                                  Object {
-                                    "alignItems": "flex-end",
-                                    "flex": 1,
-                                  }
-                                }
-                              >
-                                <Check
-                                  fillProgress={14.814814814814813}
-                                  isFilling={false}
-                                />
-                              </View>
-                            </View>
+                            />
                           </View>,
                         ],
                       },
@@ -7906,7 +7339,7 @@ ShallowWrapper {
                                   height="4"
                                   rx={0}
                                   ry={0}
-                                  width={81}
+                                  width={Infinity}
                                   x={0}
                                   y="4"
                                 />
@@ -7922,47 +7355,7 @@ ShallowWrapper {
                                     "top": 9,
                                   }
                                 }
-                              >
-                                <View
-                                  style={
-                                    Object {
-                                      "alignItems": "flex-end",
-                                      "flex": 1,
-                                    }
-                                  }
-                                >
-                                  <Check
-                                    fillProgress={44.44444444444444}
-                                    isFilling={false}
-                                  />
-                                </View>
-                                <View
-                                  style={
-                                    Object {
-                                      "alignItems": "flex-end",
-                                      "flex": 1,
-                                    }
-                                  }
-                                >
-                                  <Check
-                                    fillProgress={22.22222222222222}
-                                    isFilling={false}
-                                  />
-                                </View>
-                                <View
-                                  style={
-                                    Object {
-                                      "alignItems": "flex-end",
-                                      "flex": 1,
-                                    }
-                                  }
-                                >
-                                  <Check
-                                    fillProgress={14.814814814814813}
-                                    isFilling={false}
-                                  />
-                                </View>
-                              </View>,
+                              />,
                             ],
                             "style": Object {
                               "alignItems": "flex-end",
@@ -7995,7 +7388,7 @@ ShallowWrapper {
                                     height="4"
                                     rx={0}
                                     ry={0}
-                                    width={81}
+                                    width={Infinity}
                                     x={0}
                                     y="4"
                                   />,
@@ -8035,7 +7428,7 @@ ShallowWrapper {
                                     "height": "4",
                                     "rx": 0,
                                     "ry": 0,
-                                    "width": 81,
+                                    "width": Infinity,
                                     "x": 0,
                                     "y": "4",
                                   },
@@ -8051,47 +7444,7 @@ ShallowWrapper {
                               "key": undefined,
                               "nodeType": "class",
                               "props": Object {
-                                "children": Array [
-                                  <View
-                                    style={
-                                      Object {
-                                        "alignItems": "flex-end",
-                                        "flex": 1,
-                                      }
-                                    }
-                                  >
-                                    <Check
-                                      fillProgress={44.44444444444444}
-                                      isFilling={false}
-                                    />
-                                  </View>,
-                                  <View
-                                    style={
-                                      Object {
-                                        "alignItems": "flex-end",
-                                        "flex": 1,
-                                      }
-                                    }
-                                  >
-                                    <Check
-                                      fillProgress={22.22222222222222}
-                                      isFilling={false}
-                                    />
-                                  </View>,
-                                  <View
-                                    style={
-                                      Object {
-                                        "alignItems": "flex-end",
-                                        "flex": 1,
-                                      }
-                                    }
-                                  >
-                                    <Check
-                                      fillProgress={14.814814814814813}
-                                      isFilling={false}
-                                    />
-                                  </View>,
-                                ],
+                                "children": Array [],
                                 "style": Object {
                                   "alignSelf": "flex-end",
                                   "flexDirection": "row",
@@ -8102,95 +7455,7 @@ ShallowWrapper {
                                 },
                               },
                               "ref": null,
-                              "rendered": Array [
-                                Object {
-                                  "instance": null,
-                                  "key": "0",
-                                  "nodeType": "class",
-                                  "props": Object {
-                                    "children": <Check
-                                      fillProgress={44.44444444444444}
-                                      isFilling={false}
-                                    />,
-                                    "style": Object {
-                                      "alignItems": "flex-end",
-                                      "flex": 1,
-                                    },
-                                  },
-                                  "ref": null,
-                                  "rendered": Object {
-                                    "instance": null,
-                                    "key": undefined,
-                                    "nodeType": "function",
-                                    "props": Object {
-                                      "fillProgress": 44.44444444444444,
-                                      "isFilling": false,
-                                    },
-                                    "ref": null,
-                                    "rendered": null,
-                                    "type": [Function],
-                                  },
-                                  "type": [Function],
-                                },
-                                Object {
-                                  "instance": null,
-                                  "key": "1",
-                                  "nodeType": "class",
-                                  "props": Object {
-                                    "children": <Check
-                                      fillProgress={22.22222222222222}
-                                      isFilling={false}
-                                    />,
-                                    "style": Object {
-                                      "alignItems": "flex-end",
-                                      "flex": 1,
-                                    },
-                                  },
-                                  "ref": null,
-                                  "rendered": Object {
-                                    "instance": null,
-                                    "key": undefined,
-                                    "nodeType": "function",
-                                    "props": Object {
-                                      "fillProgress": 22.22222222222222,
-                                      "isFilling": false,
-                                    },
-                                    "ref": null,
-                                    "rendered": null,
-                                    "type": [Function],
-                                  },
-                                  "type": [Function],
-                                },
-                                Object {
-                                  "instance": null,
-                                  "key": "2",
-                                  "nodeType": "class",
-                                  "props": Object {
-                                    "children": <Check
-                                      fillProgress={14.814814814814813}
-                                      isFilling={false}
-                                    />,
-                                    "style": Object {
-                                      "alignItems": "flex-end",
-                                      "flex": 1,
-                                    },
-                                  },
-                                  "ref": null,
-                                  "rendered": Object {
-                                    "instance": null,
-                                    "key": undefined,
-                                    "nodeType": "function",
-                                    "props": Object {
-                                      "fillProgress": 14.814814814814813,
-                                      "isFilling": false,
-                                    },
-                                    "ref": null,
-                                    "rendered": null,
-                                    "type": [Function],
-                                  },
-                                  "type": [Function],
-                                },
-                              ],
+                              "rendered": Array [],
                               "type": [Function],
                             },
                           ],
@@ -8955,6 +8220,7 @@ ShallowWrapper {
     meditationSeconds={0}
     onPressClose={[MockFunction]}
     onPressCta={[MockFunction]}
+    passiveMeditationAwardedMilestonesLength={0}
     showCta={false}
     steps={0}
   />,
@@ -15506,6 +14772,7 @@ ShallowWrapper {
     meditationSeconds={0}
     onPressClose={[MockFunction]}
     onPressCta={[MockFunction]}
+    passiveMeditationAwardedMilestonesLength={0}
     showCta={false}
     steps={0}
   />,
@@ -21609,6 +20876,7 @@ ShallowWrapper {
     meditationSeconds={0}
     onPressClose={[MockFunction]}
     onPressCta={[MockFunction]}
+    passiveMeditationAwardedMilestonesLength={0}
     showCta={false}
     steps={0}
   />,
@@ -25546,6 +24814,7 @@ ShallowWrapper {
     meditationSeconds={0}
     onPressClose={[MockFunction]}
     onPressCta={[MockFunction]}
+    passiveMeditationAwardedMilestonesLength={0}
     showCta={false}
     steps={0}
   />,
