@@ -57,9 +57,27 @@ const coinsReducer = (state: ICoinsStore = initialState, action: SyncAction) => 
 export default coinsReducer;
 
 const updatePersistedState = (persistedState: ICoinsStore) => {
-    if (!persistedState.lastUpdated) {
-        return { ...persistedState, lastUpdated: moment().format(FORMAT) };
+    /**
+     * Whever a new version of the app introduced a new field into the store,
+     * the old version during update does not have it, for such use cases we should add it manually.
+     *
+     * Every time we add new field in the store we should take care to do that, for now we have it for
+     * lastUpdated and dailyMeditationEarned
+     */
+    if (!persistedState.lastUpdated || !persistedState.dailyMeditationEarned) {
+        const newState = { ...persistedState };
+
+        if (!persistedState.dailyMeditationEarned) {
+            newState.dailyMeditationEarned = 0;
+        }
+
+        if (!persistedState.lastUpdated) {
+            newState.lastUpdated = moment().format(FORMAT);
+        }
+
+        return newState;
     }
+
     const lastUpdated = persistedState.lastUpdated;
     const today = moment().format(FORMAT);
 
