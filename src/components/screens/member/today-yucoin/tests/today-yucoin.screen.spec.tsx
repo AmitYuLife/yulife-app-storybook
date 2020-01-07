@@ -30,6 +30,7 @@ const defaultProps = {
     dailyStepsEarned: 0,
     exchangeRate: {
         steps: 2000,
+        surge: 1,
         yucoin: 2,
         meditation: 0
     },
@@ -64,6 +65,7 @@ describe("TodayYucoinScreen", () => {
                 meditationSeconds={400}
                 meditationExchangeRate={{
                     steps: 0,
+                    surge: 1,
                     meditation: 900,
                     yucoin: 2
                 }}

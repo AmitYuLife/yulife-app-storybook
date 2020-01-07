@@ -345,14 +345,14 @@ describe("showSurgeIntroSaga", async () => {
             ...currentUser,
             getCurrentUser: {
                 ...currentUser.getCurrentUser,
-                passiveSteps: { exchange: { yucoin: 2, steps: 2000, meditation: null as any } },
-                passiveMeditation: { exchange: { yucoin: 2, meditation: 300, steps: null as any } }
+                passiveSteps: { exchange: { yucoin: 2, steps: 2000, meditation: null as any, surge: 2 } },
+                passiveMeditation: { exchange: { yucoin: 2, meditation: 300, steps: null as any, surge: 2 } }
             }
         }
     };
 
     const features = { showSurge: true, usePassiveMeditation: true };
-    const exchangeRate = { yucoin: 1, steps: 2000, meditation: 300 };
+    const exchangeRate = { yucoin: 1, steps: 2000, meditation: 300, surge: 1 };
 
     it("should call showSurgeSaga correctly", async () => {
         const testSaga = showSurgeIntroSaga();
@@ -381,7 +381,7 @@ describe("showSurgeIntroSaga", async () => {
         expected = put(
             setShowSurgeIntro({
                 visibility: true,
-                activity: "all",
+                activity: "meditation",
                 rate: 2
             })
         );

@@ -40,7 +40,8 @@ export const initialState: IDailyStepsStore = {
     exchangeRate: {
         steps: 2000,
         yucoin: 1,
-        meditation: null
+        meditation: null,
+        surge: 1
     },
     isFetching: true,
     lastUpdated: moment()

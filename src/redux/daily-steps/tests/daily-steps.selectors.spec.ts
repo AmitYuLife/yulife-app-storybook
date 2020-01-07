@@ -44,6 +44,7 @@ describe("Daily Steps Selectors", () => {
                 dailySteps: {
                     ...dailyStepsInitialState,
                     exchangeRate: {
+                        surge: 1,
                         steps: 50,
                         yucoin: 1,
                         meditation: null
