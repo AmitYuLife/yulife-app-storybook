@@ -42,6 +42,7 @@ export const userFragmentGql = gql`
                 yucoin
                 steps
                 meditation
+                surge
             }
             isMainSurge
         }
@@ -50,6 +51,7 @@ export const userFragmentGql = gql`
                 yucoin
                 steps
                 meditation
+                surge
             }
             levelSlot {
                 subtype

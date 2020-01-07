@@ -54,7 +54,7 @@ export default function TodayYucoinScreen({
     challenges,
     ctaLabel,
     dailyStepsEarned,
-    exchangeRate = { steps: 2000, yucoin: 1, meditation: 0 },
+    exchangeRate = { surge: 1, steps: 2000, yucoin: 1, meditation: 0 },
     loading,
     onPressClose,
     onPressCta,
@@ -62,6 +62,7 @@ export default function TodayYucoinScreen({
     steps = 0,
     meditationExchangeRate = {
         steps: 0,
+        surge: 1,
         meditation: 300,
         yucoin: 1
     },

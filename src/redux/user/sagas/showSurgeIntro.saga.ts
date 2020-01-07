@@ -8,8 +8,11 @@ import { getUserFeatures } from "../user.selectors";
 export default function* showSurgeIntroSaga() {
     while (true) {
         // get initial rates on set of main root
-        const oldExchangeRate = yield select(getExchangeRate);
-        const oldMeditationExchangeRate = yield select(getMeditationExchangeRate);
+        const cachedExchangeRate = yield select(getExchangeRate);
+        const cachedStepsSurge = cachedExchangeRate.surge || 1;
+        const cachedMeditationExchangeRate = yield select(getMeditationExchangeRate);
+        const cachedMeditationSurge = cachedMeditationExchangeRate.surge || 1;
+
         // get next user success to check if surge is in progress
         const { payload }: ReturnType<typeof getUserSuccess> = yield take(GET_USER_SUCCESS);
         const features = yield select(getUserFeatures);
@@ -17,54 +20,24 @@ export default function* showSurgeIntroSaga() {
         const hasShowSurgeFeature = !!(features && features.showSurge);
         const hasPassiveMeditation = !!(features && features.usePassiveMeditation);
 
-        const currentStepsExchangeRate = pathOr(payload, "getCurrentUser.passiveSteps.exchange.yucoin", 1);
-        const currentMeditationExchangeRate = pathOr(payload, "getCurrentUser.passiveMeditation.exchange.yucoin", 1);
+        const stepsSurge = pathOr(payload, "getCurrentUser.passiveSteps.exchange.surge", 1);
+        const meditationSurge = pathOr(payload, "getCurrentUser.passiveMeditation.exchange.surge", 1);
 
-        // If we don't want to show the tooltip, we want isMainSurge to be true from the DB
-        const isStepsMainSurge = pathOr(payload, "getCurrentUser.passiveSteps.isMainSurge", false);
-        const isMeditationMainSurge = pathOr(payload, "getCurrentUser.passiveMeditation.isMainSurge", false);
-
-        if (hasShowSurgeFeature || hasPassiveMeditation) {
-            if (
-                ((currentStepsExchangeRate === 2 && isStepsMainSurge) || currentStepsExchangeRate === 1) &&
-                currentMeditationExchangeRate >= 2 &&
-                !isMeditationMainSurge &&
-                oldMeditationExchangeRate.yucoin !== currentMeditationExchangeRate
-            ) {
+        if (hasShowSurgeFeature) {
+            if (hasPassiveMeditation && meditationSurge > cachedMeditationSurge) {
                 yield put(
                     setShowSurgeIntro({
                         visibility: true,
                         activity: "meditation",
-                        rate: currentMeditationExchangeRate
+                        rate: meditationSurge
                     })
                 );
-            } else if (
-                currentStepsExchangeRate >= 2 &&
-                !isStepsMainSurge &&
-                currentMeditationExchangeRate >= 2 &&
-                !isMeditationMainSurge &&
-                currentStepsExchangeRate === currentMeditationExchangeRate &&
-                (oldExchangeRate.yucoin !== currentStepsExchangeRate ||
-                    oldMeditationExchangeRate.yucoin !== currentMeditationExchangeRate)
-            ) {
-                yield put(
-                    setShowSurgeIntro({
-                        visibility: true,
-                        activity: "all",
-                        rate: currentStepsExchangeRate
-                    })
-                );
-            } else if (
-                currentStepsExchangeRate >= 2 &&
-                oldExchangeRate.yucoin !== currentStepsExchangeRate &&
-                !isStepsMainSurge &&
-                currentMeditationExchangeRate === 1
-            ) {
+            } else if (stepsSurge > cachedStepsSurge) {
                 yield put(
                     setShowSurgeIntro({
                         visibility: true,
                         activity: "steps",
-                        rate: currentStepsExchangeRate
+                        rate: stepsSurge
                     })
                 );
             }

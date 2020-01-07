@@ -1285,6 +1285,7 @@ export interface GetCurrentUser_getCurrentUser_passiveSteps_exchange {
   yucoin: number | null;
   steps: number | null;
   meditation: number | null;
+  surge: number | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_passiveSteps {
@@ -1296,6 +1297,7 @@ export interface GetCurrentUser_getCurrentUser_passiveMeditation_exchange {
   yucoin: number | null;
   steps: number | null;
   meditation: number | null;
+  surge: number | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_passiveMeditation_levelSlot_milestones_target {
@@ -1490,6 +1492,7 @@ export interface LoginUser_loginUser_user_passiveSteps_exchange {
   yucoin: number | null;
   steps: number | null;
   meditation: number | null;
+  surge: number | null;
 }
 
 export interface LoginUser_loginUser_user_passiveSteps {
@@ -1501,6 +1504,7 @@ export interface LoginUser_loginUser_user_passiveMeditation_exchange {
   yucoin: number | null;
   steps: number | null;
   meditation: number | null;
+  surge: number | null;
 }
 
 export interface LoginUser_loginUser_user_passiveMeditation_levelSlot_milestones_target {
@@ -1829,6 +1833,7 @@ export interface User_passiveSteps_exchange {
   yucoin: number | null;
   steps: number | null;
   meditation: number | null;
+  surge: number | null;
 }
 
 export interface User_passiveSteps {
@@ -1840,6 +1845,7 @@ export interface User_passiveMeditation_exchange {
   yucoin: number | null;
   steps: number | null;
   meditation: number | null;
+  surge: number | null;
 }
 
 export interface User_passiveMeditation_levelSlot_milestones_target {

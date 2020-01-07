@@ -33,7 +33,8 @@ export const initialState: IDailyMeditationStore = {
     exchangeRate: {
         yucoin: 1,
         steps: null,
-        meditation: 300
+        meditation: 300,
+        surge: 1
     },
     meditationPassiveMilestones: [],
     lastUpdated: moment()

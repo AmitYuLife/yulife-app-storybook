@@ -33,6 +33,7 @@ ShallowWrapper {
       Object {
         "meditation": 0,
         "steps": 2000,
+        "surge": 1,
         "yucoin": 2,
       }
     }
@@ -44,6 +45,7 @@ ShallowWrapper {
       Object {
         "meditation": 900,
         "steps": 0,
+        "surge": 1,
         "yucoin": 2,
       }
     }
@@ -8210,6 +8212,7 @@ ShallowWrapper {
       Object {
         "meditation": 0,
         "steps": 2000,
+        "surge": 1,
         "yucoin": 2,
       }
     }
@@ -14762,6 +14765,7 @@ ShallowWrapper {
       Object {
         "meditation": 0,
         "steps": 2000,
+        "surge": 1,
         "yucoin": 2,
       }
     }
@@ -20866,6 +20870,7 @@ ShallowWrapper {
       Object {
         "meditation": 0,
         "steps": 2000,
+        "surge": 1,
         "yucoin": 2,
       }
     }
@@ -24804,6 +24809,7 @@ ShallowWrapper {
       Object {
         "meditation": 0,
         "steps": 2000,
+        "surge": 1,
         "yucoin": 2,
       }
     }
