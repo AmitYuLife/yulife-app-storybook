@@ -60,8 +60,8 @@ class TodayYucoinContainer extends PureComponent<Props> {
                         levelSlot: null
                     });
 
-                    const surgeMultiplier = exchangeRate && exchangeRate.yucoin;
-                    const meditationSurgeMultiplier = meditationExchangeRate && meditationExchangeRate.yucoin;
+                    const surgeMultiplier = (exchangeRate && exchangeRate.surge) || 1;
+                    const meditationSurgeMultiplier = (meditationExchangeRate && meditationExchangeRate.surge) || 1;
 
                     const activeChallenge: ChallengeToday =
                         challenge && challenge.incomingData

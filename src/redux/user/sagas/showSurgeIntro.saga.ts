@@ -9,9 +9,9 @@ export default function* showSurgeIntroSaga() {
     while (true) {
         // get initial rates on set of main root
         const cachedExchangeRate = yield select(getExchangeRate);
-        const cachedStepsSurge = cachedExchangeRate.surge || 1;
+        const cachedStepsSurgeMultiplier = cachedExchangeRate.surge || 1;
         const cachedMeditationExchangeRate = yield select(getMeditationExchangeRate);
-        const cachedMeditationSurge = cachedMeditationExchangeRate.surge || 1;
+        const cachedMeditationSurgeMultiplier = cachedMeditationExchangeRate.surge || 1;
 
         // get next user success to check if surge is in progress
         const { payload }: ReturnType<typeof getUserSuccess> = yield take(GET_USER_SUCCESS);
@@ -20,24 +20,28 @@ export default function* showSurgeIntroSaga() {
         const hasShowSurgeFeature = !!(features && features.showSurge);
         const hasPassiveMeditation = !!(features && features.usePassiveMeditation);
 
-        const stepsSurge = pathOr(payload, "getCurrentUser.passiveSteps.exchange.surge", 1);
-        const meditationSurge = pathOr(payload, "getCurrentUser.passiveMeditation.exchange.surge", 1);
+        const stepsSurgeMultiplier = pathOr(payload, "getCurrentUser.passiveSteps.exchange.surge", 1);
+        const meditationSurgeMultiplier = pathOr(payload, "getCurrentUser.passiveMeditation.exchange.surge", 1);
 
         if (hasShowSurgeFeature) {
-            if (hasPassiveMeditation && meditationSurge > cachedMeditationSurge) {
+            if (
+                hasPassiveMeditation &&
+                meditationSurgeMultiplier !== cachedMeditationSurgeMultiplier &&
+                meditationSurgeMultiplier > 1
+            ) {
                 yield put(
                     setShowSurgeIntro({
                         visibility: true,
                         activity: "meditation",
-                        rate: meditationSurge
+                        rate: meditationSurgeMultiplier
                     })
                 );
-            } else if (stepsSurge > cachedStepsSurge) {
+            } else if (stepsSurgeMultiplier !== cachedStepsSurgeMultiplier && stepsSurgeMultiplier > 1) {
                 yield put(
                     setShowSurgeIntro({
                         visibility: true,
                         activity: "steps",
-                        rate: stepsSurge
+                        rate: stepsSurgeMultiplier
                     })
                 );
             }
