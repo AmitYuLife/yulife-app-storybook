@@ -7,23 +7,21 @@ import { PassiveChallengeType } from "../../../graphql/_core/schema";
 import { queryMindfulSessions } from "../../../services/fitkit/fitkit.helpers";
 import Logger from "../../../services/logging/logger";
 import { UPDATE_APP_STATE } from "../../app/app.actions";
-import { LOGIN_USER_SUCCESS } from "../../user/user.actions";
 import { getUserFeatures } from "../../user/user.selectors";
 import { updateDailyMeditation, updateDailyMeditationEmptyResult } from "../daily-meditation.actions";
 
 export default function* getDailyMeditation() {
     while (true) {
         try {
-            const { appStart, appUpdated, loginUserSucces } = yield race({
+            const { appStart, appUpdated } = yield race({
                 appStart: take(REHYDRATE),
-                appUpdated: take(UPDATE_APP_STATE),
-                loginUserSucces: take(LOGIN_USER_SUCCESS)
+                appUpdated: take(UPDATE_APP_STATE)
             });
 
             const userFeatures = yield select(getUserFeatures);
 
             if (userFeatures.usePassiveMeditation) {
-                if (appStart || loginUserSucces || appUpdated.payload === "active") {
+                if (appStart || appUpdated.payload === "active") {
                     const startTime = moment()
                         .startOf("day")
                         .format();
@@ -67,6 +65,7 @@ export default function* getDailyMeditation() {
             }
         } catch (e) {
             yield spawn(() => Logger.logMixpanelError(e, "getDailyMeditation"));
+            yield call(delay, 15000);
         }
     }
 }
