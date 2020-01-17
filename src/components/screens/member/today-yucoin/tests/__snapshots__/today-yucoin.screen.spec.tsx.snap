@@ -405,7 +405,7 @@ ShallowWrapper {
                         }
                       >
                         Surge x
-                        2
+                        1
                       </YuText>
                     </View>
                   </React.Fragment>
@@ -992,7 +992,7 @@ ShallowWrapper {
                           }
                         >
                           Surge x
-                          2
+                          1
                         </YuText>
                       </View>
                     </React.Fragment>
@@ -1659,7 +1659,7 @@ ShallowWrapper {
                             }
                           >
                             Surge x
-                            2
+                            1
                           </YuText>
                         </View>
                       </React.Fragment>
@@ -2209,7 +2209,7 @@ ShallowWrapper {
                               }
                             >
                               Surge x
-                              2
+                              1
                             </YuText>
                           </View>
                         </React.Fragment>
@@ -2955,7 +2955,7 @@ ShallowWrapper {
                                 }
                               >
                                 Surge x
-                                2
+                                1
                               </YuText>
                             </View>
                           </React.Fragment>
@@ -3086,7 +3086,7 @@ ShallowWrapper {
                                   }
                                 >
                                   Surge x
-                                  2
+                                  1
                                 </YuText>
                               </View>
                             </React.Fragment>,
@@ -3150,7 +3150,7 @@ ShallowWrapper {
                                   }
                                 >
                                   Surge x
-                                  2
+                                  1
                                 </YuText>
                               </View>,
                             },
@@ -3169,7 +3169,7 @@ ShallowWrapper {
                                   }
                                 >
                                   Surge x
-                                  2
+                                  1
                                 </YuText>,
                                 "style": Object {
                                   "alignItems": "center",
@@ -3190,7 +3190,7 @@ ShallowWrapper {
                                 "props": Object {
                                   "children": Array [
                                     "Surge x",
-                                    2,
+                                    1,
                                   ],
                                   "style": Object {
                                     "color": "rgb(216, 139, 37)",
@@ -3200,7 +3200,7 @@ ShallowWrapper {
                                 "ref": null,
                                 "rendered": Array [
                                   "Surge x",
-                                  2,
+                                  1,
                                 ],
                                 "type": [Function],
                               },
@@ -4452,7 +4452,7 @@ ShallowWrapper {
                           }
                         >
                           Surge x
-                          2
+                          1
                         </YuText>
                       </View>
                     </React.Fragment>
@@ -5039,7 +5039,7 @@ ShallowWrapper {
                             }
                           >
                             Surge x
-                            2
+                            1
                           </YuText>
                         </View>
                       </React.Fragment>
@@ -5706,7 +5706,7 @@ ShallowWrapper {
                               }
                             >
                               Surge x
-                              2
+                              1
                             </YuText>
                           </View>
                         </React.Fragment>
@@ -6256,7 +6256,7 @@ ShallowWrapper {
                                 }
                               >
                                 Surge x
-                                2
+                                1
                               </YuText>
                             </View>
                           </React.Fragment>
@@ -7002,7 +7002,7 @@ ShallowWrapper {
                                   }
                                 >
                                   Surge x
-                                  2
+                                  1
                                 </YuText>
                               </View>
                             </React.Fragment>
@@ -7133,7 +7133,7 @@ ShallowWrapper {
                                     }
                                   >
                                     Surge x
-                                    2
+                                    1
                                   </YuText>
                                 </View>
                               </React.Fragment>,
@@ -7197,7 +7197,7 @@ ShallowWrapper {
                                     }
                                   >
                                     Surge x
-                                    2
+                                    1
                                   </YuText>
                                 </View>,
                               },
@@ -7216,7 +7216,7 @@ ShallowWrapper {
                                     }
                                   >
                                     Surge x
-                                    2
+                                    1
                                   </YuText>,
                                   "style": Object {
                                     "alignItems": "center",
@@ -7237,7 +7237,7 @@ ShallowWrapper {
                                   "props": Object {
                                     "children": Array [
                                       "Surge x",
-                                      2,
+                                      1,
                                     ],
                                     "style": Object {
                                       "color": "rgb(216, 139, 37)",
@@ -7247,7 +7247,7 @@ ShallowWrapper {
                                   "ref": null,
                                   "rendered": Array [
                                     "Surge x",
-                                    2,
+                                    1,
                                   ],
                                   "type": [Function],
                                 },
@@ -8392,7 +8392,7 @@ ShallowWrapper {
                       }
                     >
                       Surge x
-                      2
+                      1
                     </YuText>
                   </View>
                 </React.Fragment>
@@ -8876,7 +8876,7 @@ ShallowWrapper {
                         }
                       >
                         Surge x
-                        2
+                        1
                       </YuText>
                     </View>
                   </React.Fragment>
@@ -9440,7 +9440,7 @@ ShallowWrapper {
                           }
                         >
                           Surge x
-                          2
+                          1
                         </YuText>
                       </View>
                     </React.Fragment>
@@ -9887,7 +9887,7 @@ ShallowWrapper {
                             }
                           >
                             Surge x
-                            2
+                            1
                           </YuText>
                         </View>
                       </React.Fragment>
@@ -10106,7 +10106,7 @@ ShallowWrapper {
                               }
                             >
                               Surge x
-                              2
+                              1
                             </YuText>
                           </View>
                         </React.Fragment>,
@@ -10170,7 +10170,7 @@ ShallowWrapper {
                               }
                             >
                               Surge x
-                              2
+                              1
                             </YuText>
                           </View>,
                         },
@@ -10189,7 +10189,7 @@ ShallowWrapper {
                               }
                             >
                               Surge x
-                              2
+                              1
                             </YuText>,
                             "style": Object {
                               "alignItems": "center",
@@ -10210,7 +10210,7 @@ ShallowWrapper {
                             "props": Object {
                               "children": Array [
                                 "Surge x",
-                                2,
+                                1,
                               ],
                               "style": Object {
                                 "color": "rgb(216, 139, 37)",
@@ -10220,7 +10220,7 @@ ShallowWrapper {
                             "ref": null,
                             "rendered": Array [
                               "Surge x",
-                              2,
+                              1,
                             ],
                             "type": [Function],
                           },
@@ -11630,7 +11630,7 @@ ShallowWrapper {
                         }
                       >
                         Surge x
-                        2
+                        1
                       </YuText>
                     </View>
                   </React.Fragment>
@@ -12114,7 +12114,7 @@ ShallowWrapper {
                           }
                         >
                           Surge x
-                          2
+                          1
                         </YuText>
                       </View>
                     </React.Fragment>
@@ -12678,7 +12678,7 @@ ShallowWrapper {
                             }
                           >
                             Surge x
-                            2
+                            1
                           </YuText>
                         </View>
                       </React.Fragment>
@@ -13125,7 +13125,7 @@ ShallowWrapper {
                               }
                             >
                               Surge x
-                              2
+                              1
                             </YuText>
                           </View>
                         </React.Fragment>
@@ -13344,7 +13344,7 @@ ShallowWrapper {
                                 }
                               >
                                 Surge x
-                                2
+                                1
                               </YuText>
                             </View>
                           </React.Fragment>,
@@ -13408,7 +13408,7 @@ ShallowWrapper {
                                 }
                               >
                                 Surge x
-                                2
+                                1
                               </YuText>
                             </View>,
                           },
@@ -13427,7 +13427,7 @@ ShallowWrapper {
                                 }
                               >
                                 Surge x
-                                2
+                                1
                               </YuText>,
                               "style": Object {
                                 "alignItems": "center",
@@ -13448,7 +13448,7 @@ ShallowWrapper {
                               "props": Object {
                                 "children": Array [
                                   "Surge x",
-                                  2,
+                                  1,
                                 ],
                                 "style": Object {
                                   "color": "rgb(216, 139, 37)",
@@ -13458,7 +13458,7 @@ ShallowWrapper {
                               "ref": null,
                               "rendered": Array [
                                 "Surge x",
-                                2,
+                                1,
                               ],
                               "type": [Function],
                             },

@@ -117,7 +117,7 @@ export default function TodayYucoinScreen({
                             {!isStepsSurge ? null : (
                                 <>
                                     <View style={styles.surgeWrapper}>
-                                        <Text style={styles.surge}>Surge x{exchangeRate.yucoin}</Text>
+                                        <Text style={styles.surge}>Surge x{exchangeRate.surge}</Text>
                                     </View>
                                 </>
                             )}
@@ -162,7 +162,7 @@ export default function TodayYucoinScreen({
                                         <>
                                             <View style={styles.surgeWrapper}>
                                                 <Text style={styles.surge}>
-                                                    Surge x{meditationExchangeRate.yucoin}
+                                                    Surge x{meditationExchangeRate.surge}
                                                 </Text>
                                             </View>
                                         </>
