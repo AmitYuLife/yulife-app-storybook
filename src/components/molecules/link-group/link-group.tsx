@@ -23,7 +23,7 @@ const LinkGroup: SFC<IProps> = ({ data }) => (
                     label={label}
                     onPress={onPress}
                 />
-                {index + 1 !== data.length ? null : (
+                {data.length === 1 || index + 1 !== data.length ? null : (
                     <View style={styles.divider} />
                 )}
             </View>

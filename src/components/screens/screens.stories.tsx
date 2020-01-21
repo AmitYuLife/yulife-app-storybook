@@ -40,7 +40,6 @@ storiesOf("Screens", module)
             onResetPasswordPress={action("forgotten password press")}
             onLogInPress={action("login press")}
             onPasswordChange={action("on password change")}
-            onSignUpPress={action("on signup press")}
             password=""
             passwordError=""
             copy={Copy.login}

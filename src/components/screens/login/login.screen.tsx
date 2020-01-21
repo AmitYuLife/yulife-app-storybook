@@ -18,7 +18,6 @@ export interface IProps {
     onResetPasswordPress: () => void;
     onLogInPress: () => void;
     onPasswordChange: (password: string) => void;
-    onSignUpPress: () => void;
     password: string;
     passwordError: string;
     copy: LoginCopy;
@@ -119,15 +118,11 @@ class LoginScreen extends PureComponent<IProps, IState> {
     };
 
     private getLinks = () => {
-        const { onResetPasswordPress, onSignUpPress, copy } = this.props;
+        const { onResetPasswordPress } = this.props;
         return [
             {
                 label: "need help logging in?",
                 onPress: onResetPasswordPress
-            },
-            {
-                label: copy.ctaLabelSecondary,
-                onPress: onSignUpPress
             }
         ];
     };

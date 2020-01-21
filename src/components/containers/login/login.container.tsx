@@ -88,7 +88,6 @@ export class LoginContainer extends Component<Props, State> {
                                     onResetPasswordPress={this.onResetPassword}
                                     onLogInPress={() => this.onLogIn(loginUser, authorised)}
                                     onPasswordChange={this.onPasswordChange}
-                                    onSignUpPress={this.onSignUp}
                                     password={password}
                                     passwordError={passwordError}
                                     copy={copy}
@@ -176,16 +175,6 @@ export class LoginContainer extends Component<Props, State> {
                 handleError();
             }
         }
-    };
-
-    private onSignUp = async () => {
-        await Navigation.push(this.props.componentId, {
-            component: {
-                id: ROUTES.signUp,
-                name: ROUTES.signUp,
-                options: { bottomTabs }
-            }
-        });
     };
 
     private onResetPassword = async () => {

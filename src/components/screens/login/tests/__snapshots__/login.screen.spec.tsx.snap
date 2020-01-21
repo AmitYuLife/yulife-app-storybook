@@ -121,10 +121,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ]
             }
           />
@@ -204,10 +200,6 @@ ShallowWrapper {
               Array [
                 Object {
                   "label": "need help logging in?",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "label": "",
                   "onPress": [MockFunction],
                 },
               ]
@@ -296,10 +288,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -478,10 +466,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ],
             },
             "ref": null,
@@ -583,10 +567,6 @@ ShallowWrapper {
                     "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
-                  Object {
-                    "label": "",
-                    "onPress": [MockFunction],
-                  },
                 ]
               }
             />
@@ -666,10 +646,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -758,10 +734,6 @@ ShallowWrapper {
                   Array [
                     Object {
                       "label": "need help logging in?",
-                      "onPress": [MockFunction],
-                    },
-                    Object {
-                      "label": "",
                       "onPress": [MockFunction],
                     },
                   ]
@@ -938,10 +910,6 @@ ShallowWrapper {
                 "data": Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ],
@@ -1101,10 +1069,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ]
             }
           />
@@ -1184,10 +1148,6 @@ ShallowWrapper {
               Array [
                 Object {
                   "label": "need help logging in?",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "label": "",
                   "onPress": [MockFunction],
                 },
               ]
@@ -1276,10 +1236,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -1458,10 +1414,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ],
             },
             "ref": null,
@@ -1563,10 +1515,6 @@ ShallowWrapper {
                     "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
-                  Object {
-                    "label": "",
-                    "onPress": [MockFunction],
-                  },
                 ]
               }
             />
@@ -1646,10 +1594,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -1738,10 +1682,6 @@ ShallowWrapper {
                   Array [
                     Object {
                       "label": "need help logging in?",
-                      "onPress": [MockFunction],
-                    },
-                    Object {
-                      "label": "",
                       "onPress": [MockFunction],
                     },
                   ]
@@ -1918,10 +1858,6 @@ ShallowWrapper {
                 "data": Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ],
@@ -2081,10 +2017,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ]
             }
           />
@@ -2164,10 +2096,6 @@ ShallowWrapper {
               Array [
                 Object {
                   "label": "need help logging in?",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "label": "",
                   "onPress": [MockFunction],
                 },
               ]
@@ -2256,10 +2184,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -2438,10 +2362,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ],
             },
             "ref": null,
@@ -2543,10 +2463,6 @@ ShallowWrapper {
                     "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
-                  Object {
-                    "label": "",
-                    "onPress": [MockFunction],
-                  },
                 ]
               }
             />
@@ -2626,10 +2542,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -2718,10 +2630,6 @@ ShallowWrapper {
                   Array [
                     Object {
                       "label": "need help logging in?",
-                      "onPress": [MockFunction],
-                    },
-                    Object {
-                      "label": "",
                       "onPress": [MockFunction],
                     },
                   ]
@@ -2900,10 +2808,6 @@ ShallowWrapper {
                     "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
-                  Object {
-                    "label": "",
-                    "onPress": [MockFunction],
-                  },
                 ],
               },
               "ref": null,
@@ -3061,10 +2965,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ]
             }
           />
@@ -3144,10 +3044,6 @@ ShallowWrapper {
               Array [
                 Object {
                   "label": "need help logging in?",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "label": "",
                   "onPress": [MockFunction],
                 },
               ]
@@ -3236,10 +3132,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -3418,10 +3310,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ],
             },
             "ref": null,
@@ -3523,10 +3411,6 @@ ShallowWrapper {
                     "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
-                  Object {
-                    "label": "",
-                    "onPress": [MockFunction],
-                  },
                 ]
               }
             />
@@ -3606,10 +3490,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -3698,10 +3578,6 @@ ShallowWrapper {
                   Array [
                     Object {
                       "label": "need help logging in?",
-                      "onPress": [MockFunction],
-                    },
-                    Object {
-                      "label": "",
                       "onPress": [MockFunction],
                     },
                   ]
@@ -3880,10 +3756,6 @@ ShallowWrapper {
                     "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
-                  Object {
-                    "label": "",
-                    "onPress": [MockFunction],
-                  },
                 ],
               },
               "ref": null,
@@ -4024,10 +3896,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ]
             }
           />
@@ -4090,10 +3958,6 @@ ShallowWrapper {
               Array [
                 Object {
                   "label": "need help logging in?",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "label": "",
                   "onPress": [MockFunction],
                 },
               ]
@@ -4166,10 +4030,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -4284,10 +4144,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ],
             },
             "ref": null,
@@ -4372,10 +4228,6 @@ ShallowWrapper {
                     "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
-                  Object {
-                    "label": "",
-                    "onPress": [MockFunction],
-                  },
                 ]
               }
             />
@@ -4438,10 +4290,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -4514,10 +4362,6 @@ ShallowWrapper {
                   Array [
                     Object {
                       "label": "need help logging in?",
-                      "onPress": [MockFunction],
-                    },
-                    Object {
-                      "label": "",
                       "onPress": [MockFunction],
                     },
                   ]
@@ -4630,10 +4474,6 @@ ShallowWrapper {
                 "data": Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ],
@@ -4793,10 +4633,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ]
             }
           />
@@ -4876,10 +4712,6 @@ ShallowWrapper {
               Array [
                 Object {
                   "label": "need help logging in?",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "label": "",
                   "onPress": [MockFunction],
                 },
               ]
@@ -4968,10 +4800,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -5150,10 +4978,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ],
             },
             "ref": null,
@@ -5255,10 +5079,6 @@ ShallowWrapper {
                     "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
-                  Object {
-                    "label": "",
-                    "onPress": [MockFunction],
-                  },
                 ]
               }
             />
@@ -5338,10 +5158,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -5430,10 +5246,6 @@ ShallowWrapper {
                   Array [
                     Object {
                       "label": "need help logging in?",
-                      "onPress": [MockFunction],
-                    },
-                    Object {
-                      "label": "",
                       "onPress": [MockFunction],
                     },
                   ]
@@ -5612,10 +5424,6 @@ ShallowWrapper {
                     "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
-                  Object {
-                    "label": "",
-                    "onPress": [MockFunction],
-                  },
                 ],
               },
               "ref": null,
@@ -5773,10 +5581,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ]
             }
           />
@@ -5856,10 +5660,6 @@ ShallowWrapper {
               Array [
                 Object {
                   "label": "need help logging in?",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "label": "",
                   "onPress": [MockFunction],
                 },
               ]
@@ -5948,10 +5748,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -6130,10 +5926,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ],
             },
             "ref": null,
@@ -6235,10 +6027,6 @@ ShallowWrapper {
                     "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
-                  Object {
-                    "label": "",
-                    "onPress": [MockFunction],
-                  },
                 ]
               }
             />
@@ -6318,10 +6106,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -6410,10 +6194,6 @@ ShallowWrapper {
                   Array [
                     Object {
                       "label": "need help logging in?",
-                      "onPress": [MockFunction],
-                    },
-                    Object {
-                      "label": "",
                       "onPress": [MockFunction],
                     },
                   ]
@@ -6592,10 +6372,6 @@ ShallowWrapper {
                     "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
-                  Object {
-                    "label": "",
-                    "onPress": [MockFunction],
-                  },
                 ],
               },
               "ref": null,
@@ -6756,10 +6532,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ]
             }
           />
@@ -6842,10 +6614,6 @@ ShallowWrapper {
               Array [
                 Object {
                   "label": "need help logging in?",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "label": "",
                   "onPress": [MockFunction],
                 },
               ]
@@ -6936,10 +6704,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -7128,10 +6892,6 @@ ShallowWrapper {
                   "label": "need help logging in?",
                   "onPress": [MockFunction],
                 },
-                Object {
-                  "label": "",
-                  "onPress": [MockFunction],
-                },
               ],
             },
             "ref": null,
@@ -7236,10 +6996,6 @@ ShallowWrapper {
                     "label": "need help logging in?",
                     "onPress": [MockFunction],
                   },
-                  Object {
-                    "label": "",
-                    "onPress": [MockFunction],
-                  },
                 ]
               }
             />
@@ -7322,10 +7078,6 @@ ShallowWrapper {
                 Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ]
@@ -7416,10 +7168,6 @@ ShallowWrapper {
                   Array [
                     Object {
                       "label": "need help logging in?",
-                      "onPress": [MockFunction],
-                    },
-                    Object {
-                      "label": "",
                       "onPress": [MockFunction],
                     },
                   ]
@@ -7606,10 +7354,6 @@ ShallowWrapper {
                 "data": Array [
                   Object {
                     "label": "need help logging in?",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "label": "",
                     "onPress": [MockFunction],
                   },
                 ],
