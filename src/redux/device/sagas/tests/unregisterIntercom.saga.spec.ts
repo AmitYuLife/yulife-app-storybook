@@ -7,7 +7,7 @@ describe("Intercome Saga unregisterIntercomSaga", () => {
         const testSaga = unregisterIntercomSaga();
 
         let actual: any = testSaga.next();
-        const expected = call(() => Intercom.reset());
+        const expected = call(() => Intercom.logout());
         compareSagaActionsWithNoVisualDifference(actual, expected);
 
         actual = testSaga.next();

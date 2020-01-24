@@ -21,6 +21,11 @@ function* registerDeviceOnYuServer(deviceToken: string) {
 
 export default function* registerIntercomAndMixpanelSaga({ payload }: ReturnType<typeof addDeviceToken>) {
     yield spawn(() => Intercom.sendTokenToIntercom(payload.deviceToken));
-    yield spawn(() => Mixpanel.addPushDeviceToken(payload.deviceToken));
+    yield spawn(() =>
+        Platform.OS === "ios"
+            ? Mixpanel.addPushDeviceToken(payload.deviceToken)
+            : Mixpanel.setPushRegistrationId(payload.deviceToken)
+    );
+
     yield spawn(registerDeviceOnYuServer, payload.deviceToken);
 }

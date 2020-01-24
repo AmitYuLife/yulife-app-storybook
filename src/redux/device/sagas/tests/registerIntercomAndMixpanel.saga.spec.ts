@@ -11,7 +11,7 @@ describe("Register Intercom And Mixpanel Saga", () => {
             payload: {
                 deviceId: "string",
                 deviceToken: "token",
-                os: "string"
+                os: "ios"
             },
             type: ""
         };
