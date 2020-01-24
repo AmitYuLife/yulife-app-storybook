@@ -16,6 +16,7 @@ ShallowWrapper {
           Object {
             "__typename": "LevelSlot",
             "availableAtLevel": 1,
+            "challengesDetails": Array [],
             "id": "asda2",
             "milestones": Array [
               Object {
@@ -41,6 +42,7 @@ ShallowWrapper {
           Object {
             "__typename": "LevelSlot",
             "availableAtLevel": 1,
+            "challengesDetails": Array [],
             "id": "asda3",
             "milestones": Array [
               Object {
@@ -66,6 +68,7 @@ ShallowWrapper {
           Object {
             "__typename": "LevelSlot",
             "availableAtLevel": 1,
+            "challengesDetails": Array [],
             "id": "asda4",
             "milestones": Array [
               Object {
@@ -91,6 +94,7 @@ ShallowWrapper {
           Object {
             "__typename": "LevelSlot",
             "availableAtLevel": 1,
+            "challengesDetails": Array [],
             "id": "asda5",
             "milestones": Array [
               Object {
@@ -181,71 +185,21 @@ ShallowWrapper {
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.5)",
-              "borderRadius": 20,
-              "justifyContent": "center",
-              "marginBottom": 60,
-              "marginHorizontal": 90,
-              "marginTop": 100,
-              "paddingBottom": 80,
             }
           }
         >
-          <ChallengesHistorySlot
-            availableAtLevel={1}
-            duration="10 mins"
-            locked={false}
-            rating={1}
-            reward={3}
-            type="brisk walk"
-          />
-          <ChallengesHistorySlot
-            availableAtLevel={1}
-            duration="5 mins"
-            locked={false}
-            rating={3}
-            reward={1}
-            type="short stroll"
-          />
-          <ChallengesHistorySlot
-            availableAtLevel={1}
-            duration="30 mins"
-            locked={false}
-            rating={null}
-            reward={1}
-            type="long walk"
-          />
-          <ChallengesHistorySlot
-            availableAtLevel={1}
-            duration="3-10 mins"
-            locked={false}
-            rating={0}
-            reward={0}
-            type="meditation"
-          />
-        </View>,
-        <View
-          style={
-            Object {
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 176,
-            }
-          }
-        >
-          <ErrorableImage
-            source={1}
-            style={
+          <ScrollViewMock
+            contentContainerStyle={
               Object {
-                "bottom": 0,
-                "left": 60,
-                "position": "absolute",
-                "right": 0,
-                "top": 30,
+                "paddingBottom": 140,
               }
             }
-            width={148}
+            style={
+              Object {
+                "height": 860,
+                "width": "100%",
+              }
+            }
           />
           <ErrorableImage
             source={1}
@@ -253,69 +207,27 @@ ShallowWrapper {
               Object {
                 "bottom": 0,
                 "position": "absolute",
-                "right": 0,
-                "top": 200,
               }
             }
-            width={156}
-          />
-          <ErrorableImage
-            source={1}
-            style={
-              Object {
-                "bottom": 0,
-                "left": 20,
-                "position": "absolute",
-                "right": 0,
-                "top": 300,
-              }
-            }
-            width={170}
-          />
-          <ErrorableImage
-            source={1}
-            style={
-              Object {
-                "bottom": 0,
-                "position": "absolute",
-                "right": 20,
-                "top": 520,
-              }
-            }
-            width={144}
+            width={750}
           />
         </View>,
         <View
           style={
             Object {
               "alignItems": "center",
+              "bottom": 242,
               "left": 0,
               "position": "absolute",
               "right": 0,
-              "top": 760,
             }
           }
         >
           <Button
-            label="back"
+            label="full history"
             onPress={[MockFunction]}
             type="Primary"
           />
-          <TouchableOpacity
-            activeOpacity={0.2}
-            onPress={[MockFunction]}
-          >
-            <YuText
-              style={
-                Object {
-                  "color": "rgba(226, 1, 119, 1)",
-                  "marginVertical": 50,
-                }
-              }
-            >
-              full history
-            </YuText>
-          </TouchableOpacity>
         </View>,
         <View
           style={
@@ -425,111 +337,75 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <ChallengesHistorySlot
-              availableAtLevel={1}
-              duration="10 mins"
-              locked={false}
-              rating={1}
-              reward={3}
-              type="brisk walk"
+            <ScrollViewMock
+              contentContainerStyle={
+                Object {
+                  "paddingBottom": 140,
+                }
+              }
+              style={
+                Object {
+                  "height": 860,
+                  "width": "100%",
+                }
+              }
             />,
-            <ChallengesHistorySlot
-              availableAtLevel={1}
-              duration="5 mins"
-              locked={false}
-              rating={3}
-              reward={1}
-              type="short stroll"
-            />,
-            <ChallengesHistorySlot
-              availableAtLevel={1}
-              duration="30 mins"
-              locked={false}
-              rating={null}
-              reward={1}
-              type="long walk"
-            />,
-            <ChallengesHistorySlot
-              availableAtLevel={1}
-              duration="3-10 mins"
-              locked={false}
-              rating={0}
-              reward={0}
-              type="meditation"
+            <ErrorableImage
+              source={1}
+              style={
+                Object {
+                  "bottom": 0,
+                  "position": "absolute",
+                }
+              }
+              width={750}
             />,
           ],
           "style": Object {
             "alignItems": "center",
-            "backgroundColor": "rgba(255, 255, 255, 0.5)",
-            "borderRadius": 20,
-            "justifyContent": "center",
-            "marginBottom": 60,
-            "marginHorizontal": 90,
-            "marginTop": 100,
-            "paddingBottom": 80,
           },
         },
         "ref": null,
         "rendered": Array [
           Object {
             "instance": null,
-            "key": "asda2",
-            "nodeType": "function",
+            "key": undefined,
+            "nodeType": "class",
             "props": Object {
-              "availableAtLevel": 1,
-              "duration": "10 mins",
-              "locked": false,
-              "rating": 1,
-              "reward": 3,
-              "type": "brisk walk",
+              "children": Array [
+                null,
+                null,
+                null,
+                null,
+              ],
+              "contentContainerStyle": Object {
+                "paddingBottom": 140,
+              },
+              "style": Object {
+                "height": 860,
+                "width": "100%",
+              },
             },
             "ref": null,
-            "rendered": null,
-            "type": [Function],
+            "rendered": Array [
+              null,
+              null,
+              null,
+              null,
+            ],
+            "type": [MockFunction],
           },
           Object {
             "instance": null,
-            "key": "asda3",
-            "nodeType": "function",
+            "key": undefined,
+            "nodeType": "class",
             "props": Object {
-              "availableAtLevel": 1,
-              "duration": "5 mins",
-              "locked": false,
-              "rating": 3,
-              "reward": 1,
-              "type": "short stroll",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "asda4",
-            "nodeType": "function",
-            "props": Object {
-              "availableAtLevel": 1,
-              "duration": "30 mins",
-              "locked": false,
-              "rating": null,
-              "reward": 1,
-              "type": "long walk",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "asda5",
-            "nodeType": "function",
-            "props": Object {
-              "availableAtLevel": 1,
-              "duration": "3-10 mins",
-              "locked": false,
-              "rating": 0,
-              "reward": 0,
-              "type": "meditation",
+              "source": 1,
+              "style": Object {
+                "bottom": 0,
+                "position": "absolute",
+              },
+              "width": 750,
             },
             "ref": null,
             "rendered": null,
@@ -543,231 +419,33 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": Array [
-            <ErrorableImage
-              source={1}
-              style={
-                Object {
-                  "bottom": 0,
-                  "left": 60,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 30,
-                }
-              }
-              width={148}
-            />,
-            <ErrorableImage
-              source={1}
-              style={
-                Object {
-                  "bottom": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 200,
-                }
-              }
-              width={156}
-            />,
-            <ErrorableImage
-              source={1}
-              style={
-                Object {
-                  "bottom": 0,
-                  "left": 20,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 300,
-                }
-              }
-              width={170}
-            />,
-            <ErrorableImage
-              source={1}
-              style={
-                Object {
-                  "bottom": 0,
-                  "position": "absolute",
-                  "right": 20,
-                  "top": 520,
-                }
-              }
-              width={144}
-            />,
-          ],
-          "style": Object {
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 176,
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": "0",
-            "nodeType": "class",
-            "props": Object {
-              "source": 1,
-              "style": Object {
-                "bottom": 0,
-                "left": 60,
-                "position": "absolute",
-                "right": 0,
-                "top": 30,
-              },
-              "width": 148,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "1",
-            "nodeType": "class",
-            "props": Object {
-              "source": 1,
-              "style": Object {
-                "bottom": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 200,
-              },
-              "width": 156,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "2",
-            "nodeType": "class",
-            "props": Object {
-              "source": 1,
-              "style": Object {
-                "bottom": 0,
-                "left": 20,
-                "position": "absolute",
-                "right": 0,
-                "top": 300,
-              },
-              "width": 170,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "3",
-            "nodeType": "class",
-            "props": Object {
-              "source": 1,
-              "style": Object {
-                "bottom": 0,
-                "position": "absolute",
-                "right": 20,
-                "top": 520,
-              },
-              "width": 144,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <Button
-              label="back"
-              onPress={[MockFunction]}
-              type="Primary"
-            />,
-            <TouchableOpacity
-              activeOpacity={0.2}
-              onPress={[MockFunction]}
-            >
-              <YuText
-                style={
-                  Object {
-                    "color": "rgba(226, 1, 119, 1)",
-                    "marginVertical": 50,
-                  }
-                }
-              >
-                full history
-              </YuText>
-            </TouchableOpacity>,
-          ],
+          "children": <Button
+            label="full history"
+            onPress={[MockFunction]}
+            type="Primary"
+          />,
           "style": Object {
             "alignItems": "center",
+            "bottom": 242,
             "left": 0,
             "position": "absolute",
             "right": 0,
-            "top": 760,
           },
         },
         "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "label": "back",
-              "onPress": [MockFunction],
-              "type": "Primary",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "label": "full history",
+            "onPress": [MockFunction],
+            "type": "Primary",
           },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "activeOpacity": 0.2,
-              "children": <YuText
-                style={
-                  Object {
-                    "color": "rgba(226, 1, 119, 1)",
-                    "marginVertical": 50,
-                  }
-                }
-              >
-                full history
-              </YuText>,
-              "onPress": [MockFunction],
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": "full history",
-                "style": Object {
-                  "color": "rgba(226, 1, 119, 1)",
-                  "marginVertical": 50,
-                },
-              },
-              "ref": null,
-              "rendered": "full history",
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-        ],
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
         "type": [Function],
       },
       Object {
@@ -886,71 +564,21 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.5)",
-                "borderRadius": 20,
-                "justifyContent": "center",
-                "marginBottom": 60,
-                "marginHorizontal": 90,
-                "marginTop": 100,
-                "paddingBottom": 80,
               }
             }
           >
-            <ChallengesHistorySlot
-              availableAtLevel={1}
-              duration="10 mins"
-              locked={false}
-              rating={1}
-              reward={3}
-              type="brisk walk"
-            />
-            <ChallengesHistorySlot
-              availableAtLevel={1}
-              duration="5 mins"
-              locked={false}
-              rating={3}
-              reward={1}
-              type="short stroll"
-            />
-            <ChallengesHistorySlot
-              availableAtLevel={1}
-              duration="30 mins"
-              locked={false}
-              rating={null}
-              reward={1}
-              type="long walk"
-            />
-            <ChallengesHistorySlot
-              availableAtLevel={1}
-              duration="3-10 mins"
-              locked={false}
-              rating={0}
-              reward={0}
-              type="meditation"
-            />
-          </View>,
-          <View
-            style={
-              Object {
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 176,
-              }
-            }
-          >
-            <ErrorableImage
-              source={1}
-              style={
+            <ScrollViewMock
+              contentContainerStyle={
                 Object {
-                  "bottom": 0,
-                  "left": 60,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 30,
+                  "paddingBottom": 140,
                 }
               }
-              width={148}
+              style={
+                Object {
+                  "height": 860,
+                  "width": "100%",
+                }
+              }
             />
             <ErrorableImage
               source={1}
@@ -958,69 +586,27 @@ ShallowWrapper {
                 Object {
                   "bottom": 0,
                   "position": "absolute",
-                  "right": 0,
-                  "top": 200,
                 }
               }
-              width={156}
-            />
-            <ErrorableImage
-              source={1}
-              style={
-                Object {
-                  "bottom": 0,
-                  "left": 20,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 300,
-                }
-              }
-              width={170}
-            />
-            <ErrorableImage
-              source={1}
-              style={
-                Object {
-                  "bottom": 0,
-                  "position": "absolute",
-                  "right": 20,
-                  "top": 520,
-                }
-              }
-              width={144}
+              width={750}
             />
           </View>,
           <View
             style={
               Object {
                 "alignItems": "center",
+                "bottom": 242,
                 "left": 0,
                 "position": "absolute",
                 "right": 0,
-                "top": 760,
               }
             }
           >
             <Button
-              label="back"
+              label="full history"
               onPress={[MockFunction]}
               type="Primary"
             />
-            <TouchableOpacity
-              activeOpacity={0.2}
-              onPress={[MockFunction]}
-            >
-              <YuText
-                style={
-                  Object {
-                    "color": "rgba(226, 1, 119, 1)",
-                    "marginVertical": 50,
-                  }
-                }
-              >
-                full history
-              </YuText>
-            </TouchableOpacity>
           </View>,
           <View
             style={
@@ -1130,111 +716,75 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <ChallengesHistorySlot
-                availableAtLevel={1}
-                duration="10 mins"
-                locked={false}
-                rating={1}
-                reward={3}
-                type="brisk walk"
+              <ScrollViewMock
+                contentContainerStyle={
+                  Object {
+                    "paddingBottom": 140,
+                  }
+                }
+                style={
+                  Object {
+                    "height": 860,
+                    "width": "100%",
+                  }
+                }
               />,
-              <ChallengesHistorySlot
-                availableAtLevel={1}
-                duration="5 mins"
-                locked={false}
-                rating={3}
-                reward={1}
-                type="short stroll"
-              />,
-              <ChallengesHistorySlot
-                availableAtLevel={1}
-                duration="30 mins"
-                locked={false}
-                rating={null}
-                reward={1}
-                type="long walk"
-              />,
-              <ChallengesHistorySlot
-                availableAtLevel={1}
-                duration="3-10 mins"
-                locked={false}
-                rating={0}
-                reward={0}
-                type="meditation"
+              <ErrorableImage
+                source={1}
+                style={
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                  }
+                }
+                width={750}
               />,
             ],
             "style": Object {
               "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.5)",
-              "borderRadius": 20,
-              "justifyContent": "center",
-              "marginBottom": 60,
-              "marginHorizontal": 90,
-              "marginTop": 100,
-              "paddingBottom": 80,
             },
           },
           "ref": null,
           "rendered": Array [
             Object {
               "instance": null,
-              "key": "asda2",
-              "nodeType": "function",
+              "key": undefined,
+              "nodeType": "class",
               "props": Object {
-                "availableAtLevel": 1,
-                "duration": "10 mins",
-                "locked": false,
-                "rating": 1,
-                "reward": 3,
-                "type": "brisk walk",
+                "children": Array [
+                  null,
+                  null,
+                  null,
+                  null,
+                ],
+                "contentContainerStyle": Object {
+                  "paddingBottom": 140,
+                },
+                "style": Object {
+                  "height": 860,
+                  "width": "100%",
+                },
               },
               "ref": null,
-              "rendered": null,
-              "type": [Function],
+              "rendered": Array [
+                null,
+                null,
+                null,
+                null,
+              ],
+              "type": [MockFunction],
             },
             Object {
               "instance": null,
-              "key": "asda3",
-              "nodeType": "function",
+              "key": undefined,
+              "nodeType": "class",
               "props": Object {
-                "availableAtLevel": 1,
-                "duration": "5 mins",
-                "locked": false,
-                "rating": 3,
-                "reward": 1,
-                "type": "short stroll",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "asda4",
-              "nodeType": "function",
-              "props": Object {
-                "availableAtLevel": 1,
-                "duration": "30 mins",
-                "locked": false,
-                "rating": null,
-                "reward": 1,
-                "type": "long walk",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "asda5",
-              "nodeType": "function",
-              "props": Object {
-                "availableAtLevel": 1,
-                "duration": "3-10 mins",
-                "locked": false,
-                "rating": 0,
-                "reward": 0,
-                "type": "meditation",
+                "source": 1,
+                "style": Object {
+                  "bottom": 0,
+                  "position": "absolute",
+                },
+                "width": 750,
               },
               "ref": null,
               "rendered": null,
@@ -1248,231 +798,33 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": Array [
-              <ErrorableImage
-                source={1}
-                style={
-                  Object {
-                    "bottom": 0,
-                    "left": 60,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 30,
-                  }
-                }
-                width={148}
-              />,
-              <ErrorableImage
-                source={1}
-                style={
-                  Object {
-                    "bottom": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 200,
-                  }
-                }
-                width={156}
-              />,
-              <ErrorableImage
-                source={1}
-                style={
-                  Object {
-                    "bottom": 0,
-                    "left": 20,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 300,
-                  }
-                }
-                width={170}
-              />,
-              <ErrorableImage
-                source={1}
-                style={
-                  Object {
-                    "bottom": 0,
-                    "position": "absolute",
-                    "right": 20,
-                    "top": 520,
-                  }
-                }
-                width={144}
-              />,
-            ],
-            "style": Object {
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 176,
-            },
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": "0",
-              "nodeType": "class",
-              "props": Object {
-                "source": 1,
-                "style": Object {
-                  "bottom": 0,
-                  "left": 60,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 30,
-                },
-                "width": 148,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "1",
-              "nodeType": "class",
-              "props": Object {
-                "source": 1,
-                "style": Object {
-                  "bottom": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 200,
-                },
-                "width": 156,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "2",
-              "nodeType": "class",
-              "props": Object {
-                "source": 1,
-                "style": Object {
-                  "bottom": 0,
-                  "left": 20,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 300,
-                },
-                "width": 170,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "3",
-              "nodeType": "class",
-              "props": Object {
-                "source": 1,
-                "style": Object {
-                  "bottom": 0,
-                  "position": "absolute",
-                  "right": 20,
-                  "top": 520,
-                },
-                "width": 144,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <Button
-                label="back"
-                onPress={[MockFunction]}
-                type="Primary"
-              />,
-              <TouchableOpacity
-                activeOpacity={0.2}
-                onPress={[MockFunction]}
-              >
-                <YuText
-                  style={
-                    Object {
-                      "color": "rgba(226, 1, 119, 1)",
-                      "marginVertical": 50,
-                    }
-                  }
-                >
-                  full history
-                </YuText>
-              </TouchableOpacity>,
-            ],
+            "children": <Button
+              label="full history"
+              onPress={[MockFunction]}
+              type="Primary"
+            />,
             "style": Object {
               "alignItems": "center",
+              "bottom": 242,
               "left": 0,
               "position": "absolute",
               "right": 0,
-              "top": 760,
             },
           },
           "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "label": "back",
-                "onPress": [MockFunction],
-                "type": "Primary",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "full history",
+              "onPress": [MockFunction],
+              "type": "Primary",
             },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "activeOpacity": 0.2,
-                "children": <YuText
-                  style={
-                    Object {
-                      "color": "rgba(226, 1, 119, 1)",
-                      "marginVertical": 50,
-                    }
-                  }
-                >
-                  full history
-                </YuText>,
-                "onPress": [MockFunction],
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": "full history",
-                  "style": Object {
-                    "color": "rgba(226, 1, 119, 1)",
-                    "marginVertical": 50,
-                  },
-                },
-                "ref": null,
-                "rendered": "full history",
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-          ],
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": [Function],
         },
         Object {

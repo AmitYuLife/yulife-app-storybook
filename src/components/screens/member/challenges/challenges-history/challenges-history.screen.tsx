@@ -1,14 +1,14 @@
-import { Button, Text } from "@atoms/index";
+import { Button } from "@atoms/index";
 import { getSlotDuration } from "@containers/member/quests/challenges-list/challenges-list.helpers";
 import { GetCurrentWorld_getCurrentWorld } from "@graphql/_core/schema";
 import { NavBar, TopBar } from "@molecules/index";
 import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
-import { Image, SafeAreaView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import AutoHeightImage from "react-native-auto-height-image";
 import { IConnectedScreenProps } from "../../../../../typings";
 import ChallengesHistorySlot from "./challenges-history-slot";
-import { getSlotImageProps } from "./challenges-history.helpers";
+import { getBottomGradient } from "./challenges-history.helpers";
 import styles from "./challenges-history.screen.styles";
 
 interface IProps extends IConnectedScreenProps {
@@ -20,12 +20,11 @@ interface IProps extends IConnectedScreenProps {
 export default function ChallengesHistory({
     level,
     onPressActivityHistory,
-    onPressCta,
     totalCoins,
     labels,
     onLeftMenuPress
 }: IProps) {
-    const { backgroundWrapperStyle, backgroundImage, historyLinkColor, navBarType, topBarType } = getWorldStyle(
+    const { backgroundWrapperStyle, backgroundImage, navBarType, topBarType } = getWorldStyle(
         level.level
     ) as any;
 
@@ -43,30 +42,25 @@ export default function ChallengesHistory({
                 type={topBarType}
             />
             <View style={styles.challengeSetWrapper}>
-                {level.slots.map((slot) => (
-                    <ChallengesHistorySlot
-                        key={slot.id}
-                        availableAtLevel={slot.availableAtLevel}
-                        duration={getSlotDuration(slot)}
-                        type={slot.subtype}
-                        reward={slot.yuCoinAwarded}
-                        rating={slot.rating}
-                        locked={slot.availableAtLevel > level.level}
-                    />
-                ))}
-            </View>
-            <View style={styles.imagesWrapper}>
-                {level.slots.map(({ subtype }, index) => (
-                    <AutoHeightImage key={index} {...getSlotImageProps(subtype, getCurrentWorld(level.level))} />
-                ))}
+                <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
+                    {level.slots.map((slot) =>
+                        slot.challengesDetails.length > 0 ? (
+                            <ChallengesHistorySlot
+                                key={slot.id}
+                                availableAtLevel={slot.availableAtLevel}
+                                duration={getSlotDuration(slot)}
+                                type={slot.subtype}
+                                locked={slot.availableAtLevel > level.level}
+                                challengesDetails={slot.challengesDetails}
+                                level={level}
+                            />
+                        ) : null
+                    )}
+                </ScrollView>
+                <AutoHeightImage {...getBottomGradient(getCurrentWorld(level.level))} />
             </View>
             <View style={styles.buttonsWrapper}>
-                <Button type={Button.Types.PRIMARY} onPress={onPressCta} label="back" />
-                <TouchableOpacity onPress={onPressActivityHistory}>
-                    <Text style={StyleSheet.flatten([styles.historyLink, { color: historyLinkColor }])}>
-                        full history
-                    </Text>
-                </TouchableOpacity>
+                <Button type={Button.Types.PRIMARY} onPress={onPressActivityHistory} label="full history" />
             </View>
             <View style={styles.navBarWrapper}>
                 <NavBar activeIndex={1} colour={navBarType} hasNotification={false} labels={labels} />

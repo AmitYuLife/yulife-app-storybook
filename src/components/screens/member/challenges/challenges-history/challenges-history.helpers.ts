@@ -1,6 +1,5 @@
 import { Style } from "@styles/index";
 import { ImageStyle } from "react-native";
-import { isIphoneX } from "react-native-iphone-x-helper";
 
 interface ISlotSet {
     source: any;
@@ -13,75 +12,75 @@ const BRISK_WALK: ISlotSet[] = [
         source: require("../../../../../../assets/challenge-history/squirrel.png"),
         style: {
             position: "absolute",
-            left: Style.SCALE_UP_AND_DOWN(30),
-            top: Style.SCALE_UP_AND_DOWN(15),
-            right: 0,
-            bottom: 0
+            left: -29,
+            top: 7
         },
-        width: Style.SCALE_UP_AND_DOWN(74)
+        width: Style.SCALE_UP_AND_DOWN(65)
     },
     {
         source: require("../../../../../../assets/challenge-history/otter.png"),
-        style: { position: "absolute", left: 0, top: 0, right: 0, bottom: 0 },
-        width: Style.SCALE_UP_AND_DOWN(106)
+        style: {
+            position: "absolute",
+            left: -45,
+            top: -27
+        },
+        width: Style.SCALE_UP_AND_DOWN(116)
     },
     {
         source: require("../../../../../../assets/challenge-history/meerkat.png"),
-        style: { position: "absolute", left: Style.SCALE_UP_AND_DOWN(8), top: 0, right: 0, bottom: 0 },
-        width: Style.SCALE_UP_AND_DOWN(60)
+        style: {
+            position: "absolute",
+            left: -6,
+            top: 7
+        },
+        width: Style.SCALE_UP_AND_DOWN(41)
     },
     {
         source: require("../../../../../../assets/challenge-history/wolf.png"),
         style: {
             position: "absolute",
-            left: Style.SCALE_UP_AND_DOWN(8),
-            top: Style.SCALE_Y_UP_AND_DOWN(25),
-            right: 0,
-            bottom: 0
+            left: -112,
+            top: 8
         },
-        width: Style.SCALE_UP_AND_DOWN(116)
+        width: Style.SCALE_UP_AND_DOWN(181)
     }
 ];
 const SHORT_STROLL: ISlotSet[] = [
     {
         source: require("../../../../../../assets/challenge-history/snail.png"),
         style: {
-            bottom: 0,
             position: "absolute",
-            right: Style.SCALE_UP_AND_DOWN(0),
-            top: Style.SCALE_Y_UP_AND_DOWN(100)
+            left: -24,
+            top: 16
         },
-        width: Style.SCALE_UP_AND_DOWN(78)
+        width: Style.SCALE_UP_AND_DOWN(61)
     },
     {
         source: require("../../../../../../assets/challenge-history/tortoise.png"),
         style: {
-            bottom: 0,
             position: "absolute",
-            right: 0,
-            top: Style.SCALE_Y_UP_AND_DOWN(60)
+            left: -10,
+            top: -13
         },
-        width: Style.SCALE_UP_AND_DOWN(90)
+        width: Style.SCALE_UP_AND_DOWN(57)
     },
     {
         source: require("../../../../../../assets/challenge-history/bighornSheep.png"),
         style: {
-            bottom: 0,
             position: "absolute",
-            right: Style.SCALE_UP_AND_DOWN(10),
-            top: Style.SCALE_Y_UP_AND_DOWN(72)
+            left: -26,
+            top: -2
         },
-        width: Style.SCALE_UP_AND_DOWN(90)
+        width: Style.SCALE_UP_AND_DOWN(77)
     },
     {
         source: require("../../../../../../assets/challenge-history/whiteBighornSheep.png"),
         style: {
-            bottom: 0,
             position: "absolute",
-            right: Style.SCALE_UP_AND_DOWN(10),
-            top: Style.SCALE_Y_UP_AND_DOWN(72)
+            left: -50,
+            top: -34
         },
-        width: Style.SCALE_UP_AND_DOWN(83)
+        width: Style.SCALE_UP_AND_DOWN(119)
     }
 ];
 const LONG_WALK: ISlotSet[] = [
@@ -89,71 +88,155 @@ const LONG_WALK: ISlotSet[] = [
         source: require("../../../../../../assets/challenge-history/rabbit.png"),
         style: {
             position: "absolute",
-            left: Style.SCALE_UP_AND_DOWN(10),
-            top: Style.SCALE_Y_UP_AND_DOWN(150),
-            right: 0,
-            bottom: 0
+            left: -28,
+            top: 6
         },
-        width: Style.SCALE_UP_AND_DOWN(85)
+        width: Style.SCALE_UP_AND_DOWN(64)
     },
     {
         source: require("../../../../../../assets/challenge-history/whale.png"),
-        style: { position: "absolute", left: 0, top: Style.SCALE_Y_UP_AND_DOWN(140), right: 0, bottom: 0 },
-        width: Style.SCALE_UP_AND_DOWN(92)
+        style: {
+            position: "absolute",
+            left: -34,
+            top: -24
+        },
+        width: Style.SCALE_UP_AND_DOWN(90)
     },
     {
         source: require("../../../../../../assets/challenge-history/desertFox.png"),
-        style: { position: "absolute", left: 0, top: Style.SCALE_Y_UP_AND_DOWN(152), right: 0, bottom: 0 },
-        width: Style.SCALE_UP_AND_DOWN(82)
+        style: {
+            position: "absolute",
+            left: -24,
+            top: 11
+        },
+        width: Style.SCALE_UP_AND_DOWN(67)
     },
     {
         source: require("../../../../../../assets/challenge-history/deer.png"),
-        style: { position: "absolute", left: 0, top: Style.SCALE_Y_UP_AND_DOWN(142), right: 0, bottom: 0 },
-        width: Style.SCALE_UP_AND_DOWN(107)
+        style: {
+            position: "absolute",
+            left: -74,
+            top: -35
+        },
+        width: Style.SCALE_UP_AND_DOWN(143)
     }
 ];
 const MEDITATION: ISlotSet[] = [
     {
         source: require("../../../../../../assets/challenge-history/bird.png"),
         style: {
-            bottom: 0,
             position: "absolute",
-            right: Style.SCALE_UP_AND_DOWN(10),
-            top: Style.SCALE_Y_UP_AND_DOWN(isIphoneX() ? 240 : 260)
+            left: -14,
+            top: 16
         },
-        width: Style.SCALE_UP_AND_DOWN(72)
+        width: Style.SCALE_UP_AND_DOWN(44)
     },
     {
         source: require("../../../../../../assets/challenge-history/dolphin.png"),
         style: {
-            bottom: 0,
             position: "absolute",
-            right: 0,
-            top: Style.SCALE_Y_UP_AND_DOWN(220)
+            left: -31,
+            top: -12
         },
-        width: Style.SCALE_UP_AND_DOWN(92)
+        width: Style.SCALE_UP_AND_DOWN(74)
     },
     {
         source: require("../../../../../../assets/challenge-history/camel.png"),
         style: {
-            bottom: 0,
             position: "absolute",
-            right: 0,
-            top: Style.SCALE_Y_UP_AND_DOWN(212)
+            left: -44,
+            top: 7
         },
-        width: Style.SCALE_UP_AND_DOWN(100)
+        width: Style.SCALE_UP_AND_DOWN(102)
     },
     {
         source: require("../../../../../../assets/challenge-history/owl.png"),
         style: {
-            bottom: 0,
             position: "absolute",
-            right: Style.SCALE_UP_AND_DOWN(20),
-            top: Style.SCALE_Y_UP_AND_DOWN(240)
+            left: -29,
+            top: 6
         },
-        width: Style.SCALE_UP_AND_DOWN(62)
+        width: Style.SCALE_UP_AND_DOWN(98)
     }
 ];
+
+const CYCLING: ISlotSet[] = [
+    {
+        source: require("../../../../../../assets/challenge-history/hedgehog.png"),
+        style: {
+            position: "absolute",
+            left: -14,
+            top: 8
+        },
+        width: Style.SCALE_UP_AND_DOWN(57)
+    },
+    {
+        source: require("../../../../../../assets/challenge-history/fish-hedgehog.png"),
+        style: {
+            position: "absolute",
+            left: -10,
+            top: -10
+        },
+        width: Style.SCALE_UP_AND_DOWN(74)
+    },
+    {
+        source: require("../../../../../../assets/challenge-history/chameleon.png"),
+        style: {
+            position: "absolute",
+            left: -44,
+            top: 7
+        },
+        width: Style.SCALE_UP_AND_DOWN(102)
+    },
+    {
+        source: require("../../../../../../assets/challenge-history/bear.png"),
+        style: {
+            position: "absolute",
+            left: -100,
+            top: 6
+        },
+        width: Style.SCALE_UP_AND_DOWN(170)
+    }
+];
+
+const BOTTOM_GRADIENT: ISlotSet[] = [
+    {
+        source: require("../../../../../../assets/challenge-history/forest-bottom-gradient.png"),
+        style: {
+            position: "absolute",
+            bottom: 0
+        },
+        width: Style.DEVICE_WIDTH
+    },
+    {
+        source: require("../../../../../../assets/challenge-history/ocean-bottom-gradient.png"),
+        style: {
+            position: "absolute",
+            bottom: 0
+        },
+        width: Style.DEVICE_WIDTH
+    },
+    {
+        source: require("../../../../../../assets/challenge-history/desert-bottom-gradient.png"),
+        style: {
+            position: "absolute",
+            bottom: 0
+        },
+        width: Style.DEVICE_WIDTH
+    },
+    {
+        source: require("../../../../../../assets/challenge-history/mountain-bottom-gradient.png"),
+        style: {
+            position: "absolute",
+            bottom: 0
+        },
+        width: Style.DEVICE_WIDTH
+    }
+];
+
+export function getBottomGradient(currentWorld: number) {
+    return BOTTOM_GRADIENT[currentWorld];
+}
 
 export function getSlotImageProps(challengeType: string, currentWorld: number) {
     switch (challengeType) {
@@ -165,6 +248,8 @@ export function getSlotImageProps(challengeType: string, currentWorld: number) {
             return LONG_WALK[currentWorld] || LONG_WALK[0];
         case "meditation":
             return MEDITATION[currentWorld] || MEDITATION[0];
+        case "cycling":
+            return CYCLING[currentWorld] || CYCLING[0];
         default:
             return { source: null, style: null, width: 0 };
     }

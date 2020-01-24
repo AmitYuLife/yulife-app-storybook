@@ -33,6 +33,7 @@ const defaultProps = {
                 type: "move",
                 unit: "steps",
                 yuCoinAwarded: null,
+                challengesDetails: [],
                 __typename: "LevelSlot"
             }
         ]

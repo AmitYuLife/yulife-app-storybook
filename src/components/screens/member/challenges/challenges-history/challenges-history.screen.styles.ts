@@ -1,9 +1,4 @@
-import {
-    ImageStyle,
-    Platform,
-    StyleSheet,
-    ViewStyle
-} from "react-native";
+import { ImageStyle, Platform, StyleSheet, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../../styles";
 
@@ -20,25 +15,10 @@ export default StyleSheet.create({
         left: 0,
         position: "absolute",
         right: 0,
-        top: Style.SCALE_Y_UP_AND_DOWN(
-            400 * (
-                Style.DEVICE_HEIGHT > (Platform.OS === "ios" ? 750 : 690)
-                    ? 0.95
-                    : 1
-            )
-        )
+        bottom: Style.SCALE_Y_UP_AND_DOWN(121)
     } as ViewStyle,
     challengeSetWrapper: {
-        alignItems: "center",
-        backgroundColor: "rgba(255, 255, 255, 0.5)",
-        borderRadius: 20,
-        justifyContent: "center",
-        marginBottom: Style.SCALE_UP_AND_DOWN(30),
-        marginHorizontal: Style.SCALE_UP_AND_DOWN(45),
-        marginTop: Style.SCALE_Y_UP_AND_DOWN(
-            Platform.OS === "android" && (Style.DEVICE_HEIGHT < 600 || Style.PIXEL_RATIO <= 3) ? 30 : 50
-        ),
-        paddingBottom: Style.SCALE_Y_UP_AND_DOWN(40)
+        alignItems: "center"
     } as ViewStyle,
     historyLink: {
         marginVertical: Style.SCALE_UP_AND_DOWN(25)
@@ -51,8 +31,8 @@ export default StyleSheet.create({
             Platform.OS === "android" && (Style.DEVICE_HEIGHT < 600 || Style.PIXEL_RATIO <= 3)
                 ? 46
                 : Style.DEVICE_HEIGHT > 800
-                    ? 88
-                    : 78
+                ? 88
+                : 78
         )
     } as ViewStyle,
     navBarWrapper: {
@@ -63,5 +43,10 @@ export default StyleSheet.create({
     } as ViewStyle,
     wrapper: {
         flex: 1
-    } as ViewStyle
+    } as ViewStyle,
+    scrollView: {
+        width: "100%",
+        height: Style.SCALE_UP_AND_DOWN(430)
+    } as ViewStyle,
+    contentContainer: { paddingBottom: Style.SCALE_UP_AND_DOWN(70) } as ViewStyle
 });

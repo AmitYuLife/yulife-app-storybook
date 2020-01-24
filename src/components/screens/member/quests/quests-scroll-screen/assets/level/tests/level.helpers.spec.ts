@@ -30,6 +30,7 @@ const level = {
             type: "move",
             unit: "steps",
             yuCoinAwarded: null,
+            challengesDetails: [],
             __typename: "LevelSlot"
         }
     ]
