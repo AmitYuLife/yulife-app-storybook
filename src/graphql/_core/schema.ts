@@ -202,6 +202,11 @@ export interface GetCurrentLevel {
 // GraphQL query operation: GetCurrentWorld
 // ====================================================
 
+export interface GetCurrentWorld_getCurrentWorld_slots_challengesDetails {
+  rating: number | null;
+  yuCoinAwarded: number | null;
+}
+
 export interface GetCurrentWorld_getCurrentWorld_slots_milestones_target {
   __typename: "MilestoneTarget";
   steps: number | null;
@@ -227,6 +232,7 @@ export interface GetCurrentWorld_getCurrentWorld_slots {
   unit: string | null;
   rating: number | null;
   yuCoinAwarded: number | null;
+  challengesDetails: (GetCurrentWorld_getCurrentWorld_slots_challengesDetails | null)[] | null;
   milestones: (GetCurrentWorld_getCurrentWorld_slots_milestones | null)[] | null;
 }
 

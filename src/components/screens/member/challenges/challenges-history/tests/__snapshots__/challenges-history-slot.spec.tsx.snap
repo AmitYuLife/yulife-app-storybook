@@ -5,10 +5,17 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengesHistorySlot
     availableAtLevel={3}
+    challengesDetails={
+      Array [
+        Object {
+          "rating": 0,
+          "yuCoinAwarded": 0,
+        },
+      ]
+    }
     duration="30 minutes"
+    level={Object {}}
     locked={false}
-    rating={3}
-    reward={6}
     type="steps"
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -27,25 +34,47 @@ ShallowWrapper {
       "children": <View
         style={
           Object {
+            "backgroundColor": "rgba(255, 255, 255, 0.32)",
+            "borderColor": "#FFFFFF",
+            "borderRadius": 16,
+            "borderWidth": 2,
             "display": "flex",
+            "flex": 1,
             "flexDirection": "row",
+            "overflow": "hidden",
+            "paddingBottom": 16,
+            "paddingLeft": 150,
+            "paddingRight": 50,
+            "paddingTop": 28,
+            "width": "100%",
           }
         }
       >
         <View
           style={
             Object {
+              "flex": 1,
               "width": 160,
             }
           }
         >
           <YuText
             bold={true}
+            style={
+              Object {
+                "fontSize": 32,
+              }
+            }
           >
             steps
           </YuText>
           <YuText
-            bold={true}
+            style={
+              Object {
+                "fontSize": 32,
+                "marginTop": 8,
+              }
+            }
           >
             30 minutes
           </YuText>
@@ -54,7 +83,9 @@ ShallowWrapper {
           style={
             Object {
               "flex": 1,
-              "flexGrow": 1,
+              "flexDirection": "column",
+              "marginLeft": "auto",
+              "marginTop": 48,
             }
           }
         >
@@ -63,93 +94,21 @@ ShallowWrapper {
               Object {
                 "flex": 1,
                 "flexDirection": "row",
-                "marginLeft": -8,
-              }
-            }
-          >
-            <View>
-              <Image
-                source={1}
-                style={
-                  Object {
-                    "marginRight": 10,
-                  }
-                }
-              />
-            </View>
-            <View>
-              <Image
-                source={1}
-                style={
-                  Object {
-                    "marginRight": 10,
-                  }
-                }
-              />
-            </View>
-            <View>
-              <Image
-                source={1}
-                style={
-                  Object {
-                    "marginRight": 10,
-                  }
-                }
-              />
-            </View>
-          </View>
-          <YuText
-            style={
-              Object {
-                "fontSize": 24,
-              }
-            }
-          >
-            6 yucoin
-          </YuText>
-        </View>
-      </View>,
-      "style": Object {
-        "display": "flex",
-        "paddingLeft": 176,
-        "paddingRight": 40,
-        "paddingVertical": 40,
-        "width": "100%",
-      },
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": Array [
-          <View
-            style={
-              Object {
-                "width": 160,
+                "marginBottom": 16,
               }
             }
           >
             <YuText
-              bold={true}
-            >
-              steps
-            </YuText>
-            <YuText
-              bold={true}
-            >
-              30 minutes
-            </YuText>
-          </View>,
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexGrow": 1,
+              style={
+                Object {
+                  "fontSize": 32,
+                  "height": 32,
+                  "marginRight": 16,
+                }
               }
-            }
-          >
+            >
+              0 yucoin
+            </YuText>
             <View
               style={
                 Object {
@@ -164,7 +123,11 @@ ShallowWrapper {
                   source={1}
                   style={
                     Object {
+                      "height": 32,
+                      "marginBottom": "auto",
                       "marginRight": 10,
+                      "marginTop": "auto",
+                      "width": 32,
                     }
                   }
                 />
@@ -174,7 +137,11 @@ ShallowWrapper {
                   source={1}
                   style={
                     Object {
+                      "height": 32,
+                      "marginBottom": "auto",
                       "marginRight": 10,
+                      "marginTop": "auto",
+                      "width": 32,
                     }
                   }
                 />
@@ -184,26 +151,173 @@ ShallowWrapper {
                   source={1}
                   style={
                     Object {
+                      "height": 32,
+                      "marginBottom": "auto",
                       "marginRight": 10,
+                      "marginTop": "auto",
+                      "width": 32,
                     }
                   }
                 />
               </View>
             </View>
+          </View>
+        </View>
+        <ErrorableImage
+          source={null}
+          style={null}
+          width={0}
+        />
+      </View>,
+      "style": Object {
+        "display": "flex",
+        "flexDirection": "row",
+        "paddingLeft": 60,
+        "paddingRight": 40,
+        "paddingVertical": 16,
+        "width": "100%",
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "width": 160,
+              }
+            }
+          >
             <YuText
+              bold={true}
               style={
                 Object {
-                  "fontSize": 24,
+                  "fontSize": 32,
                 }
               }
             >
-              6 yucoin
+              steps
+            </YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 32,
+                  "marginTop": 8,
+                }
+              }
+            >
+              30 minutes
             </YuText>
           </View>,
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "marginLeft": "auto",
+                "marginTop": 48,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginBottom": 16,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "height": 32,
+                    "marginRight": 16,
+                  }
+                }
+              >
+                0 yucoin
+              </YuText>
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "marginLeft": -8,
+                  }
+                }
+              >
+                <View>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginBottom": "auto",
+                        "marginRight": 10,
+                        "marginTop": "auto",
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>
+                <View>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginBottom": "auto",
+                        "marginRight": 10,
+                        "marginTop": "auto",
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>
+                <View>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginBottom": "auto",
+                        "marginRight": 10,
+                        "marginTop": "auto",
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+          </View>,
+          <ErrorableImage
+            source={null}
+            style={null}
+            width={0}
+          />,
         ],
         "style": Object {
+          "backgroundColor": "rgba(255, 255, 255, 0.32)",
+          "borderColor": "#FFFFFF",
+          "borderRadius": 16,
+          "borderWidth": 2,
           "display": "flex",
+          "flex": 1,
           "flexDirection": "row",
+          "overflow": "hidden",
+          "paddingBottom": 16,
+          "paddingLeft": 150,
+          "paddingRight": 50,
+          "paddingTop": 28,
+          "width": "100%",
         },
       },
       "ref": null,
@@ -216,16 +330,27 @@ ShallowWrapper {
             "children": Array [
               <YuText
                 bold={true}
+                style={
+                  Object {
+                    "fontSize": 32,
+                  }
+                }
               >
                 steps
               </YuText>,
               <YuText
-                bold={true}
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "marginTop": 8,
+                  }
+                }
               >
                 30 minutes
               </YuText>,
             ],
             "style": Object {
+              "flex": 1,
               "width": 160,
             },
           },
@@ -238,6 +363,9 @@ ShallowWrapper {
               "props": Object {
                 "bold": true,
                 "children": "steps",
+                "style": Object {
+                  "fontSize": 32,
+                },
               },
               "ref": null,
               "rendered": "steps",
@@ -248,8 +376,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "bold": true,
                 "children": "30 minutes",
+                "style": Object {
+                  "fontSize": 32,
+                  "marginTop": 8,
+                },
               },
               "ref": null,
               "rendered": "30 minutes",
@@ -269,54 +400,80 @@ ShallowWrapper {
                   Object {
                     "flex": 1,
                     "flexDirection": "row",
-                    "marginLeft": -8,
+                    "marginBottom": 16,
                   }
                 }
               >
-                <View>
-                  <Image
-                    source={1}
-                    style={
-                      Object {
-                        "marginRight": 10,
-                      }
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                      "height": 32,
+                      "marginRight": 16,
                     }
-                  />
-                </View>
-                <View>
-                  <Image
-                    source={1}
-                    style={
-                      Object {
-                        "marginRight": 10,
-                      }
+                  }
+                >
+                  0 yucoin
+                </YuText>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "marginLeft": -8,
                     }
-                  />
-                </View>
-                <View>
-                  <Image
-                    source={1}
-                    style={
-                      Object {
-                        "marginRight": 10,
+                  }
+                >
+                  <View>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginBottom": "auto",
+                          "marginRight": 10,
+                          "marginTop": "auto",
+                          "width": 32,
+                        }
                       }
-                    }
-                  />
+                    />
+                  </View>
+                  <View>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginBottom": "auto",
+                          "marginRight": 10,
+                          "marginTop": "auto",
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>
+                  <View>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginBottom": "auto",
+                          "marginRight": 10,
+                          "marginTop": "auto",
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>
                 </View>
               </View>,
-              <YuText
-                style={
-                  Object {
-                    "fontSize": 24,
-                  }
-                }
-              >
-                6 yucoin
-              </YuText>,
             ],
             "style": Object {
               "flex": 1,
-              "flexGrow": 1,
+              "flexDirection": "column",
+              "marginLeft": "auto",
+              "marginTop": 48,
             },
           },
           "ref": null,
@@ -327,156 +484,288 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": Array [
-                  <View>
-                    <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
-                        }
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                        "height": 32,
+                        "marginRight": 16,
                       }
-                    />
-                  </View>,
-                  <View>
-                    <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
-                        }
+                    }
+                  >
+                    0 yucoin
+                  </YuText>,
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "marginLeft": -8,
                       }
-                    />
-                  </View>,
-                  <View>
-                    <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
+                    }
+                  >
+                    <View>
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          }
                         }
-                      }
-                    />
+                      />
+                    </View>
+                    <View>
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          }
+                        }
+                      />
+                    </View>
+                    <View>
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          }
+                        }
+                      />
+                    </View>
                   </View>,
                 ],
                 "style": Object {
                   "flex": 1,
                   "flexDirection": "row",
-                  "marginLeft": -8,
+                  "marginBottom": 16,
                 },
               },
               "ref": null,
               "rendered": Array [
                 Object {
                   "instance": null,
-                  "key": "0",
-                  "nodeType": "class",
+                  "key": undefined,
+                  "nodeType": "function",
                   "props": Object {
-                    "children": <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
-                        }
-                      }
-                    />,
+                    "children": "0 yucoin",
+                    "style": Object {
+                      "fontSize": 32,
+                      "height": 32,
+                      "marginRight": 16,
+                    },
                   },
                   "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "source": 1,
-                      "style": Object {
-                        "marginRight": 10,
-                      },
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
+                  "rendered": "0 yucoin",
                   "type": [Function],
                 },
                 Object {
                   "instance": null,
-                  "key": "1",
+                  "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
-                        }
-                      }
-                    />,
+                    "children": Array [
+                      <View>
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />
+                      </View>,
+                      <View>
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />
+                      </View>,
+                      <View>
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />
+                      </View>,
+                    ],
+                    "style": Object {
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "marginLeft": -8,
+                    },
                   },
                   "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "source": 1,
-                      "style": Object {
-                        "marginRight": 10,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": "0",
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />,
                       },
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": "2",
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
-                        }
-                      }
-                    />,
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "source": 1,
-                      "style": Object {
-                        "marginRight": 10,
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "source": 1,
+                          "style": Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
                       },
+                      "type": [Function],
                     },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
+                    Object {
+                      "instance": null,
+                      "key": "1",
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "source": 1,
+                          "style": Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": "2",
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "source": 1,
+                          "style": Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                  ],
                   "type": [Function],
                 },
               ],
               "type": [Function],
             },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": "6 yucoin",
-                "style": Object {
-                  "fontSize": 24,
-                },
-              },
-              "ref": null,
-              "rendered": "6 yucoin",
-              "type": [Function],
-            },
           ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "source": null,
+            "style": null,
+            "width": 0,
+          },
+          "ref": null,
+          "rendered": null,
           "type": [Function],
         },
       ],
@@ -493,25 +782,47 @@ ShallowWrapper {
         "children": <View
           style={
             Object {
+              "backgroundColor": "rgba(255, 255, 255, 0.32)",
+              "borderColor": "#FFFFFF",
+              "borderRadius": 16,
+              "borderWidth": 2,
               "display": "flex",
+              "flex": 1,
               "flexDirection": "row",
+              "overflow": "hidden",
+              "paddingBottom": 16,
+              "paddingLeft": 150,
+              "paddingRight": 50,
+              "paddingTop": 28,
+              "width": "100%",
             }
           }
         >
           <View
             style={
               Object {
+                "flex": 1,
                 "width": 160,
               }
             }
           >
             <YuText
               bold={true}
+              style={
+                Object {
+                  "fontSize": 32,
+                }
+              }
             >
               steps
             </YuText>
             <YuText
-              bold={true}
+              style={
+                Object {
+                  "fontSize": 32,
+                  "marginTop": 8,
+                }
+              }
             >
               30 minutes
             </YuText>
@@ -520,7 +831,9 @@ ShallowWrapper {
             style={
               Object {
                 "flex": 1,
-                "flexGrow": 1,
+                "flexDirection": "column",
+                "marginLeft": "auto",
+                "marginTop": 48,
               }
             }
           >
@@ -529,93 +842,21 @@ ShallowWrapper {
                 Object {
                   "flex": 1,
                   "flexDirection": "row",
-                  "marginLeft": -8,
-                }
-              }
-            >
-              <View>
-                <Image
-                  source={1}
-                  style={
-                    Object {
-                      "marginRight": 10,
-                    }
-                  }
-                />
-              </View>
-              <View>
-                <Image
-                  source={1}
-                  style={
-                    Object {
-                      "marginRight": 10,
-                    }
-                  }
-                />
-              </View>
-              <View>
-                <Image
-                  source={1}
-                  style={
-                    Object {
-                      "marginRight": 10,
-                    }
-                  }
-                />
-              </View>
-            </View>
-            <YuText
-              style={
-                Object {
-                  "fontSize": 24,
-                }
-              }
-            >
-              6 yucoin
-            </YuText>
-          </View>
-        </View>,
-        "style": Object {
-          "display": "flex",
-          "paddingLeft": 176,
-          "paddingRight": 40,
-          "paddingVertical": 40,
-          "width": "100%",
-        },
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <View
-              style={
-                Object {
-                  "width": 160,
+                  "marginBottom": 16,
                 }
               }
             >
               <YuText
-                bold={true}
-              >
-                steps
-              </YuText>
-              <YuText
-                bold={true}
-              >
-                30 minutes
-              </YuText>
-            </View>,
-            <View
-              style={
-                Object {
-                  "flex": 1,
-                  "flexGrow": 1,
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "height": 32,
+                    "marginRight": 16,
+                  }
                 }
-              }
-            >
+              >
+                0 yucoin
+              </YuText>
               <View
                 style={
                   Object {
@@ -630,7 +871,11 @@ ShallowWrapper {
                     source={1}
                     style={
                       Object {
+                        "height": 32,
+                        "marginBottom": "auto",
                         "marginRight": 10,
+                        "marginTop": "auto",
+                        "width": 32,
                       }
                     }
                   />
@@ -640,7 +885,11 @@ ShallowWrapper {
                     source={1}
                     style={
                       Object {
+                        "height": 32,
+                        "marginBottom": "auto",
                         "marginRight": 10,
+                        "marginTop": "auto",
+                        "width": 32,
                       }
                     }
                   />
@@ -650,26 +899,173 @@ ShallowWrapper {
                     source={1}
                     style={
                       Object {
+                        "height": 32,
+                        "marginBottom": "auto",
                         "marginRight": 10,
+                        "marginTop": "auto",
+                        "width": 32,
                       }
                     }
                   />
                 </View>
               </View>
+            </View>
+          </View>
+          <ErrorableImage
+            source={null}
+            style={null}
+            width={0}
+          />
+        </View>,
+        "style": Object {
+          "display": "flex",
+          "flexDirection": "row",
+          "paddingLeft": 60,
+          "paddingRight": 40,
+          "paddingVertical": 16,
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "width": 160,
+                }
+              }
+            >
               <YuText
+                bold={true}
                 style={
                   Object {
-                    "fontSize": 24,
+                    "fontSize": 32,
                   }
                 }
               >
-                6 yucoin
+                steps
+              </YuText>
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "marginTop": 8,
+                  }
+                }
+              >
+                30 minutes
               </YuText>
             </View>,
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "marginLeft": "auto",
+                  "marginTop": 48,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "marginBottom": 16,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                      "height": 32,
+                      "marginRight": 16,
+                    }
+                  }
+                >
+                  0 yucoin
+                </YuText>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "marginLeft": -8,
+                    }
+                  }
+                >
+                  <View>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginBottom": "auto",
+                          "marginRight": 10,
+                          "marginTop": "auto",
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>
+                  <View>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginBottom": "auto",
+                          "marginRight": 10,
+                          "marginTop": "auto",
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>
+                  <View>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginBottom": "auto",
+                          "marginRight": 10,
+                          "marginTop": "auto",
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+            </View>,
+            <ErrorableImage
+              source={null}
+              style={null}
+              width={0}
+            />,
           ],
           "style": Object {
+            "backgroundColor": "rgba(255, 255, 255, 0.32)",
+            "borderColor": "#FFFFFF",
+            "borderRadius": 16,
+            "borderWidth": 2,
             "display": "flex",
+            "flex": 1,
             "flexDirection": "row",
+            "overflow": "hidden",
+            "paddingBottom": 16,
+            "paddingLeft": 150,
+            "paddingRight": 50,
+            "paddingTop": 28,
+            "width": "100%",
           },
         },
         "ref": null,
@@ -682,16 +1078,27 @@ ShallowWrapper {
               "children": Array [
                 <YuText
                   bold={true}
+                  style={
+                    Object {
+                      "fontSize": 32,
+                    }
+                  }
                 >
                   steps
                 </YuText>,
                 <YuText
-                  bold={true}
+                  style={
+                    Object {
+                      "fontSize": 32,
+                      "marginTop": 8,
+                    }
+                  }
                 >
                   30 minutes
                 </YuText>,
               ],
               "style": Object {
+                "flex": 1,
                 "width": 160,
               },
             },
@@ -704,6 +1111,9 @@ ShallowWrapper {
                 "props": Object {
                   "bold": true,
                   "children": "steps",
+                  "style": Object {
+                    "fontSize": 32,
+                  },
                 },
                 "ref": null,
                 "rendered": "steps",
@@ -714,8 +1124,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "function",
                 "props": Object {
-                  "bold": true,
                   "children": "30 minutes",
+                  "style": Object {
+                    "fontSize": 32,
+                    "marginTop": 8,
+                  },
                 },
                 "ref": null,
                 "rendered": "30 minutes",
@@ -735,54 +1148,80 @@ ShallowWrapper {
                     Object {
                       "flex": 1,
                       "flexDirection": "row",
-                      "marginLeft": -8,
+                      "marginBottom": 16,
                     }
                   }
                 >
-                  <View>
-                    <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
-                        }
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                        "height": 32,
+                        "marginRight": 16,
                       }
-                    />
-                  </View>
-                  <View>
-                    <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
-                        }
+                    }
+                  >
+                    0 yucoin
+                  </YuText>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "marginLeft": -8,
                       }
-                    />
-                  </View>
-                  <View>
-                    <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
+                    }
+                  >
+                    <View>
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          }
                         }
-                      }
-                    />
+                      />
+                    </View>
+                    <View>
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          }
+                        }
+                      />
+                    </View>
+                    <View>
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>,
-                <YuText
-                  style={
-                    Object {
-                      "fontSize": 24,
-                    }
-                  }
-                >
-                  6 yucoin
-                </YuText>,
               ],
               "style": Object {
                 "flex": 1,
-                "flexGrow": 1,
+                "flexDirection": "column",
+                "marginLeft": "auto",
+                "marginTop": 48,
               },
             },
             "ref": null,
@@ -793,156 +1232,288 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": Array [
-                    <View>
-                      <Image
-                        source={1}
-                        style={
-                          Object {
-                            "marginRight": 10,
-                          }
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 32,
+                          "height": 32,
+                          "marginRight": 16,
                         }
-                      />
-                    </View>,
-                    <View>
-                      <Image
-                        source={1}
-                        style={
-                          Object {
-                            "marginRight": 10,
-                          }
+                      }
+                    >
+                      0 yucoin
+                    </YuText>,
+                    <View
+                      style={
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "marginLeft": -8,
                         }
-                      />
-                    </View>,
-                    <View>
-                      <Image
-                        source={1}
-                        style={
-                          Object {
-                            "marginRight": 10,
+                      }
+                    >
+                      <View>
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
                           }
-                        }
-                      />
+                        />
+                      </View>
+                      <View>
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />
+                      </View>
+                      <View>
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />
+                      </View>
                     </View>,
                   ],
                   "style": Object {
                     "flex": 1,
                     "flexDirection": "row",
-                    "marginLeft": -8,
+                    "marginBottom": 16,
                   },
                 },
                 "ref": null,
                 "rendered": Array [
                   Object {
                     "instance": null,
-                    "key": "0",
-                    "nodeType": "class",
+                    "key": undefined,
+                    "nodeType": "function",
                     "props": Object {
-                      "children": <Image
-                        source={1}
-                        style={
-                          Object {
-                            "marginRight": 10,
-                          }
-                        }
-                      />,
+                      "children": "0 yucoin",
+                      "style": Object {
+                        "fontSize": 32,
+                        "height": 32,
+                        "marginRight": 16,
+                      },
                     },
                     "ref": null,
-                    "rendered": Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "source": 1,
-                        "style": Object {
-                          "marginRight": 10,
-                        },
-                      },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
-                    },
+                    "rendered": "0 yucoin",
                     "type": [Function],
                   },
                   Object {
                     "instance": null,
-                    "key": "1",
+                    "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "children": <Image
-                        source={1}
-                        style={
-                          Object {
-                            "marginRight": 10,
-                          }
-                        }
-                      />,
+                      "children": Array [
+                        <View>
+                          <Image
+                            source={1}
+                            style={
+                              Object {
+                                "height": 32,
+                                "marginBottom": "auto",
+                                "marginRight": 10,
+                                "marginTop": "auto",
+                                "width": 32,
+                              }
+                            }
+                          />
+                        </View>,
+                        <View>
+                          <Image
+                            source={1}
+                            style={
+                              Object {
+                                "height": 32,
+                                "marginBottom": "auto",
+                                "marginRight": 10,
+                                "marginTop": "auto",
+                                "width": 32,
+                              }
+                            }
+                          />
+                        </View>,
+                        <View>
+                          <Image
+                            source={1}
+                            style={
+                              Object {
+                                "height": 32,
+                                "marginBottom": "auto",
+                                "marginRight": 10,
+                                "marginTop": "auto",
+                                "width": 32,
+                              }
+                            }
+                          />
+                        </View>,
+                      ],
+                      "style": Object {
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "marginLeft": -8,
+                      },
                     },
                     "ref": null,
-                    "rendered": Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "source": 1,
-                        "style": Object {
-                          "marginRight": 10,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": "0",
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": <Image
+                            source={1}
+                            style={
+                              Object {
+                                "height": 32,
+                                "marginBottom": "auto",
+                                "marginRight": 10,
+                                "marginTop": "auto",
+                                "width": 32,
+                              }
+                            }
+                          />,
                         },
-                      },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
-                    },
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": "2",
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": <Image
-                        source={1}
-                        style={
-                          Object {
-                            "marginRight": 10,
-                          }
-                        }
-                      />,
-                    },
-                    "ref": null,
-                    "rendered": Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "source": 1,
-                        "style": Object {
-                          "marginRight": 10,
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "source": 1,
+                            "style": Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            },
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": [Function],
                         },
+                        "type": [Function],
                       },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
-                    },
+                      Object {
+                        "instance": null,
+                        "key": "1",
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": <Image
+                            source={1}
+                            style={
+                              Object {
+                                "height": 32,
+                                "marginBottom": "auto",
+                                "marginRight": 10,
+                                "marginTop": "auto",
+                                "width": 32,
+                              }
+                            }
+                          />,
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "source": 1,
+                            "style": Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            },
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": [Function],
+                        },
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": "2",
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": <Image
+                            source={1}
+                            style={
+                              Object {
+                                "height": 32,
+                                "marginBottom": "auto",
+                                "marginRight": 10,
+                                "marginTop": "auto",
+                                "width": 32,
+                              }
+                            }
+                          />,
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "source": 1,
+                            "style": Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            },
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": [Function],
+                        },
+                        "type": [Function],
+                      },
+                    ],
                     "type": [Function],
                   },
                 ],
                 "type": [Function],
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": "6 yucoin",
-                  "style": Object {
-                    "fontSize": 24,
-                  },
-                },
-                "ref": null,
-                "rendered": "6 yucoin",
-                "type": [Function],
-              },
             ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "source": null,
+              "style": null,
+              "width": 0,
+            },
+            "ref": null,
+            "rendered": null,
             "type": [Function],
           },
         ],
@@ -978,10 +1549,17 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengesHistorySlot
     availableAtLevel={3}
+    challengesDetails={
+      Array [
+        Object {
+          "rating": 0,
+          "yuCoinAwarded": 0,
+        },
+      ]
+    }
     duration="30 minutes"
+    level={Object {}}
     locked={false}
-    rating={0}
-    reward={6}
     type="steps"
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -1000,25 +1578,47 @@ ShallowWrapper {
       "children": <View
         style={
           Object {
+            "backgroundColor": "rgba(255, 255, 255, 0.32)",
+            "borderColor": "#FFFFFF",
+            "borderRadius": 16,
+            "borderWidth": 2,
             "display": "flex",
+            "flex": 1,
             "flexDirection": "row",
+            "overflow": "hidden",
+            "paddingBottom": 16,
+            "paddingLeft": 150,
+            "paddingRight": 50,
+            "paddingTop": 28,
+            "width": "100%",
           }
         }
       >
         <View
           style={
             Object {
+              "flex": 1,
               "width": 160,
             }
           }
         >
           <YuText
             bold={true}
+            style={
+              Object {
+                "fontSize": 32,
+              }
+            }
           >
             steps
           </YuText>
           <YuText
-            bold={true}
+            style={
+              Object {
+                "fontSize": 32,
+                "marginTop": 8,
+              }
+            }
           >
             30 minutes
           </YuText>
@@ -1027,7 +1627,9 @@ ShallowWrapper {
           style={
             Object {
               "flex": 1,
-              "flexGrow": 1,
+              "flexDirection": "column",
+              "marginLeft": "auto",
+              "marginTop": 48,
             }
           }
         >
@@ -1036,93 +1638,21 @@ ShallowWrapper {
               Object {
                 "flex": 1,
                 "flexDirection": "row",
-                "marginLeft": -8,
-              }
-            }
-          >
-            <View>
-              <Image
-                source={1}
-                style={
-                  Object {
-                    "marginRight": 10,
-                  }
-                }
-              />
-            </View>
-            <View>
-              <Image
-                source={1}
-                style={
-                  Object {
-                    "marginRight": 10,
-                  }
-                }
-              />
-            </View>
-            <View>
-              <Image
-                source={1}
-                style={
-                  Object {
-                    "marginRight": 10,
-                  }
-                }
-              />
-            </View>
-          </View>
-          <YuText
-            style={
-              Object {
-                "fontSize": 24,
-              }
-            }
-          >
-            6 yucoin
-          </YuText>
-        </View>
-      </View>,
-      "style": Object {
-        "display": "flex",
-        "paddingLeft": 176,
-        "paddingRight": 40,
-        "paddingVertical": 40,
-        "width": "100%",
-      },
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": Array [
-          <View
-            style={
-              Object {
-                "width": 160,
+                "marginBottom": 16,
               }
             }
           >
             <YuText
-              bold={true}
-            >
-              steps
-            </YuText>
-            <YuText
-              bold={true}
-            >
-              30 minutes
-            </YuText>
-          </View>,
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexGrow": 1,
+              style={
+                Object {
+                  "fontSize": 32,
+                  "height": 32,
+                  "marginRight": 16,
+                }
               }
-            }
-          >
+            >
+              0 yucoin
+            </YuText>
             <View
               style={
                 Object {
@@ -1137,7 +1667,11 @@ ShallowWrapper {
                   source={1}
                   style={
                     Object {
+                      "height": 32,
+                      "marginBottom": "auto",
                       "marginRight": 10,
+                      "marginTop": "auto",
+                      "width": 32,
                     }
                   }
                 />
@@ -1147,7 +1681,11 @@ ShallowWrapper {
                   source={1}
                   style={
                     Object {
+                      "height": 32,
+                      "marginBottom": "auto",
                       "marginRight": 10,
+                      "marginTop": "auto",
+                      "width": 32,
                     }
                   }
                 />
@@ -1157,26 +1695,173 @@ ShallowWrapper {
                   source={1}
                   style={
                     Object {
+                      "height": 32,
+                      "marginBottom": "auto",
                       "marginRight": 10,
+                      "marginTop": "auto",
+                      "width": 32,
                     }
                   }
                 />
               </View>
             </View>
+          </View>
+        </View>
+        <ErrorableImage
+          source={null}
+          style={null}
+          width={0}
+        />
+      </View>,
+      "style": Object {
+        "display": "flex",
+        "flexDirection": "row",
+        "paddingLeft": 60,
+        "paddingRight": 40,
+        "paddingVertical": 16,
+        "width": "100%",
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "width": 160,
+              }
+            }
+          >
             <YuText
+              bold={true}
               style={
                 Object {
-                  "fontSize": 24,
+                  "fontSize": 32,
                 }
               }
             >
-              6 yucoin
+              steps
+            </YuText>
+            <YuText
+              style={
+                Object {
+                  "fontSize": 32,
+                  "marginTop": 8,
+                }
+              }
+            >
+              30 minutes
             </YuText>
           </View>,
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "marginLeft": "auto",
+                "marginTop": 48,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginBottom": 16,
+                }
+              }
+            >
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "height": 32,
+                    "marginRight": 16,
+                  }
+                }
+              >
+                0 yucoin
+              </YuText>
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "marginLeft": -8,
+                  }
+                }
+              >
+                <View>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginBottom": "auto",
+                        "marginRight": 10,
+                        "marginTop": "auto",
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>
+                <View>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginBottom": "auto",
+                        "marginRight": 10,
+                        "marginTop": "auto",
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>
+                <View>
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 32,
+                        "marginBottom": "auto",
+                        "marginRight": 10,
+                        "marginTop": "auto",
+                        "width": 32,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+          </View>,
+          <ErrorableImage
+            source={null}
+            style={null}
+            width={0}
+          />,
         ],
         "style": Object {
+          "backgroundColor": "rgba(255, 255, 255, 0.32)",
+          "borderColor": "#FFFFFF",
+          "borderRadius": 16,
+          "borderWidth": 2,
           "display": "flex",
+          "flex": 1,
           "flexDirection": "row",
+          "overflow": "hidden",
+          "paddingBottom": 16,
+          "paddingLeft": 150,
+          "paddingRight": 50,
+          "paddingTop": 28,
+          "width": "100%",
         },
       },
       "ref": null,
@@ -1189,16 +1874,27 @@ ShallowWrapper {
             "children": Array [
               <YuText
                 bold={true}
+                style={
+                  Object {
+                    "fontSize": 32,
+                  }
+                }
               >
                 steps
               </YuText>,
               <YuText
-                bold={true}
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "marginTop": 8,
+                  }
+                }
               >
                 30 minutes
               </YuText>,
             ],
             "style": Object {
+              "flex": 1,
               "width": 160,
             },
           },
@@ -1211,6 +1907,9 @@ ShallowWrapper {
               "props": Object {
                 "bold": true,
                 "children": "steps",
+                "style": Object {
+                  "fontSize": 32,
+                },
               },
               "ref": null,
               "rendered": "steps",
@@ -1221,8 +1920,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "bold": true,
                 "children": "30 minutes",
+                "style": Object {
+                  "fontSize": 32,
+                  "marginTop": 8,
+                },
               },
               "ref": null,
               "rendered": "30 minutes",
@@ -1242,54 +1944,80 @@ ShallowWrapper {
                   Object {
                     "flex": 1,
                     "flexDirection": "row",
-                    "marginLeft": -8,
+                    "marginBottom": 16,
                   }
                 }
               >
-                <View>
-                  <Image
-                    source={1}
-                    style={
-                      Object {
-                        "marginRight": 10,
-                      }
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                      "height": 32,
+                      "marginRight": 16,
                     }
-                  />
-                </View>
-                <View>
-                  <Image
-                    source={1}
-                    style={
-                      Object {
-                        "marginRight": 10,
-                      }
+                  }
+                >
+                  0 yucoin
+                </YuText>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "marginLeft": -8,
                     }
-                  />
-                </View>
-                <View>
-                  <Image
-                    source={1}
-                    style={
-                      Object {
-                        "marginRight": 10,
+                  }
+                >
+                  <View>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginBottom": "auto",
+                          "marginRight": 10,
+                          "marginTop": "auto",
+                          "width": 32,
+                        }
                       }
-                    }
-                  />
+                    />
+                  </View>
+                  <View>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginBottom": "auto",
+                          "marginRight": 10,
+                          "marginTop": "auto",
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>
+                  <View>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginBottom": "auto",
+                          "marginRight": 10,
+                          "marginTop": "auto",
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>
                 </View>
               </View>,
-              <YuText
-                style={
-                  Object {
-                    "fontSize": 24,
-                  }
-                }
-              >
-                6 yucoin
-              </YuText>,
             ],
             "style": Object {
               "flex": 1,
-              "flexGrow": 1,
+              "flexDirection": "column",
+              "marginLeft": "auto",
+              "marginTop": 48,
             },
           },
           "ref": null,
@@ -1300,156 +2028,288 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": Array [
-                  <View>
-                    <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
-                        }
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                        "height": 32,
+                        "marginRight": 16,
                       }
-                    />
-                  </View>,
-                  <View>
-                    <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
-                        }
+                    }
+                  >
+                    0 yucoin
+                  </YuText>,
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "marginLeft": -8,
                       }
-                    />
-                  </View>,
-                  <View>
-                    <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
+                    }
+                  >
+                    <View>
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          }
                         }
-                      }
-                    />
+                      />
+                    </View>
+                    <View>
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          }
+                        }
+                      />
+                    </View>
+                    <View>
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          }
+                        }
+                      />
+                    </View>
                   </View>,
                 ],
                 "style": Object {
                   "flex": 1,
                   "flexDirection": "row",
-                  "marginLeft": -8,
+                  "marginBottom": 16,
                 },
               },
               "ref": null,
               "rendered": Array [
                 Object {
                   "instance": null,
-                  "key": "0",
-                  "nodeType": "class",
+                  "key": undefined,
+                  "nodeType": "function",
                   "props": Object {
-                    "children": <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
-                        }
-                      }
-                    />,
+                    "children": "0 yucoin",
+                    "style": Object {
+                      "fontSize": 32,
+                      "height": 32,
+                      "marginRight": 16,
+                    },
                   },
                   "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "source": 1,
-                      "style": Object {
-                        "marginRight": 10,
-                      },
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
+                  "rendered": "0 yucoin",
                   "type": [Function],
                 },
                 Object {
                   "instance": null,
-                  "key": "1",
+                  "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
-                        }
-                      }
-                    />,
+                    "children": Array [
+                      <View>
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />
+                      </View>,
+                      <View>
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />
+                      </View>,
+                      <View>
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />
+                      </View>,
+                    ],
+                    "style": Object {
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "marginLeft": -8,
+                    },
                   },
                   "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "source": 1,
-                      "style": Object {
-                        "marginRight": 10,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": "0",
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />,
                       },
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": "2",
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
-                        }
-                      }
-                    />,
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "source": 1,
-                      "style": Object {
-                        "marginRight": 10,
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "source": 1,
+                          "style": Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
                       },
+                      "type": [Function],
                     },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
+                    Object {
+                      "instance": null,
+                      "key": "1",
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "source": 1,
+                          "style": Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": "2",
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "source": 1,
+                          "style": Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                  ],
                   "type": [Function],
                 },
               ],
               "type": [Function],
             },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": "6 yucoin",
-                "style": Object {
-                  "fontSize": 24,
-                },
-              },
-              "ref": null,
-              "rendered": "6 yucoin",
-              "type": [Function],
-            },
           ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "source": null,
+            "style": null,
+            "width": 0,
+          },
+          "ref": null,
+          "rendered": null,
           "type": [Function],
         },
       ],
@@ -1466,25 +2326,47 @@ ShallowWrapper {
         "children": <View
           style={
             Object {
+              "backgroundColor": "rgba(255, 255, 255, 0.32)",
+              "borderColor": "#FFFFFF",
+              "borderRadius": 16,
+              "borderWidth": 2,
               "display": "flex",
+              "flex": 1,
               "flexDirection": "row",
+              "overflow": "hidden",
+              "paddingBottom": 16,
+              "paddingLeft": 150,
+              "paddingRight": 50,
+              "paddingTop": 28,
+              "width": "100%",
             }
           }
         >
           <View
             style={
               Object {
+                "flex": 1,
                 "width": 160,
               }
             }
           >
             <YuText
               bold={true}
+              style={
+                Object {
+                  "fontSize": 32,
+                }
+              }
             >
               steps
             </YuText>
             <YuText
-              bold={true}
+              style={
+                Object {
+                  "fontSize": 32,
+                  "marginTop": 8,
+                }
+              }
             >
               30 minutes
             </YuText>
@@ -1493,7 +2375,9 @@ ShallowWrapper {
             style={
               Object {
                 "flex": 1,
-                "flexGrow": 1,
+                "flexDirection": "column",
+                "marginLeft": "auto",
+                "marginTop": 48,
               }
             }
           >
@@ -1502,93 +2386,21 @@ ShallowWrapper {
                 Object {
                   "flex": 1,
                   "flexDirection": "row",
-                  "marginLeft": -8,
-                }
-              }
-            >
-              <View>
-                <Image
-                  source={1}
-                  style={
-                    Object {
-                      "marginRight": 10,
-                    }
-                  }
-                />
-              </View>
-              <View>
-                <Image
-                  source={1}
-                  style={
-                    Object {
-                      "marginRight": 10,
-                    }
-                  }
-                />
-              </View>
-              <View>
-                <Image
-                  source={1}
-                  style={
-                    Object {
-                      "marginRight": 10,
-                    }
-                  }
-                />
-              </View>
-            </View>
-            <YuText
-              style={
-                Object {
-                  "fontSize": 24,
-                }
-              }
-            >
-              6 yucoin
-            </YuText>
-          </View>
-        </View>,
-        "style": Object {
-          "display": "flex",
-          "paddingLeft": 176,
-          "paddingRight": 40,
-          "paddingVertical": 40,
-          "width": "100%",
-        },
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <View
-              style={
-                Object {
-                  "width": 160,
+                  "marginBottom": 16,
                 }
               }
             >
               <YuText
-                bold={true}
-              >
-                steps
-              </YuText>
-              <YuText
-                bold={true}
-              >
-                30 minutes
-              </YuText>
-            </View>,
-            <View
-              style={
-                Object {
-                  "flex": 1,
-                  "flexGrow": 1,
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "height": 32,
+                    "marginRight": 16,
+                  }
                 }
-              }
-            >
+              >
+                0 yucoin
+              </YuText>
               <View
                 style={
                   Object {
@@ -1603,7 +2415,11 @@ ShallowWrapper {
                     source={1}
                     style={
                       Object {
+                        "height": 32,
+                        "marginBottom": "auto",
                         "marginRight": 10,
+                        "marginTop": "auto",
+                        "width": 32,
                       }
                     }
                   />
@@ -1613,7 +2429,11 @@ ShallowWrapper {
                     source={1}
                     style={
                       Object {
+                        "height": 32,
+                        "marginBottom": "auto",
                         "marginRight": 10,
+                        "marginTop": "auto",
+                        "width": 32,
                       }
                     }
                   />
@@ -1623,26 +2443,173 @@ ShallowWrapper {
                     source={1}
                     style={
                       Object {
+                        "height": 32,
+                        "marginBottom": "auto",
                         "marginRight": 10,
+                        "marginTop": "auto",
+                        "width": 32,
                       }
                     }
                   />
                 </View>
               </View>
+            </View>
+          </View>
+          <ErrorableImage
+            source={null}
+            style={null}
+            width={0}
+          />
+        </View>,
+        "style": Object {
+          "display": "flex",
+          "flexDirection": "row",
+          "paddingLeft": 60,
+          "paddingRight": 40,
+          "paddingVertical": 16,
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "width": 160,
+                }
+              }
+            >
               <YuText
+                bold={true}
                 style={
                   Object {
-                    "fontSize": 24,
+                    "fontSize": 32,
                   }
                 }
               >
-                6 yucoin
+                steps
+              </YuText>
+              <YuText
+                style={
+                  Object {
+                    "fontSize": 32,
+                    "marginTop": 8,
+                  }
+                }
+              >
+                30 minutes
               </YuText>
             </View>,
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "marginLeft": "auto",
+                  "marginTop": 48,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "marginBottom": 16,
+                  }
+                }
+              >
+                <YuText
+                  style={
+                    Object {
+                      "fontSize": 32,
+                      "height": 32,
+                      "marginRight": 16,
+                    }
+                  }
+                >
+                  0 yucoin
+                </YuText>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "marginLeft": -8,
+                    }
+                  }
+                >
+                  <View>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginBottom": "auto",
+                          "marginRight": 10,
+                          "marginTop": "auto",
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>
+                  <View>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginBottom": "auto",
+                          "marginRight": 10,
+                          "marginTop": "auto",
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>
+                  <View>
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 32,
+                          "marginBottom": "auto",
+                          "marginRight": 10,
+                          "marginTop": "auto",
+                          "width": 32,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+            </View>,
+            <ErrorableImage
+              source={null}
+              style={null}
+              width={0}
+            />,
           ],
           "style": Object {
+            "backgroundColor": "rgba(255, 255, 255, 0.32)",
+            "borderColor": "#FFFFFF",
+            "borderRadius": 16,
+            "borderWidth": 2,
             "display": "flex",
+            "flex": 1,
             "flexDirection": "row",
+            "overflow": "hidden",
+            "paddingBottom": 16,
+            "paddingLeft": 150,
+            "paddingRight": 50,
+            "paddingTop": 28,
+            "width": "100%",
           },
         },
         "ref": null,
@@ -1655,16 +2622,27 @@ ShallowWrapper {
               "children": Array [
                 <YuText
                   bold={true}
+                  style={
+                    Object {
+                      "fontSize": 32,
+                    }
+                  }
                 >
                   steps
                 </YuText>,
                 <YuText
-                  bold={true}
+                  style={
+                    Object {
+                      "fontSize": 32,
+                      "marginTop": 8,
+                    }
+                  }
                 >
                   30 minutes
                 </YuText>,
               ],
               "style": Object {
+                "flex": 1,
                 "width": 160,
               },
             },
@@ -1677,6 +2655,9 @@ ShallowWrapper {
                 "props": Object {
                   "bold": true,
                   "children": "steps",
+                  "style": Object {
+                    "fontSize": 32,
+                  },
                 },
                 "ref": null,
                 "rendered": "steps",
@@ -1687,8 +2668,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "function",
                 "props": Object {
-                  "bold": true,
                   "children": "30 minutes",
+                  "style": Object {
+                    "fontSize": 32,
+                    "marginTop": 8,
+                  },
                 },
                 "ref": null,
                 "rendered": "30 minutes",
@@ -1708,54 +2692,80 @@ ShallowWrapper {
                     Object {
                       "flex": 1,
                       "flexDirection": "row",
-                      "marginLeft": -8,
+                      "marginBottom": 16,
                     }
                   }
                 >
-                  <View>
-                    <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
-                        }
+                  <YuText
+                    style={
+                      Object {
+                        "fontSize": 32,
+                        "height": 32,
+                        "marginRight": 16,
                       }
-                    />
-                  </View>
-                  <View>
-                    <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
-                        }
+                    }
+                  >
+                    0 yucoin
+                  </YuText>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "marginLeft": -8,
                       }
-                    />
-                  </View>
-                  <View>
-                    <Image
-                      source={1}
-                      style={
-                        Object {
-                          "marginRight": 10,
+                    }
+                  >
+                    <View>
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          }
                         }
-                      }
-                    />
+                      />
+                    </View>
+                    <View>
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          }
+                        }
+                      />
+                    </View>
+                    <View>
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 32,
+                            "marginBottom": "auto",
+                            "marginRight": 10,
+                            "marginTop": "auto",
+                            "width": 32,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>,
-                <YuText
-                  style={
-                    Object {
-                      "fontSize": 24,
-                    }
-                  }
-                >
-                  6 yucoin
-                </YuText>,
               ],
               "style": Object {
                 "flex": 1,
-                "flexGrow": 1,
+                "flexDirection": "column",
+                "marginLeft": "auto",
+                "marginTop": 48,
               },
             },
             "ref": null,
@@ -1766,156 +2776,288 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": Array [
-                    <View>
-                      <Image
-                        source={1}
-                        style={
-                          Object {
-                            "marginRight": 10,
-                          }
+                    <YuText
+                      style={
+                        Object {
+                          "fontSize": 32,
+                          "height": 32,
+                          "marginRight": 16,
                         }
-                      />
-                    </View>,
-                    <View>
-                      <Image
-                        source={1}
-                        style={
-                          Object {
-                            "marginRight": 10,
-                          }
+                      }
+                    >
+                      0 yucoin
+                    </YuText>,
+                    <View
+                      style={
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "marginLeft": -8,
                         }
-                      />
-                    </View>,
-                    <View>
-                      <Image
-                        source={1}
-                        style={
-                          Object {
-                            "marginRight": 10,
+                      }
+                    >
+                      <View>
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
                           }
-                        }
-                      />
+                        />
+                      </View>
+                      <View>
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />
+                      </View>
+                      <View>
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            }
+                          }
+                        />
+                      </View>
                     </View>,
                   ],
                   "style": Object {
                     "flex": 1,
                     "flexDirection": "row",
-                    "marginLeft": -8,
+                    "marginBottom": 16,
                   },
                 },
                 "ref": null,
                 "rendered": Array [
                   Object {
                     "instance": null,
-                    "key": "0",
-                    "nodeType": "class",
+                    "key": undefined,
+                    "nodeType": "function",
                     "props": Object {
-                      "children": <Image
-                        source={1}
-                        style={
-                          Object {
-                            "marginRight": 10,
-                          }
-                        }
-                      />,
+                      "children": "0 yucoin",
+                      "style": Object {
+                        "fontSize": 32,
+                        "height": 32,
+                        "marginRight": 16,
+                      },
                     },
                     "ref": null,
-                    "rendered": Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "source": 1,
-                        "style": Object {
-                          "marginRight": 10,
-                        },
-                      },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
-                    },
+                    "rendered": "0 yucoin",
                     "type": [Function],
                   },
                   Object {
                     "instance": null,
-                    "key": "1",
+                    "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "children": <Image
-                        source={1}
-                        style={
-                          Object {
-                            "marginRight": 10,
-                          }
-                        }
-                      />,
+                      "children": Array [
+                        <View>
+                          <Image
+                            source={1}
+                            style={
+                              Object {
+                                "height": 32,
+                                "marginBottom": "auto",
+                                "marginRight": 10,
+                                "marginTop": "auto",
+                                "width": 32,
+                              }
+                            }
+                          />
+                        </View>,
+                        <View>
+                          <Image
+                            source={1}
+                            style={
+                              Object {
+                                "height": 32,
+                                "marginBottom": "auto",
+                                "marginRight": 10,
+                                "marginTop": "auto",
+                                "width": 32,
+                              }
+                            }
+                          />
+                        </View>,
+                        <View>
+                          <Image
+                            source={1}
+                            style={
+                              Object {
+                                "height": 32,
+                                "marginBottom": "auto",
+                                "marginRight": 10,
+                                "marginTop": "auto",
+                                "width": 32,
+                              }
+                            }
+                          />
+                        </View>,
+                      ],
+                      "style": Object {
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "marginLeft": -8,
+                      },
                     },
                     "ref": null,
-                    "rendered": Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "source": 1,
-                        "style": Object {
-                          "marginRight": 10,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": "0",
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": <Image
+                            source={1}
+                            style={
+                              Object {
+                                "height": 32,
+                                "marginBottom": "auto",
+                                "marginRight": 10,
+                                "marginTop": "auto",
+                                "width": 32,
+                              }
+                            }
+                          />,
                         },
-                      },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
-                    },
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": "2",
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": <Image
-                        source={1}
-                        style={
-                          Object {
-                            "marginRight": 10,
-                          }
-                        }
-                      />,
-                    },
-                    "ref": null,
-                    "rendered": Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "source": 1,
-                        "style": Object {
-                          "marginRight": 10,
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "source": 1,
+                            "style": Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            },
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": [Function],
                         },
+                        "type": [Function],
                       },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
-                    },
+                      Object {
+                        "instance": null,
+                        "key": "1",
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": <Image
+                            source={1}
+                            style={
+                              Object {
+                                "height": 32,
+                                "marginBottom": "auto",
+                                "marginRight": 10,
+                                "marginTop": "auto",
+                                "width": 32,
+                              }
+                            }
+                          />,
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "source": 1,
+                            "style": Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            },
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": [Function],
+                        },
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": "2",
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": <Image
+                            source={1}
+                            style={
+                              Object {
+                                "height": 32,
+                                "marginBottom": "auto",
+                                "marginRight": 10,
+                                "marginTop": "auto",
+                                "width": 32,
+                              }
+                            }
+                          />,
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "source": 1,
+                            "style": Object {
+                              "height": 32,
+                              "marginBottom": "auto",
+                              "marginRight": 10,
+                              "marginTop": "auto",
+                              "width": 32,
+                            },
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": [Function],
+                        },
+                        "type": [Function],
+                      },
+                    ],
                     "type": [Function],
                   },
                 ],
                 "type": [Function],
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": "6 yucoin",
-                  "style": Object {
-                    "fontSize": 24,
-                  },
-                },
-                "ref": null,
-                "rendered": "6 yucoin",
-                "type": [Function],
-              },
             ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "source": null,
+              "style": null,
+              "width": 0,
+            },
+            "ref": null,
+            "rendered": null,
             "type": [Function],
           },
         ],
@@ -1951,10 +3093,17 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ChallengesHistorySlot
     availableAtLevel={3}
+    challengesDetails={
+      Array [
+        Object {
+          "rating": 0,
+          "yuCoinAwarded": 0,
+        },
+      ]
+    }
     duration="30 minutes"
+    level={Object {}}
     locked={true}
-    rating={3}
-    reward={6}
     type="steps"
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -1991,9 +3140,10 @@ ShallowWrapper {
       </View>,
       "style": Object {
         "display": "flex",
-        "paddingLeft": 176,
+        "flexDirection": "row",
+        "paddingLeft": 60,
         "paddingRight": 40,
-        "paddingVertical": 40,
+        "paddingVertical": 16,
         "width": "100%",
       },
     },
@@ -2084,9 +3234,10 @@ ShallowWrapper {
         </View>,
         "style": Object {
           "display": "flex",
-          "paddingLeft": 176,
+          "flexDirection": "row",
+          "paddingLeft": 60,
           "paddingRight": 40,
-          "paddingVertical": 40,
+          "paddingVertical": 16,
           "width": "100%",
         },
       },

@@ -602,6 +602,7 @@ ShallowWrapper {
             Object {
               "__typename": "LevelSlot",
               "availableAtLevel": 7,
+              "challengesDetails": Array [],
               "id": "YU_LEVEL_0151_0",
               "milestones": Array [],
               "passive": null,

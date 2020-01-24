@@ -44,6 +44,7 @@ const currentProps = {
                     type: "move",
                     unit: "steps",
                     yuCoinAwarded: null,
+                    challengesDetails: [],
                     __typename: "LevelSlot"
                 }
             ]
@@ -73,6 +74,7 @@ const currentProps = {
                     type: "move",
                     unit: "steps",
                     yuCoinAwarded: null,
+                    challengesDetails: [],
                     __typename: "LevelSlot"
                 }
             ]

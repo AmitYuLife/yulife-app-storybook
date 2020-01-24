@@ -22,6 +22,10 @@ export const getCurrentWorldGql = gql`
                 unit
                 rating
                 yuCoinAwarded
+                challengesDetails {
+                    rating
+                    yuCoinAwarded
+                }
                 milestones {
                     id
                     __typename

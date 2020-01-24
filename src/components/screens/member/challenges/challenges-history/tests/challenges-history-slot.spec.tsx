@@ -5,11 +5,11 @@ import ChalengesHistorySlot from "../challenges-history-slot";
 
 const defaultProps = {
     duration: "30 minutes",
-    reward: 6,
     type: "steps",
-    rating: 3,
     availableAtLevel: 3,
-    locked: false
+    locked: false,
+    level: {},
+    challengesDetails: [{ rating: 0, yuCoinAwarded: 0 }]
 };
 
 describe("ChalengesHistorySlot", () => {
@@ -20,7 +20,7 @@ describe("ChalengesHistorySlot", () => {
     });
 
     it("should match snapshot with 0 rating", () => {
-        const actual = shallow(<ChalengesHistorySlot {...defaultProps} rating={0} />);
+        const actual = shallow(<ChalengesHistorySlot {...defaultProps} />);
 
         expect(actual).toMatchSnapshot();
     });
