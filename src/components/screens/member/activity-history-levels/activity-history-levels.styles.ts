@@ -15,7 +15,7 @@ export default StyleSheet.create({
         marginLeft: distanceTwoThree
     } as ViewStyle,
     activityLabelsWrapper: {
-        width: Style.SCALE_UP_AND_DOWN(156)
+        width: Style.SCALE_UP_AND_DOWN(150)
     } as ViewStyle,
     bottomDivider: {
         borderBottomColor: "rgb(233,233,233)",

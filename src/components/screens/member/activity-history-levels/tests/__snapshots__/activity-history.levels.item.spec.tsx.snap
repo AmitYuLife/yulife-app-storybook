@@ -167,7 +167,7 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "width": 312,
+                  "width": 300,
                 }
               }
             >
@@ -780,7 +780,7 @@ ShallowWrapper {
               <View
                 style={
                   Object {
-                    "width": 312,
+                    "width": 300,
                   }
                 }
               >
@@ -1163,7 +1163,7 @@ ShallowWrapper {
                 <View
                   style={
                     Object {
-                      "width": 312,
+                      "width": 300,
                     }
                   }
                 >
@@ -1647,7 +1647,7 @@ ShallowWrapper {
                     ],
                   ],
                   "style": Object {
-                    "width": 312,
+                    "width": 300,
                   },
                 },
                 "ref": null,
@@ -2799,7 +2799,7 @@ ShallowWrapper {
               <View
                 style={
                   Object {
-                    "width": 312,
+                    "width": 300,
                   }
                 }
               >
@@ -3412,7 +3412,7 @@ ShallowWrapper {
                 <View
                   style={
                     Object {
-                      "width": 312,
+                      "width": 300,
                     }
                   }
                 >
@@ -3795,7 +3795,7 @@ ShallowWrapper {
                   <View
                     style={
                       Object {
-                        "width": 312,
+                        "width": 300,
                       }
                     }
                   >
@@ -4279,7 +4279,7 @@ ShallowWrapper {
                       ],
                     ],
                     "style": Object {
-                      "width": 312,
+                      "width": 300,
                     },
                   },
                   "ref": null,
@@ -5444,7 +5444,7 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "width": 312,
+                  "width": 300,
                 }
               }
             >
@@ -5881,7 +5881,7 @@ ShallowWrapper {
               <View
                 style={
                   Object {
-                    "width": 312,
+                    "width": 300,
                   }
                 }
               >
@@ -6264,7 +6264,7 @@ ShallowWrapper {
                 <View
                   style={
                     Object {
-                      "width": 312,
+                      "width": 300,
                     }
                   }
                 >
@@ -6748,7 +6748,7 @@ ShallowWrapper {
                     ],
                   ],
                   "style": Object {
-                    "width": 312,
+                    "width": 300,
                   },
                 },
                 "ref": null,
@@ -7851,7 +7851,7 @@ ShallowWrapper {
               <View
                 style={
                   Object {
-                    "width": 312,
+                    "width": 300,
                   }
                 }
               >
@@ -8288,7 +8288,7 @@ ShallowWrapper {
                 <View
                   style={
                     Object {
-                      "width": 312,
+                      "width": 300,
                     }
                   }
                 >
@@ -8671,7 +8671,7 @@ ShallowWrapper {
                   <View
                     style={
                       Object {
-                        "width": 312,
+                        "width": 300,
                       }
                     }
                   >
@@ -9155,7 +9155,7 @@ ShallowWrapper {
                       ],
                     ],
                     "style": Object {
-                      "width": 312,
+                      "width": 300,
                     },
                   },
                   "ref": null,
@@ -10301,7 +10301,7 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "width": 312,
+                  "width": 300,
                 }
               }
             >
@@ -10579,7 +10579,7 @@ ShallowWrapper {
               <View
                 style={
                   Object {
-                    "width": 312,
+                    "width": 300,
                   }
                 }
               >
@@ -10803,7 +10803,7 @@ ShallowWrapper {
                 <View
                   style={
                     Object {
-                      "width": 312,
+                      "width": 300,
                     }
                   }
                 >
@@ -11106,7 +11106,7 @@ ShallowWrapper {
                     </View>,
                   ],
                   "style": Object {
-                    "width": 312,
+                    "width": 300,
                   },
                 },
                 "ref": null,
@@ -11612,7 +11612,7 @@ ShallowWrapper {
               <View
                 style={
                   Object {
-                    "width": 312,
+                    "width": 300,
                   }
                 }
               >
@@ -11890,7 +11890,7 @@ ShallowWrapper {
                 <View
                   style={
                     Object {
-                      "width": 312,
+                      "width": 300,
                     }
                   }
                 >
@@ -12114,7 +12114,7 @@ ShallowWrapper {
                   <View
                     style={
                       Object {
-                        "width": 312,
+                        "width": 300,
                       }
                     }
                   >
@@ -12417,7 +12417,7 @@ ShallowWrapper {
                       </View>,
                     ],
                     "style": Object {
-                      "width": 312,
+                      "width": 300,
                     },
                   },
                   "ref": null,
@@ -12965,7 +12965,7 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "width": 312,
+                  "width": 300,
                 }
               }
             >
@@ -13195,7 +13195,7 @@ ShallowWrapper {
               <View
                 style={
                   Object {
-                    "width": 312,
+                    "width": 300,
                   }
                 }
               >
@@ -13371,7 +13371,7 @@ ShallowWrapper {
                 <View
                   style={
                     Object {
-                      "width": 312,
+                      "width": 300,
                     }
                   }
                 >
@@ -13608,7 +13608,7 @@ ShallowWrapper {
                     </View>,
                   ],
                   "style": Object {
-                    "width": 312,
+                    "width": 300,
                   },
                 },
                 "ref": null,
@@ -13999,7 +13999,7 @@ ShallowWrapper {
               <View
                 style={
                   Object {
-                    "width": 312,
+                    "width": 300,
                   }
                 }
               >
@@ -14229,7 +14229,7 @@ ShallowWrapper {
                 <View
                   style={
                     Object {
-                      "width": 312,
+                      "width": 300,
                     }
                   }
                 >
@@ -14405,7 +14405,7 @@ ShallowWrapper {
                   <View
                     style={
                       Object {
-                        "width": 312,
+                        "width": 300,
                       }
                     }
                   >
@@ -14642,7 +14642,7 @@ ShallowWrapper {
                       </View>,
                     ],
                     "style": Object {
-                      "width": 312,
+                      "width": 300,
                     },
                   },
                   "ref": null,
@@ -15095,7 +15095,7 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "width": 312,
+                  "width": 300,
                 }
               }
             >
@@ -15532,7 +15532,7 @@ ShallowWrapper {
               <View
                 style={
                   Object {
-                    "width": 312,
+                    "width": 300,
                   }
                 }
               >
@@ -15915,7 +15915,7 @@ ShallowWrapper {
                 <View
                   style={
                     Object {
-                      "width": 312,
+                      "width": 300,
                     }
                   }
                 >
@@ -16399,7 +16399,7 @@ ShallowWrapper {
                     ],
                   ],
                   "style": Object {
-                    "width": 312,
+                    "width": 300,
                   },
                 },
                 "ref": null,
@@ -17502,7 +17502,7 @@ ShallowWrapper {
               <View
                 style={
                   Object {
-                    "width": 312,
+                    "width": 300,
                   }
                 }
               >
@@ -17939,7 +17939,7 @@ ShallowWrapper {
                 <View
                   style={
                     Object {
-                      "width": 312,
+                      "width": 300,
                     }
                   }
                 >
@@ -18322,7 +18322,7 @@ ShallowWrapper {
                   <View
                     style={
                       Object {
-                        "width": 312,
+                        "width": 300,
                       }
                     }
                   >
@@ -18806,7 +18806,7 @@ ShallowWrapper {
                       ],
                     ],
                     "style": Object {
-                      "width": 312,
+                      "width": 300,
                     },
                   },
                   "ref": null,
