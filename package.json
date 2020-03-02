@@ -83,7 +83,7 @@
     "reselect": "^3.0.1",
     "socket.io-client": "^2.2.0",
     "stacktrace-parser": "^0.1.4",
-    "snyk": "^1.283.0"
+    "snyk": "^1.297.3"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
