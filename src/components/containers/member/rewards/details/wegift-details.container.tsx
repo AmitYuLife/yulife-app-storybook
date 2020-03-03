@@ -149,61 +149,62 @@ class WegiftRewardDetailsContainer extends Component<Props> {
     private handleRewardPurchase = (redeemReward: RedeemRewardFunctionType) => {
         const { offline, reward, totalCoins, copy } = this.props;
         const { yucoin, rewardValue } = this.state;
-        Alert.alert(
-            "Confirm purchase",
-            `You'll purchase ${reward.name} £${rewardValue.toFixed(2)} voucher with ${yucoin} yucoin.`,
-            [
-                { text: "Cancel", style: "cancel" },
-                {
-                    onPress: async () => {
-                        try {
-                            const result = await redeemReward({ variables: { id: reward.code, amount: rewardValue } });
+        const heading = (reward.uiSettings && reward.uiSettings.alertHeading) || "Confirm purchase";
+        const subheading =
+            (reward.uiSettings && reward.uiSettings.alertSubheading) ||
+            `You'll purchase ${reward.name} £${rewardValue.toFixed(2)} voucher with ${yucoin} yucoin.`;
 
-                            if ((result as { data: RedeemReward }).data.redeemReward) {
-                                this.props.getUserStart();
-                                await Navigation.push(ROUTES.rewards, {
-                                    component: {
-                                        id: ROUTES.wegiftConfirmed,
-                                        name: ROUTES.wegiftConfirmed,
-                                        passProps: {
-                                            onTabChange: this.props.onTabChange,
-                                            purchase: (result as { data: RedeemReward }).data.redeemReward
-                                        },
-                                        options: { bottomTabs }
-                                    }
-                                });
-                            }
-                        } catch (e) {
-                            const passProps = {
-                                ctaLabel: copy.voucherNotAvailable.ctaLabel,
-                                heading: copy.voucherNotAvailable.heading,
-                                onPress: () => Navigation.dismissModal(MODALS.rewards),
-                                subheading: copy.voucherNotAvailable.subheading
-                            };
+        Alert.alert(heading, subheading, [
+            { text: "Cancel", style: "cancel" },
+            {
+                onPress: async () => {
+                    try {
+                        const result = await redeemReward({ variables: { id: reward.code, amount: rewardValue } });
 
-                            if (offline) {
-                                passProps.ctaLabel = copy.offline.ctaLabel;
-                                passProps.heading = copy.offline.heading;
-                                passProps.subheading = copy.offline.subheading;
-                            } else if (totalCoins < yucoin) {
-                                passProps.ctaLabel = copy.notEnoughCoins.ctaLabel;
-                                passProps.heading = copy.notEnoughCoins.heading;
-                                passProps.subheading = copy.notEnoughCoins.subheading;
-                            }
-
-                            await Navigation.showModal({
+                        if ((result as { data: RedeemReward }).data.redeemReward) {
+                            this.props.getUserStart();
+                            await Navigation.push(ROUTES.rewards, {
                                 component: {
-                                    id: MODALS.rewards,
-                                    name: MODALS.rewards,
-                                    passProps
+                                    id: ROUTES.wegiftConfirmed,
+                                    name: ROUTES.wegiftConfirmed,
+                                    passProps: {
+                                        onTabChange: this.props.onTabChange,
+                                        purchase: (result as { data: RedeemReward }).data.redeemReward
+                                    },
+                                    options: { bottomTabs }
                                 }
                             });
                         }
-                    },
-                    text: "OK"
-                }
-            ]
-        );
+                    } catch (e) {
+                        const passProps = {
+                            ctaLabel: copy.voucherNotAvailable.ctaLabel,
+                            heading: copy.voucherNotAvailable.heading,
+                            onPress: () => Navigation.dismissModal(MODALS.rewards),
+                            subheading: copy.voucherNotAvailable.subheading
+                        };
+
+                        if (offline) {
+                            passProps.ctaLabel = copy.offline.ctaLabel;
+                            passProps.heading = copy.offline.heading;
+                            passProps.subheading = copy.offline.subheading;
+                        } else if (totalCoins < yucoin) {
+                            passProps.ctaLabel = copy.notEnoughCoins.ctaLabel;
+                            passProps.heading = copy.notEnoughCoins.heading;
+                            passProps.subheading = copy.notEnoughCoins.subheading;
+                        }
+
+                        await Navigation.showModal({
+                            component: {
+                                id: MODALS.rewards,
+                                name: MODALS.rewards,
+                                passProps
+                            }
+                        });
+                    }
+                },
+                text: "OK"
+            }
+        ]);
     };
 }
 
