@@ -60,6 +60,10 @@ export default [
         component: require("../components/containers/member/activity-history/activity-history.container").default
     },
     {
+        name: ROUTES.stats,
+        component: require("../components/containers/member/stats/stats.container").default
+    },
+    {
         lazyLoad: true,
         name: ROUTES.leaderboards,
         component: require("../components/containers/member/leaderboards/leaderboards.container").default
