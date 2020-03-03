@@ -19,6 +19,7 @@ export const ROUTES = {
     quests: "yulife.member.Quests",
     rewards: "yulife.member.Rewards",
     activityHistory: "yulife.member.ActivityHistory",
+    stats: "yulife.member.Stats",
     leaderboards: "yulife.member.Leaderboards",
     debug: "yulife.member.Debug",
 

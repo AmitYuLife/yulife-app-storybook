@@ -9,7 +9,8 @@ export type LinkTypes =
     "logout" |
     "member" |
     "play" |
-    "settings";
+    "settings"|
+    "stats";
 
 export enum LINKS {
     DEBUG = "debug",
@@ -20,10 +21,12 @@ export enum LINKS {
     LOGOUT = "logout",
     MEMBER = "member",
     PLAY = "play",
-    SETTINGS = "settings"
+    SETTINGS = "settings",
+    STATS = "stats"
 }
 
 export default {
+    [LINKS.STATS]: require("../../../../../../assets/menu/stats.png"),
     [LINKS.ACTIVITY]: require("../../../../../../assets/menu/activity.png"),
     [LINKS.CHAT]: require("../../../../../../assets/menu/chat.png"),
     [LINKS.SURVEY]: require("../../../../../../assets/menu/chat.png"),

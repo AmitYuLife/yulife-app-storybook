@@ -31,6 +31,12 @@ class MenuContainer extends PureComponent<Props> {
                 onPressClose={this.handleClose}
                 links={[
                     {
+                        condition: features.showStats,
+                        label: "statistics",
+                        onPress: this.handlePressLink(LINKS.STATS),
+                        source: assets[LINKS.STATS]
+                    },
+                    {
                         condition: features.showActivity,
                         label: "activity history",
                         onPress: this.handlePressLink(LINKS.ACTIVITY),
@@ -76,6 +82,9 @@ class MenuContainer extends PureComponent<Props> {
 
     private handlePressLink = (link: LinkTypes) => (): null => {
         switch (link) {
+            case LINKS.STATS:
+                this.handlePush(ROUTES.stats);
+                return null;
             case LINKS.ACTIVITY:
                 this.handlePush(ROUTES.activityHistory);
                 return null;
