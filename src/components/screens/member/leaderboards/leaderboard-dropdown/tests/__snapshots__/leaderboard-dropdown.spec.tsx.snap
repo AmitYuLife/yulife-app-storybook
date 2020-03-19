@@ -62,7 +62,7 @@ ShallowWrapper {
           <YuText
             style={
               Object {
-                "color": "rgb(226,1,119)",
+                "color": "rgb(227,13,118)",
                 "fontSize": 36,
                 "lineHeight": 40,
               }
@@ -113,7 +113,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
-                  "color": "rgb(226,1,119)",
+                  "color": "rgb(227,13,118)",
                   "fontSize": 36,
                   "lineHeight": 40,
                 }
@@ -142,7 +142,7 @@ ShallowWrapper {
             "children": <YuText
               style={
                 Object {
-                  "color": "rgb(226,1,119)",
+                  "color": "rgb(227,13,118)",
                   "fontSize": 36,
                   "lineHeight": 40,
                 }
@@ -167,7 +167,7 @@ ShallowWrapper {
             "props": Object {
               "children": "first leaderboard",
               "style": Object {
-                "color": "rgb(226,1,119)",
+                "color": "rgb(227,13,118)",
                 "fontSize": 36,
                 "lineHeight": 40,
               },
@@ -216,7 +216,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
-                  "color": "rgb(226,1,119)",
+                  "color": "rgb(227,13,118)",
                   "fontSize": 36,
                   "lineHeight": 40,
                 }
@@ -267,7 +267,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
-                    "color": "rgb(226,1,119)",
+                    "color": "rgb(227,13,118)",
                     "fontSize": 36,
                     "lineHeight": 40,
                   }
@@ -296,7 +296,7 @@ ShallowWrapper {
               "children": <YuText
                 style={
                   Object {
-                    "color": "rgb(226,1,119)",
+                    "color": "rgb(227,13,118)",
                     "fontSize": 36,
                     "lineHeight": 40,
                   }
@@ -321,7 +321,7 @@ ShallowWrapper {
               "props": Object {
                 "children": "first leaderboard",
                 "style": Object {
-                  "color": "rgb(226,1,119)",
+                  "color": "rgb(227,13,118)",
                   "fontSize": 36,
                   "lineHeight": 40,
                 },
@@ -690,7 +690,7 @@ ShallowWrapper {
           <YuText
             style={
               Object {
-                "color": "rgb(226,1,119)",
+                "color": "rgb(227,13,118)",
                 "fontSize": 36,
                 "lineHeight": 40,
               }
@@ -741,7 +741,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
-                  "color": "rgb(226,1,119)",
+                  "color": "rgb(227,13,118)",
                   "fontSize": 36,
                   "lineHeight": 40,
                 }
@@ -770,7 +770,7 @@ ShallowWrapper {
             "children": <YuText
               style={
                 Object {
-                  "color": "rgb(226,1,119)",
+                  "color": "rgb(227,13,118)",
                   "fontSize": 36,
                   "lineHeight": 40,
                 }
@@ -795,7 +795,7 @@ ShallowWrapper {
             "props": Object {
               "children": "first leaderboard",
               "style": Object {
-                "color": "rgb(226,1,119)",
+                "color": "rgb(227,13,118)",
                 "fontSize": 36,
                 "lineHeight": 40,
               },
@@ -844,7 +844,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
-                  "color": "rgb(226,1,119)",
+                  "color": "rgb(227,13,118)",
                   "fontSize": 36,
                   "lineHeight": 40,
                 }
@@ -895,7 +895,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
-                    "color": "rgb(226,1,119)",
+                    "color": "rgb(227,13,118)",
                     "fontSize": 36,
                     "lineHeight": 40,
                   }
@@ -924,7 +924,7 @@ ShallowWrapper {
               "children": <YuText
                 style={
                   Object {
-                    "color": "rgb(226,1,119)",
+                    "color": "rgb(227,13,118)",
                     "fontSize": 36,
                     "lineHeight": 40,
                   }
@@ -949,7 +949,7 @@ ShallowWrapper {
               "props": Object {
                 "children": "first leaderboard",
                 "style": Object {
-                  "color": "rgb(226,1,119)",
+                  "color": "rgb(227,13,118)",
                   "fontSize": 36,
                   "lineHeight": 40,
                 },
@@ -1318,7 +1318,7 @@ ShallowWrapper {
           <YuText
             style={
               Object {
-                "color": "rgb(226,1,119)",
+                "color": "rgb(227,13,118)",
                 "fontSize": 36,
                 "lineHeight": 40,
               }
@@ -1369,7 +1369,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
-                  "color": "rgb(226,1,119)",
+                  "color": "rgb(227,13,118)",
                   "fontSize": 36,
                   "lineHeight": 40,
                 }
@@ -1398,7 +1398,7 @@ ShallowWrapper {
             "children": <YuText
               style={
                 Object {
-                  "color": "rgb(226,1,119)",
+                  "color": "rgb(227,13,118)",
                   "fontSize": 36,
                   "lineHeight": 40,
                 }
@@ -1423,7 +1423,7 @@ ShallowWrapper {
             "props": Object {
               "children": "first leaderboard",
               "style": Object {
-                "color": "rgb(226,1,119)",
+                "color": "rgb(227,13,118)",
                 "fontSize": 36,
                 "lineHeight": 40,
               },
@@ -1472,7 +1472,7 @@ ShallowWrapper {
             <YuText
               style={
                 Object {
-                  "color": "rgb(226,1,119)",
+                  "color": "rgb(227,13,118)",
                   "fontSize": 36,
                   "lineHeight": 40,
                 }
@@ -1523,7 +1523,7 @@ ShallowWrapper {
               <YuText
                 style={
                   Object {
-                    "color": "rgb(226,1,119)",
+                    "color": "rgb(227,13,118)",
                     "fontSize": 36,
                     "lineHeight": 40,
                   }
@@ -1552,7 +1552,7 @@ ShallowWrapper {
               "children": <YuText
                 style={
                   Object {
-                    "color": "rgb(226,1,119)",
+                    "color": "rgb(227,13,118)",
                     "fontSize": 36,
                     "lineHeight": 40,
                   }
@@ -1577,7 +1577,7 @@ ShallowWrapper {
               "props": Object {
                 "children": "first leaderboard",
                 "style": Object {
-                  "color": "rgb(226,1,119)",
+                  "color": "rgb(227,13,118)",
                   "fontSize": 36,
                   "lineHeight": 40,
                 },

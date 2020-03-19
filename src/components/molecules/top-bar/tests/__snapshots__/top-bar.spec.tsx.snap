@@ -44,7 +44,8 @@ ShallowWrapper {
           />
         </TouchableOpacity>,
         <Logo
-          color="#E20177"
+          colour="rgb(227,13,118)"
+          scale={0.25}
         />,
         <View
           style={
@@ -148,7 +149,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "color": "#E20177",
+          "colour": "rgb(227,13,118)",
+          "scale": 0.25,
         },
         "ref": null,
         "rendered": null,
@@ -305,7 +307,8 @@ ShallowWrapper {
             />
           </TouchableOpacity>,
           <Logo
-            color="#E20177"
+            colour="rgb(227,13,118)"
+            scale={0.25}
           />,
           <View
             style={
@@ -409,7 +412,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "color": "#E20177",
+            "colour": "rgb(227,13,118)",
+            "scale": 0.25,
           },
           "ref": null,
           "rendered": null,
@@ -603,7 +607,8 @@ ShallowWrapper {
           />
         </TouchableOpacity>,
         <Logo
-          color="#E20177"
+          colour="rgb(227,13,118)"
+          scale={0.25}
         />,
         <View
           style={
@@ -707,7 +712,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "color": "#E20177",
+          "colour": "rgb(227,13,118)",
+          "scale": 0.25,
         },
         "ref": null,
         "rendered": null,
@@ -864,7 +870,8 @@ ShallowWrapper {
             />
           </TouchableOpacity>,
           <Logo
-            color="#E20177"
+            colour="rgb(227,13,118)"
+            scale={0.25}
           />,
           <View
             style={
@@ -968,7 +975,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "color": "#E20177",
+            "colour": "rgb(227,13,118)",
+            "scale": 0.25,
           },
           "ref": null,
           "rendered": null,
@@ -1185,7 +1193,8 @@ ShallowWrapper {
           </View>
         </TouchableOpacity>,
         <Logo
-          color="#E20177"
+          colour="rgb(227,13,118)"
+          scale={0.25}
         />,
         <View
           style={
@@ -1350,7 +1359,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "color": "#E20177",
+          "colour": "rgb(227,13,118)",
+          "scale": 0.25,
         },
         "ref": null,
         "rendered": null,
@@ -1528,7 +1538,8 @@ ShallowWrapper {
             </View>
           </TouchableOpacity>,
           <Logo
-            color="#E20177"
+            colour="rgb(227,13,118)"
+            scale={0.25}
           />,
           <View
             style={
@@ -1693,7 +1704,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "color": "#E20177",
+            "colour": "rgb(227,13,118)",
+            "scale": 0.25,
           },
           "ref": null,
           "rendered": null,
@@ -3207,7 +3219,7 @@ ShallowWrapper {
             }
           }
         >
-          <Logo
+          <Clock
             color="#333333"
           />
           <YuText
@@ -3324,7 +3336,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Logo
+            <Clock
               color="#333333"
             />,
             <YuText
@@ -3540,7 +3552,7 @@ ShallowWrapper {
               }
             }
           >
-            <Logo
+            <Clock
               color="#333333"
             />
             <YuText
@@ -3657,7 +3669,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Logo
+              <Clock
                 color="#333333"
               />,
               <YuText

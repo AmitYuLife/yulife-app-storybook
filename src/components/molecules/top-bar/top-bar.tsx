@@ -1,11 +1,11 @@
+import { Logo, Text } from "@atoms/index";
 import { BUTTON_TOP_LEFT_BAR } from "@ids";
 import { Colours, Style } from "@styles/index";
 import moment from "moment";
 import * as React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Text } from "../../atoms";
 import Counter from "../counter/counter";
-import { Back, Clock, Coins, Logo, Menu } from "./assets";
+import { Back, Clock, Coins, Menu } from "./assets";
 import { formatSeconds, getStyle } from "./top-bar.helpers";
 import styles from "./top-bar.styles";
 
@@ -113,7 +113,7 @@ class TopBar extends React.Component<IProps, IState> {
             );
         }
 
-        return <Logo color={logoColour} />;
+        return <Logo scale={0.25} colour={logoColour} />;
     };
 
     public render() {
@@ -183,7 +183,7 @@ class TopBar extends React.Component<IProps, IState> {
                     <Menu color="rgb(51, 88, 66)" />
                 </View>
                 <View>
-                    <Logo color={"rgb(51, 88, 66)"} />
+                    <Logo scale={0.25} colour="rgb(51, 88, 66)" />
                 </View>
                 <View style={styles.coinsWrapper}>
                     <Text

@@ -26,14 +26,14 @@ ShallowWrapper {
       "activeOpacity": 0.6,
       "children": <ActivityIndicator
         animating={true}
-        color="rgb(226,1,119)"
+        color="rgb(227,13,118)"
         hidesWhenStopped={true}
         size="small"
       />,
       "disabled": true,
       "onPress": [MockFunction],
       "style": Object {
-        "borderColor": "rgb(226,1,119)",
+        "borderColor": "rgb(227,13,118)",
         "borderRadius": 100,
         "borderWidth": 2,
         "height": 100,
@@ -48,7 +48,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "animating": true,
-        "color": "rgb(226,1,119)",
+        "color": "rgb(227,13,118)",
         "hidesWhenStopped": true,
         "size": "small",
       },
@@ -67,14 +67,14 @@ ShallowWrapper {
         "activeOpacity": 0.6,
         "children": <ActivityIndicator
           animating={true}
-          color="rgb(226,1,119)"
+          color="rgb(227,13,118)"
           hidesWhenStopped={true}
           size="small"
         />,
         "disabled": true,
         "onPress": [MockFunction],
         "style": Object {
-          "borderColor": "rgb(226,1,119)",
+          "borderColor": "rgb(227,13,118)",
           "borderRadius": 100,
           "borderWidth": 2,
           "height": 100,
@@ -89,7 +89,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "animating": true,
-          "color": "rgb(226,1,119)",
+          "color": "rgb(227,13,118)",
           "hidesWhenStopped": true,
           "size": "small",
         },
@@ -147,14 +147,14 @@ ShallowWrapper {
       "activeOpacity": 0.6,
       "children": <ActivityIndicator
         animating={true}
-        color="rgb(226,1,119)"
+        color="rgb(227,13,118)"
         hidesWhenStopped={true}
         size="small"
       />,
       "disabled": undefined,
       "onPress": [MockFunction],
       "style": Object {
-        "borderColor": "rgb(226,1,119)",
+        "borderColor": "rgb(227,13,118)",
         "borderRadius": 100,
         "borderWidth": 2,
         "height": 100,
@@ -169,7 +169,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "animating": true,
-        "color": "rgb(226,1,119)",
+        "color": "rgb(227,13,118)",
         "hidesWhenStopped": true,
         "size": "small",
       },
@@ -188,14 +188,14 @@ ShallowWrapper {
         "activeOpacity": 0.6,
         "children": <ActivityIndicator
           animating={true}
-          color="rgb(226,1,119)"
+          color="rgb(227,13,118)"
           hidesWhenStopped={true}
           size="small"
         />,
         "disabled": undefined,
         "onPress": [MockFunction],
         "style": Object {
-          "borderColor": "rgb(226,1,119)",
+          "borderColor": "rgb(227,13,118)",
           "borderRadius": 100,
           "borderWidth": 2,
           "height": 100,
@@ -210,7 +210,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "animating": true,
-          "color": "rgb(226,1,119)",
+          "color": "rgb(227,13,118)",
           "hidesWhenStopped": true,
           "size": "small",
         },
@@ -940,7 +940,7 @@ ShallowWrapper {
       "children": <Text
         style={
           Object {
-            "color": "rgb(226,1,119)",
+            "color": "rgb(227,13,118)",
             "fontFamily": "Bariol-Regular",
             "fontSize": 32,
             "lineHeight": 80,
@@ -953,7 +953,7 @@ ShallowWrapper {
       "disabled": undefined,
       "onPress": [MockFunction],
       "style": Object {
-        "borderColor": "rgb(226,1,119)",
+        "borderColor": "rgb(227,13,118)",
         "borderRadius": 100,
         "borderWidth": 2,
         "height": 100,
@@ -972,7 +972,7 @@ ShallowWrapper {
       "props": Object {
         "children": "test",
         "style": Object {
-          "color": "rgb(226,1,119)",
+          "color": "rgb(227,13,118)",
           "fontFamily": "Bariol-Regular",
           "fontSize": 32,
           "lineHeight": 80,
@@ -995,7 +995,7 @@ ShallowWrapper {
         "children": <Text
           style={
             Object {
-              "color": "rgb(226,1,119)",
+              "color": "rgb(227,13,118)",
               "fontFamily": "Bariol-Regular",
               "fontSize": 32,
               "lineHeight": 80,
@@ -1008,7 +1008,7 @@ ShallowWrapper {
         "disabled": undefined,
         "onPress": [MockFunction],
         "style": Object {
-          "borderColor": "rgb(226,1,119)",
+          "borderColor": "rgb(227,13,118)",
           "borderRadius": 100,
           "borderWidth": 2,
           "height": 100,
@@ -1027,7 +1027,7 @@ ShallowWrapper {
         "props": Object {
           "children": "test",
           "style": Object {
-            "color": "rgb(226,1,119)",
+            "color": "rgb(227,13,118)",
             "fontFamily": "Bariol-Regular",
             "fontSize": 32,
             "lineHeight": 80,
@@ -2509,7 +2509,7 @@ ShallowWrapper {
       "children": <Text
         style={
           Object {
-            "color": "rgb(226,1,119)",
+            "color": "rgb(227,13,118)",
             "fontFamily": "Bariol-Regular",
             "fontSize": 36,
             "lineHeight": 80,
@@ -2522,7 +2522,7 @@ ShallowWrapper {
       "disabled": undefined,
       "onPress": [MockFunction],
       "style": Object {
-        "borderColor": "rgb(226,1,119)",
+        "borderColor": "rgb(227,13,118)",
         "borderRadius": 100,
         "borderWidth": 2,
         "height": 100,
@@ -2538,7 +2538,7 @@ ShallowWrapper {
       "props": Object {
         "children": "test",
         "style": Object {
-          "color": "rgb(226,1,119)",
+          "color": "rgb(227,13,118)",
           "fontFamily": "Bariol-Regular",
           "fontSize": 36,
           "lineHeight": 80,
@@ -2561,7 +2561,7 @@ ShallowWrapper {
         "children": <Text
           style={
             Object {
-              "color": "rgb(226,1,119)",
+              "color": "rgb(227,13,118)",
               "fontFamily": "Bariol-Regular",
               "fontSize": 36,
               "lineHeight": 80,
@@ -2574,7 +2574,7 @@ ShallowWrapper {
         "disabled": undefined,
         "onPress": [MockFunction],
         "style": Object {
-          "borderColor": "rgb(226,1,119)",
+          "borderColor": "rgb(227,13,118)",
           "borderRadius": 100,
           "borderWidth": 2,
           "height": 100,
@@ -2590,7 +2590,7 @@ ShallowWrapper {
         "props": Object {
           "children": "test",
           "style": Object {
-            "color": "rgb(226,1,119)",
+            "color": "rgb(227,13,118)",
             "fontFamily": "Bariol-Regular",
             "fontSize": 36,
             "lineHeight": 80,

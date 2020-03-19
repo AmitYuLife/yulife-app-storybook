@@ -24,3 +24,4 @@ export { default as Lock } from "./lock/lock";
 export { default as DoubleLock } from "./lock/double-lock";
 export { default as Chest } from "./chest/chest";
 export { default as LevelLine } from "./level-line/level-line";
+export { default as Logo } from "./logo";

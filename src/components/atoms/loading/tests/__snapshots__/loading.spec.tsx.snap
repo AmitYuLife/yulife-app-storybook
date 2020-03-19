@@ -18,7 +18,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "animating": true,
-      "color": "rgb(226,1,119)",
+      "color": "rgb(227,13,118)",
       "hidesWhenStopped": true,
       "size": "large",
       "style": Object {
@@ -39,7 +39,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "animating": true,
-        "color": "rgb(226,1,119)",
+        "color": "rgb(227,13,118)",
         "hidesWhenStopped": true,
         "size": "large",
         "style": Object {

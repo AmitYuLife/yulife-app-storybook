@@ -49,7 +49,7 @@ export const initialState: IThemeStore = {
         },
         streakType: "forest",
         textStyle: { color: "#333333" },
-        topBarType: "forest"
+        topBarType: "default"
     },
     questsOfflineScreen: {
         image: "forest",
@@ -117,7 +117,7 @@ const getCurrentWorldTheme = (
                     },
                     streakType: "desert",
                     textStyle: { color: "rgb(108,59,38)" },
-                    topBarType: "desert"
+                    topBarType: "default"
                 },
                 questsOfflineScreen: {
                     image: "desert",

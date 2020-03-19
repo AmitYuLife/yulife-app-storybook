@@ -733,7 +733,7 @@ ShallowWrapper {
         >
           <ActivityIndicator
             animating={true}
-            color="rgb(226,1,119)"
+            color="rgb(227,13,118)"
             hidesWhenStopped={true}
             size="small"
           />
@@ -929,7 +929,7 @@ ShallowWrapper {
         "props": Object {
           "children": <ActivityIndicator
             animating={true}
-            color="rgb(226,1,119)"
+            color="rgb(227,13,118)"
             hidesWhenStopped={true}
             size="small"
           />,
@@ -946,7 +946,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "animating": true,
-            "color": "rgb(226,1,119)",
+            "color": "rgb(227,13,118)",
             "hidesWhenStopped": true,
             "size": "small",
           },
@@ -1025,7 +1025,7 @@ ShallowWrapper {
           >
             <ActivityIndicator
               animating={true}
-              color="rgb(226,1,119)"
+              color="rgb(227,13,118)"
               hidesWhenStopped={true}
               size="small"
             />
@@ -1221,7 +1221,7 @@ ShallowWrapper {
           "props": Object {
             "children": <ActivityIndicator
               animating={true}
-              color="rgb(226,1,119)"
+              color="rgb(227,13,118)"
               hidesWhenStopped={true}
               size="small"
             />,
@@ -1238,7 +1238,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "animating": true,
-              "color": "rgb(226,1,119)",
+              "color": "rgb(227,13,118)",
               "hidesWhenStopped": true,
               "size": "small",
             },
