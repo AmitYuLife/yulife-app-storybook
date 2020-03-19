@@ -1,4 +1,5 @@
 import { padNum } from "@services/utils";
+import { Colours } from "@styles/index";
 import { TopBarTypes } from "./top-bar";
 
 export function formatSeconds(secondsRemaining: number): string {
@@ -56,7 +57,7 @@ export function getStyle(type: TopBarTypes) {
         default:
             return {
                 colour: "#333333",
-                logoColour: "#E20177",
+                logoColour: Colours.darkHotPink,
                 textStyle: { color: "#333333" }
             };
     }

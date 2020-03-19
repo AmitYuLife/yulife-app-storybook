@@ -1,9 +1,9 @@
+import { Logo, Text } from "@atoms/index";
 import { MENU_ITEM, MENU_SCREEN } from "@ids";
 import { TouchableOpacityWithState } from "@molecules/index";
 import * as React from "react";
 import { SFC } from "react";
 import { Image, ImageRequireSource, TouchableOpacity, View } from "react-native";
-import { Text } from "../../../atoms";
 import assets from "./assets";
 import styles from "./menu.screen.styles";
 
@@ -28,7 +28,7 @@ const MenuScreen: SFC<IProps> = ({ onDebugPress, onPressClose, links, version })
                 <Image resizeMode="contain" style={styles.close} source={assets.close} />
             </TouchableOpacity>
             <View style={styles.logoWrapper}>
-                <Image resizeMode="contain" style={styles.logo} source={assets.logo} />
+                <Logo scale={0.7} type="full" />
             </View>
             {!links
                 ? null

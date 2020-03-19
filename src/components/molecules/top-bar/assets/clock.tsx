@@ -7,7 +7,7 @@ interface IProps {
     scale?: number;
 }
 
-const Logo: SFC<IProps> = ({ color = "#333", scale = 0.5 }) => (
+const Clock: SFC<IProps> = ({ color = "#333", scale = 0.5 }) => (
     <Svg height={String(50 * scale)} width={String(50 * scale)} viewBox="0 0 50 50">
         <Path
             fill={color}
@@ -18,4 +18,4 @@ const Logo: SFC<IProps> = ({ color = "#333", scale = 0.5 }) => (
     </Svg>
 );
 
-export default Logo;
+export default Clock;

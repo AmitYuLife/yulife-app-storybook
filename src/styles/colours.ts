@@ -17,7 +17,7 @@ export default {
         unfilledCircle: "rgb(230,230,230)"
     },
     darkGray: "rgb(51,51,51)",
-    darkHotPink: "rgb(226,1,119)",
+    darkHotPink: "rgb(227,13,118)",
     darkHotPinkShadow: "#95012b",
     divider: "rgb(96,96,96)",
     gray: "rgb(96,96,96)",

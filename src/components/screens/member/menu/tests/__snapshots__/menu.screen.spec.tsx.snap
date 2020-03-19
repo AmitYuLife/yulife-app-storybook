@@ -90,10 +90,9 @@ ShallowWrapper {
               }
             }
           >
-            <Image
-              resizeMode="contain"
-              source={1}
-              style={Object {}}
+            <Logo
+              scale={0.7}
+              type="full"
             />
           </View>
           <TouchableOpacityWithState
@@ -258,10 +257,9 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                resizeMode="contain"
-                source={1}
-                style={Object {}}
+              <Logo
+                scale={0.7}
+                type="full"
               />
             </View>,
             Array [
@@ -410,10 +408,9 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <Image
-                resizeMode="contain"
-                source={1}
-                style={Object {}}
+              "children": <Logo
+                scale={0.7}
+                type="full"
               />,
               "style": Object {
                 "marginBottom": 68,
@@ -424,11 +421,10 @@ ShallowWrapper {
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "resizeMode": "contain",
-                "source": 1,
-                "style": Object {},
+                "scale": 0.7,
+                "type": "full",
               },
               "ref": null,
               "rendered": null,
@@ -808,10 +804,9 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                resizeMode="contain"
-                source={1}
-                style={Object {}}
+              <Logo
+                scale={0.7}
+                type="full"
               />
             </View>
             <TouchableOpacityWithState
@@ -976,10 +971,9 @@ ShallowWrapper {
                   }
                 }
               >
-                <Image
-                  resizeMode="contain"
-                  source={1}
-                  style={Object {}}
+                <Logo
+                  scale={0.7}
+                  type="full"
                 />
               </View>,
               Array [
@@ -1128,10 +1122,9 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <Image
-                  resizeMode="contain"
-                  source={1}
-                  style={Object {}}
+                "children": <Logo
+                  scale={0.7}
+                  type="full"
                 />,
                 "style": Object {
                   "marginBottom": 68,
@@ -1142,11 +1135,10 @@ ShallowWrapper {
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
+                "nodeType": "function",
                 "props": Object {
-                  "resizeMode": "contain",
-                  "source": 1,
-                  "style": Object {},
+                  "scale": 0.7,
+                  "type": "full",
                 },
                 "ref": null,
                 "rendered": null,
@@ -1565,10 +1557,9 @@ ShallowWrapper {
               }
             }
           >
-            <Image
-              resizeMode="contain"
-              source={1}
-              style={Object {}}
+            <Logo
+              scale={0.7}
+              type="full"
             />
           </View>
         </View>,
@@ -1653,10 +1644,9 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                resizeMode="contain"
-                source={1}
-                style={Object {}}
+              <Logo
+                scale={0.7}
+                type="full"
               />
             </View>,
             null,
@@ -1722,10 +1712,9 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <Image
-                resizeMode="contain"
-                source={1}
-                style={Object {}}
+              "children": <Logo
+                scale={0.7}
+                type="full"
               />,
               "style": Object {
                 "marginBottom": 68,
@@ -1736,11 +1725,10 @@ ShallowWrapper {
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "resizeMode": "contain",
-                "source": 1,
-                "style": Object {},
+                "scale": 0.7,
+                "type": "full",
               },
               "ref": null,
               "rendered": null,
@@ -1903,10 +1891,9 @@ ShallowWrapper {
                 }
               }
             >
-              <Image
-                resizeMode="contain"
-                source={1}
-                style={Object {}}
+              <Logo
+                scale={0.7}
+                type="full"
               />
             </View>
           </View>,
@@ -1991,10 +1978,9 @@ ShallowWrapper {
                   }
                 }
               >
-                <Image
-                  resizeMode="contain"
-                  source={1}
-                  style={Object {}}
+                <Logo
+                  scale={0.7}
+                  type="full"
                 />
               </View>,
               null,
@@ -2060,10 +2046,9 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <Image
-                  resizeMode="contain"
-                  source={1}
-                  style={Object {}}
+                "children": <Logo
+                  scale={0.7}
+                  type="full"
                 />,
                 "style": Object {
                   "marginBottom": 68,
@@ -2074,11 +2059,10 @@ ShallowWrapper {
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
+                "nodeType": "function",
                 "props": Object {
-                  "resizeMode": "contain",
-                  "source": 1,
-                  "style": Object {},
+                  "scale": 0.7,
+                  "type": "full",
                 },
                 "ref": null,
                 "rendered": null,

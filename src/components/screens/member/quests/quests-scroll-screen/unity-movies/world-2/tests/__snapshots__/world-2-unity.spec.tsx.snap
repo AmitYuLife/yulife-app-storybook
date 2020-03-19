@@ -132,7 +132,7 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "rgb(226,1,119)",
+                "backgroundColor": "rgb(227,13,118)",
                 "borderRadius": 100,
                 "height": 100,
                 "justifyContent": "center",
@@ -173,7 +173,7 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "rgb(226,1,119)",
+                "backgroundColor": "rgb(227,13,118)",
                 "borderRadius": 100,
                 "height": 100,
                 "justifyContent": "center",
@@ -452,7 +452,7 @@ ShallowWrapper {
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "rgb(226,1,119)",
+                  "backgroundColor": "rgb(227,13,118)",
                   "borderRadius": 100,
                   "height": 100,
                   "justifyContent": "center",
@@ -493,7 +493,7 @@ ShallowWrapper {
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "rgb(226,1,119)",
+                  "backgroundColor": "rgb(227,13,118)",
                   "borderRadius": 100,
                   "height": 100,
                   "justifyContent": "center",
@@ -747,7 +747,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "rgb(226,1,119)",
+                    "backgroundColor": "rgb(227,13,118)",
                     "borderRadius": 100,
                     "height": 100,
                     "justifyContent": "center",
@@ -788,7 +788,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "rgb(226,1,119)",
+                    "backgroundColor": "rgb(227,13,118)",
                     "borderRadius": 100,
                     "height": 100,
                     "justifyContent": "center",
@@ -1116,7 +1116,7 @@ ShallowWrapper {
                 "onTransitionEnd": [Function],
                 "style": Object {
                   "alignItems": "center",
-                  "backgroundColor": "rgb(226,1,119)",
+                  "backgroundColor": "rgb(227,13,118)",
                   "borderRadius": 100,
                   "height": 100,
                   "justifyContent": "center",
@@ -1169,7 +1169,7 @@ ShallowWrapper {
                 "onTransitionEnd": [Function],
                 "style": Object {
                   "alignItems": "center",
-                  "backgroundColor": "rgb(226,1,119)",
+                  "backgroundColor": "rgb(227,13,118)",
                   "borderRadius": 100,
                   "height": 100,
                   "justifyContent": "center",
@@ -1541,7 +1541,7 @@ ShallowWrapper {
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "rgb(226,1,119)",
+                  "backgroundColor": "rgb(227,13,118)",
                   "borderRadius": 100,
                   "height": 100,
                   "justifyContent": "center",
@@ -1582,7 +1582,7 @@ ShallowWrapper {
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "rgb(226,1,119)",
+                  "backgroundColor": "rgb(227,13,118)",
                   "borderRadius": 100,
                   "height": 100,
                   "justifyContent": "center",
@@ -1861,7 +1861,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "rgb(226,1,119)",
+                    "backgroundColor": "rgb(227,13,118)",
                     "borderRadius": 100,
                     "height": 100,
                     "justifyContent": "center",
@@ -1902,7 +1902,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "rgb(226,1,119)",
+                    "backgroundColor": "rgb(227,13,118)",
                     "borderRadius": 100,
                     "height": 100,
                     "justifyContent": "center",
@@ -2156,7 +2156,7 @@ ShallowWrapper {
                   style={
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "rgb(226,1,119)",
+                      "backgroundColor": "rgb(227,13,118)",
                       "borderRadius": 100,
                       "height": 100,
                       "justifyContent": "center",
@@ -2197,7 +2197,7 @@ ShallowWrapper {
                   style={
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "rgb(226,1,119)",
+                      "backgroundColor": "rgb(227,13,118)",
                       "borderRadius": 100,
                       "height": 100,
                       "justifyContent": "center",
@@ -2525,7 +2525,7 @@ ShallowWrapper {
                   "onTransitionEnd": [Function],
                   "style": Object {
                     "alignItems": "center",
-                    "backgroundColor": "rgb(226,1,119)",
+                    "backgroundColor": "rgb(227,13,118)",
                     "borderRadius": 100,
                     "height": 100,
                     "justifyContent": "center",
@@ -2578,7 +2578,7 @@ ShallowWrapper {
                   "onTransitionEnd": [Function],
                   "style": Object {
                     "alignItems": "center",
-                    "backgroundColor": "rgb(226,1,119)",
+                    "backgroundColor": "rgb(227,13,118)",
                     "borderRadius": 100,
                     "height": 100,
                     "justifyContent": "center",
@@ -2986,7 +2986,7 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "rgb(226,1,119)",
+                "backgroundColor": "rgb(227,13,118)",
                 "borderRadius": 100,
                 "height": 100,
                 "justifyContent": "center",
@@ -3027,7 +3027,7 @@ ShallowWrapper {
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "rgb(226,1,119)",
+                "backgroundColor": "rgb(227,13,118)",
                 "borderRadius": 100,
                 "height": 100,
                 "justifyContent": "center",
@@ -3306,7 +3306,7 @@ ShallowWrapper {
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "rgb(226,1,119)",
+                  "backgroundColor": "rgb(227,13,118)",
                   "borderRadius": 100,
                   "height": 100,
                   "justifyContent": "center",
@@ -3347,7 +3347,7 @@ ShallowWrapper {
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "rgb(226,1,119)",
+                  "backgroundColor": "rgb(227,13,118)",
                   "borderRadius": 100,
                   "height": 100,
                   "justifyContent": "center",
@@ -3601,7 +3601,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "rgb(226,1,119)",
+                    "backgroundColor": "rgb(227,13,118)",
                     "borderRadius": 100,
                     "height": 100,
                     "justifyContent": "center",
@@ -3642,7 +3642,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "rgb(226,1,119)",
+                    "backgroundColor": "rgb(227,13,118)",
                     "borderRadius": 100,
                     "height": 100,
                     "justifyContent": "center",
@@ -3970,7 +3970,7 @@ ShallowWrapper {
                 "onTransitionEnd": [Function],
                 "style": Object {
                   "alignItems": "center",
-                  "backgroundColor": "rgb(226,1,119)",
+                  "backgroundColor": "rgb(227,13,118)",
                   "borderRadius": 100,
                   "height": 100,
                   "justifyContent": "center",
@@ -4023,7 +4023,7 @@ ShallowWrapper {
                 "onTransitionEnd": [Function],
                 "style": Object {
                   "alignItems": "center",
-                  "backgroundColor": "rgb(226,1,119)",
+                  "backgroundColor": "rgb(227,13,118)",
                   "borderRadius": 100,
                   "height": 100,
                   "justifyContent": "center",
@@ -4395,7 +4395,7 @@ ShallowWrapper {
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "rgb(226,1,119)",
+                  "backgroundColor": "rgb(227,13,118)",
                   "borderRadius": 100,
                   "height": 100,
                   "justifyContent": "center",
@@ -4436,7 +4436,7 @@ ShallowWrapper {
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "rgb(226,1,119)",
+                  "backgroundColor": "rgb(227,13,118)",
                   "borderRadius": 100,
                   "height": 100,
                   "justifyContent": "center",
@@ -4715,7 +4715,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "rgb(226,1,119)",
+                    "backgroundColor": "rgb(227,13,118)",
                     "borderRadius": 100,
                     "height": 100,
                     "justifyContent": "center",
@@ -4756,7 +4756,7 @@ ShallowWrapper {
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "rgb(226,1,119)",
+                    "backgroundColor": "rgb(227,13,118)",
                     "borderRadius": 100,
                     "height": 100,
                     "justifyContent": "center",
@@ -5010,7 +5010,7 @@ ShallowWrapper {
                   style={
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "rgb(226,1,119)",
+                      "backgroundColor": "rgb(227,13,118)",
                       "borderRadius": 100,
                       "height": 100,
                       "justifyContent": "center",
@@ -5051,7 +5051,7 @@ ShallowWrapper {
                   style={
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "rgb(226,1,119)",
+                      "backgroundColor": "rgb(227,13,118)",
                       "borderRadius": 100,
                       "height": 100,
                       "justifyContent": "center",
@@ -5379,7 +5379,7 @@ ShallowWrapper {
                   "onTransitionEnd": [Function],
                   "style": Object {
                     "alignItems": "center",
-                    "backgroundColor": "rgb(226,1,119)",
+                    "backgroundColor": "rgb(227,13,118)",
                     "borderRadius": 100,
                     "height": 100,
                     "justifyContent": "center",
@@ -5432,7 +5432,7 @@ ShallowWrapper {
                   "onTransitionEnd": [Function],
                   "style": Object {
                     "alignItems": "center",
-                    "backgroundColor": "rgb(226,1,119)",
+                    "backgroundColor": "rgb(227,13,118)",
                     "borderRadius": 100,
                     "height": 100,
                     "justifyContent": "center",

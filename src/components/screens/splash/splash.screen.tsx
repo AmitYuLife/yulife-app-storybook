@@ -1,8 +1,8 @@
+import { Logo } from "@atoms/index";
 import { Style } from "@styles/index";
 import * as React from "react";
-import { Image, SafeAreaView, View } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import * as Animatable from "react-native-animatable";
-import assets from "./assets";
 import styles from "./splash.screen.styles";
 
 interface IProps {
@@ -79,12 +79,7 @@ class SplashScreen extends React.PureComponent<IProps> {
                         animation="splash_life"
                         duration={1000}
                     >
-                        <Image
-                            onLayout={this.props.onAnimationStart}
-                            style={styles.lifeImageText}
-                            resizeMode="contain"
-                            source={assets.life}
-                        />
+                        <Logo onLayout={this.props.onAnimationStart} scale={0.85} type="text-only" />
                     </Animatable.View>
                     <Animatable.View
                         style={styles.iconWrapper}
@@ -94,7 +89,7 @@ class SplashScreen extends React.PureComponent<IProps> {
                         duration={1000}
                         onAnimationEnd={this.handleLogoEaseIn}
                     >
-                        <Image style={styles.icon} source={assets.yu} />
+                        <Logo scale={0.85} type="logo-only" style={{ backgroundColor: "white" }} />
                     </Animatable.View>
                 </Animatable.View>
                 <View style={styles.bottomWrapper}>
