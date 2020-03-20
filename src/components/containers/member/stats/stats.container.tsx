@@ -1,5 +1,8 @@
+import { Close, GenericHeading } from "@atoms/index";
 import { PureComponent } from "react";
 import * as React from "react";
+import { SafeAreaView } from "react-native";
+import { View } from "react-native-animatable";
 import { LargeList } from "react-native-largelist-v3";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
@@ -8,9 +11,13 @@ import { ROUTES } from "../../../../navigation/constants";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
-import Loading from "../../../atoms/loading/loading";
+import { Style } from "../../../../styles";
+import {
+    LoadingGeneralInfoCard,
+    LoadingHeader,
+    LoadingRecomendationCard
+} from "../../../screens/member/stats/cards/general-info-card";
 import Stats from "../../../screens/member/stats/stats";
-
 interface IProps {
     componentId: string;
 }
@@ -36,7 +43,22 @@ class StatsContainer extends PureComponent<Props, IState> {
             <GetUserStats fetchPolicy="cache-and-network">
                 {({ data, error, loading }) => {
                     if (loading) {
-                        return <Loading />;
+                        return (
+                            <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+                                <GenericHeading heading={"statistics"} />
+                                <View style={{ backgroundColor: "#FAFAFE", padding: Style.SCALE_UP_AND_DOWN(16) }}>
+                                    <LoadingHeader />
+                                    <LoadingRecomendationCard />
+                                    <LoadingGeneralInfoCard />
+                                    <LoadingRecomendationCard />
+                                    <LoadingHeader />
+                                    <LoadingRecomendationCard />
+                                    <LoadingGeneralInfoCard />
+                                    <LoadingRecomendationCard />
+                                </View>
+                                <Close onPress={() => this.handleClose} />
+                            </SafeAreaView>
+                        );
                     }
 
                     if (error && (!data || !data.getUserStats)) {
