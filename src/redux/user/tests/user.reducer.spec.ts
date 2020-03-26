@@ -66,7 +66,12 @@ describe("userReducer", async () => {
                 ...mobileConsent
             },
             features: userFeatures.reduce(reduceUserFeatures, {}),
-            leaderboards
+            leaderboards,
+            business: {
+                alpha: true,
+                businessAccountName: "yulife",
+                isGroup: false
+            }
         };
 
         const actualState = userReducer(initialState, {

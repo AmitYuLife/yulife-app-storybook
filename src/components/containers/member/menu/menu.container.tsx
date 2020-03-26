@@ -11,7 +11,7 @@ import { getRouteState } from "../../../../redux/app/app.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getPushNotifications } from "../../../../redux/device/device.selectors";
 import { logOut, openMemberZone } from "../../../../redux/user/user.actions";
-import { getUserFeatures } from "../../../../redux/user/user.selectors";
+import { getUserBusiness, getUserFeatures } from "../../../../redux/user/user.selectors";
 import { MenuScreen } from "../../../screens";
 import assets, { LINKS, LinkTypes } from "./assets";
 
@@ -24,7 +24,7 @@ class MenuContainer extends PureComponent<Props> {
     private deviceVersion = DeviceInfo.getVersion();
 
     public render() {
-        const { features = {} } = this.props;
+        const { features = {}, isAlphaUser } = this.props;
 
         return (
             <MenuScreen
@@ -49,7 +49,13 @@ class MenuContainer extends PureComponent<Props> {
                         source: assets[LINKS.MEMBER]
                     },
                     {
-                        condition: true || features.showSettings,
+                        condition: !isAlphaUser,
+                        label: "member services",
+                        onPress: this.handlePressLink(LINKS.MEMBER_SERVICES),
+                        source: assets[LINKS.MEMBER_SERVICES]
+                    },
+                    {
+                        condition: true,
                         label: "settings",
                         onPress: this.handlePressLink(LINKS.SETTINGS),
                         source: assets[LINKS.SETTINGS]
@@ -108,6 +114,9 @@ class MenuContainer extends PureComponent<Props> {
                 return null;
             case LINKS.MEMBER:
                 this.handleMemberZone();
+                return null;
+            case LINKS.MEMBER_SERVICES:
+                this.handlePush(ROUTES.memberServices);
                 return null;
             default:
                 return null;
@@ -171,7 +180,8 @@ const mapStateToProps = (state: IReduxState) => ({
     currentRoute: getRouteState(state),
     features: getUserFeatures(state),
     permissions: getPushNotifications(state),
-    pushNotificationCopy: getCopy(state, "pushNotification")
+    pushNotificationCopy: getCopy(state, "pushNotification"),
+    isAlphaUser: getUserBusiness(state).alpha
 });
 
 const mapDispatchToProps = {
@@ -179,7 +189,4 @@ const mapDispatchToProps = {
     openMemberZone
 };
 
-export default connect<ConnectedState, ConnectedDipatch>(
-    mapStateToProps,
-    mapDispatchToProps
-)(MenuContainer);
+export default connect<ConnectedState, ConnectedDipatch>(mapStateToProps, mapDispatchToProps)(MenuContainer);

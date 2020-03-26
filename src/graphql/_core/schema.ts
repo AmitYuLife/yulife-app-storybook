@@ -1260,6 +1260,8 @@ export interface GetActivityHistoryVariables {
 
 export interface GetCurrentUser_getCurrentUser_business {
   businessAccountName: string | null;
+  alpha: boolean | null;
+  isGroup: boolean | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_connections {
@@ -1467,6 +1469,8 @@ export interface getSession {
 
 export interface LoginUser_loginUser_user_business {
   businessAccountName: string | null;
+  alpha: boolean | null;
+  isGroup: boolean | null;
 }
 
 export interface LoginUser_loginUser_user_connections {
@@ -1861,6 +1865,8 @@ export interface ChallengeTemplate {
 
 export interface User_business {
   businessAccountName: string | null;
+  alpha: boolean | null;
+  isGroup: boolean | null;
 }
 
 export interface User_connections {

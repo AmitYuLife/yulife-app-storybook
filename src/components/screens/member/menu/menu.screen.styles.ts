@@ -22,18 +22,19 @@ export default StyleSheet.create({
     itemWrapper: {
         alignItems: "center",
         flexDirection: "row",
-        height: Style.SCALE_UP_AND_DOWN(58)
+        height: Style.SCALE_UP_AND_DOWN(48)
     } as ViewStyle,
     logo: {} as ImageStyle,
     logoWrapper: {
-        marginBottom: Style.SCALE_UP_AND_DOWN(34),
+        marginBottom: Style.SCALE_UP_AND_DOWN(30),
         width: Style.SCALE_UP_AND_DOWN(56)
     } as ViewStyle,
     text: {
         borderColor: "transparent",
         borderWidth: 1,
-        color: "rgb(51,51,51)",
-        fontSize: Style.SCALE_UP_AND_DOWN(18),
+        color: "#333333",
+        fontSize: Style.SCALE_UP_AND_DOWN(16),
+        fontFamily: Style.FONT_FAMILY_PRIMARY,
         width: "100%"
     } as TextStyle,
     textWrapper: {

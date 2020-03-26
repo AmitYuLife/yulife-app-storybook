@@ -11,6 +11,8 @@ export const userFragmentGql = gql`
         businessAccountId
         business {
             businessAccountName
+            alpha
+            isGroup
         }
         wootricId
         membershipType

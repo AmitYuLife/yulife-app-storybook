@@ -49,7 +49,9 @@ export const loginSuccessFixture: LoginUser = {
             createdAt: "2019-01-01",
             businessAccountId: "ABC",
             business: {
-                businessAccountName: "yulife"
+                businessAccountName: "yulife",
+                alpha: true,
+                isGroup: false
             },
             leaderboards,
             membershipType: "yulife",
@@ -97,7 +99,9 @@ export const currentUserFixture: GetCurrentUser = {
         createdAt: "2019-01-01",
         businessAccountId: "ABC",
         business: {
-            businessAccountName: "yulife"
+            businessAccountName: "yulife",
+            alpha: true,
+            isGroup: false
         },
         leaderboards,
         membershipType: "yulife",

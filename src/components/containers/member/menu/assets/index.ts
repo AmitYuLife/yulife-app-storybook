@@ -1,16 +1,17 @@
 import { ImageRequireSource } from "react-native";
 
 export type LinkTypes =
-    "debug" |
-    "activity" |
-    "leaderboard" |
-    "chat" |
-    "survey" |
-    "logout" |
-    "member" |
-    "play" |
-    "settings"|
-    "stats";
+    | "debug"
+    | "activity"
+    | "leaderboard"
+    | "chat"
+    | "survey"
+    | "logout"
+    | "member"
+    | "memeberServices"
+    | "play"
+    | "settings"
+    | "stats";
 
 export enum LINKS {
     DEBUG = "debug",
@@ -20,6 +21,7 @@ export enum LINKS {
     SURVEY = "survey",
     LOGOUT = "logout",
     MEMBER = "member",
+    MEMBER_SERVICES = "memeberServices",
     PLAY = "play",
     SETTINGS = "settings",
     STATS = "stats"
@@ -34,5 +36,6 @@ export default {
     [LINKS.MEMBER]: require("../../../../../../assets/menu/member.png"),
     [LINKS.PLAY]: require("../../../../../../assets/menu/play.png"),
     [LINKS.SETTINGS]: require("../../../../../../assets/menu/settings.png"),
-    [LINKS.LEADERBOARD]: require("../../../../../../assets/menu/leaderboard.png")
+    [LINKS.LEADERBOARD]: require("../../../../../../assets/menu/leaderboard.png"),
+    [LINKS.MEMBER_SERVICES]: require("../../../../../../assets/menu/memberServices.png")
 } as { [key: string]: ImageRequireSource };

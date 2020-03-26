@@ -9,6 +9,7 @@ import {
     UpdateLeaderboardConsentVariables,
     UpdateMemberConsent
 } from "../../graphql/_core/schema";
+import { GetCurrentUser_getCurrentUser_business } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import {
     GET_USER_SUCCESS,
@@ -36,6 +37,7 @@ export type ILeaderboard = GetCurrentUser_getCurrentUser_leaderboards & {
 };
 
 type Connection = GetCurrentUser_getCurrentUser_connections & { isLoading?: boolean };
+type Business = GetCurrentUser_getCurrentUser_business & { isLoading?: boolean };
 
 type SurgeActivity = "steps" | "meditation" | "all" | null;
 
@@ -60,6 +62,7 @@ export interface IUserStore {
         activity: SurgeActivity;
         rate: number;
     };
+    business: Business;
 }
 
 export const initialState: IUserStore = {
@@ -75,6 +78,11 @@ export const initialState: IUserStore = {
         visibility: false,
         activity: null,
         rate: 1
+    },
+    business: {
+        businessAccountName: "",
+        alpha: true,
+        isGroup: false
     }
 };
 
@@ -155,12 +163,35 @@ const updatePersistedState = (persistedState: IUserStore) => {
         };
     }
 
+    if (!persistedState.business) {
+        return {
+            ...persistedState,
+            business: {
+                businessAccountName: "",
+                alpha: true,
+                isGroup: false
+            }
+        };
+    }
+
     return persistedState;
 };
 
 const getUserSuccess = (
     state: IUserStore,
-    { getCurrentUser: { leaderboards = [], mobileConsent, userFeatures = [], connections = [] } }: GetCurrentUser
+    {
+        getCurrentUser: {
+            leaderboards = [],
+            mobileConsent,
+            userFeatures = [],
+            connections = [],
+            business = {
+                businessAccountName: "",
+                alpha: true,
+                isGroup: false
+            }
+        }
+    }: GetCurrentUser
 ): IUserStore => ({
     ...state,
     archived: false,
@@ -169,7 +200,8 @@ const getUserSuccess = (
         ...mobileConsent
     },
     features: userFeatures.reduce(reduceUserFeatures, {}),
-    leaderboards
+    leaderboards,
+    business
 });
 
 const loginUserSuccess = (

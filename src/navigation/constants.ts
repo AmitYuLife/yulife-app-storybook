@@ -22,6 +22,7 @@ export const ROUTES = {
     stats: "yulife.member.Stats",
     leaderboards: "yulife.member.Leaderboards",
     debug: "yulife.member.Debug",
+    memberServices: "yulifer.member.memberServices",
 
     // quests
     questsChallengesList: "yulife.quests.ChallengesList",

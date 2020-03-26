@@ -73,6 +73,11 @@ export default [
         component: require("../components/containers/member/debug/debug.container").default
     },
 
+    {
+        name: ROUTES.memberServices,
+        component: require("../components/containers/member/member-services/member-services.container").default
+    },
+
     // quests screens
     {
         name: ROUTES.questsChallengesList,
