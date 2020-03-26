@@ -131,8 +131,9 @@ ShallowWrapper {
                   Object {
                     "borderColor": "transparent",
                     "borderWidth": 1,
-                    "color": "rgb(51,51,51)",
-                    "fontSize": 36,
+                    "color": "#333333",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
                     "width": "100%",
                   }
                 }
@@ -165,8 +166,9 @@ ShallowWrapper {
                   Object {
                     "borderColor": "transparent",
                     "borderWidth": 1,
-                    "color": "rgb(51,51,51)",
-                    "fontSize": 36,
+                    "color": "#333333",
+                    "fontFamily": "Bariol-Regular",
+                    "fontSize": 32,
                     "width": "100%",
                   }
                 }
@@ -299,8 +301,9 @@ ShallowWrapper {
                       Object {
                         "borderColor": "transparent",
                         "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
+                        "color": "#333333",
+                        "fontFamily": "Bariol-Regular",
+                        "fontSize": 32,
                         "width": "100%",
                       }
                     }
@@ -334,8 +337,9 @@ ShallowWrapper {
                       Object {
                         "borderColor": "transparent",
                         "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
+                        "color": "#333333",
+                        "fontFamily": "Bariol-Regular",
+                        "fontSize": 32,
                         "width": "100%",
                       }
                     }
@@ -463,8 +467,9 @@ ShallowWrapper {
                       Object {
                         "borderColor": "transparent",
                         "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
+                        "color": "#333333",
+                        "fontFamily": "Bariol-Regular",
+                        "fontSize": 32,
                         "width": "100%",
                       }
                     }
@@ -522,8 +527,9 @@ ShallowWrapper {
                       Object {
                         "borderColor": "transparent",
                         "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
+                        "color": "#333333",
+                        "fontFamily": "Bariol-Regular",
+                        "fontSize": 32,
                         "width": "100%",
                       }
                     }
@@ -545,8 +551,9 @@ ShallowWrapper {
                     "style": Object {
                       "borderColor": "transparent",
                       "borderWidth": 1,
-                      "color": "rgb(51,51,51)",
-                      "fontSize": 36,
+                      "color": "#333333",
+                      "fontFamily": "Bariol-Regular",
+                      "fontSize": 32,
                       "width": "100%",
                     },
                   },
@@ -580,8 +587,9 @@ ShallowWrapper {
                       Object {
                         "borderColor": "transparent",
                         "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
+                        "color": "#333333",
+                        "fontFamily": "Bariol-Regular",
+                        "fontSize": 32,
                         "width": "100%",
                       }
                     }
@@ -612,8 +620,9 @@ ShallowWrapper {
                       Object {
                         "borderColor": "transparent",
                         "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
+                        "color": "#333333",
+                        "fontFamily": "Bariol-Regular",
+                        "fontSize": 32,
                         "width": "100%",
                       }
                     }
@@ -635,8 +644,9 @@ ShallowWrapper {
                     "style": Object {
                       "borderColor": "transparent",
                       "borderWidth": 1,
-                      "color": "rgb(51,51,51)",
-                      "fontSize": 36,
+                      "color": "#333333",
+                      "fontFamily": "Bariol-Regular",
+                      "fontSize": 32,
                       "width": "100%",
                     },
                   },
@@ -845,8 +855,9 @@ ShallowWrapper {
                     Object {
                       "borderColor": "transparent",
                       "borderWidth": 1,
-                      "color": "rgb(51,51,51)",
-                      "fontSize": 36,
+                      "color": "#333333",
+                      "fontFamily": "Bariol-Regular",
+                      "fontSize": 32,
                       "width": "100%",
                     }
                   }
@@ -879,8 +890,9 @@ ShallowWrapper {
                     Object {
                       "borderColor": "transparent",
                       "borderWidth": 1,
-                      "color": "rgb(51,51,51)",
-                      "fontSize": 36,
+                      "color": "#333333",
+                      "fontFamily": "Bariol-Regular",
+                      "fontSize": 32,
                       "width": "100%",
                     }
                   }
@@ -1013,8 +1025,9 @@ ShallowWrapper {
                         Object {
                           "borderColor": "transparent",
                           "borderWidth": 1,
-                          "color": "rgb(51,51,51)",
-                          "fontSize": 36,
+                          "color": "#333333",
+                          "fontFamily": "Bariol-Regular",
+                          "fontSize": 32,
                           "width": "100%",
                         }
                       }
@@ -1048,8 +1061,9 @@ ShallowWrapper {
                         Object {
                           "borderColor": "transparent",
                           "borderWidth": 1,
-                          "color": "rgb(51,51,51)",
-                          "fontSize": 36,
+                          "color": "#333333",
+                          "fontFamily": "Bariol-Regular",
+                          "fontSize": 32,
                           "width": "100%",
                         }
                       }
@@ -1177,8 +1191,9 @@ ShallowWrapper {
                         Object {
                           "borderColor": "transparent",
                           "borderWidth": 1,
-                          "color": "rgb(51,51,51)",
-                          "fontSize": 36,
+                          "color": "#333333",
+                          "fontFamily": "Bariol-Regular",
+                          "fontSize": 32,
                           "width": "100%",
                         }
                       }
@@ -1236,8 +1251,9 @@ ShallowWrapper {
                         Object {
                           "borderColor": "transparent",
                           "borderWidth": 1,
-                          "color": "rgb(51,51,51)",
-                          "fontSize": 36,
+                          "color": "#333333",
+                          "fontFamily": "Bariol-Regular",
+                          "fontSize": 32,
                           "width": "100%",
                         }
                       }
@@ -1259,8 +1275,9 @@ ShallowWrapper {
                       "style": Object {
                         "borderColor": "transparent",
                         "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
+                        "color": "#333333",
+                        "fontFamily": "Bariol-Regular",
+                        "fontSize": 32,
                         "width": "100%",
                       },
                     },
@@ -1294,8 +1311,9 @@ ShallowWrapper {
                         Object {
                           "borderColor": "transparent",
                           "borderWidth": 1,
-                          "color": "rgb(51,51,51)",
-                          "fontSize": 36,
+                          "color": "#333333",
+                          "fontFamily": "Bariol-Regular",
+                          "fontSize": 32,
                           "width": "100%",
                         }
                       }
@@ -1326,8 +1344,9 @@ ShallowWrapper {
                         Object {
                           "borderColor": "transparent",
                           "borderWidth": 1,
-                          "color": "rgb(51,51,51)",
-                          "fontSize": 36,
+                          "color": "#333333",
+                          "fontFamily": "Bariol-Regular",
+                          "fontSize": 32,
                           "width": "100%",
                         }
                       }
@@ -1349,8 +1368,9 @@ ShallowWrapper {
                       "style": Object {
                         "borderColor": "transparent",
                         "borderWidth": 1,
-                        "color": "rgb(51,51,51)",
-                        "fontSize": 36,
+                        "color": "#333333",
+                        "fontFamily": "Bariol-Regular",
+                        "fontSize": 32,
                         "width": "100%",
                       },
                     },

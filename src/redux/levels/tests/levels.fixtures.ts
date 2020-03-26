@@ -37,7 +37,9 @@ export const currentUser: GetCurrentUser = {
         createdAt: "2019-01-01",
         businessAccountId: "ABC",
         business: {
-            businessAccountName: "yulife"
+            businessAccountName: "yulife",
+            alpha: true,
+            isGroup: false
         },
         archived: false,
         onboardingDate: "2019-01-01",
@@ -48,7 +50,7 @@ export const currentUser: GetCurrentUser = {
         mobileConsent: null,
         coinLedger: null,
         passiveSteps: null,
-        passiveMeditation : null,
+        passiveMeditation: null,
         activeChallenge: null,
         activeStreak: null,
         todayActivity: null,
@@ -80,7 +82,9 @@ export const loginUser: LoginUser = {
             createdAt: "2019-01-01",
             businessAccountId: "ABC",
             business: {
-                businessAccountName: "yulife"
+                businessAccountName: "yulife",
+                alpha: true,
+                isGroup: false
             },
             archived: false,
             onboardingDate: "2019-01-01",

@@ -9,6 +9,7 @@ export const SETTINGS_SCREEN = "SETTINGS_SCREEN";
 export const QUESTS_SCREEN = (level: number) => `QUESTS_SCREEN_${level.toString()}`;
 export const MENU_SCREEN = "MENU_SCREEN";
 export const CHALLENGE_SCREEN = "CHALLENGE_SCREEN";
+export const YUMATTER_SCREEN = "YUMATTER_SCREEN";
 
 // buttons
 export const BUTTON_LOGIN = "BUTTON_LOGIN";
