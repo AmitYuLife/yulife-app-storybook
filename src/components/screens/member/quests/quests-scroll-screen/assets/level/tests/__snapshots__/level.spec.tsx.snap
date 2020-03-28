@@ -41,13 +41,11 @@ ShallowWrapper {
     slice={
       Object {
         "episodeSettings": Object {
-          "navBarType": "forest",
           "offset": 0,
           "topBarType": "forest",
         },
         "id": "MAP_SLICE_W01E00",
         "image": 1,
-        "navBarColour": "forest",
         "slots": Array [
           Object {
             "index": 1,
@@ -424,13 +422,11 @@ ShallowWrapper {
     slice={
       Object {
         "episodeSettings": Object {
-          "navBarType": "forest",
           "offset": 0,
           "topBarType": "forest",
         },
         "id": "MAP_SLICE_W01E00",
         "image": 1,
-        "navBarColour": "forest",
         "slots": Array [
           Object {
             "index": 1,

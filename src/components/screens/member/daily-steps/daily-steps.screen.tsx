@@ -1,6 +1,6 @@
 import { IThemeStore } from "@app/redux/theme/theme.reducer";
 import { DAILY_STEPS_SCREEN } from "@ids";
-import { TouchableOpacityWithState } from "@molecules/index";
+import { ILabel, TouchableOpacityWithState } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
 import { Platform, View } from "react-native";
@@ -22,6 +22,7 @@ import DailyStepsOnline, { IProps as IDailyStepsOnlineProps } from "./daily-step
 import styles from "./daily-steps.screen.styles";
 
 interface IProps extends IConnectedScreenProps {
+    labels: ILabel[];
     showCounter?: boolean;
     currentStreak?: number;
     currentWorld?: number;
@@ -68,7 +69,7 @@ export default function DailyStepsScreen({
     showCounter = false,
     steps,
     totalCoins,
-    theme: { centredScreen, hasWhiteGlow, topBarType, navBar, streakType, textStyle },
+    theme: { centredScreen, hasWhiteGlow, topBarType, streakType, textStyle },
     copy,
     onUpdateLeaderboardPopupVisibility,
     onUpdateSurgePopupVisibility,
@@ -136,19 +137,11 @@ export default function DailyStepsScreen({
                     <LeaderboardPopup
                         copy={copy.popUpCopy}
                         hasNotification={hasNotification}
-                        navbarColour={navBar.online}
                         labels={labels}
                         onUpdateLeaderboardPopupVisibility={onUpdateLeaderboardPopupVisibility}
                     />
                 ) : (
-                    <View style={styles.navBarWrapper}>
-                        <NavBar
-                            activeIndex={0}
-                            colour={!fitKitAvailable || !hasPermission ? navBar.offline : navBar.online}
-                            hasNotification={hasNotification}
-                            labels={labels}
-                        />
-                    </View>
+                    <NavBar activeIndex={0} hasNotification={hasNotification} />
                 )}
             </CentredScreen>
         </Animatable.View>

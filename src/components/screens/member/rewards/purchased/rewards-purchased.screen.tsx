@@ -1,5 +1,5 @@
 import Loading from "@atoms/loading/loading";
-import { COLOURS, NavBar, RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
+import { NavBar, RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
 import { SafeAreaView, View } from "react-native";
@@ -18,7 +18,6 @@ interface IProps extends IConnectedScreenProps {
     loading: boolean;
     copy: GetMobileCopy_getMobileCopy_screens_purchases;
     currentWorld?: number;
-    navbarColour: COLOURS;
 }
 
 type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
@@ -32,12 +31,10 @@ export default class RewardsPurchasedScreen extends React.PureComponent<IProps> 
         const {
             data,
             hasNotification = false,
-            labels,
             onLeftTabPress,
             onRightTabPress,
             onLeftMenuPress,
-            totalCoins,
-            navbarColour
+            totalCoins
         } = this.props;
 
         return (
@@ -55,17 +52,10 @@ export default class RewardsPurchasedScreen extends React.PureComponent<IProps> 
                         onRefresh={this.handleRefresh}
                         renderEmpty={this.renderEmpty}
                         refreshHeader={YulifeRefreshHeader}
-                        renderFooter={this.renderFooter}
+                        // renderFooter={this.renderFooter}
                     />
                 </View>
-                <View style={styles.navBarWrapper}>
-                    <NavBar
-                        activeIndex={3}
-                        colour={navbarColour || NavBar.Colours.DARKER}
-                        hasNotification={hasNotification}
-                        labels={labels}
-                    />
-                </View>
+                <NavBar activeIndex={3} hasNotification={hasNotification} />
             </SafeAreaView>
         );
     }
@@ -112,6 +102,4 @@ export default class RewardsPurchasedScreen extends React.PureComponent<IProps> 
     };
 
     private getHeight = () => Style.SCALE_UP_AND_DOWN(74);
-
-    private renderFooter = () => <View style={styles.footer} />;
 }

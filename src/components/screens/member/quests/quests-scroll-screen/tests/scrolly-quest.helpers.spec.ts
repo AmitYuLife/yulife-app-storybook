@@ -1,4 +1,3 @@
-import { COLOURS } from "@molecules/index";
 import { TOP_BAR_TYPES } from "@molecules/top-bar/top-bar";
 import { IChallenge } from "../quests-screen";
 import { shouldScrollyQuestUpdate } from "../scrolly-quest.helpers";
@@ -14,7 +13,6 @@ const currentProps = {
             id: "1241241",
             image: 25,
             slots: [] as any,
-            navBarColour: COLOURS.DARK,
             topBarType: TOP_BAR_TYPES.DEFAULT
         }
     ],

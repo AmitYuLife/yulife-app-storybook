@@ -1,4 +1,3 @@
-import { COLOURS } from "@molecules/index";
 import { AppStateStatus } from "react-native";
 import copy from "../../../../../redux/copy/copy.data";
 import { shouldLeaderboardUpdate } from "../leaderboards.screen.helpers";
@@ -69,7 +68,6 @@ const currentProps = {
     onRefuseConsent: jest.fn(),
     copy: copy.leaderboards.turnBoardOn,
     isMindfulAvailable: false,
-    navbarColour: COLOURS.DARKER,
     appState: "active" as AppStateStatus
 };
 

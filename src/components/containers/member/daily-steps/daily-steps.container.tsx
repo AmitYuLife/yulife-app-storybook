@@ -124,7 +124,6 @@ class DailyStepsContainer extends React.Component<Props> {
                                 currentStreak={streaks.currentStreak}
                                 isDoneToday={streaks.isDoneToday}
                                 isLoading={isFetching || loading}
-                                labels={labels}
                                 maxStreak={streaks.maxStreak}
                                 onCoinPress={this.onCoinPress}
                                 onCtaPress={displayEarnMore ? this.onCta : null}

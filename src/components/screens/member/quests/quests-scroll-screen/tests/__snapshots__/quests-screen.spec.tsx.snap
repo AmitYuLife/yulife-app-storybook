@@ -66,13 +66,11 @@ ShallowWrapper {
             Array [
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 0,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E00",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "index": 1,
@@ -84,13 +82,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 0,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E01",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -117,13 +113,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 0,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E02",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -141,19 +135,16 @@ ShallowWrapper {
               Object {
                 "id": "MAP_SLICE_W01E03",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [],
                 "topBarType": "forest",
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 1220,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E04",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -170,13 +161,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 1220,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E05",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -203,13 +192,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 1220,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E06",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -222,19 +209,16 @@ ShallowWrapper {
               Object {
                 "id": "MAP_SLICE_W01E07",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [],
                 "topBarType": "forest",
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 2670,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E08",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "index": 14,
@@ -256,13 +240,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 2670,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E09",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 16,
@@ -284,13 +266,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 2670,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E10",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 8,
@@ -303,19 +283,16 @@ ShallowWrapper {
               Object {
                 "id": "MAP_SLICE_W01E11",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [],
                 "topBarType": "forest",
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 3990,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E12",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 40,
@@ -337,13 +314,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 3990,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E13",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 20,
@@ -365,13 +340,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 3990,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E14",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 24,
@@ -383,25 +356,21 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 5600,
                   "topBarType": "white",
                 },
                 "id": "MAP_SLICE_W01E15",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [],
                 "topBarType": "white",
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 5600,
                   "topBarType": "white",
                 },
                 "id": "MAP_SLICE_W01E16",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "index": 28,
@@ -418,13 +387,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 5600,
                   "topBarType": "white",
                 },
                 "id": "MAP_SLICE_W01E17",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 30,
@@ -451,13 +418,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 5600,
                   "topBarType": "white",
                 },
                 "id": "MAP_SLICE_W01E18",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 40,
@@ -469,13 +434,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 6800,
                   "topBarType": "white",
                 },
                 "id": "MAP_SLICE_W01E19",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "index": 35,
@@ -487,13 +450,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 6800,
                   "topBarType": "white",
                 },
                 "id": "MAP_SLICE_W01E20",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -520,13 +481,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 6800,
                   "topBarType": "white",
                 },
                 "id": "MAP_SLICE_W01E21",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -544,19 +503,16 @@ ShallowWrapper {
               Object {
                 "id": "MAP_SLICE_W01E22",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [],
                 "topBarType": "white",
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 8040,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E23",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "index": 42,
@@ -573,13 +529,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 8040,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E24",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -601,13 +555,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 8040,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E25",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 8,
@@ -625,7 +577,6 @@ ShallowWrapper {
               Object {
                 "id": "MAP_SLICE_W01_LOADING_01",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [],
                 "topBarType": "forest",
               },
@@ -686,44 +637,10 @@ ShallowWrapper {
           onPressLeftIcon={[MockFunction]}
           type="forest"
         />,
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "bottom": 20,
-              "left": 0,
-              "paddingBottom": 30,
-              "position": "absolute",
-              "right": 0,
-            }
-          }
-        >
-          <NavBar
-            activeIndex={1}
-            colour="forest"
-            hasNotification={false}
-            labels={
-              Array [
-                Object {
-                  "name": "yucoin",
-                  "onPress": [Function],
-                },
-                Object {
-                  "name": "quests",
-                  "onPress": [Function],
-                },
-                Object {
-                  "name": "leaderboard",
-                  "onPress": [Function],
-                },
-                Object {
-                  "name": "rewards",
-                  "onPress": [Function],
-                },
-              ]
-            }
-          />
-        </View>,
+        <NavBar
+          activeIndex={1}
+          hasNotification={false}
+        />,
       ],
       "style": Object {
         "flex": 1,
@@ -743,13 +660,11 @@ ShallowWrapper {
           "data": Array [
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 0,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E00",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "index": 1,
@@ -761,13 +676,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 0,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E01",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 36,
@@ -794,13 +707,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 0,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E02",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 36,
@@ -818,19 +729,16 @@ ShallowWrapper {
             Object {
               "id": "MAP_SLICE_W01E03",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [],
               "topBarType": "forest",
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 1220,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E04",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 36,
@@ -847,13 +755,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 1220,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E05",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 36,
@@ -880,13 +786,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 1220,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E06",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 36,
@@ -899,19 +803,16 @@ ShallowWrapper {
             Object {
               "id": "MAP_SLICE_W01E07",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [],
               "topBarType": "forest",
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 2670,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E08",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "index": 14,
@@ -933,13 +834,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 2670,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E09",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 16,
@@ -961,13 +860,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 2670,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E10",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 8,
@@ -980,19 +877,16 @@ ShallowWrapper {
             Object {
               "id": "MAP_SLICE_W01E11",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [],
               "topBarType": "forest",
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 3990,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E12",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 40,
@@ -1014,13 +908,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 3990,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E13",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 20,
@@ -1042,13 +934,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 3990,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E14",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 24,
@@ -1060,25 +950,21 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 5600,
                 "topBarType": "white",
               },
               "id": "MAP_SLICE_W01E15",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [],
               "topBarType": "white",
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 5600,
                 "topBarType": "white",
               },
               "id": "MAP_SLICE_W01E16",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "index": 28,
@@ -1095,13 +981,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 5600,
                 "topBarType": "white",
               },
               "id": "MAP_SLICE_W01E17",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 30,
@@ -1128,13 +1012,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 5600,
                 "topBarType": "white",
               },
               "id": "MAP_SLICE_W01E18",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 40,
@@ -1146,13 +1028,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 6800,
                 "topBarType": "white",
               },
               "id": "MAP_SLICE_W01E19",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "index": 35,
@@ -1164,13 +1044,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 6800,
                 "topBarType": "white",
               },
               "id": "MAP_SLICE_W01E20",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 36,
@@ -1197,13 +1075,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 6800,
                 "topBarType": "white",
               },
               "id": "MAP_SLICE_W01E21",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 36,
@@ -1221,19 +1097,16 @@ ShallowWrapper {
             Object {
               "id": "MAP_SLICE_W01E22",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [],
               "topBarType": "white",
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 8040,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E23",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "index": 42,
@@ -1250,13 +1123,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 8040,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E24",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 36,
@@ -1278,13 +1149,11 @@ ShallowWrapper {
             },
             Object {
               "episodeSettings": Object {
-                "navBarType": "forest",
                 "offset": 8040,
                 "topBarType": "forest",
               },
               "id": "MAP_SLICE_W01E25",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [
                 Object {
                   "bottom": 8,
@@ -1302,7 +1171,6 @@ ShallowWrapper {
             Object {
               "id": "MAP_SLICE_W01_LOADING_01",
               "image": 1,
-              "navBarColour": "forest",
               "slots": Array [],
               "topBarType": "forest",
             },
@@ -1375,72 +1243,11 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <NavBar
-            activeIndex={1}
-            colour="forest"
-            hasNotification={false}
-            labels={
-              Array [
-                Object {
-                  "name": "yucoin",
-                  "onPress": [Function],
-                },
-                Object {
-                  "name": "quests",
-                  "onPress": [Function],
-                },
-                Object {
-                  "name": "leaderboard",
-                  "onPress": [Function],
-                },
-                Object {
-                  "name": "rewards",
-                  "onPress": [Function],
-                },
-              ]
-            }
-          />,
-          "style": Object {
-            "alignItems": "center",
-            "bottom": 20,
-            "left": 0,
-            "paddingBottom": 30,
-            "position": "absolute",
-            "right": 0,
-          },
+          "activeIndex": 1,
+          "hasNotification": false,
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "activeIndex": 1,
-            "colour": "forest",
-            "hasNotification": false,
-            "labels": Array [
-              Object {
-                "name": "yucoin",
-                "onPress": [Function],
-              },
-              Object {
-                "name": "quests",
-                "onPress": [Function],
-              },
-              Object {
-                "name": "leaderboard",
-                "onPress": [Function],
-              },
-              Object {
-                "name": "rewards",
-                "onPress": [Function],
-              },
-            ],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
+        "rendered": null,
         "type": [Function],
       },
     ],
@@ -1460,13 +1267,11 @@ ShallowWrapper {
               Array [
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 0,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E00",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "index": 1,
@@ -1478,13 +1283,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 0,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E01",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 36,
@@ -1511,13 +1314,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 0,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E02",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 36,
@@ -1535,19 +1336,16 @@ ShallowWrapper {
                 Object {
                   "id": "MAP_SLICE_W01E03",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [],
                   "topBarType": "forest",
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 1220,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E04",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 36,
@@ -1564,13 +1362,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 1220,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E05",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 36,
@@ -1597,13 +1393,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 1220,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E06",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 36,
@@ -1616,19 +1410,16 @@ ShallowWrapper {
                 Object {
                   "id": "MAP_SLICE_W01E07",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [],
                   "topBarType": "forest",
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 2670,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E08",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "index": 14,
@@ -1650,13 +1441,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 2670,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E09",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 16,
@@ -1678,13 +1467,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 2670,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E10",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 8,
@@ -1697,19 +1484,16 @@ ShallowWrapper {
                 Object {
                   "id": "MAP_SLICE_W01E11",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [],
                   "topBarType": "forest",
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 3990,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E12",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 40,
@@ -1731,13 +1515,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 3990,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E13",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 20,
@@ -1759,13 +1541,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 3990,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E14",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 24,
@@ -1777,25 +1557,21 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 5600,
                     "topBarType": "white",
                   },
                   "id": "MAP_SLICE_W01E15",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [],
                   "topBarType": "white",
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 5600,
                     "topBarType": "white",
                   },
                   "id": "MAP_SLICE_W01E16",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "index": 28,
@@ -1812,13 +1588,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 5600,
                     "topBarType": "white",
                   },
                   "id": "MAP_SLICE_W01E17",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 30,
@@ -1845,13 +1619,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 5600,
                     "topBarType": "white",
                   },
                   "id": "MAP_SLICE_W01E18",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 40,
@@ -1863,13 +1635,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 6800,
                     "topBarType": "white",
                   },
                   "id": "MAP_SLICE_W01E19",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "index": 35,
@@ -1881,13 +1651,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 6800,
                     "topBarType": "white",
                   },
                   "id": "MAP_SLICE_W01E20",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 36,
@@ -1914,13 +1682,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 6800,
                     "topBarType": "white",
                   },
                   "id": "MAP_SLICE_W01E21",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 36,
@@ -1938,19 +1704,16 @@ ShallowWrapper {
                 Object {
                   "id": "MAP_SLICE_W01E22",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [],
                   "topBarType": "white",
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 8040,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E23",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "index": 42,
@@ -1967,13 +1730,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 8040,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E24",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 36,
@@ -1995,13 +1756,11 @@ ShallowWrapper {
                 },
                 Object {
                   "episodeSettings": Object {
-                    "navBarType": "forest",
                     "offset": 8040,
                     "topBarType": "forest",
                   },
                   "id": "MAP_SLICE_W01E25",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [
                     Object {
                       "bottom": 8,
@@ -2019,7 +1778,6 @@ ShallowWrapper {
                 Object {
                   "id": "MAP_SLICE_W01_LOADING_01",
                   "image": 1,
-                  "navBarColour": "forest",
                   "slots": Array [],
                   "topBarType": "forest",
                 },
@@ -2080,44 +1838,10 @@ ShallowWrapper {
             onPressLeftIcon={[MockFunction]}
             type="forest"
           />,
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "bottom": 20,
-                "left": 0,
-                "paddingBottom": 30,
-                "position": "absolute",
-                "right": 0,
-              }
-            }
-          >
-            <NavBar
-              activeIndex={1}
-              colour="forest"
-              hasNotification={false}
-              labels={
-                Array [
-                  Object {
-                    "name": "yucoin",
-                    "onPress": [Function],
-                  },
-                  Object {
-                    "name": "quests",
-                    "onPress": [Function],
-                  },
-                  Object {
-                    "name": "leaderboard",
-                    "onPress": [Function],
-                  },
-                  Object {
-                    "name": "rewards",
-                    "onPress": [Function],
-                  },
-                ]
-              }
-            />
-          </View>,
+          <NavBar
+            activeIndex={1}
+            hasNotification={false}
+          />,
         ],
         "style": Object {
           "flex": 1,
@@ -2137,13 +1861,11 @@ ShallowWrapper {
             "data": Array [
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 0,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E00",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "index": 1,
@@ -2155,13 +1877,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 0,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E01",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -2188,13 +1908,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 0,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E02",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -2212,19 +1930,16 @@ ShallowWrapper {
               Object {
                 "id": "MAP_SLICE_W01E03",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [],
                 "topBarType": "forest",
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 1220,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E04",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -2241,13 +1956,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 1220,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E05",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -2274,13 +1987,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 1220,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E06",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -2293,19 +2004,16 @@ ShallowWrapper {
               Object {
                 "id": "MAP_SLICE_W01E07",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [],
                 "topBarType": "forest",
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 2670,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E08",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "index": 14,
@@ -2327,13 +2035,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 2670,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E09",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 16,
@@ -2355,13 +2061,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 2670,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E10",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 8,
@@ -2374,19 +2078,16 @@ ShallowWrapper {
               Object {
                 "id": "MAP_SLICE_W01E11",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [],
                 "topBarType": "forest",
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 3990,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E12",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 40,
@@ -2408,13 +2109,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 3990,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E13",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 20,
@@ -2436,13 +2135,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 3990,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E14",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 24,
@@ -2454,25 +2151,21 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 5600,
                   "topBarType": "white",
                 },
                 "id": "MAP_SLICE_W01E15",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [],
                 "topBarType": "white",
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 5600,
                   "topBarType": "white",
                 },
                 "id": "MAP_SLICE_W01E16",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "index": 28,
@@ -2489,13 +2182,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 5600,
                   "topBarType": "white",
                 },
                 "id": "MAP_SLICE_W01E17",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 30,
@@ -2522,13 +2213,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 5600,
                   "topBarType": "white",
                 },
                 "id": "MAP_SLICE_W01E18",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 40,
@@ -2540,13 +2229,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 6800,
                   "topBarType": "white",
                 },
                 "id": "MAP_SLICE_W01E19",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "index": 35,
@@ -2558,13 +2245,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 6800,
                   "topBarType": "white",
                 },
                 "id": "MAP_SLICE_W01E20",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -2591,13 +2276,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 6800,
                   "topBarType": "white",
                 },
                 "id": "MAP_SLICE_W01E21",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -2615,19 +2298,16 @@ ShallowWrapper {
               Object {
                 "id": "MAP_SLICE_W01E22",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [],
                 "topBarType": "white",
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 8040,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E23",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "index": 42,
@@ -2644,13 +2324,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 8040,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E24",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 36,
@@ -2672,13 +2350,11 @@ ShallowWrapper {
               },
               Object {
                 "episodeSettings": Object {
-                  "navBarType": "forest",
                   "offset": 8040,
                   "topBarType": "forest",
                 },
                 "id": "MAP_SLICE_W01E25",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [
                   Object {
                     "bottom": 8,
@@ -2696,7 +2372,6 @@ ShallowWrapper {
               Object {
                 "id": "MAP_SLICE_W01_LOADING_01",
                 "image": 1,
-                "navBarColour": "forest",
                 "slots": Array [],
                 "topBarType": "forest",
               },
@@ -2769,72 +2444,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <NavBar
-              activeIndex={1}
-              colour="forest"
-              hasNotification={false}
-              labels={
-                Array [
-                  Object {
-                    "name": "yucoin",
-                    "onPress": [Function],
-                  },
-                  Object {
-                    "name": "quests",
-                    "onPress": [Function],
-                  },
-                  Object {
-                    "name": "leaderboard",
-                    "onPress": [Function],
-                  },
-                  Object {
-                    "name": "rewards",
-                    "onPress": [Function],
-                  },
-                ]
-              }
-            />,
-            "style": Object {
-              "alignItems": "center",
-              "bottom": 20,
-              "left": 0,
-              "paddingBottom": 30,
-              "position": "absolute",
-              "right": 0,
-            },
+            "activeIndex": 1,
+            "hasNotification": false,
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "activeIndex": 1,
-              "colour": "forest",
-              "hasNotification": false,
-              "labels": Array [
-                Object {
-                  "name": "yucoin",
-                  "onPress": [Function],
-                },
-                Object {
-                  "name": "quests",
-                  "onPress": [Function],
-                },
-                Object {
-                  "name": "leaderboard",
-                  "onPress": [Function],
-                },
-                Object {
-                  "name": "rewards",
-                  "onPress": [Function],
-                },
-              ],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+          "rendered": null,
           "type": [Function],
         },
       ],

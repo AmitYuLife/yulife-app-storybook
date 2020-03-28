@@ -5,7 +5,6 @@ import { Style } from "../../../../../styles";
 export default StyleSheet.create({
     listWrapper: {
         flex: 1,
-        marginBottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 45 : 79),
         paddingHorizontal: Style.SCALE_UP_AND_DOWN(15)
     } as ViewStyle,
     navBarWrapper: {

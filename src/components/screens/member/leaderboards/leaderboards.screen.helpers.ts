@@ -10,7 +10,6 @@ interface IShouldUpdateProps {
 export function shouldLeaderboardUpdate({ nextProps, currentProps, nextState, currentState }: IShouldUpdateProps) {
     return (
         currentProps.activeLeaderboardIndex !== nextProps.activeLeaderboardIndex ||
-        currentProps.navbarColour !== nextProps.navbarColour ||
         currentProps.appState !== nextProps.appState ||
         currentProps.isLoading !== nextProps.isLoading ||
         currentProps.initialScrollIndex !== nextProps.initialScrollIndex ||

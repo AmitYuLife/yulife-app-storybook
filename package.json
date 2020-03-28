@@ -76,7 +76,7 @@
     "react-native-navigation": "^2.26.2",
     "react-native-push-notification": "^3.1.2",
     "react-native-spring-scrollview": "^2.0.23",
-    "react-native-svg": "^9.0.0",
+    "react-native-svg": "^12.0.3",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-persist": "^5.10.0",

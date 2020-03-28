@@ -1,5 +1,5 @@
+import { Style } from "@styles/index";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Style } from "../../../styles";
 
 const styles = StyleSheet.create({
     labelsWrapper: {
@@ -22,13 +22,30 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end"
     } as ViewStyle,
     wrapper: {
+        backgroundColor: "#fff",
+        borderRadius: Style.SCALE_UP_AND_DOWN(8),
+        height: Style.SCALE_UP_AND_DOWN(58),
+        justifyContent: "space-around",
         alignItems: "center",
-        height: Style.SCALE_UP_AND_DOWN(70),
-        justifyContent: "flex-start",
-        width: Style.SCALE_UP_AND_DOWN(280)
+        paddingHorizontal: Style.SCALE_UP_AND_DOWN(20),
+        flexDirection: "row",
+        width: "100%",
+        overflow: "hidden",
+        // android box shadow
+        elevation: 10
     } as ViewStyle,
     outerWrapper: {
-        justifyContent: "flex-end"
+        position: "absolute",
+        left: Style.SCALE_UP_AND_DOWN(10),
+        right: Style.SCALE_UP_AND_DOWN(10),
+        // ios box shadow
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84
     } as ViewStyle
 });
 

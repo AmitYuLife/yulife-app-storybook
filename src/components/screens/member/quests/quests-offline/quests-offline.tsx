@@ -14,13 +14,7 @@ type Props = IConnectedScreenProps & {
 
 type ImageType = "forest" | "ocean" | "desert" | "mountain";
 
-export default function QuestsScreenOffline({
-    fitkitAvailable,
-    labels,
-    onLeftMenuPress,
-    totalCoins,
-    theme: { image, navBarType }
-}: Props) {
+export default function QuestsScreenOffline({ fitkitAvailable, onLeftMenuPress, totalCoins, theme: { image } }: Props) {
     return (
         <SafeAreaView style={styles.wrapper}>
             <View style={styles.backgroundWrapper}>
@@ -43,9 +37,7 @@ export default function QuestsScreenOffline({
                 <Pad height={60} />
             </View>
             <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
-            <View style={styles.navBarWrapper}>
-                <NavBar activeIndex={1} colour={navBarType} hasNotification={false} labels={labels} />
-            </View>
+            <NavBar activeIndex={1} hasNotification={false} />
         </SafeAreaView>
     );
 }

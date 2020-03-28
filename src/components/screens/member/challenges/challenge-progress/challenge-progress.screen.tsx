@@ -6,6 +6,7 @@ import { IConnectedScreenProps } from "../../../../../typings";
 import assets from "./assets";
 import { getWorldStyle } from "./challenge-progress.screen.helpers";
 import styles from "./challenge-progress.screen.styles";
+import Exit from "./subcomponents/exit";
 import ProgressBar from "./subcomponents/progress-bar";
 
 export type ChallengeType = "short stroll" | "meditation" | "day walk" | "long walk" | "brisk walk";
@@ -27,7 +28,6 @@ export default function ChallengeProgressScreen({
     challengeType,
     currentWorld = 0,
     endDateTime,
-    labels,
     onCalmPress,
     onDismissPress,
     onHeadspacePress,
@@ -38,7 +38,7 @@ export default function ChallengeProgressScreen({
     userProgress,
     totalCoins
 }: IProps) {
-    const { backgroundColour, navBarType, progressBarType, source, style, topBarType } = getWorldStyle(
+    const { backgroundColour, progressBarType, source, style, topBarType, exitChallenge } = getWorldStyle(
         challengeType,
         currentWorld
     );
@@ -71,9 +71,12 @@ export default function ChallengeProgressScreen({
                         <Text style={styles.instructionSubheading} bold={true}>
                             an app to start
                         </Text>
+                        <Text style={styles.instructionText}>{`Or use any meditation app that`}</Text>
                         <Text style={styles.instructionText}>
-                            Or use any meditation app that integrates with{" "}
-                            {Platform.OS === "ios" ? "apple health" : "google fit"}.
+                            {`integrates with ${Platform.select({
+                                ios: "apple health",
+                                android: "google fit"
+                            })}.`}
                         </Text>
                         <Text style={styles.instructionText}>Results will be shown here.</Text>
                     </View>
@@ -90,16 +93,10 @@ export default function ChallengeProgressScreen({
                     </View>
                 </View>
             ) : null}
-
-            <View style={styles.navBarWrapper}>
-                <NavBar
-                    colour={navBarType}
-                    activeIndex={1}
-                    hasNotification={false}
-                    onDismissPress={onDismissPress}
-                    labels={labels}
-                />
+            <View style={styles.exitChallengeWrapper}>
+                <Exit onPress={onDismissPress} {...exitChallenge} />
             </View>
+            <NavBar activeIndex={1} hasNotification={false} additionalBottom={2} />
         </SafeAreaView>
     );
 }

@@ -1,4 +1,4 @@
-import { COLOURS, ILabel } from "@molecules/index";
+import { ILabel } from "@molecules/index";
 import { StreakTypes } from "@molecules/streak/streak";
 import { TopBarTypes } from "@molecules/top-bar/top-bar";
 import copyData from "@redux/copy/copy.data";
@@ -29,10 +29,6 @@ const defaultProps = {
         },
         hasWhiteGlow: false,
         isLight: false,
-        navBar: {
-            offline: COLOURS.LIGHT,
-            online: COLOURS.DARKER
-        },
         streakType: "forest" as StreakTypes,
         textStyle: { color: "#333333" },
         topBarType: "default" as TopBarTypes

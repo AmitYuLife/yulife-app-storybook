@@ -85,7 +85,7 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "marginBottom": 68,
+                "marginBottom": 60,
                 "width": 112,
               }
             }
@@ -101,7 +101,7 @@ ShallowWrapper {
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "height": 116,
+                "height": 96,
               }
             }
             testID="MENU_ITEM_debug"
@@ -148,7 +148,7 @@ ShallowWrapper {
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "height": 116,
+                "height": 96,
               }
             }
             testID="MENU_ITEM_leaderboard"
@@ -254,7 +254,7 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "marginBottom": 68,
+                  "marginBottom": 60,
                   "width": 112,
                 }
               }
@@ -271,7 +271,7 @@ ShallowWrapper {
                   Object {
                     "alignItems": "center",
                     "flexDirection": "row",
-                    "height": 116,
+                    "height": 96,
                   }
                 }
                 testID="MENU_ITEM_debug"
@@ -319,7 +319,7 @@ ShallowWrapper {
                   Object {
                     "alignItems": "center",
                     "flexDirection": "row",
-                    "height": 116,
+                    "height": 96,
                   }
                 }
                 testID="MENU_ITEM_leaderboard"
@@ -417,7 +417,7 @@ ShallowWrapper {
                 type="full"
               />,
               "style": Object {
-                "marginBottom": 68,
+                "marginBottom": 60,
                 "width": 112,
               },
             },
@@ -482,7 +482,7 @@ ShallowWrapper {
               "style": Object {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "height": 116,
+                "height": 96,
               },
               "testID": "MENU_ITEM_debug",
             },
@@ -602,7 +602,7 @@ ShallowWrapper {
               "style": Object {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "height": 116,
+                "height": 96,
               },
               "testID": "MENU_ITEM_leaderboard",
             },
@@ -809,7 +809,7 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "marginBottom": 68,
+                  "marginBottom": 60,
                   "width": 112,
                 }
               }
@@ -825,7 +825,7 @@ ShallowWrapper {
                 Object {
                   "alignItems": "center",
                   "flexDirection": "row",
-                  "height": 116,
+                  "height": 96,
                 }
               }
               testID="MENU_ITEM_debug"
@@ -872,7 +872,7 @@ ShallowWrapper {
                 Object {
                   "alignItems": "center",
                   "flexDirection": "row",
-                  "height": 116,
+                  "height": 96,
                 }
               }
               testID="MENU_ITEM_leaderboard"
@@ -978,7 +978,7 @@ ShallowWrapper {
               <View
                 style={
                   Object {
-                    "marginBottom": 68,
+                    "marginBottom": 60,
                     "width": 112,
                   }
                 }
@@ -995,7 +995,7 @@ ShallowWrapper {
                     Object {
                       "alignItems": "center",
                       "flexDirection": "row",
-                      "height": 116,
+                      "height": 96,
                     }
                   }
                   testID="MENU_ITEM_debug"
@@ -1043,7 +1043,7 @@ ShallowWrapper {
                     Object {
                       "alignItems": "center",
                       "flexDirection": "row",
-                      "height": 116,
+                      "height": 96,
                     }
                   }
                   testID="MENU_ITEM_leaderboard"
@@ -1141,7 +1141,7 @@ ShallowWrapper {
                   type="full"
                 />,
                 "style": Object {
-                  "marginBottom": 68,
+                  "marginBottom": 60,
                   "width": 112,
                 },
               },
@@ -1206,7 +1206,7 @@ ShallowWrapper {
                 "style": Object {
                   "alignItems": "center",
                   "flexDirection": "row",
-                  "height": 116,
+                  "height": 96,
                 },
                 "testID": "MENU_ITEM_debug",
               },
@@ -1326,7 +1326,7 @@ ShallowWrapper {
                 "style": Object {
                   "alignItems": "center",
                   "flexDirection": "row",
-                  "height": 116,
+                  "height": 96,
                 },
                 "testID": "MENU_ITEM_leaderboard",
               },
@@ -1572,7 +1572,7 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "marginBottom": 68,
+                "marginBottom": 60,
                 "width": 112,
               }
             }
@@ -1659,7 +1659,7 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "marginBottom": 68,
+                  "marginBottom": 60,
                   "width": 112,
                 }
               }
@@ -1737,7 +1737,7 @@ ShallowWrapper {
                 type="full"
               />,
               "style": Object {
-                "marginBottom": 68,
+                "marginBottom": 60,
                 "width": 112,
               },
             },
@@ -1906,7 +1906,7 @@ ShallowWrapper {
             <View
               style={
                 Object {
-                  "marginBottom": 68,
+                  "marginBottom": 60,
                   "width": 112,
                 }
               }
@@ -1993,7 +1993,7 @@ ShallowWrapper {
               <View
                 style={
                   Object {
-                    "marginBottom": 68,
+                    "marginBottom": 60,
                     "width": 112,
                   }
                 }
@@ -2071,7 +2071,7 @@ ShallowWrapper {
                   type="full"
                 />,
                 "style": Object {
-                  "marginBottom": 68,
+                  "marginBottom": 60,
                   "width": 112,
                 },
               },

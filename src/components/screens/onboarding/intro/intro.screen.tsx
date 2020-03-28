@@ -43,7 +43,6 @@ export default function IntroScreen({
     displayStreak,
     isDoneToday,
     isLoading,
-    labels,
     maxStreak,
     onCoinPress,
     onCtaPress,
@@ -51,7 +50,7 @@ export default function IntroScreen({
     showCounter = false,
     steps,
     onSetIntroDone,
-    theme: { centredScreen, streakType, textStyle, topBarType, navBar },
+    theme: { centredScreen, streakType, textStyle, topBarType },
     copy,
     shouldDisplaySurge,
     showIntro,
@@ -113,14 +112,11 @@ export default function IntroScreen({
                     />
                 </View>
                 <View style={styles.dim} />
-                <View style={styles.navBarWrapper}>
-                    <NavBar
-                        highlightedLabel={getHighlightedLabel(activeIndex)}
-                        labels={labels}
-                        activeIndex={0}
-                        colour={navBar.online}
-                    />
-                </View>
+                <NavBar
+                    highlightedLabel={getHighlightedLabel(activeIndex)}
+
+                    activeIndex={0}
+                />
                 <Streak
                     isFinished={isDoneToday}
                     isOnline={true}
@@ -130,7 +126,7 @@ export default function IntroScreen({
                     maxStreak={maxStreak}
                     type={streakType}
                 />
-                {dailyStepsPosition && (activeIndex >= 0 && activeIndex <= 8) ? (
+                {dailyStepsPosition && activeIndex >= 0 && activeIndex <= 8 ? (
                     <Tooltip
                         copy={copy}
                         {...tooltipProps}
