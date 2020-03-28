@@ -82,21 +82,23 @@ ShallowWrapper {
         <View
           style={
             Object {
-              "alignItems": "center",
-              "bottom": 54,
               "position": "absolute",
-              "width": 750,
+              "right": 32,
+              "top": 240,
             }
           }
         >
-          <NavBar
-            activeIndex={1}
-            colour="light"
-            hasNotification={false}
-            labels={Array []}
-            onDismissPress={[MockFunction]}
+          <Exit
+            onPress={[MockFunction]}
+            primaryColour="#3986BC"
+            secondaryColour="white"
           />
         </View>,
+        <NavBar
+          activeIndex={1}
+          additionalBottom={2}
+          hasNotification={false}
+        />,
       ],
       "style": Object {
         "backgroundColor": "rgb(0,81,143)",
@@ -191,36 +193,44 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <NavBar
-            activeIndex={1}
-            colour="light"
-            hasNotification={false}
-            labels={Array []}
-            onDismissPress={[MockFunction]}
+          "children": <Exit
+            onPress={[MockFunction]}
+            primaryColour="#3986BC"
+            secondaryColour="white"
           />,
           "style": Object {
-            "alignItems": "center",
-            "bottom": 54,
             "position": "absolute",
-            "width": 750,
+            "right": 32,
+            "top": 240,
           },
         },
         "ref": null,
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "activeIndex": 1,
-            "colour": "light",
-            "hasNotification": false,
-            "labels": Array [],
-            "onDismissPress": [MockFunction],
+            "onPress": [MockFunction],
+            "primaryColour": "#3986BC",
+            "secondaryColour": "white",
           },
           "ref": null,
           "rendered": null,
           "type": [Function],
         },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "activeIndex": 1,
+          "additionalBottom": 2,
+          "hasNotification": false,
+        },
+        "ref": null,
+        "rendered": null,
         "type": [Function],
       },
     ],
@@ -280,21 +290,23 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "alignItems": "center",
-                "bottom": 54,
                 "position": "absolute",
-                "width": 750,
+                "right": 32,
+                "top": 240,
               }
             }
           >
-            <NavBar
-              activeIndex={1}
-              colour="light"
-              hasNotification={false}
-              labels={Array []}
-              onDismissPress={[MockFunction]}
+            <Exit
+              onPress={[MockFunction]}
+              primaryColour="#3986BC"
+              secondaryColour="white"
             />
           </View>,
+          <NavBar
+            activeIndex={1}
+            additionalBottom={2}
+            hasNotification={false}
+          />,
         ],
         "style": Object {
           "backgroundColor": "rgb(0,81,143)",
@@ -389,36 +401,44 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <NavBar
-              activeIndex={1}
-              colour="light"
-              hasNotification={false}
-              labels={Array []}
-              onDismissPress={[MockFunction]}
+            "children": <Exit
+              onPress={[MockFunction]}
+              primaryColour="#3986BC"
+              secondaryColour="white"
             />,
             "style": Object {
-              "alignItems": "center",
-              "bottom": 54,
               "position": "absolute",
-              "width": 750,
+              "right": 32,
+              "top": 240,
             },
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "function",
             "props": Object {
-              "activeIndex": 1,
-              "colour": "light",
-              "hasNotification": false,
-              "labels": Array [],
-              "onDismissPress": [MockFunction],
+              "onPress": [MockFunction],
+              "primaryColour": "#3986BC",
+              "secondaryColour": "white",
             },
             "ref": null,
             "rendered": null,
             "type": [Function],
           },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeIndex": 1,
+            "additionalBottom": 2,
+            "hasNotification": false,
+          },
+          "ref": null,
+          "rendered": null,
           "type": [Function],
         },
       ],
@@ -529,21 +549,23 @@ ShallowWrapper {
         <View
           style={
             Object {
-              "alignItems": "center",
-              "bottom": 54,
               "position": "absolute",
-              "width": 750,
+              "right": 32,
+              "top": 240,
             }
           }
         >
-          <NavBar
-            activeIndex={1}
-            colour="light"
-            hasNotification={false}
-            labels={Array []}
-            onDismissPress={[MockFunction]}
+          <Exit
+            onPress={[MockFunction]}
+            primaryColour="#BCBCBC"
+            secondaryColour="white"
           />
         </View>,
+        <NavBar
+          activeIndex={1}
+          additionalBottom={2}
+          hasNotification={false}
+        />,
       ],
       "style": Object {
         "backgroundColor": "rgb(255,255,255)",
@@ -638,36 +660,44 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <NavBar
-            activeIndex={1}
-            colour="light"
-            hasNotification={false}
-            labels={Array []}
-            onDismissPress={[MockFunction]}
+          "children": <Exit
+            onPress={[MockFunction]}
+            primaryColour="#BCBCBC"
+            secondaryColour="white"
           />,
           "style": Object {
-            "alignItems": "center",
-            "bottom": 54,
             "position": "absolute",
-            "width": 750,
+            "right": 32,
+            "top": 240,
           },
         },
         "ref": null,
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "activeIndex": 1,
-            "colour": "light",
-            "hasNotification": false,
-            "labels": Array [],
-            "onDismissPress": [MockFunction],
+            "onPress": [MockFunction],
+            "primaryColour": "#BCBCBC",
+            "secondaryColour": "white",
           },
           "ref": null,
           "rendered": null,
           "type": [Function],
         },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "activeIndex": 1,
+          "additionalBottom": 2,
+          "hasNotification": false,
+        },
+        "ref": null,
+        "rendered": null,
         "type": [Function],
       },
     ],
@@ -727,21 +757,23 @@ ShallowWrapper {
           <View
             style={
               Object {
-                "alignItems": "center",
-                "bottom": 54,
                 "position": "absolute",
-                "width": 750,
+                "right": 32,
+                "top": 240,
               }
             }
           >
-            <NavBar
-              activeIndex={1}
-              colour="light"
-              hasNotification={false}
-              labels={Array []}
-              onDismissPress={[MockFunction]}
+            <Exit
+              onPress={[MockFunction]}
+              primaryColour="#BCBCBC"
+              secondaryColour="white"
             />
           </View>,
+          <NavBar
+            activeIndex={1}
+            additionalBottom={2}
+            hasNotification={false}
+          />,
         ],
         "style": Object {
           "backgroundColor": "rgb(255,255,255)",
@@ -836,36 +868,44 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <NavBar
-              activeIndex={1}
-              colour="light"
-              hasNotification={false}
-              labels={Array []}
-              onDismissPress={[MockFunction]}
+            "children": <Exit
+              onPress={[MockFunction]}
+              primaryColour="#BCBCBC"
+              secondaryColour="white"
             />,
             "style": Object {
-              "alignItems": "center",
-              "bottom": 54,
               "position": "absolute",
-              "width": 750,
+              "right": 32,
+              "top": 240,
             },
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "function",
             "props": Object {
-              "activeIndex": 1,
-              "colour": "light",
-              "hasNotification": false,
-              "labels": Array [],
-              "onDismissPress": [MockFunction],
+              "onPress": [MockFunction],
+              "primaryColour": "#BCBCBC",
+              "secondaryColour": "white",
             },
             "ref": null,
             "rendered": null,
             "type": [Function],
           },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "activeIndex": 1,
+            "additionalBottom": 2,
+            "hasNotification": false,
+          },
+          "ref": null,
+          "rendered": null,
           "type": [Function],
         },
       ],

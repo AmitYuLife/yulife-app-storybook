@@ -1,9 +1,11 @@
+import { Pad } from "@atoms/index";
 import Loading from "@atoms/loading/loading";
 import { REWARDS_SCREEN } from "@ids";
-import { COLOURS, NavBar, RewardsListItem, RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
+import { NavBar, RewardsListItem, RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
-import { SafeAreaView, View } from "react-native";
+import { Platform, SafeAreaView, StyleSheet, View } from "react-native";
+import { isIphoneX } from "react-native-iphone-x-helper";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
 import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
@@ -16,7 +18,6 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
     onRightTabPress: () => void;
     onItemPress: (item: GetRewards_getRewards) => void;
     loading: boolean;
-    navbarColour: COLOURS;
 }
 
 export default class RewardsListScreen extends React.PureComponent<IRewardsListScreenProps> {
@@ -26,41 +27,38 @@ export default class RewardsListScreen extends React.PureComponent<IRewardsListS
         const {
             data,
             hasNotification = false,
-            labels,
             onLeftTabPress,
             onRightTabPress,
             onLeftMenuPress,
-            totalCoins,
-            navbarColour
+            totalCoins
         } = this.props;
 
         return (
             <SafeAreaView style={styles.wrapper} testID={REWARDS_SCREEN}>
-                <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
-                <View style={styles.rewardTabsWrapper}>
-                    <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={0} />
+                <View style={StyleSheet.absoluteFillObject}>
+                    {Platform.OS !== "ios" ? null : <Pad height={isIphoneX() ? 40 : 20} />}
+                    <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
+                    <View style={styles.rewardTabsWrapper}>
+                        <RewardTabs
+                            onLeftTabPress={onLeftTabPress}
+                            onRightTabPress={onRightTabPress}
+                            activeTabIndex={0}
+                        />
+                    </View>
+                    <View style={styles.listWrapper}>
+                        <LargeList
+                            ref={this.setLargeListRef}
+                            renderIndexPath={this.renderIndexPath}
+                            heightForIndexPath={this.getHeight}
+                            data={[{ items: data }]}
+                            onRefresh={this.handleRefresh}
+                            renderEmpty={Loading}
+                            refreshHeader={YulifeRefreshHeader}
+                            renderFooter={this.renderFooter}
+                        />
+                    </View>
                 </View>
-                <View style={styles.listWrapper}>
-                    <LargeList
-                        ref={this.setLargeListRef}
-                        renderIndexPath={this.renderIndexPath}
-                        heightForIndexPath={this.getHeight}
-                        data={[{ items: data }]}
-                        onRefresh={this.handleRefresh}
-                        renderEmpty={Loading}
-                        refreshHeader={YulifeRefreshHeader}
-                        renderFooter={this.renderFooter}
-                    />
-                </View>
-                <View style={styles.navBarWrapper}>
-                    <NavBar
-                        activeIndex={3}
-                        colour={navbarColour || NavBar.Colours.DARKER}
-                        hasNotification={hasNotification}
-                        hasWhiteBackground={true}
-                        labels={labels}
-                    />
-                </View>
+                <NavBar activeIndex={3} hasNotification={hasNotification} />
             </SafeAreaView>
         );
     }

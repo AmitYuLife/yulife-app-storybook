@@ -11,18 +11,14 @@ export default StyleSheet.create({
         width: "100%"
     } as ImageStyle,
     instructionWrapper: {
-        flex: 1,
         flexBasis: Style.SCALE_UP_AND_DOWN(40),
         marginLeft: Style.SCALE_UP_AND_DOWN(16),
-        marginTop: Style.SCALE_UP_AND_DOWN(-30),
-        borderRightWidth: 1,
-        paddingRight: Style.SCALE_UP_AND_DOWN(20),
-        borderRightColor: "black"
+        marginTop: Style.SCALE_UP_AND_DOWN(-30)
     } as ViewStyle,
     instructionHeading: {
         fontSize: Style.SCALE_UP_AND_DOWN(40),
         lineHeight: Style.SCALE_UP_AND_DOWN(40),
-        marginBottom: -6,
+        marginBottom: Style.SCALE_UP_AND_DOWN(-6),
         color: "black"
     } as TextStyle,
     instructionSubheading: {
@@ -56,18 +52,21 @@ export default StyleSheet.create({
         borderWidth: 1,
         borderColor: "rgba(230, 230, 230, 0.6)",
         borderRadius: Style.SCALE_UP_AND_DOWN(16),
-        marginRight: 10
+        marginRight: Style.SCALE_UP_AND_DOWN(10)
     } as ImageStyle,
     logoWrapper: {
-        flex: 1,
         flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "flex-end",
-        marginTop: Style.SCALE_UP_AND_DOWN(5)
+        marginLeft: Style.SCALE_UP_AND_DOWN(16),
+        marginTop: Style.SCALE_UP_AND_DOWN(100)
     } as ViewStyle,
     meditationInstructionsWrapper: {
-        width: "100%",
-        marginTop: -40,
-        flexDirection: "row"
+        width: Style.SCALE_UP_AND_DOWN(Style.DEVICE_WIDTH + 60),
+        marginTop: Style.SCALE_UP_AND_DOWN(-40),
+        flexDirection: "column"
+    } as ViewStyle,
+    exitChallengeWrapper: {
+        position: "absolute",
+        top: Style.SCALE_UP_AND_DOWN(120),
+        right: Style.SCALE_UP_AND_DOWN(16)
     } as ViewStyle
 });

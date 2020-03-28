@@ -8,6 +8,7 @@ const defaultProps = {
     hasDismiss: false,
     hasHiddenIcons: false,
     isActive: false,
+    isHighlighted: false,
     isPressed: false
 };
 

@@ -13,15 +13,6 @@ export interface IContentLoaderProps extends SvgProps {
 }
 
 class NativeSvg extends Component<IContentLoaderProps, { offset: number }> {
-    public defaultProps = {
-        animate: true,
-        backgroundColor: "#f5f6f7",
-        foregroundColor: "#eee",
-        rtl: false,
-        speed: 1.2,
-        style: {}
-    };
-
     public state = { offset: -1 };
 
     protected animatedValue = new Animated.Value(0);
@@ -33,8 +24,9 @@ class NativeSvg extends Component<IContentLoaderProps, { offset: number }> {
     protected idGradient = `${this.fixedId}-animated-diff`;
 
     public setAnimation = () => {
+        const { speed = 1.2 } = this.props;
         // Turn in seconds to keep compatible with web one
-        const durInSeconds = this.props.speed * 1000;
+        const durInSeconds = speed * 1000;
 
         Animated.timing(this.animatedValue, {
             toValue: 2,
@@ -48,7 +40,9 @@ class NativeSvg extends Component<IContentLoaderProps, { offset: number }> {
     };
 
     public componentDidMount = () => {
-        if (this.props.animate) {
+        const { animate = true } = this.props;
+
+        if (animate) {
             this.setAnimation();
 
             this.animatedValue.addListener(({ value }) => {
@@ -60,7 +54,9 @@ class NativeSvg extends Component<IContentLoaderProps, { offset: number }> {
     };
 
     public componentWillUnmount = () => {
-        if (this.props.animate) {
+        const { animate = true } = this.props;
+
+        if (animate) {
             this.animatedValue.removeAllListeners();
         }
     };
@@ -68,13 +64,13 @@ class NativeSvg extends Component<IContentLoaderProps, { offset: number }> {
     public render() {
         const {
             children,
-            backgroundColor,
-            foregroundColor,
-            rtl,
-            style,
+            backgroundColor = "#f5f6f7",
+            foregroundColor = "#eee",
+            rtl = false,
+            style = {},
             uniqueKey,
-            animate,
-            speed,
+            animate = true,
+            speed = 1.2,
             ...props
         } = this.props;
 
@@ -101,9 +97,9 @@ class NativeSvg extends Component<IContentLoaderProps, { offset: number }> {
                     <ClipPath id={this.idGradient}>{children}</ClipPath>
 
                     <LinearGradient id={this.idClip} x1={"-100%"} y1={0} x2={"100%"} y2={0}>
-                        <Stop offset={offset1.toString()} stopColor={backgroundColor} />
-                        <Stop offset={offset2.toString()} stopColor={foregroundColor} />
-                        <Stop offset={offset3.toString()} stopColor={backgroundColor} />
+                        <Stop offset={offset1} stopColor={backgroundColor} />
+                        <Stop offset={offset2} stopColor={foregroundColor} />
+                        <Stop offset={offset3} stopColor={backgroundColor} />
                     </LinearGradient>
                 </Defs>
             </Svg>
@@ -111,16 +107,16 @@ class NativeSvg extends Component<IContentLoaderProps, { offset: number }> {
     }
 }
 
-const offsetValueBound = (value: number): number => {
+const offsetValueBound = (value: number) => {
     if (value > 1) {
-        return 1;
+        return "1";
     }
 
     if (value < 0) {
-        return 0;
+        return "0";
     }
 
-    return value;
+    return String(value);
 };
 
 export default NativeSvg;

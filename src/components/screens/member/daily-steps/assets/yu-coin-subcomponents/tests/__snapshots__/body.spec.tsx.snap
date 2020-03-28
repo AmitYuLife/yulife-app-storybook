@@ -29,12 +29,10 @@ ShallowWrapper {
           <Stop
             offset="0"
             stopColor="#FFF48E"
-            stopOpacity={1}
           />
           <Stop
             offset="0.9955"
             stopColor="#FFED44"
-            stopOpacity={1}
           />
         </LinearGradient>,
         <Circle
@@ -56,12 +54,10 @@ ShallowWrapper {
             <Stop
               offset="0"
               stopColor="#FFF48E"
-              stopOpacity={1}
             />,
             <Stop
               offset="0.9955"
               stopColor="#FFED44"
-              stopOpacity={1}
             />,
           ],
           "gradientUnits": "userSpaceOnUse",
@@ -80,7 +76,6 @@ ShallowWrapper {
             "props": Object {
               "offset": "0",
               "stopColor": "#FFF48E",
-              "stopOpacity": 1,
             },
             "ref": null,
             "rendered": null,
@@ -93,7 +88,6 @@ ShallowWrapper {
             "props": Object {
               "offset": "0.9955",
               "stopColor": "#FFED44",
-              "stopOpacity": 1,
             },
             "ref": null,
             "rendered": null,
@@ -137,12 +131,10 @@ ShallowWrapper {
             <Stop
               offset="0"
               stopColor="#FFF48E"
-              stopOpacity={1}
             />
             <Stop
               offset="0.9955"
               stopColor="#FFED44"
-              stopOpacity={1}
             />
           </LinearGradient>,
           <Circle
@@ -164,12 +156,10 @@ ShallowWrapper {
               <Stop
                 offset="0"
                 stopColor="#FFF48E"
-                stopOpacity={1}
               />,
               <Stop
                 offset="0.9955"
                 stopColor="#FFED44"
-                stopOpacity={1}
               />,
             ],
             "gradientUnits": "userSpaceOnUse",
@@ -188,7 +178,6 @@ ShallowWrapper {
               "props": Object {
                 "offset": "0",
                 "stopColor": "#FFF48E",
-                "stopOpacity": 1,
               },
               "ref": null,
               "rendered": null,
@@ -201,7 +190,6 @@ ShallowWrapper {
               "props": Object {
                 "offset": "0.9955",
                 "stopColor": "#FFED44",
-                "stopOpacity": 1,
               },
               "ref": null,
               "rendered": null,
@@ -281,12 +269,10 @@ ShallowWrapper {
           <Stop
             offset="0"
             stopColor="#f9f9f9"
-            stopOpacity={1}
           />
           <Stop
             offset="0.9955"
             stopColor="#ededed"
-            stopOpacity={1}
           />
         </LinearGradient>,
         <Circle
@@ -308,12 +294,10 @@ ShallowWrapper {
             <Stop
               offset="0"
               stopColor="#f9f9f9"
-              stopOpacity={1}
             />,
             <Stop
               offset="0.9955"
               stopColor="#ededed"
-              stopOpacity={1}
             />,
           ],
           "gradientUnits": "userSpaceOnUse",
@@ -332,7 +316,6 @@ ShallowWrapper {
             "props": Object {
               "offset": "0",
               "stopColor": "#f9f9f9",
-              "stopOpacity": 1,
             },
             "ref": null,
             "rendered": null,
@@ -345,7 +328,6 @@ ShallowWrapper {
             "props": Object {
               "offset": "0.9955",
               "stopColor": "#ededed",
-              "stopOpacity": 1,
             },
             "ref": null,
             "rendered": null,
@@ -389,12 +371,10 @@ ShallowWrapper {
             <Stop
               offset="0"
               stopColor="#f9f9f9"
-              stopOpacity={1}
             />
             <Stop
               offset="0.9955"
               stopColor="#ededed"
-              stopOpacity={1}
             />
           </LinearGradient>,
           <Circle
@@ -416,12 +396,10 @@ ShallowWrapper {
               <Stop
                 offset="0"
                 stopColor="#f9f9f9"
-                stopOpacity={1}
               />,
               <Stop
                 offset="0.9955"
                 stopColor="#ededed"
-                stopOpacity={1}
               />,
             ],
             "gradientUnits": "userSpaceOnUse",
@@ -440,7 +418,6 @@ ShallowWrapper {
               "props": Object {
                 "offset": "0",
                 "stopColor": "#f9f9f9",
-                "stopOpacity": 1,
               },
               "ref": null,
               "rendered": null,
@@ -453,7 +430,6 @@ ShallowWrapper {
               "props": Object {
                 "offset": "0.9955",
                 "stopColor": "#ededed",
-                "stopOpacity": 1,
               },
               "ref": null,
               "rendered": null,

@@ -1,7 +1,6 @@
 import { shallow } from "enzyme";
 import * as React from "react";
 import "react-native";
-import { COLOURS } from "../../../../../components/molecules";
 import LeaderboardOfflineScreen from "../leaderboard-offline.screen";
 
 const defaultProps = {
@@ -26,8 +25,7 @@ const defaultProps = {
     ],
     hasNotification: false,
     totalCoins: 5,
-    onLeftMenuPress: jest.fn(),
-    navbarColour: COLOURS.DARKER
+    onLeftMenuPress: jest.fn()
 };
 
 describe("LeaderboardOfflineScreen", () => {

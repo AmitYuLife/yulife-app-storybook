@@ -1,6 +1,6 @@
 import { shallow } from "enzyme";
 import * as React from "react";
-import { COLOURS, ILabel } from "../../../../../molecules";
+import { ILabel } from "../../../../../molecules";
 import RewardsListScreen from "../rewards-list.screen";
 
 const defaultProps = {
@@ -22,8 +22,7 @@ const defaultProps = {
     onRefresh: jest.fn(),
     onRightTabPress: jest.fn(),
     loading: false,
-    totalCoins: 1234,
-    navbarColour: COLOURS.DARKER
+    totalCoins: 1234
 };
 
 describe("RewardsListScreen", () => {

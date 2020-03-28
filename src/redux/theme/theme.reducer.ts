@@ -1,6 +1,5 @@
 // tslint:disable-next-line
 import { CenteredScreenImages } from "../../components/atoms/centred-screen/centred-screen";
-import { COLOURS, IColours } from "../../components/molecules";
 import { StreakTypes } from "../../components/molecules/streak/streak";
 import { TopBarTypes } from "../../components/molecules/top-bar/top-bar";
 import { GetCurrentUser, LoginUser } from "../../graphql/_core/schema";
@@ -21,17 +20,12 @@ export interface IThemeStore {
         };
         hasWhiteGlow: boolean;
         isLight: boolean;
-        navBar: {
-            offline: IColours;
-            online: IColours;
-        };
         streakType: StreakTypes;
         textStyle: { color: string };
         topBarType: TopBarTypes;
     };
     questsOfflineScreen: {
         image: string;
-        navBarType: IColours;
     };
 }
 
@@ -43,17 +37,12 @@ export const initialState: IThemeStore = {
         },
         hasWhiteGlow: false,
         isLight: false,
-        navBar: {
-            offline: COLOURS.FOREST,
-            online: COLOURS.FOREST
-        },
         streakType: "forest",
         textStyle: { color: "#333333" },
         topBarType: "default"
     },
     questsOfflineScreen: {
-        image: "forest",
-        navBarType: COLOURS.DARKER
+        image: "forest"
     }
 };
 
@@ -89,17 +78,12 @@ const getCurrentWorldTheme = (
                     },
                     hasWhiteGlow: true,
                     isLight: false,
-                    navBar: {
-                        offline: COLOURS.BLUE,
-                        online: COLOURS.LIGHT
-                    },
                     streakType: "mountain",
                     textStyle: { color: "rgb(51, 51, 51)" },
                     topBarType: "default"
                 },
                 questsOfflineScreen: {
-                    image: "mountain",
-                    navBarType: COLOURS.DARKER
+                    image: "mountain"
                 }
             };
         case 2:
@@ -111,17 +95,12 @@ const getCurrentWorldTheme = (
                     },
                     hasWhiteGlow: true,
                     isLight: false,
-                    navBar: {
-                        offline: COLOURS.DARKER,
-                        online: COLOURS.DESERT
-                    },
                     streakType: "desert",
                     textStyle: { color: "rgb(108,59,38)" },
                     topBarType: "default"
                 },
                 questsOfflineScreen: {
-                    image: "desert",
-                    navBarType: COLOURS.DARK
+                    image: "desert"
                 }
             };
         case 1:
@@ -133,17 +112,12 @@ const getCurrentWorldTheme = (
                     },
                     hasWhiteGlow: false,
                     isLight: true,
-                    navBar: {
-                        offline: COLOURS.LIGHT,
-                        online: COLOURS.LIGHT
-                    },
                     streakType: "ocean",
                     textStyle: { color: "white" },
                     topBarType: "white"
                 },
                 questsOfflineScreen: {
-                    image: "ocean",
-                    navBarType: COLOURS.LIGHT
+                    image: "ocean"
                 }
             };
         case 0:

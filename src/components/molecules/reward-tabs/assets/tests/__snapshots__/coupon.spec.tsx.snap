@@ -28,8 +28,6 @@ ShallowWrapper {
         <Rect
           fill="#abcdef"
           height="2.5"
-          rx={0}
-          ry={0}
           width="3"
           x="52"
           y="9"
@@ -37,8 +35,6 @@ ShallowWrapper {
         <Rect
           fill="#abcdef"
           height="4.8"
-          rx={0}
-          ry={0}
           width="3"
           x="52"
           y="29.8"
@@ -46,8 +42,6 @@ ShallowWrapper {
         <Rect
           fill="#abcdef"
           height="4.8"
-          rx={0}
-          ry={0}
           width="3"
           x="52"
           y="22.1"
@@ -55,8 +49,6 @@ ShallowWrapper {
         <Rect
           fill="#abcdef"
           height="4.8"
-          rx={0}
-          ry={0}
           width="3"
           x="52"
           y="14.4"
@@ -64,8 +56,6 @@ ShallowWrapper {
         <Rect
           fill="#abcdef"
           height="2.5"
-          rx={0}
-          ry={0}
           width="3"
           x="52"
           y="37.5"
@@ -101,8 +91,6 @@ ShallowWrapper {
         "props": Object {
           "fill": "#abcdef",
           "height": "2.5",
-          "rx": 0,
-          "ry": 0,
           "width": "3",
           "x": "52",
           "y": "9",
@@ -118,8 +106,6 @@ ShallowWrapper {
         "props": Object {
           "fill": "#abcdef",
           "height": "4.8",
-          "rx": 0,
-          "ry": 0,
           "width": "3",
           "x": "52",
           "y": "29.8",
@@ -135,8 +121,6 @@ ShallowWrapper {
         "props": Object {
           "fill": "#abcdef",
           "height": "4.8",
-          "rx": 0,
-          "ry": 0,
           "width": "3",
           "x": "52",
           "y": "22.1",
@@ -152,8 +136,6 @@ ShallowWrapper {
         "props": Object {
           "fill": "#abcdef",
           "height": "4.8",
-          "rx": 0,
-          "ry": 0,
           "width": "3",
           "x": "52",
           "y": "14.4",
@@ -169,8 +151,6 @@ ShallowWrapper {
         "props": Object {
           "fill": "#abcdef",
           "height": "2.5",
-          "rx": 0,
-          "ry": 0,
           "width": "3",
           "x": "52",
           "y": "37.5",
@@ -208,8 +188,6 @@ ShallowWrapper {
           <Rect
             fill="#abcdef"
             height="2.5"
-            rx={0}
-            ry={0}
             width="3"
             x="52"
             y="9"
@@ -217,8 +195,6 @@ ShallowWrapper {
           <Rect
             fill="#abcdef"
             height="4.8"
-            rx={0}
-            ry={0}
             width="3"
             x="52"
             y="29.8"
@@ -226,8 +202,6 @@ ShallowWrapper {
           <Rect
             fill="#abcdef"
             height="4.8"
-            rx={0}
-            ry={0}
             width="3"
             x="52"
             y="22.1"
@@ -235,8 +209,6 @@ ShallowWrapper {
           <Rect
             fill="#abcdef"
             height="4.8"
-            rx={0}
-            ry={0}
             width="3"
             x="52"
             y="14.4"
@@ -244,8 +216,6 @@ ShallowWrapper {
           <Rect
             fill="#abcdef"
             height="2.5"
-            rx={0}
-            ry={0}
             width="3"
             x="52"
             y="37.5"
@@ -281,8 +251,6 @@ ShallowWrapper {
           "props": Object {
             "fill": "#abcdef",
             "height": "2.5",
-            "rx": 0,
-            "ry": 0,
             "width": "3",
             "x": "52",
             "y": "9",
@@ -298,8 +266,6 @@ ShallowWrapper {
           "props": Object {
             "fill": "#abcdef",
             "height": "4.8",
-            "rx": 0,
-            "ry": 0,
             "width": "3",
             "x": "52",
             "y": "29.8",
@@ -315,8 +281,6 @@ ShallowWrapper {
           "props": Object {
             "fill": "#abcdef",
             "height": "4.8",
-            "rx": 0,
-            "ry": 0,
             "width": "3",
             "x": "52",
             "y": "22.1",
@@ -332,8 +296,6 @@ ShallowWrapper {
           "props": Object {
             "fill": "#abcdef",
             "height": "4.8",
-            "rx": 0,
-            "ry": 0,
             "width": "3",
             "x": "52",
             "y": "14.4",
@@ -349,8 +311,6 @@ ShallowWrapper {
           "props": Object {
             "fill": "#abcdef",
             "height": "2.5",
-            "rx": 0,
-            "ry": 0,
             "width": "3",
             "x": "52",
             "y": "37.5",
@@ -425,8 +385,6 @@ ShallowWrapper {
         <Rect
           fill="#abcdef"
           height="2.5"
-          rx={0}
-          ry={0}
           width="3"
           x="52"
           y="9"
@@ -434,8 +392,6 @@ ShallowWrapper {
         <Rect
           fill="#abcdef"
           height="4.8"
-          rx={0}
-          ry={0}
           width="3"
           x="52"
           y="29.8"
@@ -443,8 +399,6 @@ ShallowWrapper {
         <Rect
           fill="#abcdef"
           height="4.8"
-          rx={0}
-          ry={0}
           width="3"
           x="52"
           y="22.1"
@@ -452,8 +406,6 @@ ShallowWrapper {
         <Rect
           fill="#abcdef"
           height="4.8"
-          rx={0}
-          ry={0}
           width="3"
           x="52"
           y="14.4"
@@ -461,8 +413,6 @@ ShallowWrapper {
         <Rect
           fill="#abcdef"
           height="2.5"
-          rx={0}
-          ry={0}
           width="3"
           x="52"
           y="37.5"
@@ -495,8 +445,6 @@ ShallowWrapper {
         "props": Object {
           "fill": "#abcdef",
           "height": "2.5",
-          "rx": 0,
-          "ry": 0,
           "width": "3",
           "x": "52",
           "y": "9",
@@ -512,8 +460,6 @@ ShallowWrapper {
         "props": Object {
           "fill": "#abcdef",
           "height": "4.8",
-          "rx": 0,
-          "ry": 0,
           "width": "3",
           "x": "52",
           "y": "29.8",
@@ -529,8 +475,6 @@ ShallowWrapper {
         "props": Object {
           "fill": "#abcdef",
           "height": "4.8",
-          "rx": 0,
-          "ry": 0,
           "width": "3",
           "x": "52",
           "y": "22.1",
@@ -546,8 +490,6 @@ ShallowWrapper {
         "props": Object {
           "fill": "#abcdef",
           "height": "4.8",
-          "rx": 0,
-          "ry": 0,
           "width": "3",
           "x": "52",
           "y": "14.4",
@@ -563,8 +505,6 @@ ShallowWrapper {
         "props": Object {
           "fill": "#abcdef",
           "height": "2.5",
-          "rx": 0,
-          "ry": 0,
           "width": "3",
           "x": "52",
           "y": "37.5",
@@ -591,8 +531,6 @@ ShallowWrapper {
           <Rect
             fill="#abcdef"
             height="2.5"
-            rx={0}
-            ry={0}
             width="3"
             x="52"
             y="9"
@@ -600,8 +538,6 @@ ShallowWrapper {
           <Rect
             fill="#abcdef"
             height="4.8"
-            rx={0}
-            ry={0}
             width="3"
             x="52"
             y="29.8"
@@ -609,8 +545,6 @@ ShallowWrapper {
           <Rect
             fill="#abcdef"
             height="4.8"
-            rx={0}
-            ry={0}
             width="3"
             x="52"
             y="22.1"
@@ -618,8 +552,6 @@ ShallowWrapper {
           <Rect
             fill="#abcdef"
             height="4.8"
-            rx={0}
-            ry={0}
             width="3"
             x="52"
             y="14.4"
@@ -627,8 +559,6 @@ ShallowWrapper {
           <Rect
             fill="#abcdef"
             height="2.5"
-            rx={0}
-            ry={0}
             width="3"
             x="52"
             y="37.5"
@@ -661,8 +591,6 @@ ShallowWrapper {
           "props": Object {
             "fill": "#abcdef",
             "height": "2.5",
-            "rx": 0,
-            "ry": 0,
             "width": "3",
             "x": "52",
             "y": "9",
@@ -678,8 +606,6 @@ ShallowWrapper {
           "props": Object {
             "fill": "#abcdef",
             "height": "4.8",
-            "rx": 0,
-            "ry": 0,
             "width": "3",
             "x": "52",
             "y": "29.8",
@@ -695,8 +621,6 @@ ShallowWrapper {
           "props": Object {
             "fill": "#abcdef",
             "height": "4.8",
-            "rx": 0,
-            "ry": 0,
             "width": "3",
             "x": "52",
             "y": "22.1",
@@ -712,8 +636,6 @@ ShallowWrapper {
           "props": Object {
             "fill": "#abcdef",
             "height": "4.8",
-            "rx": 0,
-            "ry": 0,
             "width": "3",
             "x": "52",
             "y": "14.4",
@@ -729,8 +651,6 @@ ShallowWrapper {
           "props": Object {
             "fill": "#abcdef",
             "height": "2.5",
-            "rx": 0,
-            "ry": 0,
             "width": "3",
             "x": "52",
             "y": "37.5",

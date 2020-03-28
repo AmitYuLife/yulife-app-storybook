@@ -7,7 +7,6 @@ import { BackHandler, Linking, NativeEventSubscription } from "react-native";
 import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { COLOURS } from "../../../../components/molecules";
 import GetLeaderboardQuery, { getLeaderboardGql } from "../../../../graphql/member/getLeaderboard.gql";
 import { IMainTabsProps, labels, onLeftMenuPress } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
@@ -99,7 +98,6 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
     public render() {
         const { sortBy, activeLeaderboardIndex, leaderboardId } = this.state;
         const { leaderboards = [], hasNotification, totalCoins, copy, componentId, appState } = this.props;
-        const navbarColour = COLOURS.DARKER;
 
         if (Style.isIPad()) {
             return (
@@ -108,7 +106,6 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
                     totalCoins={totalCoins}
                     labels={labels}
                     onLeftMenuPress={onLeftMenuPress}
-                    navbarColour={navbarColour}
                 />
             );
         }
@@ -154,7 +151,6 @@ class LeaderboardsContainer extends React.Component<Props, IState> {
                             onPrivacyPolicyPress={this.onPrivacyPolicyPress}
                             copy={copy.turnBoardOn}
                             isMindfulAvailable={false}
-                            navbarColour={navbarColour}
                             appState={appState}
                         />
                     );

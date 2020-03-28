@@ -4,7 +4,7 @@ import { ICentredScreen } from "@app/redux/theme/theme.reducer";
 import { shallow } from "enzyme";
 import * as React from "react";
 import "react-native";
-import { COLOURS, ILabel } from "../../../../molecules";
+import { ILabel } from "../../../../molecules";
 import DailyStepsScreen from "../daily-steps.screen";
 
 const defaultProps = {
@@ -33,10 +33,6 @@ const defaultProps = {
         },
         hasWhiteGlow: false,
         isLight: false,
-        navBar: {
-            offline: COLOURS.LIGHT,
-            online: COLOURS.DARKER
-        },
         streakType: "forest" as StreakTypes,
         textStyle: { color: "#333333" },
         topBarType: "default" as TopBarTypes

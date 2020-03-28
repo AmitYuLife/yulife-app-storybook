@@ -55,10 +55,6 @@ ShallowWrapper {
         },
         "hasWhiteGlow": false,
         "isLight": false,
-        "navBar": Object {
-          "offline": "light",
-          "online": "darker",
-        },
         "streakType": "forest",
         "textStyle": Object {
           "color": "#333333",
@@ -131,22 +127,10 @@ ShallowWrapper {
           }
           onPress={[MockFunction]}
         />
-        <View
-          style={
-            Object {
-              "bottom": 20,
-              "paddingBottom": 30,
-              "position": "absolute",
-            }
-          }
-        >
-          <NavBar
-            activeIndex={0}
-            colour="light"
-            hasNotification={false}
-            labels={Array []}
-          />
-        </View>
+        <NavBar
+          activeIndex={0}
+          hasNotification={false}
+        />
       </CenteredScreen>,
       "delay": 0,
       "direction": "normal",
@@ -212,22 +196,10 @@ ShallowWrapper {
             onPress={[MockFunction]}
           />,
           null,
-          <View
-            style={
-              Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              }
-            }
-          >
-            <NavBar
-              activeIndex={0}
-              colour="light"
-              hasNotification={false}
-              labels={Array []}
-            />
-          </View>,
+          <NavBar
+            activeIndex={0}
+            hasNotification={false}
+          />,
         ],
         "footerImage": "gray_forest",
         "style": Object {
@@ -333,33 +305,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <NavBar
-              activeIndex={0}
-              colour="light"
-              hasNotification={false}
-              labels={Array []}
-            />,
-            "style": Object {
-              "bottom": 20,
-              "paddingBottom": 30,
-              "position": "absolute",
-            },
+            "activeIndex": 0,
+            "hasNotification": false,
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "activeIndex": 0,
-              "colour": "light",
-              "hasNotification": false,
-              "labels": Array [],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+          "rendered": null,
           "type": [Function],
         },
       ],
@@ -423,22 +373,10 @@ ShallowWrapper {
             }
             onPress={[MockFunction]}
           />
-          <View
-            style={
-              Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              }
-            }
-          >
-            <NavBar
-              activeIndex={0}
-              colour="light"
-              hasNotification={false}
-              labels={Array []}
-            />
-          </View>
+          <NavBar
+            activeIndex={0}
+            hasNotification={false}
+          />
         </CenteredScreen>,
         "delay": 0,
         "direction": "normal",
@@ -504,22 +442,10 @@ ShallowWrapper {
               onPress={[MockFunction]}
             />,
             null,
-            <View
-              style={
-                Object {
-                  "bottom": 20,
-                  "paddingBottom": 30,
-                  "position": "absolute",
-                }
-              }
-            >
-              <NavBar
-                activeIndex={0}
-                colour="light"
-                hasNotification={false}
-                labels={Array []}
-              />
-            </View>,
+            <NavBar
+              activeIndex={0}
+              hasNotification={false}
+            />,
           ],
           "footerImage": "gray_forest",
           "style": Object {
@@ -625,33 +551,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <NavBar
-                activeIndex={0}
-                colour="light"
-                hasNotification={false}
-                labels={Array []}
-              />,
-              "style": Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              },
+              "activeIndex": 0,
+              "hasNotification": false,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "activeIndex": 0,
-                "colour": "light",
-                "hasNotification": false,
-                "labels": Array [],
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            "rendered": null,
             "type": [Function],
           },
         ],
@@ -737,10 +641,6 @@ ShallowWrapper {
         },
         "hasWhiteGlow": false,
         "isLight": false,
-        "navBar": Object {
-          "offline": "light",
-          "online": "darker",
-        },
         "streakType": "forest",
         "textStyle": Object {
           "color": "#333333",
@@ -805,22 +705,10 @@ ShallowWrapper {
           />
         </TouchableOpacityWithState>
         <DailyStepsFitKitUnavailable />
-        <View
-          style={
-            Object {
-              "bottom": 20,
-              "paddingBottom": 30,
-              "position": "absolute",
-            }
-          }
-        >
-          <NavBar
-            activeIndex={0}
-            colour="light"
-            hasNotification={false}
-            labels={Array []}
-          />
-        </View>
+        <NavBar
+          activeIndex={0}
+          hasNotification={false}
+        />
       </CenteredScreen>,
       "delay": 0,
       "direction": "normal",
@@ -878,22 +766,10 @@ ShallowWrapper {
           </TouchableOpacityWithState>,
           <DailyStepsFitKitUnavailable />,
           null,
-          <View
-            style={
-              Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              }
-            }
-          >
-            <NavBar
-              activeIndex={0}
-              colour="light"
-              hasNotification={false}
-              labels={Array []}
-            />
-          </View>,
+          <NavBar
+            activeIndex={0}
+            hasNotification={false}
+          />,
         ],
         "footerImage": "large_forest",
         "style": Object {
@@ -993,33 +869,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <NavBar
-              activeIndex={0}
-              colour="light"
-              hasNotification={false}
-              labels={Array []}
-            />,
-            "style": Object {
-              "bottom": 20,
-              "paddingBottom": 30,
-              "position": "absolute",
-            },
+            "activeIndex": 0,
+            "hasNotification": false,
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "activeIndex": 0,
-              "colour": "light",
-              "hasNotification": false,
-              "labels": Array [],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+          "rendered": null,
           "type": [Function],
         },
       ],
@@ -1075,22 +929,10 @@ ShallowWrapper {
             />
           </TouchableOpacityWithState>
           <DailyStepsFitKitUnavailable />
-          <View
-            style={
-              Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              }
-            }
-          >
-            <NavBar
-              activeIndex={0}
-              colour="light"
-              hasNotification={false}
-              labels={Array []}
-            />
-          </View>
+          <NavBar
+            activeIndex={0}
+            hasNotification={false}
+          />
         </CenteredScreen>,
         "delay": 0,
         "direction": "normal",
@@ -1148,22 +990,10 @@ ShallowWrapper {
             </TouchableOpacityWithState>,
             <DailyStepsFitKitUnavailable />,
             null,
-            <View
-              style={
-                Object {
-                  "bottom": 20,
-                  "paddingBottom": 30,
-                  "position": "absolute",
-                }
-              }
-            >
-              <NavBar
-                activeIndex={0}
-                colour="light"
-                hasNotification={false}
-                labels={Array []}
-              />
-            </View>,
+            <NavBar
+              activeIndex={0}
+              hasNotification={false}
+            />,
           ],
           "footerImage": "large_forest",
           "style": Object {
@@ -1263,33 +1093,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <NavBar
-                activeIndex={0}
-                colour="light"
-                hasNotification={false}
-                labels={Array []}
-              />,
-              "style": Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              },
+              "activeIndex": 0,
+              "hasNotification": false,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "activeIndex": 0,
-                "colour": "light",
-                "hasNotification": false,
-                "labels": Array [],
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            "rendered": null,
             "type": [Function],
           },
         ],
@@ -1376,10 +1184,6 @@ ShallowWrapper {
         },
         "hasWhiteGlow": false,
         "isLight": false,
-        "navBar": Object {
-          "offline": "light",
-          "online": "darker",
-        },
         "streakType": "forest",
         "textStyle": Object {
           "color": "#333333",
@@ -1463,22 +1267,10 @@ ShallowWrapper {
           onPress={[MockFunction]}
           type="forest"
         />
-        <View
-          style={
-            Object {
-              "bottom": 20,
-              "paddingBottom": 30,
-              "position": "absolute",
-            }
-          }
-        >
-          <NavBar
-            activeIndex={0}
-            colour="darker"
-            hasNotification={false}
-            labels={Array []}
-          />
-        </View>
+        <NavBar
+          activeIndex={0}
+          hasNotification={false}
+        />
       </CenteredScreen>,
       "delay": 0,
       "direction": "normal",
@@ -1554,22 +1346,10 @@ ShallowWrapper {
             onPress={[MockFunction]}
             type="forest"
           />,
-          <View
-            style={
-              Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              }
-            }
-          >
-            <NavBar
-              activeIndex={0}
-              colour="darker"
-              hasNotification={false}
-              labels={Array []}
-            />
-          </View>,
+          <NavBar
+            activeIndex={0}
+            hasNotification={false}
+          />,
         ],
         "footerImage": "large_forest",
         "style": Object {
@@ -1694,33 +1474,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <NavBar
-              activeIndex={0}
-              colour="darker"
-              hasNotification={false}
-              labels={Array []}
-            />,
-            "style": Object {
-              "bottom": 20,
-              "paddingBottom": 30,
-              "position": "absolute",
-            },
+            "activeIndex": 0,
+            "hasNotification": false,
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "activeIndex": 0,
-              "colour": "darker",
-              "hasNotification": false,
-              "labels": Array [],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+          "rendered": null,
           "type": [Function],
         },
       ],
@@ -1795,22 +1553,10 @@ ShallowWrapper {
             onPress={[MockFunction]}
             type="forest"
           />
-          <View
-            style={
-              Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              }
-            }
-          >
-            <NavBar
-              activeIndex={0}
-              colour="darker"
-              hasNotification={false}
-              labels={Array []}
-            />
-          </View>
+          <NavBar
+            activeIndex={0}
+            hasNotification={false}
+          />
         </CenteredScreen>,
         "delay": 0,
         "direction": "normal",
@@ -1886,22 +1632,10 @@ ShallowWrapper {
               onPress={[MockFunction]}
               type="forest"
             />,
-            <View
-              style={
-                Object {
-                  "bottom": 20,
-                  "paddingBottom": 30,
-                  "position": "absolute",
-                }
-              }
-            >
-              <NavBar
-                activeIndex={0}
-                colour="darker"
-                hasNotification={false}
-                labels={Array []}
-              />
-            </View>,
+            <NavBar
+              activeIndex={0}
+              hasNotification={false}
+            />,
           ],
           "footerImage": "large_forest",
           "style": Object {
@@ -2026,33 +1760,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <NavBar
-                activeIndex={0}
-                colour="darker"
-                hasNotification={false}
-                labels={Array []}
-              />,
-              "style": Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              },
+              "activeIndex": 0,
+              "hasNotification": false,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "activeIndex": 0,
-                "colour": "darker",
-                "hasNotification": false,
-                "labels": Array [],
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            "rendered": null,
             "type": [Function],
           },
         ],
@@ -2138,10 +1850,6 @@ ShallowWrapper {
         },
         "hasWhiteGlow": false,
         "isLight": false,
-        "navBar": Object {
-          "offline": "light",
-          "online": "darker",
-        },
         "streakType": "forest",
         "textStyle": Object {
           "color": "#333333",
@@ -2217,22 +1925,10 @@ ShallowWrapper {
             }
           }
         />
-        <View
-          style={
-            Object {
-              "bottom": 20,
-              "paddingBottom": 30,
-              "position": "absolute",
-            }
-          }
-        >
-          <NavBar
-            activeIndex={0}
-            colour="darker"
-            hasNotification={false}
-            labels={Array []}
-          />
-        </View>
+        <NavBar
+          activeIndex={0}
+          hasNotification={false}
+        />
       </CenteredScreen>,
       "delay": 0,
       "direction": "normal",
@@ -2301,22 +1997,10 @@ ShallowWrapper {
             }
           />,
           null,
-          <View
-            style={
-              Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              }
-            }
-          >
-            <NavBar
-              activeIndex={0}
-              colour="darker"
-              hasNotification={false}
-              labels={Array []}
-            />
-          </View>,
+          <NavBar
+            activeIndex={0}
+            hasNotification={false}
+          />,
         ],
         "footerImage": "large_forest",
         "style": Object {
@@ -2426,33 +2110,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <NavBar
-              activeIndex={0}
-              colour="darker"
-              hasNotification={false}
-              labels={Array []}
-            />,
-            "style": Object {
-              "bottom": 20,
-              "paddingBottom": 30,
-              "position": "absolute",
-            },
+            "activeIndex": 0,
+            "hasNotification": false,
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "activeIndex": 0,
-              "colour": "darker",
-              "hasNotification": false,
-              "labels": Array [],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+          "rendered": null,
           "type": [Function],
         },
       ],
@@ -2519,22 +2181,10 @@ ShallowWrapper {
               }
             }
           />
-          <View
-            style={
-              Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              }
-            }
-          >
-            <NavBar
-              activeIndex={0}
-              colour="darker"
-              hasNotification={false}
-              labels={Array []}
-            />
-          </View>
+          <NavBar
+            activeIndex={0}
+            hasNotification={false}
+          />
         </CenteredScreen>,
         "delay": 0,
         "direction": "normal",
@@ -2603,22 +2253,10 @@ ShallowWrapper {
               }
             />,
             null,
-            <View
-              style={
-                Object {
-                  "bottom": 20,
-                  "paddingBottom": 30,
-                  "position": "absolute",
-                }
-              }
-            >
-              <NavBar
-                activeIndex={0}
-                colour="darker"
-                hasNotification={false}
-                labels={Array []}
-              />
-            </View>,
+            <NavBar
+              activeIndex={0}
+              hasNotification={false}
+            />,
           ],
           "footerImage": "large_forest",
           "style": Object {
@@ -2728,33 +2366,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <NavBar
-                activeIndex={0}
-                colour="darker"
-                hasNotification={false}
-                labels={Array []}
-              />,
-              "style": Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              },
+              "activeIndex": 0,
+              "hasNotification": false,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "activeIndex": 0,
-                "colour": "darker",
-                "hasNotification": false,
-                "labels": Array [],
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            "rendered": null,
             "type": [Function],
           },
         ],
@@ -2840,10 +2456,6 @@ ShallowWrapper {
         },
         "hasWhiteGlow": false,
         "isLight": false,
-        "navBar": Object {
-          "offline": "light",
-          "online": "darker",
-        },
         "streakType": "forest",
         "textStyle": Object {
           "color": "#333333",
@@ -2908,22 +2520,10 @@ ShallowWrapper {
           />
         </TouchableOpacityWithState>
         <DailyStepsLoading />
-        <View
-          style={
-            Object {
-              "bottom": 20,
-              "paddingBottom": 30,
-              "position": "absolute",
-            }
-          }
-        >
-          <NavBar
-            activeIndex={0}
-            colour="darker"
-            hasNotification={false}
-            labels={Array []}
-          />
-        </View>
+        <NavBar
+          activeIndex={0}
+          hasNotification={false}
+        />
       </CenteredScreen>,
       "delay": 0,
       "direction": "normal",
@@ -2981,22 +2581,10 @@ ShallowWrapper {
           </TouchableOpacityWithState>,
           <DailyStepsLoading />,
           null,
-          <View
-            style={
-              Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              }
-            }
-          >
-            <NavBar
-              activeIndex={0}
-              colour="darker"
-              hasNotification={false}
-              labels={Array []}
-            />
-          </View>,
+          <NavBar
+            activeIndex={0}
+            hasNotification={false}
+          />,
         ],
         "footerImage": "large_forest",
         "style": Object {
@@ -3096,33 +2684,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <NavBar
-              activeIndex={0}
-              colour="darker"
-              hasNotification={false}
-              labels={Array []}
-            />,
-            "style": Object {
-              "bottom": 20,
-              "paddingBottom": 30,
-              "position": "absolute",
-            },
+            "activeIndex": 0,
+            "hasNotification": false,
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "activeIndex": 0,
-              "colour": "darker",
-              "hasNotification": false,
-              "labels": Array [],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+          "rendered": null,
           "type": [Function],
         },
       ],
@@ -3178,22 +2744,10 @@ ShallowWrapper {
             />
           </TouchableOpacityWithState>
           <DailyStepsLoading />
-          <View
-            style={
-              Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              }
-            }
-          >
-            <NavBar
-              activeIndex={0}
-              colour="darker"
-              hasNotification={false}
-              labels={Array []}
-            />
-          </View>
+          <NavBar
+            activeIndex={0}
+            hasNotification={false}
+          />
         </CenteredScreen>,
         "delay": 0,
         "direction": "normal",
@@ -3251,22 +2805,10 @@ ShallowWrapper {
             </TouchableOpacityWithState>,
             <DailyStepsLoading />,
             null,
-            <View
-              style={
-                Object {
-                  "bottom": 20,
-                  "paddingBottom": 30,
-                  "position": "absolute",
-                }
-              }
-            >
-              <NavBar
-                activeIndex={0}
-                colour="darker"
-                hasNotification={false}
-                labels={Array []}
-              />
-            </View>,
+            <NavBar
+              activeIndex={0}
+              hasNotification={false}
+            />,
           ],
           "footerImage": "large_forest",
           "style": Object {
@@ -3366,33 +2908,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <NavBar
-                activeIndex={0}
-                colour="darker"
-                hasNotification={false}
-                labels={Array []}
-              />,
-              "style": Object {
-                "bottom": 20,
-                "paddingBottom": 30,
-                "position": "absolute",
-              },
+              "activeIndex": 0,
+              "hasNotification": false,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "activeIndex": 0,
-                "colour": "darker",
-                "hasNotification": false,
-                "labels": Array [],
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            "rendered": null,
             "type": [Function],
           },
         ],

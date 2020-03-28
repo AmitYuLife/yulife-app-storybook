@@ -26,7 +26,6 @@ ShallowWrapper {
         },
       ]
     }
-    navbarColour="darker"
     onLeftMenuPress={[MockFunction]}
     totalCoins={5}
   />,
@@ -92,41 +91,10 @@ ShallowWrapper {
             }
           }
         />,
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "height": 30,
-              "paddingBottom": 50,
-            }
-          }
-        >
-          <NavBar
-            activeIndex={2}
-            colour="darker"
-            hasNotification={false}
-            labels={
-              Array [
-                Object {
-                  "name": "yucoin",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "quests",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "leaderboard",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "rewards",
-                  "onPress": [MockFunction],
-                },
-              ]
-            }
-          />
-        </View>,
+        <NavBar
+          activeIndex={2}
+          hasNotification={false}
+        />,
       ],
       "style": Object {
         "backgroundColor": "rgb(236, 236, 236)",
@@ -231,69 +199,11 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <NavBar
-            activeIndex={2}
-            colour="darker"
-            hasNotification={false}
-            labels={
-              Array [
-                Object {
-                  "name": "yucoin",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "quests",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "leaderboard",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "rewards",
-                  "onPress": [MockFunction],
-                },
-              ]
-            }
-          />,
-          "style": Object {
-            "alignItems": "center",
-            "height": 30,
-            "paddingBottom": 50,
-          },
+          "activeIndex": 2,
+          "hasNotification": false,
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "activeIndex": 2,
-            "colour": "darker",
-            "hasNotification": false,
-            "labels": Array [
-              Object {
-                "name": "yucoin",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "name": "quests",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "name": "leaderboard",
-                "onPress": [MockFunction],
-              },
-              Object {
-                "name": "rewards",
-                "onPress": [MockFunction],
-              },
-            ],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
+        "rendered": null,
         "type": [Function],
       },
     ],
@@ -354,41 +264,10 @@ ShallowWrapper {
               }
             }
           />,
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "height": 30,
-                "paddingBottom": 50,
-              }
-            }
-          >
-            <NavBar
-              activeIndex={2}
-              colour="darker"
-              hasNotification={false}
-              labels={
-                Array [
-                  Object {
-                    "name": "yucoin",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "name": "quests",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "name": "leaderboard",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "name": "rewards",
-                    "onPress": [MockFunction],
-                  },
-                ]
-              }
-            />
-          </View>,
+          <NavBar
+            activeIndex={2}
+            hasNotification={false}
+          />,
         ],
         "style": Object {
           "backgroundColor": "rgb(236, 236, 236)",
@@ -493,69 +372,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <NavBar
-              activeIndex={2}
-              colour="darker"
-              hasNotification={false}
-              labels={
-                Array [
-                  Object {
-                    "name": "yucoin",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "name": "quests",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "name": "leaderboard",
-                    "onPress": [MockFunction],
-                  },
-                  Object {
-                    "name": "rewards",
-                    "onPress": [MockFunction],
-                  },
-                ]
-              }
-            />,
-            "style": Object {
-              "alignItems": "center",
-              "height": 30,
-              "paddingBottom": 50,
-            },
+            "activeIndex": 2,
+            "hasNotification": false,
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "activeIndex": 2,
-              "colour": "darker",
-              "hasNotification": false,
-              "labels": Array [
-                Object {
-                  "name": "yucoin",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "quests",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "leaderboard",
-                  "onPress": [MockFunction],
-                },
-                Object {
-                  "name": "rewards",
-                  "onPress": [MockFunction],
-                },
-              ],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+          "rendered": null,
           "type": [Function],
         },
       ],

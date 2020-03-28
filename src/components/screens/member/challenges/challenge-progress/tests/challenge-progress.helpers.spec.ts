@@ -5,7 +5,6 @@ describe("getWorldStyle", () => {
     it("should return an object with navBarType & topBarType", () => {
         const actual = getWorldStyle("short stroll", 0);
 
-        expect(actual).toHaveProperty("navBarType", "forest");
         expect(actual).toHaveProperty("topBarType", "default");
     });
 

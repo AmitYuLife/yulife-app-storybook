@@ -4,8 +4,7 @@ import { Style } from "../../../../../styles";
 
 export default StyleSheet.create({
     listWrapper: {
-        flex: 1,
-        marginBottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 45 : 79)
+        flex: 1
     } as ViewStyle,
     navBarWrapper: {
         height: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 25 : 15),
@@ -13,7 +12,7 @@ export default StyleSheet.create({
         alignItems: "center"
     } as ViewStyle,
     footer: {
-        height: Style.SCALE_UP_AND_DOWN(28)
+        height: Style.SCALE_UP_AND_DOWN(72)
     } as ViewStyle,
     rewardTabsWrapper: {
         alignItems: "center",

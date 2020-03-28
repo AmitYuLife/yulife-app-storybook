@@ -7,7 +7,7 @@ import FastImage from "react-native-fast-image";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
 import { Navigation } from "react-native-navigation";
 import { Loading } from "../../../atoms";
-import { COLOURS, ILabel, NavBar, TopBar, YulifeRefreshHeader } from "../../../molecules";
+import { ILabel, NavBar, TopBar, YulifeRefreshHeader } from "../../../molecules";
 import assets, { AssetType } from "./assets";
 import LeaderboardConsent from "./leaderboard-consent/leaderboard-consent";
 import LeaderboardDropdown from "./leaderboard-dropdown/leaderboard-dropdown";
@@ -51,7 +51,6 @@ export interface ILeaderboardsScreenProps {
     onPrivacyPolicyPress: () => void;
     onRefuseConsent: () => void;
     copy: GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn;
-    navbarColour: COLOURS;
     componentId: string;
     appState: IAppStore["appState"];
 }
@@ -96,8 +95,8 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
             prevProps.activeLeaderboardIndex === this.props.activeLeaderboardIndex &&
             !this.props.isLoading &&
             this.props.leaderboards[this.props.activeLeaderboardIndex] &&
-            prevProps.leaderboards[prevProps.activeLeaderboardIndex].consent
-                !== this.props.leaderboards[this.props.activeLeaderboardIndex].consent
+            prevProps.leaderboards[prevProps.activeLeaderboardIndex].consent !==
+                this.props.leaderboards[this.props.activeLeaderboardIndex].consent
         ) {
             if (this.largeList) {
                 this.handleRefresh();
@@ -137,13 +136,11 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
             totalCoins,
             leaderboards,
             sortBy,
-            labels,
             onLeftMenuPress,
             onPrivacyPolicyPress,
             onRefuseConsent,
             copy,
-            isMindfulAvailable,
-            navbarColour
+            isMindfulAvailable
         } = this.props;
         const activeLeaderboard = leaderboards.length > 0 && leaderboards[activeLeaderboardIndex];
 
@@ -188,7 +185,6 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
                             ref={this.setLargeListRef}
                             renderIndexPath={this.renderIndexPath}
                             heightForIndexPath={this.getHeight}
-                            renderFooter={this.renderFooter}
                             showsVerticalScrollIndicator={false}
                             data={[{ items }]}
                             onRefresh={this.handleRefresh}
@@ -205,15 +201,7 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
                         onToggleDropdown={this.toggleDropdown}
                     />
                 </View>
-                <View style={styles.navbarWrapper}>
-                    <NavBar
-                        activeIndex={2}
-                        hasWhiteBackground={true}
-                        colour={navbarColour}
-                        hasNotification={hasNotification}
-                        labels={labels}
-                    />
-                </View>
+                <NavBar activeIndex={2} hasNotification={hasNotification} />
             </SafeAreaView>
         );
     }
@@ -244,10 +232,6 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
     };
 
     private getHeight = () => LEADERBOARD_ITEM_HEIGHT;
-
-    private renderFooter = () => {
-        return <View style={styles.footer} />;
-    };
 
     private renderIndexPath = ({ row }: IndexPath) => {
         const { items, initialScrollIndex, sortBy } = this.props;

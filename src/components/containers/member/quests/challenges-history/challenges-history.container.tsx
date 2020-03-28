@@ -24,11 +24,10 @@ type Props = IProps & ConnectedState & ConnectedDispatch;
 
 class ChallengesHistoryContainer extends Component<Props> {
     public render() {
-        const { level, labels, onPressActivityHistory, totalCoins } = this.props;
+        const { level, onPressActivityHistory, totalCoins } = this.props;
 
         return (
             <ChallengesHistoryScreen
-                labels={labels}
                 level={level}
                 onPressActivityHistory={onPressActivityHistory}
                 onPressCta={this.handleLeftMenuPress}

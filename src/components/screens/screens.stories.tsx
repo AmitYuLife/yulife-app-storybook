@@ -1,4 +1,3 @@
-import { COLOURS } from "@molecules/index";
 import { StreakTypes } from "@molecules/streak/streak";
 import { TopBarTypes } from "@molecules/top-bar/top-bar";
 import Copy from "@redux/copy/copy.data.ts";
@@ -143,6 +142,24 @@ storiesOf("Screens", module)
             onCtaPress={action("on cta press")}
             onLeftMenuPress={action("on left menu press")}
             onStreakPress={action("on streak press")}
+            labels={object(
+                "Labels",
+                [
+                    {
+                        name: "yucoin",
+                        onPress: action("on first tab press")
+                    },
+                    {
+                        name: "quests",
+                        onPress: action("on second tab press")
+                    },
+                    {
+                        name: "rewards",
+                        onPress: action("on third tab press")
+                    }
+                ],
+                "ChallengesList"
+            )}
             steps={number(
                 "Steps",
                 1246,
@@ -174,10 +191,6 @@ storiesOf("Screens", module)
                 },
                 hasWhiteGlow: false,
                 isLight: false,
-                navBar: {
-                    offline: COLOURS.LIGHT,
-                    online: COLOURS.DARKER
-                },
                 streakType: "forest" as StreakTypes,
                 textStyle: { color: "#333333" },
                 topBarType: "default" as TopBarTypes

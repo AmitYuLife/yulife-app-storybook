@@ -11,10 +11,9 @@ import * as React from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { COLOURS } from "../../../../components/molecules";
 import { GetAllPurchases_getAllPurchases, GetRewards_getRewards } from "../../../../graphql/_core/schema";
 import { MODALS, ROUTES } from "../../../../navigation/constants";
-import { IMainTabsProps, labels, onLeftMenuPress } from "../../../../navigation/root";
+import { IMainTabsProps, onLeftMenuPress } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
@@ -84,20 +83,17 @@ class RewardsContainer extends PureComponent<Props, IState> {
     // all related to the rewards tab
     private renderRewards = ({ loading, data, refetch }: GetRewardsResultType) => {
         const { hasNotification, totalCoins } = this.props;
-        const navbarColour = COLOURS.DARKER;
 
         return (
             <RewardsListScreen
                 data={data && data.getRewards ? data.getRewards : []}
                 hasNotification={hasNotification}
-                labels={labels}
                 onItemPress={this.handleRewardDetailsItemPress}
                 onLeftMenuPress={onLeftMenuPress}
                 onLeftTabPress={() => refetch()}
                 onRightTabPress={() => this.handleTabChange("purchases")}
                 loading={loading}
                 totalCoins={totalCoins}
-                navbarColour={navbarColour}
             />
         );
     };
@@ -158,20 +154,17 @@ class RewardsContainer extends PureComponent<Props, IState> {
     private renderPurchases = ({ loading, data, refetch }: GetAllPurchasesResultType) => {
         const { hasNotification, totalCoins, copy } = this.props;
         const items = this.formatPuchaseItem(data && data.getAllPurchases ? data.getAllPurchases : []);
-        const navbarColour = COLOURS.DARKER;
 
         return (
             <PurchasedListScreen
                 data={items}
                 hasNotification={hasNotification}
-                labels={labels}
                 onLeftMenuPress={onLeftMenuPress}
                 onLeftTabPress={() => this.handleTabChange("rewards")}
                 onRightTabPress={() => refetch()}
                 loading={loading}
                 totalCoins={totalCoins}
                 copy={copy}
-                navbarColour={navbarColour}
             />
         );
     };

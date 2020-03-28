@@ -64,7 +64,7 @@ export const tooltipStyles = StyleSheet.create({
     } as ViewStyle,
     highlightWrapper: { width: "100%" } as ViewStyle,
     navTooltip: {
-        bottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 105 : 92),
+        bottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 114 : 100),
         left: 0,
         right: 0,
         alignItems: "center"
@@ -83,6 +83,6 @@ export const tooltipStyles = StyleSheet.create({
         left: Style.SCALE_UP_AND_DOWN(70)
     } as ViewStyle,
     rewardsCaret: {
-        left: Style.SCALE_UP_AND_DOWN(200)
+        left: Style.SCALE_UP_AND_DOWN(230)
     } as ViewStyle
 });

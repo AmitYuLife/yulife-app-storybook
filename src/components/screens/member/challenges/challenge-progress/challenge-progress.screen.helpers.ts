@@ -1,4 +1,3 @@
-import { IColours, NavBar } from "@molecules/index";
 import { TopBarTypes } from "@molecules/top-bar/top-bar";
 import { StyleSheet } from "react-native";
 import { Style } from "../../../../../styles";
@@ -10,146 +9,197 @@ import { ProgressBarTypes } from "./subcomponents/progress-bar";
 interface IStyleSet {
     backgroundColour: string;
     topBarType: TopBarTypes;
-    navBarType: IColours;
     progressBarType: ProgressBarTypes;
     source: any;
     style: any;
+    exitChallenge: {
+        primaryColour: string;
+        secondaryColour: string;
+    };
 }
 
 const BRISK_WALK: IStyleSet[] = [
     {
         backgroundColour: "rgb(242, 190, 177)",
-        navBarType: "forest",
         progressBarType: "forest-brisk-walk",
         source: assets.squirrel,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(399) }]),
-        topBarType: "default"
+        topBarType: "default",
+        exitChallenge: {
+            primaryColour: "#ED9CA0",
+            secondaryColour: "white"
+        }
     },
     {
         backgroundColour: "rgb(0,81,143)",
-        navBarType: "light",
         progressBarType: "ocean-white",
         source: assets.otter,
         style: StyleSheet.flatten([styles.backgroundImage, { height: "100%" }]),
-        topBarType: "white"
+        topBarType: "white",
+        exitChallenge: {
+            primaryColour: "#3986BC",
+            secondaryColour: "white"
+        }
     },
     {
         backgroundColour: "#fffbcd",
-        navBarType: "desert",
         progressBarType: "desert-brown",
         source: assets.meerkat,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
-        topBarType: "default"
+        topBarType: "default",
+        exitChallenge: {
+            primaryColour: "rgb(252,194,116)",
+            secondaryColour: "white"
+        }
     },
     {
         backgroundColour: "rgb(255, 183, 192)",
-        navBarType: NavBar.Colours.LIGHT,
         progressBarType: "mountain-pink",
         source: assets.wolf,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
-        topBarType: "default"
+        topBarType: "default",
+        exitChallenge: {
+            primaryColour: "#ED9CA0",
+            secondaryColour: "white"
+        }
     }
 ];
 const SHORT_STROLL: IStyleSet[] = [
     {
         backgroundColour: "rgb(255,240,156)",
-        navBarType: "forest",
         progressBarType: "forest-yellow",
         source: assets.snail,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(600) }]),
-        topBarType: "default"
+        topBarType: "default",
+        exitChallenge: {
+            primaryColour: "#ED9CA0",
+            secondaryColour: "white"
+        }
     },
     {
         backgroundColour: "rgb(255,255,255)",
-        navBarType: "light",
         progressBarType: "black",
         source: assets.tortoise,
         style: StyleSheet.flatten([styles.backgroundImage, { height: "100%" }]),
-        topBarType: "default"
+        topBarType: "default",
+        exitChallenge: {
+            primaryColour: "#3986BC",
+            secondaryColour: "white"
+        }
     },
     {
         backgroundColour: "#fffbcd",
-        navBarType: "desert",
         progressBarType: "desert-brown",
         source: assets.bighornSheep,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
-        topBarType: "default"
+        topBarType: "default",
+        exitChallenge: {
+            primaryColour: "rgb(252,194,116)",
+            secondaryColour: "white"
+        }
     },
     {
         backgroundColour: "rgb(255, 183, 192)",
-        navBarType: NavBar.Colours.LIGHT,
         progressBarType: "mountain-pink",
         source: assets.whiteBighornSheep,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(580) }]),
-        topBarType: "default"
+        topBarType: "default",
+        exitChallenge: {
+            primaryColour: "#ED9CA0",
+            secondaryColour: "white"
+        }
     }
 ];
 const LONG_WALK: IStyleSet[] = [
     {
         backgroundColour: "rgb(40,118,74)",
-        navBarType: "forest",
         progressBarType: "forest-white",
         source: assets.rabbit,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(615) }]),
-        topBarType: "white"
+        topBarType: "white",
+        exitChallenge: {
+            primaryColour: "rgb(51, 88, 66)",
+            secondaryColour: "white"
+        }
     },
     {
         backgroundColour: "rgb(124,215,237)",
-        navBarType: "light",
         progressBarType: "ocean-black",
         source: assets.whale,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(539) }]),
-        topBarType: "default"
+        topBarType: "default",
+        exitChallenge: {
+            primaryColour: "#3986BC",
+            secondaryColour: "white"
+        }
     },
     {
         backgroundColour: "#425f81",
-        navBarType: "desert",
         progressBarType: "ocean-white",
         source: assets.desertFox,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(475) }]),
-        topBarType: "white"
+        topBarType: "white",
+        exitChallenge: {
+            primaryColour: "white",
+            secondaryColour: "#6E6E70"
+        }
     },
     {
         backgroundColour: "rgb(160, 232, 252)",
-        navBarType: NavBar.Colours.LIGHT,
         progressBarType: "mountain-black",
         source: assets.deer,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
-        topBarType: "default"
+        topBarType: "default",
+        exitChallenge: {
+            primaryColour: "#569DE9",
+            secondaryColour: "white"
+        }
     }
 ];
 const MEDITATION: IStyleSet[] = [
     {
         backgroundColour: "rgb(254,252,218)",
-        navBarType: "forest",
         progressBarType: "forest-yellow",
         source: assets.bird,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(668) }]),
-        topBarType: "default"
+        topBarType: "default",
+        exitChallenge: {
+            primaryColour: "#ED9CA0",
+            secondaryColour: "white"
+        }
     },
     {
         backgroundColour: "rgb(255,255,255)",
-        navBarType: "light",
         progressBarType: "black",
         source: assets.dolphin,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(665) }]),
-        topBarType: "default"
+        topBarType: "default",
+        exitChallenge: {
+            primaryColour: "#BCBCBC",
+            secondaryColour: "white"
+        }
     },
     {
         backgroundColour: "#aedaec",
-        navBarType: "desert",
         progressBarType: "ocean-black",
         source: assets.camel,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(332) }]),
-        topBarType: "default"
+        topBarType: "default",
+        exitChallenge: {
+            primaryColour: "#569DE9",
+            secondaryColour: "white"
+        }
     },
     {
         backgroundColour: "rgb(167, 210, 255)",
-        navBarType: NavBar.Colours.LIGHT,
         progressBarType: "mountain-black",
         source: assets.owl,
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(428) }]),
-        topBarType: "default"
+        topBarType: "default",
+        exitChallenge: {
+            primaryColour: "#569DE9",
+            secondaryColour: "white"
+        }
     }
 ];
 
@@ -167,11 +217,14 @@ export function getWorldStyle(challengeType: ChallengeType, currentWorld = 0): I
         default:
             return {
                 backgroundColour: "rgb(255,255,255)",
-                navBarType: "light",
                 progressBarType: "black",
                 source: null,
                 style: StyleSheet.flatten([styles.backgroundImage, { height: "auto" }]),
-                topBarType: "default"
+                topBarType: "default",
+                exitChallenge: {
+                    primaryColour: "white",
+                    secondaryColour: "#BCBCBC"
+                }
             };
     }
 }

@@ -25,8 +25,6 @@ ShallowWrapper {
         <Rect
           fill="#333"
           height="9"
-          rx={0}
-          ry={0}
           width="3"
           x="31.7"
           y="0.9"
@@ -34,8 +32,6 @@ ShallowWrapper {
         <Rect
           fill="#333"
           height="9"
-          rx={0}
-          ry={0}
           transform="matrix(0.866 -0.5 0.5 0.866 -1.8019 11.1796)"
           width="3"
           x="18.5"
@@ -44,8 +40,6 @@ ShallowWrapper {
         <Rect
           fill="#333"
           height="9"
-          rx={0}
-          ry={0}
           transform="matrix(0.5 -0.8661 0.8661 0.5 -11.0388 18.2095)"
           width="3"
           x="8.7"
@@ -79,8 +73,6 @@ ShallowWrapper {
         "props": Object {
           "fill": "#333",
           "height": "9",
-          "rx": 0,
-          "ry": 0,
           "width": "3",
           "x": "31.7",
           "y": "0.9",
@@ -96,8 +88,6 @@ ShallowWrapper {
         "props": Object {
           "fill": "#333",
           "height": "9",
-          "rx": 0,
-          "ry": 0,
           "transform": "matrix(0.866 -0.5 0.5 0.866 -1.8019 11.1796)",
           "width": "3",
           "x": "18.5",
@@ -114,8 +104,6 @@ ShallowWrapper {
         "props": Object {
           "fill": "#333",
           "height": "9",
-          "rx": 0,
-          "ry": 0,
           "transform": "matrix(0.5 -0.8661 0.8661 0.5 -11.0388 18.2095)",
           "width": "3",
           "x": "8.7",
@@ -142,8 +130,6 @@ ShallowWrapper {
           <Rect
             fill="#333"
             height="9"
-            rx={0}
-            ry={0}
             width="3"
             x="31.7"
             y="0.9"
@@ -151,8 +137,6 @@ ShallowWrapper {
           <Rect
             fill="#333"
             height="9"
-            rx={0}
-            ry={0}
             transform="matrix(0.866 -0.5 0.5 0.866 -1.8019 11.1796)"
             width="3"
             x="18.5"
@@ -161,8 +145,6 @@ ShallowWrapper {
           <Rect
             fill="#333"
             height="9"
-            rx={0}
-            ry={0}
             transform="matrix(0.5 -0.8661 0.8661 0.5 -11.0388 18.2095)"
             width="3"
             x="8.7"
@@ -196,8 +178,6 @@ ShallowWrapper {
           "props": Object {
             "fill": "#333",
             "height": "9",
-            "rx": 0,
-            "ry": 0,
             "width": "3",
             "x": "31.7",
             "y": "0.9",
@@ -213,8 +193,6 @@ ShallowWrapper {
           "props": Object {
             "fill": "#333",
             "height": "9",
-            "rx": 0,
-            "ry": 0,
             "transform": "matrix(0.866 -0.5 0.5 0.866 -1.8019 11.1796)",
             "width": "3",
             "x": "18.5",
@@ -231,8 +209,6 @@ ShallowWrapper {
           "props": Object {
             "fill": "#333",
             "height": "9",
-            "rx": 0,
-            "ry": 0,
             "transform": "matrix(0.5 -0.8661 0.8661 0.5 -11.0388 18.2095)",
             "width": "3",
             "x": "8.7",

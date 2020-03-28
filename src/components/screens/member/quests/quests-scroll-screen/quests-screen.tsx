@@ -8,7 +8,7 @@ import { isIphoneX } from "react-native-iphone-x-helper";
 import { Navigation } from "react-native-navigation";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
-import { COLOURS, IColours, NavBar, TopBar } from "../../../../molecules";
+import { NavBar, TopBar } from "../../../../molecules";
 import { IMapSlice, loadingSlices, mapSlices } from "./assets";
 import offsets from "./assets/offsets";
 import styles from "./quests-screen.styles";
@@ -36,7 +36,6 @@ type CurrentWorld = 0 | 1 | 2 | 3;
 
 interface IState {
     UI: {
-        navBarColour: IColours;
         topBarType: TopBarTypes;
     };
 }
@@ -72,14 +71,13 @@ class QuestsScreen extends React.Component<IProps, IState> {
             this.props.currentLevel !== nextProps.currentLevel ||
             this.props.unity !== nextProps.unity ||
             this.props.totalCoins !== nextProps.totalCoins ||
-            this.state.UI.navBarColour !== nextState.UI.navBarColour ||
             this.state.UI.topBarType !== nextState.UI.topBarType
         );
     }
 
     public render() {
         const { UI } = this.state;
-        const { activeLevel, currentLevel, data, labels, onLeftMenuPress, unity, totalCoins } = this.props;
+        const { activeLevel, currentLevel, data, onLeftMenuPress, unity, totalCoins } = this.props;
 
         if (unity) {
             const currentWorld = getCurrentWorld(unity);
@@ -106,9 +104,7 @@ class QuestsScreen extends React.Component<IProps, IState> {
                     setFlatListRef={this.setFlatListRef}
                 />
                 <TopBar type={UI.topBarType} onPressLeftIcon={onLeftMenuPress} coins={totalCoins} />
-                <View style={styles.navBarWrapper}>
-                    <NavBar activeIndex={1} colour={UI.navBarColour} hasNotification={false} labels={labels} />
-                </View>
+                <NavBar activeIndex={1} hasNotification={false} />
             </SafeAreaView>
         );
     }
@@ -122,11 +118,11 @@ class QuestsScreen extends React.Component<IProps, IState> {
         const result = mapSlices.find((slice) => slice.slots.some((item) => item.index === activeLevel - 1));
 
         if (result && result.episodeSettings) {
-            const { navBarType, topBarType } = result.episodeSettings;
+            const { topBarType } = result.episodeSettings;
 
             global.setTimeout(() => {
                 if (this.flatList) {
-                    this.setState({ UI: { topBarType, navBarColour: navBarType } }, () => {
+                    this.setState({ UI: { topBarType } }, () => {
                         const currentWorld = getCurrentWorld(this.props.activeLevel);
                         const currentEpisode = getCurrentEpisode(this.props.activeLevel);
                         this.flatList.scrollToOffset({
@@ -152,7 +148,7 @@ class QuestsScreen extends React.Component<IProps, IState> {
         const last = viewableItems[viewableItems.length - 1];
 
         if (first && last) {
-            this.setState({ UI: { topBarType: last.item.topBarType, navBarColour: first.item.navBarColour } });
+            this.setState({ UI: { topBarType: last.item.topBarType } });
         }
     };
 
@@ -208,23 +204,19 @@ function getInitialState(currentLevel: number) {
     switch (getCurrentWorld(currentLevel)) {
         case 3:
             return {
-                navBarColour: COLOURS.LIGHT,
                 topBarType: "white" as TopBarTypes
             };
         case 2:
             return {
-                navBarColour: COLOURS.DESERT,
                 topBarType: "desert" as TopBarTypes
             };
         case 1:
             return {
-                navBarColour: COLOURS.LIGHT,
                 topBarType: "white" as TopBarTypes
             };
         case 0:
         default:
             return {
-                navBarColour: COLOURS.FOREST,
                 topBarType: "forest" as TopBarTypes
             };
     }

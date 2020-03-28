@@ -5,7 +5,6 @@ import { Navigation } from "react-native-navigation";
 import { GetMobileCopy_getMobileCopy_screens_popUp } from "../../../graphql/_core/schema";
 import { ROUTES } from "../../../navigation/constants";
 import { ILabel, NavBar, Popup, POPUPTYPE } from "../../molecules";
-import { IColours } from "../nav-bar/nav-bar";
 import styles from "./pop-up.styles";
 
 interface IProps {
@@ -13,7 +12,6 @@ interface IProps {
     hasNotification: boolean;
     labels?: ILabel[];
     onUpdateLeaderboardPopupVisibility: (payload: boolean) => void;
-    navbarColour: IColours;
 }
 
 interface IState {
@@ -33,7 +31,7 @@ export default class LeaderboardPopup extends React.PureComponent<IProps, IState
 
     public render() {
         const { viewRef } = this.state;
-        const { copy, hasNotification, navbarColour } = this.props;
+        const { copy, hasNotification } = this.props;
         return (
             <>
                 <TouchableOpacity style={StyleSheet.absoluteFillObject} onPress={this.updateLeaderboardVisibility}>
@@ -45,7 +43,6 @@ export default class LeaderboardPopup extends React.PureComponent<IProps, IState
                 <View style={[styles.navBarWrapper, styles.zIndexWrapper]}>
                     <NavBar
                         activeIndex={0}
-                        colour={navbarColour}
                         hasNotification={hasNotification}
                         labels={this.getUpdateLabelsFunction()}
                     />

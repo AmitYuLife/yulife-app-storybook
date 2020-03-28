@@ -1,6 +1,6 @@
 import { shallow } from "enzyme";
 import * as React from "react";
-import { COLOURS, ILabel } from "../../../../../molecules";
+import { ILabel } from "../../../../../molecules";
 import RewardsPurchasedScreen from "../rewards-purchased.screen";
 
 const defaultProps = {
@@ -29,8 +29,7 @@ const defaultProps = {
         notEnoughCoins: { heading: "", subheading: "", ctaLabel: "" },
         aviosConfirmed: { title: "", message: "", cancelButtonText: "" },
         newLockedReward: { heading: "", subheading: "", ctaLabel: "" }
-    },
-    navbarColour: COLOURS.DARKER
+    }
 };
 
 describe("RewardsPurchasedScreen", () => {

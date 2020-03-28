@@ -69,25 +69,10 @@ ShallowWrapper {
           onPressLeftIcon={[Function]}
           type="default"
         />,
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "bottom": 54,
-              "justifyContent": "center",
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "width": "100%",
-            }
-          }
-        >
-          <NavBar
-            activeIndex={1}
-            colour="light"
-            labels={Array []}
-          />
-        </View>,
+        <NavBar
+          activeIndex={1}
+          additionalBottom={2}
+        />,
       ],
       "style": Object {
         "flex": 1,
@@ -182,35 +167,11 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <NavBar
-            activeIndex={1}
-            colour="light"
-            labels={Array []}
-          />,
-          "style": Object {
-            "alignItems": "center",
-            "bottom": 54,
-            "justifyContent": "center",
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "width": "100%",
-          },
+          "activeIndex": 1,
+          "additionalBottom": 2,
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "activeIndex": 1,
-            "colour": "light",
-            "labels": Array [],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
+        "rendered": null,
         "type": [Function],
       },
     ],
@@ -268,25 +229,10 @@ ShallowWrapper {
             onPressLeftIcon={[Function]}
             type="default"
           />,
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "bottom": 54,
-                "justifyContent": "center",
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "width": "100%",
-              }
-            }
-          >
-            <NavBar
-              activeIndex={1}
-              colour="light"
-              labels={Array []}
-            />
-          </View>,
+          <NavBar
+            activeIndex={1}
+            additionalBottom={2}
+          />,
         ],
         "style": Object {
           "flex": 1,
@@ -381,35 +327,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <NavBar
-              activeIndex={1}
-              colour="light"
-              labels={Array []}
-            />,
-            "style": Object {
-              "alignItems": "center",
-              "bottom": 54,
-              "justifyContent": "center",
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "width": "100%",
-            },
+            "activeIndex": 1,
+            "additionalBottom": 2,
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "activeIndex": 1,
-              "colour": "light",
-              "labels": Array [],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+          "rendered": null,
           "type": [Function],
         },
       ],
@@ -507,25 +429,10 @@ ShallowWrapper {
           onPressLeftIcon={[Function]}
           type="default"
         />,
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "bottom": 54,
-              "justifyContent": "center",
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "width": "100%",
-            }
-          }
-        >
-          <NavBar
-            activeIndex={1}
-            colour="light"
-            labels={Array []}
-          />
-        </View>,
+        <NavBar
+          activeIndex={1}
+          additionalBottom={2}
+        />,
       ],
       "style": Object {
         "flex": 1,
@@ -620,35 +527,11 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <NavBar
-            activeIndex={1}
-            colour="light"
-            labels={Array []}
-          />,
-          "style": Object {
-            "alignItems": "center",
-            "bottom": 54,
-            "justifyContent": "center",
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "width": "100%",
-          },
+          "activeIndex": 1,
+          "additionalBottom": 2,
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "activeIndex": 1,
-            "colour": "light",
-            "labels": Array [],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
+        "rendered": null,
         "type": [Function],
       },
     ],
@@ -706,25 +589,10 @@ ShallowWrapper {
             onPressLeftIcon={[Function]}
             type="default"
           />,
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "bottom": 54,
-                "justifyContent": "center",
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "width": "100%",
-              }
-            }
-          >
-            <NavBar
-              activeIndex={1}
-              colour="light"
-              labels={Array []}
-            />
-          </View>,
+          <NavBar
+            activeIndex={1}
+            additionalBottom={2}
+          />,
         ],
         "style": Object {
           "flex": 1,
@@ -819,35 +687,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <NavBar
-              activeIndex={1}
-              colour="light"
-              labels={Array []}
-            />,
-            "style": Object {
-              "alignItems": "center",
-              "bottom": 54,
-              "justifyContent": "center",
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "width": "100%",
-            },
+            "activeIndex": 1,
+            "additionalBottom": 2,
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "activeIndex": 1,
-              "colour": "light",
-              "labels": Array [],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+          "rendered": null,
           "type": [Function],
         },
       ],

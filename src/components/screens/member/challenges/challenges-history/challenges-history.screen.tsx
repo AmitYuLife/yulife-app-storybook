@@ -17,16 +17,8 @@ interface IProps extends IConnectedScreenProps {
     onPressCta: () => void;
 }
 
-export default function ChallengesHistory({
-    level,
-    onPressActivityHistory,
-    totalCoins,
-    labels,
-    onLeftMenuPress
-}: IProps) {
-    const { backgroundWrapperStyle, backgroundImage, navBarType, topBarType } = getWorldStyle(
-        level.level
-    ) as any;
+export default function ChallengesHistory({ level, onPressActivityHistory, totalCoins, onLeftMenuPress }: IProps) {
+    const { backgroundWrapperStyle, backgroundImage, topBarType } = getWorldStyle(level.level) as any;
 
     return (
         <SafeAreaView style={styles.wrapper}>
@@ -62,9 +54,7 @@ export default function ChallengesHistory({
             <View style={styles.buttonsWrapper}>
                 <Button type={Button.Types.PRIMARY} onPress={onPressActivityHistory} label="full history" />
             </View>
-            <View style={styles.navBarWrapper}>
-                <NavBar activeIndex={1} colour={navBarType} hasNotification={false} labels={labels} />
-            </View>
+            <NavBar activeIndex={1} hasNotification={false} />
         </SafeAreaView>
     );
 }
@@ -79,7 +69,6 @@ function getWorldStyle(currentLevel: number) {
                     { backgroundColor: "rgb(59,123,209)" }
                 ]),
                 historyLinkColor: "rgba(255, 255, 255, 1)",
-                navBarType: NavBar.Colours.LIGHT,
                 topBarType: "mountain"
             };
         case 2:
@@ -90,7 +79,6 @@ function getWorldStyle(currentLevel: number) {
                     { backgroundColor: "rgb(254,251,205)" }
                 ]),
                 historyLinkColor: "rgba(226, 1, 119, 1)",
-                navBarType: NavBar.Colours.DESERT,
                 topBarType: "desert"
             };
         case 1:
@@ -101,7 +89,6 @@ function getWorldStyle(currentLevel: number) {
                     { backgroundColor: "rgb(87,155,193)" }
                 ]),
                 historyLinkColor: "white",
-                navBarType: NavBar.Colours.LIGHT,
                 topBarType: "white"
             };
         case 0:
@@ -113,7 +100,6 @@ function getWorldStyle(currentLevel: number) {
                     { backgroundColor: "rgb(255, 242, 142)" }
                 ]),
                 historyLinkColor: "rgba(226, 1, 119, 1)",
-                navBarType: NavBar.Colours.FOREST,
                 topBarType: "default"
             };
     }

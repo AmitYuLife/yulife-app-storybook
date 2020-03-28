@@ -252,8 +252,6 @@ ShallowWrapper {
                   <Rect
                     fill="rgb(233,233,233)"
                     height="4"
-                    rx={0}
-                    ry={0}
                     width={550}
                     x={0}
                     y="4"
@@ -261,8 +259,6 @@ ShallowWrapper {
                   <Rect
                     fill="black"
                     height="4"
-                    rx={0}
-                    ry={0}
                     width={0}
                     x={0}
                     y="4"
@@ -464,8 +460,6 @@ ShallowWrapper {
                     <Rect
                       fill="rgb(233,233,233)"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={550}
                       x={0}
                       y="4"
@@ -473,8 +467,6 @@ ShallowWrapper {
                     <Rect
                       fill="black"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={Infinity}
                       x={0}
                       y="4"
@@ -839,8 +831,6 @@ ShallowWrapper {
                     <Rect
                       fill="rgb(233,233,233)"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={550}
                       x={0}
                       y="4"
@@ -848,8 +838,6 @@ ShallowWrapper {
                     <Rect
                       fill="black"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={0}
                       x={0}
                       y="4"
@@ -1051,8 +1039,6 @@ ShallowWrapper {
                       <Rect
                         fill="rgb(233,233,233)"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={550}
                         x={0}
                         y="4"
@@ -1060,8 +1046,6 @@ ShallowWrapper {
                       <Rect
                         fill="black"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={Infinity}
                         x={0}
                         y="4"
@@ -1506,8 +1490,6 @@ ShallowWrapper {
                       <Rect
                         fill="rgb(233,233,233)"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={550}
                         x={0}
                         y="4"
@@ -1515,8 +1497,6 @@ ShallowWrapper {
                       <Rect
                         fill="black"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={0}
                         x={0}
                         y="4"
@@ -1718,8 +1698,6 @@ ShallowWrapper {
                         <Rect
                           fill="rgb(233,233,233)"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={550}
                           x={0}
                           y="4"
@@ -1727,8 +1705,6 @@ ShallowWrapper {
                         <Rect
                           fill="black"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={Infinity}
                           x={0}
                           y="4"
@@ -2056,8 +2032,6 @@ ShallowWrapper {
                         <Rect
                           fill="rgb(233,233,233)"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={550}
                           x={0}
                           y="4"
@@ -2065,8 +2039,6 @@ ShallowWrapper {
                         <Rect
                           fill="black"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={0}
                           x={0}
                           y="4"
@@ -2268,8 +2240,6 @@ ShallowWrapper {
                           <Rect
                             fill="rgb(233,233,233)"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={550}
                             x={0}
                             y="4"
@@ -2277,8 +2247,6 @@ ShallowWrapper {
                           <Rect
                             fill="black"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={Infinity}
                             x={0}
                             y="4"
@@ -2431,8 +2399,6 @@ ShallowWrapper {
                           <Rect
                             fill="rgb(233,233,233)"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={550}
                             x={0}
                             y="4"
@@ -2440,8 +2406,6 @@ ShallowWrapper {
                           <Rect
                             fill="black"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={0}
                             x={0}
                             y="4"
@@ -2559,8 +2523,6 @@ ShallowWrapper {
                             <Rect
                               fill="rgb(233,233,233)"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={550}
                               x={0}
                               y="4"
@@ -2568,8 +2530,6 @@ ShallowWrapper {
                             <Rect
                               fill="black"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={0}
                               x={0}
                               y="4"
@@ -2591,8 +2551,6 @@ ShallowWrapper {
                             "props": Object {
                               "fill": "rgb(233,233,233)",
                               "height": "4",
-                              "rx": 0,
-                              "ry": 0,
                               "width": 550,
                               "x": 0,
                               "y": "4",
@@ -2608,8 +2566,6 @@ ShallowWrapper {
                             "props": Object {
                               "fill": "black",
                               "height": "4",
-                              "rx": 0,
-                              "ry": 0,
                               "width": 0,
                               "x": 0,
                               "y": "4",
@@ -3014,8 +2970,6 @@ ShallowWrapper {
                             <Rect
                               fill="rgb(233,233,233)"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={550}
                               x={0}
                               y="4"
@@ -3023,8 +2977,6 @@ ShallowWrapper {
                             <Rect
                               fill="black"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={Infinity}
                               x={0}
                               y="4"
@@ -3283,8 +3235,6 @@ ShallowWrapper {
                               <Rect
                                 fill="rgb(233,233,233)"
                                 height="4"
-                                rx={0}
-                                ry={0}
                                 width={550}
                                 x={0}
                                 y="4"
@@ -3292,8 +3242,6 @@ ShallowWrapper {
                               <Rect
                                 fill="black"
                                 height="4"
-                                rx={0}
-                                ry={0}
                                 width={Infinity}
                                 x={0}
                                 y="4"
@@ -3332,8 +3280,6 @@ ShallowWrapper {
                                 <Rect
                                   fill="rgb(233,233,233)"
                                   height="4"
-                                  rx={0}
-                                  ry={0}
                                   width={550}
                                   x={0}
                                   y="4"
@@ -3341,8 +3287,6 @@ ShallowWrapper {
                                 <Rect
                                   fill="black"
                                   height="4"
-                                  rx={0}
-                                  ry={0}
                                   width={Infinity}
                                   x={0}
                                   y="4"
@@ -3364,8 +3308,6 @@ ShallowWrapper {
                                 "props": Object {
                                   "fill": "rgb(233,233,233)",
                                   "height": "4",
-                                  "rx": 0,
-                                  "ry": 0,
                                   "width": 550,
                                   "x": 0,
                                   "y": "4",
@@ -3381,8 +3323,6 @@ ShallowWrapper {
                                 "props": Object {
                                   "fill": "black",
                                   "height": "4",
-                                  "rx": 0,
-                                  "ry": 0,
                                   "width": Infinity,
                                   "x": 0,
                                   "y": "4",
@@ -4299,8 +4239,6 @@ ShallowWrapper {
                     <Rect
                       fill="rgb(233,233,233)"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={550}
                       x={0}
                       y="4"
@@ -4308,8 +4246,6 @@ ShallowWrapper {
                     <Rect
                       fill="black"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={0}
                       x={0}
                       y="4"
@@ -4511,8 +4447,6 @@ ShallowWrapper {
                       <Rect
                         fill="rgb(233,233,233)"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={550}
                         x={0}
                         y="4"
@@ -4520,8 +4454,6 @@ ShallowWrapper {
                       <Rect
                         fill="black"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={Infinity}
                         x={0}
                         y="4"
@@ -4886,8 +4818,6 @@ ShallowWrapper {
                       <Rect
                         fill="rgb(233,233,233)"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={550}
                         x={0}
                         y="4"
@@ -4895,8 +4825,6 @@ ShallowWrapper {
                       <Rect
                         fill="black"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={0}
                         x={0}
                         y="4"
@@ -5098,8 +5026,6 @@ ShallowWrapper {
                         <Rect
                           fill="rgb(233,233,233)"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={550}
                           x={0}
                           y="4"
@@ -5107,8 +5033,6 @@ ShallowWrapper {
                         <Rect
                           fill="black"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={Infinity}
                           x={0}
                           y="4"
@@ -5553,8 +5477,6 @@ ShallowWrapper {
                         <Rect
                           fill="rgb(233,233,233)"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={550}
                           x={0}
                           y="4"
@@ -5562,8 +5484,6 @@ ShallowWrapper {
                         <Rect
                           fill="black"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={0}
                           x={0}
                           y="4"
@@ -5765,8 +5685,6 @@ ShallowWrapper {
                           <Rect
                             fill="rgb(233,233,233)"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={550}
                             x={0}
                             y="4"
@@ -5774,8 +5692,6 @@ ShallowWrapper {
                           <Rect
                             fill="black"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={Infinity}
                             x={0}
                             y="4"
@@ -6103,8 +6019,6 @@ ShallowWrapper {
                           <Rect
                             fill="rgb(233,233,233)"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={550}
                             x={0}
                             y="4"
@@ -6112,8 +6026,6 @@ ShallowWrapper {
                           <Rect
                             fill="black"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={0}
                             x={0}
                             y="4"
@@ -6315,8 +6227,6 @@ ShallowWrapper {
                             <Rect
                               fill="rgb(233,233,233)"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={550}
                               x={0}
                               y="4"
@@ -6324,8 +6234,6 @@ ShallowWrapper {
                             <Rect
                               fill="black"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={Infinity}
                               x={0}
                               y="4"
@@ -6478,8 +6386,6 @@ ShallowWrapper {
                             <Rect
                               fill="rgb(233,233,233)"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={550}
                               x={0}
                               y="4"
@@ -6487,8 +6393,6 @@ ShallowWrapper {
                             <Rect
                               fill="black"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={0}
                               x={0}
                               y="4"
@@ -6606,8 +6510,6 @@ ShallowWrapper {
                               <Rect
                                 fill="rgb(233,233,233)"
                                 height="4"
-                                rx={0}
-                                ry={0}
                                 width={550}
                                 x={0}
                                 y="4"
@@ -6615,8 +6517,6 @@ ShallowWrapper {
                               <Rect
                                 fill="black"
                                 height="4"
-                                rx={0}
-                                ry={0}
                                 width={0}
                                 x={0}
                                 y="4"
@@ -6638,8 +6538,6 @@ ShallowWrapper {
                               "props": Object {
                                 "fill": "rgb(233,233,233)",
                                 "height": "4",
-                                "rx": 0,
-                                "ry": 0,
                                 "width": 550,
                                 "x": 0,
                                 "y": "4",
@@ -6655,8 +6553,6 @@ ShallowWrapper {
                               "props": Object {
                                 "fill": "black",
                                 "height": "4",
-                                "rx": 0,
-                                "ry": 0,
                                 "width": 0,
                                 "x": 0,
                                 "y": "4",
@@ -7061,8 +6957,6 @@ ShallowWrapper {
                               <Rect
                                 fill="rgb(233,233,233)"
                                 height="4"
-                                rx={0}
-                                ry={0}
                                 width={550}
                                 x={0}
                                 y="4"
@@ -7070,8 +6964,6 @@ ShallowWrapper {
                               <Rect
                                 fill="black"
                                 height="4"
-                                rx={0}
-                                ry={0}
                                 width={Infinity}
                                 x={0}
                                 y="4"
@@ -7330,8 +7222,6 @@ ShallowWrapper {
                                 <Rect
                                   fill="rgb(233,233,233)"
                                   height="4"
-                                  rx={0}
-                                  ry={0}
                                   width={550}
                                   x={0}
                                   y="4"
@@ -7339,8 +7229,6 @@ ShallowWrapper {
                                 <Rect
                                   fill="black"
                                   height="4"
-                                  rx={0}
-                                  ry={0}
                                   width={Infinity}
                                   x={0}
                                   y="4"
@@ -7379,8 +7267,6 @@ ShallowWrapper {
                                   <Rect
                                     fill="rgb(233,233,233)"
                                     height="4"
-                                    rx={0}
-                                    ry={0}
                                     width={550}
                                     x={0}
                                     y="4"
@@ -7388,8 +7274,6 @@ ShallowWrapper {
                                   <Rect
                                     fill="black"
                                     height="4"
-                                    rx={0}
-                                    ry={0}
                                     width={Infinity}
                                     x={0}
                                     y="4"
@@ -7411,8 +7295,6 @@ ShallowWrapper {
                                   "props": Object {
                                     "fill": "rgb(233,233,233)",
                                     "height": "4",
-                                    "rx": 0,
-                                    "ry": 0,
                                     "width": 550,
                                     "x": 0,
                                     "y": "4",
@@ -7428,8 +7310,6 @@ ShallowWrapper {
                                   "props": Object {
                                     "fill": "black",
                                     "height": "4",
-                                    "rx": 0,
-                                    "ry": 0,
                                     "width": Infinity,
                                     "x": 0,
                                     "y": "4",
@@ -8451,8 +8331,6 @@ ShallowWrapper {
                   <Rect
                     fill="rgb(233,233,233)"
                     height="4"
-                    rx={0}
-                    ry={0}
                     width={550}
                     x={0}
                     y="4"
@@ -8460,8 +8338,6 @@ ShallowWrapper {
                   <Rect
                     fill="black"
                     height="4"
-                    rx={0}
-                    ry={0}
                     width={0}
                     x={0}
                     y="4"
@@ -8935,8 +8811,6 @@ ShallowWrapper {
                     <Rect
                       fill="rgb(233,233,233)"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={550}
                       x={0}
                       y="4"
@@ -8944,8 +8818,6 @@ ShallowWrapper {
                     <Rect
                       fill="black"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={0}
                       x={0}
                       y="4"
@@ -9499,8 +9371,6 @@ ShallowWrapper {
                       <Rect
                         fill="rgb(233,233,233)"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={550}
                         x={0}
                         y="4"
@@ -9508,8 +9378,6 @@ ShallowWrapper {
                       <Rect
                         fill="black"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={0}
                         x={0}
                         y="4"
@@ -9946,8 +9814,6 @@ ShallowWrapper {
                         <Rect
                           fill="rgb(233,233,233)"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={550}
                           x={0}
                           y="4"
@@ -9955,8 +9821,6 @@ ShallowWrapper {
                         <Rect
                           fill="black"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={0}
                           x={0}
                           y="4"
@@ -10303,8 +10167,6 @@ ShallowWrapper {
                           <Rect
                             fill="rgb(233,233,233)"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={550}
                             x={0}
                             y="4"
@@ -10312,8 +10174,6 @@ ShallowWrapper {
                           <Rect
                             fill="black"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={0}
                             x={0}
                             y="4"
@@ -10431,8 +10291,6 @@ ShallowWrapper {
                             <Rect
                               fill="rgb(233,233,233)"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={550}
                               x={0}
                               y="4"
@@ -10440,8 +10298,6 @@ ShallowWrapper {
                             <Rect
                               fill="black"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={0}
                               x={0}
                               y="4"
@@ -10463,8 +10319,6 @@ ShallowWrapper {
                             "props": Object {
                               "fill": "rgb(233,233,233)",
                               "height": "4",
-                              "rx": 0,
-                              "ry": 0,
                               "width": 550,
                               "x": 0,
                               "y": "4",
@@ -10480,8 +10334,6 @@ ShallowWrapper {
                             "props": Object {
                               "fill": "black",
                               "height": "4",
-                              "rx": 0,
-                              "ry": 0,
                               "width": 0,
                               "x": 0,
                               "y": "4",
@@ -11689,8 +11541,6 @@ ShallowWrapper {
                     <Rect
                       fill="rgb(233,233,233)"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={550}
                       x={0}
                       y="4"
@@ -11698,8 +11548,6 @@ ShallowWrapper {
                     <Rect
                       fill="black"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={0}
                       x={0}
                       y="4"
@@ -12173,8 +12021,6 @@ ShallowWrapper {
                       <Rect
                         fill="rgb(233,233,233)"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={550}
                         x={0}
                         y="4"
@@ -12182,8 +12028,6 @@ ShallowWrapper {
                       <Rect
                         fill="black"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={0}
                         x={0}
                         y="4"
@@ -12737,8 +12581,6 @@ ShallowWrapper {
                         <Rect
                           fill="rgb(233,233,233)"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={550}
                           x={0}
                           y="4"
@@ -12746,8 +12588,6 @@ ShallowWrapper {
                         <Rect
                           fill="black"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={0}
                           x={0}
                           y="4"
@@ -13184,8 +13024,6 @@ ShallowWrapper {
                           <Rect
                             fill="rgb(233,233,233)"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={550}
                             x={0}
                             y="4"
@@ -13193,8 +13031,6 @@ ShallowWrapper {
                           <Rect
                             fill="black"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={0}
                             x={0}
                             y="4"
@@ -13541,8 +13377,6 @@ ShallowWrapper {
                             <Rect
                               fill="rgb(233,233,233)"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={550}
                               x={0}
                               y="4"
@@ -13550,8 +13384,6 @@ ShallowWrapper {
                             <Rect
                               fill="black"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={0}
                               x={0}
                               y="4"
@@ -13669,8 +13501,6 @@ ShallowWrapper {
                               <Rect
                                 fill="rgb(233,233,233)"
                                 height="4"
-                                rx={0}
-                                ry={0}
                                 width={550}
                                 x={0}
                                 y="4"
@@ -13678,8 +13508,6 @@ ShallowWrapper {
                               <Rect
                                 fill="black"
                                 height="4"
-                                rx={0}
-                                ry={0}
                                 width={0}
                                 x={0}
                                 y="4"
@@ -13701,8 +13529,6 @@ ShallowWrapper {
                               "props": Object {
                                 "fill": "rgb(233,233,233)",
                                 "height": "4",
-                                "rx": 0,
-                                "ry": 0,
                                 "width": 550,
                                 "x": 0,
                                 "y": "4",
@@ -13718,8 +13544,6 @@ ShallowWrapper {
                               "props": Object {
                                 "fill": "black",
                                 "height": "4",
-                                "rx": 0,
-                                "ry": 0,
                                 "width": 0,
                                 "x": 0,
                                 "y": "4",
@@ -14976,8 +14800,6 @@ ShallowWrapper {
                   <Rect
                     fill="rgb(233,233,233)"
                     height="4"
-                    rx={0}
-                    ry={0}
                     width={550}
                     x={0}
                     y="4"
@@ -14985,8 +14807,6 @@ ShallowWrapper {
                   <Rect
                     fill="black"
                     height="4"
-                    rx={0}
-                    ry={0}
                     width={0}
                     x={0}
                     y="4"
@@ -15432,8 +15252,6 @@ ShallowWrapper {
                     <Rect
                       fill="rgb(233,233,233)"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={550}
                       x={0}
                       y="4"
@@ -15441,8 +15259,6 @@ ShallowWrapper {
                     <Rect
                       fill="black"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={0}
                       x={0}
                       y="4"
@@ -15968,8 +15784,6 @@ ShallowWrapper {
                       <Rect
                         fill="rgb(233,233,233)"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={550}
                         x={0}
                         y="4"
@@ -15977,8 +15791,6 @@ ShallowWrapper {
                       <Rect
                         fill="black"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={0}
                         x={0}
                         y="4"
@@ -16387,8 +16199,6 @@ ShallowWrapper {
                         <Rect
                           fill="rgb(233,233,233)"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={550}
                           x={0}
                           y="4"
@@ -16396,8 +16206,6 @@ ShallowWrapper {
                         <Rect
                           fill="black"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={0}
                           x={0}
                           y="4"
@@ -16632,8 +16440,6 @@ ShallowWrapper {
                           <Rect
                             fill="rgb(233,233,233)"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={550}
                             x={0}
                             y="4"
@@ -16641,8 +16447,6 @@ ShallowWrapper {
                           <Rect
                             fill="black"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={0}
                             x={0}
                             y="4"
@@ -16760,8 +16564,6 @@ ShallowWrapper {
                             <Rect
                               fill="rgb(233,233,233)"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={550}
                               x={0}
                               y="4"
@@ -16769,8 +16571,6 @@ ShallowWrapper {
                             <Rect
                               fill="black"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={0}
                               x={0}
                               y="4"
@@ -16792,8 +16592,6 @@ ShallowWrapper {
                             "props": Object {
                               "fill": "rgb(233,233,233)",
                               "height": "4",
-                              "rx": 0,
-                              "ry": 0,
                               "width": 550,
                               "x": 0,
                               "y": "4",
@@ -16809,8 +16607,6 @@ ShallowWrapper {
                             "props": Object {
                               "fill": "black",
                               "height": "4",
-                              "rx": 0,
-                              "ry": 0,
                               "width": 0,
                               "x": 0,
                               "y": "4",
@@ -17990,8 +17786,6 @@ ShallowWrapper {
                     <Rect
                       fill="rgb(233,233,233)"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={550}
                       x={0}
                       y="4"
@@ -17999,8 +17793,6 @@ ShallowWrapper {
                     <Rect
                       fill="black"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={0}
                       x={0}
                       y="4"
@@ -18446,8 +18238,6 @@ ShallowWrapper {
                       <Rect
                         fill="rgb(233,233,233)"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={550}
                         x={0}
                         y="4"
@@ -18455,8 +18245,6 @@ ShallowWrapper {
                       <Rect
                         fill="black"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={0}
                         x={0}
                         y="4"
@@ -18982,8 +18770,6 @@ ShallowWrapper {
                         <Rect
                           fill="rgb(233,233,233)"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={550}
                           x={0}
                           y="4"
@@ -18991,8 +18777,6 @@ ShallowWrapper {
                         <Rect
                           fill="black"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={0}
                           x={0}
                           y="4"
@@ -19401,8 +19185,6 @@ ShallowWrapper {
                           <Rect
                             fill="rgb(233,233,233)"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={550}
                             x={0}
                             y="4"
@@ -19410,8 +19192,6 @@ ShallowWrapper {
                           <Rect
                             fill="black"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={0}
                             x={0}
                             y="4"
@@ -19646,8 +19426,6 @@ ShallowWrapper {
                             <Rect
                               fill="rgb(233,233,233)"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={550}
                               x={0}
                               y="4"
@@ -19655,8 +19433,6 @@ ShallowWrapper {
                             <Rect
                               fill="black"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={0}
                               x={0}
                               y="4"
@@ -19774,8 +19550,6 @@ ShallowWrapper {
                               <Rect
                                 fill="rgb(233,233,233)"
                                 height="4"
-                                rx={0}
-                                ry={0}
                                 width={550}
                                 x={0}
                                 y="4"
@@ -19783,8 +19557,6 @@ ShallowWrapper {
                               <Rect
                                 fill="black"
                                 height="4"
-                                rx={0}
-                                ry={0}
                                 width={0}
                                 x={0}
                                 y="4"
@@ -19806,8 +19578,6 @@ ShallowWrapper {
                               "props": Object {
                                 "fill": "rgb(233,233,233)",
                                 "height": "4",
-                                "rx": 0,
-                                "ry": 0,
                                 "width": 550,
                                 "x": 0,
                                 "y": "4",
@@ -19823,8 +19593,6 @@ ShallowWrapper {
                               "props": Object {
                                 "fill": "black",
                                 "height": "4",
-                                "rx": 0,
-                                "ry": 0,
                                 "width": 0,
                                 "x": 0,
                                 "y": "4",
@@ -21081,8 +20849,6 @@ ShallowWrapper {
                   <Rect
                     fill="rgb(233,233,233)"
                     height="4"
-                    rx={0}
-                    ry={0}
                     width={550}
                     x={0}
                     y="4"
@@ -21090,8 +20856,6 @@ ShallowWrapper {
                   <Rect
                     fill="black"
                     height="4"
-                    rx={0}
-                    ry={0}
                     width={0}
                     x={0}
                     y="4"
@@ -21395,8 +21159,6 @@ ShallowWrapper {
                     <Rect
                       fill="rgb(233,233,233)"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={550}
                       x={0}
                       y="4"
@@ -21404,8 +21166,6 @@ ShallowWrapper {
                     <Rect
                       fill="black"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={0}
                       x={0}
                       y="4"
@@ -21789,8 +21549,6 @@ ShallowWrapper {
                       <Rect
                         fill="rgb(233,233,233)"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={550}
                         x={0}
                         y="4"
@@ -21798,8 +21556,6 @@ ShallowWrapper {
                       <Rect
                         fill="black"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={0}
                         x={0}
                         y="4"
@@ -22066,8 +21822,6 @@ ShallowWrapper {
                         <Rect
                           fill="rgb(233,233,233)"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={550}
                           x={0}
                           y="4"
@@ -22075,8 +21829,6 @@ ShallowWrapper {
                         <Rect
                           fill="black"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={0}
                           x={0}
                           y="4"
@@ -22311,8 +22063,6 @@ ShallowWrapper {
                           <Rect
                             fill="rgb(233,233,233)"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={550}
                             x={0}
                             y="4"
@@ -22320,8 +22070,6 @@ ShallowWrapper {
                           <Rect
                             fill="black"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={0}
                             x={0}
                             y="4"
@@ -22439,8 +22187,6 @@ ShallowWrapper {
                             <Rect
                               fill="rgb(233,233,233)"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={550}
                               x={0}
                               y="4"
@@ -22448,8 +22194,6 @@ ShallowWrapper {
                             <Rect
                               fill="black"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={0}
                               x={0}
                               y="4"
@@ -22471,8 +22215,6 @@ ShallowWrapper {
                             "props": Object {
                               "fill": "rgb(233,233,233)",
                               "height": "4",
-                              "rx": 0,
-                              "ry": 0,
                               "width": 550,
                               "x": 0,
                               "y": "4",
@@ -22488,8 +22230,6 @@ ShallowWrapper {
                             "props": Object {
                               "fill": "black",
                               "height": "4",
-                              "rx": 0,
-                              "ry": 0,
                               "width": 0,
                               "x": 0,
                               "y": "4",
@@ -23016,8 +22756,6 @@ ShallowWrapper {
                     <Rect
                       fill="rgb(233,233,233)"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={550}
                       x={0}
                       y="4"
@@ -23025,8 +22763,6 @@ ShallowWrapper {
                     <Rect
                       fill="black"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={0}
                       x={0}
                       y="4"
@@ -23330,8 +23066,6 @@ ShallowWrapper {
                       <Rect
                         fill="rgb(233,233,233)"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={550}
                         x={0}
                         y="4"
@@ -23339,8 +23073,6 @@ ShallowWrapper {
                       <Rect
                         fill="black"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={0}
                         x={0}
                         y="4"
@@ -23724,8 +23456,6 @@ ShallowWrapper {
                         <Rect
                           fill="rgb(233,233,233)"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={550}
                           x={0}
                           y="4"
@@ -23733,8 +23463,6 @@ ShallowWrapper {
                         <Rect
                           fill="black"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={0}
                           x={0}
                           y="4"
@@ -24001,8 +23729,6 @@ ShallowWrapper {
                           <Rect
                             fill="rgb(233,233,233)"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={550}
                             x={0}
                             y="4"
@@ -24010,8 +23736,6 @@ ShallowWrapper {
                           <Rect
                             fill="black"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={0}
                             x={0}
                             y="4"
@@ -24246,8 +23970,6 @@ ShallowWrapper {
                             <Rect
                               fill="rgb(233,233,233)"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={550}
                               x={0}
                               y="4"
@@ -24255,8 +23977,6 @@ ShallowWrapper {
                             <Rect
                               fill="black"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={0}
                               x={0}
                               y="4"
@@ -24374,8 +24094,6 @@ ShallowWrapper {
                               <Rect
                                 fill="rgb(233,233,233)"
                                 height="4"
-                                rx={0}
-                                ry={0}
                                 width={550}
                                 x={0}
                                 y="4"
@@ -24383,8 +24101,6 @@ ShallowWrapper {
                               <Rect
                                 fill="black"
                                 height="4"
-                                rx={0}
-                                ry={0}
                                 width={0}
                                 x={0}
                                 y="4"
@@ -24406,8 +24122,6 @@ ShallowWrapper {
                               "props": Object {
                                 "fill": "rgb(233,233,233)",
                                 "height": "4",
-                                "rx": 0,
-                                "ry": 0,
                                 "width": 550,
                                 "x": 0,
                                 "y": "4",
@@ -24423,8 +24137,6 @@ ShallowWrapper {
                               "props": Object {
                                 "fill": "black",
                                 "height": "4",
-                                "rx": 0,
-                                "ry": 0,
                                 "width": 0,
                                 "x": 0,
                                 "y": "4",
@@ -25020,8 +24732,6 @@ ShallowWrapper {
                   <Rect
                     fill="rgb(233,233,233)"
                     height="4"
-                    rx={0}
-                    ry={0}
                     width={550}
                     x={0}
                     y="4"
@@ -25029,8 +24739,6 @@ ShallowWrapper {
                   <Rect
                     fill="black"
                     height="4"
-                    rx={0}
-                    ry={0}
                     width={0}
                     x={0}
                     y="4"
@@ -25448,8 +25156,6 @@ ShallowWrapper {
                     <Rect
                       fill="rgb(233,233,233)"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={550}
                       x={0}
                       y="4"
@@ -25457,8 +25163,6 @@ ShallowWrapper {
                     <Rect
                       fill="black"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={0}
                       x={0}
                       y="4"
@@ -25956,8 +25660,6 @@ ShallowWrapper {
                       <Rect
                         fill="rgb(233,233,233)"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={550}
                         x={0}
                         y="4"
@@ -25965,8 +25667,6 @@ ShallowWrapper {
                       <Rect
                         fill="black"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={0}
                         x={0}
                         y="4"
@@ -26347,8 +26047,6 @@ ShallowWrapper {
                         <Rect
                           fill="rgb(233,233,233)"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={550}
                           x={0}
                           y="4"
@@ -26356,8 +26054,6 @@ ShallowWrapper {
                         <Rect
                           fill="black"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={0}
                           x={0}
                           y="4"
@@ -26592,8 +26288,6 @@ ShallowWrapper {
                           <Rect
                             fill="rgb(233,233,233)"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={550}
                             x={0}
                             y="4"
@@ -26601,8 +26295,6 @@ ShallowWrapper {
                           <Rect
                             fill="black"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={0}
                             x={0}
                             y="4"
@@ -26720,8 +26412,6 @@ ShallowWrapper {
                             <Rect
                               fill="rgb(233,233,233)"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={550}
                               x={0}
                               y="4"
@@ -26729,8 +26419,6 @@ ShallowWrapper {
                             <Rect
                               fill="black"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={0}
                               x={0}
                               y="4"
@@ -26752,8 +26440,6 @@ ShallowWrapper {
                             "props": Object {
                               "fill": "rgb(233,233,233)",
                               "height": "4",
-                              "rx": 0,
-                              "ry": 0,
                               "width": 550,
                               "x": 0,
                               "y": "4",
@@ -26769,8 +26455,6 @@ ShallowWrapper {
                             "props": Object {
                               "fill": "black",
                               "height": "4",
-                              "rx": 0,
-                              "ry": 0,
                               "width": 0,
                               "x": 0,
                               "y": "4",
@@ -27831,8 +27515,6 @@ ShallowWrapper {
                     <Rect
                       fill="rgb(233,233,233)"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={550}
                       x={0}
                       y="4"
@@ -27840,8 +27522,6 @@ ShallowWrapper {
                     <Rect
                       fill="black"
                       height="4"
-                      rx={0}
-                      ry={0}
                       width={0}
                       x={0}
                       y="4"
@@ -28259,8 +27939,6 @@ ShallowWrapper {
                       <Rect
                         fill="rgb(233,233,233)"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={550}
                         x={0}
                         y="4"
@@ -28268,8 +27946,6 @@ ShallowWrapper {
                       <Rect
                         fill="black"
                         height="4"
-                        rx={0}
-                        ry={0}
                         width={0}
                         x={0}
                         y="4"
@@ -28767,8 +28443,6 @@ ShallowWrapper {
                         <Rect
                           fill="rgb(233,233,233)"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={550}
                           x={0}
                           y="4"
@@ -28776,8 +28450,6 @@ ShallowWrapper {
                         <Rect
                           fill="black"
                           height="4"
-                          rx={0}
-                          ry={0}
                           width={0}
                           x={0}
                           y="4"
@@ -29158,8 +28830,6 @@ ShallowWrapper {
                           <Rect
                             fill="rgb(233,233,233)"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={550}
                             x={0}
                             y="4"
@@ -29167,8 +28837,6 @@ ShallowWrapper {
                           <Rect
                             fill="black"
                             height="4"
-                            rx={0}
-                            ry={0}
                             width={0}
                             x={0}
                             y="4"
@@ -29403,8 +29071,6 @@ ShallowWrapper {
                             <Rect
                               fill="rgb(233,233,233)"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={550}
                               x={0}
                               y="4"
@@ -29412,8 +29078,6 @@ ShallowWrapper {
                             <Rect
                               fill="black"
                               height="4"
-                              rx={0}
-                              ry={0}
                               width={0}
                               x={0}
                               y="4"
@@ -29531,8 +29195,6 @@ ShallowWrapper {
                               <Rect
                                 fill="rgb(233,233,233)"
                                 height="4"
-                                rx={0}
-                                ry={0}
                                 width={550}
                                 x={0}
                                 y="4"
@@ -29540,8 +29202,6 @@ ShallowWrapper {
                               <Rect
                                 fill="black"
                                 height="4"
-                                rx={0}
-                                ry={0}
                                 width={0}
                                 x={0}
                                 y="4"
@@ -29563,8 +29223,6 @@ ShallowWrapper {
                               "props": Object {
                                 "fill": "rgb(233,233,233)",
                                 "height": "4",
-                                "rx": 0,
-                                "ry": 0,
                                 "width": 550,
                                 "x": 0,
                                 "y": "4",
@@ -29580,8 +29238,6 @@ ShallowWrapper {
                               "props": Object {
                                 "fill": "black",
                                 "height": "4",
-                                "rx": 0,
-                                "ry": 0,
                                 "width": 0,
                                 "x": 0,
                                 "y": "4",
