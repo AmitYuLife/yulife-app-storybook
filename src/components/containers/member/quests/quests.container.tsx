@@ -1,12 +1,10 @@
 import { GetCurrentWorld_getCurrentWorld } from "@graphql/_core/schema";
 import { bottomTabs } from "@navigation/constants";
-import { ChallengeType } from "@screens/member/challenges/challenge-progress/challenge-progress.screen";
 import { getCurrentWorld } from "@services/utils";
 import { Style } from "@styles/index";
 import moment from "moment";
 import React from "react";
-import { BackHandler, Linking, NativeEventSubscription } from "react-native";
-import Config from "react-native-config";
+import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import GetCurrentWorld, {
@@ -254,10 +252,8 @@ class QuestsContainer extends React.Component<Props, IState> {
                         <ChallengeExitScreen
                             onClose={hideOverlay}
                             onPressExit={this.props.challengeCancelAction}
-                            onOpenURL={this.openMeditationURL}
                             isCancelling={isLoading}
-                            challengeType={subtype as ChallengeType}
-                            copy={copy.newExitChallenge}
+                            copy={copy.exitChallenge}
                         />
                     )}
                 />
@@ -279,15 +275,6 @@ class QuestsContainer extends React.Component<Props, IState> {
                 activeLevel={getTheActiveLevel(formatedData)}
             />
         );
-    };
-
-    private openMeditationURL = async () => {
-        const url = Config.MEDITATION_SETUP_URL;
-        const supported = await Linking.canOpenURL(url);
-
-        if (supported) {
-            await Linking.openURL(url);
-        }
     };
 
     private hideUnity = () => {

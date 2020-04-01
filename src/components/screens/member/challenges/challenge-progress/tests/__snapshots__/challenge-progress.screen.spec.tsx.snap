@@ -90,7 +90,7 @@ ShallowWrapper {
         >
           <Exit
             onPress={[MockFunction]}
-            primaryColour="#3986BC"
+            primaryColour="#023966"
             secondaryColour="white"
           />
         </View>,
@@ -195,7 +195,7 @@ ShallowWrapper {
         "props": Object {
           "children": <Exit
             onPress={[MockFunction]}
-            primaryColour="#3986BC"
+            primaryColour="#023966"
             secondaryColour="white"
           />,
           "style": Object {
@@ -211,7 +211,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "onPress": [MockFunction],
-            "primaryColour": "#3986BC",
+            "primaryColour": "#023966",
             "secondaryColour": "white",
           },
           "ref": null,
@@ -298,7 +298,7 @@ ShallowWrapper {
           >
             <Exit
               onPress={[MockFunction]}
-              primaryColour="#3986BC"
+              primaryColour="#023966"
               secondaryColour="white"
             />
           </View>,
@@ -403,7 +403,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Exit
               onPress={[MockFunction]}
-              primaryColour="#3986BC"
+              primaryColour="#023966"
               secondaryColour="white"
             />,
             "style": Object {
@@ -419,7 +419,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "onPress": [MockFunction],
-              "primaryColour": "#3986BC",
+              "primaryColour": "#023966",
               "secondaryColour": "white",
             },
             "ref": null,
@@ -557,7 +557,7 @@ ShallowWrapper {
         >
           <Exit
             onPress={[MockFunction]}
-            primaryColour="#BCBCBC"
+            primaryColour="#CCCCCC"
             secondaryColour="white"
           />
         </View>,
@@ -662,7 +662,7 @@ ShallowWrapper {
         "props": Object {
           "children": <Exit
             onPress={[MockFunction]}
-            primaryColour="#BCBCBC"
+            primaryColour="#CCCCCC"
             secondaryColour="white"
           />,
           "style": Object {
@@ -678,7 +678,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "onPress": [MockFunction],
-            "primaryColour": "#BCBCBC",
+            "primaryColour": "#CCCCCC",
             "secondaryColour": "white",
           },
           "ref": null,
@@ -765,7 +765,7 @@ ShallowWrapper {
           >
             <Exit
               onPress={[MockFunction]}
-              primaryColour="#BCBCBC"
+              primaryColour="#CCCCCC"
               secondaryColour="white"
             />
           </View>,
@@ -870,7 +870,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Exit
               onPress={[MockFunction]}
-              primaryColour="#BCBCBC"
+              primaryColour="#CCCCCC"
               secondaryColour="white"
             />,
             "style": Object {
@@ -886,7 +886,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "onPress": [MockFunction],
-              "primaryColour": "#BCBCBC",
+              "primaryColour": "#CCCCCC",
               "secondaryColour": "white",
             },
             "ref": null,
