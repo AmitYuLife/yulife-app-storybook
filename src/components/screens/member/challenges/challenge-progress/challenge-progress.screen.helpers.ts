@@ -26,7 +26,7 @@ const BRISK_WALK: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(399) }]),
         topBarType: "default",
         exitChallenge: {
-            primaryColour: "#ED9CA0",
+            primaryColour: "#F38784",
             secondaryColour: "white"
         }
     },
@@ -37,7 +37,7 @@ const BRISK_WALK: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: "100%" }]),
         topBarType: "white",
         exitChallenge: {
-            primaryColour: "#3986BC",
+            primaryColour: "#023966",
             secondaryColour: "white"
         }
     },
@@ -48,7 +48,7 @@ const BRISK_WALK: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
         topBarType: "default",
         exitChallenge: {
-            primaryColour: "rgb(252,194,116)",
+            primaryColour: "#FDD377",
             secondaryColour: "white"
         }
     },
@@ -59,7 +59,7 @@ const BRISK_WALK: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
         topBarType: "default",
         exitChallenge: {
-            primaryColour: "#ED9CA0",
+            primaryColour: "#E77479",
             secondaryColour: "white"
         }
     }
@@ -72,7 +72,7 @@ const SHORT_STROLL: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(600) }]),
         topBarType: "default",
         exitChallenge: {
-            primaryColour: "#ED9CA0",
+            primaryColour: "#FBCC07",
             secondaryColour: "white"
         }
     },
@@ -83,7 +83,7 @@ const SHORT_STROLL: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: "100%" }]),
         topBarType: "default",
         exitChallenge: {
-            primaryColour: "#3986BC",
+            primaryColour: "#8FD3EC",
             secondaryColour: "white"
         }
     },
@@ -94,7 +94,7 @@ const SHORT_STROLL: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(500) }]),
         topBarType: "default",
         exitChallenge: {
-            primaryColour: "rgb(252,194,116)",
+            primaryColour: "#FDD377",
             secondaryColour: "white"
         }
     },
@@ -105,7 +105,7 @@ const SHORT_STROLL: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(580) }]),
         topBarType: "default",
         exitChallenge: {
-            primaryColour: "#ED9CA0",
+            primaryColour: "#E77479",
             secondaryColour: "white"
         }
     }
@@ -118,7 +118,7 @@ const LONG_WALK: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(615) }]),
         topBarType: "white",
         exitChallenge: {
-            primaryColour: "rgb(51, 88, 66)",
+            primaryColour: "#195139",
             secondaryColour: "white"
         }
     },
@@ -129,7 +129,7 @@ const LONG_WALK: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(539) }]),
         topBarType: "default",
         exitChallenge: {
-            primaryColour: "#3986BC",
+            primaryColour: "#4278A5",
             secondaryColour: "white"
         }
     },
@@ -140,8 +140,8 @@ const LONG_WALK: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(475) }]),
         topBarType: "white",
         exitChallenge: {
-            primaryColour: "white",
-            secondaryColour: "#6E6E70"
+            primaryColour: "#394F69",
+            secondaryColour: "white"
         }
     },
     {
@@ -151,7 +151,7 @@ const LONG_WALK: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(550) }]),
         topBarType: "default",
         exitChallenge: {
-            primaryColour: "#569DE9",
+            primaryColour: "#74D6F1",
             secondaryColour: "white"
         }
     }
@@ -164,7 +164,7 @@ const MEDITATION: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(668) }]),
         topBarType: "default",
         exitChallenge: {
-            primaryColour: "#ED9CA0",
+            primaryColour: "#96E2B5",
             secondaryColour: "white"
         }
     },
@@ -175,7 +175,7 @@ const MEDITATION: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(665) }]),
         topBarType: "default",
         exitChallenge: {
-            primaryColour: "#BCBCBC",
+            primaryColour: "#CCCCCC",
             secondaryColour: "white"
         }
     },
@@ -186,7 +186,7 @@ const MEDITATION: IStyleSet[] = [
         style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(332) }]),
         topBarType: "default",
         exitChallenge: {
-            primaryColour: "#569DE9",
+            primaryColour: "#6AA3DC",
             secondaryColour: "white"
         }
     },

@@ -1,4 +1,4 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle, Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../../styles";
 
@@ -16,21 +16,17 @@ export default StyleSheet.create({
         marginTop: Style.SCALE_UP_AND_DOWN(-30)
     } as ViewStyle,
     instructionHeading: {
-        fontSize: Style.SCALE_UP_AND_DOWN(40),
-        lineHeight: Style.SCALE_UP_AND_DOWN(40),
-        marginBottom: Style.SCALE_UP_AND_DOWN(-6),
-        color: "black"
-    } as TextStyle,
-    instructionSubheading: {
-        color: "black",
-        fontSize: Style.SCALE_UP_AND_DOWN(25)
+        fontSize: Style.SCALE_UP_AND_DOWN(25),
+        color: "#333333",
+        fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD
     } as TextStyle,
     instructionText: {
-        fontSize: Style.SCALE_UP_AND_DOWN(14),
+        fontSize: Style.SCALE_UP_AND_DOWN(15),
         lineHeight: Style.SCALE_UP_AND_DOWN(20),
         width: Style.SCALE_UP_AND_DOWN(190),
         textAlignVertical: "bottom",
-        color: "black"
+        color: "#333333",
+        fontFamily: Style.FONT_FAMILY_PRIMARY
     } as TextStyle,
     navBarWrapper: {
         alignItems: "center",
@@ -66,7 +62,12 @@ export default StyleSheet.create({
     } as ViewStyle,
     exitChallengeWrapper: {
         position: "absolute",
-        top: Style.SCALE_UP_AND_DOWN(120),
+        top: Style.SCALE_UP_AND_DOWN(
+            Platform.select({
+                ios: 120,
+                android: 100
+            })
+        ),
         right: Style.SCALE_UP_AND_DOWN(16)
     } as ViewStyle
 });

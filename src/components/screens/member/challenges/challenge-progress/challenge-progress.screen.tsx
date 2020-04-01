@@ -65,12 +65,8 @@ export default function ChallengeProgressScreen({
             {challengeType === "meditation" && !userProgress ? (
                 <View style={styles.meditationInstructionsWrapper}>
                     <View style={styles.instructionWrapper}>
-                        <Text style={styles.instructionHeading} bold={true}>
-                            Choose
-                        </Text>
-                        <Text style={styles.instructionSubheading} bold={true}>
-                            an app to start
-                        </Text>
+                        <Text style={styles.instructionHeading}>Choose</Text>
+                        <Text style={styles.instructionHeading}>an app to start</Text>
                         <Text style={styles.instructionText}>{`Or use any meditation app that`}</Text>
                         <Text style={styles.instructionText}>
                             {`integrates with ${Platform.select({

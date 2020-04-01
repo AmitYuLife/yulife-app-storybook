@@ -12,19 +12,22 @@ export default StyleSheet.create({
         height: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() ? 248 : 268)
     } as ImageStyle,
     headingText: {
-        fontSize: Style.SCALE_UP_AND_DOWN(25),
+        fontSize: Style.SCALE_UP_AND_DOWN(35),
         lineHeight: Style.SCALE_UP_AND_DOWN(40),
-        color: "rgb(51, 51, 51)",
-        marginBottom: Style.SCALE_UP_AND_DOWN(20)
+        color: "#333333",
+        marginTop: Style.SCALE_UP_AND_DOWN(169),
+        marginBottom: Style.SCALE_UP_AND_DOWN(11),
+        fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD
     } as TextStyle,
     descriptionText: {
         fontSize: Style.SCALE_UP_AND_DOWN(15),
-        lineHeight: Style.SCALE_UP_AND_DOWN(20),
+        lineHeight: Style.SCALE_UP_AND_DOWN(22),
         paddingHorizontal: 60,
-        color: "rgb(51, 51, 51)"
+        color: "#333333",
+        fontFamily: Style.FONT_FAMILY_PRIMARY
     } as TextStyle,
     exitChallengeWrapper: {
-        marginTop: Style.SCALE_UP_AND_DOWN(40)
+        marginTop: Style.SCALE_UP_AND_DOWN(33)
     } as ViewStyle,
     buttonStyle: {
         marginBottom: Style.SCALE_UP_AND_DOWN(20)

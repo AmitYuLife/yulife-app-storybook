@@ -20,13 +20,13 @@ const defaultProps = {
 
 describe("ChallengeExitScreen", () => {
     it("should match snapshot", () => {
-        const actual = shallow(<ChallengeExitScreen challengeType="short stroll" {...defaultProps} />);
+        const actual = shallow(<ChallengeExitScreen {...defaultProps} />);
 
         expect(actual).toMatchSnapshot();
     });
 
     it("should render with subheading & meditation tutorial button", () => {
-        const actual = shallow(<ChallengeExitScreen challengeType="meditation" {...defaultProps} />);
+        const actual = shallow(<ChallengeExitScreen {...defaultProps} />);
 
         expect(actual).toMatchSnapshot();
     });
