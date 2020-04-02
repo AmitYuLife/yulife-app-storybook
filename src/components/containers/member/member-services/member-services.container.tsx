@@ -30,12 +30,12 @@ class MemberServices extends PureComponent<Props, IState> {
 
     public render() {
         const { tab } = this.state;
-        const { componentId, isGroupUser } = this.props;
+        const { componentId, isGroupUser, isWellbeingAccess } = this.props;
 
         if (tab === "yumatter") {
             return (
                 <Yumatter
-                    isGroup={isGroupUser}
+                    isGroup={isGroupUser || isWellbeingAccess}
                     onPressClose={() => this.handleCloseButton(componentId)}
                     onLeftTabPress={this.onEmptyPress}
                     onRightTabPress={this.handleTabChange("smartHealth")}
@@ -65,7 +65,8 @@ class MemberServices extends PureComponent<Props, IState> {
 
 const mapStateToProps = (state: IReduxState) => ({
     features: getUserFeatures(state),
-    isGroupUser: getUserBusiness(state).isGroup
+    isGroupUser: getUserBusiness(state).isGroup,
+    isWellbeingAccess: getUserBusiness(state).isWellbeingAccess
 });
 
 const mapDispatchToProps = {

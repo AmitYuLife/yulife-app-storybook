@@ -13,6 +13,7 @@ export const userFragmentGql = gql`
             businessAccountName
             alpha
             isGroup
+            isWellbeingAccess
         }
         wootricId
         membershipType
