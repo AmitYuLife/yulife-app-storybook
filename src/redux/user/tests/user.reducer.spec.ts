@@ -70,7 +70,8 @@ describe("userReducer", async () => {
             business: {
                 alpha: true,
                 businessAccountName: "yulife",
-                isGroup: false
+                isGroup: false,
+                isWellbeingAccess: false
             }
         };
 
