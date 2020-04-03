@@ -82,7 +82,8 @@ export const initialState: IUserStore = {
     business: {
         businessAccountName: "",
         alpha: true,
-        isGroup: false
+        isGroup: false,
+        isWellbeingAccess: false
     }
 };
 
@@ -169,7 +170,8 @@ const updatePersistedState = (persistedState: IUserStore) => {
             business: {
                 businessAccountName: "",
                 alpha: true,
-                isGroup: false
+                isGroup: false,
+                isWellbeingAccess: false
             }
         };
     }
@@ -188,7 +190,8 @@ const getUserSuccess = (
             business = {
                 businessAccountName: "",
                 alpha: true,
-                isGroup: false
+                isGroup: false,
+                isWellbeingAccess: false
             }
         }
     }: GetCurrentUser

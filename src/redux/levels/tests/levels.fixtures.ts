@@ -39,7 +39,8 @@ export const currentUser: GetCurrentUser = {
         business: {
             businessAccountName: "yulife",
             alpha: true,
-            isGroup: false
+            isGroup: false,
+            isWellbeingAccess: false
         },
         archived: false,
         onboardingDate: "2019-01-01",
@@ -84,7 +85,8 @@ export const loginUser: LoginUser = {
             business: {
                 businessAccountName: "yulife",
                 alpha: true,
-                isGroup: false
+                isGroup: false,
+                isWellbeingAccess: false
             },
             archived: false,
             onboardingDate: "2019-01-01",

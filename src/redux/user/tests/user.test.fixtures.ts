@@ -51,7 +51,8 @@ export const loginSuccessFixture: LoginUser = {
             business: {
                 businessAccountName: "yulife",
                 alpha: true,
-                isGroup: false
+                isGroup: false,
+                isWellbeingAccess: false
             },
             leaderboards,
             membershipType: "yulife",
@@ -101,7 +102,8 @@ export const currentUserFixture: GetCurrentUser = {
         business: {
             businessAccountName: "yulife",
             alpha: true,
-            isGroup: false
+            isGroup: false,
+            isWellbeingAccess: false
         },
         leaderboards,
         membershipType: "yulife",
