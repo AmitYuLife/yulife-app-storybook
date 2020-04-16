@@ -13,7 +13,7 @@ interface IProps {
 class SplashScreen extends React.PureComponent<IProps> {
     private fullLogoRef: Animatable.View;
 
-    public componentWillMount() {
+    public UNSAFE_componentWillMount() {
         Animatable.initializeRegistryWithDefinitions({
             splash_dot1: {
                 0: { opacity: 0 },

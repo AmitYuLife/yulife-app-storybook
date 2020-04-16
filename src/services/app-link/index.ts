@@ -39,3 +39,11 @@ export async function openHeadspace() {
         playStoreId: "com.getsomeheadspace.android"
     });
 }
+
+export const handleLinkPress = (link: string) => async () => {
+    const isValid = await Linking.canOpenURL(link);
+
+    if (isValid) {
+        await Linking.openURL(link);
+    }
+};

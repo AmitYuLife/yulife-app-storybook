@@ -11,7 +11,7 @@ describe("getImage", () => {
     });
 
     it("should render a camel image", () => {
-        expect(getImage("camel")).toBe(1);
+        expect(getImage("camel")).toBeDefined();
     });
 });
 

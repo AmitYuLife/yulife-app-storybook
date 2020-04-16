@@ -11,7 +11,7 @@ export interface IDeviceStore {
 }
 
 export const initialState: IDeviceStore = {
-    deviceId: DeviceInfo.getUniqueID(),
+    deviceId: DeviceInfo.getUniqueId(),
     deviceToken: "",
     os: Platform.OS,
     pushNotifications: {

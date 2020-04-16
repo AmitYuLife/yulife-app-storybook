@@ -1,4 +1,3 @@
-import { GetCurrentWorld_getCurrentWorld } from "@app/graphql/_core/schema";
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import FastImage from "react-native-fast-image";
@@ -7,14 +6,6 @@ import { Style } from "../../../../../styles";
 import { IMapSlice, LevelBubble, MAP_SLICE_HEIGHT } from "./assets";
 import { HALF_MAP_SLICE_HEIGHT } from "./assets/slices.settings";
 import { IChallenge } from "./quests-screen";
-
-export interface IChallenge extends GetCurrentWorld_getCurrentWorld {
-    isActive?: boolean;
-    isDone?: boolean;
-    isNext?: boolean;
-    nextAvailableAt?: string;
-    onPress?: () => void;
-}
 
 interface IProps {
     activeLevel: number;

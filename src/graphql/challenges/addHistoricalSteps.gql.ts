@@ -1,9 +1,10 @@
+import { MutationTuple } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import { Mutation, MutationFn, MutationResult } from "react-apollo";
 import client from "../_core/client";
-import { AddHistoricalSteps, AddHistoricalStepsVariables, ChallengePayload } from "../_core/schema";
+import { AddHistoricalSteps, AddHistoricalStepsVariables } from "../_core/schema";
+import { ChallengePayload } from "../_core/schema/globalTypes";
 
-export const addHistoricalStepsGql = gql`
+export const GQL_MUTATION_ADD_HISTORICAL_STEPS = gql`
     mutation AddHistoricalSteps($payload: [ChallengePayload], $shouldAward: Boolean, $refreshWearables: Boolean) {
         addHistoricalSteps(payload: $payload, shouldAward: $shouldAward, refreshWearables: $refreshWearables) {
             endDateTime
@@ -13,17 +14,15 @@ export const addHistoricalStepsGql = gql`
     }
 `;
 
-export type AddHistoricalStepsResultType = MutationResult<AddHistoricalSteps>;
-export type AddHistoricalStepsMutationFunction = MutationFn<AddHistoricalSteps, AddHistoricalStepsVariables>;
-
-export class AddHistoricalStepsMutation extends Mutation<AddHistoricalSteps, AddHistoricalStepsVariables> {}
+export type AddHistoricalStepsMutationTuple = MutationTuple<AddHistoricalSteps, AddHistoricalStepsVariables>;
 
 const addHistoricalSteps = (
     payload: ChallengePayload[],
     shouldAward: boolean = true,
     refreshWearables: boolean = false
-) => client().mutate<AddHistoricalSteps, AddHistoricalStepsVariables>({
-        mutation: addHistoricalStepsGql,
+) =>
+    client().mutate<AddHistoricalSteps, AddHistoricalStepsVariables>({
+        mutation: GQL_MUTATION_ADD_HISTORICAL_STEPS,
         variables: { payload, shouldAward, refreshWearables }
     });
 

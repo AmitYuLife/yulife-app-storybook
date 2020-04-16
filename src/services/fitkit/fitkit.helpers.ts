@@ -1,6 +1,6 @@
 import RNFitKit, { FitKitTypes, PedometerResponse, SampleQueryResult } from "@services/fitkit/fitkit.service";
 import moment, { Moment } from "moment";
-import { ChallengePayload } from "../../graphql/_core/schema";
+import { ChallengePayload } from "../../graphql/_core/schema/globalTypes";
 import Logger from "../logging/logger";
 import { DATE_FORMAT_WITH_TZ } from "../utils";
 
@@ -50,7 +50,7 @@ export const querySteps = async (
     start: Moment,
     end: Moment,
     { disableUserEntries = true, loggingEnabled = false }: { [name: string]: boolean } = {}
-): Promise<{ results: ChallengePayload[]; error: string }> => {
+): Promise<{ results: ChallengePayload[]; error: string | null }> => {
     try {
         const startTime = start.startOf("day").format(DATE_FORMAT_WITH_TZ);
         const endTime = end.endOf("day").format(DATE_FORMAT_WITH_TZ);

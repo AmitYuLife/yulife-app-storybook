@@ -1,11 +1,8 @@
 import { Colours, Style } from "@styles/index";
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import DeviceInfo from "react-native-device-info";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { MAP_SLICE_HEIGHT } from "../../assets";
 import { CIRCLE_SIZE } from "../../assets/level/level.styles";
-
-const deviceName = DeviceInfo.getDeviceName() || "";
 
 export default StyleSheet.create({
     background: {
@@ -43,10 +40,7 @@ export default StyleSheet.create({
         position: "absolute",
         left: Style.DEVICE_WIDTH / 2,
         right: 0,
-        top:
-            isIphoneX() || deviceName.toLowerCase().includes("iphone x")
-                ? Style.SCALE_UP_AND_DOWN(122)
-                : Style.SCALE_UP_AND_DOWN(127),
+        top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 122 : 127),
         zIndex: 3,
         width: CIRCLE_SIZE,
         backgroundColor: Colours.darkHotPink
@@ -56,10 +50,7 @@ export default StyleSheet.create({
         alignItems: "center",
         height: Style.SCALE_UP_AND_DOWN(250),
         width: Style.DEVICE_WIDTH,
-        top:
-            isIphoneX() || deviceName.toLowerCase().includes("iphone x")
-                ? Style.SCALE_UP_AND_DOWN(170)
-                : Style.SCALE_UP_AND_DOWN(120)
+        top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 170 : 120)
     } as ViewStyle,
     treesWrapper: {
         zIndex: 2,

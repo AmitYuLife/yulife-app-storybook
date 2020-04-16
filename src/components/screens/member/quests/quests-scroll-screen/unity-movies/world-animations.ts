@@ -1,17 +1,14 @@
 import { Style } from "@styles/index";
 import { Platform } from "react-native";
 import * as Animatable from "react-native-animatable";
-import DeviceInfo from "react-native-device-info";
 import { isIphoneX } from "react-native-iphone-x-helper";
-
-const deviceName = DeviceInfo.getDeviceName() || "";
 
 const scaleAsZero = Platform.OS === "ios" ? 0 : 0.1;
 
 const translateValue =
     Platform.OS === "android"
         ? Style.SCALE_Y_UP_AND_DOWN(93)
-        : isIphoneX() || deviceName.toLowerCase().includes("iphone x")
+        : isIphoneX()
         ? Style.SCALE_UP_AND_DOWN(158)
         : Style.SCALE_UP_AND_DOWN(98);
 

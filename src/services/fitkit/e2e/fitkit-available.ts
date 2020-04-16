@@ -1,4 +1,4 @@
-import mock from "@services/mock";
+// import mock from "@services/mock";
 import { Component } from "react";
 
 interface IProps {
@@ -15,7 +15,7 @@ class FitKitAvailable extends Component<IProps> {
     private unlisten: any;
 
     public componentDidMount() {
-        this.unlisten = mock.onFitkitAuthorised(this.setAuthorised);
+        // this.unlisten = mock.onFitkitAuthorised(this.setAuthorised);
     }
 
     public componentWillUnmount() {
@@ -39,9 +39,9 @@ class FitKitAvailable extends Component<IProps> {
         return authorised;
     }
 
-    private setAuthorised = () => {
-        this.setState({ authorised: true, available: true });
-    }
+    // private setAuthorised = () => {
+    //     this.setState({ authorised: true, available: true });
+    // }
 }
 
 export default FitKitAvailable;

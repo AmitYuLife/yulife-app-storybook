@@ -1,7 +1,7 @@
-import { RedeemRewardFunctionType, RedeemRewardMutation } from "@graphql/rewards";
-import * as React from "react";
-import { Component } from "react";
-import { Alert, Linking } from "react-native";
+import { useMutation } from "@apollo/react-hooks";
+import { RedeemRewardMutationTuple, GQL_MUTATION_REDEEM_REWARD } from "@graphql/rewards";
+import React, { FC, useEffect, useCallback, useMemo, useState } from "react";
+import { Alert } from "react-native";
 import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
@@ -16,10 +16,7 @@ import Logger from "../../../../../services/logging/logger";
 import { BlurProvider } from "../../../../atoms";
 import { ListPicker } from "../../../../molecules";
 import { AviosRewardDetailsScreen } from "../../../../screens";
-import {
-    IOnPressPickerArgs,
-    IRewardReturnedUsersItem
-} from "../../../../screens/member/rewards/details/avios-details.screen";
+import { handleLinkPress } from "@services/app-link";
 
 enum Programmes {
     aerLingus = "aerclub",
@@ -33,10 +30,6 @@ interface IProgrammesItem {
     label: Programmes;
 }
 
-interface IPressableRewardReturnedUsersItem extends IRewardReturnedUsersItem {
-    onPress: () => void;
-}
-
 interface IProps {
     componentId: string;
     reward: GetRewards_getRewards;
@@ -48,268 +41,110 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
-interface IState {
-    loyalty?: IProgrammesItem;
-    forename?: string;
-    surname?: string;
-    accountNumber?: string;
-    amount?: IRewardReturnedUsersItem;
-    items?: IPressableRewardReturnedUsersItem[];
-    instruction?: string;
-    loyaltyList?: IRewardReturnedUsersItem[];
-    amountList?: IRewardReturnedUsersItem[];
-    isAccountNumberDirty?: boolean;
-}
+const verifyAccountNumber = (loyaltyId: string, accountNumber: string) => {
+    if (!loyaltyId || !accountNumber) {
+        return false;
+    }
+    const sanitizedAccountNumber = accountNumber.split(" ").join("");
+    const isnum = /^\d+$/.test(sanitizedAccountNumber);
+    const programme = loyaltyId.toLowerCase();
+    if (programme === Programmes.aerLingus || programme === Programmes.vueling) {
+        return sanitizedAccountNumber.startsWith("308147") && sanitizedAccountNumber.length === 16 && isnum;
+    } else if (programme === Programmes.britishAirways || programme === Programmes.meridiana) {
+        return sanitizedAccountNumber.length === 8 && isnum;
+    } else {
+        return false;
+    }
+};
 
-class AviosRewardDetailsContainer extends Component<Props, IState> {
-    public state = {
-        accountNumber: "",
-        amount: {},
-        amountList: [],
-        forename: "",
-        instruction: "",
-        isAccountNumberDirty: false,
-        items: [],
-        loyalty: {},
-        loyaltyList: [],
-        surname: ""
-    } as IState;
-    private blurProvider: BlurProvider;
+const AviosRewardDetailsContainer: FC<Props> = (props) => {
+    const {
+        copy,
+        totalCoins,
+        reward: {
+            code,
+            availability,
+            currency_code,
+            reward_sticker,
+            name,
+            description,
+            redeem_steps: { info },
+            available_denominations,
+            uiSettings,
+            loyalty_programme
+        }
+    } = props;
 
-    public componentDidMount() {
-        const { reward } = this.props;
-        // TODO: Move to sagas
+    useEffect(() => {
         Logger.logEvent("reward_viewed", {
-            reward_availability: reward.availability,
-            reward_available_denominations: reward.available_denominations,
-            reward_best_sticker: reward.reward_sticker,
-            reward_code: reward.code,
-            reward_name: reward.name
+            reward_availability: availability,
+            reward_available_denominations: available_denominations,
+            reward_best_sticker: reward_sticker,
+            reward_code: code,
+            reward_name: name
         });
+    }, []);
 
-        const forename = "";
-        const surname = "";
-        const accountNumber = "";
+    const loyaltyList = useMemo(
+        () =>
+            loyalty_programme.map((programme: Programmes) => ({
+                id: programme,
+                label: programme
+            })),
+        []
+    );
+    const amountList = useMemo(
+        () =>
+            available_denominations.map((ad) => ({
+                id: String(ad.value),
+                label: `${ad.value} avios - ${ad.yuCoin} yucoin`
+            })),
+        []
+    );
 
-        const loyaltyList = reward.loyalty_programme.map((name: string) => ({
-            id: name,
-            label: name
-        }));
-        const amountList = reward.available_denominations.map(({ yuCoin, value }) => ({
-            id: String(value),
-            label: `${value} avios - ${yuCoin} yucoin`
-        }));
+    const onRewardsTabPress = useCallback(() => props.onTabChange("rewards", props.componentId), []);
+    const onPurchasesTabPress = useCallback(() => props.onTabChange("purchases", props.componentId), []);
 
-        this.setState({
-            accountNumber,
-            amountList,
-            forename,
-            loyaltyList,
-            surname
-        });
-    }
+    const handlePolicyPress = useMemo(() => handleLinkPress(Config.REWARDS_POLICY_URL), []);
+    // const handleTermsPress = useMemo(() => handleLinkPress(`${Config.API_URL}/docs/avios-terms.pdf`), []);
+    const handleAviosTermsPress = useMemo(
+        () => handleLinkPress("https://www.avios.com/gb/en_gb/my-account/log-into-avios"),
+        []
+    );
 
-    public render() {
-        const {
-            totalCoins,
-            reward: {
-                code,
-                currency_code,
-                description,
-                available_denominations,
-                uiSettings,
-                redeem_steps: { info }
-            }
-        } = this.props;
-        const [{ yuCoin, value }] = available_denominations;
+    const [picker, setPicker] = useState("");
+    const [amount, setAmount] = useState(amountList[0]);
+    const [lastName, setLastName] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [accountNumber, setAccountNumber] = useState({ value: "", dirty: false });
+    const [instruction, setInstruction] = useState("");
+    const [loyalty, setLoyalty] = useState({} as IProgrammesItem);
 
-        const { hasError, isValidAccountNumber } = this.validateForm();
-        const isDisabledCta = hasError || !isValidAccountNumber;
-        const hasErrorAccountNumber = this.state.isAccountNumberDirty && !isValidAccountNumber;
+    const [redeemReward, { loading }]: RedeemRewardMutationTuple = useMutation(GQL_MUTATION_REDEEM_REWARD);
 
-        return (
-            <RedeemRewardMutation>
-                {(redeemReward, { loading }) => {
-                    const handleSubmit = async () => {
-                        this.handleRewardPurchase(redeemReward);
-                    };
+    const { hasError, isValidAccountNumber } = useMemo(
+        () => ({
+            hasError: !firstName || !lastName || !loyalty.id,
+            isValidAccountNumber: verifyAccountNumber(loyalty.id, accountNumber.value)
+        }),
+        [firstName, lastName, accountNumber, loyalty]
+    );
+    const isDisabledCta = hasError || !isValidAccountNumber;
+    const hasErrorAccountNumber = accountNumber.dirty && !isValidAccountNumber;
 
-                    return (
-                        <BlurProvider
-                            ref={(ref) => (this.blurProvider = ref)}
-                            type={BlurProvider.Types.DARK}
-                            render={({ toggleOverlay }) => (
-                                <AviosRewardDetailsScreen
-                                    uiSettings={uiSettings}
-                                    isDisabledCta={isDisabledCta}
-                                    isLoading={loading}
-                                    hasErrorAccountNumber={hasErrorAccountNumber}
-                                    onPressLoyaltyPicker={this.handlePressPicker({
-                                        picker: "loyalty",
-                                        toggleOverlay
-                                    })}
-                                    onPressAmountPicker={this.handlePressPicker({
-                                        picker: "amount",
-                                        toggleOverlay
-                                    })}
-                                    {...this.state}
-                                    loyaltyValue={this.state.loyalty.label}
-                                    forenameValue={this.state.forename}
-                                    surnameValue={this.state.surname}
-                                    amountValue={this.state.amount.label}
-                                    accountNumberValue={this.state.accountNumber}
-                                    onForenameChange={this.handleTextChange("forename")}
-                                    onSurnameChange={this.handleTextChange("surname")}
-                                    onCardChange={this.handleTextChange("accountNumber")}
-                                    coins={totalCoins}
-                                    onPressTopBar={this.handleRewardsPress}
-                                    onLeftTabPress={this.handleRewardsPress}
-                                    onRightTabPress={this.handlePurchasesPress}
-                                    code={code}
-                                    cost={yuCoin}
-                                    rewardValue={value}
-                                    rewardCurrency={currency_code}
-                                    welcomeHeading="Welcome aboard"
-                                    welcomeParagraph={description}
-                                    instructionsHeading="Connect yucoin to Avios"
-                                    instructionsParagraph={info}
-                                    confirmButtonLabel={
-                                        !isDisabledCta
-                                            ? `buy avios with ${this.state.amount.id} yucoin`
-                                            : "select amount"
-                                    }
-                                    onPressConfirm={handleSubmit}
-                                    onPressPolicy={() => this.openLink("")}
-                                    onPressSetUp={() => this.openLink("avios")}
-                                />
-                            )}
-                            renderOverlay={({ toggleOverlay }) => (
-                                <ListPicker
-                                    onPressCancel={toggleOverlay}
-                                    instruction={this.state.instruction}
-                                    items={this.state.items}
-                                />
-                            )}
-                        />
-                    );
-                }}
-            </RedeemRewardMutation>
-        );
-    }
+    const [{ yuCoin, value }] = available_denominations;
 
-    public openLink = async (link: string) => {
-        let url = "";
-
-        switch (link) {
-            case "avios":
-                url = "https://www.avios.com/gb/en_gb/my-account/log-into-avios";
-                break;
-            case "aviosTerms":
-                url = `${Config.API_URL}/docs/avios-terms.pdf`;
-                break;
-            default:
-                url = Config.REWARDS_POLICY_URL;
-        }
-        const supported = await Linking.canOpenURL(url);
-
-        if (supported) {
-            await Linking.openURL(url);
-        }
-    };
-
-    private handleRewardsPress = () => {
-        this.props.onTabChange("rewards", this.props.componentId);
-    };
-
-    private handlePurchasesPress = () => {
-        this.props.onTabChange("purchases", this.props.componentId);
-    };
-
-    private handlePick = ({ picker, item }: { picker: string; item: IRewardReturnedUsersItem }) => () => {
-        this.setState({ [picker]: item }, () => this.blurProvider.toggleOverlay());
-    };
-
-    private handlePressPicker = ({ toggleOverlay, picker }: { toggleOverlay: () => void; picker: string }) => {
-        return ({ items, instruction }: IOnPressPickerArgs) => {
-            this.setState(
-                {
-                    instruction,
-                    items: items.map((item) => {
-                        return {
-                            ...item,
-                            onPress: this.handlePick({
-                                item,
-                                picker
-                            })
-                        };
-                    })
-                },
-                () => toggleOverlay()
-            );
-        };
-    };
-
-    private validateForm = () => {
-        const {
-            forename,
-            surname,
-            amount: { id }
-        } = this.state;
-        return {
-            hasError: !forename || !surname || !id,
-            isValidAccountNumber: this.verifyAccountNumber()
-        };
-    };
-
-    private handleTextChange = (key: string) => {
-        return (value: string) => {
-            this.setState({
-                [key]: value,
-                isAccountNumberDirty: key === "accountNumber"
-            } as Partial<IState>);
-        };
-    };
-
-    private verifyAccountNumber = () => {
-        const {
-            loyalty: { id },
-            accountNumber
-        } = this.state;
-        if (!id || !accountNumber) {
-            return false;
-        }
-        const sanitizedAccountNumber = accountNumber.split(" ").join("");
-        const isnum = /^\d+$/.test(sanitizedAccountNumber);
-        const programme = id.toLowerCase();
-        if (programme === Programmes.aerLingus || programme === Programmes.vueling) {
-            return sanitizedAccountNumber.startsWith("308147") && sanitizedAccountNumber.length === 16 && isnum;
-        } else if (programme === Programmes.britishAirways || programme === Programmes.meridiana) {
-            return sanitizedAccountNumber.length === 8 && isnum;
-        } else {
-            return false;
-        }
-    };
-
-    private handleRewardPurchase = (redeemReward: RedeemRewardFunctionType) => {
-        const { offline, reward, totalCoins, copy } = this.props;
-        const {
-            forename: firstName,
-            surname: lastName,
-            accountNumber,
-            amount: { id, label },
-            loyalty: { id: loyaltyProgramme }
-        } = this.state;
-
+    const handleRewardPurchase = useCallback(() => {
         const metadata = {
             avios: {
-                accountNumber,
+                accountNumber: accountNumber.value,
                 firstName,
                 lastName,
-                loyaltyProgramme
+                loyaltyProgramme: loyalty.id
             }
         };
 
-        Alert.alert("Confirm yucoin purchase", `You are about to buy ${label.replace("-", "with")}.`, [
+        Alert.alert("Confirm yucoin purchase", `You are about to buy ${amount.label.replace("-", "with")}.`, [
             {
                 style: "cancel",
                 text: "Cancel"
@@ -318,17 +153,17 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
                 onPress: async () => {
                     try {
                         const result = await redeemReward({
-                            variables: { id: reward.code, amount: Number(id), metadata }
+                            variables: { id: code, amount: Number(amount.id), metadata }
                         });
 
                         if ((result as { data: RedeemReward }).data.redeemReward) {
-                            this.props.getUserStart();
+                            props.getUserStart();
                             await Navigation.push(ROUTES.rewards, {
                                 component: {
                                     id: ROUTES.aviosConfirmed,
                                     name: ROUTES.aviosConfirmed,
                                     passProps: {
-                                        onTabChange: this.props.onTabChange,
+                                        onTabChange: props.onTabChange,
                                         purchase: (result as { data: RedeemReward }).data.redeemReward
                                     },
                                     options: { bottomTabs }
@@ -343,11 +178,11 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
                             subheading: copy.voucherNotAvailable.subheading
                         };
 
-                        if (offline) {
+                        if (props.offline) {
                             passProps.ctaLabel = copy.offline.ctaLabel;
                             passProps.heading = copy.offline.heading;
                             passProps.subheading = copy.offline.subheading;
-                        } else if (totalCoins < Number(id)) {
+                        } else if (totalCoins < Number(amount.id)) {
                             passProps.ctaLabel = copy.notEnoughCoins.ctaLabel;
                             passProps.heading = copy.notEnoughCoins.heading;
                             passProps.subheading = copy.notEnoughCoins.subheading;
@@ -365,8 +200,79 @@ class AviosRewardDetailsContainer extends Component<Props, IState> {
                 text: "Confirm"
             }
         ]);
-    };
-}
+    }, [lastName, firstName, accountNumber, loyalty, amount]);
+
+    return (
+        <BlurProvider
+            type={BlurProvider.Types.DARK}
+            render={({ toggleOverlay }) => (
+                <AviosRewardDetailsScreen
+                    uiSettings={uiSettings}
+                    isDisabledCta={isDisabledCta}
+                    isLoading={loading}
+                    hasErrorAccountNumber={hasErrorAccountNumber}
+                    onPressLoyaltyPicker={() => {
+                        setPicker("loyalty");
+                        setInstruction("Select your loyalty programme");
+                        toggleOverlay();
+                    }}
+                    onPressAmountPicker={() => {
+                        setPicker("amount");
+                        setInstruction("Select your amount");
+                        toggleOverlay();
+                    }}
+                    loyaltyValue={loyalty.label}
+                    forenameValue={firstName}
+                    surnameValue={lastName}
+                    amountValue={amount.label}
+                    accountNumberValue={accountNumber.value}
+                    onForenameChange={setFirstName}
+                    onSurnameChange={setLastName}
+                    onCardChange={(input) => setAccountNumber({ value: input, dirty: true })}
+                    coins={totalCoins}
+                    onPressTopBar={onRewardsTabPress}
+                    onLeftTabPress={onRewardsTabPress}
+                    onRightTabPress={onPurchasesTabPress}
+                    code={code}
+                    cost={yuCoin}
+                    rewardValue={value}
+                    rewardCurrency={currency_code}
+                    welcomeHeading="Welcome aboard"
+                    welcomeParagraph={description}
+                    instructionsHeading="Connect yucoin to Avios"
+                    instructionsParagraph={info}
+                    confirmButtonLabel={!isDisabledCta ? `buy avios with ${amount.id} yucoin` : "select amount"}
+                    onPressConfirm={handleRewardPurchase}
+                    onPressPolicy={handlePolicyPress}
+                    onPressSetUp={handleAviosTermsPress}
+                />
+            )}
+            renderOverlay={({ toggleOverlay }) => (
+                <ListPicker
+                    onPressCancel={toggleOverlay}
+                    instruction={instruction}
+                    items={
+                        picker === "loyalty"
+                            ? loyaltyList.map((item) => ({
+                                  ...item,
+                                  onPress: () => {
+                                      setLoyalty(item);
+                                      toggleOverlay();
+                                  }
+                              }))
+                            : amountList.map((item) => ({
+                                  ...item,
+                                  onPress: () => {
+                                      setAmount(item);
+                                      toggleOverlay();
+                                  }
+                              }))
+                    }
+                />
+            )}
+        />
+    );
+};
 
 const mapStateToProps = (state: IReduxState) => ({
     offline: getOfflineState(state),

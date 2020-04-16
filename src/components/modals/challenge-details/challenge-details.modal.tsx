@@ -15,6 +15,8 @@ interface IOwnProps {
 
 type Props = IOwnProps & IMilestoneProps;
 
-export default function ChallengeDetailsModal(props: Props) {
+const ChallengeDetailsModal: React.FC<Props> = (props) => {
     return <ChallengeDetailsScreen {...props} />;
-}
+};
+
+export default ChallengeDetailsModal;

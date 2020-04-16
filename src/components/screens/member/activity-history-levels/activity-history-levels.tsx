@@ -20,7 +20,7 @@ export interface IOwnProps {
     onRefresh: () => Promise<void>;
     onFetchMoreData?: () => void;
     copy: GetMobileCopy_getMobileCopy_screens_activityHistoryLevels;
-    onSetLargelistRef: (ref: LargeList) => void;
+    largeListRef: React.MutableRefObject<LargeList>;
 }
 
 type IProps = IOwnProps & IServerProps;
@@ -121,7 +121,7 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
 
     public render() {
         const { isAllDataLoaded } = this.state;
-        const { items, onPressClose, copy, onSetLargelistRef, onRefresh } = this.props;
+        const { items, onPressClose, copy, largeListRef, onRefresh } = this.props;
         return (
             <SafeAreaView style={styles.wrapper} testID={ACTIVITY_HISTORY_SCREEN}>
                 <GenericHeading heading={copy.heading} />
@@ -144,7 +144,7 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
 
                 <View style={styles.scrollView}>
                     <LargeList
-                        ref={onSetLargelistRef}
+                        ref={largeListRef}
                         data={items}
                         onRefresh={onRefresh}
                         heightForIndexPath={this.handleHeightForIndexPath}

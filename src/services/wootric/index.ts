@@ -32,7 +32,7 @@ class WootricClient {
             // In summary, this lets you send multiple surveys for the same user, bypassing the usual throttles.
             // However because of the local storage flag, you'll need to restart the app each time
             // you want to see a survey.
-            RNWootric.setSurveyImmediately(true);
+            RNWootric.setSurveyImmediately(false);
         }
     }
 
@@ -44,7 +44,7 @@ class WootricClient {
             app_version: this.appVersion,
             created_at: user.createdAt,
             last_request_at: moment().format(),
-            current_level: "" + user.currentLevel, // Cast to string, to avoid android casting as a float
+            current_level: String(user.currentLevel), // Cast to string, to avoid android casting as a float
             businessAccountId: user.businessAccountId,
             company_name: user.businessAccountName,
             membershipType: user.membershipType,
@@ -65,6 +65,7 @@ class WootricClient {
      */
     public showSurvey() {
         if (this.userDetailsSet) {
+            RNWootric.setSurveyImmediately(true);
             RNWootric.showSurvey();
         }
     }

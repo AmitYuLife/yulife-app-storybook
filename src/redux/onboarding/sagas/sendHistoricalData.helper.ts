@@ -3,7 +3,7 @@ import { queryHistoricalData } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { Moment } from "moment";
 import { call, put, select, spawn } from "redux-saga/effects";
-import { PassiveChallengeType } from "../../../graphql/_core/schema";
+import { PassiveChallengeType } from "../../../graphql/_core/schema/globalTypes";
 import addHistoricalData from "../../../graphql/challenges/addHistoricalData.gql";
 import { queryHistoricalMeditationData } from "../../../services/fitkit/fitkit.helpers";
 import { getUserFeatures } from "../../user/user.selectors";

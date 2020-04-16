@@ -1,5 +1,4 @@
-import * as React from "react";
-import { Component } from "react";
+import React, { FC, useCallback } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
@@ -22,25 +21,19 @@ interface IProps extends IConnectedScreenProps {
 
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
-class ChallengesHistoryContainer extends Component<Props> {
-    public render() {
-        const { level, onPressActivityHistory, totalCoins } = this.props;
+const ChallengesHistoryContainer: FC<Props> = ({ level, onPressActivityHistory, totalCoins, componentId }) => {
+    const handleClose = useCallback(() => Navigation.popToRoot(componentId), []);
 
-        return (
-            <ChallengesHistoryScreen
-                level={level}
-                onPressActivityHistory={onPressActivityHistory}
-                onPressCta={this.handleLeftMenuPress}
-                onLeftMenuPress={this.handleLeftMenuPress}
-                totalCoins={totalCoins}
-            />
-        );
-    }
-
-    private handleLeftMenuPress = async () => {
-        await Navigation.popToRoot(this.props.componentId);
-    };
-}
+    return (
+        <ChallengesHistoryScreen
+            level={level}
+            onPressActivityHistory={onPressActivityHistory}
+            onPressCta={handleClose}
+            onLeftMenuPress={handleClose}
+            totalCoins={totalCoins}
+        />
+    );
+};
 
 const mapStateToProps = (state: IReduxState) => ({
     currentLevel: getCurrentLevel(state),

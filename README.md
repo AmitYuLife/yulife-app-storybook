@@ -30,12 +30,12 @@ If you are having trouble starting the apps, ensure you have followed the instal
 
 ### Install app dependencies
 
-This project uses `npm` for project tasks and dependencies.
+This project uses `yarn` for project tasks and dependencies.
 
 To install dependencies, run:
 
 ```sh
-npm install
+yarn
 ```
 
 ### Download Apollo Schema
@@ -45,13 +45,13 @@ This project uses Apollo/GraphQL for its backend communication.
 To download the latest backend schema from the deployed API develop server, run:
 
 ```sh
-npm run download-schema
+yarn download:schema
 ```
 
 Alternatively, if you are developing against a local instance of the API server, you can download its schema by running:
 
 ```sh
-npm run download-schema-local
+yarn download:schema:local
 ```
 
 ### Start bundler and TypeScript watch process
@@ -59,7 +59,7 @@ npm run download-schema-local
 The Metro bundler and TypeScript watch process must be started before you can build and run either app. Start these with the following command:
 
 ```sh
-npm start
+yarn start
 ```
 
 ## Build app
@@ -73,13 +73,13 @@ Building the app using XCode is the only way to install a development build on a
 Build and run the app in the default simulator by running the following command:
 
 ```sh
-npm run start:ios
+yarn start:ios
 ```
 
 This will run under the default build profile, which will connect to the development API server. To choose a different build profile, add the profile name to the previous command, as below:
 
 ```sh
-npm run start:ios:{profile}
+yarn start:ios:{profile}
 # config = local | uat | production
 ```
 
@@ -114,13 +114,13 @@ The app needs to be signed before it can be installed on a physical device.
 Build and run the app in the default simulator by running the following command:
 
 ```sh
-npm run start:android
+yarn start:android
 ```
 
 This will run under the default build profile, which will connect to the development API server. To choose a different build profile, add the profile name to the previous command, as below:
 
 ```sh
-npm run start:android:{profile}
+yarn start:android:{profile}
 # config = local | uat | production
 ```
 
@@ -173,13 +173,13 @@ To run the tests use:
 
 ```sh
 # To run only the unit tests. Report is in './coverage'
-npm test:unit
+yarn test:unit
 
 # To update snapshots
-npm run test:unit -- -u
+yarn test:unit -- -u
 
 # To run all the tests, including TypeScript checking and linting
-npm run test:all
+yarn test:all
 ```
 
 ## Debugging
@@ -219,7 +219,7 @@ This project provides a StoryBook server. To access it, run the following `start
 of the default.
 
 ```sh
-npm run start:storybook
+yarn start:storybook
 ```
 
 Now, when you build and run either version of the app it will display the StoryBook app instead.
@@ -272,9 +272,10 @@ The YuLife project follows the [atomic design](http://atomicdesign.bradfrost.com
 
 ## Gotchas
 
-### Disappearing packages
-Problem: `npm install some-package --save-dev` deletes git dependencies in package.json.
-Solution: Re-run `npm install` after
+### Disappearing packages
+
+Problem: `yarn add some-package -D` deletes git dependencies in package.json.
+Solution: Re-run `yarn add` after
 
 ## flow
 

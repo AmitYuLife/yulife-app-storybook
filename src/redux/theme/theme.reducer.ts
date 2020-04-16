@@ -3,7 +3,7 @@ import { CenteredScreenImages } from "../../components/atoms/centred-screen/cent
 import { StreakTypes } from "../../components/molecules/streak/streak";
 import { TopBarTypes } from "../../components/molecules/top-bar/top-bar";
 import { GetCurrentUser, LoginUser } from "../../graphql/_core/schema";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../../redux/user/user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import { getCurrentWorld } from "../../services/utils";
 import { SyncAction } from "../_core/types";
 

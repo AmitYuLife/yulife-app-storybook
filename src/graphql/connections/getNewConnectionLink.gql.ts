@@ -1,20 +1,15 @@
 import gql from "graphql-tag";
-import { MutationFn, MutationResult } from "react-apollo";
 import client from "../_core/client";
 import { GetNewConnectionLink, GetNewConnectionLinkVariables } from "../_core/schema";
 
-export const getNewConnectionLinkGql = gql`
+export const GQL_MUTATION_GET_NEW_CONNECTION_LINK = gql`
     mutation GetNewConnectionLink($name: String!) {
         getNewConnectionLink(name: $name)
     }
 `;
 
-export type GetNewConnectionLinkFunctionType = MutationFn<GetNewConnectionLink, GetNewConnectionLinkVariables>;
-
-export type GetNewConnectionLinkResultType = MutationResult<GetNewConnectionLink>;
-
-export default (name: string) =>
+export const getNewConnectionLinkWithClient = (name: string) =>
     client().mutate<GetNewConnectionLink, GetNewConnectionLinkVariables>({
-        mutation: getNewConnectionLinkGql,
+        mutation: GQL_MUTATION_GET_NEW_CONNECTION_LINK,
         variables: { name }
     });

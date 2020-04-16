@@ -1,9 +1,6 @@
 import gql from "graphql-tag";
-import * as React from "react";
-import { Query, QueryProps } from "react-apollo";
-import { GetHighlights } from "../_core/schema";
 
-export const getUserStats = gql`
+export const GQL_QUERY_GET_USER_STATS = gql`
     query GetHighlights {
         getUserStats {
             category
@@ -39,7 +36,3 @@ export const getUserStats = gql`
         }
     }
 `;
-
-export default function GetUserStats(props: Partial<QueryProps<GetHighlights, {}>>) {
-    return <Query {...(props as any)} query={getUserStats} />;
-}

@@ -9,8 +9,8 @@ interface IProps {
     onPressCtaSecondary?: () => void;
 }
 
-function AnimatedChestModal(props: IProps) {
+const AnimatedChestModal: React.FC<IProps> = (props) => {
     return <AnimatedChestScreen {...props} />;
-}
+};
 
 export default AnimatedChestModal;

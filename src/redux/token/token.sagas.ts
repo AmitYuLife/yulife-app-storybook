@@ -1,4 +1,4 @@
-import { IntercomHashMethod } from "@graphql/_core/schema";
+import { IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
 import getSession from "@graphql/user/getSession.gql";
 import refreshSession from "@graphql/user/refreshSession.gql";
 import { TOKEN_EXPIRATION } from "@services/constants";

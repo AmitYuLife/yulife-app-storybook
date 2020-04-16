@@ -1,10 +1,10 @@
-import { userFragmentGql } from "@graphql/_fragments/user.gql";
+import { MutationTuple } from "@apollo/react-hooks";
+import { LoginUserVariables, LoginUser } from "@graphql/_core/schema";
+import { GQL_FRAGMENT_USER } from "@graphql/_fragments/user.gql";
 import gql from "graphql-tag";
-import { Mutation, MutationFn, MutationResult } from "react-apollo";
-import { LoginUser, LoginUserVariables } from "../_core/schema";
 
-export const loginUserGql = gql`
-    ${userFragmentGql}
+export const GQL_MUTATION_LOGIN_USER = gql`
+    ${GQL_FRAGMENT_USER}
 
     mutation LoginUser(
         $email: String!
@@ -31,7 +31,4 @@ export const loginUserGql = gql`
     }
 `;
 
-export type LoginUserResultType = MutationResult<LoginUser>;
-export type LoginUserMutationFunction = MutationFn<LoginUser, LoginUserVariables>;
-
-export default class LoginUserMutation extends Mutation<LoginUser, LoginUserVariables> {}
+export type LoginUserMutationTuple = MutationTuple<LoginUser, LoginUserVariables>;

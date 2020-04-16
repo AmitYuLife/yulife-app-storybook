@@ -1,76 +1,99 @@
 package com.yulife;
 
-import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.bugsnag.BugsnagReactNative;
-import com.cmcewen.blurview.BlurViewPackage;
-import com.facebook.soloader.SoLoader;
-import com.horcrux.svg.SvgPackage;
-import com.facebook.react.ReactPackage;
-import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
-import com.mixpanel.android.mpmetrics.MixpanelAPI;
+import android.app.Application;
+import android.content.Context;
+import com.facebook.react.PackageList;
+import com.facebook.react.ReactInstanceManager;
 import com.reactnativenavigation.NavigationApplication;
+import com.reactnativenavigation.react.NavigationPackage;
+import com.facebook.react.ReactNativeHost;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
-import com.reactnativenavigation.react.ReactGateway;
-import com.robinpowered.react.Intercom.IntercomPackage;
-import com.kevinejohn.RNMixpanel.RNMixpanel;
-import com.yulife.reactnative.fitkit.RNFitKitPackage;
-import com.dylanvann.fastimage.FastImageViewPackage;
-import com.bolan9999.SpringScrollViewPackage;
-import com.reactlibrary.RNWootricPackage;
-
-import java.util.Arrays;
+import com.facebook.react.ReactPackage;
+import com.facebook.soloader.SoLoader;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import com.yulife.reactnative.fitkit.RNFitKitPackage;
+
+import com.bugsnag.BugsnagReactNative;
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import io.intercom.android.sdk.Intercom;
 
 public class MainApplication extends NavigationApplication {
-    @Override
-    protected ReactGateway createReactGateway() {
-        NavigationReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), createAdditionalReactPackages()) {
-            @Override
-            protected String getJSMainModuleName() {
-                return "index.android";
-            }
-        };
-        return new ReactGateway(this, isDebug(), host);
+
+  private final ReactNativeHost mReactNativeHost =
+      new NavigationReactNativeHost(this) {
+        @Override
+        public boolean getUseDeveloperSupport() {
+          return BuildConfig.DEBUG;
+        }
+
+        @Override
+        protected List<ReactPackage> getPackages() {
+          @SuppressWarnings("UnnecessaryLocalVariable")
+          List<ReactPackage> packages = new PackageList(this).getPackages();
+          // Packages that cannot be autolinked yet can be added manually here, for example:
+          // packages.add(new MyReactNativePackage());
+          packages.add(new RNFitKitPackage());
+          return packages;
+        }
+
+        @Override
+        protected String getJSMainModuleName() {
+          return "index";
+        }
+      };
+
+  @Override
+  public ReactNativeHost getReactNativeHost() {
+    return mReactNativeHost;
+  }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+
+    // Intercom
+    Intercom.initialize(this, BuildConfig.INTERCOM_API_KEY_ANDROID, BuildConfig.INTERCOM_APP_ID);
+
+    // Mixpanel
+    MixpanelAPI mixpanel = MixpanelAPI.getInstance(this, BuildConfig.MIXPANEL_API_TOKEN);
+
+    // Bugsnag
+    BugsnagReactNative.start(this);
+
+    SoLoader.init(this, /* native exopackage */ false);
+    initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+  }
+
+  /**
+   * Loads Flipper in React Native templates. Call this in the onCreate method with something like
+   * initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+   *
+   * @param context
+   * @param reactInstanceManager
+   */
+  private static void initializeFlipper(
+      Context context, ReactInstanceManager reactInstanceManager) {
+    if (BuildConfig.DEBUG) {
+      try {
+        /*
+         We use reflection here to pick up the class that initializes Flipper,
+        since Flipper library is not available in release mode
+        */
+        Class<?> aClass = Class.forName("com.yulife.ReactNativeFlipper");
+        aClass
+            .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
+            .invoke(null, context, reactInstanceManager);
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      } catch (NoSuchMethodException e) {
+        e.printStackTrace();
+      } catch (IllegalAccessException e) {
+        e.printStackTrace();
+      } catch (InvocationTargetException e) {
+        e.printStackTrace();
+      }
     }
-
-    @Override
-    public boolean isDebug() {
-        return BuildConfig.DEBUG;
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        // Intercom
-        Intercom.initialize(this, BuildConfig.INTERCOM_API_KEY_ANDROID, BuildConfig.INTERCOM_APP_ID);
-
-        // Mixpanel
-        MixpanelAPI mixpanel = MixpanelAPI.getInstance(this, BuildConfig.MIXPANEL_API_TOKEN);
-
-        // Bugsnag
-        BugsnagReactNative.start(this);
-        SoLoader.init(this, /* native exopackage */ false);
-    }
-
-    @Override
-    public List<ReactPackage> createAdditionalReactPackages() {
-        return Arrays.<ReactPackage>asList(
-                new ReactNativeConfigPackage(),             // react-native
-                new BlurViewPackage(),                      // react-native-blur
-                new SvgPackage(),                           // react-native-svg
-                new RNMixpanel(),                           // react-native-mixpanel
-                new RNDeviceInfo(),                         // react-native-device-info
-                new IntercomPackage(),                      // react-native-intercom
-                new ReactNativePushNotificationPackage(),   // react-native-push-notifications
-                BugsnagReactNative.getPackage(),            // bugsnag-react-native
-                new RNFitKitPackage(),                      // react-native-fitkit
-                new SpringScrollViewPackage(),              // react-native-large-list
-                new RNWootricPackage(),                     // react-native-wootric
-                new FastImageViewPackage()                  // react-native-fast-image
-        );
-    }
+  }
 }

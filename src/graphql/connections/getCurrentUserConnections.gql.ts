@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 import client from "../_core/client";
 import { GetCurrentUser } from "../_core/schema";
 
-const getCurrentUserConnectionsGql = gql`
+const GQL_QUERY_GET_USER_CONNECTIONS = gql`
     query GetConnections {
         getCurrentUser {
             __typename
@@ -16,9 +16,9 @@ const getCurrentUserConnectionsGql = gql`
     }
 `;
 
-export default function getCurrentUserConnectionsWithClient() {
+export const getCurrentUserConnectionsWithClient = () => {
     return client().query<GetCurrentUser>({
         fetchPolicy: "network-only",
-        query: getCurrentUserConnectionsGql
+        query: GQL_QUERY_GET_USER_CONNECTIONS
     });
-}
+};

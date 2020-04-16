@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
-import { milestoneFragmentGql } from "./challengeMilestone.gql";
+import { GQL_FRAGMENT_MILESTONE } from "./challengeMilestone.gql";
 
-export const challengeTemplateFragmentGql = gql`
+export const GQL_FRAGMENT_CHALLENGE_TEMPLATE = gql`
     fragment ChallengeTemplate on ChallengeTemplate {
         id
         name
@@ -26,5 +26,5 @@ export const challengeTemplateFragmentGql = gql`
         }
         __typename
     }
-    ${milestoneFragmentGql}
+    ${GQL_FRAGMENT_MILESTONE}
 `;

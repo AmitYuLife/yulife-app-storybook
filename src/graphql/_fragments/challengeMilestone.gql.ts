@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-export const milestoneFragmentGql = gql`
+export const GQL_FRAGMENT_MILESTONE = gql`
     fragment Milestone on Milestone {
         id
         description

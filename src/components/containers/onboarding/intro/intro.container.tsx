@@ -37,23 +37,23 @@ type Props = ConnectedState &
     Partial<IConnectedScreenProps> &
     IDailyStepsOnlineProps;
 
-class IntroContainer extends React.PureComponent<Props> {
-    public render() {
-        return <IntroScreen onSetIntroDone={this.handleHideIntro} {...this.props} />;
-    }
+const IntroContainer: React.FC<Props> = (props) => {
+    const handleHideIntro = () => {
+        const { surgeIntro } = props;
 
-    private handleHideIntro = () => {
-        const { surgeIntro } = this.props;
         if (surgeIntro.visibility) {
-            this.props.setShowSurgeIntro({
+            props.setShowSurgeIntro({
                 visibility: false,
                 activity: null,
                 rate: 1
             });
         }
-        this.props.setShowIntro(false);
+
+        props.setShowIntro(false);
     };
-}
+
+    return <IntroScreen onSetIntroDone={handleHideIntro} {...props} />;
+};
 
 const mapStateToProps = (state: IReduxState) => ({
     copy: getCopy(state, "intro")
@@ -64,7 +64,4 @@ const mapDispatchToProps = {
     setShowSurgeIntro
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(IntroContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(IntroContainer);

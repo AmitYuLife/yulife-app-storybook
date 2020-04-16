@@ -55,7 +55,7 @@ persistCache({
 
 const defaultHeaders = {
     app_version: DeviceInfo.getVersion(),
-    device_id: DeviceInfo.getUniqueID()
+    device_id: DeviceInfo.getUniqueId()
 };
 
 const authMiddleware = setContext(async (_, { headers }) => {

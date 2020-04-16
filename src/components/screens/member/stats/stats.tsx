@@ -28,7 +28,7 @@ const Stats = ({ data, onPressClose, onPressActivityHistory }: IProps) => (
                     style={styles.sectionList}
                     sections={data}
                     stickySectionHeadersEnabled={false}
-                    keyExtractor={(item, index) => item + index}
+                    keyExtractor={(item, index) => item.cardType + index} // WTF? each card should have its own id
                     renderItem={({ item, section: { category } }) => getItem(item, category, onPressActivityHistory)}
                     renderSectionHeader={({ section: { title, titleColor, category, index } }) => (
                         <HeaderSection

@@ -1,8 +1,6 @@
 import gql from "graphql-tag";
-import { Query, QueryResult } from "react-apollo";
-import { GetCurrentWorld } from "../_core/schema";
 
-export const getCurrentWorldGql = gql`
+export const GQL_QUERY_GET_CURRENT_WORLD = gql`
     query GetCurrentWorld {
         getCurrentWorld {
             id
@@ -41,7 +39,3 @@ export const getCurrentWorldGql = gql`
         }
     }
 `;
-
-export type GetCurrentWorldResultType = QueryResult<GetCurrentWorld>;
-
-export default class GetCurrentWorldQuery extends Query<GetCurrentWorld> {}

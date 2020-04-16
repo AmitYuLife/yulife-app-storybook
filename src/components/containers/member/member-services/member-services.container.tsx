@@ -1,6 +1,5 @@
 import Yumatter from "@screens/member/member-services/yumatter.screen";
-import { PureComponent } from "react";
-import * as React from "react";
+import React, { FC, useState, useCallback, useMemo } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
@@ -14,54 +13,44 @@ interface IProps {
     componentId: string;
 }
 
-interface IState {
-    tab: Tab;
-}
-
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
-class MemberServices extends PureComponent<Props, IState> {
-    public state: IState = {
-        tab: "yumatter"
-    };
+const MemberServicesContainer: FC<Props> = ({ componentId, isGroupUser, isWellbeingAccess }) => {
+    const [tab, setTab] = useState<Tab>("yumatter");
 
-    public render() {
-        const { tab } = this.state;
-        const { componentId, isGroupUser, isWellbeingAccess } = this.props;
+    const handleTabChange = useCallback(
+        (newTab: Tab) => () => {
+            setTab(newTab);
+        },
+        []
+    );
 
-        if (tab === "yumatter") {
-            return (
-                <Yumatter
-                    isGroup={isGroupUser || isWellbeingAccess}
-                    onPressClose={() => this.handleCloseButton(componentId)}
-                    onLeftTabPress={this.onEmptyPress}
-                    onRightTabPress={this.handleTabChange("smartHealth")}
-                />
-            );
-        }
+    const handleEmptyPress = useCallback((): null => null, []);
 
+    const handleClose = useCallback(() => Navigation.popToRoot(componentId), []);
+
+    if (tab === "yumatter") {
         return (
-            <SmartHealth
-                onPressClose={() => this.handleCloseButton(componentId)}
-                onLeftTabPress={this.handleTabChange("yumatter")}
-                onRightTabPress={this.onEmptyPress}
+            <Yumatter
+                isGroup={isGroupUser || isWellbeingAccess}
+                onPressClose={handleClose}
+                onLeftTabPress={handleEmptyPress}
+                onRightTabPress={useMemo(() => handleTabChange("smartHealth"), [])}
             />
         );
     }
 
-    private handleTabChange = (tab: Tab) => () => {
-        this.setState({ tab });
-    };
-
-    private handleCloseButton = async (componentId: string) => {
-        await Navigation.popToRoot(componentId);
-    };
-
-    private onEmptyPress = (): null => null;
-}
+    return (
+        <SmartHealth
+            onPressClose={handleClose}
+            onLeftTabPress={useMemo(() => handleTabChange("yumatter"), [])}
+            onRightTabPress={handleEmptyPress}
+        />
+    );
+};
 
 const mapStateToProps = (state: IReduxState) => ({
     features: getUserFeatures(state),
@@ -73,4 +62,4 @@ const mapDispatchToProps = {
     getUserStart
 };
 
-export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(MemberServices);
+export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(MemberServicesContainer);

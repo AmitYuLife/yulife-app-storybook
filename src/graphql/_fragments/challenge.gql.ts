@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-export const challengeFragmentGql = gql`
+export const GQL_FRAGMENT_CHALLENGE = gql`
     fragment Challenge on Challenge {
         id
         actions

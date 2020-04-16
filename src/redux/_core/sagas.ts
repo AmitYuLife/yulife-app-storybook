@@ -3,7 +3,6 @@ import appSagas from "../app/sagas";
 import copySagas from "../copy/sagas";
 import dailyMeditationSagas from "../daily-meditation/sagas";
 import dailyStepsSagas from "../daily-steps/sagas";
-import detoxSagas from "../detox/detox.sagas";
 import deviceSagas from "../device/sagas";
 import levelsSagas from "../levels/sagas";
 import loggingSagas from "../logging/logging.sagas";
@@ -22,7 +21,6 @@ export default function* allSagas() {
         ...dailyStepsSagas,
         ...dailyMeditationSagas,
         ...deviceSagas,
-        ...detoxSagas,
         ...levelsSagas,
         ...loggingSagas,
         ...notificationsSagas,

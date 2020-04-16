@@ -23,23 +23,4 @@ describe("Challenge Tile styles", () => {
             expect(ostrich).toBeDefined();
         });
     });
-
-    describe("getImageStyle", () => {
-        it("should always return typeof ImageStyle", () => {
-            const actual = getImageStyle(undefined);
-            expect(actual).toMatchSnapshot();
-
-            const bird = getImageStyle(IMAGES.BIRD);
-            expect(bird).toMatchSnapshot();
-
-            const squirrel = getImageStyle(IMAGES.SQUIRREL);
-            expect(squirrel).toMatchSnapshot();
-
-            const elephant = getImageStyle(IMAGES.SNAIL);
-            expect(elephant).toMatchSnapshot();
-
-            const ostrich = getImageStyle(IMAGES.RABBIT);
-            expect(ostrich).toMatchSnapshot();
-        });
-    });
 });

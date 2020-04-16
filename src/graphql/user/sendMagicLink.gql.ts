@@ -1,9 +1,8 @@
+import { MutationTuple } from "@apollo/react-hooks";
+import { SendMagicLink, SendMagicLinkVariables } from "@graphql/_core/schema";
 import gql from "graphql-tag";
-import { Mutation, MutationFn, MutationResult } from "react-apollo";
 
-import { SendMagicLink, SendMagicLinkVariables } from "../_core/schema";
-
-export const sendMagicLinkGql = gql`
+export const GQL_MUTATION_SEND_MAGIC_LINK = gql`
     mutation SendMagicLink($email: String!) {
         sendMagicLink(email: $email) {
             message
@@ -11,7 +10,4 @@ export const sendMagicLinkGql = gql`
     }
 `;
 
-export type SendMagicLinkResultType = MutationResult<SendMagicLink>;
-export type SendMagicLinkMutationFunction = MutationFn<SendMagicLink, SendMagicLinkVariables>;
-
-export default class SendMagicLinkMutation extends Mutation<SendMagicLink, SendMagicLinkVariables> {}
+export type SendMagicLinkMutationTuple = MutationTuple<SendMagicLink, SendMagicLinkVariables>;

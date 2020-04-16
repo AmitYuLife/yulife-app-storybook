@@ -1,22 +1,14 @@
 import gql from "graphql-tag";
-import * as React from "react";
-import { Mutation, MutationFn, MutationProps, MutationResult } from "react-apollo";
-import { ReplyToLeaderboardInvite, ReplyToLeaderboardInviteVariables } from "../_core/schema";
+import { MutationTuple } from "@apollo/react-hooks";
+import { ReplyToLeaderboardInvite, ReplyToLeaderboardInviteVariables } from "@graphql/_core/schema";
 
-export const replyToLeaderboardInviteGql = gql`
+export const GQL_MUTATION_REPLY_TO_LEADERBOARD_INVITE = gql`
     mutation ReplyToLeaderboardInvite($leaderboardId: String!, $hasAccepted: Boolean!) {
         replyToLeaderboardInvite(leaderboardId: $leaderboardId, hasAccepted: $hasAccepted)
     }
 `;
 
-export type ReplyToLeaderboardInviteResultType = MutationResult<ReplyToLeaderboardInvite>;
-export type ReplyToLeaderboardInviteMutationFunction = MutationFn<
+export type ReplyToLeaderboardInviteMutationTuple = MutationTuple<
     ReplyToLeaderboardInvite,
     ReplyToLeaderboardInviteVariables
 >;
-
-export default function ReplyToLeaderboardInviteMutation(
-    props: Partial<MutationProps<ReplyToLeaderboardInvite, ReplyToLeaderboardInviteVariables>>
-) {
-    return <Mutation {...props as any} mutation={replyToLeaderboardInviteGql} />;
-}

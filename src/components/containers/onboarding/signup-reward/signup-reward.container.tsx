@@ -1,7 +1,4 @@
 import * as React from "react";
-import { PureComponent } from "react";
-import { BackHandler, NativeEventSubscription } from "react-native";
-import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { setAuthenticatedRoot } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
@@ -20,39 +17,17 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
-class SignUpRewardContainer extends PureComponent<Props> {
-    private backHandler: NativeEventSubscription;
+const SignUpRewardContainer: React.FC<Props> = (props) => {
+    const { copy, isLoading, yucoinAwarded } = props;
 
-    constructor(props: Props) {
-        super(props);
-        Navigation.events().bindComponent(this);
-    }
-
-    public componentDidAppear() {
-        this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => true);
-    }
-
-    public componentDidDisappear() {
-        this.backHandler.remove();
-    }
-
-    public render() {
-        const { copy, isLoading, yucoinAwarded } = this.props;
-
-        return (
-            <SignUpRewardScreen
-                isLoading={isLoading}
-                onCollectPress={this.onCollect}
-                reward={yucoinAwarded}
-                copy={copy}
-            />
-        );
-    }
-
-    private onCollect = async () => {
-        await setAuthenticatedRoot(this.props.setAuthenticated);
+    const onCollectPress = async () => {
+        await setAuthenticatedRoot(props.setAuthenticated);
     };
-}
+
+    return (
+        <SignUpRewardScreen isLoading={isLoading} onCollectPress={onCollectPress} reward={yucoinAwarded} copy={copy} />
+    );
+};
 
 const mapStateToProps = (state: IReduxState) => ({
     copy: getCopy(state, "signupReward"),
@@ -64,7 +39,4 @@ const mapDispatchToProps = {
     setAuthenticated
 };
 
-export default connect<ConnectedState, ConnectedDispatch>(
-    mapStateToProps,
-    mapDispatchToProps
-)(SignUpRewardContainer);
+export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(SignUpRewardContainer);
