@@ -1,9 +1,8 @@
 import gql from "graphql-tag";
-import * as React from "react";
-import { Mutation, MutationFn, MutationProps, MutationResult } from "react-apollo";
-import { CreateLeaderboard, CreateLeaderboardVariables } from "../_core/schema";
+import { MutationTuple } from "@apollo/react-hooks";
+import { CreateLeaderboard, CreateLeaderboardVariables } from "@graphql/_core/schema";
 
-export const createLeaderboardGql = gql`
+export const GQL_MUTATION_CREATE_LEADERBOARD = gql`
     mutation CreateLeaderboard($name: String!, $invitees: [String]!) {
         createLeaderboard(name: $name, invitees: $invitees) {
             email
@@ -12,11 +11,4 @@ export const createLeaderboardGql = gql`
     }
 `;
 
-export type CreateLeaderboardResultType = MutationResult<CreateLeaderboard>;
-export type CreateLeaderboardMutationFunction = MutationFn<CreateLeaderboard, CreateLeaderboardVariables>;
-
-export default function CreateLeaderboardMutation(
-    props: Partial<MutationProps<CreateLeaderboard, CreateLeaderboardVariables>>
-) {
-    return <Mutation {...props as any} mutation={createLeaderboardGql} />;
-}
+export type CreateLeaderboardMutationTuple = MutationTuple<CreateLeaderboard, CreateLeaderboardVariables>;

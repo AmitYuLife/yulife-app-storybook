@@ -1,9 +1,6 @@
 import gql from "graphql-tag";
-import * as React from "react";
-import { Query, QueryProps, QueryResult } from "react-apollo";
-import { GetRewards } from "../_core/schema";
 
-export const getRewardsGql = gql`
+export const GQL_QUERY_GET_REWARDS = gql`
     query GetRewards {
         getRewards {
             __typename
@@ -53,12 +50,3 @@ export const getRewardsGql = gql`
         }
     }
 `;
-
-export type GetRewardsResultType = QueryResult<GetRewards>;
-
-export default function GetRewardsQuery({
-    fetchPolicy = "cache-and-network",
-    ...props
-}: Partial<QueryProps<GetRewards>>) {
-    return <Query {...props as any} query={getRewardsGql} fetchPolicy={fetchPolicy} />;
-}

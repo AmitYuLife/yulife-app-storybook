@@ -2,17 +2,16 @@ import getSession from "@graphql/user/getSession.gql";
 import { ROUTES } from "@navigation/constants";
 import { setAuthenticatedRoot, setOfflineRoot } from "@navigation/root";
 import { getToken } from "@services/storage";
-import { delay } from "redux-saga";
-import { call, race, select } from "redux-saga/effects";
+import { call, race, select, delay } from "redux-saga/effects";
 import { getRouteState } from "../app.selectors";
 
 export default function* checkConnectionSaga() {
-    const token = yield call(getToken);
+    try {
+        const token = yield call(getToken);
 
-    if (token) {
-        try {
+        if (token) {
             const response = yield race({
-                timeout: call(delay, 2500),
+                timeout: delay(2500),
                 token: call(getSession)
             });
 
@@ -30,8 +29,8 @@ export default function* checkConnectionSaga() {
                     yield call(setAuthenticatedRoot);
                 }
             }
-        } catch {
-            yield call(setOfflineRoot);
         }
+    } catch (e) {
+        yield call(setOfflineRoot);
     }
 }

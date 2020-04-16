@@ -105,7 +105,7 @@ export default function TodayYucoinScreen({
                 <View style={styles.contentWrapper}>
                     <View style={styles.headingWrapper}>
                         <Text bold={true} style={styles.heading}>
-                            passive activity
+                            core activity
                         </Text>
                         <Text bold={true} style={styles.headingRight}>
                             yucoin

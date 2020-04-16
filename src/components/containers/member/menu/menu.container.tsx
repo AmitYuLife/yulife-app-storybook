@@ -68,7 +68,7 @@ class MenuContainer extends PureComponent<Props> {
                     },
                     {
                         // TODO:ENG-95 true for easy testing, remove
-                        condition: features.surveyInMenu,
+                        condition: true,
                         label: "feedback",
                         onPress: this.handlePressLink(LINKS.SURVEY),
                         source: assets[LINKS.SURVEY]
@@ -128,18 +128,19 @@ class MenuContainer extends PureComponent<Props> {
         this.props.openMemberZone();
     };
 
-    private handlePush = (route: string) => {
-        this.handleClose();
-        Navigation.push(this.props.currentRoute, {
+    private handlePush = async (route: string) => {
+        await Navigation.push(this.props.currentRoute, {
             component: {
                 id: route,
                 name: route,
                 options: { bottomTabs }
             }
         });
+
+        this.handleClose();
     };
 
-    private handleClose = () => {
+    private handleClose = () =>
         Navigation.mergeOptions(ROUTES.menu, {
             sideMenu: {
                 left: {
@@ -148,7 +149,6 @@ class MenuContainer extends PureComponent<Props> {
                 }
             }
         });
-    };
 
     private handleIntercom = () => {
         const { permissions, pushNotificationCopy } = this.props;

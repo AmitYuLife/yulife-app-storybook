@@ -1,16 +1,12 @@
-import { GetActivityHistoryQuery } from "@graphql/user";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import { GQL_MUTATION_ADD_HISTORICAL_STEPS, AddHistoricalStepsMutationTuple } from "@graphql/challenges";
+import { GQL_QUERY_GET_ACTIVITY_HISTORY } from "@graphql/user";
 import { querySteps } from "@services/fitkit/fitkit.helpers";
 import moment from "moment";
-import { PureComponent } from "react";
-import * as React from "react";
+import React, { useCallback, useState, useRef, FC } from "react";
 import { LargeList } from "react-native-largelist-v3";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { AddHistoricalStepsMutationFunction } from "../../../../graphql/challenges/addHistoricalSteps.gql";
-import {
-    addHistoricalStepsGql,
-    AddHistoricalStepsMutation
-} from "../../../../graphql/challenges/addHistoricalSteps.gql";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getUserStart } from "../../../../redux/user/user.actions";
@@ -24,107 +20,65 @@ interface IProps {
     componentId: string;
 }
 
-interface IState {
-    monthsAgo: number;
-}
-
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
-class ActivityHistoryContainer extends PureComponent<Props, IState> {
-    public state = {
-        monthsAgo: 0
-    };
+const ActivityHistoryContainer: FC<Props> = ({
+    componentId,
+    copy,
+    features = {},
+    getUserStart: dispatchGetUserStart
+}) => {
+    const [monthsAgo, setMonthsAgo] = useState(0);
+    const largeList = useRef<LargeList>(null);
 
-    public largeList: LargeList = null;
+    const handleClose = useCallback(() => {
+        Navigation.popToRoot(componentId);
+    }, []);
 
-    public render() {
-        const { copy } = this.props;
-        const { monthsAgo } = this.state;
+    const onComplete = useCallback(() => {
+        if (largeList && largeList.current) {
+            largeList.current.endLoading();
+        }
+    }, [largeList]);
 
-        return (
-            <AddHistoricalStepsMutation mutation={addHistoricalStepsGql}>
-                {(addHistoricalSteps) => (
-                    <GetActivityHistoryQuery
-                        onCompleted={this.endLoading}
-                        onError={this.endLoading}
-                        variables={{ monthsAgo, isFullActivity: true }}
-                        fetchPolicy="cache-and-network"
-                    >
-                        {({ loading, data, refetch, error }) => {
-                            if (error && (!data || !data.getActivityHistoryWithLevels)) {
-                                return <GenericConnectionErrorModal onPress={this.handleClose} />;
-                            }
+    const { loading, data, refetch, error } = useQuery(GQL_QUERY_GET_ACTIVITY_HISTORY, {
+        variables: { monthsAgo, isFullActivity: true },
+        fetchPolicy: "cache-and-network",
+        onCompleted: onComplete,
+        onError: onComplete
+    });
 
-                            const onRefresh = async () => {
-                                await this.handleReloadActivity(addHistoricalSteps, refetch);
-                                if (this.largeList) {
-                                    this.largeList.endRefresh();
-                                }
-                            };
-
-                            return (
-                                // return empty array if data.getActivityHistoryWithLevels is undefined
-                                <ActivityHistoryLevels
-                                    items={groupDatesByMonth(data.getActivityHistoryWithLevels || [])}
-                                    loading={loading}
-                                    onPressClose={this.handleClose}
-                                    onFetchMoreData={this.fetchMoreData}
-                                    onRefresh={onRefresh}
-                                    copy={copy}
-                                    onSetLargelistRef={this.setLargeListRef}
-                                />
-                            );
-                        }}
-                    </GetActivityHistoryQuery>
-                )}
-            </AddHistoricalStepsMutation>
-        );
+    if (error && (!data || !data.getActivityHistoryWithLevels)) {
+        return <GenericConnectionErrorModal onPress={handleClose} />;
     }
 
-    private endLoading = () => {
-        this.largeList.endLoading();
-    };
+    const [addHistoricalSteps]: AddHistoricalStepsMutationTuple = useMutation(GQL_MUTATION_ADD_HISTORICAL_STEPS);
 
-    private setLargeListRef = (ref: LargeList) => {
-        this.largeList = ref;
-    };
+    const fetchMoreData = useCallback(() => {
+        setMonthsAgo((months) => months + 1);
+    }, []);
 
-    private fetchMoreData = () => {
-        this.setState({
-            monthsAgo: this.state.monthsAgo + 1
-        });
-    };
-
-    private handleClose = () => {
-        Navigation.popToRoot(this.props.componentId);
-    };
-
-    private handleReloadActivity = async (
-        addHistoricalSteps: AddHistoricalStepsMutationFunction,
-        refetch: () => void
-    ) => {
-        const { features } = this.props;
-
+    const onRefresh = useCallback(async () => {
         Logger.logEvent("activity_history_updated");
 
         if (features.canUpdateActivityHistory) {
             const start = moment().subtract(30, "days");
             const end = moment().subtract(1, "days");
 
-            const { results, error } = await querySteps(start, end, features);
+            const res = await querySteps(start, end, features);
 
-            if (results && !!results.length) {
+            if (res.results && !!res.results.length) {
                 try {
                     const response = await addHistoricalSteps({
-                        variables: { payload: results, shouldAward: true }
+                        variables: { payload: res.results, shouldAward: true }
                     });
 
                     if (response && response.data && response.data.addHistoricalSteps) {
                         refetch();
-                        this.props.getUserStart();
+                        dispatchGetUserStart();
                     }
                 } catch (e) {
                     Logger.logMixpanelError(error, "@activity_history_reload_catched");
@@ -135,8 +89,25 @@ class ActivityHistoryContainer extends PureComponent<Props, IState> {
         } else {
             refetch();
         }
-    };
-}
+
+        if (largeList && largeList.current) {
+            largeList.current.endRefresh();
+        }
+    }, [features, largeList]);
+
+    return (
+        // return empty array if data.getActivityHistoryWithLevels is undefined
+        <ActivityHistoryLevels
+            items={groupDatesByMonth((data && data.getActivityHistoryWithLevels) || [])}
+            loading={loading}
+            onPressClose={handleClose}
+            onFetchMoreData={fetchMoreData}
+            onRefresh={onRefresh}
+            copy={copy}
+            largeListRef={largeList}
+        />
+    );
+};
 
 const mapStateToProps = (state: IReduxState) => ({
     features: getUserFeatures(state),

@@ -1,12 +1,12 @@
-import { userFragmentGql } from "@graphql/_fragments/user.gql";
+import { GQL_FRAGMENT_USER } from "@graphql/_fragments/user.gql";
 import gql from "graphql-tag";
-import { Query, QueryResult } from "react-apollo";
 import { Platform } from "react-native";
 import client from "../_core/client";
-import { GetCurrentUser, IntercomHashMethod } from "../_core/schema";
+import { GetCurrentUser } from "../_core/schema";
+import { IntercomHashMethod } from "../_core/schema/globalTypes";
 
-export const getCurrentUserGql = gql`
-    ${userFragmentGql}
+export const GQL_QUERY_GET_CURRENT_USER = gql`
+    ${GQL_FRAGMENT_USER}
 
     query GetCurrentUser($intercomHashMethod: IntercomHashMethod!) {
         getIntercomHash(method: $intercomHashMethod)
@@ -16,14 +16,10 @@ export const getCurrentUserGql = gql`
     }
 `;
 
-export type GetCurrentUserResultType = QueryResult<GetCurrentUser>;
-
-export class GetCurrentUserQuery extends Query<GetCurrentUser> {}
-
 export default function getCurrentUserWithClient() {
     return client().query<GetCurrentUser>({
         fetchPolicy: "network-only",
-        query: getCurrentUserGql,
+        query: GQL_QUERY_GET_CURRENT_USER,
         variables: {
             intercomHashMethod: Platform.OS as IntercomHashMethod
         }

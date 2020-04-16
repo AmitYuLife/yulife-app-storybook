@@ -14,7 +14,6 @@ module.exports = {
         sourceExts: [...E2E_EXTENTIONS, ...["ts", "tsx", "js", "jsx"]]
     },
     transformer: {
-        babelTransformerPath: require.resolve("react-native-typescript-transformer"),
         getTransformOptions: async () => ({
             transform: {
                 experimentalImportSupport: false,

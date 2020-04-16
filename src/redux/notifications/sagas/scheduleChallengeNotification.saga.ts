@@ -8,12 +8,12 @@ import { getChallengeCompletionNotification } from "../notifications.selectors";
 
 export default function* scheduleChallengeNotificationSaga({
     payload: { createActiveChallenge }
-}: ReturnType<typeof challengeStartSuccessAction>) {
+}: ReturnType<typeof challengeStartSuccessAction>): Generator<any> {
     if (!createActiveChallenge.challenge) {
         return null;
     }
 
-    const challengeCompletion = yield select(getChallengeCompletionNotification);
+    const challengeCompletion: any = yield select(getChallengeCompletionNotification);
 
     if (challengeCompletion.active) {
         const { endDateTime, levelSlotId } = createActiveChallenge.challenge;

@@ -82,8 +82,8 @@ const WeeklyGraphCard: SFC<IProps> = ({
                             </View>
 
                             <View style={styles.dataWrapper}>
-                                {weeklyValue.map((day) => (
-                                    <View style={styles.dayItemWrapper}>
+                                {weeklyValue.map((day, index) => (
+                                    <View key={`weekly-value-${index}`} style={styles.dayItemWrapper}>
                                         <View
                                             style={StyleSheet.flatten([
                                                 styles.dayValue,

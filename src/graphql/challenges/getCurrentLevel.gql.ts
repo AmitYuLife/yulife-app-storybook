@@ -1,8 +1,6 @@
 import gql from "graphql-tag";
-import { Query, QueryResult } from "react-apollo";
-import { GetCurrentLevel } from "../_core/schema";
 
-export const getCurrentLevel = gql`
+export const GQL_QUERY_GET_CURRENT_LEVEL = gql`
     query GetCurrentLevel {
         getCurrentLevel {
             id
@@ -37,7 +35,3 @@ export const getCurrentLevel = gql`
         }
     }
 `;
-
-export type GetCurrentLevelResultType = QueryResult<GetCurrentLevel>;
-
-export default class GetCurrentLevelQuery extends Query<GetCurrentLevel> {}

@@ -1,4 +1,5 @@
-import { AppState, Linking, NetInfo } from "react-native";
+import NetInfo from "@react-native-community/netinfo";
+import { AppState, Linking } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { eventChannel } from "redux-saga";
 
@@ -15,21 +16,17 @@ export function appStateChannel() {
 }
 
 export function appNetworkChannel() {
-    return eventChannel((emitter) => {
-        NetInfo.addEventListener("connectionChange", emitter);
-
-        const unlisten = () => {
-            NetInfo.removeEventListener("connectionChange", emitter);
-        };
-
-        return unlisten;
-    });
+    return eventChannel((emitter) => NetInfo.addEventListener(emitter));
 }
 
 export function appNavigationChannel() {
     return eventChannel((emitter) => {
-        Navigation.events().registerComponentDidAppearListener(emitter);
-        return () => null;
+        const screenEventListener = Navigation.events().registerComponentDidAppearListener(emitter);
+        return () => {
+            if (screenEventListener) {
+                screenEventListener.remove();
+            }
+        };
     });
 }
 

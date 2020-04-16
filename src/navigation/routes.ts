@@ -14,10 +14,6 @@ export default [
         component: require("../components/containers/reset-password/reset-password.container").default
     },
     {
-        name: ROUTES.signUp,
-        component: require("../components/containers/sign-up/sign-up.container").default
-    },
-    {
         name: ROUTES.offline,
         component: require("../components/containers/offline/offline.container").default
     },
@@ -42,15 +38,18 @@ export default [
         component: require("../components/containers/member/settings/settings.container").default
     },
     {
+        hasMenu: true,
         name: ROUTES.dailySteps,
         component: require("../components/containers/member/daily-steps/daily-steps.container").default
     },
     {
+        hasMenu: true,
         lazyLoad: true,
         name: ROUTES.quests,
         component: require("../components/containers/member/quests/quests.container").default
     },
     {
+        hasMenu: true,
         lazyLoad: true,
         name: ROUTES.rewards,
         component: require("../components/containers/member/rewards/rewards.container").default
@@ -64,6 +63,7 @@ export default [
         component: require("../components/containers/member/stats/stats.container").default
     },
     {
+        hasMenu: true,
         lazyLoad: true,
         name: ROUTES.leaderboards,
         component: require("../components/containers/member/leaderboards/leaderboards.container").default

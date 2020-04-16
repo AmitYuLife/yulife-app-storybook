@@ -12,27 +12,27 @@ interface IProps {
     isCancelling: boolean;
 }
 
-export default function ChallengeExitScreen({ onPressExit, onClose, copy, isCancelling }: IProps) {
-    return (
-        <SafeAreaView style={styles.wrapper}>
-            <Text style={styles.headingText} bold={true}>
-                {copy.heading}
-            </Text>
-            <Text style={styles.descriptionText}>{copy.subheading}</Text>
+const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, onClose, copy, isCancelling }) => (
+    <SafeAreaView style={styles.wrapper}>
+        <Text style={styles.headingText} bold={true}>
+            {copy.heading}
+        </Text>
+        <Text style={styles.descriptionText}>{copy.subheading}</Text>
 
-            <Button
-                wrapperStyle={StyleSheet.flatten([styles.buttonStyle, styles.exitChallengeWrapper])}
-                type={BUTTON_TYPES.PRIMARY}
-                label={copy.ctaLabel}
-                onPress={onClose}
-            />
-            <Button
-                wrapperStyle={styles.buttonStyle}
-                type={BUTTON_TYPES.SECONDARY}
-                label={copy.ctaLabelSecondary}
-                onPress={onPressExit}
-                isLoading={isCancelling}
-            />
-        </SafeAreaView>
-    );
-}
+        <Button
+            wrapperStyle={StyleSheet.flatten([styles.buttonStyle, styles.exitChallengeWrapper])}
+            type={BUTTON_TYPES.PRIMARY}
+            label={copy.ctaLabel}
+            onPress={onClose}
+        />
+        <Button
+            wrapperStyle={styles.buttonStyle}
+            type={BUTTON_TYPES.SECONDARY}
+            label={copy.ctaLabelSecondary}
+            onPress={onPressExit}
+            isLoading={isCancelling}
+        />
+    </SafeAreaView>
+);
+
+export default ChallengeExitScreen;

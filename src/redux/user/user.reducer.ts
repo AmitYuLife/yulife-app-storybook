@@ -4,12 +4,12 @@ import {
     GetCurrentUser,
     GetCurrentUser_getCurrentUser_connections,
     GetCurrentUser_getCurrentUser_leaderboards,
+    GetCurrentUser_getCurrentUser_business,
     LoginUser,
-    MobileConsentInput,
     UpdateLeaderboardConsentVariables,
     UpdateMemberConsent
-} from "../../graphql/_core/schema";
-import { GetCurrentUser_getCurrentUser_business } from "../../graphql/_core/schema";
+} from "@graphql/_core/schema";
+import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
 import { SyncAction } from "../_core/types";
 import {
     GET_USER_SUCCESS,

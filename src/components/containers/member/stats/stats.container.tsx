@@ -1,17 +1,16 @@
+import { useQuery } from "@apollo/react-hooks";
 import { Close, GenericHeading } from "@atoms/index";
-import { PureComponent } from "react";
-import * as React from "react";
+import { GQL_QUERY_GET_USER_STATS } from "@graphql/yuscreen";
+import { ROUTES } from "@navigation/constants";
+import { Style } from "@styles/index";
+import React, { FC, useCallback } from "react";
 import { SafeAreaView } from "react-native";
 import { View } from "react-native-animatable";
-import { LargeList } from "react-native-largelist-v3";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import GetUserStats from "../../../../graphql/yuscreen/getUserStats.gql";
-import { ROUTES } from "../../../../navigation/constants";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
-import { Style } from "../../../../styles";
 import {
     LoadingGeneralInfoCard,
     LoadingHeader,
@@ -22,74 +21,59 @@ interface IProps {
     componentId: string;
 }
 
-interface IState {
-    monthsAgo: number;
-}
-
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
-class StatsContainer extends PureComponent<Props, IState> {
-    public state = {
-        monthsAgo: 0
-    };
+const StatsContainer: FC<Props> = ({ componentId }) => {
+    const handleClose = useCallback(() => {
+        Navigation.popToRoot(componentId);
+    }, []);
 
-    public largeList: LargeList = null;
-
-    public render() {
-        return (
-            <GetUserStats fetchPolicy="cache-and-network">
-                {({ data, error, loading }) => {
-                    if (loading) {
-                        return (
-                            <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-                                <GenericHeading heading={"statistics"} />
-                                <View style={{ backgroundColor: "#FAFAFE", padding: Style.SCALE_UP_AND_DOWN(16) }}>
-                                    <LoadingHeader />
-                                    <LoadingRecomendationCard />
-                                    <LoadingGeneralInfoCard />
-                                    <LoadingRecomendationCard />
-                                    <LoadingHeader />
-                                    <LoadingRecomendationCard />
-                                    <LoadingGeneralInfoCard />
-                                    <LoadingRecomendationCard />
-                                </View>
-                                <Close onPress={() => this.handleClose} />
-                            </SafeAreaView>
-                        );
-                    }
-
-                    if (error && (!data || !data.getUserStats)) {
-                        return null;
-                    }
-                    return (
-                        <Stats
-                            data={data.getUserStats}
-                            onPressClose={this.handleClose}
-                            onPressActivityHistory={this.onActivityHistory}
-                        />
-                    );
-                }}
-            </GetUserStats>
-        );
-    }
-
-    private onActivityHistory = () => {
-        Navigation.push(this.props.componentId, {
+    const handleActivityHistoryPress = useCallback(() => {
+        Navigation.push(componentId, {
             component: {
                 id: ROUTES.activityHistory,
                 name: ROUTES.activityHistory
                 // options: { bottomTabs }
             }
         });
-    };
+    }, []);
 
-    private handleClose = () => {
-        Navigation.popToRoot(this.props.componentId);
-    };
-}
+    const { data, error, loading } = useQuery(GQL_QUERY_GET_USER_STATS, { fetchPolicy: "cache-and-network" });
+
+    if (loading) {
+        return (
+            <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+                <GenericHeading heading={"statistics"} />
+                <View style={{ backgroundColor: "#FAFAFE", padding: Style.SCALE_UP_AND_DOWN(16) }}>
+                    <LoadingHeader />
+                    <LoadingRecomendationCard />
+                    <LoadingGeneralInfoCard />
+                    <LoadingRecomendationCard />
+                    <LoadingHeader />
+                    <LoadingRecomendationCard />
+                    <LoadingGeneralInfoCard />
+                    <LoadingRecomendationCard />
+                </View>
+                <Close onPress={handleClose} />
+            </SafeAreaView>
+        );
+    }
+
+    if (error && (!data || !data.getUserStats)) {
+        return null; // WTF?
+    }
+
+    return (
+        <Stats
+            data={data.getUserStats}
+            onPressClose={handleClose}
+            onPressActivityHistory={handleActivityHistoryPress}
+        />
+    );
+};
 
 const mapStateToProps = (state: IReduxState) => ({
     features: getUserFeatures(state)

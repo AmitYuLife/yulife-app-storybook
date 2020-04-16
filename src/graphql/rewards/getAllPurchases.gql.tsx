@@ -1,9 +1,6 @@
 import gql from "graphql-tag";
-import * as React from "react";
-import { Query, QueryProps, QueryResult } from "react-apollo";
-import { GetAllPurchases } from "../_core/schema";
 
-export const getAllPurchasesGql = gql`
+export const GQL_QUERY_GET_ALL_PURCHASES = gql`
     query GetAllPurchases {
         getAllPurchases {
             __typename
@@ -48,12 +45,3 @@ export const getAllPurchasesGql = gql`
         }
     }
 `;
-
-export type GetAllPurchasesResultType = QueryResult<GetAllPurchases>;
-
-export default function GetAllPurchasesQuery({
-    fetchPolicy = "cache-and-network",
-    ...props
-}: Partial<QueryProps<GetAllPurchases>>) {
-    return <Query {...props as any} query={getAllPurchasesGql} fetchPolicy={fetchPolicy} />;
-}

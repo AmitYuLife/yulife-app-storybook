@@ -1,4 +1,4 @@
-import assets from "./assets/";
+import assets from "./assets";
 import styles from "./challenge-details.styles";
 
 const BRISK_WALK = [

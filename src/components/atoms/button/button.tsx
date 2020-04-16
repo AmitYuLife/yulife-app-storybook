@@ -35,8 +35,9 @@ class Button extends PureComponent<IProps, IState> {
     };
 
     public render() {
-        const { label, type, onPress, wrapperStyle, disabled, testID, isLoading } = this.props;
+        const { label, type, wrapperStyle, disabled, testID, isLoading } = this.props;
         const { pressedIn } = this.state;
+
         if (type.startsWith(BUTTON_TYPES.PRIMARY)) {
             return (
                 <View style={wrapperStyle}>
@@ -66,7 +67,8 @@ class Button extends PureComponent<IProps, IState> {
                 <TouchableOpacity
                     activeOpacity={0.6}
                     disabled={disabled}
-                    onPress={onPress}
+                    onPressIn={this.handlePressIn}
+                    onPressOut={this.handlePressOut}
                     style={StyleSheet.flatten([getWrapperStyle({ type }), wrapperStyle])}
                 >
                     {isLoading ? (

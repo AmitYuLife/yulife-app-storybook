@@ -32,11 +32,11 @@ const configureStore = (preloadedState?: IReduxState): Store<IReduxState> => {
     );
 
     // Enable hot reloading for reducers.
-    if (Config.ENV === "dev" && (module.hot && typeof module.hot.accept === "function")) {
-        module.hot.accept(() => {
-            configuredStore.replaceReducer(persistedReducer);
-        });
-    }
+    // if (Config.ENV === "dev" && (module.hot && typeof module.hot.accept === "function")) {
+    //     module.hot.accept(() => {
+    //         configuredStore.replaceReducer(persistedReducer);
+    //     });
+    // }
 
     sagaMiddleware.run(sagas);
     configuredStore.dispatch({ type: "INIT" });
@@ -45,4 +45,5 @@ const configureStore = (preloadedState?: IReduxState): Store<IReduxState> => {
 };
 
 export const store = configureStore();
+export const mockStore = createStore(persistedReducer);
 export const persistor = persistStore(store);

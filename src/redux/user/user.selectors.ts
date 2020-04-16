@@ -17,7 +17,7 @@ export const getSurgeIntro = (state: IReduxState) => state.user.surgeIntro;
 export const getUserBusiness = (state: IReduxState) => state.user.business;
 export const getAcceptedLeaderboards = (state: IReduxState) => state.user.leaderboards.filter((l) => l.hasAccepted);
 export const getConsentedLeaderboards = (state: IReduxState) =>
-    state.user.leaderboards.reduce((prev, curr) => {
+    state.user.leaderboards.reduce((prev: Leaderboard[], curr) => {
         if (checkIsCompanyLeaderbaord(curr)) {
             return [curr, ...prev];
         } else if (curr.consent) {
@@ -30,4 +30,4 @@ export const hasBusinessLeaderboardConsent = (state: IReduxState) =>
 
 const checkIsCompanyLeaderbaord = (board: GetCurrentUser_getCurrentUser_leaderboards) =>
     // company leaderboard has 32 chars (and it should be first), custom leaderboards have 38
-    board.leaderboardId.length === 32 && board.consent;
+    !!(board.leaderboardId && board.leaderboardId.length === 32 && board.consent);

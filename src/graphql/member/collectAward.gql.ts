@@ -1,22 +1,19 @@
 import gql from "graphql-tag";
-import { Mutation, MutationFn, MutationResult } from "react-apollo";
 import client from "../_core/client";
 
 import { CollectAward, CollectAwardVariables } from "../_core/schema";
+import { MutationTuple } from "@apollo/react-hooks";
 
-export const collectAwardGql = gql`
+export const GQL_MUTATION_COLLECT_AWARD = gql`
     mutation CollectAward($awardId: String!) {
         collectAward(awardId: $awardId)
     }
 `;
 
+export type CollectAwardMutationTuple = MutationTuple<CollectAward, CollectAwardVariables>;
+
 export const collectAwardWithClient = (awardId: string) =>
     client().mutate<CollectAward, CollectAwardVariables>({
-        mutation: collectAwardGql,
+        mutation: GQL_MUTATION_COLLECT_AWARD,
         variables: { awardId }
     });
-
-export type CollectAwardResultType = MutationResult<CollectAward>;
-export type CollectAwardMutationFunction = MutationFn<CollectAward, CollectAwardVariables>;
-
-export default class CollectAwardMutation extends Mutation<CollectAward, CollectAwardVariables> {}

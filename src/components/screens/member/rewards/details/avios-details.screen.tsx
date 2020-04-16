@@ -31,8 +31,6 @@ export interface IContainerProps {
     welcomeParagraph: string;
     instructionsHeading: string;
     instructionsParagraph: string;
-    loyaltyList?: IRewardReturnedUsersItem[];
-    amountList?: IRewardReturnedUsersItem[];
     onLeftTabPress: () => void;
     onRightTabPress: () => void;
     onPressTopBar: () => void;
@@ -59,8 +57,8 @@ interface IOwnProps {
     onForenameChange: (value: string) => void;
     onSurnameChange: (value: string) => void;
     onCardChange: (value: string) => void;
-    onPressLoyaltyPicker: (args: IOnPressPickerArgs) => void;
-    onPressAmountPicker: (args: IOnPressPickerArgs) => void;
+    onPressLoyaltyPicker: () => void;
+    onPressAmountPicker: () => void;
 }
 
 type Props = IContainerProps & IOwnProps;
@@ -170,7 +168,7 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
                         <Picker
                             label={loyaltyValue}
                             placeholder={loyaltyValue ? "" : "loyalty programme"}
-                            onPress={this.handlePressLoyalty}
+                            onPress={this.props.onPressLoyaltyPicker}
                             icon={Picker.Icons.HEART}
                         />
                         <TextInput
@@ -198,7 +196,7 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
                         <Picker
                             placeholder="amount"
                             label={amountValue}
-                            onPress={this.handlePressAmount}
+                            onPress={this.props.onPressAmountPicker}
                             icon={Picker.Icons.COINS}
                         />
                     </View>
@@ -236,20 +234,6 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
 
     private keyboardDidShow = (isShowingKeyboard: boolean) => {
         return () => this.setState({ isShowingKeyboard });
-    };
-
-    private handlePressLoyalty = () => {
-        this.props.onPressLoyaltyPicker({
-            instruction: "Select your loyalty programme",
-            items: this.props.loyaltyList
-        });
-    };
-
-    private handlePressAmount = () => {
-        this.props.onPressAmountPicker({
-            instruction: "Select your amount",
-            items: this.props.amountList
-        });
     };
 }
 

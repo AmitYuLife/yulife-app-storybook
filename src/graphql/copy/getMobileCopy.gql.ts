@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 import client from "../_core/client";
 import { GetMobileCopy } from "../_core/schema";
 
-export const getMobileCopyGql = gql`
+export const GQL_QUERY_MOBILE_COPY = gql`
     query GetMobileCopy {
         getMobileCopy {
             version
@@ -274,6 +274,6 @@ export const getMobileCopyGql = gql`
 export default function getMobileCopyWithClient() {
     return client().query<GetMobileCopy>({
         fetchPolicy: "network-only",
-        query: getMobileCopyGql
+        query: GQL_QUERY_MOBILE_COPY
     });
 }

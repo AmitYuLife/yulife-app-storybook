@@ -1,9 +1,9 @@
+import { MutationTuple } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import client from "../_core/client";
 
 import { CreateActiveChallenge, CreateActiveChallengeVariables } from "../_core/schema";
 
-export const createActiveChallengeGql = gql`
+export const GQL_MUTATION_CREATE_ACTIVE_CHALLENGE = gql`
     mutation CreateActiveChallenge($levelSlotId: String!) {
         createActiveChallenge(levelSlotId: $levelSlotId) {
             challenge {
@@ -35,9 +35,4 @@ export const createActiveChallengeGql = gql`
     }
 `;
 
-export default (levelSlotId: string) =>
-    client().mutate<CreateActiveChallenge, CreateActiveChallengeVariables>({
-        mutation: createActiveChallengeGql,
-        variables: { levelSlotId },
-        errorPolicy: "ignore"
-    });
+export type CreateActiveChallengeMutationTuple = MutationTuple<CreateActiveChallenge, CreateActiveChallengeVariables>;

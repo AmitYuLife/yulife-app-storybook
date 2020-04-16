@@ -42,7 +42,7 @@ interface ISettingSection<T> {
 interface IProps {
     onCreateLeaderboard: () => void;
     onPressClose: () => void;
-    sections: Array<ISettingSection<INotificationsSectionItem | ILeaderboardSectionItem | IConnectionsSectionItem>>;
+    sections: ISettingSection<INotificationsSectionItem | ILeaderboardSectionItem | IConnectionsSectionItem>[];
 }
 
 export default class SettingsScreen extends PureComponent<IProps> {

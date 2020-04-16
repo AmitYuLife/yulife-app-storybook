@@ -1,22 +1,17 @@
 import gql from "graphql-tag";
-import { Query, QueryResult } from "react-apollo";
 import client from "../_core/client";
 import { GetMagicLink } from "../_core/schema";
 
-export const getMagicLinkGql = gql`
+export const GQL_QUERY_GET_MAGIC_LINK = gql`
     query GetMagicLink {
         getMagicLink
     }
 `;
 
-export type GetMagicLinkResultType = QueryResult<GetMagicLink>;
-
-export class GetMagicLinkQuery extends Query<GetMagicLink> {}
-
 const getMagicLinkWithClient = () =>
     client().query<GetMagicLink>({
         fetchPolicy: "network-only",
-        query: getMagicLinkGql
+        query: GQL_QUERY_GET_MAGIC_LINK
     });
 
 export default getMagicLinkWithClient;

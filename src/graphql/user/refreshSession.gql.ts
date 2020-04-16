@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 import client from "../_core/client";
 import { RefreshSession, RefreshSessionVariables } from "../_core/schema";
 
-export const refreshSessionGql = gql`
+export const GQL_MUTATION_REFRESH_SESSION = gql`
     mutation RefreshSession(
         $tokenExpiration: Int!
         $intercomHashMethod: IntercomHashMethod
@@ -21,6 +21,6 @@ export const refreshSessionGql = gql`
 
 export default (variables: RefreshSessionVariables) =>
     client().mutate<RefreshSession, RefreshSessionVariables>({
-        mutation: refreshSessionGql,
+        mutation: GQL_MUTATION_REFRESH_SESSION,
         variables
     });

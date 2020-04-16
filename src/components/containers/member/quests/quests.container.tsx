@@ -1,32 +1,29 @@
-import { GetCurrentWorld_getCurrentWorld } from "@graphql/_core/schema";
+import { MODALS, ROUTES } from "@navigation/constants";
+import { IMainTabsProps } from "@navigation/root";
+import { useQuery } from "@apollo/react-hooks";
+import { GetCurrentWorld_getCurrentWorld, GetCurrentWorld } from "@graphql/_core/schema";
+import { GQL_QUERY_GET_CURRENT_WORLD } from "@graphql/challenges";
 import { bottomTabs } from "@navigation/constants";
 import { getCurrentWorld } from "@services/utils";
 import { Style } from "@styles/index";
 import moment from "moment";
-import React from "react";
-import { BackHandler, NativeEventSubscription } from "react-native";
+import React, { FC, useState, useCallback, useMemo } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import GetCurrentWorld, {
-    getCurrentWorldGql,
-    GetCurrentWorldResultType
-} from "../../../../graphql/challenges/getCurrentWorld.gql";
-import { MODALS, ROUTES } from "../../../../navigation/constants";
-import { IMainTabsProps, onLeftMenuPress } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { submitUnityAction } from "../../../../redux/levels/levels.actions";
 import {
-    challengeCancelAction,
-    challengeEndAction,
-    challengeResetAction
+  challengeCancelAction,
+  challengeEndAction,
+  challengeResetAction
 } from "../../../../redux/levels/levels.actions";
 import {
-    getActiveLevel,
-    getChallengesStatus,
-    getCurrentLevel,
-    getNextLevelAvailableAt
+  getActiveLevel,
+  getChallengesStatus,
+  getCurrentLevel,
+  getNextLevelAvailableAt
 } from "../../../../redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "../../../../redux/streaks/streaks.actions";
 import { getQuestsOfflineTheme } from "../../../../redux/theme/theme.selectors";
@@ -36,451 +33,353 @@ import BlurProvider from "../../../atoms/blur/blur-provider";
 import Loading from "../../../atoms/loading/loading";
 import { ChallengeCompleteModal } from "../../../modals";
 import {
-    ChallengeExitScreen,
-    ChallengeFailedScreen,
-    ChallengeProgressScreen,
-    ChallengeSuccessScreen,
-    QuestsScreenOffline,
-    QuestsScrollScreen
+  ChallengeExitScreen,
+  ChallengeFailedScreen,
+  ChallengeProgressScreen,
+  ChallengeSuccessScreen,
+  QuestsScreenOffline,
+  QuestsScrollScreen
 } from "../../../screens";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
 function isAvailable(nextAvailableAt: string): boolean {
-    const nextAvailable = !!nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
+  const nextAvailable = !!nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
 
-    return nextAvailable >= 0;
+  return nextAvailable >= 0;
 }
 
 function getLevelStatus(
-    challengesStatus: ConnectedState["challengesStatus"],
-    currentLevel: number,
-    level: number,
-    nextAvailableAt: string
+  challengesStatus: ConnectedState["challengesStatus"],
+  currentLevel: number,
+  level: number,
+  nextAvailableAt: string
 ) {
-    const { hasDone: hasDoneChallenge, isAvailable: isChallengeAvailable } = challengesStatus;
-    const isInSecondWorld = currentLevel > 51;
+  const { hasDone: hasDoneChallenge, isAvailable: isChallengeAvailable } = challengesStatus;
+  const isInSecondWorld = currentLevel > 51;
 
-    if (currentLevel === level) {
-        return {
-            isActive: isInSecondWorld && hasDoneChallenge ? !isChallengeAvailable : true,
-            isDone: false,
-            isNext: true,
-            isPrevious: false,
-            nextAvailableAt
-        };
-    }
-
-    // previous level = currentLevel - 1
-    // previous level for unity = currentLevel - 2
-    if (
-        (level % 50 !== 0 && currentLevel - 1 === level) ||
-        (isInSecondWorld && currentLevel % 50 === 1 && currentLevel - 2 === level)
-    ) {
-        const previousAvailable = hasDoneChallenge && isChallengeAvailable;
-        return {
-            isActive: previousAvailable,
-            isDone: true,
-            isNext: previousAvailable,
-            isPrevious: true,
-            nextAvailableAt: ""
-        };
-    }
-
+  if (currentLevel === level) {
     return {
-        isDone: currentLevel > level,
-        isNext: false,
-        isPrevious: false,
-        nextAvailableAt: ""
+      isActive: isInSecondWorld && hasDoneChallenge ? !isChallengeAvailable : true,
+      isDone: false,
+      isNext: true,
+      isPrevious: false,
+      nextAvailableAt
     };
+  }
+
+  // previous level = currentLevel - 1
+  // previous level for unity = currentLevel - 2
+  if (
+    (level % 50 !== 0 && currentLevel - 1 === level) ||
+    (isInSecondWorld && currentLevel % 50 === 1 && currentLevel - 2 === level)
+  ) {
+    const previousAvailable = hasDoneChallenge && isChallengeAvailable;
+    return {
+      isActive: previousAvailable,
+      isDone: true,
+      isNext: previousAvailable,
+      isPrevious: true,
+      nextAvailableAt: ""
+    };
+  }
+
+  return {
+    isDone: currentLevel > level,
+    isNext: false,
+    isPrevious: false,
+    nextAvailableAt: ""
+  };
 }
 
 type Props = IMainTabsProps & ConnectedState & ConnectedDispatch;
 
-interface IState {
-    unity: number;
-}
+const dismissChestModal = () => Navigation.dismissModal(MODALS.chest);
 
-class QuestsContainer extends React.Component<Props, IState> {
-    public state: IState = {
-        unity: null
-    };
-    private backHandler: NativeEventSubscription;
-    private backPressed: number = 0;
+const dismissChallengeUnavailableModal = () => Navigation.dismissModal(MODALS.challengeUnavailable);
 
-    constructor(props: Props) {
-        super(props);
-        Navigation.events().bindComponent(this);
+const dismissLevelUnavailableModal = () => Navigation.dismissModal(MODALS.levelUnavailable);
+
+const showChestModal = (
+  componentId: string,
+  level: GetCurrentWorld_getCurrentWorld,
+  isNext: boolean,
+  { ctaLabelIsNext, ctaLabelIsNotNext, headingIsNext, headingIsNotNext }: Props["copy"]["showChestModal"]
+) =>
+  Navigation.showModal({
+    component: {
+      id: MODALS.chest,
+      name: MODALS.chest,
+      passProps: {
+        ctaLabel: isNext ? ctaLabelIsNext : ctaLabelIsNotNext,
+        heading: isNext ? headingIsNext : `${headingIsNotNext} ${level.level}`,
+        isLocked: true,
+        onPressCta: () => {
+          if (isNext) {
+            goToChallengesList(componentId, level);
+          }
+
+          dismissChestModal();
+        },
+        onPressCtaSecondary: isNext ? dismissChestModal : null
+      }
     }
+  });
 
-    public componentDidAppear() {
-        this.backPressed = 0;
-        this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
-            if (this.backPressed > 0) {
-                return false;
+const showChallengeUnavailableModal = (nextAvailableAt: string) =>
+  Navigation.showModal({
+    component: {
+      id: MODALS.challengeUnavailable,
+      name: MODALS.challengeUnavailable,
+      passProps: {
+        nextAvailableAt,
+        onPressCta: dismissChallengeUnavailableModal
+      }
+    }
+  });
+
+const showLevelUnavailableModal = (level: number) =>
+  Navigation.showModal({
+    component: {
+      id: MODALS.levelUnavailable,
+      name: MODALS.levelUnavailable,
+      passProps: {
+        level,
+        onPressCta: dismissLevelUnavailableModal
+      }
+    }
+  });
+
+const showLevelCompleteModal = (componentId: string, level: GetCurrentWorld_getCurrentWorld) =>
+  Navigation.push(componentId, {
+    component: {
+      id: ROUTES.questsChallengesHistory,
+      name: ROUTES.questsChallengesHistory,
+      passProps: {
+        level,
+        onPressActivityHistory: () => {
+          Navigation.push(componentId, {
+            component: {
+              id: ROUTES.activityHistory,
+              name: ROUTES.activityHistory,
+              options: { bottomTabs }
             }
-
-            this.backPressed += 1;
-            return true;
-        });
+          });
+        }
+      },
+      options: { bottomTabs }
     }
+  });
 
-    public componentDidDisappear() {
-        if (this.backHandler) {
-            this.backHandler.remove();
-        }
+const goToChallengesList = (componentId: string, level: GetCurrentWorld_getCurrentWorld) =>
+  Navigation.push(componentId, {
+    component: {
+      id: ROUTES.questsChallengesList,
+      name: ROUTES.questsChallengesList,
+      passProps: {
+        level
+      },
+      options: { bottomTabs }
     }
+  });
 
-    public shouldComponentUpdate(nextProps: Props, nextState: IState) {
-        return (
-            nextState.unity !== this.state.unity ||
-            nextProps.currentLevel !== this.props.currentLevel ||
-            nextProps.nextLevelAvailableAt !== this.props.nextLevelAvailableAt ||
-            nextProps.totalCoins !== this.props.totalCoins ||
-            nextProps.activeLevel.levelSlotId !== this.props.activeLevel.levelSlotId ||
-            nextProps.activeLevel.isLoading !== this.props.activeLevel.isLoading ||
-            nextProps.activeLevel.score !== this.props.activeLevel.score ||
-            nextProps.activeLevel.timeUp !== this.props.activeLevel.timeUp ||
-            nextProps.activeLevel.status !== this.props.activeLevel.status ||
-            nextProps.challengesStatus.available !== this.props.challengesStatus.available ||
-            nextProps.challengesStatus.done !== this.props.challengesStatus.done
-        );
-    }
+const QuestsContainer: FC<Props> = (props) => {
+  const { totalCoins, theme, onLeftMenuPress } = props;
 
-    public render() {
-        const { totalCoins, theme } = this.props;
+  if (Style.isIPad()) {
+    return (
+      <QuestsScreenOffline
+        fitkitAvailable={false}
+        totalCoins={totalCoins}
+        onLeftMenuPress={onLeftMenuPress}
+        theme={theme.questsOffline}
+      />
+    );
+  }
 
-        if (Style.isIPad()) {
-            return (
-                <QuestsScreenOffline
-                    fitkitAvailable={false}
-                    totalCoins={totalCoins}
-                    onLeftMenuPress={onLeftMenuPress}
-                    theme={theme.questsOffline}
-                />
-            );
-        }
+  const { loading, data, refetch } = useQuery<GetCurrentWorld>(GQL_QUERY_GET_CURRENT_WORLD);
+  const [unity, setUnity] = useState(null as number);
+  const {
+    activeLevel: { coins, endDateTime, level, milestones, rating, score, status, subtype, timeUp, unit, isLoading },
+    componentId,
+    currentLevel,
+    features,
+    copy,
+    challengesStatus,
+    nextLevelAvailableAt
+  } = props;
 
-        return (
-            <GetCurrentWorld query={getCurrentWorldGql} fetchPolicy="network-only">
-                {this.renderCurrentWorld}
-            </GetCurrentWorld>
-        );
-    }
+  const currentWorld = useMemo(() => getCurrentWorld(level), [level]);
+  const screenProps = useMemo(
+    () => ({
+      componentId,
+      currentLevel,
+      onLeftMenuPress,
+      totalCoins
+    }),
+    [currentLevel, totalCoins]
+  );
 
-    private renderCurrentWorld = ({ loading, data, refetch }: GetCurrentWorldResultType) => {
-        const { unity } = this.state;
-        const {
-            activeLevel: {
-                coins,
-                endDateTime,
-                level,
-                milestones,
-                rating,
-                score,
-                status,
-                subtype,
-                timeUp,
-                unit,
-                isLoading
-            },
-            componentId,
-            currentLevel,
-            features,
-            totalCoins,
-            copy
-        } = this.props;
+  const handleResetChallenge = useCallback(
+    (showStreakComplete = false) => () => {
+      if (showStreakComplete) {
+        props.displayStreaksCompletedAction();
+      }
+      refetch();
+      props.challengeResetAction();
+    },
+    []
+  );
 
-        const props = {
-            componentId,
-            currentLevel,
+  const formatedData = useMemo(
+    () =>
+      (data && data.getCurrentWorld ? data.getCurrentWorld : []).map((itemLevel) => {
+        const levelStatus = getLevelStatus(challengesStatus, currentLevel, itemLevel.level, nextLevelAvailableAt);
+        const isChestLevel = !!itemLevel.levelChestId;
 
-            onLeftMenuPress,
-            totalCoins
-        };
+        return {
+          ...itemLevel,
+          ...levelStatus,
+          isChestLevel,
+          onPress: () => {
+            const levelAvailable = isAvailable(nextLevelAvailableAt);
 
-        if (status) {
-            return status === "success" ? (
-                <ChallengeSuccessScreen
-                    level={level}
-                    onPressCta={this.handleResetChallenge(refetch, true)}
-                    rating={rating}
-                    reward={coins}
-                    score={score}
-                    unit={unit as any}
-                    copy={copy.success}
-                />
-            ) : (
-                <ChallengeFailedScreen level={level} onPress={this.handleResetChallenge(refetch)} copy={copy.failed} />
-            );
-        }
+            // This logic makes me want to kill myself
+            // Please increment the next number if you agree
+            // +3
 
-        if (timeUp) {
-            return (
-                <ChallengeCompleteModal
-                    isLoading={isLoading}
-                    onCtaPress={this.props.challengeEndAction}
-                    copy={copy.completed}
-                />
-            );
-        }
-
-        if (subtype) {
-            const progressTargets = milestones.map(
-                (item) => item.target[subtype === "meditation" ? "meditation" : "steps"]
-            );
-
-            return (
-                <BlurProvider
-                    render={({ showOverlay }) => (
-                        <ChallengeProgressScreen
-                            {...props}
-                            currentWorld={getCurrentWorld(level)}
-                            challengeType={subtype as any}
-                            showCounter={features.showCounter}
-                            onCalmPress={openCalm}
-                            onDismissPress={showOverlay}
-                            onHeadspacePress={openHeadspace}
-                            endDateTime={endDateTime}
-                            userProgress={score}
-                            progressTargets={progressTargets}
-                            unit={unit as any}
-                        />
-                    )}
-                    renderOverlay={({ hideOverlay }) => (
-                        <ChallengeExitScreen
-                            onClose={hideOverlay}
-                            onPressExit={this.props.challengeCancelAction}
-                            isCancelling={isLoading}
-                            copy={copy.exitChallenge}
-                        />
-                    )}
-                />
-            );
-        }
-
-        if (loading) {
-            return <Loading />;
-        }
-
-        const formatedData = this.formatData(data && data.getCurrentWorld ? data.getCurrentWorld : []);
-
-        return (
-            <QuestsScrollScreen
-                {...props}
-                data={formatedData}
-                hideUnity={this.hideUnity}
-                unity={unity}
-                activeLevel={getTheActiveLevel(formatedData)}
-            />
-        );
-    };
-
-    private hideUnity = () => {
-        this.setState({ unity: null });
-    };
-
-    private handleResetChallenge = (refetch: () => void, showStreakComplete?: boolean) => () => {
-        if (showStreakComplete) {
-            this.props.displayStreaksCompletedAction();
-        }
-        refetch();
-        this.props.challengeResetAction();
-    };
-
-    private dismissChestModal = () => {
-        Navigation.dismissModal(MODALS.chest);
-    };
-
-    private dismissChallengeUnavailableModal = () => {
-        Navigation.dismissModal(MODALS.challengeUnavailable);
-    };
-
-    private dismissLevelUnavailableModal = () => {
-        Navigation.dismissModal(MODALS.levelUnavailable);
-    };
-
-    private showChestModal = (level: GetCurrentWorld_getCurrentWorld, isNext: boolean) => {
-        const { ctaLabelIsNext, ctaLabelIsNotNext, headingIsNext, headingIsNotNext } = this.props.copy.showChestModal;
-        const passProps = {
-            ctaLabel: isNext ? ctaLabelIsNext : ctaLabelIsNotNext,
-            heading: isNext ? headingIsNext : `${headingIsNotNext} ${level.level}`,
-            isLocked: true,
-            onPressCta: () => {
-                if (isNext) {
-                    this.goToChallengesList(level);
+            if (levelStatus.isDone) {
+              if (itemLevel.level % 50 === 0) {
+                // is unity level
+                setUnity(itemLevel.level);
+              } else if (levelStatus.isPrevious && challengesStatus.hasDone && challengesStatus.isAvailable) {
+                goToChallengesList(componentId, itemLevel);
+              } else if (features.showCompletedLevel) {
+                showLevelCompleteModal(componentId, itemLevel);
+              }
+            } else if (levelStatus.isNext) {
+              if (itemLevel.level % 50 === 0) {
+                // is unity level
+                setUnity(itemLevel.level);
+                props.submitUnityAction({ levelId: itemLevel.id });
+              } else if (levelAvailable) {
+                if (isChestLevel) {
+                  showChestModal(componentId, itemLevel, true, copy.showChestModal);
+                } else {
+                  goToChallengesList(componentId, itemLevel);
                 }
-                this.dismissChestModal();
-            },
-            onPressCtaSecondary: isNext ? this.dismissChestModal : null
+              } else {
+                showChallengeUnavailableModal(nextLevelAvailableAt);
+              }
+            } else {
+              // selected isn't the next available
+              if (isChestLevel) {
+                showChestModal(componentId, itemLevel, false, copy.showChestModal);
+              } else {
+                showLevelUnavailableModal(itemLevel.level);
+              }
+            }
+          }
         };
+      }),
+    [data, nextLevelAvailableAt, challengesStatus, currentLevel, features, copy]
+  );
 
-        Navigation.showModal({
-            component: {
-                id: MODALS.chest,
-                name: MODALS.chest,
-                passProps
-            }
-        });
-    };
+  const hideUnity = useCallback(() => {
+    setUnity(null);
+  }, []);
 
-    private showChallengeUnavailableModal = (nextAvailableAt: string) => {
-        const passProps = {
-            nextAvailableAt,
-            onPressCta: () => {
-                this.dismissChallengeUnavailableModal();
-            }
-        };
+  if (status) {
+    return status === "success" ? (
+      <ChallengeSuccessScreen
+        level={level}
+        onPressCta={handleResetChallenge(true)}
+        rating={rating}
+        reward={coins}
+        score={score}
+        unit={unit as any}
+        copy={copy.success}
+      />
+    ) : (
+      <ChallengeFailedScreen level={level} onPress={handleResetChallenge()} copy={copy.failed} />
+    );
+  }
 
-        Navigation.showModal({
-            component: {
-                id: MODALS.challengeUnavailable,
-                name: MODALS.challengeUnavailable,
-                passProps
-            }
-        });
-    };
+  if (timeUp) {
+    return <ChallengeCompleteModal isLoading={isLoading} onCtaPress={props.challengeEndAction} copy={copy.completed} />;
+  }
 
-    private showLevelUnavailableModal = (level: number) => {
-        const passProps = {
-            level,
-            onPressCta: () => {
-                this.dismissLevelUnavailableModal();
-            }
-        };
+  if (subtype) {
+    const progressTargets = milestones.map((item) => item.target[subtype === "meditation" ? "meditation" : "steps"]);
 
-        Navigation.showModal({
-            component: {
-                id: MODALS.levelUnavailable,
-                name: MODALS.levelUnavailable,
-                passProps
-            }
-        });
-    };
+    return (
+      <BlurProvider
+        render={({ showOverlay }) => (
+          <ChallengeProgressScreen
+            {...screenProps}
+            currentWorld={currentWorld}
+            challengeType={subtype as any}
+            showCounter={features.showCounter}
+            onCalmPress={openCalm}
+            onDismissPress={showOverlay}
+            onHeadspacePress={openHeadspace}
+            endDateTime={endDateTime}
+            userProgress={score}
+            progressTargets={progressTargets}
+            unit={unit as any}
+          />
+        )}
+        renderOverlay={({ hideOverlay }) => (
+          <ChallengeExitScreen
+            onClose={hideOverlay}
+            onPressExit={props.challengeCancelAction}
+            isCancelling={isLoading}
+            copy={copy.newExitChallenge}
+          />
+        )}
+      />
+    );
+  }
 
-    private showLevelCompleteModal = (level: GetCurrentWorld_getCurrentWorld) => {
-        const { componentId } = this.props;
+  if (loading) {
+    return <Loading />;
+  }
 
-        const passProps = {
-            level,
-            onPressActivityHistory: () => {
-                Navigation.push(componentId, {
-                    component: {
-                        id: ROUTES.activityHistory,
-                        name: ROUTES.activityHistory,
-                        options: { bottomTabs }
-                    }
-                });
-            }
-        };
+  return (
+    <QuestsScrollScreen
+      {...screenProps}
+      data={formatedData}
+      hideUnity={hideUnity}
+      unity={unity}
+      activeLevel={getTheActiveLevel(formatedData)}
+    />
+  );
+};
 
-        Navigation.push(componentId, {
-            component: {
-                id: ROUTES.questsChallengesHistory,
-                name: ROUTES.questsChallengesHistory,
-                passProps,
-                options: { bottomTabs }
-            }
-        });
-    };
-
-    private goToChallengesList = (level: GetCurrentWorld_getCurrentWorld) => {
-        const { componentId } = this.props;
-
-        Navigation.push(componentId, {
-            component: {
-                id: ROUTES.questsChallengesList,
-                name: ROUTES.questsChallengesList,
-                passProps: {
-                    level
-                },
-                options: { bottomTabs }
-            }
-        });
-    };
-
-    private formatData = (data: GetCurrentWorld_getCurrentWorld[] = []) => {
-        const { challengesStatus, currentLevel, features, nextLevelAvailableAt: nextAvailableAt } = this.props;
-
-        return data.map((level) => {
-            const status = getLevelStatus(challengesStatus, currentLevel, level.level, nextAvailableAt);
-            const isChestLevel = !!level.levelChestId;
-
-            return {
-                ...level,
-                ...status,
-                isChestLevel,
-                onPress: () => {
-                    const levelAvailable = isAvailable(nextAvailableAt);
-
-                    // This logic makes me want to kill myself
-                    // Please increment the next number if you agree
-                    // +3
-
-                    if (status.isDone) {
-                        if (level.level % 50 === 0) {
-                            // is unity level
-                            this.setState({ unity: level.level });
-                        } else if (status.isPrevious && challengesStatus.hasDone && challengesStatus.isAvailable) {
-                            this.goToChallengesList(level);
-                        } else if (features.showCompletedLevel) {
-                            this.showLevelCompleteModal(level);
-                        }
-                    } else if (status.isNext) {
-                        if (level.level % 50 === 0) {
-                            // is unity level
-                            this.setState({ unity: level.level }, () => {
-                                this.props.submitUnityAction({ levelId: level.id });
-                            });
-                        } else if (levelAvailable) {
-                            if (isChestLevel) {
-                                this.showChestModal(level, true);
-                            } else {
-                                this.goToChallengesList(level);
-                            }
-                        } else {
-                            this.showChallengeUnavailableModal(nextAvailableAt);
-                        }
-                    } else {
-                        // selected isn't the next available
-                        if (isChestLevel) {
-                            this.showChestModal(level, false);
-                        } else {
-                            this.showLevelUnavailableModal(level.level);
-                        }
-                    }
-                }
-            };
-        });
-    };
-}
 export function getTheActiveLevel(formatedData: any[]) {
-    return formatedData.findIndex((level) => level.isNext && level.isActive) + 1;
+  return formatedData.findIndex((level) => level.isNext && level.isActive) + 1;
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    activeLevel: getActiveLevel(state),
-    challengesStatus: getChallengesStatus(state),
-    currentLevel: getCurrentLevel(state),
-    features: getUserFeatures(state),
-    nextLevelAvailableAt: getNextLevelAvailableAt(state),
-    totalCoins: getTotalCoins(state),
-    theme: {
-        questsOffline: getQuestsOfflineTheme(state)
-    },
-    copy: getCopy(state, "challenges")
+  activeLevel: getActiveLevel(state),
+  challengesStatus: getChallengesStatus(state),
+  currentLevel: getCurrentLevel(state),
+  features: getUserFeatures(state),
+  nextLevelAvailableAt: getNextLevelAvailableAt(state),
+  totalCoins: getTotalCoins(state),
+  theme: {
+    questsOffline: getQuestsOfflineTheme(state)
+  },
+  copy: getCopy(state, "challenges")
 });
 
 const mapDispatchToProps = {
-    challengeCancelAction,
-    challengeEndAction,
-    challengeResetAction,
-    displayStreaksCompletedAction,
-    submitUnityAction
+  challengeCancelAction,
+  challengeEndAction,
+  challengeResetAction,
+  displayStreaksCompletedAction,
+  submitUnityAction
 };
 
-export default connect<ConnectedState, ConnectedDispatch>(
-    mapStateToProps,
-    mapDispatchToProps
-)(QuestsContainer);
+export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(QuestsContainer);

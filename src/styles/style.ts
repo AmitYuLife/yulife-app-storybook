@@ -11,9 +11,6 @@ const isIPad = () => {
             DeviceInfo.getDeviceId()
                 .toLowerCase()
                 .includes("ipad") ||
-            DeviceInfo.getDeviceName()
-                .toLowerCase()
-                .includes("ipad") ||
             DeviceInfo.getModel()
                 .toLowerCase()
                 .includes("ipad")

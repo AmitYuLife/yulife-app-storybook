@@ -1,8 +1,7 @@
 import { getToken } from "@services/storage";
 import { Platform } from "react-native";
 import { PushNotificationPermissions } from "react-native-push-notification";
-import { delay } from "redux-saga";
-import { call, put, race, select, take } from "redux-saga/effects";
+import { call, put, race, select, take, delay } from "redux-saga/effects";
 import { appStateChannel } from "../../app/app.channels";
 import { updateUserConsent } from "../../user/user.actions";
 import { setPushPermissions } from "../device.actions";
@@ -41,7 +40,7 @@ export function* checkPermissions() {
     yield put(setPushPermissions({ status }));
 
     const { token } = yield race({
-        timeout: call(delay, 1000),
+        timeout: delay(1000),
         token: call(getToken)
     });
 

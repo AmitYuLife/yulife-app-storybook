@@ -1,136 +1,91 @@
-import * as React from "react";
-import { PureComponent } from "react";
+import { GQL_MUTATION_SEND_MAGIC_LINK, SendMagicLinkMutationTuple } from "@graphql/user";
+import React, { useState, useMemo, FC, useCallback } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import {
-    GetMobileCopy_getMobileCopy_screens_emailSent as EmailSentCopy,
-    GetMobileCopy_getMobileCopy_screens_needHelpLoggingIn as ResetPasswordCopy
+  GetMobileCopy_getMobileCopy_screens_emailSent as EmailSentCopy,
+  GetMobileCopy_getMobileCopy_screens_needHelpLoggingIn as ResetPasswordCopy
 } from "../../../graphql/_core/schema";
 
-import SendMagicLinkMutation, {
-    sendMagicLinkGql,
-    SendMagicLinkMutationFunction
-} from "../../../graphql/user/sendMagicLink.gql";
 import { IReduxState } from "../../../redux/_core/reducers";
 import { getCopy } from "../../../redux/copy/copy.selectors";
 import { EmailSentScreen, ResetPasswordScreen } from "../../screens";
 import { validateEmail } from "../login/login.helpers";
+import { useMutation } from "@apollo/react-hooks";
 
-// TODO find where these props actually come from in RNN types
 interface IProps {
-    componentId: string;
-}
-
-interface IState {
-    email: string;
-    emailError: string;
-    wasEmailSent: boolean;
+  componentId: string;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 type Props = IProps & ConnectedState;
 
-class ResetPasswordContainer extends PureComponent<Props, IState> {
-    public state: IState = {
-        email: "",
-        emailError: "",
-        wasEmailSent: false
-    };
+const ResetPasswordContainer: FC<Props> = ({ copy, copyEmailSent, componentId }) => {
+  const [{ wasEmailSent, email, emailError }, setState] = useState({
+    email: "",
+    emailError: "",
+    wasEmailSent: false
+  });
 
-    public render() {
-        return (
-            <SendMagicLinkMutation mutation={sendMagicLinkGql}>
-                {(sendMagicLink, { loading }) => {
-                    const { wasEmailSent, email, emailError } = this.state;
-                    const { copy, copyEmailSent } = this.props;
-                    const disableSubmit = email === "" || emailError !== "";
+  const [sendMagicLink, { loading }]: SendMagicLinkMutationTuple = useMutation(GQL_MUTATION_SEND_MAGIC_LINK);
 
-                    if (wasEmailSent) {
-                        return (
-                            <EmailSentScreen
-                                email={email}
-                                onCtaPress={this.onLogIn}
-                                onSecondaryCtaPress={this.onEmailSentBackPress}
-                                copy={copyEmailSent}
-                            />
-                        );
-                    }
+  const disableSubmit = useMemo(() => email === "" || emailError !== "", [email, emailError]);
 
-                    return (
-                        <ResetPasswordScreen
-                            disableSubmit={disableSubmit}
-                            email={email}
-                            emailError={emailError}
-                            isSubmitting={loading}
-                            onCancelPress={this.onCancel}
-                            onEmailChange={this.onEmailChange}
-                            onSubmitPress={() => this.onSubmit(sendMagicLink)}
-                            copy={copy}
-                        />
-                    );
-                }}
-            </SendMagicLinkMutation>
-        );
+  const handleSubmit = useCallback(async () => {
+    if (!validateEmail(email)) {
+      try {
+        const results = await sendMagicLink({
+          variables: {
+            email
+          }
+        });
+
+        if (results && results.data) {
+          setState({ wasEmailSent: true, emailError, email });
+        }
+      } catch (e) {
+        // tslint:disable-next-line
+        console.log(e);
+      }
     }
+  }, [email, emailError]);
 
-    private onLogIn = async () => {
-        await Navigation.popToRoot(this.props.componentId);
-    };
+  const handleEmailChange = useCallback(
+    (newEmail: string) => {
+      setState({ email: newEmail, emailError: validateEmail(newEmail), wasEmailSent });
+    },
+    [wasEmailSent]
+  );
 
-    private onCancel = () => {
-        Navigation.pop(this.props.componentId);
-    };
+  if (wasEmailSent) {
+    return (
+      <EmailSentScreen
+        email={email}
+        onCtaPress={() => Navigation.popToRoot(componentId)}
+        onSecondaryCtaPress={() => setState({ wasEmailSent: false, email, emailError })}
+        copy={copyEmailSent}
+      />
+    );
+  }
 
-    private onEmailSentBackPress = () => {
-        this.setState({ wasEmailSent: false });
-    };
-
-    private onEmailChange = (email: string) => {
-        const emailError = validateEmail(email);
-
-        this.setState({ email, emailError });
-    };
-
-    private isFormValid = () => {
-        let formIsValid = true;
-        const { email } = this.state;
-
-        if (validateEmail(email)) {
-            formIsValid = false;
-        }
-
-        return formIsValid;
-    };
-
-    private onSubmit = async (sendMagicLink: SendMagicLinkMutationFunction) => {
-        const { email } = this.state;
-
-        if (this.isFormValid()) {
-            try {
-                const results = await sendMagicLink({
-                    variables: {
-                        email
-                    }
-                });
-
-                if (results && results.data) {
-                    this.setState({ wasEmailSent: true });
-                }
-            } catch (e) {
-                // tslint:disable-next-line
-                console.log(e);
-            }
-        }
-    };
-}
+  return (
+    <ResetPasswordScreen
+      disableSubmit={disableSubmit}
+      email={email}
+      emailError={emailError}
+      isSubmitting={loading}
+      onCancelPress={() => Navigation.pop(componentId)}
+      onEmailChange={handleEmailChange}
+      onSubmitPress={handleSubmit}
+      copy={copy}
+    />
+  );
+};
 
 const mapStateToProps = (state: IReduxState) => ({
-    copy: getCopy(state, "needHelpLoggingIn") as ResetPasswordCopy,
-    copyEmailSent: getCopy(state, "emailSent") as EmailSentCopy
+  copy: getCopy(state, "needHelpLoggingIn") as ResetPasswordCopy,
+  copyEmailSent: getCopy(state, "emailSent") as EmailSentCopy
 });
 
-export default connect<ConnectedState, {}>(
-    mapStateToProps,
-    null
-)(ResetPasswordContainer);
+export default connect<ConnectedState, {}>(mapStateToProps, null)(ResetPasswordContainer);

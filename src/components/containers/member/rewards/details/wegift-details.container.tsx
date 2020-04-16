@@ -1,10 +1,10 @@
 import BlurProvider from "@atoms/blur/blur-provider";
-import { RedeemRewardFunctionType, RedeemRewardMutation } from "@graphql/rewards";
+import { useMutation } from "@apollo/react-hooks";
+import { RedeemRewardMutationTuple, GQL_MUTATION_REDEEM_REWARD } from "@graphql/rewards";
 import ListPicker from "@molecules/list-picker/list-picker";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { Component } from "react";
-import * as React from "react";
-import { Alert, Linking } from "react-native";
+import React, { useEffect, FC, useCallback, useState, useMemo } from "react";
+import { Alert } from "react-native";
 import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
@@ -17,6 +17,7 @@ import { getCopy } from "../../../../../redux/copy/copy.selectors";
 import { getUserStart } from "../../../../../redux/user/user.actions";
 import Logger from "../../../../../services/logging/logger";
 import { WegiftRewardDetailsScreen } from "../../../../screens";
+import { handleLinkPress } from "@services/app-link";
 
 interface IProps {
     componentId: string;
@@ -29,146 +30,69 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
-class WegiftRewardDetailsContainer extends Component<Props> {
-    public state = {
-        yucoin: this.props.reward.available_denominations[0].yuCoin,
-        rewardValue: this.props.reward.available_denominations[0].value
-    };
+const WegiftRewardDetailsContainer: FC<Props> = (props) => {
+    const {
+        copy,
+        totalCoins,
+        reward: {
+            code,
+            availability,
+            currency_code,
+            reward_sticker,
+            name,
+            description,
+            redeem_steps: { steps },
+            available_denominations,
+            uiSettings,
+            terms_and_conditions_url
+        },
+        features = {}
+    } = props;
 
-    public componentDidMount() {
-        const { reward } = this.props;
-        // TODO: Move to sagas
+    useEffect(() => {
         Logger.logEvent("reward_viewed", {
-            reward_availability: reward.availability,
-            reward_available_denominations: reward.available_denominations,
-            reward_best_sticker: reward.reward_sticker,
-            reward_code: reward.code,
-            reward_name: reward.name
+            reward_availability: availability,
+            reward_available_denominations: available_denominations,
+            reward_best_sticker: reward_sticker,
+            reward_code: code,
+            reward_name: name
         });
-    }
+    }, []);
 
-    public render() {
-        const { yucoin, rewardValue } = this.state;
-        const {
-            totalCoins,
-            reward: {
-                code,
-                currency_code,
-                description,
-                redeem_steps: { steps },
-                available_denominations,
-                uiSettings
-            },
-            features
-        } = this.props;
-        const labelCtaPrimary = `buy with ${yucoin} yucoin`;
-        const showWegiftPicker = features.showWegiftPicker;
+    const onRewardsTabPress = useCallback(() => props.onTabChange("rewards", props.componentId), []);
+    const onPurchasesTabPress = useCallback(() => props.onTabChange("purchases", props.componentId), []);
 
-        return (
-            <RedeemRewardMutation>
-                {(redeemReward, { loading }) => {
-                    const handleSubmit = async () => {
-                        this.handleRewardPurchase(redeemReward);
-                    };
+    const handlePolicyPress = useMemo(() => handleLinkPress(Config.REWARDS_POLICY_URL), []);
+    const handleTermsPress = useMemo(() => handleLinkPress(terms_and_conditions_url), []);
 
-                    return (
-                        <BlurProvider
-                            type={BlurProvider.Types.DARK}
-                            render={({ toggleOverlay }) => (
-                                <WegiftRewardDetailsScreen
-                                    availableDenomitations={available_denominations}
-                                    uiSettings={uiSettings}
-                                    code={code}
-                                    cost={yucoin}
-                                    rewardValue={rewardValue}
-                                    rewardCurrency={currency_code}
-                                    description={description}
-                                    instructions={steps}
-                                    onPressCtaPrimary={handleSubmit}
-                                    onPressPicker={() => {
-                                        if (showWegiftPicker) {
-                                            toggleOverlay();
-                                        }
-                                    }}
-                                    showWegiftPicker={showWegiftPicker}
-                                    labelCtaPrimary={labelCtaPrimary}
-                                    onPressTerms={this.openPDFs("terms")}
-                                    onPressPolicy={this.openPDFs("policy")}
-                                    coins={totalCoins}
-                                    isLoading={loading}
-                                    onPressTopBar={this.handleRewardsPress}
-                                    onLeftTabPress={this.handleRewardsPress}
-                                    onRightTabPress={this.handlePurchasesPress}
-                                />
-                            )}
-                            renderOverlay={({ toggleOverlay }) => {
-                                if (!showWegiftPicker) {
-                                    return null;
-                                }
-                                return (
-                                    <ListPicker
-                                        onPressCancel={toggleOverlay}
-                                        instruction="Select the amount"
-                                        items={available_denominations.map(({ yuCoin, value }) => ({
-                                            id: String(value),
-                                            label: `£${value.toFixed(2)} - ${yuCoin} yucoin`,
-                                            onPress: () => {
-                                                this.setState({ yucoin: yuCoin, rewardValue: value });
-                                                toggleOverlay();
-                                            }
-                                        }))}
-                                    />
-                                );
-                            }}
-                        />
-                    );
-                }}
-            </RedeemRewardMutation>
-        );
-    }
+    const [denomination, setDenomination] = useState(available_denominations[0]);
 
-    private handleRewardsPress = () => {
-        this.props.onTabChange("rewards", this.props.componentId);
-    };
+    const labelCtaPrimary = useMemo(() => `buy with ${denomination.yuCoin} yucoin`, [denomination]);
+    const showWegiftPicker = useMemo(() => features.showWegiftPicker, [features]);
 
-    private handlePurchasesPress = () => {
-        this.props.onTabChange("purchases", this.props.componentId);
-    };
+    const [redeemReward, { loading }]: RedeemRewardMutationTuple = useMutation(GQL_MUTATION_REDEEM_REWARD);
 
-    private openPDFs = (pdf: "policy" | "terms") => async () => {
-        const { reward } = this.props;
-        const url = pdf === "policy" ? Config.REWARDS_POLICY_URL : reward.terms_and_conditions_url;
-
-        const supported = await Linking.canOpenURL(url);
-
-        if (supported) {
-            await Linking.openURL(url);
-        }
-    };
-
-    private handleRewardPurchase = (redeemReward: RedeemRewardFunctionType) => {
-        const { offline, reward, totalCoins, copy } = this.props;
-        const { yucoin, rewardValue } = this.state;
-        const heading = (reward.uiSettings && reward.uiSettings.alertHeading) || "Confirm purchase";
+    const handleSubmit = useCallback(() => {
+        const heading = (uiSettings && uiSettings.alertHeading) || "Confirm purchase";
         const subheading =
-            (reward.uiSettings && reward.uiSettings.alertSubheading) ||
-            `You'll purchase ${reward.name} £${rewardValue.toFixed(2)} voucher with ${yucoin} yucoin.`;
+            (uiSettings && uiSettings.alertSubheading) ||
+            `You'll purchase ${name} £${denomination.value.toFixed(2)} voucher with ${denomination.yuCoin} yucoin.`;
 
         Alert.alert(heading, subheading, [
             { text: "Cancel", style: "cancel" },
             {
                 onPress: async () => {
                     try {
-                        const result = await redeemReward({ variables: { id: reward.code, amount: rewardValue } });
+                        const result = await redeemReward({ variables: { id: code, amount: denomination.value } });
 
                         if ((result as { data: RedeemReward }).data.redeemReward) {
-                            this.props.getUserStart();
+                            props.getUserStart();
                             await Navigation.push(ROUTES.rewards, {
                                 component: {
                                     id: ROUTES.wegiftConfirmed,
                                     name: ROUTES.wegiftConfirmed,
                                     passProps: {
-                                        onTabChange: this.props.onTabChange,
+                                        onTabChange: props.onTabChange,
                                         purchase: (result as { data: RedeemReward }).data.redeemReward
                                     },
                                     options: { bottomTabs }
@@ -183,11 +107,11 @@ class WegiftRewardDetailsContainer extends Component<Props> {
                             subheading: copy.voucherNotAvailable.subheading
                         };
 
-                        if (offline) {
+                        if (props.offline) {
                             passProps.ctaLabel = copy.offline.ctaLabel;
                             passProps.heading = copy.offline.heading;
                             passProps.subheading = copy.offline.subheading;
-                        } else if (totalCoins < yucoin) {
+                        } else if (totalCoins < denomination.yuCoin) {
                             passProps.ctaLabel = copy.notEnoughCoins.ctaLabel;
                             passProps.heading = copy.notEnoughCoins.heading;
                             passProps.subheading = copy.notEnoughCoins.subheading;
@@ -205,8 +129,60 @@ class WegiftRewardDetailsContainer extends Component<Props> {
                 text: "OK"
             }
         ]);
-    };
-}
+    }, [denomination]);
+
+    return (
+        <BlurProvider
+            type={BlurProvider.Types.DARK}
+            render={({ toggleOverlay }) => (
+                <WegiftRewardDetailsScreen
+                    availableDenomitations={available_denominations}
+                    uiSettings={uiSettings}
+                    code={code}
+                    cost={denomination.yuCoin}
+                    rewardValue={denomination.value}
+                    rewardCurrency={currency_code}
+                    description={description}
+                    instructions={steps}
+                    onPressCtaPrimary={handleSubmit}
+                    onPressPicker={() => {
+                        if (features.showWegiftPicker) {
+                            toggleOverlay();
+                        }
+                    }}
+                    showWegiftPicker={showWegiftPicker}
+                    labelCtaPrimary={labelCtaPrimary}
+                    onPressTerms={handleTermsPress}
+                    onPressPolicy={handlePolicyPress}
+                    coins={totalCoins}
+                    isLoading={loading}
+                    onPressTopBar={onRewardsTabPress}
+                    onLeftTabPress={onRewardsTabPress}
+                    onRightTabPress={onPurchasesTabPress}
+                />
+            )}
+            renderOverlay={({ toggleOverlay }) => {
+                if (!showWegiftPicker) {
+                    return null;
+                }
+                return (
+                    <ListPicker
+                        onPressCancel={toggleOverlay}
+                        instruction="Select the amount"
+                        items={available_denominations.map((item) => ({
+                            id: String(item.value),
+                            label: `£${item.value.toFixed(2)} - ${item.yuCoin} yucoin`,
+                            onPress: () => {
+                                setDenomination(item);
+                                toggleOverlay();
+                            }
+                        }))}
+                    />
+                );
+            }}
+        />
+    );
+};
 
 const mapStateToProps = (state: IReduxState) => ({
     offline: getOfflineState(state),

@@ -1,11 +1,9 @@
-export {
-    default as AddUserFeedbackMutation,
-    addUserFeedbackGql,
-    AddUserFeedbackResultType,
-    AddUserFeedbackMutationFunction
-} from "./addUserFeedback.gql";
-export {
-    default as GetActivityHistoryQuery,
-    getActivityHistoryGql,
-    GetActivityHistoryResultType
-} from "./getActivityHistory.gql";
+export * from "./addUserFeedback.gql";
+export * from "./getActivityHistory.gql";
+export * from "./getCurrentUser.gql";
+export * from "./getMagicLink.gql";
+export * from "./getSession.gql";
+export * from "./loginUser.gql";
+export * from "./refreshSession.gql";
+export * from "./replyToLeaderboardInvite.gql";
+export * from "./sendMagicLink.gql";

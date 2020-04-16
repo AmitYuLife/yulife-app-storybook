@@ -1,57 +1,31 @@
-import { AddUserFeedbackMutation, AddUserFeedbackMutationFunction } from "@graphql/user";
+import { GQL_MUTATION_ADD_USER_FEEDBACK, AddUserFeedbackMutationTuple } from "@graphql/user";
 import Logger from "@services/logging/logger";
 import * as React from "react";
-import { PureComponent } from "react";
 import { FeedbackScreen } from "../../screens";
+import { useMutation } from "@apollo/react-hooks";
+import { Navigation } from "react-native-navigation";
 
-interface IProps {
-    closeModal: () => void;
+interface IOwnProps {
+    componentId?: string;
 }
 
-interface IState {
-    rating: number;
-}
+type Props = IOwnProps;
 
-type Props = IProps;
+const FeedbackModal: React.FC<Props> = ({ componentId }) => {
+    const [rating, setRating] = React.useState(0);
+    const [addFeedback, { loading }]: AddUserFeedbackMutationTuple = useMutation(GQL_MUTATION_ADD_USER_FEEDBACK);
 
-export default class FeedbackModal extends PureComponent<Props, IState> {
-    public state: IState = {
-        rating: 0
-    };
-
-    public render() {
-        return (
-            <AddUserFeedbackMutation>
-                {(addUserFeedback, { loading }) => {
-                    const { rating } = this.state;
-
-                    return (
-                        <FeedbackScreen
-                            isSubmitting={loading}
-                            onCancel={this.onCancel}
-                            onRatingSelect={this.onRatingSelect}
-                            onSubmit={() => this.onSubmit(addUserFeedback)}
-                            rating={rating}
-                        />
-                    );
-                }}
-            </AddUserFeedbackMutation>
-        );
-    }
-
-    private onRatingSelect = (rating: number) => {
-        this.setState({ rating });
-    };
-
-    private onCancel = () => {
+    const handleClose = () => {
         Logger.logEvent("app_rating", { rated: false });
-        this.props.closeModal();
+        Navigation.dismissModal(componentId);
     };
 
-    private onSubmit = async (addUserFeedback: AddUserFeedbackMutationFunction) => {
-        const { rating } = this.state;
+    const handleRatingSelect = (newRating: number) => {
+        setRating(newRating);
+    };
 
-        await addUserFeedback({ variables: { rating } });
+    const handleSubmit = async () => {
+        await addFeedback({ variables: { rating } });
 
         const logging = {
             rated: true,
@@ -64,6 +38,18 @@ export default class FeedbackModal extends PureComponent<Props, IState> {
             Logger.logIntercomEvent("low_app_rating");
         }
 
-        this.props.closeModal();
+        Navigation.dismissModal(componentId);
     };
-}
+
+    return (
+        <FeedbackScreen
+            isSubmitting={loading}
+            onCancel={handleClose}
+            onRatingSelect={handleRatingSelect}
+            onSubmit={handleSubmit}
+            rating={rating}
+        />
+    );
+};
+
+export default FeedbackModal;

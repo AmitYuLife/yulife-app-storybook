@@ -1,6 +1,6 @@
 import { IntroContainer } from "@containers/index";
 import { MODALS } from "@navigation/constants";
-import { IMainTabsProps, labels, onLeftMenuPress } from "@navigation/root";
+import { IMainTabsProps, labels } from "@navigation/root";
 import { getShowIntro } from "@redux/onboarding/onboarding.selectors";
 import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import { getCurrentWorld } from "@services/utils";
@@ -110,7 +110,8 @@ class DailyStepsContainer extends React.Component<Props> {
                         popUpCopy,
                         popupVisibility,
                         showIntro,
-                        surgeIntro
+                        surgeIntro,
+                        onLeftMenuPress
                     } = this.props;
                     const shouldDisplaySurge = features.showSurge;
                     const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;

@@ -8,7 +8,7 @@ import { addDeviceToken } from "../device.actions";
 
 function* registerDeviceOnYuServer(deviceToken: string) {
     try {
-        yield call(addDeviceTokenWithClient, {
+        yield call<any>(addDeviceTokenWithClient, {
             deviceToken,
             os: Platform.OS,
             deviceId: DeviceInfo.getDeviceId(),

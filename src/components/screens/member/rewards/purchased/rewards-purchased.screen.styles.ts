@@ -21,6 +21,6 @@ export default StyleSheet.create({
         flexDirection: "column"
     } as ViewStyle,
     footer: {
-        height: Style.SCALE_UP_AND_DOWN(28)
+        height: Style.SCALE_UP_AND_DOWN(72)
     } as ViewStyle
 });

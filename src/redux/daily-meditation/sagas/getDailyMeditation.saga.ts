@@ -1,9 +1,8 @@
 import upsertStepsChallenge from "@graphql/challenges/upsertPassiveChallenge.gql";
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
-import { delay } from "redux-saga";
-import { call, put, race, select, spawn, take } from "redux-saga/effects";
-import { PassiveChallengeType } from "../../../graphql/_core/schema";
+import { call, put, race, select, spawn, take, delay } from "redux-saga/effects";
+import { PassiveChallengeType } from "../../../graphql/_core/schema/globalTypes";
 import { queryMindfulSessions } from "../../../services/fitkit/fitkit.helpers";
 import Logger from "../../../services/logging/logger";
 import { UPDATE_APP_STATE } from "../../app/app.actions";
@@ -55,7 +54,7 @@ export default function* getDailyMeditation() {
                                 isUpdated = true;
                             } catch (e) {
                                 yield spawn(() => Logger.logMixpanelError(e, "getDailyMeditation"));
-                                yield call(delay, 15000);
+                                yield delay(15000);
                             }
                         }
                     } else {
@@ -65,7 +64,7 @@ export default function* getDailyMeditation() {
             }
         } catch (e) {
             yield spawn(() => Logger.logMixpanelError(e, "getDailyMeditation"));
-            yield call(delay, 15000);
+            yield delay(15000);
         }
     }
 }

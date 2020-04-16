@@ -1,10 +1,7 @@
-import { createActiveChallengeGql } from "@graphql/challenges/createActiveChallenge.gql";
+import { GQL_MUTATION_CREATE_ACTIVE_CHALLENGE, CreateActiveChallengeMutationTuple } from "@graphql/challenges";
 import { getCurrentWorld } from "@services/utils";
 import { ApolloClient } from "apollo-client";
-import * as React from "react";
-import { PureComponent } from "react";
-import { ApolloConsumer } from "react-apollo";
-import { Linking } from "react-native";
+import React, { FC, useState, useMemo, useCallback } from "react";
 import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
@@ -18,6 +15,8 @@ import { ChallengeDetailsModal } from "../../../../modals";
 import { ILabel } from "../../../../molecules/nav-bar/nav-bar";
 import { ChallengesListScreen } from "../../../../screens";
 import { formatMilestones, getSlotDuration, reduceMilestones } from "./challenges-list.helpers";
+import { useMutation } from "@apollo/react-hooks";
+import { handleLinkPress } from "@services/app-link";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -31,140 +30,117 @@ interface IProps {
 
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
-interface IState {
-    error: string;
-    isLoading: boolean;
-    slot: {
-        challengeType: string;
-        duration: string;
-        id: string;
-        reward: string;
-        milestones: [];
-        unit: string;
-    };
-}
+const openMeditationURL = handleLinkPress(Config.MEDITATION_SETUP_URL);
 
-class ChallengesListContainerWithClient extends PureComponent<Props, IState> {
-    public state: IState = {
-        error: null,
-        isLoading: false,
-        slot: {
-            challengeType: "brisk walk",
-            duration: "",
-            id: "",
-            milestones: [],
-            reward: "",
-            unit: ""
+const ChallengesListContainer: FC<Props> = ({
+    currentLevel,
+    labels,
+    level,
+    totalCoins,
+    componentId,
+    challengeStartSuccessAction: dispatchChallengeStartSuccess
+}) => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setErrorState] = useState(null as string);
+    const [slot, setSlot] = useState({
+        challengeType: "brisk walk",
+        duration: "",
+        id: "",
+        milestones: [],
+        reward: "",
+        unit: ""
+    });
+
+    const [createActiveChallenge]: CreateActiveChallengeMutationTuple = useMutation(
+        GQL_MUTATION_CREATE_ACTIVE_CHALLENGE,
+        {
+            variables: { levelSlotId: slot.id }
         }
-    };
+    );
 
-    public render() {
-        const {
-            error,
-            isLoading,
-            slot: { challengeType, duration, milestones, unit }
-        } = this.state;
-        const { currentLevel, labels, level, totalCoins } = this.props;
-        const currentWorld = getCurrentWorld(level.level);
+    const currentWorld = useMemo(() => getCurrentWorld(level.level), [level.level]);
 
-        return (
-            <BlurProvider
-                render={({ showOverlay }: IToggleBlur) => (
-                    <ChallengesListScreen
-                        challenges={level.slots.map((slot) => {
-                            const formattedSlot = {
-                                challengeType: slot.subtype,
-                                duration: getSlotDuration(slot),
-                                id: slot.id,
-                                milestones: formatMilestones(slot.milestones, slot.subtype),
-                                reward: `0-${reduceMilestones(slot.milestones)}`,
-                                unit: slot.unit
-                            };
-                            const isLocked = currentLevel < slot.availableAtLevel;
+    const setError = useCallback(() => {
+        setErrorState("Sorry, there was a problem starting your challenge. \n Please try again!");
+        setIsLoading(false);
+    }, []);
 
-                            return {
-                                ...formattedSlot,
-                                currentWorld,
-                                isLocked,
-                                minimumLevel: slot.availableAtLevel || 0,
-                                onPress: isLocked ? () => ({}) : this.handleSlotPress(formattedSlot, showOverlay)
-                            };
-                        })}
-                        currentLevel={level.level}
-                        labels={labels}
-                        name={`level ${level.level}`}
-                        onPressLeftIcon={this.onNavPress}
-                        totalCoins={totalCoins}
-                    />
-                )}
-                renderOverlay={({ hideOverlay }: IToggleBlur) => (
-                    <ChallengeDetailsModal
-                        challengeType={challengeType}
-                        currentWorld={currentWorld}
-                        duration={duration}
-                        error={error}
-                        isLoading={isLoading}
-                        milestones={milestones}
-                        onPressCta={this.handleSubmitChallenge}
-                        onPressClose={hideOverlay}
-                        onPressSetUp={challengeType === "meditation" ? this.openMeditationURL : null}
-                        unit={unit}
-                    />
-                )}
-            />
-        );
-    }
+    const handleSlotPress = useCallback(
+        (newSlot: typeof slot, showOverlay: () => void) => () => {
+            setSlot(newSlot);
+            showOverlay();
+        },
+        []
+    );
 
-    private openMeditationURL = async () => {
-        const url = Config.MEDITATION_SETUP_URL;
-        const supported = await Linking.canOpenURL(url);
+    const handleNavPress = useCallback(() => Navigation.popToRoot(componentId), []);
 
-        if (supported) {
-            await Linking.openURL(url);
-        }
-    };
+    const handleSubmitChallenge = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const { data } = await createActiveChallenge();
 
-    private handleSubmitChallenge = () => {
-        this.setState({ isLoading: true }, async () => {
-            const { client } = this.props;
-            const { id: levelSlotId } = this.state.slot;
-
-            try {
-                const { data } = (await client.mutate({
-                    mutation: createActiveChallengeGql,
-                    variables: { levelSlotId }
-                })) as any;
-
-                if (data && data.createActiveChallenge) {
-                    this.props.challengeStartSuccessAction({
-                        ...data,
-                        levelSlotId
-                    });
-                    await this.onNavPress();
-                } else {
-                    this.setError();
-                }
-            } catch (e) {
-                this.setError();
+            if (data && data.createActiveChallenge) {
+                dispatchChallengeStartSuccess({
+                    ...data,
+                    levelSlotId: slot.id
+                });
+                handleNavPress();
+            } else {
+                setError();
             }
-        });
-    };
+        } catch (e) {
+            setError();
+        }
+    }, []);
 
-    private setError = () => {
-        this.setState({
-            error: "Sorry, there was a problem starting your challenge. \n Please try again!",
-            isLoading: false
-        });
-    };
+    return (
+        <BlurProvider
+            render={({ showOverlay }: IToggleBlur) => (
+                <ChallengesListScreen
+                    challenges={level.slots.map((levelSlot) => {
+                        const formattedSlot = {
+                            challengeType: levelSlot.subtype,
+                            duration: getSlotDuration(levelSlot),
+                            id: levelSlot.id,
+                            milestones: formatMilestones(levelSlot.milestones, levelSlot.subtype),
+                            reward: `0-${reduceMilestones(levelSlot.milestones)}`,
+                            unit: levelSlot.unit
+                        };
+                        const isLocked = currentLevel < levelSlot.availableAtLevel;
 
-    private handleSlotPress = (slot: any, showOverlay: () => void) => () => {
-        this.setState({ slot }, showOverlay);
-    };
-
-    private onNavPress = async () => {
-        await Navigation.popToRoot(this.props.componentId);
-    };
-}
+                        return {
+                            ...formattedSlot,
+                            currentWorld,
+                            isLocked,
+                            minimumLevel: levelSlot.availableAtLevel || 0,
+                            onPress: isLocked ? () => ({}) : handleSlotPress(formattedSlot, showOverlay)
+                        };
+                    })}
+                    currentLevel={level.level}
+                    labels={labels}
+                    name={`level ${level.level}`}
+                    onPressLeftIcon={handleNavPress}
+                    totalCoins={totalCoins}
+                />
+            )}
+            renderOverlay={({ hideOverlay }: IToggleBlur) => (
+                <ChallengeDetailsModal
+                    challengeType={slot.challengeType}
+                    currentWorld={currentWorld}
+                    duration={slot.duration}
+                    error={error}
+                    isLoading={isLoading}
+                    milestones={slot.milestones}
+                    onPressCta={handleSubmitChallenge}
+                    onPressClose={hideOverlay}
+                    onPressSetUp={slot.challengeType === "meditation" ? openMeditationURL : null}
+                    unit={slot.unit}
+                />
+            )}
+        />
+    );
+};
 
 const mapStateToProps = (state: IReduxState) => ({
     currentLevel: getCurrentLevel(state),
@@ -175,13 +151,4 @@ const mapDispatchToProps = {
     challengeStartSuccessAction
 };
 
-function ChallengesListContainer(props: any) {
-    return (
-        <ApolloConsumer>{(client) => <ChallengesListContainerWithClient {...props} client={client} />}</ApolloConsumer>
-    );
-}
-
-export default connect<ConnectedState, ConnectedDispatch>(
-    mapStateToProps,
-    mapDispatchToProps
-)(ChallengesListContainer);
+export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(ChallengesListContainer);

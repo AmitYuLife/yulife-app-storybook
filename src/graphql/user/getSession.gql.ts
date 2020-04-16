@@ -1,9 +1,9 @@
 import gql from "graphql-tag";
 import client from "../_core/client";
-import { getSession } from "../_core/schema";
+import { GetSession } from "../_core/schema";
 
-export const getSessionGql = gql`
-    query getSession {
+export const GQL_QUERY_GET_SESSION = gql`
+    query GetSession {
         getSession {
             id
             expires
@@ -12,7 +12,7 @@ export const getSessionGql = gql`
 `;
 
 export default () =>
-    client().query<getSession>({
-        query: getSessionGql,
+    client().query<GetSession>({
+        query: GQL_QUERY_GET_SESSION,
         fetchPolicy: "network-only"
     });

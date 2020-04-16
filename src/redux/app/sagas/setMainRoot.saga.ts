@@ -1,7 +1,7 @@
 import handleDeepLink from "@navigation/handleDeepLink";
 import { setAuthenticatedRoot, setOfflineRoot, setUnauthenticatedRoot } from "@navigation/root";
 import { getToken } from "@services/storage";
-import { ConnectionInfo, NetInfo } from "react-native";
+import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
 import { call, put } from "redux-saga/effects";
 import { setAuthenticated, setUnauthenticated } from "../app.actions";
 
@@ -14,7 +14,7 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
     const token = yield call(getToken);
 
     if (token) {
-        const connectionInfo: ConnectionInfo = yield call(() => NetInfo.getConnectionInfo());
+        const connectionInfo: NetInfoState = yield call(() => NetInfo.fetch());
 
         if (connectionInfo.type === "none") {
             yield call(setOfflineRoot);

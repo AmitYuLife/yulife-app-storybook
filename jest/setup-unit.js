@@ -1,8 +1,7 @@
-import { configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
 import moment from "moment";
+import mockRNCNetInfo from '@react-native-community/netinfo/jest/netinfo-mock.js';
 
-configure({ adapter: new Adapter() });
+jest.mock('@react-native-community/netinfo', () => mockRNCNetInfo);
 
 // TODO why isn't this mock working?
 jest.mock("react-native-config", () => ({
@@ -10,7 +9,7 @@ jest.mock("react-native-config", () => ({
     SIGNUP_URL: "http://signup-url.com"
 }));
 
-jest.mock("react-native-intercom", () => {}, { virtual: true });
+jest.mock("react-native-intercom", () => { }, { virtual: true });
 jest.mock(
     "@wootric/react-native-wootric",
     () => ({
@@ -50,7 +49,7 @@ jest.mock("react-native-fitkit", () => ({
 }));
 
 jest.mock("react-native-device-info", () => ({
-    getUniqueID: jest.fn(),
+    getUniqueId: jest.fn(),
     getVersion: jest.fn(),
     getTimezone: jest.fn(),
     getDeviceName: jest.fn()

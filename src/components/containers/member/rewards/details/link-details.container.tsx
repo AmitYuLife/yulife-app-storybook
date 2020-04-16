@@ -1,6 +1,6 @@
-import { RedeemRewardFunctionType, RedeemRewardMutation } from "@graphql/rewards";
-import * as React from "react";
-import { Component } from "react";
+import { useMutation } from "@apollo/react-hooks";
+import { RedeemRewardMutationTuple, GQL_MUTATION_REDEEM_REWARD } from "@graphql/rewards";
+import React, { FC, useCallback, useMemo, useEffect } from "react";
 import { Alert, Linking } from "react-native";
 import Config from "react-native-config";
 import { connect } from "react-redux";
@@ -10,6 +10,7 @@ import { getOfflineState } from "../../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import Logger from "../../../../../services/logging/logger";
 import { WegiftRewardDetailsScreen } from "../../../../screens";
+import { handleLinkPress } from "@services/app-link";
 
 interface IProps {
     componentId: string;
@@ -21,87 +22,47 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 type Props = IProps & ConnectedState;
 
-class LinkRewardDetailsContainer extends Component<Props> {
-    public componentDidMount() {
-        const { reward } = this.props;
-        // TODO: Move to sagas
-        Logger.logEvent("reward_viewed", {
-            reward_availability: reward.availability,
-            reward_available_denominations: reward.available_denominations,
-            reward_best_sticker: reward.reward_sticker,
-            reward_code: reward.code,
-            reward_name: reward.name
-        });
-    }
-
-    public render() {
-        const {
-            totalCoins,
-            reward: {
-                code,
-                currency_code,
-                description,
-                redeem_steps: { steps },
-                uiSettings,
-                link_type,
-                available_denominations
-            }
-        } = this.props;
-        const labelCtaPrimary = uiSettings.ctaLabel || "claim reward";
-
-        return (
-            <RedeemRewardMutation>
-                {(redeemReward, { loading }) => (
-                    <WegiftRewardDetailsScreen
-                        availableDenomitations={available_denominations}
-                        onPressPicker={() => ({})}
-                        uiSettings={uiSettings}
-                        code={code}
-                        linkType={link_type}
-                        cost={0}
-                        rewardValue={0}
-                        rewardCurrency={currency_code}
-                        description={description}
-                        instructions={steps}
-                        isLoading={loading}
-                        onPressCtaPrimary={this.handleSubmit(redeemReward)}
-                        labelCtaPrimary={labelCtaPrimary}
-                        onPressTerms={this.openPDFs("terms")}
-                        onPressPolicy={this.openPDFs("policy")}
-                        coins={totalCoins}
-                        onPressTopBar={this.handleRewardsPress}
-                        onLeftTabPress={this.handleRewardsPress}
-                        onRightTabPress={this.handlePurchasesPress}
-                    />
-                )}
-            </RedeemRewardMutation>
-        );
-    }
-
-    private handleRewardsPress = () => {
-        this.props.onTabChange("rewards", this.props.componentId);
-    };
-
-    private handlePurchasesPress = () => {
-        this.props.onTabChange("purchases", this.props.componentId);
-    };
-
-    private openPDFs = (pdf: "policy" | "terms") => async () => {
-        const { reward } = this.props;
-        const url = pdf === "policy" ? Config.REWARDS_POLICY_URL : reward.terms_and_conditions_url;
-
-        const supported = await Linking.canOpenURL(url);
-
-        if (supported) {
-            await Linking.openURL(url);
+const LinkRewardDetailsContainer: FC<Props> = (props) => {
+    const {
+        totalCoins,
+        reward: {
+            name,
+            availability,
+            code,
+            currency_code,
+            description,
+            redeem_steps: { steps },
+            uiSettings,
+            link_type,
+            available_denominations,
+            terms_and_conditions_url,
+            reward_sticker
         }
-    };
+    } = props;
 
-    private handleSubmit = (redeemReward: RedeemRewardFunctionType) => () => {
-        const {
-            reward: { name, availability, code, uiSettings = {} as any, available_denominations }
-        } = this.props;
+    useEffect(() => {
+        Logger.logEvent("reward_viewed", {
+            reward_availability: availability,
+            reward_available_denominations: available_denominations,
+            reward_best_sticker: reward_sticker,
+            reward_code: code,
+            reward_name: name
+        });
+    }, []);
 
+    const labelCtaPrimary = useMemo(() => uiSettings.ctaLabel || "claim reward", []);
+
+    const onPressPicker = useCallback(() => ({}), []);
+
+    const onRewardsTabPress = useCallback(() => props.onTabChange("rewards", props.componentId), []);
+    const onPurchasesTabPress = useCallback(() => props.onTabChange("purchases", props.componentId), []);
+
+    const handlePolicyPress = useMemo(() => handleLinkPress(Config.REWARDS_POLICY_URL), []);
+    const handleTermsPress = useMemo(() => handleLinkPress(terms_and_conditions_url), []);
+
+    const [redeemReward, { loading }]: RedeemRewardMutationTuple = useMutation(GQL_MUTATION_REDEEM_REWARD);
+
+    const handleSubmit = useCallback(() => {
         const [{ value }] = available_denominations;
 
         Alert.alert(
@@ -139,8 +100,32 @@ class LinkRewardDetailsContainer extends Component<Props> {
                 }
             ]
         );
-    };
-}
+    }, []);
+
+    return (
+        <WegiftRewardDetailsScreen
+            availableDenomitations={available_denominations}
+            onPressPicker={onPressPicker}
+            uiSettings={uiSettings}
+            code={code}
+            linkType={link_type}
+            cost={0}
+            rewardValue={0}
+            rewardCurrency={currency_code}
+            description={description}
+            instructions={steps}
+            isLoading={loading}
+            onPressCtaPrimary={handleSubmit}
+            labelCtaPrimary={labelCtaPrimary}
+            onPressTerms={handleTermsPress}
+            onPressPolicy={handlePolicyPress}
+            coins={totalCoins}
+            onPressTopBar={onRewardsTabPress}
+            onLeftTabPress={onRewardsTabPress}
+            onRightTabPress={onPurchasesTabPress}
+        />
+    );
+};
 
 const mapStateToProps = (state: IReduxState) => ({
     offline: getOfflineState(state),

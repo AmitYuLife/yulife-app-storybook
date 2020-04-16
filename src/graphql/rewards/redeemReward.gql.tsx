@@ -1,9 +1,8 @@
 import gql from "graphql-tag";
-import * as React from "react";
-import { Mutation, MutationFn, MutationProps, MutationResult } from "react-apollo";
-import { RedeemReward, RedeemRewardVariables } from "../_core/schema";
+import { MutationTuple } from "@apollo/react-hooks";
+import { RedeemReward, RedeemRewardVariables } from "@graphql/_core/schema";
 
-export const redeemRewardGql = gql`
+export const GQL_MUTATION_REDEEM_REWARD = gql`
     mutation RedeemReward($id: String!, $amount: Float!, $metadata: ProductMetadata) {
         redeemReward(product: { id: $id, amount: $amount }, metadata: $metadata) {
             id
@@ -46,10 +45,4 @@ export const redeemRewardGql = gql`
     }
 `;
 
-export type RedeemRewardFunctionType = MutationFn<RedeemReward, RedeemRewardVariables>;
-
-export type RedeemRewardResultType = MutationResult<RedeemReward>;
-
-export default function RedeemRewardMutation(props: Partial<MutationProps<RedeemReward, RedeemRewardVariables>>) {
-    return <Mutation {...props as any} mutation={redeemRewardGql} />;
-}
+export type RedeemRewardMutationTuple = MutationTuple<RedeemReward, RedeemRewardVariables>;

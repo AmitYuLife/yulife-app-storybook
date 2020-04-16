@@ -1,19 +1,15 @@
 import addData from "@graphql/challenges/addData.gql";
+import { AddHistoricalSteps_addHistoricalSteps } from "@graphql/_core/schema";
 import addHistoricalSteps from "@graphql/challenges/addHistoricalSteps.gql";
+import { ChallengePayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
+import { MODALS } from "@navigation/constants";
 import { getLastUpdatedBeforeToday as getStepsLastUpdateBeforeToday } from "@redux/daily-steps/daily-steps.selectors";
 import moment from "moment";
 import { Navigation } from "react-native-navigation";
-import { delay } from "redux-saga";
-import { call, put, select, spawn } from "redux-saga/effects";
-import {
-    AddHistoricalSteps_addHistoricalSteps,
-    ChallengePayload,
-    PassiveChallengeType
-} from "../../../graphql/_core/schema";
-import { MODALS } from "../../../navigation/constants";
-import { queryMindfulSessions, querySteps } from "../../../services/fitkit/fitkit.helpers";
-import Logger from "../../../services/logging/logger";
-import { pathOr } from "../../../services/utils";
+import { call, put, select, spawn, delay } from "redux-saga/effects";
+import { queryMindfulSessions, querySteps } from "@services/fitkit/fitkit.helpers";
+import Logger from "@services/logging/logger";
+import { pathOr } from "@services/utils";
 import { getRouteState } from "../../app/app.selectors";
 import { meditationSinceLastUpdateSuccess } from "../../daily-meditation/daily-meditation.actions";
 import { getLastUpdatedBeforeToday as getMeditationLastUpdatedBeforeToday } from "../../daily-meditation/daily-meditation.selectors"; // tslint:disable-line
@@ -71,7 +67,7 @@ export default function* sendPassiveActivity() {
                         yield put(meditationSinceLastUpdateSuccess());
                     } catch (e) {
                         yield spawn(() => Logger.logMixpanelError(e, "sendMeditationSinceLastUpdated"));
-                        yield call(delay, 15000);
+                        yield delay(15000);
                     }
                 }
             }
@@ -107,7 +103,7 @@ export default function* sendPassiveActivity() {
                             yield put(stepsSinceLastUpdateSuccess());
                         } catch (e) {
                             yield spawn(() => Logger.logMixpanelError(e, "sendStepsSinceLastUpdated"));
-                            yield call(delay, 15000);
+                            yield delay(15000);
                         }
                     }
                 }

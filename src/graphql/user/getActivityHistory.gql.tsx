@@ -1,9 +1,6 @@
 import gql from "graphql-tag";
-import * as React from "react";
-import { Query, QueryProps, QueryResult } from "react-apollo";
-import { GetActivityHistory, GetActivityHistoryVariables } from "../_core/schema";
 
-export const getActivityHistoryGql = gql`
+export const GQL_QUERY_GET_ACTIVITY_HISTORY = gql`
     query GetActivityHistory($monthsAgo: Int, $isFullActivity: Boolean) {
         getActivityHistoryWithLevels(monthsAgo: $monthsAgo, isFullActivity: $isFullActivity) {
             id
@@ -30,11 +27,3 @@ export const getActivityHistoryGql = gql`
         }
     }
 `;
-
-export type GetActivityHistoryResultType = QueryResult<GetActivityHistory, GetActivityHistoryVariables>;
-
-export default function GetActivityHistoryQuery(
-    props: Partial<QueryProps<GetActivityHistory, GetActivityHistoryVariables>>
-) {
-    return <Query {...(props as any)} query={getActivityHistoryGql} />;
-}

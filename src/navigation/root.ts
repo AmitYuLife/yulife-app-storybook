@@ -17,19 +17,20 @@ export interface IMainTabsProps {
     onLeftMenuPress: () => void;
 }
 
-export function onLeftMenuPress() {
-    Navigation.mergeOptions(ROUTES.menu, {
-        sideMenu: {
-            left: {
-                enabled: true,
+export function generateOnLeftMenuPress(route: string) {
+    return () =>
+        Navigation.mergeOptions(route, {
+            sideMenu: {
+                left: {
+                    enabled: true,
+                    visible: true
+                }
+            },
+            statusBar: {
+                drawBehind: false,
                 visible: true
             }
-        },
-        statusBar: {
-            drawBehind: false,
-            visible: true
-        }
-    });
+        });
 }
 
 export const labels = [
@@ -185,15 +186,13 @@ export async function setAuthenticatedRoot(dispatchAuthenticatedEvent?: () => vo
         }
     });
 
-    if (Platform.OS === "ios") {
-        await Navigation.mergeOptions(ROUTES.menu, {
-            sideMenu: {
-                left: {
-                    width: Style.DEVICE_WIDTH
-                } as any
-            }
-        });
-    }
+    await Navigation.mergeOptions(ROUTES.menu, {
+        sideMenu: {
+            left: {
+                width: Style.DEVICE_WIDTH
+            } as any
+        }
+    });
 
     if (dispatchAuthenticatedEvent) {
         dispatchAuthenticatedEvent();

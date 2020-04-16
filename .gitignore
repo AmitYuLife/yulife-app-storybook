@@ -1,6 +1,7 @@
 # OSX
 #
 .DS_Store
+**/.DS_Store
 
 # Xcode
 #
@@ -47,6 +48,7 @@ yarn-error.log
 buck-out/
 \.buckd/
 *.keystore
+!debug.keystore
 
 # fastlane
 #
@@ -62,6 +64,9 @@ buck-out/
 # Bundle artifact
 *.jsbundle
 
+# CocoaPods
+/ios/Pods/
+
 # test coverage
 coverage/
 android/*.jks
@@ -70,3 +75,6 @@ android/app/release
 # e2e
 e2e/__report
 e2e/__report/*
+
+# react-native-config codegen
+ios/tmp.xcconfig

@@ -40,8 +40,8 @@ const ChallengesHistorySlot: SFC<IProps> = ({ availableAtLevel, duration, locked
                         <Text style={styles.durationText}>{duration}</Text>
                     </View>
                     <View style={styles.resultsWrapper}>
-                        {challengesDetails.map((element) => (
-                            <View style={styles.challengeResultWrapper}>
+                        {challengesDetails.map((element, index) => (
+                            <View style={styles.challengeResultWrapper} key={`challenge-details-${index}`}>
                                 <Text style={styles.rewardText}>{`${element.yuCoinAwarded} yucoin`}</Text>
                                 <View
                                     style={StyleSheet.flatten([

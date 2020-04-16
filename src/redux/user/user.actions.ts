@@ -1,10 +1,10 @@
 import {
     GetCurrentUser,
     LoginUser,
-    MobileConsentInput,
     UpdateLeaderboardConsentVariables,
     UpdateMemberConsent
-} from "../../graphql/_core/schema";
+} from "@graphql/_core/schema";
+import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
 import { Connection } from "./user.selectors";
 

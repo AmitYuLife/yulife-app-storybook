@@ -1,14 +1,12 @@
-import ReplyToLeaderboardInviteMutation, {
-    ReplyToLeaderboardInviteMutationFunction
-} from "@graphql/user/replyToLeaderboardInvite.gql";
+import { GQL_MUTATION_REPLY_TO_LEADERBOARD_INVITE, ReplyToLeaderboardInviteMutationTuple } from "@graphql/user";
 import { GenericScreen } from "@screens/index";
 import * as React from "react";
-import { PureComponent } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../redux/_core/reducers";
 import { getCopy } from "../../../redux/copy/copy.selectors";
 import { getUserStart } from "../../../redux/user/user.actions";
+import { useMutation } from "@apollo/react-hooks";
 
 interface IProps {
     componentId: string;
@@ -21,85 +19,58 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 
 type Props = ConnectedState & ConnectedDispatch & IProps;
 
-interface IState {
-    isPrimaryLoading: boolean;
-    isSecondaryLoading: boolean;
-}
+const LeaderboardInviteModal: React.FC<Props> = ({
+    componentId,
+    inviteFrom,
+    copy,
+    leaderboardId,
+    getUserStart: dispatchGetUserStart
+}) => {
+    const [loadingLabel, setLoadingLabel] = React.useState<"primary" | "secondary">(null);
 
-class LeaderboardInviteModal extends PureComponent<Props, IState> {
-    public state: IState = {
-        isPrimaryLoading: false,
-        isSecondaryLoading: false
+    const [replyToInvite]: ReplyToLeaderboardInviteMutationTuple = useMutation(
+        GQL_MUTATION_REPLY_TO_LEADERBOARD_INVITE
+    );
+
+    const dismissModal = () => Navigation.dismissModal(componentId);
+
+    const [firstName, lastName] = inviteFrom.split(" ");
+    const heading =
+        firstName.slice(-1) === "s"
+            ? `${copy.invite.headingBeforeName} ${firstName}' ${copy.invite.headingAfterName}`
+            : `${copy.invite.headingBeforeName} ${firstName}'s ${copy.invite.headingAfterName}`;
+    const subheading = `${copy.invite.subheadingBeforeName} ${firstName} ${lastName}'s ${copy.invite.subheadingAfterName}`;
+    const ctaLabel = copy.invite.ctaLabel;
+    const ctaLabelSecondary = copy.invite.ctaLabelSecondary;
+
+    const handlePress = (hasAccepted: boolean) => async () => {
+        setLoadingLabel(hasAccepted ? "primary" : "secondary");
+
+        try {
+            await replyToInvite({
+                variables: { leaderboardId, hasAccepted }
+            });
+            dismissModal();
+            dispatchGetUserStart();
+        } catch (e) {
+            setLoadingLabel(null);
+        }
     };
 
-    public render() {
-        const { isPrimaryLoading, isSecondaryLoading } = this.state;
+    return (
+        <GenericScreen
+            heading={heading}
+            subheading={subheading}
+            ctaLabel={ctaLabel}
+            ctaLabelSecondary={ctaLabelSecondary}
+            isPrimaryLoading={loadingLabel === "primary"}
+            isSecondaryLoading={loadingLabel === "secondary"}
+            onPress={handlePress(true)}
+            onPressSecondary={handlePress(false)}
+        />
+    );
+};
 
-        return (
-            <ReplyToLeaderboardInviteMutation>
-                {(replyToLeaderboardInvite) => {
-                    return (
-                        <GenericScreen
-                            {...this.getProps()}
-                            isPrimaryLoading={isPrimaryLoading}
-                            isSecondaryLoading={isSecondaryLoading}
-                            onPress={this.handlePress(replyToLeaderboardInvite)}
-                            onPressSecondary={this.handleSecondaryPress(replyToLeaderboardInvite)}
-                        />
-                    );
-                }}
-            </ReplyToLeaderboardInviteMutation>
-        );
-    }
-
-    private dismissModal = async () => Navigation.dismissModal(this.props.componentId);
-
-    private handlePress = (replyToLeaderboardInvite: ReplyToLeaderboardInviteMutationFunction) => () => {
-        this.setState({ isPrimaryLoading: true }, async () => {
-            try {
-                await replyToLeaderboardInvite({
-                    variables: { leaderboardId: this.props.leaderboardId, hasAccepted: true }
-                });
-                await this.dismissModal();
-                this.props.getUserStart();
-            } catch (e) {
-                this.setState({ isPrimaryLoading: false });
-            }
-        });
-    };
-
-    private handleSecondaryPress = (replyToLeaderboardInvite: ReplyToLeaderboardInviteMutationFunction) => () => {
-        this.setState({ isSecondaryLoading: true }, async () => {
-            try {
-                await replyToLeaderboardInvite({
-                    variables: { leaderboardId: this.props.leaderboardId, hasAccepted: false }
-                });
-                await this.dismissModal();
-                this.props.getUserStart();
-            } catch (e) {
-                this.setState({ isSecondaryLoading: false });
-            }
-        });
-    };
-
-    private getProps = () => {
-        const { inviteFrom, copy } = this.props;
-        const [firstName, lastName] = inviteFrom.split(" ");
-        const heading =
-            firstName.slice(-1) === "s"
-                ? `${copy.invite.headingBeforeName} ${firstName}' ${copy.invite.headingAfterName}`
-                : `${copy.invite.headingBeforeName} ${firstName}'s ${copy.invite.headingAfterName}`;
-        const subheading =
-        `${copy.invite.subheadingBeforeName} ${firstName} ${lastName}'s ${copy.invite.subheadingAfterName}`;
-
-        return {
-            heading,
-            subheading,
-            ctaLabel: copy.invite.ctaLabel,
-            ctaLabelSecondary: copy.invite.ctaLabelSecondary
-        };
-    };
-}
 const mapStateToProps = (state: IReduxState) => ({
     copy: getCopy(state, "leaderboards")
 });
@@ -108,7 +79,4 @@ const mapDispatchToProps = {
     getUserStart
 };
 
-export default connect<ConnectedState, ConnectedDispatch>(
-    mapStateToProps,
-    mapDispatchToProps
-)(LeaderboardInviteModal);
+export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(LeaderboardInviteModal);

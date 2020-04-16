@@ -8,8 +8,8 @@ interface IProps {
     copy: GetMobileCopy_getMobileCopy_screens_challenges_completed;
 }
 
-function ChallengeCompleteModal({ onCtaPress, isLoading, copy }: IProps) {
+const ChallengeCompleteModal: React.FC<IProps> = ({ onCtaPress, isLoading, copy }) => {
     return <ChallengeCompleteScreen onCtaPress={onCtaPress} isLoading={isLoading} copy={copy} />;
-}
+};
 
 export default ChallengeCompleteModal;

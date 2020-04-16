@@ -1,11 +1,11 @@
-import { CreateLeaderboardVariables } from "@graphql/_core/schema";
-import CreateLeaderboardMutation, { CreateLeaderboardMutationFunction } from "@graphql/member/createLeaderboard.gql";
+import { GQL_MUTATION_CREATE_LEADERBOARD, CreateLeaderboardMutationTuple } from "@graphql/member";
 import { getUserStart } from "@redux/user/user.actions";
 import * as React from "react";
 import { Keyboard } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { CreateLeaderboardScreen } from "../../screens";
+import { useMutation } from "@apollo/react-hooks";
 
 type ConnectedDispatch = typeof mapDispatchToProps;
 
@@ -15,47 +15,40 @@ interface IProps {
 
 type Props = IProps & ConnectedDispatch;
 
-class CreateLeaderboardModal extends React.PureComponent<Props> {
-    public render() {
-        return (
-            <CreateLeaderboardMutation>
-                {(createLeaderboard, { loading }) => {
-                    return (
-                        <CreateLeaderboardScreen
-                            isLoading={loading}
-                            onCreateLeaderboard={this.onCreateLeaderboard(createLeaderboard)}
-                            onPressClose={this.pressClose}
-                        />
-                    );
-                }}
-            </CreateLeaderboardMutation>
-        );
-    }
+const CreateLeaderboardModal: React.FC<Props> = ({ componentId, getUserStart: dispatchGetUserStart }) => {
+    const [createLeaderboard, { loading }]: CreateLeaderboardMutationTuple = useMutation(
+        GQL_MUTATION_CREATE_LEADERBOARD
+    );
 
-    private onCreateLeaderboard = (createLeaderboard: CreateLeaderboardMutationFunction) => async (
-        variables: CreateLeaderboardVariables
+    const handleClose = () => {
+        Keyboard.dismiss();
+        Navigation.dismissModal(componentId);
+    };
+
+    const handleCreateLeaderboard = async (
+        variables: Parameters<CreateLeaderboardMutationTuple["0"]>["0"]["variables"]
     ) => {
         try {
             Keyboard.dismiss();
             await createLeaderboard({ variables });
-            this.props.getUserStart();
-            await Navigation.dismissModal(this.props.componentId);
+            dispatchGetUserStart();
+            await Navigation.dismissModal(componentId);
         } catch (e) {
             // console.log(e);
         }
     };
 
-    private pressClose = () => {
-        Keyboard.dismiss();
-        Navigation.dismissModal(this.props.componentId);
-    };
-}
+    return (
+        <CreateLeaderboardScreen
+            isLoading={loading}
+            onCreateLeaderboard={handleCreateLeaderboard}
+            onPressClose={handleClose}
+        />
+    );
+};
 
 const mapDispatchToProps = {
     getUserStart
 };
 
-export default connect<{}, ConnectedDispatch>(
-    null,
-    mapDispatchToProps
-)(CreateLeaderboardModal);
+export default connect<{}, ConnectedDispatch>(null, mapDispatchToProps)(CreateLeaderboardModal);
