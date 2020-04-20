@@ -1,140 +1,112 @@
 import * as React from "react";
-import { Animated, findNodeHandle, StyleSheet, View } from "react-native";
+import { useState, useRef, useCallback } from "react";
+import { Animated, StyleSheet, View, findNodeHandle } from "react-native";
 import Blur from "./blur";
 import styles from "./blur-provider.styles";
 
-enum TYPES {
-    DEFAULT = "default",
-    DARK = "dark"
-}
-
-export type Types = "default" | "dark";
+type BackgroundColours = "default" | "dark";
 
 export interface IToggleBlur {
-    hideOverlay: () => void;
-    showOverlay: () => void;
-    toggleOverlay: () => void;
+  hideOverlay: () => void;
+  showOverlay: () => void;
+  toggleOverlay: () => void;
 }
 
 interface IProps {
-    renderOverlay?: (prop: IToggleBlur) => React.ReactNode;
-    render?: (prop: IToggleBlur) => React.ReactNode;
-    displayOverlay?: boolean;
-    type?: Types;
+  renderOverlay: (prop: IToggleBlur) => React.ReactNode;
+  render: (prop: IToggleBlur) => React.ReactNode;
+  backgroundColor?: BackgroundColours;
 }
 
-interface IState {
-    viewRef: number;
-    isVisible: boolean;
-}
+function BlurProvider({ render, renderOverlay, backgroundColor = "default" }: IProps) {
+  const [isVisible, setVisibilityState] = useState(false);
 
-class BlurProvider extends React.PureComponent<IProps, IState> {
-    public static Types = TYPES;
-    public state: IState = {
-        isVisible: false,
-        viewRef: null
-    };
+  const [animatedWrapperOpacity] = useState(new Animated.Value(0));
+  const [animatedWrapperPosition] = useState(new Animated.Value(-1000));
 
-    public viewRef: View = null;
-    private animatedWrapperOpacity = new Animated.Value(0);
-    private animatedWrapperPosition = new Animated.Value(-1000);
+  const [viewNodeHandle, setViewNodeHandle] = useState<number | null>(null);
+  const viewRef = useRef<View | null>(null);
 
-    public setRef = (ref: View) => {
-        this.viewRef = ref;
-    };
+  const showOverlay = useCallback(() => {
+    setVisibilityState(true);
+    animate(true);
+  }, []);
 
-    // tslint:disable:variable-name
-    public componentDidUpdate(_prevProps: IProps, prevState: IState) {
-        if (this.props.displayOverlay && this.state.viewRef !== prevState.viewRef) {
-            this.showOverlay();
-        }
-    }
+  const hideOverlay = useCallback(() => {
+    setVisibilityState(false);
+    animate(false);
+  }, []);
 
-    public showOverlay = () => {
-        this.setState(() => ({ isVisible: true }), this.animate(this.state.isVisible));
-    };
+  const toggleOverlay = useCallback(() => {
+    const newState = !isVisible;
 
-    public hideOverlay = () => {
-        this.setState(() => ({ isVisible: false }), this.animate(this.state.isVisible));
-    };
+    setVisibilityState(newState);
+    animate(newState);
+  }, [isVisible]);
 
-    public toggleOverlay = () => {
-        this.setState((state) => ({ isVisible: !state.isVisible }), this.animate(this.state.isVisible));
-    };
+  const updateViewNodeHandle = useCallback(() => {
+    const newViewNodeHandler = findNodeHandle(viewRef.current);
+    setViewNodeHandle(newViewNodeHandler);
+  }, []);
 
-    public render() {
-        const { viewRef } = this.state;
-        const { render, renderOverlay, type = "default" } = this.props;
+  const animate = useCallback(
+    (shouldDisplay: boolean) => {
+      const animateOpacity = Animated.timing(animatedWrapperOpacity, {
+        duration: 300,
+        toValue: shouldDisplay ? 1 : 0,
+        useNativeDriver: true
+      });
 
-        return (
-            <View style={styles.wrapper}>
-                <View ref={this.setRef} onLayout={this.handleLayout} style={styles.flex}>
-                    {!render
-                        ? null
-                        : render({
-                              hideOverlay: this.hideOverlay,
-                              showOverlay: this.showOverlay,
-                              toggleOverlay: this.toggleOverlay
-                          })}
-                </View>
-                {viewRef ? (
-                    <Blur
-                        blurRef={viewRef}
-                        wrapperOpacity={this.animatedWrapperOpacity}
-                        wrapperPosition={this.animatedWrapperPosition}
-                    />
-                ) : null}
-                <Animated.View
-                    style={{
-                        backgroundColor: type === "dark" ? "rgba(0,0,0,0.5)" : "transparent",
-                        ...StyleSheet.absoluteFillObject,
-                        opacity: this.animatedWrapperOpacity,
-                        transform: [
-                            {
-                                translateX: this.animatedWrapperPosition
-                            }
-                        ]
-                    }}
-                >
-                    {!renderOverlay
-                        ? null
-                        : renderOverlay({
-                              hideOverlay: this.hideOverlay,
-                              showOverlay: this.showOverlay,
-                              toggleOverlay: this.toggleOverlay
-                          })}
-                </Animated.View>
-            </View>
-        );
-    }
+      const animatePosition = Animated.timing(animatedWrapperPosition, {
+        duration: 0,
+        toValue: shouldDisplay ? 0 : -1000,
+        useNativeDriver: true
+      });
 
-    private animate = (isVisible: boolean) => {
-        const animateOpacity = Animated.timing(this.animatedWrapperOpacity, {
-            duration: 300,
-            toValue: isVisible ? 0 : 1,
-            useNativeDriver: true
-        });
-        const animatePosition = Animated.timing(this.animatedWrapperPosition, {
-            duration: 0,
-            toValue: isVisible ? -1000 : 0,
-            useNativeDriver: true
-        });
-        let sequence: Animated.CompositeAnimation;
+      if (shouldDisplay) {
+        return Animated.sequence([animatePosition, animateOpacity]).start();
+      }
 
-        if (isVisible) {
-            sequence = Animated.sequence([animateOpacity, animatePosition]);
-        } else {
-            sequence = Animated.sequence([animatePosition, animateOpacity]);
-        }
+      return Animated.sequence([animateOpacity, animatePosition]).start();
+    },
+    [animatedWrapperOpacity, animatedWrapperPosition]
+  );
 
-        return () => sequence.start();
-    };
+  const renderProps = {
+    hideOverlay,
+    showOverlay,
+    toggleOverlay
+  };
 
-    private handleLayout = () => {
-        this.setState({
-            viewRef: findNodeHandle(this.viewRef)
-        });
-    };
+  return (
+    <View style={styles.wrapper}>
+      <View ref={viewRef} onLayout={updateViewNodeHandle} style={styles.flex}>
+        {render(renderProps)}
+      </View>
+      {!viewNodeHandle ? null : (
+        <Blur
+          blurRef={viewNodeHandle}
+          wrapperOpacity={animatedWrapperOpacity}
+          wrapperPosition={animatedWrapperPosition}
+        />
+      )}
+      <Animated.View
+        testID="blur-provider.overlay-container"
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          backgroundColor: backgroundColor === "dark" ? "rgba(0,0,0,0.5)" : "transparent",
+          opacity: animatedWrapperOpacity,
+          transform: [
+            {
+              translateX: animatedWrapperPosition
+            }
+          ]
+        }}
+      >
+        {renderOverlay(renderProps)}
+      </Animated.View>
+    </View>
+  );
 }
 
 export default BlurProvider;
