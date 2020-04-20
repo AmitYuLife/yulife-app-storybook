@@ -41,7 +41,7 @@ export function getSlotDuration({ subtype, milestones, timeLimit }: GetCurrentWo
                     return `${meditationTime}-${secondsToMinutes(lastMilestone)} minutes`;
                 }
 
-                return `${meditationTime} minute${meditationTime > 1 ? "s" : ""}`;
+                return `${meditationTime} min${meditationTime > 1 ? "s" : ""}`;
             }
 
             return "";
@@ -50,6 +50,6 @@ export function getSlotDuration({ subtype, milestones, timeLimit }: GetCurrentWo
 
         default:
             const defaultTime = secondsToMinutes(timeLimit);
-            return `${defaultTime} minute${defaultTime > 1 ? "s" : ""}`;
+            return `${defaultTime} min${defaultTime > 1 ? "s" : ""}`;
     }
 }

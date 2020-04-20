@@ -10,7 +10,7 @@ interface IOwnProps {
     currentWorld?: number;
     duration: string;
     isLoading?: boolean;
-    error?: string;
+    error?: string | null;
     onPressClose: () => void;
     onPressCta: () => void;
     onPressSetUp?: () => void;
@@ -22,7 +22,7 @@ function ChallengeDetailsScreen({
     challengeType,
     currentWorld = 0,
     duration,
-    error = null,
+    error,
     isLoading = false,
     milestones,
     onPressClose,
