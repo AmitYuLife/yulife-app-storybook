@@ -38,10 +38,10 @@ export function getSlotDuration({ subtype, milestones, timeLimit }: GetCurrentWo
                 if (milestones.length > 1) {
                     const lastMilestone = milestones[milestones.length - 1].target.meditation;
 
-                    return `${meditationTime}-${secondsToMinutes(lastMilestone)} minutes`;
+                    return `${meditationTime}-${secondsToMinutes(lastMilestone)} mins`;
                 }
 
-                return `${meditationTime} minute${meditationTime > 1 ? "s" : ""}`;
+                return `${meditationTime} min${meditationTime > 1 ? "s" : ""}`;
             }
 
             return "";
@@ -50,6 +50,6 @@ export function getSlotDuration({ subtype, milestones, timeLimit }: GetCurrentWo
 
         default:
             const defaultTime = secondsToMinutes(timeLimit);
-            return `${defaultTime} minute${defaultTime > 1 ? "s" : ""}`;
+            return `${defaultTime} min${defaultTime > 1 ? "s" : ""}`;
     }
 }

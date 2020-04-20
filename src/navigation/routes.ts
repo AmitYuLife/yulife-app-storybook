@@ -113,10 +113,6 @@ export default [
 
     // modals
     {
-        name: MODALS.challengeDetails,
-        component: require("../components/modals/challenge-details/challenge-details.modal").default
-    },
-    {
         name: MODALS.challengeUnavailable,
         component: require("../components/modals/challenge-unavailable/challenge-unavailable.modal").default
     },
