@@ -3,8 +3,7 @@ import { SFC } from "react";
 import { Image, View } from "react-native";
 import { Text } from "../../../../atoms";
 import styles from "./challenge-details.styles";
-
-type Unit = "steps" | "minutes";
+import { Unit } from "../models";
 
 export interface IMilestone {
   target: number;
@@ -13,10 +12,10 @@ export interface IMilestone {
 
 export interface IMilestoneProps {
   milestones: IMilestone[];
-  unit: "steps" | "minutes";
+  unit: Unit;
 }
 
-const formatTarget = (target: number, unit: string) => {
+const formatTarget = (target: number, unit: Unit) => {
   switch (unit) {
     case "minutes":
       return Math.floor(target / 60);

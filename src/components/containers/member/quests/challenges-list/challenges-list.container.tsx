@@ -16,6 +16,7 @@ import { ChallengesListScreen, ChallengeDetailsScreen } from "../../../../screen
 import { formatMilestones, getSlotDuration, reduceMilestones } from "./challenges-list.helpers";
 import { useMutation } from "@apollo/react-hooks";
 import { handleLinkPress } from "@services/app-link";
+import { Unit } from "@screens/member/challenges/models";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -47,7 +48,7 @@ const ChallengesListContainer: FC<Props> = ({
     id: "",
     milestones: [],
     reward: "",
-    unit: ""
+    unit: "steps" as Unit
   });
 
   const [createActiveChallenge]: CreateActiveChallengeMutationTuple = useMutation(
@@ -104,7 +105,7 @@ const ChallengesListContainer: FC<Props> = ({
               id: levelSlot.id,
               milestones: formatMilestones(levelSlot.milestones, levelSlot.subtype),
               reward: `0-${reduceMilestones(levelSlot.milestones)}`,
-              unit: levelSlot.unit
+              unit: levelSlot.unit as Unit
             };
             const isLocked = currentLevel < levelSlot.availableAtLevel;
 
