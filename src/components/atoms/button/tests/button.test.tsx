@@ -37,7 +37,7 @@ describe("Button", () => {
     expect(onPress).toHaveBeenCalledTimes(1);
   });
 
-  it("should display the correct styles on pressIn", () => {    
+  it("should display the correct styles on pressIn", () => {
     const { getByTestId } = renderComponent({ type: "Primary" });
 
     expect(getByTestId("button-text-view")).not.toHaveStyle({ backgroundColor: "#cb016b" });
