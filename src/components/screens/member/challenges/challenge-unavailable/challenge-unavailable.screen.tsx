@@ -21,7 +21,7 @@ const ChallengeUnavailableScreen = ({ onPressCta, timeRemaining }: IProps) => {
             <Text bold={true} style={styles.heading}>
                 The next level will be available in {timeRemaining}
             </Text>
-            <Button type={Button.Types.PRIMARY_MEDIUM} label="got it" onPress={onPressCta} />
+            <Button type="PrimaryMedium" label="got it" onPress={onPressCta} />
         </View>
     );
 };

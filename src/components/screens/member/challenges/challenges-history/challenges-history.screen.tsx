@@ -52,7 +52,7 @@ export default function ChallengesHistory({ level, onPressActivityHistory, total
                 <AutoHeightImage {...getBottomGradient(getCurrentWorld(level.level))} />
             </View>
             <View style={styles.buttonsWrapper}>
-                <Button type={Button.Types.PRIMARY} onPress={onPressActivityHistory} label="full history" />
+                <Button type="Primary" onPress={onPressActivityHistory} label="full history" />
             </View>
             <NavBar activeIndex={1} hasNotification={false} />
         </SafeAreaView>

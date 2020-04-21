@@ -78,7 +78,7 @@ const RewardItemContent: SFC<IProps> = ({
         )}
         <Button
             wrapperStyle={styles.primaryWrapper}
-            type={Button.Types.PRIMARY}
+            type="Primary"
             isLoading={isLoadingPrimary}
             disabled={isLoadingPrimary}
             onPress={onPressCtaPrimary}
@@ -87,7 +87,7 @@ const RewardItemContent: SFC<IProps> = ({
         {!onPressCtaSecondary ? null : (
             <Button
                 wrapperStyle={styles.secondaryWrapper}
-                type={Button.Types.SECONDARY}
+                type="Secondary"
                 onPress={onPressCtaSecondary}
                 label={labelCtaSecondary}
                 isLoading={isLoadingSecondary}
@@ -110,7 +110,7 @@ const RewardItemContent: SFC<IProps> = ({
         ) : (
             <Button
                 wrapperStyle={styles.tertiaryWrapper}
-                type={Button.Types.LINK}
+                type="Link"
                 onPress={onPressCtaTertiary}
                 label={labelCtaTertiary}
             />

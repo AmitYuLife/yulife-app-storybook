@@ -20,7 +20,7 @@ const FitKitAvailable: SFC<IProps> = ({ connecting, onConnectPress, copy }) => (
             disabled={connecting}
             label={connecting ? copy.primaryButtonConnecting : copy.primaryButtonLabel}
             onPress={onConnectPress}
-            type={Button.Types.PRIMARY}
+            type="Primary"
         />
     </>
 );

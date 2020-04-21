@@ -46,7 +46,7 @@ export default function ChallengeSuccessScreen({ level, onPressCta, rating, rewa
             <Button
                 label={copy.ctaLabel}
                 onPress={onPressCta}
-                type={Button.Types.PRIMARY_SMALL}
+                type="PrimarySmall"
                 wrapperStyle={styles.cta}
             />
         </CentredScreen>

@@ -103,7 +103,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
                             disabled={isLoggingIn || disabled}
                             label={copy.ctaLabel}
                             onPress={onLogInPress}
-                            type={Button.Types.PRIMARY}
+                            type="Primary"
                         />
                         <Pad height={15} />
                         <LinkGroup data={this.getLinks()} />

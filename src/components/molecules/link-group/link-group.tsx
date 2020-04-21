@@ -19,7 +19,7 @@ const LinkGroup: SFC<IProps> = ({ data }) => (
             <View key={index} style={styles.buttonWrapper}>
                 <Button
                     wrapperStyle={styles.button}
-                    type={Button.Types.LINK}
+                    type="Link"
                     label={label}
                     onPress={onPress}
                 />

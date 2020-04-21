@@ -31,14 +31,14 @@ export default function LeaderboardConsent({
                 disabled={isLoading}
                 label={copy.ctaLabel}
                 onPress={onAllowLeaderboard}
-                type={Button.Types.PRIMARY}
+                type="Primary"
             />
-            <Button label={copy.ctaLabelSecondary} onPress={onRefuseConsent} type={Button.Types.SECONDARY} />
+            <Button label={copy.ctaLabelSecondary} onPress={onRefuseConsent} type="Secondary" />
             <Button
                 wrapperStyle={styles.privacyButton}
                 label={"privacy notice"}
                 onPress={onPrivacyPolicyPress}
-                type={Button.Types.LINK}
+                type="Link"
             />
         </ScrollView>
     );

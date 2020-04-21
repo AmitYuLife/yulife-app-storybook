@@ -61,7 +61,7 @@ export default function DailyStepsOnline({
                 <Text style={flattenStyle}>today</Text>
             </Text>
             <Pad height={22} />
-            {!onCtaPress ? null : <Button onPress={onCtaPress} type={Button.Types.PRIMARY_MEDIUM} label="earn more" />}
+            {!onCtaPress ? null : <Button onPress={onCtaPress} type="PrimaryMedium" label="earn more" />}
         </View>
     );
 }

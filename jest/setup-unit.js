@@ -1,6 +1,7 @@
+import React from 'react';
 import moment from "moment";
-import mockRNCNetInfo from "@react-native-community/netinfo/jest/netinfo-mock.js";
-import "@testing-library/jest-native/extend-expect";
+import mockRNCNetInfo from '@react-native-community/netinfo/jest/netinfo-mock.js';
+import "@testing-library/react-native/jest-preset";
 
 jest.mock("@react-native-community/netinfo", () => mockRNCNetInfo);
 
@@ -10,7 +11,20 @@ jest.mock("react-native-config", () => ({
   SIGNUP_URL: "http://signup-url.com"
 }));
 
-jest.mock("react-native-intercom", () => {}, { virtual: true });
+jest.mock(
+  'react-native/Libraries/Components/Touchable/TouchableOpacity.js',
+  () => {
+    const { TouchableHighlight } = require('react-native')
+    const MockTouchable = props => {
+      return <TouchableHighlight {...props} />
+    }
+    MockTouchable.displayName = 'TouchableOpacity'
+
+    return MockTouchable
+  }
+)
+
+jest.mock("react-native-intercom", () => { }, { virtual: true });
 jest.mock(
   "@wootric/react-native-wootric",
   () => ({

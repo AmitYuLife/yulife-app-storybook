@@ -18,9 +18,9 @@ const EmailSentScreen: SFC<IProps> = ({ onCtaPress, onSecondaryCtaPress, email, 
         <Pad height={9} />
         <Blurb label={copy.subheading.replace("${email}", email)} />
         <Pad height={45} />
-        <Button label={copy.ctaLabel} type={Button.Types.PRIMARY} onPress={onCtaPress} />
+        <Button label={copy.ctaLabel} type="Primary" onPress={onCtaPress} />
         <Pad height={10} />
-        <Button label={copy.ctaLabelSecondary} type={Button.Types.LINK} onPress={onSecondaryCtaPress} />
+        <Button label={copy.ctaLabelSecondary} type="Link" onPress={onSecondaryCtaPress} />
     </CentredScreen>
 );
 
