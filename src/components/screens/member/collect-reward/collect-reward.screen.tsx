@@ -19,7 +19,7 @@ const CollectReward: SFC<IProps> = ({ onPress, date, yucoin }) => (
                 {!date ? null : <Heading size={Heading.Sizes.SMALL} bold={true} label={date} />}
             </View>
             <Pad height={14} />
-            <Button type={Button.Types.PRIMARY_SMALL} label={"collect"} onPress={onPress} />
+            <Button type="PrimarySmall" label={"collect"} onPress={onPress} />
             <Pad height={Platform.OS === "ios" ? 100 : 50} />
         </CentredScreen>
     </View>

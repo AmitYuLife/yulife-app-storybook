@@ -35,14 +35,14 @@ export default function GenericScreen({
                 wrapperStyle={styles.buttonWrapper}
                 label={ctaLabel}
                 onPress={onPress || (() => null)}
-                type={Button.Types.PRIMARY}
+                type="Primary"
             />
             {!(onPressSecondary && ctaLabelSecondary) ? null : (
                 <Button
                     wrapperStyle={styles.buttonWrapperSecondary}
                     label={ctaLabelSecondary}
                     onPress={onPressSecondary || (() => null)}
-                    type={Button.Types.SECONDARY}
+                    type="Secondary"
                     isLoading={isSecondaryLoading}
                 />
             )}

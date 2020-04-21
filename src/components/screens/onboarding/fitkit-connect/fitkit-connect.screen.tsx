@@ -38,10 +38,10 @@ const FitKitConnectScreen: SFC<IProps> = ({
                     disabled={connecting}
                     label={copy.secondaryButtonLabel}
                     onPress={onSkipPress}
-                    type={Button.Types.SECONDARY}
+                    type="Secondary"
                 />
                 <Pad height={10} />
-                <Button label={copy.linkButtonLabel} onPress={onPrivacyPolicyPress} type={Button.Types.LINK} />
+                <Button label={copy.linkButtonLabel} onPress={onPrivacyPolicyPress} type="Link" />
             </CentredScreen>
         ) : (
             <Loading />

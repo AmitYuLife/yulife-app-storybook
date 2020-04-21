@@ -261,7 +261,7 @@ export default function TodayYucoinScreen({
                 </View>
                 {!showCta || loading ? null : (
                     <View style={styles.ctaWrapper}>
-                        <Button onPress={onPressCta} label={ctaLabel} type={Button.Types.PRIMARY} />
+                        <Button onPress={onPressCta} label={ctaLabel} type="Primary" />
                     </View>
                 )}
             </ScrollView>

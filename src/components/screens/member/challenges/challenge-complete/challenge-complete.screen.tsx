@@ -33,7 +33,7 @@ const ChallengeCompleteScreen: React.SFC<IProps> = ({ isLoading, onCtaPress, cop
             wrapperStyle={styles.ctaWrapper}
             onPress={onCtaPress}
             label={copy.ctaLabel}
-            type={Button.Types.PRIMARY_SMALL}
+            type="PrimarySmall"
         />
     </View>
 );

@@ -23,7 +23,7 @@ export default function InfoScreen({ type, heading, subheading, ctaLabel, onPres
                 wrapperStyle={styles.buttonWrapper}
                 label={ctaLabel}
                 onPress={onPress}
-                type={Button.Types.PRIMARY}
+                type="Primary"
             />
         </View>
     );

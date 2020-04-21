@@ -117,8 +117,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && yarn test",
-      "pre-push": "run-s test:all"
+      "pre-commit": "pretty-quick --staged && yarn test && tslint tsc"
     }
   }
 }

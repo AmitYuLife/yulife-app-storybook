@@ -17,7 +17,7 @@ const PurchasesEmpty: SFC<IProps> = ({ onCtaPress, copy }) => (
             <Text style={styles.text}>{copy.heading}</Text>
             <Text style={styles.text}>{copy.subheading}</Text>
         </View>
-        <Button type={Button.Types.SECONDARY_MEDIUM} label={copy.ctaLabel} onPress={onCtaPress} />
+        <Button type="SecondaryMedium" label={copy.ctaLabel} onPress={onCtaPress} />
     </View>
 );
 
