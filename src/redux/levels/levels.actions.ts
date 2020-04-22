@@ -1,8 +1,8 @@
 import {
-    CreateActiveChallenge,
-    CreateActiveChallengeVariables,
-    SubmitUnityVariables,
-    UpdateActiveChallenge
+  CreateActiveChallenge,
+  CreateActiveChallengeVariables,
+  SubmitUnityVariables,
+  UpdateActiveChallenge,
 } from "../../graphql/_core/schema";
 
 export const CHALLENGE_SUBMIT_UNITY = "CHALLENGE_SUBMIT_UNITY";
@@ -32,64 +32,64 @@ export const CHALLENGE_CANCEL_SUCCESS = "CHALLENGE_CANCEL_SUCCESS";
 export const CHALLENGE_CANCEL_FAIL = "CHALLENGE_CANCEL_FAIL";
 
 export const submitUnityAction = (payload: SubmitUnityVariables) => ({
-    payload,
-    type: CHALLENGE_SUBMIT_UNITY
+  payload,
+  type: CHALLENGE_SUBMIT_UNITY,
 });
 
 export const challengeStartAction = (payload: CreateActiveChallengeVariables) => ({
-    payload,
-    type: CHALLENGE_START
+  payload,
+  type: CHALLENGE_START,
 });
 
 export type ChallengeStartPayload = CreateActiveChallenge & { levelSlotId: string };
 export const challengeStartSuccessAction = (payload: ChallengeStartPayload) => ({
-    payload,
-    type: CHALLENGE_START_SUCCESS
+  payload,
+  type: CHALLENGE_START_SUCCESS,
 });
 
 export const pedometerStepsChallengeStarted = (payload: number) => ({
-    payload,
-    type: CHALLENGE_START_INITIAL_STEPS
+  payload,
+  type: CHALLENGE_START_INITIAL_STEPS,
 });
 
 export const challengeUpdateSuccessAction = (payload: UpdateActiveChallenge) => ({
-    payload,
-    type: CHALLENGE_UPDATE_SUCCESS
+  payload,
+  type: CHALLENGE_UPDATE_SUCCESS,
 });
 
 export const challengeTimeUpAction = () => ({
-    type: CHALLENGE_TIME_UP
+  type: CHALLENGE_TIME_UP,
 });
 
 export const challengeContinueAction = () => ({
-    type: CHALLENGE_CONTINUE
+  type: CHALLENGE_CONTINUE,
 });
 
 export const challengeEndAction = () => ({
-    type: CHALLENGE_END
+  type: CHALLENGE_END,
 });
 
 export const challengeEndFailAction = () => ({
-    type: CHALLENGE_END_FAIL
+  type: CHALLENGE_END_FAIL,
 });
 
 export const challengeEndSuccessAction = (payload: UpdateActiveChallenge) => ({
-    payload,
-    type: CHALLENGE_END_SUCCESS
+  payload,
+  type: CHALLENGE_END_SUCCESS,
 });
 
 export const challengeResetAction = () => ({
-    type: CHALLENGE_RESET
+  type: CHALLENGE_RESET,
 });
 
 export const challengeResetSuccessAction = () => ({
-    type: CHALLENGE_RESET_SUCCESS
+  type: CHALLENGE_RESET_SUCCESS,
 });
 
 export const challengeResetFailAction = () => ({
-    type: CHALLENGE_RESET_FAIL
+  type: CHALLENGE_RESET_FAIL,
 });
 
 export const challengeCancelAction = () => ({
-    type: CHALLENGE_CANCEL
+  type: CHALLENGE_CANCEL,
 });

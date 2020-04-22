@@ -1,3 +1,3 @@
 export default {
-    infoIcon: require("../../../../../../../assets/icons/info.png")
+  infoIcon: require("../../../../../../../assets/icons/info.png"),
 };

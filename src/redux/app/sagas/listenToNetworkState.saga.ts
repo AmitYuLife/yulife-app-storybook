@@ -5,20 +5,20 @@ import { appNetworkChannel } from "../app.channels";
 import checkConnectionSaga from "./checkConnection.saga";
 
 export default function* listenToNetworkStateSaga() {
-    const connectionInfo: NetInfoState = yield call(NetInfo.fetch);
+  const connectionInfo: NetInfoState = yield call(NetInfo.fetch);
 
-    yield put(updateOfflineState(!connectionInfo.isConnected));
+  yield put(updateOfflineState(!connectionInfo.isConnected));
 
-    const networkChannel = yield call(appNetworkChannel);
+  const networkChannel = yield call(appNetworkChannel);
 
-    let networkType = connectionInfo.type;
+  let networkType = connectionInfo.type;
 
-    while (true) {
-        const network: NetInfoState = yield take(networkChannel);
+  while (true) {
+    const network: NetInfoState = yield take(networkChannel);
 
-        if (network.type !== networkType) {
-            networkType = network.type;
-            yield call(checkConnectionSaga);
-        }
+    if (network.type !== networkType) {
+      networkType = network.type;
+      yield call(checkConnectionSaga);
     }
+  }
 }

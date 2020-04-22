@@ -5,15 +5,15 @@ import { Button, Text } from "../../../atoms";
 import styles from "./daily-steps.screen.styles";
 
 interface IProps {
-    onPress: () => void;
-    copy: GetMobileCopy_getMobileCopy_screens_dailyStepsFitKitAuthorise;
+  onPress: () => void;
+  copy: GetMobileCopy_getMobileCopy_screens_dailyStepsFitKitAuthorise;
 }
 
 const DailyStepsFitKitAuthorise: SFC<IProps> = ({ onPress, copy }) => (
-    <>
-        <Text style={styles.permissionText}>{copy.permission}</Text>
-        <Button label={copy.permissionCta} onPress={onPress} type="PrimaryMedium" />
-    </>
+  <>
+    <Text style={styles.permissionText}>{copy.permission}</Text>
+    <Button label={copy.permissionCta} onPress={onPress} type="PrimaryMedium" />
+  </>
 );
 
 export default DailyStepsFitKitAuthorise;

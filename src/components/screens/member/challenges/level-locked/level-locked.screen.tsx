@@ -6,26 +6,26 @@ import assets from "./assets";
 import styles from "./level-locked.styles";
 
 interface IProps {
-    level: number;
-    onPressCta: () => void;
+  level: number;
+  onPressCta: () => void;
 }
 
 class LevelLockedScreen extends PureComponent<IProps> {
-    public render() {
-        const { level, onPressCta } = this.props;
+  public render() {
+    const { level, onPressCta } = this.props;
 
-        return (
-            <View style={styles.wrapper}>
-                <View style={styles.imageWrapper}>
-                    <Image source={assets.levelUnavailable} />
-                </View>
-                <Text bold={true} style={styles.heading}>
-                    unlock at level {level}
-                </Text>
-                <Button type="PrimaryMedium" label="got it" onPress={onPressCta} />
-            </View>
-        );
-    }
+    return (
+      <View style={styles.wrapper}>
+        <View style={styles.imageWrapper}>
+          <Image source={assets.levelUnavailable} />
+        </View>
+        <Text bold={true} style={styles.heading}>
+          unlock at level {level}
+        </Text>
+        <Button type="PrimaryMedium" label="got it" onPress={onPressCta} />
+      </View>
+    );
+  }
 }
 
 export default LevelLockedScreen;

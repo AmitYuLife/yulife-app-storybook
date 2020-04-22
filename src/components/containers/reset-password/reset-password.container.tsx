@@ -4,7 +4,7 @@ import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import {
   GetMobileCopy_getMobileCopy_screens_emailSent as EmailSentCopy,
-  GetMobileCopy_getMobileCopy_screens_needHelpLoggingIn as ResetPasswordCopy
+  GetMobileCopy_getMobileCopy_screens_needHelpLoggingIn as ResetPasswordCopy,
 } from "../../../graphql/_core/schema";
 
 import { IReduxState } from "../../../redux/_core/reducers";
@@ -25,7 +25,7 @@ const ResetPasswordContainer: FC<Props> = ({ copy, copyEmailSent, componentId })
   const [{ wasEmailSent, email, emailError }, setState] = useState({
     email: "",
     emailError: "",
-    wasEmailSent: false
+    wasEmailSent: false,
   });
 
   const [sendMagicLink, { loading }]: SendMagicLinkMutationTuple = useMutation(GQL_MUTATION_SEND_MAGIC_LINK);
@@ -37,8 +37,8 @@ const ResetPasswordContainer: FC<Props> = ({ copy, copyEmailSent, componentId })
       try {
         const results = await sendMagicLink({
           variables: {
-            email
-          }
+            email,
+          },
         });
 
         if (results && results.data) {
@@ -85,7 +85,7 @@ const ResetPasswordContainer: FC<Props> = ({ copy, copyEmailSent, componentId })
 
 const mapStateToProps = (state: IReduxState) => ({
   copy: getCopy(state, "needHelpLoggingIn") as ResetPasswordCopy,
-  copyEmailSent: getCopy(state, "emailSent") as EmailSentCopy
+  copyEmailSent: getCopy(state, "emailSent") as EmailSentCopy,
 });
 
 export default connect<ConnectedState, {}>(mapStateToProps, null)(ResetPasswordContainer);

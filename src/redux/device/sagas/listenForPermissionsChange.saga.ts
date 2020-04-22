@@ -9,43 +9,43 @@ import { createPushPermissionsChannel } from "../device.channels";
 import { getPushNotifications, PushPermissions, PushPermissionsEnum } from "../device.selectors";
 
 export default function* listenForPermissionsChangeSaga() {
-    const channel = yield call(appStateChannel);
-    yield call(checkPermissions);
+  const channel = yield call(appStateChannel);
+  yield call(checkPermissions);
 
-    while (true) {
-        const state = yield take(channel);
+  while (true) {
+    const state = yield take(channel);
 
-        if (state === "active") {
-            yield call(checkPermissions);
-        }
+    if (state === "active") {
+      yield call(checkPermissions);
     }
+  }
 }
 
 export function* checkPermissions() {
-    const perms = yield select(getPushNotifications);
-    // android defaults to true
-    let status: PushPermissions = PushPermissionsEnum.enabled;
+  const perms = yield select(getPushNotifications);
+  // android defaults to true
+  let status: PushPermissions = PushPermissionsEnum.enabled;
 
-    if (Platform.OS === "ios") {
-        const channel = yield call(createPushPermissionsChannel);
-        const permissions: PushNotificationPermissions = yield take(channel);
-        status = permissions.alert
-            ? PushPermissionsEnum.enabled
-            : perms.requested
-            ? PushPermissionsEnum.denied
-            : PushPermissionsEnum.notyet;
-        channel.close();
-    }
+  if (Platform.OS === "ios") {
+    const channel = yield call(createPushPermissionsChannel);
+    const permissions: PushNotificationPermissions = yield take(channel);
+    status = permissions.alert
+      ? PushPermissionsEnum.enabled
+      : perms.requested
+      ? PushPermissionsEnum.denied
+      : PushPermissionsEnum.notyet;
+    channel.close();
+  }
 
-    yield put(setPushPermissions({ status }));
+  yield put(setPushPermissions({ status }));
 
-    const { token } = yield race({
-        timeout: delay(1000),
-        token: call(getToken)
-    });
+  const { token } = yield race({
+    timeout: delay(1000),
+    token: call(getToken),
+  });
 
-    // update mongo consent
-    if (token && perms.status !== status) {
-        yield put(updateUserConsent({ pushNotifications: status === PushPermissionsEnum.enabled }));
-    }
+  // update mongo consent
+  if (token && perms.status !== status) {
+    yield put(updateUserConsent({ pushNotifications: status === PushPermissionsEnum.enabled }));
+  }
 }

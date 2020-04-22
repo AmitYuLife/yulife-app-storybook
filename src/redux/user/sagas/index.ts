@@ -2,16 +2,16 @@ import { takeLatest } from "redux-saga/effects";
 import { AUTHENTICATED, SET_MAIN_ROOT, UPDATE_APP_STATE } from "../../app/app.actions";
 import { CHALLENGE_RESET_SUCCESS } from "../../levels/levels.actions";
 import {
-    FITKIT_CONSENT_AUTHORISED,
-    GET_USER_START,
-    GET_USER_SUCCESS,
-    LOGIN_USER_SUCCESS,
-    LOGOUT,
-    OPEN_MEMBER_ZONE,
-    SET_USER_NO_ACCESS,
-    UPDATE_CONNECTION_START,
-    UPDATE_LEADERBOARD_CONSENT_START,
-    UPDATE_USER_CONSENT
+  FITKIT_CONSENT_AUTHORISED,
+  GET_USER_START,
+  GET_USER_SUCCESS,
+  LOGIN_USER_SUCCESS,
+  LOGOUT,
+  OPEN_MEMBER_ZONE,
+  SET_USER_NO_ACCESS,
+  UPDATE_CONNECTION_START,
+  UPDATE_LEADERBOARD_CONSENT_START,
+  UPDATE_USER_CONSENT,
 } from "../user.actions";
 
 import fetchConnectionsSaga from "./fetchConnectionsSaga.sagas";
@@ -30,19 +30,19 @@ import updateLeaderboardConsentSaga from "./updateLeaderboardConsent.saga";
 import updateUserConsentSaga from "./updateUserConsent.saga";
 
 export default [
-    takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
-    takeLatest(GET_USER_START, getUserDataSaga),
-    takeLatest(GET_USER_SUCCESS, showLeaderboardInviteOnGetUserSaga),
-    takeLatest(SET_USER_NO_ACCESS, setUserNoAccessSaga),
-    takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
-    takeLatest(LOGIN_USER_SUCCESS, showLeaderboardInviteOnLoginSaga),
-    takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
-    takeLatest(CHALLENGE_RESET_SUCCESS, getUserDataSaga),
-    takeLatest(UPDATE_LEADERBOARD_CONSENT_START, updateLeaderboardConsentSaga),
-    takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
-    takeLatest(LOGOUT, logOutSaga),
-    takeLatest(OPEN_MEMBER_ZONE, openMemberZoneSaga),
-    takeLatest(UPDATE_CONNECTION_START, updateConnectionSaga),
-    takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga),
-    takeLatest(SET_MAIN_ROOT, showSurgeIntroSaga)
+  takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
+  takeLatest(GET_USER_START, getUserDataSaga),
+  takeLatest(GET_USER_SUCCESS, showLeaderboardInviteOnGetUserSaga),
+  takeLatest(SET_USER_NO_ACCESS, setUserNoAccessSaga),
+  takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
+  takeLatest(LOGIN_USER_SUCCESS, showLeaderboardInviteOnLoginSaga),
+  takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
+  takeLatest(CHALLENGE_RESET_SUCCESS, getUserDataSaga),
+  takeLatest(UPDATE_LEADERBOARD_CONSENT_START, updateLeaderboardConsentSaga),
+  takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
+  takeLatest(LOGOUT, logOutSaga),
+  takeLatest(OPEN_MEMBER_ZONE, openMemberZoneSaga),
+  takeLatest(UPDATE_CONNECTION_START, updateConnectionSaga),
+  takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga),
+  takeLatest(SET_MAIN_ROOT, showSurgeIntroSaga),
 ];

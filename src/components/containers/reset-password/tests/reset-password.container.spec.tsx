@@ -12,18 +12,18 @@ const mocks = [
     request: {
       query: GQL_MUTATION_SEND_MAGIC_LINK,
       variables: {
-        email: "test@yulife.com"
-      }
+        email: "test@yulife.com",
+      },
     },
     result: {
       loading: false,
       data: {
         sendMagicLink: {
-          message: "sent"
-        }
-      }
-    }
-  }
+          message: "sent",
+        },
+      },
+    },
+  },
 ];
 
 function renderComponent() {

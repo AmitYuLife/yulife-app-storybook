@@ -1,6 +1,6 @@
 import {
-    GetCurrentUser_getCurrentUser_passiveMeditation_exchange,
-    GetCurrentUser_getCurrentUser_passiveMeditation_levelSlot_milestones
+  GetCurrentUser_getCurrentUser_passiveMeditation_exchange,
+  GetCurrentUser_getCurrentUser_passiveMeditation_levelSlot_milestones,
 } from "@graphql/_core/schema";
 import { IReduxState } from "../_core/reducers";
 
@@ -12,4 +12,4 @@ export const getLastUpdated = (state: IReduxState) => state.dailyMeditation.last
 export const getLastUpdatedBeforeToday = (state: IReduxState) => state.dailyMeditation.lastUpdatedBeforeToday;
 export const getMeditationExchangeRate = (state: IReduxState) => state.dailyMeditation.exchangeRate;
 export const getMeditationAwardedMilestonesLength = (state: IReduxState) =>
-    state.dailyMeditation.meditationPassiveMilestones.filter((milestone) => milestone.coins > 0).length;
+  state.dailyMeditation.meditationPassiveMilestones.filter((milestone) => milestone.coins > 0).length;

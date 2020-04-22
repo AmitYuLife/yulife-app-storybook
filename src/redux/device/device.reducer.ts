@@ -4,61 +4,61 @@ import { ADD_DEVICE_TOKEN, REQUIRE_PUSH_ENABLED, SET_PUSH_PERMISSIONS } from "./
 import { IPushNotification } from "./device.selectors";
 
 export interface IDeviceStore {
-    deviceId: string;
-    deviceToken: string;
-    os: string;
-    pushNotifications: IPushNotification;
+  deviceId: string;
+  deviceToken: string;
+  os: string;
+  pushNotifications: IPushNotification;
 }
 
 export const initialState: IDeviceStore = {
-    deviceId: DeviceInfo.getUniqueId(),
-    deviceToken: "",
-    os: Platform.OS,
-    pushNotifications: {
-        requested: false,
-        status: "notyet"
-    }
+  deviceId: DeviceInfo.getUniqueId(),
+  deviceToken: "",
+  os: Platform.OS,
+  pushNotifications: {
+    requested: false,
+    status: "notyet",
+  },
 };
 
 const deviceReducer = (state: IDeviceStore = initialState, action: any): IDeviceStore => {
-    switch (action.type) {
-        case ADD_DEVICE_TOKEN:
-            return addDeviceToken(state, action.payload);
+  switch (action.type) {
+    case ADD_DEVICE_TOKEN:
+      return addDeviceToken(state, action.payload);
 
-        case REQUIRE_PUSH_ENABLED:
-            return requirePushEnabled(state);
+    case REQUIRE_PUSH_ENABLED:
+      return requirePushEnabled(state);
 
-        case SET_PUSH_PERMISSIONS:
-            return setPushPermissions(state, action.payload);
+    case SET_PUSH_PERMISSIONS:
+      return setPushPermissions(state, action.payload);
 
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 };
 
 export default deviceReducer;
 
 const addDeviceToken = (state: IDeviceStore, payload: Partial<IDeviceStore>) => ({
-    ...state,
-    ...payload,
-    pushNotifications: {
-        ...state.pushNotifications,
-        ...payload.pushNotifications
-    }
+  ...state,
+  ...payload,
+  pushNotifications: {
+    ...state.pushNotifications,
+    ...payload.pushNotifications,
+  },
 });
 
 const requirePushEnabled = (state: IDeviceStore) => ({
-    ...state,
-    pushNotifications: {
-        ...state.pushNotifications,
-        requested: true
-    }
+  ...state,
+  pushNotifications: {
+    ...state.pushNotifications,
+    requested: true,
+  },
 });
 
 const setPushPermissions = (state: IDeviceStore, pushPermissions: Partial<IPushNotification>) => ({
-    ...state,
-    pushNotifications: {
-        ...state.pushNotifications,
-        ...pushPermissions
-    }
+  ...state,
+  pushNotifications: {
+    ...state.pushNotifications,
+    ...pushPermissions,
+  },
 });

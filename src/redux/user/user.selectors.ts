@@ -1,6 +1,6 @@
 import {
-    GetCurrentUser_getCurrentUser_connections,
-    GetCurrentUser_getCurrentUser_leaderboards
+  GetCurrentUser_getCurrentUser_connections,
+  GetCurrentUser_getCurrentUser_leaderboards,
 } from "../../graphql/_core/schema";
 import { IReduxState } from "../_core/reducers";
 
@@ -17,17 +17,17 @@ export const getSurgeIntro = (state: IReduxState) => state.user.surgeIntro;
 export const getUserBusiness = (state: IReduxState) => state.user.business;
 export const getAcceptedLeaderboards = (state: IReduxState) => state.user.leaderboards.filter((l) => l.hasAccepted);
 export const getConsentedLeaderboards = (state: IReduxState) =>
-    state.user.leaderboards.reduce((prev: Leaderboard[], curr) => {
-        if (checkIsCompanyLeaderbaord(curr)) {
-            return [curr, ...prev];
-        } else if (curr.consent) {
-            return [...prev, curr];
-        }
-        return prev;
-    }, []);
+  state.user.leaderboards.reduce((prev: Leaderboard[], curr) => {
+    if (checkIsCompanyLeaderbaord(curr)) {
+      return [curr, ...prev];
+    } else if (curr.consent) {
+      return [...prev, curr];
+    }
+    return prev;
+  }, []);
 export const hasBusinessLeaderboardConsent = (state: IReduxState) =>
-    !!state.user.leaderboards.find(checkIsCompanyLeaderbaord);
+  !!state.user.leaderboards.find(checkIsCompanyLeaderbaord);
 
 const checkIsCompanyLeaderbaord = (board: GetCurrentUser_getCurrentUser_leaderboards) =>
-    // company leaderboard has 32 chars (and it should be first), custom leaderboards have 38
-    !!(board.leaderboardId && board.leaderboardId.length === 32 && board.consent);
+  // company leaderboard has 32 chars (and it should be first), custom leaderboards have 38
+  !!(board.leaderboardId && board.leaderboardId.length === 32 && board.consent);

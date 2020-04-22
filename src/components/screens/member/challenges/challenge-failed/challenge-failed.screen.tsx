@@ -38,23 +38,23 @@ function getStyle(currentLevel: number): any {
     case 3:
       return {
         backgroundImage: "challenge_mountain",
-        backgroundStyle: { backgroundColor: "rgb(255, 226, 230)" }
+        backgroundStyle: { backgroundColor: "rgb(255, 226, 230)" },
       };
     case 2:
       return {
         backgroundImage: "challenge_failed_desert",
-        backgroundStyle: { backgroundColor: "#fffbcd" }
+        backgroundStyle: { backgroundColor: "#fffbcd" },
       };
     case 1:
       return {
         backgroundImage: "challenge_failed_ocean",
-        backgroundStyle: null
+        backgroundStyle: null,
       };
     case 0:
     default:
       return {
         backgroundImage: "challenge_failed_forest",
-        backgroundStyle: null
+        backgroundStyle: null,
       };
   }
 }

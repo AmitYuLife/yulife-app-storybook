@@ -1,39 +1,39 @@
 import { REHYDRATE } from "redux-persist";
 import { POPUPTYPE } from "../../components/molecules";
 import {
-    GetCurrentUser,
-    GetCurrentUser_getCurrentUser_connections,
-    GetCurrentUser_getCurrentUser_leaderboards,
-    GetCurrentUser_getCurrentUser_business,
-    LoginUser,
-    UpdateLeaderboardConsentVariables,
-    UpdateMemberConsent
+  GetCurrentUser,
+  GetCurrentUser_getCurrentUser_connections,
+  GetCurrentUser_getCurrentUser_leaderboards,
+  GetCurrentUser_getCurrentUser_business,
+  LoginUser,
+  UpdateLeaderboardConsentVariables,
+  UpdateMemberConsent,
 } from "@graphql/_core/schema";
 import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
 import { SyncAction } from "../_core/types";
 import {
-    GET_USER_SUCCESS,
-    LOGIN_USER_SUCCESS,
-    SET_SHOW_SURGE_INTRO,
-    SET_USER_NO_ACCESS,
-    UPDATE_CONNECTION_FAILED,
-    UPDATE_CONNECTION_START,
-    UPDATE_CONNECTION_SUCCESS,
-    UPDATE_LEADERBOARD_CONSENT_FAILED,
-    UPDATE_LEADERBOARD_CONSENT_START,
-    UPDATE_LEADERBOARD_CONSENT_SUCCESS,
-    UPDATE_LEADERBOARD_POPUP_VISIBILITY,
-    // UPDATE_SURGE_POPUP_VISIBILITY,
-    UPDATE_USER_CONSENT_SUCCESS
+  GET_USER_SUCCESS,
+  LOGIN_USER_SUCCESS,
+  SET_SHOW_SURGE_INTRO,
+  SET_USER_NO_ACCESS,
+  UPDATE_CONNECTION_FAILED,
+  UPDATE_CONNECTION_START,
+  UPDATE_CONNECTION_SUCCESS,
+  UPDATE_LEADERBOARD_CONSENT_FAILED,
+  UPDATE_LEADERBOARD_CONSENT_START,
+  UPDATE_LEADERBOARD_CONSENT_SUCCESS,
+  UPDATE_LEADERBOARD_POPUP_VISIBILITY,
+  // UPDATE_SURGE_POPUP_VISIBILITY,
+  UPDATE_USER_CONSENT_SUCCESS,
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
 
 interface IFeature {
-    [x: string]: boolean;
+  [x: string]: boolean;
 }
 
 export type ILeaderboard = GetCurrentUser_getCurrentUser_leaderboards & {
-    isLoading?: boolean;
+  isLoading?: boolean;
 };
 
 type Connection = GetCurrentUser_getCurrentUser_connections & { isLoading?: boolean };
@@ -42,97 +42,97 @@ type Business = GetCurrentUser_getCurrentUser_business & { isLoading?: boolean }
 type SurgeActivity = "steps" | "meditation" | "all" | null;
 
 export interface IUserStore {
-    archived: boolean;
-    connections: Connection[];
-    consent: MobileConsentInput;
-    features: IFeature;
-    leaderboards: ILeaderboard[];
-    popupVisibility: {
-        /**
-         *  Every time we'll add a new feature popup we'll add a new key here and mark it as true,
-         *  then on the `REHYDRATE` action type we'll look if the persisted state has that key.
-         *  If it does, it means there was no app update. If it doesn't, voila!
-         *  The first time someone installs the app also will be handled, as the first state comes from `initialState`
-         *  :thugmatt:
-         */
-        leaderboard: boolean;
-    };
-    surgeIntro: {
-        visibility: boolean;
-        activity: SurgeActivity;
-        rate: number;
-    };
-    business: Business;
+  archived: boolean;
+  connections: Connection[];
+  consent: MobileConsentInput;
+  features: IFeature;
+  leaderboards: ILeaderboard[];
+  popupVisibility: {
+    /**
+     *  Every time we'll add a new feature popup we'll add a new key here and mark it as true,
+     *  then on the `REHYDRATE` action type we'll look if the persisted state has that key.
+     *  If it does, it means there was no app update. If it doesn't, voila!
+     *  The first time someone installs the app also will be handled, as the first state comes from `initialState`
+     *  :thugmatt:
+     */
+    leaderboard: boolean;
+  };
+  surgeIntro: {
+    visibility: boolean;
+    activity: SurgeActivity;
+    rate: number;
+  };
+  business: Business;
 }
 
 export const initialState: IUserStore = {
-    archived: false,
-    consent: {},
-    features: {},
-    connections: [],
-    leaderboards: [],
-    popupVisibility: {
-        leaderboard: false
-    },
-    surgeIntro: {
-        visibility: false,
-        activity: null,
-        rate: 1
-    },
-    business: {
-        businessAccountName: "",
-        alpha: true,
-        isGroup: false,
-        isWellbeingAccess: false
-    }
+  archived: false,
+  consent: {},
+  features: {},
+  connections: [],
+  leaderboards: [],
+  popupVisibility: {
+    leaderboard: false,
+  },
+  surgeIntro: {
+    visibility: false,
+    activity: null,
+    rate: 1,
+  },
+  business: {
+    businessAccountName: "",
+    alpha: true,
+    isGroup: false,
+    isWellbeingAccess: false,
+  },
 };
 
 export const userReducer = (state: IUserStore = initialState, action: SyncAction): IUserStore => {
-    switch (action.type) {
-        case SET_USER_NO_ACCESS:
-            return { ...state, archived: true };
+  switch (action.type) {
+    case SET_USER_NO_ACCESS:
+      return { ...state, archived: true };
 
-        case REHYDRATE:
-            // the first time app opens there is no data in the persisted state
-            if (action.payload && action.payload.user) {
-                return updatePersistedState(action.payload.user);
-            }
-            return state;
+    case REHYDRATE:
+      // the first time app opens there is no data in the persisted state
+      if (action.payload && action.payload.user) {
+        return updatePersistedState(action.payload.user);
+      }
+      return state;
 
-        case GET_USER_SUCCESS:
-            return getUserSuccess(state, action.payload);
+    case GET_USER_SUCCESS:
+      return getUserSuccess(state, action.payload);
 
-        case LOGIN_USER_SUCCESS:
-            return loginUserSuccess(state, action.payload);
+    case LOGIN_USER_SUCCESS:
+      return loginUserSuccess(state, action.payload);
 
-        case UPDATE_USER_CONSENT_SUCCESS:
-            return updateUserConsentSuccess(state, action.payload);
+    case UPDATE_USER_CONSENT_SUCCESS:
+      return updateUserConsentSuccess(state, action.payload);
 
-        case UPDATE_LEADERBOARD_CONSENT_START:
-            return updateLeaderboardLoading(state, action.payload, true);
+    case UPDATE_LEADERBOARD_CONSENT_START:
+      return updateLeaderboardLoading(state, action.payload, true);
 
-        case UPDATE_LEADERBOARD_CONSENT_SUCCESS:
-        case UPDATE_LEADERBOARD_CONSENT_FAILED:
-            return updateLeaderboardLoading(state, action.payload, false);
+    case UPDATE_LEADERBOARD_CONSENT_SUCCESS:
+    case UPDATE_LEADERBOARD_CONSENT_FAILED:
+      return updateLeaderboardLoading(state, action.payload, false);
 
-        case UPDATE_CONNECTION_START:
-            return updateConnectionsLoading(state, action.payload, true);
+    case UPDATE_CONNECTION_START:
+      return updateConnectionsLoading(state, action.payload, true);
 
-        case UPDATE_CONNECTION_FAILED:
-            return updateConnectionsLoading(state, action.payload, false);
+    case UPDATE_CONNECTION_FAILED:
+      return updateConnectionsLoading(state, action.payload, false);
 
-        case UPDATE_CONNECTION_SUCCESS:
-            return updateConnectionsSuccess(state, action.payload);
+    case UPDATE_CONNECTION_SUCCESS:
+      return updateConnectionsSuccess(state, action.payload);
 
-        case UPDATE_LEADERBOARD_POPUP_VISIBILITY:
-            return updatePopupVisibility(state, action.payload, POPUPTYPE.LEADERBOARD);
+    case UPDATE_LEADERBOARD_POPUP_VISIBILITY:
+      return updatePopupVisibility(state, action.payload, POPUPTYPE.LEADERBOARD);
 
-        case SET_SHOW_SURGE_INTRO:
-            return updateSurgeIntro(state, action.payload);
+    case SET_SHOW_SURGE_INTRO:
+      return updateSurgeIntro(state, action.payload);
 
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 };
 
 export default userReducer;
@@ -143,146 +143,146 @@ export default userReducer;
  * @param persistedState
  */
 const updatePersistedState = (persistedState: IUserStore) => {
-    if (!persistedState.popupVisibility) {
-        // leaderboards is the first popup
-        return { ...persistedState, popupVisibility: { leaderboard: true } };
-    }
+  if (!persistedState.popupVisibility) {
+    // leaderboards is the first popup
+    return { ...persistedState, popupVisibility: { leaderboard: true } };
+  }
 
-    // const popupVisibilityKeys = Object.keys(persistedState.popupVisibility);
+  // const popupVisibilityKeys = Object.keys(persistedState.popupVisibility);
 
-    // if (!popupVisibilityKeys.includes("surge")) {
-    //     return { ...persistedState, popupVisibility: { ...persistedState.popupVisibility, surge: true } };
-    // }
-    if (!persistedState.surgeIntro) {
-        return {
-            ...persistedState,
-            surgeIntro: {
-                visibility: false,
-                activity: null as SurgeActivity,
-                rate: 1
-            }
-        };
-    }
+  // if (!popupVisibilityKeys.includes("surge")) {
+  //     return { ...persistedState, popupVisibility: { ...persistedState.popupVisibility, surge: true } };
+  // }
+  if (!persistedState.surgeIntro) {
+    return {
+      ...persistedState,
+      surgeIntro: {
+        visibility: false,
+        activity: null as SurgeActivity,
+        rate: 1,
+      },
+    };
+  }
 
-    if (!persistedState.business) {
-        return {
-            ...persistedState,
-            business: {
-                businessAccountName: "",
-                alpha: true,
-                isGroup: false,
-                isWellbeingAccess: false
-            }
-        };
-    }
+  if (!persistedState.business) {
+    return {
+      ...persistedState,
+      business: {
+        businessAccountName: "",
+        alpha: true,
+        isGroup: false,
+        isWellbeingAccess: false,
+      },
+    };
+  }
 
-    return persistedState;
+  return persistedState;
 };
 
 const getUserSuccess = (
-    state: IUserStore,
-    {
-        getCurrentUser: {
-            leaderboards = [],
-            mobileConsent,
-            userFeatures = [],
-            connections = [],
-            business = {
-                businessAccountName: "",
-                alpha: true,
-                isGroup: false,
-                isWellbeingAccess: false
-            }
-        }
-    }: GetCurrentUser
-): IUserStore => ({
-    ...state,
-    archived: false,
-    connections,
-    consent: {
-        ...mobileConsent
+  state: IUserStore,
+  {
+    getCurrentUser: {
+      leaderboards = [],
+      mobileConsent,
+      userFeatures = [],
+      connections = [],
+      business = {
+        businessAccountName: "",
+        alpha: true,
+        isGroup: false,
+        isWellbeingAccess: false,
+      },
     },
-    features: userFeatures.reduce(reduceUserFeatures, {}),
-    leaderboards,
-    business
+  }: GetCurrentUser
+): IUserStore => ({
+  ...state,
+  archived: false,
+  connections,
+  consent: {
+    ...mobileConsent,
+  },
+  features: userFeatures.reduce(reduceUserFeatures, {}),
+  leaderboards,
+  business,
 });
 
 const loginUserSuccess = (
-    state: IUserStore,
-    {
-        loginUser: {
-            user: { leaderboards = [], mobileConsent, userFeatures = [], connections = [] }
-        }
-    }: LoginUser
-): IUserStore => ({
-    ...state,
-    connections,
-    consent: {
-        ...mobileConsent
+  state: IUserStore,
+  {
+    loginUser: {
+      user: { leaderboards = [], mobileConsent, userFeatures = [], connections = [] },
     },
-    features: userFeatures.reduce(reduceUserFeatures, {}),
-    leaderboards
+  }: LoginUser
+): IUserStore => ({
+  ...state,
+  connections,
+  consent: {
+    ...mobileConsent,
+  },
+  features: userFeatures.reduce(reduceUserFeatures, {}),
+  leaderboards,
 });
 
 const updateUserConsentSuccess = (state: IUserStore, { upsertMobileConsent }: UpdateMemberConsent): IUserStore => ({
-    ...state,
-    consent: {
-        ...upsertMobileConsent
-    }
+  ...state,
+  consent: {
+    ...upsertMobileConsent,
+  },
 });
 
 // Only updates loading states
 const updateLeaderboardLoading = (
-    state: IUserStore,
-    payload: UpdateLeaderboardConsentVariables,
-    isLoading: boolean
+  state: IUserStore,
+  payload: UpdateLeaderboardConsentVariables,
+  isLoading: boolean
 ): IUserStore => ({
-    ...state,
-    leaderboards: state.leaderboards.map((leaderboard) => {
-        if (leaderboard.leaderboardId === payload.leaderboardId) {
-            return { ...leaderboard, isLoading };
-        }
-        return leaderboard;
-    })
+  ...state,
+  leaderboards: state.leaderboards.map((leaderboard) => {
+    if (leaderboard.leaderboardId === payload.leaderboardId) {
+      return { ...leaderboard, isLoading };
+    }
+    return leaderboard;
+  }),
 });
 
 // Only updates loading states
 const updateConnectionsLoading = (state: IUserStore, payload: any, isLoading: boolean): IUserStore => ({
-    ...state,
-    connections: state.connections.map((connection) => {
-        if (connection.name === payload.name) {
-            return { ...connection, isLoading };
-        }
-        return connection;
-    })
+  ...state,
+  connections: state.connections.map((connection) => {
+    if (connection.name === payload.name) {
+      return { ...connection, isLoading };
+    }
+    return connection;
+  }),
 });
 
 const updateConnectionsSuccess = (state: IUserStore, payload: any): IUserStore => ({
-    ...state,
-    connections: state.connections.map((connection) => {
-        if (connection.name === payload.name) {
-            return { ...connection, isLoading: false, isConnected: payload.isConnected };
-        }
-        return connection;
-    })
+  ...state,
+  connections: state.connections.map((connection) => {
+    if (connection.name === payload.name) {
+      return { ...connection, isLoading: false, isConnected: payload.isConnected };
+    }
+    return connection;
+  }),
 });
 
 const updatePopupVisibility = (state: IUserStore, payload: boolean, type: POPUPTYPE): IUserStore => {
-    switch (type) {
-        case POPUPTYPE.LEADERBOARD:
-            return {
-                ...state,
-                popupVisibility: {
-                    ...state.popupVisibility,
-                    leaderboard: payload
-                }
-            };
-        default:
-            return state;
-    }
+  switch (type) {
+    case POPUPTYPE.LEADERBOARD:
+      return {
+        ...state,
+        popupVisibility: {
+          ...state.popupVisibility,
+          leaderboard: payload,
+        },
+      };
+    default:
+      return state;
+  }
 };
 
 const updateSurgeIntro = (state: IUserStore, surgeIntro: IUserStore["surgeIntro"]) => ({
-    ...state,
-    surgeIntro
+  ...state,
+  surgeIntro,
 });

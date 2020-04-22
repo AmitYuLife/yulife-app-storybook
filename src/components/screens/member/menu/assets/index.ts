@@ -1,3 +1,3 @@
 export default {
-    close: require("../../../../../../assets/icons/close.png")
+  close: require("../../../../../../assets/icons/close.png"),
 };

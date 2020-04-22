@@ -7,7 +7,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 interface IProps {
-    componentId: string;
+  componentId: string;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -15,16 +15,16 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 type Props = IProps & ConnectedDispatch & ConnectedState;
 
 const AppOfflineContainer: React.FC<Props> = ({ copy, level, checkConnection: onCTA }) => (
-    <OfflineScreen copy={copy} level={level} onPress={onCTA} />
+  <OfflineScreen copy={copy} level={level} onPress={onCTA} />
 );
 
 const mapStateToProps = (state: IReduxState) => ({
-    level: getCurrentLevel(state),
-    copy: getCopy(state, "offline")
+  level: getCurrentLevel(state),
+  copy: getCopy(state, "offline"),
 });
 
 const mapDispatchToProps = {
-    checkConnection
+  checkConnection,
 };
 
 export default connect<ConnectedState>(mapStateToProps, mapDispatchToProps)(AppOfflineContainer);

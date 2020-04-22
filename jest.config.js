@@ -5,7 +5,7 @@ module.exports = Object.assign(jestPreset, {
   setupFilesAfterEnv: [...jestPreset.setupFiles, "<rootDir>/jest/setup-unit.js"],
   transform: {
     "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.tsx?$": "ts-jest",
   },
   testRegex: "src/.+\\.(test|spec).(ts|tsx|js)$",
   testEnvironment: "jsdom",
@@ -27,16 +27,16 @@ module.exports = Object.assign(jestPreset, {
     "!src/graphql/**/*",
     "!src/navigation/**/*",
     "!src/styles/**/*",
-    "!src/services/**/*"
+    "!src/services/**/*",
   ],
   moduleNameMapper: {
     "^image![a-zA-Z0-9$_-]+$": "GlobalImageStub",
     "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
-      "<rootDir>/jest/fileMock.js"
+      "<rootDir>/jest/fileMock.js",
   },
   globals: {
     "ts-jest": {
-      babelConfig: true
-    }
-  }
+      babelConfig: true,
+    },
+  },
 });

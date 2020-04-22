@@ -10,29 +10,29 @@ import { getUserFeatures } from "../../user/user.selectors";
 import { setHistoricalDataCollected, setHistoricalMeditationDataCollected } from "../onboarding.actions";
 
 export default function* sendHistoricalData(onboardingDate: Moment) {
-    try {
-        const { results } = yield call(queryHistoricalData, onboardingDate);
+  try {
+    const { results } = yield call(queryHistoricalData, onboardingDate);
 
-        if (!!results.length) {
-            yield call(addHistoricalSteps, results, false);
-            yield put(setHistoricalDataCollected());
-        }
-    } catch (e) {
-        yield spawn(() => Logger.logEvent("historical_steps_sync_failed", { message: e.message }));
+    if (!!results.length) {
+      yield call(addHistoricalSteps, results, false);
+      yield put(setHistoricalDataCollected());
     }
+  } catch (e) {
+    yield spawn(() => Logger.logEvent("historical_steps_sync_failed", { message: e.message }));
+  }
 }
 
 export function* sendHistoricalMeditationData(onboardingDate: Moment) {
-    try {
-        const userFeatures = yield select(getUserFeatures);
+  try {
+    const userFeatures = yield select(getUserFeatures);
 
-        const results = yield call(queryHistoricalMeditationData, onboardingDate, userFeatures);
+    const results = yield call(queryHistoricalMeditationData, onboardingDate, userFeatures);
 
-        if (!!results.length) {
-            yield call(addHistoricalData, results, PassiveChallengeType.MEDITATION);
-            yield put(setHistoricalMeditationDataCollected());
-        }
-    } catch (e) {
-        yield spawn(() => Logger.logEvent("historical_meditation_sync_failed", { message: e.message }));
+    if (!!results.length) {
+      yield call(addHistoricalData, results, PassiveChallengeType.MEDITATION);
+      yield put(setHistoricalMeditationDataCollected());
     }
+  } catch (e) {
+    yield spawn(() => Logger.logEvent("historical_meditation_sync_failed", { message: e.message }));
+  }
 }

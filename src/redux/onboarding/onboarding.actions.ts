@@ -6,19 +6,19 @@ export const SET_ONBOARDING_DONE = "SET_ONBOARDING_DONE";
 export const SET_SHOW_INTRO = "SET_SHOW_INTRO";
 
 export const setRedeemedOnboarding = (payload: number) => ({
-    payload,
-    type: SET_REDEEMED_ONBOARDING
+  payload,
+  type: SET_REDEEMED_ONBOARDING,
 });
 
 export const setShowIntro = (payload: boolean) => ({
-    payload,
-    type: SET_SHOW_INTRO
+  payload,
+  type: SET_SHOW_INTRO,
 });
 
 export const setHistoricalDataCollected = () => ({
-    type: SET_HISTORICAL_DATA_COLLECTED
+  type: SET_HISTORICAL_DATA_COLLECTED,
 });
 
 export const setHistoricalMeditationDataCollected = () => ({
-    type: SET_HISTORICAL_MEDITATION_DATA_COLLECTED
+  type: SET_HISTORICAL_MEDITATION_DATA_COLLECTED,
 });

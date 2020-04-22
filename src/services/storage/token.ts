@@ -1,8 +1,8 @@
 // TODO fix console.logs
 // tslint:disable:no-console
-import {AsyncStorage} from 'react-native';
+import { AsyncStorage } from "react-native";
 
-const TOKEN_KEY = '@Store:token';
+const TOKEN_KEY = "@Store:token";
 
 export async function setToken(token: string): Promise<void> {
   try {
@@ -32,7 +32,7 @@ export async function clearToken(): Promise<void> {
 }
 
 export async function migrateOldAppVersionToken(): Promise<void> {
-  const OLD_KEY = 'reduxPersist:user';
+  const OLD_KEY = "reduxPersist:user";
   const oldUserStore = await AsyncStorage.getItem(OLD_KEY);
   if (!oldUserStore) {
     return;

@@ -108,7 +108,7 @@
     "arrowParens": "always",
     "printWidth": 120,
     "tabWidth": 2,
-    "trailingComma": "none"
+    "trailingComma": "es5"
   },
   "rnpm": {
     "assets": [

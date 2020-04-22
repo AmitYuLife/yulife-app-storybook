@@ -5,126 +5,125 @@ export const DATE_FORMAT_WITHOUT_TZ = "YYYY-MM-DDTHH:mm:ss";
 
 type PathOr = <T>(obj: { [x: string]: any }, key: string | string[], defaultValue?: T, p?: number) => T | any;
 export const pathOr: PathOr = (obj, key, def, p) => {
-    p = 0;
-    key = Array.isArray(key) ? key : key.split(".");
-    while (obj && p < key.length) {
-        obj = obj[key[p++]];
-    }
-    return obj === undefined || p < key.length ? def : obj;
+  p = 0;
+  key = Array.isArray(key) ? key : key.split(".");
+  while (obj && p < key.length) {
+    obj = obj[key[p++]];
+  }
+  return obj === undefined || p < key.length ? def : obj;
 };
 
 export function padNum(x: number, sliceIndex: number = -2) {
-    return `0${x}`.slice(sliceIndex);
+  return `0${x}`.slice(sliceIndex);
 }
 
 export function numberWithCommas(x: number) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 export function getCurrentWorld(currentLevel: number) {
-    return Math.floor((currentLevel - 1) / 50);
+  return Math.floor((currentLevel - 1) / 50);
 }
 
 export function getCurrentEpisode(currentLevel: number) {
-    if (currentLevel % 50 === 0) {
-        return (currentLevel / 50) * 8 - 1;
-    }
-    if (currentLevel <= 49) {
-        return Math.floor((currentLevel - 1) / 7);
-    } else if (
-        (currentLevel >= 51 && currentLevel <= 99) ||
-        (currentLevel >= 101 && currentLevel <= 149) ||
-        (currentLevel >= 151 && currentLevel <= 199)
-    ) {
-        return (
-            Math.floor((currentLevel - 1 - Math.floor((currentLevel - 1) / 50) * 50) / 7) +
-            getCurrentWorld(currentLevel) * 8
-        );
-    }
+  if (currentLevel % 50 === 0) {
+    return (currentLevel / 50) * 8 - 1;
+  }
+  if (currentLevel <= 49) {
+    return Math.floor((currentLevel - 1) / 7);
+  } else if (
+    (currentLevel >= 51 && currentLevel <= 99) ||
+    (currentLevel >= 101 && currentLevel <= 149) ||
+    (currentLevel >= 151 && currentLevel <= 199)
+  ) {
+    return (
+      Math.floor((currentLevel - 1 - Math.floor((currentLevel - 1) / 50) * 50) / 7) + getCurrentWorld(currentLevel) * 8
+    );
+  }
 }
 
 export function getQueryStringObject(fullUrl: string) {
-    const urlArray = fullUrl.split("?");
-    const url = urlArray[1] || urlArray[0];
-    const properties = url.split("&");
-    const result: any = {};
+  const urlArray = fullUrl.split("?");
+  const url = urlArray[1] || urlArray[0];
+  const properties = url.split("&");
+  const result: any = {};
 
-    for (const property of properties) {
-        const pair = property.split("=");
-        result[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
-    }
+  for (const property of properties) {
+    const pair = property.split("=");
+    result[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+  }
 
-    return result;
+  return result;
 }
 
 export function getTimeRemaining(nextAvailableAt: string) {
-    return `${getTime(Math.abs(moment().diff(moment(nextAvailableAt), "seconds")))}`;
+  return `${getTime(Math.abs(moment().diff(moment(nextAvailableAt), "seconds")))}`;
 }
 
 export function getTime(nextAvailable: number) {
-    const days = Math.floor(nextAvailable / (60 * 60 * 24));
-    const hours = Math.floor(nextAvailable / (60 * 60)) % 24;
-    const minutes = Math.floor(nextAvailable / 60) % 60;
-    const seconds = nextAvailable % 60;
-    if (hours < 1 && minutes < 1 && seconds < 1) {
-        return null;
-    }
+  const days = Math.floor(nextAvailable / (60 * 60 * 24));
+  const hours = Math.floor(nextAvailable / (60 * 60)) % 24;
+  const minutes = Math.floor(nextAvailable / 60) % 60;
+  const seconds = nextAvailable % 60;
+  if (hours < 1 && minutes < 1 && seconds < 1) {
+    return null;
+  }
 
-    const paddedHours = padNum(hours);
-    const paddedMinutes = padNum(minutes);
-    const paddedSeconds = padNum(seconds);
+  const paddedHours = padNum(hours);
+  const paddedMinutes = padNum(minutes);
+  const paddedSeconds = padNum(seconds);
 
-    if (days < 1 && hours < 1 && minutes < 1) {
-        return `:${paddedSeconds}`;
-    } else if (days < 1 && hours < 1) {
-        return `${paddedMinutes}:${paddedSeconds}`;
-    } else if (days < 1) {
-        return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
-    } else {
-        const daysOrDay = days > 1 ? "days" : "day";
-        return `${days} ${daysOrDay} and ${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
-    }
+  if (days < 1 && hours < 1 && minutes < 1) {
+    return `:${paddedSeconds}`;
+  } else if (days < 1 && hours < 1) {
+    return `${paddedMinutes}:${paddedSeconds}`;
+  } else if (days < 1) {
+    return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+  } else {
+    const daysOrDay = days > 1 ? "days" : "day";
+    return `${days} ${daysOrDay} and ${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+  }
 }
 
 export function displaySecondsAsMinutes(amount: number): { minutes: number; seconds: number } {
-    const minutes = Math.floor(amount / 60);
-    const seconds = amount % 60;
+  const minutes = Math.floor(amount / 60);
+  const seconds = amount % 60;
 
-    return {
-        minutes,
-        seconds
-    };
+  return {
+    minutes,
+    seconds,
+  };
 }
 
 export function getMomentStringWithTz(date: string) {
-    const hasTimezone = date.length === 25;
+  const hasTimezone = date.length === 25;
 
-    return hasTimezone
-        ? moment.parseZone(date).format(DATE_FORMAT_WITH_TZ)
-        : moment(date, DATE_FORMAT_WITHOUT_TZ).format(DATE_FORMAT_WITH_TZ);
+  return hasTimezone
+    ? moment.parseZone(date).format(DATE_FORMAT_WITH_TZ)
+    : moment(date, DATE_FORMAT_WITHOUT_TZ).format(DATE_FORMAT_WITH_TZ);
 }
 
 export function getStartAndEndDateTimesWithTimezone(startDateTime: string, endDateTime: string) {
-    // NOTE: Some of the moment methods work in React Native and others don't.
-    // ¯\_(ツ)_/¯ ¯\_(ツ)_/¯ ¯\_(ツ)_/¯
-    // .isUtcOffset from moment was failing on some XR devices
-    // The returned result might still not come on some devices with the timezone
-    // That's why we double check on the fitkit
+  // NOTE: Some of the moment methods work in React Native and others don't.
+  // ¯\_(ツ)_/¯ ¯\_(ツ)_/¯ ¯\_(ツ)_/¯
+  // .isUtcOffset from moment was failing on some XR devices
+  // The returned result might still not come on some devices with the timezone
+  // That's why we double check on the fitkit
 
-    // Check if the startDateTime has a timezone and add it to the endDateTime if it doesn't have it
-    const hasTimezone = startDateTime.length === 25;
+  // Check if the startDateTime has a timezone and add it to the endDateTime if it doesn't have it
+  const hasTimezone = startDateTime.length === 25;
 
-    if (hasTimezone) {
-        const timezone = startDateTime.slice(-6);
-
-        return {
-            start: startDateTime,
-            end: endDateTime.length === 25 ? endDateTime : `${endDateTime}${timezone}`
-        };
-    }
+  if (hasTimezone) {
+    const timezone = startDateTime.slice(-6);
 
     return {
-        start: moment(startDateTime, DATE_FORMAT_WITHOUT_TZ).format(DATE_FORMAT_WITH_TZ),
-        end: moment(endDateTime, DATE_FORMAT_WITHOUT_TZ).format(DATE_FORMAT_WITH_TZ)
+      start: startDateTime,
+      end: endDateTime.length === 25 ? endDateTime : `${endDateTime}${timezone}`,
     };
+  }
+
+  return {
+    start: moment(startDateTime, DATE_FORMAT_WITHOUT_TZ).format(DATE_FORMAT_WITH_TZ),
+    end: moment(endDateTime, DATE_FORMAT_WITHOUT_TZ).format(DATE_FORMAT_WITH_TZ),
+  };
 }

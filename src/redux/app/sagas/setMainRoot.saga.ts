@@ -6,29 +6,29 @@ import { call, put } from "redux-saga/effects";
 import { setAuthenticated, setUnauthenticated } from "../app.actions";
 
 interface IMainRootPayload {
-    payload: string;
-    type: string;
+  payload: string;
+  type: string;
 }
 
 export default function* setMainRootSaga({ payload }: IMainRootPayload) {
-    const token = yield call(getToken);
+  const token = yield call(getToken);
 
-    if (token) {
-        const connectionInfo: NetInfoState = yield call(() => NetInfo.fetch());
+  if (token) {
+    const connectionInfo: NetInfoState = yield call(() => NetInfo.fetch());
 
-        if (connectionInfo.type === "none") {
-            yield call(setOfflineRoot);
-        } else {
-            yield call(setAuthenticatedRoot);
-        }
-
-        yield put(setAuthenticated());
+    if (connectionInfo.type === "none") {
+      yield call(setOfflineRoot);
     } else {
-        yield call(setUnauthenticatedRoot);
-        yield put(setUnauthenticated());
+      yield call(setAuthenticatedRoot);
     }
 
-    if (!!payload) {
-        yield call(handleDeepLink, payload, token);
-    }
+    yield put(setAuthenticated());
+  } else {
+    yield call(setUnauthenticatedRoot);
+    yield put(setUnauthenticated());
+  }
+
+  if (!!payload) {
+    yield call(handleDeepLink, payload, token);
+  }
 }

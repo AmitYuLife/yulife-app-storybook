@@ -2,22 +2,22 @@ import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../../../styles";
 
 const styles = StyleSheet.create({
-    name: {
-        fontSize: Style.SCALE_UP_AND_DOWN(16),
-        marginBottom: Style.SCALE_UP_AND_DOWN(10)
-    } as TextStyle,
-    button: {
-        flex: 1,
-        width: "100%",
-        alignItems: "center",
-        justifyContent: "center"
-    } as ViewStyle,
-    wrapper: {
-        marginTop: Style.SCALE_UP_AND_DOWN(15),
-        marginHorizontal: Style.SCALE_UP_AND_DOWN(15),
-        width: Style.SCALE_UP_AND_DOWN(65),
-        overflow: "hidden"
-    } as ViewStyle
+  name: {
+    fontSize: Style.SCALE_UP_AND_DOWN(16),
+    marginBottom: Style.SCALE_UP_AND_DOWN(10),
+  } as TextStyle,
+  button: {
+    flex: 1,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  } as ViewStyle,
+  wrapper: {
+    marginTop: Style.SCALE_UP_AND_DOWN(15),
+    marginHorizontal: Style.SCALE_UP_AND_DOWN(15),
+    width: Style.SCALE_UP_AND_DOWN(65),
+    overflow: "hidden",
+  } as ViewStyle,
 });
 
 export default styles;

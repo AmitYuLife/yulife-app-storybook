@@ -13,38 +13,38 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IProps extends IConnectedScreenProps {
-    componentId?: string;
-    level: GetCurrentWorld_getCurrentWorld;
-    onPressActivityHistory: () => void;
-    onPressCta?: () => void;
+  componentId?: string;
+  level: GetCurrentWorld_getCurrentWorld;
+  onPressActivityHistory: () => void;
+  onPressCta?: () => void;
 }
 
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
 const ChallengesHistoryContainer: FC<Props> = ({ level, onPressActivityHistory, totalCoins, componentId }) => {
-    const handleClose = useCallback(() => Navigation.popToRoot(componentId), []);
+  const handleClose = useCallback(() => Navigation.popToRoot(componentId), []);
 
-    return (
-        <ChallengesHistoryScreen
-            level={level}
-            onPressActivityHistory={onPressActivityHistory}
-            onPressCta={handleClose}
-            onLeftMenuPress={handleClose}
-            totalCoins={totalCoins}
-        />
-    );
+  return (
+    <ChallengesHistoryScreen
+      level={level}
+      onPressActivityHistory={onPressActivityHistory}
+      onPressCta={handleClose}
+      onLeftMenuPress={handleClose}
+      totalCoins={totalCoins}
+    />
+  );
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-    currentLevel: getCurrentLevel(state),
-    totalCoins: getTotalCoins(state)
+  currentLevel: getCurrentLevel(state),
+  totalCoins: getTotalCoins(state),
 });
 
 const mapDispatchToProps = {
-    challengeStartAction
+  challengeStartAction,
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(ChallengesHistoryContainer);

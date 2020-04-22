@@ -11,7 +11,7 @@ import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { DebugScreen } from "../../../screens";
 
 interface IProps {
-    componentId: string;
+  componentId: string;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -20,55 +20,55 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
 const DEFAULT_LIST = [
-    "reset-today-partial-data",
-    "reset-today-full-data",
-    "reset-streaks",
-    "more-coins",
-    "reset-coins"
+  "reset-today-partial-data",
+  "reset-today-full-data",
+  "reset-streaks",
+  "more-coins",
+  "reset-coins",
 ];
 
 const ActivityHistoryContainer: React.FC<Props> = (props) => {
-    const [resetData]: ResetDataMutationTuple = useMutation(GQL_MUTATION_RESET_DATA);
-    const { data } = useQuery(GQL_QUERY_DEBUG_CODES, {
-        fetchPolicy: "cache-and-network"
-    });
+  const [resetData]: ResetDataMutationTuple = useMutation(GQL_MUTATION_RESET_DATA);
+  const { data } = useQuery(GQL_QUERY_DEBUG_CODES, {
+    fetchPolicy: "cache-and-network",
+  });
 
-    const list = [...((data && data.getDebugCodes) || DEFAULT_LIST), "send-test-push"];
+  const list = [...((data && data.getDebugCodes) || DEFAULT_LIST), "send-test-push"];
 
-    const handleClose = () => {
-        Navigation.popToRoot(props.componentId);
-    };
+  const handleClose = () => {
+    Navigation.popToRoot(props.componentId);
+  };
 
-    const listData = list.map((code) => ({
-        id: code,
-        onPress: async () => {
-            try {
-                if (code === "send-test-push") {
-                    props.sendTestPush();
-                } else {
-                    await resetData({ variables: { code } });
-                    Alert.alert("Success");
-                    props.getUserStart();
-                }
-            } catch (e) {
-                Alert.alert("Fail");
-            }
+  const listData = list.map((code) => ({
+    id: code,
+    onPress: async () => {
+      try {
+        if (code === "send-test-push") {
+          props.sendTestPush();
+        } else {
+          await resetData({ variables: { code } });
+          Alert.alert("Success");
+          props.getUserStart();
         }
-    }));
+      } catch (e) {
+        Alert.alert("Fail");
+      }
+    },
+  }));
 
-    return <DebugScreen onPressClose={handleClose} data={listData} />;
+  return <DebugScreen onPressClose={handleClose} data={listData} />;
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-    features: getUserFeatures(state)
+  features: getUserFeatures(state),
 });
 
 const mapDispatchToProps = {
-    getUserStart,
-    sendTestPush
+  getUserStart,
+  sendTestPush,
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(ActivityHistoryContainer);

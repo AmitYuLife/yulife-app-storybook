@@ -29,7 +29,7 @@ const StreaksSceen = ({
   primaryButtonLabel,
   onSubmit,
   timeRemaining,
-  onPressCtaSecondary
+  onPressCtaSecondary,
 }: IProps) => (
   <View style={styles.wrapper}>
     <View>

@@ -5,29 +5,29 @@ import { challengeResetSuccessAction } from "../levels.actions";
 import { getActiveLevel, getChallengesStatus, IActiveLevel } from "../levels.selectors";
 
 export default function* resetChallengeSaga() {
-    const { done } = yield select(getChallengesStatus);
-    const active = yield select(getActiveLevel);
+  const { done } = yield select(getChallengesStatus);
+  const active = yield select(getActiveLevel);
 
-    if (done < 1 && active.chest.value > 0 && active.status === "success") {
-        yield call(showModal, active);
-    }
+  if (done < 1 && active.chest.value > 0 && active.status === "success") {
+    yield call(showModal, active);
+  }
 
-    yield put(challengeResetSuccessAction());
+  yield put(challengeResetSuccessAction());
 }
 
 export function showModal(active: IActiveLevel) {
-    Navigation.showModal({
-        component: {
-            id: MODALS.chest,
-            name: MODALS.chest,
-            passProps: {
-                ctaLabel: "collect",
-                heading: `you get ${active.chest.value} yucoin`,
-                isLocked: false,
-                onPressCta: () => {
-                    Navigation.dismissModal(MODALS.chest);
-                }
-            }
-        }
-    });
+  Navigation.showModal({
+    component: {
+      id: MODALS.chest,
+      name: MODALS.chest,
+      passProps: {
+        ctaLabel: "collect",
+        heading: `you get ${active.chest.value} yucoin`,
+        isLocked: false,
+        onPressCta: () => {
+          Navigation.dismissModal(MODALS.chest);
+        },
+      },
+    },
+  });
 }

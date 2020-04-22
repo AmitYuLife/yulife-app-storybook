@@ -3,6 +3,4 @@ import { PEDOMETER_UPDATES_SUCCESS } from "../../pedometer/pedometer.actions";
 
 import updateDailyStepsSaga from "./updateDailySteps.saga";
 
-export default [
-    takeLatest(PEDOMETER_UPDATES_SUCCESS, updateDailyStepsSaga)
-];
+export default [takeLatest(PEDOMETER_UPDATES_SUCCESS, updateDailyStepsSaga)];

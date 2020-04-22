@@ -6,99 +6,97 @@ import styles from "./plus-points.styles";
 type AnimatedType = "collect-reward" | "challenge-success";
 
 interface IProps {
-    type: AnimatedType;
-    coins?: number;
+  type: AnimatedType;
+  coins?: number;
 }
 
 interface IState {
-    translateX: Animated.Value;
-    translateY: Animated.Value;
-    scale: Animated.Value;
+  translateX: Animated.Value;
+  translateY: Animated.Value;
+  scale: Animated.Value;
 }
 
 export default class AnimatedCoinConfetti extends React.PureComponent<IProps, IState> {
-    public state = {
-        translateX: new Animated.Value(0),
-        translateY: new Animated.Value(
-            this.props.type === "collect-reward" ? -600 : Platform.OS === "android" ? -10 : 0
-        ),
-        scale: new Animated.Value(1)
-    };
+  public state = {
+    translateX: new Animated.Value(0),
+    translateY: new Animated.Value(this.props.type === "collect-reward" ? -600 : Platform.OS === "android" ? -10 : 0),
+    scale: new Animated.Value(1),
+  };
 
-    public componentDidMount() {
-        const { translateX, translateY, scale } = this.state;
-        // Wait to be mounted properly before starting animation
+  public componentDidMount() {
+    const { translateX, translateY, scale } = this.state;
+    // Wait to be mounted properly before starting animation
 
-        setTimeout(() => {
-            if (this.props.type === "collect-reward") {
-                Animated.timing(translateY, {
-                    toValue: -5,
-                    duration: 700,
-                    easing: Easing.elastic(1.1),
-                    useNativeDriver: true
-                }).start(() => {
-                    Animated.spring(scale, {
-                        toValue: 2,
-                        tension: 400,
-                        useNativeDriver: true
-                    }).start();
-                });
-            } else {
-                Animated.parallel([
-                    Animated.loop(
-                        Animated.sequence([
-                            Animated.timing(translateX, {
-                                toValue: -2,
-                                duration: 50,
-                                useNativeDriver: true
-                            }),
-                            Animated.timing(translateX, {
-                                toValue: 1,
-                                duration: 50,
-                                useNativeDriver: true
-                            })
-                        ]),
-                        {
-                            iterations: 3
-                        }
-                    ),
-                    Animated.sequence([
-                        Animated.spring(scale, {
-                            toValue: 2,
-                            speed: 20,
-                            useNativeDriver: true
-                        }),
-                        Animated.spring(scale, {
-                            toValue: 1,
-                            speed: 10,
-                            useNativeDriver: true
-                        })
-                    ])
-                ]).start();
+    setTimeout(() => {
+      if (this.props.type === "collect-reward") {
+        Animated.timing(translateY, {
+          toValue: -5,
+          duration: 700,
+          easing: Easing.elastic(1.1),
+          useNativeDriver: true,
+        }).start(() => {
+          Animated.spring(scale, {
+            toValue: 2,
+            tension: 400,
+            useNativeDriver: true,
+          }).start();
+        });
+      } else {
+        Animated.parallel([
+          Animated.loop(
+            Animated.sequence([
+              Animated.timing(translateX, {
+                toValue: -2,
+                duration: 50,
+                useNativeDriver: true,
+              }),
+              Animated.timing(translateX, {
+                toValue: 1,
+                duration: 50,
+                useNativeDriver: true,
+              }),
+            ]),
+            {
+              iterations: 3,
             }
-        }, 500);
-    }
+          ),
+          Animated.sequence([
+            Animated.spring(scale, {
+              toValue: 2,
+              speed: 20,
+              useNativeDriver: true,
+            }),
+            Animated.spring(scale, {
+              toValue: 1,
+              speed: 10,
+              useNativeDriver: true,
+            }),
+          ]),
+        ]).start();
+      }
+    }, 500);
+  }
 
-    public render() {
-        const { translateX, translateY, scale } = this.state;
-        return (
-            <Animated.View
-                style={[
-                    styles.textWrapper,
-                    {
-                        height: Platform.OS === "android" ? 40 : 20,
-                        transform: [
-                            { translateX },
-                            {
-                                translateY
-                            },
-                            { scale }
-                        ]
-                    }
-                ]}
-            >
-                <PlusPoints coins={this.props.coins} />
-            </Animated.View>
-        );
-    }
+  public render() {
+    const { translateX, translateY, scale } = this.state;
+    return (
+      <Animated.View
+        style={[
+          styles.textWrapper,
+          {
+            height: Platform.OS === "android" ? 40 : 20,
+            transform: [
+              { translateX },
+              {
+                translateY,
+              },
+              { scale },
+            ],
+          },
+        ]}
+      >
+        <PlusPoints coins={this.props.coins} />
+      </Animated.View>
+    );
+  }
 }

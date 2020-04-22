@@ -10,7 +10,7 @@ import SmartHealth from "../../../screens/member/member-services/smart-health.sc
 type Tab = "yumatter" | "smartHealth";
 
 interface IProps {
-    componentId: string;
+  componentId: string;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -19,47 +19,47 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
 const MemberServicesContainer: FC<Props> = ({ componentId, isGroupUser, isWellbeingAccess }) => {
-    const [tab, setTab] = useState<Tab>("yumatter");
+  const [tab, setTab] = useState<Tab>("yumatter");
 
-    const handleTabChange = useCallback(
-        (newTab: Tab) => () => {
-            setTab(newTab);
-        },
-        []
-    );
+  const handleTabChange = useCallback(
+    (newTab: Tab) => () => {
+      setTab(newTab);
+    },
+    []
+  );
 
-    const handleEmptyPress = useCallback((): null => null, []);
+  const handleEmptyPress = useCallback((): null => null, []);
 
-    const handleClose = useCallback(() => Navigation.popToRoot(componentId), []);
+  const handleClose = useCallback(() => Navigation.popToRoot(componentId), []);
 
-    if (tab === "yumatter") {
-        return (
-            <Yumatter
-                isGroup={isGroupUser || isWellbeingAccess}
-                onPressClose={handleClose}
-                onLeftTabPress={handleEmptyPress}
-                onRightTabPress={useMemo(() => handleTabChange("smartHealth"), [])}
-            />
-        );
-    }
-
+  if (tab === "yumatter") {
     return (
-        <SmartHealth
-            onPressClose={handleClose}
-            onLeftTabPress={useMemo(() => handleTabChange("yumatter"), [])}
-            onRightTabPress={handleEmptyPress}
-        />
+      <Yumatter
+        isGroup={isGroupUser || isWellbeingAccess}
+        onPressClose={handleClose}
+        onLeftTabPress={handleEmptyPress}
+        onRightTabPress={useMemo(() => handleTabChange("smartHealth"), [])}
+      />
     );
+  }
+
+  return (
+    <SmartHealth
+      onPressClose={handleClose}
+      onLeftTabPress={useMemo(() => handleTabChange("yumatter"), [])}
+      onRightTabPress={handleEmptyPress}
+    />
+  );
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-    features: getUserFeatures(state),
-    isGroupUser: getUserBusiness(state).isGroup,
-    isWellbeingAccess: getUserBusiness(state).isWellbeingAccess
+  features: getUserFeatures(state),
+  isGroupUser: getUserBusiness(state).isGroup,
+  isWellbeingAccess: getUserBusiness(state).isWellbeingAccess,
 });
 
 const mapDispatchToProps = {
-    getUserStart
+  getUserStart,
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(MemberServicesContainer);

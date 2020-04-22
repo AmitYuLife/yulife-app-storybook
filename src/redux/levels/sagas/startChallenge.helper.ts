@@ -14,7 +14,7 @@ import {
   challengeResetFailAction,
   challengeResetSuccessAction,
   challengeTimeUpAction,
-  challengeUpdateSuccessAction
+  challengeUpdateSuccessAction,
 } from "../levels.actions";
 
 export function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, endDateTime: string) {
@@ -34,7 +34,7 @@ export function* startMindfulnessTracking(levelSlotId: string, startDateTime: st
         const results = {
           endDateTime,
           startDateTime,
-          value: Math.floor(queryResult.reduce((accumulator: number, session: any) => accumulator + session.value, 0))
+          value: Math.floor(queryResult.reduce((accumulator: number, session: any) => accumulator + session.value, 0)),
         };
 
         const { data } = yield call(updateActiveChallengeWithClient, levelSlotId, results);
@@ -77,7 +77,7 @@ export default function* startChallenge({ isMeditation, levelSlotId, startDateTi
   while (inProgress) {
     const { challengeCancelled, challengeTimeUp } = yield race({
       challengeCancelled: take(CHALLENGE_CANCEL),
-      challengeTimeUp: take(CHALLENGE_TIME_UP)
+      challengeTimeUp: take(CHALLENGE_TIME_UP),
     });
 
     if (challengeCancelled) {

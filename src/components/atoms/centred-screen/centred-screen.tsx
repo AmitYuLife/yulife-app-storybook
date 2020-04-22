@@ -4,38 +4,38 @@ import { getImageAndStyle } from "./centred-screen.helpers";
 import styles from "./centred-screen.styles";
 
 interface IProps {
-    children?: React.ReactNode;
-    footerImage?: CenteredScreenImages;
-    style?: ViewStyle;
-    testID?: string;
+  children?: React.ReactNode;
+  footerImage?: CenteredScreenImages;
+  style?: ViewStyle;
+  testID?: string;
 }
 
 export type CenteredScreenImages =
-    | "forest"
-    | "large_forest"
-    | "gray_forest"
-    | "challenge_failed_forest"
-    | "ocean"
-    | "gray_ocean"
-    | "challenge_failed_ocean"
-    | "desert"
-    | "gray_desert"
-    | "challenge_success_desert"
-    | "challenge_failed_desert"
-    | "gray_mountain"
-    | "mountain"
-    | "challenge_mountain"
-    | "challenge_success_forest";
+  | "forest"
+  | "large_forest"
+  | "gray_forest"
+  | "challenge_failed_forest"
+  | "ocean"
+  | "gray_ocean"
+  | "challenge_failed_ocean"
+  | "desert"
+  | "gray_desert"
+  | "challenge_success_desert"
+  | "challenge_failed_desert"
+  | "gray_mountain"
+  | "mountain"
+  | "challenge_mountain"
+  | "challenge_success_forest";
 
 export default function CenteredScreen({ children, footerImage, style, testID }: IProps) {
-    return (
-        <SafeAreaView style={StyleSheet.flatten([styles.wrapper, style])} testID={testID}>
-            {!footerImage ? null : (
-                <View style={styles.imageWrapper}>
-                    <Image resizeMode="cover" {...getImageAndStyle(footerImage)} />
-                </View>
-            )}
-            {children}
-        </SafeAreaView>
-    );
+  return (
+    <SafeAreaView style={StyleSheet.flatten([styles.wrapper, style])} testID={testID}>
+      {!footerImage ? null : (
+        <View style={styles.imageWrapper}>
+          <Image resizeMode="cover" {...getImageAndStyle(footerImage)} />
+        </View>
+      )}
+      {children}
+    </SafeAreaView>
+  );
 }

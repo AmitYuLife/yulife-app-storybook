@@ -1,6 +1,6 @@
 import {
-    GetCurrentUser_getCurrentUser_activeChallenge,
-    GetCurrentUser_getCurrentUser_todayActivity
+  GetCurrentUser_getCurrentUser_activeChallenge,
+  GetCurrentUser_getCurrentUser_todayActivity,
 } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_CURRENT_USER } from "@graphql/user";
 import * as React from "react";
@@ -10,9 +10,9 @@ import { connect } from "react-redux";
 import { IReduxState } from "../../../redux/_core/reducers";
 import { getDailyMeditationCoins, getDailyStepsCoins } from "../../../redux/coins/coins.selectors";
 import {
-    getDailyMeditation,
-    getMeditationAwardedMilestonesLength,
-    getMeditationExchangeRate
+  getDailyMeditation,
+  getMeditationAwardedMilestonesLength,
+  getMeditationExchangeRate,
 } from "../../../redux/daily-meditation/daily-meditation.selectors";
 import { getDailySteps, getExchangeRate } from "../../../redux/daily-steps/daily-steps.selectors";
 import { getChallengesStatus } from "../../../redux/levels/levels.selectors";
@@ -22,8 +22,8 @@ import { TodayYucoinScreen } from "../../screens";
 import { useQuery } from "@apollo/react-hooks";
 
 interface IProps {
-    componentId: string;
-    onCtaPress: () => void;
+  componentId: string;
+  onCtaPress: () => void;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -33,93 +33,93 @@ type ChallengeToday = GetCurrentUser_getCurrentUser_todayActivity;
 type Props = IProps & ConnectedState;
 
 const TodayYucoinModal: React.FC<Props> = ({
-    challengesStatus,
-    dailyStepsEarned,
-    exchangeRate,
-    steps,
-    features,
-    dailyMeditation,
-    dailyMeditationEarned,
-    isShowingPassiveMeditation,
-    meditationExchangeRate,
-    passiveMeditationAwardedMilestonesLength,
-    componentId,
-    onCtaPress
+  challengesStatus,
+  dailyStepsEarned,
+  exchangeRate,
+  steps,
+  features,
+  dailyMeditation,
+  dailyMeditationEarned,
+  isShowingPassiveMeditation,
+  meditationExchangeRate,
+  passiveMeditationAwardedMilestonesLength,
+  componentId,
+  onCtaPress,
 }) => {
-    const { loading, data } = useQuery(GQL_QUERY_GET_CURRENT_USER, {
-        fetchPolicy: "network-only",
-        variables: { intercomHashMethod: Platform.OS }
-    });
+  const { loading, data } = useQuery(GQL_QUERY_GET_CURRENT_USER, {
+    fetchPolicy: "network-only",
+    variables: { intercomHashMethod: Platform.OS },
+  });
 
-    const handleClose = () => {
-        Navigation.dismissModal(componentId);
-    };
+  const handleClose = () => {
+    Navigation.dismissModal(componentId);
+  };
 
-    const handleCtaPress = () => {
-        onCtaPress();
-        Navigation.dismissModal(componentId);
-    };
+  const handleCtaPress = () => {
+    onCtaPress();
+    Navigation.dismissModal(componentId);
+  };
 
-    const todayActivity = pathOr<ChallengeToday[]>(data, "getCurrentUser.todayActivity", []);
-    const { challenge, levelSlot } = pathOr<ActiveChallenge>(data, "getCurrentUser.activeChallenge", {
-        challenge: null,
-        levelSlot: null
-    });
+  const todayActivity = pathOr<ChallengeToday[]>(data, "getCurrentUser.todayActivity", []);
+  const { challenge, levelSlot } = pathOr<ActiveChallenge>(data, "getCurrentUser.activeChallenge", {
+    challenge: null,
+    levelSlot: null,
+  });
 
-    const surgeMultiplier = (exchangeRate && exchangeRate.surge) || 1;
-    const meditationSurgeMultiplier = (meditationExchangeRate && meditationExchangeRate.surge) || 1;
+  const surgeMultiplier = (exchangeRate && exchangeRate.surge) || 1;
+  const meditationSurgeMultiplier = (meditationExchangeRate && meditationExchangeRate.surge) || 1;
 
-    const activeChallenge: ChallengeToday =
-        challenge && challenge.incomingData
-            ? {
-                  earned: challenge.yuCoinAwarded,
-                  id: challenge.id,
-                  milestones: challenge.rating,
-                  name: challenge.subtype || levelSlot.subtype,
-                  score: challenge.incomingData
-              }
-            : null;
+  const activeChallenge: ChallengeToday =
+    challenge && challenge.incomingData
+      ? {
+          earned: challenge.yuCoinAwarded,
+          id: challenge.id,
+          milestones: challenge.rating,
+          name: challenge.subtype || levelSlot.subtype,
+          score: challenge.incomingData,
+        }
+      : null;
 
-    const ctaLabel = !!activeChallenge
-        ? "back to challenge"
-        : challengesStatus.done
-        ? "take another challenge"
-        : "take a challenge";
+  const ctaLabel = !!activeChallenge
+    ? "back to challenge"
+    : challengesStatus.done
+    ? "take another challenge"
+    : "take a challenge";
 
-    return (
-        <TodayYucoinScreen
-            activeChallenge={activeChallenge}
-            challenges={todayActivity}
-            dailyStepsEarned={dailyStepsEarned}
-            exchangeRate={exchangeRate}
-            loading={loading}
-            steps={steps}
-            onPressCta={handleCtaPress}
-            onPressClose={handleClose}
-            showCta={challengesStatus.isAvailable}
-            ctaLabel={ctaLabel}
-            isShowingPassiveMeditation={isShowingPassiveMeditation}
-            isStepsSurge={features.showSurge && surgeMultiplier > 1}
-            isMeditationSurge={isShowingPassiveMeditation && meditationSurgeMultiplier > 1}
-            meditationSeconds={dailyMeditation}
-            dailyMeditationEarned={dailyMeditationEarned}
-            meditationExchangeRate={meditationExchangeRate}
-            passiveMeditationAwardedMilestonesLength={passiveMeditationAwardedMilestonesLength}
-        />
-    );
+  return (
+    <TodayYucoinScreen
+      activeChallenge={activeChallenge}
+      challenges={todayActivity}
+      dailyStepsEarned={dailyStepsEarned}
+      exchangeRate={exchangeRate}
+      loading={loading}
+      steps={steps}
+      onPressCta={handleCtaPress}
+      onPressClose={handleClose}
+      showCta={challengesStatus.isAvailable}
+      ctaLabel={ctaLabel}
+      isShowingPassiveMeditation={isShowingPassiveMeditation}
+      isStepsSurge={features.showSurge && surgeMultiplier > 1}
+      isMeditationSurge={isShowingPassiveMeditation && meditationSurgeMultiplier > 1}
+      meditationSeconds={dailyMeditation}
+      dailyMeditationEarned={dailyMeditationEarned}
+      meditationExchangeRate={meditationExchangeRate}
+      passiveMeditationAwardedMilestonesLength={passiveMeditationAwardedMilestonesLength}
+    />
+  );
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-    challengesStatus: getChallengesStatus(state),
-    dailyStepsEarned: getDailyStepsCoins(state),
-    exchangeRate: getExchangeRate(state),
-    meditationExchangeRate: getMeditationExchangeRate(state),
-    passiveMeditationAwardedMilestonesLength: getMeditationAwardedMilestonesLength(state),
-    steps: getDailySteps(state),
-    dailyMeditation: getDailyMeditation(state),
-    dailyMeditationEarned: getDailyMeditationCoins(state),
-    isShowingPassiveMeditation: getUserFeatures(state).usePassiveMeditation,
-    features: getUserFeatures(state)
+  challengesStatus: getChallengesStatus(state),
+  dailyStepsEarned: getDailyStepsCoins(state),
+  exchangeRate: getExchangeRate(state),
+  meditationExchangeRate: getMeditationExchangeRate(state),
+  passiveMeditationAwardedMilestonesLength: getMeditationAwardedMilestonesLength(state),
+  steps: getDailySteps(state),
+  dailyMeditation: getDailyMeditation(state),
+  dailyMeditationEarned: getDailyMeditationCoins(state),
+  isShowingPassiveMeditation: getUserFeatures(state).usePassiveMeditation,
+  features: getUserFeatures(state),
 });
 
 export default connect<ConnectedState>(mapStateToProps)(TodayYucoinModal);

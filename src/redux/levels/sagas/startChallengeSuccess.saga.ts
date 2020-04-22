@@ -4,23 +4,23 @@ import { challengeStartSuccessAction, pedometerStepsChallengeStarted } from "../
 import startChallenge from "./startChallenge.helper";
 
 export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeof challengeStartSuccessAction>) {
-    const {
-        createActiveChallenge: {
-            challenge: { startDateTime, endDateTime },
-            levelSlot: { subtype }
-        },
-        levelSlotId
-    } = payload;
+  const {
+    createActiveChallenge: {
+      challenge: { startDateTime, endDateTime },
+      levelSlot: { subtype },
+    },
+    levelSlotId,
+  } = payload;
 
-    const initialPedometerSteps = yield select(getSteps);
-    yield put(pedometerStepsChallengeStarted(initialPedometerSteps));
+  const initialPedometerSteps = yield select(getSteps);
+  yield put(pedometerStepsChallengeStarted(initialPedometerSteps));
 
-    if (startDateTime && endDateTime && subtype) {
-        yield call(startChallenge, {
-            endDateTime,
-            isMeditation: subtype === "meditation",
-            levelSlotId,
-            startDateTime
-        });
-    }
+  if (startDateTime && endDateTime && subtype) {
+    yield call(startChallenge, {
+      endDateTime,
+      isMeditation: subtype === "meditation",
+      levelSlotId,
+      startDateTime,
+    });
+  }
 }

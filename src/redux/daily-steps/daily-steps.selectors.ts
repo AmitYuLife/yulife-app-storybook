@@ -1,6 +1,4 @@
-import {
-    GetCurrentUser_getCurrentUser_passiveSteps_exchange
-} from "../../graphql/_core/schema";
+import { GetCurrentUser_getCurrentUser_passiveSteps_exchange } from "../../graphql/_core/schema";
 import { IReduxState } from "../_core/reducers";
 
 export type ExchangeRate = GetCurrentUser_getCurrentUser_passiveSteps_exchange;

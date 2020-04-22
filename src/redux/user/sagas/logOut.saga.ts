@@ -6,9 +6,9 @@ import { call } from "redux-saga/effects";
 import { persistor } from "../../_core/store";
 
 export default function* logOutSaga() {
-    yield call(Logger.logEvent, "log_out");
-    yield call(setUnauthenticatedRoot);
-    yield call(clearToken);
-    yield call(() => client().resetStore());
-    yield call(() => persistor.purge());
+  yield call(Logger.logEvent, "log_out");
+  yield call(setUnauthenticatedRoot);
+  yield call(clearToken);
+  yield call(() => client().resetStore());
+  yield call(() => persistor.purge());
 }

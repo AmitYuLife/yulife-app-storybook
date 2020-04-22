@@ -7,7 +7,7 @@ import onboardOnLoginSaga from "./onboardOnLogin.saga";
 import sendHistoricalDataOnPushSaga from "./sendHistoricalDataOnPush.saga";
 
 export default [
-    takeLatest(GET_USER_SUCCESS, onboardOnGetUserSaga),
-    takeLatest(LOGIN_USER_SUCCESS, onboardOnLoginSaga),
-    takeLatest(GET_HISTORICAL_DATA, sendHistoricalDataOnPushSaga)
+  takeLatest(GET_USER_SUCCESS, onboardOnGetUserSaga),
+  takeLatest(LOGIN_USER_SUCCESS, onboardOnLoginSaga),
+  takeLatest(GET_HISTORICAL_DATA, sendHistoricalDataOnPushSaga),
 ];

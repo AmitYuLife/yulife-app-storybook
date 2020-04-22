@@ -7,33 +7,33 @@ import { getEndResult } from "../levels.helpers";
 import { getActiveLevel } from "../levels.selectors";
 
 export default function* endChallengeSaga() {
-    const active = yield select(getActiveLevel);
+  const active = yield select(getActiveLevel);
 
-    if (active) {
-        const { milestones, milestonesLog, ...metaData } = active;
-        yield spawn(() => Logger.logMixpanelEvent("end_challenge_triggered", metaData));
-    }
+  if (active) {
+    const { milestones, milestonesLog, ...metaData } = active;
+    yield spawn(() => Logger.logMixpanelEvent("end_challenge_triggered", metaData));
+  }
 
-    if (active.levelSlotId) {
-        if (active.isCompleted) {
-            yield put(challengeEndSuccessAction({ updateActiveChallenge: null }));
-        } else {
-            try {
-                const features = yield select(getUserFeatures);
-                const result = yield call(getEndResult, active, features);
-                const { data } = yield call(updateActiveChallengeWithClient, active.levelSlotId, result);
-
-                if (data.updateActiveChallenge) {
-                    yield put(challengeEndSuccessAction(data));
-                } else {
-                    yield put(challengeResetSuccessAction());
-                }
-            } catch (e) {
-                yield put(challengeEndFailAction());
-                yield spawn(() => Logger.logMixpanelError(e, "endChallenge"));
-            }
-        }
+  if (active.levelSlotId) {
+    if (active.isCompleted) {
+      yield put(challengeEndSuccessAction({ updateActiveChallenge: null }));
     } else {
-        yield put(challengeResetSuccessAction());
+      try {
+        const features = yield select(getUserFeatures);
+        const result = yield call(getEndResult, active, features);
+        const { data } = yield call(updateActiveChallengeWithClient, active.levelSlotId, result);
+
+        if (data.updateActiveChallenge) {
+          yield put(challengeEndSuccessAction(data));
+        } else {
+          yield put(challengeResetSuccessAction());
+        }
+      } catch (e) {
+        yield put(challengeEndFailAction());
+        yield spawn(() => Logger.logMixpanelError(e, "endChallenge"));
+      }
     }
+  } else {
+    yield put(challengeResetSuccessAction());
+  }
 }

@@ -6,12 +6,12 @@ import { updatePedometerSuccessAction } from "../../pedometer/pedometer.actions"
 import { updateDailyStepsFailed, updateDailyStepsSuccess } from "../daily-steps.actions";
 
 export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof updatePedometerSuccessAction>) {
-    try {
-        const { data } = yield call(upsertStepsChallenge, [mapPedometerResults(payload)]);
+  try {
+    const { data } = yield call(upsertStepsChallenge, [mapPedometerResults(payload)]);
 
-        yield put(updateDailyStepsSuccess(data));
-    } catch (e) {
-        yield spawn(() => Logger.logMixpanelError(e, "updateDailySteps"));
-        yield put(updateDailyStepsFailed(e.message));
-    }
+    yield put(updateDailyStepsSuccess(data));
+  } catch (e) {
+    yield spawn(() => Logger.logMixpanelError(e, "updateDailySteps"));
+    yield put(updateDailyStepsFailed(e.message));
+  }
 }

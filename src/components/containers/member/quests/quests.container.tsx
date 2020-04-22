@@ -17,13 +17,13 @@ import { submitUnityAction } from "../../../../redux/levels/levels.actions";
 import {
   challengeCancelAction,
   challengeEndAction,
-  challengeResetAction
+  challengeResetAction,
 } from "../../../../redux/levels/levels.actions";
 import {
   getActiveLevel,
   getChallengesStatus,
   getCurrentLevel,
-  getNextLevelAvailableAt
+  getNextLevelAvailableAt,
 } from "../../../../redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "../../../../redux/streaks/streaks.actions";
 import { getQuestsOfflineTheme } from "../../../../redux/theme/theme.selectors";
@@ -38,7 +38,7 @@ import {
   ChallengeProgressScreen,
   ChallengeSuccessScreen,
   QuestsScreenOffline,
-  QuestsScrollScreen
+  QuestsScrollScreen,
 } from "../../../screens";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -65,7 +65,7 @@ function getLevelStatus(
       isDone: false,
       isNext: true,
       isPrevious: false,
-      nextAvailableAt
+      nextAvailableAt,
     };
   }
 
@@ -81,7 +81,7 @@ function getLevelStatus(
       isDone: true,
       isNext: previousAvailable,
       isPrevious: true,
-      nextAvailableAt: ""
+      nextAvailableAt: "",
     };
   }
 
@@ -89,7 +89,7 @@ function getLevelStatus(
     isDone: currentLevel > level,
     isNext: false,
     isPrevious: false,
-    nextAvailableAt: ""
+    nextAvailableAt: "",
   };
 }
 
@@ -122,9 +122,9 @@ const showChestModal = (
 
           dismissChestModal();
         },
-        onPressCtaSecondary: isNext ? dismissChestModal : null
-      }
-    }
+        onPressCtaSecondary: isNext ? dismissChestModal : null,
+      },
+    },
   });
 
 const showChallengeUnavailableModal = (nextAvailableAt: string) =>
@@ -134,9 +134,9 @@ const showChallengeUnavailableModal = (nextAvailableAt: string) =>
       name: MODALS.challengeUnavailable,
       passProps: {
         nextAvailableAt,
-        onPressCta: dismissChallengeUnavailableModal
-      }
-    }
+        onPressCta: dismissChallengeUnavailableModal,
+      },
+    },
   });
 
 const showLevelUnavailableModal = (level: number) =>
@@ -146,9 +146,9 @@ const showLevelUnavailableModal = (level: number) =>
       name: MODALS.levelUnavailable,
       passProps: {
         level,
-        onPressCta: dismissLevelUnavailableModal
-      }
-    }
+        onPressCta: dismissLevelUnavailableModal,
+      },
+    },
   });
 
 const showLevelCompleteModal = (componentId: string, level: GetCurrentWorld_getCurrentWorld) =>
@@ -163,13 +163,13 @@ const showLevelCompleteModal = (componentId: string, level: GetCurrentWorld_getC
             component: {
               id: ROUTES.activityHistory,
               name: ROUTES.activityHistory,
-              options: { bottomTabs }
-            }
+              options: { bottomTabs },
+            },
           });
-        }
+        },
       },
-      options: { bottomTabs }
-    }
+      options: { bottomTabs },
+    },
   });
 
 const goToChallengesList = (componentId: string, level: GetCurrentWorld_getCurrentWorld) =>
@@ -178,10 +178,10 @@ const goToChallengesList = (componentId: string, level: GetCurrentWorld_getCurre
       id: ROUTES.questsChallengesList,
       name: ROUTES.questsChallengesList,
       passProps: {
-        level
+        level,
       },
-      options: { bottomTabs }
-    }
+      options: { bottomTabs },
+    },
   });
 
 const QuestsContainer: FC<Props> = (props) => {
@@ -207,7 +207,7 @@ const QuestsContainer: FC<Props> = (props) => {
     features,
     copy,
     challengesStatus,
-    nextLevelAvailableAt
+    nextLevelAvailableAt,
   } = props;
 
   const currentWorld = useMemo(() => getCurrentWorld(level), [level]);
@@ -216,7 +216,7 @@ const QuestsContainer: FC<Props> = (props) => {
       componentId,
       currentLevel,
       onLeftMenuPress,
-      totalCoins
+      totalCoins,
     }),
     [currentLevel, totalCoins]
   );
@@ -280,7 +280,7 @@ const QuestsContainer: FC<Props> = (props) => {
                 showLevelUnavailableModal(itemLevel.level);
               }
             }
-          }
+          },
         };
       }),
     [data, nextLevelAvailableAt, challengesStatus, currentLevel, features, copy]
@@ -369,9 +369,9 @@ const mapStateToProps = (state: IReduxState) => ({
   nextLevelAvailableAt: getNextLevelAvailableAt(state),
   totalCoins: getTotalCoins(state),
   theme: {
-    questsOffline: getQuestsOfflineTheme(state)
+    questsOffline: getQuestsOfflineTheme(state),
   },
-  copy: getCopy(state, "challenges")
+  copy: getCopy(state, "challenges"),
 });
 
 const mapDispatchToProps = {
@@ -379,7 +379,7 @@ const mapDispatchToProps = {
   challengeEndAction,
   challengeResetAction,
   displayStreaksCompletedAction,
-  submitUnityAction
+  submitUnityAction,
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(QuestsContainer);

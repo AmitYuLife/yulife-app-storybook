@@ -4,14 +4,14 @@ export const MEDITATION_SINCE_LAST_UPDATE_SUCCESS = "MEDITATION_SINCE_LAST_UPDAT
 export const UPDATE_DAILY_MEDITATION_EMPTY_RESULT = "UPDATE_DAILY_MEDITATION_EMPTY_RESULT";
 
 export const updateDailyMeditation = (results: UpsertPassiveChallenge) => ({
-    payload: results,
-    type: UPDATE_DAILY_MEDITATION_SUCCESS
+  payload: results,
+  type: UPDATE_DAILY_MEDITATION_SUCCESS,
 });
 
 export const meditationSinceLastUpdateSuccess = () => ({
-    type: MEDITATION_SINCE_LAST_UPDATE_SUCCESS
+  type: MEDITATION_SINCE_LAST_UPDATE_SUCCESS,
 });
 
 export const updateDailyMeditationEmptyResult = () => ({
-    type: UPDATE_DAILY_MEDITATION_EMPTY_RESULT
+  type: UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
 });

@@ -38,7 +38,7 @@ const LoginContainer: React.FC<Props> = ({
   otp,
   email: incomingEmail,
   setAuthenticated: dispatchSetAuthenticated,
-  loginUserSuccess: dispatchLoginUserSuccess
+  loginUserSuccess: dispatchLoginUserSuccess,
 }) => {
   const [isUsingOtp, setIsUsingOtp] = useState(otp && otp.length > 10);
   const [email, setEmail] = useState(isUsingOtp ? incomingEmail : "");
@@ -58,8 +58,8 @@ const LoginContainer: React.FC<Props> = ({
           component: {
             id: route,
             name: route,
-            options: { bottomTabs }
-          }
+            options: { bottomTabs },
+          },
         });
         return;
       }
@@ -76,10 +76,10 @@ const LoginContainer: React.FC<Props> = ({
           id: route,
           name: route,
           passProps: {
-            navigateToNext
+            navigateToNext,
           },
-          options: { bottomTabs }
-        }
+          options: { bottomTabs },
+        },
       });
       return;
     }
@@ -104,8 +104,8 @@ const LoginContainer: React.FC<Props> = ({
               intercomHashMethod: Platform.OS as IntercomHashMethod,
               method: isUsingOtp ? LoginMethod.OTP : LoginMethod.PASSWORD,
               password: isUsingOtp ? otp : password,
-              tokenExpiration: TOKEN_EXPIRATION
-            }
+              tokenExpiration: TOKEN_EXPIRATION,
+            },
           });
 
           if (results && results.data && results.data.loginUser && results.data.loginUser.token) {
@@ -130,8 +130,8 @@ const LoginContainer: React.FC<Props> = ({
       component: {
         id: ROUTES.resetPassword,
         name: ROUTES.resetPassword,
-        options: { bottomTabs }
-      }
+        options: { bottomTabs },
+      },
     });
   }, []);
 
@@ -178,12 +178,12 @@ const LoginContainer: React.FC<Props> = ({
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-  copy: getCopy(state, "login") as LoginCopy
+  copy: getCopy(state, "login") as LoginCopy,
 });
 
 const mapDispatchToProps = {
   loginUserSuccess,
-  setAuthenticated
+  setAuthenticated,
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(LoginContainer);

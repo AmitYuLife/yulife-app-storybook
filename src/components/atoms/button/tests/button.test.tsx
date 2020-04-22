@@ -18,7 +18,7 @@ function renderComponent(customProps: Props) {
     type: "Primary" as Types,
     label: "Button",
     testID: "button",
-    ...customProps
+    ...customProps,
   };
 
   return render(<Button {...props} />);

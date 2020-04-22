@@ -32,7 +32,7 @@ interface IState {
 class DailyStepsLoading extends PureComponent<{}, IState> {
   public state: IState = {
     animationStateIndex: 0,
-    animationStates: [First, Second, Third, Third, Third, Third]
+    animationStates: [First, Second, Third, Third, Third, Third],
   };
 
   private interval: NodeJS.Timer;
@@ -45,7 +45,7 @@ class DailyStepsLoading extends PureComponent<{}, IState> {
     this.interval = global.setInterval(
       () =>
         this.setState(({ animationStates, animationStateIndex }) => ({
-          animationStateIndex: animationStateIndex + 1 < animationStates.length ? animationStateIndex + 1 : 0
+          animationStateIndex: animationStateIndex + 1 < animationStates.length ? animationStateIndex + 1 : 0,
         })),
       300
     );

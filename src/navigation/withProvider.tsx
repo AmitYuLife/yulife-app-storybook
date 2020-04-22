@@ -5,17 +5,17 @@ import React from "react";
 import { generateOnLeftMenuPress } from "./root";
 
 const withProvider = (WrappedComponent: ComponentClass, client: ApolloClient<{}>, hasMenu = false) => (props: any) => {
-    const otherProps: any = {};
+  const otherProps: any = {};
 
-    if (hasMenu) {
-        otherProps.onLeftMenuPress = generateOnLeftMenuPress(props.componentId);
-    }
+  if (hasMenu) {
+    otherProps.onLeftMenuPress = generateOnLeftMenuPress(props.componentId);
+  }
 
-    return (
-        <ApolloProvider client={client}>
-            <WrappedComponent {...props} {...otherProps} />
-        </ApolloProvider>
-    );
+  return (
+    <ApolloProvider client={client}>
+      <WrappedComponent {...props} {...otherProps} />
+    </ApolloProvider>
+  );
 };
 
 export default withProvider;

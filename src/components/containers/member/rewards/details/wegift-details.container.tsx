@@ -44,9 +44,9 @@ const WegiftRewardDetailsContainer: FC<Props> = (props) => {
       redeem_steps: { steps },
       available_denominations,
       uiSettings,
-      terms_and_conditions_url
+      terms_and_conditions_url,
     },
-    features = {}
+    features = {},
   } = props;
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const WegiftRewardDetailsContainer: FC<Props> = (props) => {
       reward_available_denominations: available_denominations,
       reward_best_sticker: reward_sticker,
       reward_code: code,
-      reward_name: name
+      reward_name: name,
     });
   }, []);
 
@@ -93,10 +93,10 @@ const WegiftRewardDetailsContainer: FC<Props> = (props) => {
                   name: ROUTES.wegiftConfirmed,
                   passProps: {
                     onTabChange: props.onTabChange,
-                    purchase: (result as { data: RedeemReward }).data.redeemReward
+                    purchase: (result as { data: RedeemReward }).data.redeemReward,
                   },
-                  options: { bottomTabs }
-                }
+                  options: { bottomTabs },
+                },
               });
             }
           } catch (e) {
@@ -104,7 +104,7 @@ const WegiftRewardDetailsContainer: FC<Props> = (props) => {
               ctaLabel: copy.voucherNotAvailable.ctaLabel,
               heading: copy.voucherNotAvailable.heading,
               onPress: () => Navigation.dismissModal(MODALS.rewards),
-              subheading: copy.voucherNotAvailable.subheading
+              subheading: copy.voucherNotAvailable.subheading,
             };
 
             if (props.offline) {
@@ -121,13 +121,13 @@ const WegiftRewardDetailsContainer: FC<Props> = (props) => {
               component: {
                 id: MODALS.rewards,
                 name: MODALS.rewards,
-                passProps
-              }
+                passProps,
+              },
             });
           }
         },
-        text: "OK"
-      }
+        text: "OK",
+      },
     ]);
   }, [denomination]);
 
@@ -175,7 +175,7 @@ const WegiftRewardDetailsContainer: FC<Props> = (props) => {
               onPress: () => {
                 setDenomination(item);
                 toggleOverlay();
-              }
+              },
             }))}
           />
         );
@@ -188,11 +188,11 @@ const mapStateToProps = (state: IReduxState) => ({
   offline: getOfflineState(state),
   totalCoins: getTotalCoins(state),
   copy: getCopy(state, "purchases"),
-  features: getUserFeatures(state)
+  features: getUserFeatures(state),
 });
 
 const mapDispatchToProps = {
-  getUserStart
+  getUserStart,
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(

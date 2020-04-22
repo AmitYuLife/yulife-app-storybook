@@ -22,7 +22,7 @@ enum Programmes {
   aerLingus = "aerclub",
   vueling = "vueling club",
   meridiana = "meridiana club",
-  britishAirways = "the british airways executive club"
+  britishAirways = "the british airways executive club",
 }
 
 interface IProgrammesItem {
@@ -71,8 +71,8 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
       redeem_steps: { info },
       available_denominations,
       uiSettings,
-      loyalty_programme
-    }
+      loyalty_programme,
+    },
   } = props;
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
       reward_available_denominations: available_denominations,
       reward_best_sticker: reward_sticker,
       reward_code: code,
-      reward_name: name
+      reward_name: name,
     });
   }, []);
 
@@ -89,7 +89,7 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
     () =>
       loyalty_programme.map((programme: Programmes) => ({
         id: programme,
-        label: programme
+        label: programme,
       })),
     []
   );
@@ -97,7 +97,7 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
     () =>
       available_denominations.map((ad) => ({
         id: String(ad.value),
-        label: `${ad.value} avios - ${ad.yuCoin} yucoin`
+        label: `${ad.value} avios - ${ad.yuCoin} yucoin`,
       })),
     []
   );
@@ -125,7 +125,7 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
   const { hasError, isValidAccountNumber } = useMemo(
     () => ({
       hasError: !firstName || !lastName || !loyalty.id,
-      isValidAccountNumber: verifyAccountNumber(loyalty.id, accountNumber.value)
+      isValidAccountNumber: verifyAccountNumber(loyalty.id, accountNumber.value),
     }),
     [firstName, lastName, accountNumber, loyalty]
   );
@@ -140,20 +140,20 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
         accountNumber: accountNumber.value,
         firstName,
         lastName,
-        loyaltyProgramme: loyalty.id
-      }
+        loyaltyProgramme: loyalty.id,
+      },
     };
 
     Alert.alert("Confirm yucoin purchase", `You are about to buy ${amount.label.replace("-", "with")}.`, [
       {
         style: "cancel",
-        text: "Cancel"
+        text: "Cancel",
       },
       {
         onPress: async () => {
           try {
             const result = await redeemReward({
-              variables: { id: code, amount: Number(amount.id), metadata }
+              variables: { id: code, amount: Number(amount.id), metadata },
             });
 
             if ((result as { data: RedeemReward }).data.redeemReward) {
@@ -164,10 +164,10 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
                   name: ROUTES.aviosConfirmed,
                   passProps: {
                     onTabChange: props.onTabChange,
-                    purchase: (result as { data: RedeemReward }).data.redeemReward
+                    purchase: (result as { data: RedeemReward }).data.redeemReward,
                   },
-                  options: { bottomTabs }
-                }
+                  options: { bottomTabs },
+                },
               });
             }
           } catch (e) {
@@ -175,7 +175,7 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
               ctaLabel: copy.voucherNotAvailable.ctaLabel,
               heading: copy.voucherNotAvailable.heading,
               onPress: () => Navigation.dismissModal(MODALS.rewards),
-              subheading: copy.voucherNotAvailable.subheading
+              subheading: copy.voucherNotAvailable.subheading,
             };
 
             if (props.offline) {
@@ -192,13 +192,13 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
               component: {
                 id: MODALS.rewards,
                 name: MODALS.rewards,
-                passProps
-              }
+                passProps,
+              },
             });
           }
         },
-        text: "Confirm"
-      }
+        text: "Confirm",
+      },
     ]);
   }, [lastName, firstName, accountNumber, loyalty, amount]);
 
@@ -258,14 +258,14 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
                   onPress: () => {
                     setLoyalty(item);
                     toggleOverlay();
-                  }
+                  },
                 }))
               : amountList.map((item) => ({
                   ...item,
                   onPress: () => {
                     setAmount(item);
                     toggleOverlay();
-                  }
+                  },
                 }))
           }
         />
@@ -277,11 +277,11 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
 const mapStateToProps = (state: IReduxState) => ({
   offline: getOfflineState(state),
   totalCoins: getTotalCoins(state),
-  copy: getCopy(state, "purchases")
+  copy: getCopy(state, "purchases"),
 });
 
 const mapDispatchToProps = {
-  getUserStart
+  getUserStart,
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(

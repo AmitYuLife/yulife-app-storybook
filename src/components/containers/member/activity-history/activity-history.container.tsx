@@ -17,7 +17,7 @@ import { ActivityHistoryLevels } from "../../../screens";
 import { groupDatesByMonth } from "./activity-history.helpers";
 
 interface IProps {
-    componentId: string;
+  componentId: string;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -26,99 +26,99 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
 const ActivityHistoryContainer: FC<Props> = ({
-    componentId,
-    copy,
-    features = {},
-    getUserStart: dispatchGetUserStart
+  componentId,
+  copy,
+  features = {},
+  getUserStart: dispatchGetUserStart,
 }) => {
-    const [monthsAgo, setMonthsAgo] = useState(0);
-    const largeList = useRef<LargeList>(null);
+  const [monthsAgo, setMonthsAgo] = useState(0);
+  const largeList = useRef<LargeList>(null);
 
-    const handleClose = useCallback(() => {
-        Navigation.popToRoot(componentId);
-    }, []);
+  const handleClose = useCallback(() => {
+    Navigation.popToRoot(componentId);
+  }, []);
 
-    const onComplete = useCallback(() => {
-        if (largeList && largeList.current) {
-            largeList.current.endLoading();
+  const onComplete = useCallback(() => {
+    if (largeList && largeList.current) {
+      largeList.current.endLoading();
+    }
+  }, [largeList]);
+
+  const { loading, data, refetch, error } = useQuery(GQL_QUERY_GET_ACTIVITY_HISTORY, {
+    variables: { monthsAgo, isFullActivity: true },
+    fetchPolicy: "cache-and-network",
+    onCompleted: onComplete,
+    onError: onComplete,
+  });
+
+  if (error && (!data || !data.getActivityHistoryWithLevels)) {
+    return <GenericConnectionErrorModal onPress={handleClose} />;
+  }
+
+  const [addHistoricalSteps]: AddHistoricalStepsMutationTuple = useMutation(GQL_MUTATION_ADD_HISTORICAL_STEPS);
+
+  const fetchMoreData = useCallback(() => {
+    setMonthsAgo((months) => months + 1);
+  }, []);
+
+  const onRefresh = useCallback(async () => {
+    Logger.logEvent("activity_history_updated");
+
+    if (features.canUpdateActivityHistory) {
+      const start = moment().subtract(30, "days");
+      const end = moment().subtract(1, "days");
+
+      const res = await querySteps(start, end, features);
+
+      if (res.results && !!res.results.length) {
+        try {
+          const response = await addHistoricalSteps({
+            variables: { payload: res.results, shouldAward: true },
+          });
+
+          if (response && response.data && response.data.addHistoricalSteps) {
+            refetch();
+            dispatchGetUserStart();
+          }
+        } catch (e) {
+          Logger.logMixpanelError(error, "@activity_history_reload_catched");
         }
-    }, [largeList]);
-
-    const { loading, data, refetch, error } = useQuery(GQL_QUERY_GET_ACTIVITY_HISTORY, {
-        variables: { monthsAgo, isFullActivity: true },
-        fetchPolicy: "cache-and-network",
-        onCompleted: onComplete,
-        onError: onComplete
-    });
-
-    if (error && (!data || !data.getActivityHistoryWithLevels)) {
-        return <GenericConnectionErrorModal onPress={handleClose} />;
+      } else {
+        Logger.logMixpanelError(error, "@activity_history_reload");
+      }
+    } else {
+      refetch();
     }
 
-    const [addHistoricalSteps]: AddHistoricalStepsMutationTuple = useMutation(GQL_MUTATION_ADD_HISTORICAL_STEPS);
+    if (largeList && largeList.current) {
+      largeList.current.endRefresh();
+    }
+  }, [features, largeList]);
 
-    const fetchMoreData = useCallback(() => {
-        setMonthsAgo((months) => months + 1);
-    }, []);
-
-    const onRefresh = useCallback(async () => {
-        Logger.logEvent("activity_history_updated");
-
-        if (features.canUpdateActivityHistory) {
-            const start = moment().subtract(30, "days");
-            const end = moment().subtract(1, "days");
-
-            const res = await querySteps(start, end, features);
-
-            if (res.results && !!res.results.length) {
-                try {
-                    const response = await addHistoricalSteps({
-                        variables: { payload: res.results, shouldAward: true }
-                    });
-
-                    if (response && response.data && response.data.addHistoricalSteps) {
-                        refetch();
-                        dispatchGetUserStart();
-                    }
-                } catch (e) {
-                    Logger.logMixpanelError(error, "@activity_history_reload_catched");
-                }
-            } else {
-                Logger.logMixpanelError(error, "@activity_history_reload");
-            }
-        } else {
-            refetch();
-        }
-
-        if (largeList && largeList.current) {
-            largeList.current.endRefresh();
-        }
-    }, [features, largeList]);
-
-    return (
-        // return empty array if data.getActivityHistoryWithLevels is undefined
-        <ActivityHistoryLevels
-            items={groupDatesByMonth((data && data.getActivityHistoryWithLevels) || [])}
-            loading={loading}
-            onPressClose={handleClose}
-            onFetchMoreData={fetchMoreData}
-            onRefresh={onRefresh}
-            copy={copy}
-            largeListRef={largeList}
-        />
-    );
+  return (
+    // return empty array if data.getActivityHistoryWithLevels is undefined
+    <ActivityHistoryLevels
+      items={groupDatesByMonth((data && data.getActivityHistoryWithLevels) || [])}
+      loading={loading}
+      onPressClose={handleClose}
+      onFetchMoreData={fetchMoreData}
+      onRefresh={onRefresh}
+      copy={copy}
+      largeListRef={largeList}
+    />
+  );
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-    features: getUserFeatures(state),
-    copy: getCopy(state, "activityHistoryLevels")
+  features: getUserFeatures(state),
+  copy: getCopy(state, "activityHistoryLevels"),
 });
 
 const mapDispatchToProps = {
-    getUserStart
+  getUserStart,
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(ActivityHistoryContainer);

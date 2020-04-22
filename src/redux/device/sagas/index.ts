@@ -13,11 +13,11 @@ import unregisterIntercomSaga from "./unregisterIntercom.saga";
 import unregisterPushNotificationsSaga from "./unregisterPushNotifications.saga";
 
 export default [
-    takeLatest("AUTHENTICATED", registerPushSaga),
-    takeLatest("AUTHENTICATED", listenForPermissionsChangeSaga),
-    takeLatest(ADD_DEVICE_TOKEN, registerIntercomAndMixpanelSaga),
-    takeLatest(CHALLENGE_START_SUCCESS, showPushNotificationModalSaga),
-    takeLatest(LOGOUT, unregisterPushNotificationsSaga),
-    takeLatest(LOGOUT, unregisterIntercomSaga),
-    takeEvery(REQUIRE_PUSH_ENABLED, requestPushSaga)
+  takeLatest("AUTHENTICATED", registerPushSaga),
+  takeLatest("AUTHENTICATED", listenForPermissionsChangeSaga),
+  takeLatest(ADD_DEVICE_TOKEN, registerIntercomAndMixpanelSaga),
+  takeLatest(CHALLENGE_START_SUCCESS, showPushNotificationModalSaga),
+  takeLatest(LOGOUT, unregisterPushNotificationsSaga),
+  takeLatest(LOGOUT, unregisterIntercomSaga),
+  takeEvery(REQUIRE_PUSH_ENABLED, requestPushSaga),
 ];

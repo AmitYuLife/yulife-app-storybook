@@ -1,3 +1,3 @@
 export default {
-    gear: require("../../../../../../assets/challenge-exit/gear.png")
+  gear: require("../../../../../../assets/challenge-exit/gear.png"),
 };

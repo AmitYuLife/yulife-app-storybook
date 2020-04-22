@@ -7,29 +7,29 @@ import { defaultNotificationSettings, getNotificationTitleAndMessage, numericId 
 import { getChallengeCompletionNotification } from "../notifications.selectors";
 
 export default function* scheduleChallengeNotificationSaga({
-    payload: { createActiveChallenge }
+  payload: { createActiveChallenge },
 }: ReturnType<typeof challengeStartSuccessAction>): Generator<any> {
-    if (!createActiveChallenge.challenge) {
-        return null;
-    }
+  if (!createActiveChallenge.challenge) {
+    return null;
+  }
 
-    const challengeCompletion: any = yield select(getChallengeCompletionNotification);
+  const challengeCompletion: any = yield select(getChallengeCompletionNotification);
 
-    if (challengeCompletion.active) {
-        const { endDateTime, levelSlotId } = createActiveChallenge.challenge;
-        const fixedId = numericId(levelSlotId);
-        const details = getNotificationTitleAndMessage(challengeCompletion.id);
+  if (challengeCompletion.active) {
+    const { endDateTime, levelSlotId } = createActiveChallenge.challenge;
+    const fixedId = numericId(levelSlotId);
+    const details = getNotificationTitleAndMessage(challengeCompletion.id);
 
-        yield call(() =>
-            PushNotification.localNotificationSchedule({
-                ...defaultNotificationSettings,
-                date: moment(endDateTime).toDate(),
-                group: "Yu Life Challenges", // (optional) add group to message
-                id: fixedId, // (optional)
-                tag: "challenge_complete", // (optional) add tag to message
-                userInfo: Platform.OS === "ios" ? { id: fixedId } : null, // required to cancel iOS local notification
-                ...details
-            })
-        );
-    }
+    yield call(() =>
+      PushNotification.localNotificationSchedule({
+        ...defaultNotificationSettings,
+        date: moment(endDateTime).toDate(),
+        group: "Yu Life Challenges", // (optional) add group to message
+        id: fixedId, // (optional)
+        tag: "challenge_complete", // (optional) add tag to message
+        userInfo: Platform.OS === "ios" ? { id: fixedId } : null, // required to cancel iOS local notification
+        ...details,
+      })
+    );
+  }
 }

@@ -6,22 +6,22 @@ import { GetCurrentUser } from "../_core/schema";
 import { IntercomHashMethod } from "../_core/schema/globalTypes";
 
 export const GQL_QUERY_GET_CURRENT_USER = gql`
-    ${GQL_FRAGMENT_USER}
+  ${GQL_FRAGMENT_USER}
 
-    query GetCurrentUser($intercomHashMethod: IntercomHashMethod!) {
-        getIntercomHash(method: $intercomHashMethod)
-        getCurrentUser {
-            ...User
-        }
+  query GetCurrentUser($intercomHashMethod: IntercomHashMethod!) {
+    getIntercomHash(method: $intercomHashMethod)
+    getCurrentUser {
+      ...User
     }
+  }
 `;
 
 export default function getCurrentUserWithClient() {
-    return client().query<GetCurrentUser>({
-        fetchPolicy: "network-only",
-        query: GQL_QUERY_GET_CURRENT_USER,
-        variables: {
-            intercomHashMethod: Platform.OS as IntercomHashMethod
-        }
-    });
+  return client().query<GetCurrentUser>({
+    fetchPolicy: "network-only",
+    query: GQL_QUERY_GET_CURRENT_USER,
+    variables: {
+      intercomHashMethod: Platform.OS as IntercomHashMethod,
+    },
+  });
 }

@@ -13,104 +13,86 @@ import { Pad } from "@atoms/index";
 import { isIphoneX } from "react-native-iphone-x-helper";
 
 interface IProps extends IConnectedScreenProps {
-    data: RewardsPurchasedItemData[];
-    hasNotification?: boolean;
-    onLeftTabPress: () => void;
-    onRightTabPress: () => void;
-    loading: boolean;
-    copy: GetMobileCopy_getMobileCopy_screens_purchases;
-    currentWorld?: number;
+  data: RewardsPurchasedItemData[];
+  hasNotification?: boolean;
+  onLeftTabPress: () => void;
+  onRightTabPress: () => void;
+  loading: boolean;
+  copy: GetMobileCopy_getMobileCopy_screens_purchases;
+  currentWorld?: number;
 }
 
 type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
-    id: string;
+  id: string;
 };
 
 export default class RewardsPurchasedScreen extends React.PureComponent<IProps> {
-    private largeList: LargeList;
+  private largeList: LargeList;
 
-    public render() {
-        const {
-            data,
-            hasNotification = false,
-            onLeftTabPress,
-            onRightTabPress,
-            onLeftMenuPress,
-            totalCoins
-        } = this.props;
+  public render() {
+    const { data, hasNotification = false, onLeftTabPress, onRightTabPress, onLeftMenuPress, totalCoins } = this.props;
 
-        return (
-            <SafeAreaView style={styles.wrapper}>
-                <View style={StyleSheet.absoluteFillObject}>
-                    {Platform.OS !== "ios" ? null : <Pad height={isIphoneX() ? 40 : 20} />}
-                    <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
-                    <View style={styles.rewardTabsWrapper}>
-                        <RewardTabs
-                            activeTabIndex={1}
-                            onLeftTabPress={onLeftTabPress}
-                            onRightTabPress={onRightTabPress}
-                        />
-                    </View>
-                    <View style={styles.listWrapper}>
-                        <LargeList
-                            ref={this.setLargeListRef}
-                            renderIndexPath={this.renderIndexPath}
-                            heightForIndexPath={this.getHeight}
-                            data={[{ items: data }]}
-                            onRefresh={this.handleRefresh}
-                            renderEmpty={this.renderEmpty}
-                            refreshHeader={YulifeRefreshHeader}
-                            renderFooter={this.renderFooter}
-                        />
-                    </View>
-                </View>
-                <NavBar activeIndex={3} hasNotification={hasNotification} />
-            </SafeAreaView>
-        );
+    return (
+      <SafeAreaView style={styles.wrapper}>
+        <View style={StyleSheet.absoluteFillObject}>
+          {Platform.OS !== "ios" ? null : <Pad height={isIphoneX() ? 40 : 20} />}
+          <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
+          <View style={styles.rewardTabsWrapper}>
+            <RewardTabs activeTabIndex={1} onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} />
+          </View>
+          <View style={styles.listWrapper}>
+            <LargeList
+              ref={this.setLargeListRef}
+              renderIndexPath={this.renderIndexPath}
+              heightForIndexPath={this.getHeight}
+              data={[{ items: data }]}
+              onRefresh={this.handleRefresh}
+              renderEmpty={this.renderEmpty}
+              refreshHeader={YulifeRefreshHeader}
+              renderFooter={this.renderFooter}
+            />
+          </View>
+        </View>
+        <NavBar activeIndex={3} hasNotification={hasNotification} />
+      </SafeAreaView>
+    );
+  }
+
+  private renderFooter = () => <View style={styles.footer} />;
+
+  private renderEmpty = () => {
+    const { onLeftTabPress, loading, copy } = this.props;
+
+    if (loading) {
+      return <Loading />;
     }
 
-    private renderFooter = () => <View style={styles.footer} />;
+    return <PurchasesEmpty onCtaPress={onLeftTabPress} copy={copy.empty} />;
+  };
 
-    private renderEmpty = () => {
-        const { onLeftTabPress, loading, copy } = this.props;
+  private setLargeListRef = (ref: LargeList) => {
+    this.largeList = ref;
+  };
 
-        if (loading) {
-            return <Loading />;
-        }
+  private handleRefresh = async () => {
+    await this.props.onRightTabPress();
+    this.largeList.endRefresh();
+  };
 
-        return <PurchasesEmpty onCtaPress={onLeftTabPress} copy={copy.empty} />;
-    };
+  private renderIndexPath = ({ row }: IndexPath) => {
+    const { data } = this.props;
+    const item = data[row];
 
-    private setLargeListRef = (ref: LargeList) => {
-        this.largeList = ref;
-    };
+    if (item) {
+      const { day, month, reward, cost, status, onPress } = item;
 
-    private handleRefresh = async () => {
-        await this.props.onRightTabPress();
-        this.largeList.endRefresh();
-    };
+      return (
+        <RewardsPurchasedItem day={day} month={month} reward={reward} cost={cost} status={status} onPress={onPress} />
+      );
+    }
 
-    private renderIndexPath = ({ row }: IndexPath) => {
-        const { data } = this.props;
-        const item = data[row];
+    return null;
+  };
 
-        if (item) {
-            const { day, month, reward, cost, status, onPress } = item;
-
-            return (
-                <RewardsPurchasedItem
-                    day={day}
-                    month={month}
-                    reward={reward}
-                    cost={cost}
-                    status={status}
-                    onPress={onPress}
-                />
-            );
-        }
-
-        return null;
-    };
-
-    private getHeight = () => Style.SCALE_UP_AND_DOWN(74);
+  private getHeight = () => Style.SCALE_UP_AND_DOWN(74);
 }

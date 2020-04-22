@@ -2,10 +2,10 @@ import { StyleSheet, ViewStyle } from "react-native";
 import { Style } from "../../../../styles";
 
 export default StyleSheet.create({
-    centredScreen: {
-        justifyContent: "center"
-    } as ViewStyle,
-    dateWrapper: {
-        height: Style.SCALE_UP_AND_DOWN(25)
-    } as ViewStyle
+  centredScreen: {
+    justifyContent: "center",
+  } as ViewStyle,
+  dateWrapper: {
+    height: Style.SCALE_UP_AND_DOWN(25),
+  } as ViewStyle,
 });
