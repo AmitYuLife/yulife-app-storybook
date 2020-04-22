@@ -1,23 +1,19 @@
 {
-    "defaultSeverity": "error",
-    "extends": ["tslint:recommended", "tslint-react"],
-    "jsRules": {},
-    "rules": {
-        "semicolon": [true, "always", "ignore-bound-class-methods"],
-        "trailing-comma": [true, { "multiline": "never", "singleline": "never" }],
-        "jsx-no-multiline-js": false,
-        "jsx-no-lambda": false,
-        "object-literal-sort-keys": false
-    },
-    "linterOptions": {
-        "exclude": [
-            "e2e"
-        ]
-    },
-    "cliOptions": {
-        "exclude": [
-            "e2e"
-        ]
-    },
-    "rulesDirectory": []
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-react"],
+  "jsRules": {},
+  "rules": {
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "trailing-comma": "es5",
+    "jsx-no-multiline-js": false,
+    "jsx-no-lambda": false,
+    "object-literal-sort-keys": false
+  },
+  "linterOptions": {
+    "exclude": ["e2e"]
+  },
+  "cliOptions": {
+    "exclude": ["e2e"]
+  },
+  "rulesDirectory": []
 }

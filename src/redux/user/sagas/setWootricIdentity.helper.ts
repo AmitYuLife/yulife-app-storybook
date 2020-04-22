@@ -11,7 +11,7 @@ export default function* setWootricIdentity(user: GetCurrentUser_getCurrentUser)
       ...user.business,
       ...user.coinLedger,
       ...user,
-      hasBusinessLeaderboard
+      hasBusinessLeaderboard,
     });
   }
 }

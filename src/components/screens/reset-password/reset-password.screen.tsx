@@ -23,7 +23,7 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
   onCancelPress,
   onEmailChange,
   onSubmitPress,
-  copy
+  copy,
 }) => (
   <CentredScreen footerImage="forest">
     <Pad height={120} />

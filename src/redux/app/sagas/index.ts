@@ -10,12 +10,12 @@ import setMainRootSaga from "./setMainRoot.saga";
 import showMaintenanceSaga from "./showMaintenance.saga";
 
 export default [
-    takeLatest("INIT", listenToAppStateSaga),
-    takeLatest("INIT", listenToNavigationSaga),
-    takeLatest("INIT", listenToIOSLinkingSaga),
-    takeLatest(SET_MAIN_ROOT, setMainRootSaga),
-    takeLatest(AUTHENTICATED, listenToNetworkStateSaga),
-    // takeEvery("*", logBreadcrumbsSaga),
-    takeLatest(SHOW_MAINTENANCE, showMaintenanceSaga),
-    takeLatest(CHECK_CONNECTION, checkConnectionSaga)
+  takeLatest("INIT", listenToAppStateSaga),
+  takeLatest("INIT", listenToNavigationSaga),
+  takeLatest("INIT", listenToIOSLinkingSaga),
+  takeLatest(SET_MAIN_ROOT, setMainRootSaga),
+  takeLatest(AUTHENTICATED, listenToNetworkStateSaga),
+  // takeEvery("*", logBreadcrumbsSaga),
+  takeLatest(SHOW_MAINTENANCE, showMaintenanceSaga),
+  takeLatest(CHECK_CONNECTION, checkConnectionSaga),
 ];

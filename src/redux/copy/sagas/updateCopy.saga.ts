@@ -5,17 +5,17 @@ import { updateCopy } from "../copy.actions";
 import { getCopyVersion } from "../copy.selectors";
 
 export default function* updateCopySaga() {
-    try {
-        const { data } = yield call(getMobileCopy);
+  try {
+    const { data } = yield call(getMobileCopy);
 
-        if (data && data.getMobileCopy) {
-            const currentVersion = yield select(getCopyVersion);
+    if (data && data.getMobileCopy) {
+      const currentVersion = yield select(getCopyVersion);
 
-            if (data.getMobileCopy.version !== currentVersion) {
-                yield put(updateCopy(data));
-            }
-        }
-    } catch (e) {
-        yield spawn(() => Logger.logMixpanelError(e, "updateCopySaga"));
+      if (data.getMobileCopy.version !== currentVersion) {
+        yield put(updateCopy(data));
+      }
     }
+  } catch (e) {
+    yield spawn(() => Logger.logMixpanelError(e, "updateCopySaga"));
+  }
 }

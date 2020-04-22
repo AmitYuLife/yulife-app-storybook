@@ -7,41 +7,41 @@ import { addDeviceToken, pushNotificationReceived } from "../device.actions";
 import { createPushNotificationsChannel } from "../device.channels";
 
 export default function* registerPushSaga() {
-    const channel = yield call(createPushNotificationsChannel);
-    let result: IPushNotification & { os: string; token: string };
+  const channel = yield call(createPushNotificationsChannel);
+  let result: IPushNotification & { os: string; token: string };
 
-    if (Platform.OS === "android") {
-        yield spawn(() => {
-            try {
-                Mixpanel.initPushHandling(Config.INTERCOM_GCM_SENDER_ID);
-            } catch (e) {
-                // console.log(e);
-            }
-        });
+  if (Platform.OS === "android") {
+    yield spawn(() => {
+      try {
+        Mixpanel.initPushHandling(Config.INTERCOM_GCM_SENDER_ID);
+      } catch (e) {
+        // console.log(e);
+      }
+    });
+  }
+
+  while (true) {
+    result = yield take(channel);
+
+    if (result.token) {
+      yield put(
+        addDeviceToken({
+          deviceToken: result.token,
+        })
+      );
+    } else {
+      // allow other modules to respond to a push
+      yield put(pushNotificationReceived(result));
+      yield call(handleNotification, result);
     }
-
-    while (true) {
-        result = yield take(channel);
-
-        if (result.token) {
-            yield put(
-                addDeviceToken({
-                    deviceToken: result.token
-                })
-            );
-        } else {
-            // allow other modules to respond to a push
-            yield put(pushNotificationReceived(result));
-            yield call(handleNotification, result);
-        }
-    }
+  }
 }
 
 export function* handleNotification(notification: IPushNotification) {
-    const isChallengeCompleteNotification = /completed[\w\s]+challenge/.test((notification.message || "").toString());
+  const isChallengeCompleteNotification = /completed[\w\s]+challenge/.test((notification.message || "").toString());
 
-    if (isChallengeCompleteNotification) {
-        yield call(() => PushNotification.setApplicationIconBadgeNumber(Math.max(0, notification.badge - 1)));
-        return;
-    }
+  if (isChallengeCompleteNotification) {
+    yield call(() => PushNotification.setApplicationIconBadgeNumber(Math.max(0, notification.badge - 1)));
+    return;
+  }
 }

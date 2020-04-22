@@ -10,90 +10,90 @@ import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { WegiftRewardConfirmedScreen } from "../../../../screens";
 
 interface IProps {
-    componentId: string;
-    purchase: GetAllPurchases_getAllPurchases;
-    onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
+  componentId: string;
+  purchase: GetAllPurchases_getAllPurchases;
+  onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 interface IState {
-    isAccessingUrl: boolean;
+  isAccessingUrl: boolean;
 }
 
 type Props = IProps & ConnectedState;
 
 class WegiftRewardConfirmedContainer extends Component<Props, IState> {
-    public state = {
-        isAccessingUrl: false
-    };
+  public state = {
+    isAccessingUrl: false,
+  };
 
-    public render() {
-        const {
-            totalCoins,
-            purchase: { name, reward, createdAt, expiry_date }
-        } = this.props;
-        const { isAccessingUrl } = this.state;
-        const purchaseDate = moment(new Date(createdAt).toISOString()).format("DD MMM YYYY");
-        const validDate = moment(new Date(expiry_date).toISOString()).format("DD MMM YYYY");
+  public render() {
+    const {
+      totalCoins,
+      purchase: { name, reward, createdAt, expiry_date },
+    } = this.props;
+    const { isAccessingUrl } = this.state;
+    const purchaseDate = moment(new Date(createdAt).toISOString()).format("DD MMM YYYY");
+    const validDate = moment(new Date(expiry_date).toISOString()).format("DD MMM YYYY");
 
-        return (
-            <WegiftRewardConfirmedScreen
-                rewardName={name}
-                redeemInstructions={(reward && reward.redeem_steps.steps) || []}
-                description={(reward && reward.description) || ""}
-                purchaseDate={purchaseDate}
-                validDate={validDate}
-                imageUrl={(reward && reward.card_image_url) || ""}
-                coins={totalCoins}
-                onPressCancel={this.goToRewards}
-                onPressConfirm={this.linkToUrl}
-                isLoadingConfirmAction={isAccessingUrl}
-                onPressTerms={this.openPDFs("terms")}
-                onPressPolicy={this.openPDFs("policy")}
-                onPressTopBar={this.goBack}
-            />
-        );
+    return (
+      <WegiftRewardConfirmedScreen
+        rewardName={name}
+        redeemInstructions={(reward && reward.redeem_steps.steps) || []}
+        description={(reward && reward.description) || ""}
+        purchaseDate={purchaseDate}
+        validDate={validDate}
+        imageUrl={(reward && reward.card_image_url) || ""}
+        coins={totalCoins}
+        onPressCancel={this.goToRewards}
+        onPressConfirm={this.linkToUrl}
+        isLoadingConfirmAction={isAccessingUrl}
+        onPressTerms={this.openPDFs("terms")}
+        onPressPolicy={this.openPDFs("policy")}
+        onPressTopBar={this.goBack}
+      />
+    );
+  }
+
+  public copyToClipboard = async () => {
+    await Clipboard.setString(this.props.purchase.delivery_url);
+  };
+
+  public openPDFs = (pdf: "policy" | "terms") => async () => {
+    const url = pdf === "policy" ? Config.REWARDS_POLICY_URL : this.props.purchase.reward.terms_and_conditions_url;
+    const supported = await Linking.canOpenURL(url);
+
+    if (supported) {
+      await Linking.openURL(url);
     }
+  };
 
-    public copyToClipboard = async () => {
-        await Clipboard.setString(this.props.purchase.delivery_url);
-    };
+  public linkToUrl = async () => {
+    try {
+      this.setState({ isAccessingUrl: true });
+      await Linking.openURL(this.props.purchase.delivery_url);
+    } catch (e) {
+      // console.warn("unable to open url because: ", e);
+    } finally {
+      // added a timeout to just show loader for a few seconds
+      setTimeout(() => {
+        this.setState({ isAccessingUrl: false });
+      }, 500);
+    }
+  };
 
-    public openPDFs = (pdf: "policy" | "terms") => async () => {
-        const url = pdf === "policy" ? Config.REWARDS_POLICY_URL : this.props.purchase.reward.terms_and_conditions_url;
-        const supported = await Linking.canOpenURL(url);
+  public goBack = async () => {
+    await this.props.onTabChange("purchases", this.props.componentId);
+  };
 
-        if (supported) {
-            await Linking.openURL(url);
-        }
-    };
-
-    public linkToUrl = async () => {
-        try {
-            this.setState({ isAccessingUrl: true });
-            await Linking.openURL(this.props.purchase.delivery_url);
-        } catch (e) {
-            // console.warn("unable to open url because: ", e);
-        } finally {
-            // added a timeout to just show loader for a few seconds
-            setTimeout(() => {
-                this.setState({ isAccessingUrl: false });
-            }, 500);
-        }
-    };
-
-    public goBack = async () => {
-        await this.props.onTabChange("purchases", this.props.componentId);
-    };
-
-    public goToRewards = async () => {
-        await this.props.onTabChange("rewards", this.props.componentId);
-    };
+  public goToRewards = async () => {
+    await this.props.onTabChange("rewards", this.props.componentId);
+  };
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    totalCoins: getTotalCoins(state)
+  totalCoins: getTotalCoins(state),
 });
 
 export default connect<ConnectedState>(mapStateToProps)(WegiftRewardConfirmedContainer);

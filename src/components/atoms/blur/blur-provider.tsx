@@ -54,13 +54,13 @@ function BlurProvider({ render, renderOverlay, backgroundColor = "default" }: IP
       const animateOpacity = Animated.timing(animatedWrapperOpacity, {
         duration: 300,
         toValue: shouldDisplay ? 1 : 0,
-        useNativeDriver: true
+        useNativeDriver: true,
       });
 
       const animatePosition = Animated.timing(animatedWrapperPosition, {
         duration: 0,
         toValue: shouldDisplay ? 0 : -1000,
-        useNativeDriver: true
+        useNativeDriver: true,
       });
 
       if (shouldDisplay) {
@@ -75,7 +75,7 @@ function BlurProvider({ render, renderOverlay, backgroundColor = "default" }: IP
   const renderProps = {
     hideOverlay,
     showOverlay,
-    toggleOverlay
+    toggleOverlay,
   };
 
   return (
@@ -98,9 +98,9 @@ function BlurProvider({ render, renderOverlay, backgroundColor = "default" }: IP
           opacity: animatedWrapperOpacity,
           transform: [
             {
-              translateX: animatedWrapperPosition
-            }
-          ]
+              translateX: animatedWrapperPosition,
+            },
+          ],
         }}
       >
         {renderOverlay(renderProps)}

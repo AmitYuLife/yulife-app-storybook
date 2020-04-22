@@ -11,8 +11,8 @@ import { handleLinkPress } from "@services/app-link";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
-    componentId: string;
-    navigateToNext: () => void;
+  componentId: string;
+  navigateToNext: () => void;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -23,38 +23,38 @@ type Props = IProps & ConnectedState & ConnectedDispatch;
 const handlePrivacyPolicy = handleLinkPress(Config.PRIVACY_POLICY_URL);
 
 const FitKitConnectContainer: React.FC<Props> = (props) => {
-    const [isConnecting, setIsConnecting] = React.useState(false);
+  const [isConnecting, setIsConnecting] = React.useState(false);
 
-    const handleConnect = async (authorise: FitKitAuthoriseFunction) => {
-        setIsConnecting(true);
-        props.fitKitConsentAuthorised();
-        await authorise(FitKitPermissions);
-        props.navigateToNext();
-    };
+  const handleConnect = async (authorise: FitKitAuthoriseFunction) => {
+    setIsConnecting(true);
+    props.fitKitConsentAuthorised();
+    await authorise(FitKitPermissions);
+    props.navigateToNext();
+  };
 
-    return (
-        <FitKitAvailable>
-            {({ available, authorised, authorise, loading }) => (
-                <FitKitConnectScreen
-                    connecting={isConnecting}
-                    loading={loading || authorised}
-                    fitKitAvailable={available}
-                    onConnectPress={() => handleConnect(authorise)}
-                    onPrivacyPolicyPress={handlePrivacyPolicy}
-                    onSkipPress={props.navigateToNext}
-                    copy={props.copy}
-                />
-            )}
-        </FitKitAvailable>
-    );
+  return (
+    <FitKitAvailable>
+      {({ available, authorised, authorise, loading }) => (
+        <FitKitConnectScreen
+          connecting={isConnecting}
+          loading={loading || authorised}
+          fitKitAvailable={available}
+          onConnectPress={() => handleConnect(authorise)}
+          onPrivacyPolicyPress={handlePrivacyPolicy}
+          onSkipPress={props.navigateToNext}
+          copy={props.copy}
+        />
+      )}
+    </FitKitAvailable>
+  );
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-    copy: getCopy(state, "fitkitConnect")
+  copy: getCopy(state, "fitkitConnect"),
 });
 
 const mapDispatchToProps = {
-    fitKitConsentAuthorised
+  fitKitConsentAuthorised,
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(FitKitConnectContainer);

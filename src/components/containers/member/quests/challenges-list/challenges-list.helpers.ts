@@ -1,6 +1,6 @@
 import {
   GetCurrentWorld_getCurrentWorld_slots,
-  GetCurrentWorld_getCurrentWorld_slots_milestones
+  GetCurrentWorld_getCurrentWorld_slots_milestones,
 } from "../../../../../graphql/_core/schema";
 
 export function reduceMilestones(milestones: GetCurrentWorld_getCurrentWorld_slots_milestones[] = []) {
@@ -15,7 +15,7 @@ export function formatMilestones(milestones: GetCurrentWorld_getCurrentWorld_slo
       acc.sum = reward;
       acc.result.push({
         reward,
-        target: milestone.target[subtype === "meditation" ? "meditation" : "steps"]
+        target: milestone.target[subtype === "meditation" ? "meditation" : "steps"],
       });
 
       return acc;

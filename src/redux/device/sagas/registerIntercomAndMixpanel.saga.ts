@@ -7,25 +7,25 @@ import { call, spawn } from "redux-saga/effects";
 import { addDeviceToken } from "../device.actions";
 
 function* registerDeviceOnYuServer(deviceToken: string) {
-    try {
-        yield call<any>(addDeviceTokenWithClient, {
-            deviceToken,
-            os: Platform.OS,
-            deviceId: DeviceInfo.getDeviceId(),
-            subscribed: true
-        });
-    } catch (e) {
-        // log?
-    }
+  try {
+    yield call<any>(addDeviceTokenWithClient, {
+      deviceToken,
+      os: Platform.OS,
+      deviceId: DeviceInfo.getDeviceId(),
+      subscribed: true,
+    });
+  } catch (e) {
+    // log?
+  }
 }
 
 export default function* registerIntercomAndMixpanelSaga({ payload }: ReturnType<typeof addDeviceToken>) {
-    yield spawn(() => Intercom.sendTokenToIntercom(payload.deviceToken));
-    yield spawn(() =>
-        Platform.OS === "ios"
-            ? Mixpanel.addPushDeviceToken(payload.deviceToken)
-            : Mixpanel.setPushRegistrationId(payload.deviceToken)
-    );
+  yield spawn(() => Intercom.sendTokenToIntercom(payload.deviceToken));
+  yield spawn(() =>
+    Platform.OS === "ios"
+      ? Mixpanel.addPushDeviceToken(payload.deviceToken)
+      : Mixpanel.setPushRegistrationId(payload.deviceToken)
+  );
 
-    yield spawn(registerDeviceOnYuServer, payload.deviceToken);
+  yield spawn(registerDeviceOnYuServer, payload.deviceToken);
 }

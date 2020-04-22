@@ -12,13 +12,13 @@ import { IReduxState } from "../../../../redux/_core/reducers";
 import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import {
-    LoadingGeneralInfoCard,
-    LoadingHeader,
-    LoadingRecomendationCard
+  LoadingGeneralInfoCard,
+  LoadingHeader,
+  LoadingRecomendationCard,
 } from "../../../screens/member/stats/cards/general-info-card";
 import Stats from "../../../screens/member/stats/stats";
 interface IProps {
-    componentId: string;
+  componentId: string;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -27,60 +27,56 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
 const StatsContainer: FC<Props> = ({ componentId }) => {
-    const handleClose = useCallback(() => {
-        Navigation.popToRoot(componentId);
-    }, []);
+  const handleClose = useCallback(() => {
+    Navigation.popToRoot(componentId);
+  }, []);
 
-    const handleActivityHistoryPress = useCallback(() => {
-        Navigation.push(componentId, {
-            component: {
-                id: ROUTES.activityHistory,
-                name: ROUTES.activityHistory
-                // options: { bottomTabs }
-            }
-        });
-    }, []);
+  const handleActivityHistoryPress = useCallback(() => {
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.activityHistory,
+        name: ROUTES.activityHistory,
+        // options: { bottomTabs }
+      },
+    });
+  }, []);
 
-    const { data, error, loading } = useQuery(GQL_QUERY_GET_USER_STATS, { fetchPolicy: "cache-and-network" });
+  const { data, error, loading } = useQuery(GQL_QUERY_GET_USER_STATS, { fetchPolicy: "cache-and-network" });
 
-    if (loading) {
-        return (
-            <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-                <GenericHeading heading={"statistics"} />
-                <View style={{ backgroundColor: "#FAFAFE", padding: Style.SCALE_UP_AND_DOWN(16) }}>
-                    <LoadingHeader />
-                    <LoadingRecomendationCard />
-                    <LoadingGeneralInfoCard />
-                    <LoadingRecomendationCard />
-                    <LoadingHeader />
-                    <LoadingRecomendationCard />
-                    <LoadingGeneralInfoCard />
-                    <LoadingRecomendationCard />
-                </View>
-                <Close onPress={handleClose} />
-            </SafeAreaView>
-        );
-    }
-
-    if (error && (!data || !data.getUserStats)) {
-        return null; // WTF?
-    }
-
+  if (loading) {
     return (
-        <Stats
-            data={data.getUserStats}
-            onPressClose={handleClose}
-            onPressActivityHistory={handleActivityHistoryPress}
-        />
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+        <GenericHeading heading={"statistics"} />
+        <View style={{ backgroundColor: "#FAFAFE", padding: Style.SCALE_UP_AND_DOWN(16) }}>
+          <LoadingHeader />
+          <LoadingRecomendationCard />
+          <LoadingGeneralInfoCard />
+          <LoadingRecomendationCard />
+          <LoadingHeader />
+          <LoadingRecomendationCard />
+          <LoadingGeneralInfoCard />
+          <LoadingRecomendationCard />
+        </View>
+        <Close onPress={handleClose} />
+      </SafeAreaView>
     );
+  }
+
+  if (error && (!data || !data.getUserStats)) {
+    return null; // WTF?
+  }
+
+  return (
+    <Stats data={data.getUserStats} onPressClose={handleClose} onPressActivityHistory={handleActivityHistoryPress} />
+  );
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-    features: getUserFeatures(state)
+  features: getUserFeatures(state),
 });
 
 const mapDispatchToProps = {
-    getUserStart
+  getUserStart,
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(StatsContainer);

@@ -21,266 +21,264 @@ import styles from "./leaderboards.screen.styles";
 export type LeaderboardTypes = "coins" | "steps";
 
 export interface IItem {
-    id: string;
-    coins: number;
-    firstName: string;
-    lastName: string;
-    name: string;
-    steps: number;
+  id: string;
+  coins: number;
+  firstName: string;
+  lastName: string;
+  name: string;
+  steps: number;
 }
 
 export interface ILeaderboardsScreenProps {
-    activeLeaderboardIndex: number;
-    initialScrollIndex: number;
-    labels: ILabel[];
-    leaderboards: ILeaderboard[];
-    hasNotification: boolean;
-    items: IItem[];
-    isLoading: boolean;
-    isMindfulAvailable: boolean;
-    onHandleCoinsRefetch: () => void;
-    onHandleStepsRefetch: () => void;
-    onHandleMindfulMinsRefetch: () => void;
-    onLeaderboardChange: (index: number) => void;
-    onRefetch: () => void;
-    sortBy: string;
-    totalCoins: number;
-    onLeftMenuPress: () => void;
-    // Consent props
-    onAllowLeaderboard: () => void;
-    onPrivacyPolicyPress: () => void;
-    onRefuseConsent: () => void;
-    copy: GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn;
-    componentId: string;
-    appState: IAppStore["appState"];
+  activeLeaderboardIndex: number;
+  initialScrollIndex: number;
+  labels: ILabel[];
+  leaderboards: ILeaderboard[];
+  hasNotification: boolean;
+  items: IItem[];
+  isLoading: boolean;
+  isMindfulAvailable: boolean;
+  onHandleCoinsRefetch: () => void;
+  onHandleStepsRefetch: () => void;
+  onHandleMindfulMinsRefetch: () => void;
+  onLeaderboardChange: (index: number) => void;
+  onRefetch: () => void;
+  sortBy: string;
+  totalCoins: number;
+  onLeftMenuPress: () => void;
+  // Consent props
+  onAllowLeaderboard: () => void;
+  onPrivacyPolicyPress: () => void;
+  onRefuseConsent: () => void;
+  copy: GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn;
+  componentId: string;
+  appState: IAppStore["appState"];
 }
 
 const initialState = {
-    isShowingDropdown: false,
-    shouldScrollTo: true
+  isShowingDropdown: false,
+  shouldScrollTo: true,
 };
 
 export type ILeaderboardsScreenState = typeof initialState;
 
 export default class LeaderboardScreen extends React.Component<ILeaderboardsScreenProps, ILeaderboardsScreenState> {
-    public largeList: LargeList;
-    public state = initialState;
+  public largeList: LargeList;
+  public state = initialState;
 
-    private timeout: NodeJS.Timer = null;
+  private timeout: NodeJS.Timer = null;
 
-    public constructor(props: ILeaderboardsScreenProps) {
-        super(props);
-        Navigation.events().bindComponent(this);
+  public constructor(props: ILeaderboardsScreenProps) {
+    super(props);
+    Navigation.events().bindComponent(this);
+  }
+
+  public componentDidMount() {
+    this.scrollToLevel();
+  }
+
+  public componentDidAppear() {
+    this.scrollToLevel();
+  }
+
+  public shouldComponentUpdate(nextProps: ILeaderboardsScreenProps, nextState: ILeaderboardsScreenState) {
+    return shouldLeaderboardUpdate({
+      nextProps,
+      nextState,
+      currentProps: this.props,
+      currentState: this.state,
+    });
+  }
+
+  public componentDidUpdate(prevProps: ILeaderboardsScreenProps) {
+    if (
+      prevProps.activeLeaderboardIndex === this.props.activeLeaderboardIndex &&
+      !this.props.isLoading &&
+      this.props.leaderboards[this.props.activeLeaderboardIndex] &&
+      prevProps.leaderboards[prevProps.activeLeaderboardIndex].consent !==
+        this.props.leaderboards[this.props.activeLeaderboardIndex].consent
+    ) {
+      if (this.largeList) {
+        this.handleRefresh();
+      }
     }
 
-    public componentDidMount() {
-        this.scrollToLevel();
+    if (this.state.shouldScrollTo && !this.props.isLoading) {
+      this.scrollToLevel();
+      this.setState({
+        shouldScrollTo: false,
+      });
     }
 
-    public componentDidAppear() {
-        this.scrollToLevel();
+    if (
+      prevProps.activeLeaderboardIndex !== this.props.activeLeaderboardIndex ||
+      (prevProps.appState.match(/inactive|background/) && this.props.appState === "active")
+    ) {
+      this.setState({
+        shouldScrollTo: true,
+      });
     }
+  }
 
-    public shouldComponentUpdate(nextProps: ILeaderboardsScreenProps, nextState: ILeaderboardsScreenState) {
-        return shouldLeaderboardUpdate({
-            nextProps,
-            nextState,
-            currentProps: this.props,
-            currentState: this.state
-        });
+  public componentWillUnmount() {
+    if (this.timeout) {
+      global.clearTimeout(this.timeout);
     }
+  }
 
-    public componentDidUpdate(prevProps: ILeaderboardsScreenProps) {
-        if (
-            prevProps.activeLeaderboardIndex === this.props.activeLeaderboardIndex &&
-            !this.props.isLoading &&
-            this.props.leaderboards[this.props.activeLeaderboardIndex] &&
-            prevProps.leaderboards[prevProps.activeLeaderboardIndex].consent !==
-                this.props.leaderboards[this.props.activeLeaderboardIndex].consent
-        ) {
-            if (this.largeList) {
-                this.handleRefresh();
-            }
+  public render() {
+    const { isShowingDropdown } = this.state;
+    const {
+      activeLeaderboardIndex,
+      isLoading,
+      hasNotification,
+      items = [],
+      totalCoins,
+      leaderboards,
+      sortBy,
+      onLeftMenuPress,
+      onPrivacyPolicyPress,
+      onRefuseConsent,
+      copy,
+      isMindfulAvailable,
+    } = this.props;
+    const activeLeaderboard = leaderboards.length > 0 && leaderboards[activeLeaderboardIndex];
+
+    return (
+      <SafeAreaView style={styles.wrapper}>
+        <View style={styles.backgroundImageWrapper}>
+          <Image resizeMethod="scale" style={styles.backgroundImageBase} source={assets.background} />
+        </View>
+        <TopBar coins={totalCoins} type="default" onPressLeftIcon={onLeftMenuPress} />
+        <View style={styles.imageWrapper}>
+          <FastImage style={styles.image} source={assets[sortBy as AssetType]} />
+        </View>
+
+        <LeaderboardToggle
+          leaderboards={leaderboards}
+          onToggleDropdown={this.toggleDropdown}
+          isShowingDropdown={isShowingDropdown}
+          activePage={activeLeaderboardIndex}
+        />
+
+        <View style={StyleSheet.flatten([styles.list, styles.listWrapperMargin])}>
+          {activeLeaderboard && !activeLeaderboard.consent ? null : (
+            <LeaderboardTabs
+              sortBy={sortBy}
+              onHandleTabPress={this.handleTabPress}
+              isMindfulAvailable={isMindfulAvailable}
+            />
+          )}
+          {activeLeaderboard && !activeLeaderboard.consent ? (
+            <LeaderboardConsent
+              isLoading={activeLeaderboard.isLoading}
+              onAllowLeaderboard={this.allowLeaderboard}
+              onPrivacyPolicyPress={onPrivacyPolicyPress}
+              onRefuseConsent={onRefuseConsent}
+              copy={copy}
+            />
+          ) : isLoading ? (
+            <Loading />
+          ) : (
+            <LargeList
+              style={styles.list}
+              ref={this.setLargeListRef}
+              renderIndexPath={this.renderIndexPath}
+              heightForIndexPath={this.getHeight}
+              showsVerticalScrollIndicator={false}
+              data={[{ items }]}
+              onRefresh={this.handleRefresh}
+              renderEmpty={Loading}
+              refreshHeader={YulifeRefreshHeader}
+            />
+          )}
+          <LeaderboardDropdown
+            activePage={activeLeaderboardIndex}
+            initialScrollIndex={activeLeaderboardIndex}
+            leaderboards={leaderboards}
+            isShowingDropdown={isShowingDropdown}
+            onChangeActiveLeaderboard={this.onChangeActiveLeaderboard}
+            onToggleDropdown={this.toggleDropdown}
+          />
+        </View>
+        <NavBar activeIndex={2} hasNotification={hasNotification} />
+      </SafeAreaView>
+    );
+  }
+
+  private scrollToLevel = () => {
+    const { isLoading, items, initialScrollIndex } = this.props;
+    if (!isLoading) {
+      this.timeout = global.setTimeout(() => {
+        if (this.largeList && items.length > 0 && initialScrollIndex !== -1) {
+          try {
+            this.largeList.scrollTo({ x: 0, y: initialScrollIndex * LEADERBOARD_ITEM_HEIGHT });
+          } catch (err) {
+            // console.log("err: ", err);
+          }
         }
+      }, 1000);
+    }
+  };
 
-        if (this.state.shouldScrollTo && !this.props.isLoading) {
-            this.scrollToLevel();
-            this.setState({
-                shouldScrollTo: false
-            });
-        }
+  private toggleDropdown = () => {
+    this.setState(({ isShowingDropdown }) => ({
+      isShowingDropdown: !isShowingDropdown,
+    }));
+  };
 
-        if (
-            prevProps.activeLeaderboardIndex !== this.props.activeLeaderboardIndex ||
-            (prevProps.appState.match(/inactive|background/) && this.props.appState === "active")
-        ) {
-            this.setState({
-                shouldScrollTo: true
-            });
-        }
+  private setLargeListRef = (ref: LargeList) => {
+    this.largeList = ref;
+  };
+
+  private getHeight = () => LEADERBOARD_ITEM_HEIGHT;
+
+  private renderIndexPath = ({ row }: IndexPath) => {
+    const { items, initialScrollIndex, sortBy } = this.props;
+    const item = items[row];
+
+    if (item) {
+      return <LeaderboardItem {...item} isCurrentUser={row === initialScrollIndex} sortBy={sortBy} rank={row + 1} />;
     }
 
-    public componentWillUnmount() {
-        if (this.timeout) {
-            global.clearTimeout(this.timeout);
-        }
-    }
+    return null;
+  };
 
-    public render() {
-        const { isShowingDropdown } = this.state;
-        const {
-            activeLeaderboardIndex,
-            isLoading,
-            hasNotification,
-            items = [],
-            totalCoins,
-            leaderboards,
-            sortBy,
-            onLeftMenuPress,
-            onPrivacyPolicyPress,
-            onRefuseConsent,
-            copy,
-            isMindfulAvailable
-        } = this.props;
-        const activeLeaderboard = leaderboards.length > 0 && leaderboards[activeLeaderboardIndex];
+  private allowLeaderboard = () => {
+    this.props.onAllowLeaderboard();
+  };
 
-        return (
-            <SafeAreaView style={styles.wrapper}>
-                <View style={styles.backgroundImageWrapper}>
-                    <Image resizeMethod="scale" style={styles.backgroundImageBase} source={assets.background} />
-                </View>
-                <TopBar coins={totalCoins} type="default" onPressLeftIcon={onLeftMenuPress} />
-                <View style={styles.imageWrapper}>
-                    <FastImage style={styles.image} source={assets[sortBy as AssetType]} />
-                </View>
+  private handleRefresh = async () => {
+    await this.props.onRefetch();
+    await this.largeList.endRefresh();
+    this.setState({
+      shouldScrollTo: true,
+    });
+  };
 
-                <LeaderboardToggle
-                    leaderboards={leaderboards}
-                    onToggleDropdown={this.toggleDropdown}
-                    isShowingDropdown={isShowingDropdown}
-                    activePage={activeLeaderboardIndex}
-                />
+  private onChangeActiveLeaderboard = (activePage: number) => {
+    this.props.onLeaderboardChange(activePage);
+  };
 
-                <View style={StyleSheet.flatten([styles.list, styles.listWrapperMargin])}>
-                    {activeLeaderboard && !activeLeaderboard.consent ? null : (
-                        <LeaderboardTabs
-                            sortBy={sortBy}
-                            onHandleTabPress={this.handleTabPress}
-                            isMindfulAvailable={isMindfulAvailable}
-                        />
-                    )}
-                    {activeLeaderboard && !activeLeaderboard.consent ? (
-                        <LeaderboardConsent
-                            isLoading={activeLeaderboard.isLoading}
-                            onAllowLeaderboard={this.allowLeaderboard}
-                            onPrivacyPolicyPress={onPrivacyPolicyPress}
-                            onRefuseConsent={onRefuseConsent}
-                            copy={copy}
-                        />
-                    ) : isLoading ? (
-                        <Loading />
-                    ) : (
-                        <LargeList
-                            style={styles.list}
-                            ref={this.setLargeListRef}
-                            renderIndexPath={this.renderIndexPath}
-                            heightForIndexPath={this.getHeight}
-                            showsVerticalScrollIndicator={false}
-                            data={[{ items }]}
-                            onRefresh={this.handleRefresh}
-                            renderEmpty={Loading}
-                            refreshHeader={YulifeRefreshHeader}
-                        />
-                    )}
-                    <LeaderboardDropdown
-                        activePage={activeLeaderboardIndex}
-                        initialScrollIndex={activeLeaderboardIndex}
-                        leaderboards={leaderboards}
-                        isShowingDropdown={isShowingDropdown}
-                        onChangeActiveLeaderboard={this.onChangeActiveLeaderboard}
-                        onToggleDropdown={this.toggleDropdown}
-                    />
-                </View>
-                <NavBar activeIndex={2} hasNotification={hasNotification} />
-            </SafeAreaView>
-        );
-    }
+  private handleTabPress = (activeTab: string) => {
+    return async () => {
+      // add mindful mins refetch
+      switch (activeTab) {
+        case "coins":
+          await this.props.onHandleCoinsRefetch();
+          break;
 
-    private scrollToLevel = () => {
-        const { isLoading, items, initialScrollIndex } = this.props;
-        if (!isLoading) {
-            this.timeout = global.setTimeout(() => {
-                if (this.largeList && items.length > 0 && initialScrollIndex !== -1) {
-                    try {
-                        this.largeList.scrollTo({ x: 0, y: initialScrollIndex * LEADERBOARD_ITEM_HEIGHT });
-                    } catch (err) {
-                        // console.log("err: ", err);
-                    }
-                }
-            }, 1000);
-        }
+        case "steps":
+          await this.props.onHandleStepsRefetch();
+          break;
+
+        case "mindful":
+          await this.props.onHandleMindfulMinsRefetch();
+          break;
+      }
+      this.setState({
+        shouldScrollTo: true,
+      });
     };
-
-    private toggleDropdown = () => {
-        this.setState(({ isShowingDropdown }) => ({
-            isShowingDropdown: !isShowingDropdown
-        }));
-    };
-
-    private setLargeListRef = (ref: LargeList) => {
-        this.largeList = ref;
-    };
-
-    private getHeight = () => LEADERBOARD_ITEM_HEIGHT;
-
-    private renderIndexPath = ({ row }: IndexPath) => {
-        const { items, initialScrollIndex, sortBy } = this.props;
-        const item = items[row];
-
-        if (item) {
-            return (
-                <LeaderboardItem {...item} isCurrentUser={row === initialScrollIndex} sortBy={sortBy} rank={row + 1} />
-            );
-        }
-
-        return null;
-    };
-
-    private allowLeaderboard = () => {
-        this.props.onAllowLeaderboard();
-    };
-
-    private handleRefresh = async () => {
-        await this.props.onRefetch();
-        await this.largeList.endRefresh();
-        this.setState({
-            shouldScrollTo: true
-        });
-    };
-
-    private onChangeActiveLeaderboard = (activePage: number) => {
-        this.props.onLeaderboardChange(activePage);
-    };
-
-    private handleTabPress = (activeTab: string) => {
-        return async () => {
-            // add mindful mins refetch
-            switch (activeTab) {
-                case "coins":
-                    await this.props.onHandleCoinsRefetch();
-                    break;
-
-                case "steps":
-                    await this.props.onHandleStepsRefetch();
-                    break;
-
-                case "mindful":
-                    await this.props.onHandleMindfulMinsRefetch();
-                    break;
-            }
-            this.setState({
-                shouldScrollTo: true
-            });
-        };
-    };
+  };
 }

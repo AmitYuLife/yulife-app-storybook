@@ -15,53 +15,53 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IntroScreenProps {
-    displayStreak: boolean;
-    showCounter?: boolean;
-    currentStreak?: number;
-    isDoneToday?: boolean;
-    isLoading: boolean;
-    maxStreak?: number;
-    onCoinPress: () => void;
-    onStreakPress?: () => void;
-    theme: IThemeStore["dailyStepsScreen"];
-    shouldDisplaySurge: boolean;
-    showIntro: boolean;
-    surgeIntro: IUserStore["surgeIntro"];
-    isShowingPassiveMeditation: boolean;
-    totalCoins: number;
+  displayStreak: boolean;
+  showCounter?: boolean;
+  currentStreak?: number;
+  isDoneToday?: boolean;
+  isLoading: boolean;
+  maxStreak?: number;
+  onCoinPress: () => void;
+  onStreakPress?: () => void;
+  theme: IThemeStore["dailyStepsScreen"];
+  shouldDisplaySurge: boolean;
+  showIntro: boolean;
+  surgeIntro: IUserStore["surgeIntro"];
+  isShowingPassiveMeditation: boolean;
+  totalCoins: number;
 }
 
 type Props = ConnectedState &
-    ConnectedDispatch &
-    IntroScreenProps &
-    Partial<IConnectedScreenProps> &
-    IDailyStepsOnlineProps;
+  ConnectedDispatch &
+  IntroScreenProps &
+  Partial<IConnectedScreenProps> &
+  IDailyStepsOnlineProps;
 
 const IntroContainer: React.FC<Props> = (props) => {
-    const handleHideIntro = () => {
-        const { surgeIntro } = props;
+  const handleHideIntro = () => {
+    const { surgeIntro } = props;
 
-        if (surgeIntro.visibility) {
-            props.setShowSurgeIntro({
-                visibility: false,
-                activity: null,
-                rate: 1
-            });
-        }
+    if (surgeIntro.visibility) {
+      props.setShowSurgeIntro({
+        visibility: false,
+        activity: null,
+        rate: 1,
+      });
+    }
 
-        props.setShowIntro(false);
-    };
+    props.setShowIntro(false);
+  };
 
-    return <IntroScreen onSetIntroDone={handleHideIntro} {...props} />;
+  return <IntroScreen onSetIntroDone={handleHideIntro} {...props} />;
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-    copy: getCopy(state, "intro")
+  copy: getCopy(state, "intro"),
 });
 
 const mapDispatchToProps = {
-    setShowIntro,
-    setShowSurgeIntro
+  setShowIntro,
+  setShowSurgeIntro,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(IntroContainer);

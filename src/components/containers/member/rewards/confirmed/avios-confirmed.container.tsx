@@ -12,9 +12,9 @@ import { getCopy } from "../../../../../redux/copy/copy.selectors";
 import { AviosRewardConfirmedScreen } from "../../../../screens";
 
 interface IProps {
-    componentId: string;
-    purchase: GetAllPurchases_getAllPurchases;
-    onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
+  componentId: string;
+  purchase: GetAllPurchases_getAllPurchases;
+  onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -22,79 +22,79 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 type Props = IProps & ConnectedState;
 
 class AviosRewardConfirmedContainer extends Component<Props> {
-    public componentDidMount() {
-        const { purchase } = this.props;
+  public componentDidMount() {
+    const { purchase } = this.props;
 
-        if (purchase.status === "pending") {
-            this.showPendingAlert(purchase.amount);
-        }
+    if (purchase.status === "pending") {
+      this.showPendingAlert(purchase.amount);
     }
+  }
 
-    public render() {
-        const {
-            totalCoins,
-            purchase: {
-                name,
-                status,
-                createdAt,
-                metadata: {
-                    avios: { loyaltyProgramme }
-                }
-            }
-        } = this.props;
-        const purchaseDate = moment(new Date(createdAt).toISOString()).format("DD MMM YYYY");
+  public render() {
+    const {
+      totalCoins,
+      purchase: {
+        name,
+        status,
+        createdAt,
+        metadata: {
+          avios: { loyaltyProgramme },
+        },
+      },
+    } = this.props;
+    const purchaseDate = moment(new Date(createdAt).toISOString()).format("DD MMM YYYY");
 
-        return (
-            <AviosRewardConfirmedScreen
-                rewardName={name}
-                status={status}
-                purchaseDate={purchaseDate}
-                loyaltyProgramme={loyaltyProgramme}
-                coins={totalCoins}
-                onPressCancel={this.goToRewards}
-                onPressConfirm={this.showIntercom}
-                onPressPolicy={this.openRewardsPolicy}
-                onPressTopBar={this.goBack}
-            />
-        );
+    return (
+      <AviosRewardConfirmedScreen
+        rewardName={name}
+        status={status}
+        purchaseDate={purchaseDate}
+        loyaltyProgramme={loyaltyProgramme}
+        coins={totalCoins}
+        onPressCancel={this.goToRewards}
+        onPressConfirm={this.showIntercom}
+        onPressPolicy={this.openRewardsPolicy}
+        onPressTopBar={this.goBack}
+      />
+    );
+  }
+
+  public showIntercom = () => {
+    Intercom.displayConversationsList();
+  };
+
+  public showPendingAlert = (amount: number) => {
+    const { aviosConfirmed } = this.props.copy;
+
+    Alert.alert(aviosConfirmed.title, aviosConfirmed.message.replace("${amount}", amount.toString()), [
+      {
+        style: "cancel",
+        text: aviosConfirmed.cancelButtonText,
+      },
+    ]);
+  };
+
+  public openRewardsPolicy = async () => {
+    const url = Config.REWARDS_POLICY_URL;
+    const supported = await Linking.canOpenURL(url);
+
+    if (supported) {
+      await Linking.openURL(url);
     }
+  };
 
-    public showIntercom = () => {
-        Intercom.displayConversationsList();
-    };
+  public goBack = async () => {
+    await this.props.onTabChange("purchases", this.props.componentId);
+  };
 
-    public showPendingAlert = (amount: number) => {
-        const { aviosConfirmed } = this.props.copy;
-
-        Alert.alert(aviosConfirmed.title, aviosConfirmed.message.replace("${amount}", amount.toString()), [
-            {
-                style: "cancel",
-                text: aviosConfirmed.cancelButtonText
-            }
-        ]);
-    };
-
-    public openRewardsPolicy = async () => {
-        const url = Config.REWARDS_POLICY_URL;
-        const supported = await Linking.canOpenURL(url);
-
-        if (supported) {
-            await Linking.openURL(url);
-        }
-    };
-
-    public goBack = async () => {
-        await this.props.onTabChange("purchases", this.props.componentId);
-    };
-
-    public goToRewards = async () => {
-        await this.props.onTabChange("rewards", this.props.componentId);
-    };
+  public goToRewards = async () => {
+    await this.props.onTabChange("rewards", this.props.componentId);
+  };
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    totalCoins: getTotalCoins(state),
-    copy: getCopy(state, "purchases")
+  totalCoins: getTotalCoins(state),
+  copy: getCopy(state, "purchases"),
 });
 
 export default connect<ConnectedState>(mapStateToProps)(AviosRewardConfirmedContainer);

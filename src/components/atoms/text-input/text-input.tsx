@@ -8,7 +8,7 @@ import {
   getPlaceholder,
   getStyle,
   getValue,
-  getWrapperStyle
+  getWrapperStyle,
 } from "./text-input.helpers";
 import styles from "./text-input.styles";
 
@@ -30,7 +30,7 @@ export enum TEXT_INPUT_TYPES {
   EMAIL = "Email",
   PASSWORD = "Password",
   TEXT = "Text",
-  CARD = "Card"
+  CARD = "Card",
 }
 
 export type Types = "Email" | "Password" | "Text" | "Card" | "Board";
@@ -39,7 +39,7 @@ class TextInput extends React.PureComponent<IProps> {
   public static Types = TEXT_INPUT_TYPES;
   public cardInput: Input;
   public state = {
-    isFocused: false
+    isFocused: false,
   };
 
   public render() {
@@ -52,7 +52,7 @@ class TextInput extends React.PureComponent<IProps> {
           style={getWrapperStyle({
             hasError,
             isFilled: !!value,
-            isFocused
+            isFocused,
           })}
         >
           <View style={StyleSheet.flatten([styles.iconWrapper, type === "Text" ? styles.iconWrapperCard : {}])}>

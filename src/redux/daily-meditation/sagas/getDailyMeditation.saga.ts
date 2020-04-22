@@ -10,61 +10,57 @@ import { getUserFeatures } from "../../user/user.selectors";
 import { updateDailyMeditation, updateDailyMeditationEmptyResult } from "../daily-meditation.actions";
 
 export default function* getDailyMeditation() {
-    while (true) {
-        try {
-            const { appStart, appUpdated } = yield race({
-                appStart: take(REHYDRATE),
-                appUpdated: take(UPDATE_APP_STATE)
-            });
+  while (true) {
+    try {
+      const { appStart, appUpdated } = yield race({
+        appStart: take(REHYDRATE),
+        appUpdated: take(UPDATE_APP_STATE),
+      });
 
-            const userFeatures = yield select(getUserFeatures);
+      const userFeatures = yield select(getUserFeatures);
 
-            if (userFeatures.usePassiveMeditation) {
-                if (appStart || appUpdated.payload === "active") {
-                    const startTime = moment()
-                        .startOf("day")
-                        .format();
+      if (userFeatures.usePassiveMeditation) {
+        if (appStart || appUpdated.payload === "active") {
+          const startTime = moment().startOf("day").format();
 
-                    const endTime = moment().format();
+          const endTime = moment().format();
 
-                    const results = yield call(queryMindfulSessions, startTime, endTime, userFeatures);
+          const results = yield call(queryMindfulSessions, startTime, endTime, userFeatures);
 
-                    if (results.length > 0) {
-                        const meditationValue = Math.floor(
-                            results.reduce((acc: number, item: any) => acc + item.value, 0)
-                        );
-                        let isUpdated = false;
+          if (results.length > 0) {
+            const meditationValue = Math.floor(results.reduce((acc: number, item: any) => acc + item.value, 0));
+            let isUpdated = false;
 
-                        while (!isUpdated) {
-                            try {
-                                const { data } = yield call(
-                                    upsertStepsChallenge,
-                                    [
-                                        {
-                                            value: meditationValue,
-                                            endDateTime: endTime,
-                                            startDateTime: startTime
-                                        }
-                                    ],
-                                    PassiveChallengeType.MEDITATION
-                                );
+            while (!isUpdated) {
+              try {
+                const { data } = yield call(
+                  upsertStepsChallenge,
+                  [
+                    {
+                      value: meditationValue,
+                      endDateTime: endTime,
+                      startDateTime: startTime,
+                    },
+                  ],
+                  PassiveChallengeType.MEDITATION
+                );
 
-                                yield put(updateDailyMeditation(data));
+                yield put(updateDailyMeditation(data));
 
-                                isUpdated = true;
-                            } catch (e) {
-                                yield spawn(() => Logger.logMixpanelError(e, "getDailyMeditation"));
-                                yield delay(15000);
-                            }
-                        }
-                    } else {
-                        yield put(updateDailyMeditationEmptyResult());
-                    }
-                }
+                isUpdated = true;
+              } catch (e) {
+                yield spawn(() => Logger.logMixpanelError(e, "getDailyMeditation"));
+                yield delay(15000);
+              }
             }
-        } catch (e) {
-            yield spawn(() => Logger.logMixpanelError(e, "getDailyMeditation"));
-            yield delay(15000);
+          } else {
+            yield put(updateDailyMeditationEmptyResult());
+          }
         }
+      }
+    } catch (e) {
+      yield spawn(() => Logger.logMixpanelError(e, "getDailyMeditation"));
+      yield delay(15000);
     }
+  }
 }

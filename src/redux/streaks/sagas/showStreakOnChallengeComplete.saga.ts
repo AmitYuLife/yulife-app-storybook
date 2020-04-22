@@ -7,42 +7,42 @@ import { getUserFeatures } from "../../user/user.selectors";
 import { getStreaks } from "../streaks.selectors";
 
 export default function* showStreakOnChallengeCompleteSaga() {
-    const streaksBeforeUpdate = yield select(getStreaks);
+  const streaksBeforeUpdate = yield select(getStreaks);
 
-    yield take(GET_USER_SUCCESS);
+  yield take(GET_USER_SUCCESS);
 
-    const streaks = yield select(getStreaks);
-    const currentRoute = yield select(getRouteState);
-    const features = yield select(getUserFeatures);
+  const streaks = yield select(getStreaks);
+  const currentRoute = yield select(getRouteState);
+  const features = yield select(getUserFeatures);
 
-    if (
-        features.showStreaks &&
-        streaksBeforeUpdate.currentStreak !== streaks.currentStreak &&
-        currentRoute !== MODALS.streaks
-    ) {
-        if (currentRoute === MODALS.chest) {
-            yield delay(4000);
-        }
-        yield call(showModal, streaks);
+  if (
+    features.showStreaks &&
+    streaksBeforeUpdate.currentStreak !== streaks.currentStreak &&
+    currentRoute !== MODALS.streaks
+  ) {
+    if (currentRoute === MODALS.chest) {
+      yield delay(4000);
     }
+    yield call(showModal, streaks);
+  }
 }
 
 export function showModal(streaks: any) {
-    Navigation.showModal({
-        component: {
-            id: MODALS.streaks,
-            name: MODALS.streaks,
-            passProps: {
-                isDoneToday: true,
-                onPressCtaPrimary: () => {
-                    Navigation.dismissModal(MODALS.streaks);
-                },
-                onPressCtaSecondary: null,
-                reward: streaks.reward,
-                streakCompleted: streaks.currentStreak,
-                streakMax: streaks.maxStreak,
-                nextStreakAvailableAt: streaks.nextStreakAvailableAt
-            }
-        }
-    });
+  Navigation.showModal({
+    component: {
+      id: MODALS.streaks,
+      name: MODALS.streaks,
+      passProps: {
+        isDoneToday: true,
+        onPressCtaPrimary: () => {
+          Navigation.dismissModal(MODALS.streaks);
+        },
+        onPressCtaSecondary: null,
+        reward: streaks.reward,
+        streakCompleted: streaks.currentStreak,
+        streakMax: streaks.maxStreak,
+        nextStreakAvailableAt: streaks.nextStreakAvailableAt,
+      },
+    },
+  });
 }

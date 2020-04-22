@@ -8,233 +8,233 @@ import { bottomTabs, ROUTES } from "./constants";
 const icon = require("../../assets/icons/clock.png");
 
 const bottomTab = {
-    icon
+  icon,
 };
 
 export interface IMainTabsProps {
-    componentId?: string;
-    labels: ILabel[];
-    onLeftMenuPress: () => void;
+  componentId?: string;
+  labels: ILabel[];
+  onLeftMenuPress: () => void;
 }
 
 export function generateOnLeftMenuPress(route: string) {
-    return () =>
-        Navigation.mergeOptions(route, {
-            sideMenu: {
-                left: {
-                    enabled: true,
-                    visible: true
-                }
-            },
-            statusBar: {
-                drawBehind: false,
-                visible: true
-            }
-        });
+  return () =>
+    Navigation.mergeOptions(route, {
+      sideMenu: {
+        left: {
+          enabled: true,
+          visible: true,
+        },
+      },
+      statusBar: {
+        drawBehind: false,
+        visible: true,
+      },
+    });
 }
 
 export const labels = [
-    {
-        name: "yucoin",
-        onPress: () => {
-            Navigation.mergeOptions(ROUTES.dailySteps, {
-                bottomTabs: {
-                    currentTabIndex: 0
-                },
-                statusBar: {
-                    drawBehind: false,
-                    visible: true
-                }
-            });
-        }
+  {
+    name: "yucoin",
+    onPress: () => {
+      Navigation.mergeOptions(ROUTES.dailySteps, {
+        bottomTabs: {
+          currentTabIndex: 0,
+        },
+        statusBar: {
+          drawBehind: false,
+          visible: true,
+        },
+      });
     },
-    {
-        name: "quests",
-        onPress: () => {
-            Navigation.mergeOptions(ROUTES.quests, {
-                bottomTabs: {
-                    currentTabIndex: 1
-                },
-                statusBar: {
-                    drawBehind: false,
-                    visible: true
-                }
-            });
-        }
+  },
+  {
+    name: "quests",
+    onPress: () => {
+      Navigation.mergeOptions(ROUTES.quests, {
+        bottomTabs: {
+          currentTabIndex: 1,
+        },
+        statusBar: {
+          drawBehind: false,
+          visible: true,
+        },
+      });
     },
-    {
-        name: "leaderboard",
-        onPress: () => {
-            Navigation.mergeOptions(ROUTES.leaderboards, {
-                bottomTabs: {
-                    currentTabIndex: 2
-                },
-                statusBar: {
-                    drawBehind: false,
-                    visible: true
-                }
-            });
-        }
+  },
+  {
+    name: "leaderboard",
+    onPress: () => {
+      Navigation.mergeOptions(ROUTES.leaderboards, {
+        bottomTabs: {
+          currentTabIndex: 2,
+        },
+        statusBar: {
+          drawBehind: false,
+          visible: true,
+        },
+      });
     },
-    {
-        name: "rewards",
-        onPress: () => {
-            Navigation.mergeOptions(ROUTES.rewards, {
-                bottomTabs: {
-                    currentTabIndex: 3
-                },
-                statusBar: {
-                    drawBehind: false,
-                    visible: true
-                }
-            });
-        }
-    }
+  },
+  {
+    name: "rewards",
+    onPress: () => {
+      Navigation.mergeOptions(ROUTES.rewards, {
+        bottomTabs: {
+          currentTabIndex: 3,
+        },
+        statusBar: {
+          drawBehind: false,
+          visible: true,
+        },
+      });
+    },
+  },
 ];
 
 export async function setAuthenticatedRoot(dispatchAuthenticatedEvent?: () => void) {
-    await Navigation.setRoot({
-        root: {
-            sideMenu: {
-                center: {
-                    bottomTabs: {
-                        children: [
-                            {
-                                stack: {
-                                    children: [
-                                        {
-                                            component: {
-                                                id: ROUTES.dailySteps,
-                                                name: ROUTES.dailySteps,
-                                                options: { bottomTabs }
-                                            }
-                                        }
-                                    ],
-                                    options: { bottomTabs, bottomTab }
-                                }
-                            },
-                            {
-                                stack: {
-                                    children: [
-                                        {
-                                            component: {
-                                                id: ROUTES.quests,
-                                                name: ROUTES.quests,
-                                                options: { bottomTabs }
-                                            }
-                                        }
-                                    ],
-                                    options: { bottomTabs, bottomTab }
-                                }
-                            },
-                            {
-                                stack: {
-                                    children: [
-                                        {
-                                            component: {
-                                                id: ROUTES.leaderboards,
-                                                name: ROUTES.leaderboards,
-                                                options: { bottomTabs }
-                                            }
-                                        }
-                                    ],
-                                    options: { bottomTabs, bottomTab }
-                                }
-                            },
-                            {
-                                stack: {
-                                    children: [
-                                        {
-                                            component: {
-                                                id: ROUTES.rewards,
-                                                name: ROUTES.rewards,
-                                                options: { bottomTabs }
-                                            }
-                                        }
-                                    ],
-                                    options: { bottomTabs, bottomTab }
-                                }
-                            }
-                        ]
-                    }
-                },
-                left: {
-                    component: {
-                        id: ROUTES.menu,
-                        name: ROUTES.menu
-                    }
-                },
-                options: {
-                    bottomTabs,
-                    sideMenu: {
-                        left: Platform.select({
-                            android: {
-                                enabled: false,
-                                width: Style.DEVICE_WIDTH
-                            },
-                            ios: {
-                                enabled: false
-                            }
-                        })
+  await Navigation.setRoot({
+    root: {
+      sideMenu: {
+        center: {
+          bottomTabs: {
+            children: [
+              {
+                stack: {
+                  children: [
+                    {
+                      component: {
+                        id: ROUTES.dailySteps,
+                        name: ROUTES.dailySteps,
+                        options: { bottomTabs },
+                      },
                     },
-                    topBar: {
-                        drawBehind: true,
-                        visible: false
-                    }
-                }
-            }
-        }
-    });
+                  ],
+                  options: { bottomTabs, bottomTab },
+                },
+              },
+              {
+                stack: {
+                  children: [
+                    {
+                      component: {
+                        id: ROUTES.quests,
+                        name: ROUTES.quests,
+                        options: { bottomTabs },
+                      },
+                    },
+                  ],
+                  options: { bottomTabs, bottomTab },
+                },
+              },
+              {
+                stack: {
+                  children: [
+                    {
+                      component: {
+                        id: ROUTES.leaderboards,
+                        name: ROUTES.leaderboards,
+                        options: { bottomTabs },
+                      },
+                    },
+                  ],
+                  options: { bottomTabs, bottomTab },
+                },
+              },
+              {
+                stack: {
+                  children: [
+                    {
+                      component: {
+                        id: ROUTES.rewards,
+                        name: ROUTES.rewards,
+                        options: { bottomTabs },
+                      },
+                    },
+                  ],
+                  options: { bottomTabs, bottomTab },
+                },
+              },
+            ],
+          },
+        },
+        left: {
+          component: {
+            id: ROUTES.menu,
+            name: ROUTES.menu,
+          },
+        },
+        options: {
+          bottomTabs,
+          sideMenu: {
+            left: Platform.select({
+              android: {
+                enabled: false,
+                width: Style.DEVICE_WIDTH,
+              },
+              ios: {
+                enabled: false,
+              },
+            }),
+          },
+          topBar: {
+            drawBehind: true,
+            visible: false,
+          },
+        },
+      },
+    },
+  });
 
-    await Navigation.mergeOptions(ROUTES.menu, {
-        sideMenu: {
-            left: {
-                width: Style.DEVICE_WIDTH
-            } as any
-        }
-    });
+  await Navigation.mergeOptions(ROUTES.menu, {
+    sideMenu: {
+      left: {
+        width: Style.DEVICE_WIDTH,
+      } as any,
+    },
+  });
 
-    if (dispatchAuthenticatedEvent) {
-        dispatchAuthenticatedEvent();
-    }
+  if (dispatchAuthenticatedEvent) {
+    dispatchAuthenticatedEvent();
+  }
 }
 
 export async function setUnauthenticatedRoot(passProps: any = {}) {
-    await Navigation.setRoot({
-        root: {
-            stack: {
-                children: [
-                    {
-                        component: {
-                            id: ROUTES.login,
-                            name: ROUTES.login,
-                            passProps
-                        }
-                    }
-                ]
-            }
-        }
-    });
+  await Navigation.setRoot({
+    root: {
+      stack: {
+        children: [
+          {
+            component: {
+              id: ROUTES.login,
+              name: ROUTES.login,
+              passProps,
+            },
+          },
+        ],
+      },
+    },
+  });
 }
 
 export async function setNoAccessRoot() {
-    Navigation.setRoot({
-        root: {
-            component: {
-                id: ROUTES.noAccess,
-                name: ROUTES.noAccess
-            }
-        }
-    });
+  Navigation.setRoot({
+    root: {
+      component: {
+        id: ROUTES.noAccess,
+        name: ROUTES.noAccess,
+      },
+    },
+  });
 }
 
 export async function setOfflineRoot() {
-    await Navigation.setRoot({
-        root: {
-            component: {
-                id: ROUTES.offline,
-                name: ROUTES.offline
-            }
-        }
-    });
+  await Navigation.setRoot({
+    root: {
+      component: {
+        id: ROUTES.offline,
+        name: ROUTES.offline,
+      },
+    },
+  });
 }

@@ -14,9 +14,9 @@ import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getDailyMeditation } from "../../../../redux/daily-meditation/daily-meditation.selectors";
 import { startDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
 import {
-    getDailySteps,
-    getDailyStepsIsFetching,
-    getLastUpdated
+  getDailySteps,
+  getDailyStepsIsFetching,
+  getLastUpdated,
 } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { getChallengesStatus, getCurrentLevel, getHasNotification } from "../../../../redux/levels/levels.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
@@ -33,229 +33,226 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 type Props = IMainTabsProps & ConnectedState & ConnectedDispatch;
 
 class DailyStepsContainer extends React.Component<Props> {
-    private backHandler: NativeEventSubscription;
-    private backPressed: number = 0;
+  private backHandler: NativeEventSubscription;
+  private backPressed: number = 0;
 
-    constructor(props: Props) {
-        super(props);
-        Navigation.events().bindComponent(this);
+  constructor(props: Props) {
+    super(props);
+    Navigation.events().bindComponent(this);
+  }
+
+  public componentDidAppear() {
+    this.backPressed = 0;
+    this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
+      if (this.backPressed > 0) {
+        return false;
+      }
+
+      this.backPressed += 1;
+      return true;
+    });
+    this.props.startDailySteps();
+  }
+
+  public componentDidDisappear() {
+    if (this.backHandler) {
+      this.backHandler.remove();
     }
+  }
 
-    public componentDidAppear() {
-        this.backPressed = 0;
-        this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
-            if (this.backPressed > 0) {
-                return false;
+  public shouldComponentUpdate(nextProps: Props) {
+    const thisSurgeIntro = this.props.surgeIntro;
+    const nextSurgeIntro = nextProps.surgeIntro;
+    return (
+      nextProps.currentLevel !== this.props.currentLevel ||
+      nextProps.dailyEarnedCoins !== this.props.dailyEarnedCoins ||
+      nextProps.dailySteps !== this.props.dailySteps ||
+      nextProps.displayEarnMore !== this.props.displayEarnMore ||
+      nextProps.hasNotification !== this.props.hasNotification ||
+      nextProps.isFetching !== this.props.isFetching ||
+      nextProps.lastUpdated !== this.props.lastUpdated ||
+      nextProps.popupVisibility.leaderboard !== this.props.popupVisibility.leaderboard ||
+      nextProps.totalCoins !== this.props.totalCoins ||
+      nextProps.streaks.displayStreak !== this.props.streaks.displayStreak ||
+      nextProps.streaks.isAvailable !== this.props.streaks.isAvailable ||
+      nextProps.streaks.currentStreak !== this.props.streaks.currentStreak ||
+      nextProps.streaks.isDoneToday !== this.props.streaks.isDoneToday ||
+      nextProps.streaks.maxStreak !== this.props.streaks.maxStreak ||
+      nextProps.dailyMeditation !== this.props.dailyMeditation ||
+      !!(
+        nextProps.surgeIntro &&
+        this.props.surgeIntro &&
+        (nextSurgeIntro.rate !== thisSurgeIntro.rate ||
+          nextSurgeIntro.activity !== thisSurgeIntro.activity ||
+          nextSurgeIntro.visibility !== thisSurgeIntro.visibility)
+      ) ||
+      nextProps.showIntro !== this.props.showIntro
+    );
+  }
+
+  public render() {
+    return (
+      <FitKitAvailable>
+        {({ available, authorised, authorise, loading }) => {
+          const {
+            currentLevel,
+            displayEarnMore,
+            dailyEarnedCoins,
+            dailySteps,
+            dailyMeditation,
+            features = {},
+            hasNotification,
+            isFetching,
+            streaks,
+            theme,
+            totalCoins,
+            copy,
+            popUpCopy,
+            popupVisibility,
+            showIntro,
+            surgeIntro,
+            onLeftMenuPress,
+          } = this.props;
+          const shouldDisplaySurge = features.showSurge;
+          const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
+          if (showIntro || surgeIntro.visibility) {
+            return (
+              <IntroContainer
+                shouldDisplaySurge={shouldDisplaySurge}
+                coinsToday={dailyEarnedCoins}
+                showCounter={features.showCounter}
+                displayStreak={displayStreak}
+                currentStreak={streaks.currentStreak}
+                isDoneToday={streaks.isDoneToday}
+                isLoading={isFetching || loading}
+                maxStreak={streaks.maxStreak}
+                onCoinPress={this.onCoinPress}
+                onCtaPress={displayEarnMore ? this.onCta : null}
+                onLeftMenuPress={onLeftMenuPress}
+                onStreakPress={this.onStreak}
+                steps={dailySteps}
+                theme={theme}
+                totalCoins={totalCoins}
+                showIntro={showIntro}
+                surgeIntro={surgeIntro}
+                isShowingPassiveMeditation={features.usePassiveMeditation}
+              />
+            );
+          }
+          return (
+            <DailyStepsScreen
+              coinsToday={dailyEarnedCoins}
+              showCounter={features.showCounter}
+              currentStreak={streaks.currentStreak}
+              currentWorld={getCurrentWorld(currentLevel)}
+              displayStreak={displayStreak}
+              fitKitAvailable={available}
+              hasNotification={hasNotification}
+              hasPermission={authorised}
+              isDoneToday={streaks.isDoneToday}
+              isLoading={isFetching || loading}
+              labels={labels}
+              maxStreak={streaks.maxStreak}
+              onAuthoriseFitKitPress={() => authorise(FitKitPermissions)}
+              onCoinPress={this.onCoinPress}
+              onCtaPress={displayEarnMore ? this.onCta : null}
+              onLeftMenuPress={onLeftMenuPress}
+              onStreakPress={this.onStreak}
+              steps={dailySteps}
+              theme={theme}
+              totalCoins={totalCoins}
+              copy={{ copy, popUpCopy }}
+              onUpdateLeaderboardPopupVisibility={this.props.updateLeaderboardPopupVisibility}
+              onUpdateSurgePopupVisibility={this.props.updateSurgePopupVisibility}
+              popupVisibility={popupVisibility}
+              mindfulSeconds={dailyMeditation}
+              isShowingPassiveMeditation={features.usePassiveMeditation}
+            />
+          );
+        }}
+      </FitKitAvailable>
+    );
+  }
+
+  private onCoinPress = () => {
+    const { features = {}, dailyStepsCoinClicked: clickDailySteps } = this.props;
+    clickDailySteps();
+
+    if (features.showTodayYucoin) {
+      Navigation.showModal({
+        component: {
+          id: MODALS.todayYucoin,
+          name: MODALS.todayYucoin,
+          passProps: {
+            onCtaPress: this.onCta,
+          },
+        },
+      });
+    }
+  };
+
+  private onCta = () => {
+    labels[1].onPress();
+  };
+
+  private onStreak = () => {
+    const {
+      streaks: { currentStreak, isDoneToday, maxStreak, reward, nextStreakAvailableAt },
+    } = this.props;
+    const modalName = MODALS.streaks;
+
+    Navigation.showModal({
+      component: {
+        id: modalName,
+        name: modalName,
+        passProps: {
+          isDoneToday,
+          onPressCtaPrimary: () => {
+            if (!isDoneToday) {
+              labels[1].onPress();
             }
-
-            this.backPressed += 1;
-            return true;
-        });
-        this.props.startDailySteps();
-    }
-
-    public componentDidDisappear() {
-        if (this.backHandler) {
-            this.backHandler.remove();
-        }
-    }
-
-    public shouldComponentUpdate(nextProps: Props) {
-        const thisSurgeIntro = this.props.surgeIntro;
-        const nextSurgeIntro = nextProps.surgeIntro;
-        return (
-            nextProps.currentLevel !== this.props.currentLevel ||
-            nextProps.dailyEarnedCoins !== this.props.dailyEarnedCoins ||
-            nextProps.dailySteps !== this.props.dailySteps ||
-            nextProps.displayEarnMore !== this.props.displayEarnMore ||
-            nextProps.hasNotification !== this.props.hasNotification ||
-            nextProps.isFetching !== this.props.isFetching ||
-            nextProps.lastUpdated !== this.props.lastUpdated ||
-            nextProps.popupVisibility.leaderboard !== this.props.popupVisibility.leaderboard ||
-            nextProps.totalCoins !== this.props.totalCoins ||
-            nextProps.streaks.displayStreak !== this.props.streaks.displayStreak ||
-            nextProps.streaks.isAvailable !== this.props.streaks.isAvailable ||
-            nextProps.streaks.currentStreak !== this.props.streaks.currentStreak ||
-            nextProps.streaks.isDoneToday !== this.props.streaks.isDoneToday ||
-            nextProps.streaks.maxStreak !== this.props.streaks.maxStreak ||
-            nextProps.dailyMeditation !== this.props.dailyMeditation ||
-            !!(
-                nextProps.surgeIntro &&
-                this.props.surgeIntro &&
-                (nextSurgeIntro.rate !== thisSurgeIntro.rate ||
-                    nextSurgeIntro.activity !== thisSurgeIntro.activity ||
-                    nextSurgeIntro.visibility !== thisSurgeIntro.visibility)
-            ) ||
-            nextProps.showIntro !== this.props.showIntro
-        );
-    }
-
-    public render() {
-        return (
-            <FitKitAvailable>
-                {({ available, authorised, authorise, loading }) => {
-                    const {
-                        currentLevel,
-                        displayEarnMore,
-                        dailyEarnedCoins,
-                        dailySteps,
-                        dailyMeditation,
-                        features = {},
-                        hasNotification,
-                        isFetching,
-                        streaks,
-                        theme,
-                        totalCoins,
-                        copy,
-                        popUpCopy,
-                        popupVisibility,
-                        showIntro,
-                        surgeIntro,
-                        onLeftMenuPress
-                    } = this.props;
-                    const shouldDisplaySurge = features.showSurge;
-                    const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
-                    if (showIntro || surgeIntro.visibility) {
-                        return (
-                            <IntroContainer
-                                shouldDisplaySurge={shouldDisplaySurge}
-                                coinsToday={dailyEarnedCoins}
-                                showCounter={features.showCounter}
-                                displayStreak={displayStreak}
-                                currentStreak={streaks.currentStreak}
-                                isDoneToday={streaks.isDoneToday}
-                                isLoading={isFetching || loading}
-                                maxStreak={streaks.maxStreak}
-                                onCoinPress={this.onCoinPress}
-                                onCtaPress={displayEarnMore ? this.onCta : null}
-                                onLeftMenuPress={onLeftMenuPress}
-                                onStreakPress={this.onStreak}
-                                steps={dailySteps}
-                                theme={theme}
-                                totalCoins={totalCoins}
-                                showIntro={showIntro}
-                                surgeIntro={surgeIntro}
-                                isShowingPassiveMeditation={features.usePassiveMeditation}
-                            />
-                        );
-                    }
-                    return (
-                        <DailyStepsScreen
-                            coinsToday={dailyEarnedCoins}
-                            showCounter={features.showCounter}
-                            currentStreak={streaks.currentStreak}
-                            currentWorld={getCurrentWorld(currentLevel)}
-                            displayStreak={displayStreak}
-                            fitKitAvailable={available}
-                            hasNotification={hasNotification}
-                            hasPermission={authorised}
-                            isDoneToday={streaks.isDoneToday}
-                            isLoading={isFetching || loading}
-                            labels={labels}
-                            maxStreak={streaks.maxStreak}
-                            onAuthoriseFitKitPress={() => authorise(FitKitPermissions)}
-                            onCoinPress={this.onCoinPress}
-                            onCtaPress={displayEarnMore ? this.onCta : null}
-                            onLeftMenuPress={onLeftMenuPress}
-                            onStreakPress={this.onStreak}
-                            steps={dailySteps}
-                            theme={theme}
-                            totalCoins={totalCoins}
-                            copy={{ copy, popUpCopy }}
-                            onUpdateLeaderboardPopupVisibility={this.props.updateLeaderboardPopupVisibility}
-                            onUpdateSurgePopupVisibility={this.props.updateSurgePopupVisibility}
-                            popupVisibility={popupVisibility}
-                            mindfulSeconds={dailyMeditation}
-                            isShowingPassiveMeditation={features.usePassiveMeditation}
-                        />
-                    );
-                }}
-            </FitKitAvailable>
-        );
-    }
-
-    private onCoinPress = () => {
-        const { features = {}, dailyStepsCoinClicked: clickDailySteps } = this.props;
-        clickDailySteps();
-
-        if (features.showTodayYucoin) {
-            Navigation.showModal({
-                component: {
-                    id: MODALS.todayYucoin,
-                    name: MODALS.todayYucoin,
-                    passProps: {
-                        onCtaPress: this.onCta
-                    }
-                }
-            });
-        }
-    };
-
-    private onCta = () => {
-        labels[1].onPress();
-    };
-
-    private onStreak = () => {
-        const {
-            streaks: { currentStreak, isDoneToday, maxStreak, reward, nextStreakAvailableAt }
-        } = this.props;
-        const modalName = MODALS.streaks;
-
-        Navigation.showModal({
-            component: {
-                id: modalName,
-                name: modalName,
-                passProps: {
-                    isDoneToday,
-                    onPressCtaPrimary: () => {
-                        if (!isDoneToday) {
-                            labels[1].onPress();
-                        }
-                        Navigation.dismissModal(modalName);
-                    },
-                    onPressCtaSecondary: isDoneToday
-                        ? null
-                        : () => {
-                              Navigation.dismissModal(modalName);
-                          },
-                    reward,
-                    streakCompleted: currentStreak,
-                    streakMax: maxStreak,
-                    nextStreakAvailableAt
-                }
-            }
-        });
-    };
+            Navigation.dismissModal(modalName);
+          },
+          onPressCtaSecondary: isDoneToday
+            ? null
+            : () => {
+                Navigation.dismissModal(modalName);
+              },
+          reward,
+          streakCompleted: currentStreak,
+          streakMax: maxStreak,
+          nextStreakAvailableAt,
+        },
+      },
+    });
+  };
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-    currentLevel: getCurrentLevel(state),
-    dailyEarnedCoins: getDailyEarnedCoins(state),
-    dailySteps: getDailySteps(state),
-    displayEarnMore: getChallengesStatus(state).isAvailable,
-    dailyMeditation: getDailyMeditation(state),
-    features: getUserFeatures(state),
-    hasNotification: getHasNotification(state),
-    isFetching: getDailyStepsIsFetching(state),
-    lastUpdated: getLastUpdated(state),
-    streaks: getStreaks(state),
-    theme: getDailyStepsTheme(state),
-    totalCoins: getTotalCoins(state),
-    copy: getCopy(state, "dailyStepsFitKitAuthorise"),
-    popUpCopy: getCopy(state, "popUp"),
-    popupVisibility: getVisiblePopups(state),
-    showIntro: getShowIntro(state),
-    surgeIntro: getSurgeIntro(state)
+  currentLevel: getCurrentLevel(state),
+  dailyEarnedCoins: getDailyEarnedCoins(state),
+  dailySteps: getDailySteps(state),
+  displayEarnMore: getChallengesStatus(state).isAvailable,
+  dailyMeditation: getDailyMeditation(state),
+  features: getUserFeatures(state),
+  hasNotification: getHasNotification(state),
+  isFetching: getDailyStepsIsFetching(state),
+  lastUpdated: getLastUpdated(state),
+  streaks: getStreaks(state),
+  theme: getDailyStepsTheme(state),
+  totalCoins: getTotalCoins(state),
+  copy: getCopy(state, "dailyStepsFitKitAuthorise"),
+  popUpCopy: getCopy(state, "popUp"),
+  popupVisibility: getVisiblePopups(state),
+  showIntro: getShowIntro(state),
+  surgeIntro: getSurgeIntro(state),
 });
 
 const mapDispatchToProps = {
-    dailyStepsCoinClicked,
-    startDailySteps,
-    updateLeaderboardPopupVisibility,
-    updateSurgePopupVisibility
+  dailyStepsCoinClicked,
+  startDailySteps,
+  updateLeaderboardPopupVisibility,
+  updateSurgePopupVisibility,
 };
 
-export default connect<ConnectedState, ConnectedDispatch>(
-    mapStateToProps,
-    mapDispatchToProps
-)(DailyStepsContainer);
+export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(DailyStepsContainer);

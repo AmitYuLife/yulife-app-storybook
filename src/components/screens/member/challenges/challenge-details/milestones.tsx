@@ -27,7 +27,7 @@ const formatTarget = (target: number, unit: Unit) => {
 
 const SINGULAR_UNITS = {
   minutes: "minute",
-  steps: "step"
+  steps: "step",
 };
 
 function getUnitCopy(unit: Unit, amount: number) {

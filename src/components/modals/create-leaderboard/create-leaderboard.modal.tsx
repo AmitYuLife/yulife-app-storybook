@@ -10,45 +10,43 @@ import { useMutation } from "@apollo/react-hooks";
 type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IProps {
-    componentId: string;
+  componentId: string;
 }
 
 type Props = IProps & ConnectedDispatch;
 
 const CreateLeaderboardModal: React.FC<Props> = ({ componentId, getUserStart: dispatchGetUserStart }) => {
-    const [createLeaderboard, { loading }]: CreateLeaderboardMutationTuple = useMutation(
-        GQL_MUTATION_CREATE_LEADERBOARD
-    );
+  const [createLeaderboard, { loading }]: CreateLeaderboardMutationTuple = useMutation(GQL_MUTATION_CREATE_LEADERBOARD);
 
-    const handleClose = () => {
-        Keyboard.dismiss();
-        Navigation.dismissModal(componentId);
-    };
+  const handleClose = () => {
+    Keyboard.dismiss();
+    Navigation.dismissModal(componentId);
+  };
 
-    const handleCreateLeaderboard = async (
-        variables: Parameters<CreateLeaderboardMutationTuple["0"]>["0"]["variables"]
-    ) => {
-        try {
-            Keyboard.dismiss();
-            await createLeaderboard({ variables });
-            dispatchGetUserStart();
-            await Navigation.dismissModal(componentId);
-        } catch (e) {
-            // console.log(e);
-        }
-    };
+  const handleCreateLeaderboard = async (
+    variables: Parameters<CreateLeaderboardMutationTuple["0"]>["0"]["variables"]
+  ) => {
+    try {
+      Keyboard.dismiss();
+      await createLeaderboard({ variables });
+      dispatchGetUserStart();
+      await Navigation.dismissModal(componentId);
+    } catch (e) {
+      // console.log(e);
+    }
+  };
 
-    return (
-        <CreateLeaderboardScreen
-            isLoading={loading}
-            onCreateLeaderboard={handleCreateLeaderboard}
-            onPressClose={handleClose}
-        />
-    );
+  return (
+    <CreateLeaderboardScreen
+      isLoading={loading}
+      onCreateLeaderboard={handleCreateLeaderboard}
+      onPressClose={handleClose}
+    />
+  );
 };
 
 const mapDispatchToProps = {
-    getUserStart
+  getUserStart,
 };
 
 export default connect<{}, ConnectedDispatch>(null, mapDispatchToProps)(CreateLeaderboardModal);

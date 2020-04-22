@@ -6,45 +6,45 @@ import { GET_USER_SUCCESS, getUserSuccess, setShowSurgeIntro } from "../user.act
 import { getUserFeatures } from "../user.selectors";
 
 export default function* showSurgeIntroSaga() {
-    while (true) {
-        // get initial rates on set of main root
-        const cachedExchangeRate = yield select(getExchangeRate);
-        const cachedStepsSurgeMultiplier = cachedExchangeRate.surge || 1;
-        const cachedMeditationExchangeRate = yield select(getMeditationExchangeRate);
-        const cachedMeditationSurgeMultiplier = cachedMeditationExchangeRate.surge || 1;
+  while (true) {
+    // get initial rates on set of main root
+    const cachedExchangeRate = yield select(getExchangeRate);
+    const cachedStepsSurgeMultiplier = cachedExchangeRate.surge || 1;
+    const cachedMeditationExchangeRate = yield select(getMeditationExchangeRate);
+    const cachedMeditationSurgeMultiplier = cachedMeditationExchangeRate.surge || 1;
 
-        // get next user success to check if surge is in progress
-        const { payload }: ReturnType<typeof getUserSuccess> = yield take(GET_USER_SUCCESS);
-        const features = yield select(getUserFeatures);
+    // get next user success to check if surge is in progress
+    const { payload }: ReturnType<typeof getUserSuccess> = yield take(GET_USER_SUCCESS);
+    const features = yield select(getUserFeatures);
 
-        const hasShowSurgeFeature = !!(features && features.showSurge);
-        const hasPassiveMeditation = !!(features && features.usePassiveMeditation);
+    const hasShowSurgeFeature = !!(features && features.showSurge);
+    const hasPassiveMeditation = !!(features && features.usePassiveMeditation);
 
-        const stepsSurgeMultiplier = pathOr(payload, "getCurrentUser.passiveSteps.exchange.surge", 1);
-        const meditationSurgeMultiplier = pathOr(payload, "getCurrentUser.passiveMeditation.exchange.surge", 1);
+    const stepsSurgeMultiplier = pathOr(payload, "getCurrentUser.passiveSteps.exchange.surge", 1);
+    const meditationSurgeMultiplier = pathOr(payload, "getCurrentUser.passiveMeditation.exchange.surge", 1);
 
-        if (hasShowSurgeFeature) {
-            if (
-                hasPassiveMeditation &&
-                meditationSurgeMultiplier !== cachedMeditationSurgeMultiplier &&
-                meditationSurgeMultiplier > 1
-            ) {
-                yield put(
-                    setShowSurgeIntro({
-                        visibility: true,
-                        activity: "meditation",
-                        rate: meditationSurgeMultiplier
-                    })
-                );
-            } else if (stepsSurgeMultiplier !== cachedStepsSurgeMultiplier && stepsSurgeMultiplier > 1) {
-                yield put(
-                    setShowSurgeIntro({
-                        visibility: true,
-                        activity: "steps",
-                        rate: stepsSurgeMultiplier
-                    })
-                );
-            }
-        }
+    if (hasShowSurgeFeature) {
+      if (
+        hasPassiveMeditation &&
+        meditationSurgeMultiplier !== cachedMeditationSurgeMultiplier &&
+        meditationSurgeMultiplier > 1
+      ) {
+        yield put(
+          setShowSurgeIntro({
+            visibility: true,
+            activity: "meditation",
+            rate: meditationSurgeMultiplier,
+          })
+        );
+      } else if (stepsSurgeMultiplier !== cachedStepsSurgeMultiplier && stepsSurgeMultiplier > 1) {
+        yield put(
+          setShowSurgeIntro({
+            visibility: true,
+            activity: "steps",
+            rate: stepsSurgeMultiplier,
+          })
+        );
+      }
     }
+  }
 }

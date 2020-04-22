@@ -28,7 +28,7 @@ function ChallengeDetailsScreen({
   onPressClose,
   onPressCta,
   onPressSetUp = null,
-  unit
+  unit,
 }: Props) {
   return (
     <View style={styles.wrapper}>
@@ -38,8 +38,8 @@ function ChallengeDetailsScreen({
         style={StyleSheet.flatten([
           styles.contentWrapper,
           {
-            backgroundColor: getCardBackgroundColor(currentWorld)
-          }
+            backgroundColor: getCardBackgroundColor(currentWorld),
+          },
         ])}
       >
         <Text bold={true} style={styles.heading}>

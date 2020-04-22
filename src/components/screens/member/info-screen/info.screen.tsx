@@ -5,26 +5,21 @@ import assets from "./assets";
 import styles from "./info.styles";
 
 export interface InfoModalProps {
-    type: "garmin" | "fitbit";
-    onPress: () => void;
-    heading: string;
-    subheading: string;
-    ctaLabel: string;
+  type: "garmin" | "fitbit";
+  onPress: () => void;
+  heading: string;
+  subheading: string;
+  ctaLabel: string;
 }
 
 export default function InfoScreen({ type, heading, subheading, ctaLabel, onPress }: InfoModalProps) {
-    return (
-        <View style={styles.wrapper}>
-            <Close onPress={onPress} />
-            <Image style={styles.image} resizeMethod="scale" source={assets[type]} />
-            <Text style={styles.heading}>{heading}</Text>
-            <Text style={styles.subheading}>{subheading}</Text>
-            <Button
-                wrapperStyle={styles.buttonWrapper}
-                label={ctaLabel}
-                onPress={onPress}
-                type="Primary"
-            />
-        </View>
-    );
+  return (
+    <View style={styles.wrapper}>
+      <Close onPress={onPress} />
+      <Image style={styles.image} resizeMethod="scale" source={assets[type]} />
+      <Text style={styles.heading}>{heading}</Text>
+      <Text style={styles.subheading}>{subheading}</Text>
+      <Button wrapperStyle={styles.buttonWrapper} label={ctaLabel} onPress={onPress} type="Primary" />
+    </View>
+  );
 }

@@ -5,23 +5,23 @@ import { Blurb, Button, CentredScreen, Heading, Pad } from "../../atoms";
 import styles from "./reset-password.screen.styles";
 
 interface IProps {
-    email: string;
-    onCtaPress: () => void;
-    onSecondaryCtaPress: () => void;
-    copy: EmailSentCopy;
+  email: string;
+  onCtaPress: () => void;
+  onSecondaryCtaPress: () => void;
+  copy: EmailSentCopy;
 }
 
 const EmailSentScreen: SFC<IProps> = ({ onCtaPress, onSecondaryCtaPress, email, copy }) => (
-    <CentredScreen footerImage="forest">
-        <Pad height={120} />
-        <Heading style={styles.heading} label={copy.heading} />
-        <Pad height={9} />
-        <Blurb label={copy.subheading.replace("${email}", email)} />
-        <Pad height={45} />
-        <Button label={copy.ctaLabel} type="Primary" onPress={onCtaPress} />
-        <Pad height={10} />
-        <Button label={copy.ctaLabelSecondary} type="Link" onPress={onSecondaryCtaPress} />
-    </CentredScreen>
+  <CentredScreen footerImage="forest">
+    <Pad height={120} />
+    <Heading style={styles.heading} label={copy.heading} />
+    <Pad height={9} />
+    <Blurb label={copy.subheading.replace("${email}", email)} />
+    <Pad height={45} />
+    <Button label={copy.ctaLabel} type="Primary" onPress={onCtaPress} />
+    <Pad height={10} />
+    <Button label={copy.ctaLabelSecondary} type="Link" onPress={onSecondaryCtaPress} />
+  </CentredScreen>
 );
 
 export default EmailSentScreen;

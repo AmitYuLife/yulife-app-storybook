@@ -38,7 +38,7 @@ const ChallengesListContainer: FC<Props> = ({
   level,
   totalCoins,
   componentId,
-  challengeStartSuccessAction: dispatchChallengeStartSuccess
+  challengeStartSuccessAction: dispatchChallengeStartSuccess,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setErrorState] = useState<null | string>(null);
@@ -48,13 +48,13 @@ const ChallengesListContainer: FC<Props> = ({
     id: "",
     milestones: [],
     reward: "",
-    unit: "steps" as Unit
+    unit: "steps" as Unit,
   });
 
   const [createActiveChallenge]: CreateActiveChallengeMutationTuple = useMutation(
     GQL_MUTATION_CREATE_ACTIVE_CHALLENGE,
     {
-      variables: { levelSlotId: slot.id }
+      variables: { levelSlotId: slot.id },
     }
   );
 
@@ -83,7 +83,7 @@ const ChallengesListContainer: FC<Props> = ({
       if (data && data.createActiveChallenge) {
         dispatchChallengeStartSuccess({
           ...data,
-          levelSlotId: slot.id
+          levelSlotId: slot.id,
         });
         handleNavPress();
       } else {
@@ -105,7 +105,7 @@ const ChallengesListContainer: FC<Props> = ({
               id: levelSlot.id,
               milestones: formatMilestones(levelSlot.milestones, levelSlot.subtype),
               reward: `0-${reduceMilestones(levelSlot.milestones)}`,
-              unit: levelSlot.unit as Unit
+              unit: levelSlot.unit as Unit,
             };
             const isLocked = currentLevel < levelSlot.availableAtLevel;
 
@@ -114,7 +114,7 @@ const ChallengesListContainer: FC<Props> = ({
               currentWorld,
               isLocked,
               minimumLevel: levelSlot.availableAtLevel || 0,
-              onPress: isLocked ? () => ({}) : handleSlotPress(formattedSlot, showOverlay)
+              onPress: isLocked ? () => ({}) : handleSlotPress(formattedSlot, showOverlay),
             };
           })}
           currentLevel={level.level}
@@ -144,11 +144,11 @@ const ChallengesListContainer: FC<Props> = ({
 
 const mapStateToProps = (state: IReduxState) => ({
   currentLevel: getCurrentLevel(state),
-  totalCoins: getTotalCoins(state)
+  totalCoins: getTotalCoins(state),
 });
 
 const mapDispatchToProps = {
-  challengeStartSuccessAction
+  challengeStartSuccessAction,
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(ChallengesListContainer);

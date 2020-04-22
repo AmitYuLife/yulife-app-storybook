@@ -6,63 +6,58 @@ const x = Dimensions.get("window").width;
 const y = Dimensions.get("window").height;
 
 const isIPad = () => {
-    if (Platform.OS === "ios") {
-        return (
-            DeviceInfo.getDeviceId()
-                .toLowerCase()
-                .includes("ipad") ||
-            DeviceInfo.getModel()
-                .toLowerCase()
-                .includes("ipad")
-        );
-    }
-    return false;
+  if (Platform.OS === "ios") {
+    return (
+      DeviceInfo.getDeviceId().toLowerCase().includes("ipad") || DeviceInfo.getModel().toLowerCase().includes("ipad")
+    );
+  }
+  return false;
 };
 
 const isIphoneX = () => Platform.OS === "ios" && y === 812;
 
 const isIphoneXPlus = () =>
-    // XS Max, XR
-    Platform.OS === "ios" && y === 896;
+  // XS Max, XR
+  Platform.OS === "ios" && y === 896;
 
 const isAnyIphoneX = () => isIphoneX() || isIphoneXPlus();
 
 const isAndroid = () => {
-    return Platform.OS === "android";
+  return Platform.OS === "android";
 };
 
 const isShortAndroid = () => {
-    return Platform.OS === "android" && pixelRatio < 3 && y < 700;
+  return Platform.OS === "android" && pixelRatio < 3 && y < 700;
 };
 
 const isXShortAndroid = () => {
-    return Platform.OS === "android" && y < 600;
+  return Platform.OS === "android" && y < 600;
 };
 
 const isShortToMediumAndroid = () => {
-    return Platform.OS === "android" && y < 700;
+  return Platform.OS === "android" && y < 700;
 };
 
 const isTallAndroid = () => {
-    return Platform.OS === "android" && y > 690;
+  return Platform.OS === "android" && y > 690;
 };
 
 const isThinIOS = () => {
-    return Platform.OS === "ios" && x < 400;
+  return Platform.OS === "ios" && x < 400;
 };
 
 const isShortAndWideAndroid = () => Platform.OS === "android" && (Style.PIXEL_RATIO <= 2 || x / y >= 0.6);
 
 const isShortToMediumAndroidAndHighScaledPixel = () => {
-    return isShortToMediumAndroid() && scaledPixel > 1.06;
+  return isShortToMediumAndroid() && scaledPixel > 1.06;
 };
 
 const isTallAndLowScaledPixelAndroid = () => {
-    return isTallAndroid() && scaledPixel < 0.98;
+  return isTallAndroid() && scaledPixel < 0.98;
 };
 
 const isShortAndLowScaledPixelAndroid = () => {
-    return Platform.OS === "android" && y <= 690 && scaledPixel < 0.98;
+  return Platform.OS === "android" && y <= 690 && scaledPixel < 0.98;
 };
 
 const BASE_HEIGHT = 667;
@@ -74,32 +69,32 @@ const SCALE_Y_UP_AND_DOWN = (value: number) => scaledYPixel * value;
 export const TOTAL_WIDTH = x * pixelRatio;
 
 const Style = {
-    BASE_HEIGHT,
-    DEVICE_HEIGHT: y,
-    DEVICE_WIDTH: x,
-    FONT_FAMILY_PRIMARY: "Bariol-Regular",
-    FONT_FAMILY_PRIMARY_BOLD: "Bariol-Bold",
-    FONT_FAMILY_SECONDARY: "OpenSans-Regular",
-    FONT_FAMILY_SECONDARY_BOLD: "OpenSans-Bold",
-    PIXEL: scaledPixel,
-    PIXEL_RATIO: pixelRatio,
-    SCALE_UP_AND_DOWN,
-    SCALE_Y_UP_AND_DOWN,
-    TOTAL_WIDTH,
-    isAndroid,
-    isAnyIphoneX,
-    isIphoneX,
-    isIphoneXPlus,
-    isShortAndWideAndroid,
-    isShortAndroid,
-    isShortToMediumAndroid,
-    isTallAndroid,
-    isThinIOS,
-    isXShortAndroid,
-    isIPad,
-    isShortToMediumAndroidAndHighScaledPixel,
-    isTallAndLowScaledPixelAndroid,
-    isShortAndLowScaledPixelAndroid
+  BASE_HEIGHT,
+  DEVICE_HEIGHT: y,
+  DEVICE_WIDTH: x,
+  FONT_FAMILY_PRIMARY: "Bariol-Regular",
+  FONT_FAMILY_PRIMARY_BOLD: "Bariol-Bold",
+  FONT_FAMILY_SECONDARY: "OpenSans-Regular",
+  FONT_FAMILY_SECONDARY_BOLD: "OpenSans-Bold",
+  PIXEL: scaledPixel,
+  PIXEL_RATIO: pixelRatio,
+  SCALE_UP_AND_DOWN,
+  SCALE_Y_UP_AND_DOWN,
+  TOTAL_WIDTH,
+  isAndroid,
+  isAnyIphoneX,
+  isIphoneX,
+  isIphoneXPlus,
+  isShortAndWideAndroid,
+  isShortAndroid,
+  isShortToMediumAndroid,
+  isTallAndroid,
+  isThinIOS,
+  isXShortAndroid,
+  isIPad,
+  isShortToMediumAndroidAndHighScaledPixel,
+  isTallAndLowScaledPixelAndroid,
+  isShortAndLowScaledPixelAndroid,
 };
 
 export default Style;

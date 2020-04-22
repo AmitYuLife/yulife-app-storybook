@@ -8,15 +8,15 @@ import combinedReducers, { IReduxState } from "./reducers";
 import sagas from "./sagas";
 
 const persistConfig = {
-    blacklist: ["app", "pedometer"],
-    key: "root",
-    storage: AsyncStorage
+  blacklist: ["app", "pedometer"],
+  key: "root",
+  storage: AsyncStorage,
 };
 
 const sagaMiddleware = createSagaMiddleware({
-    onError: () => {
-        // bugsnag().notify(error);
-    }
+  onError: () => {
+    // bugsnag().notify(error);
+  },
 });
 
 const middlewares = [sagaMiddleware];
@@ -25,23 +25,23 @@ const composeEnhancers = Config.ENV === "dev" ? composeWithDevTools({ name: "YuL
 const persistedReducer = persistReducer(persistConfig, combinedReducers);
 
 const configureStore = (preloadedState?: IReduxState): Store<IReduxState> => {
-    const configuredStore = createStore(
-        persistedReducer,
-        preloadedState,
-        composeEnhancers(applyMiddleware(...middlewares))
-    );
+  const configuredStore = createStore(
+    persistedReducer,
+    preloadedState,
+    composeEnhancers(applyMiddleware(...middlewares))
+  );
 
-    // Enable hot reloading for reducers.
-    // if (Config.ENV === "dev" && (module.hot && typeof module.hot.accept === "function")) {
-    //     module.hot.accept(() => {
-    //         configuredStore.replaceReducer(persistedReducer);
-    //     });
-    // }
+  // Enable hot reloading for reducers.
+  // if (Config.ENV === "dev" && (module.hot && typeof module.hot.accept === "function")) {
+  //     module.hot.accept(() => {
+  //         configuredStore.replaceReducer(persistedReducer);
+  //     });
+  // }
 
-    sagaMiddleware.run(sagas);
-    configuredStore.dispatch({ type: "INIT" });
+  sagaMiddleware.run(sagas);
+  configuredStore.dispatch({ type: "INIT" });
 
-    return configuredStore as Store<IReduxState>;
+  return configuredStore as Store<IReduxState>;
 };
 
 export const store = configureStore();

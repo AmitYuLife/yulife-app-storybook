@@ -6,23 +6,23 @@ import assets from "../assets";
 import styles from "./leaderboard-toggle.styles";
 
 export interface IProps {
-    onToggleDropdown: () => void;
-    leaderboards: Leaderboard[];
-    activePage: number;
-    isShowingDropdown: boolean;
+  onToggleDropdown: () => void;
+  leaderboards: Leaderboard[];
+  activePage: number;
+  isShowingDropdown: boolean;
 }
 
 const LeaderboardToggle: React.SFC<IProps> = ({ leaderboards, onToggleDropdown, isShowingDropdown, activePage }) => {
-    return (
-        <View style={styles.leaderboardButtonWrapper}>
-            <TouchableOpacity style={styles.leaderboardButton} onPress={onToggleDropdown}>
-                <Text style={StyleSheet.flatten([styles.text, styles.leaderboardButtonText])}>
-                    {leaderboards.length ? leaderboards[activePage].name : ""}
-                </Text>
-                <Image source={isShowingDropdown ? assets.arrowUp : assets.arrowDown} />
-            </TouchableOpacity>
-        </View>
-    );
+  return (
+    <View style={styles.leaderboardButtonWrapper}>
+      <TouchableOpacity style={styles.leaderboardButton} onPress={onToggleDropdown}>
+        <Text style={StyleSheet.flatten([styles.text, styles.leaderboardButtonText])}>
+          {leaderboards.length ? leaderboards[activePage].name : ""}
+        </Text>
+        <Image source={isShowingDropdown ? assets.arrowUp : assets.arrowDown} />
+      </TouchableOpacity>
+    </View>
+  );
 };
 
 export default LeaderboardToggle;

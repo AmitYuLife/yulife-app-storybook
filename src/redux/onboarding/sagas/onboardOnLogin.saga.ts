@@ -9,18 +9,18 @@ import redeemOnboarding from "./redeemOnboarding.helper";
 import sendHistoricalData, { sendHistoricalMeditationData } from "./sendHistoricalData.helper";
 
 export default function* onboardOnLogin({ payload }: ReturnType<typeof loginUserSuccess>) {
-    try {
-        const features = yield select(getUserFeatures);
+  try {
+    const features = yield select(getUserFeatures);
 
-        if (!payload.loginUser.user.redeemedOnboarding) {
-            yield call(sendHistoricalData, moment());
-            if (features.usePassiveMeditation) {
-                yield call(sendHistoricalMeditationData, moment());
-            }
-            yield put(setShowIntro(true));
-            yield call(redeemOnboarding);
-        }
-    } catch (e) {
-        yield spawn(() => Logger.logMixpanelError(e, "onboardOnLogin"));
+    if (!payload.loginUser.user.redeemedOnboarding) {
+      yield call(sendHistoricalData, moment());
+      if (features.usePassiveMeditation) {
+        yield call(sendHistoricalMeditationData, moment());
+      }
+      yield put(setShowIntro(true));
+      yield call(redeemOnboarding);
     }
+  } catch (e) {
+    yield spawn(() => Logger.logMixpanelError(e, "onboardOnLogin"));
+  }
 }

@@ -4,16 +4,16 @@ import { getActiveLevel } from "../../levels/levels.selectors";
 import getUserData from "./getUserData.saga";
 
 export default function* fetchUserOnAppStateChangeSaga() {
-    yield call(getUserData);
+  yield call(getUserData);
 
-    const appState = yield call(appStateChannel);
+  const appState = yield call(appStateChannel);
 
-    while (true) {
-        const state = yield take(appState);
-        const active = yield select(getActiveLevel);
+  while (true) {
+    const state = yield take(appState);
+    const active = yield select(getActiveLevel);
 
-        if (state === "active" && !active.levelSlotId) {
-            yield call(getUserData);
-        }
+    if (state === "active" && !active.levelSlotId) {
+      yield call(getUserData);
     }
+  }
 }

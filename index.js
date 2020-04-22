@@ -14,9 +14,9 @@ Navigation.events().registerAppLaunchedListener(async () => {
     root: {
       component: {
         id: LOADING_ROUTE,
-        name: LOADING_ROUTE
-      }
-    }
+        name: LOADING_ROUTE,
+      },
+    },
   });
 
   await migrateOldAppVersionToken();
@@ -31,31 +31,31 @@ function setDefaultOptions() {
   Navigation.setDefaultOptions({
     animations: {
       setRoot: {
-        waitForRender: true
+        waitForRender: true,
       },
       push: {
-        waitForRender: true
-      }
+        waitForRender: true,
+      },
     },
     bottomTabs: {
       animate: false,
       drawBehind: true,
-      visible: false
+      visible: false,
     },
     layout: {
       backgroundColor: "white", // "transparent"
-      orientation: ["portrait"]
+      orientation: ["portrait"],
     },
     // modalPresentationStyle: OptionsModalPresentationStyle.overFullScreen,
     popGesture: false,
     statusBar: {
       drawBehind: false,
-      visible: true
+      visible: true,
     },
     topBar: {
       animate: false,
       drawBehind: true,
-      visible: false
-    }
+      visible: false,
+    },
   });
 }

@@ -15,20 +15,20 @@ import tokenSagas from "../token/token.sagas";
 import userSagas from "../user/sagas";
 
 export default function* allSagas() {
-    yield all([
-        ...appSagas,
-        ...copySagas,
-        ...dailyStepsSagas,
-        ...dailyMeditationSagas,
-        ...deviceSagas,
-        ...levelsSagas,
-        ...loggingSagas,
-        ...notificationsSagas,
-        ...onboardingSagas,
-        ...passiveActivitySagas,
-        ...pedometerSagas,
-        ...streaksSagas,
-        ...tokenSagas,
-        ...userSagas
-    ]);
+  yield all([
+    ...appSagas,
+    ...copySagas,
+    ...dailyStepsSagas,
+    ...dailyMeditationSagas,
+    ...deviceSagas,
+    ...levelsSagas,
+    ...loggingSagas,
+    ...notificationsSagas,
+    ...onboardingSagas,
+    ...passiveActivitySagas,
+    ...pedometerSagas,
+    ...streaksSagas,
+    ...tokenSagas,
+    ...userSagas,
+  ]);
 }
