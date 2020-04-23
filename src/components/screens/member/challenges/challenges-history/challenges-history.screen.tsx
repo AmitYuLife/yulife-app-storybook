@@ -10,6 +10,7 @@ import { IConnectedScreenProps } from "../../../../../typings";
 import ChallengesHistorySlot from "./challenges-history-slot";
 import { getBottomGradient } from "./challenges-history.helpers";
 import styles from "./challenges-history.screen.styles";
+import { TopBarTypes } from "@molecules/top-bar/top-bar";
 
 interface IProps extends IConnectedScreenProps {
   level: GetCurrentWorld_getCurrentWorld;
@@ -18,7 +19,7 @@ interface IProps extends IConnectedScreenProps {
 }
 
 export default function ChallengesHistory({ level, onPressActivityHistory, totalCoins, onLeftMenuPress }: IProps) {
-  const { backgroundWrapperStyle, backgroundImage, topBarType } = getWorldStyle(level.level) as any;
+  const { backgroundWrapperStyle, backgroundImage, topBarType } = getWorldStyle(level.level);
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -31,7 +32,7 @@ export default function ChallengesHistory({ level, onPressActivityHistory, total
         name={`level ${level.level}`}
         coins={totalCoins}
         onPressLeftIcon={onLeftMenuPress}
-        type={topBarType}
+        type={topBarType as TopBarTypes}
       />
       <View style={styles.challengeSetWrapper}>
         <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>

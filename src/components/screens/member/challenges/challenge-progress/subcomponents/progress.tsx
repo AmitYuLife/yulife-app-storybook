@@ -21,16 +21,15 @@ interface IState {
 }
 
 class Progress extends React.Component<IProps, IState> {
-  public state: IState = {
-    progressWidth: 0,
-    widthDefined: false,
-  };
+  constructor(props: IProps) {
+    super(props);
 
-  public componentWillMount() {
-    this.setState({
-      progressWidth: !!this.props.width ? this.props.width : 0,
-      widthDefined: !!this.props.width,
-    });
+    const { width } = props;
+
+    this.state = {
+      progressWidth: width ? width : 0,
+      widthDefined: !!width,
+    };
   }
 
   public onLayout = (event: LayoutChangeEvent) => {

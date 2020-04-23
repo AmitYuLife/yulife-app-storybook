@@ -4,7 +4,7 @@ import { ILabel } from "../components/molecules";
 import { Style } from "../styles";
 import { bottomTabs, ROUTES } from "./constants";
 
-// tslint:disable-next-line
+// eslint-disable-next-line
 const icon = require("../../assets/icons/clock.png");
 
 const bottomTab = {

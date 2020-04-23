@@ -118,6 +118,7 @@ const StreaksModal: React.FC<Props> = ({
         clearTimeout(timer);
       };
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [collectAward]: CollectAwardMutationTuple = useMutation(GQL_MUTATION_COLLECT_AWARD);

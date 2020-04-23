@@ -4,6 +4,7 @@ import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { GetMobileCopy_getMobileCopy_screens_challenges_failed } from "../../../../../graphql/_core/schema";
 import styles from "./challenge-failed.screen.styles";
+import { CenteredScreenImages } from "@atoms/centred-screen/centred-screen";
 
 interface IProps {
   level?: number;
@@ -14,7 +15,7 @@ interface IProps {
 export default function ChallengeFailedScreen({ level, onPress, copy }: IProps) {
   const { backgroundImage, backgroundStyle } = getStyle(level);
   return (
-    <CentredScreen style={StyleSheet.flatten([styles.wrapper, backgroundStyle]) as any} footerImage={backgroundImage}>
+    <CentredScreen style={StyleSheet.flatten([styles.wrapper, backgroundStyle]) as any} footerImage={backgroundImage as CenteredScreenImages}>
       <View style={styles.ratingWrapper}>
         <Stars />
         <View style={styles.levelWrapper}>
@@ -33,7 +34,7 @@ export default function ChallengeFailedScreen({ level, onPress, copy }: IProps) 
   );
 }
 
-function getStyle(currentLevel: number): any {
+function getStyle(currentLevel: number) {
   switch (getCurrentWorld(currentLevel)) {
     case 3:
       return {

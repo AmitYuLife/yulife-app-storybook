@@ -50,42 +50,45 @@ const LoginContainer: React.FC<Props> = ({
   const isFormValid = useMemo(() => !(validateEmail(email) || validatePassword(password)), [email, password]);
   const [loginUser, { error, loading }]: LoginUserMutationTuple = useMutation(GQL_MUTATION_LOGIN_USER);
 
-  const goToNext = useCallback(async (authorised: boolean, onboarded: boolean) => {
-    const navigateToNext = () => {
-      if (!onboarded) {
-        const route = ROUTES.onboardingSignUpReward;
+  const goToNext = useCallback(
+    async (authorised: boolean, onboarded: boolean) => {
+      const navigateToNext = () => {
+        if (!onboarded) {
+          const route = ROUTES.onboardingSignUpReward;
+          Navigation.push(componentId, {
+            component: {
+              id: route,
+              name: route,
+              options: { bottomTabs },
+            },
+          });
+          return;
+        }
+
+        setAuthenticatedRoot(dispatchSetAuthenticated); // TODO: use setNextRoot when the right intro's ready
+      };
+
+      Keyboard.dismiss();
+
+      if (!authorised) {
+        const route = ROUTES.onboardingFitKitConnect;
         Navigation.push(componentId, {
           component: {
             id: route,
             name: route,
+            passProps: {
+              navigateToNext,
+            },
             options: { bottomTabs },
           },
         });
         return;
       }
 
-      setAuthenticatedRoot(dispatchSetAuthenticated); // TODO: use setNextRoot when the right intro's ready
-    };
-
-    Keyboard.dismiss();
-
-    if (!authorised) {
-      const route = ROUTES.onboardingFitKitConnect;
-      Navigation.push(componentId, {
-        component: {
-          id: route,
-          name: route,
-          passProps: {
-            navigateToNext,
-          },
-          options: { bottomTabs },
-        },
-      });
-      return;
-    }
-
-    navigateToNext();
-  }, []);
+      navigateToNext();
+    },
+    [componentId, dispatchSetAuthenticated]
+  );
 
   const onLogIn = useCallback(
     async (authorised: boolean) => {
@@ -122,7 +125,7 @@ const LoginContainer: React.FC<Props> = ({
         }
       }
     },
-    [email, isUsingOtp, password, otp]
+    [email, isUsingOtp, password, otp, dispatchLoginUserSuccess, goToNext, isFormValid, loginUser]
   );
 
   const onResetPassword = useCallback(async () => {
@@ -133,7 +136,7 @@ const LoginContainer: React.FC<Props> = ({
         options: { bottomTabs },
       },
     });
-  }, []);
+  }, [componentId]);
 
   const onEmailChange = useCallback((input: string) => {
     setEmailError(validateEmail(input));

@@ -49,9 +49,10 @@ export default function ChallengeSuccessScreen({ level, onPressCta, rating, rewa
 }
 
 function renderScore(score: number, unit: string) {
+  const mins = Math.floor(score / 60);
+
   switch (unit) {
     case "minutes":
-      const mins = Math.floor(score / 60);
       return `${mins} ${mins === 1 ? "minute" : unit}`;
 
     default:

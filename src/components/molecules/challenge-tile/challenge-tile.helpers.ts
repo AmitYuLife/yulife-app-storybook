@@ -38,6 +38,8 @@ export const getLockedImageStyle = (image: Images): ImageStyle => {
 export const getImageStyle = (image: Images): ImageStyle => {
   const position = {} as { bottom?: number; left?: number; right?: number; top?: number };
   const dimensions = {} as { height?: number; width?: number };
+  const androidMultiplier = Style.isShortAndroid() || Style.isXShortAndroid() ? 0.8 : 1;
+
   switch (image) {
     case IMAGES.SQUIRREL:
       position.bottom = 0;
@@ -92,7 +94,6 @@ export const getImageStyle = (image: Images): ImageStyle => {
       position.right = 0;
       break;
     case IMAGES.WOLF:
-      const androidMultiplier = Style.isShortAndroid() || Style.isXShortAndroid() ? 0.8 : 1;
       position.left = 0;
       position.bottom = 0;
       dimensions.height = Style.SCALE_UP_AND_DOWN(134 * androidMultiplier);

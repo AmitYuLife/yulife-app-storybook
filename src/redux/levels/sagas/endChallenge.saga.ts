@@ -10,7 +10,8 @@ export default function* endChallengeSaga() {
   const active = yield select(getActiveLevel);
 
   if (active) {
-    const { milestones, milestonesLog, ...metaData } = active;
+    const { milestones, milestonesLog, ...metaData } = active; // eslint-disable-line @typescript-eslint/no-unused-vars
+
     yield spawn(() => Logger.logMixpanelEvent("end_challenge_triggered", metaData));
   }
 

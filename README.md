@@ -38,6 +38,12 @@ To install dependencies, run:
 yarn
 ```
 
+You'll also need to install iOS pods by running 
+
+```
+cd ios && pod install && cd ../
+```
+
 ### Download Apollo Schema
 
 This project uses Apollo/GraphQL for its backend communication.

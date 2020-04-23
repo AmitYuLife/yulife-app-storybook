@@ -33,12 +33,12 @@ interface IProps {
   passiveMeditationAwardedMilestonesLength: number;
 }
 
-function getLabel(challenge: ChallengeToday, isActive: boolean = false) {
+function getLabel(challenge: ChallengeToday, isActive = false) {
   let result = `${challenge.name}`;
 
   if (isActive) {
     result += " / in progress...";
-  } else if (!!challenge.score) {
+  } else if (challenge.score) {
     result += ` / ${challenge.score}`;
   }
 

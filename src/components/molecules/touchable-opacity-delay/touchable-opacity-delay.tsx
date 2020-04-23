@@ -23,9 +23,7 @@ export default class TouchableOpacityWithState extends React.PureComponent<IProp
     }
 
     public render() {
-        const { onPress, ...otherProps } = this.props;
-
-        return <TouchableOpacity {...otherProps} onPress={this.handleClick} />;
+        return <TouchableOpacity {...this.props} onPress={this.handleClick} />;
     }
 
     private handleClick = () => {
