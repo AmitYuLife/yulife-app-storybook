@@ -1,3 +1,4 @@
+import { CreateActiveChallenge_createActiveChallenge_levelSlot_milestones_target } from "@graphql/_core/schema";
 import moment from "moment";
 
 export const DATE_FORMAT_WITH_TZ = "YYYY-MM-DDTHH:mm:ssZ";
@@ -23,6 +24,19 @@ export function numberWithCommas(x: number) {
 
 export function getCurrentWorld(currentLevel: number) {
   return Math.floor((currentLevel - 1) / 50);
+}
+
+export function getUnitTarget(
+  subtype: string
+): keyof CreateActiveChallenge_createActiveChallenge_levelSlot_milestones_target {
+  switch (subtype) {
+    case "meditation":
+      return "meditation";
+    case "cycling":
+      return "distance";
+    default:
+      return "steps";
+  }
 }
 
 export function getCurrentEpisode(currentLevel: number) {

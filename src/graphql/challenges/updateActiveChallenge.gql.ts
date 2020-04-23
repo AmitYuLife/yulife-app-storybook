@@ -15,11 +15,13 @@ export const GQL_MUTATION_UPDATE_ACTIVE_CHALLENGE = gql`
         incomingData {
           steps
           meditation
+          distance
         }
         milestoneLog {
           data {
             steps
             meditation
+            distance
           }
         }
         yuCoinAwarded
@@ -35,6 +37,7 @@ export const GQL_MUTATION_UPDATE_ACTIVE_CHALLENGE = gql`
           target {
             steps
             meditation
+            distance
           }
         }
       }

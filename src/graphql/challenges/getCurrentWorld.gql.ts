@@ -33,6 +33,7 @@ export const GQL_QUERY_GET_CURRENT_WORLD = gql`
             __typename
             steps
             meditation
+            distance
           }
         }
       }

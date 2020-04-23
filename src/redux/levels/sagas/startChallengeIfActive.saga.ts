@@ -8,7 +8,7 @@ export default function* startChallengeIfActiveSaga() {
     if (levelSlotId && !timeUp && !status) {
         yield call(startChallenge, {
             endDateTime,
-            isMeditation: subtype === "meditation",
+            subtype,
             levelSlotId,
             startDateTime
         });

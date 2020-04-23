@@ -1,3 +1,4 @@
+import { IUserStore } from "@redux/user/user.reducer";
 import RNFitKit, { FitKitTypes, PedometerResponse, SampleQueryResult } from "@services/fitkit/fitkit.service";
 import moment, { Moment } from "moment";
 import { ChallengePayload } from "../../graphql/_core/schema/globalTypes";
@@ -19,7 +20,7 @@ export const transformSampleResultToPayload = (item: SampleQueryResult): Challen
 export const queryMindfulSessions = async (
   startTime: string,
   endTime: string,
-  { disableUserEntries = true, loggingEnabled = false }: { [name: string]: boolean } = {}
+  { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {}
 ): Promise<ChallengePayload[]> => {
   try {
     const args = {
@@ -49,7 +50,7 @@ export const queryMindfulSessions = async (
 export const querySteps = async (
   start: Moment,
   end: Moment,
-  { disableUserEntries = true, loggingEnabled = false }: { [name: string]: boolean } = {}
+  { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {}
 ): Promise<{ results: ChallengePayload[]; error: string | null }> => {
   try {
     const startTime = start.startOf("day").format(DATE_FORMAT_WITH_TZ);
@@ -82,6 +83,36 @@ export const querySteps = async (
   }
 };
 
+export const queryCycling = async (
+  startTime: string,
+  endTime: string,
+  { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {}
+): Promise<ChallengePayload[]> => {
+  try {
+    const args = {
+      disableUserEntries,
+      endTime,
+      startTime,
+      type: FitKitTypes.Types.Biking,
+    };
+
+    if (loggingEnabled) {
+      Logger.logMixpanelEvent("raw_cycling_query_args", args);
+    }
+
+    const results = await RNFitKit.sampleQuery(args);
+
+    if (loggingEnabled && results && results.length > 0) {
+      Logger.logMixpanelEvent("raw_cycling_query_results", { results });
+    }
+
+    return results.map(transformSampleResultToPayload);
+  } catch (e) {
+    Logger.logMixpanelEvent("raw_cycling_query_error", { error: e.message });
+    return [];
+  }
+};
+
 export const queryHistoricalData = async (onboardingDate: Moment) => {
   const start = onboardingDate.clone().subtract(60, "days");
   const end = onboardingDate.clone().subtract(1, "days");
@@ -89,12 +120,19 @@ export const queryHistoricalData = async (onboardingDate: Moment) => {
   return querySteps(start, end, { disableUserEntries: false });
 };
 
-export const queryHistoricalMeditationData = async (
-  onboardingDate: Moment,
-  userFeature: { [name: string]: boolean }
-) => {
+export const queryHistoricalMeditationData = async (onboardingDate: Moment, userFeature: IUserStore["features"]) => {
   const start = onboardingDate.clone().subtract(60, "days");
   const end = onboardingDate.clone().subtract(1, "days");
 
   return queryMindfulSessions(start.format(), end.format(), userFeature);
+};
+
+export const authoriseCycling = async () => {
+  try {
+    await RNFitKit.authorise({
+      read: [FitKitTypes.Types.Biking]
+    });
+  } catch (e) {
+    // console.log("welp... ", e);
+  }
 };

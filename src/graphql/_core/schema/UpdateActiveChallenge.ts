@@ -12,11 +12,13 @@ import { ChallengePayload } from "./globalTypes";
 export interface UpdateActiveChallenge_updateActiveChallenge_challenge_incomingData {
   steps: number | null;
   meditation: number | null;
+  distance: number | null;
 }
 
 export interface UpdateActiveChallenge_updateActiveChallenge_challenge_milestoneLog_data {
   steps: number | null;
   meditation: number | null;
+  distance: number | null;
 }
 
 export interface UpdateActiveChallenge_updateActiveChallenge_challenge_milestoneLog {
@@ -37,6 +39,7 @@ export interface UpdateActiveChallenge_updateActiveChallenge_challenge {
 export interface UpdateActiveChallenge_updateActiveChallenge_levelSlot_milestones_target {
   steps: number | null;
   meditation: number | null;
+  distance: number | null;
 }
 
 export interface UpdateActiveChallenge_updateActiveChallenge_levelSlot_milestones {

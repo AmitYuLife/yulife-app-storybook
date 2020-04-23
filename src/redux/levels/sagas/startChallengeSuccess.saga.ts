@@ -18,7 +18,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
   if (startDateTime && endDateTime && subtype) {
     yield call(startChallenge, {
       endDateTime,
-      isMeditation: subtype === "meditation",
+      subtype,
       levelSlotId,
       startDateTime,
     });

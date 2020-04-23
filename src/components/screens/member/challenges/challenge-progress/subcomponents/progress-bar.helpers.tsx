@@ -1,7 +1,7 @@
 import { Counter } from "@molecules/index";
 import * as React from "react";
 import { StyleSheet, Text } from "react-native";
-import { displaySecondsAsMinutes, padNum } from "../../../../../../services/utils";
+import { displaySecondsAsMinutes, padNum } from "@services/utils";
 import Progress from "./progress";
 import { IProps } from "./progress-bar";
 import styles from "./progress-bar.styles";
@@ -84,10 +84,20 @@ export const renderProgressLabel = ({ amount, showCounter, styleType = "black", 
           <Text style={StyleSheet.flatten([styles.timeLabel, textColorStyle])}>sec</Text>
         </>
       );
+    case "meters":
+      return (
+        <Text style={StyleSheet.flatten([styles.stepsText, textColorStyle])}>
+          {formatCyclingMetersToKmWithOneDecimal(amount)}
+        </Text>
+      );
 
     default:
       return null;
   }
+};
+
+export const formatCyclingMetersToKmWithOneDecimal = (meters: number): string => {
+  return `${(meters / 1000).toFixed(1)} km`;
 };
 
 const getProgressLabelTextColor = (styleType: IProps["styleType"]) => {

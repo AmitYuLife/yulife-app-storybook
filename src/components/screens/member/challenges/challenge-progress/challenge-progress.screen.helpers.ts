@@ -203,10 +203,59 @@ const MEDITATION: IStyleSet[] = [
   },
 ];
 
+const CYCLING: IStyleSet[] = [
+  {
+    backgroundColour: "#FBE0DD",
+    progressBarType: "forest-yellow",
+    source: assets.hedgehog,
+    style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(667) }]),
+    topBarType: "default",
+    exitChallenge: {
+      primaryColour: "#F38784",
+      secondaryColour: "white",
+    },
+  },
+  {
+    backgroundColour: "#61C5F9",
+    progressBarType: "ocean-light-blue",
+    source: assets.hedgehogFish,
+    style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(667) }]),
+    topBarType: "default",
+    exitChallenge: {
+      primaryColour: "#4278A5",
+      secondaryColour: "white",
+    },
+  },
+  {
+    backgroundColour: "#FAD5C9",
+    progressBarType: "desert-pink",
+    source: assets.chameleon,
+    style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(667) }]),
+    topBarType: "default",
+    exitChallenge: {
+      primaryColour: "#E77479",
+      secondaryColour: "white",
+    },
+  },
+  {
+    backgroundColour: "#FFDDDE",
+    progressBarType: "mountain-pink",
+    source: assets.bear,
+    style: StyleSheet.flatten([styles.backgroundImage, { height: Style.SCALE_UP_AND_DOWN(667) }]),
+    topBarType: "default",
+    exitChallenge: {
+      primaryColour: "#E77479",
+      secondaryColour: "white",
+    },
+  },
+];
+
 export function getWorldStyle(challengeType: ChallengeType, currentWorld = 0): IStyleSet {
   switch (challengeType) {
     case "brisk walk":
       return BRISK_WALK[currentWorld] || BRISK_WALK[0];
+    case "cycling":
+      return CYCLING[currentWorld] || CYCLING[0];
     case "day walk":
     case "short stroll":
       return SHORT_STROLL[currentWorld] || SHORT_STROLL[0];

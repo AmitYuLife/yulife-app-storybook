@@ -111,6 +111,28 @@ export const getImageStyle = (image: Images): ImageStyle => {
       position.right = 0;
       position.bottom = 0;
       break;
+    case IMAGES.BEAR:
+      position.left = 0;
+      position.bottom = 0;
+      dimensions.height = Style.SCALE_UP_AND_DOWN(166 * androidMultiplier);
+      dimensions.width = Style.SCALE_UP_AND_DOWN(166 * androidMultiplier);
+      break;
+    case IMAGES.CHAMELEON:
+      position.left = 0;
+      position.bottom = 0;
+      break;
+    case IMAGES.HEDGEDOG:
+      position.left = 0;
+      position.bottom = 0;
+      dimensions.height = Style.SCALE_UP_AND_DOWN(165 * androidMultiplier);
+      dimensions.width = Style.SCALE_UP_AND_DOWN(165 * androidMultiplier);
+      break;
+    case IMAGES.HEDGEDOG_FISH:
+      position.left = 0;
+      position.bottom = 0;
+      dimensions.height = Style.SCALE_UP_AND_DOWN(165);
+      dimensions.width = Style.SCALE_UP_AND_DOWN(165);
+      break;
     default:
       position.top = 0;
       position.right = 0;
@@ -158,6 +180,14 @@ export const getImage = (image: Images) => {
       return assets.whiteBighornSheep;
     case IMAGES.WOLF:
       return assets.wolf;
+    case IMAGES.HEDGEDOG:
+      return assets.hedgehog;
+    case IMAGES.HEDGEDOG_FISH:
+      return assets.hedgehogFish;
+    case IMAGES.CHAMELEON:
+      return assets.chameleon;
+    case IMAGES.BEAR:
+      return assets.bear;
     default:
       return null;
   }

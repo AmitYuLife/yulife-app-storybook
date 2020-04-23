@@ -11,7 +11,7 @@ interface IProps {
   goal: number;
   previousGoal?: number;
   styleType?: ProgressBarTypes;
-  type: "steps" | "minute" | string;
+  type: "steps" | "minute" | "meters" | string;
   width?: number;
 }
 
@@ -113,10 +113,12 @@ const calculateProgress = (previousGoal: number, goal: number, amount: number) =
   }
 };
 
-const adjustGoalValue = (type: "steps" | "minutes" | string, goal: number): string | number => {
+const adjustGoalValue = (type: IProps["type"], goal: number): string | number => {
   switch (type) {
     case "minutes":
       return convertToMinutesAndSeconds(goal);
+    case "meters":
+      return (goal / 1000).toFixed(1);
 
     default:
       return goal;
@@ -155,6 +157,16 @@ const getStyle = (styleType: ProgressBarTypes) => {
         progressStarEmpty: "#FFF",
         progressStarFilled: "#F1AF00",
       };
+    case "desert-pink":
+      return {
+        barColor: styles.barColorDesertCycling,
+        goalTextColor: styles.goalTextColorDesertPink,
+        progressColor: styles.progressColorBlack,
+        progressGoalEmpty: "rgb(248,111,99)",
+        progressGoalFilled: "#000",
+        progressStarEmpty: "#FFF",
+        progressStarFilled: "#F1AF00",
+      };
     case "ocean-black":
       return {
         barColor: styles.barColorOceanBlack,
@@ -173,6 +185,16 @@ const getStyle = (styleType: ProgressBarTypes) => {
         progressGoalEmpty: "rgb(80, 142, 205)",
         progressGoalFilled: "#FFF",
         progressStarEmpty: "rgb(174, 219, 244)",
+        progressStarFilled: "#F1AF00",
+      };
+    case "ocean-light-blue":
+      return {
+        barColor: styles.barColorOceanLightBlue,
+        goalTextColor: styles.goalTextColorLightBlue,
+        progressColor: styles.progressColorBlack,
+        progressGoalEmpty: "rgb(216, 240, 255)",
+        progressGoalFilled: "#000",
+        progressStarEmpty: "#FFF",
         progressStarFilled: "#F1AF00",
       };
     case "forest-brisk-walk":

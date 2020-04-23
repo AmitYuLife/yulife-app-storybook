@@ -87,6 +87,7 @@ export interface LoginUser_loginUser_user_passiveMeditation {
 export interface LoginUser_loginUser_user_activeChallenge_challenge_incomingData {
   steps: number | null;
   meditation: number | null;
+  distance: number | null;
 }
 
 export interface LoginUser_loginUser_user_activeChallenge_challenge {
@@ -103,6 +104,7 @@ export interface LoginUser_loginUser_user_activeChallenge_challenge {
 export interface LoginUser_loginUser_user_activeChallenge_levelSlot_milestones_target {
   steps: number | null;
   meditation: number | null;
+  distance: number | null;
 }
 
 export interface LoginUser_loginUser_user_activeChallenge_levelSlot_milestones {

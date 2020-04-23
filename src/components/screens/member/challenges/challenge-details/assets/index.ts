@@ -17,4 +17,8 @@ export default {
   owl: require("../../../../../../../assets/challenge-details/owl.png"),
   whiteBighornSheep: require("../../../../../../../assets/challenge-details/whiteBighornSheep.png"),
   wolf: require("../../../../../../../assets/challenge-details/wolf.png"),
+  hedgehog: require("../../../../../../../assets/challenge-details/hedgehog.png"),
+  chameleon: require("../../../../../../../assets/challenge-details/chameleon.png"),
+  bear: require("../../../../../../../assets/challenge-details/bear.png"),
+  hedgehogFish: require("../../../../../../../assets/challenge-details/hedgehogFish.png"),
 };

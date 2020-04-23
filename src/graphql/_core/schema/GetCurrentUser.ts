@@ -87,6 +87,7 @@ export interface GetCurrentUser_getCurrentUser_passiveMeditation {
 export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge_incomingData {
   steps: number | null;
   meditation: number | null;
+  distance: number | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge {
@@ -103,6 +104,7 @@ export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge {
 export interface GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milestones_target {
   steps: number | null;
   meditation: number | null;
+  distance: number | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milestones {

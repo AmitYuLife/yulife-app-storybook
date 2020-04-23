@@ -83,6 +83,7 @@ export const GQL_FRAGMENT_USER = gql`
         incomingData {
           steps
           meditation
+          distance
         }
       }
       levelSlot {
@@ -95,6 +96,7 @@ export const GQL_FRAGMENT_USER = gql`
           target {
             steps
             meditation
+            distance
           }
         }
       }
