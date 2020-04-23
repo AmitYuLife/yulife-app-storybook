@@ -17,6 +17,7 @@ import { formatMilestones, getSlotDuration, reduceMilestones } from "./challenge
 import { useMutation } from "@apollo/react-hooks";
 import { handleLinkPress } from "@services/app-link";
 import { Unit } from "@screens/member/challenges/models";
+import { authoriseCycling } from "@services/fitkit/fitkit.helpers";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -41,7 +42,7 @@ const ChallengesListContainer: FC<Props> = ({
   challengeStartSuccessAction: dispatchChallengeStartSuccess,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setErrorState] = useState<null | string>(null);
+  const [error, setErrorState] = useState(null as string);
   const [slot, setSlot] = useState({
     challengeType: "brisk walk",
     duration: "",
@@ -78,6 +79,10 @@ const ChallengesListContainer: FC<Props> = ({
   const handleSubmitChallenge = useCallback(async () => {
     setIsLoading(true);
     try {
+      if (slot.challengeType === "cycling") {
+        await authoriseCycling();
+      }
+
       const { data } = await createActiveChallenge();
 
       if (data && data.createActiveChallenge) {
@@ -92,7 +97,7 @@ const ChallengesListContainer: FC<Props> = ({
     } catch (e) {
       setError();
     }
-  }, [createActiveChallenge, dispatchChallengeStartSuccess, setError, handleNavPress, slot.id]);
+  }, [createActiveChallenge, dispatchChallengeStartSuccess, setError, handleNavPress, slot.id, slot.challengeType]);
 
   return (
     <BlurProvider

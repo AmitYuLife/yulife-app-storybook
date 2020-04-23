@@ -15,6 +15,10 @@ export enum IMAGES {
   OWL = "owl",
   WHITE_BIGHORN_SHEEP = "whiteBighornSheep",
   WOLF = "wolf",
+  HEDGEDOG = "hedgedog",
+  HEDGEDOG_FISH = "hedgedogFish",
+  CHAMELEON = "chameleon",
+  BEAR = "bear",
 }
 
 export type Images =
@@ -33,4 +37,8 @@ export type Images =
   | "deer"
   | "owl"
   | "whiteBighornSheep"
-  | "wolf";
+  | "wolf"
+  | "hedgedog"
+  | "hedgedogFish"
+  | "chameleon"
+  | "bear";

@@ -16,6 +16,7 @@ export interface GetCurrentWorld_getCurrentWorld_slots_milestones_target {
   __typename: "MilestoneTarget";
   steps: number | null;
   meditation: number | null;
+  distance: number | null;
 }
 
 export interface GetCurrentWorld_getCurrentWorld_slots_milestones {

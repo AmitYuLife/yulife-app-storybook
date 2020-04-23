@@ -1,1 +1,1 @@
-export type Unit = "steps" | "minutes";
+export type Unit = "steps" | "minutes" | "meters";

@@ -9,7 +9,7 @@ import styles from "./challenge-progress.screen.styles";
 import Exit from "./subcomponents/exit";
 import ProgressBar from "./subcomponents/progress-bar";
 
-export type ChallengeType = "short stroll" | "meditation" | "day walk" | "long walk" | "brisk walk";
+export type ChallengeType = "short stroll" | "meditation" | "day walk" | "long walk" | "brisk walk" | "cycling";
 
 interface IProps extends IConnectedScreenProps {
   challengeType: ChallengeType;

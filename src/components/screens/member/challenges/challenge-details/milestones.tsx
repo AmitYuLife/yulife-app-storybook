@@ -19,6 +19,8 @@ const formatTarget = (target: number, unit: Unit) => {
   switch (unit) {
     case "minutes":
       return Math.floor(target / 60);
+    case "meters":
+      return target / 1000;
 
     default:
       return target;
@@ -28,11 +30,16 @@ const formatTarget = (target: number, unit: Unit) => {
 const SINGULAR_UNITS = {
   minutes: "minute",
   steps: "step",
+  meters: "km",
 };
 
 function getUnitCopy(unit: Unit, amount: number) {
   if (amount === 1) {
     return SINGULAR_UNITS[unit];
+  }
+
+  if (unit === "meters") {
+    return "km";
   }
 
   return unit;

@@ -1,6 +1,6 @@
 import cancelActiveChallengeWithClient from "@graphql/challenges/cancelActiveChallenge.gql";
 import updateActiveChallengeWithClient from "@graphql/challenges/updateActiveChallenge.gql";
-import { queryMindfulSessions } from "@services/fitkit/fitkit.helpers";
+import { queryMindfulSessions, queryCycling } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ } from "@services/utils";
 import { pathOr } from "@services/utils";
@@ -17,7 +17,7 @@ import {
   challengeUpdateSuccessAction,
 } from "../levels.actions";
 
-export function* startMindfulnessTracking(levelSlotId: string, startDateTime: string, endDateTime: string) {
+export function* startTracking(levelSlotId: string, startDateTime: string, endDateTime: string, isCycling = false) {
   const start = moment(startDateTime).format(DATE_FORMAT_WITH_TZ);
   const end = moment(endDateTime);
 
@@ -28,7 +28,12 @@ export function* startMindfulnessTracking(levelSlotId: string, startDateTime: st
 
     try {
       const features = yield select(getUserFeatures);
-      const queryResult = yield call(queryMindfulSessions, start, end.format(DATE_FORMAT_WITH_TZ), features);
+      const queryResult = yield call(
+        isCycling ? queryCycling : queryMindfulSessions,
+        start,
+        end.format(DATE_FORMAT_WITH_TZ),
+        features
+      );
 
       if (queryResult.length > 0) {
         const results = {
@@ -57,7 +62,7 @@ export function* startMindfulnessTracking(levelSlotId: string, startDateTime: st
 }
 
 // android doesn't like big delays: Improvise. Adapt. Overcome.
-export function* startStepsTracking(endDateTime: string) {
+export function* startTrackingTime(endDateTime: string) {
   const end = moment(endDateTime);
 
   while (moment().isBefore(end)) {
@@ -67,10 +72,13 @@ export function* startStepsTracking(endDateTime: string) {
   yield put(challengeTimeUpAction());
 }
 
-export default function* startChallenge({ isMeditation, levelSlotId, startDateTime, endDateTime }: any) {
-  const challengeTask = isMeditation
-    ? yield fork(startMindfulnessTracking, levelSlotId, startDateTime, endDateTime)
-    : yield fork(startStepsTracking, endDateTime);
+export default function* startChallenge({ subtype, levelSlotId, startDateTime, endDateTime }: any) {
+  const isMeditation = subtype === "meditation";
+  const isCycling = subtype === "cycling";
+  const challengeTask =
+    isMeditation || isCycling
+      ? yield fork(startTracking, levelSlotId, startDateTime, endDateTime, isCycling)
+      : yield fork(startTrackingTime, endDateTime);
 
   let inProgress = true;
 
@@ -91,7 +99,6 @@ export default function* startChallenge({ isMeditation, levelSlotId, startDateTi
         yield put(challengeResetSuccessAction());
         inProgress = false;
       } catch (e) {
-        // console.log(e);
         yield put(challengeResetFailAction());
         yield spawn(() => Logger.logMixpanelError(e, "startChallenge"));
       }

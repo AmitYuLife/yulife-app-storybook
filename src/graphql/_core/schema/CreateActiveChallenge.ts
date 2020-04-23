@@ -18,6 +18,7 @@ export interface CreateActiveChallenge_createActiveChallenge_challenge {
 export interface CreateActiveChallenge_createActiveChallenge_levelSlot_milestones_target {
   steps: number | null;
   meditation: number | null;
+  distance: number | null;
 }
 
 export interface CreateActiveChallenge_createActiveChallenge_levelSlot_milestones {

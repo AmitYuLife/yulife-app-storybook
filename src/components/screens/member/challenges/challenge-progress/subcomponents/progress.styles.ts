@@ -16,11 +16,17 @@ const styles = StyleSheet.create({
   barColorDesertBrown: {
     backgroundColor: "rgb(252,194,116)",
   },
+  barColorDesertCycling: {
+    backgroundColor: "rgb(248,111,99)",
+  },
   barColorOceanBlack: {
     backgroundColor: Colours.progressBar.oceanBlack.shadow,
   },
   barColorOceanWhite: {
     backgroundColor: Colours.progressBar.oceanWhite.shadow,
+  },
+  barColorOceanLightBlue: {
+    backgroundColor: "rgb(216,240,255)",
   },
   barColorForestWhite: {
     backgroundColor: "rgb(253, 251, 251)",
@@ -43,11 +49,17 @@ const styles = StyleSheet.create({
   goalTextColorBlack: {
     color: Colours.progressBar.black.heading,
   },
+  goalTextColorLightBlue: {
+    color: "rgb(216,240,255)",
+  },
   goalTextColorDesertBrown: {
     color: "rgb(252,194,116)",
   },
   goalTextColorDesertPink: {
     color: "rgb(231, 116, 121)",
+  },
+  goalTextColorDesertCycling: {
+    color: "rgb(248,111,99)",
   },
   goalTextColorOceanBlack: {
     color: Colours.progressBar.oceanBlack.shadow,

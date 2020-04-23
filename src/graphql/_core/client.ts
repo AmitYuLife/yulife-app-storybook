@@ -28,7 +28,7 @@ const dataIdFromObject = (object: any) => {
     case "LevelSlotMilestone":
       return `${object.__typename}-${object.id}`;
     case "MilestoneTarget":
-      return `${object.__typename}-${object.steps}-${object.meditation}`;
+      return `${object.__typename}-${object.steps}-${object.meditation}-${object.distance}`;
     case "User":
       return `${object.__typename}-${object.id}`;
     case "Reward":

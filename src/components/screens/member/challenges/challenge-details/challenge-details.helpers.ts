@@ -25,6 +25,12 @@ const MEDITATION = [
   { source: assets.camel, style: styles.image },
   { source: assets.owl, style: styles.image },
 ];
+const CYCLING = [
+  { source: assets.hedgehog, style: styles.image },
+  { source: assets.hedgehogFish, style: styles.image },
+  { source: assets.chameleon, style: styles.image },
+  { source: assets.bear, style: styles.image },
+];
 
 export const getImageAndStyle = (challengeType: string, currentWorld = 0) => {
   switch (challengeType) {
@@ -37,6 +43,8 @@ export const getImageAndStyle = (challengeType: string, currentWorld = 0) => {
       return LONG_WALK[currentWorld] || LONG_WALK[0];
     case "meditation":
       return MEDITATION[currentWorld] || MEDITATION[0];
+    case "cycling":
+      return CYCLING[currentWorld] || CYCLING[0];
     default:
       return { source: null, style: styles.image };
   }

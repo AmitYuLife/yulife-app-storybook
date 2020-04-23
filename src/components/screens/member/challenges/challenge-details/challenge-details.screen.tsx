@@ -3,14 +3,14 @@ import { Image, StyleSheet, View } from "react-native";
 import { Button, Close, Text } from "../../../../atoms";
 import { data, getCardBackgroundColor, getImageAndStyle } from "./challenge-details.helpers";
 import styles from "./challenge-details.styles";
-import Milestones, { IMilestoneProps } from "./milestones";
+import Milestones, { IMilestone, IMilestoneProps } from "./milestones";
 
 interface IOwnProps {
   challengeType: string;
   currentWorld?: number;
   duration: string;
   isLoading?: boolean;
-  error?: string | null;
+  error?: string;
   onPressClose: () => void;
   onPressCta: () => void;
   onPressSetUp?: () => void;
@@ -22,7 +22,7 @@ function ChallengeDetailsScreen({
   challengeType,
   currentWorld = 0,
   duration,
-  error,
+  error = null,
   isLoading = false,
   milestones,
   onPressClose,
@@ -43,7 +43,7 @@ function ChallengeDetailsScreen({
         ])}
       >
         <Text bold={true} style={styles.heading}>
-          {`${challengeType} / ${duration}`}
+          {getChallengeDetailsTitle(challengeType, duration, milestones)}
         </Text>
         <Milestones milestones={milestones} unit={unit} />
       </View>
@@ -58,11 +58,29 @@ function ChallengeDetailsScreen({
       {!onPressSetUp ? (
         <Text style={styles.footer}>{data.footer}</Text>
       ) : (
-        <Button label={data.setUpLabel} onPress={onPressSetUp} type="Secondary" wrapperStyle={styles.setUp} />
+        <Button
+          label={data.setUpLabel}
+          onPress={onPressSetUp}
+          type="Secondary"
+          wrapperStyle={styles.setUp}
+        />
       )}
       {!error ? null : <Text style={styles.error}>{error}</Text>}
     </View>
   );
 }
+
+const getChallengeDetailsTitle = (challengeType: string, duration: string, milestones: IMilestone[]): string => {
+  if (challengeType === "cycling") {
+    if (milestones.length > 1) {
+      return `${challengeType} / ${(milestones[0].target / 1000).toFixed(0)}-${(
+        milestones[milestones.length - 1].target / 1000
+      ).toFixed(0)} km`;
+    }
+
+    return `${challengeType} / ${(milestones[0].target / 1000).toFixed(0)} km`;
+  }
+  return `${challengeType} / ${duration}`;
+};
 
 export default React.memo(ChallengeDetailsScreen);

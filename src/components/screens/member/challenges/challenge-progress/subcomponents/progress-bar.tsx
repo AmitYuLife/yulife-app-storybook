@@ -8,6 +8,8 @@ export type ProgressBarTypes =
   | "ocean-white"
   | "ocean-black"
   | "desert-brown"
+  | "ocean-light-blue"
+  | "desert-pink"
   | "mountain-pink"
   | "mountain-black"
   | "forest-brisk-walk"
@@ -19,7 +21,7 @@ export interface IProps {
   goals: number[];
   showCounter?: boolean;
   styleType?: ProgressBarTypes;
-  type: "steps" | "minutes" | string;
+  type: "steps" | "minutes" | "distance" | string;
 }
 
 export default function ProgressBar({ amount, goals, showCounter = false, styleType, type }: IProps) {

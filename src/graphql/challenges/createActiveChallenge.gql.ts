@@ -23,6 +23,7 @@ export const GQL_MUTATION_CREATE_ACTIVE_CHALLENGE = gql`
           target {
             steps
             meditation
+            distance
           }
         }
       }

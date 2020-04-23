@@ -2,7 +2,7 @@ import RNFitKit from "@services/fitkit/fitkit.service";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ, getCurrentWorld, getStartAndEndDateTimesWithTimezone } from "@services/utils";
 import moment from "moment";
-import { queryMindfulSessions } from "../../services/fitkit/fitkit.helpers";
+import { queryCycling, queryMindfulSessions } from "../../services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.selectors";
 
 const MAX_AVAILABLE = 4;
@@ -29,8 +29,12 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
           value: Math.floor(queryResult.reduce((acc: number, item: any) => acc + item.value, 0)),
         };
       } else {
-        const startOfDay = moment(startDateTime).subtract(2, "hours").format(DATE_FORMAT_WITH_TZ);
-        const endLater = moment(endDateTime).add(2, "hours").format(DATE_FORMAT_WITH_TZ);
+        const startOfDay = moment(startDateTime)
+          .subtract(2, "hours")
+          .format(DATE_FORMAT_WITH_TZ);
+        const endLater = moment(endDateTime)
+          .add(2, "hours")
+          .format(DATE_FORMAT_WITH_TZ);
         const queryResultAllDay = await queryMindfulSessions(startOfDay, endLater, features);
 
         if (queryResultAllDay.length > 0) {
@@ -46,6 +50,47 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
     } catch (e) {
       return {
         value: 0,
+      };
+    }
+  }
+
+  if (subtype === "cycling") {
+    try {
+      const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
+
+      if (features.loggingEnabled) {
+        Logger.logMixpanelEvent("debug_query_cycling_from_date", { startDateTime, endDateTime, start, end });
+      }
+
+      const results = await queryCycling(start, end, features);
+
+      if (results.length > 0) {
+        return {
+          value: results && results[0].value,
+        };
+      } else {
+        const startEarly = moment(startDateTime)
+          .subtract(1, "hour")
+          .format(DATE_FORMAT_WITH_TZ);
+        const endLater = moment(endDateTime)
+          .add(1, "hour")
+          .format(DATE_FORMAT_WITH_TZ);
+
+        const cyclingResultInflatedPeriod = await queryCycling(startEarly, endLater, features);
+
+        if (cyclingResultInflatedPeriod.length > 0) {
+          return {
+            value: cyclingResultInflatedPeriod && cyclingResultInflatedPeriod[0].value,
+          };
+        } else {
+          return {
+            value: 0,
+          };
+        }
+      }
+    } catch (e) {
+      return {
+        value: score,
       };
     }
   }

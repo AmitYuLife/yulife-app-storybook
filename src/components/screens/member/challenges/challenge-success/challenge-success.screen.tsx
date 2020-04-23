@@ -1,7 +1,8 @@
 import { AnimatedPlusPoints, Button, CentredScreen, LevelLine, Stars, Text } from "@atoms/index";
+import { GetMobileCopy_getMobileCopy_screens_challenges_success } from "@graphql/_core/schema";
 import * as React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { GetMobileCopy_getMobileCopy_screens_challenges_success } from "../../../../../graphql/_core/schema";
+import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/subcomponents/progress-bar.helpers";
 import Assets from "./assets";
 import { getStyle } from "./challenge-success.helpers";
 import styles from "./challenge-success.screen.styles";
@@ -54,6 +55,8 @@ function renderScore(score: number, unit: string) {
   switch (unit) {
     case "minutes":
       return `${mins} ${mins === 1 ? "minute" : unit}`;
+    case "meters":
+      return formatCyclingMetersToKmWithOneDecimal(score);
 
     default:
       return `${score} ${unit}`;

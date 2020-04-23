@@ -19,7 +19,8 @@
     "start": "run-p start:bundler tsc:watch",
     "start:bundler": "react-native start --reset-cache",
     "test": "jest",
-    "test:all": "jest",
+    "test:lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet",
+    "test:all": "run-s tsc test test:lint",
     "tsc": "tsc --noUnusedLocals --noUnusedParameters",
     "tsc:watch": "tsc --noUnusedLocals --noUnusedParameters --watch --pretty",
     "download:schema": "apollo client:download-schema --endpoint=http://yulife-api-server-develop.eu-west-2.elasticbeanstalk.com/graphql ./src/graphql/_core/schema.json",
@@ -54,7 +55,7 @@
     "react-native-config": "^1.0.0",
     "react-native-device-info": "^5.5.3",
     "react-native-fast-image": "^8.1.5",
-    "react-native-fitkit": "ssh://git@gitlab.com:yu-life/react-native-fitkit.git#a1068124c712d82e0a457cad347ec4aa8eaea526",
+    "react-native-fitkit": "ssh://git@gitlab.com:yu-life/react-native-fitkit.git#9c7796217993675f7f4f761a4fa27eafee878eaa",
     "react-native-intercom": "^14.0.0",
     "react-native-iphone-x-helper": "^1.2.1",
     "react-native-largelist-v3": "^3.0.15",
@@ -123,7 +124,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "pretty-quick --staged && yarn test && eslint 'src/**/*.{js,ts,tsx}' --quiet"
+      "pre-push": "pretty-quick --staged && yarn test:all"
     }
   }
 }

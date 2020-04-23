@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { GetCurrentWorld_getCurrentWorld, GetCurrentWorld } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_CURRENT_WORLD } from "@graphql/challenges";
 import { bottomTabs } from "@navigation/constants";
-import { getCurrentWorld } from "@services/utils";
+import { getCurrentWorld, getUnitTarget } from "@services/utils";
 import { Style } from "@styles/index";
 import moment from "moment";
 import React, { FC, useState, useCallback, useMemo } from "react";
@@ -312,7 +312,7 @@ const QuestsContainer: FC<Props> = (props) => {
   }
 
   if (subtype) {
-    const progressTargets = milestones.map((item) => item.target[subtype === "meditation" ? "meditation" : "steps"]);
+    const progressTargets = milestones.map((item) => item.target[getUnitTarget(subtype)]);
 
     return (
       <BlurProvider
@@ -336,7 +336,7 @@ const QuestsContainer: FC<Props> = (props) => {
             onClose={hideOverlay}
             onPressExit={props.challengeCancelAction}
             isCancelling={isLoading}
-            copy={copy.newExitChallenge}
+            copy={copy.exitChallenge}
           />
         )}
       />

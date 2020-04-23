@@ -23,6 +23,7 @@ const BRISK_WALK = [IMAGES.SQUIRREL, IMAGES.OTTER, IMAGES.MEERKAT, IMAGES.WOLF];
 const LONG_WALK = [IMAGES.RABBIT, IMAGES.WHALE, IMAGES.DESERT_FOX, IMAGES.DEER];
 const MEDITATION = [IMAGES.BIRD, IMAGES.DOLPHIN, IMAGES.CAMEL, IMAGES.OWL];
 const SHORT_STROLL = [IMAGES.SNAIL, IMAGES.TORTOISE, IMAGES.BIGHORN_SHEEP, IMAGES.WHITE_BIGHORN_SHEEP];
+const CYCLING = [IMAGES.HEDGEDOG, IMAGES.HEDGEDOG_FISH, IMAGES.CHAMELEON, IMAGES.BEAR];
 
 type Props = IChallengeTileProps;
 
@@ -37,6 +38,8 @@ class ChallengeTile extends PureComponent<Props> {
         return LONG_WALK[currentWorld] || LONG_WALK[0];
       case "brisk walk":
         return BRISK_WALK[currentWorld] || BRISK_WALK[0];
+      case "cycling":
+        return CYCLING[currentWorld] || CYCLING[0];
       case "short stroll":
       default:
         return SHORT_STROLL[currentWorld] || SHORT_STROLL[0];
