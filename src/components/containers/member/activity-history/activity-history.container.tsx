@@ -36,7 +36,7 @@ const ActivityHistoryContainer: FC<Props> = ({
 
   const handleClose = useCallback(() => {
     Navigation.popToRoot(componentId);
-  }, []);
+  }, [componentId]);
 
   const onComplete = useCallback(() => {
     if (largeList && largeList.current) {
@@ -50,10 +50,6 @@ const ActivityHistoryContainer: FC<Props> = ({
     onCompleted: onComplete,
     onError: onComplete,
   });
-
-  if (error && (!data || !data.getActivityHistoryWithLevels)) {
-    return <GenericConnectionErrorModal onPress={handleClose} />;
-  }
 
   const [addHistoricalSteps]: AddHistoricalStepsMutationTuple = useMutation(GQL_MUTATION_ADD_HISTORICAL_STEPS);
 
@@ -93,7 +89,12 @@ const ActivityHistoryContainer: FC<Props> = ({
     if (largeList && largeList.current) {
       largeList.current.endRefresh();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [features, largeList]);
+
+  if (error && (!data || !data.getActivityHistoryWithLevels)) {
+    return <GenericConnectionErrorModal onPress={handleClose} />;
+  }
 
   return (
     // return empty array if data.getActivityHistoryWithLevels is undefined

@@ -59,6 +59,8 @@ const verifyAccountNumber = (loyaltyId: string, accountNumber: string) => {
 
 const AviosRewardDetailsContainer: FC<Props> = (props) => {
   const {
+    onTabChange,
+    componentId,
     copy,
     totalCoins,
     reward: {
@@ -83,7 +85,7 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
       reward_code: code,
       reward_name: name,
     });
-  }, []);
+  }, [availability, available_denominations, reward_sticker, code, name]);
 
   const loyaltyList = useMemo(
     () =>
@@ -91,7 +93,7 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
         id: programme,
         label: programme,
       })),
-    []
+    [loyalty_programme]
   );
   const amountList = useMemo(
     () =>
@@ -99,11 +101,11 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
         id: String(ad.value),
         label: `${ad.value} avios - ${ad.yuCoin} yucoin`,
       })),
-    []
+    [available_denominations]
   );
 
-  const onRewardsTabPress = useCallback(() => props.onTabChange("rewards", props.componentId), []);
-  const onPurchasesTabPress = useCallback(() => props.onTabChange("purchases", props.componentId), []);
+  const onRewardsTabPress = useCallback(() => onTabChange("rewards", componentId), [onTabChange, componentId]);
+  const onPurchasesTabPress = useCallback(() => onTabChange("purchases", componentId), [onTabChange, componentId]);
 
   const handlePolicyPress = useMemo(() => handleLinkPress(Config.REWARDS_POLICY_URL), []);
   // const handleTermsPress = useMemo(() => handleLinkPress(`${Config.API_URL}/docs/avios-terms.pdf`), []);
@@ -200,6 +202,7 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
         text: "Confirm",
       },
     ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastName, firstName, accountNumber, loyalty, amount]);
 
   return (

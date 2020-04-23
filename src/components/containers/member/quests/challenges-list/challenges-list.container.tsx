@@ -70,10 +70,10 @@ const ChallengesListContainer: FC<Props> = ({
       setSlot(newSlot);
       showOverlay();
     },
-    []
+    [slot]
   );
 
-  const handleNavPress = useCallback(() => Navigation.popToRoot(componentId), []);
+  const handleNavPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
   const handleSubmitChallenge = useCallback(async () => {
     setIsLoading(true);
@@ -92,7 +92,7 @@ const ChallengesListContainer: FC<Props> = ({
     } catch (e) {
       setError();
     }
-  }, []);
+  }, [createActiveChallenge, dispatchChallengeStartSuccess, setError, handleNavPress, slot.id]);
 
   return (
     <BlurProvider

@@ -54,16 +54,7 @@ const LeaderboardsContainer: FC<Props> = ({
   updateLeaderboardConsent: dispatchUpdateConsent,
   onLeftMenuPress,
 }) => {
-  if (useMemo(() => Style.isIPad(), [])) {
-    return (
-      <LeaderboardOfflineScreen
-        hasNotification={hasNotification}
-        totalCoins={totalCoins}
-        labels={labels}
-        onLeftMenuPress={onLeftMenuPress}
-      />
-    );
-  }
+  const isIPad = useMemo(() => Style.isIPad(), []);
 
   const [sortBy, setSortBy] = useState("steps");
   const [{ activeLeaderboardIndex, leaderboardId }, setLeaderboardInfo] = useState(getInitialLeaderboard(leaderboards));
@@ -78,7 +69,7 @@ const LeaderboardsContainer: FC<Props> = ({
       setSortBy(sort);
       refetch({ sortBy: sort, leaderboardId });
     },
-    [leaderboardId]
+    [leaderboardId, refetch]
   );
 
   const refuseConsent = useCallback(() => {
@@ -93,7 +84,7 @@ const LeaderboardsContainer: FC<Props> = ({
   const allowLeaderboard = useCallback(() => {
     const company = leaderboards[activeLeaderboardIndex];
     dispatchUpdateConsent({ leaderboardId: company.leaderboardId, consent: true });
-  }, [activeLeaderboardIndex, leaderboards]);
+  }, [activeLeaderboardIndex, leaderboards, dispatchUpdateConsent]);
 
   const handleLeaderboardChange = useCallback(
     (index: number) => {
@@ -108,9 +99,9 @@ const LeaderboardsContainer: FC<Props> = ({
     [leaderboards]
   );
 
-  const coinsRefetch = useMemo(() => handleRefetch("coins"), [leaderboardId]);
-  const stepsRefetch = useMemo(() => handleRefetch("steps"), [leaderboardId]);
-  const mindfulMinsRefetch = useMemo(() => handleRefetch("mindful"), [leaderboardId]);
+  const coinsRefetch = useMemo(() => handleRefetch("coins"), [handleRefetch]);
+  const stepsRefetch = useMemo(() => handleRefetch("steps"), [handleRefetch]);
+  const mindfulMinsRefetch = useMemo(() => handleRefetch("mindful"), [handleRefetch]);
 
   const initialScrollIndex = useMemo(
     () =>
@@ -119,6 +110,17 @@ const LeaderboardsContainer: FC<Props> = ({
         : 0,
     [data]
   );
+
+  if (isIPad) {
+    return (
+      <LeaderboardOfflineScreen
+        hasNotification={hasNotification}
+        totalCoins={totalCoins}
+        labels={labels}
+        onLeftMenuPress={onLeftMenuPress}
+      />
+    );
+  }
 
   return (
     <LeaderboardsScreen
@@ -133,7 +135,7 @@ const LeaderboardsContainer: FC<Props> = ({
       activeLeaderboardIndex={activeLeaderboardIndex}
       onLeaderboardChange={handleLeaderboardChange}
       sortBy={sortBy}
-      onRefetch={useCallback(() => refetch(), [])}
+      onRefetch={refetch}
       hasNotification={hasNotification}
       labels={labels}
       totalCoins={totalCoins}

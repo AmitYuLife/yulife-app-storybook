@@ -30,7 +30,9 @@ const MemberServicesContainer: FC<Props> = ({ componentId, isGroupUser, isWellbe
 
   const handleEmptyPress = useCallback((): null => null, []);
 
-  const handleClose = useCallback(() => Navigation.popToRoot(componentId), []);
+  const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
+  const rightTabPress = useMemo(() => handleTabChange("smartHealth"), [handleTabChange]);
+  const leftTabPress = useMemo(() => handleTabChange("yumatter"), [handleTabChange]);
 
   if (tab === "yumatter") {
     return (
@@ -38,18 +40,12 @@ const MemberServicesContainer: FC<Props> = ({ componentId, isGroupUser, isWellbe
         isGroup={isGroupUser || isWellbeingAccess}
         onPressClose={handleClose}
         onLeftTabPress={handleEmptyPress}
-        onRightTabPress={useMemo(() => handleTabChange("smartHealth"), [])}
+        onRightTabPress={rightTabPress}
       />
     );
   }
 
-  return (
-    <SmartHealth
-      onPressClose={handleClose}
-      onLeftTabPress={useMemo(() => handleTabChange("yumatter"), [])}
-      onRightTabPress={handleEmptyPress}
-    />
-  );
+  return <SmartHealth onPressClose={handleClose} onLeftTabPress={leftTabPress} onRightTabPress={handleEmptyPress} />;
 };
 
 const mapStateToProps = (state: IReduxState) => ({

@@ -29,6 +29,8 @@ export function secondsToMinutes(seconds: number) {
 }
 
 export function getSlotDuration({ subtype, milestones, timeLimit }: GetCurrentWorld_getCurrentWorld_slots) {
+  const defaultTime = secondsToMinutes(timeLimit);
+
   switch (subtype) {
     case "meditation":
       if (milestones) {
@@ -43,13 +45,12 @@ export function getSlotDuration({ subtype, milestones, timeLimit }: GetCurrentWo
 
         return `${meditationTime} min${meditationTime > 1 ? "s" : ""}`;
       }
-
       return "";
+
     case "day walk":
       return "all day";
 
     default:
-      const defaultTime = secondsToMinutes(timeLimit);
-      return `${defaultTime} min${defaultTime > 1 ? "s" : ""}`;
+      return `${defaultTime} minute${defaultTime > 1 ? "s" : ""}`;
   }
 }

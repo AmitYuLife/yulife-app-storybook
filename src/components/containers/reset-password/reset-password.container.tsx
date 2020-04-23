@@ -21,7 +21,7 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 type Props = IProps & ConnectedState;
 
-const ResetPasswordContainer: FC<Props> = ({ copy, copyEmailSent, componentId }) => {
+const ResetPasswordContainer: FC<Props> = ({ copy, copyEmailSent, componentId }: Props) => {
   const [{ wasEmailSent, email, emailError }, setState] = useState({
     email: "",
     emailError: "",
@@ -49,7 +49,7 @@ const ResetPasswordContainer: FC<Props> = ({ copy, copyEmailSent, componentId })
         console.log(e);
       }
     }
-  }, [email, emailError]);
+  }, [email, emailError, sendMagicLink]);
 
   const handleEmailChange = useCallback(
     (newEmail: string) => {

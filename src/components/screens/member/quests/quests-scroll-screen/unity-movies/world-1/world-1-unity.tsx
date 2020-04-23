@@ -28,10 +28,6 @@ class World1Unity extends React.PureComponent<IProps, IState> {
   } as IState;
   private textOpacity = new Animated.Value(0);
 
-  public componentWillMount() {
-    initializeAnimation();
-  }
-
   public animateText = () => {
     this.animateTextDelay = global.setTimeout(() => this.changeTextOpacity(1).start(this.animateText2), 2000);
   };
@@ -49,6 +45,12 @@ class World1Unity extends React.PureComponent<IProps, IState> {
   public animateText3 = () => {
     this.animateTextDelay = global.setTimeout(() => this.changeTextOpacity(0).start(this.props.onSkip), 4000);
   };
+
+  public constructor(props: IProps) {
+    super(props);
+
+    initializeAnimation();
+  }
 
   public componentDidMount() {
     this.animateText();

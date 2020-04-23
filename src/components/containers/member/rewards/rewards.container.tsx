@@ -67,13 +67,13 @@ const RewardsContainer: FC<Props> = (props) => {
   const handleTabChange = useCallback(async (newTab: Tab, componentId: string = "") => {
     setTab(newTab);
 
-    if (!!componentId) {
+    if (componentId) {
       await Navigation.popToRoot(componentId);
     }
   }, []);
 
-  const handleRewardsTabPress = useCallback(() => handleTabChange("rewards"), []);
-  const handlePurchasesTabPress = useCallback(() => handleTabChange("purchases"), []);
+  const handleRewardsTabPress = useCallback(() => handleTabChange("rewards"), [handleTabChange]);
+  const handlePurchasesTabPress = useCallback(() => handleTabChange("purchases"), [handleTabChange]);
 
   const { loading: purchasesAreLoading, data: purchases, refetch: refetchPurchases } = useQuery<GetAllPurchases>(
     GQL_QUERY_GET_ALL_PURCHASES,
@@ -86,7 +86,9 @@ const RewardsContainer: FC<Props> = (props) => {
     () =>
       (purchases && purchases.getAllPurchases ? purchases.getAllPurchases : []).map((purchase) => {
         const { id, amount, currency_code, name, status, createdAt, yuCoinsSpent } = purchase;
-        const [day, month] = moment(new Date(createdAt).toISOString()).format("DD-MMM").split("-");
+        const [day, month] = moment(new Date(createdAt).toISOString())
+          .format("DD-MMM")
+          .split("-");
         const reward = formatVoucherName(amount, currency_code, name);
         const route = getConfirmedRoute(purchase.rewardProviderId);
 
@@ -111,17 +113,17 @@ const RewardsContainer: FC<Props> = (props) => {
           status,
         };
       }),
-    [purchases]
+    [purchases, handleTabChange, props.componentId]
   );
 
-  const handlePurchasesRefetch = useCallback(() => refetchPurchases(), []);
+  const handlePurchasesRefetch = useCallback(() => refetchPurchases(), [refetchPurchases]);
 
   const { loading: rewardsAreLoading, data: rewards, refetch: refetchRewards } = useQuery(
     GQL_QUERY_GET_REWARDS,
     requestOptions
   );
 
-  const handleRewardsRefetch = useCallback(() => refetchRewards(), []);
+  const handleRewardsRefetch = useCallback(() => refetchRewards(), [refetchRewards]);
 
   const handleRewardDetailsItemPress = useCallback(
     async (reward: GetRewards_getRewards) => {
@@ -162,6 +164,7 @@ const RewardsContainer: FC<Props> = (props) => {
         });
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [props.copy]
   );
 

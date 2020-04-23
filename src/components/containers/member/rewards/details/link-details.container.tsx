@@ -24,6 +24,8 @@ type Props = IProps & ConnectedState;
 
 const LinkRewardDetailsContainer: FC<Props> = (props) => {
   const {
+    componentId,
+    onTabChange,
     totalCoins,
     reward: {
       name,
@@ -48,17 +50,17 @@ const LinkRewardDetailsContainer: FC<Props> = (props) => {
       reward_code: code,
       reward_name: name,
     });
-  }, []);
+  }, [availability, available_denominations, code, name, reward_sticker]);
 
-  const labelCtaPrimary = useMemo(() => uiSettings.ctaLabel || "claim reward", []);
+  const labelCtaPrimary = useMemo(() => uiSettings.ctaLabel || "claim reward", [uiSettings.ctaLabel]);
 
   const onPressPicker = useCallback(() => ({}), []);
 
-  const onRewardsTabPress = useCallback(() => props.onTabChange("rewards", props.componentId), []);
-  const onPurchasesTabPress = useCallback(() => props.onTabChange("purchases", props.componentId), []);
+  const onRewardsTabPress = useCallback(() => onTabChange("rewards", componentId), [componentId, onTabChange]);
+  const onPurchasesTabPress = useCallback(() => onTabChange("purchases", componentId), [componentId, onTabChange]);
 
   const handlePolicyPress = useMemo(() => handleLinkPress(Config.REWARDS_POLICY_URL), []);
-  const handleTermsPress = useMemo(() => handleLinkPress(terms_and_conditions_url), []);
+  const handleTermsPress = useMemo(() => handleLinkPress(terms_and_conditions_url), [terms_and_conditions_url]);
 
   const [redeemReward, { loading }]: RedeemRewardMutationTuple = useMutation(GQL_MUTATION_REDEEM_REWARD);
 
@@ -100,6 +102,7 @@ const LinkRewardDetailsContainer: FC<Props> = (props) => {
         },
       ]
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

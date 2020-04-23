@@ -27,28 +27,6 @@ function BlurProvider({ render, renderOverlay, backgroundColor = "default" }: IP
   const [viewNodeHandle, setViewNodeHandle] = useState<number | null>(null);
   const viewRef = useRef<View | null>(null);
 
-  const showOverlay = useCallback(() => {
-    setVisibilityState(true);
-    animate(true);
-  }, []);
-
-  const hideOverlay = useCallback(() => {
-    setVisibilityState(false);
-    animate(false);
-  }, []);
-
-  const toggleOverlay = useCallback(() => {
-    const newState = !isVisible;
-
-    setVisibilityState(newState);
-    animate(newState);
-  }, [isVisible]);
-
-  const updateViewNodeHandle = useCallback(() => {
-    const newViewNodeHandler = findNodeHandle(viewRef.current);
-    setViewNodeHandle(newViewNodeHandler);
-  }, []);
-
   const animate = useCallback(
     (shouldDisplay: boolean) => {
       const animateOpacity = Animated.timing(animatedWrapperOpacity, {
@@ -71,6 +49,28 @@ function BlurProvider({ render, renderOverlay, backgroundColor = "default" }: IP
     },
     [animatedWrapperOpacity, animatedWrapperPosition]
   );
+
+  const showOverlay = useCallback(() => {
+    setVisibilityState(true);
+    animate(true);
+  }, [animate]);
+
+  const hideOverlay = useCallback(() => {
+    setVisibilityState(false);
+    animate(false);
+  }, [animate]);
+
+  const toggleOverlay = useCallback(() => {
+    const newState = !isVisible;
+
+    setVisibilityState(newState);
+    animate(newState);
+  }, [isVisible, animate]);
+
+  const updateViewNodeHandle = useCallback(() => {
+    const newViewNodeHandler = findNodeHandle(viewRef.current);
+    setViewNodeHandle(newViewNodeHandler);
+  }, []);
 
   const renderProps = {
     hideOverlay,

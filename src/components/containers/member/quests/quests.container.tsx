@@ -187,17 +187,6 @@ const goToChallengesList = (componentId: string, level: GetCurrentWorld_getCurre
 const QuestsContainer: FC<Props> = (props) => {
   const { totalCoins, theme, onLeftMenuPress } = props;
 
-  if (Style.isIPad()) {
-    return (
-      <QuestsScreenOffline
-        fitkitAvailable={false}
-        totalCoins={totalCoins}
-        onLeftMenuPress={onLeftMenuPress}
-        theme={theme.questsOffline}
-      />
-    );
-  }
-
   const { loading, data, refetch } = useQuery<GetCurrentWorld>(GQL_QUERY_GET_CURRENT_WORLD);
   const [unity, setUnity] = useState(null as number);
   const {
@@ -218,18 +207,18 @@ const QuestsContainer: FC<Props> = (props) => {
       onLeftMenuPress,
       totalCoins,
     }),
-    [currentLevel, totalCoins]
+    [currentLevel, totalCoins, componentId, onLeftMenuPress]
   );
 
   const handleResetChallenge = useCallback(
     (showStreakComplete = false) => () => {
       if (showStreakComplete) {
-        props.displayStreaksCompletedAction();
+        displayStreaksCompletedAction();
       }
       refetch();
-      props.challengeResetAction();
+      challengeResetAction();
     },
-    []
+    [refetch]
   );
 
   const formatedData = useMemo(
@@ -283,12 +272,24 @@ const QuestsContainer: FC<Props> = (props) => {
           },
         };
       }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [data, nextLevelAvailableAt, challengesStatus, currentLevel, features, copy]
   );
 
   const hideUnity = useCallback(() => {
     setUnity(null);
   }, []);
+
+  if (Style.isIPad()) {
+    return (
+      <QuestsScreenOffline
+        fitkitAvailable={false}
+        totalCoins={totalCoins}
+        onLeftMenuPress={onLeftMenuPress}
+        theme={theme.questsOffline}
+      />
+    );
+  }
 
   if (status) {
     return status === "success" ? (

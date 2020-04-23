@@ -32,6 +32,8 @@ type Props = IProps & ConnectedState & ConnectedDispatch;
 
 const WegiftRewardDetailsContainer: FC<Props> = (props) => {
   const {
+    componentId,
+    onTabChange,
     copy,
     totalCoins,
     reward: {
@@ -57,13 +59,13 @@ const WegiftRewardDetailsContainer: FC<Props> = (props) => {
       reward_code: code,
       reward_name: name,
     });
-  }, []);
+  }, [availability, available_denominations, code, name, reward_sticker]);
 
-  const onRewardsTabPress = useCallback(() => props.onTabChange("rewards", props.componentId), []);
-  const onPurchasesTabPress = useCallback(() => props.onTabChange("purchases", props.componentId), []);
+  const onRewardsTabPress = useCallback(() => onTabChange("rewards", componentId), [componentId, onTabChange]);
+  const onPurchasesTabPress = useCallback(() => onTabChange("purchases", componentId), [componentId, onTabChange]);
 
   const handlePolicyPress = useMemo(() => handleLinkPress(Config.REWARDS_POLICY_URL), []);
-  const handleTermsPress = useMemo(() => handleLinkPress(terms_and_conditions_url), []);
+  const handleTermsPress = useMemo(() => handleLinkPress(terms_and_conditions_url), [terms_and_conditions_url]);
 
   const [denomination, setDenomination] = useState(available_denominations[0]);
 
@@ -129,6 +131,7 @@ const WegiftRewardDetailsContainer: FC<Props> = (props) => {
         text: "OK",
       },
     ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [denomination]);
 
   return (

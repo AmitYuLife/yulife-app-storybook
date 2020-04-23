@@ -76,7 +76,6 @@ const levelsReducer = (state: ILevelsStore = initialState, action: SyncAction): 
     case CHALLENGE_RESET:
       return challengeLoading(state, true);
 
-    case CHALLENGE_RESET_FAIL:
     case CHALLENGE_END_FAIL:
       return challengeLoading(state, false);
 

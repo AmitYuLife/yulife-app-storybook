@@ -29,7 +29,7 @@ type Props = IProps & ConnectedState & ConnectedDispatch;
 const StatsContainer: FC<Props> = ({ componentId }) => {
   const handleClose = useCallback(() => {
     Navigation.popToRoot(componentId);
-  }, []);
+  }, [componentId]);
 
   const handleActivityHistoryPress = useCallback(() => {
     Navigation.push(componentId, {
@@ -39,6 +39,7 @@ const StatsContainer: FC<Props> = ({ componentId }) => {
         // options: { bottomTabs }
       },
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { data, error, loading } = useQuery(GQL_QUERY_GET_USER_STATS, { fetchPolicy: "cache-and-network" });

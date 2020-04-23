@@ -56,6 +56,7 @@ export const renderProgressBar: React.SFC<IProps> = ({ amount, goals, styleType,
 
 export const renderProgressLabel = ({ amount, showCounter, styleType = "black", type }: Partial<IProps>) => {
   const textColorStyle = getProgressLabelTextColor(styleType);
+  const { minutes, seconds } = displaySecondsAsMinutes(amount);
 
   const typeText = type === "steps" && amount === 1 ? "step" : type;
   switch (type) {
@@ -74,8 +75,6 @@ export const renderProgressLabel = ({ amount, showCounter, styleType = "black", 
       if (amount === 0) {
         return null;
       }
-
-      const { minutes, seconds } = displaySecondsAsMinutes(amount);
 
       return (
         <>

@@ -22,7 +22,7 @@ interface IProps extends IConnectedScreenProps {
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
 const ChallengesHistoryContainer: FC<Props> = ({ level, onPressActivityHistory, totalCoins, componentId }) => {
-  const handleClose = useCallback(() => Navigation.popToRoot(componentId), []);
+  const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
   return (
     <ChallengesHistoryScreen
