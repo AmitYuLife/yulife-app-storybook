@@ -185,10 +185,6 @@ const goToChallengesList = (componentId: string, level: GetCurrentWorld_getCurre
   });
 
 const QuestsContainer: FC<Props> = (props) => {
-  const { totalCoins, theme, onLeftMenuPress } = props;
-
-  const { loading, data, refetch } = useQuery<GetCurrentWorld>(GQL_QUERY_GET_CURRENT_WORLD);
-  const [unity, setUnity] = useState(null as number);
   const {
     activeLevel: { coins, endDateTime, level, milestones, rating, score, status, subtype, timeUp, unit, isLoading },
     componentId,
@@ -197,7 +193,15 @@ const QuestsContainer: FC<Props> = (props) => {
     copy,
     challengesStatus,
     nextLevelAvailableAt,
+    totalCoins,
+    theme,
+    onLeftMenuPress,
+    displayStreaksCompletedAction: dispatchDisplayStreaksCompleted,
+    challengeResetAction: dispatchChallengeReset,
   } = props;
+
+  const { loading, data, refetch } = useQuery<GetCurrentWorld>(GQL_QUERY_GET_CURRENT_WORLD);
+  const [unity, setUnity] = useState(null as number);
 
   const currentWorld = useMemo(() => getCurrentWorld(level), [level]);
   const screenProps = useMemo(
@@ -213,12 +217,12 @@ const QuestsContainer: FC<Props> = (props) => {
   const handleResetChallenge = useCallback(
     (showStreakComplete = false) => () => {
       if (showStreakComplete) {
-        displayStreaksCompletedAction();
+        dispatchDisplayStreaksCompleted();
       }
       refetch();
-      challengeResetAction();
+      dispatchChallengeReset();
     },
-    [refetch]
+    [refetch, dispatchDisplayStreaksCompleted, dispatchChallengeReset]
   );
 
   const formatedData = useMemo(
