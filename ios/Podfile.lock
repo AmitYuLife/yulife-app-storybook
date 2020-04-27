@@ -324,7 +324,7 @@ PODS:
     - React
     - React-RCTImage
     - React-RCTText
-  - RNCPushNotificationIOS (1.1.0):
+  - RNCPushNotificationIOS (1.1.1):
     - React
   - RNDateTimePicker (2.3.0):
     - React
@@ -553,7 +553,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: 0630aeb11e22f87c180ca9c0c3a0a0aba780cc62
   ReactCommon: d22162ab8f1358c53dfcd0f9c4d82d38facdbc48
   ReactNativeNavigation: a40889261e04413ea621ef1fa4a76d62bfd33030
-  RNCPushNotificationIOS: ec3e8c17cda6a92a0bb97a53ec5ecf5771d94d21
+  RNCPushNotificationIOS: a0b6894f4ad9b93d9dac467fdf4d055660ac8a0d
   RNDateTimePicker: 63e79b1e0dc6da8806ed8cf76e8528f7f88bcbc3
   RNDeviceInfo: 310c1f43d418d950a193c7650de2f9559c906048
   RNFastImage: 35ae972d6727c84ee3f5c6897e07f84d0a3445e9
@@ -569,4 +569,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 9851e9e4ca043bc9e334f0f0d2e2fccfc30b690c
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.8.4

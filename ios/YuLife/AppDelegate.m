@@ -104,7 +104,18 @@ static void InitializeFlipper(UIApplication *application) {
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-  [RNCPushNotificationIOS didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
+  if ([Intercom isIntercomPushNotification:userInfo]) {
+    NSString *uri = [userInfo objectForKey:@"uri"];
+    [Intercom handleIntercomPushNotification:userInfo];
+    if ([uri length] > 0) {
+      completionHandler(UIBackgroundFetchResultNewData);
+    } else {
+       completionHandler(UIBackgroundFetchResultNoData);
+    }
+  } else {
+    [RNCPushNotificationIOS didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
+     completionHandler(UIBackgroundFetchResultNoData);
+  }
 }
 // Required for the registrationError event.
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
