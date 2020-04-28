@@ -63,6 +63,12 @@ jest.mock("react-native-device-info", () => ({
   getDeviceName: jest.fn(),
 }));
 
+jest.mock("@react-native-community/push-notification-ios", () => ({
+  FetchResult: {
+    NoData: "no-data",
+  },
+}));
+
 jest.mock("react-native-push-notification", () => ({
   configure: jest.fn(),
   unregister: jest.fn(),
