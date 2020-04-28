@@ -1,5 +1,4 @@
-// This custom renderer was created to override the default Redux store.
-
+// This custom renderer let's us override the default Redux store.
 import React, { ReactElement } from "react";
 import { render as rtlRender } from "@testing-library/react-native";
 import { createStore } from "redux";
