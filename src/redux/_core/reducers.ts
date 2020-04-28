@@ -61,6 +61,9 @@ export const initialState: IReduxState = {
   dailyMeditation: initialDailyMeditation,
 };
 
+// this alias is created for testing purposes
+export const testInitialState = initialState;
+
 const combinedReducers = combineReducers({
   app: appReducer,
   coins: coinsReducer,

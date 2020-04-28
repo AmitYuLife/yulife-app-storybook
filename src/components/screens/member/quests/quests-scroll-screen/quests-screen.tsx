@@ -199,23 +199,14 @@ class QuestsScreen extends React.Component<IProps, IState> {
 export default QuestsScreen;
 
 function getInitialState(currentLevel: number) {
-  switch (getCurrentWorld(currentLevel)) {
-    case 3:
-      return {
-        topBarType: "white" as TopBarTypes,
-      };
-    case 2:
-      return {
-        topBarType: "desert" as TopBarTypes,
-      };
-    case 1:
-      return {
-        topBarType: "white" as TopBarTypes,
-      };
-    case 0:
-    default:
-      return {
-        topBarType: "forest" as TopBarTypes,
-      };
-  }
+  const topBarTypes: { [key: number]: TopBarTypes } = {
+    0: "forest",
+    1: "white",
+    2: "desert",
+    3: "white",
+  };
+
+  const currentWorld = getCurrentWorld(currentLevel);
+
+  return { topBarType: topBarTypes[currentWorld] ?? "forest" };
 }

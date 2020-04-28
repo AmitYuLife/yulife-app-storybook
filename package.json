@@ -19,6 +19,7 @@
     "start": "run-p start:bundler tsc:watch",
     "start:bundler": "react-native start --reset-cache",
     "test": "jest",
+    "test:watch": "jest --watch",
     "test:lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet",
     "test:all": "run-s tsc test test:lint",
     "tsc": "tsc --noUnusedLocals --noUnusedParameters",

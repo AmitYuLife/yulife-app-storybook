@@ -93,7 +93,7 @@ function getLevelStatus(
   };
 }
 
-type Props = IMainTabsProps & ConnectedState & ConnectedDispatch;
+export type Props = IMainTabsProps & ConnectedState & ConnectedDispatch;
 
 const dismissChestModal = () => Navigation.dismissModal(MODALS.chest);
 
@@ -186,7 +186,7 @@ const goToChallengesList = (componentId: string, level: GetCurrentWorld_getCurre
 
 const QuestsContainer: FC<Props> = (props) => {
   const {
-    activeLevel: { coins, endDateTime, level, milestones, rating, score, status, subtype, timeUp, unit, isLoading },
+    activeLevel,
     componentId,
     currentLevel,
     features,
@@ -199,6 +199,20 @@ const QuestsContainer: FC<Props> = (props) => {
     displayStreaksCompletedAction: dispatchDisplayStreaksCompleted,
     challengeResetAction: dispatchChallengeReset,
   } = props;
+
+  const {
+    coins,
+    endDateTime,
+    level,
+    milestones,
+    rating,
+    score,
+    status,
+    subtype,
+    timeUp,
+    unit,
+    isLoading,
+  } = activeLevel;
 
   const { loading, data, refetch } = useQuery<GetCurrentWorld>(GQL_QUERY_GET_CURRENT_WORLD);
   const [unity, setUnity] = useState(null as number);
@@ -225,7 +239,9 @@ const QuestsContainer: FC<Props> = (props) => {
     [refetch, dispatchDisplayStreaksCompleted, dispatchChallengeReset]
   );
 
-  const formattedData = (data && data.getCurrentWorld ? data.getCurrentWorld : []).map((itemLevel) => {
+  const currentWorldGQL = data?.getCurrentWorld ? data.getCurrentWorld : [];
+
+  const formattedData = currentWorldGQL.map((itemLevel) => {
     const levelStatus = getLevelStatus(challengesStatus, currentLevel, itemLevel.level, nextLevelAvailableAt);
     const isChestLevel = !!itemLevel.levelChestId;
 

@@ -61,6 +61,8 @@ jest.mock("react-native-device-info", () => ({
   getVersion: jest.fn(),
   getTimezone: jest.fn(),
   getDeviceName: jest.fn(),
+  getDeviceId: jest.fn(),
+  getModel: jest.fn(),
 }));
 
 jest.mock("react-native-push-notification", () => ({
