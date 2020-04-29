@@ -14,7 +14,7 @@ module.exports = Object.assign(jestPreset, {
   modulePaths: ["<rootDir>"],
   collectCoverage: true,
   coverageDirectory: "./coverage/",
-  coverageReporters: ["lcov", "text-summary"],
+  coverageReporters: ["lcov", "text"],
   collectCoverageFrom: [
     "src/**/*.{ts,tsx}",
     "!src/**/*.{spec,stories}.{ts,tsx}",

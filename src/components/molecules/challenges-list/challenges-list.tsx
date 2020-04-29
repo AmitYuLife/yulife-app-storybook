@@ -3,15 +3,6 @@ import { ScrollView, View } from "react-native";
 import ChallengeTile, { IChallengeTileProps } from "../challenge-tile/challenge-tile";
 import styles from "./challenges-list.styles";
 
-export interface IChallengesListTileProps {
-    challengeType: string;
-    currentWorld: number;
-    duration: string;
-    isLocked?: boolean;
-    minimumLevel?: number;
-    reward: string;
-}
-
 export interface IChallengesListProps {
     challenges: IChallengeTileProps[];
 }

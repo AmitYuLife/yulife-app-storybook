@@ -8,8 +8,7 @@ import { getWorldStyle } from "./challenge-progress.screen.helpers";
 import styles from "./challenge-progress.screen.styles";
 import Exit from "./subcomponents/exit";
 import ProgressBar from "./subcomponents/progress-bar";
-
-export type ChallengeType = "short stroll" | "meditation" | "day walk" | "long walk" | "brisk walk" | "cycling";
+import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
 
 interface IProps extends IConnectedScreenProps {
   challengeType: ChallengeType;

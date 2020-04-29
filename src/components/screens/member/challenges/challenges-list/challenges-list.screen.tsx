@@ -5,6 +5,7 @@ import * as React from "react";
 import { Image, SafeAreaView, StyleSheet, View } from "react-native";
 import { IMilestoneProps } from "../challenge-details/milestones";
 import styles from "./challenges-list.screen.styles";
+import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
 
 interface IProps extends IChallengesListProps {
   currentLevel?: number;
@@ -16,7 +17,7 @@ interface IProps extends IChallengesListProps {
 }
 
 interface IFormattedChallenge extends IMilestoneProps {
-  challengeType: string;
+  challengeType: ChallengeType;
   currentWorld: number;
   duration: string;
   id: string;
