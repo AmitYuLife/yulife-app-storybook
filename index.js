@@ -43,7 +43,8 @@ function setDefaultOptions() {
       visible: false,
     },
     layout: {
-      backgroundColor: "white", // "transparent"
+      backgroundColor: "white", // ios
+      componentBackgroundColor: "white", // android
       orientation: ["portrait"],
     },
     // modalPresentationStyle: OptionsModalPresentationStyle.overFullScreen,
