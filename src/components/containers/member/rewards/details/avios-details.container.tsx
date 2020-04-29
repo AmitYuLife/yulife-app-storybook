@@ -244,7 +244,9 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
           welcomeParagraph={description}
           instructionsHeading="Connect yucoin to Avios"
           instructionsParagraph={info}
-          confirmButtonLabel={!isDisabledCta ? `buy avios with ${amount.id} yucoin` : "select amount"}
+          confirmButtonLabel={
+            !isDisabledCta ? `buy ${amount.label.replace(/^\d* avios -/, "avios with")}` : "select amount"
+          }
           onPressConfirm={handleRewardPurchase}
           onPressPolicy={handlePolicyPress}
           onPressSetUp={handleAviosTermsPress}
