@@ -146,49 +146,29 @@ export const getImageStyle = (image: Images): ImageStyle => {
   ]);
 };
 
-export const getImage = (image: Images) => {
-  switch (image) {
-    case IMAGES.SQUIRREL:
-      return assets.squirrel;
-    case IMAGES.SNAIL:
-      return assets.snail;
-    case IMAGES.RABBIT:
-      return assets.rabbit;
-    case IMAGES.BIRD:
-      return assets.bird;
-    case IMAGES.OTTER:
-      return assets.otter;
-    case IMAGES.WHALE:
-      return assets.whale;
-    case IMAGES.DOLPHIN:
-      return assets.dolphin;
-    case IMAGES.TORTOISE:
-      return assets.tortoise;
-    case IMAGES.BIGHORN_SHEEP:
-      return assets.bighornSheep;
-    case IMAGES.CAMEL:
-      return assets.camel;
-    case IMAGES.MEERKAT:
-      return assets.meerkat;
-    case IMAGES.DESERT_FOX:
-      return assets.desertFox;
-    case IMAGES.DEER:
-      return assets.deer;
-    case IMAGES.OWL:
-      return assets.owl;
-    case IMAGES.WHITE_BIGHORN_SHEEP:
-      return assets.whiteBighornSheep;
-    case IMAGES.WOLF:
-      return assets.wolf;
-    case IMAGES.HEDGEDOG:
-      return assets.hedgehog;
-    case IMAGES.HEDGEDOG_FISH:
-      return assets.hedgehogFish;
-    case IMAGES.CHAMELEON:
-      return assets.chameleon;
-    case IMAGES.BEAR:
-      return assets.bear;
-    default:
-      return null;
-  }
-};
+export function getImage(image: Images) {
+  const imageUrls: Record<Images, any> = {
+    [IMAGES.SQUIRREL]: assets.squirrel,
+    [IMAGES.SNAIL]: assets.snail,
+    [IMAGES.RABBIT]: assets.snail,
+    [IMAGES.BIRD]: assets.snail,
+    [IMAGES.OTTER]: assets.snail,
+    [IMAGES.WHALE]: assets.snail,
+    [IMAGES.DOLPHIN]: assets.snail,
+    [IMAGES.TORTOISE]: assets.snail,
+    [IMAGES.BIGHORN_SHEEP]: assets.snail,
+    [IMAGES.CAMEL]: assets.snail,
+    [IMAGES.MEERKAT]: assets.snail,
+    [IMAGES.DESERT_FOX]: assets.snail,
+    [IMAGES.DEER]: assets.snail,
+    [IMAGES.OWL]: assets.snail,
+    [IMAGES.WHITE_BIGHORN_SHEEP]: assets.snail,
+    [IMAGES.WOLF]: assets.snail,
+    [IMAGES.HEDGEDOG]: assets.snail,
+    [IMAGES.HEDGEDOG_FISH]: assets.snail,
+    [IMAGES.CHAMELEON]: assets.snail,
+    [IMAGES.BEAR]: assets.snail,
+  };
+
+  return imageUrls[image] ?? null;
+}

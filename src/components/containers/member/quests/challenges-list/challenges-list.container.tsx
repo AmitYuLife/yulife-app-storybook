@@ -18,6 +18,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { handleLinkPress } from "@services/app-link";
 import { Unit } from "@screens/member/challenges/models";
 import { authoriseCycling } from "@services/fitkit/fitkit.helpers";
+import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -105,7 +106,7 @@ const ChallengesListContainer: FC<Props> = ({
         <ChallengesListScreen
           challenges={level.slots.map((levelSlot) => {
             const formattedSlot = {
-              challengeType: levelSlot.subtype,
+              challengeType: levelSlot.subtype as ChallengeType,
               duration: getSlotDuration(levelSlot),
               id: levelSlot.id,
               milestones: formatMilestones(levelSlot.milestones, levelSlot.subtype),

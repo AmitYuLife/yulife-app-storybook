@@ -1,5 +1,5 @@
-import { ChallengeType } from "../challenge-progress.screen";
 import { getWorldStyle } from "../challenge-progress.screen.helpers";
+import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
 
 describe("getWorldStyle", () => {
   it("should return an object with navBarType & topBarType", () => {
