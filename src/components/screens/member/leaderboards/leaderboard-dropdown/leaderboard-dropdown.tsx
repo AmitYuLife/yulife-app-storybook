@@ -42,7 +42,7 @@ export default class LeaderboardDropdown extends React.PureComponent<IProps> {
     const { activePage, leaderboards } = this.props;
     return (
       <Animated.View style={[styles.leaderboardList, { transform: [{ translateY }] }]}>
-        <ScrollView style={StyleSheet.absoluteFill}>
+        <ScrollView showsVerticalScrollIndicator={false} style={StyleSheet.absoluteFill}>
           {leaderboards.map((leaderboard, index) => (
             <TouchableOpacity
               onPress={this.handleLeaderboardPress(index)}

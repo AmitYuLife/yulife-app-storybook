@@ -11,7 +11,7 @@ const list = ["short stroll", "meditation"];
 
 export default function ChallengeSet({ challenges }: IChallengesListProps) {
     return (
-        <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
             <View style={styles.wrapper}>
                 <View>
                     {challenges

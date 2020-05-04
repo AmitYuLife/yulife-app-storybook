@@ -55,6 +55,7 @@ const RewardsList: SFC<IProps> = ({ data, onItemPress, onRefresh, refreshing }) 
       data={data}
       onRefresh={onRefresh}
       refreshing={refreshing}
+      showsVerticalScrollIndicator={false}
     />
   );
 };

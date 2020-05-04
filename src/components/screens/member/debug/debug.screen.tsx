@@ -28,6 +28,7 @@ export default class DebugScreen extends PureComponent<IProps> {
                         data={data}
                         renderItem={this.renderItem}
                         keyExtractor={this.keyExtractor}
+                        showsVerticalScrollIndicator={false}
                     />
                 </View>
                 <Close onPress={onPressClose} />
