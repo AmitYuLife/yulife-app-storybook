@@ -20,17 +20,10 @@ export default class Pulse extends React.PureComponent<IProps, IState> {
   };
   private pulseInterval: NodeJS.Timer = null;
   private anim = new Animated.Value(0);
-  private interpolations = {
-    backwards: {
-      inputRange: [0, 0.5, 1],
-      outputRange: [this.props.size - 2, this.props.size - 2, this.props.pulseMaxSize],
-    },
-    forwards: {
-      inputRange: [0, 1],
-      outputRange: [this.props.size, this.props.pulseMaxSize],
-    },
-  };
-
+  private interpolation = {
+    inputRange: [0, 1],
+    outputRange: [1, this.props.pulseMaxSize / this.props.size],
+  }
   public componentDidMount() {
     this.pulseInterval = global.setInterval(() => {
       this.setState(
@@ -55,7 +48,6 @@ export default class Pulse extends React.PureComponent<IProps, IState> {
 
   public render() {
     const { pulseMaxSize, backgroundColor, style } = this.props;
-    const { value } = this.state;
 
     return (
       <View
@@ -75,10 +67,11 @@ export default class Pulse extends React.PureComponent<IProps, IState> {
           style={[
             {
               backgroundColor,
-              borderRadius: pulseMaxSize / 2,
-              height: this.anim.interpolate(value ? this.interpolations.forwards : this.interpolations.backwards),
+              borderRadius: 999,
+              height: this.props.size,
               opacity: 0.2,
-              width: this.anim.interpolate(value ? this.interpolations.forwards : this.interpolations.backwards),
+              width: this.props.size,
+              transform: [{ scale: this.anim.interpolate(this.interpolation) }]
             },
             style,
           ]}
