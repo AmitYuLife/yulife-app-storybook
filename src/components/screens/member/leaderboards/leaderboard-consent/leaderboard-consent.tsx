@@ -20,7 +20,7 @@ export default function LeaderboardConsent({
   copy,
 }: IProps) {
   return (
-    <ScrollView style={styles.wrapper} contentContainerStyle={styles.contentWrapper}>
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper} contentContainerStyle={styles.contentWrapper}>
       <Text style={styles.heading} bold={true}>
         turn on leaderboard?
       </Text>

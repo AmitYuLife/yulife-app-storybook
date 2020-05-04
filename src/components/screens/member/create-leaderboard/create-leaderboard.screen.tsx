@@ -60,6 +60,7 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
             <Pad height={20} />
             <Button label="add" onPress={this.addEmail} type="Secondary" />
             <FlatList
+              showsVerticalScrollIndicator={false}
               keyExtractor={this.keyExtractor}
               style={styles.flatListStyle}
               contentContainerStyle={styles.flatListContainerStyle}

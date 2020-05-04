@@ -35,7 +35,7 @@ export default function ChallengesHistory({ level, onPressActivityHistory, total
         type={topBarType as TopBarTypes}
       />
       <View style={styles.challengeSetWrapper}>
-        <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
           {level.slots.map((slot) =>
             slot.challengesDetails.length > 0 ? (
               <ChallengesHistorySlot

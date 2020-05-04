@@ -60,7 +60,7 @@ const WegiftDetailsScreen: React.SFC<IProps> = ({
     <View style={styles.rewardTabsWrapper}>
       <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={0} />
     </View>
-    <ScrollView style={styles.wrapper}>
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
       <RewardsListItem
         settings={uiSettings}
         cost={cost}
