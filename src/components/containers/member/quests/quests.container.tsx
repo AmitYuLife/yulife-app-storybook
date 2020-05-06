@@ -9,7 +9,7 @@ import { Style } from "@styles/index";
 import moment from "moment";
 import React, { FC, useState, useCallback, useMemo } from "react";
 import { Navigation } from "react-native-navigation";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
@@ -42,7 +42,6 @@ import {
 } from "../../../screens";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
-type ConnectedDispatch = typeof mapDispatchToProps;
 
 function isAvailable(nextAvailableAt: string): boolean {
   const nextAvailable = !!nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
@@ -93,7 +92,7 @@ function getLevelStatus(
   };
 }
 
-export type Props = IMainTabsProps & ConnectedState & ConnectedDispatch;
+export type Props = IMainTabsProps & ConnectedState;
 
 const dismissChestModal = () => Navigation.dismissModal(MODALS.chest);
 
@@ -185,6 +184,8 @@ const goToChallengesList = (componentId: string, level: GetCurrentWorld_getCurre
   });
 
 const QuestsContainer: FC<Props> = (props) => {
+  const dispatch = useDispatch();
+
   const {
     activeLevel,
     componentId,
@@ -196,8 +197,6 @@ const QuestsContainer: FC<Props> = (props) => {
     totalCoins,
     theme,
     onLeftMenuPress,
-    displayStreaksCompletedAction: dispatchDisplayStreaksCompleted,
-    challengeResetAction: dispatchChallengeReset,
   } = props;
 
   const {
@@ -214,7 +213,9 @@ const QuestsContainer: FC<Props> = (props) => {
     isLoading,
   } = activeLevel;
 
-  const { loading, data, refetch } = useQuery<GetCurrentWorld>(GQL_QUERY_GET_CURRENT_WORLD);
+  const { loading, data, refetch } = useQuery<GetCurrentWorld>(GQL_QUERY_GET_CURRENT_WORLD, {
+    fetchPolicy: "network-only",
+  });
   const [unity, setUnity] = useState(null as number);
 
   const currentWorld = useMemo(() => getCurrentWorld(level), [level]);
@@ -229,14 +230,14 @@ const QuestsContainer: FC<Props> = (props) => {
   );
 
   const handleResetChallenge = useCallback(
-    (showStreakComplete = false) => () => {
+    (showStreakComplete = false) => async () => {
       if (showStreakComplete) {
-        dispatchDisplayStreaksCompleted();
+        dispatch(displayStreaksCompletedAction());
       }
-      refetch();
-      dispatchChallengeReset();
+      await refetch();
+      dispatch(challengeResetAction());
     },
-    [refetch, dispatchDisplayStreaksCompleted, dispatchChallengeReset]
+    [refetch, dispatch]
   );
 
   const currentWorldGQL = data?.getCurrentWorld ? data.getCurrentWorld : [];
@@ -269,7 +270,7 @@ const QuestsContainer: FC<Props> = (props) => {
           if (itemLevel.level % 50 === 0) {
             // is unity level
             setUnity(itemLevel.level);
-            props.submitUnityAction({ levelId: itemLevel.id });
+            dispatch(submitUnityAction({ levelId: itemLevel.id }));
           } else if (levelAvailable) {
             if (isChestLevel) {
               showChestModal(componentId, itemLevel, true, copy.showChestModal);
@@ -323,7 +324,13 @@ const QuestsContainer: FC<Props> = (props) => {
   }
 
   if (timeUp) {
-    return <ChallengeCompleteModal isLoading={isLoading} onCtaPress={props.challengeEndAction} copy={copy.completed} />;
+    return (
+      <ChallengeCompleteModal
+        isLoading={isLoading}
+        onCtaPress={() => dispatch(challengeEndAction())}
+        copy={copy.completed}
+      />
+    );
   }
 
   if (subtype) {
@@ -349,7 +356,7 @@ const QuestsContainer: FC<Props> = (props) => {
         renderOverlay={({ hideOverlay }) => (
           <ChallengeExitScreen
             onClose={hideOverlay}
-            onPressExit={props.challengeCancelAction}
+            onPressExit={() => dispatch(challengeCancelAction())}
             isCancelling={isLoading}
             copy={copy.exitChallenge}
           />
@@ -390,12 +397,4 @@ const mapStateToProps = (state: IReduxState) => ({
   copy: getCopy(state, "challenges"),
 });
 
-const mapDispatchToProps = {
-  challengeCancelAction,
-  challengeEndAction,
-  challengeResetAction,
-  displayStreaksCompletedAction,
-  submitUnityAction,
-};
-
-export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(QuestsContainer);
+export default connect<ConnectedState>(mapStateToProps)(QuestsContainer);
