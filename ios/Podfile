@@ -54,30 +54,6 @@ target 'YuLife' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'BugsnagReactNative', :path => '../node_modules/bugsnag-react-native'
-
-  pod 'react-native-blur', :path => '../node_modules/react-native-blur'
-
-  pod 'RNCPushNotificationIOS', :path => '../node_modules/@react-native-community/push-notification-ios'
-
-  pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
-
-  pod 'react-native-config', :path => '../node_modules/react-native-config'
-
-  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
-
-  pod 'RNFastImage', :path => '../node_modules/react-native-fast-image'
-
-  pod 'react-native-intercom', :path => '../node_modules/react-native-intercom'
-
-  pod 'react-native-mixpanel', :path => '../node_modules/react-native-mixpanel'
-
-  pod 'RNSpringScrollView', :path => '../node_modules/react-native-spring-scrollview/ios'
-
-  pod 'RNSVG', :path => '../node_modules/react-native-svg'
-
-  pod 'RNFitKit', :path => '../node_modules/react-native-fitkit/ios'
-
   target 'YuLifeTests' do
     inherit! :complete
     # Pods for testing
