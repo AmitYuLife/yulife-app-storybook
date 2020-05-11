@@ -190,7 +190,11 @@ const challengeUpdateSuccess = (
     rating: pathOr<number>(res, "challenge.rating", initialState.active.rating),
     score: pathOr<number>(
       res,
-      state.active.subtype === "meditation" ? "challenge.incomingData.meditation" : "challenge.incomingData.steps",
+      state.active.subtype === "meditation"
+        ? "challenge.incomingData.meditation"
+        : state.active.subtype === "cycling"
+        ? "challenge.incomingData.distance"
+        : "challenge.incomingData.steps",
       initialState.active.score
     ),
   },
@@ -208,6 +212,8 @@ const challengeEndSuccess = (state: ILevelsStore, res: UpdateActiveChallenge): I
       res,
       state.active.subtype === "meditation"
         ? "updateActiveChallenge.challenge.incomingData.meditation"
+        : state.active.subtype === "cycling"
+        ? "updateActiveChallenge.challenge.incomingData.distance"
         : "updateActiveChallenge.challenge.incomingData.steps",
       state.active.score
     ),
@@ -245,6 +251,7 @@ const challengeResetFail = (state: ILevelsStore): ILevelsStore => ({
 const pedometerUpdate = (state: ILevelsStore, { steps }: PedometerResponse): ILevelsStore => {
   if (
     state.active.subtype === "meditation" ||
+    state.active.subtype === "cycling" ||
     !state.active.levelSlotId ||
     moment().isAfter(moment(state.active.endDateTime))
   ) {
