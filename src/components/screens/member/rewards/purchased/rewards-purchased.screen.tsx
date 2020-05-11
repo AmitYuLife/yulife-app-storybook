@@ -76,7 +76,9 @@ export default class RewardsPurchasedScreen extends React.PureComponent<IProps> 
 
   private handleRefresh = async () => {
     await this.props.onRightTabPress();
-    this.largeList.endRefresh();
+    if (this.largeList) {
+      this.largeList.endRefresh();
+    }
   };
 
   private renderIndexPath = ({ row }: IndexPath) => {

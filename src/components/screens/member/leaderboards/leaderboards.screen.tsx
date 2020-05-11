@@ -250,7 +250,9 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
 
   private handleRefresh = async () => {
     await this.props.onRefetch();
-    await this.largeList.endRefresh();
+    if (this.largeList) {
+      await this.largeList.endRefresh();
+    }
     this.setState({
       shouldScrollTo: true,
     });

@@ -58,7 +58,9 @@ export default class RewardsListScreen extends React.PureComponent<IRewardsListS
 
   private handleRefresh = async () => {
     await this.props.onLeftTabPress();
-    this.largeList.endRefresh();
+    if (this.largeList) {
+      this.largeList.endRefresh();
+    }
   };
 
   private renderIndexPath = ({ row }: IndexPath) => {
