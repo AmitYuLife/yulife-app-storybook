@@ -2,19 +2,23 @@ import { Pad, Text } from "@atoms/index";
 import { NavBar, TopBar } from "@molecules/index";
 import * as React from "react";
 import { Image, Platform, SafeAreaView, View } from "react-native";
-import { IThemeStore } from "../../../../../redux/theme/theme.reducer";
+import { getQuestsOfflineTheme } from "@redux/theme/theme.selectors";
 import { IConnectedScreenProps } from "../../../../../typings";
 import assets from "./assets";
 import styles from "./quests-offline.styles";
+import { IReduxState } from "@redux/_core/reducers";
+import { connect } from "react-redux";
 
-type Props = IConnectedScreenProps & {
-  fitkitAvailable: boolean;
-  theme: IThemeStore["questsOfflineScreen"];
-};
+export type ConnectedState = ReturnType<typeof mapStateToProps>;
+
+type Props = IConnectedScreenProps &
+  ConnectedState & {
+    fitkitAvailable: boolean;
+  };
 
 type ImageType = "forest" | "ocean" | "desert" | "mountain";
 
-export default function QuestsScreenOffline({ fitkitAvailable, onLeftMenuPress, totalCoins, theme: { image } }: Props) {
+function QuestsScreenOffline({ fitkitAvailable, onLeftMenuPress, totalCoins, questsOfflineTheme: { image } }: Props) {
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.backgroundWrapper}>
@@ -41,3 +45,9 @@ export default function QuestsScreenOffline({ fitkitAvailable, onLeftMenuPress, 
     </SafeAreaView>
   );
 }
+
+const mapStateToProps = (state: IReduxState) => ({
+  questsOfflineTheme: getQuestsOfflineTheme(state),
+});
+
+export default connect(mapStateToProps)(QuestsScreenOffline);

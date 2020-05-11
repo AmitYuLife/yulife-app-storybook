@@ -1,5 +1,4 @@
 export { default as AnimatedChest } from "./animated-chest/animated-chest";
-export { default as ChallengeCompleteModal } from "./challenge-complete/challenge-complete.modal";
 export { default as ChallengeUnavailableModal } from "./challenge-unavailable/challenge-unavailable.modal";
 export { default as CreateLeaderboardModal } from "./create-leaderboard/create-leaderboard.modal";
 export { default as CollectRewardModal } from "./collect-reward/collect-reward.modal";
