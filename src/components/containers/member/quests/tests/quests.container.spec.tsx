@@ -5,8 +5,7 @@ import wait from "waait";
 import { testInitialState, IReduxState } from "@redux/_core/reducers";
 import { getDeviceId, getModel } from "react-native-device-info";
 import { IMainTabsProps } from "@navigation/root";
-import QuestsContainer, { getTheActiveLevel } from "../quests.container";
-import { fakeFormattedData } from "./fakeFormatedData";
+import QuestsContainer from "../quests.container";
 import { MockedProvider } from "@apollo/react-testing";
 import customRenderer from "jest/customRenderer";
 import { IActiveLevel } from "@redux/levels/levels.selectors";
@@ -15,8 +14,6 @@ import { PEDOMETER_UPDATES_SUCCESS } from "@redux/pedometer/pedometer.actions";
 
 const mockedGetDeviceId = getDeviceId as jest.Mock;
 const mockedGetModel = getModel as jest.Mock;
-
-const LEVEL_10_INDEX = 9;
 
 function StepIncrementer() {
   const dispatch = useDispatch();
@@ -100,18 +97,5 @@ describe("QuestsContainer", () => {
     });
 
     expect(queryByText(/101 steps/)).toBeTruthy();
-  });
-
-  describe("getTheActiveLevel", () => {
-    it("Return active level when isActive and isNext are true at the same time", () => {
-      const formattedData = fakeFormattedData.slice();
-      formattedData[LEVEL_10_INDEX].isNext = true;
-      formattedData[LEVEL_10_INDEX].isActive = true;
-      const actual = getTheActiveLevel(formattedData);
-
-      const expected = LEVEL_10_INDEX + 1;
-
-      expect(actual).toEqual(expected);
-    });
   });
 });

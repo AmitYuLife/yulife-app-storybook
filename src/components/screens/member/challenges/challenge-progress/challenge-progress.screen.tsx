@@ -9,6 +9,7 @@ import styles from "./challenge-progress.screen.styles";
 import Exit from "./subcomponents/exit";
 import ProgressBar from "./subcomponents/progress-bar";
 import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
+import { openHeadspace, openCalm } from "@services/app-link";
 
 interface IProps extends IConnectedScreenProps {
   challengeType: ChallengeType;
@@ -18,18 +19,14 @@ interface IProps extends IConnectedScreenProps {
   currentWorld: number;
   progressTargets: number[];
   unit: "steps" | "minutes";
-  onCalmPress?: () => void;
   onDismissPress: () => void;
-  onHeadspacePress?: () => void;
 }
 
 export default function ChallengeProgressScreen({
   challengeType,
   currentWorld = 0,
   endDateTime,
-  onCalmPress,
   onDismissPress,
-  onHeadspacePress,
   onLeftMenuPress,
   showCounter = false,
   progressTargets,
@@ -76,10 +73,10 @@ export default function ChallengeProgressScreen({
             <Text style={styles.instructionText}>Results will be shown here.</Text>
           </View>
           <View style={styles.logoWrapper}>
-            <TouchableOpacity onPress={onHeadspacePress}>
+            <TouchableOpacity onPress={openHeadspace}>
               <Image style={StyleSheet.flatten([styles.logo, styles.headspaceBorder])} source={assets.headspace} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={onCalmPress}>
+            <TouchableOpacity onPress={openCalm}>
               <Image style={styles.logo} source={assets.calm} />
             </TouchableOpacity>
           </View>

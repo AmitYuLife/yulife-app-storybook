@@ -25,6 +25,7 @@ export interface IChallenge extends GetCurrentWorld_getCurrentWorld {
 }
 
 interface IProps extends IConnectedScreenProps {
+  componentId: string;
   currentLevel: number;
   activeLevel: number;
   data: IChallenge[];
