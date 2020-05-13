@@ -67,8 +67,7 @@ class MenuContainer extends PureComponent<Props> {
             source: assets[LINKS.CHAT],
           },
           {
-            // TODO:ENG-95 true for easy testing, remove
-            condition: true,
+            condition: features.surveyInMenu,
             label: "feedback",
             onPress: this.handlePressLink(LINKS.SURVEY),
             source: assets[LINKS.SURVEY],
