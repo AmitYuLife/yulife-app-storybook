@@ -19,7 +19,7 @@ module.exports = {
           "@redux": "./src/redux",
           "@services": "./src/services",
           "@styles": "./src/styles",
-          "@mockclient": "./e2e/_utils/mock/client",
+          "@mockclient": "./e2e/_utils/socket/client",
           "@e2e": "./e2e",
           "@ids": "./e2e/_utils/navigation/ids",
         },

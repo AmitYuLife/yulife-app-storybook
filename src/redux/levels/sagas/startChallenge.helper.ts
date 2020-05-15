@@ -16,6 +16,7 @@ import {
   challengeTimeUpAction,
   challengeUpdateSuccessAction,
 } from "../levels.actions";
+import { DETOX_ENABLED } from "@services/socket";
 
 export function* startTracking(levelSlotId: string, startDateTime: string, endDateTime: string, isCycling = false) {
   const start = moment(startDateTime).format(DATE_FORMAT_WITH_TZ);
@@ -66,7 +67,7 @@ export function* startTrackingTime(endDateTime: string) {
   const end = moment(endDateTime);
 
   while (moment().isBefore(end)) {
-    yield delay(1000);
+    yield delay(DETOX_ENABLED ? 2000 : 1000); // in e2e mode, timers under 1500ms will cause detox to hang infinitely
   }
 
   yield put(challengeTimeUpAction());

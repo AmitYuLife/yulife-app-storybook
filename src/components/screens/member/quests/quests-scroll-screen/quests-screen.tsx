@@ -129,7 +129,7 @@ class QuestsScreen extends React.Component<IProps, IState> {
             this.flatList.scrollToOffset({
               offset:
                 offsets[activeLevel % 50 === 0 ? "withUnity" : "withoutUnity"][currentWorld as CurrentWorld][
-                  currentEpisode
+                currentEpisode
                 ],
             });
           });

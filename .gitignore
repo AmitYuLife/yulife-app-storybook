@@ -78,3 +78,5 @@ e2e/__report/*
 
 # react-native-config codegen
 ios/tmp.xcconfig
+
+e2e-report

@@ -6,6 +6,7 @@ import assets from "./assets";
 import { getImage, getImageStyle, getLockedImageStyle } from "./challenge-tile.helpers";
 import styles from "./challenge-tile.styles";
 import { IMAGES, Images, ChallengeType } from "./challenge-tile.types";
+import { CHALLENGE_TILE } from "@ids";
 
 const BRISK_WALK = [IMAGES.SQUIRREL, IMAGES.OTTER, IMAGES.MEERKAT, IMAGES.WOLF];
 const LONG_WALK = [IMAGES.RABBIT, IMAGES.WHALE, IMAGES.DESERT_FOX, IMAGES.DEER];
@@ -68,8 +69,8 @@ function ChallengeTile(props: Props) {
       {isLocked ? (
         <LockedOverlay minimumLevel={minimumLevel} isImageBackgroundFlipped={isImageBackgroundFlipped} />
       ) : (
-        <Content challengeType={challengeType} duration={duration} reward={reward} />
-      )}
+          <Content challengeType={challengeType} duration={duration} reward={reward} />
+        )}
     </TouchableOpacity>
   );
 }
@@ -106,7 +107,7 @@ const AnimalImage: FunctionComponent<Partial<Props>> = ({ image, isLocked, isIma
 );
 
 const Content: FunctionComponent<Partial<Props>> = ({ challengeType, duration, reward }) => (
-  <View style={styles.sectionBottomWrapper}>
+  <View style={styles.sectionBottomWrapper} testID={CHALLENGE_TILE(challengeType)}>
     <View style={styles.contentWrapper}>
       <View style={styles.contentTitleWrapper}>
         <Text bold={true} style={styles.contentTitle}>

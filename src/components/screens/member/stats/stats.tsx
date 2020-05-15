@@ -11,6 +11,7 @@ import GeneralInfoCard from "./cards/general-info-card";
 import RecommendationInfoCard from "./cards/recommendation-info-card";
 import WeeklyGraphCard from "./cards/weekly-graph-card";
 import styles from "./stats.styles";
+import { STATS_TITLE } from "@ids";
 
 interface IProps {
   data?: GetHighlights_getUserStats[];
@@ -122,7 +123,7 @@ function HeaderSection({ title, titleColor, category, index }: IHeaderProps) {
       <View style={styles.iconWrapper}>
         <Image style={styles.logo} source={getCategorySourceImage(category)} />
       </View>
-      <Text style={StyleSheet.flatten([styles.headerTitle, { color: titleColor }])}>{title}</Text>
+      <Text style={StyleSheet.flatten([styles.headerTitle, { color: titleColor }])} testID={STATS_TITLE(title)}>{title}</Text>
     </View>
   );
 }

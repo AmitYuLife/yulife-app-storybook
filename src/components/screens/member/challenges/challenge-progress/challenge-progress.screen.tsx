@@ -9,6 +9,7 @@ import styles from "./challenge-progress.screen.styles";
 import Exit from "./subcomponents/exit";
 import ProgressBar from "./subcomponents/progress-bar";
 import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
+import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR } from "@ids";
 import { openHeadspace, openCalm } from "@services/app-link";
 
 interface IProps extends IConnectedScreenProps {
@@ -49,7 +50,7 @@ export default function ChallengeProgressScreen({
         onPressLeftIcon={onLeftMenuPress}
         timer={endDateTime}
       />
-      <View style={styles.progressBarWrapper}>
+      <View style={styles.progressBarWrapper} testID={CHALLENGE_PROGRESS_BAR}>
         <ProgressBar
           amount={userProgress}
           showCounter={showCounter}
@@ -82,7 +83,7 @@ export default function ChallengeProgressScreen({
           </View>
         </View>
       ) : null}
-      <View style={styles.exitChallengeWrapper}>
+      <View style={styles.exitChallengeWrapper} testID={BUTTON_CLOSE_CHALLENGE}>
         <Exit onPress={onDismissPress} {...exitChallenge} />
       </View>
       <NavBar activeIndex={1} hasNotification={false} additionalBottom={2} />

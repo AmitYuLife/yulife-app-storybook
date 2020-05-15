@@ -3,13 +3,14 @@ import { Style } from "@styles/index";
 import * as React from "react";
 import Svg, { G, Path } from "react-native-svg";
 import { getIconColour, IIconProps } from "../nav-bar.helpers";
+import { NAV_BAR } from "@ids";
 
 export default function Treasure({ isActive, onPressIn, onPressOut, isHighlighted }: IIconProps) {
   const fill = getIconColour(isActive || isHighlighted);
   const size = String(Style.SCALE_UP_AND_DOWN(54));
 
   return (
-    <Svg viewBox="0 0 54 54" width={size} height={size}>
+    <Svg viewBox="0 0 54 54" width={size} height={size} testID={NAV_BAR("rewards")}>
       <G data-name="rewards" id="rewards" onPressIn={onPressIn} onPressOut={onPressOut}>
         <Path d="M0 0H54V54H0z" fill="#fff" />
         <Path

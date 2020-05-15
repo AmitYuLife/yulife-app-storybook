@@ -1,2 +1,10 @@
-const stats = require("../e2e/__report/mochawesome").stats;
-console.log(stats.passes + " passes, " + stats.failures + " failures, " + stats.pending + " pending" + "(" + stats.passPercent + "% pass)");
+const stats = require("../e2e-report/mochawesome").stats;
+console.log(
+    stats.passes +
+    " passes, "
+    + stats.failures +
+    " failures" +
+    " (" +
+    stats.passPercent +
+    "% pass)",
+);

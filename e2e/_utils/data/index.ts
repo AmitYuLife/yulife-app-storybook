@@ -1,5 +1,3 @@
-export * from "./dataManager";
-import * as records from "./records";
-export {
-    records
-};
+export * as records from "./stubs";
+export { dataManager } from "./dataManager";
+

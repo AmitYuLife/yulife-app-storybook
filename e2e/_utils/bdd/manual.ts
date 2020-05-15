@@ -1,4 +1,5 @@
-const readline = require("readline"); // tslint:disable-line
+const prompter = require("keypress-prompt");
+const readline = require("readline");
 
 export const skip = () => true;
 
@@ -14,22 +15,22 @@ export const manualTest = (message = "the test pass") => {
             const device = await readLine("What devices did you test on?", "iPhone 7");
             throw new Error(`${error} (device ${device})`);
         }
-    };
-};
+    }
+}
 
-const readLine = async (message: string, defaultAnswer: string = null) => {
+const readLine = async (message, defaultAnswer = null) => {
     return new Promise((resolve) => {
         const rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
-            terminal: false
+            terminal: false,
         });
 
         const postfix = defaultAnswer ? ` (${defaultAnswer}) ` : ` `;
 
-        rl.question(`${message}${postfix}`, (answer: string) => {
+        rl.question(`${message}${postfix}`, (answer) => {
             rl.close();
             resolve(answer || defaultAnswer);
         });
     });
-};
+}

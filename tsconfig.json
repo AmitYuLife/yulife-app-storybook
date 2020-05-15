@@ -26,7 +26,7 @@
       "@e2e/*": ["./src/e2e/*"],
       "@ids": ["./e2e/_utils/navigation/ids"],
       "@app/*": ["./src/*"],
-      "@mockclient": ["./e2e/_utils/mock/client"]
+      "@mockclient": ["./e2e/_utils/socket/client"],
     }
   },
   "exclude": ["e2e", "node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]

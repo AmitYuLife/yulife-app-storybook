@@ -3,6 +3,7 @@ import { FunctionComponent } from "react";
 import { GetMobileCopy_getMobileCopy_screens_needHelpLoggingIn as ResetPasswordCopy } from "../../../graphql/_core/schema";
 import { Blurb, Button, CentredScreen, Heading, Pad, TextInput } from "../../atoms";
 import styles from "./reset-password.screen.styles";
+import { INPUT_RESET_PASSWORD } from "@ids";
 
 interface IProps {
   disableSubmit: boolean;
@@ -25,30 +26,31 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
   onSubmitPress,
   copy,
 }) => (
-  <CentredScreen footerImage="forest">
-    <Pad height={120} />
-    <Heading style={styles.heading} label={copy.heading} />
-    <Pad height={9} />
-    <Blurb wrapperStyle={styles.blurbWrapper} label={copy.subheading} />
-    <Pad height={21} />
-    <TextInput
-      errorMessage={emailError}
-      hasError={!!emailError}
-      onChange={onEmailChange}
-      type={TextInput.Types.EMAIL}
-      value={email}
-    />
-    <Pad height={30} />
-    <Button
-      isLoading={isSubmitting}
-      disabled={disableSubmit || isSubmitting}
-      label={isSubmitting ? "submitting ..." : copy.ctaLabel}
-      onPress={onSubmitPress}
-      type="Primary"
-    />
-    <Pad height={10} />
-    <Button label={copy.ctaLabelSecondary} type="Link" onPress={onCancelPress} />
-  </CentredScreen>
-);
+    <CentredScreen footerImage="forest">
+      <Pad height={120} />
+      <Heading style={styles.heading} label={copy.heading} />
+      <Pad height={9} />
+      <Blurb wrapperStyle={styles.blurbWrapper} label={copy.subheading} />
+      <Pad height={21} />
+      <TextInput
+        testID={INPUT_RESET_PASSWORD}
+        errorMessage={emailError}
+        hasError={!!emailError}
+        onChange={onEmailChange}
+        type={TextInput.Types.EMAIL}
+        value={email}
+      />
+      <Pad height={30} />
+      <Button
+        isLoading={isSubmitting}
+        disabled={disableSubmit || isSubmitting}
+        label={isSubmitting ? "submitting ..." : copy.ctaLabel}
+        onPress={onSubmitPress}
+        type="Primary"
+      />
+      <Pad height={10} />
+      <Button label={copy.ctaLabelSecondary} type="Link" onPress={onCancelPress} />
+    </CentredScreen>
+  );
 
 export default ResetPasswordScreen;

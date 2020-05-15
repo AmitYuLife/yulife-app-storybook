@@ -1,0 +1,15 @@
+import { MENU_ITEM } from "@ids";
+import { navigateViaID } from "@navigation";
+
+export const menuItemsVisible = async () => {
+    const menuItems = ["statistics", "activity history", "member zone", "settings", "chat", "feedback", "log out"]
+
+    menuItems.forEach(async i => {
+        await expect(element(by.id(MENU_ITEM(i)))).toBeVisible()
+        console.log(`found id: MENU_ITEM(${i})`)
+    });
+}
+
+export const tapMenuItem = (menuItem: string) => async () => {
+    await navigateViaID(MENU_ITEM(menuItem))
+}

@@ -17,6 +17,7 @@ import { LEADERBOARD_ITEM_HEIGHT } from "./leaderboard-item/leaderboard-item.sty
 import LeaderboardTabs from "./leaderboard-tabs/leaderboard-tabs";
 import { shouldLeaderboardUpdate } from "./leaderboards.screen.helpers";
 import styles from "./leaderboards.screen.styles";
+import { LEADERBOARD_SCREEN } from "@ids";
 
 export type LeaderboardTypes = "coins" | "steps";
 
@@ -96,7 +97,7 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
       !this.props.isLoading &&
       this.props.leaderboards[this.props.activeLeaderboardIndex] &&
       prevProps.leaderboards[prevProps.activeLeaderboardIndex].consent !==
-        this.props.leaderboards[this.props.activeLeaderboardIndex].consent
+      this.props.leaderboards[this.props.activeLeaderboardIndex].consent
     ) {
       if (this.largeList) {
         this.handleRefresh();
@@ -161,7 +162,7 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
           activePage={activeLeaderboardIndex}
         />
 
-        <View style={StyleSheet.flatten([styles.list, styles.listWrapperMargin])}>
+        <View style={StyleSheet.flatten([styles.list, styles.listWrapperMargin])} testID={LEADERBOARD_SCREEN}>
           {activeLeaderboard && !activeLeaderboard.consent ? null : (
             <LeaderboardTabs
               sortBy={sortBy}
@@ -180,18 +181,18 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
           ) : isLoading ? (
             <Loading />
           ) : (
-            <LargeList
-              style={styles.list}
-              ref={this.setLargeListRef}
-              renderIndexPath={this.renderIndexPath}
-              heightForIndexPath={this.getHeight}
-              showsVerticalScrollIndicator={false}
-              data={[{ items }]}
-              onRefresh={this.handleRefresh}
-              renderEmpty={Loading}
-              refreshHeader={YulifeRefreshHeader}
-            />
-          )}
+                <LargeList
+                  style={styles.list}
+                  ref={this.setLargeListRef}
+                  renderIndexPath={this.renderIndexPath}
+                  heightForIndexPath={this.getHeight}
+                  showsVerticalScrollIndicator={false}
+                  data={[{ items }]}
+                  onRefresh={this.handleRefresh}
+                  renderEmpty={Loading}
+                  refreshHeader={YulifeRefreshHeader}
+                />
+              )}
           <LeaderboardDropdown
             activePage={activeLeaderboardIndex}
             initialScrollIndex={activeLeaderboardIndex}

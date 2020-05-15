@@ -88,7 +88,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
             />
             <Pad height={12} />
             <TextInput
-              testID={INPUT_LOGIN_PASSWORD}
+              testID={INPUT_LOGIN_PASSWORD(TextInput.Types.PASSWORD)}
               errorMessage={passwordError}
               hasError={!!passwordError}
               onChange={onPasswordChange}

@@ -2,6 +2,7 @@ import * as React from "react";
 import { ScrollView, View } from "react-native";
 import ChallengeTile, { IChallengeTileProps } from "../challenge-tile/challenge-tile";
 import styles from "./challenges-list.styles";
+import { CHALLENGE_SET } from "@ids";
 
 export interface IChallengesListProps {
     challenges: IChallengeTileProps[];
@@ -12,7 +13,7 @@ const list = ["short stroll", "meditation"];
 export default function ChallengeSet({ challenges }: IChallengesListProps) {
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
-            <View style={styles.wrapper}>
+            <View style={styles.wrapper} testID={CHALLENGE_SET}>
                 <View>
                     {challenges
                         .filter(({ challengeType }) => !list.includes(challengeType))
