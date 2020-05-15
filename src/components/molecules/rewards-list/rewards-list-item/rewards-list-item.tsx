@@ -8,6 +8,7 @@ import FastImage from "react-native-fast-image";
 import LockedOverlay from "./locked-overlay";
 import styles from "./rewards-list-item.styles";
 import UnlockedOverlay from "./unlocked-overlay";
+import { REWARD_ITEM } from "@ids";
 
 interface IProps {
   code: string;
@@ -55,19 +56,19 @@ class RewardsListItem extends PureComponent<IProps, IState> {
               width: 375,
             })}
           />
-          <View style={styles.overlayWrapper}>
+          <View style={styles.overlayWrapper} testID={REWARD_ITEM(code)}>
             {isLocked ? (
               <LockedOverlay code={code} settings={settings} />
             ) : (
-              <UnlockedOverlay
-                code={code}
-                cost={cost}
-                linkType={linkType}
-                rewardValue={rewardValue}
-                rewardCurrency={rewardCurrency}
-                settings={settings}
-              />
-            )}
+                <UnlockedOverlay
+                  code={code}
+                  cost={cost}
+                  linkType={linkType}
+                  rewardValue={rewardValue}
+                  rewardCurrency={rewardCurrency}
+                  settings={settings}
+                />
+              )}
           </View>
           <ActivityIndicator style={styles.activityIndicator} animating={!hasLoaded} />
         </>

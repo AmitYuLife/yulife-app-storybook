@@ -3,6 +3,7 @@ import { View } from "react-native";
 import Svg from "react-native-svg";
 import { GiraffeAnimated, GiraffeStatic, Glow, Shine, Static } from "./yu-coin-subcomponents";
 import styles, { svgSpecs } from "./yu-coin.styles";
+import { YUCOIN } from "@ids";
 
 interface IProps {
     scale?: number;
@@ -13,7 +14,7 @@ interface IProps {
 
 export default function YuCoin({ isGrayScale, isLoading, hasWhiteGlow }: IProps) {
     return (
-        <View style={styles.wrapper}>
+        <View style={styles.wrapper} testID={YUCOIN}>
             {isGrayScale ? null : <Glow hasWhiteGlow={hasWhiteGlow} />}
             <View style={styles.innerWrapper}>
                 <View style={styles.svgWrapper}>

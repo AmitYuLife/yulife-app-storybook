@@ -1,0 +1,62 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "es2017",
+            "dom",
+            "esnext.asynciterable"
+        ],
+        "module": "commonjs",
+        "target": "es2017",
+        "experimentalDecorators": true,
+        "noImplicitAny": false,
+        "moduleResolution": "node",
+        "typeRoots": [
+            "node_modules/@types",
+            "../node_modules/@types"
+        ],
+        "types": [
+            "mocha",
+            "detox",
+            "node"
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "@app/*": [
+                "../src/*"
+            ],
+            "@utils": [
+                "./_utils/index"
+            ],
+            "@bdd": [
+                "./_utils/bdd"
+            ],
+            "@navigation": [
+                "./_utils/navigation/index"
+            ],
+            "@appScreens": [
+                "./_utils/appScreens/index"
+            ],
+            "@ids": [
+                "./_utils/navigation/ids"
+            ],
+            "@data": [
+                "./_utils/data/index"
+            ],
+            "@socket": [
+                "./_utils/socket/index"
+            ]
+            // "@stubs/*": [
+            //     "./_utils/api/stubs/*"
+            // ],
+            // "@stubs": [
+            //     "./_utils/api/stubs/index"
+            // ],
+            // "@detox/prepay": [
+            //     "./_utils/prepay/index"
+            // ],
+            // "@detox/device": [
+            //     "./_utils/device/index"
+            // ],
+        }
+    }
+}

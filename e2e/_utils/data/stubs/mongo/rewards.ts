@@ -1,0 +1,252 @@
+import { generateRandomMongoId } from "_utils/data/utils";
+import { IDatabaseItem } from '../../types';
+
+export const REWARDS_JOHN_LEWIS = {
+    type: "mongo",
+    modelName: "rewards",
+    data: {
+        "_id": generateRandomMongoId(),
+        "redeem_steps": {
+            "steps": [
+                "Your e-voucher can only be redeemed online at johnlewis.com The John Lewis website hosts a range of high quality fashion, furnishings, flowers and household goods, all delivered direct to your door. All you need to do is 'shop' the website and once you've proceeded to checkout, select 'Add Gift Voucher or e-voucher'. You will then be asked to enter two codes for the e-voucher you wish to spend:",
+                "The 10 digit serial number off the e-voucher and the 7 character online security code.",
+                "Your e-voucher is worth £ After entering in the e-voucher code, your order will be automatically updated with credit to the value of the e-voucher.",
+                "If there's any balance to pay, you can use a debit or credit card in the usual way. If you do not spend the full value of the e-voucher, the remaining credit will be stored in your johnlewis.com online account and can be used towards your next purchase on johnlewis.com.",
+                "If you find that your e-voucher is not accepted at checkout, check the serial number and online security code you have entered and try again. If you continue to experience any further difficulties, email John Lewis Customer Service team https://www.johnlewis.com/contact-us/ or call on 03456 049 049 between 7am and midnight, 7 days a week."
+            ],
+            "info": "To redeem John Lewis:"
+        },
+        "loyalty_programme": [],
+        "sort_order": 14,
+        "rewardProviderId": "wegift",
+        "availability": "stocked",
+        "progression_level": "5",
+        "card_image_url": "https://gift-sandbox.wegift.io/static/product_assets/JLS/JLS-card.png",
+        "code": "JLS-GB",
+        "currency_code": "GBP",
+        "denomination_type": "fixed",
+        "description": "John Lewis is a British institution, with a legacy spanning over 150 years and stores all over the country. Redeem your voucher for one of the many products on johnlewis.com, where you can find everything from face creams to sofas!",
+        "e_code_usage_type": null,
+        "expiry_date_policy": "None",
+        "maximum_value": 250,
+        "minimum_value": 5,
+        "name": "John Lewis",
+        "terms_and_conditions_url": "https://gift-sandbox.wegift.io/public/terms/JLS-GB.pdf",
+        "reward_sticker": null,
+        "uiSettings": {
+            "id": "JLS-GB",
+            "logoWidth": 95,
+            "logoHeight": 23
+        },
+        "available_denominations": [
+            {
+                "_id": generateRandomMongoId(),
+                "yuCoin": 4130,
+                "value": 5,
+                "stock": 7
+            },
+            {
+                "_id": generateRandomMongoId(),
+                "yuCoin": 8260,
+                "value": 10,
+                "stock": 7
+            },
+            {
+                "_id": generateRandomMongoId(),
+                "yuCoin": 16520,
+                "value": 20,
+                "stock": 7
+            }
+        ],
+        "__v": 0,
+    }
+} as IDatabaseItem
+
+export const REAWARDS_AVIOS = {
+    type: "mongo",
+    modelName: "rewards",
+    data: {
+        "_id": generateRandomMongoId(),
+        "sort_order": 1,
+        "rewardProviderId": "avios",
+        "availability": "stocked",
+        "progression_level": "5",
+        "card_image_url": "https://res.cloudinary.com/yu-life/image/upload/v1533742185/reward/avios-card.png",
+        "code": "AVI-GB",
+        "currency_code": "AVIOS",
+        "denomination_type": null,
+        "description": "Avios are the loyalty currency of Aer Lingus, British Airways, Vueling and other airlines. When you collect Avios you can spend them on flights, hotels and many other experiences.  \n\n * Reward flights are subject to availability. Taxes fees and carrier charges apply \n\n * Avios may take a few days to process your request",
+        "e_code_usage_type": null,
+        "expiry_date_policy": "12 months",
+        "maximum_value": null,
+        "minimum_value": null,
+        "name": "Avios Miles",
+        "terms_and_conditions_url": "https://res.cloudinary.com/yu-life/image/upload/v1533742185/reward/avios-card.png",
+        "reward_sticker": "best value",
+        "__v": 0,
+        "uiSettings": {
+            "id": "AVI-GB",
+            "logoWidth": 55,
+            "logoHeight": 55,
+            "ctaLabel": "buy avios"
+        },
+        "redeem_steps": {
+            "info": "connect yucoin to avios",
+            "steps": [
+                "Please select your Avios loyalty programme and enter your membership number. Choose how many yucoin you want to convert and you’re on your way."
+            ]
+        },
+        "loyalty_programme": [
+            "AerClub",
+            "The British Airways Executive Club",
+            "Vueling Club"
+        ],
+        "available_denominations": [
+            {
+                "yuCoin": 500,
+                "value": 50,
+                "stock": null
+            },
+            {
+                "yuCoin": 1000,
+                "value": 100,
+                "stock": null
+            },
+            {
+                "yuCoin": 2500,
+                "value": 250,
+                "stock": null
+            },
+            {
+                "yuCoin": 5000,
+                "value": 500,
+                "stock": null
+            },
+            {
+                "yuCoin": 10000,
+                "value": 1000,
+                "stock": null
+            },
+            {
+                "yuCoin": 20000,
+                "value": 2000,
+                "stock": null
+            },
+            {
+                "yuCoin": 100000,
+                "value": 10000,
+                "stock": null
+            }
+        ]
+    }
+} as IDatabaseItem
+
+
+export const REWARDS_BLOOM_UNAVAILABLE = {
+    type: "mongo",
+    modelName: "rewards",
+    data: {
+        "_id": generateRandomMongoId(),
+        "redeem_steps": {
+            "steps": [
+                "Visit bloomandwild.com/send-flowers",
+                "Select your bouquet or gift",
+                "Fill in the delivery details, delivery date and select a free gift card",
+                "When prompted at checkout enter your unique voucher code"
+            ],
+            "info": "How to redeem Bloom & Wild:"
+        },
+        "loyalty_programme": [],
+        "sort_order": 1.3,
+        "rewardProviderId": "wegift",
+        "availability": "stocked",
+        "progression_level": "5",
+        "card_image_url": "https://gift.wegift.io/static/product_assets/YLBAW-GB/YLBAW-GB-icon.png",
+        "code": "YLBAW-GB",
+        "currency_code": "GBP",
+        "link_type": "20% Your Next Order",
+        "denomination_type": "fixed",
+        "description": "Bloom & Wild is the UK's most-loved online florist. They invented letterbox flowers to make sending beautiful blooms easier and more delightful. Every box is hand-packed with seasonal stems and sent with fun arranging tips! But the best bit? How posties can deliver them through the door when no one's home. Make someone's day with fresh blooms and save 20% off your next order.",
+        "e_code_usage_type": "url-only",
+        "expiry_date_policy": "24 months from last use",
+        "maximum_value": 2500,
+        "minimum_value": 1,
+        "name": "Bloom & Wild",
+        "terms_and_conditions_url": "https://gift.wegift.io/public/terms/YLBAW-GB.pdf",
+        "uiSettings": {
+            "id": "YLBAW-GB",
+            "logoWidth": 87,
+            "logoHeight": 50,
+            "ctaLabel": "Claim Reward",
+            "offerHeading": "20% off",
+            "offerSubheading": "   ",
+            "alertHeading": "Claim your discount",
+            "alertSubheading": "20% discount for all yulife members"
+        },
+        "available_denominations": [],
+        "__v": 0,
+
+    }
+} as IDatabaseItem
+
+export const REWARDS_NIKE = {
+    type: "mongo",
+    modelName: "rewards",
+    data: {
+        "_id": generateRandomMongoId(),
+        "redeem_steps": {
+            "steps": [
+                "In-store: At any Nike-owned retail store in the UK (includes Factory Stores). Please print the eGift or show it on your smart phone at the till (UK only). An unlimited amount of gift cards/eGifts can be used in one transaction in store",
+                "Online: http://www.nike.com/gb/en_gb/ . Up to 10 gift cards/eGifts can be used in one transaction online",
+                "Exceptions & exclusions: Cannot be redeemed in franchise stores or third party retailers",
+                "Balance checker: http://store.nike.com/gb/en_gb/?l=shop%2Cgift_cards&amp;balance=true/",
+                "Multiple redemptions possible are possible as the balance will remain on the eGift card.",
+                "You can pay outstanding balance with cash/debit card if the value of the gift card is not enough."
+            ],
+            "info": "How to redeem Nike"
+        },
+        "loyalty_programme": [],
+        "sort_order": 18,
+        "rewardProviderId": "wegift",
+        "availability": "realtime",
+        "progression_level": "5",
+        "card_image_url": "https://gift-sandbox.wegift.io/static/product_assets/NIKE/NIKE-card.png",
+        "code": "NIKE-GB",
+        "currency_code": "GBP",
+        "denomination_type": "open",
+        "description": "As one of the leading sports brands in the world, Nike offers authentic athletic footwear, apparel, equipment, and accessories for a wide variety of sports and fitness activities. Redeem your voucher online or in any Nike UK store.",
+        "e_code_usage_type": null,
+        "expiry_date_policy": "24 months from last activity",
+        "maximum_value": 400,
+        "minimum_value": 5,
+        "name": "Nike",
+        "terms_and_conditions_url": "https://gift-sandbox.wegift.io/public/terms/NIKE-GB.pdf",
+        "reward_sticker": null,
+        "uiSettings": {
+            "id": "NIKE-GB",
+            "logoWidth": 71,
+            "logoHeight": 37
+        },
+        "available_denominations": [
+            {
+                "_id": generateRandomMongoId(),
+                "yuCoin": 7750,
+                "value": 10,
+                "stock": 7
+            },
+            {
+                "_id": generateRandomMongoId(),
+                "yuCoin": 15500,
+                "value": 20,
+                "stock": 7
+            },
+            {
+                "_id": generateRandomMongoId(),
+                "yuCoin": 31000,
+                "value": 40,
+                "stock": 7
+            }
+        ],
+        "__v": 0,
+    }
+} as IDatabaseItem

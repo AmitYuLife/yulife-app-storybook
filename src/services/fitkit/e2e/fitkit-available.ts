@@ -1,21 +1,26 @@
-// import mock from "@services/mock";
+import mock from "@services/socket/socketClient";
 import { Component } from "react";
 
 interface IProps {
     children: any;
 }
 
+// we make this global per app session so it persists between sceens when mocking
+const globalState = {
+    loading: false,
+    available: true,
+    authorised: false,
+};
+
 class FitKitAvailable extends Component<IProps> {
 
-    public state = {
-        loading: false,
-        available: true,
-        authorised: false
-    };
-    private unlisten: any;
+    private unlisten: ReturnType<typeof mock.onFitkitAuthorised>;
 
-    public componentDidMount() {
-        // this.unlisten = mock.onFitkitAuthorised(this.setAuthorised);
+    public state = globalState;
+
+    public constructor(props: IProps) {
+        super(props);
+        this.unlisten = mock.onFitkitAuthorised(this.authorise.bind(this));
     }
 
     public componentWillUnmount() {
@@ -33,15 +38,12 @@ class FitKitAvailable extends Component<IProps> {
         });
     }
 
-    public async authorise(options: any) {
-        const authorised = true || options;
-        this.setState({ authorised });
-        return authorised;
+    public async authorise(authorised = true) {
+        globalState.authorised = authorised;
+        globalState.available = authorised;
+        this.setState({ authorised, available: authorised });
     }
-
-    // private setAuthorised = () => {
-    //     this.setState({ authorised: true, available: true });
-    // }
 }
 
 export default FitKitAvailable;
+

@@ -1,0 +1,7 @@
+--recursive 
+--timeout 240000 
+--reporter mochawesome
+--reporter-options reportDir=e2e-report 
+--require ts-node/register
+--require tsconfig-paths/register
+--exit

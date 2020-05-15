@@ -10,6 +10,7 @@ import { Colours, Style } from "../../../../styles";
 import { Glow } from "../daily-steps/assets/yu-coin-subcomponents";
 import Check from "./assets/check";
 import styles from "./today-yucoin.screen.styles";
+import { TODAYS_YUCOIN } from "@ids";
 
 type ChallengeToday = GetCurrentUser_getCurrentUser_todayActivity;
 
@@ -91,6 +92,7 @@ export default function TodayYucoinScreen({
         style={styles.scrollView}
         contentContainerStyle={styles.scrollViewContentContainer}
         showsVerticalScrollIndicator={false}
+        testID={TODAYS_YUCOIN}
       >
         <View style={styles.chestCoinWrapper}>
           <View style={styles.coinOuterWrapper}>
@@ -177,8 +179,8 @@ export default function TodayYucoinScreen({
                       y="4"
                       width={Math.floor(
                         progressBarWidth *
-                          (meditationSeconds /
-                            (meditationExchangeRate.meditation * passiveMeditationAwardedMilestonesLength))
+                        (meditationSeconds /
+                          (meditationExchangeRate.meditation * passiveMeditationAwardedMilestonesLength))
                       )}
                       height="4"
                       fill="black"
@@ -202,47 +204,47 @@ export default function TodayYucoinScreen({
           {loading ? (
             <ActivityIndicator color={Colours.darkHotPink} />
           ) : (
-            <>
-              <View style={styles.headingWrapper}>
-                <Text bold={true} style={styles.heading}>
-                  quests
+              <>
+                <View style={styles.headingWrapper}>
+                  <Text bold={true} style={styles.heading}>
+                    quests
                 </Text>
-                <Text bold={true} style={styles.headingRight}>
-                  yucoin
+                  <Text bold={true} style={styles.headingRight}>
+                    yucoin
                 </Text>
-              </View>
+                </View>
 
-              <View style={styles.challengesWrapper}>
-                {!showNoChallengeDone ? null : (
-                  <View style={styles.activeChallengeWrapper}>
-                    <Text style={styles.steps}>quests / you haven’t done any today</Text>
-                    <View style={styles.starsWrapper} />
-                    <Text style={styles.yucoinsEarned}>0</Text>
-                  </View>
-                )}
-                {!activeChallenge ? null : (
-                  <View style={styles.activeChallengeWrapper}>
-                    <Text style={styles.steps}>{getLabel(activeChallenge, true)}</Text>
-                    <Text style={styles.yucoinsEarned}>{activeChallenge.earned}</Text>
-                  </View>
-                )}
-                {challenges.map((challenge, i) => (
-                  <View key={i} style={styles.activeChallengeWrapper}>
-                    <Text style={styles.steps}>{getLabel(challenge)}</Text>
-                    <View style={styles.starsWrapper}>
-                      {showRating(challenge) &&
-                        Array.from({ length: 3 }).map((_, index) => (
-                          <View key={index} style={styles.starWrapper}>
-                            <StarInline filled={challenge.milestones > index} />
-                          </View>
-                        ))}
+                <View style={styles.challengesWrapper}>
+                  {!showNoChallengeDone ? null : (
+                    <View style={styles.activeChallengeWrapper}>
+                      <Text style={styles.steps}>quests / you haven’t done any today</Text>
+                      <View style={styles.starsWrapper} />
+                      <Text style={styles.yucoinsEarned}>0</Text>
                     </View>
-                    <Text style={styles.yucoinsEarned}>{challenge.earned}</Text>
-                  </View>
-                ))}
-              </View>
-            </>
-          )}
+                  )}
+                  {!activeChallenge ? null : (
+                    <View style={styles.activeChallengeWrapper}>
+                      <Text style={styles.steps}>{getLabel(activeChallenge, true)}</Text>
+                      <Text style={styles.yucoinsEarned}>{activeChallenge.earned}</Text>
+                    </View>
+                  )}
+                  {challenges.map((challenge, i) => (
+                    <View key={i} style={styles.activeChallengeWrapper}>
+                      <Text style={styles.steps}>{getLabel(challenge)}</Text>
+                      <View style={styles.starsWrapper}>
+                        {showRating(challenge) &&
+                          Array.from({ length: 3 }).map((_, index) => (
+                            <View key={index} style={styles.starWrapper}>
+                              <StarInline filled={challenge.milestones > index} />
+                            </View>
+                          ))}
+                      </View>
+                      <Text style={styles.yucoinsEarned}>{challenge.earned}</Text>
+                    </View>
+                  ))}
+                </View>
+              </>
+            )}
         </View>
         {!showCta || loading ? null : (
           <View style={styles.ctaWrapper}>

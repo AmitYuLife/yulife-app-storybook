@@ -3,13 +3,14 @@ import { Style } from "@styles/index";
 import * as React from "react";
 import Svg, { Circle, G, Path } from "react-native-svg";
 import { getIconColour, IIconProps } from "../nav-bar.helpers";
+import { NAV_BAR } from "@ids";
 
 export default function Scroll({ isActive, onPressIn, hasNotification, isHighlighted }: IIconProps) {
   const fill = getIconColour(isActive || isHighlighted);
   const size = String(Style.SCALE_UP_AND_DOWN(54));
 
   return (
-    <Svg viewBox="0 0 54 54" width={size} height={size}>
+    <Svg viewBox="0 0 54 54" width={size} height={size} testID={NAV_BAR("quests")}>
       <G onPressIn={onPressIn} onPressOut={onPressIn}>
         <Path d="M0 0H54V54H0z" fill="#fff" />
         <Path d="M36.35 7.25h-15.8A1.66 1.66 0 0019 9v16.8" fill="none" stroke={fill} strokeMiterlimit={10} />

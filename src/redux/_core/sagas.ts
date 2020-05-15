@@ -13,6 +13,7 @@ import pedometerSagas from "../pedometer/sagas";
 import streaksSagas from "../streaks/sagas";
 import tokenSagas from "../token/token.sagas";
 import userSagas from "../user/sagas";
+import detoxSagas from "../detox/detox.sagas";
 
 export default function* allSagas() {
   yield all([
@@ -30,5 +31,6 @@ export default function* allSagas() {
     ...streaksSagas,
     ...tokenSagas,
     ...userSagas,
+    ...detoxSagas,
   ]);
 }

@@ -4,6 +4,7 @@ import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import assets from "./assets";
 import styles from "./toolttip.styles";
+import { WELCOME_MODAL } from "@ids";
 
 interface IProps {
   onPressCta: () => void;
@@ -19,7 +20,7 @@ export default function WelcomeTooltip({ onPressCta, copy }: IProps) {
           <View style={styles.shadow} />
           <Image style={styles.giraffe} source={assets.giraffe} />
           <View style={[styles.tooltip, styles.welcomePadding]}>
-            <Text bold={true} style={styles.heading}>
+            <Text bold={true} style={styles.heading} testID={WELCOME_MODAL(copy.heading)}>
               {copy.heading}
             </Text>
             <Text style={StyleSheet.flatten([styles.description, styles.welcomeMarginBottomThirty])}>

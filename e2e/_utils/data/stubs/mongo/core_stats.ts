@@ -1,0 +1,14 @@
+import { generateRandomMongoId } from '../../utils';
+import { IDatabaseItem } from '../../types';
+import { CUSTOMER_1, CUSTOMER_2 } from '../postgres/customers';
+
+export const STATS_2 = {
+    type: "mongo",
+    modelName: "core_stats",
+    data: {
+        "_id": generateRandomMongoId(),
+        "type": "steps_average",
+        "__v": 0,
+        "value": 5969.15161070663
+    },
+} as IDatabaseItem;

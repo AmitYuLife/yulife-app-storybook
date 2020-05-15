@@ -3,7 +3,7 @@ import { ActivityIndicator, Image, SafeAreaView, ScrollView, View } from "react-
 import { Pad, Text } from "../../../../atoms";
 import { RewardItemContent, TopBar } from "../../../../molecules";
 import styles from "./wegift-confirmed.screen.styles";
-
+import { WEGIFT_CONFIRMED, PURCHASE_IMAGE } from "@ids";
 export interface IServerProps {
   rewardName: string;
   redeemInstructions: string[];
@@ -55,9 +55,10 @@ class WegiftRewardsConfirmed extends React.PureComponent<Props, IState> {
       <SafeAreaView style={styles.wrapper}>
         <TopBar leftIcon={TopBar.LeftIcon.BACK} onPressLeftIcon={onPressTopBar} coins={coins} />
         <Pad height={10} />
-        <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper} contentContainerStyle={styles.contentWrapper}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper} contentContainerStyle={styles.contentWrapper} testID={WEGIFT_CONFIRMED}>
           <View style={styles.imageWrapper}>
             <Image
+              testID={PURCHASE_IMAGE(imageUrl)}
               onLoad={this.handleLoadImage}
               style={styles.image}
               source={
