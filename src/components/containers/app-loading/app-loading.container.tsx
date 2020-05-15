@@ -37,7 +37,7 @@ export const AppLoadingContainer: React.FC<IProps> = () => {
   }, [persistorBoostrapped, animationEnded, url]);
 
   return (
-    <View style={StyleSheet.absoluteFill}>
+    <View style={styles.wrapper}>
       <SplashScreen onAnimationStart={() => setRenderPersistor(true)} onAnimationEnd={() => setAnimationEnded(true)} />
       {!renderPersistor ? null : (
         <PersistGate persistor={persistor}>
@@ -54,3 +54,10 @@ export const AppLoadingContainer: React.FC<IProps> = () => {
 };
 
 export default AppLoadingContainer;
+
+const styles = StyleSheet.create({
+  wrapper: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "white",
+  }
+});

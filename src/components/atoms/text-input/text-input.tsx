@@ -60,6 +60,7 @@ class TextInput extends React.PureComponent<IProps> {
           </View>
           <View style={styles.inputWrapper}>
             <Input
+              allowFontScaling={false}
               testID={this.props.testID}
               onFocus={this.handleFocus(true)}
               onBlur={this.handleFocus(false)}
@@ -73,6 +74,7 @@ class TextInput extends React.PureComponent<IProps> {
               underlineColorAndroid="transparent"
               secureTextEntry={type === TEXT_INPUT_TYPES.PASSWORD}
               keyboardType={getKeyboardType(type)}
+              placeholderTextColor="rgb(204,204,204)"
             />
           </View>
         </View>

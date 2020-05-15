@@ -11,6 +11,7 @@ interface IProps extends TextProps {
 
 const YuText: SFC<IProps> = ({ children, bold, style, numberOfLines, testID }) => (
   <Text
+    allowFontScaling={false}
     numberOfLines={numberOfLines}
     style={StyleSheet.flatten([styles.base, bold ? styles.weightBold : styles.weightNormal, style])}
     testID={testID}

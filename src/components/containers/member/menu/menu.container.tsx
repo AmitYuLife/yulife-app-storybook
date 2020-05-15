@@ -4,7 +4,7 @@ import * as React from "react";
 import { PureComponent } from "react";
 import DeviceInfo from "react-native-device-info";
 import Intercom from "react-native-intercom";
-import { Navigation } from "react-native-navigation";
+import { Navigation, LayoutComponent } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getRouteState } from "../../../../redux/app/app.selectors";
@@ -128,12 +128,12 @@ class MenuContainer extends PureComponent<Props> {
     this.props.openMemberZone();
   };
 
-  private handlePush = async (route: string) => {
+  private handlePush = async (route: string, options: LayoutComponent["options"] = {}) => {
     await Navigation.push(this.props.currentRoute, {
       component: {
         id: route,
         name: route,
-        options: { bottomTabs },
+        options: { bottomTabs, ...options },
       },
     });
 

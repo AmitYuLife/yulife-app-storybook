@@ -100,6 +100,7 @@ class SettingsContainer extends PureComponent<IProps, IState> {
           isVisible={isTimeModalVisible}
           onConfirm={this.handleTimeModalConfirm}
           onCancel={this.handleTimeModalCancel}
+          textColor="#333"
         />
       </>
     );
