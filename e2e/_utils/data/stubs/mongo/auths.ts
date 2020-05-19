@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4 } from '../postgres/customers';
+import { CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8 } from '../postgres/customers';
 
 export const AUTH_1 = {
     type: "mongo",
@@ -51,5 +51,62 @@ export const AUTH_4 = {
         ...AUTH_2.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_4.data.customerId
+    }
+} as IDatabaseItem
+
+export const AUTH_5 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        _id: generateRandomMongoId(),
+        lastIp: "35.176.60.174",
+        password: "letmein",
+        scope: "user",
+        strategy: "0",
+        used: false,
+        userId: CUSTOMER_5.data.customerId
+    }
+} as IDatabaseItem
+
+export const AUTH_6 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        _id: generateRandomMongoId(),
+        lastIp: "35.176.60.174",
+        password: "letmein",
+        scope: "user",
+        strategy: "0",
+        used: false,
+        userId: CUSTOMER_6.data.customerId
+    }
+} as IDatabaseItem
+
+export const AUTH_7 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        _id: generateRandomMongoId(),
+        lastIp: "35.176.60.174",
+        password: "letmein",
+        scope: "user",
+        strategy: "0",
+        used: false,
+        userId: CUSTOMER_7.data.customerId
+    }
+} as IDatabaseItem
+
+
+export const AUTH_8 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        _id: generateRandomMongoId(),
+        lastIp: "35.176.60.174",
+        password: "letmein",
+        scope: "user",
+        strategy: "0",
+        used: false,
+        userId: CUSTOMER_8.data.customerId
     }
 } as IDatabaseItem

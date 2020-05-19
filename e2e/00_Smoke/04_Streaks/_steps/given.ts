@@ -1,0 +1,29 @@
+import { navigation, INPUT_LOGIN_PASSWORD, INPUT_LOGIN_EMAIL, BUTTON_LOGIN, navigateViaID, navigateViaText } from "@navigation"
+import { authoriseFitkit } from "@socket";
+import { records } from "@data";
+
+export const {
+    loginAsUser,
+} = navigation.login
+
+export const {
+    completeIntro,
+} = navigation.login
+
+export const logInWithStreakScreen = (customer = records.CUSTOMER_1, auth = records.AUTH_1, fitkitAuth = true) => async () => {
+    await authoriseFitkit(fitkitAuth)()
+    const loginField = element(by.id(INPUT_LOGIN_EMAIL));
+    const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
+    await loginField.tap();
+    await loginField.replaceText(customer.data.email);
+    await passwordField.tap();
+    await passwordField.replaceText(auth.data.password);
+    await navigateViaID(BUTTON_LOGIN)
+    await navigateViaText("next")
+}
+
+export const continueLoginAfterStreak = async () => {
+    await navigateViaText("let’s begin")
+    await completeIntro()
+}
+
