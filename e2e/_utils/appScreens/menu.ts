@@ -2,7 +2,7 @@ import { MENU_ITEM } from "@ids";
 import { navigateViaID } from "@navigation";
 
 export const menuItemsVisible = async () => {
-    const menuItems = ["statistics", "activity history", "member zone", "settings", "chat", "feedback", "log out"]
+    const menuItems = ["statistics", "activity history", "member zone", "settings", "chat", "log out"]
 
     menuItems.forEach(async i => {
         await expect(element(by.id(MENU_ITEM(i)))).toBeVisible()

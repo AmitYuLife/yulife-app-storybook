@@ -102,7 +102,8 @@ export const purchasesTabEmpty = async () => {
     const copy = ["It’s empty!", "Buy a voucher and it will appear here", "check rewards",]
 
     copy.forEach(async i => {
-        await expectIsVisibleViaText(i)
+        await waitFor(element(by.text(i))).toBeVisible().withTimeout(1500)
+        await expect(element(by.text(i))).toBeVisible()
     });
 }
 

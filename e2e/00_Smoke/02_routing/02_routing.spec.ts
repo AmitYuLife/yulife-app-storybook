@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE } from "@ids";
+import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON } from "@ids";
 import { records } from "@data";
 import { REWARDS_JOHN_LEWIS, REAWARDS_AVIOS, REWARDS_BLOOM_UNAVAILABLE } from "_utils/data/stubs";
 Feature("As a user I can navigate through member routes correctly", async () => {
@@ -77,9 +77,6 @@ Feature("As a user I can navigate through member routes correctly", async () => 
 
                     })
                 })
-                When("I tap feedback", when.tapMenuItem("feedback"), async () => {
-                    Then("I should see the feedback popup", then.textVisible("How likely are you to recommend yulife to a co-worker?", 5000))
-                })
             })
         })
     })
@@ -110,7 +107,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                 Then("I should see the purchased tab", then.textVisible("purchased"))
                 When("I tap the purchased tab", when.tapText("purchased"), async () => {
                     Then("the tab should be in an empty state, as I have not purchases anything", then.purchasesTabEmpty)
-                    When("I tap 'check rewards", when.tapText("check rewards"), async () => {
+                    When("I tap 'check rewards", when.tapID(CHECK_REWARDS_BUTTON), async () => {
                         Then("I should be back on the rewards tab", then.idVisible(REWARDS_SCREEN))
                     })
                 })
