@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
 import registerScreens from "./navigation/index";
 import { migrateOldAppVersionToken } from "./services/storage";
@@ -52,7 +53,7 @@ function setDefaultOptions() {
     statusBar: {
       drawBehind: false,
       visible: true,
-      style: "dark",
+      style: Platform.select({ ios: "dark", android: "light" }),
     },
     topBar: {
       animate: false,
