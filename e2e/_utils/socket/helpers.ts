@@ -1,6 +1,7 @@
 import socketServer from "./server";
 import { EVENT, ReduxEvent } from "./events";
 import * as moment from 'moment';
+import { wait } from "@navigation";
 
 export const authoriseFitkit = (authorised = true) => async () => {
     await socketServer.emit({
@@ -9,7 +10,7 @@ export const authoriseFitkit = (authorised = true) => async () => {
     });
 }
 
-export const sendSteps = (amount = 10) => async (): Promise<void> => {
+export const sendSteps = (amount = 10, waitTime?: number) => async (): Promise<void> => {
     socketServer.emit({
         name: EVENT.PEDOMETER_EVENT,
         payload: {
@@ -18,6 +19,9 @@ export const sendSteps = (amount = 10) => async (): Promise<void> => {
             steps: amount
         }
     });
+    if (waitTime > 0) {
+        await wait(waitTime)()
+    }
 };
 
 export const startWalkingSteps = (amount = 1000, increment = 10, interval = 5000) => async (): Promise<number> => {

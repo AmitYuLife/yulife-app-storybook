@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Image, View } from "react-native";
-import * as Animatable from "react-native-animatable";
+import { AnimatableImage } from "@services/animatable";
 import { GetMobileCopy_getMobileCopy_screens_challenges_completed } from "../../../../../graphql/_core/schema";
 import { Button, Text } from "../../../../atoms";
 import styles from "./challenge-complete.styles";
@@ -14,7 +14,7 @@ interface IProps {
 const ChallengeCompleteScreen: React.SFC<IProps> = ({ isLoading, onCtaPress, copy }) => (
   <View style={styles.wrapper}>
     <View>
-      <Animatable.Image
+      <AnimatableImage
         style={styles.alarm}
         delay={1000}
         iterationCount="infinite"

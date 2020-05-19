@@ -50,7 +50,6 @@ export class DataManager {
         );
     }
 
-
     private log = async (...msg: string[]) => {
         console.log(...msg); // tslint:disable-line
     }

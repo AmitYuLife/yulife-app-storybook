@@ -8,6 +8,7 @@ module.exports = Object.assign(jestPreset, {
     "^.+\\.tsx?$": "ts-jest",
   },
   testRegex: "src/.+\\.(test|spec).(ts|tsx|js)$",
+  testPathIgnorePatterns: ["/node_modules/", "/e2e/"],
   testEnvironment: "jsdom",
   timers: "fake",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],

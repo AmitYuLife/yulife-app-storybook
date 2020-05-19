@@ -57,3 +57,59 @@ export const CUSTOMER_4 = {
         status: "onboarded",
     }
 } as IDatabaseItem
+
+export const CUSTOMER_5 = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "saul@yulife.com",
+        firstName: "Saul",
+        lastName: "Goodman",
+        dateOfBirth: moment().subtract(26, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded",
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_6 = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "gus@yulife.com",
+        firstName: "Gustavo",
+        lastName: "Fring",
+        dateOfBirth: moment().subtract(48, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded",
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_7 = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "skyler@yulife.com",
+        firstName: "Skyler",
+        lastName: "White",
+        dateOfBirth: moment().subtract(42, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded",
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_8 = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "jerry@yulife.com",
+        firstName: "Jerry",
+        lastName: "Seinfeld",
+        dateOfBirth: moment().subtract(48, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded",
+    }
+} as IDatabaseItem

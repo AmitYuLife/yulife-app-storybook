@@ -116,6 +116,6 @@ export const typeViaID = (id: string, text: string) => async () => {
 
 export const multipleTextVisible = (textArr: string[]) => async () => {
     textArr.forEach(async i => {
-        await expectIsVisibleViaText(i)
+        await expect(element(by.text(i))).toBeVisible()
     });
 }

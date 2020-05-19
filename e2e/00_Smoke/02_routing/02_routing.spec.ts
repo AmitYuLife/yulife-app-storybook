@@ -137,7 +137,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                             When("I tap a locked challenge", when.tapText("level 3"), async () => {
                                 Then("nothing should happen", then.idVisible(CHALLENGE_SET))
                                 When("I tap the short stroll challenge", when.tapID(CHALLENGE_TILE("short stroll")), async () => {
-                                    Then("I should see a screen with a take challenge option", then.multipleTextVisible(["short stroll / 5 minutes", "100 steps", "take challenge"]))
+                                    Then("I should see a screen with a take challenge option", then.multipleTextVisible(["short stroll / 0 minutes", "100 steps", "take challenge"]))
                                     When("I tap 'take challenge'", when.tapText("take challenge"), async () => {
                                         Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 5000))
                                         When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {

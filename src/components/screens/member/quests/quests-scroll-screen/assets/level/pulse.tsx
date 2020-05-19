@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Animated, Easing, StyleSheet, View } from "react-native";
 import { CIRCLE_SIZE } from "./level.styles";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   interval?: number;
@@ -25,19 +26,21 @@ export default class Pulse extends React.PureComponent<IProps, IState> {
     outputRange: [1, this.props.pulseMaxSize / this.props.size],
   }
   public componentDidMount() {
-    this.pulseInterval = global.setInterval(() => {
-      this.setState(
-        ({ value }) => ({ value: value ? 0 : 1 }),
-        () => {
-          Animated.timing(this.anim, {
-            duration: this.props.interval,
-            easing: Easing.in((n: number) => n),
-            toValue: this.state.value,
-            useNativeDriver: false,
-          }).start();
-        }
-      );
-    }, 1000);
+    if (!DETOX_ENABLED) {
+      this.pulseInterval = global.setInterval(() => {
+        this.setState(
+          ({ value }) => ({ value: value ? 0 : 1 }),
+          () => {
+            Animated.timing(this.anim, {
+              duration: this.props.interval,
+              easing: Easing.in((n: number) => n),
+              toValue: this.state.value,
+              useNativeDriver: false,
+            }).start();
+          }
+        );
+      }, 1000);
+    }
   }
 
   public componentWillUnmount() {
