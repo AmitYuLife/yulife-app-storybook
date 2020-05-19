@@ -4,6 +4,7 @@ import { Image, View } from "react-native";
 import { GetMobileCopy_getMobileCopy_screens_purchases_empty } from "../../../../../../graphql/_core/schema";
 import { Button, Text } from "../../../../../atoms";
 import styles from "./purchases-empty.styles";
+import { CHECK_REWARDS_BUTTON } from "@ids";
 
 interface IProps {
   onCtaPress: () => void;
@@ -17,7 +18,7 @@ const PurchasesEmpty: SFC<IProps> = ({ onCtaPress, copy }) => (
       <Text style={styles.text}>{copy.heading}</Text>
       <Text style={styles.text}>{copy.subheading}</Text>
     </View>
-    <Button type="SecondaryMedium" label={copy.ctaLabel} onPress={onCtaPress} />
+    <Button type="SecondaryMedium" label={copy.ctaLabel} onPress={onCtaPress} testID={CHECK_REWARDS_BUTTON} />
   </View>
 );
 
