@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation, OptionsModalPresentationStyle } from "react-native-navigation";
 import registerScreens from "./navigation/index";
 import { migrateOldAppVersionToken } from "./services/storage";
 
@@ -48,7 +48,7 @@ function setDefaultOptions() {
       componentBackgroundColor: "white", // android
       orientation: ["portrait"],
     },
-    // modalPresentationStyle: OptionsModalPresentationStyle.overFullScreen,
+    modalPresentationStyle: OptionsModalPresentationStyle.fullScreen,
     popGesture: false,
     statusBar: {
       drawBehind: false,
