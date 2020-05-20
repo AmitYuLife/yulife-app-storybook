@@ -16,7 +16,6 @@ export const {
     specialRewardVisible,
     onSpecialRewardScreen,
     lockedRewardVisible,
-    purchasesTabEmpty
 } = screens.rewards
 
 export const {

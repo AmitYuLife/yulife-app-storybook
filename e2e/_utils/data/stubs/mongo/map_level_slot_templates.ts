@@ -7,7 +7,7 @@ export const SHORT_STROLL_1 = {
     updateKey: "id",
     data: {
         "id": "SHORT_STROLL_001",
-        "timeLimit": 10,
+        "timeLimit": 15,
         "passive": false,
         "type": "move",
         "subtype": "short stroll",
@@ -21,7 +21,7 @@ export const LONG_WALK_1 = {
     updateKey: "id",
     data: {
         id: "LONG_WALK_001",
-        timeLimit: 10,
+        timeLimit: 15,
         passive: false,
         type: "move",
         subtype: "long walk",
@@ -35,7 +35,7 @@ export const MEDITATION_1 = {
     updateKey: "id",
     data: {
         id: "MEDITATION_001",
-        timeLimit: 10,
+        timeLimit: 15,
         passive: false,
         type: "mindfulness",
         subtype: "meditation",

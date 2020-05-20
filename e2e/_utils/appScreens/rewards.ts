@@ -98,15 +98,6 @@ export const lockedRewardVisible = (reward: any) => async () => {
     await expectIsVisibleViaText("locked")
 }
 
-export const purchasesTabEmpty = async () => {
-    const copy = ["It’s empty!", "Buy a voucher and it will appear here", "check rewards",]
-
-    copy.forEach(async i => {
-        await waitFor(element(by.text(i))).toBeVisible().withTimeout(1500)
-        await expect(element(by.text(i))).toBeVisible()
-    });
-}
-
 export const rewardDenominationsVisible = (reward: any) => async () => {
     const denominations = reward.data.available_denominations
 

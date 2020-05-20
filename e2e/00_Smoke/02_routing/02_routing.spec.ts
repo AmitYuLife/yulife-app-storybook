@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then } from "@bdd";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -106,7 +106,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                 Then("I should see a locked reward", then.lockedRewardVisible(REWARDS_BLOOM_UNAVAILABLE))
                 Then("I should see the purchased tab", then.textVisible("purchased"))
                 When("I tap the purchased tab", when.tapText("purchased"), async () => {
-                    Then("the tab should be in an empty state, as I have not purchases anything", then.purchasesTabEmpty)
+                    Then("the tab should be in an empty state, as I have not purchases anything", then.idVisible(CHECK_REWARDS_BUTTON))
                     When("I tap 'check rewards", when.tapID(CHECK_REWARDS_BUTTON), async () => {
                         Then("I should be back on the rewards tab", then.idVisible(REWARDS_SCREEN))
                     })
