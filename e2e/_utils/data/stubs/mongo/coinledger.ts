@@ -1,8 +1,8 @@
 
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8 } from '../postgres/customers';
-import { CHALLENGE_2, CHALLENGE_USER_6_A, CHALLENGE_USER_7_A, CHALLENGE_USER_7_B, CHALLENGE_USER_7_C, CHALLENGE_USER_7_D, CHALLENGE_USER_8_B, CHALLENGE_USER_8_A } from './challenge';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9 } from '../postgres/customers';
+import { CHALLENGE_2, CHALLENGE_USER_6_A, CHALLENGE_USER_7_A, CHALLENGE_USER_7_B, CHALLENGE_USER_7_C, CHALLENGE_USER_7_D, CHALLENGE_USER_8_B, CHALLENGE_USER_8_A, CHALLENGE_USER_9_B, CHALLENGE_USER_9_A, CHALLENGE_USER_9_C, CHALLENGE_USER_9_D, CHALLENGE_USER_9_E, CHALLENGE_USER_9_F } from './challenge';
 
 import moment = require('moment');
 
@@ -192,5 +192,94 @@ export const COIN_LEDGER_8 = {
         currentLevel: 3,
         nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
 
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_9 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: CUSTOMER_9.data.customerId,
+        userId: CUSTOMER_9.data.customerId,
+        transactions: [
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_9_F.data._id,
+                "timestamp": CHALLENGE_USER_9_F.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 560,
+                "level": 7
+            },
+
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_9_E.data._id,
+                "timestamp": CHALLENGE_USER_9_E.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 500,
+                "level": 6
+            },
+
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_9_D.data._id,
+                "timestamp": CHALLENGE_USER_9_D.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 440,
+                "level": 5
+            },
+
+
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_9_C.data._id,
+                "timestamp": CHALLENGE_USER_9_C.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 380,
+                "level": 4
+            },
+
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_9_B.data._id,
+                "timestamp": CHALLENGE_USER_9_B.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 320,
+                "level": 3
+            },
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_9_A.data._id,
+                "timestamp": CHALLENGE_USER_9_A.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 260,
+                "level": 2
+            },
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 200,
+                "source": "onboardingChallenge",
+                "sourceId": generateRandomMongoId(),
+                "totalCoins": 200,
+                "level": 1
+            }
+        ],
+        activeStreakId: "YU_STREAK_001",
+        currentBalance: 560,
+        currentLevel: 7,
+        nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
     }
 } as IDatabaseItem

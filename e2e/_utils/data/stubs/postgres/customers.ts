@@ -113,3 +113,17 @@ export const CUSTOMER_8 = {
         status: "onboarded",
     }
 } as IDatabaseItem
+
+export const CUSTOMER_9 = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "george@yulife.com",
+        firstName: "George",
+        lastName: "Costanza",
+        dateOfBirth: moment().subtract(38, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded",
+    }
+} as IDatabaseItem
