@@ -1,7 +1,6 @@
 import { Close, GenericHeading } from "@atoms/index";
 import * as React from "react";
 import { Image, SafeAreaView, SectionList, StyleSheet, TouchableOpacity, View } from "react-native";
-import { STATS_SCREEN } from "../../../../../e2e/_utils/navigation/ids";
 import { GetHighlights_getUserStats, GetHighlights_getUserStats_data as Card } from "../../../../graphql/_core/schema";
 import { Style } from "../../../../styles";
 import { Text } from "../../../atoms";
@@ -11,7 +10,7 @@ import GeneralInfoCard from "./cards/general-info-card";
 import RecommendationInfoCard from "./cards/recommendation-info-card";
 import WeeklyGraphCard from "./cards/weekly-graph-card";
 import styles from "./stats.styles";
-import { STATS_TITLE } from "@ids";
+import { STATS_TITLE, STATS_SCREEN } from "@ids";
 
 interface IProps {
   data?: GetHighlights_getUserStats[];

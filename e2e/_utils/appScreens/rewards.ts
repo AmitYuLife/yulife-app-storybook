@@ -1,13 +1,24 @@
-import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE } from "@navigation"
+import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE, booleanIdVisible, wait, REWARDS_SCREEN } from "@navigation"
 import moment = require("moment")
-import { scrollFromID } from "_utils/navigation/scrolling"
+import { scrollFromID, scrollFromText } from "_utils/navigation/scrolling"
 
 type rewardType = "avios"
 
 export const rewardVisible = (reward: any) => async () => {
+
     const minValue = reward.data.minimum_value
     const minYucoin = reward.data.available_denominations[0].yuCoin
     const rewardItem = REWARD_ITEM(reward.data.code)
+
+    let rewardItemVisible = await booleanIdVisible(rewardItem)
+    const maxAttempts = 15
+    let currentAttempt = 0
+
+    while (rewardItemVisible === false && currentAttempt < maxAttempts) {
+        await scrollFromID(REWARDS_SCREEN, "up", "slow")()
+        rewardItemVisible = await booleanIdVisible(rewardItem)
+        currentAttempt += 1
+    }
 
     await expectIsVisibleViaText(`£${minValue} voucher`)
     await expectIsVisibleViaText(`yucoin x ${minYucoin}`)
@@ -31,6 +42,7 @@ export const specialRewardVisible = (reward: any, type: rewardType) => async () 
             break;
     }
 
+
     await expectIsVisibleViaID(rewardItem)
     await expectIsVisibleViaText(rewardTitle)
     await expectIsVisibleViaText(rewardSubText)
@@ -38,7 +50,6 @@ export const specialRewardVisible = (reward: any, type: rewardType) => async () 
 
 export const tapRewardInList = (reward: any) => async () => {
     if (reward.data.available_denominations.length === 0) {
-        console.log(JSON.stringify(reward.data.available_denominations.length))
         const rewardItem = element(by.id(LOCKED_REWARD_ITEM(reward.data.code)))
         await rewardItem.tap()
 
@@ -138,9 +149,7 @@ export const tapBuyButton = (reward: any, index = 0) => async () => {
 
 export const onRewardPurchasedScreen = (reward: any) => async () => {
     const cardImageURL = element(by.id(PURCHASE_IMAGE(reward.data.card_image_url)))
-
     const description = reward.data.description
-    const howToRedeem = reward.data.redeem_steps.steps
 
     const expiryPolicy = reward.data.expiry_date_policy
     const purchaseDate = moment().format("DD MMMM YYYY")
@@ -154,18 +163,25 @@ export const onRewardPurchasedScreen = (reward: any) => async () => {
     await expect(element(by.id(WEGIFT_CONFIRMED))).toBeVisible()
     await expect(cardImageURL).toBeVisible()
 
-    await expect(element(by.text(description))).toBeVisible()
     await expect(element(by.text(purchaseDate))).toBeVisible()
     await expect(element(by.text(expiryDate))).toBeVisible()
 
+    try {
+        await expect(element(by.text(description))).toBeVisible()
+    } catch (e) {
+        await cardImageURL.swipe("up", "slow", 0.1)
+        await expect(element(by.text(description))).toBeVisible()
+    }
     await cardImageURL.swipe("up", "fast")
 
-    // howToRedeem.forEach(async i => {
-    //     await expect(element(by.text(i))).toBeVisible()
-    // });
-
     await expect(element(by.text("see other rewards"))).toBeVisible()
-    await expect(element(by.text("get voucher"))).toBeVisible()
+    try {
+        await expect(element(by.text("get voucher"))).toBeVisible()
+    } catch (e) {
+        await scrollFromText("How to redeem", "up", "fast")()
+        await expect(element(by.text("get voucher"))).toBeVisible()
+    }
+
     await expect(element(by.text("T&Cs"))).toBeVisible()
     await expect(element(by.text("Reward policy"))).toBeVisible()
 
