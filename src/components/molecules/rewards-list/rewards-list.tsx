@@ -4,6 +4,7 @@ import { FlatList } from "react-native";
 import { GetRewards_getRewards } from "../../../graphql/_core/schema";
 import RewardsListItem from "./rewards-list-item/rewards-list-item";
 
+
 interface IProps {
   data: Partial<GetRewards_getRewards>[];
   onItemPress: RenderItem;

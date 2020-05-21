@@ -6,7 +6,6 @@ export const menuItemsVisible = async () => {
 
     menuItems.forEach(async i => {
         await expect(element(by.id(MENU_ITEM(i)))).toBeVisible()
-        console.log(`found id: MENU_ITEM(${i})`)
     });
 }
 

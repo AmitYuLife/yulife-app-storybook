@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@bdd";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@bdd";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -30,6 +30,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     })
 
     Scenario("I can view the menu screens in the app", scenario.start, async () => {
+
         Given("I login as a user", given.loginAsUser(records.CUSTOMER_2, records.AUTH_2), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
             When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 1500), async () => {

@@ -1,5 +1,6 @@
 import { dataManager } from '../data/dataManager';
 import { NAV_BAR } from '@ids';
+import detoxExport = require('detox');
 
 export const restart = async () => {
     await device.terminateApp();
@@ -118,4 +119,23 @@ export const multipleTextVisible = (textArr: string[]) => async () => {
     textArr.forEach(async i => {
         await expect(element(by.text(i))).toBeVisible()
     });
+}
+
+
+export const booleanTextVisible = async (text) => {
+    try {
+        await expect(element(by.text(text))).toBeVisible()
+        return true
+    } catch (e) {
+        return false
+    }
+}
+
+export const booleanIdVisible = async (id) => {
+    try {
+        await expect(element(by.id(id))).toBeVisible()
+        return true
+    } catch (e) {
+        return false
+    }
 }

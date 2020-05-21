@@ -1,5 +1,7 @@
 import { screens } from "@appScreens"
-import { navigation, expectIsVisibleViaID, expectIsVisibleViaText, STATS_TITLE, Then } from "@utils"
+import { navigation, STATS_TITLE, Then, STATS_SCREEN, expectDoesNotExistViaText } from "@utils"
+import detoxExport = require("detox")
+import { promises } from "dns"
 
 export const {
     onDailySteps,
@@ -21,7 +23,11 @@ export const {
 export const {
     idVisible,
     textVisible,
-    multipleTextVisible
+    multipleTextVisible,
+    expectIsVisibleViaID,
+    expectIsVisibleViaText,
+    booleanIdVisible,
+    booleanTextVisible
 } = navigation.common
 
 export const {
@@ -31,44 +37,38 @@ export const {
 
 
 export const statsCorrect = async () => {
+
     const titles = [STATS_TITLE("your yucoin"), STATS_TITLE("challenges"), STATS_TITLE("steps"), STATS_TITLE("mindfulness"), STATS_TITLE("cycling")]
-    const subtitles = ["total earned", "total redeemed", "total challenges completed", "challenge history", "average daily steps", "most steps in a day", "steps this week", "average mindful minutes per day", "mindful minutes on your best week", "mindful minutes this week", "average cycling distance per day", "cycling distance on your best week", "cycling distance this week"]
+    const subtitles = ["total earned", "total redeemed", "total challenges completed", "challenge history", "average daily steps", "most steps in a day", "steps this week", "average mindful minutes per day", "mindful minutes on your best week", "mindful minutes this week", "average cycling distance per day", "cycling distance on your best week", "cycling distance this week", "see activity history"]
 
-    // your yucoin
-    await expectIsVisibleViaID(titles[0])
-    await expectIsVisibleViaText(subtitles[0])
-    await expectIsVisibleViaText(subtitles[1])
+    const maxAttempts = 25
 
-    await scrollFromText(subtitles[0], "up", "slow")()
+    for (const i of titles) {
+        let currentAttempt = 0
+        let isTitleVisible = await booleanIdVisible(i)
+        while (isTitleVisible === false && currentAttempt < maxAttempts) {
 
-    // challenges
-    await expectIsVisibleViaID(titles[1])
-    await expectIsVisibleViaText(subtitles[2])
-    await expectIsVisibleViaText(subtitles[3])
+            await scrollFromID(STATS_SCREEN, "up", "slow")()
+            isTitleVisible = await booleanIdVisible(i)
+            currentAttempt += 1
+        }
+    }
+
+    await scrollFromID(STATS_SCREEN, "down", "fast")()
+    await scrollFromID(STATS_SCREEN, "down", "fast")()
+
+    for (const i of subtitles) {
+        let currentAttempt = 0
+        let isSubTitleVisible = await booleanTextVisible(i)
+        while (isSubTitleVisible === false && currentAttempt < maxAttempts) {
+
+            await scrollFromID(STATS_SCREEN, "up", "slow")()
+            isSubTitleVisible = await booleanTextVisible(i);
+
+            currentAttempt += 1
+        }
 
 
-    await scrollFromID(titles[1], "up", "slow")()
-
-    // steps
-    await expectIsVisibleViaID(titles[2])
-    await expectIsVisibleViaText(subtitles[4])
-    await expectIsVisibleViaText(subtitles[5])
-    await scrollFromID(titles[2], "up", "slow")()
-    await expectIsVisibleViaText(subtitles[6])
-
-    // mindfulness
-    await expectIsVisibleViaID(titles[3])
-    await scrollFromText(subtitles[6], "up", "slow")()
-    await expectIsVisibleViaText(subtitles[7])
-    await expectIsVisibleViaText(subtitles[8])
-    await expectIsVisibleViaText(subtitles[9])
-
-    //cycling
-    await scrollFromText(subtitles[7], "up", "slow")()
-    await expectIsVisibleViaID(titles[4])
-    await expectIsVisibleViaText(subtitles[10])
-    await expectIsVisibleViaText(subtitles[11])
-    await scrollFromText(subtitles[11], "up", "slow")()
-    await expectIsVisibleViaText(subtitles[12])
-    await expectIsVisibleViaText("see activity history")
+        await expect(element(by.text(i))).toBeVisible()
+    };
 }
