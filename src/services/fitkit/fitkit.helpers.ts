@@ -53,8 +53,8 @@ export const querySteps = async (
   { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {}
 ): Promise<{ results: ChallengePayload[]; error: string | null }> => {
   try {
-    const startTime = start.startOf("day").format(DATE_FORMAT_WITH_TZ);
-    const endTime = end.endOf("day").format(DATE_FORMAT_WITH_TZ);
+    const startTime = start.format(DATE_FORMAT_WITH_TZ);
+    const endTime = end.format(DATE_FORMAT_WITH_TZ);
     const args = {
       aggregateBy: {
         bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
@@ -130,7 +130,7 @@ export const queryHistoricalMeditationData = async (onboardingDate: Moment, user
 export const authoriseCycling = async () => {
   try {
     await RNFitKit.authorise({
-      read: [FitKitTypes.Types.Biking]
+      read: [FitKitTypes.Types.Biking],
     });
   } catch (e) {
     // console.log("welp... ", e);

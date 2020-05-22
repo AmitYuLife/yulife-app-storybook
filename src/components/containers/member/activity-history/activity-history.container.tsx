@@ -61,8 +61,8 @@ const ActivityHistoryContainer: FC<Props> = ({
     Logger.logEvent("activity_history_updated");
 
     if (features.canUpdateActivityHistory) {
-      const start = moment().subtract(30, "days");
-      const end = moment().subtract(1, "days");
+      const start = moment().subtract(30, "days").startOf("day");
+      const end = moment().subtract(1, "days").endOf("day");
 
       const res = await querySteps(start, end, features);
 
