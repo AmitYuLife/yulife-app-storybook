@@ -73,7 +73,12 @@ export default function* sendPassiveActivity() {
       if (momentLastUpdatedBeforeToday.isBefore(startOfDay)) {
         let isUpdated = false;
         // get steps from start of last updated date until the end of previous day
-        const { results } = yield call(querySteps, momentLastUpdatedBeforeToday, moment().subtract(1, "day"), features);
+        const { results } = yield call(
+          querySteps,
+          momentLastUpdatedBeforeToday.clone().startOf("day"),
+          moment().subtract(1, "day").endOf("day"),
+          features
+        );
 
         if (results.length > 0) {
           while (!isUpdated) {
