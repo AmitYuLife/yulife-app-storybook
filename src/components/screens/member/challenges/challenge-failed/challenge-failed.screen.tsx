@@ -1,21 +1,25 @@
 import { Button, CentredScreen, LevelLine, Stars, Text } from "@atoms/index";
 import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import { GetMobileCopy_getMobileCopy_screens_challenges_failed } from "../../../../../graphql/_core/schema";
 import styles from "./challenge-failed.screen.styles";
 import { CenteredScreenImages } from "@atoms/centred-screen/centred-screen";
 
 interface IProps {
   level?: number;
+  loading: boolean;
   onPress: () => void;
   copy: GetMobileCopy_getMobileCopy_screens_challenges_failed;
 }
 
-export default function ChallengeFailedScreen({ level, onPress, copy }: IProps) {
+export default function ChallengeFailedScreen({ level, onPress, copy, loading }: IProps) {
   const { backgroundImage, backgroundStyle } = getStyle(level);
   return (
-    <CentredScreen style={StyleSheet.flatten([styles.wrapper, backgroundStyle]) as any} footerImage={backgroundImage as CenteredScreenImages}>
+    <CentredScreen
+      style={StyleSheet.flatten([styles.wrapper, backgroundStyle]) as ViewStyle}
+      footerImage={backgroundImage as CenteredScreenImages}
+    >
       <View style={styles.ratingWrapper}>
         <Stars />
         <View style={styles.levelWrapper}>
@@ -29,7 +33,13 @@ export default function ChallengeFailedScreen({ level, onPress, copy }: IProps) 
         {copy.heading}
       </Text>
       <Text style={styles.secondaryText}>{copy.footer}</Text>
-      <Button wrapperStyle={styles.cta} onPress={onPress} label={copy.ctaLabel} type="PrimaryMedium" />
+      <Button
+        isLoading={loading}
+        wrapperStyle={styles.cta}
+        onPress={onPress}
+        label={copy.ctaLabel}
+        type="PrimaryMedium"
+      />
     </CentredScreen>
   );
 }

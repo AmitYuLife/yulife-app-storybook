@@ -11,13 +11,23 @@ interface IProps {
   onPressCta: () => void;
   level?: number;
   rating: number;
+  loading: boolean;
   reward: number;
   score: number;
   unit: "steps" | "minutes";
   copy: GetMobileCopy_getMobileCopy_screens_challenges_success;
 }
 
-export default function ChallengeSuccessScreen({ level, onPressCta, rating, reward, score, unit, copy }: IProps) {
+export default function ChallengeSuccessScreen({
+  level,
+  onPressCta,
+  rating,
+  reward,
+  score,
+  unit,
+  copy,
+  loading,
+}: IProps) {
   const { backgroundImage, backgroundStyle } = getStyle(level);
   return (
     <CentredScreen style={StyleSheet.flatten([styles.wrapper, backgroundStyle])} footerImage={backgroundImage}>
@@ -44,7 +54,13 @@ export default function ChallengeSuccessScreen({ level, onPressCta, rating, rewa
         </Text>
       </View>
 
-      <Button label={copy.ctaLabel} onPress={onPressCta} type="PrimarySmall" wrapperStyle={styles.cta} />
+      <Button
+        label={copy.ctaLabel}
+        isLoading={loading}
+        onPress={onPressCta}
+        type="PrimarySmall"
+        wrapperStyle={styles.cta}
+      />
     </CentredScreen>
   );
 }

@@ -61,4 +61,12 @@ describe("Button", () => {
 
     expect(queryByText("Button")).toBeNull();
   });
+
+  it("should not fire the callback when loading", () => {
+    const { getByTestId } = renderComponent({ isLoading: true });
+
+    fireEvent.pressOut(getByTestId("button"));
+
+    expect(onPress).toHaveBeenCalledTimes(0);
+  });
 });

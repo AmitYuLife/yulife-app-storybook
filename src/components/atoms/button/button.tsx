@@ -45,7 +45,7 @@ function Button({ label, type, wrapperStyle, disabled, testID, isLoading, onPres
         <TouchableWithoutFeedback
           testID={testID}
           accessibilityLabel={disabled ? "disabled" : "enabled"}
-          disabled={disabled}
+          disabled={disabled || isLoading}
           onPressIn={handlePressIn}
           onPressOut={handlePressOut}
         >
