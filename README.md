@@ -38,7 +38,7 @@ To install dependencies, run:
 yarn
 ```
 
-You'll also need to install iOS pods by running 
+You'll also need to install iOS pods by running
 
 ```
 cd ios && pod install && cd ../
@@ -275,6 +275,29 @@ The YuLife project follows the [atomic design](http://atomicdesign.bradfrost.com
 |   ├── styles
 ├── storybook
 ```
+
+## Custom ESLint Rules
+
+We use ESLint and Prettier to enforce code style rules across the project. We use industry standard rules as created by AirBnB and React.
+We can also use ESLint to create our own custom rules specific to our codebase. Some of the reason why we may want to do this include:
+
+- Preventing the team from using deprecated fields/methods
+- Enforcing repo-specific naming conventions for files/variables
+- Help in planning and preparing ugrades and migrations
+
+The custom ESLint rules are defined in the `yu-eslint/index.js` file. Define the rule inside of the `rules` object.
+
+To enable your rule, you'll need to run `yarn add -D file:./yu-eslint` and to specify the rule inside of the `.eslintrc` file.
+
+The rule should now display throughout the repo.
+
+Note: One thing I've come across is often VSCode seems to cache the ESLint rules, so when they're changed and reinstalled they won't display automatically in the editor. I've found restarting VSCode solves this.
+
+For those looking to create their own ESLint rules, here are some recommended materials:
+
+- [Writing Rules: Medium Article](https://flexport.engineering/writing-custom-lint-rules-for-your-picky-developers-67732afa1803)
+- [Official Docs](https://eslint.org/docs/developer-guide/working-with-rules)
+- [AST Explorer](https://astexplorer.net/)
 
 ## Gotchas
 
