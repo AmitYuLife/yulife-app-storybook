@@ -93,10 +93,11 @@ const QuestsContainer: FC<Props> = (props) => {
         reward={coins}
         score={score}
         unit={unit as any}
+        loading={loading}
         copy={copy.success}
       />
     ) : (
-      <ChallengeFailedScreen level={level} onPress={handleResetChallenge()} copy={copy.failed} />
+      <ChallengeFailedScreen level={level} onPress={handleResetChallenge()} loading={loading} copy={copy.failed} />
     );
   }
 
