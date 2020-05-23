@@ -1,4 +1,4 @@
-import { navigateViaText, navigateViaID, CHALLENGE_TILE, idVisible, CHALLENGE_PROGRESS_BAR, expectIsVisibleViaText, QUESTS_SCREEN } from "@navigation"
+import { navigateViaText, navigateViaID, CHALLENGE_TILE, idVisible, CHALLENGE_PROGRESS_BAR, expectIsVisibleViaText, QUESTS_SCREEN, wait } from "@navigation"
 
 export const onChallengeComplete = (stepCount: number, level = 1) => async () => {
     const steps = `${stepCount} steps`
@@ -6,9 +6,10 @@ export const onChallengeComplete = (stepCount: number, level = 1) => async () =>
 
     const screenCopy = ["well done!", "collect", steps, challengeLevel]
 
-    screenCopy.forEach(async i => {
+
+    for (const i of screenCopy) {
         await expect(element(by.text(i))).toBeVisible()
-    });
+    };
 }
 
 export const startChallenge = (challengeTile: string, ) => async () => {

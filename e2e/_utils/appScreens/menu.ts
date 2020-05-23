@@ -4,9 +4,9 @@ import { navigateViaID } from "@navigation";
 export const menuItemsVisible = async () => {
     const menuItems = ["statistics", "activity history", "member zone", "settings", "chat", "log out"]
 
-    menuItems.forEach(async i => {
+    for (const i of menuItems) {
         await expect(element(by.id(MENU_ITEM(i)))).toBeVisible()
-    });
+    };
 }
 
 export const tapMenuItem = (menuItem: string) => async () => {
