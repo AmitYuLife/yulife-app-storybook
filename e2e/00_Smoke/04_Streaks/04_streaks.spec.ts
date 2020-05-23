@@ -28,7 +28,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                                 When("I walk over 100 steps", when.sendSteps(108, 15000), async () => {
                                     Then("I should see the times up modal", then.textVisible("time’s up!"))
                                     When("I tap see result", when.tapText("see result"), async () => {
-                                        Then("I should see the well done screen", then.onChallengeComplete(108, 60))
+                                        Then("I should see the well done screen", then.onChallengeComplete(108, 1))
                                         When("I tap collect", when.tapText("collect"), async () => {
                                             Then("..I should see the completed streak day 1 modal", then.textVisible("Completed streak day 1"))
                                             When("I tap 'done'", when.tapText("done"), async () => {
@@ -72,7 +72,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                             When("I walk over 100 steps", when.sendSteps(200, 15000), async () => {
                                 Then("I should see the times up modal", then.textVisible("time’s up!"))
                                 When("I tap see result", when.tapText("see result"), async () => {
-                                    Then("I should see the well done screen", then.onChallengeComplete(200, 60))
+                                    Then("I should see the well done screen", then.onChallengeComplete(200, 2))
                                     When("I tap collect", when.tapText("collect"), async () => {
                                         Then("..I should see the completed streak day 2 modal", then.textVisible("Completed streak day 2"))
                                         When("I tap 'done'", when.tapText("done"), async () => {
@@ -111,7 +111,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                         When("I walk over 100 steps", when.sendSteps(200, 15000), async () => {
                             Then("I should see the times up modal", then.textVisible("time’s up!"))
                             When("I tap see result", when.tapText("see result"), async () => {
-                                Then("I should see the well done screen", then.onChallengeComplete(200, 6))
+                                Then("I should see the well done screen", then.onChallengeComplete(200, 5))
                                 When("I tap collect", when.tapText("collect"), async () => {
                                     Then("I should see my reward of 2500 coins", then.textVisible("collect 2500 yucoin"))
                                     When("I tap collect 2500 yucoin", when.tapText("collect 2500 yucoin"), async () => {
@@ -145,7 +145,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                             When("I walk over 100 steps", when.sendSteps(200, 15000), async () => {
                                 Then("I should see the times up modal", then.textVisible("time’s up!"))
                                 When("I tap see result", when.tapText("see result"), async () => {
-                                    Then("I should see the well done screen", then.onChallengeComplete(200, 60))
+                                    Then("I should see the well done screen", then.onChallengeComplete(200, 3))
                                     When("I tap collect", when.tapText("collect"), async () => {
                                         Then("I should see the complete streak day 1 screen", then.textVisible("Completed streak day 1"))
 

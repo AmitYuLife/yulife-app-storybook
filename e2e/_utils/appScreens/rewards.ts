@@ -112,9 +112,9 @@ export const lockedRewardVisible = (reward: any) => async () => {
 export const rewardDenominationsVisible = (reward: any) => async () => {
     const denominations = reward.data.available_denominations
 
-    denominations.forEach(async i => {
+    for (const i of denominations) {
         await expect(element(by.text(`£${i.value}.00 - ${i.yuCoin} yucoin`))).toBeVisible()
-    });
+    };
 }
 
 export const tapDenomination = (reward: any, index: number) => async () => {

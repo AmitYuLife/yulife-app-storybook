@@ -5,7 +5,7 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON } from "@ids";
 import { records } from "@data";
-import { REWARDS_JOHN_LEWIS, REAWARDS_AVIOS, REWARDS_BLOOM_UNAVAILABLE } from "_utils/data/stubs";
+import { REWARDS_JOHN_LEWIS, REAWARDS_AVIOS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_2, AUTH_2 } from "_utils/data/stubs";
 Feature("As a user I can navigate through member routes correctly", async () => {
 
     Scenario("I can view the core screens of the app", scenario.start, async () => {
@@ -83,7 +83,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     })
 
     Scenario("I can talk to yulife via intercom", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(), async () => {
+        Given("I login as a user", given.loginAsUser(CUSTOMER_2, AUTH_2), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
             When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 1500), async () => {
                 Then("I should see the menu items", then.menuItemsVisible)
@@ -135,7 +135,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                             When("I tap a locked challenge", when.tapText("level 3"), async () => {
                                 Then("nothing should happen", then.idVisible(CHALLENGE_SET))
                                 When("I tap the short stroll challenge", when.tapID(CHALLENGE_TILE("short stroll")), async () => {
-                                    Then("I should see a screen with a take challenge option", then.multipleTextVisible(["short stroll / 0 minutes", "100 steps", "take challenge"]))
+                                    Then("I should see a screen with a take challenge option", then.multipleTextVisible(["short stroll / 0 minute", "100 steps", "take challenge"]))
                                     When("I tap 'take challenge'", when.tapText("take challenge"), async () => {
                                         Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 5000))
                                         When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
