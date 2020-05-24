@@ -1,6 +1,6 @@
 // import { Style } from "@styles/index";
 import { QUESTS_SCREEN } from "@ids";
-import { TopBarTypes, TOP_BAR_TYPES } from "@molecules/top-bar/top-bar";
+import { TopBarTypes } from "@molecules/top-bar/top-bar";
 import { getCurrentEpisode, getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
@@ -132,7 +132,6 @@ class QuestsScreen extends React.Component<IProps, IState> {
                 currentEpisode
                 ],
             });
-            this.colorStatusBar(topBarType as TOP_BAR_TYPES);
           });
         }
       }, 600);
@@ -143,26 +142,12 @@ class QuestsScreen extends React.Component<IProps, IState> {
     this.props.hideUnity();
   };
 
-  private colorStatusBar = (type: TOP_BAR_TYPES) => {
-    Navigation.mergeOptions(this.props.componentId, {
-      statusBar: {
-        style: [
-          TOP_BAR_TYPES.DEMO,
-          TOP_BAR_TYPES.MOUNTAIN,
-          TOP_BAR_TYPES.WHITE,
-        ].includes(type) ? "light" : "dark"
-      }
-    });
-  }
-
   private handleViewableItemsChanged: ViewabilityConfigCallbackPair["onViewableItemsChanged"] = ({ viewableItems }) => {
     const first = viewableItems[0];
     const last = viewableItems[viewableItems.length - 1];
 
     if (first && last) {
-      this.setState({ UI: { topBarType: last.item.topBarType } }, () => {
-        this.colorStatusBar(last.item.topBarType);
-      });
+      this.setState({ UI: { topBarType: last.item.topBarType } });
     }
   };
 
