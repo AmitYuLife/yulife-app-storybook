@@ -2,13 +2,13 @@ import { useMutation } from "@apollo/react-hooks";
 import { GQL_MUTATION_LOGIN_USER, LoginUserMutationTuple } from "@graphql/user";
 import { bottomTabs, ROUTES } from "@navigation/constants";
 import { setAuthenticatedRoot } from "@navigation/root";
-import { TOKEN_EXPIRATION } from "@services/constants";
+import { TOKEN_EXPIRATION, SESSION_EXPIRED_ERROR } from "@services/constants";
 import { FitKitAvailable } from "@services/fitkit/fitkit.service";
 import { Style } from "@styles/index";
 import React, { useState, useCallback, useMemo } from "react";
 import { Keyboard, Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { GetMobileCopy_getMobileCopy_screens_login as LoginCopy } from "@graphql/_core/schema";
 import { LoginMethod, IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
 import { IReduxState } from "../../../redux/_core/reducers";
@@ -25,26 +25,27 @@ interface IOwnProps {
   componentId: string;
   otp?: string;
   email?: string;
+  hasSessionExpiredError?: boolean;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
-type ConnectedDispatch = typeof mapDispatchToProps;
 
-type Props = IOwnProps & ConnectedState & ConnectedDispatch;
+type Props = IOwnProps & ConnectedState;
 
 const LoginContainer: React.FC<Props> = ({
   componentId,
   copy,
   otp,
   email: incomingEmail,
-  setAuthenticated: dispatchSetAuthenticated,
-  loginUserSuccess: dispatchLoginUserSuccess,
+  hasSessionExpiredError = false,
 }) => {
+  const dispatch = useDispatch();
   const [isUsingOtp, setIsUsingOtp] = useState(otp && otp.length > 10);
   const [email, setEmail] = useState(isUsingOtp ? incomingEmail : "");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState(isUsingOtp ? "PASSWORD" : "");
   const [passwordError, setPasswordError] = useState("");
+  const [sessionExpiredError, setSessionExpiredError] = useState(hasSessionExpiredError ? SESSION_EXPIRED_ERROR : "");
   const [wasLoginCalled, setWasLogginCalled] = useState(false);
 
   const isFormValid = useMemo(() => !(validateEmail(email) || validatePassword(password)), [email, password]);
@@ -65,7 +66,7 @@ const LoginContainer: React.FC<Props> = ({
           return;
         }
 
-        setAuthenticatedRoot(dispatchSetAuthenticated); // TODO: use setNextRoot when the right intro's ready
+        setAuthenticatedRoot(() => dispatch(setAuthenticated())); // TODO: use setNextRoot when the right intro's ready
       };
 
       Keyboard.dismiss();
@@ -87,7 +88,7 @@ const LoginContainer: React.FC<Props> = ({
 
       navigateToNext();
     },
-    [componentId, dispatchSetAuthenticated]
+    [componentId, dispatch]
   );
 
   const onLogIn = useCallback(
@@ -113,7 +114,7 @@ const LoginContainer: React.FC<Props> = ({
 
           if (results && results.data && results.data.loginUser && results.data.loginUser.token) {
             await setToken(results.data.loginUser.token);
-            dispatchLoginUserSuccess(results.data);
+            dispatch(loginUserSuccess(results.data));
 
             // no need to send the user to healthkit-connect if device is an ipad
             await goToNext(Style.isIPad() ? true : authorised, results.data.loginUser.user.redeemedOnboarding);
@@ -125,7 +126,7 @@ const LoginContainer: React.FC<Props> = ({
         }
       }
     },
-    [email, isUsingOtp, password, otp, dispatchLoginUserSuccess, goToNext, isFormValid, loginUser]
+    [email, isUsingOtp, password, otp, dispatch, goToNext, isFormValid, loginUser]
   );
 
   const onResetPassword = useCallback(async () => {
@@ -141,11 +142,13 @@ const LoginContainer: React.FC<Props> = ({
   const onEmailChange = useCallback((input: string) => {
     setEmailError(validateEmail(input));
     setEmail(input);
+    setSessionExpiredError("");
   }, []);
 
   const onPasswordChange = useCallback((input: string) => {
     setPasswordError(validatePassword(input));
     setPassword(input);
+    setSessionExpiredError("");
   }, []);
 
   return (
@@ -165,7 +168,7 @@ const LoginContainer: React.FC<Props> = ({
             email={email}
             emailError={emailError}
             isLoggingIn={loading || wasLoginCalled}
-            loginError={error && trimGraphQLError(error.message)}
+            loginError={(error && trimGraphQLError(error.message)) || sessionExpiredError}
             onEmailChange={onEmailChange}
             onResetPasswordPress={onResetPassword}
             onLogInPress={() => onLogIn(authorised)}
@@ -184,9 +187,4 @@ const mapStateToProps = (state: IReduxState) => ({
   copy: getCopy(state, "login") as LoginCopy,
 });
 
-const mapDispatchToProps = {
-  loginUserSuccess,
-  setAuthenticated,
-};
-
-export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default connect<ConnectedState>(mapStateToProps)(LoginContainer);

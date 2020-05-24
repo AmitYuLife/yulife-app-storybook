@@ -1,7 +1,11 @@
+import getSession from "@graphql/user/getSession.gql";
 import handleDeepLink from "@navigation/handleDeepLink";
-import { setAuthenticatedRoot, setOfflineRoot, setUnauthenticatedRoot } from "@navigation/root";
+import { setAuthenticatedRoot, setOfflineRoot, setUnauthenticatedRoot, expireSession } from "@navigation/root";
+import { refreshUserToken } from "@redux/user/user.actions";
+import Logger from "@services/logging/logger";
 import { getToken } from "@services/storage";
 import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
+import moment from "moment";
 import { call, put } from "redux-saga/effects";
 import { setAuthenticated, setUnauthenticated } from "../app.actions";
 
@@ -9,6 +13,8 @@ interface IMainRootPayload {
   payload: string;
   type: string;
 }
+
+type TokenStatus = "refreshing" | "valid" | "invalid" | null;
 
 export default function* setMainRootSaga({ payload }: IMainRootPayload) {
   const token = yield call(getToken);
@@ -19,7 +25,13 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
     if (connectionInfo.type === "none") {
       yield call(setOfflineRoot);
     } else {
-      yield call(setAuthenticatedRoot);
+      const tokenStatus: TokenStatus = yield call(getTokenStatus);
+
+      if (tokenStatus === "refreshing") {
+        yield put(refreshUserToken());
+      } else if (tokenStatus !== "invalid") {
+        yield call(setAuthenticatedRoot);
+      }
     }
 
     yield put(setAuthenticated());
@@ -30,5 +42,33 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
 
   if (!!payload) {
     yield call(handleDeepLink, payload, token);
+  }
+}
+
+async function getTokenStatus(): Promise<TokenStatus> {
+  try {
+    const { data, errors } = await getSession();
+
+    if (errors && errors.length) {
+      Logger.logMixpanelError("error trying to get user session", errors);
+      return null;
+    }
+
+    if (data && data.getSession === null) {
+      await expireSession();
+      return "invalid";
+    }
+
+    const expiresAt = moment.unix(data.getSession.expires);
+    const isExpired = moment().isAfter(expiresAt);
+
+    if (isExpired) {
+      await expireSession();
+      return "invalid";
+    }
+
+    return !isExpired && moment().add(30, "days").isAfter(expiresAt) ? "refreshing" : "valid";
+  } catch (e) {
+    return null;
   }
 }

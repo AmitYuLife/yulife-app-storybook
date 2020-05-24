@@ -1,4 +1,7 @@
+import { ApolloQueryResult } from "apollo-client";
+import { GetCurrentUser } from "@graphql/_core/schema";
 import getCurrentUserWithClient from "@graphql/user/getCurrentUser.gql";
+import { expireSession } from "@navigation/root";
 import { getToken } from "@services/storage";
 import { pathOr } from "@services/utils";
 import { call, put, spawn } from "redux-saga/effects";
@@ -12,7 +15,12 @@ export default function* getUserDataSaga() {
     const token = yield call(getToken);
 
     if (token) {
-      const { data } = yield call(getCurrentUserWithClient);
+      const { data, errors }: ApolloQueryResult<GetCurrentUser> = yield call(getCurrentUserWithClient);
+
+      if (data && data.getCurrentUser === null && !errors) {
+        yield call(expireSession);
+        return;
+      }
 
       yield spawn(
         setLoggerIdentity,

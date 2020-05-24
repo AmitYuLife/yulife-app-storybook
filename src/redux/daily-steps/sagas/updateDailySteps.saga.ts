@@ -9,7 +9,9 @@ export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof upd
   try {
     const { data } = yield call(upsertStepsChallenge, [mapPedometerResults(payload)]);
 
-    yield put(updateDailyStepsSuccess(data));
+    if (data && data.upsertPassiveChallenge) {
+      yield put(updateDailyStepsSuccess(data));
+    }
   } catch (e) {
     yield spawn(() => Logger.logMixpanelError(e, "updateDailySteps"));
     yield put(updateDailyStepsFailed(e.message));

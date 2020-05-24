@@ -1,5 +1,6 @@
 import { Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
+import { clearToken } from "@services/storage";
 import { ILabel } from "../components/molecules";
 import { Style } from "../styles";
 import { bottomTabs, ROUTES } from "./constants";
@@ -237,4 +238,9 @@ export async function setOfflineRoot() {
       },
     },
   });
+}
+
+export async function expireSession() {
+  await clearToken();
+  await setUnauthenticatedRoot({ hasSessionExpiredError: true });
 }

@@ -105,7 +105,7 @@ const LeaderboardsContainer: FC<Props> = ({
 
   const initialScrollIndex = useMemo(
     () =>
-      data && data.getLeaderboard !== null
+      data && data.getLeaderboard !== null && data.getCurrentUser && data.getCurrentUser.id
         ? (data.getLeaderboard as any).findIndex((item: any) => item.id === `lead_${data.getCurrentUser.id}`)
         : 0,
     [data]

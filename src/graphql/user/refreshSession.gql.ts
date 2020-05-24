@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import { ExecutionResult } from "graphql";
 import client from "../_core/client";
 import { RefreshSession, RefreshSessionVariables } from "../_core/schema";
 
@@ -12,6 +13,8 @@ export const GQL_MUTATION_REFRESH_SESSION = gql`
     }
   }
 `;
+
+export type RefreshSessionExecutionResult = ExecutionResult<RefreshSession>;
 
 export default (variables: RefreshSessionVariables) =>
   client().mutate<RefreshSession, RefreshSessionVariables>({
