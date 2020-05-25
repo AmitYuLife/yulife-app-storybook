@@ -40,7 +40,7 @@ const MenuScreen: SFC<IProps> = ({ onDebugPress, onPressClose, links, version })
                 onPress={onPress}
                 testID={MENU_ITEM(label)}
               >
-                {source && (
+                {!source ? null : (
                   <View style={styles.iconWrapper}>
                     <Image style={styles.logo} source={source} />
                   </View>

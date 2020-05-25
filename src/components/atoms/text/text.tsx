@@ -5,7 +5,7 @@ import styles from "./text.styles";
 
 interface IProps extends TextProps {
   bold?: boolean;
-  style?: TextStyle;
+  style?: TextStyle | TextStyle[];
   testID?: string;
 }
 
