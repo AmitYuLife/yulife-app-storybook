@@ -31,8 +31,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     overflow: "hidden",
-    // android box shadow
-    elevation: 10,
   } as ViewStyle,
   outerWrapper: {
     position: "absolute",
@@ -46,6 +44,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+  } as ViewStyle,
+  elevation: {
+    elevation: 2,
   } as ViewStyle,
 });
 

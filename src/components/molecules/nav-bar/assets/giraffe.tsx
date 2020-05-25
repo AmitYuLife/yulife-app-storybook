@@ -4,15 +4,16 @@ import * as React from "react";
 import Svg, { G, Path } from "react-native-svg";
 import { getIconColour, IIconProps } from "../nav-bar.helpers";
 import { NAV_BAR } from "@ids";
+import { Platform } from "react-native";
 
 export default function Girrafe({ isActive, onPressIn, onPressOut, isHighlighted }: IIconProps) {
   const fill = getIconColour(isActive || isHighlighted);
   const size = String(Style.SCALE_UP_AND_DOWN(54));
 
   return (
-    <Svg viewBox="0 0 54 54" width={size} height={size} testID={NAV_BAR("yucoin")}>
-      <G onPress={onPressIn} onPressIn={onPressIn} onPressOut={onPressOut}>
-        <Path fill="#fff" d="M0 0h54v54H0z" />
+    <Svg onPressIn={onPressIn} onPressOut={onPressOut} viewBox="0 0 54 54" width={size} height={size} testID={NAV_BAR("yucoin")}>
+      <G>
+        {Platform.OS === "ios" ? <Path fill="#fff" d="M0 0h54v54H0z" /> : null}
         <Path
           d="M37.55 18.25A10.55 10.55 0 1127 7.75h0a10.58 10.58 0 0110.6 10.5z"
           fill="none"

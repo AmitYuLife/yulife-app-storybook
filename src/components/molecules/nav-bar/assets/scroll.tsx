@@ -4,15 +4,16 @@ import * as React from "react";
 import Svg, { Circle, G, Path } from "react-native-svg";
 import { getIconColour, IIconProps } from "../nav-bar.helpers";
 import { NAV_BAR } from "@ids";
+import { Platform } from "react-native";
 
 export default function Scroll({ isActive, onPressIn, hasNotification, isHighlighted }: IIconProps) {
   const fill = getIconColour(isActive || isHighlighted);
   const size = String(Style.SCALE_UP_AND_DOWN(54));
 
   return (
-    <Svg viewBox="0 0 54 54" width={size} height={size} testID={NAV_BAR("quests")}>
-      <G onPressIn={onPressIn} onPressOut={onPressIn}>
-        <Path d="M0 0H54V54H0z" fill="#fff" />
+    <Svg onPressIn={onPressIn} onPressOut={onPressIn} viewBox="0 0 54 54" width={size} height={size} testID={NAV_BAR("quests")}>
+      <G >
+        {Platform.OS === "ios" ? <Path d="M0 0H54V54H0z" fill="#fff" /> : null}
         <Path d="M36.35 7.25h-15.8A1.66 1.66 0 0019 9v16.8" fill="none" stroke={fill} strokeMiterlimit={10} />
         <Path
           d="M34.75 10.75h1.6a1.76 1.76 0 00.3-3.5 1.7 1.7 0 00-1.89 1.51.28.28 0 000 .09v18.7M34.75 25.75h-17.4a1.71 1.71 0 00-1.61 1.81v.09a1.65 1.65 0 001.6 1.6h15.8a1.67 1.67 0 001.6-1.7"
