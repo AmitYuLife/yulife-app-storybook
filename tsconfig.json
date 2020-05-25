@@ -13,6 +13,7 @@
     "baseUrl": ".",
     "paths": {
       "@atoms/*": ["./src/components/atoms/*"],
+      "@components/*": ["./src/components/*"],
       "@containers/*": ["./src/components/containers/*"],
       "@modals/*": ["./src/components/modals/*"],
       "@molecules/*": ["./src/components/molecules/*"],
@@ -23,6 +24,7 @@
       "@redux/*": ["./src/redux/*"],
       "@services/*": ["./src/services/*"],
       "@styles/*": ["./src/styles/*"],
+      "@styles": ["./src/styles/index"],
       "@e2e/*": ["./src/e2e/*"],
       "@ids": ["./e2e/_utils/navigation/ids"],
       "@app/*": ["./src/*"],

@@ -1,130 +1,49 @@
-import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { StyleSheet, ViewStyle, Platform } from "react-native";
 import { Style } from "../../../../styles";
+
+function getCloseTop() {
+  const base = Style.getSafeAreaStart();
+  if (Style.isAnyIphoneX()) {
+    return base + 12;
+  } else if (Style.defaultShrinkThreshold) {
+    return base - 14;
+  } else {
+    return base + Style.adjust(-12);
+  }
+}
 
 const styles = StyleSheet.create({
   absolute: {
     position: "absolute",
   } as ViewStyle,
-  activeChallengeWrapper: {
-    flexDirection: "row",
-    marginTop: Style.SCALE_UP_AND_DOWN(10),
-  } as ViewStyle,
-  challengesWrapper: {
-    backgroundColor: "white",
-    paddingHorizontal: Style.SCALE_UP_AND_DOWN(15),
-    paddingVertical: Style.SCALE_UP_AND_DOWN(30),
-  } as ViewStyle,
-  checkWrapper: { flex: 1, alignItems: "flex-end" } as ViewStyle,
-  checksWrapper: {
-    alignSelf: "flex-end",
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    position: "absolute",
-    right: Platform.OS === "ios" ? -1 : 0,
-    top: 9,
-  } as ViewStyle,
-  chestCoinWrapper: {
-    alignItems: "center",
-    width: "100%",
-  } as ViewStyle,
-  coinInnerWrapper: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: Style.SCALE_UP_AND_DOWN(-128),
-  } as ViewStyle,
-  coinOuterWrapper: {
-    alignItems: "center",
-    height: Style.SCALE_UP_AND_DOWN(200),
-    justifyContent: "center",
-    marginTop: Style.SCALE_UP_AND_DOWN(-50),
-    overflow: "hidden",
-    width: Style.SCALE_UP_AND_DOWN(200),
-  } as ViewStyle,
   contentWrapper: {
     alignSelf: "center",
-    width: Style.SCALE_UP_AND_DOWN(305),
-  } as ViewStyle,
-  ctaWrapper: {
-    alignSelf: "center",
-  } as ViewStyle,
-  heading: {
-    color: "rgb(216, 139, 37)",
-  } as TextStyle,
-  headingRight: {
-    color: "rgb(216, 139, 37)",
-    marginLeft: "auto",
-  } as TextStyle,
-  headingWrapper: {
-    alignItems: "center",
-    backgroundColor: "rgb(255, 242, 121)",
-    flexDirection: "row",
-    height: Style.SCALE_UP_AND_DOWN(34),
-    paddingHorizontal: Style.SCALE_UP_AND_DOWN(15),
-    width: "100%",
-  } as ViewStyle,
-  passiveChallengeInstructions: {
-    color: "rgb(170,170,170)",
-    fontSize: Style.SCALE_UP_AND_DOWN(13),
-  } as TextStyle,
-  passiveChallengeInstructionsWrapper: {
-    flexDirection: "row",
-    marginTop: Style.SCALE_UP_AND_DOWN(8),
-  } as ViewStyle,
-  passiveChallengeWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
-  } as ViewStyle,
-  progressWrapper: {
-    alignItems: "flex-end",
-    borderColor: "transparent",
-    borderWidth: 1,
-    justifyContent: "center",
-    overflow: "hidden",
-    width: "100%",
-  } as ViewStyle,
-  starWrapper: {
-    marginLeft: 5,
-    marginTop: 2,
-  } as ViewStyle,
-  starsWrapper: {
-    alignItems: "center",
-    flexDirection: "row",
-    marginLeft: Style.SCALE_UP_AND_DOWN(5),
-  } as ViewStyle,
-  steps: {
-    fontSize: Style.SCALE_UP_AND_DOWN(16),
-  } as TextStyle,
-  svg: {
-    marginTop: Style.SCALE_UP_AND_DOWN(10),
+    width: 305,
   } as ViewStyle,
   wrapper: {
     backgroundColor: "rgba(255,255,255,0.9)",
     flex: 1,
   } as ViewStyle,
-  yucoinsEarned: {
-    fontSize: Style.SCALE_UP_AND_DOWN(16),
-    marginLeft: "auto",
-  } as TextStyle,
   scrollView: {
     flex: 1,
   } as ViewStyle,
-  scrollViewContentContainer: {
-    paddingVertical: Style.SCALE_UP_AND_DOWN(30),
+  close: {
+    right: 0,
+    top: Platform.select({
+      ios: getCloseTop(),
+      android: 8
+    }),
+    padding: Style.adjust(16),
   } as ViewStyle,
-  surgeWrapper: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: Style.SCALE_UP_AND_DOWN(8),
-    paddingVertical: Style.SCALE_UP_AND_DOWN(4),
-    borderRadius: Style.SCALE_UP_AND_DOWN(20),
-    borderColor: "rgb(216, 139, 37)",
-    borderWidth: Style.SCALE_UP_AND_DOWN(1),
-    marginLeft: Style.SCALE_UP_AND_DOWN(9),
+  heading: {
+    marginTop: Platform.select({
+      ios: Style.isAnyIphoneX() ? 44 : Style.adjust(20),
+      android: 0
+    })
   } as ViewStyle,
-  surge: {
-    fontSize: Style.SCALE_UP_AND_DOWN(13),
-    color: "rgb(216, 139, 37)",
-  },
+  reduceBottomPadding: {
+    paddingBottom: 10
+  } as ViewStyle,
 });
 
 export default styles;

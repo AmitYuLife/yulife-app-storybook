@@ -1,4 +1,4 @@
-import { Dimensions, PixelRatio, Platform } from "react-native";
+import { Dimensions, PixelRatio, Platform, StatusBar } from "react-native";
 import DeviceInfo from "react-native-device-info";
 
 const pixelRatio = PixelRatio.get();
@@ -67,6 +67,46 @@ const scaledYPixel = +(y / 667).toFixed(3);
 const SCALE_UP_AND_DOWN = (val: number) => PixelRatio.roundToNearestPixel(scaledPixel * val);
 const SCALE_Y_UP_AND_DOWN = (value: number) => scaledYPixel * value;
 export const TOTAL_WIDTH = x * pixelRatio;
+const defaultShrinkThreshold = y < 600;
+const defaultGrowThreshold = y > 900;
+
+interface IAdjustOptions {
+  shrinkMultiplier?: number;
+  growMultiplier?: number;
+  shrinkThreshold?: boolean;
+  growThreshold?: boolean;
+}
+const adjust = (val: number, options: IAdjustOptions = {}) => {
+  const {
+    shrinkMultiplier = Platform.select({ ios: 0.15, android: 0.2 }),
+    growMultiplier = Platform.select({ ios: 0.15, android: 0.2 }),
+    shrinkThreshold = defaultShrinkThreshold,
+    growThreshold = defaultGrowThreshold
+  } = options;
+  if (growThreshold) {
+    return val + (val * growMultiplier);
+  } else if (shrinkThreshold) {
+    return val - (val * shrinkMultiplier);
+  } else {
+    return val;
+  }
+};
+
+const getSafeAreaStart = () => {
+  if (Platform.OS === 'android') {
+    return StatusBar.currentHeight;
+  }
+
+  if (isIphoneXPlus()) {
+    return 36;
+  }
+
+  if (isIphoneX()) {
+    return 36;
+  }
+
+  return 34;
+};
 
 const Style = {
   BASE_HEIGHT,
@@ -95,6 +135,9 @@ const Style = {
   isShortToMediumAndroidAndHighScaledPixel,
   isTallAndLowScaledPixelAndroid,
   isShortAndLowScaledPixelAndroid,
+  getSafeAreaStart,
+  adjust,
+  defaultShrinkThreshold
 };
 
 export default Style;
