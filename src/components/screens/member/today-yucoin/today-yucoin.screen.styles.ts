@@ -6,9 +6,9 @@ function getCloseTop() {
   if (Style.isAnyIphoneX()) {
     return base + 12;
   } else if (Style.defaultShrinkThreshold) {
-    return base - 14;
+    return base - 2;
   } else {
-    return base + Style.adjust(-12);
+    return base + 2;
   }
 }
 
