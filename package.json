@@ -1,7 +1,7 @@
 {
   "name": "yulife",
-  "version": "2.0.0",
-  "versionCode": 51,
+  "version": "2.1.0",
+  "versionCode": 53,
   "private": true,
   "scripts": {
     "android:adb:reverse": "adb reverse tcp:8081 tcp:8081 && adb reverse tcp:7007 tcp:7007",
