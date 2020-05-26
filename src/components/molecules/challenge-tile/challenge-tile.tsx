@@ -19,7 +19,6 @@ export interface IChallengeTileProps {
   currentWorld: number;
   duration?: string;
   image?: Images;
-  isImageBackgroundFlipped?: boolean;
   isLocked?: boolean;
   minimumLevel?: number;
   onPress?: () => void;
@@ -48,7 +47,6 @@ function ChallengeTile(props: Props) {
     challengeType,
     currentWorld,
     duration = "",
-    isImageBackgroundFlipped = false,
     isLocked = false,
     minimumLevel = 1,
     onPress = () => null,
@@ -60,14 +58,13 @@ function ChallengeTile(props: Props) {
   }
 
   return (
-    <TouchableOpacity onPress={onPress} style={styles.wrapper}>
+    <TouchableOpacity activeOpacity={isLocked ? 1 : 0.2} onPress={onPress} style={styles.wrapper}>
       <AnimalImage
         image={getImageSource(challengeType, currentWorld)}
         isLocked={isLocked}
-        isImageBackgroundFlipped={isImageBackgroundFlipped}
       />
       {isLocked ? (
-        <LockedOverlay minimumLevel={minimumLevel} isImageBackgroundFlipped={isImageBackgroundFlipped} />
+        <LockedOverlay minimumLevel={minimumLevel} />
       ) : (
           <Content challengeType={challengeType} duration={duration} reward={reward} />
         )}
@@ -77,9 +74,9 @@ function ChallengeTile(props: Props) {
 
 export default ChallengeTile;
 
-const LockedOverlay: FunctionComponent<Partial<Props>> = ({ isImageBackgroundFlipped, minimumLevel }) => (
+const LockedOverlay: FunctionComponent<Partial<Props>> = ({ minimumLevel }) => (
   <View
-    style={StyleSheet.flatten([styles.lockedOverlay, isImageBackgroundFlipped ? styles.lockedOverlayFlipped : null])}
+    style={styles.lockedOverlay}
   >
     <Image resizeMode="contain" style={styles.lockedImage} source={assets.lock} />
     <Text style={styles.lockedLabel} bold={true}>
@@ -88,13 +85,12 @@ const LockedOverlay: FunctionComponent<Partial<Props>> = ({ isImageBackgroundFli
   </View>
 );
 
-const AnimalImage: FunctionComponent<Partial<Props>> = ({ image, isLocked, isImageBackgroundFlipped }) => (
+const AnimalImage: FunctionComponent<Partial<Props>> = ({ image, isLocked }) => (
   <View style={isLocked ? styles.imageWrapperLocked : styles.imageWrapper}>
     <View
       style={StyleSheet.flatten([
         styles.imageBackground,
         isLocked ? styles.imageBackgroundLocked : null,
-        isImageBackgroundFlipped ? styles.imageBackgroundFlipped : null,
       ])}
     />
     <Image
