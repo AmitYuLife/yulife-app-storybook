@@ -66,7 +66,6 @@ const scaledYPixel = +(y / 667).toFixed(3);
 
 const SCALE_UP_AND_DOWN = (val: number) => PixelRatio.roundToNearestPixel(scaledPixel * val);
 const SCALE_Y_UP_AND_DOWN = (value: number) => scaledYPixel * value;
-export const TOTAL_WIDTH = x * pixelRatio;
 const defaultShrinkThreshold = y < 600;
 const defaultGrowThreshold = y > 900;
 
@@ -91,6 +90,8 @@ const adjust = (val: number, options: IAdjustOptions = {}) => {
     return val;
   }
 };
+
+export const TOTAL_WIDTH = x * pixelRatio;
 
 const getSafeAreaStart = () => {
   if (Platform.OS === 'android') {

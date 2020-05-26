@@ -3,6 +3,7 @@ import { getStorybookUI, configure } from "@storybook/react-native";
 import "./addons";
 
 configure(() => {
+  require("../molecules/challenge-tile/challenge-tile.stories");
   require("../atoms/button/minimalButton.stories");
 }, module);
 
