@@ -29,7 +29,9 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
 
       if (tokenStatus === "refreshing") {
         yield put(refreshUserToken());
-      } else if (tokenStatus !== "invalid") {
+      }
+
+      if (tokenStatus !== "invalid") {
         yield call(setAuthenticatedRoot);
       }
     }
