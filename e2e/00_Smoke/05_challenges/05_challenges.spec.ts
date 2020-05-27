@@ -82,17 +82,17 @@ Feature("As a user I can take a challenge", async () => {
                     Then("I should see the meditation challenge", then.idVisible(CHALLENGE_TILE("meditation")))
                     When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
                         Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
-                        When("I walk over 3000 steps", when.sendSteps(3000, 15000), async () => {
+                        When("I walk over 3000 steps", when.sendSteps(3050, 30000), async () => {
                             Then("I should see the times up modal", then.textVisible("time’s up!"))
                             When("I tap see result", when.tapText("see result"), async () => {
-                                Then("I should see the well done screen", then.onChallengeComplete(3000, 7))
+                                Then("I should see the well done screen", then.onChallengeComplete(3050, 7))
                                 When("I tap collect", when.tapText("collect"), async () => {
                                     Then("I should see the chest unlocked screen", then.textVisible("you get 500 yucoin"))
                                     When("I tap collect", when.dismissChestUnlock(), async () => {
                                         Then("I should be on the quest screen", then.idVisible(QUESTS_SCREEN(0)))
                                         When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
                                             Then("I should see my coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(1330)))
-                                            Then("I should see the number of steps I just completed", then.textVisible("3000 steps"))
+                                            Then("I should see the number of steps I just completed", then.textVisible("3050 steps"))
                                             Then("I should see the number of coins I've earned today", then.textVisible("570 yucoin today"))
                                         })
                                     })
