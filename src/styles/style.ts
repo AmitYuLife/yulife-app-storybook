@@ -103,10 +103,10 @@ const getSafeAreaStart = () => {
   }
 
   if (isIphoneX()) {
-    return 36;
+    return 34;
   }
 
-  return 34;
+  return 20;
 };
 
 const Style = {
