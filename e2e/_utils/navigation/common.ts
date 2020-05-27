@@ -26,6 +26,10 @@ export const reloadAppToTab = (tab: "yucoin" | "quests" | "leaderboard" | "rewar
     await navigateViaID(NAV_BAR(tab))
 }
 
+export const reloadOnly = async () => {
+    await device.reloadReactNative()
+}
+
 export const wait = (timeout = 5000) => async () => new Promise((resolve) => setTimeout(resolve, timeout));
 
 export const navigateViaID = async (id: string) => {
