@@ -121,23 +121,23 @@ Feature("As a user I can navigate through member routes correctly", async () => 
 
 
     Scenario("I can view quest screens", scenario.start, async () => {
-        Given("I login", given.loginAsUser(records.CUSTOMER_2, records.AUTH_2), async () => {
+        Given("I login", given.loginAsUser(records.CUSTOMER_8, records.AUTH_8), async () => {
             When("I go to quests", when.tapID(NAV_BAR("quests")), async () => {
                 Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
-                When("I tap the locked level 2 button", when.tapID(LEVEL_CHALLENGE_BUTTON(2)), async () => {
-                    Then("I should see a popup telling me I will unlock this at level 2", then.textVisible("unlock at level 2"))
+                When("I tap the locked level 4 button", when.tapID(LEVEL_CHALLENGE_BUTTON(4)), async () => {
+                    Then("I should see a popup telling me I will unlock this at level 4", then.textVisible("unlock at level 4"))
                     When("I tap 'got it'", when.tapText("got it"), async () => {
                         Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
-                        When("I tap the unlocked level 1 button", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
-                            Then("I should be on the level one quest screen", then.idVisible(CHALLENGE_SET))
-                            Then("I should see an unlocked challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
-                            Then("I should see locked challenges", then.multipleTextVisible(["level 3", "level 4", "level 7"]))
-                            When("I tap a locked challenge", when.tapText("level 3"), async () => {
+                        When("I tap the unlocked level 3 button", when.tapID(LEVEL_CHALLENGE_BUTTON(3)), async () => {
+                            Then("I should be on the level 3 quest screen", then.idVisible(CHALLENGE_SET))
+                            Then("I should see an unlocked challenge", then.idVisible(CHALLENGE_TILE("meditation")))
+                            Then("I should see locked challenges", then.multipleTextVisible(["level 4", "level 7"]))
+                            When("I tap a locked challenge", when.tapText("level 7"), async () => {
                                 Then("nothing should happen", then.idVisible(CHALLENGE_SET))
-                                When("I tap the short stroll challenge", when.tapID(CHALLENGE_TILE("short stroll")), async () => {
-                                    Then("I should see a screen with a take challenge option", then.multipleTextVisible(["short stroll / 0 minute", "100 steps", "take challenge"]))
+                                When("I tap the meditation challenge", when.tapID(CHALLENGE_TILE("meditation")), async () => {
+                                    Then("I should see a screen with a take challenge option", then.multipleTextVisible(["meditation / 0 min", "0 minutes", "take challenge"]))
                                     When("I tap 'take challenge'", when.tapText("take challenge"), async () => {
-                                        Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 5000))
+                                        Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 2000))
                                         When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
                                             Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
                                             When("I close this screen", when.tapID(BUTTON_CLOSE_CHALLENGE), async () => {

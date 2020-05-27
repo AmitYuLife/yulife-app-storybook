@@ -21,7 +21,7 @@ export const LONG_WALK_1 = {
     updateKey: "id",
     data: {
         id: "LONG_WALK_001",
-        timeLimit: 15,
+        timeLimit: 30,
         passive: false,
         type: "move",
         subtype: "long walk",
@@ -35,7 +35,7 @@ export const MEDITATION_1 = {
     updateKey: "id",
     data: {
         id: "MEDITATION_001",
-        timeLimit: 15,
+        timeLimit: 45,
         passive: false,
         type: "mindfulness",
         subtype: "meditation",
