@@ -50,7 +50,7 @@ Feature("As a user I can take a challenge", async () => {
                         Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 5000))
                         When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
                             Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
-                            When("I wait for the challenge to end", when.wait(15000), async () => {
+                            When("I wait for the challenge to end", when.wait(35000), async () => {
                                 Then("I should see the times up modal", then.textVisible("time’s up!"))
                                 When("I tap see result", when.tapText("see result"), async () => {
                                     Then("I should see the didn't make it screen", then.textVisible("you didn’t make it"))
@@ -82,13 +82,13 @@ Feature("As a user I can take a challenge", async () => {
                     Then("I should see the meditation challenge", then.idVisible(CHALLENGE_TILE("meditation")))
                     When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
                         Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
-                        When("I walk over 3000 steps", when.sendSteps(3050, 30000), async () => {
+                        When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
                             Then("I should see the times up modal", then.textVisible("time’s up!"))
                             When("I tap see result", when.tapText("see result"), async () => {
                                 Then("I should see the well done screen", then.onChallengeComplete(3050, 7))
-                                When("I tap collect", when.tapText("collect"), async () => {
+                                When("I tap collect on the well done screen", when.tapText("collect"), async () => {
                                     Then("I should see the chest unlocked screen", then.textVisible("you get 500 yucoin"))
-                                    When("I tap collect", when.dismissChestUnlock(), async () => {
+                                    When("I dismiss the chest unlock screen", when.dismissChestUnlock(), async () => {
                                         Then("I should be on the quest screen", then.idVisible(QUESTS_SCREEN(0)))
                                         When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
                                             Then("I should see my coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(1330)))

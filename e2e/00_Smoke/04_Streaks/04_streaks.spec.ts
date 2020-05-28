@@ -25,7 +25,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                             Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 5000))
                             When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
                                 Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
-                                When("I walk over 100 steps", when.sendSteps(108, 15000), async () => {
+                                When("I walk over 100 steps", when.sendSteps(108, 35000), async () => {
                                     Then("I should see the times up modal", then.textVisible("time’s up!"))
                                     When("I tap see result", when.tapText("see result"), async () => {
                                         Then("I should see the well done screen", then.onChallengeComplete(108, 1))
@@ -69,7 +69,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                         Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
                         When("I start a challenge", when.startChallenge("short stroll"), async () => {
                             Then("The challenge should start", idVisible(CHALLENGE_PROGRESS_BAR))
-                            When("I walk over 100 steps", when.sendSteps(200, 15000), async () => {
+                            When("I walk over 100 steps", when.sendSteps(200, 35000), async () => {
                                 Then("I should see the times up modal", then.textVisible("time’s up!"))
                                 When("I tap see result", when.tapText("see result"), async () => {
                                     Then("I should see the well done screen", then.onChallengeComplete(200, 2))
@@ -108,7 +108,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                     Then("I should see the meditation challenge", then.idVisible(CHALLENGE_TILE("meditation")))
                     When("I start the short stroll challenge", when.startChallenge("short stroll"), async () => {
                         Then("The challenge should start", idVisible(CHALLENGE_PROGRESS_BAR))
-                        When("I walk over 100 steps", when.sendSteps(200, 15000), async () => {
+                        When("I walk over 100 steps", when.sendSteps(200, 35000), async () => {
                             Then("I should see the times up modal", then.textVisible("time’s up!"))
                             When("I tap see result", when.tapText("see result"), async () => {
                                 Then("I should see the well done screen", then.onChallengeComplete(200, 5))
@@ -142,7 +142,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                         Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
                         When("I start the short stroll challenge", when.startChallenge("short stroll"), async () => {
                             Then("The challenge should start", idVisible(CHALLENGE_PROGRESS_BAR))
-                            When("I walk over 100 steps", when.sendSteps(200, 15000), async () => {
+                            When("I walk over 100 steps", when.sendSteps(200, 35000), async () => {
                                 Then("I should see the times up modal", then.textVisible("time’s up!"))
                                 When("I tap see result", when.tapText("see result"), async () => {
                                     Then("I should see the well done screen", then.onChallengeComplete(200, 3))
