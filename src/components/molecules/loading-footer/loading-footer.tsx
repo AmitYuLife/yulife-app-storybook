@@ -64,17 +64,28 @@ export default class YulifeLoadingFooter extends NormalFooter {
 
   private getTitle = () => {
     const s = this.state.status;
+
     if (s === "dragging" || s === "waiting") {
       return "Drag up to load";
-    } else if (s === "draggingEnough") {
+    }
+
+    if (s === "draggingEnough") {
       return "Release to load";
-    } else if (s === "loading") {
+    }
+
+    if (s === "loading") {
       return "Loading ...";
-    } else if (s === "draggingCancel") {
+    }
+
+    if (s === "draggingCancel") {
       return "Give up loading";
-    } else if (s === "rebound") {
+    }
+
+    if (s === "rebound") {
       return "Loading completed";
-    } else if (s === "releaseRebound") {
+    }
+
+    if (s === "releaseRebound") {
       return "Drag down to hide & load again";
     }
   };

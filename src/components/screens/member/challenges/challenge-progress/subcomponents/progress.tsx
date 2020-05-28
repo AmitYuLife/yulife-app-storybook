@@ -106,11 +106,11 @@ const convertToMinutesAndSeconds = (num: number) => {
 const calculateProgress = (previousGoal: number, goal: number, amount: number) => {
   if (goal <= amount) {
     return 1;
-  } else if (previousGoal <= amount) {
+  } if (previousGoal <= amount) {
     return (amount - previousGoal) / (goal - previousGoal);
-  } else {
+  } 
     return 0;
-  }
+  
 };
 
 const adjustGoalValue = (type: IProps["type"], goal: number): string | number => {

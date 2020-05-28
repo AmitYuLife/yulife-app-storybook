@@ -7,7 +7,11 @@
     "plugin:react-hooks/recommended",
     "@react-native-community"
   ],
-  "plugins": ["react", "@typescript-eslint", "yulife-rn-client"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "yulife-rn-client"
+  ],
   "env": {
     "browser": true,
     "jest": true
@@ -29,6 +33,12 @@
     "@typescript-eslint/no-inferrable-types": "off",
     "react/prop-types": "off",
     "yulife-rn-client/no-scale-up-and-down": "warn",
+    "no-else-return": [
+      "error",
+      {
+        "allowElseIf": false
+      }
+    ],
     "semi": 2
   },
   "settings": {

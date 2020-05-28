@@ -34,7 +34,9 @@ export const userReducer = (state: IOnboardingStore = initialState, action: Sync
       if (action.payload) {
         if (action.payload.onboarding) {
           return updatePersistedState(action.payload.onboarding);
-        } else if (action.payload.user) {
+        }
+
+        if (action.payload.user) {
           // this is a new reducer, so for an old user it won't be in the persisted state
           return {
             showIntro: false,

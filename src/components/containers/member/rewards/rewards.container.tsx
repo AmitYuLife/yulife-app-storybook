@@ -181,7 +181,7 @@ const RewardsContainer: FC<Props> = (props) => {
         copy={copy}
       />
     );
-  } else {
+  } 
     return (
       <RewardsListScreen
         data={rewards && rewards.getRewards ? rewards.getRewards : []}
@@ -194,7 +194,7 @@ const RewardsContainer: FC<Props> = (props) => {
         totalCoins={totalCoins}
       />
     );
-  }
+  
 };
 
 const mapStateToProps = (state: IReduxState) => ({

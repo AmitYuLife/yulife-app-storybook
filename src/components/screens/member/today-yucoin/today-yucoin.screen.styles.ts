@@ -5,11 +5,13 @@ function getCloseTop() {
   const base = Style.getSafeAreaStart();
   if (Style.isAnyIphoneX()) {
     return base + 12;
-  } else if (Style.defaultShrinkThreshold) {
-    return base - 2;
-  } else {
-    return base + 2;
   }
+
+  if (Style.defaultShrinkThreshold) {
+    return base - 2;
+  }
+
+  return base + 2;
 }
 
 const styles = StyleSheet.create({
@@ -31,18 +33,18 @@ const styles = StyleSheet.create({
     right: 0,
     top: Platform.select({
       ios: getCloseTop(),
-      android: 8
+      android: 8,
     }),
     padding: Style.adjust(16),
   } as ViewStyle,
   heading: {
     marginTop: Platform.select({
       ios: Style.isAnyIphoneX() ? 44 : Style.adjust(20),
-      android: 0
-    })
+      android: 0,
+    }),
   } as ViewStyle,
   reduceBottomPadding: {
-    paddingBottom: 10
+    paddingBottom: 10,
   } as ViewStyle,
 });
 

@@ -48,13 +48,16 @@ const verifyAccountNumber = (loyaltyId: string, accountNumber: string) => {
   const sanitizedAccountNumber = accountNumber.split(" ").join("");
   const isnum = /^\d+$/.test(sanitizedAccountNumber);
   const programme = loyaltyId.toLowerCase();
+
   if (programme === Programmes.aerLingus || programme === Programmes.vueling) {
     return sanitizedAccountNumber.startsWith("308147") && sanitizedAccountNumber.length === 16 && isnum;
-  } else if (programme === Programmes.britishAirways || programme === Programmes.meridiana) {
-    return sanitizedAccountNumber.length === 8 && isnum;
-  } else {
-    return false;
   }
+
+  if (programme === Programmes.britishAirways || programme === Programmes.meridiana) {
+    return sanitizedAccountNumber.length === 8 && isnum;
+  }
+
+  return false;
 };
 
 const AviosRewardDetailsContainer: FC<Props> = (props) => {

@@ -46,12 +46,15 @@ const getLabelCtaPrimary = ({
     if (!streakAwardId) {
       return copy.ctaLabelDone;
     }
+
     return copy.ctaLabelCollect.replace("${reward}", reward);
-  } else if (isDoneToday) {
-    return copy.ctaLabelDone;
-  } else {
-    return copy.ctaLabelTakeChallenge;
   }
+
+  if (isDoneToday) {
+    return copy.ctaLabelDone;
+  }
+
+  return copy.ctaLabelTakeChallenge;
 };
 
 const getSubHeading = ({
@@ -66,12 +69,15 @@ const getSubHeading = ({
     if (!streakAwardId) {
       return copy.subheadingCollected;
     }
+
     return copy.subheadingCompleted;
-  } else if (isDoneToday) {
-    return copy.subheadingTodayStreakDone;
-  } else {
-    return copy.subheadingInstrucion.replace("${streakMax}", streakMax.toString()).replace("${reward}", reward);
   }
+
+  if (isDoneToday) {
+    return copy.subheadingTodayStreakDone;
+  }
+
+  return copy.subheadingInstrucion.replace("${streakMax}", streakMax.toString()).replace("${reward}", reward);
 };
 
 const getHeading = ({
@@ -83,11 +89,13 @@ const getHeading = ({
 }: Pick<Props, "streakAwardId" | "isDoneToday" | "streakMax" | "copy" | "streakCompleted">) => {
   if (getStreakCompleted({ streakAwardId, streakCompleted, streakMax }) === streakMax) {
     return copy.headingCompleted;
-  } else if (isDoneToday) {
-    return copy.headingCompletedTodayStreak.replace("${streakCompleted}", streakCompleted.toString());
-  } else {
-    return copy.headingStartStreakDay.replace("${streakCompleted}", (streakCompleted + 1).toString());
   }
+
+  if (isDoneToday) {
+    return copy.headingCompletedTodayStreak.replace("${streakCompleted}", streakCompleted.toString());
+  }
+
+  return copy.headingStartStreakDay.replace("${streakCompleted}", (streakCompleted + 1).toString());
 };
 
 const StreaksModal: React.FC<Props> = ({

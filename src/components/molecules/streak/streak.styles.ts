@@ -7,19 +7,20 @@ export function getColour(type: IProps["type"], isFinished: boolean, isPressed: 
   if (!isOnline) {
     return Colours.streak.offline;
   }
+
   if (isFinished) {
     if (isPressed) {
       return Colours.streak.finished[type].pressed;
-    } else {
-      return Colours.streak.finished[type].unpressed;
     }
-  } else {
-    if (isPressed) {
-      return Colours.streak.unfinished.pressed;
-    } else {
-      return Colours.streak.unfinished.unpressed;
-    }
+
+    return Colours.streak.finished[type].unpressed;
   }
+
+  if (isPressed) {
+    return Colours.streak.unfinished.pressed;
+  }
+
+  return Colours.streak.unfinished.unpressed;
 }
 
 export default StyleSheet.create({

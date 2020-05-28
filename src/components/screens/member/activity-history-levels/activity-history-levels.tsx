@@ -77,7 +77,9 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
 
     if (wasLoading && hasSameNumberOfItems && willGetMoreData && fetchTries < 3) {
       return this.fetchMoreData();
-    } else if (wasLoading && hasSameNumberOfItems && willGetMoreData && fetchTries === 3) {
+    }
+
+    if (wasLoading && hasSameNumberOfItems && willGetMoreData && fetchTries === 3) {
       this.setState({
         willGetMoreData: false,
         fetchTries: 0,
@@ -200,6 +202,7 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
       ? item.challenges.length * Style.SCALE_UP_AND_DOWN(23)
       : Style.SCALE_UP_AND_DOWN(23);
     const height = challengeHeight + Style.SCALE_UP_AND_DOWN(23) + sourceHeight + dividers + mindfulSecondsHeight;
+
     return height;
   };
 }

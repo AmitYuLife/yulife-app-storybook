@@ -13,16 +13,23 @@ interface IOffsets {
 function getOffsets({ iphoneX, ios, android, highScaledPixelAndroid, lowScaleTallAndroid }: IOffsets) {
   if (iphoneX && isIphoneX()) {
     return Style.SCALE_UP_AND_DOWN(iphoneX);
-  } else if (Platform.OS === "ios") {
+  }
+
+  if (Platform.OS === "ios") {
     return Style.SCALE_UP_AND_DOWN(ios);
-  } else if (lowScaleTallAndroid && Style.isTallAndLowScaledPixelAndroid()) {
+  }
+
+  if (lowScaleTallAndroid && Style.isTallAndLowScaledPixelAndroid()) {
     return Style.SCALE_UP_AND_DOWN(lowScaleTallAndroid);
-  } else if (
+  }
+
+  if (
     highScaledPixelAndroid &&
     (Style.isShortToMediumAndroidAndHighScaledPixel() || Style.isShortAndLowScaledPixelAndroid())
   ) {
     return Style.SCALE_UP_AND_DOWN(highScaledPixelAndroid);
   }
+
   return Style.SCALE_UP_AND_DOWN(android);
 }
 

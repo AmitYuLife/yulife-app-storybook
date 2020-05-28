@@ -20,7 +20,7 @@ export const getConsentedLeaderboards = (state: IReduxState) =>
   state.user.leaderboards.reduce((prev: Leaderboard[], curr) => {
     if (checkIsCompanyLeaderbaord(curr)) {
       return [curr, ...prev];
-    } else if (curr.consent) {
+    } if (curr.consent) {
       return [...prev, curr];
     }
     return prev;

@@ -138,25 +138,28 @@ export function getBackgroundColor(nextAvailable: number, level: IChallenge): st
 
   if (level.level % 50 === 0) {
     return level.isDone || level.isActive || level.isNext ? "rgb(226, 1, 119)" : "white";
-  } else if (level.isActive) {
+  }
+
+  if (level.isActive) {
     // current level colour is always the same
     return nextAvailable < 0 ? "rgb(145,0,76)" : "rgb(226, 1, 119)";
-  } else {
-    const world = Math.floor((level.level - 1) / 50);
-    const episode = Math.floor(((level.level - 1) % 50) / 7);
-
-    if (level.isDone) {
-      return worldBubbleColours[world][episode].notAvailable;
-    } else {
-      return worldBubbleColours[world][episode].available;
-    }
   }
+
+  const world = Math.floor((level.level - 1) / 50);
+  const episode = Math.floor(((level.level - 1) % 50) / 7);
+
+  if (level.isDone) {
+    return worldBubbleColours[world][episode].notAvailable;
+  }
+
+  return worldBubbleColours[world][episode].available;
 }
 
 export function getShadowColor(level: number) {
   const newStyle = {
     backgroundColor: "",
   };
+
   switch (true) {
     case level > 21 && level < 27:
       newStyle.backgroundColor = "white";
@@ -206,6 +209,7 @@ export function getTime(nextAvailable: number) {
   const hours = Math.floor(nextAvailable / (60 * 60)) % 24;
   const minutes = Math.floor(nextAvailable / 60) % 60;
   const seconds = nextAvailable % 60;
+
   if (hours < 1 && minutes < 1 && seconds < 1) {
     return null;
   }
@@ -216,9 +220,11 @@ export function getTime(nextAvailable: number) {
 
   if (hours < 1 && minutes < 1) {
     return `:${paddedSeconds}`;
-  } else if (hours < 1) {
-    return `${paddedMinutes}:${paddedSeconds}`;
-  } else {
-    return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
   }
+
+  if (hours < 1) {
+    return `${paddedMinutes}:${paddedSeconds}`;
+  }
+
+  return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
 }
