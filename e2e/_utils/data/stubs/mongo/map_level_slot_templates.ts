@@ -7,7 +7,7 @@ export const SHORT_STROLL_1 = {
     updateKey: "id",
     data: {
         "id": "SHORT_STROLL_001",
-        "timeLimit": 15,
+        "timeLimit": 30,
         "passive": false,
         "type": "move",
         "subtype": "short stroll",

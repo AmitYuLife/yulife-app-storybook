@@ -3,6 +3,7 @@ import { Animated, Image, StyleSheet, View, ViewStyle } from "react-native";
 import { Button, ChestCoin, Text } from "../../../atoms";
 import styles from "./animated-chest.styles";
 import assets from "./assets";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   ctaLabel: string;
@@ -49,42 +50,42 @@ export default class AnimatedChestScreen extends React.PureComponent<IProps> {
           {isLocked ? (
             <Image source={assets.chestLocked} />
           ) : (
-            <>
-              <Animated.Image
-                style={{
-                  opacity: this.confettiOpacity,
-                  transform: [
-                    {
-                      scale: this.confettiScale,
-                    },
-                  ],
-                }}
-                resizeMode="contain"
-                source={assets.chestBackground}
-              />
-              <View style={styles.chestWrapper}>
-                <Animated.View
-                  style={StyleSheet.flatten([
-                    styles.lidWrapper,
-                    { transform: [{ translateY: this.lidYOffset }] },
-                  ] as ViewStyle)}
-                >
-                  <Image source={assets.chestLid} />
-                </Animated.View>
-                <Animated.View
-                  style={StyleSheet.flatten([
-                    styles.chestCoinWrapper,
-                    { transform: [{ translateY: this.coinYOffset }] },
-                  ] as ViewStyle)}
-                >
-                  <ChestCoin />
-                </Animated.View>
-                <View style={styles.chestBaseWrapper}>
-                  <Image source={assets.chestBase} />
+              <>
+                <Animated.Image
+                  style={{
+                    opacity: this.confettiOpacity,
+                    transform: [
+                      {
+                        scale: this.confettiScale,
+                      },
+                    ],
+                  }}
+                  resizeMode="contain"
+                  source={assets.chestBackground}
+                />
+                <View style={styles.chestWrapper}>
+                  <Animated.View
+                    style={StyleSheet.flatten([
+                      styles.lidWrapper,
+                      { transform: [{ translateY: this.lidYOffset }] },
+                    ] as ViewStyle)}
+                  >
+                    <Image source={assets.chestLid} />
+                  </Animated.View>
+                  <Animated.View
+                    style={StyleSheet.flatten([
+                      styles.chestCoinWrapper,
+                      { transform: [{ translateY: this.coinYOffset }] },
+                    ] as ViewStyle)}
+                  >
+                    <ChestCoin />
+                  </Animated.View>
+                  <View style={styles.chestBaseWrapper}>
+                    <Image source={assets.chestBase} />
+                  </View>
                 </View>
-              </View>
-            </>
-          )}
+              </>
+            )}
         </View>
         <Text bold={true} style={styles.heading}>
           {heading}
@@ -98,6 +99,9 @@ export default class AnimatedChestScreen extends React.PureComponent<IProps> {
   }
 
   private animate = () => {
+    if (DETOX_ENABLED) {
+      return;
+    }
     const sequenceOne = Animated.spring(this.lidYOffset, {
       toValue: -60,
       useNativeDriver: true,

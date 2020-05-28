@@ -28,6 +28,7 @@ export const dismissChestUnlock = (streakDay = 1) => async () => {
         await expectIsVisibleViaText(`Completed streak day ${streakDay}`, 2500)
         await navigateViaText("done")
     } catch (e) {
+        console.log(`Error on dismissChestUnlocked`, e);
         await expectIsVisibleViaText(QUESTS_SCREEN(0))
     }
 }
