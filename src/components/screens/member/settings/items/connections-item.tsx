@@ -11,6 +11,7 @@ import styles, { thumbColor, trackColor } from "./connections-item.styles";
 const formatDate = (timestamp: number) => {
   const toFormat = moment.unix(timestamp).local();
   const today = moment();
+
   if (today.isSameOrBefore(toFormat, "days")) {
     return toFormat.format("HH:mm");
   }
@@ -54,9 +55,9 @@ const ConnectionsItem: SFC<IConnectionsSectionItem> = ({
 function getStyle(isConnected: boolean, style: TextStyle) {
   if (isConnected) {
     return style;
-  } else {
-    return StyleSheet.flatten([style, styles.textDisabled]);
   }
+
+  return StyleSheet.flatten([style, styles.textDisabled]);
 }
 
 export default ConnectionsItem;

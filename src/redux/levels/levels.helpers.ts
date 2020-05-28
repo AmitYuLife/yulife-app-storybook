@@ -28,21 +28,21 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
         return {
           value: Math.floor(queryResult.reduce((acc: number, item: any) => acc + item.value, 0)),
         };
-      } else {
-        const startOfDay = moment(startDateTime).subtract(2, "hours").format(DATE_FORMAT_WITH_TZ);
-        const endLater = moment(endDateTime).add(2, "hours").format(DATE_FORMAT_WITH_TZ);
-        const queryResultAllDay = await queryMindfulSessions(startOfDay, endLater, features);
-
-        if (queryResultAllDay.length > 0) {
-          return {
-            value: Math.floor(queryResultAllDay.reduce((acc: number, item: any) => acc + item.value, 0)),
-          };
-        } else {
-          return {
-            value: 0,
-          };
-        }
       }
+
+      const startOfDay = moment(startDateTime).subtract(2, "hours").format(DATE_FORMAT_WITH_TZ);
+      const endLater = moment(endDateTime).add(2, "hours").format(DATE_FORMAT_WITH_TZ);
+      const queryResultAllDay = await queryMindfulSessions(startOfDay, endLater, features);
+
+      if (queryResultAllDay.length > 0) {
+        return {
+          value: Math.floor(queryResultAllDay.reduce((acc: number, item: any) => acc + item.value, 0)),
+        };
+      }
+
+      return {
+        value: 0,
+      };
     } catch (e) {
       return {
         value: 0,
@@ -64,22 +64,21 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
         return {
           value: results && results[0].value,
         };
-      } else {
-        const startEarly = moment(startDateTime).subtract(1, "hour").format(DATE_FORMAT_WITH_TZ);
-        const endLater = moment(endDateTime).add(1, "hour").format(DATE_FORMAT_WITH_TZ);
-
-        const cyclingResultInflatedPeriod = await queryCycling(startEarly, endLater, features);
-
-        if (cyclingResultInflatedPeriod.length > 0) {
-          return {
-            value: cyclingResultInflatedPeriod && cyclingResultInflatedPeriod[0].value,
-          };
-        } else {
-          return {
-            value: 0,
-          };
-        }
       }
+      const startEarly = moment(startDateTime).subtract(1, "hour").format(DATE_FORMAT_WITH_TZ);
+      const endLater = moment(endDateTime).add(1, "hour").format(DATE_FORMAT_WITH_TZ);
+
+      const cyclingResultInflatedPeriod = await queryCycling(startEarly, endLater, features);
+
+      if (cyclingResultInflatedPeriod.length > 0) {
+        return {
+          value: cyclingResultInflatedPeriod && cyclingResultInflatedPeriod[0].value,
+        };
+      }
+
+      return {
+        value: 0,
+      };
     } catch (e) {
       return {
         value: score,
@@ -124,6 +123,7 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
     }
 
     const results = await RNFitKit.queryPedometerFromDate(start, end);
+
     if (features.loggingEnabled) {
       Logger.logMixpanelEvent("debug_end_challenge_pedometer_results", {
         startDateTime,
@@ -145,6 +145,7 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
         message: e.message,
       });
     }
+
     return {
       value: score,
     };
@@ -163,6 +164,7 @@ export function isChallengeAvailable(level: number, done: number, available: num
   ) {
     return false;
   }
+
   return done < available;
 }
 

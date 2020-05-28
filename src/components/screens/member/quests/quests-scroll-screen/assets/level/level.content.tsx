@@ -61,12 +61,15 @@ export default function getLevelButton(nextAvailable: number, currentLevel: numb
     if (level.level > currentLevel) {
       return <Lock colour={getLockColor(level.level)} />;
     }
+
     return (
       <Text style={styles.text} bold={true}>
         {level.level}
       </Text>
     );
-  } else if (level.level === currentLevel) {
+  }
+
+  if (level.level === currentLevel) {
     if (nextAvailable < 0) {
       const style = StyleSheet.flatten([styles.textPending, { color: !level.isActive ? "rgb(79, 151,139)" : "white" }]);
       const nextAvailableFormatted = getTime(Math.abs(nextAvailable));
@@ -82,18 +85,23 @@ export default function getLevelButton(nextAvailable: number, currentLevel: numb
         </View>
       );
     }
+
     return (
       <Text style={styles.text} bold={true}>
         {level.level}
       </Text>
     );
-  } else if (level.isActive) {
+  }
+
+  if (level.isActive) {
     return (
       <Text style={styles.text} bold={true}>
         {level.level}
       </Text>
     );
-  } else if (level.level < currentLevel) {
+  }
+
+  if (level.level < currentLevel) {
     const color = getTextColor(level.level);
     return (
       <View style={{ flexDirection: "column" }}>
@@ -105,19 +113,20 @@ export default function getLevelButton(nextAvailable: number, currentLevel: numb
         </View>
       </View>
     );
-  } else {
-    if (level.isChestLevel) {
-      return <Chest colour={getLockColor(level.level)} />;
-    } else {
-      return getLevelLockIcon(currentLevel, level);
-    }
   }
+
+  if (level.isChestLevel) {
+    return <Chest colour={getLockColor(level.level)} />;
+  }
+
+  return getLevelLockIcon(currentLevel, level);
 }
 
 function getLockColor(level: number) {
   if (level > 64 && level < 72) {
     return "rgb(118, 82, 48)";
   }
+
   switch (getCurrentWorld(level)) {
     case 3:
       return "rgb(87, 133, 188)";

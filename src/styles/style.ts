@@ -80,21 +80,24 @@ const adjust = (val: number, options: IAdjustOptions = {}) => {
     shrinkMultiplier = Platform.select({ ios: 0.15, android: 0.2 }),
     growMultiplier = Platform.select({ ios: 0.15, android: 0.2 }),
     shrinkThreshold = defaultShrinkThreshold,
-    growThreshold = defaultGrowThreshold
+    growThreshold = defaultGrowThreshold,
   } = options;
+
   if (growThreshold) {
-    return val + (val * growMultiplier);
-  } else if (shrinkThreshold) {
-    return val - (val * shrinkMultiplier);
-  } else {
-    return val;
+    return val + val * growMultiplier;
   }
+
+  if (shrinkThreshold) {
+    return val - val * shrinkMultiplier;
+  }
+
+  return val;
 };
 
 export const TOTAL_WIDTH = x * pixelRatio;
 
 const getSafeAreaStart = () => {
-  if (Platform.OS === 'android') {
+  if (Platform.OS === "android") {
     return StatusBar.currentHeight;
   }
 
@@ -138,7 +141,7 @@ const Style = {
   isShortAndLowScaledPixelAndroid,
   getSafeAreaStart,
   adjust,
-  defaultShrinkThreshold
+  defaultShrinkThreshold,
 };
 
 export default Style;

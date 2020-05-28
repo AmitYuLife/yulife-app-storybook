@@ -45,7 +45,8 @@ export function getCurrentEpisode(currentLevel: number) {
   }
   if (currentLevel <= 49) {
     return Math.floor((currentLevel - 1) / 7);
-  } else if (
+  }
+  if (
     (currentLevel >= 51 && currentLevel <= 99) ||
     (currentLevel >= 101 && currentLevel <= 149) ||
     (currentLevel >= 151 && currentLevel <= 199)
@@ -79,6 +80,7 @@ export function getTime(nextAvailable: number) {
   const hours = Math.floor(nextAvailable / (60 * 60)) % 24;
   const minutes = Math.floor(nextAvailable / 60) % 60;
   const seconds = nextAvailable % 60;
+
   if (hours < 1 && minutes < 1 && seconds < 1) {
     return null;
   }
@@ -89,14 +91,19 @@ export function getTime(nextAvailable: number) {
 
   if (days < 1 && hours < 1 && minutes < 1) {
     return `:${paddedSeconds}`;
-  } else if (days < 1 && hours < 1) {
-    return `${paddedMinutes}:${paddedSeconds}`;
-  } else if (days < 1) {
-    return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
-  } else {
-    const daysOrDay = days > 1 ? "days" : "day";
-    return `${days} ${daysOrDay} and ${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
   }
+
+  if (days < 1 && hours < 1) {
+    return `${paddedMinutes}:${paddedSeconds}`;
+  }
+
+  if (days < 1) {
+    return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+  }
+
+  const daysOrDay = days > 1 ? "days" : "day";
+
+  return `${days} ${daysOrDay} and ${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
 }
 
 export function displaySecondsAsMinutes(amount: number): { minutes: number; seconds: number } {

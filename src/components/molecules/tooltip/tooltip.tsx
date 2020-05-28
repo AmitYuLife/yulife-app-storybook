@@ -25,9 +25,11 @@ export type CaretDirection = "left" | "right" | "top" | "bottom";
 export default class Tooltip extends React.PureComponent<IProps> {
   public render() {
     const { copy, type, positionStyle, caretDirection, caretStyle, onPressCta } = this.props;
+
     if (type === TOOLTIP_TYPES.WELCOME) {
       return <WelcomeTooltip onPressCta={onPressCta} copy={copy.welcome} />;
     }
+
     return (
       <View style={[styles.tooltipWrapper, positionStyle]}>
         <View>
@@ -101,14 +103,17 @@ export default class Tooltip extends React.PureComponent<IProps> {
 
   private getSurgeText = (copy: string) => {
     const { isShowingPassiveMeditation, surgeIntro } = this.props;
+
     if (isShowingPassiveMeditation && surgeIntro.activity === "all") {
       return copy
         .replace("${surgeActivity}", "steps and mindfulness minutes")
         .replace("${multiplier}", `X${surgeIntro.rate}`);
-    } else if (isShowingPassiveMeditation && surgeIntro.activity === "meditation") {
-      return copy.replace("${surgeActivity}", "mindfulness minutes").replace("${multiplier}", `X${surgeIntro.rate}`);
-    } else {
-      return copy.replace("${surgeActivity}", "steps").replace("${multiplier}", `X${surgeIntro.rate}`);
     }
+
+    if (isShowingPassiveMeditation && surgeIntro.activity === "meditation") {
+      return copy.replace("${surgeActivity}", "mindfulness minutes").replace("${multiplier}", `X${surgeIntro.rate}`);
+    }
+
+    return copy.replace("${surgeActivity}", "steps").replace("${multiplier}", `X${surgeIntro.rate}`);
   };
 }

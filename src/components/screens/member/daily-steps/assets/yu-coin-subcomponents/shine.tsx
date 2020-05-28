@@ -33,9 +33,9 @@ class Shine extends PureComponent<{}, IState> {
           this.animationTimeout = global.setTimeout(this.animate, 40);
         }
       );
-    } else {
+    } 
       return this.setState({ x: -500 });
-    }
+    
   };
 
   public render() {

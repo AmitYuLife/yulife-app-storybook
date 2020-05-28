@@ -86,17 +86,25 @@ function getImage(streakCompleted: number, streakMax: number): ImageRequireSourc
 
   if (ratio < 0.2) {
     return assets.from0;
-  } else if (ratio < 0.4) {
-    return assets.from20;
-  } else if (ratio < 0.6) {
-    return assets.from40;
-  } else if (ratio < 0.8) {
-    return assets.from60;
-  } else if (ratio < 1) {
-    return assets.from80;
-  } else {
-    return assets.from100;
   }
+
+  if (ratio < 0.4) {
+    return assets.from20;
+  }
+
+  if (ratio < 0.6) {
+    return assets.from40;
+  }
+
+  if (ratio < 0.8) {
+    return assets.from60;
+  }
+
+  if (ratio < 1) {
+    return assets.from80;
+  }
+
+  return assets.from100;
 }
 
 export default StreaksSceen;
