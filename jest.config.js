@@ -12,6 +12,7 @@ module.exports = Object.assign(jestPreset, {
   testEnvironment: "jsdom",
   timers: "fake",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
   modulePaths: ["<rootDir>"],
   collectCoverage: true,
   coverageDirectory: "./coverage/",
