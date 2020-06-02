@@ -32,7 +32,7 @@ export const MEDITATION_MILESTONE_1 = {
                 "XP": 0,
                 "coins": 6.0,
                 "target": {
-                    "meditation": 10
+                    "meditation": 60
                 }
             }
         ],

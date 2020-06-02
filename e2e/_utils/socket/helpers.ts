@@ -1,5 +1,5 @@
 import socketServer from "./server";
-import { EVENT, ReduxEvent } from "./events";
+import { EVENT, ReduxEvent, FitkitSampleQueriesAdd } from "./events";
 import * as moment from 'moment';
 import { wait } from "@navigation";
 
@@ -19,6 +19,7 @@ export const sendSteps = (amount = 10, waitTime?: number) => async (): Promise<v
             steps: amount
         }
     });
+
     if (waitTime > 0) {
         await wait(waitTime)()
     }
@@ -34,6 +35,13 @@ export const startWalkingSteps = (amount = 1000, increment = 10, interval = 5000
 export const sendReduxEvent = (payload: ReduxEvent["payload"]) => {
     socketServer.emit({
         name: EVENT.REDUX_EVENT,
+        payload,
+    });
+}
+
+export const fitKitAddSampleQueries = (payload: FitkitSampleQueriesAdd["payload"]) => {
+    socketServer.emit({
+        name: EVENT.FITKIT_SAMPLE_QUERIES_ADD,
         payload,
     });
 }

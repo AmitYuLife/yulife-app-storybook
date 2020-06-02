@@ -1,10 +1,11 @@
-import { PedometerResponse }  from "react-native-fitkit";
+import { PedometerResponse, SampleQueryResult } from 'react-native-fitkit';
 import { AsyncAction, SyncAction } from "@app/redux/_core/types";
 
 export enum EVENT {
     FITKIT_AUTHORISED = "FITKIT_AUTHORISED",
     PEDOMETER_EVENT = "PEDOMETER_EVENT",
     REDUX_EVENT = "REDUX_EVENT",
+    FITKIT_SAMPLE_QUERIES_ADD = "FITKIT_SAMPLE_QUERIES_ADD",
 }
 
 export interface EventWithPayload {
@@ -27,4 +28,9 @@ export interface ReduxEvent extends EventWithPayload {
     payload: SyncAction | AsyncAction;
 }
 
-export type MockedEvent = FitkitAuthorised | PedometerEvent | ReduxEvent;
+export interface FitkitSampleQueriesAdd extends EventWithPayload {
+    name: EVENT.FITKIT_SAMPLE_QUERIES_ADD;
+    payload: SampleQueryResult[];
+}
+
+export type MockedEvent = FitkitAuthorised | PedometerEvent | ReduxEvent | FitkitSampleQueriesAdd;

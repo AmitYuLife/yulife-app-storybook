@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_12, CUSTOMER_13 } from '../postgres/customers';
 import { CHALLENGE_2, CHALLENGE_USER_6_A, CHALLENGE_USER_7_A, CHALLENGE_USER_7_B, CHALLENGE_USER_7_C, CHALLENGE_USER_7_D, CHALLENGE_USER_8_B, CHALLENGE_USER_8_A, CHALLENGE_USER_9_B, CHALLENGE_USER_9_A, CHALLENGE_USER_9_C, CHALLENGE_USER_9_D, CHALLENGE_USER_9_E, CHALLENGE_USER_9_F } from './challenge';
 
 import moment = require('moment');
@@ -281,5 +281,35 @@ export const COIN_LEDGER_9 = {
         currentBalance: 560,
         currentLevel: 7,
         nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_12 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: CUSTOMER_12.data.customerId,
+        userId: CUSTOMER_12.data.customerId,
+        transactions: [],
+        currentBalance: 27500,
+        currentStreak: 0,
+        currentLevel: 16
+    }
+} as IDatabaseItem
+
+
+
+export const COIN_LEDGER_13 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: CUSTOMER_13.data.customerId,
+        userId: CUSTOMER_13.data.customerId,
+        transactions: [],
+        currentBalance: 50000,
+        currentStreak: 0,
+        currentLevel: 22
     }
 } as IDatabaseItem

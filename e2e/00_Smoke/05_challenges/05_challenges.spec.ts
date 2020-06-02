@@ -74,7 +74,7 @@ Feature("As a user I can take a challenge", async () => {
         Given("I am on the quest tab as a user with a chest challenge", given.logInAndGoToTab("quests", CUSTOMER_9, AUTH_9), async () => {
             Then("I should see level 7 unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(7)))
             When("I tap level 7", when.tapID(LEVEL_CHALLENGE_BUTTON(7)), async () => {
-                Then("I should see a screen telling me to take a challenge to unlock a test", then.textVisible("take a challenge to unlock the chest"))
+                Then("I should see a screen telling me to take a challenge to unlock a chest", then.textVisible("take a challenge to unlock the chest"))
                 When("I tap 'lets do it'", when.tapText("let's do it"), async () => {
                     Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
                     Then("I should see the brisk walk challenge", then.idVisible(CHALLENGE_TILE("brisk walk")))
