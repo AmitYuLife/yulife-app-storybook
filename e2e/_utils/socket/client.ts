@@ -1,5 +1,5 @@
 import * as io from "socket.io-client";
-import { EventWithPayload, EVENT, FitkitAuthorised, PedometerEvent, ReduxEvent } from "./events";
+import { EventWithPayload, EVENT, FitkitAuthorised, PedometerEvent, ReduxEvent, FitkitSampleQueriesAdd } from "./events";
 
 type Callback<T extends EventWithPayload> = (payload: T["payload"]) => void;
 
@@ -25,6 +25,11 @@ export default class SocketClient {
     public onReduxEvent(cb: Callback<ReduxEvent>) {
         this.socket.on(EVENT.REDUX_EVENT, cb);
         return () => this.socket.off(EVENT.REDUX_EVENT);
+    }
+
+    public onSampleQueriesAdded(cb: Callback<FitkitSampleQueriesAdd>) {
+        this.socket.on(EVENT.FITKIT_SAMPLE_QUERIES_ADD, cb);
+        return () => this.socket.off(EVENT.FITKIT_SAMPLE_QUERIES_ADD);
     }
 
     public unsubscribe(event: EVENT, cb: any) {

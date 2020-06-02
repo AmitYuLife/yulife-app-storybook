@@ -152,12 +152,12 @@ export const onRewardPurchasedScreen = (reward: any) => async () => {
     const description = reward.data.description
 
     const expiryPolicy = reward.data.expiry_date_policy
-    const purchaseDate = moment().format("DD MMMM YYYY")
+    const purchaseDate = moment().format("DD MMM YYYY")
     let expiryDate;
 
     switch (expiryPolicy) {
         case "24 months from last activity":
-            expiryDate = moment().add(24, "months").format("DD MMMM YYYY")
+            expiryDate = moment().add(24, "months").format("DD MMM YYYY")
     }
 
     await expect(element(by.id(WEGIFT_CONFIRMED))).toBeVisible()

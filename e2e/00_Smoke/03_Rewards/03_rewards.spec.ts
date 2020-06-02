@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@bdd";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@bdd";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -64,7 +64,7 @@ Feature("Rewards should act correctly", async () => {
                             When("I tap the buy button", when.tapBuyButton(REWARDS_NIKE, 1), async () => {
                                 Then("I should see the confirm modal", then.textVisible("Confirm purchase"))
                                 When("I tap 'ok", when.tapText("OK", 1500), async () => {
-                                    Then("I should be on the purcahse screen", then.onRewardPurchasedScreen(REWARDS_NIKE))
+                                    Then("I should be on the purchase screen", then.onRewardPurchasedScreen(REWARDS_NIKE))
                                     When("I see other rewards", when.tapText("see other rewards"), async () => {
                                         Then("I should be back on the rewards screen", then.idVisible(REWARDS_SCREEN))
                                         Then("I should see my updated balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(2200)))

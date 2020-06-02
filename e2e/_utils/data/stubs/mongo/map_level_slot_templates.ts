@@ -35,7 +35,7 @@ export const MEDITATION_1 = {
     updateKey: "id",
     data: {
         id: "MEDITATION_001",
-        timeLimit: 45,
+        timeLimit: 60,
         passive: false,
         type: "mindfulness",
         subtype: "meditation",
