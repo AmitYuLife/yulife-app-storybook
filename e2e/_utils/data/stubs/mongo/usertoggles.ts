@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9 } from '../postgres/customers';;
+import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3 } from '../postgres/customers';;
 
 const allTogglesTrue = {
     "showTodayYucoin": true,
@@ -123,5 +123,54 @@ export const CUSTOMER_9_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_9.data.customerId,
         features: allTogglesTrue
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_14_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_14.data.customerId,
+        features: {
+            "showTodayYucoin": true,
+            "showActivity": true,
+            "showNotifications": true,
+            "showStreaks": true,
+            "showCompletedLevel": true,
+            "showCounter": true,
+            "showBuildNumber": true,
+            "showSettings": true,
+            "showCreateLeaderboard": true,
+            "showAdvancedLeaderboards": true,
+            "disableUserEntries": true,
+            "fitbit": true,
+            "showConnections": true,
+            "showLastSynced": true,
+            "newPassiveValidationRule": true,
+            "showWegiftPicker": true,
+            "usePassiveMeditation": true,
+            "statsShowCoinGeneralTotalYearned": true,
+            "statsShowCoinRecommendationCard": true,
+            "statsShowCoinGeneralTotalRedeemedCard": true,
+            "statsShowCoinAchievementCard": true,
+            "statsShowChallengeGeneralCard": true,
+            "statsShowChallengeRecommendationCard": true,
+            "statsShowChallengeComparisonCard": true,
+            "statsShowStepsRecommendationCard": true,
+            "statsShowStepsGeneralCard": true,
+            "statsShowStepsBestScoreCard": true,
+            "statsShowStepsGraphCard": true,
+            "statsShowMindfulnessRecommendationCard": true,
+            "statsShowMindfulnessGeneralCard": true,
+            "statsShowMindfulnessBestScoreCard": true,
+            "statsShowMindfulnessGraphCard": true,
+            "statsShowCyclingRecommendationCard": false,
+            "statsShowCyclingGeneralCard": false,
+            "statsShowCyclingBestScoreCard": false,
+            "statsShowCyclingGraphCard": false,
+            "showStats": true
+        }
+
     }
 } as IDatabaseItem
