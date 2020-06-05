@@ -1,8 +1,10 @@
 import { records } from "@data";
-import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
+import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN } from "@ids";
 export { authoriseFitkit, sendSteps } from "@socket";
 import * as when from "./when";
 import { sendReduxEvent } from "@socket";
+import { navigation } from "@navigation"
+import { CUSTOMER_4 } from "_utils/data/stubs";
 
 export const enterInvalidCredentials = async (): Promise<void> => {
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
@@ -50,4 +52,21 @@ export const onLoginScreen = async () => {
     await expect(welcomeLabel).toBeVisible()
     await expect(loginField).toBeVisible()
     await expect(passwordField).toBeVisible()
+}
+
+export const enterPasswordIncorrectly = (attempts: number) => async () => {
+    const loginField = element(by.id(INPUT_LOGIN_EMAIL));
+    const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
+    const loginButton = element(by.id(BUTTON_LOGIN));
+
+    await loginField.tap();
+    await loginField.replaceText(CUSTOMER_4.data.email);
+    await passwordField.tap();
+
+    let i = 0
+    while (i <= attempts) {
+        await passwordField.replaceText(`p_w_${i}`);
+        await loginButton.tap();
+        i += 1
+    }
 }

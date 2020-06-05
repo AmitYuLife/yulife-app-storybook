@@ -22,6 +22,8 @@ import { navigation } from "@navigation"
 
 export const {
     textVisible,
+    textNotVisible,
+    idVisible
 } = navigation.common
 
 export const emailUnchanged = async (): Promise<void> => {

@@ -5,6 +5,7 @@ import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
 import { INPUT_LOGIN_EMAIL, INPUT_RESET_PASSWORD } from "@ids";
+import { CUSTOMER_4, AUTH_4 } from "_utils/data/stubs";
 
 Feature("As a user I can get past the login screen", async () => {
 
@@ -106,6 +107,25 @@ Feature("As a user I can get past the login screen", async () => {
                     })
                     When("I press back", when.tapText("back"), async () => {
                         Then("I should be on the login screen", given.onLoginScreen)
+                    })
+                })
+            })
+        })
+    })
+
+    Scenario("My account can be locked when I enter a password incorrectly 5 times", scenario.start, async () => {
+        Given("I enter an incorrect password one time", given.enterPasswordIncorrectly(1), async () => {
+            Then("I should not see the account locked text", then.textNotVisible("Account is locked. Try again later."))
+            Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+            Given("I enter an incorrect password five times", given.enterPasswordIncorrectly(5), () => {
+                Then("I should see an error message saying my account is locked", then.textVisible("Account is locked. Try again later."))
+                When("I enter the correct password and login", when.loginOnly(CUSTOMER_4, AUTH_4), async () => {
+                    Then("I should still be on the login screen", then.idVisible(INPUT_LOGIN_EMAIL))
+                    Then("I should still see an error message saying my account is locked", then.textVisible("Account is locked. Try again later."))
+                    When("I reload the app", when.reloadOnly, async () => {
+                        When("I enter enter the correct details", when.loginOnly(CUSTOMER_4, AUTH_4), async () => {
+                            Then("I should still see the account locked message", then.textVisible("Account is locked. Try again later."))
+                        })
                     })
                 })
             })
