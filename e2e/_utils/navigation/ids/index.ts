@@ -16,7 +16,8 @@ export const CHALLENGE_SET = "CHALLENGE_SET"
 export const GENERIC_SCREEN_HEADING = (title: string) => `GENERIC_SCREEN_HEADING_${title}`
 export const GENERIC_SCREEN_CTA = (ctaLabel: string) => `GENERIC_SCREEN_CTA${ctaLabel}`
 export const CHALLENGE_PROGRESS_BAR = "CHALLENGE_PROGRESS_BAR"
-
+export const STATS_VALUE = (value: any) => `STATS_VALUE_${value.toString()}`
+export const STATS_CHALLENGE_HISTORY = (value: number) => `STATS_CHALLENGE_HISTORY_${value}`
 // buttons
 export const BUTTON_LOGIN = "BUTTON_LOGIN";
 export const BUTTON_SIGNUP_BONUS_NEXT = "BUTTON_SIGNUP_BONUS_NEXT";

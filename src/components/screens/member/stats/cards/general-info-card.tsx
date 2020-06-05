@@ -5,6 +5,7 @@ import { StyleSheet, View } from "react-native";
 import { Circle, Path, Rect } from "react-native-svg";
 import NativeSvg from "../../../../containers/member/stats/native-svg";
 import styles from "./general-info-card.styles";
+import { STATS_VALUE } from "@ids";
 
 interface IProps {
   title: string;
@@ -17,7 +18,7 @@ const GeneralInfoCard: SFC<IProps> = ({ titleColor, title, value, unit }) => {
     <View style={styles.wrapper}>
       <Text style={StyleSheet.flatten([styles.title, { color: titleColor }])}>{title}</Text>
       <View style={styles.valueWrapper}>
-        <Text style={styles.value}>{value}</Text>
+        <Text style={styles.value} testID={STATS_VALUE(value)}>{value}</Text>
         <View>{unit ? <Text style={styles.unit}>{unit}</Text> : null}</View>
       </View>
     </View>
