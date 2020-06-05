@@ -21,3 +21,4 @@ export { default as LeaderboardPopup } from "./pop-up/leaderboard-pop-up";
 export { default as SurgePopup } from "./pop-up/surge-pop-up";
 export { default as Tooltip } from "./tooltip/tooltip";
 export { POPUPTYPE } from "./pop-up/pop-up";
+export { default as TextField } from "./text-field/text-field";

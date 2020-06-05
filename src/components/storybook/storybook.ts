@@ -5,6 +5,7 @@ import "./addons";
 configure(() => {
   require("../molecules/challenge-tile/challenge-tile.stories");
   require("../atoms/button/minimalButton.stories");
+  require("../molecules/text-field/text-field.stories");
 }, module);
 
 const StorybookUIRoot = getStorybookUI({
