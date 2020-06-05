@@ -39,3 +39,13 @@ export const dismissStreakIfVisible = async () => {
 
     }
 }
+
+export const loginOnly = (customer: any, auth: any) => async () => {
+    const loginField = element(by.id(INPUT_LOGIN_EMAIL));
+    const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
+    await loginField.tap();
+    await loginField.replaceText(customer.data.email);
+    await passwordField.tap();
+    await passwordField.replaceText(auth.data.password);
+    await navigateViaID(BUTTON_LOGIN)
+}

@@ -12,8 +12,14 @@ import { navigation } from "@navigation"
 
 export const {
     tapText,
-    typeViaID
+    typeViaID,
+    wait,
+    reloadOnly
 } = navigation.common
+
+export const {
+    loginOnly,
+} = navigation.login
 
 export const tapOnLogin = async (): Promise<void> => {
     const target = element(by.id(BUTTON_LOGIN));
