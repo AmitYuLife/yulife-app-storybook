@@ -1,1 +1,1 @@
-import native from "./src";
+import "./src";
