@@ -26,7 +26,7 @@ export default function Challenges({ instructions, hide, steps, surge, yucoinsEa
       </View>
       <PassiveChallengeInstructions>{instructions}</PassiveChallengeInstructions>
       <ProgressBar {...progressBar} />
-      {!pad ? null :  <Pad height={pad} />}
+      {!pad ? null : <Pad height={pad} />}
     </>
   );
 }

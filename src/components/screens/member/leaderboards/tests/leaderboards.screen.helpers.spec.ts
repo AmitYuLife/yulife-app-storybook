@@ -1,12 +1,14 @@
 import { AppStateStatus } from "react-native";
 import copy from "../../../../../redux/copy/copy.data";
 import { shouldLeaderboardUpdate } from "../leaderboards.screen.helpers";
+import { initialState } from "../leaderboards.screen";
 
 const currentProps = {
   componentId: "1",
   activeLeaderboardIndex: 0,
   currentWorld: 0,
   initialScrollIndex: 0,
+  userId: "",
   labels: [
     {
       name: "yucoin",
@@ -52,6 +54,7 @@ const currentProps = {
       lastName: "test",
       name: "test test",
       steps: 5000,
+      avatar: {},
     },
   ],
   isLoading: false,
@@ -71,6 +74,10 @@ const currentProps = {
   appState: "active" as AppStateStatus,
 };
 
+const currentState = initialState;
+const nextState = initialState;
+const stateFillers = { currentState, nextState };
+
 describe("shouldLeaderboardUpdate", () => {
   it("should be true when active leaderboard changes ", () => {
     const nextProps = {
@@ -78,20 +85,10 @@ describe("shouldLeaderboardUpdate", () => {
       activeLeaderboardIndex: 1,
     };
 
-    const currentState = {
-      isShowingDropdown: false,
-      shouldScrollTo: true,
-    };
-
-    const nextState = {
-      ...currentState,
-    };
-
     const actual = shouldLeaderboardUpdate({
       currentProps,
       nextProps,
-      currentState,
-      nextState,
+      ...stateFillers,
     });
 
     expect(actual).toBe(true);
@@ -103,20 +100,10 @@ describe("shouldLeaderboardUpdate", () => {
       leaderboards: [] as any,
     };
 
-    const currentState = {
-      isShowingDropdown: false,
-      shouldScrollTo: true,
-    };
-
-    const nextState = {
-      ...currentState,
-    };
-
     const actual = shouldLeaderboardUpdate({
       currentProps,
       nextProps,
-      currentState,
-      nextState,
+      ...stateFillers,
     });
 
     expect(actual).toBe(true);
@@ -133,20 +120,10 @@ describe("shouldLeaderboardUpdate", () => {
       leaderboards: [] as any,
     };
 
-    const currentState = {
-      isShowingDropdown: false,
-      shouldScrollTo: true,
-    };
-
-    const nextState = {
-      ...currentState,
-    };
-
     const actual = shouldLeaderboardUpdate({
       currentProps: newCurrentProps,
       nextProps,
-      currentState,
-      nextState,
+      ...stateFillers,
     });
 
     expect(actual).toBe(false);
@@ -197,20 +174,10 @@ describe("shouldLeaderboardUpdate", () => {
       ],
     };
 
-    const currentState = {
-      isShowingDropdown: false,
-      shouldScrollTo: true,
-    };
-
-    const nextState = {
-      ...currentState,
-    };
-
     const actual = shouldLeaderboardUpdate({
       currentProps: newCurrentProps,
       nextProps,
-      currentState,
-      nextState,
+      ...stateFillers,
     });
 
     expect(actual).toBe(true);
@@ -261,20 +228,10 @@ describe("shouldLeaderboardUpdate", () => {
       ],
     };
 
-    const currentState = {
-      isShowingDropdown: false,
-      shouldScrollTo: true,
-    };
-
-    const nextState = {
-      ...currentState,
-    };
-
     const actual = shouldLeaderboardUpdate({
       currentProps: newCurrentProps,
       nextProps,
-      currentState,
-      nextState,
+      ...stateFillers,
     });
 
     expect(actual).toBe(true);

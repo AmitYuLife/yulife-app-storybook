@@ -148,3 +148,17 @@ export function getStartAndEndDateTimesWithTimezone(startDateTime: string, endDa
     end: moment(endDateTime, DATE_FORMAT_WITHOUT_TZ).format(DATE_FORMAT_WITH_TZ),
   };
 }
+
+export function toCapitalLetter(str: string) {
+  try {
+    const splitedArray = str.toLowerCase().split(" ");
+
+    for (let i = 0, x = splitedArray.length; i < x; i++) {
+      splitedArray[i] = splitedArray[i][0].toUpperCase() + splitedArray[i].substr(1);
+    }
+
+    return splitedArray.join(" ");
+  } catch (e) {
+    return str;
+  }
+}

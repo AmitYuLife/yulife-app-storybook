@@ -5,8 +5,8 @@ const pkg = require("../package.json");
 const [_, __, deviceName] = process.argv;
 
 if (!deviceName) {
-    console.log("No device name set, skipping");
-    return;
+  console.log("No device name set, skipping");
+  return;
 }
 
 pkg.detox.configurations["ios.sim.release"].name = deviceName;

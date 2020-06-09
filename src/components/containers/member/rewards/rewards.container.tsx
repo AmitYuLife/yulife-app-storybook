@@ -86,9 +86,7 @@ const RewardsContainer: FC<Props> = (props) => {
     () =>
       (purchases && purchases.getAllPurchases ? purchases.getAllPurchases : []).map((purchase) => {
         const { id, amount, currency_code, name, status, createdAt, yuCoinsSpent } = purchase;
-        const [day, month] = moment(new Date(createdAt).toISOString())
-          .format("DD-MMM")
-          .split("-");
+        const [day, month] = moment(new Date(createdAt).toISOString()).format("DD-MMM").split("-");
         const reward = formatVoucherName(amount, currency_code, name);
         const route = getConfirmedRoute(purchase.rewardProviderId);
 
@@ -181,20 +179,19 @@ const RewardsContainer: FC<Props> = (props) => {
         copy={copy}
       />
     );
-  } 
-    return (
-      <RewardsListScreen
-        data={rewards && rewards.getRewards ? rewards.getRewards : []}
-        hasNotification={hasNotification}
-        onItemPress={handleRewardDetailsItemPress}
-        onLeftMenuPress={props.onLeftMenuPress}
-        onLeftTabPress={handleRewardsRefetch}
-        onRightTabPress={handlePurchasesTabPress}
-        loading={rewardsAreLoading}
-        totalCoins={totalCoins}
-      />
-    );
-  
+  }
+  return (
+    <RewardsListScreen
+      data={rewards && rewards.getRewards ? rewards.getRewards : []}
+      hasNotification={hasNotification}
+      onItemPress={handleRewardDetailsItemPress}
+      onLeftMenuPress={props.onLeftMenuPress}
+      onLeftTabPress={handleRewardsRefetch}
+      onRightTabPress={handlePurchasesTabPress}
+      loading={rewardsAreLoading}
+      totalCoins={totalCoins}
+    />
+  );
 };
 
 const mapStateToProps = (state: IReduxState) => ({

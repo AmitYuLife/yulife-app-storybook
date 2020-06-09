@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "#fff",
     borderRadius: Style.SCALE_UP_AND_DOWN(8),
-    height: Style.SCALE_UP_AND_DOWN(58),
+    height: Style.adjust(58),
     justifyContent: "space-around",
     alignItems: "center",
     paddingHorizontal: Style.SCALE_UP_AND_DOWN(20),

@@ -1,4 +1,4 @@
-import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../styles";
 
@@ -43,10 +43,8 @@ export default StyleSheet.create({
   } as ViewStyle,
   topbarWrapper: {
     left: 0,
-    paddingBottom: Style.SCALE_UP_AND_DOWN(8),
-    paddingTop: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 40 : Platform.OS === "android" ? 0 : 20),
+    top: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
     position: "absolute",
     right: 0,
-    top: 0,
   } as ViewStyle,
 });

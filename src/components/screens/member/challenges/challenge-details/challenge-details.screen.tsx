@@ -58,12 +58,7 @@ function ChallengeDetailsScreen({
       {!onPressSetUp ? (
         <Text style={styles.footer}>{data.footer}</Text>
       ) : (
-        <Button
-          label={data.setUpLabel}
-          onPress={onPressSetUp}
-          type="Secondary"
-          wrapperStyle={styles.setUp}
-        />
+        <Button label={data.setUpLabel} onPress={onPressSetUp} type="Secondary" wrapperStyle={styles.setUp} />
       )}
       {!error ? null : <Text style={styles.error}>{error}</Text>}
     </View>

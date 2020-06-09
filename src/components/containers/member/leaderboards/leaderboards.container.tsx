@@ -3,7 +3,6 @@ import { ILeaderboard } from "@app/redux/user/user.reducer";
 import { GQL_QUERY_LEADERBOARD } from "@graphql/member";
 import { handleLinkPress } from "@services/app-link";
 import Logger from "@services/logging/logger";
-import { Style } from "@styles/index";
 import React, { FC, useCallback, useMemo, useState } from "react";
 import Config from "react-native-config";
 import { connect } from "react-redux";
@@ -15,7 +14,7 @@ import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getCurrentLevel, getHasNotification } from "../../../../redux/levels/levels.selectors";
 import { updateLeaderboardConsent } from "../../../../redux/user/user.actions";
 import { getAllLeaderboards, getConsentedLeaderboards } from "../../../../redux/user/user.selectors";
-import { LeaderboardOfflineScreen, LeaderboardsScreen } from "../../../screens";
+import { LeaderboardsScreen } from "../../../screens";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -54,8 +53,6 @@ const LeaderboardsContainer: FC<Props> = ({
   updateLeaderboardConsent: dispatchUpdateConsent,
   onLeftMenuPress,
 }) => {
-  const isIPad = useMemo(() => Style.isIPad(), []);
-
   const [sortBy, setSortBy] = useState("steps");
   const [{ activeLeaderboardIndex, leaderboardId }, setLeaderboardInfo] = useState(getInitialLeaderboard(leaderboards));
 
@@ -99,43 +96,18 @@ const LeaderboardsContainer: FC<Props> = ({
     [leaderboards]
   );
 
-  const coinsRefetch = useMemo(() => handleRefetch("coins"), [handleRefetch]);
   const stepsRefetch = useMemo(() => handleRefetch("steps"), [handleRefetch]);
-  const mindfulMinsRefetch = useMemo(() => handleRefetch("mindful"), [handleRefetch]);
-
-  const initialScrollIndex = useMemo(
-    () =>
-      data && data.getLeaderboard !== null && data.getCurrentUser && data.getCurrentUser.id
-        ? (data.getLeaderboard as any).findIndex((item: any) => item.id === `lead_${data.getCurrentUser.id}`)
-        : 0,
-    [data]
-  );
-
-  if (isIPad) {
-    return (
-      <LeaderboardOfflineScreen
-        hasNotification={hasNotification}
-        totalCoins={totalCoins}
-        labels={labels}
-        onLeftMenuPress={onLeftMenuPress}
-      />
-    );
-  }
 
   return (
     <LeaderboardsScreen
       componentId={componentId}
       isLoading={loading}
-      initialScrollIndex={initialScrollIndex}
       leaderboards={leaderboards || []}
       items={data && data.getLeaderboard ? data.getLeaderboard : []}
-      onHandleCoinsRefetch={coinsRefetch}
-      onHandleStepsRefetch={stepsRefetch}
-      onHandleMindfulMinsRefetch={mindfulMinsRefetch}
       activeLeaderboardIndex={activeLeaderboardIndex}
       onLeaderboardChange={handleLeaderboardChange}
       sortBy={sortBy}
-      onRefetch={refetch}
+      onRefetch={stepsRefetch}
       hasNotification={hasNotification}
       labels={labels}
       totalCoins={totalCoins}
@@ -146,6 +118,7 @@ const LeaderboardsContainer: FC<Props> = ({
       copy={copy.turnBoardOn}
       isMindfulAvailable={false}
       appState={appState}
+      userId={`lead_${data?.getCurrentUser?.id}`}
     />
   );
 };

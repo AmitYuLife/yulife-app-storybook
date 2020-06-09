@@ -33,8 +33,7 @@ const Yumatter = ({ onPressClose, onRightTabPress, onLeftTabPress, isGroup }: IP
         </Text>
         <Text style={styles.header}>Structured clinical counselling:</Text>
         <Text style={styles.content}>
-          Face‐to‐face or telephone sessions with a local clinician, including evening and weekend
-          appointments.
+          Face‐to‐face or telephone sessions with a local clinician, including evening and weekend appointments.
         </Text>
         <Text style={styles.header}>Financial Support:</Text>
         <Text style={styles.content}>Money advisers available to support people facing financial challenges.</Text>

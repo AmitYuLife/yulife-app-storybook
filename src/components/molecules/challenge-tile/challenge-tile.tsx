@@ -59,15 +59,12 @@ function ChallengeTile(props: Props) {
 
   return (
     <TouchableOpacity activeOpacity={isLocked ? 1 : 0.2} onPress={onPress} style={styles.wrapper}>
-      <AnimalImage
-        image={getImageSource(challengeType, currentWorld)}
-        isLocked={isLocked}
-      />
+      <AnimalImage image={getImageSource(challengeType, currentWorld)} isLocked={isLocked} />
       {isLocked ? (
         <LockedOverlay minimumLevel={minimumLevel} />
       ) : (
-          <Content challengeType={challengeType} duration={duration} reward={reward} />
-        )}
+        <Content challengeType={challengeType} duration={duration} reward={reward} />
+      )}
     </TouchableOpacity>
   );
 }
@@ -75,9 +72,7 @@ function ChallengeTile(props: Props) {
 export default ChallengeTile;
 
 const LockedOverlay: FunctionComponent<Partial<Props>> = ({ minimumLevel }) => (
-  <View
-    style={styles.lockedOverlay}
-  >
+  <View style={styles.lockedOverlay}>
     <Image resizeMode="contain" style={styles.lockedImage} source={assets.lock} />
     <Text style={styles.lockedLabel} bold={true}>
       {`level ${minimumLevel}`}
@@ -87,12 +82,7 @@ const LockedOverlay: FunctionComponent<Partial<Props>> = ({ minimumLevel }) => (
 
 const AnimalImage: FunctionComponent<Partial<Props>> = ({ image, isLocked }) => (
   <View style={isLocked ? styles.imageWrapperLocked : styles.imageWrapper}>
-    <View
-      style={StyleSheet.flatten([
-        styles.imageBackground,
-        isLocked ? styles.imageBackgroundLocked : null,
-      ])}
-    />
+    <View style={StyleSheet.flatten([styles.imageBackground, isLocked ? styles.imageBackgroundLocked : null])} />
     <Image
       testID="animal-image"
       style={isLocked ? getLockedImageStyle(image) : getImageStyle(image)}

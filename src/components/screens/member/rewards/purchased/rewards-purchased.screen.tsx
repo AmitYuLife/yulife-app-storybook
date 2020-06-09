@@ -2,15 +2,13 @@ import Loading from "@atoms/loading/loading";
 import { NavBar, RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
-import { SafeAreaView, View, StyleSheet, Platform } from "react-native";
+import { View, Platform } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
 import { GetMobileCopy_getMobileCopy_screens_purchases } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
 import PurchasesEmpty from "./purchases-empty/purchases-empty";
 import styles from "./rewards-purchased.screen.styles";
-import { Pad } from "@atoms/index";
-import { isIphoneX } from "react-native-iphone-x-helper";
 
 interface IProps extends IConnectedScreenProps {
   data: RewardsPurchasedItemData[];
@@ -33,28 +31,29 @@ export default class RewardsPurchasedScreen extends React.PureComponent<IProps> 
     const { data, hasNotification = false, onLeftTabPress, onRightTabPress, onLeftMenuPress, totalCoins } = this.props;
 
     return (
-      <SafeAreaView style={styles.wrapper}>
-        <View style={StyleSheet.absoluteFillObject}>
-          {Platform.OS !== "ios" ? null : <Pad height={isIphoneX() ? 40 : 20} />}
-          <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
-          <View style={styles.rewardTabsWrapper}>
-            <RewardTabs activeTabIndex={1} onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} />
-          </View>
-          <View style={styles.listWrapper}>
-            <LargeList
-              ref={this.setLargeListRef}
-              renderIndexPath={this.renderIndexPath}
-              heightForIndexPath={this.getHeight}
-              data={[{ items: data }]}
-              onRefresh={this.handleRefresh}
-              renderEmpty={this.renderEmpty}
-              refreshHeader={YulifeRefreshHeader}
-              renderFooter={this.renderFooter}
-            />
-          </View>
+      <View style={styles.wrapper}>
+        <View
+          style={[styles.rewardTabsWrapper, { paddingTop: TopBar.height + Platform.select({ ios: 36, android: 0 }) }]}
+        >
+          <RewardTabs activeTabIndex={1} onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} />
         </View>
-        <NavBar activeIndex={3} hasNotification={hasNotification} />
-      </SafeAreaView>
+        <View style={styles.listWrapper}>
+          <LargeList
+            ref={this.setLargeListRef}
+            renderIndexPath={this.renderIndexPath}
+            heightForIndexPath={this.getHeight}
+            data={[{ items: data }]}
+            onRefresh={this.handleRefresh}
+            renderEmpty={this.renderEmpty}
+            refreshHeader={YulifeRefreshHeader}
+            renderFooter={this.renderFooter}
+          />
+        </View>
+        <View style={styles.topbarWrapper}>
+          <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
+        </View>
+        <NavBar activeIndex={4} hasNotification={hasNotification} />
+      </View>
     );
   }
 

@@ -153,6 +153,8 @@ export interface User {
   __typename: "User";
   id: string | null;
   archived: boolean | null;
+  firstName: string | null;
+  lastName: string | null;
   createdAt: string | null;
   onboardingDate: string | null;
   redeemedOnboarding: boolean | null;

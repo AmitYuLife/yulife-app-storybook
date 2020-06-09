@@ -21,8 +21,13 @@ export const ROUTES = {
   activityHistory: "yulife.member.ActivityHistory",
   stats: "yulife.member.Stats",
   leaderboards: "yulife.member.Leaderboards",
+  chooseLeaderboard: "yulife.member.chooseLeaderboard",
   debug: "yulife.member.Debug",
   memberServices: "yulifer.member.memberServices",
+  yuScreen: "yulife.member.Yuscreen",
+  avatarCreation: "yulife.member.AvatarCreation",
+  yuScreenProducts: "yulife.member.YuscreenProducts",
+  yuScreenEarnRate: "yulife.member.YuscreenEarnRate",
 
   // quests
   questsChallengesList: "yulife.quests.ChallengesList",

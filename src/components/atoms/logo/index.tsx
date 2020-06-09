@@ -9,6 +9,8 @@ interface IProps {
   colour?: string;
   onLayout?: () => void;
   style?: StyleProp<ViewStyle>;
+  width?: number;
+  height?: number;
 }
 
 const Logo: React.SFC<IProps> = ({
@@ -17,13 +19,15 @@ const Logo: React.SFC<IProps> = ({
   colour = Colours.darkHotPink,
   onLayout = null,
   style = {},
+  width,
+  height,
 }) => {
   switch (type) {
     case "full":
       return (
         <Svg
-          width={String(Style.SCALE_UP_AND_DOWN(228 * scale))}
-          height={String(Style.SCALE_UP_AND_DOWN(120 * scale))}
+          width={String(width || Style.SCALE_UP_AND_DOWN(228 * scale))}
+          height={String(height || Style.SCALE_UP_AND_DOWN(120 * scale))}
           viewBox="0 0 228 120"
           style={style}
         >

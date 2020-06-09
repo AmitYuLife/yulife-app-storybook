@@ -18,7 +18,9 @@ const GeneralInfoCard: SFC<IProps> = ({ titleColor, title, value, unit }) => {
     <View style={styles.wrapper}>
       <Text style={StyleSheet.flatten([styles.title, { color: titleColor }])}>{title}</Text>
       <View style={styles.valueWrapper}>
-        <Text style={styles.value} testID={STATS_VALUE(value)}>{value}</Text>
+        <Text style={styles.value} testID={STATS_VALUE(value)}>
+          {value}
+        </Text>
         <View>{unit ? <Text style={styles.unit}>{unit}</Text> : null}</View>
       </View>
     </View>

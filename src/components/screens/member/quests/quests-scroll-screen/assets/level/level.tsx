@@ -25,10 +25,13 @@ function LevelBubble(props: IProps) {
   const style = getButtonPosition(slice, index, false);
   const pulseStyle = getButtonPosition(slice, index, true);
   const ONE_SECOND = 1000;
-  useInterval(() => {
-    const diff = moment().diff(moment(level.nextAvailableAt), "seconds");
-    setNextAvailableTimer(diff);
-  }, level.nextAvailableAt ? ONE_SECOND : null);
+  useInterval(
+    () => {
+      const diff = moment().diff(moment(level.nextAvailableAt), "seconds");
+      setNextAvailableTimer(diff);
+    },
+    level.nextAvailableAt ? ONE_SECOND : null
+  );
   const bubbleBackgroundColor = getBackgroundColor(nextAvailableTimer, level);
   const shadowStyle = getShadowPosition(style);
   const shadowColor = getShadowColor(level.level);

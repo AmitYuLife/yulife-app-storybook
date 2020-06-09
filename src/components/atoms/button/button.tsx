@@ -50,7 +50,13 @@ function Button({ label, type, wrapperStyle, disabled, testID, isLoading, onPres
           onPressOut={handlePressOut}
         >
           <View testID={`${testID}-text-view`} style={getWrapperStyle({ type, pressedIn })}>
-            {isLoading ? <ActivityIndicator color="white" /> : <Text allowFontScaling={false} style={getTextStyle(type)}>{label}</Text>}
+            {isLoading ? (
+              <ActivityIndicator color="white" />
+            ) : (
+              <Text allowFontScaling={false} style={getTextStyle(type)}>
+                {label}
+              </Text>
+            )}
           </View>
         </TouchableWithoutFeedback>
         {!disabled ? null : <View style={getWrapperOverlayStyle({ disabled })} />}

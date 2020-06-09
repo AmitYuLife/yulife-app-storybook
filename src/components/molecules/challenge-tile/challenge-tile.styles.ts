@@ -9,23 +9,25 @@ const styles = StyleSheet.create({
   contentDurationWrapper: {} as ViewStyle,
   contentReward: {
     color: "rgb(51,51,51)",
-    fontSize: Style.adjust(13)
+    fontSize: Style.adjust(13),
   } as TextStyle,
   contentRewardWrapper: {
-    marginTop: 2
+    marginTop: 2,
   } as ViewStyle,
   contentTitle: {
     color: "rgb(51,51,51)",
-    fontSize: Style.adjust(17)
+    fontSize: Style.adjust(17),
   } as TextStyle,
   contentTitleWrapper: {} as ViewStyle,
   contentWrapper: {
     flex: 1,
     paddingLeft: Style.adjust(15),
-    paddingTop: Style.adjust(Platform.select({
-      ios: 11,
-      android: 4
-    })),
+    paddingTop: Style.adjust(
+      Platform.select({
+        ios: 11,
+        android: 4,
+      })
+    ),
   } as ViewStyle,
   imageBackground: {
     backgroundColor: "rgba(255,255,255,0.5)",
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   imageNext: {
     height: Style.adjust(25),
-    width: Style.adjust(25)
+    width: Style.adjust(25),
   } as ImageStyle,
   imageWrapper: {
     height: Style.adjust(155),
@@ -55,22 +57,22 @@ const styles = StyleSheet.create({
     height: FULL_HEIGHT,
     justifyContent: "center",
     borderRadius: RADIUS,
-    overflow: "hidden"
+    overflow: "hidden",
   } as ViewStyle,
   imageWrapperNext: {
     alignItems: "center",
     height: "100%",
     justifyContent: "center",
-    width: Style.adjust(55)
+    width: Style.adjust(55),
   } as ViewStyle,
   isLockedBottomWrapper: {
-    backgroundColor: "rgba(255,255,255,0.5)"
+    backgroundColor: "rgba(255,255,255,0.5)",
   } as ViewStyle,
   lockedImage: {
-    marginBottom: Style.adjust(9)
+    marginBottom: Style.adjust(9),
   } as ImageStyle,
   lockedLabel: {
-    fontSize: Style.adjust(17)
+    fontSize: Style.adjust(17),
   } as TextStyle,
   lockedOverlay: {
     alignItems: "center",
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   sectionBottomInsideWrapper: {
     flexDirection: "row",
-    height: "100%"
+    height: "100%",
   } as ViewStyle,
   sectionBottomWrapper: {
     backgroundColor: "rgba(255,255,255,0.9)",
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
     height: BOTOM_HEIGHT,
     borderBottomLeftRadius: RADIUS,
     borderBottomRightRadius: RADIUS,
-    overflow: "hidden"
+    overflow: "hidden",
   } as ViewStyle,
   wrapper: {
     maxHeight: FULL_HEIGHT,
@@ -104,10 +106,10 @@ const styles = StyleSheet.create({
       shrinkThreshold: Style.DEVICE_WIDTH < 361,
       shrinkMultiplier: Platform.select({ ios: 0.15, android: 0.05 }),
       growThreshold: Platform.select({ ios: Style.DEVICE_WIDTH > 413 }),
-      growMultiplier: 0.1
+      growMultiplier: 0.1,
     }),
     borderRadius: RADIUS,
-  } as ViewStyle
+  } as ViewStyle,
 });
 
 export default styles;

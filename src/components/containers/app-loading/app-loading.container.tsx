@@ -59,5 +59,5 @@ const styles = StyleSheet.create({
   wrapper: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "white",
-  }
+  },
 });

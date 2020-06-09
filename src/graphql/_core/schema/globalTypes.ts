@@ -7,6 +7,25 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum AvatarBodyType {
+  female = "female",
+  male = "male",
+  neutral = "neutral",
+}
+
+export enum AvatarPartType {
+  body = "body",
+  boots = "boots",
+  chest = "chest",
+  eyes = "eyes",
+  facialHair = "facialHair",
+  glasses = "glasses",
+  gloves = "gloves",
+  hair = "hair",
+  head = "head",
+  pants = "pants",
+}
+
 export enum IntercomHashMethod {
   android = "android",
   ios = "ios",
@@ -53,6 +72,24 @@ export interface MobileConsentInput {
 
 export interface ProductMetadata {
   avios?: AviosMetadata | null;
+}
+
+export interface UserAvatarInput {
+  head?: UserAvatarInputPart | null;
+  eyes?: UserAvatarInputPart | null;
+  hair?: UserAvatarInputPart | null;
+  body?: UserAvatarInputPart | null;
+  pants?: UserAvatarInputPart | null;
+  chest?: UserAvatarInputPart | null;
+  gloves?: UserAvatarInputPart | null;
+  facialHair?: UserAvatarInputPart | null;
+  glasses?: UserAvatarInputPart | null;
+  boots?: UserAvatarInputPart | null;
+}
+
+export interface UserAvatarInputPart {
+  partId?: string | null;
+  colorSchemeId?: string | null;
 }
 
 //==============================================================

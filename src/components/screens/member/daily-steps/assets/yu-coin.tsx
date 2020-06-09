@@ -6,25 +6,25 @@ import styles, { svgSpecs } from "./yu-coin.styles";
 import { YUCOIN } from "@ids";
 
 interface IProps {
-    scale?: number;
-    isGrayScale?: boolean;
-    isLoading?: boolean;
-    hasWhiteGlow?: boolean;
+  scale?: number;
+  isGrayScale?: boolean;
+  isLoading?: boolean;
+  hasWhiteGlow?: boolean;
 }
 
 export default function YuCoin({ isGrayScale, isLoading, hasWhiteGlow }: IProps) {
-    return (
-        <View style={styles.wrapper} testID={YUCOIN}>
-            {isGrayScale ? null : <Glow hasWhiteGlow={hasWhiteGlow} />}
-            <View style={styles.innerWrapper}>
-                <View style={styles.svgWrapper}>
-                    <Svg {...svgSpecs}>
-                        <Static isGrayScale={isGrayScale} />
-                        {isLoading && !isGrayScale ? <GiraffeAnimated /> : <GiraffeStatic isGrayScale={isGrayScale} />}
-                    </Svg>
-                    {isLoading || isGrayScale ? null : <Shine />}
-                </View>
-            </View>
+  return (
+    <View style={styles.wrapper} testID={YUCOIN}>
+      {isGrayScale ? null : <Glow hasWhiteGlow={hasWhiteGlow} />}
+      <View style={styles.innerWrapper}>
+        <View style={styles.svgWrapper}>
+          <Svg {...svgSpecs}>
+            <Static isGrayScale={isGrayScale} />
+            {isLoading && !isGrayScale ? <GiraffeAnimated /> : <GiraffeStatic isGrayScale={isGrayScale} />}
+          </Svg>
+          {isLoading || isGrayScale ? null : <Shine />}
         </View>
-    );
+      </View>
+    </View>
+  );
 }

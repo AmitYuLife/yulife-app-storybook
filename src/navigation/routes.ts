@@ -34,6 +34,24 @@ export default [
     component: require("../components/containers/member/menu/menu.container").default,
   },
   {
+    hasMenu: true,
+    lazyLoad: true,
+    name: ROUTES.yuScreen,
+    component: require("../components/containers/member/yu-screen/yu-screen.container").default,
+  },
+  {
+    name: ROUTES.avatarCreation,
+    component: require("../components/containers/member/avatar-creation/avatar-creation.container").default,
+  },
+  {
+    name: ROUTES.yuScreenProducts,
+    component: require("../components/containers/member/yu-screen/yu-screen-products.container").default,
+  },
+  {
+    name: ROUTES.yuScreenEarnRate,
+    component: require("../components/containers/member/yu-screen/yu-screen-earn-rate.container").default,
+  },
+  {
     name: ROUTES.settings,
     component: require("../components/containers/member/settings/settings.container").default,
   },
@@ -67,6 +85,10 @@ export default [
     lazyLoad: true,
     name: ROUTES.leaderboards,
     component: require("../components/containers/member/leaderboards/leaderboards.container").default,
+  },
+  {
+    name: ROUTES.chooseLeaderboard,
+    component: require("../components/containers/member/leaderboards/choose-leaderboard.container").default,
   },
   {
     name: ROUTES.debug,

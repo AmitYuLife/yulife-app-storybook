@@ -1,11 +1,9 @@
-import { Pad } from "@atoms/index";
 import Loading from "@atoms/loading/loading";
 import { REWARDS_SCREEN } from "@ids";
 import { NavBar, RewardsListItem, RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
-import { Platform, SafeAreaView, StyleSheet, View } from "react-native";
-import { isIphoneX } from "react-native-iphone-x-helper";
+import { View } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
 import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
@@ -25,30 +23,29 @@ export default class RewardsListScreen extends React.PureComponent<IRewardsListS
 
   public render() {
     const { data, hasNotification = false, onLeftTabPress, onRightTabPress, onLeftMenuPress, totalCoins } = this.props;
-
     return (
-      <SafeAreaView style={styles.wrapper} testID={REWARDS_SCREEN}>
-        <View style={StyleSheet.absoluteFillObject}>
-          {Platform.OS !== "ios" ? null : <Pad height={isIphoneX() ? 40 : 20} />}
-          <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
-          <View style={styles.rewardTabsWrapper}>
-            <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={0} />
-          </View>
-          <View style={styles.listWrapper}>
-            <LargeList
-              ref={this.setLargeListRef}
-              renderIndexPath={this.renderIndexPath}
-              heightForIndexPath={this.getHeight}
-              data={[{ items: data }]}
-              onRefresh={this.handleRefresh}
-              renderEmpty={Loading}
-              refreshHeader={YulifeRefreshHeader}
-              renderFooter={this.renderFooter}
-            />
-          </View>
+      <View style={styles.wrapper} testID={REWARDS_SCREEN}>
+        <View style={styles.topbarFiller} />
+        <View style={styles.rewardTabsWrapper}>
+          <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={0} />
         </View>
-        <NavBar activeIndex={3} hasNotification={hasNotification} />
-      </SafeAreaView>
+        <View style={styles.listWrapper}>
+          <LargeList
+            ref={this.setLargeListRef}
+            renderIndexPath={this.renderIndexPath}
+            heightForIndexPath={this.getHeight}
+            data={[{ items: data }]}
+            onRefresh={this.handleRefresh}
+            renderEmpty={Loading}
+            refreshHeader={YulifeRefreshHeader}
+            renderFooter={this.renderFooter}
+          />
+        </View>
+        <View style={styles.topbarWrapper}>
+          <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
+        </View>
+        <NavBar activeIndex={4} hasNotification={hasNotification} />
+      </View>
     );
   }
 
@@ -66,7 +63,6 @@ export default class RewardsListScreen extends React.PureComponent<IRewardsListS
   private renderIndexPath = ({ row }: IndexPath) => {
     const { data } = this.props;
     const item = data[row];
-
     if (item) {
       const { available_denominations, code, currency_code, link_type, uiSettings } = item;
       const isLocked = !available_denominations.length;
@@ -85,7 +81,6 @@ export default class RewardsListScreen extends React.PureComponent<IRewardsListS
         />
       );
     }
-
     return null;
   };
 

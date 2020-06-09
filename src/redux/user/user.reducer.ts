@@ -42,6 +42,8 @@ type Business = GetCurrentUser_getCurrentUser_business & { isLoading?: boolean }
 type SurgeActivity = "steps" | "meditation" | "all" | null;
 
 export interface IUserStore {
+  firstName: string;
+  lastName: string;
   archived: boolean;
   connections: Connection[];
   consent: MobileConsentInput;
@@ -67,6 +69,8 @@ export interface IUserStore {
 
 export const initialState: IUserStore = {
   archived: false,
+  firstName: "",
+  lastName: "",
   consent: {},
   features: {},
   connections: [],
@@ -176,6 +180,14 @@ const updatePersistedState = (persistedState: IUserStore) => {
     };
   }
 
+  if (!persistedState.lastName || !persistedState.firstName) {
+    return {
+      ...persistedState,
+      firstName: "",
+      lastName: "",
+    };
+  }
+
   return persistedState;
 };
 
@@ -183,6 +195,8 @@ const getUserSuccess = (
   state: IUserStore,
   {
     getCurrentUser: {
+      firstName,
+      lastName,
       leaderboards = [],
       mobileConsent,
       userFeatures = [],
@@ -198,6 +212,8 @@ const getUserSuccess = (
 ): IUserStore => ({
   ...state,
   archived: false,
+  firstName,
+  lastName,
   connections,
   consent: {
     ...mobileConsent,
@@ -211,11 +227,13 @@ const loginUserSuccess = (
   state: IUserStore,
   {
     loginUser: {
-      user: { leaderboards = [], mobileConsent, userFeatures = [], connections = [] },
+      user: { firstName, lastName, leaderboards = [], mobileConsent, userFeatures = [], connections = [] },
     },
   }: LoginUser
 ): IUserStore => ({
   ...state,
+  firstName,
+  lastName,
   connections,
   consent: {
     ...mobileConsent,

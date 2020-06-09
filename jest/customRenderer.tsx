@@ -3,7 +3,7 @@ import React, { ReactElement } from "react";
 import { render as rtlRender } from "@testing-library/react-native";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import reducers, { testInitialState , IReduxState } from "@redux/_core/reducers";
+import reducers, { testInitialState, IReduxState } from "@redux/_core/reducers";
 
 interface Options {
   initialState: IReduxState;

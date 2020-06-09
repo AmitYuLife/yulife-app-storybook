@@ -50,42 +50,42 @@ export default class AnimatedChestScreen extends React.PureComponent<IProps> {
           {isLocked ? (
             <Image source={assets.chestLocked} />
           ) : (
-              <>
-                <Animated.Image
-                  style={{
-                    opacity: this.confettiOpacity,
-                    transform: [
-                      {
-                        scale: this.confettiScale,
-                      },
-                    ],
-                  }}
-                  resizeMode="contain"
-                  source={assets.chestBackground}
-                />
-                <View style={styles.chestWrapper}>
-                  <Animated.View
-                    style={StyleSheet.flatten([
-                      styles.lidWrapper,
-                      { transform: [{ translateY: this.lidYOffset }] },
-                    ] as ViewStyle)}
-                  >
-                    <Image source={assets.chestLid} />
-                  </Animated.View>
-                  <Animated.View
-                    style={StyleSheet.flatten([
-                      styles.chestCoinWrapper,
-                      { transform: [{ translateY: this.coinYOffset }] },
-                    ] as ViewStyle)}
-                  >
-                    <ChestCoin />
-                  </Animated.View>
-                  <View style={styles.chestBaseWrapper}>
-                    <Image source={assets.chestBase} />
-                  </View>
+            <>
+              <Animated.Image
+                style={{
+                  opacity: this.confettiOpacity,
+                  transform: [
+                    {
+                      scale: this.confettiScale,
+                    },
+                  ],
+                }}
+                resizeMode="contain"
+                source={assets.chestBackground}
+              />
+              <View style={styles.chestWrapper}>
+                <Animated.View
+                  style={StyleSheet.flatten([
+                    styles.lidWrapper,
+                    { transform: [{ translateY: this.lidYOffset }] },
+                  ] as ViewStyle)}
+                >
+                  <Image source={assets.chestLid} />
+                </Animated.View>
+                <Animated.View
+                  style={StyleSheet.flatten([
+                    styles.chestCoinWrapper,
+                    { transform: [{ translateY: this.coinYOffset }] },
+                  ] as ViewStyle)}
+                >
+                  <ChestCoin />
+                </Animated.View>
+                <View style={styles.chestBaseWrapper}>
+                  <Image source={assets.chestBase} />
                 </View>
-              </>
-            )}
+              </View>
+            </>
+          )}
         </View>
         <Text bold={true} style={styles.heading}>
           {heading}

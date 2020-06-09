@@ -60,6 +60,10 @@ const isShortAndLowScaledPixelAndroid = () => {
   return Platform.OS === "android" && y <= 690 && scaledPixel < 0.98;
 };
 
+const isWideScreen = () => {
+  return x > 400;
+};
+
 const BASE_HEIGHT = 667;
 const scaledPixel = +(x / 375).toFixed(3);
 const scaledYPixel = +(y / 667).toFixed(3);
@@ -75,6 +79,7 @@ interface IAdjustOptions {
   shrinkThreshold?: boolean;
   growThreshold?: boolean;
 }
+
 const adjust = (val: number, options: IAdjustOptions = {}) => {
   const {
     shrinkMultiplier = Platform.select({ ios: 0.15, android: 0.2 }),
@@ -142,6 +147,7 @@ const Style = {
   getSafeAreaStart,
   adjust,
   defaultShrinkThreshold,
+  isWideScreen,
 };
 
 export default Style;

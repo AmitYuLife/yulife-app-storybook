@@ -12,15 +12,13 @@ interface IProps {
   copy: GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn;
 }
 
-export default function LeaderboardConsent({
-  isLoading,
-  onAllowLeaderboard,
-  onPrivacyPolicyPress,
-  onRefuseConsent,
-  copy,
-}: IProps) {
+export default function LeaderboardConsent({ isLoading, onAllowLeaderboard, copy }: IProps) {
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper} contentContainerStyle={styles.contentWrapper}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      style={styles.wrapper}
+      contentContainerStyle={styles.contentWrapper}
+    >
       <Text style={styles.heading} bold={true}>
         turn on leaderboard?
       </Text>
@@ -33,8 +31,6 @@ export default function LeaderboardConsent({
         onPress={onAllowLeaderboard}
         type="Primary"
       />
-      <Button label={copy.ctaLabelSecondary} onPress={onRefuseConsent} type="Secondary" />
-      <Button wrapperStyle={styles.privacyButton} label={"privacy notice"} onPress={onPrivacyPolicyPress} type="Link" />
     </ScrollView>
   );
 }

@@ -1,23 +1,20 @@
-import { ILeaderboardsScreenProps as IProps, ILeaderboardsScreenState as IState } from "./leaderboards.screen";
+import { ILeaderboardsScreenProps as IProps, initialState } from "./leaderboards.screen";
 
 interface IShouldUpdateProps {
   nextProps: IProps;
   currentProps: IProps;
-  nextState: IState;
-  currentState: IState;
+  nextState: typeof initialState;
+  currentState: typeof initialState;
 }
 
 export function shouldLeaderboardUpdate({ nextProps, currentProps, nextState, currentState }: IShouldUpdateProps) {
-  return (
+  const propsCondition =
     currentProps.activeLeaderboardIndex !== nextProps.activeLeaderboardIndex ||
     currentProps.appState !== nextProps.appState ||
     currentProps.isLoading !== nextProps.isLoading ||
-    currentProps.initialScrollIndex !== nextProps.initialScrollIndex ||
     currentProps.sortBy !== nextProps.sortBy ||
     currentProps.items.length !== nextProps.items.length ||
     currentProps.leaderboards.length !== nextProps.leaderboards.length ||
-    currentState.isShowingDropdown !== nextState.isShowingDropdown ||
-    currentState.shouldScrollTo !== nextState.shouldScrollTo ||
     currentProps.totalCoins !== nextProps.totalCoins ||
     currentProps.hasNotification !== nextProps.hasNotification ||
     (!!(
@@ -29,6 +26,11 @@ export function shouldLeaderboardUpdate({ nextProps, currentProps, nextState, cu
         currentProps.leaderboards[currentProps.activeLeaderboardIndex].consent !==
           nextProps.leaderboards[nextProps.activeLeaderboardIndex].consent ||
         currentProps.leaderboards[currentProps.activeLeaderboardIndex].hasAccepted !==
-          nextProps.leaderboards[nextProps.activeLeaderboardIndex].hasAccepted))
-  );
+          nextProps.leaderboards[nextProps.activeLeaderboardIndex].hasAccepted));
+  const _itemOffsetY = nextState.itemOffsetY !== currentState.itemOffsetY;
+  const _viewportHeight = nextState.viewportHeight !== currentState.viewportHeight;
+  const _viewableInViewportMin = nextState.viewableInViewportMin !== currentState.viewableInViewportMin;
+  const _viewableInViewportMax = nextState.viewableInViewportMax !== currentState.viewableInViewportMax;
+  const stateCondition = _itemOffsetY || _viewportHeight || _viewableInViewportMin || _viewableInViewportMax;
+  return propsCondition || stateCondition;
 }

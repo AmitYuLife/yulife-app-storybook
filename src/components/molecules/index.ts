@@ -22,3 +22,4 @@ export { default as SurgePopup } from "./pop-up/surge-pop-up";
 export { default as Tooltip } from "./tooltip/tooltip";
 export { POPUPTYPE } from "./pop-up/pop-up";
 export { default as TextField } from "./text-field/text-field";
+export { default as TextWithBoldText } from "./text-with-bold-text/text-with-bold-text";
