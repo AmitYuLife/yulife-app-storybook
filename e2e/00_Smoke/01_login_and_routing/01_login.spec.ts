@@ -5,7 +5,7 @@ import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
 import { INPUT_LOGIN_EMAIL, INPUT_RESET_PASSWORD } from "@ids";
-import { CUSTOMER_4, AUTH_4 } from "_utils/data/stubs";
+import { CUSTOMER_4, AUTH_4, CUSTOMER_ARCHIVED, AUTH_ARCHIVED } from "_utils/data/stubs";
 
 Feature("As a user I can get past the login screen", async () => {
 
@@ -129,6 +129,13 @@ Feature("As a user I can get past the login screen", async () => {
                     })
                 })
             })
+        })
+    })
+
+    Scenario("As an archived user, I should not be able to login", scenario.start, async () => {
+        Given("I login as an archived user", given.loginOnly(CUSTOMER_ARCHIVED, AUTH_ARCHIVED), async () => {
+            Then("I should see 'Sorry'!", then.textVisible("Sorry!"))
+            Then("I should see copy saying I can't use the app", then.textVisible("You are not able to use this app at the moment"))
         })
     })
 })
