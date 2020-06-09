@@ -73,7 +73,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
             {this.state.isShowingKeyboard ? null : (
               <View>
                 <Pad height={100} />
-                <Heading label={copy.heading} size={Heading.Sizes.LARGE} />
+                <Heading label={copy.heading} size="large" />
                 <Blurb label={copy.subheading} wrapperStyle={styles.blurbWrapper} />
               </View>
             )}

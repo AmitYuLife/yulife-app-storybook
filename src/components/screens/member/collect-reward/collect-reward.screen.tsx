@@ -16,7 +16,7 @@ const CollectReward: SFC<IProps> = ({ onPress, date, yucoin }) => (
       <CoinConfetti isExpanded={true} coins={yucoin} animationType="collect-reward" />
       <Pad height={8} />
       <View style={styles.dateWrapper}>
-        {!date ? null : <Heading size={Heading.Sizes.SMALL} bold={true} label={date} />}
+        {!date ? null : <Heading size="small" bold={true} label={date} />}
       </View>
       <Pad height={14} />
       <Button type="PrimarySmall" label={"collect"} onPress={onPress} />
