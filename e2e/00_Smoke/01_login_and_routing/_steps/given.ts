@@ -6,6 +6,10 @@ import { sendReduxEvent } from "@socket";
 import { navigation } from "@navigation"
 import { CUSTOMER_4 } from "_utils/data/stubs";
 
+export const {
+    loginOnly,
+} = navigation.login
+
 export const enterInvalidCredentials = async (): Promise<void> => {
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));

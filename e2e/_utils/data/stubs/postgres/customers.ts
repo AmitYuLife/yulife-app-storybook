@@ -197,3 +197,18 @@ export const CUSTOMER_14 = {
         status: "onboarded"
     }
 } as IDatabaseItem
+
+export const CUSTOMER_ARCHIVED = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "archived@yulife.com",
+        firstName: "Ar",
+        lastName: "Chived",
+        dateOfBirth: moment().subtract(30, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded",
+        archived: true
+    }
+} as IDatabaseItem
