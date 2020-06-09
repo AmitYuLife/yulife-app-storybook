@@ -24,7 +24,7 @@ export default class Pulse extends React.PureComponent<IProps, IState> {
   private interpolation = {
     inputRange: [0, 1],
     outputRange: [1, this.props.pulseMaxSize / this.props.size],
-  }
+  };
   public componentDidMount() {
     if (!DETOX_ENABLED) {
       this.pulseInterval = global.setInterval(() => {
@@ -74,7 +74,7 @@ export default class Pulse extends React.PureComponent<IProps, IState> {
               height: this.props.size,
               opacity: 0.2,
               width: this.props.size,
-              transform: [{ scale: this.anim.interpolate(this.interpolation) }]
+              transform: [{ scale: this.anim.interpolate(this.interpolation) }],
             },
             style,
           ]}

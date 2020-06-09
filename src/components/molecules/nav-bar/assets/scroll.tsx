@@ -11,8 +11,15 @@ export default function Scroll({ isActive, onPressIn, hasNotification, isHighlig
   const size = String(Style.SCALE_UP_AND_DOWN(54));
 
   return (
-    <Svg onPressIn={onPressIn} onPressOut={onPressIn} viewBox="0 0 54 54" width={size} height={size} testID={NAV_BAR("quests")}>
-      <G >
+    <Svg
+      onPressIn={onPressIn}
+      onPressOut={onPressIn}
+      viewBox="0 0 54 54"
+      width={size}
+      height={size}
+      testID={NAV_BAR("quests")}
+    >
+      <G>
         {Platform.OS === "ios" ? <Path d="M0 0H54V54H0z" fill="#fff" /> : null}
         <Path d="M36.35 7.25h-15.8A1.66 1.66 0 0019 9v16.8" fill="none" stroke={fill} strokeMiterlimit={10} />
         <Path

@@ -1,18 +1,67 @@
-import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
+import { ImageStyle, StyleSheet, ViewStyle, Platform } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../styles";
+import { TopBar } from "@components/molecules";
+
+export const LIST_PAD_HEIGHT = Platform.select({
+  ios: Style.adjust(348, { growThreshold: Style.DEVICE_HEIGHT > 600, growMultiplier: 0.1 }),
+  android: 300,
+});
+export const LOADING_ITEM_HEIGHT = Style.SCALE_Y_UP_AND_DOWN(48);
+const TOP_BAR_PAD_TOP = Platform.select({ ios: Style.getSafeAreaStart(), android: Style.adjust(10) });
+const TOP_BAR_PAD_BOT = Style.adjust(12);
+export const TOP_BAR_WRAPPER_HEIGHT = TopBar.height + TOP_BAR_PAD_TOP + TOP_BAR_PAD_BOT;
+export const LEADERBOARD_PROMPT_OFFSET = 100;
 
 export default StyleSheet.create({
-  image: {
-    height: Style.SCALE_UP_AND_DOWN(100),
-    width: "100%",
-  } as ImageStyle,
   imageWrapper: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    position: "relative",
+    position: Platform.select({ ios: "absolute", android: null }),
     width: "100%",
-    marginTop: 20,
+    height: LIST_PAD_HEIGHT,
+  } as ViewStyle,
+  firstListItem: {
+    height: LIST_PAD_HEIGHT,
+    width: "100%",
+  } as ViewStyle,
+  loadingItem: {
+    height: LOADING_ITEM_HEIGHT,
+    width: Style.DEVICE_WIDTH - 28,
+    marginLeft: Style.adjust(16),
+    marginTop: Style.adjust(2),
+    borderRadius: Style.adjust(5),
+    backgroundColor: "#F3F3F3",
+  } as ViewStyle,
+  secondUserAvatar: {
+    position: "absolute",
+    marginTop: Style.adjust(Platform.select({ android: 75, ios: 76 })),
+    marginLeft: Style.adjust(84),
+  } as ViewStyle,
+  secondUserAvatarEmpty: {
+    position: "absolute",
+    marginTop: Style.adjust(Platform.select({ android: 89, ios: 88 })),
+    marginLeft: Style.adjust(85),
+  } as ViewStyle,
+
+  firstUserAvatar: {
+    position: "absolute",
+    marginTop: Style.adjust(Platform.select({ android: 51, ios: 52 })),
+    marginLeft: Style.adjust(162),
+  } as ViewStyle,
+  firstUserAvatarEmpty: {
+    position: "absolute",
+    marginTop: Style.adjust(Platform.select({ android: 64.5, ios: 64 })),
+    marginLeft: Style.adjust(170),
+  } as ViewStyle,
+
+  thirdUserAvatar: {
+    position: "absolute",
+    marginTop: Style.adjust(Platform.select({ android: 87, ios: 88 })),
+    marginLeft: Style.adjust(236),
+  } as ViewStyle,
+  thirdUserAvatarEmpty: {
+    position: "absolute",
+    marginTop: Style.adjust(Platform.select({ android: 100, ios: 100 })),
+    marginLeft: Style.adjust(247),
   } as ViewStyle,
   backgroundImageBase: {
     width: "100%",
@@ -25,18 +74,29 @@ export default StyleSheet.create({
     width: "100%",
   } as ViewStyle,
   topBarWrapper: {
-    zIndex: 3,
-    width: "100%",
+    position: "absolute",
+    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
+    paddingBottom: TOP_BAR_PAD_BOT,
+    left: 0,
+    right: 0,
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 2,
   } as ViewStyle,
   list: {
     width: "100%",
     backgroundColor: "white",
-    flex: 1,
-    overflow: "hidden",
   } as ViewStyle,
   footer: {
-    height: Style.SCALE_UP_AND_DOWN(28),
+    height: Style.adjust(28),
   } as ViewStyle,
+  leaderboardConsentWrapper: {} as ViewStyle,
   leaderboardList: {
     position: "absolute",
     bottom: 0,
@@ -45,21 +105,21 @@ export default StyleSheet.create({
     top: 0,
   } as ViewStyle,
   listWrapperMargin: {
-    marginBottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 45 : 79),
+    marginBottom: Style.adjust(isIphoneX() ? 45 : 79),
     alignItems: "center",
   } as ViewStyle,
   wrapper: {
     flex: 1,
   } as ViewStyle,
   grayscaleWrapper: {
-    backgroundColor: "rgb(236, 236, 236)",
+    backgroundColor: "rgb(100, 100, 100)",
   } as ViewStyle,
   navbarWrapper: {
-    height: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 25 : 15),
-    paddingBottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 0 : 25),
+    height: Style.adjust(isIphoneX() ? 25 : 15),
+    paddingBottom: Style.adjust(isIphoneX() ? 0 : 25),
     alignItems: "center",
   } as ViewStyle,
   leaderboardOfflineWrapper: { justifyContent: "center", alignItems: "center", flex: 1 } as ViewStyle,
   leaderboardOfflineImage: { position: "absolute", bottom: 0, left: 0, right: 0, width: "100%" } as ImageStyle,
-  leaderboardOfflineText: { fontSize: Style.SCALE_UP_AND_DOWN(20), lineHeight: Style.SCALE_UP_AND_DOWN(20) },
+  leaderboardOfflineText: { fontSize: Style.adjust(20), lineHeight: Style.adjust(20) },
 });

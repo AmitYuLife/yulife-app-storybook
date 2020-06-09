@@ -1,45 +1,87 @@
 import { Text } from "@atoms/index";
 import { numberWithCommas } from "@services/utils";
 import * as React from "react";
-import { Image, StyleSheet, View } from "react-native";
-import assets from "../assets";
+import { StyleSheet, View, Animated, TouchableWithoutFeedback } from "react-native";
 import styles from "./leaderboard-item.styles";
+import { IAvatar } from "../../yu-screen/avatar-builder/avatar.types";
+import { LeaderboardHeadAvatar } from "../../yu-screen/svg/body";
+import { IBodyItem } from "../../../../../redux/avatar/avatar.reducer";
+import { FirstPlace, SecondPlace, ThirdPlace, EmptyHead } from "../svg/leaderboard";
 
 export interface ILeaderboardItemProps {
-  coins: number;
-  isCurrentUser: boolean;
-  name: string;
-  rank: number;
-  steps: number;
-  sortBy: string;
+  coins?: number;
+  isCurrentUser?: boolean;
+  isLockedCell?: boolean;
+  name?: string;
+  rank?: number;
+  steps?: number;
+  sortBy?: string;
+  avatar?: IAvatar;
+  onPress?: () => void;
+  animatedOpacity?: Animated.Value;
 }
 
-export default function LeaderboardItem({ isCurrentUser, rank, name, steps, coins, sortBy }: ILeaderboardItemProps) {
+export default function LeaderboardItem({
+  isCurrentUser,
+  isLockedCell,
+  rank = 0,
+  name = "",
+  steps = 0,
+  coins = 0,
+  sortBy = "",
+  avatar = null,
+  onPress,
+  animatedOpacity = new Animated.Value(1),
+}: ILeaderboardItemProps) {
   const currentUserStyle = isCurrentUser ? styles.textHighlighted : {};
-  const textStyleRightSmall = StyleSheet.flatten([styles.text, styles.textRight, currentUserStyle]);
+  const lockedCellTextStyle = isLockedCell ? styles.lockedCellTextStyle : {};
+  const lockedCellWrapperStyle = isLockedCell ? styles.lockedCellWrapper : {};
+  const lockedCellAvatarStyle = isLockedCell ? styles.lockedCellAvatarWrapper : {};
+  const lockedCellBorderStyle = isLockedCell ? styles.lockedCellBorderWrapper : {};
+  const textStyleRightSmall = StyleSheet.flatten([
+    styles.text,
+    styles.textRight,
+    currentUserStyle,
+    lockedCellTextStyle,
+  ]);
+  const wrapperStyle = StyleSheet.flatten([styles.wrapper, lockedCellWrapperStyle]);
 
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.borderWrapper}>
-        <View style={styles.rankWrapper}>
-          {rank <= 3 ? (
-            renderRankImage(rank)
+    <Animated.View style={[wrapperStyle, { opacity: animatedOpacity }]}>
+      <TouchableWithoutFeedback onPress={onPress}>
+        <View style={[styles.borderWrapper, lockedCellBorderStyle]}>
+          <View style={styles.rankWrapper}>
+            {rank <= 3 ? (
+              renderRankImage(rank)
+            ) : (
+              <Text style={StyleSheet.flatten([styles.text, styles.textRight, currentUserStyle, lockedCellTextStyle])}>
+                {rank}
+              </Text>
+            )}
+          </View>
+
+          {!avatar.head ? (
+            <View style={[styles.emptyAvatarHeadWrapper, lockedCellAvatarStyle]}>
+              <EmptyHead />
+            </View>
           ) : (
-            <Text style={StyleSheet.flatten([styles.text, styles.textRight, currentUserStyle])}>{rank}</Text>
+            <View style={[styles.avatarHeadWrapper, lockedCellAvatarStyle]}>
+              <LeaderboardHeadAvatar avatar={avatar as Record<keyof IAvatar, IBodyItem>} width={40} height={40} />
+            </View>
           )}
+          <View style={styles.nameWrapper}>
+            <Text style={StyleSheet.flatten([styles.text, currentUserStyle, lockedCellTextStyle])}>{name}</Text>
+          </View>
+          <View style={styles.stepsWrapper}>
+            <Text style={textStyleRightSmall}>{getDataByCategory(sortBy, steps, coins)}</Text>
+          </View>
         </View>
-        <View style={styles.nameWrapper}>
-          <Text style={StyleSheet.flatten([styles.text, currentUserStyle])}>{name}</Text>
-        </View>
-        <View style={styles.stepsWrapper}>
-          <Text style={textStyleRightSmall}>{getDataByCategory(sortBy, steps, coins)}</Text>
-        </View>
-      </View>
-    </View>
+      </TouchableWithoutFeedback>
+    </Animated.View>
   );
 }
 
-function getDataByCategory(sortBy: string, steps: number, coins: number) {
+function getDataByCategory(sortBy: string, steps = 0, coins = 0) {
   // todo fix data of mindful mins
   switch (sortBy) {
     case "coins":
@@ -51,22 +93,13 @@ function getDataByCategory(sortBy: string, steps: number, coins: number) {
 }
 
 function renderRankImage(rank: number) {
-  let source;
   switch (rank) {
     case 1:
-      source = assets.first;
-      break;
+      return <FirstPlace />;
     case 2:
-      source = assets.second;
-      break;
+      return <SecondPlace />;
     case 3:
     default:
-      source = assets.third;
-      break;
+      return <ThirdPlace />;
   }
-  return (
-    <View>
-      <Image style={styles.rankImage} source={source} />
-    </View>
-  );
 }

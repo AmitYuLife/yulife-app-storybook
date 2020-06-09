@@ -64,11 +64,25 @@ export const labels = [
     },
   },
   {
+    name: "yu",
+    onPress: () => {
+      Navigation.mergeOptions(ROUTES.yuScreen, {
+        bottomTabs: {
+          currentTabIndex: 2,
+        },
+        statusBar: {
+          drawBehind: false,
+          visible: true,
+        },
+      });
+    },
+  },
+  {
     name: "leaderboard",
     onPress: () => {
       Navigation.mergeOptions(ROUTES.leaderboards, {
         bottomTabs: {
-          currentTabIndex: 2,
+          currentTabIndex: 3,
         },
         statusBar: {
           drawBehind: false,
@@ -82,7 +96,7 @@ export const labels = [
     onPress: () => {
       Navigation.mergeOptions(ROUTES.rewards, {
         bottomTabs: {
-          currentTabIndex: 3,
+          currentTabIndex: 4,
         },
         statusBar: {
           drawBehind: false,
@@ -121,6 +135,20 @@ export async function setAuthenticatedRoot(dispatchAuthenticatedEvent?: () => vo
                       component: {
                         id: ROUTES.quests,
                         name: ROUTES.quests,
+                        options: { bottomTabs },
+                      },
+                    },
+                  ],
+                  options: { bottomTabs, bottomTab },
+                },
+              },
+              {
+                stack: {
+                  children: [
+                    {
+                      component: {
+                        id: ROUTES.yuScreen,
+                        name: ROUTES.yuScreen,
                         options: { bottomTabs },
                       },
                     },

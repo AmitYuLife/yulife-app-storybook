@@ -15,12 +15,14 @@ export const getAllLeaderboards = (state: IReduxState) => state.user.leaderboard
 export const getVisiblePopups = (state: IReduxState) => state.user.popupVisibility;
 export const getSurgeIntro = (state: IReduxState) => state.user.surgeIntro;
 export const getUserBusiness = (state: IReduxState) => state.user.business;
+export const getUserName = (state: IReduxState) => state.user.firstName + " " + state.user.lastName;
 export const getAcceptedLeaderboards = (state: IReduxState) => state.user.leaderboards.filter((l) => l.hasAccepted);
 export const getConsentedLeaderboards = (state: IReduxState) =>
   state.user.leaderboards.reduce((prev: Leaderboard[], curr) => {
     if (checkIsCompanyLeaderbaord(curr)) {
       return [curr, ...prev];
-    } if (curr.consent) {
+    }
+    if (curr.consent) {
       return [...prev, curr];
     }
     return prev;

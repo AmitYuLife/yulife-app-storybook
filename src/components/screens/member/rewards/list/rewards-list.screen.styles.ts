@@ -1,8 +1,12 @@
-import { StyleSheet, ViewStyle } from "react-native";
+import { StyleSheet, ViewStyle, Platform } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../../styles";
+import { TopBar } from "@components/molecules";
 
 export default StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  } as ViewStyle,
   listWrapper: {
     flex: 1,
   } as ViewStyle,
@@ -16,9 +20,15 @@ export default StyleSheet.create({
   } as ViewStyle,
   rewardTabsWrapper: {
     alignItems: "center",
-    marginTop: Style.SCALE_UP_AND_DOWN(17),
+    marginTop: 8,
   } as ViewStyle,
-  wrapper: {
-    flex: 1,
+  topbarWrapper: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
+  } as ViewStyle,
+  topbarFiller: {
+    height: TopBar.height + Platform.select({ ios: 36, android: 0 }),
   } as ViewStyle,
 });

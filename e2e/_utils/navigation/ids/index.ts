@@ -39,7 +39,7 @@ export const LEVEL_CHALLENGE_BUTTON = (level: number) => `LEVEL_CHALLENGE_BUTTON
 
 export const YUCOIN = "YUCOIN"
 
-export const NAV_BAR = (icon: "yucoin" | "quests" | "leaderboard" | "rewards") => `NAV_BAR_${icon}`
+export const NAV_BAR = (icon: "yucoin" | "quests" | "yu" | "leaderboard" | "rewards") => `NAV_BAR_${icon}`
 export const CHECK_REWARDS_BUTTON = "CHECK_REWARDS_BUTTON"
 
 // components

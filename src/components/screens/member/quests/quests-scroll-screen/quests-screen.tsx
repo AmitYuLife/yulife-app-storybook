@@ -104,7 +104,9 @@ class QuestsScreen extends React.Component<IProps, IState> {
           onViewableItemsChanged={this.handleViewableItemsChanged}
           setFlatListRef={this.setFlatListRef}
         />
-        <TopBar type={UI.topBarType} onPressLeftIcon={onLeftMenuPress} coins={totalCoins} />
+        <View style={styles.topBarWrapper}>
+          <TopBar type={UI.topBarType} onPressLeftIcon={onLeftMenuPress} coins={totalCoins} />
+        </View>
         <NavBar activeIndex={1} hasNotification={false} />
       </SafeAreaView>
     );
@@ -129,7 +131,7 @@ class QuestsScreen extends React.Component<IProps, IState> {
             this.flatList.scrollToOffset({
               offset:
                 offsets[activeLevel % 50 === 0 ? "withUnity" : "withoutUnity"][currentWorld as CurrentWorld][
-                currentEpisode
+                  currentEpisode
                 ],
             });
           });

@@ -1,16 +1,26 @@
-import * as React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import React from "react";
+import { StyleSheet, View, TouchableOpacity, ViewStyle, Image } from "react-native";
 import Text from "../text/text";
+import Back from "./../back/back";
 import styles from "./generic-heading.styles";
 
 interface IProps {
   heading: string;
   subheading?: string;
   hidesBorder?: boolean;
+  onLeftIconPress?: () => void;
   style?: ViewStyle;
+  onRightIconPress?: () => void;
 }
 
-export default function GenericHeading({ heading, hidesBorder, subheading, style }: IProps) {
+export default function GenericHeading({
+  heading,
+  hidesBorder,
+  subheading,
+  onLeftIconPress,
+  onRightIconPress,
+  style,
+}: IProps) {
   return (
     <View style={[styles.paddingHorizontal, style]}>
       <View
@@ -20,6 +30,17 @@ export default function GenericHeading({ heading, hidesBorder, subheading, style
           subheading ? null : styles.paddingBottom,
         ])}
       >
+        {!onLeftIconPress ? null : (
+          <TouchableOpacity onPress={onLeftIconPress} style={styles.leftIcon}>
+            <Back />
+          </TouchableOpacity>
+        )}
+
+        {!onRightIconPress ? null : (
+          <TouchableOpacity onPress={onRightIconPress} style={styles.rightIcon}>
+            <Image source={require("../../../../assets/menu/settings.png")} />
+          </TouchableOpacity>
+        )}
         <Text numberOfLines={1} bold={true} style={styles.heading}>
           {heading}
         </Text>

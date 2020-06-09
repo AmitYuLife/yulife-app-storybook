@@ -5,6 +5,7 @@ export { default as Button } from "./button/button";
 export { default as CentredScreen } from "./centred-screen/centred-screen";
 export { default as Close } from "./close/close";
 export { default as ChestCoin } from "./chest-coin/chest-coin";
+export { default as CheckBox } from "./check-box/check-box";
 export { default as CoinConfetti } from "./coin-confetti/coin-confetti";
 export { default as Dim } from "./dim/dim";
 export { default as Heading } from "./heading/heading";

@@ -2,24 +2,44 @@ import { GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn } from "@a
 import { IAppStore } from "@app/redux/app/app.reducer";
 import { ILeaderboard } from "@redux/user/user.reducer";
 import * as React from "react";
-import { Image, SafeAreaView, StyleSheet, View } from "react-native";
-import FastImage from "react-native-fast-image";
-import { IndexPath, LargeList } from "react-native-largelist-v3";
+import {
+  Animated,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  FlatList,
+  Platform,
+  ActivityIndicator,
+  LayoutChangeEvent,
+  Image,
+} from "react-native";
 import { Navigation } from "react-native-navigation";
-import { Loading } from "../../../atoms";
-import { ILabel, NavBar, TopBar, YulifeRefreshHeader } from "../../../molecules";
-import assets, { AssetType } from "./assets";
+import { Text, Pad } from "../../../atoms";
+import { ILabel, NavBar, TopBar } from "../../../molecules";
 import LeaderboardConsent from "./leaderboard-consent/leaderboard-consent";
-import LeaderboardDropdown from "./leaderboard-dropdown/leaderboard-dropdown";
-import LeaderboardToggle from "./leaderboard-dropdown/leaderboard-toggle";
 import LeaderboardItem from "./leaderboard-item/leaderboard-item";
-import { LEADERBOARD_ITEM_HEIGHT } from "./leaderboard-item/leaderboard-item.styles";
-import LeaderboardTabs from "./leaderboard-tabs/leaderboard-tabs";
 import { shouldLeaderboardUpdate } from "./leaderboards.screen.helpers";
-import styles from "./leaderboards.screen.styles";
 import { LEADERBOARD_SCREEN } from "@ids";
+import styles, {
+  LIST_PAD_HEIGHT,
+  LOADING_ITEM_HEIGHT,
+  TOP_BAR_WRAPPER_HEIGHT,
+  LEADERBOARD_PROMPT_OFFSET,
+} from "./leaderboards.screen.styles";
+import { transformAvatar } from "../yu-screen/avatar-builder/avatar-builder.helper";
+import { ROUTES } from "../../../../navigation/constants";
+import { Style } from "@styles/index";
+import LeaderboardTop, { LeaderboardTopIOS } from "./leaderboard-top/leaderboard-top.screen";
+import { LEADERBOARD_ITEM_HEIGHT } from "./leaderboard-item/leaderboard-item.styles";
+import { LockedCell } from "./locked-cell";
+import { EmptyLeaderboard } from "./leaderboard-top/leaderboard-top.screen";
+import deviceInfoModule from "react-native-device-info";
+
+const LEADERBOARD_ITEMS_OFFSET = LIST_PAD_HEIGHT + LOADING_ITEM_HEIGHT;
 
 export type LeaderboardTypes = "coins" | "steps";
+
+const LOADING_ITEM = "loadingItem";
 
 export interface IItem {
   id: string;
@@ -28,20 +48,17 @@ export interface IItem {
   lastName: string;
   name: string;
   steps: number;
+  avatar: any;
 }
 
 export interface ILeaderboardsScreenProps {
   activeLeaderboardIndex: number;
-  initialScrollIndex: number;
   labels: ILabel[];
   leaderboards: ILeaderboard[];
   hasNotification: boolean;
   items: IItem[];
   isLoading: boolean;
   isMindfulAvailable: boolean;
-  onHandleCoinsRefetch: () => void;
-  onHandleStepsRefetch: () => void;
-  onHandleMindfulMinsRefetch: () => void;
   onLeaderboardChange: (index: number) => void;
   onRefetch: () => void;
   sortBy: string;
@@ -54,81 +71,61 @@ export interface ILeaderboardsScreenProps {
   copy: GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn;
   componentId: string;
   appState: IAppStore["appState"];
+  userId: string;
 }
 
-const initialState = {
-  isShowingDropdown: false,
-  shouldScrollTo: true,
+export const initialState = {
+  flatlistOnScrollValue: new Animated.Value(0),
+  viewportHeight: 0,
+  itemOffsetY: null as number,
+  viewableInViewportMin: 0,
+  viewableInViewportMax: 0,
+  topbarHeight: 0,
+  leaderboardTopHeight: 0,
 };
 
-export type ILeaderboardsScreenState = typeof initialState;
-
-export default class LeaderboardScreen extends React.Component<ILeaderboardsScreenProps, ILeaderboardsScreenState> {
-  public largeList: LargeList;
+export default class LeaderboardScreen extends React.Component<ILeaderboardsScreenProps, typeof initialState> {
   public state = initialState;
-
-  private timeout: NodeJS.Timer = null;
+  private itemForPad = { id: "first_element", coins: 1, firstName: "", lastName: "", name: "", steps: 1, avatar: {} };
+  private animatedFlatListRef: FlatList = null;
 
   public constructor(props: ILeaderboardsScreenProps) {
     super(props);
     Navigation.events().bindComponent(this);
   }
 
-  public componentDidMount() {
-    this.scrollToLevel();
-  }
-
-  public componentDidAppear() {
-    this.scrollToLevel();
-  }
-
-  public shouldComponentUpdate(nextProps: ILeaderboardsScreenProps, nextState: ILeaderboardsScreenState) {
+  public shouldComponentUpdate(nextProps: ILeaderboardsScreenProps, nextState: typeof initialState) {
     return shouldLeaderboardUpdate({
       nextProps,
-      nextState,
       currentProps: this.props,
+      nextState,
       currentState: this.state,
     });
   }
 
-  public componentDidUpdate(prevProps: ILeaderboardsScreenProps) {
-    if (
-      prevProps.activeLeaderboardIndex === this.props.activeLeaderboardIndex &&
-      !this.props.isLoading &&
-      this.props.leaderboards[this.props.activeLeaderboardIndex] &&
-      prevProps.leaderboards[prevProps.activeLeaderboardIndex].consent !==
-      this.props.leaderboards[this.props.activeLeaderboardIndex].consent
-    ) {
-      if (this.largeList) {
-        this.handleRefresh();
-      }
-    }
+  public componentDidMount() {
+    this.calculateitemOffsetY();
+  }
 
-    if (this.state.shouldScrollTo && !this.props.isLoading) {
-      this.scrollToLevel();
-      this.setState({
-        shouldScrollTo: false,
-      });
-    }
-
-    if (
-      prevProps.activeLeaderboardIndex !== this.props.activeLeaderboardIndex ||
-      (prevProps.appState.match(/inactive|background/) && this.props.appState === "active")
-    ) {
-      this.setState({
-        shouldScrollTo: true,
-      });
+  public componentDidUpdate(prevProps: ILeaderboardsScreenProps, prevState: typeof initialState) {
+    const hasFinishedLoading = prevProps.isLoading !== !this.props.isLoading;
+    const viewportHeightChanged = prevState.viewportHeight !== this.state.viewportHeight;
+    const viewableInViewportMinChanged = prevState.viewableInViewportMin !== this.state.viewableInViewportMin;
+    const viewableInViewportMaxChanged = prevState.viewableInViewportMax !== this.state.viewableInViewportMax;
+    const hasMetRecalculationCondition =
+      hasFinishedLoading || viewportHeightChanged || viewableInViewportMinChanged || viewableInViewportMaxChanged;
+    if (hasMetRecalculationCondition) {
+      this.props.onRefetch();
+      this.calculateitemOffsetY();
+      this.restartScroll();
     }
   }
 
-  public componentWillUnmount() {
-    if (this.timeout) {
-      global.clearTimeout(this.timeout);
-    }
-  }
+  private avatarDataFirstUser: any;
+  private avatarDataSecondUser: any;
+  private avatarDataThirdUser: any;
 
   public render() {
-    const { isShowingDropdown } = this.state;
     const {
       activeLeaderboardIndex,
       isLoading,
@@ -136,110 +133,260 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
       items = [],
       totalCoins,
       leaderboards,
-      sortBy,
       onLeftMenuPress,
       onPrivacyPolicyPress,
       onRefuseConsent,
       copy,
-      isMindfulAvailable,
+      componentId,
     } = this.props;
     const activeLeaderboard = leaderboards.length > 0 && leaderboards[activeLeaderboardIndex];
+    this.avatarDataFirstUser = transformAvatar(items[0]?.avatar);
+    this.avatarDataSecondUser = transformAvatar(items[1]?.avatar);
+    this.avatarDataThirdUser = transformAvatar(items[2]?.avatar);
 
+    const translateYTransform = this.state.flatlistOnScrollValue.interpolate({
+      inputRange: [0, LIST_PAD_HEIGHT],
+      outputRange: [0, -LIST_PAD_HEIGHT],
+      extrapolate: "clamp",
+    });
+    const AnimatedFlatList = createAnimatedComponentForwardingRef(FlatList);
+    const myLeaderboardItemIndex = this.props.items.findIndex((item) => item.id === this.props.userId);
+    const myLeaderboardItem = this.props.items[myLeaderboardItemIndex];
+    const showsActiveLeaderboard = activeLeaderboard && !activeLeaderboard.consent;
+    const avatars = [this.avatarDataFirstUser, this.avatarDataSecondUser, this.avatarDataThirdUser];
+    const leaderboardProps = {
+      activeLeaderboard,
+      translateYTransform,
+      leaderboards,
+      activeLeaderboardIndex,
+      componentId,
+      showsActiveLeaderboard,
+      onChooseLeaderboardScreen: () =>
+        this.chooseLeaderboardScreen(leaderboards, activeLeaderboardIndex, this.onChangeActiveLeaderboard, componentId),
+      onShowLeaderboardInfoScreen: () => this.showLeaderboardInfoScreen(componentId),
+      avatars,
+    };
+
+    const lockedCellProps = {
+      sortBy: this.props.sortBy,
+      onPress: this.handleScrollToMyRow(myLeaderboardItemIndex - 1 > 0 ? myLeaderboardItemIndex - 1 : 0),
+      leaderboardItem: myLeaderboardItem,
+      leaderboardItemIndex: myLeaderboardItemIndex,
+      floatingItemAnimatedOpacity: this.getOpacityInterpolation() as number,
+    };
     return (
       <SafeAreaView style={styles.wrapper}>
-        <View style={styles.backgroundImageWrapper}>
-          <Image resizeMethod="scale" style={styles.backgroundImageBase} source={assets.background} />
-        </View>
-        <TopBar coins={totalCoins} type="default" onPressLeftIcon={onLeftMenuPress} />
-        <View style={styles.imageWrapper}>
-          <FastImage style={styles.image} source={assets[sortBy as AssetType]} />
-        </View>
-
-        <LeaderboardToggle
-          leaderboards={leaderboards}
-          onToggleDropdown={this.toggleDropdown}
-          isShowingDropdown={isShowingDropdown}
-          activePage={activeLeaderboardIndex}
-        />
-
-        <View style={StyleSheet.flatten([styles.list, styles.listWrapperMargin])} testID={LEADERBOARD_SCREEN}>
-          {activeLeaderboard && !activeLeaderboard.consent ? null : (
-            <LeaderboardTabs
-              sortBy={sortBy}
-              onHandleTabPress={this.handleTabPress}
-              isMindfulAvailable={isMindfulAvailable}
-            />
-          )}
-          {activeLeaderboard && !activeLeaderboard.consent ? (
-            <LeaderboardConsent
-              isLoading={activeLeaderboard.isLoading}
-              onAllowLeaderboard={this.allowLeaderboard}
-              onPrivacyPolicyPress={onPrivacyPolicyPress}
-              onRefuseConsent={onRefuseConsent}
-              copy={copy}
-            />
-          ) : isLoading ? (
-            <Loading />
-          ) : (
-                <LargeList
-                  style={styles.list}
-                  ref={this.setLargeListRef}
-                  renderIndexPath={this.renderIndexPath}
-                  heightForIndexPath={this.getHeight}
-                  showsVerticalScrollIndicator={false}
-                  data={[{ items }]}
-                  onRefresh={this.handleRefresh}
-                  renderEmpty={Loading}
-                  refreshHeader={YulifeRefreshHeader}
+        <View
+          style={StyleSheet.flatten([
+            styles.list,
+            styles.listWrapperMargin,
+            { marginTop: showsActiveLeaderboard ? -LEADERBOARD_PROMPT_OFFSET : 0 },
+          ])}
+          testID={LEADERBOARD_SCREEN}
+        >
+          {showsActiveLeaderboard ? (
+            <>
+              <View
+                style={{
+                  marginTop:
+                    !Style.isShortAndroid() && Platform.OS == "android" ? LIST_PAD_HEIGHT + 60 : LIST_PAD_HEIGHT,
+                }}
+              >
+                <LeaderboardConsent
+                  isLoading={activeLeaderboard.isLoading}
+                  onAllowLeaderboard={this.allowLeaderboard}
+                  onPrivacyPolicyPress={onPrivacyPolicyPress}
+                  onRefuseConsent={onRefuseConsent}
+                  copy={copy}
                 />
-              )}
-          <LeaderboardDropdown
-            activePage={activeLeaderboardIndex}
-            initialScrollIndex={activeLeaderboardIndex}
-            leaderboards={leaderboards}
-            isShowingDropdown={isShowingDropdown}
-            onChangeActiveLeaderboard={this.onChangeActiveLeaderboard}
-            onToggleDropdown={this.toggleDropdown}
-          />
+              </View>
+
+              <View
+                pointerEvents="box-none"
+                style={{
+                  position: "absolute",
+                  top: TopBar.height + (deviceInfoModule.hasNotch() ? 0 : Style.adjust(12)),
+                }}
+              >
+                <EmptyLeaderboard {...leaderboardProps} />
+              </View>
+            </>
+          ) : (
+            <View
+              style={{ marginTop: Platform.select({ ios: -1, android: this.state.topbarHeight || TopBar.height }) }}
+            >
+              <AnimatedFlatList
+                getItemLayout={this.getItemLayout}
+                onLayout={(e: LayoutChangeEvent) => this.setState({ viewportHeight: e.nativeEvent.layout.height })}
+                onScrollToIndexFailed={() => null}
+                ref={(ref) => ((this.animatedFlatListRef as any) = ref)}
+                showsVerticalScrollIndicator={false}
+                keyExtractor={(keyItem: IItem) => keyItem.id}
+                data={items[0]?.id !== "first_element" ? [this.itemForPad].concat(items) : items}
+                renderItem={this.renderIndexPath}
+                horizontal={false}
+                style={{ width: Style.DEVICE_WIDTH }}
+                contentContainerStyle={{
+                  paddingBottom: Style.adjust(20, { shrinkThreshold: !Style.isAnyIphoneX(), shrinkMultiplier: 0.3 }),
+                }}
+                scrollEventThrottle={16}
+                onScroll={Animated.event(
+                  [
+                    {
+                      nativeEvent: { contentOffset: { y: this.state.flatlistOnScrollValue } },
+                    },
+                  ],
+                  { useNativeDriver: Platform.OS === "ios" } // Why does it not work on Android?
+                )}
+                onRefresh={() => {
+                  this.props.onRefetch();
+                }}
+                refreshing={isLoading}
+              />
+            </View>
+          )}
         </View>
-        <NavBar activeIndex={2} hasNotification={hasNotification} />
+        <LeaderboardTopIOS
+          onLayout={(e: LayoutChangeEvent) => {
+            this.setState({ leaderboardTopHeight: e.nativeEvent.layout.height });
+          }}
+          {...leaderboardProps}
+          style={{ marginTop: this.state.topbarHeight || TOP_BAR_WRAPPER_HEIGHT }}
+        />
+        {!activeLeaderboard.consent ? null : <LockedCell {...lockedCellProps} />}
+        <NavBar activeIndex={3} hasNotification={hasNotification} />
+        <View
+          onLayout={(e: LayoutChangeEvent) => this.setState({ topbarHeight: e.nativeEvent.layout.height })}
+          style={styles.topBarWrapper}
+        >
+          <TopBar coins={totalCoins} type="default" onPressLeftIcon={onLeftMenuPress} />
+        </View>
       </SafeAreaView>
     );
   }
 
-  private scrollToLevel = () => {
-    const { isLoading, items, initialScrollIndex } = this.props;
-    if (!isLoading) {
-      this.timeout = global.setTimeout(() => {
-        if (this.largeList && items.length > 0 && initialScrollIndex !== -1) {
-          try {
-            this.largeList.scrollTo({ x: 0, y: initialScrollIndex * LEADERBOARD_ITEM_HEIGHT });
-          } catch (err) {
-            // console.log("err: ", err);
-          }
-        }
-      }, 1000);
+  private getOpacityInterpolation = (options?: { reverse: boolean }) => {
+    const { reverse = false } = options || {};
+    const { viewableInViewportMin, viewableInViewportMax } = this.state;
+    const FORWARD_ANIMATION_FRAMES = 10;
+    const REVERSE_ANIMATION_FRAMES = 5;
+    const TRANSITION_FRAMES = FORWARD_ANIMATION_FRAMES - REVERSE_ANIMATION_FRAMES;
+    const inputRange = [
+      -Number.MAX_SAFE_INTEGER,
+      viewableInViewportMin + (reverse ? TRANSITION_FRAMES : 0),
+      viewableInViewportMin + FORWARD_ANIMATION_FRAMES,
+      viewableInViewportMax,
+    ];
+    const outputRange = [1, 1, 0, 0];
+    const animatedOpacityInterpolation = !(viewableInViewportMin && viewableInViewportMax)
+      ? 0
+      : this.state.flatlistOnScrollValue.interpolate({
+          inputRange,
+          outputRange: reverse ? outputRange.reverse() : outputRange,
+          extrapolate: "clamp",
+        });
+    return animatedOpacityInterpolation;
+  };
+
+  private handleScrollToMyRow = (index: number) => {
+    return () => {
+      this.animatedFlatListRef.scrollToIndex({
+        viewPosition: 1,
+        animated: true,
+        index: index + 2,
+      });
+    };
+  };
+
+  private getItemLayout = (data: any, index: number) => {
+    if (data[index].id === "first_element") {
+      return { length: LIST_PAD_HEIGHT, offset: 0, index };
     }
+
+    return {
+      length: LEADERBOARD_ITEM_HEIGHT,
+      offset: LIST_PAD_HEIGHT + LEADERBOARD_ITEM_HEIGHT * index,
+      index,
+    };
   };
 
-  private toggleDropdown = () => {
-    this.setState(({ isShowingDropdown }) => ({
-      isShowingDropdown: !isShowingDropdown,
-    }));
+  private restartScroll = () => {
+    this.animatedFlatListRef?.scrollToIndex({ animated: true, index: 0 });
   };
 
-  private setLargeListRef = (ref: LargeList) => {
-    this.largeList = ref;
+  private calculateitemOffsetY = (): null => {
+    const { viewportHeight } = this.state;
+    if (!viewportHeight) {
+      return null;
+    }
+    const userIndex = this.props.items.findIndex((item) => item.id === this.props.userId);
+    const itemOffsetY = Math.floor(userIndex * LEADERBOARD_ITEM_HEIGHT + LEADERBOARD_ITEMS_OFFSET);
+    const ADJUST_MULTIPLIER = Style.isAnyIphoneX() ? 0.5 : 1;
+    const ADJUSTED_LEADERBOARD_ITEM_HEIGHT = LEADERBOARD_ITEM_HEIGHT * ADJUST_MULTIPLIER;
+    const scrollThreshold = ADJUSTED_LEADERBOARD_ITEM_HEIGHT + itemOffsetY - viewportHeight;
+    const VIEWABLE_IN_VIEWPORT_MIN_ADJUSTMENT_IOS = Style.SCALE_UP_AND_DOWN(50); // compromised average. optimal values taken from trial and error are: 50 for 6/7/8 below, 60 for Plus, 40 for Notched devices
+    const VIEWABLE_IN_VIEWPORT_MIN_ADJUSTMENT_ANDROID = Style.adjust(48, {
+      shrinkThreshold: null,
+      growThreshold: Style.DEVICE_HEIGHT > 700,
+      growMultiplier: 0.2,
+    });
+    const VIEWABLE_IN_VIEWPORT_MIN_ADJUSTMENT = Platform.select({
+      ios: VIEWABLE_IN_VIEWPORT_MIN_ADJUSTMENT_IOS,
+      android: VIEWABLE_IN_VIEWPORT_MIN_ADJUSTMENT_ANDROID,
+    });
+    const VIEWABLE_IN_VIEWPORT_MAX_ADJUSTMENT = Platform.select({ ios: 120, android: 80 });
+    const viewableInViewportMin = scrollThreshold - VIEWABLE_IN_VIEWPORT_MIN_ADJUSTMENT;
+    const viewableInViewportMax = viewportHeight + scrollThreshold - VIEWABLE_IN_VIEWPORT_MAX_ADJUSTMENT;
+    this.setState({ viewableInViewportMin, viewableInViewportMax });
   };
 
-  private getHeight = () => LEADERBOARD_ITEM_HEIGHT;
+  private renderIndexPath = ({ item, index }: any) => {
+    const { sortBy } = this.props;
+    const avatarData = transformAvatar(item.avatar);
 
-  private renderIndexPath = ({ row }: IndexPath) => {
-    const { items, initialScrollIndex, sortBy } = this.props;
-    const item = items[row];
+    if (index === 0) {
+      if (Platform.OS === "android") {
+        return (
+          <View style={styles.imageWrapper}>
+            <LeaderboardTop
+              avatars={[this.avatarDataFirstUser, this.avatarDataSecondUser, this.avatarDataThirdUser]}
+              leaderboardName={
+                (this.props.leaderboards.length > 0 && this.props.leaderboards[this.props.activeLeaderboardIndex])?.name
+              }
+              chooseLeaderboardScreen={() =>
+                this.chooseLeaderboardScreen(
+                  this.props.leaderboards,
+                  this.props.activeLeaderboardIndex,
+                  this.onChangeActiveLeaderboard,
+                  this.props.componentId
+                )
+              }
+              showLeaderboardInfoScreen={() => this.showLeaderboardInfoScreen(this.props.componentId)}
+            />
+          </View>
+        );
+      }
+      const { isLoading } = this.props;
+      return <FirstListItem isLoading={isLoading} scrollOffset={this.state.flatlistOnScrollValue} />;
+    }
+
+    if (item.id === LOADING_ITEM) {
+      return <LoadingItem />;
+    }
 
     if (item) {
-      return <LeaderboardItem {...item} isCurrentUser={row === initialScrollIndex} sortBy={sortBy} rank={row + 1} />;
+      const isCurrentUser = item.id === this.props.userId;
+      const opacityInterpolation = !isCurrentUser ? 1 : this.getOpacityInterpolation({ reverse: true });
+      return (
+        <LeaderboardItem
+          {...item}
+          avatar={avatarData}
+          isCurrentUser={isCurrentUser}
+          sortBy={sortBy}
+          rank={index}
+          animatedOpacity={opacityInterpolation}
+        />
+      );
     }
 
     return null;
@@ -249,39 +396,84 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
     this.props.onAllowLeaderboard();
   };
 
-  private handleRefresh = async () => {
-    await this.props.onRefetch();
-    if (this.largeList) {
-      await this.largeList.endRefresh();
-    }
-    this.setState({
-      shouldScrollTo: true,
-    });
-  };
-
   private onChangeActiveLeaderboard = (activePage: number) => {
     this.props.onLeaderboardChange(activePage);
   };
 
-  private handleTabPress = (activeTab: string) => {
-    return async () => {
-      // add mindful mins refetch
-      switch (activeTab) {
-        case "coins":
-          await this.props.onHandleCoinsRefetch();
-          break;
-
-        case "steps":
-          await this.props.onHandleStepsRefetch();
-          break;
-
-        case "mindful":
-          await this.props.onHandleMindfulMinsRefetch();
-          break;
-      }
-      this.setState({
-        shouldScrollTo: true,
-      });
-    };
+  private chooseLeaderboardScreen = (
+    leaderboards: ILeaderboard[],
+    activePage: number,
+    onChangeActiveLeaderboard: (index: number) => void,
+    componentId: string
+  ) => {
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.chooseLeaderboard,
+        name: ROUTES.chooseLeaderboard,
+        passProps: {
+          componentId,
+          leaderboards,
+          activePage,
+          onChangeActiveLeaderboard,
+        },
+      },
+    });
   };
+
+  private showLeaderboardInfoScreen = (componentId: string) => {
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.chooseLeaderboard,
+        name: ROUTES.chooseLeaderboard,
+        passProps: {
+          componentId,
+          showInfo: true,
+        },
+      },
+    });
+  };
+}
+
+function createAnimatedComponentForwardingRef<P, S>(Component: React.ComponentClass<P, S>) {
+  return React.forwardRef<React.Component<P, S>, P>((props, ref) => {
+    class Wrapper extends React.Component<P, S> {
+      render() {
+        return <Component {...this.props} ref={ref} />;
+      }
+    }
+    const AnimatedWrapper = Animated.createAnimatedComponent(Wrapper);
+    return <AnimatedWrapper {...props} />;
+  });
+}
+
+function LoadingItem() {
+  return <View style={styles.loadingItem} />;
+}
+
+function FirstListItem({ isLoading, scrollOffset }: { isLoading: boolean; scrollOffset: Animated.Value }) {
+  const ARBITRARY_SCROLL_FINISH = -Style.adjust(150, { shrinkMultiplier: 0.35 });
+  const ARBITRARY_SCROLL_START = -Style.adjust(30);
+  const rotateTransform = scrollOffset.interpolate({
+    inputRange: [ARBITRARY_SCROLL_FINISH, ARBITRARY_SCROLL_START, 0],
+    outputRange: ["180deg", "0deg", "0deg"],
+    extrapolate: "clamp",
+  });
+
+  return (
+    <View style={styles.firstListItem}>
+      <View style={{ position: "absolute", bottom: 0, right: 0, left: 0, alignItems: "center" }}>
+        <View style={{ flexDirection: "row", alignItems: "center", paddingBottom: 8 }}>
+          {!isLoading && (
+            <>
+              <Animated.View style={{ transform: [{ rotate: rotateTransform }] }}>
+                <Image source={require("../../../../../assets/icons/v.png")} />
+              </Animated.View>
+              <Pad width={16} />
+            </>
+          )}
+          {isLoading ? <ActivityIndicator /> : <Text>Keep pulling to refresh</Text>}
+        </View>
+      </View>
+    </View>
+  );
 }

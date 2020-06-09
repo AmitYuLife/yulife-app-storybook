@@ -5,6 +5,8 @@ export const GQL_FRAGMENT_USER = gql`
     __typename
     id
     archived
+    firstName
+    lastName
     createdAt
     onboardingDate
     redeemedOnboarding

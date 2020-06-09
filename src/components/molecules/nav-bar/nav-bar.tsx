@@ -3,7 +3,7 @@ import { Style } from "@styles/index";
 import React, { useState } from "react";
 import { StyleSheet, View, Platform } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { Giraffe, Scroll, Treasure } from "./assets";
+import { Giraffe, Scroll, Treasure, Yu } from "./assets";
 import Trophy from "./assets/trophy";
 import styles from "./nav-bar.styles";
 import useInterval from "@use-it/interval";
@@ -24,15 +24,18 @@ interface IProps {
   additionalBottom?: number;
 }
 
-type HighlightedLabel = "yucoin" | "quests" | "leaderboard" | "rewards";
+type HighlightedLabel = "yucoin" | "quests" | "yu" | "leaderboard" | "rewards";
 
 export default function NavBar(props: IProps) {
   const [pressed, setPressed] = useState(0);
   const [hasLaidOut, setHasLaidOut] = useState(false);
   const [displayElevation, setDisplayElevation] = useState(false);
-  useInterval(() => {
-    setDisplayElevation(true);
-  }, displayElevation || !hasLaidOut || Platform.OS === "ios" ? null : 1000);
+  useInterval(
+    () => {
+      setDisplayElevation(true);
+    },
+    displayElevation || !hasLaidOut || Platform.OS === "ios" ? null : 1000
+  );
   const { activeIndex, hasNotification, labels = defaultLabels, highlightedLabel, additionalBottom = 0 } = props;
   return (
     <View
@@ -50,7 +53,6 @@ export default function NavBar(props: IProps) {
           onPressIn={labels[0].onPress}
           onPressOut={handlePressOut(labels[0].onPress)}
         />
-
         <Scroll
           isPressed={pressed === 1}
           isActive={activeIndex === 1}
@@ -59,30 +61,35 @@ export default function NavBar(props: IProps) {
           onPressOut={handlePressOut(labels[1].onPress)}
           hasNotification={hasNotification}
         />
-
-        <Trophy
+        <Yu
           isPressed={pressed === 2}
           isActive={activeIndex === 2}
-          isHighlighted={highlightedLabel === "leaderboard"}
+          isHighlighted={highlightedLabel === "yu"}
           onPressIn={labels[2].onPress}
           onPressOut={handlePressOut(labels[2].onPress)}
         />
-
-        <Treasure
+        <Trophy
           isPressed={pressed === 3}
           isActive={activeIndex === 3}
-          isHighlighted={highlightedLabel === "rewards"}
+          isHighlighted={highlightedLabel === "leaderboard"}
           onPressIn={labels[3].onPress}
           onPressOut={handlePressOut(labels[3].onPress)}
+        />
+        <Treasure
+          isPressed={pressed === 4}
+          isActive={activeIndex === 4}
+          isHighlighted={highlightedLabel === "rewards"}
+          onPressIn={labels[4].onPress}
+          onPressOut={handlePressOut(labels[4].onPress)}
         />
       </View>
     </View>
   );
-  
+
   function handlePressOut(onPress: () => void) {
     return () => {
       setPressed(null);
       onPress();
     };
-  };
+  }
 }

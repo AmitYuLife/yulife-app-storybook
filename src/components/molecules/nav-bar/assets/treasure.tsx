@@ -11,8 +11,15 @@ export default function Treasure({ isActive, onPressIn, onPressOut, isHighlighte
   const size = String(Style.SCALE_UP_AND_DOWN(54));
 
   return (
-    <Svg onPressIn={onPressIn} onPressOut={onPressOut} viewBox="0 0 54 54" width={size} height={size} testID={NAV_BAR("rewards")}>
-      <G data-name="rewards" id="rewards" >
+    <Svg
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
+      viewBox="0 0 54 54"
+      width={size}
+      height={size}
+      testID={NAV_BAR("rewards")}
+    >
+      <G data-name="rewards" id="rewards">
         {Platform.OS === "ios" ? <Path d="M0 0H54V54H0z" fill="#fff" /> : null}
         <Path
           d="M35.85 10.15h-9.6a3.81 3.81 0 00-1.5.5l-2 1.4a1.07 1.07 0 00-.3 1.3l2.7 4.9"

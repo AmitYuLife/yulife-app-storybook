@@ -2,14 +2,11 @@ import { Platform, YellowBox } from "react-native";
 import { Navigation, OptionsModalPresentationStyle } from "react-native-navigation";
 import registerScreens from "./navigation/index";
 import { migrateOldAppVersionToken } from "./services/storage";
-import { DETOX_ENABLED } from '@services/socket';
+import { DETOX_ENABLED } from "@services/socket";
 
 if (DETOX_ENABLED) {
-  YellowBox.ignoreWarnings([
-    "Deprecation warning",
-  ]);
+  YellowBox.ignoreWarnings(["Deprecation warning"]);
 }
-
 
 const LOADING_ROUTE = "yulife.Loading";
 

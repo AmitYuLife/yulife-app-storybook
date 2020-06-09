@@ -53,7 +53,6 @@ export function getStyle(type: TopBarTypes) {
         logoColour: "#FFF",
         textStyle: { color: "white" },
       };
-    case "demo":
     default:
       return {
         colour: "#333333",

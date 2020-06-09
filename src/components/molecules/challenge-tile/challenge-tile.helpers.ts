@@ -117,7 +117,7 @@ export const getImageStyle = (image: Images): ImageStyle => {
       dimensions.width = Style.adjust(108);
       break;
     case IMAGES.DEER:
-      position.left = Style.defaultShrinkThreshold ? - 12 : 0;
+      position.left = Style.defaultShrinkThreshold ? -12 : 0;
       position.bottom = 0;
       dimensions.height = Style.adjust(128);
       break;

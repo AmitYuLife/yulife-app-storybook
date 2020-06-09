@@ -138,4 +138,8 @@ export default {
     focus: "#333",
     inactive: "rgb(204,204,204)",
   },
+  yuscreen: {
+    earnRateBackground: "#FFDB42",
+    white: "#FFFFFF",
+  },
 };

@@ -39,18 +39,16 @@ export default function GenericScreen({
         onPress={onPress || (() => null)}
         type="Primary"
       />
-      {
-        !(onPressSecondary && ctaLabelSecondary) ? null : (
-          <Button
-            testID={GENERIC_SCREEN_CTA(ctaLabelSecondary)}
-            wrapperStyle={styles.buttonWrapperSecondary}
-            label={ctaLabelSecondary}
-            onPress={onPressSecondary || (() => null)}
-            type="Secondary"
-            isLoading={isSecondaryLoading}
-          />
-        )
-      }
-    </View >
+      {!(onPressSecondary && ctaLabelSecondary) ? null : (
+        <Button
+          testID={GENERIC_SCREEN_CTA(ctaLabelSecondary)}
+          wrapperStyle={styles.buttonWrapperSecondary}
+          label={ctaLabelSecondary}
+          onPress={onPressSecondary || (() => null)}
+          type="Secondary"
+          isLoading={isSecondaryLoading}
+        />
+      )}
+    </View>
   );
 }

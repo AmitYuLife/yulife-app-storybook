@@ -7,6 +7,7 @@ configure(() => {
   require("../atoms/button/minimalButton.stories");
   require("../atoms/heading/heading.stories");
   require("../molecules/text-field/text-field.stories");
+  require("../molecules/top-bar/top-bar.stories");
 }, module);
 
 const StorybookUIRoot = getStorybookUI({

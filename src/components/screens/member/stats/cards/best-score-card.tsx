@@ -20,11 +20,15 @@ const BestScoreCard: SFC<IProps> = ({ titleColor, title, value, unit, date, subT
       <Text style={StyleSheet.flatten([styles.title, { color: titleColor }])}>{title}</Text>
       <Text style={StyleSheet.flatten([styles.amount, { color: subTitleColor }])}>amount</Text>
       <View style={styles.valueWrapper}>
-        <Text style={styles.value} testID={STATS_VALUE(value)}>{value}</Text>
+        <Text style={styles.value} testID={STATS_VALUE(value)}>
+          {value}
+        </Text>
         <View>{!unit ? null : <Text style={styles.unit}>{unit}</Text>}</View>
       </View>
       <Text style={StyleSheet.flatten([styles.dateText, { color: subTitleColor }])}>{dateText}</Text>
-      <Text style={styles.dateValue} testID={STATS_VALUE(date)}>{date}</Text>
+      <Text style={styles.dateValue} testID={STATS_VALUE(date)}>
+        {date}
+      </Text>
     </View>
   );
 };

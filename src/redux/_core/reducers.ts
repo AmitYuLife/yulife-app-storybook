@@ -6,6 +6,7 @@ import dailyMeditationReducer, {
 
 import appReducer, { IAppStore, initialState as initialAppState } from "../app/app.reducer";
 import coinsReducer, { ICoinsStore, initialState as initialCoinsState } from "../coins/coins.reducer";
+import avatarReducer, { IAvatarStore, initialMaleState as initialStateAvatar } from "../avatar/avatar.reducer";
 import copyReducer, { ICopyStore, initialState as initialCopyState } from "../copy/copy.reducer";
 import dailyStepsReducer, {
   IDailyStepsStore,
@@ -43,6 +44,7 @@ export interface IReduxState {
   user: IUserStore;
   copy: ICopyStore;
   dailyMeditation: IDailyMeditationStore;
+  avatar: IAvatarStore;
 }
 
 export const initialState: IReduxState = {
@@ -59,6 +61,7 @@ export const initialState: IReduxState = {
   user: initialUserState,
   copy: initialCopyState,
   dailyMeditation: initialDailyMeditation,
+  avatar: initialStateAvatar,
 };
 
 // this alias is created for testing purposes
@@ -78,6 +81,7 @@ const combinedReducers = combineReducers({
   user: userReducer,
   copy: copyReducer,
   dailyMeditation: dailyMeditationReducer,
+  avatar: avatarReducer,
 });
 
 export default combinedReducers;

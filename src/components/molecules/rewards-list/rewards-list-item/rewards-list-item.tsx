@@ -60,15 +60,15 @@ class RewardsListItem extends PureComponent<IProps, IState> {
             {isLocked ? (
               <LockedOverlay code={code} settings={settings} />
             ) : (
-                <UnlockedOverlay
-                  code={code}
-                  cost={cost}
-                  linkType={linkType}
-                  rewardValue={rewardValue}
-                  rewardCurrency={rewardCurrency}
-                  settings={settings}
-                />
-              )}
+              <UnlockedOverlay
+                code={code}
+                cost={cost}
+                linkType={linkType}
+                rewardValue={rewardValue}
+                rewardCurrency={rewardCurrency}
+                settings={settings}
+              />
+            )}
           </View>
           <ActivityIndicator style={styles.activityIndicator} animating={!hasLoaded} />
         </>

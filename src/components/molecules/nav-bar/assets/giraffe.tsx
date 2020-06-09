@@ -11,7 +11,14 @@ export default function Girrafe({ isActive, onPressIn, onPressOut, isHighlighted
   const size = String(Style.SCALE_UP_AND_DOWN(54));
 
   return (
-    <Svg onPressIn={onPressIn} onPressOut={onPressOut} viewBox="0 0 54 54" width={size} height={size} testID={NAV_BAR("yucoin")}>
+    <Svg
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
+      viewBox="0 0 54 54"
+      width={size}
+      height={size}
+      testID={NAV_BAR("yucoin")}
+    >
       <G>
         {Platform.OS === "ios" ? <Path fill="#fff" d="M0 0h54v54H0z" /> : null}
         <Path

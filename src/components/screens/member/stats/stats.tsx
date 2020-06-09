@@ -122,7 +122,9 @@ function HeaderSection({ title, titleColor, category, index }: IHeaderProps) {
       <View style={styles.iconWrapper}>
         <Image style={styles.logo} source={getCategorySourceImage(category)} />
       </View>
-      <Text style={StyleSheet.flatten([styles.headerTitle, { color: titleColor }])} testID={STATS_TITLE(title)}>{title}</Text>
+      <Text style={StyleSheet.flatten([styles.headerTitle, { color: titleColor }])} testID={STATS_TITLE(title)}>
+        {title}
+      </Text>
     </View>
   );
 }

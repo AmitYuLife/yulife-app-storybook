@@ -55,7 +55,12 @@ class WegiftRewardsConfirmed extends React.PureComponent<Props, IState> {
       <SafeAreaView style={styles.wrapper}>
         <TopBar leftIcon={TopBar.LeftIcon.BACK} onPressLeftIcon={onPressTopBar} coins={coins} />
         <Pad height={10} />
-        <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper} contentContainerStyle={styles.contentWrapper} testID={WEGIFT_CONFIRMED}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={styles.wrapper}
+          contentContainerStyle={styles.contentWrapper}
+          testID={WEGIFT_CONFIRMED}
+        >
           <View style={styles.imageWrapper}>
             <Image
               testID={PURCHASE_IMAGE(imageUrl)}
