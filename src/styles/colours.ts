@@ -16,7 +16,7 @@ export default {
     filledCheck: "rgb(231,176,61)",
     unfilledCircle: "rgb(230,230,230)",
   },
-  darkGray: "rgb(51,51,51)",
+  darkGray: "rgb(70,70,70)",
   darkHotPink: "rgb(227,13,118)",
   darkHotPinkShadow: "#95012b",
   divider: "rgb(96,96,96)",

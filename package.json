@@ -25,7 +25,7 @@
     "start": "run-p start:bundler tsc:watch",
     "start:e2e": "RN_SRC_EXT=e2e.ts,e2e.tsx ENVFILE=.env.e2e run-p start:bundler tsc:watch",
     "start:bundler": "react-native start --reset-cache",
-    "start:storybook": "node ./scripts/start-storybook",
+    "start:storybook": "node ./scripts/start-storybook && start-storybook -p 7007",
     "start:storybook:reset": "node ./scripts/start-storybook reset",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -40,8 +40,7 @@
     "postgenerate:gql:types": "node ./scripts/generate-index-schema-file-gql.js",
     "postinstall": "jetify && patch-package",
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect",
-    "storybook": "start-storybook -p 7007"
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "@apollo/react-common": "^3.1.4",

@@ -1,41 +1,44 @@
 import * as React from "react";
-import { PureComponent } from "react";
+import { Style } from "../../../styles";
+
 import { StyleSheet, Text, TextStyle } from "react-native";
-import styles from "./heading.styles";
+import colours from "@styles/colours";
 
 interface IProps {
-    bold?: boolean;
-    label: string;
-    size?: Sizes;
-    style?: TextStyle;
+  bold?: boolean;
+  label: string;
+  size?: Sizes;
+  style?: TextStyle;
 }
 
-enum SIZES {
-    DEFAULT = "default",
-    LARGE = "large",
-    SMALL = "small"
+type Sizes = "medium" | "large" | "small";
+
+function Heading(props: IProps) {
+  const { label, size = "medium", style, bold } = props;
+  const boldStyles = bold ? styles.bold : null;
+
+  return <Text style={StyleSheet.flatten([styles.base, styles[size], boldStyles, style])}>{label}</Text>;
 }
 
-type Sizes = "default" | "large" | "small";
+export default React.memo(Heading);
 
-class Heading extends PureComponent<IProps> {
-    public static Sizes = SIZES;
-
-    public render() {
-        const { label, size, style, bold } = this.props;
-        return (
-            <Text
-                style={StyleSheet.flatten([
-                    styles.base,
-                    styles[size || SIZES.DEFAULT],
-                    bold ? styles.bold : null,
-                    style
-                ])}
-            >
-                {label}
-            </Text>
-        );
-    }
-}
-
-export default Heading;
+const styles = StyleSheet.create({
+  base: {
+    color: colours.darkGray,
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    textAlign: "center",
+    letterSpacing: 1,
+  } as TextStyle,
+  bold: {
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+  } as TextStyle,
+  medium: {
+    fontSize: Style.adjust(28),
+  } as TextStyle,
+  large: {
+    fontSize: Style.adjust(56),
+  } as TextStyle,
+  small: {
+    fontSize: Style.adjust(25),
+  } as TextStyle,
+});
