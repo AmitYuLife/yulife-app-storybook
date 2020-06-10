@@ -22,9 +22,8 @@ interface IProps {
   loading: boolean;
 }
 
-function YuScreenEarnRate({ products, onExitConfirmed, onProductDetails, explainData }: IProps) {
+function YuScreenEarnRate({ products, onExitConfirmed, onProductDetails, explainData, earnRate }: IProps) {
   const isAlpha = products.charms.length && !products.employer.length;
-  const earnRate = 20;
 
   return (
     <SafeAreaView>
