@@ -18,6 +18,7 @@ import commonStyles, { LEADERBOARD_PROMPT_OFFSET } from "../leaderboards.screen.
 import { ILeaderboard } from "@redux/user/user.reducer";
 import { Style } from "@styles/index";
 import { toCapitalLetter } from "../../../../../services/utils";
+import { LEADERBOARD_TOP_SCREEN } from "@ids";
 
 interface IProps {
   avatars: IAvatar[];
@@ -158,7 +159,7 @@ function LeaderboardName({ onPress, name, style }: { onPress: () => void; name: 
   return (
     <View pointerEvents="box-none" style={[styles.leaderboardNameAbsolute, style]}>
       <TouchableOpacity style={styles.row} activeOpacity={1} onPress={onPress}>
-        <View style={styles.leaderboardNameWrapper}>
+        <View style={styles.leaderboardNameWrapper} testID={LEADERBOARD_TOP_SCREEN}>
           <Text numberOfLines={1} style={styles.leaderboardName}>
             {toCapitalLetter(name)}
           </Text>

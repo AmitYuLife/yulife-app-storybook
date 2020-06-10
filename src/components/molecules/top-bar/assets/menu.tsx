@@ -1,6 +1,7 @@
 import React from "react";
 import { SvgXml } from "react-native-svg";
 import { Style } from "@styles";
+import { MENU_ICON } from "@ids";
 
 const xml = (color = "#5A5A5C") => `
   <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -13,5 +14,5 @@ const xml = (color = "#5A5A5C") => `
 export default function Hamburger(props: { color: string }) {
   const height = String(Style.adjust(24));
   const width = String(Style.adjust(24));
-  return <SvgXml xml={xml(props.color)} width={width} height={height} />;
+  return <SvgXml xml={xml(props.color)} width={width} height={height} testID={MENU_ICON} />;
 }
