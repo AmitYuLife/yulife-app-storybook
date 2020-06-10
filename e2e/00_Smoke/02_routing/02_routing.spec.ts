@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON } from "@ids";
+import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON, LEADERBOARD_TOP_SCREEN } from "@ids";
 import { records } from "@data";
 import { REWARDS_JOHN_LEWIS, REAWARDS_AVIOS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_2, AUTH_2 } from "_utils/data/stubs";
 Feature("As a user I can navigate through member routes correctly", async () => {
@@ -21,7 +21,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                 Then("I should be on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
             })
             When("I tap leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should be on the leaderboard", then.idVisible(LEADERBOARD_SCREEN))
+                Then("I should be on the leaderboard", then.idVisible(LEADERBOARD_TOP_SCREEN))
             })
             When("I tap rewards", when.tapID(NAV_BAR("rewards")), async () => {
                 Then("I should be on rewards", then.idVisible(REWARDS_SCREEN))

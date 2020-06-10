@@ -5,6 +5,7 @@ export const REWARDS_SCREEN = "REWARDS_SCREEN";
 export const ACTIVITY_HISTORY_SCREEN = "ACTIVITY_HISTORY_SCREEN";
 export const STATS_SCREEN = "STATS_SCREEN";
 export const LEADERBOARD_SCREEN = "LEADERBOARD_SCREEN";
+export const LEADERBOARD_TOP_SCREEN = "LEADERBOARD_TOP_SCREEN"
 export const SETTINGS_SCREEN = "SETTINGS_SCREEN";
 export const QUESTS_SCREEN = (level: number) => `QUESTS_SCREEN_${level.toString()}`;
 export const LEVEL_BUBBLE = (level: number) => `LEVEL_BUBBLE_${level}`
