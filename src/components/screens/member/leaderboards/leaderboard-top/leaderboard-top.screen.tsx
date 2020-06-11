@@ -1,17 +1,8 @@
 import * as React from "react";
-import {
-  Image,
-  View,
-  TouchableOpacity,
-  Animated,
-  Platform,
-  ViewStyle,
-  LayoutChangeEvent,
-  StyleSheet,
-} from "react-native";
+import { Image, View, TouchableOpacity, Animated, Platform, ViewStyle, LayoutChangeEvent } from "react-native";
 import { Text } from "../../../../atoms";
 import styles, { avatarStyles } from "./leaderboard-top.styles";
-import { LeaderboardPedestal, EmptyMaleBody, Info } from "./../svg/leaderboard";
+import { LeaderboardPedestal, EmptyMaleBody } from "./../svg/leaderboard";
 import { BodyAvatar } from "../../yu-screen/svg/body";
 import { IAvatar } from "../../yu-screen/avatar-builder/avatar.types";
 import commonStyles, { LEADERBOARD_PROMPT_OFFSET } from "../leaderboards.screen.styles";
@@ -24,11 +15,9 @@ interface IProps {
   avatars: IAvatar[];
   leaderboardName: string;
   chooseLeaderboardScreen: () => void;
-  showLeaderboardInfoScreen: () => void;
   pedestalViewBox?: string;
   pedestalHeight?: number;
   leaderboardNameStyle?: ViewStyle;
-  aditionalLeaderboardInfoStyle?: ViewStyle;
 }
 
 const BODY_AVATAR_HEIGHT = Style.SCALE_UP_AND_DOWN(150);
@@ -38,11 +27,9 @@ export default function LeaderboardTop({
   avatars,
   leaderboardName,
   chooseLeaderboardScreen,
-  showLeaderboardInfoScreen,
   pedestalViewBox,
   pedestalHeight,
   leaderboardNameStyle,
-  aditionalLeaderboardInfoStyle,
 }: IProps) {
   return (
     <>
@@ -63,12 +50,6 @@ export default function LeaderboardTop({
         ))}
       </View>
       <LeaderboardName onPress={chooseLeaderboardScreen} name={leaderboardName} style={leaderboardNameStyle} />
-      <TouchableOpacity
-        style={StyleSheet.flatten([styles.leaderboardInfo, aditionalLeaderboardInfoStyle])}
-        onPress={showLeaderboardInfoScreen}
-      >
-        <Info />
-      </TouchableOpacity>
     </>
   );
 }
@@ -95,7 +76,6 @@ interface ILeaderboardTopIOS {
   showsActiveLeaderboard: boolean;
   avatars: IAvatar[];
   onChooseLeaderboardScreen: () => void;
-  onShowLeaderboardInfoScreen: () => void;
   style?: ViewStyle;
   onLayout?: (e: LayoutChangeEvent) => void;
 }
@@ -106,7 +86,6 @@ export function LeaderboardTopIOS({
   showsActiveLeaderboard,
   avatars,
   onChooseLeaderboardScreen,
-  onShowLeaderboardInfoScreen,
   style,
   onLayout,
 }: ILeaderboardTopIOS) {
@@ -129,27 +108,19 @@ export function LeaderboardTopIOS({
         avatars={avatars}
         leaderboardName={activeLeaderboard.name}
         chooseLeaderboardScreen={onChooseLeaderboardScreen}
-        showLeaderboardInfoScreen={onShowLeaderboardInfoScreen}
       />
     </Animated.View>
   );
 }
 
-export function EmptyLeaderboard({
-  activeLeaderboard,
-  onChooseLeaderboardScreen,
-  onShowLeaderboardInfoScreen,
-  style,
-}: ILeaderboardTopIOS) {
+export function EmptyLeaderboard({ activeLeaderboard, onChooseLeaderboardScreen, style }: ILeaderboardTopIOS) {
   return (
     <Animated.View pointerEvents="box-none" style={style}>
       <LeaderboardTop
         avatars={[]}
         leaderboardName={activeLeaderboard.name}
         chooseLeaderboardScreen={onChooseLeaderboardScreen}
-        showLeaderboardInfoScreen={onShowLeaderboardInfoScreen}
         leaderboardNameStyle={{ top: LEADERBOARD_PROMPT_OFFSET + 16 }}
-        aditionalLeaderboardInfoStyle={{ top: LEADERBOARD_PROMPT_OFFSET + 16 }}
       />
     </Animated.View>
   );

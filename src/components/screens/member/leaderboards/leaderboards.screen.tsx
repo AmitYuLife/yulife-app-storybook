@@ -12,6 +12,7 @@ import {
   ActivityIndicator,
   LayoutChangeEvent,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { Text, Pad } from "../../../atoms";
@@ -34,6 +35,7 @@ import { LEADERBOARD_ITEM_HEIGHT } from "./leaderboard-item/leaderboard-item.sty
 import { LockedCell } from "./locked-cell";
 import { EmptyLeaderboard } from "./leaderboard-top/leaderboard-top.screen";
 import deviceInfoModule from "react-native-device-info";
+import { Info } from "./svg/leaderboard";
 
 const LEADERBOARD_ITEMS_OFFSET = LIST_PAD_HEIGHT + LOADING_ITEM_HEIGHT;
 
@@ -163,7 +165,6 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
       showsActiveLeaderboard,
       onChooseLeaderboardScreen: () =>
         this.chooseLeaderboardScreen(leaderboards, activeLeaderboardIndex, this.onChangeActiveLeaderboard, componentId),
-      onShowLeaderboardInfoScreen: () => this.showLeaderboardInfoScreen(componentId),
       avatars,
     };
 
@@ -261,6 +262,9 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
         >
           <TopBar coins={totalCoins} type="default" onPressLeftIcon={onLeftMenuPress} />
         </View>
+        <TouchableOpacity style={styles.leaderboardInfoButton} onPress={this.showLeaderboardInfoScreen}>
+          <Info />
+        </TouchableOpacity>
       </SafeAreaView>
     );
   }
@@ -361,7 +365,6 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
                   this.props.componentId
                 )
               }
-              showLeaderboardInfoScreen={() => this.showLeaderboardInfoScreen(this.props.componentId)}
             />
           </View>
         );
@@ -420,7 +423,8 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
     });
   };
 
-  private showLeaderboardInfoScreen = (componentId: string) => {
+  private showLeaderboardInfoScreen = () => {
+    const { componentId } = this.props;
     Navigation.push(componentId, {
       component: {
         id: ROUTES.chooseLeaderboard,

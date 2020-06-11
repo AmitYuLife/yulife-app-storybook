@@ -8,8 +8,8 @@ export const LIST_PAD_HEIGHT = Platform.select({
   android: 300,
 });
 export const LOADING_ITEM_HEIGHT = Style.SCALE_Y_UP_AND_DOWN(48);
-const TOP_BAR_PAD_TOP = Platform.select({ ios: Style.getSafeAreaStart(), android: Style.adjust(10) });
-const TOP_BAR_PAD_BOT = Style.adjust(12);
+const TOP_BAR_PAD_TOP = Platform.select({ ios: Style.getSafeAreaStart(), android: 0 });
+const TOP_BAR_PAD_BOT = Style.adjust(16);
 export const TOP_BAR_WRAPPER_HEIGHT = TopBar.height + TOP_BAR_PAD_TOP + TOP_BAR_PAD_BOT;
 export const LEADERBOARD_PROMPT_OFFSET = 100;
 
@@ -75,7 +75,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   topBarWrapper: {
     position: "absolute",
-    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
+    paddingTop: TOP_BAR_PAD_TOP,
     paddingBottom: TOP_BAR_PAD_BOT,
     left: 0,
     right: 0,
@@ -122,4 +122,11 @@ export default StyleSheet.create({
   leaderboardOfflineWrapper: { justifyContent: "center", alignItems: "center", flex: 1 } as ViewStyle,
   leaderboardOfflineImage: { position: "absolute", bottom: 0, left: 0, right: 0, width: "100%" } as ImageStyle,
   leaderboardOfflineText: { fontSize: Style.adjust(20), lineHeight: Style.adjust(20) },
+  leaderboardInfoButton: {
+    height: Style.adjust(32),
+    width: Style.adjust(32),
+    right: Style.adjust(2),
+    top: TOP_BAR_WRAPPER_HEIGHT + 14,
+    position: "absolute",
+  } as ViewStyle,
 });

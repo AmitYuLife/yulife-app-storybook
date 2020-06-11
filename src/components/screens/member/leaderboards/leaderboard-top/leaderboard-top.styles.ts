@@ -18,13 +18,6 @@ export default StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
   } as ViewStyle,
-  leaderboardInfo: {
-    height: Style.adjust(32),
-    width: Style.adjust(32),
-    right: Style.adjust(2),
-    top: Style.adjust(10),
-    position: "absolute",
-  } as ViewStyle,
   leaderboardName: {
     color: "#333333",
     fontSize: Style.adjust(18),
