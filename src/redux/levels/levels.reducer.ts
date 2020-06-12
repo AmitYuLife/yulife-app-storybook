@@ -193,8 +193,8 @@ const challengeUpdateSuccess = (
       state.active.subtype === "meditation"
         ? "challenge.incomingData.meditation"
         : state.active.subtype === "cycling"
-        ? "challenge.incomingData.distance"
-        : "challenge.incomingData.steps",
+          ? "challenge.incomingData.distance"
+          : "challenge.incomingData.steps",
       initialState.active.score
     ),
   },
@@ -205,6 +205,7 @@ const challengeEndSuccess = (state: ILevelsStore, res: UpdateActiveChallenge): I
   active: {
     ...state.active,
     coins: pathOr<number>(res, "updateActiveChallenge.challenge.yuCoinAwarded", state.active.coins),
+    level: pathOr<number>(res, "updateActiveChallenge.challenge.level", state.active.level),
     isLoading: false,
     milestonesLog: pathOr<any[]>(res, "updateActiveChallenge.challenge.milestoneLog", state.active.milestonesLog),
     rating: pathOr<number>(res, "updateActiveChallenge.challenge.rating", state.active.rating),
@@ -213,8 +214,8 @@ const challengeEndSuccess = (state: ILevelsStore, res: UpdateActiveChallenge): I
       state.active.subtype === "meditation"
         ? "updateActiveChallenge.challenge.incomingData.meditation"
         : state.active.subtype === "cycling"
-        ? "updateActiveChallenge.challenge.incomingData.distance"
-        : "updateActiveChallenge.challenge.incomingData.steps",
+          ? "updateActiveChallenge.challenge.incomingData.distance"
+          : "updateActiveChallenge.challenge.incomingData.steps",
       state.active.score
     ),
     status:

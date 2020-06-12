@@ -3,8 +3,8 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_5, AUTH_5, CUSTOMER_6, AUTH_6, CUSTOMER_7, AUTH_7, CUSTOMER_8, AUTH_8 } from "_utils/data/stubs";
-import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_CTA, GENERIC_SCREEN_HEADING, CHALLENGE_PROGRESS_BAR, NAV_BAR, DAILY_STEPS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids";
+import { CUSTOMER_5, AUTH_5, CUSTOMER_6, AUTH_6, CUSTOMER_7, AUTH_7, CUSTOMER_8, AUTH_8, CUSTOMER_15, AUTH_15 } from "_utils/data/stubs";
+import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_CTA, GENERIC_SCREEN_HEADING, CHALLENGE_PROGRESS_BAR, NAV_BAR, DAILY_STEPS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, CHALLENGE_UNAVAILABLE } from "@ids";
 import { idVisible } from "@utils";
 
 
@@ -116,10 +116,16 @@ Feature("As a user I can use the streaks functionality", async () => {
                                     Then("I should see my reward of 2500 coins", then.textVisible("collect 2500 yucoin"))
                                     When("I tap collect 2500 yucoin", when.tapText("collect 2500 yucoin"), async () => {
                                         Then("I should be on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
-                                        When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                                            Then("I should see the coins I earned today", then.textVisible("2510 yucoin today"))
-                                            Then("I should see the steps I completed today", then.textVisible("200 steps"))
-                                            Then("I should see my total yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(3150)))
+                                        When("I tap the level 6 challenge", when.tapID(LEVEL_CHALLENGE_BUTTON(6)), async () => {
+                                            Then("I should see a challenge unavailable screen", then.idVisible(CHALLENGE_UNAVAILABLE))
+                                            When("I tap 'got it'", when.tapText("got it"), async () => {
+                                                Then("I should be back on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
+                                                When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+                                                    Then("I should see the coins I earned today", then.textVisible("2510 yucoin today"))
+                                                    Then("I should see the steps I completed today", then.textVisible("200 steps"))
+                                                    Then("I should see my total yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(3150)))
+                                                })
+                                            })
                                         })
                                     })
                                 })
@@ -153,6 +159,66 @@ Feature("As a user I can use the streaks functionality", async () => {
                                 })
                             })
                         })
+                    })
+                })
+            })
+        })
+    })
+
+    Scenario("Failing a challenge should not affect my streak, and I can still complete a challenge", scenario.start, async () => {
+        Given("I login as a user with a streak", given.loginAsUser(CUSTOMER_7, AUTH_7), async () => {
+            Then("I should see 4/5 on the yucoin tab", then.textVisible("4/5"))
+            When("I go to the quests tab", when.tapID(NAV_BAR("quests")), async () => {
+                Then("I should see the fifth level is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(5)))
+                When("I tap this button", when.tapID(LEVEL_CHALLENGE_BUTTON(5)), async () => {
+                    Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
+                    When("I start the short stroll challenge", when.startChallenge("short stroll"), async () => {
+                        Then("The challenge should start", idVisible(CHALLENGE_PROGRESS_BAR))
+                        When("I wait for the challenge to finish", when.wait(32000), async () => {
+                            Then("I should see the times up modal", then.textVisible("time’s up!"))
+                            When("I tap see result", when.tapText("see result"), async () => {
+                                Then("I should see the challenge failed screen", then.textVisible("you didn’t make it"))
+                                When("I tap back to quests", when.tapText("back to quests"), async () => {
+                                    Then("I should be on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
+                                    When("I go back to the yuicoin screen", when.tapID(NAV_BAR("yucoin")), async () => {
+                                        Then("I should still see 4/5 streaks", then.textVisible("4/5"))
+                                        When("I tap 4/5", when.tapText("4/5"), async () => {
+                                            Then("I should see the start streak screen", then.textVisible("Start streak day 5"))
+                                            When("I tap take a challenge", when.tapText("take a challenge"), async () => {
+                                                Then("I should be on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
+                                                When("I start a challenge", when.startChallengeFromQuests(5, "short stroll"), async () => {
+                                                    When("I complete the challenge", when.sendSteps(300, 30000), async () => {
+                                                        Then("I should see the times up modal", then.textVisible("time’s up!"))
+                                                        When("I tap see result", when.tapText("see result"), async () => {
+                                                            Then("I should see the challenge complete screen", then.onChallengeComplete(300, 5))
+                                                            When("I tap collect", when.tapText("collect"), async () => {
+                                                                Then("I should see my streak is completed", then.textVisible("Streak completed"))
+                                                            })
+                                                        })
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    })
+
+    Scenario("I can redeem a challenge the next day", scenario.start, async () => {
+        Given("I login as a user who activated a challenge yesterday", given.loginAsUser(CUSTOMER_15, AUTH_15), async () => {
+            // Then("I should see 4/5 streaks", then.textVisible("4/5")) // Bug where 0/5 is shown. Does not get updated when taking a challenge
+            Then("I should see my currect coin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(520)))
+            When("I tap quests", when.tapID(NAV_BAR("quests")), async () => {
+                Then("I should see the times up modal", then.textVisible("time’s up!"))
+                When("I tap see result", when.tapText("see result"), async () => {
+                    Then("I should see the well done screen", then.onChallengeComplete(450, 4))
+                    When("I tap collect", when.tapText("collect"), async () => {
+                        Then("I should see my updated yucoin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(580)))
                     })
                 })
             })

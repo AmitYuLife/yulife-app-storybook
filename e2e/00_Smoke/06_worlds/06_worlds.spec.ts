@@ -32,7 +32,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         })
     })
 
-    Scenario("I can finish a walking chalenge in the second world", scenario.start, async () => {
+    Scenario("I can finish a walking challenge in the second world", scenario.start, async () => {
         Given("I login as a user with the second world unlocked", given.logInAndGoToTab("quests", CUSTOMER_3, AUTH_3), async () => {
             When("I start a walking challenge", when.startChallengeFromQuests(10, "short stroll"), async () => {
                 Then("I should be on the short stroll challenge", then.textVisible("0 steps"))

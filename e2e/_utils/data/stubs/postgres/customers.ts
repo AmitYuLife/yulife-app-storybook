@@ -212,3 +212,17 @@ export const CUSTOMER_ARCHIVED = {
         archived: true
     }
 } as IDatabaseItem
+
+export const CUSTOMER_15 = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "luigi@yulife.com",
+        firstName: "Luigi",
+        lastName: "Segale",
+        dateOfBirth: moment().subtract(30, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded"
+    }
+} as IDatabaseItem
