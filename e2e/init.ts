@@ -25,7 +25,7 @@ afterEach(async function () {
 });
 
 after(async () => {
-  await detoxInstance.cleanup();
-  await socketServer.close();
-  await dataManager.resetData();
+  // await detoxInstance.cleanup();
+  // await socketServer.close();
+  // await dataManager.resetData();
 });

@@ -551,9 +551,9 @@ export const CHALLENGE_USER_14_C = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        startTime: "2020-06-08 10:06:22.686Z",
+        startDateTime: "2020-06-08 10:06:22.686Z",
+        endDateTime: "2020-06-08 10:06:22.686Z",
         levelSlotTemplateId: "DAILY_PASSIVE_002",
         subtype: MEDITATION_1.data.subtype,
         incomingData: {
@@ -565,7 +565,7 @@ export const CHALLENGE_USER_14_C = {
                 completionData: [],
                 _id: generateRandomMongoId(),
                 id: MEDITATION_MILESTONE_1.data.id,
-                completed: moment().subtract(4, "day").toDate(),
+                completed: "2020-06-08 10:06:22.686Z",
                 data: {
                     meditation: 100,
                 },
@@ -582,9 +582,9 @@ export const CHALLENGE_USER_14_D = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
-        startTime: moment().subtract(3, "days").toDate(),
-        startDateTime: moment().subtract(3, "days").toDate(),
-        endDateTime: moment().subtract(3, "days").toDate(),
+        startTime: "2020-06-09 10:06:22.686Z",
+        startDateTime: "2020-06-09 10:06:22.686Z",
+        endDateTime: "2020-06-09 10:06:22.686Z",
         incomingData: {
             meditation: 100
         },
@@ -595,7 +595,7 @@ export const CHALLENGE_USER_14_D = {
                 completionData: [],
                 _id: generateRandomMongoId(),
                 id: MEDITATION_MILESTONE_1.data.id,
-                completed: moment().subtract(3, "day").toDate(),
+                completed: "2020-06-09 10:06:22.686Z",
                 data: {
                     meditation: 100,
                 },
@@ -732,11 +732,11 @@ export const CHALLENGE_USER_14_I = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
-        startTime: moment().subtract(10, "days").toDate(),
-        startDateTime: moment().subtract(10, "days").toDate(),
-        endDateTime: moment().subtract(10, "days").toDate(),
+        startTime: "2020-05-02 10:06:22.686Z",
+        startDateTime: "2020-05-02 10:06:22.686Z",
+        endDateTime: "2020-05-02 10:06:22.686Z",
         incomingData: {
-            meditation: 500
+            meditation: 10000
         },
         levelSlotTemplateId: "DAILY_PASSIVE_002",
         level: 4,
@@ -745,9 +745,9 @@ export const CHALLENGE_USER_14_I = {
                 completionData: [],
                 _id: generateRandomMongoId(),
                 id: MEDITATION_MILESTONE_1.data.id,
-                completed: moment().subtract(10, "day").toDate(),
+                completed: "2020-05-02 10:06:22.686Z",
                 data: {
-                    meditation: 500,
+                    meditation: 10000,
                 },
                 yuCoinAwarded: 60
             }
