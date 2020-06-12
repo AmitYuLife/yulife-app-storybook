@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15 } from '../postgres/customers';
 import moment = require('moment');
 import { SHORT_STROLL_MILESTONE_1, LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1 } from './map_milestone_templates';
 import { MEDITATION_1, LONG_WALK_1, SHORT_STROLL_1 } from './map_level_slot_templates';
@@ -751,6 +751,127 @@ export const CHALLENGE_USER_14_I = {
                 },
                 yuCoinAwarded: 60
             }
+        ],
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_15_A = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        userId: CUSTOMER_15.data.customerId,
+        _id: generateRandomMongoId(),
+        startTime: moment().subtract(4, "days").toDate(),
+        startDateTime: moment().subtract(4, "days").toDate(),
+        endDateTime: moment().subtract(4, "days").toDate(),
+        level: 1,
+        status: "completed",
+        levelSlotTemplateId: "DAILY_PASSIVE_001",
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                data: {
+                    meditation: 0,
+                    steps: 400
+                },
+                yuCoinAwarded: 118118,
+                completed: moment().subtract(4, "day").toDate(),
+                id: SHORT_STROLL_MILESTONE_1.data.id
+            },
+        ],
+
+
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_15_B = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_15.data.customerId,
+        startTime: moment().subtract(3, "days").toDate(),
+        startDateTime: moment().subtract(3, "days").toDate(),
+        endDateTime: moment().subtract(3, "days").toDate(),
+        level: 2,
+        status: "completed",
+        levelSlotTemplateId: "DAILY_PASSIVE_001",
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                data: {
+                    meditation: 0,
+                    steps: 2300
+                },
+                yuCoinAwarded: 20,
+                completed: moment().subtract(3, "day").toDate(),
+                id: SHORT_STROLL_MILESTONE_1.data.id
+            },
+        ],
+
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_15_C = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_15.data.customerId,
+        startTime: moment().subtract(2, "days").toDate(),
+        startDateTime: moment().subtract(2, "days").toDate(),
+        endDateTime: moment().subtract(2, "days").toDate(),
+        levelSlotTemplateId: "DAILY_PASSIVE_002",
+        subtype: MEDITATION_1.data.subtype,
+        incomingData: {
+            meditation: 100
+        },
+        level: 3,
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                id: MEDITATION_MILESTONE_1.data.id,
+                completed: moment().subtract(2, "day").toDate(),
+                data: {
+                    meditation: 100,
+                },
+                yuCoinAwarded: 60
+            }
+        ],
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_15_D = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_15.data.customerId,
+        startTime: moment().subtract(1, "days").toDate(),
+        startDateTime: moment().subtract(1, "days").toDate(),
+        incomingData: {
+            steps: 450
+        },
+        level: 4,
+        levelSlotTemplateId: "DAILY_PASSIVE_001",
+        status: "active",
+
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                data: {
+                    steps: 450
+                },
+                id: SHORT_STROLL_MILESTONE_1.data.id
+            },
         ],
     }
 } as IDatabaseItem;

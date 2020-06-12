@@ -3,6 +3,7 @@ import { Image, View } from "react-native";
 import { Button, Text } from "../../../../atoms";
 import assets from "./assets";
 import styles from "./challenge-unavailable.styles";
+import { CHALLENGE_UNAVAILABLE } from "@ids";
 
 interface IProps {
   onPressCta: () => void;
@@ -11,7 +12,7 @@ interface IProps {
 
 const ChallengeUnavailableScreen = ({ onPressCta, timeRemaining }: IProps) => {
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={CHALLENGE_UNAVAILABLE}>
       <View style={styles.imageWrapper}>
         <Image source={assets.challengeUnavailable} />
       </View>

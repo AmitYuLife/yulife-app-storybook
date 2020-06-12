@@ -6,7 +6,8 @@ export const {
     tapText,
     tapID,
     reloadAppToTab,
-    navigateViaText
+    navigateViaText,
+    wait
 } = navigation.common
 
 export const {
@@ -15,6 +16,7 @@ export const {
 
 export const {
     startChallenge,
+    startChallengeFromQuests
 } = screens.challenges
 
 export const finishIntro = async () => {

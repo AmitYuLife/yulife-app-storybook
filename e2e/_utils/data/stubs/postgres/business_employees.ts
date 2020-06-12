@@ -1,6 +1,6 @@
 import { IDatabaseItem } from '../../types';
 import { BUSINESS_ACCOUNT_1 } from './business_accounts';
-import { CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_10, CUSTOMER_11, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14 } from './customers';
+import { CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_10, CUSTOMER_11, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15 } from './customers';
 import moment = require('moment');
 
 export const BUSINESS_EMPLOYEE_1 = {
@@ -153,6 +153,17 @@ export const BUSINESS_EMPLOYEE_14 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_14.data.customerId,
+        invite_date: moment().subtract(6, "months").toDate(),
+        leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_15 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
+        customer_id: CUSTOMER_15.data.customerId,
         invite_date: moment().subtract(6, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
