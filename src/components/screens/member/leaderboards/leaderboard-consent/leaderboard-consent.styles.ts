@@ -8,21 +8,25 @@ export default StyleSheet.create({
   contentWrapper: {
     justifyContent: "center",
     alignItems: "center",
+    paddingBottom: 20,
   } as ViewStyle,
   heading: {
-    fontSize: Style.SCALE_UP_AND_DOWN(30),
-    lineHeight: Style.SCALE_UP_AND_DOWN(40),
-    marginVertical: Style.SCALE_UP_AND_DOWN(20),
+    fontSize: Style.adjust(35),
     textAlign: "center",
+    color: "#333",
   } as TextStyle,
   subheading: {
-    fontSize: Style.SCALE_UP_AND_DOWN(15),
-    lineHeight: Style.SCALE_UP_AND_DOWN(22),
-    marginHorizontal: Style.SCALE_UP_AND_DOWN(40),
+    fontSize: Style.adjust(15),
+    lineHeight: Style.adjust(21),
+    marginHorizontal: Style.adjust(28),
+    color: "#333",
     textAlign: "center",
+    marginTop: Style.adjust(15),
   } as TextStyle,
   privacyButton: {
     marginTop: Style.SCALE_UP_AND_DOWN(27),
   } as ViewStyle,
-  primaryButton: { marginVertical: 15 } as ViewStyle,
+  primaryButton: {
+    marginTop: Style.adjust(22),
+  } as ViewStyle,
 });

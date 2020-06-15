@@ -1,43 +1,6 @@
-import { ImageStyle, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
+import { StyleSheet, ViewStyle, Platform } from "react-native";
 import { Style } from "../../../../../styles";
 import { LIST_PAD_HEIGHT } from "../leaderboards.screen.styles";
-
-export default StyleSheet.create({
-  leaderboardNameAbsolute: {
-    position: "absolute",
-    top: Style.adjust(16),
-    left: Style.SCALE_UP_AND_DOWN(32),
-    right: 0,
-    justifyContent: "center",
-    alignItems: "center",
-  } as ViewStyle,
-  row: {
-    flexDirection: "row",
-  } as ViewStyle,
-  leaderboardNameWrapper: {
-    alignSelf: "center",
-    alignItems: "center",
-  } as ViewStyle,
-  leaderboardName: {
-    color: "#333333",
-    fontSize: Style.adjust(18),
-    width: Style.DEVICE_WIDTH / 3,
-    textAlign: "center",
-    lineHeight: Style.adjust(16),
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-  } as TextStyle,
-  leaderboardSteps: {
-    color: "#000000",
-    fontSize: Style.adjust(18),
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-  } as TextStyle,
-  changeLeaderboardArrow: {
-    marginTop: Style.adjust(4),
-    marginLeft: Style.adjust(16),
-    height: Style.adjust(32),
-    width: Style.adjust(32),
-  } as ImageStyle,
-});
 
 export const avatarStyles: Record<string, ViewStyle> = StyleSheet.create({
   wrapper: {
@@ -45,7 +8,10 @@ export const avatarStyles: Record<string, ViewStyle> = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
     height: LIST_PAD_HEIGHT,
   } as ViewStyle,
-  avatarBase: { position: "absolute" } as ViewStyle,
+  avatarBase: {
+    position: "absolute",
+    top: 28,
+  } as ViewStyle,
   avatar2: {
     marginTop: Style.SCALE_UP_AND_DOWN(Platform.select({ android: Style.isShortAndroid() ? 75 : 77, ios: 78 })),
     marginLeft: Style.SCALE_UP_AND_DOWN(84),

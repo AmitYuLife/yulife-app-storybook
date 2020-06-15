@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { ScrollView } from "react-native";
 import { GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn } from "../../../../../graphql/_core/schema";
 import { Button, Text } from "../../../../atoms";
@@ -20,7 +20,7 @@ export default function LeaderboardConsent({ isLoading, onAllowLeaderboard, copy
       contentContainerStyle={styles.contentWrapper}
     >
       <Text style={styles.heading} bold={true}>
-        turn on leaderboard?
+        Turn on Leaderboard?
       </Text>
       <Text style={styles.subheading}>{copy.subheading}</Text>
       <Button
