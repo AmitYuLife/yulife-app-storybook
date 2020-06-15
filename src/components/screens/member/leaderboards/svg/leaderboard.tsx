@@ -1,7 +1,7 @@
 import * as React from "react";
 import Svg, { Circle, Path, LinearGradient, Rect, Stop, Polygon, SvgXml } from "react-native-svg";
 import { Style } from "@styles/index";
-import { Platform } from "react-native";
+import { pedestalStyles } from "../leaderboards.screen.styles";
 
 export const ThirdPlace = () => {
   return (
@@ -78,21 +78,25 @@ const infoXml = `
   </svg>
 `;
 
-export const Info = () => {
+export const InfoIcon = () => {
   return <SvgXml xml={infoXml} />;
 };
 
-interface ILeaderboardPedestalProps {
-  viewBox?: string;
-  height?: number;
-}
-
-export const LeaderboardPedestal = ({ viewBox, height }: ILeaderboardPedestalProps) => {
+export const LeaderboardPedestal = () => {
+  const {
+    SVG_HEIGHT,
+    SVG_WIDTH,
+    multiplier,
+    VIEWBOX_MIN_X,
+    VIEWBOX_MIN_Y,
+    VIEWBOX_WIDTH,
+    VIEWBOX_HEIGHT,
+  } = pedestalStyles;
   return (
     <Svg
-      height={height || Platform.OS === "ios" ? Style.adjust(334, { shrinkMultiplier: 0.25 }) : Style.adjust(334)} // Approximate
-      width={Style.DEVICE_WIDTH}
-      viewBox={viewBox || "10 100 340 220"}
+      height={SVG_HEIGHT}
+      width={SVG_WIDTH * multiplier}
+      viewBox={`${VIEWBOX_MIN_X} ${VIEWBOX_MIN_Y} ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
     >
       <LinearGradient
         id="linear-gradient"

@@ -1,10 +1,9 @@
 import { GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn } from "@app/graphql/_core/schema";
 import { IAppStore } from "@app/redux/app/app.reducer";
 import { ILeaderboard } from "@redux/user/user.reducer";
-import * as React from "react";
+import React from "react";
 import {
   Animated,
-  SafeAreaView,
   StyleSheet,
   View,
   FlatList,
@@ -12,7 +11,6 @@ import {
   ActivityIndicator,
   LayoutChangeEvent,
   Image,
-  TouchableOpacity,
 } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { Text, Pad } from "../../../atoms";
@@ -33,9 +31,7 @@ import { Style } from "@styles/index";
 import LeaderboardTop, { LeaderboardTopIOS } from "./leaderboard-top/leaderboard-top.screen";
 import { LEADERBOARD_ITEM_HEIGHT } from "./leaderboard-item/leaderboard-item.styles";
 import { LockedCell } from "./locked-cell";
-import { EmptyLeaderboard } from "./leaderboard-top/leaderboard-top.screen";
-import deviceInfoModule from "react-native-device-info";
-import { Info } from "./svg/leaderboard";
+import { LeaderboardTitle } from "./leaderboard-title";
 
 const LEADERBOARD_ITEMS_OFFSET = LIST_PAD_HEIGHT + LOADING_ITEM_HEIGHT;
 
@@ -139,7 +135,6 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
       onPrivacyPolicyPress,
       onRefuseConsent,
       copy,
-      componentId,
     } = this.props;
     const activeLeaderboard = leaderboards.length > 0 && leaderboards[activeLeaderboardIndex];
     this.avatarDataFirstUser = transformAvatar(items[0]?.avatar);
@@ -157,14 +152,8 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
     const showsActiveLeaderboard = activeLeaderboard && !activeLeaderboard.consent;
     const avatars = [this.avatarDataFirstUser, this.avatarDataSecondUser, this.avatarDataThirdUser];
     const leaderboardProps = {
-      activeLeaderboard,
       translateYTransform,
-      leaderboards,
-      activeLeaderboardIndex,
-      componentId,
       showsActiveLeaderboard,
-      onChooseLeaderboardScreen: () =>
-        this.chooseLeaderboardScreen(leaderboards, activeLeaderboardIndex, this.onChangeActiveLeaderboard, componentId),
       avatars,
     };
 
@@ -176,7 +165,7 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
       floatingItemAnimatedOpacity: this.getOpacityInterpolation() as number,
     };
     return (
-      <SafeAreaView style={styles.wrapper}>
+      <View style={styles.wrapper}>
         <View
           style={StyleSheet.flatten([
             styles.list,
@@ -187,12 +176,10 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
         >
           {showsActiveLeaderboard ? (
             <>
-              <View
-                style={{
-                  marginTop:
-                    !Style.isShortAndroid() && Platform.OS == "android" ? LIST_PAD_HEIGHT + 60 : LIST_PAD_HEIGHT,
-                }}
-              >
+              <View pointerEvents="box-none" style={styles.emptyLeaderboardWrapper}>
+                <LeaderboardTop avatars={[]} />
+              </View>
+              <View style={styles.consentWrapper}>
                 <LeaderboardConsent
                   isLoading={activeLeaderboard.isLoading}
                   onAllowLeaderboard={this.allowLeaderboard}
@@ -200,16 +187,6 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
                   onRefuseConsent={onRefuseConsent}
                   copy={copy}
                 />
-              </View>
-
-              <View
-                pointerEvents="box-none"
-                style={{
-                  position: "absolute",
-                  top: TopBar.height + (deviceInfoModule.hasNotch() ? 0 : Style.adjust(12)),
-                }}
-              >
-                <EmptyLeaderboard {...leaderboardProps} />
               </View>
             </>
           ) : (
@@ -248,24 +225,36 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
           )}
         </View>
         <LeaderboardTopIOS
+          {...leaderboardProps}
           onLayout={(e: LayoutChangeEvent) => {
             this.setState({ leaderboardTopHeight: e.nativeEvent.layout.height });
           }}
-          {...leaderboardProps}
           style={{ marginTop: this.state.topbarHeight || TOP_BAR_WRAPPER_HEIGHT }}
         />
         {!activeLeaderboard.consent ? null : <LockedCell {...lockedCellProps} />}
         <NavBar activeIndex={3} hasNotification={hasNotification} />
+        <Animated.View
+          style={[
+            styles.leaderboardTitleWrapper,
+            {
+              transform: [{ translateY: translateYTransform }],
+            },
+          ]}
+        >
+          <LeaderboardTitle
+            name={(leaderboards.length > 0 && leaderboards[activeLeaderboardIndex])?.name}
+            onPressLabel={this.chooseLeaderboardScreen}
+            onPressInfo={this.showLeaderboardInfoScreen}
+            hide={isLoading}
+          />
+        </Animated.View>
         <View
           onLayout={(e: LayoutChangeEvent) => this.setState({ topbarHeight: e.nativeEvent.layout.height })}
           style={styles.topBarWrapper}
         >
           <TopBar coins={totalCoins} type="default" onPressLeftIcon={onLeftMenuPress} />
         </View>
-        <TouchableOpacity style={styles.leaderboardInfoButton} onPress={this.showLeaderboardInfoScreen}>
-          <Info />
-        </TouchableOpacity>
-      </SafeAreaView>
+      </View>
     );
   }
 
@@ -352,20 +341,7 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
       if (Platform.OS === "android") {
         return (
           <View style={styles.imageWrapper}>
-            <LeaderboardTop
-              avatars={[this.avatarDataFirstUser, this.avatarDataSecondUser, this.avatarDataThirdUser]}
-              leaderboardName={
-                (this.props.leaderboards.length > 0 && this.props.leaderboards[this.props.activeLeaderboardIndex])?.name
-              }
-              chooseLeaderboardScreen={() =>
-                this.chooseLeaderboardScreen(
-                  this.props.leaderboards,
-                  this.props.activeLeaderboardIndex,
-                  this.onChangeActiveLeaderboard,
-                  this.props.componentId
-                )
-              }
-            />
+            <LeaderboardTop avatars={[this.avatarDataFirstUser, this.avatarDataSecondUser, this.avatarDataThirdUser]} />
           </View>
         );
       }
@@ -403,12 +379,11 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
     this.props.onLeaderboardChange(activePage);
   };
 
-  private chooseLeaderboardScreen = (
-    leaderboards: ILeaderboard[],
-    activePage: number,
-    onChangeActiveLeaderboard: (index: number) => void,
-    componentId: string
-  ) => {
+  private chooseLeaderboardScreen = () => {
+    const {
+      onChangeActiveLeaderboard,
+      props: { leaderboards, activeLeaderboardIndex, componentId },
+    } = this;
     Navigation.push(componentId, {
       component: {
         id: ROUTES.chooseLeaderboard,
@@ -416,7 +391,7 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
         passProps: {
           componentId,
           leaderboards,
-          activePage,
+          activePage: activeLeaderboardIndex,
           onChangeActiveLeaderboard,
         },
       },

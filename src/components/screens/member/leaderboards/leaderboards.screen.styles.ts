@@ -3,24 +3,44 @@ import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../styles";
 import { TopBar } from "@components/molecules";
 
-export const LIST_PAD_HEIGHT = Platform.select({
-  ios: Style.adjust(348, { growThreshold: Style.DEVICE_HEIGHT > 600, growMultiplier: 0.1 }),
-  android: 300,
-});
+const VIEWBOX_MIN_X = 10;
+const VIEWBOX_MIN_Y = 80;
+const VIEWBOX_WIDTH = 340;
+const SVG_WIDTH = VIEWBOX_WIDTH + VIEWBOX_MIN_X;
+const multiplier = Style.DEVICE_WIDTH / SVG_WIDTH;
+const VIEWBOX_HEIGHT = 220 * multiplier;
+const SVG_HEIGHT = VIEWBOX_HEIGHT + VIEWBOX_MIN_Y;
+export const pedestalStyles = {
+  VIEWBOX_MIN_X,
+  VIEWBOX_MIN_Y,
+  VIEWBOX_WIDTH,
+  VIEWBOX_HEIGHT,
+  SVG_WIDTH,
+  SVG_HEIGHT,
+  multiplier,
+};
+
 export const LOADING_ITEM_HEIGHT = Style.SCALE_Y_UP_AND_DOWN(48);
 const TOP_BAR_PAD_TOP = Platform.select({ ios: Style.getSafeAreaStart(), android: 0 });
-const TOP_BAR_PAD_BOT = Style.adjust(16);
+const TOP_BAR_PAD_BOT = Platform.select({ ios: Style.adjust(16), android: Style.adjust(8) });
 export const TOP_BAR_WRAPPER_HEIGHT = TopBar.height + TOP_BAR_PAD_TOP + TOP_BAR_PAD_BOT;
 export const LEADERBOARD_PROMPT_OFFSET = 100;
+export const LIST_PAD_HEIGHT = SVG_HEIGHT;
+
+const EMPTY_LEADER_BOARD_MARGIN_TOP = TopBar.height * 3;
 
 export default StyleSheet.create({
+  emptyLeaderboardWrapper: {
+    position: "absolute",
+    top: EMPTY_LEADER_BOARD_MARGIN_TOP,
+  } as ViewStyle,
   imageWrapper: {
     position: Platform.select({ ios: "absolute", android: null }),
     width: "100%",
     height: LIST_PAD_HEIGHT,
   } as ViewStyle,
   firstListItem: {
-    height: LIST_PAD_HEIGHT,
+    height: LIST_PAD_HEIGHT + 48,
     width: "100%",
   } as ViewStyle,
   loadingItem: {
@@ -96,7 +116,9 @@ export default StyleSheet.create({
   footer: {
     height: Style.adjust(28),
   } as ViewStyle,
-  leaderboardConsentWrapper: {} as ViewStyle,
+  consentWrapper: {
+    marginTop: EMPTY_LEADER_BOARD_MARGIN_TOP + LIST_PAD_HEIGHT,
+  } as ViewStyle,
   leaderboardList: {
     position: "absolute",
     bottom: 0,
@@ -122,11 +144,10 @@ export default StyleSheet.create({
   leaderboardOfflineWrapper: { justifyContent: "center", alignItems: "center", flex: 1 } as ViewStyle,
   leaderboardOfflineImage: { position: "absolute", bottom: 0, left: 0, right: 0, width: "100%" } as ImageStyle,
   leaderboardOfflineText: { fontSize: Style.adjust(20), lineHeight: Style.adjust(20) },
-  leaderboardInfoButton: {
-    height: Style.adjust(32),
-    width: Style.adjust(32),
-    right: Style.adjust(2),
+  leaderboardTitleWrapper: {
     top: TOP_BAR_WRAPPER_HEIGHT + 14,
     position: "absolute",
+    left: 0,
+    right: 0,
   } as ViewStyle,
 });
