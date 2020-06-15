@@ -92,8 +92,8 @@ interface IBodyItemsProps {
 export const BodyItemSVG = ({ item }: IBodyItemsProps) => {
   return (
     <Svg
-      width={String(Style.adjust(item.width ? item.width : 82))}
-      height={String(Style.adjust(item.height ? item.height : 98))}
+      width={String(Style.adjust(item.width ? Number(item.width) : 82))}
+      height={String(Style.adjust(item.height ? Number(item.height) : 98))}
       viewBox={item.previewViewBox ? item.previewViewBox : "0 0 265 544"}
       fill="none"
     >
