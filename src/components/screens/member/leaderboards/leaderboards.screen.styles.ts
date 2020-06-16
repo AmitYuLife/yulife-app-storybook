@@ -149,5 +149,6 @@ export default StyleSheet.create({
     position: "absolute",
     left: 0,
     right: 0,
+    height: Platform.select({ ios: undefined, android: 50 }), // w/o defining height on Android, the buttons won't be touchable
   } as ViewStyle,
 });
