@@ -50,26 +50,24 @@ export interface IItem {
 }
 
 export interface ILeaderboardsScreenProps {
+  componentId: string;
   activeLeaderboardIndex: number;
-  labels: ILabel[];
-  leaderboards: ILeaderboard[];
+  sortBy: string;
   hasNotification: boolean;
-  items: IItem[];
+  appState: IAppStore["appState"];
+  labels: ILabel[];
+  totalCoins: number;
   isLoading: boolean;
-  isMindfulAvailable: boolean;
+  leaderboards: ILeaderboard[];
+  items: IItem[];
+  copy: GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn;
+  userId: string;
+  onLeftMenuPress: () => void;
   onLeaderboardChange: (index: number) => void;
   onRefetch: () => void;
-  sortBy: string;
-  totalCoins: number;
-  onLeftMenuPress: () => void;
-  // Consent props
   onAllowLeaderboard: () => void;
-  onPrivacyPolicyPress: () => void;
   onRefuseConsent: () => void;
-  copy: GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn;
-  componentId: string;
-  appState: IAppStore["appState"];
-  userId: string;
+  onPrivacyPolicyPress: () => void;
 }
 
 export const initialState = {
@@ -106,16 +104,21 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
   }
 
   public componentDidUpdate(prevProps: ILeaderboardsScreenProps, prevState: typeof initialState) {
-    const hasFinishedLoading = prevProps.isLoading !== !this.props.isLoading;
+    const hasFinishedLoading = prevProps.isLoading !== this.props.isLoading;
     const viewportHeightChanged = prevState.viewportHeight !== this.state.viewportHeight;
     const viewableInViewportMinChanged = prevState.viewableInViewportMin !== this.state.viewableInViewportMin;
     const viewableInViewportMaxChanged = prevState.viewableInViewportMax !== this.state.viewableInViewportMax;
     const hasMetRecalculationCondition =
       hasFinishedLoading || viewportHeightChanged || viewableInViewportMinChanged || viewableInViewportMaxChanged;
     if (hasMetRecalculationCondition) {
-      this.props.onRefetch();
       this.calculateitemOffsetY();
       this.restartScroll();
+    }
+    if (
+      prevProps.leaderboards[prevProps.activeLeaderboardIndex].isLoading !==
+      this.props.leaderboards[this.props.activeLeaderboardIndex].isLoading
+    ) {
+      this.props.onRefetch();
     }
   }
 
