@@ -1,20 +1,21 @@
+import React, { FC, useCallback, useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { ILeaderboard } from "@app/redux/user/user.reducer";
 import { GQL_QUERY_LEADERBOARD } from "@graphql/member";
 import { handleLinkPress } from "@services/app-link";
-import Logger from "@services/logging/logger";
-import React, { FC, useCallback, useMemo, useState } from "react";
 import Config from "react-native-config";
 import { connect } from "react-redux";
 import { IMainTabsProps, labels } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
-import { getAppState, getOfflineState } from "../../../../redux/app/app.selectors";
+import { getAppState } from "../../../../redux/app/app.selectors";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
-import { getCurrentLevel, getHasNotification } from "../../../../redux/levels/levels.selectors";
+import { getHasNotification } from "../../../../redux/levels/levels.selectors";
 import { updateLeaderboardConsent } from "../../../../redux/user/user.actions";
-import { getAllLeaderboards, getConsentedLeaderboards } from "../../../../redux/user/user.selectors";
+import { getAllLeaderboards } from "../../../../redux/user/user.selectors";
 import { LeaderboardsScreen } from "../../../screens";
+import { viewLeaderboardScreen } from "@redux/logging/logging.actions";
+import { GetLeaderboard } from "@graphql/_core/schema";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -42,34 +43,27 @@ const getInitialLeaderboard = (leaderboards?: ILeaderboard[]) => {
 };
 
 const handlePrivacyPolicyPress = handleLinkPress(Config.PRIVACY_POLICY_URL);
-
-const LeaderboardsContainer: FC<Props> = ({
-  leaderboards = [],
-  hasNotification,
-  totalCoins,
-  copy,
-  componentId,
-  appState,
-  updateLeaderboardConsent: dispatchUpdateConsent,
-  onLeftMenuPress,
-}) => {
-  const [sortBy, setSortBy] = useState("steps");
+const sortBy = "steps";
+const LeaderboardsContainer: FC<Props> = (props) => {
+  const {
+    leaderboards = [],
+    hasNotification,
+    totalCoins,
+    copy,
+    componentId,
+    appState,
+    updateLeaderboardConsent: dispatchUpdateConsent,
+    viewLeaderboardScreen: dispatchViewLeaderboardScreen,
+    onLeftMenuPress,
+  } = props;
   const [{ activeLeaderboardIndex, leaderboardId }, setLeaderboardInfo] = useState(getInitialLeaderboard(leaderboards));
 
-  const { loading, data, refetch } = useQuery(GQL_QUERY_LEADERBOARD, {
+  const { loading, data, refetch } = useQuery<GetLeaderboard>(GQL_QUERY_LEADERBOARD, {
     variables: { leaderboardId, sortBy },
     fetchPolicy: "cache-and-network",
   });
 
-  const handleRefetch = useCallback(
-    (sort: string) => () => {
-      setSortBy(sort);
-      refetch({ sortBy: sort, leaderboardId });
-    },
-    [leaderboardId, refetch]
-  );
-
-  const refuseConsent = useCallback(() => {
+  const handleRefuseConsent = useCallback(() => {
     const nextIndex = activeLeaderboardIndex + 1 === leaderboards.length ? 0 : activeLeaderboardIndex + 1;
 
     setLeaderboardInfo({
@@ -78,7 +72,7 @@ const LeaderboardsContainer: FC<Props> = ({
     });
   }, [activeLeaderboardIndex, leaderboards]);
 
-  const allowLeaderboard = useCallback(() => {
+  const handleAllowLeaderboard = useCallback(() => {
     const company = leaderboards[activeLeaderboardIndex];
     dispatchUpdateConsent({ leaderboardId: company.leaderboardId, consent: true });
   }, [activeLeaderboardIndex, leaderboards, dispatchUpdateConsent]);
@@ -87,38 +81,39 @@ const LeaderboardsContainer: FC<Props> = ({
     (index: number) => {
       const newId = leaderboards[index].leaderboardId;
       setLeaderboardInfo({ leaderboardId: newId, activeLeaderboardIndex: index });
-
-      Logger.logEvent("screen_view", {
-        name: newId.length === 32 ? "yulife.member.Leaderboards.Primary" : "yulife.member.Leaderboards.Secondary",
-        leaderboard_id: newId,
-      });
+      dispatchViewLeaderboardScreen({ newId });
     },
-    [leaderboards]
+    [leaderboards, dispatchViewLeaderboardScreen]
   );
 
-  const stepsRefetch = useMemo(() => handleRefetch("steps"), [handleRefetch]);
-
+  const handleStepsRefetch = useCallback(() => {
+    if (!refetch) {
+      return;
+    }
+    refetch({ sortBy, leaderboardId });
+  }, [refetch, leaderboardId]);
   return (
     <LeaderboardsScreen
-      componentId={componentId}
+      {...{
+        componentId,
+        activeLeaderboardIndex,
+        sortBy,
+        hasNotification,
+        appState,
+        onLeftMenuPress,
+        labels,
+        totalCoins,
+      }}
       isLoading={loading}
       leaderboards={leaderboards || []}
-      items={data && data.getLeaderboard ? data.getLeaderboard : []}
-      activeLeaderboardIndex={activeLeaderboardIndex}
-      onLeaderboardChange={handleLeaderboardChange}
-      sortBy={sortBy}
-      onRefetch={stepsRefetch}
-      hasNotification={hasNotification}
-      labels={labels}
-      totalCoins={totalCoins}
-      onLeftMenuPress={onLeftMenuPress}
-      onAllowLeaderboard={allowLeaderboard}
-      onRefuseConsent={refuseConsent}
-      onPrivacyPolicyPress={handlePrivacyPolicyPress}
+      items={data?.getLeaderboard || []}
       copy={copy.turnBoardOn}
-      isMindfulAvailable={false}
-      appState={appState}
       userId={`lead_${data?.getCurrentUser?.id}`}
+      onLeaderboardChange={handleLeaderboardChange}
+      onRefetch={handleStepsRefetch}
+      onAllowLeaderboard={handleAllowLeaderboard}
+      onRefuseConsent={handleRefuseConsent}
+      onPrivacyPolicyPress={handlePrivacyPolicyPress}
     />
   );
 };
@@ -127,15 +122,13 @@ const mapStateToProps = (state: IReduxState) => ({
   copy: getCopy(state, "leaderboards"),
   totalCoins: getTotalCoins(state),
   leaderboards: getAllLeaderboards(state),
-  consentedLeaderboards: getConsentedLeaderboards(state),
   hasNotification: getHasNotification(state),
-  currentLevel: getCurrentLevel(state),
-  isOffline: getOfflineState(state),
   appState: getAppState(state),
 });
 
 const mapDispatchToProps = {
   updateLeaderboardConsent,
+  viewLeaderboardScreen,
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(LeaderboardsContainer);
