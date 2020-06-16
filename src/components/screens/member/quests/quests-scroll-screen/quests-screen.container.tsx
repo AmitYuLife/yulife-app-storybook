@@ -14,6 +14,7 @@ import {
   showChestModal,
   showChallengeUnavailableModal,
   showLevelUnavailableModal,
+  getActionConditions,
 } from "./quests-screen.container.helpers";
 
 function isAvailable(nextAvailableAt: string): boolean {
@@ -118,41 +119,40 @@ function QuestsScreenContainer(props: Props) {
       isChestLevel,
       onPress: () => {
         const levelAvailable = isAvailable(nextLevelAvailableAt);
+        const conditions = getActionConditions({
+          levelStatus,
+          challengesStatus,
+          itemLevel,
+          levelAvailable,
+          showCompletedLevel,
+        });
 
-        // This logic makes me want to kill myself
-        // Please increment the next number if you agree
-        // +3
+        if (conditions.shouldSetUnity) {
+          setUnity(itemLevel.level);
+        }
 
-        if (levelStatus.isDone) {
-          if (itemLevel.level % 50 === 0) {
-            // is unity level
-            setUnity(itemLevel.level);
-          } else if (levelStatus.isPrevious && challengesStatus.hasDone && challengesStatus.isAvailable) {
-            goToChallengesList(componentId, itemLevel);
-          } else if (showCompletedLevel) {
-            showLevelCompleteModal(componentId, itemLevel);
-          }
-        } else if (levelStatus.isNext) {
-          if (itemLevel.level % 50 === 0) {
-            // is unity level
-            setUnity(itemLevel.level);
-            dispatchSubmitUnityAction({ levelId: itemLevel.id });
-          } else if (levelAvailable) {
-            if (isChestLevel) {
-              showChestModal(componentId, itemLevel, true, showChestModalCopy);
-            } else {
-              goToChallengesList(componentId, itemLevel);
-            }
-          } else {
-            showChallengeUnavailableModal(nextLevelAvailableAt);
-          }
-        } else {
-          // selected isn't the next available
-          if (isChestLevel) {
-            showChestModal(componentId, itemLevel, false, showChestModalCopy);
-          } else {
-            showLevelUnavailableModal(itemLevel.level);
-          }
+        if (conditions.shouldGoToChallengesList) {
+          goToChallengesList(componentId, itemLevel);
+        }
+
+        if (conditions.shouldShowLevelCompleteModal) {
+          showLevelCompleteModal(componentId, itemLevel);
+        }
+
+        if (conditions.shouldDispatchSubmitUnityAction) {
+          dispatchSubmitUnityAction({ levelId: itemLevel.id });
+        }
+
+        if (conditions.shouldShowChallengeUnavailableModal) {
+          showChallengeUnavailableModal(nextLevelAvailableAt);
+        }
+
+        if (conditions.shouldShowChestModal) {
+          showChestModal(componentId, itemLevel, false, showChestModalCopy);
+        }
+
+        if (conditions.shouldShowLevelUnavailableModal) {
+          showLevelUnavailableModal(itemLevel.level);
         }
       },
     };
