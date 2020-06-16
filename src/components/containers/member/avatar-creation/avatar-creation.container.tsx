@@ -23,6 +23,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { Navigation } from "react-native-navigation";
 import { ROUTES, MODALS } from "../../../../navigation/constants";
 import { IAvatar, AvatarBuilderHeading } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
+import { getAvatarForYuscreen } from "../../../../redux/avatar/avatar.selectors";
 
 interface IProps {
   componentId: string;
@@ -47,6 +48,7 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
     saveAvatar: saveAvatarToStore,
     refetch,
     heading,
+    avatarFromLocal,
   } = props;
 
   const [updateUserAvatar, { loading: updateAvatarInProgress }]: SaveAvatarMutationTuple = useMutation(
@@ -108,6 +110,7 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
       onContinue={handleBodySelected}
       onExitConfirmed={onExitConfirmed}
       heading={heading}
+      bodyType={!avatarFromLocal ? "None" : avatarFromLocal.head.partId.includes("female") ? "Female" : "Male"}
     />
   );
 };
@@ -158,6 +161,7 @@ const mapStateToProps = (state: IReduxState) => ({
     glasses: getAvatarGlasses(state),
     facialHair: getAvatarFacialHair(state),
   },
+  avatarFromLocal: getAvatarForYuscreen(state),
 });
 
 const mapDispatchToProps = {
