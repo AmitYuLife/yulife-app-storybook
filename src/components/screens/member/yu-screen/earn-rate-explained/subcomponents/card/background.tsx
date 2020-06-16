@@ -1,8 +1,12 @@
 import * as React from "react";
 import { SvgXml } from "react-native-svg";
 
+interface IBackgroundProps {
+  width: number;
+}
+
 const xml = `
-<svg width="344" height="184" viewBox="0 0 344 184" fill="none">
+<svg viewBox="0 0 344 184" fill="none" preserveAspectRatio="none">
 <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="344" height="184">
 <rect width="344" height="184" rx="11" transform="matrix(-1 0 0 1 344 0)" fill="url(#paint0_linear)"/>
 </mask>
@@ -24,4 +28,6 @@ const xml = `
 </svg>
 `;
 
-export default () => <SvgXml xml={xml} width="100%" height="100%" style={{ position: "absolute" }} />;
+export default ({ width = 344 }: IBackgroundProps) => (
+  <SvgXml xml={xml} width={width} height="184" style={{ position: "absolute" }} />
+);

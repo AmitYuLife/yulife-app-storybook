@@ -20,7 +20,7 @@ function CardText(props: IProps) {
         {`Your Earn Rate: ${earnRate}x`}
       </Text>
       <View style={{ flexDirection: "column" }}>
-        <Text style={styles.text}>{`The ${name} you own are giving`}</Text>
+        <Text style={styles.text}>{`The ${name} you own are`}</Text>
         {hasIncreasedRate ? <IncreaseRateText earnRate={earnRate} /> : <DefaultRateText earnRate={earnRate} />}
       </View>
     </View>
@@ -33,7 +33,7 @@ function IncreaseRateText({ earnRate }: { earnRate: IProps["earnRate"] }) {
   return (
     <>
       <View style={styles.flexRow}>
-        <Text style={styles.text}>you a</Text>
+        <Text style={styles.text}>giving you a</Text>
         <Text style={StyleSheet.flatten([styles.text, styles.textBold])}>{` ${earnRate}x increase `}</Text>
         <Text style={styles.text}>on your</Text>
       </View>
@@ -50,7 +50,7 @@ function DefaultRateText({ earnRate }: { earnRate: IProps["earnRate"] }) {
   return (
     <>
       <View style={styles.flexRow}>
-        <Text style={styles.text}>you a</Text>
+        <Text style={styles.text}>giving you a</Text>
         <Text style={StyleSheet.flatten([styles.text, styles.textBold])}>{` ${earnRate}x `}</Text>
         <YuCoinIcon style={{ color: "#FFF", marginRight: 5, top: 2 }} />
         <Text style={styles.text}>YuCoin Earn Rate</Text>
@@ -61,7 +61,12 @@ function DefaultRateText({ earnRate }: { earnRate: IProps["earnRate"] }) {
 }
 
 const styles = StyleSheet.create({
-  wrapper: { position: "absolute", flexDirection: "column", marginTop: 20, paddingLeft: 26 },
+  wrapper: {
+    position: "absolute",
+    flexDirection: "column",
+    marginTop: 20,
+    paddingLeft: Style.isWideScreen() ? 36 : 20,
+  },
   text: {
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     lineHeight: 24,

@@ -11,13 +11,13 @@ interface IProps {
 }
 
 function Card(props: IProps) {
-  const coinWidth = Style.isWideScreen() ? "99%" : "100%";
+  const cardSize = Style.DEVICE_WIDTH - MARGIN_HORIZONTAL;
   const { earnRate, isAlpha } = props;
 
   return (
     <View style={styles.wrapper}>
-      <EarnRateCard />
-      <Coins width={coinWidth} />
+      <EarnRateCard width={cardSize} />
+      <Coins width="100%" />
       <Text earnRate={earnRate} isAlpha={isAlpha} />
       {/* {isAlpha ? <CharmCardText earnRate={earnRate} /> : <PowerUpCardText earnRate={earnRate} />} */}
     </View>
@@ -26,6 +26,7 @@ function Card(props: IProps) {
 
 export default Card;
 
+const MARGIN_HORIZONTAL = 32;
 const styles = StyleSheet.create({
   wrapper: {
     marginHorizontal: 16,
