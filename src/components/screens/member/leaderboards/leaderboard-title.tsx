@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, TouchableOpacity, View, ViewStyle, StyleSheet, TextStyle, ImageStyle } from "react-native";
+import { Image, TouchableOpacity, View, ViewStyle, StyleSheet, TextStyle, ImageStyle, Platform } from "react-native";
 import { Text } from "@components/atoms";
 import { LEADERBOARD_TOP_SCREEN } from "@ids";
 import { toCapitalLetter } from "../../../../services/utils";
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   leaderboardNameAbsolute: {
     position: "absolute",
-    left: Style.SCALE_UP_AND_DOWN(32),
+    left: Style.SCALE_UP_AND_DOWN(44),
     right: 0,
     justifyContent: "center",
     alignItems: "center",
@@ -84,10 +84,10 @@ const styles = StyleSheet.create({
   leaderboardName: {
     color: "#333333",
     fontSize: Style.adjust(18),
-    width: Style.DEVICE_WIDTH / 3,
     textAlign: "center",
-    lineHeight: Style.adjust(16),
     fontFamily: Style.FONT_FAMILY_PRIMARY,
+    marginBottom: 16,
+    marginTop: Platform.select({ ios: 2, android: -4 }),
   } as TextStyle,
   leaderboardSteps: {
     color: "#000000",

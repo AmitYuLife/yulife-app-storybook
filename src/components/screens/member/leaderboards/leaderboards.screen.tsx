@@ -32,6 +32,7 @@ import LeaderboardTop, { LeaderboardTopIOS } from "./leaderboard-top/leaderboard
 import { LEADERBOARD_ITEM_HEIGHT } from "./leaderboard-item/leaderboard-item.styles";
 import { LockedCell } from "./locked-cell";
 import { LeaderboardTitle } from "./leaderboard-title";
+import deviceInfo from "react-native-device-info";
 
 const LEADERBOARD_ITEMS_OFFSET = LIST_PAD_HEIGHT + LOADING_ITEM_HEIGHT;
 
@@ -141,8 +142,9 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
     this.avatarDataSecondUser = transformAvatar(items[1]?.avatar);
     this.avatarDataThirdUser = transformAvatar(items[2]?.avatar);
 
+    const TRANSLATE_Y_TRANSFORM_ADJUST = Platform.select({ ios: -Style.getSafeAreaStart(), android: 0 });
     const translateYTransform = this.state.flatlistOnScrollValue.interpolate({
-      inputRange: [0, LIST_PAD_HEIGHT],
+      inputRange: [0 + TRANSLATE_Y_TRANSFORM_ADJUST, LIST_PAD_HEIGHT + TRANSLATE_Y_TRANSFORM_ADJUST],
       outputRange: [0, -LIST_PAD_HEIGHT],
       extrapolate: "clamp",
     });
@@ -286,7 +288,7 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
       this.animatedFlatListRef.scrollToIndex({
         viewPosition: 1,
         animated: true,
-        index: index + 2,
+        index: index + Platform.select({ ios: deviceInfo.hasNotch() ? 4 : 3, android: 2 }),
       });
     };
   };
@@ -317,7 +319,7 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
     const ADJUST_MULTIPLIER = Style.isAnyIphoneX() ? 0.5 : 1;
     const ADJUSTED_LEADERBOARD_ITEM_HEIGHT = LEADERBOARD_ITEM_HEIGHT * ADJUST_MULTIPLIER;
     const scrollThreshold = ADJUSTED_LEADERBOARD_ITEM_HEIGHT + itemOffsetY - viewportHeight;
-    const VIEWABLE_IN_VIEWPORT_MIN_ADJUSTMENT_IOS = Style.SCALE_UP_AND_DOWN(50); // compromised average. optimal values taken from trial and error are: 50 for 6/7/8 below, 60 for Plus, 40 for Notched devices
+    const VIEWABLE_IN_VIEWPORT_MIN_ADJUSTMENT_IOS = deviceInfo.hasNotch() ? -52 : Style.SCALE_Y_UP_AND_DOWN(6);
     const VIEWABLE_IN_VIEWPORT_MIN_ADJUSTMENT_ANDROID = Style.adjust(48, {
       shrinkThreshold: null,
       growThreshold: Style.DEVICE_HEIGHT > 700,
