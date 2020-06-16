@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { Text } from "@atoms/index";
 import { Style, Colours } from "@styles";
@@ -17,6 +17,7 @@ interface IProps {
 
 function ProductItem(props: IProps) {
   const { product, productType, onPressAction } = props;
+  const [marginSeeDetails, setMarginSeeDetails] = useState(DEFAULT_SEE_DETAILS_MARGIN);
   const isCharm = productType === "charm";
   const isTwoDigits = product.earnRate.toString().length === 2;
   const extraStyle =
@@ -52,7 +53,15 @@ function ProductItem(props: IProps) {
             />
           </View>
         )}
-        <View style={styles.productsTextWrapper}>
+        <View
+          style={styles.productsTextWrapper}
+          onLayout={(event) => {
+            const { height } = event.nativeEvent.layout;
+            if (height > DEFAULT_HEIGHT_PRODUCT_NAME) {
+              setMarginSeeDetails(0);
+            }
+          }}
+        >
           <Text
             style={StyleSheet.flatten([mainStyles.text, styles.boldText, styles.productsText, { overflow: "visible" }])}
           >
@@ -63,7 +72,7 @@ function ProductItem(props: IProps) {
           >{`${product.earnRate}x YuCoin earn rate`}</Text>
         </View>
         <TouchableOpacity style={{ justifyContent: "center" }} onPress={onPressAction(product, productType)}>
-          <View style={{ marginBottom: 24 }}></View>
+          <View style={{ marginBottom: marginSeeDetails }}></View>
           <Text
             style={StyleSheet.flatten([
               mainStyles.text,
@@ -83,6 +92,8 @@ function ProductItem(props: IProps) {
 
 export default ProductItem;
 
+const DEFAULT_SEE_DETAILS_MARGIN = 24;
+const DEFAULT_HEIGHT_PRODUCT_NAME = 77;
 const styles = StyleSheet.create({
   wrapper: {
     display: "flex",

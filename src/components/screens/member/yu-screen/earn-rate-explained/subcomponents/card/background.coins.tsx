@@ -2,7 +2,7 @@ import * as React from "react";
 import { SvgXml } from "react-native-svg";
 
 const xml = `
-<svg width="264" height="263" viewBox="-115 0 264 263" fill="none">
+<svg viewBox="-115 0 264 263" fill="none">
 <g opacity="0.6">
 <path opacity="0.6" d="M132.071 172.592C154.856 172.592 173.326 154.121 173.326 131.337C173.326 108.552 154.856 90.082 132.071 90.082C109.287 90.082 90.8163 108.552 90.8163 131.337C90.8163 154.121 109.287 172.592 132.071 172.592Z" stroke="url(#paint0_radial)" stroke-width="180" stroke-miterlimit="10" stroke-dasharray="20 3"/>
 </g>
@@ -57,4 +57,6 @@ const xml = `
 </svg>
 `;
 
-export default (props: any) => <SvgXml xml={xml} width="100%" height="100%" style={{ zIndex: 1 }} {...props} />;
+export default (props: any) => (
+  <SvgXml xml={xml} width="264" height="263" style={{ zIndex: 1, position: "absolute", top: "-18%" }} {...props} />
+);
