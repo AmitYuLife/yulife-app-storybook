@@ -2,7 +2,7 @@ import React from "react";
 import { Image, TouchableOpacity, View, ViewStyle, StyleSheet, TextStyle, ImageStyle, Platform } from "react-native";
 import { Text } from "@components/atoms";
 import { LEADERBOARD_TOP_SCREEN } from "@ids";
-import { toCapitalLetter } from "../../../../services/utils";
+import { toCapitalLetter, truncate } from "../../../../services/utils";
 import { Style } from "@styles";
 import { InfoIcon } from "./svg/leaderboard";
 
@@ -35,9 +35,7 @@ function LeaderboardLabel({ onPressLabel, name }: LeaderboardLabelProps) {
     <View pointerEvents="box-none" style={styles.leaderboardNameAbsolute}>
       <TouchableOpacity style={styles.row} activeOpacity={1} onPress={onPressLabel}>
         <View style={styles.leaderboardNameWrapper} testID={LEADERBOARD_TOP_SCREEN}>
-          <Text numberOfLines={1} style={styles.leaderboardName}>
-            {toCapitalLetter(name)}
-          </Text>
+          <Text style={styles.leaderboardName}>{truncate(toCapitalLetter(name), 16)}</Text>
           <Text style={styles.leaderboardSteps}>30 day steps</Text>
         </View>
         <View style={styles.changeLeaderboardArrow}>

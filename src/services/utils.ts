@@ -162,3 +162,13 @@ export function toCapitalLetter(str: string) {
     return str;
   }
 }
+
+export const truncate = (str: string, chars = 30) => {
+  if (!str) {
+    return "";
+  }
+  if (str.length <= chars) {
+    return str;
+  }
+  return `${str.substr(0, chars)}...`;
+};
