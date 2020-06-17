@@ -17,10 +17,18 @@ interface IProps {
   onContinue: () => void;
   onExitConfirmed: () => void;
   heading: AvatarBuilderHeading;
+  bodyType: SelectedBody;
 }
 
-function SelectBody({ onMaleBodySelected, onFemaleBodySelected, onContinue, onExitConfirmed, heading }: IProps) {
-  const [selectedBody, selectBody] = useState<SelectedBody>("None");
+function SelectBody({
+  onMaleBodySelected,
+  onFemaleBodySelected,
+  onContinue,
+  onExitConfirmed,
+  heading,
+  bodyType,
+}: IProps) {
+  const [selectedBody, selectBody] = useState<SelectedBody>(bodyType);
 
   const isMale = selectedBody === "Male";
   const isFemale = selectedBody === "Female";
