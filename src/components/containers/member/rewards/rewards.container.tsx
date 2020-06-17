@@ -58,7 +58,7 @@ const formatVoucherName = (num: number, currencyType: string, name: string) => {
 };
 
 const requestOptions: BaseQueryOptions = {
-  fetchPolicy: "cache-and-network",
+  fetchPolicy: "cache-first",
 };
 
 const RewardsContainer: FC<Props> = (props) => {

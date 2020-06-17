@@ -42,7 +42,7 @@ function YuScreenContainer({
   avatarFromLocal,
   onLeftMenuPress,
 }: Props) {
-  const { data, loading, refetch } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-and-network" });
+  const { data, loading, refetch } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER);
   let avatarFromServer: {
     head: IBodyItem;
     eyes: IBodyItem;

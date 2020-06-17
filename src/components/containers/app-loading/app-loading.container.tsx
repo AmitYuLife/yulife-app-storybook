@@ -4,6 +4,10 @@ import { SplashScreen } from "@screens/index";
 import * as React from "react";
 import { Linking, Platform, StyleSheet, Text, View } from "react-native";
 import { PersistGate } from "redux-persist/integration/react";
+import client from "@graphql/_core/client";
+import { GQL_QUERY_GET_REWARDS } from "@graphql/rewards";
+import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
+import { GQL_QUERY_LEADERBOARD } from "@graphql/member";
 
 interface IProps {
   componentId: string;
@@ -28,6 +32,26 @@ export const AppLoadingContainer: React.FC<IProps> = () => {
         });
     }
   }, []);
+
+  React.useEffect(() => {
+    if (renderPersistor) {
+      client()
+        .query({
+          query: GQL_QUERY_GET_REWARDS,
+        })
+        .catch(() => null);
+      client()
+        .query({
+          query: GQL_QUERY_LEADERBOARD,
+        })
+        .catch(() => null);
+      client()
+        .query({
+          query: GQL_QUERY_GET_YULIFER,
+        })
+        .catch(() => null);
+    }
+  }, [renderPersistor]);
 
   React.useEffect(() => {
     if (persistorBoostrapped && animationEnded) {
