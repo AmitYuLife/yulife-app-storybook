@@ -51,9 +51,10 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
     avatarFromLocal,
   } = props;
 
-  const [updateUserAvatar, { loading: updateAvatarInProgress }]: SaveAvatarMutationTuple = useMutation(
-    GQL_MUTATION_SAVE_AVATAR
-  );
+  const [
+    updateUserAvatar,
+    { loading: updateAvatarInProgress },
+  ]: SaveAvatarMutationTuple = useMutation(GQL_MUTATION_SAVE_AVATAR, { refetchQueries: ["GetLeaderboard"] });
 
   const handleAvatarUpdate = React.useCallback(
     async (avatarToSave: IAvatar) => {
