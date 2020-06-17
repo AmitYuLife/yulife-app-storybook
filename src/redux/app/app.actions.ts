@@ -32,8 +32,9 @@ export const setUnauthenticated = () => ({
   type: UNAUTHENTICATED,
 });
 
-export const checkConnection = () => ({
+export const checkConnection = (hasDelay = false) => ({
   type: CHECK_CONNECTION,
+  payload: { hasDelay },
 });
 
 export const setMainRoot = (url: string) => ({

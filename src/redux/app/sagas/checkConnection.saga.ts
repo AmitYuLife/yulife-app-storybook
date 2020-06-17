@@ -4,14 +4,21 @@ import { setAuthenticatedRoot, setOfflineRoot } from "@navigation/root";
 import { getToken } from "@services/storage";
 import { call, race, select, delay } from "redux-saga/effects";
 import { getRouteState } from "../app.selectors";
+import { checkConnection } from "../app.actions";
 
-export default function* checkConnectionSaga() {
+export default function* checkConnectionSaga({ payload }: ReturnType<typeof checkConnection>) {
   try {
     const token = yield call(getToken);
 
     if (token) {
+      const { hasDelay = false } = payload;
+
+      if (hasDelay) {
+        yield delay(5000);
+      }
+
       const response = yield race({
-        timeout: delay(2500),
+        timeout: delay(4000),
         token: call(getSession),
       });
 
