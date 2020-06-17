@@ -116,8 +116,8 @@ export default class LeaderboardScreen extends React.Component<ILeaderboardsScre
       this.restartScroll();
     }
     if (
-      prevProps.leaderboards[prevProps.activeLeaderboardIndex].isLoading !==
-      this.props.leaderboards[this.props.activeLeaderboardIndex].isLoading
+      prevProps.leaderboards[prevProps.activeLeaderboardIndex]?.isLoading !==
+      this.props.leaderboards[this.props.activeLeaderboardIndex]?.isLoading
     ) {
       this.props.onRefetch();
     }
