@@ -11,6 +11,7 @@ export const GQL_QUERY_LEADERBOARD = gql`
       coins
       steps
       avatar {
+        id
         hair {
           part {
             partId
