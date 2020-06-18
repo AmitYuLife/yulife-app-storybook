@@ -81,7 +81,7 @@ export const initialState = {
   leaderboardTopHeight: 0,
 };
 
-export default class LeaderboardScreen extends React.Component<ILeaderboardsScreenProps, typeof initialState> {
+export default class LeaderboardsScreen extends React.Component<ILeaderboardsScreenProps, typeof initialState> {
   public state = initialState;
   private itemForPad = { id: "first_element", coins: 1, firstName: "", lastName: "", name: "", steps: 1, avatar: {} };
   private animatedFlatListRef: FlatList = null;
