@@ -14,13 +14,14 @@ import styles from "./products-survey.styles";
 import GenericHeading from "@atoms/generic-heading/generic-heading";
 import Logger from "@services/logging/logger";
 import ProductsSurveyGreetings from "./products-survey-greetings";
+import { Colours } from "@styles";
 
 interface IProductSurvey {
   label: string;
   value: string;
 }
 
-const textAreaPlaceHolder = "Describe anything else you would like to see here";
+const textAreaPlaceHolder = "Describe anything else you would like to see here...";
 
 const products: IProductSurvey[] = [
   {
@@ -175,7 +176,12 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
     <SafeAreaView>
       <GenericHeading heading="What Would You Like To See?" onLeftIconPress={onBackButton} />
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
-        <ScrollView showsVerticalScrollIndicator={false} ref={scrollViewRef} onLayout={onScrollViewLayout}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+          ref={scrollViewRef}
+          onLayout={onScrollViewLayout}
+        >
           <View style={styles.viewWrapper}>
             <Text style={styles.headerText}>
               We’d love to take your feedback onboard. Out of the following, which would you like to see covered?
@@ -195,7 +201,7 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
               <TextInput
                 key="textArea"
                 placeholder={textAreaPlaceHolder}
-                placeholderTextColor={"#ABABAD"}
+                placeholderTextColor={Colours.lightGray}
                 value={textAreaValue}
                 multiline={true}
                 onChangeText={setTextArea}
