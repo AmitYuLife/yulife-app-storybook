@@ -1,12 +1,14 @@
 
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17 } from '../postgres/customers';
 import {
     CHALLENGE_2, CHALLENGE_USER_6_A, CHALLENGE_USER_7_A, CHALLENGE_USER_7_B, CHALLENGE_USER_7_C, CHALLENGE_USER_7_D,
     CHALLENGE_USER_8_B, CHALLENGE_USER_8_A, CHALLENGE_USER_9_B, CHALLENGE_USER_9_A, CHALLENGE_USER_9_C, CHALLENGE_USER_9_D,
     CHALLENGE_USER_9_E, CHALLENGE_USER_9_F, CHALLENGE_USER_14_B, CHALLENGE_USER_14_A, CHALLENGE_USER_14_C, CHALLENGE_USER_14_D,
-    CHALLENGE_USER_14_E, CHALLENGE_USER_14_F, CHALLENGE_USER_14_G, CHALLENGE_USER_14_H, CHALLENGE_USER_14_I, CHALLENGE_USER_15_B, CHALLENGE_USER_15_A, CHALLENGE_USER_15_C
+    CHALLENGE_USER_14_E, CHALLENGE_USER_14_F, CHALLENGE_USER_14_G, CHALLENGE_USER_14_H, CHALLENGE_USER_14_I, CHALLENGE_USER_15_B,
+    CHALLENGE_USER_15_A, CHALLENGE_USER_15_C, CHALLENGE_USER_18_A, CHALLENGE_USER_18_B, CHALLENGE_USER_17_A,
+
 } from './challenge';
 
 import moment = require('moment');
@@ -495,6 +497,72 @@ export const COIN_LEDGER_15 = {
         activeStreakId: "YU_STREAK_001",
         currentBalance: 320,
         currentLevel: 4,
+        nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
+
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_17 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: CUSTOMER_17.data.customerId,
+        userId: CUSTOMER_17.data.customerId,
+        transactions: [
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_17_A.data._id,
+                "timestamp": CHALLENGE_USER_17_A.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 260,
+                "level": 1
+            },
+        ],
+        activeStreakId: "YU_STREAK_001",
+        currentBalance: 260,
+        currentLevel: 2,
+        nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
+
+    }
+} as IDatabaseItem
+
+
+export const COIN_LEDGER_18 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: CUSTOMER_18.data.customerId,
+        userId: CUSTOMER_18.data.customerId,
+        transactions: [
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_18_A.data._id,
+                "timestamp": CHALLENGE_USER_18_A.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 320,
+                "level": 1
+            },
+
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_18_B.data._id,
+                "timestamp": CHALLENGE_USER_18_B.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 260,
+                "level": 2
+            },
+        ],
+        activeStreakId: "YU_STREAK_001",
+        currentBalance: 320,
+        currentLevel: 2,
         nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
 
     }

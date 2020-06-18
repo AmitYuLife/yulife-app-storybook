@@ -7,6 +7,7 @@ import { IAvatar } from "../../yu-screen/avatar-builder/avatar.types";
 import { LeaderboardHeadAvatar } from "../../yu-screen/svg/body";
 import { IBodyItem } from "../../../../../redux/avatar/avatar.reducer";
 import { FirstPlace, SecondPlace, ThirdPlace, EmptyHead } from "../svg/leaderboard";
+import { LEADERBOARD_NAME } from "@ids";
 
 export interface ILeaderboardItemProps {
   coins?: number;
@@ -49,7 +50,7 @@ export default function LeaderboardItem({
   return (
     <Animated.View style={[wrapperStyle, { opacity: animatedOpacity }]}>
       <TouchableWithoutFeedback onPress={onPress}>
-        <View style={[styles.borderWrapper, lockedCellBorderStyle]}>
+        <View style={[styles.borderWrapper, lockedCellBorderStyle]} testID={LEADERBOARD_NAME(name)}>
           <View style={styles.rankWrapper}>
             {rank <= 3 ? (
               renderRankImage(rank)

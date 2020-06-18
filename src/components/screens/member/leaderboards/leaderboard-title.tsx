@@ -5,6 +5,7 @@ import { LEADERBOARD_TOP_SCREEN } from "@ids";
 import { toCapitalLetter, truncate } from "../../../../services/utils";
 import { Style } from "@styles";
 import { InfoIcon } from "./svg/leaderboard";
+import { LEADERBOARD_INFO_BUTTON } from "@ids";
 
 interface OwnProps {
   hide: boolean;
@@ -52,7 +53,7 @@ interface InfoButtonProps {
 
 function InfoButton({ onPressInfo }: InfoButtonProps) {
   return (
-    <TouchableOpacity style={styles.leaderboardInfoButton} onPress={onPressInfo}>
+    <TouchableOpacity style={styles.leaderboardInfoButton} onPress={onPressInfo} testID={LEADERBOARD_INFO_BUTTON}>
       <InfoIcon />
     </TouchableOpacity>
   );

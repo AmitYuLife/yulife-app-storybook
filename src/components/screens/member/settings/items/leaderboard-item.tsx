@@ -5,10 +5,11 @@ import { Text } from "../../../../atoms";
 import { ILeaderboardSectionItem } from "../settings.screen";
 import LeaderboardCircle from "./leaderboard-item.circle";
 import styles from "./leaderboard-item.styles";
+import { LEADERBOARD_STATUS } from "@ids";
 
 const LeaderboardItem: SFC<ILeaderboardSectionItem> = ({ name, onPress, status, isLoading }) => (
   <View style={styles.wrapper}>
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity style={styles.button} onPress={onPress} testID={LEADERBOARD_STATUS(name, status)}>
       <Text numberOfLines={1} bold={false} style={styles.name}>
         {name.length > 11 ? `${name.slice(0, 8)}...` : name}
       </Text>

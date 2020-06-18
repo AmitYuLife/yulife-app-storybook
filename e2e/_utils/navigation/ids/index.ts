@@ -4,8 +4,6 @@ export const DAILY_STEPS_SCREEN = "DAILY_STEPS_SCREEN";
 export const REWARDS_SCREEN = "REWARDS_SCREEN";
 export const ACTIVITY_HISTORY_SCREEN = "ACTIVITY_HISTORY_SCREEN";
 export const STATS_SCREEN = "STATS_SCREEN";
-export const LEADERBOARD_SCREEN = "LEADERBOARD_SCREEN";
-export const LEADERBOARD_TOP_SCREEN = "LEADERBOARD_TOP_SCREEN"
 export const SETTINGS_SCREEN = "SETTINGS_SCREEN";
 export const QUESTS_SCREEN = (level: number) => `QUESTS_SCREEN_${level.toString()}`;
 export const LEVEL_BUBBLE = (level: number) => `LEVEL_BUBBLE_${level}`
@@ -27,6 +25,7 @@ export const BUTTON_INTRO_SCREEN = (index: number) => `BUTTON_INTRO_SCREEN_${ind
 export const BUTTON_TOP_LEFT_BAR = "BUTTON_TOP_LEFT_BAR";
 export const BUTTON_CLOSE = "BUTTON_CLOSE";
 export const BUTTON_CLOSE_CHALLENGE = "BUTTON_CLOSE_CHALLENGE"
+export const BACK_BUTTON = "BACK_BUTTON"
 
 export const INPUT_LOGIN_EMAIL = "INPUT_LOGIN_EMAIL";
 export const INPUT_LOGIN_PASSWORD = (pw: any) => `INPUT_LOGIN_PASSWORD_${pw}`;
@@ -61,3 +60,15 @@ export const CHALLENGE_TILE = (text: string) => `CHALLENGE_TILE_${text}`
 // reward purchased
 export const WEGIFT_CONFIRMED = "WEGIFT_CONFIRMED"
 export const PURCHASE_IMAGE = (url: any) => `PURCHASE_IMAGE_${url}`
+
+// leaderboard
+export const LEADERBOARD_NAME = (name: string) => `LEADERBOARD_NAME_${name}`
+export const LEADERBOARD_SCREEN = "LEADERBOARD_SCREEN";
+export const LEADERBOARD_TOP_SCREEN = "LEADERBOARD_TOP_SCREEN"
+export const LEADERBOARD_INFO_BUTTON = "LEADERBOARD_INFO_BUTTON"
+export const LEADERBOARD_INFO = "LEADERBOARD_INFO"
+
+// create a leaderboard
+export const GROUP_NAME_INPUT = "GROUP_NAME_INPUT"
+export const LEADERBOARD_EMAIL_INPUT = "LEADERBOARD_EMAIL_INPUT"
+export const LEADERBOARD_STATUS = (leaderboardName: string, leaderboardStatus: string) => `LEADERBOARD_STATUS_${leaderboardName}_${leaderboardStatus}`
