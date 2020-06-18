@@ -17,7 +17,7 @@ function LeaderboardInfoScreen({ onLeftIconPress }: IProps) {
         days.
         {"\n"}
         {"\n"}
-        To keep your steps up, aim to do as many or more steps than the previous month!
+        To keep your steps up, aim to do more than you did 30 days ago!
       </Text>
     </SafeAreaView>
   );
