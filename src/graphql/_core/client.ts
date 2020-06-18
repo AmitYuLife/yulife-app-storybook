@@ -39,6 +39,10 @@ const dataIdFromObject = (object: any) => {
       return `${object.__typename}-${object.id || object.info}`;
     case "Denomination":
       return `${object.__typename}-${object.yuCoin}-${object.value}`;
+    case "AvatarPart":
+      return `${object.__typename}-${object.partId}`;
+    case "AvatarColor":
+      return `${object.__typename}-${object.colorSchemeId}`;
     default:
       return defaultDataIdFromObject(object);
   }
