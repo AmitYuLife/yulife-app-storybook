@@ -221,7 +221,91 @@ export const CUSTOMER_15 = {
         email: "luigi@yulife.com",
         firstName: "Luigi",
         lastName: "Segale",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
+        dateOfBirth: moment().subtract(42, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_16 = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "stanley@dundermifflin.com",
+        firstName: "Stanley",
+        lastName: "Hudson",
+        dateOfBirth: moment().subtract(50, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_17 = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "ryan@dundermifflin.com",
+        firstName: "Ryan",
+        lastName: "Howard",
+        dateOfBirth: moment().subtract(27, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded",
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_18 = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "michael@dundermifflin.com",
+        firstName: "Michael",
+        lastName: "Scott",
+        dateOfBirth: moment().subtract(42, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded",
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_19 = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "angela@dundermifflin.com",
+        firstName: "Angela",
+        lastName: "Martin",
+        dateOfBirth: moment().subtract(42, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded",
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_20 = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "oscar@dundermifflin.com",
+        firstName: "Oscar",
+        lastName: "Martinez",
+        dateOfBirth: moment().subtract(42, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded",
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_21 = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "dwight@dundermifflin.com",
+        firstName: "Dwight",
+        lastName: "Schrute",
+        dateOfBirth: moment().subtract(38, "years").toDate(),
         membershipType: "Yulife",
         status: "onboarded"
     }

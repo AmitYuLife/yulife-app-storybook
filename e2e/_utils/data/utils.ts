@@ -15,3 +15,7 @@ export const hashPassword = (password: string) => {
     const salt = Bcrypt.genSaltSync(10);
     return Bcrypt.hashSync(password, salt);
 }
+
+export const generateRandomPostgresId = () => {
+    return [1, 2, 3, 4, 5, 6].map(() => Math.random().toString(36).substring(7)).join("").toUpperCase()
+}

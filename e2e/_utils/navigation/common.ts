@@ -8,6 +8,11 @@ export const restart = async () => {
     await device.launchApp({ delete: true, });
 }
 
+export const restartWithData = async () => {
+    await device.terminateApp();
+    await device.launchApp({ delete: true, });
+}
+
 export const start = async () => {
     await device.terminateApp();
     await device.launchApp({
@@ -125,6 +130,11 @@ export const multipleTextVisible = (textArr: string[]) => async () => {
     }
 }
 
+export const multipleIDVisible = (idArr: string[]) => async () => {
+    for (const i of idArr) {
+        await expect(element(by.id(i))).toBeVisible()
+    }
+}
 
 export const booleanTextVisible = async (text) => {
     try {
@@ -142,4 +152,10 @@ export const booleanIdVisible = async (id) => {
     } catch (e) {
         return false
     }
+}
+
+export const replaceTextByID = (id: string, text: string) => async () => {
+    const textField = element(by.id(id));
+    await textField.tap();
+    await textField.replaceText(text);
 }

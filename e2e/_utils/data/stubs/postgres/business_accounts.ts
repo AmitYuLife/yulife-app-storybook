@@ -1,5 +1,6 @@
 import { IDatabaseItem } from '../../types';
 import { generateRandomMongoId } from '../../utils';
+
 export const BUSINESS_ACCOUNT_1 = {
     type: "postgres",
     modelName: "business_account",
@@ -46,3 +47,51 @@ export const BUSINESS_ACCOUNT_1 = {
         "earn_rate": 10
     }
 } as IDatabaseItem;
+
+
+export const BUSINESS_ACCOUNT_2 = {
+    type: "postgres",
+    modelName: "business_account",
+    data: {
+        "business_account_id": generateRandomMongoId(),
+        "business_account_name": "Dunder Mifflin",
+        "companies_house_name": "Dunder Mifflin LTD",
+        "companies_house_size": "15",
+        "owner_email": "michaelscott@dundermifflin.com",
+        "owner_first_name": "Michael",
+        "owner_last_name": "Scott",
+        "product_type": "Instant Group",
+        "coupon": null,
+        "yu_doctor": null,
+        "insurance_monthly_payment": null,
+        "status": null,
+        "hubspot_id": "01234567",
+        "business_phone": "01234567",
+        "employees_insured": null,
+        "trust": null,
+        "assumed_age": null,
+        "created_at": "2020-04-20T16:51:26Z",
+        "created_by_id": "0.49.0",
+        "modified_at": "2020-04-20T16:52:19Z",
+        "modified_by_id": "0.49.0",
+        "stripe_account_id": null,
+        "payment_terms_consent": false,
+        "payment_terms_consent_at": null,
+        "business_terms_consent": false,
+        "business_terms_consent_at": null,
+        "email_template": null,
+        "archived": false,
+        "industry_type": "Paper",
+        "companies_house_registered_number": "1111111",
+        "companies_house_address": "Scranton, PA",
+        "sic_codes": "{58290,86900}",
+        "directors": "[\"David Wallace\"]",
+        "persons_with_significant_control": "[\"David Wallace\"]",
+        "jurisdiction": "england-wales",
+        "company_status": "active",
+        "compliance_link_status": "",
+        "rate_table_version": "2020-01-24T00:00:00Z",
+        "approval_director": "Michael Scott",
+        "earn_rate": 10
+    }
+} as IDatabaseItem

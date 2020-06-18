@@ -13,6 +13,7 @@ import {
 import { Button, CentredScreen, Close, GenericHeading, Pad, TextInput } from "../../../atoms";
 import { validateEmail } from "../../../containers/login/login.helpers";
 import styles from "./create-leaderboard.screen.styles";
+import { GROUP_NAME_INPUT, LEADERBOARD_EMAIL_INPUT } from "@ids";
 
 interface IState {
   emailError: string;
@@ -46,7 +47,13 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
           <GenericHeading heading="create a leaderboard" hidesBorder={true} />
           <CentredScreen>
             <Pad height={20} />
-            <TextInput type="Board" onChange={this.groupNameChange} placeholder="Group name" value={groupName} />
+            <TextInput
+              type="Board"
+              onChange={this.groupNameChange}
+              placeholder="Group name"
+              value={groupName}
+              testID={GROUP_NAME_INPUT}
+            />
             <Pad height={12} />
             <TextInput
               type="Email"
@@ -56,6 +63,7 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
               value={emailInput}
               hasError={!!emailError}
               errorMessage={emailError}
+              testID={LEADERBOARD_EMAIL_INPUT}
             />
             <Pad height={20} />
             <Button label="add" onPress={this.addEmail} type="Secondary" />

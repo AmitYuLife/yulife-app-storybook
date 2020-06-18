@@ -40,7 +40,10 @@ export const dismissStreakIfVisible = async () => {
     }
 }
 
-export const loginOnly = (customer: any, auth: any) => async () => {
+export const loginOnly = (customer: any, auth: any, fitkitAuth?: boolean) => async () => {
+    if (fitkitAuth) {
+        await authoriseFitkit(fitkitAuth)()
+    }
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await loginField.tap();
@@ -48,4 +51,11 @@ export const loginOnly = (customer: any, auth: any) => async () => {
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN)
+}
+
+export const continueLogin = async () => {
+    await navigateViaText("next")
+    await dismissStreakIfVisible()
+    await navigateViaText("let’s begin")
+    await completeIntro()
 }
