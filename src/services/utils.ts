@@ -151,10 +151,12 @@ export function getStartAndEndDateTimesWithTimezone(startDateTime: string, endDa
 
 export function toCapitalLetter(str: string) {
   try {
-    const splitedArray = str.toLowerCase().split(" ");
+    const splitedArray = str.toLowerCase().trim().split(" ");
 
     for (let i = 0, x = splitedArray.length; i < x; i++) {
-      splitedArray[i] = splitedArray[i][0].toUpperCase() + splitedArray[i].substr(1);
+      splitedArray[i] = !splitedArray[i][0]
+        ? splitedArray[i]
+        : splitedArray[i][0].toUpperCase() + splitedArray[i]?.substr(1);
     }
 
     return splitedArray.join(" ");

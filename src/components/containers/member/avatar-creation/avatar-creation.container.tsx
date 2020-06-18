@@ -4,7 +4,12 @@ import { connect } from "react-redux";
 import { SaveAvatarMutationTuple, GQL_MUTATION_SAVE_AVATAR } from "@graphql/yuscreen";
 import Logger from "@services/logging/logger";
 import { IReduxState } from "../../../../redux/_core/reducers";
-import { femaleBodySelected, maleBodySelected, saveAvatar } from "../../../../redux/avatar/avatar.actions";
+import {
+  femaleBodySelected,
+  maleBodySelected,
+  saveAvatar,
+  avatarCreated,
+} from "../../../../redux/avatar/avatar.actions";
 import {
   getAvatarBody,
   getAvatarBoots,
@@ -46,6 +51,7 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
     maleBodySelected: dispatchMaleBodySelected,
     femaleBodySelected: dispatchFemaleBodySelected,
     saveAvatar: saveAvatarToStore,
+    avatarCreated: dispatchAvatarCreated,
     refetch,
     heading,
     avatarFromLocal,
@@ -82,6 +88,7 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
               },
             },
           });
+          dispatchAvatarCreated();
         } else {
           returnToYuScreen();
         }
@@ -89,7 +96,7 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
         // handleError();
       }
     },
-    [updateUserAvatar, saveAvatarToStore, refetch]
+    [updateUserAvatar, saveAvatarToStore, refetch, dispatchAvatarCreated]
   );
 
   if (bodySelected) {
@@ -169,6 +176,7 @@ const mapDispatchToProps = {
   saveAvatar,
   maleBodySelected,
   femaleBodySelected,
+  avatarCreated,
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(AvatarCreationContainer);

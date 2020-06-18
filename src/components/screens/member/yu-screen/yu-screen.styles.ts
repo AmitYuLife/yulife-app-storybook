@@ -121,7 +121,7 @@ export default StyleSheet.create({
   noAvatarWrapper: {
     flexDirection: "row",
     width: "100%",
-    height: Style.SCALE_UP_AND_DOWN(410),
+    height: Style.SCALE_UP_AND_DOWN(380),
     paddingLeft: Style.SCALE_UP_AND_DOWN(18),
   } as ViewStyle,
   personalProtectionWrapper: {

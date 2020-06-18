@@ -55,6 +55,7 @@ const YuScreen = ({
   products,
   earnRate,
   onEarnRatePress,
+  hasNotification,
 }: IProps) => {
   return (
     <View style={styles.wrapper}>
@@ -188,7 +189,7 @@ const YuScreen = ({
           </View>
         </View>
       </ScrollView>
-      <NavBar activeIndex={2} />
+      <NavBar activeIndex={2} hasNotification={hasNotification} />
       <TouchableOpacity onPress={onEarnRatePress} style={styles.earnRate}>
         <EarnRate />
         <Text style={styles.earningRateText}>{`${earnRate}x Earn Rate`}</Text>
