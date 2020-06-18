@@ -100,7 +100,7 @@ const initialFemaleState: IAvatarStore = {
   eyes: {
     partId: "eyes_1",
     bodyElements: unisexEyesDefault,
-    colors: { colorScheme: { ...defaultColors, main: "#4A0F07" }, colorSchemeId: "eyes_brown" },
+    colors: { colorScheme: { ...defaultColors, main: "#7C4C45" }, colorSchemeId: "eyes_brown" },
   },
   hair: {
     partId: "absolute_curls",
@@ -154,7 +154,7 @@ export const initialMaleState: IAvatarStore = {
   eyes: {
     partId: "eyes_1",
     bodyElements: unisexEyesDefault,
-    colors: { colorScheme: { ...defaultColors, main: "#4A0F07" }, colorSchemeId: "eyes_brown" },
+    colors: { colorScheme: { ...defaultColors, main: "#7C4C45" }, colorSchemeId: "eyes_brown" },
   },
   hair: {
     partId: "spiral_curls",

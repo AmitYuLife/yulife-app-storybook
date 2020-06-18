@@ -54,7 +54,10 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
   },
-  explainedTextCoinRate: {
+  explainedTextCoinRateSecondColumn: {
+    marginRight: 0,
+  } as TextStyle,
+  explainedTextCoinRateFirstColumn: {
     marginRight: 8,
   } as TextStyle,
   explainedCoinRateWrapper: {

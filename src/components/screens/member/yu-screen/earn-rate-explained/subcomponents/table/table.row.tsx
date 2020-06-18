@@ -6,6 +6,7 @@ import YuCoinIcon from "../yucoin.icon";
 import mainStyles from "../main.styles";
 import styles from "./table.styles";
 
+const GRAY_COLOR = "#686868";
 interface IProps {
   data: EarnRateDetails_getEarnRateDetails;
   totalEarnRate: number;
@@ -49,8 +50,14 @@ function TableRow(props: IProps) {
                 },
           ])}
         >
-          <YuCoinIcon style={{ marginHorizontal: 8, color: "#686868", marginBottom: 2 }} />
-          <Text style={StyleSheet.flatten([styles.explainedTextCoinRate, styles.boldText, { color: "#686868" }])}>
+          <YuCoinIcon style={{ marginHorizontal: 8, color: GRAY_COLOR, marginBottom: 2 }} />
+          <Text
+            style={StyleSheet.flatten([
+              styles.explainedTextCoinRateFirstColumn,
+              styles.boldText,
+              { color: GRAY_COLOR },
+            ])}
+          >
             {totalEarnRate * data.standardValue}
           </Text>
         </View>
@@ -65,11 +72,11 @@ function TableRow(props: IProps) {
           hasProducts ? null : { flex: 0.5, marginRight: 16 },
         ])}
       >
-        <YuCoinIcon style={{ marginHorizontal: 8, color: "#686868", marginBottom: 2 }} />
+        <YuCoinIcon style={{ marginHorizontal: 8, color: GRAY_COLOR, marginBottom: 2 }} />
         <Text
           style={StyleSheet.flatten([
-            styles.explainedTextCoinRate,
-            !hasProducts ? [styles.boldText, { color: "#686868" }] : {},
+            styles.explainedTextCoinRateSecondColumn,
+            !hasProducts ? [styles.boldText, { color: GRAY_COLOR }] : { marginRight: 8 },
           ])}
         >
           {data.standardValue}

@@ -208,7 +208,7 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
               <Button
                 onPress={onSubmitButton}
                 type="PrimaryMedium"
-                label="submit"
+                label="Submit"
                 disabled={disableButton}
                 wrapperStyle={styles.submitButton}
               />
