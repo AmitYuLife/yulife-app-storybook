@@ -266,7 +266,7 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
   private getOpacityInterpolation = (options?: { reverse: boolean }) => {
     const { reverse = false } = options || {};
     const { viewableInViewportMin, viewableInViewportMax } = this.state;
-    const FORWARD_ANIMATION_FRAMES = 10;
+    const FORWARD_ANIMATION_FRAMES = 1;
     const REVERSE_ANIMATION_FRAMES = 5;
     const TRANSITION_FRAMES = FORWARD_ANIMATION_FRAMES - REVERSE_ANIMATION_FRAMES;
     const inputRange = [
