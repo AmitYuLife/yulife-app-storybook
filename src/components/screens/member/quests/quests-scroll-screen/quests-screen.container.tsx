@@ -148,7 +148,7 @@ function QuestsScreenContainer(props: Props) {
         }
 
         if (conditions.shouldShowChestModal) {
-          showChestModal(componentId, itemLevel, false, showChestModalCopy);
+          showChestModal(componentId, itemLevel, levelStatus.isNext, showChestModalCopy);
         }
 
         if (conditions.shouldShowLevelUnavailableModal) {
