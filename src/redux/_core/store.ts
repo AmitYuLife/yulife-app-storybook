@@ -24,8 +24,10 @@ const middlewares = [sagaMiddleware];
 const composeEnhancers = Config.ENV === "dev" ? composeWithDevTools({ name: "YuLife Redux" }) : compose;
 const persistedReducer = persistReducer(persistConfig, combinedReducers);
 
+let configuredStore: ReturnType<typeof createStore>;
+
 const configureStore = (preloadedState?: IReduxState): Store<IReduxState> => {
-  const configuredStore = createStore(
+  configuredStore = createStore(
     persistedReducer,
     preloadedState,
     composeEnhancers(applyMiddleware(...middlewares))
@@ -44,6 +46,6 @@ const configureStore = (preloadedState?: IReduxState): Store<IReduxState> => {
   return configuredStore as Store<IReduxState>;
 };
 
-export const store = configureStore();
+export const store = configuredStore ? configuredStore : configureStore();
 export const mockStore = createStore(persistedReducer);
 export const persistor = persistStore(store);

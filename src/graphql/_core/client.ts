@@ -11,6 +11,9 @@ import moment from "moment";
 import { AsyncStorage } from "react-native";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
+import { store } from "@redux/_core/store";
+import { apolloRequest } from "@redux/app/app.actions";
+import { onRequest } from "./reduxLink";
 
 const httpLink = () =>
   createHttpLink({
@@ -79,8 +82,10 @@ const authMiddleware = setContext(async (_, { headers }) => {
 
 const errorAfterware = onError(() => {
   // might wanna do something here
-  // console.log("Error ... ", error);
+  // console.error("Error ... ", error);
 });
+
+const reduxLink = onRequest((requestInfo) => store.dispatch(apolloRequest(requestInfo)));
 
 let client: ApolloClient<NormalizedCacheObject>;
 
@@ -88,7 +93,7 @@ export default () => {
   if (!client) {
     client = new ApolloClient({
       cache,
-      link: from([authMiddleware, errorAfterware, httpLink()]),
+      link: from([authMiddleware, reduxLink, errorAfterware, httpLink()]),
     });
   }
   return client;

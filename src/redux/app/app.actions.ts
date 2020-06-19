@@ -1,4 +1,5 @@
 import { SyncAction } from "../_core/types";
+import { Operation } from "apollo-link";
 
 export const SET_MAIN_ROOT = "SET_MAIN_ROOT";
 export const AUTHENTICATED = "AUTHENTICATED";
@@ -8,6 +9,21 @@ export const CHECK_CONNECTION = "CHECK_CONNECTION";
 export const UPDATE_APP_STATE = "UPDATE_APP_STATE";
 export const UPDATE_NAVIGATION_STATE = "UPDATE_NAVIGATION_STATE";
 export const UPDATE_OFFLINE_STATE = "UPDATE_OFFLINE_STATE";
+export const APOLLO_EVENT = "APOLLO_EVENT";
+
+export interface ApolloRequestPayload {
+  operation: Operation;
+  currentRequestCount: number;
+  started: boolean;
+  completed: boolean;
+  networkError?: boolean;
+  result: {};
+}
+
+export const apolloRequest = (payload: ApolloRequestPayload): SyncAction<ApolloRequestPayload> => ({
+  payload,
+  type: APOLLO_EVENT,
+});
 
 export const updateAppState = (appState: string): SyncAction<string> => ({
   payload: appState,
