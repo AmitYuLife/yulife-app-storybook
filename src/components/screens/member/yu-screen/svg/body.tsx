@@ -2,7 +2,6 @@
 import * as React from "react";
 import Svg, { Path, Polygon, Rect, Ellipse } from "react-native-svg";
 import { Style } from "@styles/index";
-import { View } from "react-native";
 import { IBodyItem } from "../../../../../redux/avatar/avatar.reducer";
 import { IAvatar } from "../avatar-builder/avatar.types";
 
@@ -52,32 +51,30 @@ function renderPart(item: IBodyItem, type: "default" | "grid" = "default") {
 
 export const BodyAvatar = ({ avatar, showElipse, height, width, viewBox }: IProps) => {
   return (
-    <View style={{ top: 0 }}>
-      <Svg
-        width={String(width || Style.SCALE_UP_AND_DOWN(248))}
-        height={String(height || Style.SCALE_UP_AND_DOWN(248))}
-        viewBox={viewBox ? viewBox : "0 0 248 248"}
-        fill="none"
-      >
-        {!showElipse ? null : (
-          <Path
-            d="M135.47,552.16c62,0,112.25-8.08,112.25-18s-50.25-18-112.25-18-112.24,8.07-112.24,18S73.48,552.16,135.47,552.16Z"
-            fill="#f9f9f9"
-          />
-        )}
+    <Svg
+      width={String(width || Style.SCALE_UP_AND_DOWN(248))}
+      height={String(height || Style.SCALE_UP_AND_DOWN(248))}
+      viewBox={viewBox ? viewBox : "0 0 248 248"}
+      fill="none"
+    >
+      {!showElipse ? null : (
+        <Path
+          d="M135.47,552.16c62,0,112.25-8.08,112.25-18s-50.25-18-112.25-18-112.24,8.07-112.24,18S73.48,552.16,135.47,552.16Z"
+          fill="#f9f9f9"
+        />
+      )}
 
-        {renderPart(avatar.head)}
-        {renderPart(avatar.eyes)}
-        {renderPart(avatar.hair)}
-        {renderPart(avatar.body)}
-        {renderPart(avatar.pants)}
-        {renderPart(avatar.boots)}
-        {renderPart(avatar.chest)}
-        {renderPart(avatar.gloves)}
-        {renderPart(avatar.facialHair)}
-        {renderPart(avatar.glasses)}
-      </Svg>
-    </View>
+      {renderPart(avatar.head)}
+      {renderPart(avatar.eyes)}
+      {renderPart(avatar.hair)}
+      {renderPart(avatar.body)}
+      {renderPart(avatar.pants)}
+      {renderPart(avatar.boots)}
+      {renderPart(avatar.chest)}
+      {renderPart(avatar.gloves)}
+      {renderPart(avatar.facialHair)}
+      {renderPart(avatar.glasses)}
+    </Svg>
   );
 };
 
