@@ -38,16 +38,19 @@ export const AppLoadingContainer: React.FC<IProps> = () => {
       client()
         .query({
           query: GQL_QUERY_GET_REWARDS,
+          fetchPolicy: "network-only",
         })
         .catch(() => null);
       client()
         .query({
           query: GQL_QUERY_LEADERBOARD,
+          fetchPolicy: "network-only",
         })
         .catch(() => null);
       client()
         .query({
           query: GQL_QUERY_GET_YULIFER,
+          fetchPolicy: "network-only",
         })
         .catch(() => null);
     }

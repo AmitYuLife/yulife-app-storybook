@@ -72,7 +72,20 @@ function ProductItem(props: IProps) {
           >{`${product.earnRate}x YuCoin earn rate`}</Text>
         </View>
         <TouchableOpacity style={{ justifyContent: "center" }} onPress={onPressAction(product, productType)}>
-          <View style={{ marginBottom: marginSeeDetails }}></View>
+          {isCharm ? (
+            <Text
+              style={StyleSheet.flatten([
+                mainStyles.text,
+                styles.boldText,
+                styles.productsText,
+                { overflow: "visible" },
+              ])}
+            >
+              {" "}
+            </Text>
+          ) : (
+            <View style={{ height: marginSeeDetails }}></View>
+          )}
           <Text
             style={StyleSheet.flatten([
               mainStyles.text,
