@@ -153,11 +153,11 @@ export function getActionConditions({
     if (isUnityLevel) {
       conditions.shouldSetUnity = true;
       conditions.shouldDispatchSubmitUnityAction = true;
-    } else if (levelAvailable && !isChestLevel) {
-      conditions.shouldGoToChallengesList = true;
-    } else if (levelAvailable) {
+    } else if (levelAvailable && isChestLevel) {
       conditions.shouldShowChestModal = true;
-    } else if (!levelAvailable) {
+    } else if (levelAvailable) {
+      conditions.shouldGoToChallengesList = true;
+    } else {
       conditions.shouldShowChallengeUnavailableModal = true;
     }
   } else {
@@ -166,10 +166,6 @@ export function getActionConditions({
     } else {
       conditions.shouldShowLevelUnavailableModal = true;
     }
-  }
-
-  if (!isDone && !isNext && !isChestLevel) {
-    conditions.shouldShowLevelUnavailableModal = true;
   }
 
   return conditions;
