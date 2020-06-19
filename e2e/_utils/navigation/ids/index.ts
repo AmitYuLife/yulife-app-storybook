@@ -72,3 +72,4 @@ export const LEADERBOARD_INFO = "LEADERBOARD_INFO"
 export const GROUP_NAME_INPUT = "GROUP_NAME_INPUT"
 export const LEADERBOARD_EMAIL_INPUT = "LEADERBOARD_EMAIL_INPUT"
 export const LEADERBOARD_STATUS = (leaderboardName: string, leaderboardStatus: string) => `LEADERBOARD_STATUS_${leaderboardName}_${leaderboardStatus}`
+export const LEADERBOARD_PEDESTAL = "LEADERBOARD_PEDESTAL"
