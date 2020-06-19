@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@bdd";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@bdd";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -48,31 +48,31 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                         When("I tap create", when.tapText("create"), async () => {
                             Then("I should be back on the settings page", then.idVisible(SETTINGS_SCREEN))
                             Then("I should see the group I just created", then.textVisible("Group 1"))
-                            Then("The status of the group should be online", then.idVisible(LEADERBOARD_STATUS("Group 1", "active")))
+                            Then("The status of the group should be online", then.leaderboardStatus("Group 1", "active"))
                         })
                         When("I tap the leaderboard in settings", when.tapText("Group 1"), async () => {
                             Then("I should be on the turn it off screen", then.textVisible("turn it off?"))
                             When("I tap keep it on!", when.tapText("keep it on!"), async () => {
                                 Then("I should be back on the settings screen the group still visible", then.textVisible("Group 1"))
-                                Then("The status of the group should be online", then.idVisible(LEADERBOARD_STATUS("Group 1", "active")))
+                                Then("The status of the group should be online", then.leaderboardStatus("Group 1", "active"))
                             })
                         })
                         When("I tap the leaderboard in settings", when.tapText("Group 1"), async () => {
                             Then("I should be on the turn it off screen", then.textVisible("turn it off?"))
                             When("I tap turn it off", when.tapText("turn it off"), async () => {
-                                Then("I should be on the settings page with the leaderboard turned off", then.idVisible(LEADERBOARD_STATUS("Group 1", "inactive")))
+                                Then("I should be on the settings page with the leaderboard turned off", then.leaderboardStatus("Group 1", "inactive"))
                             })
                         })
                         When("I tap the leaderboard", when.tapID(LEADERBOARD_STATUS("Group 1", "inactive")), async () => {
                             Then("I should be on the join this leaderboard screen", then.textVisible("join this leaderboard?"))
                             When("I tap 'no thanks'", when.tapText("no thanks"), async () => {
-                                Then("I should be back on the settings page and the leaderboard should be inactive", then.idVisible(LEADERBOARD_STATUS("Group 1", "inactive")))
+                                Then("I should be back on the settings page and the leaderboard should be inactive", then.leaderboardStatus("Group 1", "inactive"))
                             })
                         })
                         When("I tap the leaderboard", when.tapID(LEADERBOARD_STATUS("Group 1", "inactive")), async () => {
                             Then("I should be on the join this leaderboard screen", then.textVisible("join this leaderboard?"))
                             When("I tap yes please!", when.tapText("yes please!"), async () => {
-                                Then("I should be back on the settings page and the leaderboard should be active", then.idVisible(LEADERBOARD_STATUS("Group 1", "active")))
+                                Then("I should be back on the settings page and the leaderboard should be active", then.leaderboardStatus("Group 1", "active"))
                             })
                         })
                     })
@@ -90,9 +90,9 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                     Then("I should see the settings CTA", then.idVisible(MENU_ITEM("settings")))
                     When("I tap settings", when.tapID(MENU_ITEM("settings")), async () => {
                         Then("I should be on settings", then.idVisible(SETTINGS_SCREEN))
-                        Then("I should see my active leaderboard", then.idVisible(LEADERBOARD_STATUS(USER_18_LEADERBOARD.data.name, "active")))
+                        Then("I should see my active leaderboard", then.leaderboardStatus(USER_18_LEADERBOARD.data.name, "active"))
                         When("I turn off this leaderboard", when.turnOffLeaderboard(LEADERBOARD_STATUS(USER_18_LEADERBOARD.data.name, "active")), async () => {
-                            Then("I should be back on the settings page and this leaderboard should be off", then.idVisible(LEADERBOARD_STATUS(USER_18_LEADERBOARD.data.name, "inactive")))
+                            Then("I should be back on the settings page and this leaderboard should be off", then.leaderboardStatus(USER_18_LEADERBOARD.data.name, "inactive"))
                             When("I close the setting menu", when.tapID(BUTTON_CLOSE), async () => {
                                 Then("I should be back on an empty leaderboard screen", then.onLeaderboardConsent)
                             })
@@ -161,7 +161,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                         When("I tap create", when.tapText("create"), async () => {
                             Then("I should be back on the settings page", then.idVisible(SETTINGS_SCREEN))
                             Then("I should see the group I just created", then.textVisible("Lb3"))
-                            Then("The status of the group should be online", then.idVisible(LEADERBOARD_STATUS("Lb3", "active")))
+                            Then("The status of the group should be online", then.leaderboardStatus("Lb3", "active"))
                         })
                         When("I restart the app", when.restartWithData, async () => {
                             When("I login as the invited user", when.loginOnly(CUSTOMER_19, AUTH_19, true), async () => {

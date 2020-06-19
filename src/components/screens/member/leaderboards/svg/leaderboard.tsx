@@ -2,6 +2,7 @@ import * as React from "react";
 import Svg, { Circle, Path, LinearGradient, Rect, Stop, Polygon, SvgXml } from "react-native-svg";
 import { Style } from "@styles/index";
 import { pedestalStyles } from "../leaderboards.screen.styles";
+import { LEADERBOARD_PEDESTAL } from "@ids";
 
 export const ThirdPlace = () => {
   return (
@@ -97,6 +98,7 @@ export const LeaderboardPedestal = () => {
       height={SVG_HEIGHT}
       width={SVG_WIDTH * multiplier}
       viewBox={`${VIEWBOX_MIN_X} ${VIEWBOX_MIN_Y} ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
+      testID={LEADERBOARD_PEDESTAL}
     >
       <LinearGradient
         id="linear-gradient"

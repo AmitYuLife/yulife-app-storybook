@@ -1,4 +1,4 @@
-import { navigation, LEADERBOARD_NAME } from "@utils"
+import { navigation, LEADERBOARD_NAME, LEADERBOARD_TOP_SCREEN, LEADERBOARD_SCREEN, LEADERBOARD_PEDESTAL, LEADERBOARD_STATUS } from "@utils"
 
 export const {
     textVisible,
@@ -9,7 +9,8 @@ export const {
 } = navigation.common
 
 export const {
-    scrollFromID
+    scrollFromID,
+    scrollFromText
 } = navigation.scrolling
 
 export const onLeaderboardConsent = async () => {
@@ -22,14 +23,14 @@ export const onLeaderboardConsent = async () => {
 
 }
 
-// note, not working for current user, I think the bold text is an issue
-export const leaderboardVisible = (customers: any[], steps?: number[]) => async () => {
+export const leaderboardVisible = (customers: any[], steps?: number[], scrollToTop = true) => async () => {
     for (const i of customers) {
         const name = i.data.firstName + " " + i.data.lastName
         try {
             await expect(element(by.id(LEADERBOARD_NAME(name)))).toBeVisible()
         } catch (e) {
-            await expect(element(by.id(LEADERBOARD_NAME(name.bold())))).toBeVisible()
+            await scrollFromID(LEADERBOARD_PEDESTAL, "up", "fast")()
+            await expect(element(by.id(LEADERBOARD_NAME(name)))).toBeVisible()
         }
     }
 
@@ -38,8 +39,22 @@ export const leaderboardVisible = (customers: any[], steps?: number[]) => async 
             try {
                 await expect(element(by.text(i.toString()))).toBeVisible()
             } catch (e) {
-                await expect(element(by.text(i.toString().bold()))).toBeVisible()
+                await scrollFromID(LEADERBOARD_PEDESTAL, "up", "fast")()
+                await expect(element(by.text(i.toString()))).toBeVisible()
             }
         }
+    }
+
+    if (scrollToTop === true) {
+        await scrollFromID(LEADERBOARD_PEDESTAL, "down", "fast")()
+    }
+}
+
+export const leaderboardStatus = (leaderboardName: string, status: "active" | "inactive") => async () => {
+    try {
+        await expect(element(by.id(LEADERBOARD_STATUS(leaderboardName, status)))).toBeVisible()
+    } catch (e) {
+        await scrollFromText("connections", "up", "fast")()
+        await expect(element(by.id(LEADERBOARD_STATUS(leaderboardName, status)))).toBeVisible()
     }
 }
