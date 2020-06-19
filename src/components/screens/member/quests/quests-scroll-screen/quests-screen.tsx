@@ -41,7 +41,7 @@ interface IState {
   };
 }
 
-class QuestsScreen extends React.Component<IProps, IState> {
+class QuestsScreen extends React.PureComponent<IProps, IState> {
   public state: IState = {
     UI: getInitialState(this.props.currentLevel),
   };
@@ -64,16 +64,6 @@ class QuestsScreen extends React.Component<IProps, IState> {
     if (prevProps.unity && !this.props.unity) {
       this.scrollToActiveLevel();
     }
-  }
-
-  public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
-    return (
-      this.props.activeLevel !== nextProps.activeLevel ||
-      this.props.currentLevel !== nextProps.currentLevel ||
-      this.props.unity !== nextProps.unity ||
-      this.props.totalCoins !== nextProps.totalCoins ||
-      this.state.UI.topBarType !== nextState.UI.topBarType
-    );
   }
 
   public render() {

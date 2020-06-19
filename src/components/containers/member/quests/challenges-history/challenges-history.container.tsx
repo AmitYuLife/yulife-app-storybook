@@ -1,16 +1,13 @@
-import React, { FC, useCallback } from "react";
+import React, { useCallback } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
-import { challengeStartAction } from "../../../../../redux/levels/levels.actions";
-import { getCurrentLevel } from "../../../../../redux/levels/levels.selectors";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { ChallengesHistoryScreen } from "../../../../screens";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
-type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IProps extends IConnectedScreenProps {
   componentId?: string;
@@ -19,9 +16,9 @@ interface IProps extends IConnectedScreenProps {
   onPressCta?: () => void;
 }
 
-type Props = IProps & ConnectedState & ConnectedDispatch;
+type Props = IProps & ConnectedState;
 
-const ChallengesHistoryContainer: FC<Props> = ({ level, onPressActivityHistory, totalCoins, componentId }) => {
+function ChallengesHistoryContainer({ level, onPressActivityHistory, totalCoins, componentId }: Props) {
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
   return (
@@ -33,18 +30,10 @@ const ChallengesHistoryContainer: FC<Props> = ({ level, onPressActivityHistory, 
       totalCoins={totalCoins}
     />
   );
-};
+}
 
 const mapStateToProps = (state: IReduxState) => ({
-  currentLevel: getCurrentLevel(state),
   totalCoins: getTotalCoins(state),
 });
 
-const mapDispatchToProps = {
-  challengeStartAction,
-};
-
-export default connect<ConnectedState, ConnectedDispatch>(
-  mapStateToProps,
-  mapDispatchToProps
-)(ChallengesHistoryContainer);
+export default connect<ConnectedState>(mapStateToProps)(ChallengesHistoryContainer);
