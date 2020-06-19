@@ -2,9 +2,18 @@ import * as React from "react";
 import Svg, { Path, Rect } from "react-native-svg";
 import { Style } from "@styles/index";
 
-export const LifeInsurance = () => {
+interface Dimensions {
+  width?: number;
+  height?: number;
+}
+
+export const LifeInsurance = ({ width, height }: Dimensions) => {
   return (
-    <Svg height={String(Style.SCALE_UP_AND_DOWN(74))} width={String(Style.SCALE_UP_AND_DOWN(64))} viewBox="0 0 64 74">
+    <Svg
+      height={height || String(Style.SCALE_UP_AND_DOWN(74))}
+      width={width || String(Style.SCALE_UP_AND_DOWN(64))}
+      viewBox="0 0 64 74"
+    >
       <Path d="M0,17A17,17,0,0,1,17,0H47A17,17,0,0,1,64,17V57A17,17,0,0,1,47,74H17A17,17,0,0,1,0,57Z" fill="#f9f9f9" />
       <Rect x="1.5" y="1.5" width="61" height="61" rx="8.5" fill="#fafafa" stroke="#cfcfcf" strokeWidth="3" />
       <Path
@@ -55,9 +64,13 @@ export const LifeInsurance = () => {
   );
 };
 
-export const IncomeProtection = () => {
+export const IncomeProtection = ({ width, height }: Dimensions) => {
   return (
-    <Svg height={String(Style.SCALE_UP_AND_DOWN(74))} width={String(Style.SCALE_UP_AND_DOWN(64))} viewBox="0 0 64 74">
+    <Svg
+      height={height || String(Style.SCALE_UP_AND_DOWN(74))}
+      width={width || String(Style.SCALE_UP_AND_DOWN(64))}
+      viewBox="0 0 64 74"
+    >
       <Path d="M0,17A17,17,0,0,1,17,0H47A17,17,0,0,1,64,17V57A17,17,0,0,1,47,74H17A17,17,0,0,1,0,57Z" fill="#f9f9f9" />
       <Rect x="1.5" y="1.5" width="61" height="61" rx="8.5" fill="#fafafa" stroke="#cfcfcf" strokeWidth="3" />
       <Path
@@ -87,9 +100,13 @@ export const IncomeProtection = () => {
   );
 };
 
-export const CriticalIllness = () => {
+export const CriticalIllness = ({ height, width }: Dimensions) => {
   return (
-    <Svg height={String(Style.SCALE_UP_AND_DOWN(74))} width={String(Style.SCALE_UP_AND_DOWN(64))} viewBox="0 0 64 74">
+    <Svg
+      height={height || String(Style.SCALE_UP_AND_DOWN(74))}
+      width={width || String(Style.SCALE_UP_AND_DOWN(64))}
+      viewBox="0 0 64 74"
+    >
       <Path d="M0,17A17,17,0,0,1,17,0H47A17,17,0,0,1,64,17V57A17,17,0,0,1,47,74H17A17,17,0,0,1,0,57Z" fill="#f9f9f9" />
       <Rect x="1.5" y="1.5" width="61" height="61" rx="8.5" fill="#fafafa" stroke="#cfcfcf" strokeWidth="3" />
       <Path
@@ -136,9 +153,13 @@ export const CriticalIllness = () => {
   );
 };
 
-export const TravelInsurance = () => {
+export const TravelInsurance = ({ height, width }: Dimensions) => {
   return (
-    <Svg height={String(Style.SCALE_UP_AND_DOWN(74))} width={String(Style.SCALE_UP_AND_DOWN(64))} viewBox="0 0 64 74">
+    <Svg
+      height={height || String(Style.SCALE_UP_AND_DOWN(74))}
+      width={width || String(Style.SCALE_UP_AND_DOWN(64))}
+      viewBox="0 0 64 74"
+    >
       <Path d="M0,17A17,17,0,0,1,17,0H47A17,17,0,0,1,64,17V57A17,17,0,0,1,47,74H17A17,17,0,0,1,0,57Z" fill="#f9f9f9" />
       <Rect x="1.5" y="1.5" width="61" height="61" rx="8.5" fill="#fafafa" stroke="#cfcfcf" strokeWidth="3" />
       <Path

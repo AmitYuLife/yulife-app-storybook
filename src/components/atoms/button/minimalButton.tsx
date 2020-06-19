@@ -16,6 +16,7 @@ interface IProps {
   onPress?: () => void;
   isLoading?: boolean;
   title: string;
+  titleStyle?: TextStyle;
   color?: string;
   backgroundColor?: string;
   shadowColor?: string;
@@ -29,7 +30,7 @@ interface IState {
 }
 
 const SHADOW_ALLOWANCE = 4;
-const SHADOW_DIFF = 2;
+const SHADOW_DIFF = 3;
 
 export default function MinimalButton(props: IProps) {
   const { onPress, height = 50, borderRadius = props.height / 2 } = props;
@@ -91,6 +92,7 @@ function Main({
   onPressIn,
   onPressOut,
   title,
+  titleStyle,
 }: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) {
   return (
     <TouchableWithoutFeedback
@@ -107,7 +109,11 @@ function Main({
         ]}
         testID={`${testID}-text-view`}
       >
-        {isLoading ? <ActivityIndicator color="white" /> : <Text style={[styles.title, { color }]}>{title}</Text>}
+        {isLoading ? (
+          <ActivityIndicator color="white" />
+        ) : (
+          <Text style={[styles.title, { color }, titleStyle]}>{title}</Text>
+        )}
       </Animated.View>
     </TouchableWithoutFeedback>
   );
