@@ -1,13 +1,7 @@
-import {
-  CreateActiveChallenge,
-  CreateActiveChallengeVariables,
-  SubmitUnityVariables,
-  UpdateActiveChallenge,
-} from "../../graphql/_core/schema";
+import { CreateActiveChallenge, SubmitUnityVariables, UpdateActiveChallenge } from "../../graphql/_core/schema";
 
 export const CHALLENGE_SUBMIT_UNITY = "CHALLENGE_SUBMIT_UNITY";
 
-export const CHALLENGE_START = "CHALLENGE_START";
 export const CHALLENGE_START_SUCCESS = "CHALLENGE_START_SUCCESS";
 export const CHALLENGE_START_FAIL = "CHALLENGE_START_FAIL";
 export const CHALLENGE_START_INITIAL_STEPS = "CHALLENGE_START_INITIAL_STEPS";
@@ -34,11 +28,6 @@ export const CHALLENGE_CANCEL_FAIL = "CHALLENGE_CANCEL_FAIL";
 export const submitUnityAction = (payload: SubmitUnityVariables) => ({
   payload,
   type: CHALLENGE_SUBMIT_UNITY,
-});
-
-export const challengeStartAction = (payload: CreateActiveChallengeVariables) => ({
-  payload,
-  type: CHALLENGE_START,
 });
 
 export type ChallengeStartPayload = CreateActiveChallenge & { levelSlotId: string };

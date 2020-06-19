@@ -69,7 +69,7 @@ const QuestsContainer: FC<Props> = (props) => {
   );
 
   const handleResetChallenge = useCallback(
-    (showStreakComplete = false) => async () => {
+    (showStreakComplete = false) => {
       if (showStreakComplete) {
         dispatch(displayStreaksCompletedAction());
       }
@@ -88,7 +88,7 @@ const QuestsContainer: FC<Props> = (props) => {
     return status === "success" ? (
       <ChallengeSuccessScreen
         level={level}
-        onPressCta={handleResetChallenge(true)}
+        onPressCta={() => handleResetChallenge(true)}
         rating={rating}
         reward={coins}
         score={score}
@@ -97,7 +97,7 @@ const QuestsContainer: FC<Props> = (props) => {
         copy={copy.success}
       />
     ) : (
-      <ChallengeFailedScreen level={level} onPress={handleResetChallenge()} loading={loading} copy={copy.failed} />
+      <ChallengeFailedScreen level={level} onPress={handleResetChallenge} loading={loading} copy={copy.failed} />
     );
   }
 
