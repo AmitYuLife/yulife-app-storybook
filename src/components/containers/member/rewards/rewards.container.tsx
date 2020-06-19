@@ -114,14 +114,15 @@ const RewardsContainer: FC<Props> = (props) => {
     [purchases, handleTabChange, props.componentId]
   );
 
-  const handlePurchasesRefetch = useCallback(() => refetchPurchases(), [refetchPurchases]);
+   // need to do a catch for graphql refetches or unhandledd promise rejects and crashes the app
+  const handlePurchasesRefetch = useCallback(() => refetchPurchases().catch(() => null), [refetchPurchases]);
 
   const { loading: rewardsAreLoading, data: rewards, refetch: refetchRewards } = useQuery(
     GQL_QUERY_GET_REWARDS,
     requestOptions
   );
 
-  const handleRewardsRefetch = useCallback(() => refetchRewards(), [refetchRewards]);
+  const handleRewardsRefetch = useCallback(() => refetchRewards().catch(() => null), [refetchRewards]);
 
   const handleRewardDetailsItemPress = useCallback(
     async (reward: GetRewards_getRewards) => {
