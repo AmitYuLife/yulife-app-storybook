@@ -36,7 +36,7 @@ function YuscreenEmployerProductDetails({ product, onExitConfirmed, productType 
       <View style={styles.productDetailsWrapper}>
         <View style={styles.productDetailsHeader}>
           {isEmployerProduct ? (
-            <View style={{ height: 114, width: 96 }}>
+            <View style={{ height: 114, width: 96, marginHorizontal: 32 }}>
               <EmployerProductIcon
                 active={product.active}
                 icon={product.icon}
@@ -62,7 +62,7 @@ function YuscreenEmployerProductDetails({ product, onExitConfirmed, productType 
           )}
           {!(isEmployerProduct && product.active && product.policyNumber) ? null : (
             <View style={styles.productDetailsPolicy}>
-              <Text style={styles.productDetailsPolicyHeader}>Policy number:</Text>
+              <Text style={styles.productDetailsPolicyHeader}>Policy Number:</Text>
               <Text style={styles.productDetailsPolicyValue}>{product.policyNumber}</Text>
             </View>
           )}
