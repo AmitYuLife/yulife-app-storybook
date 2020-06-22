@@ -70,7 +70,7 @@ export default [
     hasMenu: true,
     lazyLoad: true,
     name: ROUTES.rewards,
-    component: require("../components/containers/member/rewards/rewards.container").default,
+    component: require("../components/containers/member/rewards/rewards.main.container").default,
   },
   {
     name: ROUTES.activityHistory,
