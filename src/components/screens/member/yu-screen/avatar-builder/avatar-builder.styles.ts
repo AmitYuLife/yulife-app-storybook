@@ -16,7 +16,7 @@ export default StyleSheet.create({
     justifyContent: "flex-end",
     flexDirection: "column",
     backgroundColor: "#FFFFFF",
-    marginBottom: Style.SCALE_UP_AND_DOWN(8),
+    paddingBottom: Style.SCALE_UP_AND_DOWN(8),
   } as ViewStyle,
   halfAvatarWrapper: {
     height: Style.SCALE_UP_AND_DOWN(248),
