@@ -107,26 +107,30 @@ function QuestsScreenContainer(props: Props) {
     setUnity(null);
   }, []);
 
+  if (loading) {
+    return <Loading />;
+  }
+
   const currentWorldGQL = data?.getCurrentWorld ? data.getCurrentWorld : [];
 
   const formattedData = currentWorldGQL.map((itemLevel) => {
     const levelStatus = getLevelStatus(challengesStatus, currentLevel, itemLevel.level, nextLevelAvailableAt);
     const isChestLevel = !!itemLevel.levelChestId;
 
+    const levelAvailable = isAvailable(nextLevelAvailableAt);
+    const conditions = getActionConditions({
+      levelStatus,
+      challengesStatus,
+      itemLevel,
+      levelAvailable,
+      showCompletedLevel,
+    });
+
     return {
       ...itemLevel,
       ...levelStatus,
       isChestLevel,
       onPress: () => {
-        const levelAvailable = isAvailable(nextLevelAvailableAt);
-        const conditions = getActionConditions({
-          levelStatus,
-          challengesStatus,
-          itemLevel,
-          levelAvailable,
-          showCompletedLevel,
-        });
-
         if (conditions.shouldSetUnity) {
           setUnity(itemLevel.level);
         }
@@ -157,10 +161,6 @@ function QuestsScreenContainer(props: Props) {
       },
     };
   });
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <QuestsScreen

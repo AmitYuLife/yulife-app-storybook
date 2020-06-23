@@ -1,6 +1,7 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import Wootric from "@services/wootric";
 import * as React from "react";
+import Config from "react-native-config";
 import { PureComponent } from "react";
 import DeviceInfo from "react-native-device-info";
 import Intercom from "react-native-intercom";
@@ -19,6 +20,8 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDipatch = typeof mapDispatchToProps;
 
 type Props = ConnectedState & ConnectedDipatch;
+
+const IS_DEVELOP = ["dev", "develop"].includes(Config.ENV);
 
 class MenuContainer extends PureComponent<Props> {
   private deviceVersion = DeviceInfo.getVersion();
@@ -80,7 +83,7 @@ class MenuContainer extends PureComponent<Props> {
           },
         ]}
         version={this.deviceVersion}
-        onDebugPress={features.showDebug ? this.handlePressLink(LINKS.DEBUG) : null}
+        onDebugPress={features.showDebug || IS_DEVELOP ? this.handlePressLink(LINKS.DEBUG) : null}
       />
     );
   }
