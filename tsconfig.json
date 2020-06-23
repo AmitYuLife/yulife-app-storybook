@@ -12,6 +12,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@assets/*": ["./assets/*"],
       "@atoms/*": ["./src/components/atoms/*"],
       "@components/*": ["./src/components/*"],
       "@containers/*": ["./src/components/containers/*"],
