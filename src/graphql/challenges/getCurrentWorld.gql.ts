@@ -21,6 +21,7 @@ export const GQL_QUERY_GET_CURRENT_WORLD = gql`
         rating
         yuCoinAwarded
         challengesDetails {
+          id
           rating
           yuCoinAwarded
         }
