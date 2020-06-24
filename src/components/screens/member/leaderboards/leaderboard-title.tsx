@@ -15,9 +15,6 @@ type LeaderboardTitleProps = InfoButtonProps & LeaderboardLabelProps & OwnProps;
 
 export function LeaderboardTitle(props: LeaderboardTitleProps) {
   const { onPressInfo, onPressLabel, name } = props;
-  if (props.hide) {
-    return null;
-  }
   return (
     <>
       <InfoButton onPressInfo={onPressInfo} />
@@ -61,9 +58,9 @@ function InfoButton({ onPressInfo }: InfoButtonProps) {
 
 const styles = StyleSheet.create({
   leaderboardInfoButton: {
-    height: 32,
-    width: 32,
-    right: 8,
+    height: Style.adjust(32),
+    width: Style.adjust(32),
+    right: Style.adjust(8),
     position: "absolute",
   } as ViewStyle,
   leaderboardNameAbsolute: {
@@ -85,7 +82,7 @@ const styles = StyleSheet.create({
     fontSize: Style.adjust(18),
     textAlign: "center",
     fontFamily: Style.FONT_FAMILY_PRIMARY,
-    marginBottom: 16,
+    marginBottom: Style.adjust(8),
     marginTop: Platform.select({ ios: 2, android: -4 }),
   } as TextStyle,
   leaderboardSteps: {
