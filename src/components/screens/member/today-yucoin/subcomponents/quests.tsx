@@ -35,12 +35,13 @@ export default function Quests({ showNoChallengeDone, activeChallenge, challenge
             <View key={i} style={styles.activeChallengeWrapper}>
               <Steps>{getLabel(challenge)}</Steps>
               <View style={styles.starsWrapper}>
-                {showRating(challenge) &&
-                  Array.from({ length: 3 }).map((_, index) => (
-                    <View key={index} style={styles.starWrapper}>
-                      <StarInline filled={challenge.milestones > index} />
-                    </View>
-                  ))}
+                {!challenge.score
+                  ? null
+                  : Array.from({ length: 3 }).map((_, index) => (
+                      <View key={index} style={styles.starWrapper}>
+                        <StarInline filled={challenge.milestones > index} />
+                      </View>
+                    ))}
               </View>
               <YuCoinsEarned>{challenge.earned}</YuCoinsEarned>
             </View>
@@ -77,8 +78,4 @@ function getLabel(challenge: GetCurrentUser_getCurrentUser_todayActivity, isActi
   }
 
   return result;
-}
-
-function showRating(challenge: GetCurrentUser_getCurrentUser_todayActivity) {
-  return !["streak", "chest", "bonus yucoin"].includes(challenge.name);
 }

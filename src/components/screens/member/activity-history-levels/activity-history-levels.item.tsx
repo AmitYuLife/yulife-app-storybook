@@ -26,28 +26,6 @@ export interface ItemProps {
   mindfulYucoin?: number;
 }
 
-function getLabel(challenge: IChallenge) {
-  let result = `${challenge.name}`;
-
-  if (!!challenge.score) {
-    result += ` / ${challenge.score}`;
-  }
-
-  return result;
-}
-
-function showRating(challenge: IChallenge) {
-  return !["streak", "streak completed", "chest", "bonus yucoin"].includes(challenge.name);
-}
-
-function renderCoinEarnedValue(value: string | number, props?: any) {
-  return (
-    <View style={styles.yuCoinEarnedWrapper} {...props}>
-      <Text style={styles.yuCoinEarned}>{value}</Text>
-    </View>
-  );
-}
-
 export default function ActivityHistoryLevelsItem({
   challenges,
   dayOfMonth,
@@ -128,12 +106,13 @@ export default function ActivityHistoryLevelsItem({
             {!mindfulSeconds ? null : <View style={styles.starsWrapper} />}
             {challenges.map((challenge, key) => (
               <View style={styles.starsWrapper} key={key}>
-                {showRating(challenge) &&
-                  Array.from({ length: 3 }).map((_, index) => (
-                    <View key={index} style={styles.starWrapper}>
-                      <StarInline filled={index < challenge.milestones} />
-                    </View>
-                  ))}
+                {!challenge.score
+                  ? null
+                  : Array.from({ length: 3 }).map((_, index) => (
+                      <View key={index} style={styles.starWrapper}>
+                        <StarInline filled={index < challenge.milestones} />
+                      </View>
+                    ))}
               </View>
             ))}
           </View>
@@ -149,6 +128,24 @@ export default function ActivityHistoryLevelsItem({
           <View style={styles.bottomDivider} />
         </View>
       </View>
+    </View>
+  );
+}
+
+function getLabel(challenge: IChallenge) {
+  let result = `${challenge.name}`;
+
+  if (!!challenge.score) {
+    result += ` / ${challenge.score}`;
+  }
+
+  return result;
+}
+
+function renderCoinEarnedValue(value: string | number, props?: any) {
+  return (
+    <View style={styles.yuCoinEarnedWrapper} {...props}>
+      <Text style={styles.yuCoinEarned}>{value}</Text>
     </View>
   );
 }
