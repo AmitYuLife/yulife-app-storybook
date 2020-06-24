@@ -65,9 +65,9 @@ class MenuContainer extends PureComponent<Props> {
           },
           {
             condition: true,
-            label: "chat",
-            onPress: this.handlePressLink(LINKS.CHAT),
-            source: assets[LINKS.CHAT],
+            label: "support",
+            onPress: this.handlePressLink(LINKS.SUPPORT),
+            source: assets[LINKS.SUPPORT],
           },
           {
             condition: features.surveyInMenu,
@@ -99,7 +99,7 @@ class MenuContainer extends PureComponent<Props> {
       case LINKS.SETTINGS:
         this.handlePush(ROUTES.settings);
         return null;
-      case LINKS.CHAT:
+      case LINKS.SUPPORT:
         this.handleIntercom();
         return null;
       case LINKS.SURVEY:
