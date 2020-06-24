@@ -4,7 +4,7 @@ export type LinkTypes =
   | "debug"
   | "activity"
   | "leaderboard"
-  | "chat"
+  | "support"
   | "survey"
   | "logout"
   | "member"
@@ -17,7 +17,7 @@ export enum LINKS {
   DEBUG = "debug",
   ACTIVITY = "activity",
   LEADERBOARD = "leaderboard",
-  CHAT = "chat",
+  SUPPORT = "support",
   SURVEY = "survey",
   LOGOUT = "logout",
   MEMBER = "member",
@@ -30,7 +30,7 @@ export enum LINKS {
 export default {
   [LINKS.STATS]: require("../../../../../../assets/menu/stats.png"),
   [LINKS.ACTIVITY]: require("../../../../../../assets/menu/activity.png"),
-  [LINKS.CHAT]: require("../../../../../../assets/menu/chat.png"),
+  [LINKS.SUPPORT]: require("../../../../../../assets/menu/chat.png"),
   [LINKS.SURVEY]: require("../../../../../../assets/menu/chat.png"),
   [LINKS.LOGOUT]: require("../../../../../../assets/menu/logout.png"),
   [LINKS.MEMBER]: require("../../../../../../assets/menu/member.png"),

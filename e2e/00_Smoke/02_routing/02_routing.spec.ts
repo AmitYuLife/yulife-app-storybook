@@ -87,7 +87,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
             When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 1500), async () => {
                 Then("I should see the menu items", then.menuItemsVisible)
-                When("I tap chat", when.tapMenuItem("chat"), async () => {
+                When("I tap support", when.tapMenuItem("support"), async () => {
                     Then("I should see the notification request, as I have not allowed this permission", then.idVisible(GENERIC_SCREEN_HEADING("notification")))
                     When("I tap skip", when.tapID(GENERIC_SCREEN_CTA("skip")), async () => {
                         Then("I should see intercom", then.textVisible("Start a conversation"))
