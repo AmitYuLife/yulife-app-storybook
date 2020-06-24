@@ -51,7 +51,6 @@ const updateActiveChallengeWithClient = (levelSlotId: string, payload: Challenge
     mutation: GQL_MUTATION_UPDATE_ACTIVE_CHALLENGE,
     variables: { levelSlotId, payload },
     errorPolicy: "ignore",
-    refetchQueries: ["GetCurrentWorld"],
   });
 
 export default updateActiveChallengeWithClient;

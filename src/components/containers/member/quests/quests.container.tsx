@@ -16,7 +16,6 @@ import {
 import { getActiveLevel, getCurrentLevel } from "../../../../redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "../../../../redux/streaks/streaks.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
-import BlurProvider from "../../../atoms/blur/blur-provider";
 import {
   ChallengeExitScreen,
   ChallengeFailedScreen,
@@ -26,9 +25,7 @@ import {
   ChallengeCompleteScreen,
 } from "../../../screens";
 import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/quests-screen.container";
-import { useQuery } from "@apollo/react-hooks";
-import { GetCurrentWorld } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_CURRENT_WORLD } from "@graphql/challenges";
+import { BlurProvider } from "@atoms/index";
 
 export type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -53,10 +50,6 @@ const QuestsContainer: FC<Props> = (props) => {
     isLoading,
   } = activeLevel;
 
-  const { loading, data, refetch } = useQuery<GetCurrentWorld>(GQL_QUERY_GET_CURRENT_WORLD, {
-    fetchPolicy: "network-only",
-  });
-
   const currentWorld = useMemo(() => getCurrentWorld(level), [level]);
   const screenProps = useMemo(
     () => ({
@@ -74,10 +67,9 @@ const QuestsContainer: FC<Props> = (props) => {
         dispatch(displayStreaksCompletedAction());
       }
 
-      refetch();
       dispatch(challengeResetAction());
     },
-    [refetch, dispatch]
+    [dispatch]
   );
 
   if (Style.isIPad()) {
@@ -93,11 +85,11 @@ const QuestsContainer: FC<Props> = (props) => {
         reward={coins}
         score={score}
         unit={unit as any}
-        loading={loading}
+        loading={false}
         copy={copy.success}
       />
     ) : (
-      <ChallengeFailedScreen level={level} onPress={handleResetChallenge} loading={loading} copy={copy.failed} />
+      <ChallengeFailedScreen level={level} onPress={handleResetChallenge} loading={false} copy={copy.failed} />
     );
   }
 
@@ -144,8 +136,6 @@ const QuestsContainer: FC<Props> = (props) => {
   return (
     <QuestsScreenContainer
       {...screenProps}
-      loading={loading}
-      data={data}
       showCompletedLevel={features.showCompletedLevel}
       showChestModalCopy={copy.showChestModal}
     />

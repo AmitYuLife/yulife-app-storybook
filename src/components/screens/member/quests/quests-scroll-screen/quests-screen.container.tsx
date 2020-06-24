@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react";
 import { GetCurrentWorld } from "@graphql/_core/schema";
-import { Loading } from "@atoms/index";
 import QuestsScreen from "./quests-screen";
 import { submitUnityAction } from "@redux/levels/levels.actions";
 import moment from "moment";
@@ -16,6 +15,9 @@ import {
   showLevelUnavailableModal,
   getActionConditions,
 } from "./quests-screen.container.helpers";
+import { useQuery } from "@apollo/react-hooks";
+import { GQL_QUERY_GET_CURRENT_WORLD } from "@graphql/challenges";
+import { Loading } from "@atoms/index";
 
 function isAvailable(nextAvailableAt: string): boolean {
   const nextAvailable = nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
@@ -75,8 +77,6 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface Props extends ConnectedDispatch, ConnectedState, IConnectedScreenProps {
   componentId: string;
-  data: GetCurrentWorld;
-  loading: boolean;
   currentLevel: number;
   showCompletedLevel: boolean;
   showChestModalCopy: {
@@ -89,8 +89,6 @@ interface Props extends ConnectedDispatch, ConnectedState, IConnectedScreenProps
 
 function QuestsScreenContainer(props: Props) {
   const {
-    data,
-    loading,
     challengesStatus,
     nextLevelAvailableAt,
     componentId,
@@ -106,6 +104,10 @@ function QuestsScreenContainer(props: Props) {
   const hideUnity = useCallback(() => {
     setUnity(null);
   }, []);
+
+  const { loading, data } = useQuery<GetCurrentWorld>(GQL_QUERY_GET_CURRENT_WORLD, {
+    fetchPolicy: "network-only",
+  });
 
   if (loading) {
     return <Loading />;

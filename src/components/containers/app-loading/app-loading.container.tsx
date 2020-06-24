@@ -7,7 +7,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import client from "@graphql/_core/client";
 import { GQL_QUERY_GET_REWARDS } from "@graphql/rewards";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
-import { GQL_QUERY_LEADERBOARD } from "@graphql/member";
 
 interface IProps {
   componentId: string;
@@ -38,12 +37,6 @@ export const AppLoadingContainer: React.FC<IProps> = () => {
       client()
         .query({
           query: GQL_QUERY_GET_REWARDS,
-          fetchPolicy: "network-only",
-        })
-        .catch(() => null);
-      client()
-        .query({
-          query: GQL_QUERY_LEADERBOARD,
           fetchPolicy: "network-only",
         })
         .catch(() => null);
