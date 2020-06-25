@@ -9,22 +9,15 @@ export default StyleSheet.create({
   elementWrapper: {
     flex: 1,
   } as ViewStyle,
-  fullAvatarWrapper: {
-    height: Style.SCALE_UP_AND_DOWN(248),
+  avatarWrapper: {
+    height: Style.adjust(248),
     width: "100%",
     alignItems: "center",
     justifyContent: "flex-end",
-    flexDirection: "column",
-    backgroundColor: "#FFFFFF",
-    paddingBottom: Style.SCALE_UP_AND_DOWN(8),
+    overflow: "hidden",
   } as ViewStyle,
-  halfAvatarWrapper: {
-    height: Style.SCALE_UP_AND_DOWN(248),
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    flexDirection: "column",
-    backgroundColor: "#FFFFFF",
+  fullAvatarWrapper: {
+    paddingBottom: Style.SCALE_UP_AND_DOWN(8),
   } as ViewStyle,
   bodyElementsListTest: {
     height: Style.SCALE_UP_AND_DOWN(50),
