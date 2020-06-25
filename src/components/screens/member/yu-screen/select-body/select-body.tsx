@@ -1,15 +1,14 @@
 import { Button } from "@atoms/index";
-import * as React from "react";
-import { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useState } from "react";
-import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView, Text, TouchableOpacity, View, BackHandler } from "react-native";
 import FemaleBody from "../svg/female-body";
 import MaleBody from "../svg/male-body";
 import styles from "./select-body.styles";
 import AvatarHeading from "../avatar-builder/avatar-heading";
 import { AvatarBuilderHeading } from "../avatar-builder/avatar.types";
 
-type SelectedBody = "None" | "Male" | "Female";
+export type SelectedBody = "None" | "Male" | "Female";
 
 interface IProps {
   onMaleBodySelected: () => void;
@@ -50,9 +49,22 @@ function SelectBody({
     [onContinue, onMaleBodySelected, onFemaleBodySelected]
   );
 
+  const backHandler = useCallback(() => {
+    onExitConfirmed();
+    return true;
+  }, [onExitConfirmed]);
+
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", backHandler);
+
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", backHandler);
+    };
+  }, [backHandler]);
+
   return (
     <SafeAreaView style={styles.wrapper}>
-      <AvatarHeading heading={heading} onDonePresed={() => ({})} onXPressed={onExitConfirmed} />
+      <AvatarHeading heading={heading} onDonePressed={() => ({})} onXPressed={onExitConfirmed} hasBackButton={false} />
       <View style={styles.elementWrapper}>
         <View style={styles.selectorWrapper}>
           <TouchableOpacity onPress={selectMaleBody}>
