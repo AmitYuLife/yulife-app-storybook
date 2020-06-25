@@ -10,9 +10,11 @@ import { Style } from "@styles/index";
 interface IProps {
   avatars: IAvatar[];
 }
+const MULTIPLIER = 1.1;
 
-const BODY_AVATAR_HEIGHT = Style.SCALE_UP_AND_DOWN(150);
-const BODY_AVATAR_WIDTH = Style.SCALE_UP_AND_DOWN(53);
+const BODY_AVATAR_HEIGHT = Style.SCALE_UP_AND_DOWN(150 * MULTIPLIER);
+const BODY_AVATAR_WIDTH = Style.SCALE_UP_AND_DOWN(53 * MULTIPLIER);
+const VIEWBOX_MIN_Y = 40;
 
 export default function LeaderboardTop({ avatars }: IProps) {
   return (
@@ -46,7 +48,7 @@ function Avatar({ avatar }: { avatar: IAvatar }) {
         showElipse={false}
         width={BODY_AVATAR_WIDTH}
         height={BODY_AVATAR_HEIGHT}
-        viewBox="0 0 265 553"
+        viewBox={`0 ${VIEWBOX_MIN_Y} 265 553`}
       />
     </View>
   );
