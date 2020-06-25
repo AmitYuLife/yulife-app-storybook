@@ -23,19 +23,12 @@ import { IAvatar, Category, AvatarBuilderHeading } from "./avatar.types";
 
 interface IProps {
   avatar: IAvatar;
-  updateAvatarInProgress: boolean;
   updateUserAvatar: (avatar: IAvatar) => void;
-  onExitConfirmed: () => void;
+  onBackPressed: () => void;
   heading: AvatarBuilderHeading;
 }
 
-const AvatarBuilder: FC<IProps> = ({
-  avatar: defaultAvatar,
-  onExitConfirmed,
-  updateAvatarInProgress,
-  updateUserAvatar,
-  heading,
-}) => {
+const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updateUserAvatar, heading }) => {
   const [bodyItemType, setBodyItemType] = useState(AvatarPartType.body);
   const [category, setCategory] = useState<Category>("colors");
   const [avatarPreview, setAvatarPreview] = useState("0 0 265 544");
@@ -53,22 +46,14 @@ const AvatarBuilder: FC<IProps> = ({
     if (!isBackButtonPressed) {
       if (!isDoneModalShown) {
         setBackPressed(true);
-        showExitModal(onExitConfirmed, setBackPressed, updateAvatarInProgress);
-
+        onBackPressed();
         return true;
       }
       setDoneModalShown(false);
     }
     setBackPressed(false);
     return false;
-  }, [
-    setBackPressed,
-    setDoneModalShown,
-    isBackButtonPressed,
-    isDoneModalShown,
-    onExitConfirmed,
-    updateAvatarInProgress,
-  ]);
+  }, [setBackPressed, setDoneModalShown, isBackButtonPressed, isDoneModalShown, onBackPressed]);
 
   useEffect(() => {
     BackHandler.addEventListener("hardwareBackPress", backButtonHandler);
@@ -181,15 +166,16 @@ const AvatarBuilder: FC<IProps> = ({
     <SafeAreaView style={styles.wrapper}>
       <AvatarHeading
         heading={heading}
-        onDonePresed={() => {
+        onDonePressed={() => {
           showDoneModal(() => updateUserAvatar(avatar), setBackPressed, setDoneModalShown);
           setDoneModalShown(true);
         }}
-        onXPressed={() => {
+        onBackPressed={() => {
           setBackPressed(true);
-          showExitModal(onExitConfirmed, setBackPressed, updateAvatarInProgress);
+          onBackPressed();
         }}
         showDoneButton={true}
+        hasBackButton={true}
       />
       <View style={styles.elementWrapper}>
         <View style={bodyItemType === AvatarPartType.body ? styles.fullAvatarWrapper : styles.halfAvatarWrapper}>
@@ -295,31 +281,6 @@ const AvatarBuilder: FC<IProps> = ({
     </SafeAreaView>
   );
 };
-
-function showExitModal(
-  onExitConfirmed: () => void,
-  setBackPressed: (value: boolean) => void,
-  updateAvatarInProgress: boolean
-) {
-  Navigation.showModal({
-    component: {
-      id: MODALS.generic,
-      name: MODALS.generic,
-      passProps: {
-        onPress: () => {
-          setBackPressed(false);
-          Navigation.dismissModal(MODALS.generic);
-        },
-        heading: "Exit avatar builder?",
-        subheading: "Are you sure you want to exit? You will lose any unsaved changes.",
-        ctaLabel: "Keep Editing",
-        ctaLabelSecondary: "Exit",
-        onPressSecondary: onExitConfirmed,
-        isPrimaryLoading: updateAvatarInProgress,
-      },
-    },
-  });
-}
 
 function showDoneModal(
   updateUserAvatar: () => void,

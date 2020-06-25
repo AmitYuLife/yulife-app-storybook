@@ -1,22 +1,25 @@
 import * as React from "react";
 import { View, TouchableOpacity, Image } from "react-native";
 import styles from "./avatar-heading.styles";
-import { Text } from "@atoms/index";
+import { Text, Back } from "@atoms/index";
 
 interface IProps {
   heading: string;
-  onDonePresed: () => void;
-  onXPressed: () => void;
+  onDonePressed: () => void;
+  onBackPressed?: () => void;
+  onXPressed?: () => void;
   showDoneButton?: boolean;
+  hasBackButton: boolean;
 }
 
-function AvatarHeading({ heading, onDonePresed, onXPressed, showDoneButton }: IProps) {
+function AvatarHeading({ heading, onDonePressed, onXPressed, onBackPressed, showDoneButton, hasBackButton }: IProps) {
+  const onPressHandler = hasBackButton ? onBackPressed : onXPressed;
   return (
     <View style={styles.paddingHorizontal}>
       <View style={styles.headingWrapper}>
-        <TouchableOpacity onPress={onXPressed}>
+        <TouchableOpacity onPress={onPressHandler}>
           <View style={styles.exitButtonWrapper}>
-            <Image source={require("../../../../../../assets/icons/close.png")} />
+            {hasBackButton ? <Back /> : <Image source={require("../../../../../../assets/icons/close.png")} />}
           </View>
         </TouchableOpacity>
         <Text numberOfLines={1} style={styles.heading}>
@@ -25,7 +28,7 @@ function AvatarHeading({ heading, onDonePresed, onXPressed, showDoneButton }: IP
         {!showDoneButton ? (
           <View />
         ) : (
-          <TouchableOpacity style={{ alignSelf: "center" }} onPress={onDonePresed}>
+          <TouchableOpacity style={{ alignSelf: "center" }} onPress={onDonePressed}>
             <Text style={styles.done}>Done</Text>
           </TouchableOpacity>
         )}

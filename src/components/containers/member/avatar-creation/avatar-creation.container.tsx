@@ -1,4 +1,4 @@
-import SelectBody from "@screens/member/yu-screen/select-body/select-body";
+import SelectBody, { SelectedBody } from "@screens/member/yu-screen/select-body/select-body";
 import * as React from "react";
 import { connect } from "react-redux";
 import { SaveAvatarMutationTuple, GQL_MUTATION_SAVE_AVATAR } from "@graphql/yuscreen";
@@ -43,6 +43,7 @@ type Props = IProps & ConnectedState & ConnectedDispatch;
 
 const AvatarCreationContainer: React.FC<Props> = (props) => {
   const [bodySelected, setBodySelected] = React.useState(false);
+  const [bodyType, setBodyType] = React.useState<SelectedBody>(null);
 
   const handleBodySelected = React.useCallback(() => setBodySelected(true), []);
 
@@ -57,10 +58,9 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
     avatarFromLocal,
   } = props;
 
-  const [
-    updateUserAvatar,
-    { loading: updateAvatarInProgress },
-  ]: SaveAvatarMutationTuple = useMutation(GQL_MUTATION_SAVE_AVATAR, { refetchQueries: ["GetLeaderboard"] });
+  const [updateUserAvatar]: SaveAvatarMutationTuple = useMutation(GQL_MUTATION_SAVE_AVATAR, {
+    refetchQueries: ["GetLeaderboard"],
+  });
 
   const handleAvatarUpdate = React.useCallback(
     async (avatarToSave: IAvatar) => {
@@ -104,8 +104,9 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
       <AvatarBuilder
         avatar={avatar}
         updateUserAvatar={handleAvatarUpdate}
-        onExitConfirmed={onExitConfirmed}
-        updateAvatarInProgress={updateAvatarInProgress}
+        onBackPressed={() => {
+          setBodySelected(false);
+        }}
         heading={heading}
       />
     );
@@ -113,14 +114,41 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
 
   return (
     <SelectBody
-      onMaleBodySelected={dispatchMaleBodySelected}
-      onFemaleBodySelected={dispatchFemaleBodySelected}
+      onMaleBodySelected={() => {
+        setBodyType("Male");
+        dispatchMaleBodySelected();
+      }}
+      onFemaleBodySelected={() => {
+        setBodyType("Female");
+        dispatchFemaleBodySelected();
+      }}
       onContinue={handleBodySelected}
-      onExitConfirmed={onExitConfirmed}
+      onExitConfirmed={() => showExitModal(onExitConfirmed)}
       heading={heading}
-      bodyType={!avatarFromLocal ? "None" : avatarFromLocal.head.partId.includes("female") ? "Female" : "Male"}
+      bodyType={
+        bodyType || (!avatarFromLocal ? "None" : avatarFromLocal.head.partId.includes("female") ? "Female" : "Male")
+      }
     />
   );
+};
+
+const showExitModal = (onExitConfirmed: () => void) => {
+  Navigation.showModal({
+    component: {
+      id: MODALS.generic,
+      name: MODALS.generic,
+      passProps: {
+        onPress: () => {
+          Navigation.dismissModal(MODALS.generic);
+        },
+        heading: "Exit avatar builder?",
+        subheading: "Are you sure you want to exit? You will lose any unsaved changes.",
+        ctaLabel: "Keep Editing",
+        ctaLabelSecondary: "Exit",
+        onPressSecondary: onExitConfirmed,
+      },
+    },
+  });
 };
 
 const onExitConfirmed = () => {
