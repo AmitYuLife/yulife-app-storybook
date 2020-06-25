@@ -5,7 +5,6 @@ import { StyleSheet, View, Animated, TouchableWithoutFeedback } from "react-nati
 import styles from "./leaderboard-item.styles";
 import { IAvatar } from "../../yu-screen/avatar-builder/avatar.types";
 import { LeaderboardHeadAvatar } from "../../yu-screen/svg/body";
-import { IBodyItem } from "../../../../../redux/avatar/avatar.reducer";
 import { FirstPlace, SecondPlace, ThirdPlace, EmptyHead } from "../svg/leaderboard";
 import { LEADERBOARD_NAME } from "@ids";
 
@@ -67,7 +66,7 @@ export default function LeaderboardItem({
             </View>
           ) : (
             <View style={[styles.avatarHeadWrapper, lockedCellAvatarStyle]}>
-              <LeaderboardHeadAvatar avatar={avatar as Record<keyof IAvatar, IBodyItem>} width={40} height={40} />
+              <LeaderboardHeadAvatar avatar={avatar} height={40} width={40} viewBox="4 30 254 150" />
             </View>
           )}
           <View style={styles.nameWrapper}>

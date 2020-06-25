@@ -78,12 +78,12 @@ export const BodyAvatar = ({ avatar, showElipse, height, width, viewBox }: IProp
   );
 };
 
-export const LeaderboardHeadAvatar = ({ avatar, height, width }: IProps) => {
+export const LeaderboardHeadAvatar = ({ avatar, height, width, viewBox = "19 30 230 150" }: IProps) => {
   return (
     <Svg
       width={String(Style.adjust(width ? width : 248))}
       height={String(Style.adjust(height ? height : 248))}
-      viewBox={"19 30 230 150"}
+      viewBox={viewBox}
       fill="none"
     >
       {renderPart(avatar.head)}
