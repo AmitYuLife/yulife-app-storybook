@@ -70,7 +70,7 @@ export const tooltipStyles = StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   questsNavCaret: {
-    right: Style.SCALE_UP_AND_DOWN(70),
+    right: Style.SCALE_UP_AND_DOWN(124),
   } as ViewStyle,
   streaksTooltip: {
     top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 175 : 145),
@@ -80,9 +80,9 @@ export const tooltipStyles = StyleSheet.create({
     left: Style.SCALE_UP_AND_DOWN(180),
   } as ViewStyle,
   leaderboardCaret: {
-    left: Style.SCALE_UP_AND_DOWN(70),
+    left: Style.SCALE_UP_AND_DOWN(128),
   } as ViewStyle,
   rewardsCaret: {
-    left: Style.SCALE_UP_AND_DOWN(230),
+    left: Style.SCALE_UP_AND_DOWN(262),
   } as ViewStyle,
 });
