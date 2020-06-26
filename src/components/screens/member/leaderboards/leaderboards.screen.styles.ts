@@ -2,6 +2,7 @@ import { ImageStyle, StyleSheet, ViewStyle, Platform } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../styles";
 import { TopBar } from "@components/molecules";
+import deviceInfoModule from "react-native-device-info";
 
 const VIEWBOX_MIN_X = 10;
 const VIEWBOX_MIN_Y = 80;
@@ -151,4 +152,18 @@ export default StyleSheet.create({
     right: 0,
     height: Platform.select({ ios: undefined, android: 50 }), // w/o defining height on Android, the buttons won't be touchable
   } as ViewStyle,
+  listFullWidth: {
+    width: Style.DEVICE_WIDTH,
+  } as ViewStyle,
+  contentContainer: {
+    paddingBottom: getContentContainerPaddingBottom(),
+  } as ViewStyle,
 });
+
+function getContentContainerPaddingBottom() {
+  const NOTCHED_IOS_MAGIC_NUMBER = 44;
+  if (Platform.OS === "ios" && deviceInfoModule.hasNotch()) {
+    return NOTCHED_IOS_MAGIC_NUMBER;
+  }
+  return 0;
+}

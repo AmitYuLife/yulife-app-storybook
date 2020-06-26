@@ -208,10 +208,8 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
                 data={items[0]?.id !== "first_element" ? [this.itemForPad].concat(items) : items}
                 renderItem={this.renderIndexPath}
                 horizontal={false}
-                style={{ width: Style.DEVICE_WIDTH }}
-                contentContainerStyle={{
-                  paddingBottom: Style.adjust(20, { shrinkThreshold: !Style.isAnyIphoneX(), shrinkMultiplier: 0.3 }),
-                }}
+                style={styles.listFullWidth}
+                contentContainerStyle={styles.contentContainer}
                 scrollEventThrottle={16}
                 onScroll={Animated.event(
                   [
