@@ -1,5 +1,6 @@
 import { Style } from "@styles/index";
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
+import deviceInfoModule from "react-native-device-info";
 
 const styles = StyleSheet.create({
   labelsWrapper: {
@@ -34,8 +35,8 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   outerWrapper: {
     position: "absolute",
-    left: Style.SCALE_UP_AND_DOWN(10),
-    right: Style.SCALE_UP_AND_DOWN(10),
+    left: Style.adjust(10),
+    right: Style.adjust(10),
     // ios box shadow
     shadowColor: "#000",
     shadowOffset: {
@@ -49,6 +50,14 @@ const styles = StyleSheet.create({
     elevation: 2,
   } as ViewStyle,
 });
+
+export const getPositionBottom = (options = { additionalBottom: 0 }) => {
+  const { additionalBottom } = options;
+  if (Platform.OS === "ios" && deviceInfoModule.hasNotch()) {
+    return 30;
+  }
+  return Style.adjust(20) + additionalBottom;
+};
 
 export function getLabelAdjustment(index: number) {
   switch (index) {

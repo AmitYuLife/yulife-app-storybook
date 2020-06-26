@@ -63,6 +63,7 @@ jest.mock("react-native-device-info", () => ({
   getDeviceName: jest.fn(),
   getDeviceId: jest.fn(),
   getModel: jest.fn(),
+  hasNotch: jest.fn(),
 }));
 
 jest.mock("@react-native-community/push-notification-ios", () => ({

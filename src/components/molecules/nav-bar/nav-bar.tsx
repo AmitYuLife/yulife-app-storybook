@@ -1,11 +1,9 @@
+import React, { memo, useState, useCallback } from "react";
 import { labels as defaultLabels } from "@navigation/root";
-import { Style } from "@styles/index";
-import React, { useState } from "react";
 import { StyleSheet, View, Platform } from "react-native";
-import { isIphoneX } from "react-native-iphone-x-helper";
 import { Giraffe, Scroll, Treasure, Yu } from "./assets";
 import Trophy from "./assets/trophy";
-import styles from "./nav-bar.styles";
+import styles, { getPositionBottom } from "./nav-bar.styles";
 import useInterval from "@use-it/interval";
 
 export interface ILabel {
@@ -26,7 +24,7 @@ interface IProps {
 
 type HighlightedLabel = "yucoin" | "quests" | "yu" | "leaderboard" | "rewards";
 
-export default function NavBar(props: IProps) {
+const NavBar = memo(function (props: IProps) {
   const [pressed, setPressed] = useState(0);
   const [hasLaidOut, setHasLaidOut] = useState(false);
   const [displayElevation, setDisplayElevation] = useState(false);
@@ -37,13 +35,13 @@ export default function NavBar(props: IProps) {
     displayElevation || !hasLaidOut || Platform.OS === "ios" ? null : 1000
   );
   const { activeIndex, hasNotification, labels = defaultLabels, highlightedLabel, additionalBottom = 0 } = props;
+  const handleLayout = useCallback(() => {
+    setHasLaidOut(true);
+  }, []);
   return (
     <View
-      onLayout={() => setHasLaidOut(true)}
-      style={StyleSheet.flatten([
-        styles.outerWrapper,
-        { bottom: Style.SCALE_UP_AND_DOWN((isIphoneX() ? 30 : 20) + additionalBottom) },
-      ])}
+      onLayout={handleLayout}
+      style={StyleSheet.flatten([styles.outerWrapper, { bottom: getPositionBottom({ additionalBottom }) }])}
     >
       <View style={[styles.wrapper, displayElevation && styles.elevation]}>
         <Giraffe
@@ -92,4 +90,6 @@ export default function NavBar(props: IProps) {
       onPress();
     };
   }
-}
+});
+
+export default NavBar;
