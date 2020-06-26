@@ -1,13 +1,15 @@
 import * as React from "react";
-import Svg, { Polygon } from "react-native-svg";
+import { SvgFromXml } from "react-native-svg";
 import { BACK_BUTTON } from "@ids";
 
+const svgXml = `<svg width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 13L16 7" stroke="#333333" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.5L9 13" stroke="#333333" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
 function Back() {
-  return (
-    <Svg viewBox="0 0 23 41" height={String(41 * 0.5)} width={String(23 * 0.5)} testID={BACK_BUTTON}>
-      <Polygon fill="#333" points="20.5,40.6 0.4,20.5 20.5,0.4 22.6,2.6 4.7,20.5 22.6,38.4 " />
-    </Svg>
-  );
+  return <SvgFromXml xml={svgXml} testID={BACK_BUTTON} />;
 }
 
 export default Back;

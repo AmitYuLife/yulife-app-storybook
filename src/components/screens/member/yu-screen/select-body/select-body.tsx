@@ -1,11 +1,10 @@
-import { Button } from "@atoms/index";
 import React, { useCallback, useEffect } from "react";
+import { Button, GenericHeading } from "@atoms";
 import { useState } from "react";
 import { SafeAreaView, Text, TouchableOpacity, View, BackHandler } from "react-native";
 import FemaleBody from "../svg/female-body";
 import MaleBody from "../svg/male-body";
 import styles from "./select-body.styles";
-import AvatarHeading from "../avatar-builder/avatar-heading";
 import { AvatarBuilderHeading } from "../avatar-builder/avatar.types";
 
 export type SelectedBody = "None" | "Male" | "Female";
@@ -64,7 +63,7 @@ function SelectBody({
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <AvatarHeading heading={heading} onDonePressed={() => ({})} onXPressed={onExitConfirmed} hasBackButton={false} />
+      <GenericHeading heading={heading} onLeftIconPress={onExitConfirmed} border="new" leftIcon="CLOSE" />
       <View style={styles.elementWrapper}>
         <View style={styles.selectorWrapper}>
           <TouchableOpacity onPress={selectMaleBody}>

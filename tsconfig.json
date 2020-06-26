@@ -13,6 +13,7 @@
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["./assets/*"],
+      "@atoms": ["./src/components/atoms/index"],
       "@atoms/*": ["./src/components/atoms/*"],
       "@components/*": ["./src/components/*"],
       "@containers/*": ["./src/components/containers/*"],

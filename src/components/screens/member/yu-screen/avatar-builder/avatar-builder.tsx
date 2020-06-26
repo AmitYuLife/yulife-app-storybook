@@ -1,7 +1,7 @@
-import { Button, Text } from "@atoms/index";
+import { Button, Text, GenericHeading } from "@atoms/index";
 import { useQuery } from "@apollo/react-hooks";
 import Logger from "@services/logging/logger";
-import * as React from "react";
+import React from "react";
 import { useState, useRef, useCallback, useEffect, useMemo, FC } from "react";
 import { FlatList, SafeAreaView, View, BackHandler, Animated } from "react-native";
 import { AvatarPartType } from "@graphql/_core/schema/globalTypes";
@@ -13,7 +13,6 @@ import { BodyAvatar } from "../svg/body";
 import { loadingColorData, loadingItemData, parseBodyParts, addExtraData } from "./avatar-builder.helper";
 import styles from "./avatar-builder.styles";
 import BodyItem from "./body-item";
-import AvatarHeading from "./avatar-heading";
 import PartItem from "./items/part-item";
 import ColorItem from "./items/color-item";
 import { Navigation } from "react-native-navigation";
@@ -180,18 +179,19 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <AvatarHeading
+      <GenericHeading
+        leftIcon="CLOSE"
         heading={heading}
-        onDonePressed={() => {
-          showDoneModal(() => updateUserAvatar(avatar), setBackPressed, setDoneModalShown);
-          setDoneModalShown(true);
-        }}
-        onBackPressed={() => {
+        onLeftIconPress={() => {
           setBackPressed(true);
           onBackPressed();
         }}
-        showDoneButton={true}
-        hasBackButton={true}
+        onRightIconPress={() => {
+          showDoneModal(() => updateUserAvatar(avatar), setBackPressed, setDoneModalShown);
+          setDoneModalShown(true);
+        }}
+        rightIcon="Done"
+        border="new"
       />
       <View style={styles.elementWrapper}>
         <View style={styles.avatarWrapper}>
