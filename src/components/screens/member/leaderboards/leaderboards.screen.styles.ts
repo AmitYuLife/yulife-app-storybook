@@ -161,9 +161,9 @@ export default StyleSheet.create({
 });
 
 function getContentContainerPaddingBottom() {
-  const NOTCHED_IOS_MAGIC_NUMBER = 44;
+  const NOTCHED_IOS_MAGIC_NUMBER = 48;
   if (Platform.OS === "ios" && deviceInfoModule.hasNotch()) {
     return NOTCHED_IOS_MAGIC_NUMBER;
   }
-  return 0;
+  return 8;
 }

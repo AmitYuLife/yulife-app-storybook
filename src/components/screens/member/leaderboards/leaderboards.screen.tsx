@@ -287,9 +287,8 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
   private handleScrollToMyRow = (index: number) => {
     return () => {
       this.animatedFlatListRef.scrollToIndex({
-        viewPosition: 1,
         animated: true,
-        index: index + Platform.select({ ios: deviceInfo.hasNotch() ? 4 : 3, android: 2 }),
+        index,
       });
     };
   };
