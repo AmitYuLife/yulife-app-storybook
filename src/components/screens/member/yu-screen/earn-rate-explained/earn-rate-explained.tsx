@@ -1,6 +1,6 @@
 import { GenericHeading } from "@atoms/index";
 import React from "react";
-import { View, SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { View, SafeAreaView, ScrollView, StyleSheet, ViewStyle } from "react-native";
 import {
   GetYulifer_getYulifer_products,
   GetYulifer_getYulifer_products_employer,
@@ -22,17 +22,16 @@ interface IProps {
   loading: boolean;
 }
 
-function YuScreenEarnRate({ products, onExitConfirmed, onProductDetails, explainData, earnRate }: IProps) {
+function YuScreenEarnRate({ products, onExitConfirmed, onProductDetails, explainData, earnRate, loading }: IProps) {
   const isAlpha = products.charms.length && !products.employer.length;
-
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.background}>
       <GenericHeading heading="Your YuCoin" onLeftIconPress={onExitConfirmed} />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView style={styles.background} showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
           <Card isAlpha={isAlpha} earnRate={earnRate} />
-          <Products earnRate={earnRate} onProductDetails={onProductDetails} products={products} />
-          <EarnRateTable earnRate={earnRate} explainData={explainData} />
+          <EarnRateTable earnRate={earnRate} explainData={explainData} loading={loading} />
+          <Products onProductDetails={onProductDetails} products={products} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -42,6 +41,9 @@ function YuScreenEarnRate({ products, onExitConfirmed, onProductDetails, explain
 export default YuScreenEarnRate;
 
 const styles = StyleSheet.create({
+  background: {
+    backgroundColor: "#FAFAFE",
+  } as ViewStyle,
   wrapper: {
     display: "flex",
     flexDirection: "column",

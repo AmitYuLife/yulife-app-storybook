@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Image, ImageStyle } from "react-native";
+import { Style } from "@styles";
 
 type Style = ImageStyle & { color?: string };
 
@@ -8,12 +9,12 @@ interface IProps {
 }
 
 function YuCoinIcon({ style }: IProps = {}) {
-  const { color = "#686868", ...otherStyles } = style;
+  const { color = "#EA9E2F", ...otherStyles } = style;
 
   return (
     <Image
       style={StyleSheet.flatten([styles.image, otherStyles, { tintColor: color }])}
-      source={require("../../../../../../../assets/stats/yucoin.png")}
+      source={require("@assets/yuscreen/todays-yucoin.png")}
     />
   );
 }
@@ -22,7 +23,7 @@ export default YuCoinIcon;
 
 const styles = StyleSheet.create({
   image: {
-    width: 18,
-    height: 18,
+    width: Style.adjust(18),
+    height: Style.adjust(18),
   } as ImageStyle,
 });

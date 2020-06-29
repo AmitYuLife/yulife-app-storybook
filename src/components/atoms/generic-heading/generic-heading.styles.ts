@@ -3,13 +3,18 @@ import { Colours, Style } from "../../../styles";
 
 const styles = StyleSheet.create({
   heading: {
-    fontSize: Style.adjust(20),
+    fontSize: 20,
   } as TextStyle,
+  titleWrapper: {
+    marginTop: Platform.select({ ios: 0, android: -4 }),
+  } as ViewStyle,
   headingWrapper: {
     alignItems: "center",
     borderBottomColor: "rgb(233,233,233)",
     borderBottomWidth: StyleSheet.hairlineWidth,
     paddingTop: Style.adjust(17),
+    height: 54,
+    justifyContent: "center",
   } as ViewStyle,
   paddingBottom: {
     paddingBottom: Style.adjust(13),
@@ -26,7 +31,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   leftIcon: {
     position: "absolute",
-    top: Platform.select({ ios: Style.adjust(18), android: Style.SCALE_Y_UP_AND_DOWN(22) }),
+    top: Style.adjust(18, { shrinkMultiplier: 0.05 }),
     alignSelf: "flex-start",
     height: Style.adjust(32),
     width: Style.adjust(32),

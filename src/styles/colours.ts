@@ -141,5 +141,6 @@ export default {
   yuscreen: {
     earnRateBackground: "#FFDB42",
     white: "#FFFFFF",
+    brown: "#EA9E2F",
   },
 };

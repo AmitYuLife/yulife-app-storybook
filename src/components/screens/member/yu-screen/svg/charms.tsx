@@ -1,5 +1,5 @@
 import React from "react";
-import { SvgXml } from "react-native-svg";
+import { SvgXml, NumberProp } from "react-native-svg";
 import { Style } from "@styles";
 import { StyleProp, ViewStyle, TextStyle, View, Text } from "react-native";
 
@@ -7,12 +7,12 @@ interface ICharmsIconProps {
   active: boolean;
   icon: string;
   xmlStyle?: StyleProp<ViewStyle>;
-  rateViewStyle: StyleProp<ViewStyle>;
-  rateTextStyle: StyleProp<TextStyle>;
+  rateViewStyle?: StyleProp<ViewStyle>;
+  rateTextStyle?: StyleProp<TextStyle>;
   earnRate: number;
   showEarnRate?: boolean;
-  height?: string;
-  width?: string;
+  height?: NumberProp;
+  width?: NumberProp;
 }
 
 const alphaActive = `<svg width="77" height="77" viewBox="0 0 77 77" fill="none">
@@ -83,13 +83,13 @@ export default (props: ICharmsIconProps) => {
     icon,
     active,
     showEarnRate = true,
-    height = String(Style.SCALE_UP_AND_DOWN(95)),
-    width = String(Style.SCALE_UP_AND_DOWN(95)),
+    height = Style.adjust(95),
+    width = Style.adjust(95),
   } = props;
   const iconXml = getXmlStringFromIcon(icon, active);
 
   return (
-    <View>
+    <View style={{ height, width: 58 }}>
       <SvgXml xml={iconXml} width={width} height={height} />
       {showEarnRate ? (
         <View style={rateViewStyle}>
