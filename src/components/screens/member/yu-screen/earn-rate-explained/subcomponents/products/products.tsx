@@ -9,11 +9,11 @@ import {
 } from "@graphql/_core/schema";
 import mainStyles from "../main.styles";
 import ProductItem from "./product.item";
+import { TextWithBoldText } from "@components/molecules";
 
 type ProductType = "employer" | "personal" | string;
 
 interface IProps {
-  earnRate: number;
   products: GetYulifer_getYulifer_products;
   onProductDetails: (
     product: GetYulifer_getYulifer_products_employer | GetYulifer_getYulifer_products_personal,
@@ -21,8 +21,25 @@ interface IProps {
   ) => () => void;
 }
 
+interface IFooterTextProps {
+  isAlpha: boolean;
+}
+
+function FooterText({ isAlpha }: IFooterTextProps) {
+  return (
+    <Text style={{ marginTop: 16, marginHorizontal: 16 }}>
+      <TextWithBoldText
+        style={styles.footerText}
+        value={`${
+          !isAlpha ? "" : "As an early adopter alpha user, you get exclusive free access to the app! "
+        }To increase your <bold>earn rate</bold> , check out the products available on your Yu screen. All products come with <bold>power-ups</bold> to your earn rate!`}
+      />
+    </Text>
+  );
+}
+
 function Products(props: IProps) {
-  const { earnRate, products, onProductDetails } = props;
+  const { products, onProductDetails } = props;
 
   return (
     <View style={styles.wrapper}>
@@ -56,11 +73,7 @@ function Products(props: IProps) {
               />
             );
           })}
-          <Text style={StyleSheet.flatten([mainStyles.text, { marginTop: 16 }])}>
-            {products.charms.length
-              ? `As an early adopter Alpha User, you get exclusive free access to the app with a ${earnRate}x YuCoin Earn Rate! To increase your Earn Rate, check out the products available on your YuScreen.`
-              : "To increase your Earn Rate, check out the products available on your YuScreen. All products come with Power-Ups to your Earn Rate!"}
-          </Text>
+          <FooterText isAlpha={products.charms.length > 0} />
         </View>
       )}
     </View>
@@ -74,9 +87,10 @@ const styles = StyleSheet.create({
     backgroundColor: Colours.yuscreen.white,
     marginHorizontal: 16,
     borderRadius: 8,
+    marginBottom: 64,
   },
   header: {
-    color: "#838385",
+    color: "#5A5A5C",
     fontSize: 20,
     letterSpacing: 0.4,
     lineHeight: 24,
@@ -86,5 +100,16 @@ const styles = StyleSheet.create({
   },
   marginBottom: {
     marginBottom: 24,
+  },
+  footerText: {
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    lineHeight: 24,
+    letterSpacing: 1,
+    fontSize: 16,
+    textAlign: "left",
+  },
+
+  boldText: {
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   },
 });

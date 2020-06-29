@@ -8,10 +8,11 @@ configure(() => {
   require("../atoms/heading/heading.stories");
   require("../molecules/text-field/text-field.stories");
   require("../molecules/top-bar/top-bar.stories");
+  require("../screens/member/yu-screen/earn-rate-explained/earn-rate-explained.stories");
 }, module);
 
 const StorybookUIRoot = getStorybookUI({
-  onDeviceUI: true, // true for stories,
+  onDeviceUI: false, // true for stories,
 });
 
 AppRegistry.registerComponent("%APP_NAME%", () => StorybookUIRoot);

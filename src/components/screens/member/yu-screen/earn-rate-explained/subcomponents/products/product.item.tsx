@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { View, TouchableOpacity, StyleSheet } from "react-native";
+import React from "react";
+import { View, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
 import { Text } from "@atoms/index";
 import { Style, Colours } from "@styles";
 import { GetYulifer_getYulifer_products_employer, GetYulifer_getYulifer_products_charms } from "@graphql/_core/schema";
-import mainStyles from "../main.styles";
 import Charm from "../../../svg/charms";
 import EmployerProductIcon from "../../../svg/employer-products";
+import ArrowRight from "./arrow-details";
 
 type Product = GetYulifer_getYulifer_products_employer | GetYulifer_getYulifer_products_charms;
 
@@ -17,85 +17,42 @@ interface IProps {
 
 function ProductItem(props: IProps) {
   const { product, productType, onPressAction } = props;
-  const [marginSeeDetails, setMarginSeeDetails] = useState(DEFAULT_SEE_DETAILS_MARGIN);
   const isCharm = productType === "charm";
-  const isTwoDigits = product.earnRate.toString().length === 2;
-  const extraStyle =
-    isTwoDigits && product.earnRate > 10
-      ? styles.earnRateTextBiggerThanTen
-      : isTwoDigits
-      ? styles.earnRateTextIsTen
-      : {};
 
   return (
     <>
       <View style={styles.wrapper} key={product.icon}>
         {isCharm ? (
-          <View style={{ flex: 1, marginBottom: 8, marginLeft: -8, marginRight: 8 }}>
+          <View style={styles.charmWrapper}>
             <Charm
               active={true}
               icon={product.icon}
-              rateViewStyle={StyleSheet.flatten([styles.earnRateView, styles.charmsRateView])}
-              rateTextStyle={StyleSheet.flatten([styles.earnRateText, styles.charmsRateText, extraStyle])}
+              rateViewStyle={StyleSheet.flatten([styles.rateWrapper, styles.charmPosition])}
+              rateTextStyle={styles.rateText}
               earnRate={product.earnRate}
-              height="77"
-              width="77"
+              height={77}
+              width={77}
             />
           </View>
         ) : (
-          <View style={{ height: 77, width: 64 }}>
+          <View style={styles.employerProducts}>
             <EmployerProductIcon
               active={product.active}
               icon={product.icon}
-              rateViewStyle={StyleSheet.flatten([styles.earnRateView, styles.productsRateView])}
-              rateTextStyle={StyleSheet.flatten([styles.earnRateText, styles.productsRateText, extraStyle])}
+              rateViewStyle={StyleSheet.flatten([styles.rateWrapper, styles.employerPosition])}
+              rateTextStyle={styles.rateText}
               earnRate={product.earnRate}
             />
           </View>
         )}
-        <View
-          style={styles.productsTextWrapper}
-          onLayout={(event) => {
-            const { height } = event.nativeEvent.layout;
-            if (height > DEFAULT_HEIGHT_PRODUCT_NAME) {
-              setMarginSeeDetails(0);
-            }
-          }}
-        >
-          <Text
-            style={StyleSheet.flatten([mainStyles.text, styles.boldText, styles.productsText, { overflow: "visible" }])}
-          >
+        <View style={styles.productsTextWrapper}>
+          <Text bold style={StyleSheet.flatten([styles.description, styles.boldText, styles.productsText])}>
             {isCharm ? "Alpha Charm" : product.name}
           </Text>
-          <Text
-            style={StyleSheet.flatten([mainStyles.text, { marginHorizontal: 0, marginLeft: 16 }])}
-          >{`${product.earnRate}x YuCoin earn rate`}</Text>
+          <Text style={styles.description}>{`${product.earnRate}x YuCoin earn rate`}</Text>
         </View>
-        <TouchableOpacity style={{ justifyContent: "center" }} onPress={onPressAction(product, productType)}>
-          {isCharm ? (
-            <Text
-              style={StyleSheet.flatten([
-                mainStyles.text,
-                styles.boldText,
-                styles.productsText,
-                { overflow: "visible" },
-              ])}
-            >
-              {" "}
-            </Text>
-          ) : (
-            <View style={{ height: marginSeeDetails }}></View>
-          )}
-          <Text
-            style={StyleSheet.flatten([
-              mainStyles.text,
-              styles.boldText,
-              styles.productsText,
-              styles.productsDetailsText,
-            ])}
-          >
-            see details
-          </Text>
+        <TouchableOpacity style={styles.arrowWrapper} onPress={onPressAction(product, productType)}>
+          <ArrowRight />
         </TouchableOpacity>
       </View>
       <View style={styles.bottomSeparator}></View>
@@ -105,17 +62,41 @@ function ProductItem(props: IProps) {
 
 export default ProductItem;
 
-const DEFAULT_SEE_DETAILS_MARGIN = 24;
-const DEFAULT_HEIGHT_PRODUCT_NAME = 77;
 const styles = StyleSheet.create({
   wrapper: {
-    display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
     paddingBottom: 4,
-    marginHorizontal: 16,
+    marginLeft: 16,
     minHeight: 77,
+    paddingLeft: 8,
   },
+  description: {
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    lineHeight: Style.adjust(24),
+    letterSpacing: 0.8,
+    fontSize: Style.adjust(16, { shrinkMultiplier: 0.2 }),
+    textAlign: "left",
+    color: "#5A5A5C",
+  } as TextStyle,
+  rateWrapper: {
+    position: "absolute",
+    backgroundColor: "#FFF598",
+    borderRadius: 200,
+    height: Style.adjust(28),
+    width: Style.adjust(28),
+    justifyContent: "center",
+    alignItems: "center",
+    paddingLeft: Platform.select({ ios: 2, android: 0 }),
+    paddingTop: Platform.select({ ios: 1, android: 0 }),
+    borderWidth: 2,
+    borderColor: "white",
+  } as ViewStyle,
+  rateText: {
+    fontSize: Style.adjust(10),
+    letterSpacing: 0.8,
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+    color: "#EA9E2F",
+  } as TextStyle,
   boldText: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   },
@@ -145,7 +126,7 @@ const styles = StyleSheet.create({
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     lineHeight: 24,
     letterSpacing: 0.8,
-    color: Colours.yuscreen.white,
+    color: Colours.yuscreen.brown,
     position: "relative",
   },
   charmsRateView: {
@@ -168,14 +149,45 @@ const styles = StyleSheet.create({
   },
   productsText: {
     color: "#5A5A5C",
-    marginLeft: 16,
-    marginHorizontal: 0,
   },
   productsTextWrapper: {
     justifyContent: "center",
-    flex: 3,
+    width: 184,
+    marginLeft: 16,
+    marginTop: Platform.select({ ios: 0, android: -16 }),
   },
   productsDetailsText: {
     fontSize: 12,
   },
+  arrowWrapper: {
+    justifyContent: "center",
+    width: 48,
+    marginLeft: "auto",
+  },
+  charmProducts: {
+    marginBottom: 8,
+    marginLeft: -8,
+    marginRight: 8,
+  } as ViewStyle,
+  charmPosition: {
+    bottom: 16,
+    right: -20,
+  } as ViewStyle,
+  employerPosition: {
+    bottom: 8,
+    right: -8,
+  } as ViewStyle,
+  employerProducts: {
+    height: 77,
+    width: 64,
+  } as ViewStyle,
+  positionCharm: {
+    bottom: 16,
+    right: -20,
+  } as ViewStyle,
+  charmWrapper: {
+    marginBottom: Style.adjust(8),
+    marginLeft: Platform.select({ ios: Style.adjust(-12), android: Style.adjust(-8) }),
+    marginRight: Platform.select({ ios: Style.adjust(12), android: Style.adjust(8) }),
+  } as ViewStyle,
 });

@@ -2,7 +2,6 @@ import React from "react";
 import { View, StyleSheet, TextStyle } from "react-native";
 import { Text } from "@atoms/index";
 import { Style, Colours } from "@styles";
-import YuCoinIcon from "../yucoin.icon";
 
 interface IProps {
   earnRate: number;
@@ -12,12 +11,12 @@ interface IProps {
 function CardText(props: IProps) {
   const { earnRate = 1, isAlpha } = props;
   const hasIncreasedRate = earnRate > 1;
-  const name = isAlpha ? "Charms" : "Power-Ups";
+  const name = isAlpha || earnRate < 2 ? "charms" : "power-ups";
 
   return (
     <View style={styles.wrapper}>
       <Text style={StyleSheet.flatten([styles.text, styles.textBig, styles.textBold])}>
-        {`Your Earn Rate: ${earnRate}x`}
+        {`Your earn rate is ${earnRate}x`}
       </Text>
       <View style={{ flexDirection: "column" }}>
         <Text style={styles.text}>{`The ${name} you own are giving`}</Text>
@@ -33,15 +32,12 @@ function IncreaseRateText({ earnRate }: { earnRate: IProps["earnRate"] }) {
   return (
     <>
       <View style={styles.flexRow}>
-        <Text style={styles.text}>you a</Text>
+        <Text style={styles.text}>giving you a</Text>
         <Text style={StyleSheet.flatten([styles.text, styles.textBold])}>{` ${earnRate}x increase `}</Text>
-        <Text style={styles.text}>on your</Text>
       </View>
       <View style={styles.flexRow}>
-        <YuCoinIcon style={{ color: "#FFF", marginRight: 5, top: 2 }} />
-        <Text style={styles.text}>YuCoin Earn Rate from all</Text>
+        <Text style={styles.text}>on your YuCoin earn rate from{"\n"}all sources. Amazing!</Text>
       </View>
-      <Text style={styles.text}>sources, amazing!</Text>
     </>
   );
 }
@@ -52,10 +48,9 @@ function DefaultRateText({ earnRate }: { earnRate: IProps["earnRate"] }) {
       <View style={styles.flexRow}>
         <Text style={styles.text}>you a</Text>
         <Text style={StyleSheet.flatten([styles.text, styles.textBold])}>{` ${earnRate}x `}</Text>
-        <YuCoinIcon style={{ color: "#FFF", marginRight: 5, top: 2 }} />
-        <Text style={styles.text}>YuCoin Earn Rate</Text>
+        <Text style={styles.text}>YuCoin earn rate from</Text>
       </View>
-      <Text style={styles.text}>from all sources!</Text>
+      <Text style={styles.text}>all sources. Amazing!</Text>
     </>
   );
 }
@@ -63,22 +58,21 @@ function DefaultRateText({ earnRate }: { earnRate: IProps["earnRate"] }) {
 const styles = StyleSheet.create({
   wrapper: {
     position: "absolute",
-    flexDirection: "column",
-    marginTop: 20,
-    paddingLeft: Style.isWideScreen() ? 36 : 20,
+    marginTop: Style.adjust(16),
   },
   text: {
     fontFamily: Style.FONT_FAMILY_PRIMARY,
-    lineHeight: 24,
-    letterSpacing: 0.8,
-    fontSize: 16,
+    lineHeight: Style.adjust(20),
+    letterSpacing: 1,
+    fontSize: Style.adjust(16),
     textAlign: "left",
-    color: Colours.yuscreen.white,
+    color: Colours.yuscreen.brown,
   } as TextStyle,
   textBig: {
-    fontSize: 24,
-    lineHeight: 32,
-    color: Colours.yuscreen.white,
+    fontSize: Style.adjust(24),
+    lineHeight: Style.adjust(32),
+    letterSpacing: 0.8,
+    marginBottom: 4,
   } as TextStyle,
   textBold: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,

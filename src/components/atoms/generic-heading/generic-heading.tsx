@@ -57,9 +57,11 @@ export default function GenericHeading(props: IProps) {
               <RightIcon icon={rightIcon} />
             </TouchableOpacity>
           )}
-          <Text numberOfLines={1} bold={true} style={styles.heading}>
-            {heading}
-          </Text>
+          <View style={styles.titleWrapper}>
+            <Text numberOfLines={1} bold={true} style={styles.heading}>
+              {heading}
+            </Text>
+          </View>
         </View>
         {!subheading ? null : (
           <View style={StyleSheet.flatten([styles.subheadingWrapper, styles.paddingBottom])}>
