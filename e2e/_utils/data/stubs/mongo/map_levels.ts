@@ -140,4 +140,4 @@ export const MAP_LEVEL_4 = {
             }
         ]
     }
-}
+} as IDatabaseItem

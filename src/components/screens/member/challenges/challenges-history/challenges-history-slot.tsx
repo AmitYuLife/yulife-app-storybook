@@ -7,7 +7,7 @@ import { getCurrentWorld } from "../../../../../services/utils";
 import { Text } from "../../../../atoms";
 import styles from "./challenges-history-slot.styles";
 import { getSlotImageProps } from "./challenges-history.helpers";
-
+import { CHALLENGE_HISTORY_STARS } from "@ids";
 interface IProps {
   availableAtLevel: number;
   duration: string;
@@ -46,7 +46,7 @@ const ChallengesHistorySlot: SFC<IProps> = ({ availableAtLevel, duration, locked
                   ])}
                 >
                   {Array.from(Array(3)).map((_, i) => (
-                    <View key={i}>
+                    <View key={i} testID={CHALLENGE_HISTORY_STARS(i)}>
                       {element.rating > i ? (
                         <Image
                           style={styles.star}

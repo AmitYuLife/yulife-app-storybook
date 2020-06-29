@@ -76,6 +76,16 @@ export const CUSTOMER_2_TOGGLES = {
     }
 } as IDatabaseItem
 
+export const CUSTOMER_3_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_3.data.customerId,
+        features: allTogglesTrue
+    }
+} as IDatabaseItem
+
 export const CUSTOMER_5_TOGGLES = {
     type: "mongo",
     modelName: "usertoggles",

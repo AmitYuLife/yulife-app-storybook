@@ -1,10 +1,10 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then } from "@bdd";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_7, AUTH_7, CUSTOMER_3, AUTH_3, CUSTOMER_12, AUTH_12, CUSTOMER_13, AUTH_13 } from "_utils/data/stubs";
-import { QUESTS_SCREEN, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids";
+import { QUESTS_SCREEN, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, LEVEL_CHALLENGE_BUTTON } from "@ids";
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {
 
@@ -23,6 +23,13 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                                 When("I tap the collect 2500 yucoin CTA", when.tapText("collect 2500 yucoin"), async () => {
                                     Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
                                     Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(3170)))
+                                    Then("I should on the quests tab", then.idVisible(QUESTS_SCREEN(0)))
+                                    When("I tap a past level", when.tapID(LEVEL_CHALLENGE_BUTTON(5)), async () => {
+                                        Then("I should see the challenge I just completed with the correct stars", then.onChallengeHistory("meditation", 5, 30, 3))
+                                        When("I tap full history", when.tapText("full history"), async () => {
+                                            Then("I should be on the activity history", then.textVisible("activity history"))
+                                        })
+                                    })
                                 })
                             })
                         })
@@ -41,10 +48,13 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                     When("I tap see result", when.tapText("see result"), async () => {
                         Then("I should be on the challenge complete screen", then.onChallengeComplete(250, 10))
                         When("I tap collect", when.tapText("collect"), async () => {
-                            Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
-                            When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                                Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(250, 20))
-                                Then("I should see my updated coin amount in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17720)))
+                            Then("I should see the 'Completed streak day 1' screen", then.textVisible("Completed streak day 1"))
+                            When("I tap done", when.tapText("done"), async () => {
+                                Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
+                                When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+                                    Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(250, 20))
+                                    Then("I should see my updated coin amount in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17720)))
+                                })
                             })
                         })
                     })
@@ -65,8 +75,16 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         When("I tap see result", when.tapText("see result"), async () => {
                             Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(1, 10))
                             When("I tap collect", when.tapText("collect"), async () => {
-                                Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
-                                Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17720)))
+                                Then("I should see the 'Completed streak day 1' screen", then.textVisible("Completed streak day 1"))
+                                When("I tap done", when.tapText("done"), async () => {
+                                    Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
+                                    Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17720)))
+                                    Then("I should on the quests tab", then.idVisible(QUESTS_SCREEN(0)))
+                                    When("I tap a past level", when.tapID(LEVEL_CHALLENGE_BUTTON(10)), async () => {
+                                        Then("I should see the challenge I just completed with the correct stars", then.onChallengeHistory("meditation", 10, 20, 1))
+                                        Then("I should see the number of minutes", then.textVisible("1-6 mins"))
+                                    })
+                                })
                             })
                         })
                     })
