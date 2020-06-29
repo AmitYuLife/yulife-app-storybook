@@ -22,6 +22,9 @@ import { ProductType } from "./yu-screen-products.container";
 import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getAvatarForYuscreen } from "../../../../redux/avatar/avatar.selectors";
 import { AvatarBuilderHeading } from "@screens/member/yu-screen/avatar-builder/avatar.types";
+import { YuScreenIntro } from "../../../screens/member/yu-screen/intro-yuscreen/intro-yuscreen";
+import { getShowYuscreenIntro } from "../../../../redux/onboarding/onboarding.selectors";
+import { setYuscreenIntroShown } from "../../../../redux/onboarding/onboarding.actions";
 
 interface IProps {
   componentId: string;
@@ -41,6 +44,8 @@ function YuScreenContainer({
   totalCoins,
   avatarFromLocal,
   onLeftMenuPress,
+  showYuscreenIntro,
+  setYuscreenIntroShown,
 }: Props) {
   const { data, loading, refetch } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER);
   let avatarFromServer: {
@@ -77,7 +82,9 @@ function YuScreenContainer({
 
   const [activeProducts, totalEarnRate] = getActiveProductsAndEarnRate(products, earnRate);
 
-  return (
+  return showYuscreenIntro ? (
+    <YuScreenIntro setYuscreenIntroShown={setYuscreenIntroShown} />
+  ) : (
     <YuScreen
       level={currentLevel}
       userName={userName}
@@ -117,10 +124,12 @@ const mapStateToProps = (state: IReduxState) => ({
   hasNotification: getHasNotification(state),
   totalCoins: getTotalCoins(state),
   avatarFromLocal: getAvatarForYuscreen(state),
+  showYuscreenIntro: getShowYuscreenIntro(state),
 });
 
 const mapDispatchToProps = {
   saveAvatar,
+  setYuscreenIntroShown,
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(YuScreenContainer);

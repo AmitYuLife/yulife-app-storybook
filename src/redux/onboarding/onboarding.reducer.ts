@@ -2,6 +2,7 @@ import { REHYDRATE } from "redux-persist";
 import { GetCurrentUser, LoginUser } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
+import { SET_YUSCREEN_INTRO_SHOWN } from "./onboarding.actions";
 import {
   SET_HISTORICAL_DATA_COLLECTED,
   SET_HISTORICAL_MEDITATION_DATA_COLLECTED,
@@ -16,6 +17,7 @@ export interface IOnboardingStore {
   reward: number;
   isOnboarding: boolean;
   showIntro: boolean;
+  showYuscreenIntro: boolean;
 }
 
 export const initialState: IOnboardingStore = {
@@ -25,6 +27,7 @@ export const initialState: IOnboardingStore = {
   reward: 0,
   isOnboarding: true,
   showIntro: false,
+  showYuscreenIntro: true,
 };
 
 export const userReducer = (state: IOnboardingStore = initialState, action: SyncAction): IOnboardingStore => {
@@ -45,6 +48,7 @@ export const userReducer = (state: IOnboardingStore = initialState, action: Sync
             historicalMeditationDataCollected: true,
             reward: 200,
             isOnboarding: false,
+            showYuscreenIntro: true,
           };
         }
       }
@@ -68,6 +72,12 @@ export const userReducer = (state: IOnboardingStore = initialState, action: Sync
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
 
+    case SET_YUSCREEN_INTRO_SHOWN:
+      return {
+        ...state,
+        showYuscreenIntro: false,
+      };
+
     default:
       return state;
   }
@@ -83,6 +93,10 @@ export default userReducer;
 const updatePersistedState = (persistedState: IOnboardingStore) => {
   if (typeof persistedState.showIntro === "undefined") {
     return { ...persistedState, showIntro: false };
+  }
+
+  if (typeof persistedState.showYuscreenIntro === "undefined") {
+    return { ...persistedState, showYuscreenIntro: true };
   }
   return persistedState;
 };
