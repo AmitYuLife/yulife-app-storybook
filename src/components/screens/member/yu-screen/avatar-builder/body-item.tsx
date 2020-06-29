@@ -13,7 +13,12 @@ interface IProps {
   bodyItemType: AvatarPartType;
   onlyColor?: boolean;
   bodyCategory: IBodyItemCategory;
-  onItemPress: (botyItemType: AvatarPartType, category: Category, itemsTitle: string) => void;
+  onItemPress: (
+    botyItemType: AvatarPartType,
+    category: Category,
+    bodyItem: IBodyItemCategory,
+    itemsTitle: string
+  ) => void;
 }
 
 function BodyItem(props: IProps) {
@@ -29,12 +34,12 @@ function BodyItem(props: IProps) {
   const singleItemColor = selected ? "#F9BDD9" : "#7b8590";
 
   const handleOnItemPressed = (itemTitle: string) => () => {
-    props.onItemPress(props.bodyItemType, "items", itemTitle);
+    props.onItemPress(props.bodyItemType, "items", bodyCategory, itemTitle);
     setIsItemSelected(true);
   };
 
   const handleOnColorPressed = (colorItemTitle: string) => () => {
-    props.onItemPress(props.bodyItemType, "colors", colorItemTitle);
+    props.onItemPress(props.bodyItemType, "colors", bodyCategory, colorItemTitle);
     setIsItemSelected(false);
   };
 
@@ -62,7 +67,7 @@ function BodyItem(props: IProps) {
 }
 
 function getBodyItem(bodyItem: AvatarPartType, color: string) {
-  const items: any = {
+  const items: Record<string, React.ReactNode> = {
     body: <BodyColor color={color} />,
     hair: <HairItem color={color} />,
     facialHair: <FacialHairItem color={color} />,

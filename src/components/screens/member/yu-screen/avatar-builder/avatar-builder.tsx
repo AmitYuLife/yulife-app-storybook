@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import Logger from "@services/logging/logger";
 import React from "react";
 import { useState, useRef, useCallback, useEffect, useMemo, FC } from "react";
-import { FlatList, SafeAreaView, View, BackHandler } from "react-native";
+import { FlatList, SafeAreaView, View, BackHandler, ScrollView } from "react-native";
 import { AvatarPartType } from "@graphql/_core/schema/globalTypes";
 import { Avatar, Avatar_getAvatarColors } from "@graphql/_core/schema";
 import { GQL_QUERY_AVATAR } from "@graphql/yuscreen";
@@ -19,6 +19,7 @@ import { Navigation } from "react-native-navigation";
 import { MODALS } from "../../../../../navigation/constants";
 import { Style } from "@styles/index";
 import { IAvatar, Category, AvatarBuilderHeading } from "./avatar.types";
+import { IBodyItemCategory } from "../../../../../redux/avatar/avatar.all.data";
 
 interface IProps {
   avatar: IAvatar;
@@ -40,6 +41,7 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
   const [isDoneModalShown, setDoneModalShown] = useState(false);
   const flatListRef = useRef<FlatList | null>(null);
   const flatListColorRef = useRef<FlatList | null>(null);
+  const scrollViewRef = useRef<ScrollView | null>(null);
 
   const backButtonHandler = useCallback(() => {
     if (!isBackButtonPressed) {
@@ -111,7 +113,12 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
     }));
   }
 
-  const handleOnItemPress = (newBodyItemType: AvatarPartType, newCategory: Category, newItemsTitle: string) => {
+  const handleOnItemPress = async (
+    newBodyItemType: AvatarPartType,
+    newCategory: Category,
+    bodyItem: IBodyItemCategory,
+    newItemsTitle: string
+  ) => {
     Logger.logMixpanelEvent("avatar_edit", {
       type: newBodyItemType,
       category: newCategory,
@@ -159,6 +166,10 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
     } else {
       setAvatarPreview("0 0 248 248");
     }
+
+    if (!bodyItem.enableMiddleBarScrolling) {
+      await scrollViewRef?.current?.scrollTo({ x: 0, animated: true });
+    }
   };
 
   return (
@@ -187,17 +198,26 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
           />
         </View>
         <View style={styles.separator} />
-        <View style={styles.bodyElementsList}>
-          {bodyItems.map((bodyItem, i) => (
-            <BodyItem
-              key={bodyItem.id + i}
-              selected={bodyItemType === bodyItem.id || (!bodyItemType && bodyItem.isSavingItem)}
-              bodyItemType={bodyItem.id}
-              onlyColor={bodyItem.bodyItems.length === 1}
-              bodyCategory={bodyItem}
-              onItemPress={handleOnItemPress}
-            />
-          ))}
+        <View style={styles.bodyElementsListWrapper}>
+          <ScrollView
+            contentContainerStyle={styles.contentBodyElementsList}
+            style={styles.bodyElementsList}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            ref={scrollViewRef}
+          >
+            {bodyItems.map((bodyItem, i) => (
+              <View key={bodyItem.id + i} style={{ borderWidth: 0, flex: 1 }}>
+                <BodyItem
+                  selected={bodyItemType === bodyItem.id || (!bodyItemType && bodyItem.isSavingItem)}
+                  bodyItemType={bodyItem.id}
+                  onlyColor={bodyItem.bodyItems.length === 1}
+                  bodyCategory={bodyItem}
+                  onItemPress={handleOnItemPress}
+                />
+              </View>
+            ))}
+          </ScrollView>
         </View>
         <View style={styles.separator} />
         <Text style={styles.itemsTitle}>{itemsTitle}</Text>

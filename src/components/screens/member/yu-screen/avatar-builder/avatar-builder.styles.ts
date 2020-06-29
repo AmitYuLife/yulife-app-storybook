@@ -41,13 +41,19 @@ export default StyleSheet.create({
     alignSelf: "center",
     textAlign: "center",
   } as TextStyle,
+  bodyElementsListWrapper: {
+    height: Style.SCALE_UP_AND_DOWN(56),
+    width: "100%",
+    alignItems: "center",
+  } as ViewStyle,
   bodyElementsList: {
     height: Style.SCALE_UP_AND_DOWN(56),
     width: "100%",
+  } as ViewStyle,
+  contentBodyElementsList: {
     flexDirection: "row",
-    justifyContent: "space-around",
-    paddingTop: Style.SCALE_UP_AND_DOWN(3),
-    paddingBottom: Style.SCALE_UP_AND_DOWN(3),
+    alignItems: "center",
+    paddingHorizontal: Style.SCALE_UP_AND_DOWN(18),
   } as ViewStyle,
   separator: {
     backgroundColor: "#f7f7f7",
