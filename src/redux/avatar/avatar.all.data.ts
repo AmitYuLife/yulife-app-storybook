@@ -36,6 +36,7 @@ export interface IAvatarItemColors {
 
 export interface IBodyItemCategory {
   id: AvatarPartType | null;
+  enableMiddleBarScrolling?: boolean;
   isSavingItem?: boolean;
   bodyItems: IBodyCategoryItem[];
 }
@@ -49,6 +50,7 @@ export interface IBodyCategoryItem {
 export const bodyItems: IBodyItemCategory[] = [
   {
     id: AvatarPartType.body,
+    enableMiddleBarScrolling: false,
     bodyItems: [
       {
         id: "colors",
@@ -59,6 +61,7 @@ export const bodyItems: IBodyItemCategory[] = [
   },
   {
     id: AvatarPartType.hair,
+    enableMiddleBarScrolling: true,
     bodyItems: [
       {
         id: "items",
@@ -74,6 +77,7 @@ export const bodyItems: IBodyItemCategory[] = [
   },
   {
     id: AvatarPartType.facialHair,
+    enableMiddleBarScrolling: true,
     bodyItems: [
       {
         id: "items",
@@ -89,6 +93,7 @@ export const bodyItems: IBodyItemCategory[] = [
   },
   {
     id: AvatarPartType.eyes,
+    enableMiddleBarScrolling: false,
     bodyItems: [
       {
         id: "colors",
@@ -99,6 +104,7 @@ export const bodyItems: IBodyItemCategory[] = [
   },
   {
     id: AvatarPartType.glasses,
+    enableMiddleBarScrolling: false,
     bodyItems: [
       {
         id: "items",
@@ -109,6 +115,7 @@ export const bodyItems: IBodyItemCategory[] = [
   },
   {
     id: null,
+    enableMiddleBarScrolling: false,
     isSavingItem: true,
     bodyItems: [
       {
