@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import Logger from "@services/logging/logger";
 import React from "react";
 import { useState, useRef, useCallback, useEffect, useMemo, FC } from "react";
-import { FlatList, SafeAreaView, View, BackHandler, Animated } from "react-native";
+import { FlatList, SafeAreaView, View, BackHandler } from "react-native";
 import { AvatarPartType } from "@graphql/_core/schema/globalTypes";
 import { Avatar, Avatar_getAvatarColors } from "@graphql/_core/schema";
 import { GQL_QUERY_AVATAR } from "@graphql/yuscreen";
@@ -30,8 +30,7 @@ interface IProps {
 const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updateUserAvatar, heading }) => {
   const [bodyItemType, setBodyItemType] = useState(AvatarPartType.body);
   const [category, setCategory] = useState<Category>("colors");
-  const [avatarPreview] = useState("0 0 265 544"); // FIXME: REMOVE
-  const [avatarZoomed, setAvatarZoomed] = useState(false);
+  const [avatarPreview, setAvatarPreview] = useState("0 0 265 544");
   const [selectedItemId, setSelectedItemId] = useState("hair1");
   const [itemsTitle, setItemsTitle] = useState("Skin Tone");
   const [isSavingItem, setIsSavingItem] = useState(false);
@@ -41,22 +40,7 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
   const [isDoneModalShown, setDoneModalShown] = useState(false);
   const flatListRef = useRef<FlatList | null>(null);
   const flatListColorRef = useRef<FlatList | null>(null);
-  const [scaleAnimationValue] = useState(new Animated.Value(1));
-  const [translateYAnimationValue] = useState(new Animated.Value(0));
-  const avatarAnimations = {
-    transform: [{ scale: scaleAnimationValue }, { translateY: translateYAnimationValue }],
-  };
-  useEffect(() => {
-    const anim1 = Animated.spring(scaleAnimationValue, {
-      toValue: avatarZoomed ? 2 : 1,
-      useNativeDriver: true,
-    });
-    const anim2 = Animated.spring(translateYAnimationValue, {
-      toValue: avatarZoomed ? 40 : 0,
-      useNativeDriver: true,
-    });
-    Animated.parallel([anim1, anim2]).start();
-  }, [avatarZoomed, scaleAnimationValue, translateYAnimationValue]);
+
   const backButtonHandler = useCallback(() => {
     if (!isBackButtonPressed) {
       if (!isDoneModalShown) {
@@ -171,9 +155,9 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
       flatListRef?.current?.scrollToIndex({ index: 0, animated: false });
     }
     if (newBodyItemType === AvatarPartType.body) {
-      setAvatarZoomed(false);
+      setAvatarPreview("0 0 265 544");
     } else {
-      setAvatarZoomed(true);
+      setAvatarPreview("0 0 248 248");
     }
   };
 
@@ -194,10 +178,13 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
         border="new"
       />
       <View style={styles.elementWrapper}>
-        <View style={styles.avatarWrapper}>
-          <Animated.View style={{ ...avatarAnimations }}>
-            <BodyAvatar avatar={avatar} viewBox={avatarPreview} height={Style.adjust(221)} width={Style.adjust(248)} />
-          </Animated.View>
+        <View style={bodyItemType === AvatarPartType.body ? styles.fullAvatarWrapper : styles.halfAvatarWrapper}>
+          <BodyAvatar
+            avatar={avatar}
+            viewBox={avatarPreview}
+            height={Style.SCALE_UP_AND_DOWN(221)}
+            width={Style.SCALE_UP_AND_DOWN(248)}
+          />
         </View>
         <View style={styles.separator} />
         <View style={styles.bodyElementsList}>
