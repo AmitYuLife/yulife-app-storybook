@@ -7,3 +7,4 @@ export const getIsHistoricalMeditationDataCollected = (state: IReduxState) =>
 export const getIsOnboarding = (state: IReduxState) => state.onboarding.isOnboarding;
 export const getShowIntro = (state: IReduxState) => state.onboarding.showIntro;
 export const getOnboardingReward = (state: IReduxState) => state.onboarding.reward;
+export const getShowYuscreenIntro = (state: IReduxState) => state.onboarding.showYuscreenIntro;
