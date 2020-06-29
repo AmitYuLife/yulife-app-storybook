@@ -20,6 +20,7 @@ export const SHORT_STROLL_MILESTONE_1 = {
     }
 } as IDatabaseItem
 
+
 export const MEDITATION_MILESTONE_1 = {
     type: "mongo",
     modelName: "map_milestone_templates",

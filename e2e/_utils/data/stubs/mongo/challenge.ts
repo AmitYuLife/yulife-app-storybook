@@ -1,9 +1,10 @@
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_3 } from '../postgres/customers';
 import moment = require('moment');
 import { SHORT_STROLL_MILESTONE_1, LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1 } from './map_milestone_templates';
 import { MEDITATION_1, LONG_WALK_1, SHORT_STROLL_1 } from './map_level_slot_templates';
+import { MAP_LEVEL_2 } from './map_levels';
 
 const CHALLENGE_TEMPLATE = {
     type: "mongo",
@@ -983,4 +984,3 @@ export const CHALLENGE_USER_18_B = {
 
     }
 } as IDatabaseItem;
-
