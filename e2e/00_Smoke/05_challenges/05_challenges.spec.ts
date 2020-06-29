@@ -72,6 +72,7 @@ Feature("As a user I can take a challenge", async () => {
 
     Scenario("I can complete a chest challenge", scenario.start, async () => {
         Given("I am on the quest tab as a user with a chest challenge", given.logInAndGoToTab("quests", CUSTOMER_9, AUTH_9), async () => {
+            Then("I should see my coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(760)))
             Then("I should see level 7 unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(7)))
             When("I tap level 7", when.tapID(LEVEL_CHALLENGE_BUTTON(7)), async () => {
                 Then("I should see a screen telling me to take a challenge to unlock a chest", then.textVisible("take a challenge to unlock the chest"))
@@ -87,13 +88,13 @@ Feature("As a user I can take a challenge", async () => {
                             When("I tap see result", when.tapText("see result"), async () => {
                                 Then("I should see the well done screen", then.onChallengeComplete(3050, 7))
                                 When("I tap collect on the well done screen", when.tapText("collect"), async () => {
-                                    Then("I should see the chest unlocked screen", then.textVisible("you get 500 yucoin"))
+                                    Then("I should see the chest unlocked screen telling me I get 200 yucoin", then.textVisible("you get 200 yucoin"))
                                     When("I dismiss the chest unlock screen", when.dismissChestUnlock(), async () => {
                                         Then("I should be on the quest screen", then.idVisible(QUESTS_SCREEN(0)))
                                         When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                                            Then("I should see my coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(1330)))
+                                            Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(1030)))
                                             Then("I should see the number of steps I just completed", then.textVisible("3050 steps"))
-                                            Then("I should see the number of coins I've earned today", then.textVisible("570 yucoin today"))
+                                            Then("I should see the number of coins I've earned today (270)", then.textVisible("270 yucoin today"))
                                         })
                                     })
                                 })
