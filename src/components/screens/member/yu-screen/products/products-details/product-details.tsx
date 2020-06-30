@@ -46,11 +46,11 @@ function YuscreenEmployerProductDetails({ product, onExitConfirmed, productType 
               />
             </View>
           ) : isCharm ? (
-            <View>
+            <View style={{ width: 96 }}>
               <Charm
                 active={true}
                 icon={product.icon}
-                rateViewStyle={StyleSheet.flatten([styles.productsDetailsRateView])}
+                rateViewStyle={StyleSheet.flatten([styles.charmRateView])}
                 rateTextStyle={StyleSheet.flatten([styles.productsDetailsRateText, extraStyle])}
                 earnRate={product.earnRate}
                 height={114}

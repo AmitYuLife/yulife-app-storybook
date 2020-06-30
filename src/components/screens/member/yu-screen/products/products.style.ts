@@ -98,6 +98,17 @@ export default StyleSheet.create({
     bottom: 24,
     right: 4,
   } as ViewStyle,
+  charmRateView: {
+    height: 32,
+    width: 32,
+    backgroundColor: Colours.yuscreen.earnRateBackground,
+    position: "absolute",
+    borderRadius: 16,
+    borderWidth: 2,
+    borderColor: Colours.yuscreen.white,
+    bottom: 24,
+    right: -34,
+  } as ViewStyle,
 
   productsDetailsRateText: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
