@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, TextStyle } from "react-native";
+import { View, StyleSheet, TextStyle, Platform } from "react-native";
 import { Text } from "@atoms/index";
 import { Style, Colours } from "@styles";
 
@@ -32,7 +32,7 @@ function IncreaseRateText({ earnRate }: { earnRate: IProps["earnRate"] }) {
   return (
     <>
       <View style={styles.flexRow}>
-        <Text style={styles.text}>giving you a</Text>
+        <Text style={styles.text}>you a</Text>
         <Text style={StyleSheet.flatten([styles.text, styles.textBold])}>{` ${earnRate}x increase `}</Text>
       </View>
       <View style={styles.flexRow}>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: Style.FONT_FAMILY_PRIMARY,
-    lineHeight: Style.adjust(20),
+    lineHeight: Platform.OS === "ios" ? Style.adjust(20) : Style.adjust(22),
     letterSpacing: 1,
     fontSize: Style.adjust(16),
     textAlign: "left",
