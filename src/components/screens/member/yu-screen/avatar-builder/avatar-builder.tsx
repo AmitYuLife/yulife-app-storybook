@@ -175,7 +175,7 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
   return (
     <SafeAreaView style={styles.wrapper}>
       <GenericHeading
-        leftIcon="CLOSE"
+        leftIcon="BACK"
         heading={heading}
         onLeftIconPress={() => {
           setBackPressed(true);
