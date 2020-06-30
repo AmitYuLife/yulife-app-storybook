@@ -23,6 +23,7 @@ export const YuScreenIntro = memo(function ({ setYuscreenIntroShown }: IProps) {
   const [buttonLabel, setButtonLabel] = useState("Next");
   const [activePageIndex, setActivePageIndex] = useState(0);
   const swiper = useRef<FlatList | null>(null);
+  const isLastPage = activePageIndex + 1 === data.length;
 
   const scrollToNext = useCallback(() => {
     if (activePageIndex + 1 < data.length) {
@@ -76,9 +77,13 @@ export const YuScreenIntro = memo(function ({ setYuscreenIntroShown }: IProps) {
           <View style={styles.pageIndicatorWrapper}>
             <PageIndicator activePage={activePageIndex} pageCount={3} />
           </View>
-          <TouchableOpacity onPress={() => setYuscreenIntroShown()}>
-            <Text style={styles.skipButton}>Skip</Text>
-          </TouchableOpacity>
+          {isLastPage ? (
+            <View />
+          ) : (
+            <TouchableOpacity onPress={() => setYuscreenIntroShown()}>
+              <Text style={styles.skipButton}>Skip</Text>
+            </TouchableOpacity>
+          )}
 
           <TouchableOpacity onPress={scrollToNext}>
             <Text style={styles.actionButton}>{buttonLabel}</Text>
