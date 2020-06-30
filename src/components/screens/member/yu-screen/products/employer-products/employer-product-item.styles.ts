@@ -37,8 +37,8 @@ export default StyleSheet.create({
     borderRadius: 14,
     borderWidth: 2,
     borderColor: Colours.yuscreen.white,
-    bottom: 16,
-    right: -3,
+    bottom: 8,
+    right: -12,
   } as ViewStyle,
 
   rateText: {

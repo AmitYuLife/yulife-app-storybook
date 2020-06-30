@@ -35,7 +35,7 @@ export default StyleSheet.create({
     borderColor: Colours.yuscreen.white,
     borderRadius: Style.adjust(32),
     borderWidth: 2,
-    right: 0,
+    right: -30,
     bottom: 0,
     position: "absolute",
     justifyContent: "center",
