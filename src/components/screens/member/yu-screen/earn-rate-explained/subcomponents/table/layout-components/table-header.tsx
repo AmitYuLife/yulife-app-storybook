@@ -19,8 +19,11 @@ export function TableHeader({ earnRate }: IProps) {
         <Text style={styles.headerLabel}>earn rate</Text>
       </View>
       <View style={styles.pad} />
-      <View style={styles.headerLabelWrapper}>
-        <Text style={[styles.headerLabel, styles.headerLabelHighlight]} bold>{`Your ${earnRate}x\nearn rate`}</Text>
+      <View style={[styles.headerLabelWrapper, styles.marginRight]}>
+        <Text style={[styles.headerLabel, styles.headerLabelHighlight]} bold>
+          {`Your ${earnRate}x`}
+        </Text>
+        <Text style={[styles.headerLabel, styles.headerLabelHighlight]}>earn rate</Text>
       </View>
     </View>
   );
@@ -52,5 +55,8 @@ const styles = StyleSheet.create({
   } as TextStyle,
   pad: {
     width: RATE_COLUMN_PAD,
+  } as ViewStyle,
+  marginRight: {
+    marginRight: 1,
   } as ViewStyle,
 });
