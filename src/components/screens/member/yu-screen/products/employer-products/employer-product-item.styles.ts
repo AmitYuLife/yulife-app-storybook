@@ -2,35 +2,33 @@ import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
 
 const defaultTextStyle = {
-  fontSize: Style.SCALE_UP_AND_DOWN(16),
+  fontSize: 16,
   fontFamily: Style.FONT_FAMILY_PRIMARY,
-  lineHeight: Style.SCALE_UP_AND_DOWN(17),
+  lineHeight: 20,
   textAlign: "center",
+  letterSpacing: 1,
 };
 
 export default StyleSheet.create({
   employerBenefitsItemWrapper: {
-    flexDirection: "column",
-    height: Style.SCALE_UP_AND_DOWN(112),
-    width: Style.SCALE_UP_AND_DOWN(96),
+    height: Style.adjust(112),
+    width: Style.adjust(130),
     alignItems: "center",
   } as ViewStyle,
 
   employerBenefitsItemImage: {
-    height: Style.SCALE_UP_AND_DOWN(75),
-    width: Style.SCALE_UP_AND_DOWN(63),
+    height: Style.adjust(75),
+    width: Style.adjust(63),
   } as ImageStyle,
 
   employerBenefitsItemText: {
     ...defaultTextStyle,
-    color: "#526980",
+    color: "#5A5A5C",
   } as TextStyle,
-
   employerBenefitsItemTextPassive: {
     ...defaultTextStyle,
     color: "#838385",
   } as TextStyle,
-
   rateView: {
     height: 28,
     width: 28,
@@ -48,7 +46,7 @@ export default StyleSheet.create({
     fontSize: 12,
     lineHeight: 24,
     letterSpacing: 0.8,
-    color: Colours.yuscreen.white,
+    color: "#EA9E2F",
     position: "relative",
     left: 6,
   } as TextStyle,

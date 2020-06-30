@@ -3,7 +3,7 @@ import { Style, Colours } from "@styles/index";
 
 const productDetailsText = {
   fontFamily: Style.FONT_FAMILY_PRIMARY,
-  fontSize: Style.SCALE_UP_AND_DOWN(16),
+  fontSize: 16,
   lineHeight: Style.SCALE_UP_AND_DOWN(24),
   letterSpacing: Style.SCALE_UP_AND_DOWN(0.8),
   textAlign: "center",
@@ -12,32 +12,36 @@ const productDetailsText = {
 export default StyleSheet.create({
   productWrapper: {
     flexDirection: "row",
-    height: Style.SCALE_UP_AND_DOWN(74),
-    width: Style.SCALE_UP_AND_DOWN(152),
+    height: 74,
+    width: 152,
     alignItems: "center",
   } as ViewStyle,
 
   inactiveProducts: {
     color: "#838385",
-    fontSize: Style.SCALE_UP_AND_DOWN(16),
+    fontSize: 16,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
-    lineHeight: Style.SCALE_UP_AND_DOWN(17),
+    lineHeight: 20,
+    letterSpacing: 1,
     textAlign: "left",
+    marginRight: 16,
   } as TextStyle,
 
   tapForInfo: {
     color: "#F43E8E",
-    fontSize: Style.SCALE_UP_AND_DOWN(14),
+    fontSize: 16,
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    lineHeight: Style.SCALE_UP_AND_DOWN(15),
+    letterSpacing: 1,
+    lineHeight: 16,
     textAlign: "left",
   } as TextStyle,
 
   textWrapper: {
     marginLeft: Style.SCALE_UP_AND_DOWN(16),
-    marginRight: Style.SCALE_UP_AND_DOWN(64),
+    marginRight: Style.SCALE_UP_AND_DOWN(32),
     height: Style.SCALE_UP_AND_DOWN(64),
     flexDirection: "column",
+    marginTop: -4,
   } as ViewStyle,
 
   productDetailsWrapper: {
@@ -100,7 +104,7 @@ export default StyleSheet.create({
     fontSize: 13,
     lineHeight: 24,
     letterSpacing: 0.8,
-    color: Colours.yuscreen.white,
+    color: Colours.yuscreen.brown,
     position: "relative",
     left: 8,
     top: 2,

@@ -2,7 +2,7 @@ import YuScreen from "@screens/member/yu-screen/yu-screen";
 import * as React from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { ROUTES } from "@navigation/constants";
+import { ROUTES, MODALS } from "@navigation/constants";
 import { IMainTabsProps } from "@navigation/root";
 import { IReduxState } from "@redux/_core/reducers";
 import { getCurrentLevel, getHasNotification } from "@redux/levels/levels.selectors";
@@ -108,7 +108,12 @@ function YuScreenContainer({
       }}
       onEditPress={() => {
         dispatchSaveAvatar(avatarFromServer);
-        navigateToAvatarCreationScreen(refetch, componentId, "Edit your avatar");
+        navigateToAvatarModal({
+          refetch,
+          componentId,
+          heading: "Edit your avatar",
+          subheading: "Do you want to edit your avatar?",
+        });
       }}
       onEarnRatePress={() => {
         navigateToEarnRateScreen(componentId, activeProducts, totalEarnRate);
@@ -172,6 +177,34 @@ function navigateToEarnRateScreen(componentId: string, products: GetYulifer_getY
       passProps: {
         products,
         earnRate,
+      },
+    },
+  });
+}
+
+interface INavigateToAvatarModal {
+  refetch: () => void;
+  componentId: string;
+  heading: AvatarBuilderHeading;
+  subheading: string;
+}
+function navigateToAvatarModal({ refetch, componentId, heading, subheading }: INavigateToAvatarModal) {
+  Navigation.showModal({
+    component: {
+      id: MODALS.generic,
+      name: MODALS.generic,
+      passProps: {
+        onPress: () => {
+          Navigation.dismissModal(MODALS.generic);
+          navigateToAvatarCreationScreen(refetch, componentId, heading);
+        },
+        onPressSecondary: () => {
+          Navigation.dismissModal(MODALS.generic);
+        },
+        heading,
+        subheading,
+        ctaLabel: "Yes Please",
+        ctaLabelSecondary: "No Thanks",
       },
     },
   });

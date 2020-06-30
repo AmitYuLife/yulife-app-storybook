@@ -21,6 +21,7 @@ export default {
   darkHotPinkShadow: "#95012b",
   divider: "rgb(96,96,96)",
   gray: "rgb(96,96,96)",
+  midGray: "rgb(128,128,128)",
   heavyPink: "rgb(232, 49, 129)",
   leaderboards: {
     first: "rgb(244,186,0)",
@@ -139,7 +140,7 @@ export default {
     inactive: "rgb(204,204,204)",
   },
   yuscreen: {
-    earnRateBackground: "#FFDB42",
+    earnRateBackground: "#FFF598",
     white: "#FFFFFF",
     brown: "#EA9E2F",
   },

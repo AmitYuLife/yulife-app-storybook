@@ -8,12 +8,13 @@ configure(() => {
   require("../atoms/heading/heading.stories");
   require("../molecules/text-field/text-field.stories");
   require("../molecules/top-bar/top-bar.stories");
+  require("../screens/member/yu-screen/yu-screen.stories");
   require("../screens/member/yu-screen/intro-yuscreen/intro-yuscreen.stories");
   require("../screens/member/yu-screen/earn-rate-explained/earn-rate-explained.stories");
 }, module);
 
 const StorybookUIRoot = getStorybookUI({
-  onDeviceUI: false, // true for stories,
+  onDeviceUI: false, // true for mobile navigation, false for browser,
 });
 
 AppRegistry.registerComponent("%APP_NAME%", () => StorybookUIRoot);
