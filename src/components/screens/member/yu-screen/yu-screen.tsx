@@ -33,6 +33,8 @@ interface IProps {
   ) => () => void;
 }
 
+const SANE_SECTION_TITLE_WIDTH_DEFAULT = 116;
+
 const YuScreen = (props: IProps) => {
   const {
     level,
@@ -52,7 +54,7 @@ const YuScreen = (props: IProps) => {
     onEarnRatePress,
   } = props;
   const [layoutHeader, setLayoutHeader] = useState(null);
-  const [sectionTitleWidth, setSectionTitleWidth] = useState(0);
+  const [sectionTitleWidth, setSectionTitleWidth] = useState(SANE_SECTION_TITLE_WIDTH_DEFAULT);
   const handleLayoutHeader = useCallback((event: LayoutChangeEvent) => {
     const { y, height } = event.nativeEvent.layout;
     setLayoutHeader(y + height);
