@@ -94,16 +94,14 @@ const LeaderboardsContainer: FC<Props> = (props) => {
   }, [refetch, leaderboardId]);
   return (
     <LeaderboardsScreen
-      {...{
-        componentId,
-        activeLeaderboardIndex,
-        sortBy,
-        hasNotification,
-        appState,
-        onLeftMenuPress,
-        labels,
-        totalCoins,
-      }}
+      componentId={componentId}
+      activeLeaderboardIndex={activeLeaderboardIndex}
+      sortBy={sortBy}
+      hasNotification={hasNotification}
+      appState={appState}
+      onLeftMenuPress={onLeftMenuPress}
+      labels={labels}
+      totalCoins={totalCoins}
       isLoading={loading}
       leaderboards={leaderboards || []}
       items={data?.getLeaderboard || []}

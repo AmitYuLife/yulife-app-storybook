@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback } from "react";
+import React, { useState, useCallback, FC } from "react";
 import { labels as defaultLabels } from "@navigation/root";
 import { StyleSheet, View, Platform } from "react-native";
 import { Giraffe, Scroll, Treasure, Yu } from "./assets";
@@ -24,7 +24,11 @@ interface IProps {
 
 type HighlightedLabel = "yucoin" | "quests" | "yu" | "leaderboard" | "rewards";
 
-const NavBar = memo(function (props: IProps) {
+interface StaticProps {
+  positionBottom: number;
+}
+
+const NavBar: FC<IProps> & StaticProps = (props: IProps) => {
   const [pressed, setPressed] = useState(0);
   const [hasLaidOut, setHasLaidOut] = useState(false);
   const [displayElevation, setDisplayElevation] = useState(false);
@@ -90,6 +94,8 @@ const NavBar = memo(function (props: IProps) {
       onPress();
     };
   }
-});
+};
+
+NavBar.positionBottom = getPositionBottom(); // disregard additionalBottom, work on removing the need for that option
 
 export default NavBar;

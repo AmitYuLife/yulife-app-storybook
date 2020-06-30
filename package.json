@@ -30,7 +30,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet",
-    "test:all": "run-s tsc test test:lint",
+    "test:all": "run-s test:lint tsc test",
     "tsc": "tsc --noUnusedLocals --noUnusedParameters",
     "tsc:watch": "tsc --noUnusedLocals --noUnusedParameters --watch --pretty",
     "download:schema": "apollo client:download-schema --endpoint=http://yulife-api-server-develop.eu-west-2.elasticbeanstalk.com/graphql ./src/graphql/_core/schema.json",

@@ -69,7 +69,7 @@ export default function GenericHeading(props: IProps) {
           </View>
         )}
       </View>
-      <NewBorder {...{ border }} />
+      <NewBorder border={border} />
     </View>
   );
 }

@@ -4,19 +4,22 @@ import { Style, Colours } from "@styles";
 export default StyleSheet.create({
   charmWrapper: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    height: Style.SCALE_UP_AND_DOWN(78),
-    width: "80%",
     alignItems: "center",
+    width: "100%",
   } as ViewStyle,
 
   charmDescription: {
     fontFamily: Style.FONT_FAMILY_PRIMARY,
-    fontSize: Style.SCALE_UP_AND_DOWN(16),
-    lineHeight: Style.SCALE_UP_AND_DOWN(22),
-    color: "#838385",
+    fontSize: 16,
+    lineHeight: 24,
+    color: "#5A5A5C",
+    letterSpacing: 1,
     textAlign: "left",
-    marginRight: Style.SCALE_UP_AND_DOWN(32),
+    overflow: "visible",
+    marginRight: Style.adjust(32),
+  } as TextStyle,
+  charmDescriptionWrapper: {
+    marginRight: 160,
   } as TextStyle,
 
   charmIcon: {
@@ -26,33 +29,25 @@ export default StyleSheet.create({
   } as ImageStyle,
 
   rateView: {
-    height: 32,
-    width: 32,
+    height: Style.adjust(32),
+    width: Style.adjust(32),
     backgroundColor: Colours.yuscreen.earnRateBackground,
-    position: "absolute",
-    borderRadius: 16,
-    borderWidth: 2,
     borderColor: Colours.yuscreen.white,
-    bottom: 16,
-    right: 2,
+    borderRadius: Style.adjust(32),
+    borderWidth: 2,
+    right: 0,
+    bottom: 0,
+    position: "absolute",
+    justifyContent: "center",
+    alignItems: "center",
   } as ViewStyle,
 
   rateText: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: 13,
-    lineHeight: 24,
+    fontSize: Style.adjust(12),
     letterSpacing: 0.8,
-    color: Colours.yuscreen.white,
-    position: "relative",
-    left: 8,
-    top: 2,
-  } as TextStyle,
-
-  earnRateTextBiggerThanTen: {
-    left: 3,
-  } as TextStyle,
-
-  earnRateTextIsTen: {
-    left: 4,
+    color: Colours.yuscreen.brown,
+    marginTop: 2,
+    marginLeft: Style.adjust(3),
   } as TextStyle,
 });
