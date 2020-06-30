@@ -53,8 +53,8 @@ function YuscreenEmployerProductDetails({ product, onExitConfirmed, productType 
                 rateViewStyle={StyleSheet.flatten([styles.productsDetailsRateView])}
                 rateTextStyle={StyleSheet.flatten([styles.productsDetailsRateText, extraStyle])}
                 earnRate={product.earnRate}
-                height="114"
-                width="96"
+                height={114}
+                width={96}
               />
             </View>
           ) : (
