@@ -32,7 +32,7 @@ function FooterText({ isAlpha }: IFooterTextProps) {
         style={styles.footerText}
         value={`${
           !isAlpha ? "" : "As an early adopter alpha user, you get exclusive free access to the app! "
-        }To increase your <bold>earn rate</bold> , check out the products available on your Yu screen. All products come with <bold>power-ups</bold> to your earn rate!`}
+        }To increase your <bold>earn rate</bold>, check out the products available on your Yu screen. All products come with <bold>power-ups</bold> to your earn rate!`}
       />
     </Text>
   );
@@ -46,10 +46,11 @@ function Products(props: IProps) {
       <Text style={styles.header}>{products.charms.length && !products.employer.length ? "Charms" : "Power-Ups"}</Text>
       {!products.employer.length && !products.charms.length ? (
         <View style={styles.marginBottom}>
-          <Text style={mainStyles.text}>
-            You currently do not have any Power-Ups. To increase your Earn Rate, check out the products available on
-            your YuScreen. All products come with Power-Ups to your Earn Rate!
-          </Text>
+          <TextWithBoldText
+            style={mainStyles.text}
+            value="You currently do not have any Power-Ups. To increase your <bold>earn rate</bold>, check out the products
+            available on your Yu screen. All products come with <bold>power-ups</bold> to your Earn Rate!"
+          />
         </View>
       ) : (
         <View style={styles.marginBottom}>
