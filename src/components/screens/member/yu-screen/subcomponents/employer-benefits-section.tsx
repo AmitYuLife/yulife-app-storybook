@@ -20,7 +20,7 @@ interface Props {
 }
 
 export const EmployerBenefits = memo(function ({ onProductPress, productsEmployer, setSectionTitleWidth }: Props) {
-  if (!productsEmployer.length) {
+  if (!productsEmployer?.length) {
     return null;
   }
 
