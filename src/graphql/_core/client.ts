@@ -45,9 +45,9 @@ const dataIdFromObject = (object: any) => {
     case "LeaderboardItem":
       return `${object.__typename}-${object.id}-${object.avatar?.id}`;
     case "AvatarPart":
-      return `${object.__typename}-${object.partId}`;
+      return `${object.__typename}-${object.partId}-${object.order}`;
     case "AvatarColor":
-      return `${object.__typename}-${object.colorSchemeId}`;
+      return `${object.__typename}-${object.colorSchemeId}-${object.displayOrder}`;
     default:
       return defaultDataIdFromObject(object);
   }
