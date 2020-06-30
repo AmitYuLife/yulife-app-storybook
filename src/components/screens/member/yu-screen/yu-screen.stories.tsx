@@ -27,6 +27,7 @@ const fillers = {
 } as ComponentProps<typeof YuScreen>;
 
 storiesOf("YuScreen")
+  .add("no avatar", () => <YuScreen {...fillers} isAvatarCreated={false} />)
   .add("alpha", () => <YuScreen {...fillers} products={alphaProducts} />)
   .add("group", () => <YuScreen {...fillers} products={groupProducts} />)
   .add("yulife", () => <YuScreen {...fillers} products={yulifeProducts} />);
