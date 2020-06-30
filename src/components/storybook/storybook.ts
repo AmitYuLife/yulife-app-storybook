@@ -11,6 +11,7 @@ configure(() => {
   require("../screens/member/yu-screen/yu-screen.stories");
   require("../screens/member/yu-screen/intro-yuscreen/intro-yuscreen.stories");
   require("../screens/member/yu-screen/earn-rate-explained/earn-rate-explained.stories");
+  require("../screens/member/yu-screen/products/products-details/product-details.stories");
 }, module);
 
 const StorybookUIRoot = getStorybookUI({
