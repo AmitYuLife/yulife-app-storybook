@@ -135,11 +135,11 @@ export default [
   // products
   {
     name: ROUTES.fib,
-    component: require("../components/containers/products/fib/fib.container"),
+    component: require("../components/containers/products/fib/fib.container").default,
   },
   {
     name: ROUTES.fibFaq,
-    component: require("../components/containers/products/fib/fib.faq.container"),
+    component: require("../components/containers/products/fib/fib.faq.container").default,
   },
   // modals
   {
