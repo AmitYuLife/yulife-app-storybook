@@ -27,11 +27,7 @@ const persistedReducer = persistReducer(persistConfig, combinedReducers);
 let configuredStore: ReturnType<typeof createStore>;
 
 const configureStore = (preloadedState?: IReduxState): Store<IReduxState> => {
-  configuredStore = createStore(
-    persistedReducer,
-    preloadedState,
-    composeEnhancers(applyMiddleware(...middlewares))
-  );
+  configuredStore = createStore(persistedReducer, preloadedState, composeEnhancers(applyMiddleware(...middlewares)));
 
   // Enable hot reloading for reducers.
   // if (Config.ENV === "dev" && (module.hot && typeof module.hot.accept === "function")) {

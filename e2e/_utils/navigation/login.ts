@@ -19,7 +19,7 @@ export const loginAsUser = (customer = records.CUSTOMER_1, auth = records.AUTH_1
     await completeIntro()
 }
 
-export const logInAndGoToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rewards", customer = records.CUSTOMER_1, auth = records.AUTH_1, fitkitAuth = true) => async () => {
+export const logInAndGoToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer = records.CUSTOMER_1, auth = records.AUTH_1, fitkitAuth = true) => async () => {
     await loginAsUser(customer, auth, fitkitAuth)()
     await navigateViaID(NAV_BAR(tab))
 }

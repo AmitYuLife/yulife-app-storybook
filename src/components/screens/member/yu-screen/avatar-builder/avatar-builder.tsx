@@ -19,6 +19,7 @@ import { Navigation } from "react-native-navigation";
 import { MODALS } from "../../../../../navigation/constants";
 import { Style } from "@styles/index";
 import { IAvatar, Category, AvatarBuilderHeading } from "./avatar.types";
+import { AVATAR_BUILDER_LIST, BUILDER_BODY, NO_ITEM_SELECTED, HEAD_TYPE } from "@ids";
 import { IBodyItemCategory } from "../../../../../redux/avatar/avatar.all.data";
 
 interface IProps {
@@ -188,8 +189,16 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
         rightIcon="Done"
         border="new"
       />
-      <View style={styles.elementWrapper}>
-        <View style={bodyItemType === AvatarPartType.body ? styles.fullAvatarWrapper : styles.halfAvatarWrapper}>
+      <View style={styles.elementWrapper} testID={HEAD_TYPE(avatar.head.partId)}>
+        <View
+          style={bodyItemType === AvatarPartType.body ? styles.fullAvatarWrapper : styles.halfAvatarWrapper}
+          testID={BUILDER_BODY([
+            avatar.eyes.partId,
+            avatar.hair.partId,
+            avatar.facialHair.partId,
+            avatar.glasses.partId,
+          ])}
+        >
           <BodyAvatar
             avatar={avatar}
             viewBox={avatarPreview}
@@ -229,7 +238,7 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
                 (!avatar.facialHair.partId || avatar.facialHair.partId === "emptyElement")) ||
               (bodyItemType === AvatarPartType.hair &&
                 (!avatar.hair.partId || avatar.hair.partId === "emptyElement")) ? (
-                <Text style={styles.noItemSelected}>
+                <Text style={styles.noItemSelected} testID={NO_ITEM_SELECTED}>
                   No need to pick a {bodyItemType === AvatarPartType.facialHair ? "facial hair" : "hair"}
                   {"\n"}colour if you haven’t picked{"\n"}any{" "}
                   {bodyItemType === AvatarPartType.facialHair ? "facial hair" : "hair"}.
@@ -283,6 +292,7 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
               )}
               columnWrapperStyle={styles.row}
               showsVerticalScrollIndicator={false}
+              testID={AVATAR_BUILDER_LIST}
             />
           ) : (
             <View style={styles.buttonsSavingWrapper}>

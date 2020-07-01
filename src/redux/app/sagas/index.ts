@@ -1,5 +1,5 @@
 import { takeLatest } from "redux-saga/effects";
-import { AUTHENTICATED, APOLLO_EVENT, SET_MAIN_ROOT, SHOW_MAINTENANCE, CHECK_CONNECTION } from '../app.actions';
+import { AUTHENTICATED, APOLLO_EVENT, SET_MAIN_ROOT, SHOW_MAINTENANCE, CHECK_CONNECTION } from "../app.actions";
 
 import watchApolloRequestsSaga from "./watchApolloRequests.saga";
 import listenToAppStateSaga from "./listenToAppState.saga";

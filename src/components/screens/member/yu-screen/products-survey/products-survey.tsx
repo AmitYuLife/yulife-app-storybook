@@ -15,6 +15,7 @@ import GenericHeading from "@atoms/generic-heading/generic-heading";
 import Logger from "@services/logging/logger";
 import ProductsSurveyGreetings from "./products-survey-greetings";
 import { Colours } from "@styles";
+import { SURVEY_SCREEN, SURVEY_TEXT_BOX } from "@ids";
 
 interface IProductSurvey {
   label: string;
@@ -177,6 +178,7 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
       <GenericHeading heading="What Would You Like To See?" onLeftIconPress={onBackButton} />
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
         <ScrollView
+          testID={SURVEY_SCREEN}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
           ref={scrollViewRef}
@@ -210,6 +212,7 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
                 onBlur={onBlur}
                 style={textAreaStyle}
                 textAlignVertical="top"
+                testID={SURVEY_TEXT_BOX}
               />
               <Button
                 onPress={onSubmitButton}

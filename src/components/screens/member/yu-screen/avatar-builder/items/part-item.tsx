@@ -6,6 +6,7 @@ import { NoneBodyItem } from "../../svg/body-items";
 import { IBodyItem } from "@redux/avatar/avatar.reducer";
 import { IAvatar, Category } from "../avatar.types";
 import { AvatarPartType } from "@graphql/_core/schema/globalTypes";
+import { BODY_PART_ITEM } from "@ids";
 
 interface Props {
   item: any;
@@ -60,7 +61,7 @@ function PartItem(props: Props) {
   }
 
   return (
-    <TouchableOpacity key={index} onPress={handlePress}>
+    <TouchableOpacity key={index} onPress={handlePress} testID={BODY_PART_ITEM(index)}>
       <View style={isSelectedItem ? styles.itemSelectedColorWrapper : styles.itemColorWrapper}>
         {item.bodyElements ? (
           item.bodyElements.length > 0 ? (

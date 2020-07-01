@@ -4,6 +4,7 @@ import { Text } from "@atoms";
 import MinimalButton from "@atoms/button/minimalButton";
 import { Colours, Style } from "@styles";
 import YuCoinIcon from "../earn-rate-explained/subcomponents/yucoin.icon";
+import { GET_STARTED_BUTTON, EMPTY_YUSCREEN_COPY } from "@ids";
 
 interface Props {
   onUnlockPress: () => void;
@@ -11,7 +12,7 @@ interface Props {
 
 export const CreateAvatarPrompt = memo(function ({ onUnlockPress }: Props) {
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={EMPTY_YUSCREEN_COPY}>
       <View style={styles.textWrapper}>
         <Text style={styles.label}>Create your avatar to</Text>
         <Text style={styles.label}>unlock personal protection</Text>
@@ -21,7 +22,7 @@ export const CreateAvatarPrompt = memo(function ({ onUnlockPress }: Props) {
         </View>
         <Text style={styles.label}>{" 100 YuCoin."}</Text>
       </View>
-      <View style={styles.ctaWrapper}>
+      <View style={styles.ctaWrapper} testID={GET_STARTED_BUTTON}>
         <MinimalButton
           height={Style.adjust(55)}
           onPress={onUnlockPress}

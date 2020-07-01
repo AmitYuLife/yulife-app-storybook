@@ -9,8 +9,8 @@ export default function* checkConnectionSaga() {
     return;
   }
   try {
-      yield call(getSession);
+    yield call(getSession);
   } catch (e) {
-      // this is handled
+    // this is handled
   }
 }
