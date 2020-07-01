@@ -6,10 +6,6 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFFFFF",
   } as ViewStyle,
-  tabsWrapper: {
-    alignItems: "center",
-    marginTop: Style.SCALE_UP_AND_DOWN(17),
-  } as ViewStyle,
   yumatterWrapper: {
     flexDirection: "column",
     paddingLeft: Style.SCALE_UP_AND_DOWN(16),

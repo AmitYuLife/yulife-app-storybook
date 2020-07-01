@@ -10,6 +10,7 @@ export const LEVEL_BUBBLE = (level: number) => `LEVEL_BUBBLE_${level}`
 export const MENU_SCREEN = "MENU_SCREEN";
 export const CHALLENGE_SCREEN = "CHALLENGE_SCREEN";
 export const YUMATTER_SCREEN = "YUMATTER_SCREEN";
+export const SMART_HEALTH_SCREEN = 'SMART_HEALTH_SCREEN';
 export const TODAYS_YUCOIN = "TODAYS_YUCOIN"
 export const CHALLENGE_SET = "CHALLENGE_SET"
 export const GENERIC_SCREEN_HEADING = (title: string) => `GENERIC_SCREEN_HEADING_${title}`

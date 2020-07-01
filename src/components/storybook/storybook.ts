@@ -8,6 +8,7 @@ configure(() => {
   require("../atoms/heading/heading.stories");
   require("../molecules/text-field/text-field.stories");
   require("../molecules/top-bar/top-bar.stories");
+  require("../containers/member/member-services/member-services.container.stories");
   require("../screens/member/yu-screen/yu-screen.stories");
   require("../screens/member/yu-screen/intro-yuscreen/intro-yuscreen.stories");
   require("../screens/member/yu-screen/earn-rate-explained/earn-rate-explained.stories");

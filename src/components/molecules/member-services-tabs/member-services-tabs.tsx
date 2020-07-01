@@ -1,23 +1,40 @@
 import * as React from "react";
-import { SFC } from "react";
 import { View } from "react-native";
 import MemberServiceTab from "./member-services-tab/member-services-tab";
 import styles from "./member-services-tabs.styles";
+import { MemberService } from "./member-services.models";
 
-interface IProps {
-  onLeftTabPress: () => void;
-  onRightTabPress: () => void;
-  activeTabIndex: number;
+export interface Tab {
+  id: string;
+  title: MemberService;
+  handleTabClick: () => void;
+  shouldDisplayTab: boolean;
 }
 
-const MemberServicesTabs: SFC<IProps> = ({ onLeftTabPress, onRightTabPress, activeTabIndex }) => (
-  <View style={styles.wrapper}>
-    <MemberServiceTab isActive={activeTabIndex === 0} onPress={onLeftTabPress} label="YuMatter" />
-    <View style={styles.dividerWrapper}>
-      <View style={styles.divider} />
+interface IProps {
+  tabs: Tab[];
+  activeTabId: string;
+}
+
+function MemberServicesTabs({ tabs, activeTabId }: IProps) {
+  if (!tabs[0].shouldDisplayTab || !tabs[1].shouldDisplayTab) {
+    return null;
+  }
+
+  return (
+    <View style={styles.wrapper}>
+      <MemberServiceTab isActive={activeTabId === tabs[0].id} onPress={tabs[0].handleTabClick} label={tabs[0].title} />
+      <View style={styles.dividerWrapper}>
+        <View style={styles.divider} />
+      </View>
+      <MemberServiceTab
+        isActive={activeTabId === tabs[1].id}
+        onPress={tabs[1].handleTabClick}
+        isFlipped={tabs[0].shouldDisplayTab}
+        label={tabs[1].title}
+      />
     </View>
-    <MemberServiceTab isActive={activeTabIndex === 1} onPress={onRightTabPress} isFlipped={true} label="SmartHealth" />
-  </View>
-);
+  );
+}
 
 export default MemberServicesTabs;
