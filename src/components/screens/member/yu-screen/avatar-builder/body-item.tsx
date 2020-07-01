@@ -5,6 +5,7 @@ import { IBodyItemCategory } from "@redux/avatar/avatar.all.data";
 import { BodyColor, ColorItem, EyesItem, FacialHairItem, GlassesItem, HairItem, SavingItem } from "../svg/body-items";
 import styles from "./body-item.styles";
 import { Category } from "./avatar.types";
+import { BODY_ITEM_TITLE } from "@ids";
 
 export type BodyItemType = "Body" | "Hair" | "FacialHair" | "Eyes" | "Glasses";
 
@@ -46,19 +47,19 @@ function BodyItem(props: IProps) {
   return (
     <View style={selected && twoCategoryShouldBeDisplayed ? styles.bodyItemWrapperSelected : styles.bodyItemWrapper}>
       {!hasItems ? null : (
-        <TouchableOpacity onPress={handleOnItemPressed(itemTitle)}>
+        <TouchableOpacity onPress={handleOnItemPressed(itemTitle)} testID={BODY_ITEM_TITLE(itemTitle)}>
           {getBodyItem(bodyItemType, doubleItemColor)}
         </TouchableOpacity>
       )}
 
       {hasColors && hasItems && selected ? (
-        <TouchableOpacity onPress={handleOnColorPressed(colorItemTitle)}>
+        <TouchableOpacity onPress={handleOnColorPressed(colorItemTitle)} testID={BODY_ITEM_TITLE(colorItemTitle)}>
           <ColorItem color={isItemSelected ? "#7b8590" : "#F9BDD9"} />
         </TouchableOpacity>
       ) : null}
 
       {hasColors && !hasItems ? (
-        <TouchableOpacity onPress={handleOnColorPressed(colorItemTitle)}>
+        <TouchableOpacity onPress={handleOnColorPressed(colorItemTitle)} testID={BODY_ITEM_TITLE(colorItemTitle)}>
           {getBodyItem(bodyItemType, singleItemColor)}
         </TouchableOpacity>
       ) : null}

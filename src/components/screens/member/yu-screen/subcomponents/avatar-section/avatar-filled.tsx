@@ -3,6 +3,7 @@ import { BodyAvatar } from "../../svg/body";
 import { TouchableOpacity } from "react-native";
 import { IAvatar } from "../../avatar-builder/avatar.types";
 import { Style } from "@styles";
+import { YUSCREEN_AVATAR } from "@ids";
 
 const MULTIPLIER = 1.1;
 const BASE_WIDTH = 176;
@@ -15,7 +16,7 @@ interface Props {
 
 export const AvatarFilled = memo(function ({ avatar, onEditPress }: Props) {
   return (
-    <TouchableOpacity activeOpacity={0.5} onPress={onEditPress}>
+    <TouchableOpacity activeOpacity={0.5} onPress={onEditPress} testID={YUSCREEN_AVATAR}>
       <BodyAvatar
         avatar={avatar}
         showElipse={true}

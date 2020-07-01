@@ -2,6 +2,7 @@ import React from "react";
 import { ViewStyle, TextStyle, View, TouchableOpacity, Text } from "react-native";
 import Svg, { Circle, Path } from "react-native-svg";
 import { Style } from "@styles/index";
+import { CHECK_BOX_STATE } from "@ids";
 
 interface ICheckBox {
   checked: boolean;
@@ -45,7 +46,7 @@ function CheckBox(props: ICheckBox) {
     <View>
       <TouchableOpacity style={styles.wrapper} onPress={() => onChange(value)}>
         <Text style={styles.text}>{label}</Text>
-        <View style={styles.checkbox}>
+        <View style={styles.checkbox} testID={CHECK_BOX_STATE(label, checked)}>
           <Svg height="32" width="32" viewBox="0 0 32 32">
             {checked ? (
               <>

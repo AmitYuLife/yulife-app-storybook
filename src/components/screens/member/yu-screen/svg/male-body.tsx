@@ -3,12 +3,13 @@ import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 import { Style } from "@styles/index";
 import { View } from "react-native";
+import { MALE_BODY } from "@ids";
 
 interface IProps {
   color: string;
 }
 const MaleBody = ({ color }: IProps) => (
-  <View style={{ position: "absolute", bottom: Style.SCALE_UP_AND_DOWN(26) }}>
+  <View style={{ position: "absolute", bottom: Style.SCALE_UP_AND_DOWN(26) }} testID={MALE_BODY}>
     <Svg
       height={String(Style.SCALE_UP_AND_DOWN(310))}
       width={String(Style.SCALE_UP_AND_DOWN(112))}

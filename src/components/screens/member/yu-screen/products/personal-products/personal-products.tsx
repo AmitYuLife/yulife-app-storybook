@@ -3,6 +3,7 @@ import * as React from "react";
 import { View, TouchableOpacity } from "react-native";
 import styles from "../products.style";
 import { getPersonalProductImage, PersonalType } from "../employer-products/employer-product.helper";
+import { PERSONAL_PRODUCT } from "@ids";
 
 interface IProps {
   isActive: boolean;
@@ -13,7 +14,7 @@ interface IProps {
 
 function YuProducts({ isActive, type, onPressAction, name }: IProps) {
   return (
-    <TouchableOpacity onPress={onPressAction}>
+    <TouchableOpacity onPress={onPressAction} testID={PERSONAL_PRODUCT(type)}>
       <View style={styles.productWrapper}>
         {getPersonalProductImage(type)}
         <View style={styles.textWrapper}>

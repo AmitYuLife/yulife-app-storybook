@@ -4,6 +4,7 @@ import Svg, { Path, Polygon, Rect, Ellipse } from "react-native-svg";
 import { Style } from "@styles/index";
 import { IBodyItem } from "../../../../../redux/avatar/avatar.reducer";
 import { IAvatar } from "../avatar-builder/avatar.types";
+import { AVATAR_BODY, LEADERBOARD_HEAD_AVATAR } from "@ids";
 
 interface IProps {
   avatar: IAvatar;
@@ -56,6 +57,7 @@ export const BodyAvatar = ({ avatar, showElipse, height, width, viewBox }: IProp
       height={String(height || Style.SCALE_UP_AND_DOWN(248))}
       viewBox={viewBox ? viewBox : "0 0 248 248"}
       fill="none"
+      testID={AVATAR_BODY([avatar.eyes.partId, avatar.hair.partId, avatar.facialHair.partId, avatar.glasses.partId])}
     >
       {!showElipse ? null : (
         <Path
@@ -85,6 +87,12 @@ export const LeaderboardHeadAvatar = ({ avatar, height, width, viewBox = "19 30 
       height={String(Style.adjust(height ? height : 248))}
       viewBox={viewBox}
       fill="none"
+      testID={LEADERBOARD_HEAD_AVATAR([
+        avatar.facialHair.partId,
+        avatar.eyes.partId,
+        avatar.hair.partId,
+        avatar.glasses.partId,
+      ])}
     >
       {renderPart(avatar.head)}
       {renderPart(avatar.eyes)}

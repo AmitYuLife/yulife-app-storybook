@@ -73,4 +73,30 @@ export const LEADERBOARD_INFO = "LEADERBOARD_INFO"
 export const GROUP_NAME_INPUT = "GROUP_NAME_INPUT"
 export const LEADERBOARD_EMAIL_INPUT = "LEADERBOARD_EMAIL_INPUT"
 export const LEADERBOARD_STATUS = (leaderboardName: string, leaderboardStatus: string) => `LEADERBOARD_STATUS_${leaderboardName}_${leaderboardStatus}`
+
+// YUSCREEN
+export const YUSCREEN = "YUSCREEN"
+export const GET_STARTED_BUTTON = "GET_STARTED_BUTTON"
+export const EMPTY_YUSCREEN_COPY = "EMPTY_YUSCREEN_COPY"
+export const FEMALE_BODY = "FEMALE_BODY"
+export const MALE_BODY = "MALE_BODY"
+export const EARN_RATE_BUTTON = (earnRate: number) => `EARN_RATE_BUTTON_${earnRate}`
+
+// AVATAR BUILDER
+export const BODY_ITEM_TITLE = (title: string) => `BODY_ITEM_TITLE_${title}`
+export const BODY_ITEM_COLOUR = (colorItemTitle: string) => `BODY_ITEM_COLOUR_${colorItemTitle}`
+export const BODY_PART_ITEM = (index: number) => `BODY_PART_ITEM_${index}`
+export const SKIN_TONE = (hexColour: string) => `SKIN_TONE_${hexColour}`
+export const SELECTED_COLOR = (hexColour: string) => `SELECTED_COLOR_${hexColour}`
 export const LEADERBOARD_PEDESTAL = "LEADERBOARD_PEDESTAL"
+export const AVATAR_BODY = (bodyItems: string[]) => `AVATAR_BODY_${bodyItems}`
+export const LEADERBOARD_HEAD_AVATAR = (bodyItems: string[]) => `LEADERBOARD_HEAD_AVATAR_${bodyItems}`
+export const PERSONAL_PRODUCT = (type: "LifeInsurance" | "IncomeProtection" | "CriticalIllness" | "TravelInsurance" | string) => `PERSONAL_PRODUCT_${type}`
+export const SURVEY_SCREEN = "SURVEY_SCREEN"
+export const CHECK_BOX_STATE = (label: string, state: boolean) => `CHECK_BOX_STATE_${label}_${state}`
+export const SURVEY_TEXT_BOX = "SURVEY_TEXT_BOX"
+export const AVATAR_BUILDER_LIST = "AVATAR_BUILDER_LIST"
+export const BUILDER_BODY = (bodyItems: string[]) => `BUILDER_BODY${bodyItems}`
+export const NO_ITEM_SELECTED = "NO_ITEM_SELECTED"
+export const HEAD_TYPE = (type: string) => `HEAD_TYPE_${type}`
+export const YUSCREEN_AVATAR = "YUSCREEN_AVATAR"

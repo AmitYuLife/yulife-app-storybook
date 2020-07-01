@@ -9,6 +9,7 @@ import {
 } from "@graphql/_core/schema";
 import { ProductType } from "@containers/member/yu-screen/yu-screen-products.container";
 import { IAvatar } from "./avatar-builder/avatar.types";
+import { YUSCREEN } from "@ids";
 import { EarnRateButton, CharmsSection, YuScreenHeader, EmployerBenefits } from "./subcomponents";
 import { AvatarSection } from "./subcomponents/avatar-section/avatar-section";
 
@@ -60,7 +61,7 @@ const YuScreen = (props: IProps) => {
     setLayoutHeader(y + height);
   }, []);
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={YUSCREEN}>
       <View style={styles.topbarFiller} />
       <YuScreenHeader level={level} userName={userName} onLayout={handleLayoutHeader} />
       <ScrollView showsVerticalScrollIndicator={false}>
