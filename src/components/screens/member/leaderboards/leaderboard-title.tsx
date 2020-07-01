@@ -2,7 +2,7 @@ import React from "react";
 import { Image, TouchableOpacity, View, ViewStyle, StyleSheet, TextStyle, ImageStyle, Platform } from "react-native";
 import { Text } from "@components/atoms";
 import { LEADERBOARD_TOP_SCREEN } from "@ids";
-import { toCapitalLetter, truncate } from "../../../../services/utils";
+import { truncate } from "../../../../services/utils";
 import { Style } from "@styles";
 import { InfoIcon } from "./svg/leaderboard";
 import { LEADERBOARD_INFO_BUTTON } from "@ids";
@@ -33,11 +33,11 @@ function LeaderboardLabel({ onPressLabel, name }: LeaderboardLabelProps) {
     <View pointerEvents="box-none" style={styles.leaderboardNameAbsolute}>
       <TouchableOpacity style={styles.row} activeOpacity={1} onPress={onPressLabel}>
         <View style={styles.leaderboardNameWrapper} testID={LEADERBOARD_TOP_SCREEN}>
-          <Text style={styles.leaderboardName}>{truncate(toCapitalLetter(name), 16)}</Text>
+          <Text style={styles.leaderboardName}>{truncate(name, 16)}</Text>
           <Text style={styles.leaderboardSteps}>30 day steps</Text>
         </View>
-        <View style={styles.changeLeaderboardArrow}>
-          <Image source={require("../../../../../assets/icons/v.png")} />
+        <View style={styles.changeLeaderboardArrowWrapper}>
+          <Image style={styles.changeLeaderboardArrow} source={require("@assets/icons/v.png")} />
         </View>
       </TouchableOpacity>
     </View>
@@ -90,10 +90,14 @@ const styles = StyleSheet.create({
     fontSize: Style.adjust(18),
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   } as TextStyle,
-  changeLeaderboardArrow: {
-    marginTop: Style.adjust(4),
+  changeLeaderboardArrowWrapper: {
+    marginTop: Style.adjust(7),
     marginLeft: Style.adjust(16),
     height: Style.adjust(32),
     width: Style.adjust(32),
+  } as ImageStyle,
+  changeLeaderboardArrow: {
+    width: Style.adjust(13),
+    height: Style.adjust(7),
   } as ImageStyle,
 });

@@ -56,7 +56,7 @@ function Avatar({ avatar }: { avatar: IAvatar }) {
 
 interface ILeaderboardTopIOS {
   translateYTransform: Animated.AnimatedInterpolation;
-  showsActiveLeaderboard: boolean;
+  showConsentPrompt: boolean;
   avatars: IAvatar[];
   style?: ViewStyle;
   onLayout?: (e: LayoutChangeEvent) => void;
@@ -64,12 +64,12 @@ interface ILeaderboardTopIOS {
 
 export function LeaderboardTopIOS({
   translateYTransform,
-  showsActiveLeaderboard,
+  showConsentPrompt,
   avatars,
   style,
   onLayout,
 }: ILeaderboardTopIOS) {
-  if (Platform.OS === "android" || showsActiveLeaderboard) {
+  if (Platform.OS === "android" || showConsentPrompt) {
     return null;
   }
   return (
