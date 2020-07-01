@@ -1,6 +1,8 @@
 import React, { memo } from "react";
-import { FibFaqScreen } from "@screens";
+import { FibFaqScreen } from "@screens/index";
 
-export const FibFaqContainer = memo(function () {
+const FibFaqContainer = memo(function () {
   return <FibFaqScreen />;
 });
+
+export default FibFaqContainer;
