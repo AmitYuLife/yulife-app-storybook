@@ -1,24 +1,12 @@
-import { Close, GenericHeading, Text } from "@atoms/index";
+import { Text } from "@atoms/index";
 import * as React from "react";
 import { Image, Linking, Platform, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Style } from "../../../../styles";
-import MemberServicesTabs from "../../../molecules/member-services-tabs/member-services-tabs";
 import { smartHealthData } from "./member-services.data";
 import styles from "./smart-health.screen.styles";
 
-interface IProps {
-  onPressClose: () => void;
-  onLeftTabPress: () => void;
-  onRightTabPress: () => void;
-}
-
-const SmartHealth = ({ onPressClose, onLeftTabPress, onRightTabPress }: IProps) => (
+const SmartHealth = () => (
   <SafeAreaView style={styles.wrapper}>
-    <GenericHeading heading={"member services"} />
-    <View style={styles.tabsWrapper}>
-      <MemberServicesTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={1} />
-    </View>
-
     <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
       <View style={styles.smartHeathWrapper}>
         <Text style={styles.smartHealth}>{`SmartHealth`}</Text>
@@ -61,8 +49,6 @@ const SmartHealth = ({ onPressClose, onLeftTabPress, onRightTabPress }: IProps) 
         </View>
       </View>
     </ScrollView>
-
-    <Close onPress={onPressClose} />
   </SafeAreaView>
 );
 

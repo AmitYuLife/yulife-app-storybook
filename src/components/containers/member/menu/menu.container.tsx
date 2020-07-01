@@ -15,6 +15,7 @@ import { logOut, openMemberZone } from "../../../../redux/user/user.actions";
 import { getUserBusiness, getUserFeatures } from "../../../../redux/user/user.selectors";
 import { MenuScreen } from "../../../screens";
 import assets, { LINKS, LinkTypes } from "./assets";
+import { getMemberServicesDisplayState } from "@components/molecules/member-services-tabs/member-services-tab/member-services.helpers";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDipatch = typeof mapDispatchToProps;
@@ -27,7 +28,14 @@ class MenuContainer extends PureComponent<Props> {
   private deviceVersion = DeviceInfo.getVersion();
 
   public render() {
-    const { features = {}, isAlphaUser } = this.props;
+    const { features = {}, isAlphaUser, isWellbeingAccess, isGroupUser } = this.props;
+
+    const { shouldHideSmartHealthScreen, shouldHideYuMatterScreen } = getMemberServicesDisplayState(features, {
+      isGroupUser,
+      isWellbeingAccess,
+    });
+
+    const shouldDisplayMemberServices = !(shouldHideSmartHealthScreen && shouldHideYuMatterScreen);
 
     return (
       <MenuScreen
@@ -52,7 +60,7 @@ class MenuContainer extends PureComponent<Props> {
             source: assets[LINKS.MEMBER],
           },
           {
-            condition: !isAlphaUser,
+            condition: !isAlphaUser && shouldDisplayMemberServices,
             label: "member services",
             onPress: this.handlePressLink(LINKS.MEMBER_SERVICES),
             source: assets[LINKS.MEMBER_SERVICES],
@@ -182,6 +190,8 @@ const mapStateToProps = (state: IReduxState) => ({
   currentRoute: getRouteState(state),
   features: getUserFeatures(state),
   permissions: getPushNotifications(state),
+  isGroupUser: getUserBusiness(state).isGroup,
+  isWellbeingAccess: getUserBusiness(state).isWellbeingAccess,
   pushNotificationCopy: getCopy(state, "pushNotification"),
   isAlphaUser: getUserBusiness(state).alpha,
 });

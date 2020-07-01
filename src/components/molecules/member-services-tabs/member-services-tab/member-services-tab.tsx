@@ -3,9 +3,10 @@ import { SFC } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "../../../atoms";
 import styles from "./member-services-tab.styles";
+import { MemberService } from "../member-services.models";
 
 interface IProps {
-  label: "YuMatter" | "SmartHealth";
+  label: MemberService;
   isFlipped?: boolean;
   isActive?: boolean;
   onPress: () => void;
@@ -16,7 +17,9 @@ const MemberServiceTab: SFC<IProps> = ({ isFlipped, isActive, label, onPress }) 
     onPress={onPress}
     style={StyleSheet.flatten([styles.wrapper, isFlipped ? styles.flipped : null, isActive ? styles.active : null])}
   >
-    <Text style={isActive ? styles.textActive : styles.text}>{label || ""}</Text>
+    <Text testID={label} style={isActive ? styles.textActive : styles.text}>
+      {label || ""}
+    </Text>
   </TouchableOpacity>
 );
 

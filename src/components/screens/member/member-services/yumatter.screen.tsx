@@ -1,29 +1,13 @@
-import { Close, GenericHeading, Text } from "@atoms/index";
+import { Text } from "@atoms/index";
 import * as React from "react";
-import { Linking, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
+import { Linking, ScrollView, TouchableOpacity } from "react-native";
 import { StyleSheet, View } from "react-native";
-import { YUMATTER_SCREEN } from "../../../../../e2e/_utils/navigation/ids";
 import { Style } from "../../../../styles";
-import MemberServicesTabs from "../../../molecules/member-services-tabs/member-services-tabs";
 import { yuMatterData } from "./member-services.data";
 import styles from "./yumatter.screen.styles";
 
-interface IProps {
-  isGroup: boolean;
-  onPressClose: () => void;
-  onLeftTabPress: () => void;
-  onRightTabPress: () => void;
-}
-
-const Yumatter = ({ onPressClose, onRightTabPress, onLeftTabPress, isGroup }: IProps) => (
-  <SafeAreaView style={styles.wrapper} testID={YUMATTER_SCREEN}>
-    <GenericHeading heading={"member services"} />
-    {!isGroup ? null : (
-      <View style={styles.tabsWrapper}>
-        <MemberServicesTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={0} />
-      </View>
-    )}
-
+const Yumatter = () => {
+  return (
     <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
       <View style={styles.yumatterWrapper}>
         <Text style={styles.yumatter}>{`YuMatter`}</Text>
@@ -84,9 +68,7 @@ const Yumatter = ({ onPressClose, onRightTabPress, onLeftTabPress, isGroup }: IP
         </View>
       </View>
     </ScrollView>
-
-    <Close onPress={onPressClose} />
-  </SafeAreaView>
-);
+  );
+};
 
 export default Yumatter;
