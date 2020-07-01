@@ -1,7 +1,16 @@
 import React, { ComponentProps } from "react";
 import { storiesOf } from "@storybook/react-native";
 import LeaderboardsScreen from "./leaderboards.screen";
-import { avatarFiller } from "../yu-screen/yu-screen.stories-helper";
+import { sampleServerAvatar } from "../yu-screen/yu-screen.stories-helper";
+
+const MY_USER_ID = "MY_USER_ID";
+const sampleLeaderboard = {
+  leaderboardId: "leaderboards.leaderboardId",
+  name: "yulife",
+  consent: true,
+  hasAccepted: true,
+  inviteFrom: "leaderboards.inviteFrom",
+};
 
 const fillers = {
   componentId: "string",
@@ -17,26 +26,16 @@ const fillers = {
   ],
   totalCoins: 0,
   isLoading: false,
-  leaderboards: [
-    {
-      leaderboardId: "leaderboards.leaderboardId",
-      name: "yulife",
-      consent: false,
-      hasAccepted: false,
-      inviteFrom: "leaderboards.inviteFrom",
-    },
-  ],
-  items: [
-    {
-      id: "userId",
-      coins: 0,
-      firstName: "firstName",
-      lastName: "lastName",
-      name: "name",
-      steps: 0,
-      avatar: avatarFiller,
-    },
-  ],
+  leaderboards: [sampleLeaderboard],
+  items: Array.from({ length: 3 }).map((_, i) => ({
+    id: i ? `not_userId_${i}` : MY_USER_ID,
+    coins: 0,
+    firstName: "firstName",
+    lastName: "lastName",
+    name: "name",
+    steps: 0,
+    avatar: sampleServerAvatar,
+  })),
   copy: {
     heading: "copy.heading",
     subheading:
@@ -44,7 +43,7 @@ const fillers = {
     ctaLabel: "Yes Please!",
     ctaLabelSecondary: "copy.ctaLabelSecondary",
   },
-  userId: "userId",
+  userId: MY_USER_ID,
   onLeftMenuPress: () => null,
   onLeaderboardChange: (_) => null,
   onRefetch: () => null,
@@ -53,4 +52,8 @@ const fillers = {
   onPrivacyPolicyPress: () => null,
 } as ComponentProps<typeof LeaderboardsScreen>;
 
-storiesOf("LeaderboardsScreen").add("default", () => <LeaderboardsScreen {...fillers} />);
+storiesOf("LeaderboardsScreen")
+  .add("default", () => <LeaderboardsScreen {...fillers} />)
+  .add("prompts consent", () => (
+    <LeaderboardsScreen {...fillers} leaderboards={[{ ...sampleLeaderboard, hasAccepted: false, consent: false }]} />
+  ));
