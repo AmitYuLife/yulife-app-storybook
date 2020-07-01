@@ -13,7 +13,7 @@ export const avatarStyles: Record<string, ViewStyle> = StyleSheet.create({
     top: 28,
   } as ViewStyle,
   avatar2: {
-    marginTop: Style.SCALE_UP_AND_DOWN(Platform.select({ android: Style.isShortAndroid() ? 75 : 77, ios: 78 })),
+    marginTop: Style.SCALE_UP_AND_DOWN(Platform.select({ android: Style.isShortAndroid() ? 75 : 77, ios: 75 })),
     marginLeft: Style.SCALE_UP_AND_DOWN(84),
   } as ViewStyle,
   avatarEmpty2: {
@@ -21,7 +21,7 @@ export const avatarStyles: Record<string, ViewStyle> = StyleSheet.create({
     marginLeft: Style.SCALE_UP_AND_DOWN(85),
   } as ViewStyle,
   avatar1: {
-    marginTop: Style.SCALE_UP_AND_DOWN(Platform.select({ android: Style.isShortAndroid() ? 50 : 53, ios: 52 })),
+    marginTop: Style.SCALE_UP_AND_DOWN(Platform.select({ android: Style.isShortAndroid() ? 50 : 53, ios: 51 })),
     marginLeft: Style.SCALE_UP_AND_DOWN(162),
   } as ViewStyle,
   avatarEmpty1: {
@@ -29,7 +29,7 @@ export const avatarStyles: Record<string, ViewStyle> = StyleSheet.create({
     marginLeft: Style.SCALE_UP_AND_DOWN(170),
   } as ViewStyle,
   avatar3: {
-    marginTop: Style.SCALE_UP_AND_DOWN(Platform.select({ android: Style.isShortAndroid() ? 86 : 89, ios: 88 })),
+    marginTop: Style.SCALE_UP_AND_DOWN(Platform.select({ android: Style.isShortAndroid() ? 86 : 89, ios: 86 })),
     marginLeft: Style.SCALE_UP_AND_DOWN(236),
   } as ViewStyle,
   avatarEmpty3: {
