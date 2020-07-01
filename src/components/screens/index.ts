@@ -51,3 +51,6 @@ export { default as GenericScreen } from "./member/generic-screen/generic.screen
 export { default as FeedbackScreen } from "./member/feedback/feedback.screen";
 
 export { default as SplashScreen } from "./splash/splash.screen";
+
+export { FibFaqScreen } from "./products/fib/faq/fib.faq.screen";
+export { FibScreen } from "./products/fib/faq/fib.screen";

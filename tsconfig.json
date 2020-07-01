@@ -19,6 +19,7 @@
       "@containers/*": ["./src/components/containers/*"],
       "@modals/*": ["./src/components/modals/*"],
       "@molecules/*": ["./src/components/molecules/*"],
+      "@screens": ["./src/components/screens/index"],
       "@screens/*": ["./src/components/screens/*"],
       "@graphql/*": ["./src/graphql/*"],
       "@navigation/*": ["./src/navigation/*"],

@@ -132,7 +132,15 @@ export default [
     name: ROUTES.aviosConfirmed,
     component: require("../components/containers/member/rewards/confirmed/avios-confirmed.container").default,
   },
-
+  // products
+  {
+    name: ROUTES.fib,
+    component: require("../components/containers/products/fib/fib.container"),
+  },
+  {
+    name: ROUTES.fibFaq,
+    component: require("../components/containers/products/fib/fib.faq.container"),
+  },
   // modals
   {
     name: MODALS.challengeUnavailable,
