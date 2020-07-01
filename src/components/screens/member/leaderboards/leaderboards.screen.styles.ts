@@ -146,7 +146,7 @@ export default StyleSheet.create({
   leaderboardOfflineImage: { position: "absolute", bottom: 0, left: 0, right: 0, width: "100%" } as ImageStyle,
   leaderboardOfflineText: { fontSize: Style.adjust(20), lineHeight: Style.adjust(20) },
   leaderboardTitleWrapper: {
-    top: TOP_BAR_WRAPPER_HEIGHT + 14,
+    top: getLeaderboardTitleWrapperPositionTop(),
     position: "absolute",
     left: 0,
     right: 0,
@@ -166,4 +166,16 @@ function getContentContainerPaddingBottom() {
     return NOTCHED_IOS_MAGIC_NUMBER;
   }
   return 8;
+}
+
+function getLeaderboardTitleWrapperPositionTop() {
+  if (Platform.OS === "ios") {
+    let positionTop = Style.getSafeAreaStart() + 88;
+    if (deviceInfoModule.hasNotch()) {
+      positionTop += 22;
+    }
+    return positionTop;
+  }
+
+  return TOP_BAR_WRAPPER_HEIGHT + 14;
 }
