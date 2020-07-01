@@ -24,6 +24,7 @@ import styles, {
   LOADING_ITEM_HEIGHT,
   TOP_BAR_WRAPPER_HEIGHT,
   LEADERBOARD_PROMPT_OFFSET,
+  getLeaderboardTitleWrapperPositionTop,
 } from "./leaderboards.screen.styles";
 import { transformAvatar } from "../yu-screen/avatar-builder/avatar-builder.helper";
 import { ROUTES } from "../../../../navigation/constants";
@@ -154,11 +155,11 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
     const AnimatedFlatList = createAnimatedComponentForwardingRef(FlatList);
     const myLeaderboardItemIndex = this.props.items.findIndex((item) => item.id === this.props.userId);
     const myLeaderboardItem = this.props.items[myLeaderboardItemIndex];
-    const showsActiveLeaderboard = activeLeaderboard && !activeLeaderboard.consent;
+    const showConsentPrompt = activeLeaderboard && !activeLeaderboard.consent;
     const avatars = [this.avatarDataFirstUser, this.avatarDataSecondUser, this.avatarDataThirdUser];
     const leaderboardProps = {
       translateYTransform,
-      showsActiveLeaderboard,
+      showConsentPrompt,
       avatars,
     };
 
@@ -175,11 +176,11 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
           style={StyleSheet.flatten([
             styles.list,
             styles.listWrapperMargin,
-            { marginTop: showsActiveLeaderboard ? -LEADERBOARD_PROMPT_OFFSET : 0 },
+            { marginTop: showConsentPrompt ? -LEADERBOARD_PROMPT_OFFSET : 0 },
           ])}
           testID={LEADERBOARD_SCREEN}
         >
-          {showsActiveLeaderboard ? (
+          {showConsentPrompt ? (
             <>
               <View pointerEvents="box-none" style={styles.emptyLeaderboardWrapper}>
                 <LeaderboardTop avatars={[]} />
@@ -241,6 +242,7 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
             styles.leaderboardTitleWrapper,
             {
               transform: [{ translateY: translateYTransform }],
+              top: getLeaderboardTitleWrapperPositionTop({ hasExtraPadding: showConsentPrompt }),
             },
           ]}
         >
