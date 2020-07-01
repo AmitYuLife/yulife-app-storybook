@@ -9,6 +9,7 @@ import { sendTestPush } from "../../../../redux/notifications/notifications.acti
 import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { DebugScreen } from "../../../screens";
+import { ROUTES } from "@navigation/constants";
 
 interface IProps {
   componentId: string;
@@ -18,6 +19,11 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
 type Props = IProps & ConnectedState & ConnectedDispatch;
+
+enum CODES {
+  ROUTE_TO_FIB_BROWSE_PACKAGES = "ROUTE_TO_FIB_BROWSE_PACKAGES",
+  ROUTE_TO_FIB_FAQ = "ROUTE_TO_FIB_FAQ",
+}
 
 const DEFAULT_LIST = [
   "reset-today-partial-data",
@@ -33,7 +39,12 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     fetchPolicy: "cache-and-network",
   });
 
-  const list = [...((data && data.getDebugCodes) || DEFAULT_LIST), "send-test-push"];
+  const list = [
+    ...((data && data.getDebugCodes) || DEFAULT_LIST),
+    "send-test-push",
+    CODES.ROUTE_TO_FIB_BROWSE_PACKAGES,
+    CODES.ROUTE_TO_FIB_FAQ,
+  ];
 
   const handleClose = () => {
     Navigation.popToRoot(props.componentId);
@@ -44,12 +55,27 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     onPress: async () => {
       try {
         if (code === "send-test-push") {
-          props.sendTestPush();
-        } else {
-          await resetData({ variables: { code } });
-          Alert.alert("Success");
-          props.getUserStart();
+          return props.sendTestPush();
         }
+        if (code === CODES.ROUTE_TO_FIB_BROWSE_PACKAGES) {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.fib,
+              name: ROUTES.fib,
+            },
+          });
+        }
+        if (code === CODES.ROUTE_TO_FIB_FAQ) {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.fibFaq,
+              name: ROUTES.fibFaq,
+            },
+          });
+        }
+        await resetData({ variables: { code } });
+        Alert.alert("Success");
+        props.getUserStart();
       } catch (e) {
         Alert.alert("Fail");
       }

@@ -1,8 +1,14 @@
 import React, { memo } from "react";
-import { FibFaqScreen } from "@screens/index";
+import { FibFaqScreen } from "@screens";
+import { handleNavigateBack } from "@navigation/utils";
 
-const FibFaqContainer = memo(function () {
-  return <FibFaqScreen />;
+interface IFibFaqContainer {
+  componentId: string;
+}
+
+const FibFaqContainer = memo(function (props: IFibFaqContainer) {
+  const { componentId } = props;
+  return <FibFaqScreen onNavigateBack={handleNavigateBack(componentId)} />;
 });
 
 export default FibFaqContainer;
