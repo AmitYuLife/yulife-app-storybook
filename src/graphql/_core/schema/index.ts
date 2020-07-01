@@ -42,3 +42,7 @@ export * from "./UpdateMemberConsent";
 export * from "./UpsertOnboardingChallenge";
 export * from "./UpsertPassiveChallenge";
 export * from "./User";
+export * from "./YuAvatar";
+export * from "./YuAvatarColor";
+export * from "./YuAvatarPart";
+export * from "./YuProduct";

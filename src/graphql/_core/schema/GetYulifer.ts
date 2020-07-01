@@ -8,6 +8,7 @@
 // ====================================================
 
 export interface GetYulifer_getYulifer_products_employer {
+  productId: string | null;
   policyNumber: string | null;
   earnRate: number | null;
   description: string | null;
@@ -17,6 +18,7 @@ export interface GetYulifer_getYulifer_products_employer {
 }
 
 export interface GetYulifer_getYulifer_products_personal {
+  productId: string | null;
   policyNumber: string | null;
   earnRate: number | null;
   description: string | null;
@@ -26,6 +28,7 @@ export interface GetYulifer_getYulifer_products_personal {
 }
 
 export interface GetYulifer_getYulifer_products_charms {
+  productId: string | null;
   policyNumber: string | null;
   earnRate: number | null;
   description: string | null;
@@ -421,6 +424,7 @@ export interface GetYulifer_getYulifer_avatar_glasses {
 }
 
 export interface GetYulifer_getYulifer_avatar {
+  id: string | null;
   hair: GetYulifer_getYulifer_avatar_hair | null;
   facialHair: GetYulifer_getYulifer_avatar_facialHair | null;
   head: GetYulifer_getYulifer_avatar_head | null;

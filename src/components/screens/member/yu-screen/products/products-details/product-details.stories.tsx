@@ -7,6 +7,7 @@ storiesOf("ProductDetails").add("charm", () => (
     onExitConfirmed={(): void => null}
     productType="charm"
     product={{
+      productId: "alpha",
       earnRate: 10,
       description: `You've earned an Alpha Charm! As an early adopter of YuLife, you earn <bold>10x</bold> YuCoin.`,
       name: "Alpha Charm",

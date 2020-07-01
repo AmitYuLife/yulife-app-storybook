@@ -6,7 +6,7 @@ import { ROUTES, MODALS } from "@navigation/constants";
 import { IMainTabsProps } from "@navigation/root";
 import { IReduxState } from "@redux/_core/reducers";
 import { getCurrentLevel, getHasNotification } from "@redux/levels/levels.selectors";
-import { getUserFeatures, getUserName } from "@redux/user/user.selectors";
+import { getUserName } from "@redux/user/user.selectors";
 import { useQuery } from "@apollo/react-hooks";
 import { transformAvatar } from "../../../screens/member/yu-screen/avatar-builder/avatar-builder.helper";
 import { IBodyItem } from "@redux/avatar/avatar.reducer";
@@ -123,7 +123,6 @@ function YuScreenContainer({
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-  features: getUserFeatures(state),
   currentLevel: getCurrentLevel(state),
   userName: getUserName(state),
   hasNotification: getHasNotification(state),
@@ -144,7 +143,16 @@ function navigateToProductScreen(
   productType: ProductType,
   product: GetYulifer_getYulifer_products_employer | GetYulifer_getYulifer_products_personal
 ) {
-  Navigation.push(componentId, {
+  if (product.active) {
+    return Navigation.push(componentId, {
+      component: {
+        id: ROUTES.fib,
+        name: ROUTES.fib,
+      },
+    });
+  }
+
+  return Navigation.push(componentId, {
     component: {
       id: ROUTES.yuScreenProducts,
       name: ROUTES.yuScreenProducts,
