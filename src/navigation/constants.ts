@@ -29,6 +29,10 @@ export const ROUTES = {
   yuScreenProducts: "yulife.member.YuscreenProducts",
   yuScreenEarnRate: "yulife.member.YuscreenEarnRate",
 
+  // product
+  fib: "yulife.product.FibScreen",
+  fibFaq: "yulife.product.FibFaqScreen",
+
   // quests
   questsChallengesList: "yulife.quests.ChallengesList",
   questsChallengesHistory: "yulife.quests.ChallengesHistory",
