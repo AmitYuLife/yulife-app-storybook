@@ -48,6 +48,8 @@ const dataIdFromObject = (object: any) => {
       return `${object.__typename}-${object.partId}-${object.order}`;
     case "AvatarColor":
       return `${object.__typename}-${object.colorSchemeId}-${object.displayOrder}`;
+    case "YuliferProduct":
+      return `${object.__typename}-${object.productId}-${object.active}`;
     default:
       return defaultDataIdFromObject(object);
   }

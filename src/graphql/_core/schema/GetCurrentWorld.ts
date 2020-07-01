@@ -8,6 +8,7 @@
 // ====================================================
 
 export interface GetCurrentWorld_getCurrentWorld_slots_challengesDetails {
+  id: string | null;
   rating: number | null;
   yuCoinAwarded: number | null;
 }

@@ -388,6 +388,7 @@ export interface GetLeaderboard_getLeaderboard_avatar_glasses {
 }
 
 export interface GetLeaderboard_getLeaderboard_avatar {
+  id: string | null;
   hair: GetLeaderboard_getLeaderboard_avatar_hair | null;
   facialHair: GetLeaderboard_getLeaderboard_avatar_facialHair | null;
   head: GetLeaderboard_getLeaderboard_avatar_head | null;

@@ -74,7 +74,7 @@ export function addExtraData(arrayData: any[]) {
 
 export function transformAvatar(avatarData: FullAvatar) {
   const avatar: IAvatarStore["avatarForYuscreen"] = {} as any;
-  const keys: (keyof FullAvatar)[] = [
+  const keys: (keyof Omit<FullAvatar, "id">)[] = [
     "head",
     "eyes",
     "hair",

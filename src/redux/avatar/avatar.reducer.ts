@@ -11,7 +11,7 @@ import {
   femalePantsDefault,
 } from "./avatar.data";
 import { femaleHeadDefault } from "./avatar.data";
-import { Avatar_getAvatarColors, Avatar_getAvatarColors_colorScheme } from "../../graphql/_core/schema";
+import { YuAvatarColor, YuAvatarColor_colorScheme } from "../../graphql/_core/schema";
 import {
   maleBodyDefault,
   maleBootsDefault,
@@ -54,14 +54,14 @@ export interface IBodyElements {
 }
 
 export interface IBodyItem {
-  colors?: Avatar_getAvatarColors;
+  colors?: YuAvatarColor;
   bodyElements: IBodyElements[];
   type?: string;
   previewViewBox?: string;
   height?: number;
   width?: number;
   partId: string;
-  defaultColor?: Avatar_getAvatarColors_colorScheme;
+  defaultColor?: YuAvatarColor_colorScheme;
 }
 
 const defaultColors = {
