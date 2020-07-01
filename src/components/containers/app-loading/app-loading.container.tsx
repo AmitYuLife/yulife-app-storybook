@@ -6,7 +6,7 @@ import { Linking, Platform, StyleSheet, Text, View } from "react-native";
 import { PersistGate } from "redux-persist/integration/react";
 import client from "@graphql/_core/client";
 import { GQL_QUERY_GET_REWARDS } from "@graphql/rewards";
-import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
+import { GQL_QUERY_GET_YULIFER, GQL_QUERY_GET_EARN_RATE_DETAILS } from "@graphql/yuscreen";
 
 interface IProps {
   componentId: string;
@@ -43,6 +43,12 @@ export const AppLoadingContainer: React.FC<IProps> = () => {
       client()
         .query({
           query: GQL_QUERY_GET_YULIFER,
+          fetchPolicy: "network-only",
+        })
+        .catch(() => null);
+      client()
+        .query({
+          query: GQL_QUERY_GET_EARN_RATE_DETAILS,
           fetchPolicy: "network-only",
         })
         .catch(() => null);
