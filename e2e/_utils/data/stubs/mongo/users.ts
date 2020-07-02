@@ -8,7 +8,7 @@ const USER_DATA_TEMPLATE = {
         _id: "",
         userId: "",
         products: [{
-            _id: generateRandomMongoId(),
+            productId: generateRandomMongoId(),
             productType: "Yulife",
             option: "epic",
             type: "employer",
@@ -29,7 +29,7 @@ export const USER_2 = {
         userId: CUSTOMER_2.data.customerId,
         earnRate: 20,
         products: [{
-            _id: generateRandomMongoId(),
+            productId: generateRandomMongoId(),
             productType: "Yulife",
             option: "epic",
             earnRate: 20,
@@ -65,7 +65,7 @@ export const USER_17 = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_17.data.customerId,
         products: [{
-            _id: generateRandomMongoId(),
+            productId: generateRandomMongoId(),
             productType: "Yulife",
             option: "epic",
             type: "employer",
