@@ -16,7 +16,7 @@ interface Props {
 
 export const AvatarFilled = memo(function ({ avatar, onEditPress }: Props) {
   return (
-    <TouchableOpacity activeOpacity={0.5} onPress={onEditPress} testID={YUSCREEN_AVATAR}>
+    <TouchableOpacity activeOpacity={!onEditPress ? 1 : 0.5} onPress={onEditPress} testID={YUSCREEN_AVATAR}>
       <BodyAvatar
         avatar={avatar}
         showElipse={true}

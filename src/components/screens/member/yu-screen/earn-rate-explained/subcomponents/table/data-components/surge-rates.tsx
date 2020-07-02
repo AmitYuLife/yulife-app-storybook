@@ -4,7 +4,7 @@ import { Text } from "@atoms/index";
 import { ITableRowProps } from "./table.row";
 import { Style, Colours } from "@styles";
 import { EARN_RATE_COLUMN_WIDTH } from "../table.styles";
-import { YuCoinIcon } from "../..";
+import { YuCoinIcon } from "@atoms";
 
 type ISurgeRates = Pick<ITableRowProps, "totalEarnRate"> & {
   hide: boolean;

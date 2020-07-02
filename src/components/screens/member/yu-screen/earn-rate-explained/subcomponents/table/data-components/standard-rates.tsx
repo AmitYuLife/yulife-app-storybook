@@ -4,7 +4,7 @@ import { Text } from "@atoms/index";
 import { EarnRateDetails_getEarnRateDetails } from "@graphql/_core/schema";
 import { Style } from "@styles";
 import { EARN_RATE_COLUMN_WIDTH } from "../table.styles";
-import YuCoinIcon from "../../yucoin.icon";
+import { YuCoinIcon } from "@atoms";
 
 interface IRates {
   standardValue: EarnRateDetails_getEarnRateDetails["standardValue"];
@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
     marginRight: Style.adjust(8),
     marginLeft: Style.adjust(4),
     marginBottom: Style.adjust(2),
-    color: "#5A5A5C",
+    tintColor: "#5A5A5C",
   } as ImageStyle,
 });

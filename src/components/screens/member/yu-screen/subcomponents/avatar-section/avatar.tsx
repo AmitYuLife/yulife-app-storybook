@@ -11,7 +11,7 @@ type Props = ComponentProps<typeof AvatarFilled> & {
 
 export const Avatar = memo(function (props: Props) {
   const { isAvatarCreated, avatar, onEditPress, loading, avatarFromLocal } = props;
-  if (!isAvatarCreated || loading) {
+  if (!isAvatarCreated || loading || !avatar) {
     return <AvatarEmpty />;
   }
 

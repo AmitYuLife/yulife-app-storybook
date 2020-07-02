@@ -144,4 +144,8 @@ export default {
     white: "#FFFFFF",
     brown: "#EA9E2F",
   },
+  yucoin: {
+    n800: "#5A5A5C",
+    carrotOrange: "#EA9E2F",
+  },
 };
