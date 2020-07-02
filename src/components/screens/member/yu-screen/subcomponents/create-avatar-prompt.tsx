@@ -3,7 +3,7 @@ import { View, StyleSheet, ViewStyle, TextStyle, ImageStyle, Platform } from "re
 import { Text } from "@atoms";
 import MinimalButton from "@atoms/button/minimalButton";
 import { Colours, Style } from "@styles";
-import YuCoinIcon from "../earn-rate-explained/subcomponents/yucoin.icon";
+import { YuCoinIcon } from "@atoms";
 import { GET_STARTED_BUTTON, EMPTY_YUSCREEN_COPY } from "@ids";
 
 interface Props {
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   yucoin: {
-    color: "#5A5A5C",
+    tintColor: "#5A5A5C",
     marginBottom: -4,
     width: Style.adjust(16),
     height: Style.adjust(16),
