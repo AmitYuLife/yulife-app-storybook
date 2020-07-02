@@ -148,4 +148,7 @@ export default {
     n800: "#5A5A5C",
     carrotOrange: "#EA9E2F",
   },
+  text: {
+    n800: "#5A5A5C",
+  },
 };
