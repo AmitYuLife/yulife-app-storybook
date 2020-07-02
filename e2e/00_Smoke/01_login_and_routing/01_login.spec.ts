@@ -1,4 +1,4 @@
-import { Feature, Given, Scenario, Then, When, ScenarioOnly } from "@bdd";
+import { Feature, Given, Scenario, Then, When, ScenarioOnly, FeatureOnly } from "@bdd";
 
 import * as given from "./_steps/given";
 import * as then from "./_steps/then";
