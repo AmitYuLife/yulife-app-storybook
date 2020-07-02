@@ -310,3 +310,31 @@ export const CUSTOMER_21 = {
         status: "onboarded"
     }
 } as IDatabaseItem
+
+export const CUSTOMER_22 = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "craig@yulife.com",
+        firstName: "Craig",
+        lastName: "David",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_23 = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "mike@yulife.com",
+        firstName: "Mike",
+        lastName: "Skinner",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        membershipType: "Yulife",
+        status: "onboarded"
+    }
+} as IDatabaseItem
