@@ -144,6 +144,13 @@ export default {
     white: "#FFFFFF",
     brown: "#EA9E2F",
   },
+  products: {
+    fib: {
+      common: "#00ED9D",
+      rare: "#00C0F3",
+      epic: "#956AFF",
+    },
+  },
   yucoin: {
     n800: "#5A5A5C",
     carrotOrange: "#EA9E2F",
