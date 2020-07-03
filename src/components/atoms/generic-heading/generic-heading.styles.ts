@@ -1,5 +1,6 @@
-import { StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle, Platform, ImageStyle } from "react-native";
 import { Colours, Style } from "../../../styles";
+import { IRightIcon } from "./generic-heading.types";
 
 const styles = StyleSheet.create({
   heading: {
@@ -61,6 +62,27 @@ const styles = StyleSheet.create({
     fontSize: Style.adjust(20),
     marginTop: Style.adjust(6),
   } as TextStyle,
+  rightIconClose: {
+    marginTop: Style.adjust(10),
+    width: Style.adjust(12),
+    height: Style.adjust(12),
+  } as ImageStyle,
 });
 
 export default styles;
+
+interface IAdjustHitSlop {
+  rightIcon?: IRightIcon | string;
+}
+
+export function adjustHitSlop({ rightIcon }: IAdjustHitSlop) {
+  if (typeof rightIcon === "string") {
+    return null;
+  }
+
+  if (rightIcon.icon === "CLOSE") {
+    return { paddingHorizontal: Style.adjust(16) };
+  }
+
+  return null;
+}

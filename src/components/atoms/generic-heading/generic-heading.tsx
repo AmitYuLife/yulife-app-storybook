@@ -1,28 +1,11 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity, ViewStyle, Image } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import Text from "../text/text";
 import Back from "./../back/back";
-import styles from "./generic-heading.styles";
+import styles, { adjustHitSlop } from "./generic-heading.styles";
+import { IGenericHeadingProps } from "./generic-heading.types";
 
-interface IProps {
-  heading: string;
-  subheading?: string;
-  hidesBorder?: boolean;
-  onLeftIconPress?: () => void;
-  style?: ViewStyle;
-  onRightIconPress?: () => void;
-  leftIcon?: LeftIcon;
-  border?: "new"; // FIXME: STANDARDISE ALL HEADING BORDERS
-  rightIcon?: IRightIcon | string;
-}
-
-interface IRightIcon {
-  icon: "SETTINGS";
-}
-
-type LeftIcon = "BACK" | "CLOSE";
-
-export default function GenericHeading(props: IProps) {
+export default function GenericHeading(props: IGenericHeadingProps) {
   const {
     heading,
     hidesBorder,
@@ -53,7 +36,7 @@ export default function GenericHeading(props: IProps) {
           )}
 
           {!onRightIconPress ? null : (
-            <TouchableOpacity onPress={onRightIconPress} style={styles.rightIcon}>
+            <TouchableOpacity onPress={onRightIconPress} style={[styles.rightIcon, adjustHitSlop({ rightIcon })]}>
               <RightIcon icon={rightIcon} />
             </TouchableOpacity>
           )}
@@ -74,7 +57,7 @@ export default function GenericHeading(props: IProps) {
   );
 }
 
-function LeftIcon({ icon }: { icon: IProps["leftIcon"] }) {
+function LeftIcon({ icon }: { icon: IGenericHeadingProps["leftIcon"] }) {
   switch (icon) {
     case "BACK":
       return (
@@ -89,19 +72,21 @@ function LeftIcon({ icon }: { icon: IProps["leftIcon"] }) {
   }
 }
 
-function RightIcon({ icon }: { icon: IProps["rightIcon"] }) {
+function RightIcon({ icon }: { icon: IGenericHeadingProps["rightIcon"] }) {
   if (typeof icon === "string") {
     return <Text style={styles.rightTextIcon}>{icon}</Text>;
   }
   switch (icon.icon) {
     case "SETTINGS":
       return <Image source={require("@assets/menu/settings.png")} />;
+    case "CLOSE":
+      return <Image style={styles.rightIconClose} source={require("@assets/icons/close.png")} />;
     default:
       return null;
   }
 }
 
-function NewBorder({ border }: { border: IProps["border"] }) {
+function NewBorder({ border }: { border: IGenericHeadingProps["border"] }) {
   if (!border) {
     return null;
   }
