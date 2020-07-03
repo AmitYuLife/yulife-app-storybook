@@ -22,13 +22,11 @@ function FIBHowItWorks({ coverType, paragraphs, coverTypeColor }: IHowItWorksPro
       <View style={styles.headerWrapper}>
         <Text style={styles.header}>How it works</Text>
       </View>
-      <View style={styles.textWrapper}>
-        {paragraphs.map((p, i) => (
-          <Text key={i} style={styles.text}>
-            {p}
-          </Text>
-        ))}
-      </View>
+      {paragraphs.map((p, i) => (
+        <Text key={i} style={styles.text}>
+          {p}
+        </Text>
+      ))}
     </View>
   );
 }
@@ -39,10 +37,10 @@ const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
     backgroundColor: "#FFFFFF",
-    marginHorizontal: 32,
+    paddingHorizontal: 32,
   } as ViewStyle,
   coverWrapper: {
-    marginVertical: 16,
+    marginVertical: 32,
   } as ViewStyle,
   coverType: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
@@ -60,9 +58,6 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     color: "#464647",
   } as TextStyle,
-  textWrapper: {
-    marginRight: 64,
-  } as ViewStyle,
   text: {
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     fontSize: 16,
