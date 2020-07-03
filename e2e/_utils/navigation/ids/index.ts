@@ -1,3 +1,4 @@
+
 // screens
 export const COMPONENT_HOME_SCREEN = "COMPONENT_HOME_SCREEN";
 export const DAILY_STEPS_SCREEN = "DAILY_STEPS_SCREEN";
@@ -50,7 +51,7 @@ export const VIEW_TOP_RIGHT_COIN_COUNTER = (coins: number) => `VIEW_TOP_RIGHT_CO
 export const INPUT_RESET_PASSWORD = "INPUT_RESET_PASSWORD"
 export const REWARD_ITEM = (code: string) => `REWARD_ITEM_${code}`
 export const LOCKED_REWARD_ITEM = (code: string) => `LOCKED_REWARD_ITEM_${code}`
-export const CHALLENGE_HISTORY_STARS = (starCount: number) => `CHALLENGE_HISTORY_STARS+${starCount}`
+export const CHALLENGE_HISTORY_STARS = (starCount: number, challengeType: string) => `CHALLENGE_HISTORY_STARS+${starCount}_${challengeType}`
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`

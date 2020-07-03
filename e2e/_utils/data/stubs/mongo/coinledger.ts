@@ -37,7 +37,7 @@ export const COIN_LEDGER_3 = {
         transactions: [],
         currentBalance: 17500,
         currentStreak: 0,
-        currentLevel: 10
+        currentLevel: 90
     }
 } as IDatabaseItem
 
@@ -301,7 +301,7 @@ export const COIN_LEDGER_12 = {
         transactions: [],
         currentBalance: 27500,
         currentStreak: 0,
-        currentLevel: 16
+        currentLevel: 115
     }
 } as IDatabaseItem
 
@@ -317,7 +317,7 @@ export const COIN_LEDGER_13 = {
         transactions: [],
         currentBalance: 50000,
         currentStreak: 0,
-        currentLevel: 22
+        currentLevel: 175,
     }
 } as IDatabaseItem
 

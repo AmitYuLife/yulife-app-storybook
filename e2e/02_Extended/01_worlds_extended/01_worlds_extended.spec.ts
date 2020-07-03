@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@bdd";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@bdd";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -59,6 +59,16 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                             Then("I should be on the third world", then.idVisible(QUESTS_SCREEN(2)))
                             Then("I should see the level 101 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(101)))
                             Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17930)))
+                            When("I scroll to the second world", when.scrollFromID(LEVEL_CHALLENGE_BUTTON(101), "up", "slow"), async () => {
+                                When("I scroll to the second world", when.scrollFromID(LEVEL_CHALLENGE_BUTTON(100), "up", "fast"), async () => {
+                                    Then("I should see the level 99 challenge", then.idVisible(LEVEL_CHALLENGE_BUTTON(99)))
+                                    When("I tap the level 99 challenge button", when.tapID(LEVEL_CHALLENGE_BUTTON(99)), async () => {
+                                        Then("I should see the short stroll challenge I just completed with the correct stars", then.onChallengeHistory("short stroll", 99, 10, 3))
+                                        Then("I should see the meditation challenge I just completed with the correct stars", then.onChallengeHistory("meditation", 99, 20, 1))
+                                        Then("I should see the number of minutes for meditation", then.textVisible("3-10 mins"))
+                                    })
+                                })
+                            })
                         })
                     })
                 })

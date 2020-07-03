@@ -1,9 +1,10 @@
-import { navigation, multipleTextVisible, Then, expectIsVisibleViaText, CHALLENGE_HISTORY_STARS } from "@utils"
+import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_STARS } from "@utils"
 import { screens } from "@appScreens"
 
 export const {
     idVisible,
     textVisible,
+    multipleIDVisible
 } = navigation.common
 
 export const {
@@ -50,7 +51,7 @@ export const onChallengeHistory = (challengeType: string, levelNum: number, yuco
     }
 
     for (let i = 0; i < starCount; i += 1) {
-        await expect(element(by.id(CHALLENGE_HISTORY_STARS(i)))).toBeVisible()
+        await expect(element(by.id(CHALLENGE_HISTORY_STARS(i, challengeType)))).toBeVisible()
     }
 
 }

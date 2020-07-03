@@ -25,12 +25,15 @@ export const {
 
 
 export const completeNewWorldShortStroll = (levelNumber: number) => async () => {
+
     await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelNumber))
     await navigateViaText("let's do it")
     await startChallenge("short stroll")()
     await sendSteps(400, 30000)()
     await navigateViaText("see result")
     await navigateViaText("collect")
+    await wait(5000)()
+    await navigateViaText("done")
     await navigateViaText("collect")
 }
 
