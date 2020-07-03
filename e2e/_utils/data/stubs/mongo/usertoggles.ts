@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20 } from '../postgres/customers';;
+import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23 } from '../postgres/customers';;
 
 const allTogglesTrue = {
     "showTodayYucoin": true,
@@ -222,6 +222,27 @@ export const CUSTOMER_20_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_20.data.customerId,
+        features: allTogglesTrue
+    }
+} as IDatabaseItem
+
+
+export const CUSTOMER_22_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_23.data.customerId,
+        features: allTogglesTrue
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_23_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_23.data.customerId,
         features: allTogglesTrue
     }
 } as IDatabaseItem

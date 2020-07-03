@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_7, AUTH_7, CUSTOMER_3, AUTH_3, CUSTOMER_12, AUTH_12, CUSTOMER_13, AUTH_13 } from "_utils/data/stubs";
-import { QUESTS_SCREEN, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, LEVEL_CHALLENGE_BUTTON } from "@ids";
+import { QUESTS_SCREEN, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, LEVEL_CHALLENGE_BUTTON, CHALLENGE_TILE } from "@ids";
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {
 
@@ -41,18 +41,18 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
 
     Scenario("I can finish a walking challenge in the second world", scenario.start, async () => {
         Given("I login as a user with the second world unlocked", given.logInAndGoToTab("quests", CUSTOMER_3, AUTH_3), async () => {
-            When("I start a walking challenge", when.startChallengeFromQuests(10, "short stroll"), async () => {
+            When("I start a walking challenge", when.startChallengeFromQuests(90, "short stroll"), async () => {
                 Then("I should be on the short stroll challenge", then.textVisible("0 steps"))
-                When("I walk over 200 steps", when.sendSteps(250, 30000), async () => {
+                When("I walk 450 steps", when.sendSteps(450, 30000), async () => {
                     Then("I should see the times up modal", then.textVisible("time’s up!"))
                     When("I tap see result", when.tapText("see result"), async () => {
-                        Then("I should be on the challenge complete screen", then.onChallengeComplete(250, 10))
+                        Then("I should be on the challenge complete screen", then.onChallengeComplete(450, 90))
                         When("I tap collect", when.tapText("collect"), async () => {
                             Then("I should see the 'Completed streak day 1' screen", then.textVisible("Completed streak day 1"))
                             When("I tap done", when.tapText("done"), async () => {
-                                Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
+                                Then("I should be on quests", then.idVisible(QUESTS_SCREEN(1)))
                                 When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                                    Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(250, 20))
+                                    Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(450, 20))
                                     Then("I should see my updated coin amount in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17720)))
                                 })
                             })
@@ -68,21 +68,19 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     Scenario("I can complete a meditation challenge in the second world", scenario.start, async () => {
         Given("I login as a user who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_3, AUTH_3), async () => {
             Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
-            When("I send the mindfulness data", when.sendMindfulnessData(), async () => {
-                When("I start a meditation challenge", when.startChallengeFromQuests(10, "meditation"), async () => {
+            When("I send the mindfulness data", when.sendMindfulnessData(180), async () => {
+                When("I start a meditation challenge", when.startChallengeFromQuests(90, "meditation"), async () => {
                     When("I wait to complete this challenge", when.wait(60000), async () => {
                         Then("I should see the times up modal", then.textVisible("time’s up!"))
                         When("I tap see result", when.tapText("see result"), async () => {
-                            Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(1, 10))
+                            Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(3, 90))
                             When("I tap collect", when.tapText("collect"), async () => {
                                 Then("I should see the 'Completed streak day 1' screen", then.textVisible("Completed streak day 1"))
                                 When("I tap done", when.tapText("done"), async () => {
-                                    Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
-                                    Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17720)))
-                                    Then("I should on the quests tab", then.idVisible(QUESTS_SCREEN(0)))
-                                    When("I tap a past level", when.tapID(LEVEL_CHALLENGE_BUTTON(10)), async () => {
-                                        Then("I should see the challenge I just completed with the correct stars", then.onChallengeHistory("meditation", 10, 20, 1))
-                                        Then("I should see the number of minutes", then.textVisible("1-6 mins"))
+                                    Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17740)))
+                                    Then("I should on the quests tab", then.idVisible(QUESTS_SCREEN(1)))
+                                    When("I tap a past level", when.tapID(LEVEL_CHALLENGE_BUTTON(90)), async () => {
+                                        Then("I should see other challenges to take", then.multipleIDVisible([CHALLENGE_TILE("short stroll"), CHALLENGE_TILE("brisk walk"), CHALLENGE_TILE("long walk"), CHALLENGE_TILE("meditation")]))
                                     })
                                 })
                             })
@@ -96,16 +94,17 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     Scenario("I can finish a walking chalenge in the third world", scenario.start, async () => {
         Given("I login as a user with the second world unlocked", given.logInAndGoToTab("quests", CUSTOMER_12, AUTH_12), async () => {
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27700)))
-            When("I start a walking challenge", when.startChallengeFromQuests(16, "short stroll"), async () => {
+            Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
+            When("I start a walking challenge", when.startChallengeFromQuests(115, "short stroll"), async () => {
                 Then("I should be on the short stroll challenge", then.textVisible("0 steps"))
-                When("I walk over 500 steps", when.sendSteps(550, 30000), async () => {
+                When("I walk over 500 steps", when.sendSteps(600, 30000), async () => {
                     Then("I should see the times up modal", then.textVisible("time’s up!"))
                     When("I tap see result", when.tapText("see result"), async () => {
-                        Then("I should be on the challenge complete screen", then.onChallengeComplete(550, 16))
+                        Then("I should be on the challenge complete screen", then.onChallengeComplete(600, 115))
                         When("I tap collect", when.tapText("collect"), async () => {
-                            Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
+                            Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
                             When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                                Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(550, 10))
+                                Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(600, 10))
                                 Then("I should see my updated coin amount in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27710)))
                             })
                         })
@@ -119,15 +118,16 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     Scenario("I can complete a meditation challenge in the third world", scenario.start, async () => {
         Given("I login as a user who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_12, AUTH_12), async () => {
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27700)))
+            Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
             When("I send the mindfulness data", when.sendMindfulnessData(300), async () => {
-                When("I start a meditation challenge", when.startChallengeFromQuests(16, "meditation"), async () => {
+                When("I start a meditation challenge", when.startChallengeFromQuests(115, "meditation"), async () => {
                     When("I wait to complete this challenge", when.wait(60000), async () => {
                         Then("I should see the times up modal", then.textVisible("time’s up!"))
                         When("I tap see result", when.tapText("see result"), async () => {
-                            Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 16))
+                            Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 115))
                             When("I tap collect", when.tapText("collect"), async () => {
-                                Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
-                                Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27740)))
+                                Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
+                                Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27730)))
                             })
                         })
                     })
@@ -139,14 +139,14 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     Scenario("I can finish a walking chalenge in the fourth world", scenario.start, async () => {
         Given("I login as a user with the second world unlocked", given.logInAndGoToTab("quests", CUSTOMER_13, AUTH_13), async () => {
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50200)))
-            When("I start a walking challenge", when.startChallengeFromQuests(22, "short stroll"), async () => {
+            When("I start a walking challenge", when.startChallengeFromQuests(175, "short stroll"), async () => {
                 Then("I should be on the short stroll challenge", then.textVisible("0 steps"))
                 When("I walk over 500 steps", when.sendSteps(550, 30000), async () => {
                     Then("I should see the times up modal", then.textVisible("time’s up!"))
                     When("I tap see result", when.tapText("see result"), async () => {
-                        Then("I should be on the challenge complete screen", then.onChallengeComplete(550, 22))
+                        Then("I should be on the challenge complete screen", then.onChallengeComplete(550, 175))
                         When("I tap collect", when.tapText("collect"), async () => {
-                            Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
+                            Then("I should be on quests", then.idVisible(QUESTS_SCREEN(3)))
                             When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
                                 Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(550, 10))
                                 Then("I should see my updated coin amount in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50210)))
@@ -162,14 +162,14 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         Given("I login as a user who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_13, AUTH_13), async () => {
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50200)))
             When("I send the mindfulness data", when.sendMindfulnessData(300), async () => {
-                When("I start a meditation challenge", when.startChallengeFromQuests(22, "meditation"), async () => {
+                When("I start a meditation challenge", when.startChallengeFromQuests(175, "meditation"), async () => {
                     When("I wait to complete this challenge", when.wait(60000), async () => {
                         Then("I should see the times up modal", then.textVisible("time’s up!"))
                         When("I tap see result", when.tapText("see result"), async () => {
-                            Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 22))
+                            Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 175))
                             When("I tap collect", when.tapText("collect"), async () => {
-                                Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
-                                Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50220)))
+                                Then("I should be on quests", then.idVisible(QUESTS_SCREEN(3)))
+                                Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50230)))
                             })
                         })
                     })

@@ -46,7 +46,7 @@ const ChallengesHistorySlot: SFC<IProps> = ({ availableAtLevel, duration, locked
                   ])}
                 >
                   {Array.from(Array(3)).map((_, i) => (
-                    <View key={i} testID={CHALLENGE_HISTORY_STARS(i)}>
+                    <View key={i} testID={CHALLENGE_HISTORY_STARS(i, type)}>
                       {element.rating > i ? (
                         <Image
                           style={styles.star}
