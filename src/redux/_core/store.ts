@@ -1,4 +1,4 @@
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
 import Config from "react-native-config";
 import { applyMiddleware, compose, createStore, Store } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";

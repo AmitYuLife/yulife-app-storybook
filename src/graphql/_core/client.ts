@@ -8,7 +8,7 @@ import { setContext } from "apollo-link-context";
 import { onError } from "apollo-link-error";
 import { createHttpLink } from "apollo-link-http";
 import moment from "moment";
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import { store } from "@redux/_core/store";
