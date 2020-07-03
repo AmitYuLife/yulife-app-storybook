@@ -29,7 +29,7 @@ export const USER_16_LEADERBOARD = {
     data: {
         leaderboardId: LEADERBOARD_1_ID,
         userId: CUSTOMER_16.data.customerId,
-        name: "LB1",
+        name: USER_18_LEADERBOARD.data.name,
         creatorName: CUSTOMER_18.data.firstName,
         consent: false,
         hasAccepted: true,
@@ -42,7 +42,7 @@ export const USER_17_LEADERBOARD = {
     data: {
         leaderboardId: LEADERBOARD_1_ID,
         userId: CUSTOMER_17.data.customerId,
-        name: "LB1",
+        name: USER_18_LEADERBOARD.data.name,
         creatorName: CUSTOMER_18.data.firstName,
         consent: true,
         primaryBusinessLeaderboard: true,
@@ -56,7 +56,7 @@ export const USER_19_LEADERBOARD_A = {
     data: {
         leaderboardId: LEADERBOARD_1_ID,
         userId: CUSTOMER_19.data.customerId,
-        name: "Lb1",
+        name: USER_18_LEADERBOARD.data.name,
         creatorName: CUSTOMER_18.data.firstName,
         consent: true,
         primaryBusinessLeaderboard: true,
@@ -70,7 +70,7 @@ export const USER_19_LEADERBOARD_B = {
     data: {
         leaderboardId: LEADERBOARD_2_ID,
         userId: CUSTOMER_19.data.customerId,
-        name: "Lb2",
+        name: "LB2",
         creatorName: CREATOR_NAME_2,
         consent: true,
         hasAccepted: true,
@@ -85,7 +85,7 @@ export const USER_20_LEADERBOARD = {
     data: {
         leaderboardId: LEADERBOARD_2_ID,
         userId: CUSTOMER_20.data.customerId,
-        name: "Lb2",
+        name: USER_19_LEADERBOARD_B.data.name,
         creatorName: CUSTOMER_20.data.firstName,
         consent: true,
         primaryBusinessLeaderboard: true,
@@ -101,7 +101,7 @@ export const USER_21_LEADERBOARD_A = {
     data: {
         leaderboardId: LEADERBOARD_1_ID,
         userId: CUSTOMER_21.data.customerId,
-        name: "Lb1",
+        name: USER_18_LEADERBOARD.data.name,
         creatorName: CUSTOMER_18.data.firstName,
         consent: true,
         primaryBusinessLeaderboard: true,
@@ -116,7 +116,7 @@ export const USER_21_LEADERBOARD_B = {
     data: {
         leaderboardId: LEADERBOARD_2_ID,
         userId: CUSTOMER_21.data.customerId,
-        name: "Lb2",
+        name: USER_19_LEADERBOARD_B.data.name,
         creatorName: CREATOR_NAME_2,
         consent: false,
         // hasAccepted: false,

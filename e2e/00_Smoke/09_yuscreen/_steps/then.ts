@@ -86,21 +86,21 @@ export const onAvatarCompletionScreen = async () => {
 export const onYourYuCoin = async () => {
     const copy = [
         "Your YuCoin",
-        "Power-Ups",
-        "Life Insurance",
         "Earn Rate Explained",
         "2000 Steps",
         "5 Mindful Minutes",
         "1 Challenge",
         "Streaks",
         "Chests",
+        "Power-Ups",
+        "Life Insurance",
     ]
 
     for (let i = 0; i < copy.length; i++) {
         try {
             await expect(element(by.text(copy[i]))).toBeVisible()
         } catch (e) {
-            await scrollFromText("Power-Ups", "up", "fast")()
+            await scrollFromText(copy[i - 1], "up", "fast")()
             await expect(element(by.text(copy[i]))).toBeVisible()
         }
 
