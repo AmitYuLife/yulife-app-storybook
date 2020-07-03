@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { NAV_BAR, LEADERBOARD_INFO_BUTTON, LEADERBOARD_INFO, BACK_BUTTON, LEADERBOARD_TOP_SCREEN, MENU_ICON, MENU_ITEM, SETTINGS_SCREEN, LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT, LEADERBOARD_STATUS, BUTTON_CLOSE, DAILY_STEPS_SCREEN } from "@ids";
-import { CUSTOMER_16, AUTH_16, CUSTOMER_17, AUTH_17, CUSTOMER_18, USER_18_LEADERBOARD, CUSTOMER_19, AUTH_19, CUSTOMER_20, CUSTOMER_21, AUTH_21, AUTH_20 } from "_utils/data/stubs";
+import { CUSTOMER_16, AUTH_16, CUSTOMER_17, AUTH_17, CUSTOMER_18, USER_18_LEADERBOARD, CUSTOMER_19, AUTH_19, CUSTOMER_20, CUSTOMER_21, AUTH_21, AUTH_20, USER_19_LEADERBOARD_B } from "_utils/data/stubs";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
 
@@ -13,7 +13,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             When("I go to the leaderboard screen", when.tapID(NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard consent screen", then.onLeaderboardConsent)
                 When("I tap 'yes please'", when.tapText("yes please!"), async () => {
-                    Then("I should see the leaderboard title", then.textVisible("Lb1"))
+                    Then("I should see the leaderboard title", then.textVisible(USER_18_LEADERBOARD.data.name))
                     Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_21], [800, 250]))
                     When("I tap the ? icon", when.tapID(LEADERBOARD_INFO_BUTTON), async () => {
                         Then("I should be on the about leaderboard page", then.idVisible(LEADERBOARD_INFO))
@@ -84,7 +84,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can change consent to a leaderboard I belong to", scenario.start, async () => {
         Given("I login", given.loginAsUser(CUSTOMER_17, AUTH_17), async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.textVisible("Lb1"))
+                Then("I should see the leaderboard title", then.textVisible(USER_18_LEADERBOARD.data.name))
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_19, CUSTOMER_21], [800]))
                 When("I go to the menu", when.tapID(MENU_ICON), async () => {
                     Then("I should see the settings CTA", then.idVisible(MENU_ITEM("settings")))
@@ -106,11 +106,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can check other leaderboards", scenario.start, async () => {
         Given("I login", given.loginAsUser(CUSTOMER_19, AUTH_19), async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.textVisible("Lb1"))
+                Then("I should see the leaderboard title", then.textVisible(USER_18_LEADERBOARD.data.name))
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_21], [800, 250]))
-                When("I tap the the drop down", when.tapText("Lb1"), async () => {
-                    Then("I should be on the leaderboard selection screen", then.multipleTextVisible(["Lb1", "Lb2"]))
-                    When("I tap the second leaderboard, Lb2", when.tapText("Lb2"), async () => {
+                When("I tap the the drop down", when.tapText(USER_18_LEADERBOARD.data.name), async () => {
+                    Then("I should be on the leaderboard selection screen", then.multipleTextVisible([USER_18_LEADERBOARD.data.name, USER_19_LEADERBOARD_B.data.name]))
+                    When("I tap the second leaderboard, Lb2", when.tapText(USER_19_LEADERBOARD_B.data.name), async () => {
                         Then("I should be on the second leaderboard", then.leaderboardVisible([CUSTOMER_20]))
                     })
                 })
@@ -125,11 +125,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 When("I continue the login process", when.continueLogin, async () => {
                     Then("I should be on the yuscreen", then.idVisible(DAILY_STEPS_SCREEN))
                     When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                        Then("I should see the leaderboard title", then.textVisible("Lb1"))
+                        Then("I should see the leaderboard title", then.textVisible(USER_18_LEADERBOARD.data.name))
                         Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_19], [800, 250]))
-                        When("I tap the leaderboard drop down", when.tapText("Lb1"), async () => {
-                            Then("I should see both Lb1 and the new leaderboard I just joined", then.multipleTextVisible(["Lb1", "Lb2"]))
-                            When("I tap Lb2", when.tapText("Lb2"), async () => {
+                        When("I tap the leaderboard drop down", when.tapText(USER_18_LEADERBOARD.data.name), async () => {
+                            Then("I should see both Lb1 and the new leaderboard I just joined", then.multipleTextVisible([USER_18_LEADERBOARD.data.name, USER_19_LEADERBOARD_B.data.name]))
+                            When("I tap Lb2", when.tapText(USER_19_LEADERBOARD_B.data.name), async () => {
                                 Then("I should be on the Lb2 leaderboard", then.leaderboardVisible([CUSTOMER_19, CUSTOMER_20]))
                             })
                         })
@@ -170,13 +170,13 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                                     When("I continue the login process", when.continueLogin, async () => {
                                         Then("I should be on the yuscreen", then.idVisible(DAILY_STEPS_SCREEN))
                                         When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                                            Then("I should see the leaderboard title", then.textVisible("Lb1"))
+                                            Then("I should see the leaderboard title", then.textVisible(USER_18_LEADERBOARD.data.name))
                                             Then("I should be on the default leaderboard", then.leaderboardVisible([CUSTOMER_17, CUSTOMER_18, CUSTOMER_21], [800, 250]))
-                                            When("I tap the leaderboard drop down", when.tapText("Lb1"), async () => {
-                                                Then("I should see both Lb1 and the new leaderboard I just joined", then.multipleTextVisible(["Lb1", "Lb3"]))
+                                            When("I tap the leaderboard drop down", when.tapText(USER_18_LEADERBOARD.data.name), async () => {
+                                                Then("I should see both Lb1 and the new leaderboard I just joined", then.multipleTextVisible([USER_18_LEADERBOARD.data.name, "Lb3"]))
                                                 When("I tap Lb3", when.tapText("Lb3"), async () => {
                                                     Then("I should see the leaderboard name Lb3", then.textVisible("Lb3"))
-                                                    Then("I should not see any of the other leaderboards", then.textNotVisible("Lb2"))
+                                                    Then("I should not see any of the other leaderboards", then.textNotVisible(USER_19_LEADERBOARD_B.data.name))
                                                     Then("I should be on the Lb3 leaderboard", then.leaderboardVisible([CUSTOMER_20]))
                                                 })
                                             })

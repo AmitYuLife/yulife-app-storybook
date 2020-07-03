@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_1, CUSTOMER_18, AUTH_18, CUSTOMER_17, AUTH_17, USER_17, AUTH_19, CUSTOMER_19 } from "_utils/data/stubs";
+import { CUSTOMER_1, CUSTOMER_18, AUTH_18, CUSTOMER_17, AUTH_17, USER_17, AUTH_19, CUSTOMER_19, USER_18_LEADERBOARD } from "_utils/data/stubs";
 import {
     GET_STARTED_BUTTON, MALE_BODY, SKIN_TONE, VIEW_TOP_RIGHT_COIN_COUNTER, NAV_BAR, PERSONAL_PRODUCT,
     CHECK_BOX_STATE, SURVEY_SCREEN, SURVEY_TEXT_BOX, FEMALE_BODY, AVATAR_BUILDER_LIST, NO_ITEM_SELECTED, HEAD_TYPE, YUSCREEN_AVATAR, EARN_RATE_BUTTON
@@ -74,7 +74,7 @@ Feature("I am able to use the yuscreen, create, and edit an avatar", async () =>
                                                     })
                                                 })
                                                 When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                                                    Then("I should be on the leaderboard", then.textVisible("Lb1"))
+                                                    Then("I should be on the leaderboard", then.textVisible(USER_18_LEADERBOARD.data.name))
                                                     Then("I should see my avatar", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "fat_lumberjack", "glasses_5"))
                                                 })
                                             })
@@ -212,7 +212,7 @@ Feature("I am able to use the yuscreen, create, and edit an avatar", async () =>
                                 })
                                 When("I tap hair colour", when.tapTab("Hair Colour"), async () => {
                                     Then("I should be on the Hair Colour tab", then.textVisible("Hair Colour"))
-                                    When("I tap a hair colour", when.tapColour("#F5C383"), async () => {
+                                    When("I tap a hair colour", when.tapColour("#212121"), async () => {
                                         When("I tap the Facial Hair tab", when.tapTab("Facial Hair"), async () => {
                                             Then("I should be on the Facial Hair tab", then.textVisible("Facial Hair"))
                                             When("I tap Facial Hair Colour", when.tapTab("Facial Hair Colour"), async () => {
@@ -243,7 +243,7 @@ Feature("I am able to use the yuscreen, create, and edit an avatar", async () =>
                                                 })
                                             })
                                             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                                                Then("I should be on the leaderboard", then.textVisible("Lb1"))
+                                                Then("I should be on the leaderboard", then.textVisible(USER_18_LEADERBOARD.data.name))
                                                 Then("I should see my avatar", then.avatarBodyVisible("eyes_1", "long_sides", "", ""))
                                             })
                                         })
