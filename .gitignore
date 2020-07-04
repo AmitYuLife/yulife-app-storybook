@@ -3,6 +3,10 @@
 .DS_Store
 **/.DS_Store
 
+# Storybook
+#
+src/components/storybook/index.ts
+
 # Xcode
 #
 build/
