@@ -30,12 +30,13 @@ export default [
 
   // member screens
   {
+    renderAfterMs: 600,
     name: ROUTES.menu,
     component: require("../components/containers/member/menu/menu.container").default,
   },
   {
     hasMenu: true,
-    lazyLoad: true,
+    renderAfterMs: 300,
     name: ROUTES.yuScreen,
     component: require("../components/containers/member/yu-screen/yu-screen.container").default,
   },
@@ -62,13 +63,13 @@ export default [
   },
   {
     hasMenu: true,
-    lazyLoad: true,
+    renderAfterMs: 150,
     name: ROUTES.quests,
     component: require("../components/containers/member/quests/quests.container").default,
   },
   {
     hasMenu: true,
-    lazyLoad: true,
+    renderAfterMs: 600,
     name: ROUTES.rewards,
     component: require("../components/containers/member/rewards/rewards.main.container").default,
   },
@@ -82,7 +83,7 @@ export default [
   },
   {
     hasMenu: true,
-    lazyLoad: true,
+    renderAfterMs: 450,
     name: ROUTES.leaderboards,
     component: require("../components/containers/member/leaderboards/leaderboards.container").default,
   },

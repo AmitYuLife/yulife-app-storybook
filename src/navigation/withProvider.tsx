@@ -5,15 +5,9 @@ import React from "react";
 import { generateOnLeftMenuPress } from "./root";
 
 const withProvider = (WrappedComponent: ComponentClass, client: ApolloClient<{}>, hasMenu = false) => (props: any) => {
-  const otherProps: any = {};
-
-  if (hasMenu) {
-    otherProps.onLeftMenuPress = generateOnLeftMenuPress(props.componentId);
-  }
-
   return (
     <ApolloProvider client={client}>
-      <WrappedComponent {...props} {...otherProps} />
+      <WrappedComponent {...props} onLeftMenuPress={hasMenu ? generateOnLeftMenuPress(props.componentId) : null} />
     </ApolloProvider>
   );
 };

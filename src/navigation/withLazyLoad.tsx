@@ -1,15 +1,19 @@
-import React, { ComponentClass, useState } from "react";
-import { InteractionManager, View } from "react-native";
+import React, { ComponentClass, useState, useEffect } from "react";
+import { View } from "react-native";
 
-const withLazyLoad = (WrappedComponent: ComponentClass) => (props: any) => {
+const withLazyLoad = (WrappedComponent: ComponentClass, renderAfterMs = 50) => (props: any) => {
   const [shouldRender, setRender] = useState(false);
 
-  if (!shouldRender) {
-    const onLayout = () => {
-      InteractionManager.runAfterInteractions(() => setRender(true));
-    };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setRender(true);
+    }, renderAfterMs);
 
-    return <View onLayout={onLayout} />;
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!shouldRender) {
+    return <View />;
   }
 
   return <WrappedComponent {...props} />;

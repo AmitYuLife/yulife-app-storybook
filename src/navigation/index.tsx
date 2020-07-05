@@ -9,10 +9,15 @@ import withProvider from "./withProvider";
 export default function registerScreens() {
   const apolloClient = client();
 
-  for (const { name, component, lazyLoad, hasMenu } of routes) {
+  for (const { name, component, renderAfterMs, hasMenu } of routes) {
     Navigation.registerComponentWithRedux(
       name,
-      () => withProvider(lazyLoad ? (withLazyLoad(component) as any) : component, apolloClient, hasMenu),
+      () =>
+        withProvider(
+          renderAfterMs ? (withLazyLoad(component, renderAfterMs) as any) : component,
+          apolloClient,
+          hasMenu
+        ),
       Provider,
       store
     );
