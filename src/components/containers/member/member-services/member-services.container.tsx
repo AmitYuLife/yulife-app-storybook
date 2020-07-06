@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { View, SafeAreaView, ViewStyle } from "react-native";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getUserStart } from "../../../../redux/user/user.actions";
-import { getUserBusiness, getUserFeatures } from "../../../../redux/user/user.selectors";
+import { getUserBusiness, getUserFeatures, getUserMembershipType } from "../../../../redux/user/user.selectors";
 import SmartHealth from "../../../screens/member/member-services/smart-health.screen";
 import MemberServicesTabs, { Tab } from "@components/molecules/member-services-tabs/member-services-tabs";
 import { MemberServiceId } from "@components/molecules/member-services-tabs/member-services.models";
@@ -13,6 +13,7 @@ import { GenericHeading, Close, Text } from "@atoms";
 import { Style } from "@styles";
 import { YUMATTER_SCREEN, SMART_HEALTH_SCREEN } from "@ids";
 import { getMemberServicesDisplayState } from "@components/molecules/member-services-tabs/member-services-tab/member-services.helpers";
+import { MembershipTypes } from "@redux/user/user.reducer";
 
 interface IProps {
   componentId: string;
@@ -23,7 +24,9 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
-function MemberServicesContainer({ componentId, isGroupUser, isWellbeingAccess, features }: Props) {
+function MemberServicesContainer({ componentId, isGroupUser, isWellbeingAccess, features, membershipType }: Props) {
+  const isInstant = membershipType === MembershipTypes.INSTANT_GROUP;
+
   const { shouldHideSmartHealthScreen, shouldHideYuMatterScreen } = getMemberServicesDisplayState(features, {
     isGroupUser,
     isWellbeingAccess,
@@ -80,7 +83,7 @@ function MemberServicesContainer({ componentId, isGroupUser, isWellbeingAccess, 
       <View style={styles.tabsWrapper}>
         <MemberServicesTabs tabs={tabDetails} activeTabId={selectedTabId} />
       </View>
-      {selectedTabId === "yumatter" ? <Yumatter /> : <SmartHealth />}
+      {selectedTabId === "yumatter" ? <Yumatter /> : <SmartHealth isInstant={isInstant} />}
       <Close onPress={handleClose} />
     </SafeAreaView>
   );
@@ -90,6 +93,7 @@ const mapStateToProps = (state: IReduxState) => ({
   features: getUserFeatures(state),
   isGroupUser: getUserBusiness(state).isGroup,
   isWellbeingAccess: getUserBusiness(state).isWellbeingAccess,
+  membershipType: getUserMembershipType(state),
 });
 
 const mapDispatchToProps = {

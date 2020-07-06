@@ -39,6 +39,11 @@ export type ILeaderboard = GetCurrentUser_getCurrentUser_leaderboards & {
 type Connection = GetCurrentUser_getCurrentUser_connections & { isLoading?: boolean };
 type Business = GetCurrentUser_getCurrentUser_business & { isLoading?: boolean };
 
+export enum MembershipTypes {
+  "YULIFE_LITE" = "Yulife Lite",
+  "INSTANT_GROUP" = "Instant Group",
+}
+
 type SurgeActivity = "steps" | "meditation" | "all" | null;
 
 export interface IUserStore {
@@ -47,6 +52,7 @@ export interface IUserStore {
   archived: boolean;
   connections: Connection[];
   consent: MobileConsentInput;
+  membershipType: string;
   features: IFeature;
   leaderboards: ILeaderboard[];
   popupVisibility: {
@@ -71,6 +77,7 @@ export const initialState: IUserStore = {
   archived: false,
   firstName: "",
   lastName: "",
+  membershipType: "",
   consent: {},
   features: {},
   connections: [],
@@ -176,6 +183,7 @@ const updatePersistedState = (persistedState: IUserStore) => {
         alpha: true,
         isGroup: false,
         isWellbeingAccess: false,
+        isInstantGroup: false,
       },
     };
   }
@@ -197,6 +205,7 @@ const getUserSuccess = (
     getCurrentUser: {
       firstName,
       lastName,
+      membershipType,
       leaderboards = [],
       mobileConsent,
       userFeatures = [],
@@ -215,6 +224,7 @@ const getUserSuccess = (
   firstName,
   lastName,
   connections,
+  membershipType,
   consent: {
     ...mobileConsent,
   },

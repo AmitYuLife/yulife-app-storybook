@@ -10,6 +10,7 @@ function renderComponent(state: ConnectedState) {
       ...{
         user: {
           ...testInitialState.user,
+          membershipType: state.membershipType,
           features: {
             ...testInitialState.user.features,
             ...state.features,
@@ -36,6 +37,7 @@ describe("MemberServicesContainer", () => {
       },
       isGroupUser: true,
       isWellbeingAccess: true,
+      membershipType: "",
     };
 
     const { queryByTestId } = renderComponent(state);
@@ -52,6 +54,7 @@ describe("MemberServicesContainer", () => {
       },
       isGroupUser: false,
       isWellbeingAccess: false,
+      membershipType: "",
     };
 
     const { queryByTestId } = renderComponent(state);
@@ -68,6 +71,7 @@ describe("MemberServicesContainer", () => {
       },
       isGroupUser: false,
       isWellbeingAccess: false,
+      membershipType: "",
     };
 
     const { queryByText } = renderComponent(state);
