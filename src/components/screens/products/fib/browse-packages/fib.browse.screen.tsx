@@ -1,10 +1,9 @@
 import React, { memo, ComponentProps, useState, useCallback } from "react";
 import { View, StyleSheet, ScrollView, Platform } from "react-native";
 import { GenericHeading } from "@atoms";
-import { Style, Colours } from "@styles";
+import { Style } from "@styles";
 import { IAvatar } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
-import { AvatarAndDescription } from "./subcomponents";
-import FIBHowItWorks from "./how-it-works/how-it-works";
+import { AvatarAndDescription, HowItWorks, EstimatedCost } from "./subcomponents";
 import { ContinueButton } from "./continue-button/continue-button";
 import { Package } from "./fib.browse.types";
 import { PackageOptions } from "./subcomponents/package-options/package-options";
@@ -63,12 +62,10 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
         <ScrollView contentContainerStyle={styles.scrollView}>
           <PackageOptions selectedPackageId={selectedPackage.heading} onSelectPackage={onSelectPackage} />
           <AvatarAndDescription avatar={avatar} selectedPackage={selectedPackage} currentEarnRate={currentEarnRate} />
-          <FIBHowItWorks
-            coverTypeColor={Colours.products.fib.common}
-            coverType={"common"}
-            paragraphs={"In the event of death, your loved ones will receive 25% of your future earnings from the date of death until age 70 (based on your current salary)./nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end./nThis is paid as a single payment.".split(
-              "/n"
-            )}
+          <EstimatedCost heading={`${selectedPackage.cost} per month`} />
+          <HowItWorks
+            header="common"
+            content={`In the event of death, your loved ones will receive ${selectedPackage.salaryPercentage}% of your future earnings from the date of death until age 70 (based on your current salary).\n\nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end.\n\nThis is paid as a single payment.`}
           />
           <Faqs items={faqs} />
         </ScrollView>
