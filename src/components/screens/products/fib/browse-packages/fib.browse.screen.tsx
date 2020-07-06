@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, ComponentProps } from "react";
 import { View, StyleSheet, ScrollView, Platform } from "react-native";
 import { GenericHeading } from "@atoms";
 import { Style, Colours } from "@styles";
@@ -7,16 +7,18 @@ import { AvatarAndDescription } from "./subcomponents";
 import FIBHowItWorks from "./how-it-works/how-it-works";
 import { ContinueButton } from "./continue-button/continue-button";
 import { Package } from "./fib.browse.types";
+import { Faqs } from "./subcomponents/faqs/faqs";
 
 interface IFibBrowseScreenProps {
   fibPackage: Package;
   onNavigateBack: () => void;
   currentEarnRate: number;
   avatar: IAvatar;
+  faqs: ComponentProps<typeof Faqs>["items"];
 }
 
 export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
-  const { onNavigateBack, avatar, currentEarnRate, fibPackage } = props;
+  const { onNavigateBack, avatar, currentEarnRate, fibPackage, faqs } = props;
   return (
     <>
       <View style={styles.wrapper}>
@@ -33,6 +35,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
               "/n"
             )}
           />
+          <Faqs items={faqs} />
         </ScrollView>
       </View>
       <ContinueButton onNavigateBack={onNavigateBack} />
@@ -56,7 +59,6 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     paddingTop: Platform.select({ ios: 46, android: 56 }),
-    paddingBottom: 80,
-    alignItems: "center",
+    paddingBottom: 96,
   },
 });

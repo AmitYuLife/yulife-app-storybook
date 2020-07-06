@@ -42,6 +42,7 @@ const FibContainer = memo(function (props: IFibContainer) {
       onNavigateBack={handleNavigateBack(props.componentId)}
       currentEarnRate={20}
       fibPackage={mockProduct}
+      faqs={[]}
     />
   );
 });

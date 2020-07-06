@@ -149,6 +149,8 @@ export default {
       common: "#00ED9D",
       rare: "#00C0F3",
       epic: "#956AFF",
+      n800: "#5A5A5C",
+      n900: "#464647",
     },
   },
   yucoin: {

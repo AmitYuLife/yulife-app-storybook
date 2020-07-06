@@ -1,0 +1,1 @@
+export { arrowRightSvg } from "./svgArrowRight";

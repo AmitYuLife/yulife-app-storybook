@@ -10,6 +10,8 @@ const mockProduct = {
   salaryPercentage: 25,
 };
 
+const onPress = (): null => null;
+
 storiesOf("FibBrowse")
   .addDecorator((g: any) => <View style={{ flex: 1 }}>{g()}</View>)
   .add("default", () => (
@@ -18,5 +20,15 @@ storiesOf("FibBrowse")
       fibPackage={mockProduct}
       avatar={avatarFiller}
       currentEarnRate={20}
+      faqs={[
+        {
+          label: "What is a single cash payment?",
+          onPress,
+        },
+        {
+          label: "What happens if YuLife needs medical evidence?",
+          onPress,
+        },
+      ]}
     />
   ));
