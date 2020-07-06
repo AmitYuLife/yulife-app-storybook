@@ -4,12 +4,6 @@ import { FibBrowseScreen } from "./fib.browse.screen";
 import { avatarFiller } from "@components/screens/member/yu-screen/yu-screen.stories-helper";
 import { View } from "react-native";
 
-const mockProduct = {
-  heading: `Designed to\ncover the basics`,
-  earnRate: 10,
-  salaryPercentage: 25,
-};
-
 const onPress = (): null => null;
 
 storiesOf("FibBrowse")
@@ -17,7 +11,6 @@ storiesOf("FibBrowse")
   .add("default", () => (
     <FibBrowseScreen
       onNavigateBack={(): void => null}
-      fibPackage={mockProduct}
       avatar={avatarFiller}
       currentEarnRate={20}
       faqs={[

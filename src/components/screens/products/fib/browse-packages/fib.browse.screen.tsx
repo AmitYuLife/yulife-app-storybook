@@ -1,4 +1,4 @@
-import React, { memo, ComponentProps } from "react";
+import React, { memo, ComponentProps, useState, useCallback } from "react";
 import { View, StyleSheet, ScrollView, Platform } from "react-native";
 import { GenericHeading } from "@atoms";
 import { Style, Colours } from "@styles";
@@ -7,18 +7,52 @@ import { AvatarAndDescription } from "./subcomponents";
 import FIBHowItWorks from "./how-it-works/how-it-works";
 import { ContinueButton } from "./continue-button/continue-button";
 import { Package } from "./fib.browse.types";
+import { PackageOptions } from "./subcomponents/package-options/package-options";
 import { Faqs } from "./subcomponents/faqs/faqs";
 
 interface IFibBrowseScreenProps {
-  fibPackage: Package;
   onNavigateBack: () => void;
   currentEarnRate: number;
   avatar: IAvatar;
   faqs: ComponentProps<typeof Faqs>["items"];
 }
 
+const packages: Package[] = [
+  {
+    heading: "Common",
+    earnRate: 10,
+    salaryPercentage: 25,
+    cost: 10,
+  },
+  {
+    heading: "Rare",
+    earnRate: 20,
+    salaryPercentage: 50,
+    cost: 20,
+  },
+  {
+    heading: "Epic",
+    earnRate: 30,
+    salaryPercentage: 75,
+    cost: 30,
+  },
+];
+
+const DEFAULT_PACKAGE = packages[0];
+
 export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
-  const { onNavigateBack, avatar, currentEarnRate, fibPackage, faqs } = props;
+  const { onNavigateBack, avatar, currentEarnRate, faqs } = props;
+
+  const [selectedPackage, setSelectedPackage] = useState<Package>(DEFAULT_PACKAGE);
+
+  const onSelectPackage = useCallback(
+    (packageId: string) => {
+      const newPackage = packages.find((p) => p.heading === packageId);
+      setSelectedPackage(newPackage);
+    },
+    [setSelectedPackage]
+  );
+
   return (
     <>
       <View style={styles.wrapper}>
@@ -27,7 +61,8 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
         </View>
 
         <ScrollView contentContainerStyle={styles.scrollView}>
-          <AvatarAndDescription avatar={avatar} fibPackage={fibPackage} currentEarnRate={currentEarnRate} />
+          <PackageOptions selectedPackageId={selectedPackage.heading} onSelectPackage={onSelectPackage} />
+          <AvatarAndDescription avatar={avatar} selectedPackage={selectedPackage} currentEarnRate={currentEarnRate} />
           <FIBHowItWorks
             coverTypeColor={Colours.products.fib.common}
             coverType={"common"}
@@ -38,6 +73,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
           <Faqs items={faqs} />
         </ScrollView>
       </View>
+
       <ContinueButton onNavigateBack={onNavigateBack} />
     </>
   );

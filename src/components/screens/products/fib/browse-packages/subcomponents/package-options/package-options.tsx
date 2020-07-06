@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback } from "react";
+import React, { memo } from "react";
 import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
 import styles from "./package-options.styles";
 
@@ -32,26 +32,20 @@ const data = [
   },
 ];
 
-// interface IPackageOptionsProps {
-//   onPackageSelected: (packageType: string) => () => void;
-// }
+interface Props {
+  onSelectPackage: (packageType: string) => void;
+  selectedPackageId: string;
+}
 
-export const PackageOptions = memo(function () {
-  const [selectedPackage, setSelectedPackage] = useState("Common");
-  // const { onPackageSelected } = props;
-  const onPackagePressed = useCallback(
-    (packageType: string) => {
-      setSelectedPackage(packageType);
-      // onPackageSelected(packageType); we should add it to dependecy [setSelectedPackage]
-    },
-    [setSelectedPackage]
-  );
+export const PackageOptions = memo(function (props: Props) {
+  const { onSelectPackage, selectedPackageId } = props;
+
   return (
     <View style={styles.wrapper}>
       {data.map((item) => {
-        const isPackageActive = item.type === selectedPackage;
+        const isPackageActive = item.type === selectedPackageId;
         return (
-          <TouchableOpacity key={item.id} style={styles.componentWrapper} onPress={() => onPackagePressed(item.type)}>
+          <TouchableOpacity key={item.id} style={styles.componentWrapper} onPress={() => onSelectPackage(item.type)}>
             <View style={styles.componentWrapper}>
               {!isPackageActive ? (
                 <>
