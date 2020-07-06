@@ -11,6 +11,7 @@ function getInitialState(state: ConnectedState) {
     ...{
       user: {
         ...testInitialState.user,
+        membershipType: state.membershipType,
         features: {
           ...testInitialState.user.features,
           ...state.features,
@@ -34,6 +35,7 @@ storiesOf("Member Services Container")
       },
       isGroupUser: true,
       isWellbeingAccess: true,
+      membershipType: "",
     };
 
     const state = getInitialState(componentState);
@@ -50,6 +52,7 @@ storiesOf("Member Services Container")
       features: {},
       isGroupUser: false,
       isWellbeingAccess: false,
+      membershipType: "",
     };
 
     const state = getInitialState(componentState);
@@ -61,7 +64,7 @@ storiesOf("Member Services Container")
       </Provider>
     );
   })
-  .add("Only SmartHealtyh", () => {
+  .add("Only SmartHealth", () => {
     const componentState = {
       features: {
         hideYuMatterScreen: true,
@@ -69,6 +72,27 @@ storiesOf("Member Services Container")
       },
       isGroupUser: true,
       isWellbeingAccess: true,
+      membershipType: "",
+    };
+
+    const state = getInitialState(componentState);
+    const store = createStore(reducers, state);
+
+    return (
+      <Provider store={store}>
+        <MemberServices componentId="1234" />
+      </Provider>
+    );
+  })
+  .add("Only SmartHealth", () => {
+    const componentState = {
+      features: {
+        hideYuMatterScreen: true,
+        hideSmartHealthScreen: false,
+      },
+      isGroupUser: true,
+      isWellbeingAccess: true,
+      membershipType: "",
     };
 
     const state = getInitialState(componentState);
