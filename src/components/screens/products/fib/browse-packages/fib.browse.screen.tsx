@@ -8,6 +8,7 @@ import { ContinueButton } from "./continue-button/continue-button";
 import { Package } from "./fib.browse.types";
 import { PackageOptions } from "./subcomponents/package-options/package-options";
 import { Faqs } from "./subcomponents/faqs/faqs";
+import AdditionalBenefits from "./additional-benefits/additional-benefits";
 
 interface IFibBrowseScreenProps {
   onNavigateBack: () => void;
@@ -18,22 +19,28 @@ interface IFibBrowseScreenProps {
 
 const packages: Package[] = [
   {
-    heading: "Common",
+    coverType: "common",
+    packageLabel: "Common",
     earnRate: 10,
     salaryPercentage: 25,
     cost: 10,
+    descriptionHeading: "Designed to cover the basics",
   },
   {
-    heading: "Rare",
+    coverType: "rare",
+    packageLabel: "Rare",
     earnRate: 20,
     salaryPercentage: 50,
     cost: 20,
+    descriptionHeading: "Cover the home and basics",
   },
   {
-    heading: "Epic",
+    coverType: "epic",
+    packageLabel: "Epic",
     earnRate: 30,
     salaryPercentage: 75,
     cost: 30,
+    descriptionHeading: "Maximum protection for your loved ones",
   },
 ];
 
@@ -46,7 +53,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
 
   const onSelectPackage = useCallback(
     (packageId: string) => {
-      const newPackage = packages.find((p) => p.heading === packageId);
+      const newPackage = packages.find((p) => p.packageLabel === packageId);
       setSelectedPackage(newPackage);
     },
     [setSelectedPackage]
@@ -56,17 +63,18 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
     <>
       <View style={styles.wrapper}>
         <View style={styles.headingWrapper}>
-          <GenericHeading heading="browse packages" onLeftIconPress={onNavigateBack} />
+          <GenericHeading heading="Life insurance" onLeftIconPress={onNavigateBack} />
         </View>
 
-        <ScrollView contentContainerStyle={styles.scrollView}>
-          <PackageOptions selectedPackageId={selectedPackage.heading} onSelectPackage={onSelectPackage} />
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
+          <PackageOptions selectedPackageId={selectedPackage.packageLabel} onSelectPackage={onSelectPackage} />
           <AvatarAndDescription avatar={avatar} selectedPackage={selectedPackage} currentEarnRate={currentEarnRate} />
           <EstimatedCost heading={`${selectedPackage.cost} per month`} />
           <HowItWorks
-            header="common"
+            header={selectedPackage.coverType}
             content={`In the event of death, your loved ones will receive ${selectedPackage.salaryPercentage}% of your future earnings from the date of death until age 70 (based on your current salary).\n\nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end.\n\nThis is paid as a single payment.`}
           />
+          <AdditionalBenefits earnRate={currentEarnRate} packageEarnRate={currentEarnRate + selectedPackage.earnRate} />
           <Faqs items={faqs} />
         </ScrollView>
       </View>
