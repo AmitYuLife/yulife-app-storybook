@@ -1,10 +1,11 @@
 import React, { memo } from "react";
 import { View, StyleSheet, ScrollView, Platform } from "react-native";
-import { GenericHeading, Button } from "@atoms";
+import { GenericHeading } from "@atoms";
 import { Style, Colours } from "@styles";
 import { IAvatar } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
 import { AvatarAndDescription } from "./subcomponents";
 import FIBHowItWorks from "./how-it-works/how-it-works";
+import { ContinueButton } from "./continue-button/continue-button";
 import { Package } from "./fib.browse.types";
 
 interface IFibBrowseScreenProps {
@@ -17,22 +18,25 @@ interface IFibBrowseScreenProps {
 export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
   const { onNavigateBack, avatar, currentEarnRate, fibPackage } = props;
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.headingWrapper}>
-        <GenericHeading heading="browse packages" onLeftIconPress={onNavigateBack} />
+    <>
+      <View style={styles.wrapper}>
+        <View style={styles.headingWrapper}>
+          <GenericHeading heading="browse packages" onLeftIconPress={onNavigateBack} />
+        </View>
+
+        <ScrollView contentContainerStyle={styles.scrollView}>
+          <AvatarAndDescription avatar={avatar} fibPackage={fibPackage} currentEarnRate={currentEarnRate} />
+          <FIBHowItWorks
+            coverTypeColor={Colours.products.fib.common}
+            coverType={"common"}
+            paragraphs={"In the event of death, your loved ones will receive 25% of your future earnings from the date of death until age 70 (based on your current salary)./nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end./nThis is paid as a single payment.".split(
+              "/n"
+            )}
+          />
+        </ScrollView>
       </View>
-      <ScrollView contentContainerStyle={styles.scrollView}>
-        <AvatarAndDescription avatar={avatar} fibPackage={fibPackage} currentEarnRate={currentEarnRate} />
-        <FIBHowItWorks
-          coverTypeColor={Colours.products.fib.common}
-          coverType={"common"}
-          paragraphs={"In the event of death, your loved ones will receive 25% of your future earnings from the date of death until age 70 (based on your current salary)./nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end./nThis is paid as a single payment.".split(
-            "/n"
-          )}
-        />
-        <Button type="Primary" label="Continue" onPress={onNavigateBack} />
-      </ScrollView>
-    </View>
+      <ContinueButton onNavigateBack={onNavigateBack} />
+    </>
   );
 });
 
@@ -52,7 +56,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     paddingTop: Platform.select({ ios: 46, android: 56 }),
-    paddingBottom: 24,
+    paddingBottom: 80,
     alignItems: "center",
   },
 });
