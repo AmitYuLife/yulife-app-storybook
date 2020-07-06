@@ -15,9 +15,5 @@ export const Avatar = memo(function (props: Props) {
     return <AvatarEmpty />;
   }
 
-  if (avatarFromLocal) {
-    return <AvatarFilled avatar={avatarFromLocal} onEditPress={onEditPress} />;
-  }
-
-  return <AvatarFilled onEditPress={onEditPress} avatar={avatar} />;
+  return <AvatarFilled avatar={avatarFromLocal ? avatarFromLocal : avatar} onEditPress={onEditPress} />;
 });

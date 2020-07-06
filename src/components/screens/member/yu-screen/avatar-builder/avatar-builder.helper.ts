@@ -4,6 +4,7 @@ import {
   Avatar_listAvatarParts,
 } from "@graphql/_core/schema";
 import { IAvatarStore, IBodyItem } from "@redux/avatar/avatar.reducer";
+import { IAvatar } from "./avatar.types";
 
 export const loadingColorData = Array(12)
   .fill(0)
@@ -72,7 +73,7 @@ export function addExtraData(arrayData: any[]) {
   }
 }
 
-export function transformAvatar(avatarData: FullAvatar) {
+export function transformAvatar(avatarData: FullAvatar): IAvatar {
   const avatar: IAvatarStore["avatarForYuscreen"] = {} as any;
   const keys: (keyof Omit<FullAvatar, "id">)[] = [
     "head",
