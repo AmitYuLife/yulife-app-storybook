@@ -6,11 +6,11 @@ import { Package } from "../fib.browse.types";
 
 interface Props {
   currentEarnRate: number;
-  fibPackage: Package;
+  selectedPackage: Package;
 }
 
-export const Description = memo(({ currentEarnRate, fibPackage }: Props) => {
-  const { heading, earnRate, salaryPercentage } = fibPackage;
+export const Description = memo(({ currentEarnRate, selectedPackage }: Props) => {
+  const { heading, earnRate, salaryPercentage } = selectedPackage;
   const newEarnRate = earnRate + currentEarnRate;
 
   return (

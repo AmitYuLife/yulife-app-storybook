@@ -3,6 +3,7 @@ import { Style, Colours } from "@styles";
 
 export default StyleSheet.create({
   wrapper: {
+    backgroundColor: "white",
     height: Style.adjust(165),
     flexDirection: "row",
     paddingLeft: Style.adjust(21),

@@ -7,12 +7,6 @@ import { GQL_QUERY_GET_YULIFER, GetYuliferData } from "@graphql/yuscreen";
 import { View } from "react-native";
 import { Text } from "@atoms";
 
-const mockProduct = {
-  heading: "Common",
-  earnRate: 10,
-  salaryPercentage: 25,
-};
-
 interface IFibContainer {
   componentId: string;
 }
@@ -41,7 +35,6 @@ const FibContainer = memo(function (props: IFibContainer) {
       avatar={transformAvatar(data.getYulifer.avatar)}
       onNavigateBack={handleNavigateBack(props.componentId)}
       currentEarnRate={20}
-      fibPackage={mockProduct}
       faqs={[]}
     />
   );

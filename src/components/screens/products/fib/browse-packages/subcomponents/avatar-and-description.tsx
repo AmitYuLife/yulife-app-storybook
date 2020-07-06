@@ -7,17 +7,17 @@ import { Package } from "../fib.browse.types";
 
 interface Props {
   avatar: IAvatar;
-  fibPackage: Package;
+  selectedPackage: Package;
   currentEarnRate: number;
 }
 
-export const AvatarAndDescription = memo(({ fibPackage, currentEarnRate, avatar }: Props) => {
+export const AvatarAndDescription = memo(({ selectedPackage, currentEarnRate, avatar }: Props) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.avatarWrapper}>
         <Avatar avatar={avatar} isAvatarCreated={true} avatarFromLocal={avatar} loading={false} />
       </View>
-      <Description fibPackage={fibPackage} currentEarnRate={currentEarnRate} />
+      <Description selectedPackage={selectedPackage} currentEarnRate={currentEarnRate} />
     </View>
   );
 });

@@ -20,31 +20,11 @@ import {
   maleHeadDefault,
   malePantsDefault,
 } from "./male-avatar.data";
+import { IAvatar } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
 
-export interface IAvatarStore {
+export interface IAvatarStore extends IAvatar {
   isAvatarCreated: boolean;
-  avatarForYuscreen?: {
-    head: IBodyItem;
-    eyes: IBodyItem;
-    hair: IBodyItem;
-    body: IBodyItem;
-    pants: IBodyItem;
-    boots: IBodyItem;
-    chest: IBodyItem;
-    gloves: IBodyItem;
-    glasses: IBodyItem;
-    facialHair: IBodyItem;
-  };
-  head: IBodyItem;
-  eyes: IBodyItem;
-  hair: IBodyItem;
-  body: IBodyItem;
-  pants: IBodyItem;
-  boots: IBodyItem;
-  chest: IBodyItem;
-  gloves: IBodyItem;
-  glasses: IBodyItem;
-  facialHair: IBodyItem;
+  avatarForYuscreen?: IAvatar;
 }
 
 export interface IBodyElements {
