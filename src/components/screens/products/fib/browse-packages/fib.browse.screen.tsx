@@ -2,22 +2,27 @@ import React, { memo } from "react";
 import { View, StyleSheet, ScrollView, Platform } from "react-native";
 import { GenericHeading, Button } from "@atoms";
 import { Style, Colours } from "@styles";
+import { IAvatar } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
+import { AvatarAndDescription } from "./subcomponents";
 import FIBHowItWorks from "./how-it-works/how-it-works";
+import { Package } from "./fib.browse.types";
 
 interface IFibBrowseScreenProps {
+  fibPackage: Package;
   onNavigateBack: () => void;
+  currentEarnRate: number;
+  avatar: IAvatar;
 }
 
 export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
-  const { onNavigateBack } = props;
-
+  const { onNavigateBack, avatar, currentEarnRate, fibPackage } = props;
   return (
     <View style={styles.wrapper}>
       <View style={styles.headingWrapper}>
         <GenericHeading heading="browse packages" onLeftIconPress={onNavigateBack} />
       </View>
-
       <ScrollView contentContainerStyle={styles.scrollView}>
+        <AvatarAndDescription avatar={avatar} fibPackage={fibPackage} currentEarnRate={currentEarnRate} />
         <FIBHowItWorks
           coverTypeColor={Colours.products.fib.common}
           coverType={"common"}
@@ -33,17 +38,17 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
-    justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fafafe",
   },
   headingWrapper: {
     position: "absolute",
-    top: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
+    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
+    top: 0,
     left: 0,
     right: 0,
     backgroundColor: "white",
+    zIndex: 1,
   },
   scrollView: {
     paddingTop: Platform.select({ ios: 46, android: 56 }),
