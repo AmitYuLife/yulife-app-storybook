@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(16),
     flexDirection: "row",
     flexWrap: "wrap",
-  },
+  } as ViewStyle,
   label: {
     color: "#5A5A5C",
     fontSize: Style.adjust(16, {
@@ -56,21 +56,6 @@ const styles = StyleSheet.create({
     lineHeight: Style.adjust(18),
     marginTop: Style.adjust(8),
     letterSpacing: Style.isWideScreen() ? 1 : 0.5,
-  } as TextStyle,
-  earningCoinWrapper: {
-    flexDirection: "row",
-  } as ViewStyle,
-  smallYucoinImage: {
-    height: Style.adjust(16),
-    width: Style.adjust(16),
-    marginTop: Style.adjust(2),
-  } as ImageStyle,
-  earningCoinText: {
-    color: "#5A5A5C",
-    fontSize: Style.adjust(16),
-    letterSpacing: 1,
-    lineHeight: Style.adjust(24),
-    marginBottom: Style.adjust(16),
   } as TextStyle,
   ctaWrapper: {
     maxWidth: Style.adjust(174),
@@ -86,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   yucoin: {
-    tintColor: "#5A5A5C",
+    tintColor: Colours.yucoin.n800,
     marginBottom: -4,
     width: Style.adjust(16),
     height: Style.adjust(16),

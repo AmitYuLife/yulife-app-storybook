@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TextStyle } from "react-native";
 import { Text } from "@atoms/index";
 import { Colours, Style } from "@styles";
 import {
@@ -7,7 +7,6 @@ import {
   GetYulifer_getYulifer_products_employer,
   GetYulifer_getYulifer_products_personal,
 } from "@graphql/_core/schema";
-import mainStyles from "../main.styles";
 import ProductItem from "./product.item";
 import { TextWithBoldText } from "@components/molecules";
 
@@ -47,7 +46,7 @@ function Products(props: IProps) {
       {!products.employer.length && !products.charms.length ? (
         <View style={styles.marginBottom}>
           <TextWithBoldText
-            style={mainStyles.text}
+            style={styles.compoundText}
             value="You currently do not have any Power-Ups. To increase your <bold>earn rate</bold>, check out the products
             available on your Yu screen. All products come with <bold>power-ups</bold> to your Earn Rate!"
           />
@@ -113,4 +112,12 @@ const styles = StyleSheet.create({
   boldText: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   },
+  compoundText: {
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    lineHeight: Style.adjust(24),
+    marginHorizontal: Style.adjust(16),
+    letterSpacing: 0.8,
+    fontSize: Style.adjust(16, { shrinkMultiplier: 0.2 }),
+    color: Colours.text.n800,
+  } as TextStyle,
 });
