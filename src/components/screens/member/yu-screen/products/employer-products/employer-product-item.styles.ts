@@ -1,5 +1,5 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Style, Colours } from "@styles";
+import { Style } from "@styles";
 
 const defaultTextStyle = {
   fontSize: 16,
@@ -28,26 +28,5 @@ export default StyleSheet.create({
   employerBenefitsItemTextPassive: {
     ...defaultTextStyle,
     color: "#838385",
-  } as TextStyle,
-  rateView: {
-    height: 28,
-    width: 28,
-    backgroundColor: Colours.yuscreen.earnRateBackground,
-    position: "absolute",
-    borderRadius: 14,
-    borderWidth: 2,
-    borderColor: Colours.yuscreen.white,
-    bottom: 8,
-    right: -12,
-  } as ViewStyle,
-
-  rateText: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: 12,
-    lineHeight: 24,
-    letterSpacing: 0.8,
-    color: "#EA9E2F",
-    position: "relative",
-    left: 6,
   } as TextStyle,
 });

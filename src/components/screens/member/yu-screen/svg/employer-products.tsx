@@ -1,15 +1,9 @@
 import React from "react";
 import { SvgXml } from "react-native-svg";
-import { StyleProp, ViewStyle, View, Text, TextStyle } from "react-native";
 
 interface IEmployerProductsIconProps {
   active: boolean;
   icon: string;
-  xmlStyle?: StyleProp<ViewStyle>;
-  rateViewStyle: StyleProp<ViewStyle>;
-  rateTextStyle: StyleProp<TextStyle>;
-  earnRate: number;
-  showEarnRate?: boolean;
 }
 
 const compassActive = `
@@ -257,28 +251,12 @@ const getXmlStringFromIcon = (icon: string, active: boolean): string => {
   }
 };
 
-export default ({
-  icon,
-  active,
-  xmlStyle,
-  rateViewStyle,
-  rateTextStyle,
-  earnRate,
-  showEarnRate,
-}: IEmployerProductsIconProps) => {
-  showEarnRate = showEarnRate || active;
+export default function EmployerProductsSVG({ icon, active }: IEmployerProductsIconProps) {
   const iconXml = getXmlStringFromIcon(icon, active);
+
   if (!iconXml) {
     return null;
   }
-  return (
-    <View>
-      <SvgXml style={xmlStyle} xml={iconXml} width="100%" height="100%" />
-      {showEarnRate ? (
-        <View style={rateViewStyle}>
-          <Text style={rateTextStyle}>{`${earnRate}x`}</Text>
-        </View>
-      ) : null}
-    </View>
-  );
-};
+
+  return <SvgXml xml={iconXml} width="100%" height="100%" />;
+}

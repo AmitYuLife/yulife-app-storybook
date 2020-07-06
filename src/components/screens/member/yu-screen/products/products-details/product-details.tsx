@@ -1,7 +1,7 @@
 import { Text } from "@atoms/index";
 import { TextWithBoldText } from "@components/molecules";
 import React from "react";
-import { SafeAreaView, View, StyleSheet } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import {
   GetYulifer_getYulifer_products_employer,
   GetYulifer_getYulifer_products_personal,
@@ -22,13 +22,6 @@ interface IProps {
 function YuscreenEmployerProductDetails({ product, onExitConfirmed, productType }: IProps) {
   const isEmployerProduct = productType === "employer";
   const isCharm = productType === "charm";
-  const isTwoDigits = product.earnRate.toString().length === 2;
-  const extraStyle =
-    isTwoDigits && product.earnRate > 10
-      ? styles.earnRateTextBiggerThanTen
-      : isTwoDigits
-      ? styles.earnRateTextIsTen
-      : {};
 
   return (
     <SafeAreaView>
@@ -37,25 +30,11 @@ function YuscreenEmployerProductDetails({ product, onExitConfirmed, productType 
         <View style={styles.productDetailsHeader}>
           {isEmployerProduct ? (
             <View style={{ height: 114, width: 96, marginHorizontal: 32 }}>
-              <EmployerProductIcon
-                active={product.active}
-                icon={product.icon}
-                rateViewStyle={styles.productsDetailsRateView}
-                rateTextStyle={StyleSheet.flatten([styles.productsDetailsRateText, extraStyle])}
-                earnRate={product.earnRate}
-              />
+              <EmployerProductIcon active={product.active} icon={product.icon} />
             </View>
           ) : isCharm ? (
             <View style={{ width: 96 }}>
-              <Charm
-                active={true}
-                icon={product.icon}
-                rateViewStyle={StyleSheet.flatten([styles.charmRateView])}
-                rateTextStyle={StyleSheet.flatten([styles.productsDetailsRateText, extraStyle])}
-                earnRate={product.earnRate}
-                height={114}
-                width={96}
-              />
+              <Charm active={true} icon={product.icon} height={114} width={96} />
             </View>
           ) : (
             getPersonalProductImage(product.icon)

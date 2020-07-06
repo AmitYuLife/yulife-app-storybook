@@ -1,16 +1,11 @@
 import React from "react";
 import { SvgXml, NumberProp } from "react-native-svg";
 import { Style } from "@styles";
-import { StyleProp, ViewStyle, TextStyle, View, Text } from "react-native";
+import { View } from "react-native";
 
 interface ICharmsIconProps {
   active: boolean;
   icon: string;
-  xmlStyle?: StyleProp<ViewStyle>;
-  rateViewStyle?: StyleProp<ViewStyle>;
-  rateTextStyle?: StyleProp<TextStyle>;
-  earnRate: number;
-  showEarnRate?: boolean;
   height?: NumberProp;
   width?: NumberProp;
 }
@@ -76,26 +71,12 @@ const getXmlStringFromIcon = (icon: string, active: boolean): string => {
 };
 
 export default (props: ICharmsIconProps) => {
-  const {
-    rateViewStyle,
-    rateTextStyle,
-    earnRate,
-    icon,
-    active,
-    showEarnRate = true,
-    height = Style.adjust(95),
-    width = Style.adjust(95),
-  } = props;
+  const { icon, active, height = Style.adjust(95), width = Style.adjust(95) } = props;
   const iconXml = getXmlStringFromIcon(icon, active);
 
   return (
     <View style={{ height, width: 58 }}>
       <SvgXml xml={iconXml} width={width} height={height} />
-      {showEarnRate ? (
-        <View style={rateViewStyle}>
-          <Text style={rateTextStyle}>{`${earnRate}x`}</Text>
-        </View>
-      ) : null}
     </View>
   );
 };

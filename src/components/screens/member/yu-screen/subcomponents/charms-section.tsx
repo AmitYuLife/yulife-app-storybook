@@ -29,7 +29,6 @@ export const CharmsSection = memo(function CharmsFC(props: Props) {
               key={product.icon + index}
               description={product.description}
               icon={product.icon}
-              earnRate={product.earnRate}
               textPosition={textPosition}
             />
           ))}

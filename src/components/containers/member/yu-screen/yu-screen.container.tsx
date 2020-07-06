@@ -143,7 +143,7 @@ function navigateToProductScreen(
   productType: ProductType,
   product: GetYulifer_getYulifer_products_employer | GetYulifer_getYulifer_products_personal
 ) {
-  if (product.active) {
+  if (productType === "personal" && product.active) {
     return Navigation.push(componentId, {
       component: {
         id: ROUTES.fib,
