@@ -9,12 +9,13 @@ interface IProps extends TextProps {
   testID?: string;
 }
 
-const YuText: SFC<IProps> = ({ children, bold, style, numberOfLines, testID }) => (
+const YuText: SFC<IProps> = ({ children, bold, style, numberOfLines, testID, onPress }) => (
   <Text
     allowFontScaling={false}
     numberOfLines={numberOfLines}
     style={StyleSheet.flatten([styles.base, bold ? styles.weightBold : styles.weightNormal, style])}
     testID={testID}
+    onPress={onPress}
   >
     {children}
   </Text>
