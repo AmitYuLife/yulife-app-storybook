@@ -30,8 +30,8 @@ export const ROUTES = {
   yuScreenEarnRate: "yulife.member.YuscreenEarnRate",
 
   // product
-  fib: "yulife.product.FibBrowseScreen",
-  fibFaq: "yulife.product.FibFaqScreen",
+  fib: "yulife.product.FibBrowse",
+  fibFaq: "yulife.product.FibFaq",
 
   // quests
   questsChallengesList: "yulife.quests.ChallengesList",
