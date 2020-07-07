@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import LinearGradient from "react-native-linear-gradient";
-import { StyleSheet, Platform, ViewStyle, TextStyle, View } from "react-native";
+import { StyleSheet, ViewStyle, TextStyle, View } from "react-native";
 import MinimalButton from "@atoms/button/minimalButton";
 import { Colours, Style } from "@styles";
 
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignSelf: "center",
     alignItems: "center",
-    height: Platform.select({ ios: 120, android: 90 }),
+    height: 90,
     bottom: 0,
   } as ViewStyle,
   wrapper: {
