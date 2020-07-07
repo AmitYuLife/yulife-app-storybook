@@ -4,9 +4,10 @@ import { Image, Linking, Platform, SafeAreaView, ScrollView, StyleSheet, Touchab
 import { Style } from "../../../../styles";
 import { smartHealthData } from "./member-services.data";
 import styles from "./smart-health.screen.styles";
+import { TextWithBoldText } from "@components/molecules";
 
 const defaultInstructionCopy = "your group life scheme number, which can be provided by your HR manager";
-const instantInstructionCopy = "“yulifeinstant” in the Policy number / Scheme code field.";
+const instantInstructionCopy = "<bold>“yulifeinstant”</bold> in the Policy number / Scheme code field.";
 
 type Props = {
   isInstant: boolean;
@@ -20,7 +21,7 @@ const SmartHealth = (props: Props) => {
         <View style={styles.smartHeathWrapper}>
           <Text style={styles.smartHealth}>{`SmartHealth`}</Text>
           <Text style={styles.content}>
-            SmartHealth is a doctor-on-demand service offered through our partnership with AIG.It gives you 24/7 access
+            SmartHealth is a doctor-on-demand service offered through our partnership with AIG. It gives you 24/7 access
             to a GP as well as a range of other health and wellbeing expertise including:
           </Text>
 
@@ -37,7 +38,7 @@ const SmartHealth = (props: Props) => {
           </View>
 
           <Text style={styles.content}>
-            To create a profile or request services, you will need to enter {instructionCopy}
+            To create a profile or request services, you will need to enter <TextWithBoldText value={instructionCopy} />
           </Text>
 
           <Text style={styles.header}>SmartHealth by AIG</Text>
@@ -46,13 +47,13 @@ const SmartHealth = (props: Props) => {
             <Image style={styles.storeImage} source={getStoreImage()} />
           </TouchableOpacity>
 
-          <Text style={styles.content}>Questions?Chat to us through the app, or read </Text>
+          <Text style={styles.content}>Questions? Chat to us through the app, or read </Text>
           <View style={styles.contentHelpCenter}>
             <Text style={StyleSheet.flatten([styles.content, { marginTop: Style.SCALE_UP_AND_DOWN(1) }])}>
               more about SmartHealth in our{" "}
             </Text>
             <TouchableOpacity onPress={() => Linking.openURL(smartHealthData.yulifeHelpCenter)}>
-              <Text style={styles.globalHyperLinkNoMargin}>Help Center</Text>
+              <Text style={styles.globalHyperLinkNoMargin}>Help Center.</Text>
             </TouchableOpacity>
           </View>
         </View>
