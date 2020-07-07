@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA } from '../postgres/customers';
 
 const USER_DATA_TEMPLATE = {
     data: {
@@ -130,5 +130,24 @@ export const USER_18 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_18.data.customerId,
+    }
+} as IDatabaseItem
+
+export const USER_ALPHA = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_ALPHA.data.customerId,
+        customer_membership: CUSTOMER_ALPHA.data.membershipType,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            type: "employer",
+            earnRate: 10,
+        }],
+        isAvatarCreated: false,
+        earnRate: 10,
     }
 } as IDatabaseItem

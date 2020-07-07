@@ -12,7 +12,7 @@ import { getRouteState } from "../../../../redux/app/app.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getPushNotifications } from "../../../../redux/device/device.selectors";
 import { logOut, openMemberZone } from "../../../../redux/user/user.actions";
-import { getUserBusiness, getUserFeatures } from "../../../../redux/user/user.selectors";
+import { getUserBusiness, getUserFeatures, getUserMembershipType } from "../../../../redux/user/user.selectors";
 import { MenuScreen } from "../../../screens";
 import assets, { LINKS, LinkTypes } from "./assets";
 import { getMemberServicesDisplayState } from "@components/molecules/member-services-tabs/member-services-tab/member-services.helpers";
@@ -28,9 +28,10 @@ class MenuContainer extends PureComponent<Props> {
   private deviceVersion = DeviceInfo.getVersion();
 
   public render() {
-    const { features = {}, isAlphaUser, isWellbeingAccess, isGroupUser } = this.props;
+    const { features = {}, membershipType, isWellbeingAccess, isGroupUser } = this.props;
 
     const { shouldHideSmartHealthScreen, shouldHideYuMatterScreen } = getMemberServicesDisplayState(features, {
+      membershipType,
       isGroupUser,
       isWellbeingAccess,
     });
@@ -60,7 +61,7 @@ class MenuContainer extends PureComponent<Props> {
             source: assets[LINKS.MEMBER],
           },
           {
-            condition: !isAlphaUser && shouldDisplayMemberServices,
+            condition: shouldDisplayMemberServices,
             label: "member services",
             onPress: this.handlePressLink(LINKS.MEMBER_SERVICES),
             source: assets[LINKS.MEMBER_SERVICES],
@@ -193,7 +194,7 @@ const mapStateToProps = (state: IReduxState) => ({
   isGroupUser: getUserBusiness(state).isGroup,
   isWellbeingAccess: getUserBusiness(state).isWellbeingAccess,
   pushNotificationCopy: getCopy(state, "pushNotification"),
-  isAlphaUser: getUserBusiness(state).alpha,
+  membershipType: getUserMembershipType(state),
 });
 
 const mapDispatchToProps = {

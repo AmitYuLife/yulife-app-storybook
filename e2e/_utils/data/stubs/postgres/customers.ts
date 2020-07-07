@@ -67,7 +67,7 @@ export const CUSTOMER_5 = {
         firstName: "Saul",
         lastName: "Goodman",
         dateOfBirth: moment().subtract(26, "years").toDate(),
-        membershipType: "Yulife",
+        membershipType: "Group",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -137,7 +137,7 @@ export const CUSTOMER_10 = {
         firstName: "Cosmo",
         lastName: "Kramer",
         dateOfBirth: moment().subtract(43, "years").toDate(),
-        membershipType: "Yulife",
+        membershipType: "Group",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -179,7 +179,7 @@ export const CUSTOMER_13 = {
         firstName: "Frank",
         lastName: "Costanza",
         dateOfBirth: moment().subtract(70, "years").toDate(),
-        membershipType: "Yulife",
+        membershipType: "Group",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -292,7 +292,7 @@ export const CUSTOMER_20 = {
         firstName: "Oscar",
         lastName: "Martinez",
         dateOfBirth: moment().subtract(42, "years").toDate(),
-        membershipType: "Yulife",
+        membershipType: "Wellbeing Access",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -320,7 +320,7 @@ export const CUSTOMER_22 = {
         firstName: "Craig",
         lastName: "David",
         dateOfBirth: moment().subtract(40, "years").toDate(),
-        membershipType: "Yulife",
+        membershipType: "Wellbeing Access",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -334,7 +334,21 @@ export const CUSTOMER_23 = {
         firstName: "Mike",
         lastName: "Skinner",
         dateOfBirth: moment().subtract(40, "years").toDate(),
-        membershipType: "Yulife",
+        membershipType: "Wellbeing Access",
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_ALPHA = {
+    type: "postgres",
+    modelName: "customer_detail",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "alpha@yulife.com",
+        firstName: "Al",
+        lastName: "Pha",
+        dateOfBirth: moment().subtract(30, "years").toDate(),
+        membershipType: "Yulife Alpha",
         status: "onboarded"
     }
 } as IDatabaseItem

@@ -8,7 +8,7 @@ describe("getMemberServicesDisplayState", () => {
           hideSmartHealthScreen: true,
           hideYuMatterScreen: true,
         },
-        { isGroupUser: true, isWellbeingAccess: true }
+        { isGroupUser: true, isWellbeingAccess: true, membershipType: "YuLife" }
       );
 
       expect(shouldHideYuMatterScreen).toBe(true);
@@ -20,7 +20,7 @@ describe("getMemberServicesDisplayState", () => {
           hideSmartHealthScreen: true,
           hideYuMatterScreen: false,
         },
-        { isGroupUser: true, isWellbeingAccess: true }
+        { isGroupUser: true, isWellbeingAccess: true, membershipType: "YuLife" }
       );
 
       expect(shouldHideYuMatterScreen).toBe(false);
@@ -31,7 +31,7 @@ describe("getMemberServicesDisplayState", () => {
         {
           hideSmartHealthScreen: true,
         },
-        { isGroupUser: true, isWellbeingAccess: true }
+        { isGroupUser: true, isWellbeingAccess: true, membershipType: "YuLife" }
       );
 
       expect(shouldHideYuMatterScreen).toBe(false);
@@ -45,7 +45,7 @@ describe("getMemberServicesDisplayState", () => {
           hideSmartHealthScreen: true,
           hideYuMatterScreen: true,
         },
-        { isGroupUser: true, isWellbeingAccess: true }
+        { isGroupUser: true, isWellbeingAccess: true, membershipType: "YuLife" }
       );
 
       expect(shouldHideSmartHealthScreen).toBe(true);
@@ -57,7 +57,7 @@ describe("getMemberServicesDisplayState", () => {
           hideSmartHealthScreen: false,
           hideYuMatterScreen: false,
         },
-        { isGroupUser: true, isWellbeingAccess: true }
+        { isGroupUser: true, isWellbeingAccess: true, membershipType: "YuLife" }
       );
 
       expect(shouldHideSmartHealthScreen).toBe(false);
@@ -68,7 +68,7 @@ describe("getMemberServicesDisplayState", () => {
         {
           hideYuMatterScreen: true,
         },
-        { isGroupUser: true, isWellbeingAccess: true }
+        { isGroupUser: true, isWellbeingAccess: true, membershipType: "YuLife" }
       );
 
       expect(shouldHideSmartHealthScreen).toBe(false);
@@ -79,10 +79,22 @@ describe("getMemberServicesDisplayState", () => {
         {
           hideYuMatterScreen: true,
         },
-        { isGroupUser: false, isWellbeingAccess: false }
+        { isGroupUser: false, isWellbeingAccess: false, membershipType: "YuLife" }
       );
 
       expect(shouldHideSmartHealthScreen).toBe(true);
     });
+  });
+
+  it("should be falsy if the user is an alpha user", () => {
+    const { shouldHideSmartHealthScreen, shouldHideYuMatterScreen } = getMemberServicesDisplayState(
+      {
+        hideYuMatterScreen: true,
+      },
+      { isGroupUser: false, isWellbeingAccess: false, membershipType: "Yulife Alpha" }
+    );
+
+    expect(shouldHideYuMatterScreen).toBe(true);
+    expect(shouldHideSmartHealthScreen).toBe(true);
   });
 });

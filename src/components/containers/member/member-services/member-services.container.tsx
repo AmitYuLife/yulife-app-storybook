@@ -28,6 +28,7 @@ function MemberServicesContainer({ componentId, isGroupUser, isWellbeingAccess, 
   const isInstant = membershipType === MembershipTypes.INSTANT_GROUP;
 
   const { shouldHideSmartHealthScreen, shouldHideYuMatterScreen } = getMemberServicesDisplayState(features, {
+    membershipType,
     isGroupUser,
     isWellbeingAccess,
   });

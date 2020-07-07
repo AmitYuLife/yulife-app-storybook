@@ -3,7 +3,7 @@ import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2 } from './business_accounts';
 import {
     CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8,
     CUSTOMER_9, CUSTOMER_10, CUSTOMER_11, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15, CUSTOMER_16,
-    CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_22, CUSTOMER_23
+    CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_22, CUSTOMER_23, CUSTOMER_ALPHA
 } from './customers';
 import moment = require('moment');
 
@@ -261,3 +261,14 @@ export const BUSINESS_EMPLOYEE_23 = {
     }
 } as IDatabaseItem
 
+export const BUSINESS_EMPLOYEE_ALPHA = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
+        customer_id: CUSTOMER_ALPHA.data.customerId,
+        invite_date: moment().subtract(8, "months").toDate(),
+        leave_date: moment().add(10, "years").toDate(),
+        // customer_membership: "Yulife Alpha",
+    }
+} as IDatabaseItem
