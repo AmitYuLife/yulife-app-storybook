@@ -25,6 +25,16 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean)
         labels[2].onPress();
       }
       return;
+    case url.startsWith(labels[3].name):
+      if (hasToken) {
+        labels[3].onPress();
+      }
+      return;
+    case url.startsWith(labels[4].name):
+      if (hasToken) {
+        labels[4].onPress();
+      }
+      return;
     case url.startsWith("historical-data"):
       if (hasToken) {
         store.dispatch({ type: GET_HISTORICAL_DATA });
