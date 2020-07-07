@@ -42,6 +42,7 @@ type Business = GetCurrentUser_getCurrentUser_business & { isLoading?: boolean }
 export enum MembershipTypes {
   "YULIFE_LITE" = "Yulife Lite",
   "INSTANT_GROUP" = "Instant Group",
+  "YULIFE_ALPHA" = "Yulife Alpha",
 }
 
 type SurgeActivity = "steps" | "meditation" | "all" | null;

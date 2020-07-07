@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23 } from '../postgres/customers';;
+import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22 } from '../postgres/customers';;
 
 const allTogglesTrue = {
     "showTodayYucoin": true,
@@ -136,6 +136,38 @@ export const CUSTOMER_9_TOGGLES = {
     }
 } as IDatabaseItem
 
+export const CUSTOMER_10_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_10.data.customerId,
+        features: { hideSmartHealthScreen: true, hideYuMatterScreen: true },
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_12_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_12.data.customerId,
+        features: { hideSmartHealthScreen: true, hideYuMatterScreen: true },
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_13_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_13.data.customerId,
+        features: { hideSmartHealthScreen: true, hideYuMatterScreen: false },
+    }
+} as IDatabaseItem
+
+
+
 export const CUSTOMER_14_TOGGLES = {
     type: "mongo",
     modelName: "usertoggles",
@@ -216,13 +248,64 @@ export const CUSTOMER_17_TOGGLES = {
     }
 } as IDatabaseItem
 
+export const CUSTOMER_18_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_18.data.customerId,
+        features: { hideSmartHealthScreen: false, hideYuMatterScreen: true },
+    }
+} as IDatabaseItem
+
 export const CUSTOMER_20_TOGGLES = {
     type: "mongo",
     modelName: "usertoggles",
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_20.data.customerId,
-        features: allTogglesTrue
+        features: {
+            "showTodayYucoin": true,
+            "showActivity": true,
+            "showNotifications": true,
+            "showStreaks": true,
+            "showCompletedLevel": true,
+            "showCounter": true,
+            "showBuildNumber": true,
+            "showSettings": true,
+            "showCreateLeaderboard": true,
+            "showAdvancedLeaderboards": true,
+            "disableUserEntries": true,
+            "fitbit": true,
+            "showConnections": true,
+            "showLastSynced": true,
+            "newPassiveValidationRule": true,
+            "showWegiftPicker": true,
+            "usePassiveMeditation": true,
+            "statsShowCoinGeneralTotalYearned": true,
+            "statsShowCoinRecommendationCard": true,
+            "statsShowCoinGeneralTotalRedeemedCard": true,
+            "statsShowCoinAchievementCard": true,
+            "statsShowChallengeGeneralCard": true,
+            "statsShowChallengeRecommendationCard": true,
+            "statsShowChallengeComparisonCard": true,
+            "statsShowStepsRecommendationCard": true,
+            "statsShowStepsGeneralCard": true,
+            "statsShowStepsBestScoreCard": true,
+            "statsShowStepsGraphCard": true,
+            "statsShowMindfulnessRecommendationCard": true,
+            "statsShowMindfulnessGeneralCard": true,
+            "statsShowMindfulnessBestScoreCard": true,
+            "statsShowMindfulnessGraphCard": true,
+            "statsShowCyclingRecommendationCard": true,
+            "statsShowCyclingGeneralCard": true,
+            "statsShowCyclingBestScoreCard": true,
+            "statsShowCyclingGraphCard": true,
+            "showStats": true,
+            hideSmartHealthScreen: true,
+            hideYuMatterScreen: true
+
+        },
     }
 } as IDatabaseItem
 
@@ -232,8 +315,49 @@ export const CUSTOMER_22_TOGGLES = {
     modelName: "usertoggles",
     data: {
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_23.data.customerId,
-        features: allTogglesTrue
+        userId: CUSTOMER_22.data.customerId,
+        features: {
+            "showTodayYucoin": true,
+            "showActivity": true,
+            "showNotifications": true,
+            "showStreaks": true,
+            "showCompletedLevel": true,
+            "showCounter": true,
+            "showBuildNumber": true,
+            "showSettings": true,
+            "showCreateLeaderboard": true,
+            "showAdvancedLeaderboards": true,
+            "disableUserEntries": true,
+            "fitbit": true,
+            "showConnections": true,
+            "showLastSynced": true,
+            "newPassiveValidationRule": true,
+            "showWegiftPicker": true,
+            "usePassiveMeditation": true,
+            "statsShowCoinGeneralTotalYearned": true,
+            "statsShowCoinRecommendationCard": true,
+            "statsShowCoinGeneralTotalRedeemedCard": true,
+            "statsShowCoinAchievementCard": true,
+            "statsShowChallengeGeneralCard": true,
+            "statsShowChallengeRecommendationCard": true,
+            "statsShowChallengeComparisonCard": true,
+            "statsShowStepsRecommendationCard": true,
+            "statsShowStepsGeneralCard": true,
+            "statsShowStepsBestScoreCard": true,
+            "statsShowStepsGraphCard": true,
+            "statsShowMindfulnessRecommendationCard": true,
+            "statsShowMindfulnessGeneralCard": true,
+            "statsShowMindfulnessBestScoreCard": true,
+            "statsShowMindfulnessGraphCard": true,
+            "statsShowCyclingRecommendationCard": true,
+            "statsShowCyclingGeneralCard": true,
+            "statsShowCyclingBestScoreCard": true,
+            "statsShowCyclingGraphCard": true,
+            "showStats": true,
+            hideSmartHealthScreen: true,
+            hideYuMatterScreen: false
+
+        }
     }
 } as IDatabaseItem
 
@@ -243,6 +367,46 @@ export const CUSTOMER_23_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_23.data.customerId,
-        features: allTogglesTrue
+        features: {
+            "showTodayYucoin": true,
+            "showActivity": true,
+            "showNotifications": true,
+            "showStreaks": true,
+            "showCompletedLevel": true,
+            "showCounter": true,
+            "showBuildNumber": true,
+            "showSettings": true,
+            "showCreateLeaderboard": true,
+            "showAdvancedLeaderboards": true,
+            "disableUserEntries": true,
+            "fitbit": true,
+            "showConnections": true,
+            "showLastSynced": true,
+            "newPassiveValidationRule": true,
+            "showWegiftPicker": true,
+            "usePassiveMeditation": true,
+            "statsShowCoinGeneralTotalYearned": true,
+            "statsShowCoinRecommendationCard": true,
+            "statsShowCoinGeneralTotalRedeemedCard": true,
+            "statsShowCoinAchievementCard": true,
+            "statsShowChallengeGeneralCard": true,
+            "statsShowChallengeRecommendationCard": true,
+            "statsShowChallengeComparisonCard": true,
+            "statsShowStepsRecommendationCard": true,
+            "statsShowStepsGeneralCard": true,
+            "statsShowStepsBestScoreCard": true,
+            "statsShowStepsGraphCard": true,
+            "statsShowMindfulnessRecommendationCard": true,
+            "statsShowMindfulnessGeneralCard": true,
+            "statsShowMindfulnessBestScoreCard": true,
+            "statsShowMindfulnessGraphCard": true,
+            "statsShowCyclingRecommendationCard": true,
+            "statsShowCyclingGeneralCard": true,
+            "statsShowCyclingBestScoreCard": true,
+            "statsShowCyclingGraphCard": true,
+            "showStats": true,
+            hideSmartHealthScreen: false,
+            hideYuMatterScreen: true
+        }
     }
 } as IDatabaseItem
