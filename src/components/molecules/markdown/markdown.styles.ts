@@ -106,4 +106,7 @@ export default StyleSheet.create({
     minWidth: 200,
     height: 200,
   },
+  paragraph: {
+    paddingVertical: 8,
+  },
 });

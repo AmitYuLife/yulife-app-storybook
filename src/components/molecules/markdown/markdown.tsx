@@ -187,7 +187,11 @@ class Markdown extends React.PureComponent<IProps, IState> {
       case "div":
         // Handle paragraphs
         if (node.props.className === "paragraph") {
-          return this.renderText(node, key, { ...extras, isParagraph: true });
+          return this.renderText(node, key, {
+            ...extras,
+            isParagraph: true,
+            ...concatStyles(extras, styles.paragraph),
+          });
         }
 
         return this.renderBlock(node, key, extras);
@@ -229,7 +233,6 @@ class Markdown extends React.PureComponent<IProps, IState> {
 
   render() {
     const { containerStyle = styles.defaultContainerStyles } = this.props;
-
     return <View style={containerStyle}>{this.renderNodes(this.state.syntaxTree, null, null)}</View>;
   }
 }
