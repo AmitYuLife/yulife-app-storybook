@@ -5,7 +5,7 @@ import { TextStyle } from "react-native";
 
 interface IProps {
   value: string;
-  style: TextStyle;
+  style?: TextStyle;
 }
 
 function TextWithBoldText(props: IProps) {
