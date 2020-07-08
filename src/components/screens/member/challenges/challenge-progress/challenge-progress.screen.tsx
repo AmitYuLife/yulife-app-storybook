@@ -1,16 +1,16 @@
-import { Text } from "@atoms/index";
 import { NavBar, TopBar } from "@molecules/index";
 import * as React from "react";
-import { Image, Platform, SafeAreaView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, SafeAreaView, StyleSheet, View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
-import assets from "./assets";
 import { getWorldStyle } from "./challenge-progress.screen.helpers";
 import styles from "./challenge-progress.screen.styles";
 import Exit from "./subcomponents/exit";
 import ProgressBar from "./subcomponents/progress-bar";
+import { Instructions } from "./subcomponents/instructions";
 import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
 import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR } from "@ids";
-import { openHeadspace, openCalm } from "@services/app-link";
+import { HeadspaceButton } from "./subcomponents/headspace-button";
+import { CalmButton } from "./subcomponents/calm-button";
 
 interface IProps extends IConnectedScreenProps {
   challengeType: ChallengeType;
@@ -61,25 +61,10 @@ export default function ChallengeProgressScreen({
       </View>
       {challengeType === "meditation" && !userProgress ? (
         <View style={styles.meditationInstructionsWrapper}>
-          <View style={styles.instructionWrapper}>
-            <Text style={styles.instructionHeading}>Choose</Text>
-            <Text style={styles.instructionHeading}>an app to start</Text>
-            <Text style={styles.instructionText}>{`Or use any meditation app that`}</Text>
-            <Text style={styles.instructionText}>
-              {`integrates with ${Platform.select({
-                ios: "apple health",
-                android: "google fit",
-              })}.`}
-            </Text>
-            <Text style={styles.instructionText}>Results will be shown here.</Text>
-          </View>
+          <Instructions />
           <View style={styles.logoWrapper}>
-            <TouchableOpacity onPress={openHeadspace}>
-              <Image style={StyleSheet.flatten([styles.logo, styles.headspaceBorder])} source={assets.headspace} />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={openCalm}>
-              <Image style={styles.logo} source={assets.calm} />
-            </TouchableOpacity>
+            <HeadspaceButton />
+            <CalmButton />
           </View>
         </View>
       ) : null}

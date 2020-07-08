@@ -2,9 +2,9 @@ import { Linking, Platform } from "react-native";
 
 interface IAppLinkConfig {
   appName: string;
-  appStoreId: string;
+  appStoreId: string | null;
   appStoreLocale?: string;
-  playStoreId: string;
+  playStoreId: string | null;
 }
 
 async function openApp(url: string, { appName, appStoreId, appStoreLocale = "gb", playStoreId }: IAppLinkConfig) {
@@ -36,7 +36,7 @@ export async function openHeadspace() {
   openApp("headspace://", {
     appName: "headspace-meditation",
     appStoreId: "493145008",
-    playStoreId: "com.getsomeheadspace.android",
+    playStoreId: null,
   });
 }
 
