@@ -32,6 +32,18 @@ const FibContainer = memo(function (props: IFibContainer) {
       }),
     [props.componentId]
   );
+
+  const navigateToEditSalaryScreen = useCallback(
+    () =>
+      Navigation.push(props.componentId, {
+        component: {
+          id: ROUTES.fibEditSalary,
+          name: ROUTES.fibEditSalary,
+        },
+      }),
+    [props.componentId]
+  );
+
   const faqs = fibFaqItems.map((faq) => ({
     label: faq.question,
     onPress: navigateToFaqScreen({ faq }),
@@ -59,6 +71,7 @@ const FibContainer = memo(function (props: IFibContainer) {
     <FibBrowseScreen
       avatar={transformAvatar(data.getYulifer.avatar)}
       onNavigateBack={handleNavigateBack(props.componentId)}
+      navigateToEditSalary={navigateToEditSalaryScreen}
       currentEarnRate={20}
       faqs={faqs}
     />
