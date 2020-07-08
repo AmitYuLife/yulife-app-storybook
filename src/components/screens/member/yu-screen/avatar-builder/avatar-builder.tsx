@@ -302,7 +302,7 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
                   showDoneModal(() => updateUserAvatar(avatar), setBackPressed, setDoneModalShown);
                   setDoneModalShown(true);
                 }}
-                label="Save Avatar"
+                label="Save Yumoji"
               />
             </View>
           )}
