@@ -6,7 +6,7 @@ import Markdown from "@components/molecules/markdown/markdown";
 import { IFibFAQ } from "@components/containers/products/fib/faq-fib-data";
 import { Faq } from "../browse-packages/subcomponents/faqs/faq";
 
-interface IRedirectFAQ {
+export interface IRedirectFAQ {
   faq: IFibFAQ;
   onPress: () => void;
 }
