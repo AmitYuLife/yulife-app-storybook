@@ -104,15 +104,15 @@ function YuScreenContainer({
       totalCoins={totalCoins}
       onLeftMenuPress={onLeftMenuPress}
       onUnlockPress={() => {
-        navigateToAvatarCreationScreen(refetch, componentId, "Create your avatar");
+        navigateToAvatarCreationScreen(refetch, componentId, "Create your Yumoji");
       }}
       onEditPress={() => {
         dispatchSaveAvatar(avatarFromServer);
         navigateToAvatarModal({
           refetch,
           componentId,
-          heading: "Edit your avatar",
-          subheading: "Do you want to edit your avatar?",
+          heading: "Edit your Yumoji",
+          subheading: "Do you want to edit your Yumoji?",
         });
       }}
       onEarnRatePress={() => {

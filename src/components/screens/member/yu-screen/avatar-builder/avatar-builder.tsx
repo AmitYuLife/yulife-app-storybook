@@ -327,7 +327,7 @@ function showDoneModal(
           updateUserAvatar();
         },
         heading: "All Set!",
-        subheading: "Are you happy with your avatar? You can change your appearance later.",
+        subheading: "Are you happy with your Yumoji? You can change your appearance later.",
         ctaLabel: "Yes",
         ctaLabelSecondary: "Keep Editing",
         onPressSecondary: () => {

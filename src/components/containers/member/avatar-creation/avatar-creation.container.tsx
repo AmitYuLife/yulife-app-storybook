@@ -81,7 +81,7 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
               id: MODALS.collectReward,
               name: MODALS.collectReward,
               passProps: {
-                date: "Great work! \nYour avatar is ready for adventure.",
+                date: "Great work! \nYour Yumoji is ready for adventure.",
                 onPress: returnToYuScreen,
                 ctaLabel: "Done",
                 yucoin: response.data.updateUserAvatar.rewardAmount,
@@ -141,7 +141,7 @@ const showExitModal = (onExitConfirmed: () => void) => {
         onPress: () => {
           Navigation.dismissModal(MODALS.generic);
         },
-        heading: "Exit avatar builder?",
+        heading: "Exit Yumoji builder?",
         subheading: "Are you sure you want to exit? You will lose any unsaved changes.",
         ctaLabel: "Keep Editing",
         ctaLabelSecondary: "Exit",
