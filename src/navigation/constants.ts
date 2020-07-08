@@ -32,6 +32,7 @@ export const ROUTES = {
   // product
   fib: "yulife.product.FibBrowse",
   fibFaq: "yulife.product.FibFaq",
+  fibEditSalary: "yulife.product.FibEditSalary",
 
   // quests
   questsChallengesList: "yulife.quests.ChallengesList",

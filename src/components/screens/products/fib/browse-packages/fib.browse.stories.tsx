@@ -11,5 +11,11 @@ const faqs = faqData.map(({ question }) => ({ label: question, onPress }));
 storiesOf("FibBrowse")
   .addDecorator((g: any) => <View style={{ flex: 1 }}>{g()}</View>)
   .add("default", () => (
-    <FibBrowseScreen onNavigateBack={(): void => null} avatar={avatarFiller} currentEarnRate={20} faqs={faqs} />
+    <FibBrowseScreen
+      navigateToEditSalary={() => null}
+      onNavigateBack={(): void => null}
+      avatar={avatarFiller}
+      currentEarnRate={20}
+      faqs={faqs}
+    />
   ));
