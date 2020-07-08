@@ -14,7 +14,7 @@ export const CreateAvatarPrompt = memo(function ({ onUnlockPress }: Props) {
   return (
     <View style={styles.wrapper} testID={EMPTY_YUSCREEN_COPY}>
       <View style={styles.textWrapper}>
-        <Text style={styles.label}>Create your avatar to</Text>
+        <Text style={styles.label}>Create your Yumoji to</Text>
         <Text style={styles.label}>unlock personal protection</Text>
         <View style={styles.row}>
           <Text style={styles.label}>{"and earn "}</Text>

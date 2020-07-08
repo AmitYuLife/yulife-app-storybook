@@ -40,8 +40,8 @@ export const onYuscreen = (customer) => async () => {
 }
 
 export const onCreateAvatarScreen = async () => {
-    const createTitle = element(by.text("Create your avatar"))
-    const editTitle = element(by.text("Edit your avatar"))
+    const createTitle = element(by.text("Create your Yumoji"))
+    const editTitle = element(by.text("Edit your Yumoji"))
     const subTitle = element(by.text("Pick a body type"))
 
     const femaleBody = element(by.id(FEMALE_BODY))
@@ -58,8 +58,8 @@ export const onCreateAvatarScreen = async () => {
 }
 
 export const onAvatarBuilder = async () => {
-    const createTitle = element(by.text("Create your avatar"))
-    const editTitle = element(by.text("Edit your avatar"))
+    const createTitle = element(by.text("Create your Yumoji"))
+    const editTitle = element(by.text("Edit your Yumoji"))
     const itemTitles = ["Skin Tone", "Hair Style", "Facial Hair", "Eye Colour", "Accessories"]
 
     for (const i of itemTitles) {
@@ -78,7 +78,7 @@ export const onAvatarBuilder = async () => {
 }
 
 export const onAvatarCompletionScreen = async () => {
-    const copy = ["Great work! \nYour avatar is ready for adventure.", "Done"]
+    const copy = ["Great work! \nYour Yumoji is ready for adventure.", "Done"]
 
     await multipleTextVisible(copy)()
 }

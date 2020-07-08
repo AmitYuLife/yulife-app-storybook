@@ -18,4 +18,4 @@ export type IAvatar = {
 
 export type Category = "items" | "colors";
 
-export type AvatarBuilderHeading = "Create your avatar" | "Edit your avatar";
+export type AvatarBuilderHeading = "Create your Yumoji" | "Edit your Yumoji";
