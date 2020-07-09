@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, Platform } from "react-native";
 import { GenericHeading, Heading } from "@atoms";
 import { Style } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
@@ -34,7 +34,12 @@ export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
 });
 
 const styles = StyleSheet.create({
-  wrapper: { position: "absolute", top: Style.getSafeAreaStart(), left: 0, right: 0 },
+  wrapper: {
+    position: "absolute",
+    top: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
+    left: 0,
+    right: 0,
+  },
   markdownContainer: {
     marginHorizontal: 32,
   },
