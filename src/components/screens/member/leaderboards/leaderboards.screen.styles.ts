@@ -157,6 +157,13 @@ export default StyleSheet.create({
   contentContainer: {
     paddingBottom: getContentContainerPaddingBottom(),
   } as ViewStyle,
+  androidTitle: {
+    position: "absolute",
+    left: 0,
+    top: 20,
+    right: 0,
+    width: Style.DEVICE_WIDTH,
+  } as ViewStyle,
 });
 
 function getContentContainerPaddingBottom() {

@@ -7,11 +7,7 @@ import { Style } from "@styles";
 import { InfoIcon } from "./svg/leaderboard";
 import { LEADERBOARD_INFO_BUTTON } from "@ids";
 
-interface OwnProps {
-  hide: boolean;
-}
-
-type LeaderboardTitleProps = InfoButtonProps & LeaderboardLabelProps & OwnProps;
+type LeaderboardTitleProps = InfoButtonProps & LeaderboardLabelProps;
 
 export function LeaderboardTitle(props: LeaderboardTitleProps) {
   const { onPressInfo, onPressLabel, name } = props;

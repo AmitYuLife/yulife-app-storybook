@@ -213,11 +213,7 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
                 contentContainerStyle={styles.contentContainer}
                 scrollEventThrottle={16}
                 onScroll={Animated.event(
-                  [
-                    {
-                      nativeEvent: { contentOffset: { y: this.state.flatlistOnScrollValue } },
-                    },
-                  ],
+                  [{ nativeEvent: { contentOffset: { y: this.state.flatlistOnScrollValue } } }],
                   { useNativeDriver: Platform.OS === "ios" } // Why does it not work on Android?
                 )}
                 onRefresh={() => {
@@ -237,22 +233,23 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
         />
         {!activeLeaderboard.consent ? null : <LockedCell {...lockedCellProps} />}
         <NavBar activeIndex={3} hasNotification={hasNotification} />
-        <Animated.View
-          style={[
-            styles.leaderboardTitleWrapper,
-            {
-              transform: [{ translateY: translateYTransform }],
-              top: getLeaderboardTitleWrapperPositionTop({ hasExtraPadding: showConsentPrompt }),
-            },
-          ]}
-        >
-          <LeaderboardTitle
-            name={(leaderboards.length > 0 && leaderboards[activeLeaderboardIndex])?.name}
-            onPressLabel={this.chooseLeaderboardScreen}
-            onPressInfo={this.showLeaderboardInfoScreen}
-            hide={isLoading}
-          />
-        </Animated.View>
+        {Platform.OS === "android" ? null : (
+          <Animated.View
+            style={[
+              styles.leaderboardTitleWrapper,
+              {
+                transform: [{ translateY: translateYTransform }],
+                top: getLeaderboardTitleWrapperPositionTop({ hasExtraPadding: showConsentPrompt }),
+              },
+            ]}
+          >
+            <LeaderboardTitle
+              name={(leaderboards.length > 0 && leaderboards[activeLeaderboardIndex])?.name}
+              onPressLabel={this.chooseLeaderboardScreen}
+              onPressInfo={this.showLeaderboardInfoScreen}
+            />
+          </Animated.View>
+        )}
         <View
           onLayout={(e: LayoutChangeEvent) => this.setState({ topbarHeight: e.nativeEvent.layout.height })}
           style={styles.topBarWrapper}
@@ -338,7 +335,7 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
   };
 
   private renderIndexPath = ({ item, index }: any) => {
-    const { sortBy } = this.props;
+    const { sortBy, leaderboards, activeLeaderboardIndex } = this.props;
     const avatarData = transformAvatar(item.avatar);
 
     if (index === 0) {
@@ -346,6 +343,13 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
         return (
           <View style={styles.imageWrapper}>
             <LeaderboardTop avatars={[this.avatarDataFirstUser, this.avatarDataSecondUser, this.avatarDataThirdUser]} />
+            <View style={styles.androidTitle}>
+              <LeaderboardTitle
+                name={(leaderboards.length > 0 && leaderboards[activeLeaderboardIndex])?.name}
+                onPressLabel={this.chooseLeaderboardScreen}
+                onPressInfo={this.showLeaderboardInfoScreen}
+              />
+            </View>
           </View>
         );
       }
