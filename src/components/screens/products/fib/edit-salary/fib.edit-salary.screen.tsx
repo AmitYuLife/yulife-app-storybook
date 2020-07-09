@@ -1,7 +1,9 @@
-import React, { memo } from "react";
-import { View, StyleSheet, ScrollView, ViewStyle } from "react-native";
-import { GenericHeading, Heading } from "@atoms";
+import React, { memo, useState } from "react";
+import { View, StyleSheet, SafeAreaView, ViewStyle } from "react-native";
+import { GenericHeading, Text } from "@atoms";
 import { Style, Colours } from "@styles";
+import { FibEditSalaryInput } from "./fib.edit-salary-input";
+import MinimalButton from "@atoms/button/minimalButton";
 
 interface IEditSalaryScreen {
   onNavigateBack: () => void;
@@ -9,42 +11,84 @@ interface IEditSalaryScreen {
 
 export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
   const { onNavigateBack } = props;
+  const [isSalaryDescriptionVisible, setSalaryDescriptionVisibility] = useState(false);
+  const [inputValue, setInputValue] = useState(0);
+
+  if (isSalaryDescriptionVisible) {
+    return (
+      <SafeAreaView style={styles.wrapper}>
+        <GenericHeading heading="Salary" onLeftIconPress={() => setSalaryDescriptionVisibility(false)} />
+        <View style={styles.mainContent}>
+          <Text style={styles.text}>
+            Your gross annual earned income for tax purposes. It does not include unearned income such as investment
+            income.
+          </Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.headingWrapper}>
-        <GenericHeading heading="Salary" onLeftIconPress={onNavigateBack} />
+    <SafeAreaView style={styles.wrapper}>
+      <GenericHeading heading="Salary" onLeftIconPress={onNavigateBack} />
+      <View style={styles.mainContent}>
+        <Text style={styles.text}>
+          Because we designed this product based on your current salary we will need your{" "}
+        </Text>
+        <Text
+          onPress={() => setSalaryDescriptionVisibility(true)}
+          style={StyleSheet.flatten([styles.link, styles.text])}
+        >
+          annual gross salary.
+        </Text>
+        <View style={styles.inputWrapper}>
+          <FibEditSalaryInput value={inputValue} onChange={setInputValue} />
+        </View>
       </View>
-      <ScrollView contentContainerStyle={styles.scrollView}>
-        <Heading label="Edit Salary" style={styles.heading} />
-      </ScrollView>
-    </View>
+      <View style={styles.button}>
+        <MinimalButton
+          disabled={!inputValue}
+          backgroundColor={Colours.darkHotPink}
+          shadowColor={Colours.darkHotPinkShadow}
+          height={53}
+          title="Done"
+          onPress={onNavigateBack}
+          color="white"
+          borderRadius={50}
+        />
+      </View>
+    </SafeAreaView>
   );
 });
 
 const styles = StyleSheet.create({
   wrapper: {
-    alignItems: "center",
-  },
-  headingWrapper: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
     backgroundColor: "white",
-    zIndex: 1,
+    flex: 1,
+    marginTop: Style.isAnyIphoneX() ? -10 : 0,
   },
-  heading: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: 20,
-    lineHeight: 24,
+  mainContent: {
+    marginTop: 28,
+    paddingHorizontal: Style.adjust(32),
+  },
+  link: {
+    color: Colours.darkHotPink,
+    textDecorationLine: "underline",
+  },
+  inputWrapper: {
+    marginVertical: Style.adjust(50),
+    marginHorizontal: Style.adjust(60),
+  },
+  text: {
+    fontSize: Style.adjust(16),
     letterSpacing: 1,
-    color: Colours.products.fib.n900,
-    textAlign: "left",
-    marginHorizontal: 32,
-    marginBottom: 16,
-  } as ViewStyle,
-  scrollView: {
-    marginTop: 56,
+    lineHeight: Style.adjust(30),
   },
+  button: {
+    position: "absolute",
+    width: Style.DEVICE_WIDTH - 70,
+    alignSelf: "center",
+    height: 90,
+    bottom: 0,
+  } as ViewStyle,
 });
