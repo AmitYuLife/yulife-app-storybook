@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flexDirection: "row",
+    paddingBottom: 40,
   } as ViewStyle,
   avatarWrapper: {
     alignItems: "center",
