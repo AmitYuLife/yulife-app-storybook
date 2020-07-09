@@ -12,26 +12,29 @@ const AdditionalBenefitsCard = memo(function (props: IProps) {
   const { text, svg } = props;
   return (
     <View style={styles.wrapper}>
-      <View style={styles.imageWrapper}>
-        <SvgXml xml={svg} width={72} height={72} />
+      <View style={styles.innerWrapper}>
+        <View style={styles.imageWrapper}>
+          <SvgXml xml={svg} width={72} height={72} />
+        </View>
+        <TextWithBoldText style={styles.infotText} value={text} />
       </View>
-      <TextWithBoldText style={styles.infotText} value={text} />
     </View>
   );
 });
 
 const styles = StyleSheet.create({
   wrapper: {
+    paddingHorizontal: Style.adjust(16),
+    marginTop: Style.adjust(16),
+    width: Style.DEVICE_WIDTH,
+  } as ViewStyle,
+  innerWrapper: {
     flexDirection: "row",
-    paddingLeft: Style.adjust(16),
-    paddingRight: Style.adjust(16),
-    paddingVertical: Style.adjust(32),
     backgroundColor: "#FFFFFF",
     borderRadius: Style.SCALE_UP_AND_DOWN(8),
-    marginTop: Style.SCALE_UP_AND_DOWN(16),
     alignItems: "center",
-    marginLeft: Style.adjust(16),
-    marginRight: Style.adjust(16),
+    paddingVertical: Style.adjust(24),
+    paddingHorizontal: Style.adjust(16),
   } as ViewStyle,
   infotText: {
     fontSize: Style.SCALE_UP_AND_DOWN(16),
