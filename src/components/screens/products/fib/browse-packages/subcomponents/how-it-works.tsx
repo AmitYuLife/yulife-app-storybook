@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(16),
   } as ViewStyle,
   content: {
+    marginTop: Style.adjust(16),
     fontSize: Style.adjust(16),
     lineHeight: Style.adjust(24),
     letterSpacing: 1,
