@@ -1,15 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  TextInput,
-  View,
-  Animated,
-  ViewStyle,
-  TextInputProps,
-  TextStyle,
-  TouchableOpacity,
-  Platform,
-} from "react-native";
+import { StyleSheet, TextInput, View, Animated, ViewStyle, TextStyle, TouchableOpacity, Platform } from "react-native";
 import { Colours, Style } from "@styles/index";
 import { Text } from "@atoms";
 import { numberWithCommas } from "@services/utils";
@@ -18,16 +8,6 @@ interface Props {
   value: number;
   onChange: (val: number) => void;
 }
-
-const staticProps = {
-  underlineColorAndroid: "transparent",
-  autoCapitalize: "none",
-  autoCompleteType: "off",
-  autoCorrect: false,
-  autoFocus: true,
-  maxLength: 9,
-  keyboardType: "numeric",
-} as TextInputProps;
 
 function getDisplayValue(val: number) {
   if (val === 0) {
@@ -50,15 +30,6 @@ export function FibEditSalaryInput(props: Props) {
     setActive(false);
   }, [isFocused, value]);
 
-  const textInputProps = {
-    ...staticProps,
-    onBlur: () => setFocused(false),
-    onFocus: () => setFocused(true),
-    value: getDisplayValue(value),
-    onChangeText: validateInput,
-    style: styles.inputBase,
-  };
-
   function validateInput(text: string) {
     const valWithCommasAndSpacesRemoved = text.replace(/[\s,]/g, "");
     const castedValue = Number(valWithCommasAndSpacesRemoved);
@@ -74,7 +45,20 @@ export function FibEditSalaryInput(props: Props) {
     <TouchableOpacity onPress={() => setFocused} style={styles.wrapper}>
       <View style={styles.inputWrapper}>
         <Text style={styles.dollarSign}>£</Text>
-        <TextInput {...textInputProps} />
+        <TextInput
+          onBlur={() => setFocused(false)}
+          onFocus={() => setFocused(true)}
+          value={getDisplayValue(value)}
+          onChangeText={validateInput}
+          style={styles.inputBase}
+          underlineColorAndroid="transparent"
+          autoCapitalize="none"
+          autoCompleteType="off"
+          autoCorrect={false}
+          autoFocus
+          maxLength={10}
+          keyboardType="numeric"
+        />
       </View>
       <Underline active={isActive} />
     </TouchableOpacity>
