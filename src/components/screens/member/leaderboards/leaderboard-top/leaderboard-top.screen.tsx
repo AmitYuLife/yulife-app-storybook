@@ -60,6 +60,7 @@ interface ILeaderboardTopIOS {
   avatars: IAvatar[];
   style?: ViewStyle;
   onLayout?: (e: LayoutChangeEvent) => void;
+  children: React.ReactChild;
 }
 
 export function LeaderboardTopIOS({
@@ -68,6 +69,7 @@ export function LeaderboardTopIOS({
   avatars,
   style,
   onLayout,
+  children,
 }: ILeaderboardTopIOS) {
   if (Platform.OS === "android" || showConsentPrompt) {
     return null;
@@ -85,6 +87,7 @@ export function LeaderboardTopIOS({
       ]}
     >
       <LeaderboardTop avatars={avatars} />
+      {children}
     </Animated.View>
   );
 }
