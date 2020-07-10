@@ -1,5 +1,11 @@
 import React from "react";
 import { storiesOf } from "@storybook/react-native";
-import { FibEditSalaryScreen } from "./fib.edit-salary.screen";
+import { FibEditSalaryScreen, IEditSalaryScreen } from "./fib.edit-salary.screen";
 
-storiesOf("FibEditSalaryScreen").add("default", () => <FibEditSalaryScreen onNavigateBack={() => null} />);
+const defaultProps: IEditSalaryScreen = {
+  onNavigateBack: () => null,
+  salary: 100,
+  updateSalary: () => null,
+};
+
+storiesOf("FibEditSalaryScreen").add("default", () => <FibEditSalaryScreen {...defaultProps} />);
