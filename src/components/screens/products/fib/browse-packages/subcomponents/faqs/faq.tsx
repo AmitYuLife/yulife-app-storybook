@@ -8,22 +8,27 @@ import { Text } from "@atoms";
 interface IAdditionalBenefit {
   label: string;
   onPress: () => void;
+  styles?: { [key: string]: ViewStyle | TextStyle };
 }
 
-export const Faq = memo(({ label = "", onPress }: IAdditionalBenefit) => (
-  <TouchableOpacity onPress={onPress} style={styles.wrapper}>
-    <View style={styles.labelWrapper}>
-      <Text bold style={styles.label}>
-        {label}
-      </Text>
-    </View>
-    <View style={styles.imageWrapper}>
-      <SvgXml height={18} width={18} xml={arrowRightSvg} />
-    </View>
-  </TouchableOpacity>
-));
+export const Faq = memo(({ label = "", onPress, styles }: IAdditionalBenefit) => {
+  const style = { ...defaultStyles, ...styles };
 
-const styles = StyleSheet.create({
+  return (
+    <TouchableOpacity onPress={onPress} style={style.wrapper}>
+      <View style={style.labelWrapper}>
+        <Text bold style={style.label}>
+          {label}
+        </Text>
+      </View>
+      <View style={style.imageWrapper}>
+        <SvgXml height={18} width={18} xml={arrowRightSvg} />
+      </View>
+    </TouchableOpacity>
+  );
+});
+
+const defaultStyles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     alignItems: "center",

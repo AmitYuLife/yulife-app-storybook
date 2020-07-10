@@ -29,16 +29,16 @@ The amount that would be paid out to your loved ones decreases every month. Ther
     question: "When does the policy not pay?",
     answer: `The insurance benefits will not pay out if:
 
-- you give us inaccurate, incomplete or false information when purchasing the policy or completing the sign-up journey which would have affected our decision to offer the relevant insurance cover, or would have led us to offer it with different conditions;
-- the person paying the premiums has stopped paying for the protection or has defaulted on the payment of another amount due to yulife and we have cancelled the policy;
-- the client or their legal representatives or doctors they have attended do not give us medical or other evidence that we ask for at the time of the claim.
+- You give us inaccurate, incomplete or false information when purchasing the policy or completing the sign-up journey which would have affected our decision to offer the relevant insurance cover, or would have led us to offer it with different conditions;
+- The person paying the premiums has stopped paying for the protection or has defaulted on the payment of another amount due to yulife and we have cancelled the policy;
+- The client or their legal representatives or doctors they have attended do not give us medical or other evidence that we ask for at the time of the claim.
     `,
   },
   {
     id: "salary-increase",
     question: "What if my salary increases?",
     answer:
-      "Your salary and percentage are chosen and fixed at the time you take out the policy. There is no automatic increase in your cover and premium as a result of inflation or a pay rise.. However, you can increase your cover when certain life events happen, for example marriage, buying a mortgage etc. See the section [Can I increase my cover in future?](link) for more details.",
+      "Your salary and percentage are chosen and fixed at the time you take out the policy. There is no automatic increase in your cover and premium as a result of inflation or a pay rise. However, you can increase your cover when certain life events happen, for example marriage, buying a mortgage etc. For more details, visit this section:",
   },
   {
     id: "policy-end",
@@ -63,17 +63,17 @@ The policy is designed to cover most people until they would have retired. To si
   {
     id: "i-cancel-policy",
     question: "Can I cancel my policy?",
-    answer: `Yes, you can by simply contacting Yulife at contact@me.com If this cancellation is within 30 days of the policy being purchased, the exercise by the person paying the premiums of their right to cancel will be effective immediately and we will refund the premiums already paid.\n\n
+    answer: `Yes, you can by simply contacting Yulife at changeMe@yulife.com. If this cancellation is within 30 days of the policy being purchased, the exercise by the person paying the premiums of their right to cancel will be effective immediately and we will refund the premiums already paid.\n\n
 All other cancellations by the person paying the premiums will be effective on the date the next premium payment is due. Except as otherwise agreed in writing, we will not refund any previously paid premiums in these circumstances.`,
   },
   {
     id: "yu-cancel-policy",
     question: "Can YuLife cancel my policy?",
-    answer: `Yulife may cancel a policy in any of the following circumstances:
+    answer: `Yulife may cancel a policy in any of the following circumstances:\n\n
+- The person paying the premiums fails to keep up with their payments (see the section above for further details);
+- The client or the person paying the premium acts fraudulently, or deliberately provides untrue, inaccurate or misleading information.
+- When making a purchase, completing the sign-up journey, making a claim or taking part in the Yulife wellbeing benefits; or Yulife suspects a client of fraudulent activity or other financial crime relating to their policy.
 
-      - the person paying the premiums fails to keep up with their payments (see the section above for further details);
-      - the client or the person paying the premium acts fraudulently, or deliberately provides untrue, inaccurate or misleading information when making a purchase, completing the sign-up journey, making a claim or taking part in the Yulife wellbeing benefits; or
-      - Yulife suspects a client of fraudulent activity or other financial crime relating to their policy.
 In such circumstances, the cancellation will be effective immediately and no refunds will be due.`,
   },
   {
