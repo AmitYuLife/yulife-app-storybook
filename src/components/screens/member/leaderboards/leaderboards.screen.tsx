@@ -24,7 +24,6 @@ import styles, {
   LOADING_ITEM_HEIGHT,
   TOP_BAR_WRAPPER_HEIGHT,
   LEADERBOARD_PROMPT_OFFSET,
-  getLeaderboardTitleWrapperPositionTop,
 } from "./leaderboards.screen.styles";
 import { transformAvatar } from "../yu-screen/avatar-builder/avatar-builder.helper";
 import { ROUTES } from "../../../../navigation/constants";
@@ -157,19 +156,7 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
     const myLeaderboardItem = this.props.items[myLeaderboardItemIndex];
     const showConsentPrompt = activeLeaderboard && !activeLeaderboard.consent;
     const avatars = [this.avatarDataFirstUser, this.avatarDataSecondUser, this.avatarDataThirdUser];
-    const leaderboardProps = {
-      translateYTransform,
-      showConsentPrompt,
-      avatars,
-    };
 
-    const lockedCellProps = {
-      sortBy: this.props.sortBy,
-      onPress: this.handleScrollToMyRow(myLeaderboardItemIndex - 1 > 0 ? myLeaderboardItemIndex - 1 : 0),
-      leaderboardItem: myLeaderboardItem,
-      leaderboardItemIndex: myLeaderboardItemIndex,
-      floatingItemAnimatedOpacity: this.getOpacityInterpolation() as number,
-    };
     return (
       <View style={styles.wrapper}>
         <View
@@ -184,6 +171,13 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
             <>
               <View pointerEvents="box-none" style={styles.emptyLeaderboardWrapper}>
                 <LeaderboardTop avatars={[]} />
+                <View style={styles.leaderboardTitleConsent}>
+                  <LeaderboardTitle
+                    name={(leaderboards.length > 0 && leaderboards[activeLeaderboardIndex])?.name}
+                    onPressLabel={this.chooseLeaderboardScreen}
+                    onPressInfo={this.showLeaderboardInfoScreen}
+                  />
+                </View>
               </View>
               <View style={styles.consentWrapper}>
                 <LeaderboardConsent
@@ -216,40 +210,38 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
                   [{ nativeEvent: { contentOffset: { y: this.state.flatlistOnScrollValue } } }],
                   { useNativeDriver: Platform.OS === "ios" } // Why does it not work on Android?
                 )}
-                onRefresh={() => {
-                  this.props.onRefetch();
-                }}
+                onRefresh={this.props.onRefetch}
                 refreshing={isLoading}
               />
             </View>
           )}
         </View>
         <LeaderboardTopIOS
-          {...leaderboardProps}
+          translateYTransform={translateYTransform}
+          showConsentPrompt={showConsentPrompt}
+          avatars={avatars}
           onLayout={(e: LayoutChangeEvent) => {
             this.setState({ leaderboardTopHeight: e.nativeEvent.layout.height });
           }}
           style={{ marginTop: this.state.topbarHeight || TOP_BAR_WRAPPER_HEIGHT }}
-        />
-        {!activeLeaderboard.consent ? null : <LockedCell {...lockedCellProps} />}
-        <NavBar activeIndex={3} hasNotification={hasNotification} />
-        {Platform.OS === "android" ? null : (
-          <Animated.View
-            style={[
-              styles.leaderboardTitleWrapper,
-              {
-                transform: [{ translateY: translateYTransform }],
-                top: getLeaderboardTitleWrapperPositionTop({ hasExtraPadding: showConsentPrompt }),
-              },
-            ]}
-          >
+        >
+          <View style={styles.leaderboardTitle}>
             <LeaderboardTitle
               name={(leaderboards.length > 0 && leaderboards[activeLeaderboardIndex])?.name}
               onPressLabel={this.chooseLeaderboardScreen}
               onPressInfo={this.showLeaderboardInfoScreen}
             />
-          </Animated.View>
-        )}
+          </View>
+        </LeaderboardTopIOS>
+        <LockedCell
+          show={activeLeaderboard.consent}
+          sortBy={this.props.sortBy}
+          onPress={this.handleScrollToMyRow(myLeaderboardItemIndex - 1 > 0 ? myLeaderboardItemIndex - 1 : 0)}
+          leaderboardItem={myLeaderboardItem}
+          leaderboardItemIndex={myLeaderboardItemIndex}
+          floatingItemAnimatedOpacity={this.getOpacityInterpolation() as number}
+        />
+        <NavBar activeIndex={3} hasNotification={hasNotification} />
         <View
           onLayout={(e: LayoutChangeEvent) => this.setState({ topbarHeight: e.nativeEvent.layout.height })}
           style={styles.topBarWrapper}

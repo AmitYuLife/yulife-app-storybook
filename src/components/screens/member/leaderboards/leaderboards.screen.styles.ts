@@ -52,48 +52,6 @@ export default StyleSheet.create({
     borderRadius: Style.adjust(5),
     backgroundColor: "#F3F3F3",
   } as ViewStyle,
-  secondUserAvatar: {
-    position: "absolute",
-    marginTop: Style.adjust(Platform.select({ android: 75, ios: 76 })),
-    marginLeft: Style.adjust(84),
-  } as ViewStyle,
-  secondUserAvatarEmpty: {
-    position: "absolute",
-    marginTop: Style.adjust(Platform.select({ android: 89, ios: 88 })),
-    marginLeft: Style.adjust(85),
-  } as ViewStyle,
-
-  firstUserAvatar: {
-    position: "absolute",
-    marginTop: Style.adjust(Platform.select({ android: 51, ios: 52 })),
-    marginLeft: Style.adjust(162),
-  } as ViewStyle,
-  firstUserAvatarEmpty: {
-    position: "absolute",
-    marginTop: Style.adjust(Platform.select({ android: 64.5, ios: 64 })),
-    marginLeft: Style.adjust(170),
-  } as ViewStyle,
-
-  thirdUserAvatar: {
-    position: "absolute",
-    marginTop: Style.adjust(Platform.select({ android: 87, ios: 88 })),
-    marginLeft: Style.adjust(236),
-  } as ViewStyle,
-  thirdUserAvatarEmpty: {
-    position: "absolute",
-    marginTop: Style.adjust(Platform.select({ android: 100, ios: 100 })),
-    marginLeft: Style.adjust(247),
-  } as ViewStyle,
-  backgroundImageBase: {
-    width: "100%",
-  } as ImageStyle,
-  backgroundImageWrapper: {
-    left: 0,
-    position: "absolute",
-    right: 0,
-    top: 0,
-    width: "100%",
-  } as ViewStyle,
   topBarWrapper: {
     position: "absolute",
     paddingTop: TOP_BAR_PAD_TOP,
@@ -114,18 +72,20 @@ export default StyleSheet.create({
     width: "100%",
     backgroundColor: "white",
   } as ViewStyle,
-  footer: {
-    height: Style.adjust(28),
-  } as ViewStyle,
   consentWrapper: {
     marginTop: EMPTY_LEADER_BOARD_MARGIN_TOP + LIST_PAD_HEIGHT,
   } as ViewStyle,
-  leaderboardList: {
+  leaderboardTitle: {
     position: "absolute",
-    bottom: 0,
+    top: 16,
     left: 0,
     right: 0,
-    top: 0,
+  } as ViewStyle,
+  leaderboardTitleConsent: {
+    position: "absolute",
+    top: Platform.select({ ios: Style.getSafeAreaStart() + 60, android: 48 }),
+    left: 0,
+    right: Platform.select({ ios: 0, android: 1 }),
   } as ViewStyle,
   listWrapperMargin: {
     marginBottom: Style.adjust(isIphoneX() ? 45 : 79),
@@ -137,20 +97,9 @@ export default StyleSheet.create({
   grayscaleWrapper: {
     backgroundColor: "rgb(100, 100, 100)",
   } as ViewStyle,
-  navbarWrapper: {
-    height: Style.adjust(isIphoneX() ? 25 : 15),
-    paddingBottom: Style.adjust(isIphoneX() ? 0 : 25),
-    alignItems: "center",
-  } as ViewStyle,
   leaderboardOfflineWrapper: { justifyContent: "center", alignItems: "center", flex: 1 } as ViewStyle,
   leaderboardOfflineImage: { position: "absolute", bottom: 0, left: 0, right: 0, width: "100%" } as ImageStyle,
   leaderboardOfflineText: { fontSize: Style.adjust(20), lineHeight: Style.adjust(20) },
-  leaderboardTitleWrapper: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    height: Platform.select({ ios: undefined, android: 50 }), // w/o defining height on Android, the buttons won't be touchable
-  } as ViewStyle,
   listFullWidth: {
     width: Style.DEVICE_WIDTH,
   } as ViewStyle,
@@ -172,16 +121,4 @@ function getContentContainerPaddingBottom() {
     return NOTCHED_IOS_MAGIC_NUMBER;
   }
   return 8;
-}
-
-export function getLeaderboardTitleWrapperPositionTop({ hasExtraPadding }: { hasExtraPadding: boolean }) {
-  if (hasExtraPadding && Platform.OS === "ios") {
-    let positionTop = Style.getSafeAreaStart() + 88;
-    if (deviceInfoModule.hasNotch()) {
-      positionTop += 22;
-    }
-    return positionTop;
-  }
-
-  return TOP_BAR_WRAPPER_HEIGHT + 14;
 }

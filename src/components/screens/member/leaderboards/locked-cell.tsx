@@ -10,6 +10,7 @@ interface Props {
   floatingItemAnimatedOpacity: number;
   onPress: () => void;
   sortBy: string;
+  show: boolean;
 }
 
 export function LockedCell({
@@ -18,7 +19,11 @@ export function LockedCell({
   floatingItemAnimatedOpacity,
   sortBy,
   onPress,
+  show,
 }: Props) {
+  if (!show) {
+    return null;
+  }
   return (
     <Animated.View
       style={
