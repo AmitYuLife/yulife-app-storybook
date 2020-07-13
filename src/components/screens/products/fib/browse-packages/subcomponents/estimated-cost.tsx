@@ -3,29 +3,37 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import { Header, Heading, DEFAULT_TEXT_PAD_LEFT } from "./common";
 import MinimalButton from "@atoms/button/minimalButton";
+import Logger from "@services/logging/logger";
 
 interface Props {
   heading: string;
   navigateToEditSalary: () => void;
 }
 
-export const EstimatedCost = memo(({ heading, navigateToEditSalary }: Props) => (
-  <View style={styles.wrapper}>
-    <Header title="Estimated cost" />
-    <View style={styles.contentWrapper}>
-      <Heading title={heading} />
-      <View style={styles.buttonWrapper}>
-        <MinimalButton
-          onPress={navigateToEditSalary}
-          title="edit salary"
-          height={40}
-          color={Colours.darkHotPink}
-          titleStyle={{ textDecorationLine: "underline" }}
-        />
+export const EstimatedCost = memo(({ heading, navigateToEditSalary }: Props) => {
+  function handlePress() {
+    Logger.logEvent("salary_edit");
+    navigateToEditSalary();
+  }
+
+  return (
+    <View style={styles.wrapper}>
+      <Header title="Estimated cost" />
+      <View style={styles.contentWrapper}>
+        <Heading title={heading} />
+        <View style={styles.buttonWrapper}>
+          <MinimalButton
+            onPress={handlePress}
+            title="edit salary"
+            height={40}
+            color={Colours.darkHotPink}
+            titleStyle={{ textDecorationLine: "underline" }}
+          />
+        </View>
       </View>
     </View>
-  </View>
-));
+  );
+});
 
 const styles = StyleSheet.create({
   wrapper: {
