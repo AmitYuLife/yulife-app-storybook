@@ -86,7 +86,7 @@ class Markdown extends React.PureComponent<IProps, IState> {
       <View style={styles.listItem} key={"listItem_" + key}>
         {this.renderListBullet(extras.isOrdered, index)}
         <View key={"listItemContent_" + key} style={styles.listItemContent}>
-          {children}
+          <Text>{children}</Text>
         </View>
       </View>
     );
