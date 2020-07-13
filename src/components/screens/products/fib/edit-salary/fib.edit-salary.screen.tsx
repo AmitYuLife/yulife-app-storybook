@@ -4,6 +4,7 @@ import { GenericHeading, Text } from "@atoms";
 import { Style, Colours } from "@styles";
 import { FibEditSalaryInput } from "./fib.edit-salary-input";
 import MinimalButton from "@atoms/button/minimalButton";
+import Logger from "@services/logging/logger";
 
 export interface IEditSalaryScreen {
   onNavigateBack: () => void;
@@ -14,6 +15,12 @@ export interface IEditSalaryScreen {
 export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
   const { onNavigateBack, salary, updateSalary } = props;
   const [isSalaryDescriptionVisible, setSalaryDescriptionVisibility] = useState(false);
+
+  function handlePress() {
+    Logger.logEvent("salary_input");
+    Keyboard.dismiss();
+    onNavigateBack();
+  }
 
   if (isSalaryDescriptionVisible) {
     return (
@@ -56,10 +63,7 @@ export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
             shadowColor={Colours.darkHotPinkShadow}
             height={53}
             title="Done"
-            onPress={() => {
-              Keyboard.dismiss();
-              return onNavigateBack();
-            }}
+            onPress={handlePress}
             color="white"
             borderRadius={50}
           />

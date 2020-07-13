@@ -9,6 +9,7 @@ import { Package } from "./fib.browse.types";
 import { PackageOptions } from "./subcomponents/package-options/package-options";
 import { Faqs } from "./subcomponents/faqs/faqs";
 import AdditionalBenefits from "./additional-benefits/additional-benefits";
+import Logger from "@services/logging/logger";
 
 interface IFibBrowseScreenProps {
   onNavigateBack: () => void;
@@ -55,6 +56,12 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
   const onSelectPackage = useCallback(
     (packageId: string) => {
       const newPackage = packages.find((p) => p.packageLabel === packageId);
+      Logger.logEvent("package_view", {
+        name: newPackage.packageLabel,
+        salary_percentage: newPackage.salaryPercentage,
+        yucount_multiplier: newPackage.earnRate,
+        estimated_cost: newPackage.cost,
+      });
       setSelectedPackage(newPackage);
     },
     [setSelectedPackage]
