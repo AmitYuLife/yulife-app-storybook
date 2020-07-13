@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import { View, StyleSheet, SafeAreaView, ViewStyle, KeyboardAvoidingView, Platform, Keyboard } from "react-native";
 import { GenericHeading, Text } from "@atoms";
 import { Style, Colours } from "@styles";
@@ -8,13 +8,13 @@ import Logger from "@services/logging/logger";
 
 export interface IEditSalaryScreen {
   onNavigateBack: () => void;
+  onNavigateToSalaryDescription: () => void;
   salary: number;
   updateSalary: (salary: number) => void;
 }
 
 export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
-  const { onNavigateBack, salary, updateSalary } = props;
-  const [isSalaryDescriptionVisible, setSalaryDescriptionVisibility] = useState(false);
+  const { onNavigateBack, salary, updateSalary, onNavigateToSalaryDescription } = props;
 
   function handlePress() {
     Logger.logEvent("salary_input");
@@ -22,32 +22,21 @@ export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
     onNavigateBack();
   }
 
-  if (isSalaryDescriptionVisible) {
-    return (
-      <SafeAreaView style={styles.wrapper}>
-        <GenericHeading heading="Salary" onLeftIconPress={() => setSalaryDescriptionVisibility(false)} />
-        <View style={styles.mainContent}>
-          <Text style={styles.text}>
-            Your gross annual earned income for tax purposes. It does not include unearned income such as investment
-            income.
-          </Text>
-        </View>
-      </SafeAreaView>
-    );
-  }
-
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
-        <GenericHeading heading="Salary" onLeftIconPress={onNavigateBack} />
+        <GenericHeading
+          heading="Salary"
+          onLeftIconPress={() => {
+            Keyboard.dismiss();
+            return onNavigateBack();
+          }}
+        />
         <View style={styles.mainContent}>
           <Text style={styles.text}>
             Because we designed this product based on your current salary we will need your{" "}
           </Text>
-          <Text
-            onPress={() => setSalaryDescriptionVisibility(true)}
-            style={StyleSheet.flatten([styles.link, styles.text])}
-          >
+          <Text onPress={onNavigateToSalaryDescription} style={StyleSheet.flatten([styles.link, styles.text])}>
             annual gross salary.
           </Text>
           <View style={styles.inputWrapper}>

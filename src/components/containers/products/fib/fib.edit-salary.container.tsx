@@ -5,6 +5,7 @@ import { connect, useDispatch } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState } from "@redux/product/product.selectors";
 import { updateFIBValue } from "@redux/product/product.actions";
+import { ROUTES } from "@navigation/constants";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -16,6 +17,15 @@ type Props = IFibEditSalaryContainerProps & ConnectedState;
 
 function navigateBack(componentId: string) {
   Navigation.pop(componentId);
+}
+
+function navigateToSalaryDescription(componentId: string) {
+  Navigation.push(componentId, {
+    component: {
+      id: ROUTES.fibSalaryDescription,
+      name: ROUTES.fibSalaryDescription,
+    },
+  });
 }
 
 const FibEditSalaryContainer = memo(function (props: Props) {
@@ -32,7 +42,12 @@ const FibEditSalaryContainer = memo(function (props: Props) {
   }
 
   return (
-    <FibEditSalaryScreen salary={salary} updateSalary={updateSalary} onNavigateBack={() => navigateBack(componentId)} />
+    <FibEditSalaryScreen
+      salary={salary}
+      updateSalary={updateSalary}
+      onNavigateToSalaryDescription={() => navigateToSalaryDescription(componentId)}
+      onNavigateBack={() => navigateBack(componentId)}
+    />
   );
 });
 

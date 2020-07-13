@@ -146,6 +146,10 @@ export default [
     name: ROUTES.fibEditSalary,
     component: require("../components/containers/products/fib/fib.edit-salary.container").default,
   },
+  {
+    name: ROUTES.fibSalaryDescription,
+    component: require("../components/containers/products/fib/fib.salary-description.container").default,
+  },
   // modals
   {
     name: MODALS.challengeUnavailable,
