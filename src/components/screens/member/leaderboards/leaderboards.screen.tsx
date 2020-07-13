@@ -77,7 +77,7 @@ export const initialState = {
   itemOffsetY: null as number,
   viewableInViewportMin: 0,
   viewableInViewportMax: 0,
-  topbarHeight: 0,
+  topbarHeight: Platform.OS === "ios" ? TOP_BAR_WRAPPER_HEIGHT : TopBar.height,
   leaderboardTopHeight: 0,
 };
 
@@ -190,9 +190,7 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
               </View>
             </>
           ) : (
-            <View
-              style={{ marginTop: Platform.select({ ios: -1, android: this.state.topbarHeight || TopBar.height }) }}
-            >
+            <View style={{ marginTop: Platform.select({ ios: -1, android: this.state.topbarHeight }) }}>
               <AnimatedFlatList
                 getItemLayout={this.getItemLayout}
                 onLayout={(e: LayoutChangeEvent) => this.setState({ viewportHeight: e.nativeEvent.layout.height })}
@@ -220,10 +218,8 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
           translateYTransform={translateYTransform}
           showConsentPrompt={showConsentPrompt}
           avatars={avatars}
-          onLayout={(e: LayoutChangeEvent) => {
-            this.setState({ leaderboardTopHeight: e.nativeEvent.layout.height });
-          }}
-          style={{ marginTop: this.state.topbarHeight || TOP_BAR_WRAPPER_HEIGHT }}
+          onLayout={this.handleLeaderboardTopIOSLayout}
+          style={{ marginTop: this.state.topbarHeight }}
         >
           <View style={styles.leaderboardTitle}>
             <LeaderboardTitle
@@ -242,15 +238,23 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
           floatingItemAnimatedOpacity={this.getOpacityInterpolation() as number}
         />
         <NavBar activeIndex={3} hasNotification={hasNotification} />
-        <View
-          onLayout={(e: LayoutChangeEvent) => this.setState({ topbarHeight: e.nativeEvent.layout.height })}
-          style={styles.topBarWrapper}
-        >
+        <View onLayout={this.handleTopBarWrapperLayout} style={styles.topBarWrapper}>
           <TopBar coins={totalCoins} type="default" onPressLeftIcon={onLeftMenuPress} />
         </View>
       </View>
     );
   }
+
+  private handleLeaderboardTopIOSLayout = (e: LayoutChangeEvent) => {
+    if (Platform.OS !== "ios") {
+      return;
+    }
+    this.setState({ leaderboardTopHeight: e.nativeEvent.layout.height });
+  };
+
+  private handleTopBarWrapperLayout = (e: LayoutChangeEvent) => {
+    this.setState({ topbarHeight: e.nativeEvent.layout.height });
+  };
 
   private getOpacityInterpolation = (options?: { reverse: boolean }) => {
     const { reverse = false } = options || {};

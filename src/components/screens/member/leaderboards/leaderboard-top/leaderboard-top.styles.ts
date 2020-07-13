@@ -14,9 +14,7 @@ export const avatarStyles: Record<string, ViewStyle> = StyleSheet.create({
     top: 28,
   } as ViewStyle,
   avatar2: {
-    marginTop: Style.SCALE_UP_AND_DOWN(
-      Platform.select({ android: Style.isShortAndroid() ? 73 : 75, ios: hasNotch() ? 73 : 75 })
-    ),
+    marginTop: Style.SCALE_UP_AND_DOWN(Platform.select({ android: Style.isShortAndroid() ? 73 : 75, ios: 75 })),
     marginLeft: Style.SCALE_UP_AND_DOWN(71),
   } as ViewStyle,
   avatarEmpty2: {
@@ -26,9 +24,7 @@ export const avatarStyles: Record<string, ViewStyle> = StyleSheet.create({
     marginLeft: Style.SCALE_UP_AND_DOWN(80),
   } as ViewStyle,
   avatar1: {
-    marginTop: Style.SCALE_UP_AND_DOWN(
-      Platform.select({ android: Style.isShortAndroid() ? 49.5 : 51, ios: hasNotch() ? 49 : 51 })
-    ),
+    marginTop: Style.SCALE_UP_AND_DOWN(Platform.select({ android: Style.isShortAndroid() ? 49.5 : 51, ios: 51 })),
     marginLeft: Style.SCALE_UP_AND_DOWN(159),
   } as ViewStyle,
   avatarEmpty1: {
@@ -38,9 +34,7 @@ export const avatarStyles: Record<string, ViewStyle> = StyleSheet.create({
     marginLeft: Style.SCALE_UP_AND_DOWN(167),
   } as ViewStyle,
   avatar3: {
-    marginTop: Style.SCALE_UP_AND_DOWN(
-      Platform.select({ android: Style.isShortAndroid() ? 84 : 86, ios: hasNotch() ? 84.5 : 86 })
-    ),
+    marginTop: Style.SCALE_UP_AND_DOWN(Platform.select({ android: Style.isShortAndroid() ? 84 : 86, ios: 86 })),
     marginLeft: Style.SCALE_UP_AND_DOWN(244),
   } as ViewStyle,
   avatarEmpty3: {

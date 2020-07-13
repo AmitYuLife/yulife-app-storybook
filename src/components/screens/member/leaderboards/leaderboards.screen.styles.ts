@@ -83,7 +83,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   leaderboardTitleConsent: {
     position: "absolute",
-    top: Platform.select({ ios: Style.getSafeAreaStart() + 60, android: 48 }),
+    top: Platform.select({ ios: Style.getSafeAreaStart() + 60, android: 56 }),
     left: 0,
     right: Platform.select({ ios: 0, android: 1 }),
   } as ViewStyle,
