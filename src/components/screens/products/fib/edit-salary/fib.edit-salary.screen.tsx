@@ -36,7 +36,13 @@ export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
           <Text style={styles.text}>
             Because we designed this product based on your current salary we will need your{" "}
           </Text>
-          <Text onPress={onNavigateToSalaryDescription} style={StyleSheet.flatten([styles.link, styles.text])}>
+          <Text
+            onPress={() => {
+              Keyboard.dismiss();
+              return onNavigateToSalaryDescription();
+            }}
+            style={StyleSheet.flatten([styles.link, styles.text])}
+          >
             annual gross salary.
           </Text>
           <View style={styles.inputWrapper}>
