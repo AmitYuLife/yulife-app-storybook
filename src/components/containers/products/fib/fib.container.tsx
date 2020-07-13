@@ -4,11 +4,13 @@ import { useQuery } from "@apollo/react-hooks";
 import { handleNavigateBack } from "@navigation/utils";
 import { transformAvatar } from "@components/screens/member/yu-screen/avatar-builder/avatar-builder.helper";
 import { GQL_QUERY_GET_YULIFER, GetYuliferData } from "@graphql/yuscreen";
-import { View } from "react-native";
+import { View, Linking } from "react-native";
 import { Text } from "@atoms";
-import fibFaqItems, { IFibFAQ } from "@containers/products/fib/faq-fib-data";
+import fibFaqItems, { IFibFAQ } from "@components/containers/products/fib/data/faq-fib-data";
+import fibDocumentsItems from "@components/containers/products/fib/data/documents-data";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
+import Logger from "@services/logging/logger";
 
 interface IFibContainer {
   componentId: string;
@@ -49,6 +51,18 @@ const FibContainer = memo(function (props: IFibContainer) {
     onPress: navigateToFaqScreen({ faq }),
   }));
 
+  const documents = fibDocumentsItems.map((document) => ({
+    label: document.question,
+    onPress: async () => {
+      try {
+        await Linking.openURL(document.url);
+      } catch (e) {
+        Logger.logMixpanelError(e, `${document.id}_error`);
+      }
+    },
+    iconSvgXml: document.iconSvgXml,
+  }));
+
   const { loading, error, data } = useQuery<GetYuliferData>(GQL_QUERY_GET_YULIFER);
 
   if (loading) {
@@ -74,6 +88,7 @@ const FibContainer = memo(function (props: IFibContainer) {
       navigateToEditSalary={navigateToEditSalaryScreen}
       currentEarnRate={20}
       faqs={faqs}
+      documents={documents}
     />
   );
 });

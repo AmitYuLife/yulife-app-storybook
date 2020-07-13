@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { FibFaqScreen, IRedirectFAQ } from "@screens/products/fib/faq/fib.faq.screen";
 import { handleNavigateBack } from "@navigation/utils";
-import faqData, { IFibFAQ } from "./faq-fib-data";
+import faqData, { IFibFAQ } from "./data/faq-fib-data";
 import { Navigation } from "react-native-navigation";
 
 interface IFibFaqContainer {

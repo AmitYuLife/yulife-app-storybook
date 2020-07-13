@@ -3,7 +3,7 @@ import { View, StyleSheet, ScrollView, Platform } from "react-native";
 import { GenericHeading, Heading } from "@atoms";
 import { Style } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
-import { IFibFAQ } from "@components/containers/products/fib/faq-fib-data";
+import { IFibFAQ } from "@components/containers/products/fib/data/faq-fib-data";
 import { Faq } from "../browse-packages/subcomponents/faqs/faq";
 
 export interface IRedirectFAQ {
