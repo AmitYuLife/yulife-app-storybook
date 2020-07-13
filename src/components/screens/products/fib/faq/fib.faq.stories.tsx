@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react-native";
 import { FibFaqScreen, IRedirectFAQ } from "./fib.faq.screen";
-import faqData from "@containers/products/fib/faq-fib-data";
+import faqData from "@containers/products/fib/data/faq-fib-data";
 
 const fillers = {
   onNavigateBack: (): null => null,

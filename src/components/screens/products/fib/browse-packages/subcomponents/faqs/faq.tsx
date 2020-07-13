@@ -9,13 +9,19 @@ interface IAdditionalBenefit {
   label: string;
   onPress: () => void;
   styles?: { [key: string]: ViewStyle | TextStyle };
+  iconSvgXml?: string;
 }
 
-export const Faq = memo(({ label = "", onPress, styles }: IAdditionalBenefit) => {
+export const Faq = memo(({ label = "", onPress, styles, iconSvgXml }: IAdditionalBenefit) => {
   const style = { ...defaultStyles, ...styles };
 
   return (
     <TouchableOpacity onPress={onPress} style={style.wrapper}>
+      {!iconSvgXml ? null : (
+        <View style={style.iconWrapper}>
+          <SvgXml xml={iconSvgXml} width={40} height={40} />
+        </View>
+      )}
       <View style={style.labelWrapper}>
         <Text bold style={style.label}>
           {label}
@@ -37,6 +43,9 @@ const defaultStyles = StyleSheet.create({
     marginTop: Style.adjust(8),
     paddingVertical: Style.adjust(16),
     minHeight: Style.adjust(64),
+  } as ViewStyle,
+  iconWrapper: {
+    marginLeft: Style.adjust(10),
   } as ViewStyle,
   imageWrapper: {
     marginLeft: "auto",

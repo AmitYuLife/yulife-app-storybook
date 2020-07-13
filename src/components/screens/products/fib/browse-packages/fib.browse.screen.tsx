@@ -10,6 +10,7 @@ import { PackageOptions } from "./subcomponents/package-options/package-options"
 import { Faqs } from "./subcomponents/faqs/faqs";
 import AdditionalBenefits from "./additional-benefits/additional-benefits";
 import Logger from "@services/logging/logger";
+import { Documents } from "./subcomponents/documents/documents";
 
 interface IFibBrowseScreenProps {
   onNavigateBack: () => void;
@@ -17,6 +18,7 @@ interface IFibBrowseScreenProps {
   currentEarnRate: number;
   avatar: IAvatar;
   faqs: ComponentProps<typeof Faqs>["items"];
+  documents: ComponentProps<typeof Faqs>["items"];
 }
 
 const packages: Package[] = [
@@ -49,7 +51,7 @@ const packages: Package[] = [
 const DEFAULT_PACKAGE = packages[0];
 
 export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
-  const { onNavigateBack, avatar, currentEarnRate, faqs, navigateToEditSalary } = props;
+  const { onNavigateBack, avatar, currentEarnRate, faqs, navigateToEditSalary, documents } = props;
 
   const [selectedPackage, setSelectedPackage] = useState<Package>(DEFAULT_PACKAGE);
 
@@ -84,6 +86,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
           />
           <AdditionalBenefits earnRate={currentEarnRate} packageEarnRate={currentEarnRate + selectedPackage.earnRate} />
           <Faqs items={faqs} />
+          <Documents items={documents} />
         </ScrollView>
       </View>
 
