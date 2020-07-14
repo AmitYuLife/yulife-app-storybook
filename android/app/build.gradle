@@ -232,7 +232,7 @@ dependencies {
     
     // Intercom
     implementation project(':react-native-intercom')
-    implementation 'io.intercom.android:intercom-sdk-fcm:5.+'
+    implementation 'io.intercom.android:intercom-sdk:7.1.+'
     implementation "com.google.firebase:firebase-messaging:$firebaseVersion"
 
     // Mixpanel
