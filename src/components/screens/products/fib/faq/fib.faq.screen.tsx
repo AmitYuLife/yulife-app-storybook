@@ -5,6 +5,7 @@ import { Style } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
 import { IFibFAQ } from "@components/containers/products/fib/data/faq-fib-data";
 import { Faq } from "../browse-packages/subcomponents/faqs/faq";
+import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 
 export interface IRedirectFAQ {
   faq: IFibFAQ;
@@ -19,6 +20,13 @@ interface IFibFaqScreenProps {
 
 export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
   const { onNavigateBack, faq, redirectToAnotherFAQ } = props;
+
+  const backHandler = React.useCallback(() => {
+    onNavigateBack();
+    return true;
+  }, [onNavigateBack]);
+
+  useBackHandler(backHandler);
 
   return (
     <View style={styles.wrapper}>

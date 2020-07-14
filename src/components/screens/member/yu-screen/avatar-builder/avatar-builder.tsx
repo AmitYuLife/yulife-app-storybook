@@ -2,8 +2,8 @@ import { Button, Text, GenericHeading } from "@atoms/index";
 import { useQuery } from "@apollo/react-hooks";
 import Logger from "@services/logging/logger";
 import React from "react";
-import { useState, useRef, useCallback, useEffect, useMemo, FC } from "react";
-import { FlatList, SafeAreaView, View, BackHandler, ScrollView } from "react-native";
+import { useState, useRef, useCallback, useMemo, FC } from "react";
+import { FlatList, SafeAreaView, View, ScrollView } from "react-native";
 import { AvatarPartType } from "@graphql/_core/schema/globalTypes";
 import { Avatar, Avatar_getAvatarColors } from "@graphql/_core/schema";
 import { GQL_QUERY_AVATAR } from "@graphql/yuscreen";
@@ -21,6 +21,7 @@ import { Style } from "@styles/index";
 import { IAvatar, Category, AvatarBuilderHeading } from "./avatar.types";
 import { AVATAR_BUILDER_LIST, BUILDER_BODY, NO_ITEM_SELECTED, HEAD_TYPE } from "@ids";
 import { IBodyItemCategory } from "../../../../../redux/avatar/avatar.all.data";
+import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 
 interface IProps {
   avatar: IAvatar;
@@ -57,13 +58,7 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
     return false;
   }, [setBackPressed, setDoneModalShown, isBackButtonPressed, isDoneModalShown, onBackPressed]);
 
-  useEffect(() => {
-    BackHandler.addEventListener("hardwareBackPress", backButtonHandler);
-
-    return () => {
-      BackHandler.removeEventListener("hardwareBackPress", backButtonHandler);
-    };
-  }, [backButtonHandler]);
+  useBackHandler(backButtonHandler);
 
   const queryingAvatarItems = useMemo(() => category === "items", [category]);
 

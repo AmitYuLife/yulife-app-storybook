@@ -1,11 +1,12 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { Button, GenericHeading } from "@atoms";
 import { useState } from "react";
-import { SafeAreaView, Text, TouchableOpacity, View, BackHandler } from "react-native";
+import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import FemaleBody from "../svg/female-body";
 import MaleBody from "../svg/male-body";
 import styles from "./select-body.styles";
 import { AvatarBuilderHeading } from "../avatar-builder/avatar.types";
+import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 
 export type SelectedBody = "None" | "Male" | "Female";
 
@@ -53,13 +54,7 @@ function SelectBody({
     return true;
   }, [onExitConfirmed]);
 
-  useEffect(() => {
-    BackHandler.addEventListener("hardwareBackPress", backHandler);
-
-    return () => {
-      BackHandler.removeEventListener("hardwareBackPress", backHandler);
-    };
-  }, [backHandler]);
+  useBackHandler(backHandler);
 
   return (
     <SafeAreaView style={styles.wrapper}>
