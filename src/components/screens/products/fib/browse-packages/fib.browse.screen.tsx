@@ -9,6 +9,7 @@ import { Package } from "./fib.browse.types";
 import { PackageOptions } from "./subcomponents/package-options/package-options";
 import { Faqs } from "./subcomponents/faqs/faqs";
 import AdditionalBenefits from "./additional-benefits/additional-benefits";
+import { PayoutCalculator } from "./subcomponents/payout-calculator/payout-calculator";
 import Logger from "@services/logging/logger";
 import { Documents } from "./subcomponents/documents/documents";
 
@@ -84,6 +85,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
             header={selectedPackage.coverType}
             content={`In the event of death, your loved ones will receive ${selectedPackage.salaryPercentage}% of your future earnings from the date of death until age 70 (based on your current salary).\n\nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end.\n\nThis is paid as a single payment.`}
           />
+          <PayoutCalculator />
           <AdditionalBenefits earnRate={currentEarnRate} packageEarnRate={currentEarnRate + selectedPackage.earnRate} />
           <Faqs items={faqs} />
           <Documents items={documents} />

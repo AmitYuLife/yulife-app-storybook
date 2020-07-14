@@ -1,5 +1,4 @@
 import * as React from "react";
-import { SFC } from "react";
 import { StyleSheet, Text, TextProps, TextStyle } from "react-native";
 import styles from "./text.styles";
 
@@ -7,9 +6,10 @@ interface IProps extends TextProps {
   bold?: boolean;
   style?: TextStyle | TextStyle[];
   testID?: string;
+  children: React.ReactNode | React.ReactNode[];
 }
 
-const YuText: SFC<IProps> = ({ children, bold, style, numberOfLines, testID, onPress }) => (
+const YuText = ({ children, bold, style, numberOfLines, testID, onPress }: IProps) => (
   <Text
     allowFontScaling={false}
     numberOfLines={numberOfLines}
