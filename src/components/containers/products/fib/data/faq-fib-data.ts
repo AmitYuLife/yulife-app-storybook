@@ -16,7 +16,7 @@ export default [
     question: "How is the lump sum calculated?",
     answer: `This policy will pay out a lump sum to your loved ones if you die during the term of the policy. The amount that will be paid to your loved ones is calculated as follows:\n\n
 Your chosen percentage multiplied by your monthly salary at the start of the policy multiplied by the remaining term (number of months) left on the policy. This amount reduces as the term of the policy reduces.\n\n
-The amount that would be paid out to your loved ones decreases every month. Therefore the older you get, the lower the lump sum would be. The value of the lump sum reduces to zero at the end of the term of the policy. reduces to zero at the end of the term of the policy.`,
+The amount that would be paid out to your loved ones decreases every month. Therefore the older you get, the lower the lump sum would be. The value of the lump sum reduces to zero at the end of the term of the policy.`,
   },
   {
     id: "policy-pay",
