@@ -4,7 +4,14 @@ export const images = [
   require("../../../../../../assets/yuscreen/onboarding/yuscreenOnboarding3.png"),
 ];
 
-export const data = [
+export interface IYuScreenIntroDataItem {
+  color: string;
+  buttonLabel: string;
+  title: string;
+  subtitle: string;
+}
+
+export const data: IYuScreenIntroDataItem[] = [
   {
     color: "green",
     buttonLabel: "Next",
