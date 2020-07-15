@@ -1,50 +1,100 @@
-import React, { memo } from "react";
-import { useState, useRef } from "react";
-import {
-  Image,
-  SafeAreaView,
-  FlatList,
-  View,
-  TouchableOpacity,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
-} from "react-native";
-import styles from "./intro-yuscreen.styles";
+import React from "react";
+import { Image, SafeAreaView, FlatList, View, TouchableOpacity, ViewToken, ListRenderItemInfo } from "react-native";
+import { Text, PageIndicator } from "@atoms";
 import { Style } from "@styles/index";
-import { Text, PageIndicator } from "../../../../atoms";
-import { useCallback } from "react";
-import { data, images } from "./intro-yuscreen.helper";
+import styles from "./intro-yuscreen.styles";
+import { data, images, IYuScreenIntroDataItem } from "./intro-yuscreen.helper";
 
 interface IProps {
   setYuscreenIntroShown: () => void;
 }
 
-export const YuScreenIntro = memo(function ({ setYuscreenIntroShown }: IProps) {
-  const [buttonLabel, setButtonLabel] = useState("Next");
-  const [activePageIndex, setActivePageIndex] = useState(0);
-  const swiper = useRef<FlatList | null>(null);
-  const isLastPage = activePageIndex + 1 === data.length;
+interface IState {
+  buttonLabel: string;
+  activePageIndex: number;
+}
+export class YuScreenIntro extends React.PureComponent<IProps, IState> {
+  private swiper: FlatList;
+  private viewabilityConfig = {
+    viewAreaCoveragePercentThreshold: 80,
+    waitForInteraction: true,
+  };
+  public state = {
+    buttonLabel: "Next",
+    activePageIndex: 0,
+  };
 
-  const scrollToNext = useCallback(() => {
+  render() {
+    const { activePageIndex, buttonLabel } = this.state;
+    const isLastPage = activePageIndex + 1 === data.length;
+
+    return (
+      <SafeAreaView>
+        <View>
+          <FlatList
+            pagingEnabled={true}
+            renderItem={this.renderItem}
+            decelerationRate="fast"
+            keyExtractor={this.keyExtractor}
+            data={data}
+            ref={this.setFlatListRef}
+            showsVerticalScrollIndicator={false}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            onViewableItemsChanged={this.handleSwipe}
+            viewabilityConfig={this.viewabilityConfig}
+          />
+
+          <View style={styles.navigationViewWrapper}>
+            <View style={styles.pageIndicatorWrapper}>
+              <PageIndicator activePage={activePageIndex} pageCount={3} />
+            </View>
+            {isLastPage ? (
+              <View />
+            ) : (
+              <TouchableOpacity onPress={this.props.setYuscreenIntroShown}>
+                <Text style={styles.skipButton}>Skip</Text>
+              </TouchableOpacity>
+            )}
+            <TouchableOpacity onPress={this.scrollToNext}>
+              <Text style={styles.actionButton}>{buttonLabel}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  setFlatListRef = (ref: FlatList) => {
+    this.swiper = ref;
+  };
+
+  keyExtractor = (item: IYuScreenIntroDataItem) => item.color;
+
+  scrollToNext = () => {
+    const { activePageIndex } = this.state;
+
     if (activePageIndex + 1 < data.length) {
-      swiper?.current?.scrollToIndex({ index: activePageIndex + 1, animated: true });
-      setActivePageIndex(activePageIndex + 1);
-      setButtonLabel(data[activePageIndex + 1].buttonLabel);
-    } else {
-      setYuscreenIntroShown();
+      this.swiper?.scrollToIndex({ index: activePageIndex + 1, animated: true });
+      this.setState({ activePageIndex: activePageIndex + 1, buttonLabel: data[activePageIndex + 1].buttonLabel });
+      return;
     }
-  }, [activePageIndex, swiper, setYuscreenIntroShown]);
 
-  const handleSwipe = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const { x } = event.nativeEvent.contentOffset;
-    const activeIndex = Math.floor(x ? x / Style.DEVICE_WIDTH + 0.1 : 0);
-    if (activeIndex > -1) {
-      setActivePageIndex(activeIndex);
-      setButtonLabel(data[activeIndex]?.buttonLabel || "Next");
+    this.props.setYuscreenIntroShown();
+  };
+
+  handleSwipe = ({ viewableItems }: { viewableItems: ViewToken[] }) => {
+    const visibleItem = viewableItems[0];
+
+    if (visibleItem) {
+      this.setState({
+        activePageIndex: visibleItem.index,
+        buttonLabel: data[visibleItem.index]?.buttonLabel || "Next",
+      });
     }
   };
 
-  const renderItem = ({ item, index }: any) => {
+  renderItem = ({ item, index }: ListRenderItemInfo<IYuScreenIntroDataItem>) => {
     return (
       <View style={{ height: Style.DEVICE_HEIGHT, width: Style.DEVICE_WIDTH }}>
         <View style={styles.imageWrapper}>
@@ -55,41 +105,4 @@ export const YuScreenIntro = memo(function ({ setYuscreenIntroShown }: IProps) {
       </View>
     );
   };
-
-  return (
-    <SafeAreaView>
-      <View>
-        <FlatList
-          pagingEnabled={true}
-          renderItem={renderItem}
-          decelerationRate={"fast"}
-          keyExtractor={(keyItem: any) => keyItem.color}
-          data={data}
-          ref={swiper}
-          showsVerticalScrollIndicator={false}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          onMomentumScrollEnd={handleSwipe}
-          onScrollEndDrag={handleSwipe}
-        />
-
-        <View style={styles.navigationViewWrapper}>
-          <View style={styles.pageIndicatorWrapper}>
-            <PageIndicator activePage={activePageIndex} pageCount={3} />
-          </View>
-          {isLastPage ? (
-            <View />
-          ) : (
-            <TouchableOpacity onPress={() => setYuscreenIntroShown()}>
-              <Text style={styles.skipButton}>Skip</Text>
-            </TouchableOpacity>
-          )}
-
-          <TouchableOpacity onPress={scrollToNext}>
-            <Text style={styles.actionButton}>{buttonLabel}</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </SafeAreaView>
-  );
-});
+}
