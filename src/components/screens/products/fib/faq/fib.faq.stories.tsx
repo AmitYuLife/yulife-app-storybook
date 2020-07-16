@@ -17,9 +17,5 @@ const faq = {
 storiesOf("Fib Faq")
   .add("with list items and subheading", () => <FibFaqScreen {...fillers} faq={faq.increaseCover} />)
   .add("with redirect", () => (
-    <FibFaqScreen
-      {...fillers}
-      faq={faq.salaryIncrease}
-      redirectToAnotherFAQ={{ onPress: () => null, faq: faq.increaseCover }}
-    />
+    <FibFaqScreen {...fillers} faq={faq.salaryIncrease} childFaqs={{ onPress: () => null, faq: faq.increaseCover }} />
   ));

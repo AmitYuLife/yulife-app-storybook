@@ -1,5 +1,6 @@
 import React, { memo, ComponentProps, useState, useCallback } from "react";
-import { View, StyleSheet, ScrollView, Platform } from "react-native";
+import { StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import * as Animatable from "react-native-animatable";
 import { GenericHeading } from "@atoms";
 import { Style } from "@styles";
 import { IAvatar } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
@@ -14,7 +15,7 @@ import Logger from "@services/logging/logger";
 import { Documents } from "./subcomponents/documents/documents";
 
 interface IFibBrowseScreenProps {
-  onNavigateBack: () => void;
+  onNavigateToYuScreen: () => void;
   navigateToEditSalary: () => void;
   currentEarnRate: number;
   avatar: IAvatar;
@@ -52,7 +53,7 @@ const packages: Package[] = [
 const DEFAULT_PACKAGE = packages[0];
 
 export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
-  const { onNavigateBack, avatar, currentEarnRate, faqs, navigateToEditSalary, documents } = props;
+  const { onNavigateToYuScreen, avatar, currentEarnRate, faqs, navigateToEditSalary, documents } = props;
 
   const [selectedPackage, setSelectedPackage] = useState<Package>(DEFAULT_PACKAGE);
 
@@ -72,47 +73,45 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
 
   return (
     <>
-      <View style={styles.wrapper}>
-        <View style={styles.headingWrapper}>
-          <GenericHeading heading="Life insurance" onLeftIconPress={onNavigateBack} />
-        </View>
-
+      <SafeAreaView style={styles.wrapper}>
+        <GenericHeading
+          heading="Life insurance"
+          rightIcon={{ icon: "CLOSE" }}
+          onRightIconPress={onNavigateToYuScreen}
+        />
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
-          <PackageOptions selectedPackageId={selectedPackage.packageLabel} onSelectPackage={onSelectPackage} />
-          <AvatarAndDescription avatar={avatar} selectedPackage={selectedPackage} currentEarnRate={currentEarnRate} />
-          <EstimatedCost navigateToEditSalary={navigateToEditSalary} heading={`£${selectedPackage.cost} per month`} />
-          <HowItWorks
-            header={selectedPackage.coverType}
-            content={`In the event of death, your loved ones will receive ${selectedPackage.salaryPercentage}% of your future earnings from the date of death until age 70 (based on your current salary).\n\nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end.\n\nThis is paid as a single payment.`}
-          />
-          <PayoutCalculator />
-          <AdditionalBenefits earnRate={currentEarnRate} packageEarnRate={currentEarnRate + selectedPackage.earnRate} />
-          <Faqs items={faqs} />
-          <Documents items={documents} />
+          <Animatable.View duration={1000} animation="fadeIn" style={{ flex: 1 }}>
+            <PackageOptions selectedPackageId={selectedPackage.packageLabel} onSelectPackage={onSelectPackage} />
+            <AvatarAndDescription avatar={avatar} selectedPackage={selectedPackage} currentEarnRate={currentEarnRate} />
+            <EstimatedCost navigateToEditSalary={navigateToEditSalary} heading={`£${selectedPackage.cost} per month`} />
+            <HowItWorks
+              header={selectedPackage.coverType}
+              content={`In the event of death, your loved ones will receive ${selectedPackage.salaryPercentage}% of your future earnings from the date of death until age 70 (based on your current salary).\n\nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end.\n\nThis is paid as a single payment.`}
+            />
+            <PayoutCalculator />
+            <AdditionalBenefits
+              earnRate={currentEarnRate}
+              packageEarnRate={currentEarnRate + selectedPackage.earnRate}
+            />
+            <Faqs items={faqs} />
+            <Documents items={documents} />
+          </Animatable.View>
         </ScrollView>
-      </View>
+      </SafeAreaView>
 
-      <ContinueButton onNavigateBack={onNavigateBack} />
+      <ContinueButton onNavigateBack={onNavigateToYuScreen} />
     </>
   );
 });
 
 const styles = StyleSheet.create({
   wrapper: {
-    alignItems: "center",
-    backgroundColor: "#fafafe",
-  },
-  headingWrapper: {
-    position: "absolute",
-    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
-    top: 0,
-    left: 0,
-    right: 0,
     backgroundColor: "white",
-    zIndex: 1,
+    flex: 1,
+    marginTop: Style.isAnyIphoneX() ? -10 : 0,
   },
   scrollView: {
-    paddingTop: Platform.select({ ios: 46, android: 56 }),
+    backgroundColor: "#fafafe",
     paddingBottom: 96,
   },
 });

@@ -27,6 +27,7 @@ export const EmployerBenefits = memo(function ({ onProductPress, productsEmploye
   const onLayout = (event: LayoutChangeEvent) => {
     setSectionTitleWidth(event.nativeEvent.layout.x);
   };
+
   return (
     <>
       <SectionSeparator />

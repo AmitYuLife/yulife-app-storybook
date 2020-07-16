@@ -3,23 +3,25 @@ import { View, StyleSheet, SafeAreaView, ViewStyle, KeyboardAvoidingView, Platfo
 import { GenericHeading, Text } from "@atoms";
 import { Style, Colours } from "@styles";
 import { FibEditSalaryInput } from "./fib.edit-salary-input";
+import * as Animatable from "react-native-animatable";
 import MinimalButton from "@atoms/button/minimalButton";
 import Logger from "@services/logging/logger";
 
 export interface IEditSalaryScreen {
   onNavigateBack: () => void;
+  onNavigateToBrowsePackages: () => void;
   onNavigateToSalaryDescription: () => void;
   salary: number;
   updateSalary: (salary: number) => void;
 }
 
 export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
-  const { onNavigateBack, salary, updateSalary, onNavigateToSalaryDescription } = props;
+  const { onNavigateBack, salary, updateSalary, onNavigateToBrowsePackages, onNavigateToSalaryDescription } = props;
 
   function handlePress() {
     Logger.logEvent("salary_input");
     Keyboard.dismiss();
-    onNavigateBack();
+    return onNavigateToBrowsePackages();
   }
 
   return (
@@ -32,7 +34,7 @@ export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
             return onNavigateBack();
           }}
         />
-        <View style={styles.mainContent}>
+        <Animatable.View duration={1000} animation="fadeIn" style={styles.mainContent}>
           <Text style={styles.text}>
             Because we designed this product based on your current salary we will need your{" "}
           </Text>
@@ -48,7 +50,7 @@ export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
           <View style={styles.inputWrapper}>
             <FibEditSalaryInput value={salary} onChange={updateSalary} />
           </View>
-        </View>
+        </Animatable.View>
       </SafeAreaView>
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
         <View style={styles.button}>

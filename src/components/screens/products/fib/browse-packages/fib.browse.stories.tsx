@@ -19,7 +19,7 @@ storiesOf("FibBrowse")
   .add("default", () => (
     <FibBrowseScreen
       navigateToEditSalary={() => null}
-      onNavigateBack={(): void => null}
+      onNavigateToYuScreen={(): void => null}
       avatar={avatarFiller}
       currentEarnRate={20}
       faqs={faqs}

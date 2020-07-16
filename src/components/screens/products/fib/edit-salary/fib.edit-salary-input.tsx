@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   } as ViewStyle,
   dollarSign: {
-    marginBottom: Platform.OS === "ios" ? -2 : 0,
+    marginBottom: Platform.OS === "ios" ? -2 : -1,
     fontSize: 24,
     paddingRight: 4,
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
