@@ -1,29 +1,26 @@
 import React, { memo } from "react";
-import { Navigation } from "react-native-navigation";
-import { SafeAreaView, View, StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
 import { GenericHeading, Text } from "@atoms";
+import * as Animatable from "react-native-animatable";
 import { Style } from "@styles";
+import { FibLocalNavigation } from "../fib.types";
 
 interface IFibSalaryDescriptionContainerProps {
-  componentId: string;
-}
-
-function navigateBack(componentId: string) {
-  Navigation.pop(componentId);
+  navigation: FibLocalNavigation;
 }
 
 const FibSalaryDescriptionContainer = memo(function (props: IFibSalaryDescriptionContainerProps) {
-  const { componentId } = props;
+  const { navigation } = props;
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <GenericHeading heading="Salary" onLeftIconPress={() => navigateBack(componentId)} />
-      <View style={styles.mainContent}>
+      <GenericHeading heading="Salary" onLeftIconPress={navigation.pop} />
+      <Animatable.View duration={1000} animation="fadeIn" style={styles.mainContent}>
         <Text style={styles.text}>
           Your gross annual earned income for tax purposes. It does not include unearned income such as investment
           income.
         </Text>
-      </View>
+      </Animatable.View>
     </SafeAreaView>
   );
 });

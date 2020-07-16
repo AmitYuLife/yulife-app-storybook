@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import { View, StyleSheet, ScrollView, Platform } from "react-native";
+import * as Animatable from "react-native-animatable";
 import { GenericHeading, Heading } from "@atoms";
 import { Style } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
@@ -15,11 +16,11 @@ export interface IRedirectFAQ {
 interface IFibFaqScreenProps {
   onNavigateBack: () => void;
   faq: IFibFAQ;
-  redirectToAnotherFAQ?: IRedirectFAQ;
+  childFaqs?: IRedirectFAQ;
 }
 
 export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
-  const { onNavigateBack, faq, redirectToAnotherFAQ } = props;
+  const { onNavigateBack, faq, childFaqs } = props;
 
   const backHandler = React.useCallback(() => {
     onNavigateBack();
@@ -32,15 +33,13 @@ export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
     <View style={styles.wrapper}>
       <GenericHeading heading="FAQ" onLeftIconPress={onNavigateBack} />
       <ScrollView>
-        <Heading label={faq.question} style={styles.header} />
-        <Markdown text={faq.answer} containerStyle={styles.markdownContainer} markdownStyles={styles} />
-        {!redirectToAnotherFAQ ? null : (
-          <Faq
-            label={redirectToAnotherFAQ.faq.question}
-            onPress={redirectToAnotherFAQ.onPress}
-            styles={redirectFAQStyles}
-          />
-        )}
+        <Animatable.View duration={500} animation="fadeIn" style={{ flex: 1 }}>
+          <Heading label={faq.question} style={styles.header} />
+          <Markdown text={faq.answer} containerStyle={styles.markdownContainer} markdownStyles={styles} />
+          {!childFaqs ? null : (
+            <Faq label={childFaqs.faq.question} onPress={childFaqs.onPress} styles={redirectFAQStyles} />
+          )}
+        </Animatable.View>
       </ScrollView>
     </View>
   );

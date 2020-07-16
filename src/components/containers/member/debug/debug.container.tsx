@@ -68,8 +68,8 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
         if (code === CODES.ROUTE_TO_FIB_FAQ) {
           return Navigation.push(props.componentId, {
             component: {
-              id: ROUTES.fibFaq,
-              name: ROUTES.fibFaq,
+              id: ROUTES.fib,
+              name: ROUTES.fib,
             },
           });
         }

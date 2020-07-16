@@ -15,7 +15,7 @@ export const AvatarAndDescription = memo(({ selectedPackage, currentEarnRate, av
   return (
     <View style={styles.wrapper}>
       <View style={styles.avatarWrapper}>
-        <Avatar avatar={avatar} isAvatarCreated={true} avatarFromLocal={avatar} loading={false} />
+        <Avatar sizeMultiplier={0.8} avatar={avatar} isAvatarCreated={true} avatarFromLocal={avatar} loading={false} />
       </View>
       <Description selectedPackage={selectedPackage} currentEarnRate={currentEarnRate} />
     </View>
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flexDirection: "row",
+    paddingHorizontal: 16,
     paddingBottom: 40,
   } as ViewStyle,
   avatarWrapper: {

@@ -138,18 +138,6 @@ export default [
     name: ROUTES.fib,
     component: require("../components/containers/products/fib/fib.container").default,
   },
-  {
-    name: ROUTES.fibFaq,
-    component: require("../components/containers/products/fib/fib.faq.container").default,
-  },
-  {
-    name: ROUTES.fibEditSalary,
-    component: require("../components/containers/products/fib/fib.edit-salary.container").default,
-  },
-  {
-    name: ROUTES.fibSalaryDescription,
-    component: require("../components/containers/products/fib/fib.salary-description.container").default,
-  },
   // modals
   {
     name: MODALS.challengeUnavailable,

@@ -1,96 +1,84 @@
-import React, { memo, useCallback } from "react";
-import { FibBrowseScreen } from "@screens/index";
-import { useQuery } from "@apollo/react-hooks";
-import { handleNavigateBack } from "@navigation/utils";
-import { transformAvatar } from "@components/screens/member/yu-screen/avatar-builder/avatar-builder.helper";
-import { GQL_QUERY_GET_YULIFER, GetYuliferData } from "@graphql/yuscreen";
-import { View, Linking } from "react-native";
-import { Text } from "@atoms";
-import fibFaqItems, { IFibFAQ } from "@components/containers/products/fib/data/faq-fib-data";
-import fibDocumentsItems from "@components/containers/products/fib/data/documents-data";
+import React, { useState } from "react";
+import {
+  FibBrowseContainer,
+  FibIntroductionContainer,
+  FibEditSalaryContainer,
+  FibFaqContainer,
+  FibSalaryDescriptionContainer,
+} from "./subcontainers";
+import { useLocalNavigation } from "@services/hooks/useLocalNavigation";
+import {
+  FibRoute,
+  FibLocalNavigation,
+  FIB_INTRODUCTION,
+  FIB_SALARY_DESCRIPTION,
+  FIB_FAQ,
+  FIB_EDIT_SALARY,
+  FIB_BROWSE,
+} from "./fib.types";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
-import Logger from "@services/logging/logger";
+import { getFIBState } from "@redux/product/product.selectors";
+import { IReduxState } from "@redux/_core/reducers";
+import { connect } from "react-redux";
 
-interface IFibContainer {
-  componentId: string;
+interface RouteProps {
+  navigation: FibLocalNavigation;
+  selectedFaq: string;
+  selectFaq: (faqId: string) => void;
 }
 
-interface IPassedFaqContainerProps {
-  faq: IFibFAQ;
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+
+type Props = ConnectedState;
+
+function getComponent(routeProps: RouteProps) {
+  const { navigation, selectedFaq, selectFaq } = routeProps;
+  const {
+    currentRoute: { route },
+  } = navigation;
+
+  switch (route) {
+    case FIB_SALARY_DESCRIPTION:
+      return <FibSalaryDescriptionContainer navigation={navigation} />;
+    case FIB_EDIT_SALARY:
+      return <FibEditSalaryContainer navigation={navigation} />;
+    case FIB_FAQ:
+      return <FibFaqContainer selectedFaqId={selectedFaq} navigation={navigation} selectFaq={selectFaq} />;
+    case FIB_INTRODUCTION:
+      return <FibIntroductionContainer navigation={navigation} />;
+    default:
+      return <FibBrowseContainer selectFaq={selectFaq} navigation={navigation} />;
+  }
 }
 
-const FibContainer = memo(function (props: IFibContainer) {
-  const navigateToFaqScreen = useCallback(
-    ({ faq }: IPassedFaqContainerProps) => () =>
-      Navigation.push(props.componentId, {
-        component: {
-          id: ROUTES.fibFaq,
-          name: ROUTES.fibFaq,
-          passProps: {
-            faq,
-          } as IPassedFaqContainerProps,
-        },
-      }),
-    [props.componentId]
-  );
+function popToMain() {
+  return Navigation.popTo(ROUTES.yuScreen);
+}
 
-  const navigateToEditSalaryScreen = useCallback(
-    () =>
-      Navigation.push(props.componentId, {
-        component: {
-          id: ROUTES.fibEditSalary,
-          name: ROUTES.fibEditSalary,
-        },
-      }),
-    [props.componentId]
-  );
+function FIBContainer(props: Props) {
+  const initialRoute = props.salary ? FIB_BROWSE : FIB_INTRODUCTION;
 
-  const faqs = fibFaqItems.map((faq) => ({
-    label: faq.question,
-    onPress: navigateToFaqScreen({ faq }),
-  }));
+  const fibRouter = useLocalNavigation<FibRoute>({
+    initialRoute,
+    popToMain,
+    defaultRoute: FIB_BROWSE,
+  });
+  const [selectedFaq, selectFaq] = useState("");
 
-  const documents = fibDocumentsItems.map((document) => ({
-    label: document.question,
-    onPress: async () => {
-      try {
-        await Linking.openURL(document.url);
-      } catch (e) {
-        Logger.logMixpanelError(e, `${document.id}_error`);
-      }
-    },
-    iconSvgXml: document.iconSvgXml,
-  }));
+  const component = getComponent({
+    navigation: fibRouter,
+    selectedFaq,
+    selectFaq,
+  });
 
-  const { loading, error, data } = useQuery<GetYuliferData>(GQL_QUERY_GET_YULIFER);
+  return component;
+}
 
-  if (loading) {
-    return (
-      <View>
-        <Text>Loading</Text>
-      </View>
-    );
-  }
+function mapStateToProps(store: IReduxState) {
+  return {
+    salary: getFIBState(store).salary,
+  };
+}
 
-  if (error) {
-    return (
-      <View>
-        <Text>Error</Text>
-      </View>
-    );
-  }
-
-  return (
-    <FibBrowseScreen
-      avatar={transformAvatar(data.getYulifer.avatar)}
-      onNavigateBack={handleNavigateBack(props.componentId)}
-      navigateToEditSalary={navigateToEditSalaryScreen}
-      currentEarnRate={20}
-      faqs={faqs}
-      documents={documents}
-    />
-  );
-});
-
-export default FibContainer;
+export default connect<ConnectedState>(mapStateToProps)(FIBContainer);
