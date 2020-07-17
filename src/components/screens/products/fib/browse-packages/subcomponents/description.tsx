@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const Description = memo(({ currentEarnRate, selectedPackage }: Props) => {
-  const { descriptionHeading, earnRate, salaryPercentage } = selectedPackage;
+  const { descriptionHeading, earnRate, salaryPercentageCovered } = selectedPackage;
   const newEarnRate = earnRate + currentEarnRate;
 
   return (
@@ -19,7 +19,7 @@ export const Description = memo(({ currentEarnRate, selectedPackage }: Props) =>
         {descriptionHeading}
       </Text>
       <Text style={[styles.text, styles.marginTop1]}>
-        Pays a single cash sum based on <Text bold>{`${salaryPercentage}% `}</Text>of your salary.
+        Pays a single cash sum based on <Text bold>{`${salaryPercentageCovered}% `}</Text>of your salary.
       </Text>
       <View style={[styles.manualStructureWrapper, styles.marginTop2]}>
         <View style={styles.compoundInlineWrapper}>

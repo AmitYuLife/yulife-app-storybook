@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { LifeInsuranceTopUpsInput } from "./globalTypes";
+import { CoverType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetLifeInsuranceTopUps
@@ -408,8 +408,10 @@ export interface GetLifeInsuranceTopUps_getLifeInsuranceTopUps_avatar {
 export interface GetLifeInsuranceTopUps_getLifeInsuranceTopUps {
   estimatedCost: number | null;
   payoutAmount: number | null;
-  earnRate: number | null;
   avatar: GetLifeInsuranceTopUps_getLifeInsuranceTopUps_avatar | null;
+  earnRate: number | null;
+  salaryPercentageCovered: number | null;
+  newEarnRate: number | null;
 }
 
 export interface GetLifeInsuranceTopUps {
@@ -417,5 +419,9 @@ export interface GetLifeInsuranceTopUps {
 }
 
 export interface GetLifeInsuranceTopUpsVariables {
-  input: LifeInsuranceTopUpsInput;
+  grossSalary?: number | null;
+  deceaseAgeYear?: number | null;
+  deceaseAgeMonth?: number | null;
+  coverType?: CoverType | null;
+  customCoverPercentage?: number | null;
 }

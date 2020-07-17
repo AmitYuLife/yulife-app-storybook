@@ -1,1 +1,1 @@
-export type CoverType = "common" | "rare" | "epic";
+export type PackageId = "common" | "rare" | "epic";

@@ -1,4 +1,4 @@
-import React, { memo, ComponentProps, useState, useCallback } from "react";
+import React, { memo, ComponentProps, useCallback } from "react";
 import { StyleSheet, ScrollView, SafeAreaView } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { GenericHeading } from "@atoms";
@@ -11,64 +11,46 @@ import { PackageOptions } from "./subcomponents/package-options/package-options"
 import { Faqs } from "./subcomponents/faqs/faqs";
 import AdditionalBenefits from "./additional-benefits/additional-benefits";
 import { PayoutCalculator } from "./subcomponents/payout-calculator/payout-calculator";
-import Logger from "@services/logging/logger";
 import { Documents } from "./subcomponents/documents/documents";
+import { PackageId } from "../fib.helper";
 
 interface IFibBrowseScreenProps {
   onNavigateToYuScreen: () => void;
   navigateToEditSalary: () => void;
   currentEarnRate: number;
   avatar: IAvatar;
+  selectCoverType: (coverType: PackageId) => void;
+  selectedPackage: Package;
   faqs: ComponentProps<typeof Faqs>["items"];
   documents: ComponentProps<typeof Faqs>["items"];
 }
 
-const packages: Package[] = [
-  {
-    coverType: "common",
-    packageLabel: "Common",
-    earnRate: 10,
-    salaryPercentage: 25,
-    cost: 10,
-    descriptionHeading: "Designed to cover the basics",
-  },
-  {
-    coverType: "rare",
-    packageLabel: "Rare",
-    earnRate: 20,
-    salaryPercentage: 50,
-    cost: 20,
-    descriptionHeading: "Cover the home and basics",
-  },
-  {
-    coverType: "epic",
-    packageLabel: "Epic",
-    earnRate: 30,
-    salaryPercentage: 75,
-    cost: 30,
-    descriptionHeading: "Maximum protection for your loved ones",
-  },
-];
-
-const DEFAULT_PACKAGE = packages[0];
-
 export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
-  const { onNavigateToYuScreen, avatar, currentEarnRate, faqs, navigateToEditSalary, documents } = props;
-
-  const [selectedPackage, setSelectedPackage] = useState<Package>(DEFAULT_PACKAGE);
+  const {
+    onNavigateToYuScreen,
+    avatar,
+    currentEarnRate,
+    selectCoverType,
+    faqs,
+    navigateToEditSalary,
+    selectedPackage,
+    documents,
+  } = props;
 
   const onSelectPackage = useCallback(
     (packageId: string) => {
-      const newPackage = packages.find((p) => p.packageLabel === packageId);
-      Logger.logEvent("package_view", {
-        name: newPackage.packageLabel,
-        salary_percentage: newPackage.salaryPercentage,
-        yucount_multiplier: newPackage.earnRate,
-        estimated_cost: newPackage.cost,
-      });
-      setSelectedPackage(newPackage);
+      const coverType = packageId.toLowerCase() as PackageId;
+
+      // Logger.logEvent("package_view", {
+      //   name: newPackage.packageLabel,
+      //   salary_percentage: packageDetails.salaryPercentageCovered,
+      //   yucount_multiplier: packageDetails.earnRate,
+      //   estimated_cost: packageDetails.estimatedCost,
+      // });
+
+      selectCoverType(coverType);
     },
-    [setSelectedPackage]
+    [selectCoverType]
   );
 
   return (
@@ -81,12 +63,15 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
         />
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
           <Animatable.View duration={1000} animation="fadeIn" style={{ flex: 1 }}>
-            <PackageOptions selectedPackageId={selectedPackage.packageLabel} onSelectPackage={onSelectPackage} />
+            <PackageOptions selectedPackageId={selectedPackage.label} onSelectPackage={onSelectPackage} />
             <AvatarAndDescription avatar={avatar} selectedPackage={selectedPackage} currentEarnRate={currentEarnRate} />
-            <EstimatedCost navigateToEditSalary={navigateToEditSalary} heading={`£${selectedPackage.cost} per month`} />
+            <EstimatedCost
+              navigateToEditSalary={navigateToEditSalary}
+              heading={`£${selectedPackage.estimatedCost} per month`}
+            />
             <HowItWorks
-              header={selectedPackage.coverType}
-              content={`In the event of death, your loved ones will receive ${selectedPackage.salaryPercentage}% of your future earnings from the date of death until age 70 (based on your current salary).\n\nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end.\n\nThis is paid as a single payment.`}
+              header={selectedPackage.id}
+              content={`In the event of death, your loved ones will receive ${selectedPackage.salaryPercentageCovered}% of your future earnings from the date of death until age 70 (based on your current salary).\n\nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end.\n\nThis is paid as a single payment.`}
             />
             <PayoutCalculator />
             <AdditionalBenefits

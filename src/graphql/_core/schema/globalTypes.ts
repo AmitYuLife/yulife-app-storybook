@@ -69,14 +69,6 @@ export interface ChallengePayload {
   value?: number | null;
 }
 
-export interface LifeInsuranceTopUpsInput {
-  grossSalary?: number | null;
-  deceaseAgeYear?: number | null;
-  deceaseAgeMonth?: number | null;
-  coverType?: CoverType | null;
-  customCoverPercentage?: number | null;
-}
-
 export interface MobileConsentInput {
   mobileHealth?: boolean | null;
   marketing?: boolean | null;

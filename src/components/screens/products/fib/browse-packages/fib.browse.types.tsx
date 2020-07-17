@@ -1,10 +1,10 @@
-import { CoverType } from "../fib.helper";
+import { PackageId } from "../fib.helper";
 
 export interface Package {
-  salaryPercentage: number;
+  estimatedCost: number;
   earnRate: number;
-  cost: number;
-  packageLabel: string;
-  coverType: CoverType;
+  salaryPercentageCovered: number;
+  label: string;
   descriptionHeading: string;
+  id: PackageId;
 }

@@ -3,10 +3,10 @@ import { StyleSheet, View, ViewStyle, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import { Header, Heading, DEFAULT_TEXT_PAD_LEFT } from "./common";
 import { Text } from "@atoms";
-import { CoverType } from "../../fib.helper";
+import { PackageId } from "../../fib.helper";
 
 interface Props {
-  header: CoverType;
+  header: PackageId;
   content: string;
 }
 
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   } as TextStyle,
 });
 
-function getHeaderProps(header: CoverType): ComponentProps<typeof Header> {
+function getHeaderProps(header: PackageId): ComponentProps<typeof Header> {
   if (header === "common") {
     return {
       title: "Common cover",
