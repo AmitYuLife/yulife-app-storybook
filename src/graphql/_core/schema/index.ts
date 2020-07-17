@@ -21,6 +21,7 @@ export * from "./GetCurrentWorld";
 export * from "./GetDebugCodes";
 export * from "./GetHighlights";
 export * from "./GetLeaderboard";
+export * from "./GetLifeInsuranceTopUps";
 export * from "./GetMagicLink";
 export * from "./GetMobileCopy";
 export * from "./GetNewConnectionLink";
