@@ -1,7 +1,12 @@
 import { useQuery } from "@apollo/react-hooks";
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { View, Linking } from "react-native";
 import { Text } from "@atoms";
+import {
+  GQL_GET_LIFE_INSURANCE_TOP_UPS,
+  GetLifeInsuranceToUpsData,
+  GetLifeInsuranceTopUpsVars,
+} from "@graphql/products";
 import { FibBrowseScreen } from "@screens/index";
 import { transformAvatar } from "@screens/member/yu-screen/avatar-builder/avatar-builder.helper";
 import Logger from "@services/logging/logger";
@@ -9,11 +14,8 @@ import Logger from "@services/logging/logger";
 import { FIB_EDIT_SALARY, FIB_FAQ, FibLocalNavigation } from "../fib.types";
 import fibFaqItems from "../data/faq-fib-data";
 import fibDocumentsItems from "../data/documents-data";
-import {
-  GQL_QUERY_GET_LIFE_INSURANCE_TOP_UPS,
-  GetLifeInsuranceTopUpsData,
-} from "@graphql/yuscreen/getLifeInsuranceTopUps";
-import { LifeInsuranceTopUpsInput, CoverType } from "@graphql/_core/schema/globalTypes";
+import { PackageId } from "@components/screens/products/fib/fib.helper";
+import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
 
 interface IFibContainer {
   navigation: FibLocalNavigation;
@@ -32,20 +34,36 @@ const documents = fibDocumentsItems.map((document) => ({
   iconSvgXml: document.iconSvgXml,
 }));
 
+const packages = {
+  common: {
+    label: "Common",
+    descriptionHeading: "Designed to cover the basics",
+  },
+  rare: {
+    label: "Rare",
+    descriptionHeading: "Cover the home and basics",
+  },
+  epic: {
+    label: "Epic",
+    descriptionHeading: "Maximum protection for your loved ones",
+  },
+};
+
 const FibBrowseContainer = memo(function (props: IFibContainer) {
   const { navigation, selectFaq } = props;
-
-  // TODO: Send correct data to query
-  const queryInputData: LifeInsuranceTopUpsInput = {
-    grossSalary: 30000,
-    coverType: CoverType.common,
-  };
-
-  const { loading, error, data } = useQuery<GetLifeInsuranceTopUpsData>(GQL_QUERY_GET_LIFE_INSURANCE_TOP_UPS, {
-    variables: {
-      input: queryInputData,
-    },
-  });
+  const [selectedCoverType, selectCoverType] = useState<PackageId>("common");
+  const { loading, error, data } = useQuery<GetLifeInsuranceToUpsData, GetLifeInsuranceTopUpsVars>(
+    GQL_GET_LIFE_INSURANCE_TOP_UPS,
+    {
+      variables: {
+        grossSalary: 50000,
+        coverType: selectedCoverType,
+        customCoverPercentage: 50,
+        deceaseAgeMonth: 0,
+        deceaseAgeYear: 20,
+      },
+    }
+  );
 
   const faqs = fibFaqItems.map((faq) => ({
     label: faq.question,
@@ -71,12 +89,25 @@ const FibBrowseContainer = memo(function (props: IFibContainer) {
     );
   }
 
+  const { earnRate, salaryPercentageCovered, estimatedCost } = data.getLifeInsuranceTopUps;
+
+  const packageDetails: Package = {
+    earnRate,
+    salaryPercentageCovered,
+    estimatedCost,
+    id: selectedCoverType,
+    label: packages[selectedCoverType].label,
+    descriptionHeading: packages[selectedCoverType].descriptionHeading,
+  };
+
   return (
     <FibBrowseScreen
       avatar={transformAvatar(data.getLifeInsuranceTopUps.avatar)}
       onNavigateToYuScreen={navigation.popToMain}
       navigateToEditSalary={() => navigation.push(FIB_EDIT_SALARY)}
       currentEarnRate={data.getLifeInsuranceTopUps.earnRate}
+      selectCoverType={selectCoverType}
+      selectedPackage={packageDetails}
       faqs={faqs}
       documents={documents}
     />

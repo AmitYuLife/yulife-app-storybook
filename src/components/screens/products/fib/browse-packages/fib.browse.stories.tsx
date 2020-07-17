@@ -5,6 +5,16 @@ import { avatarFiller } from "@components/screens/member/yu-screen/yu-screen.sto
 import { View } from "react-native";
 import faqData from "@components/containers/products/fib/data/faq-fib-data";
 import documentsData from "@components/containers/products/fib/data/documents-data";
+import { Package } from "./fib.browse.types";
+
+const selectedPackage: Package = {
+  earnRate: 20,
+  salaryPercentageCovered: 50,
+  estimatedCost: 20,
+  id: "common",
+  label: "Common",
+  descriptionHeading: "basic cover",
+};
 
 const onPress = (): null => null;
 const faqs = faqData.map(({ question }) => ({ label: question, onPress }));
@@ -18,11 +28,13 @@ storiesOf("FibBrowse")
   .addDecorator((g: any) => <View style={{ flex: 1 }}>{g()}</View>)
   .add("default", () => (
     <FibBrowseScreen
+      selectedPackage={selectedPackage}
       navigateToEditSalary={() => null}
       onNavigateToYuScreen={(): void => null}
       avatar={avatarFiller}
       currentEarnRate={20}
       faqs={faqs}
+      selectCoverType={() => null}
       documents={documents}
     />
   ));
