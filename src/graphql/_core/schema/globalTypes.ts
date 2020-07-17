@@ -26,6 +26,13 @@ export enum AvatarPartType {
   pants = "pants",
 }
 
+export enum CoverType {
+  common = "common",
+  custom = "custom",
+  epic = "epic",
+  rare = "rare",
+}
+
 export enum IntercomHashMethod {
   android = "android",
   ios = "ios",
@@ -60,6 +67,14 @@ export interface ChallengePayload {
   startDateTime?: string | null;
   endDateTime?: string | null;
   value?: number | null;
+}
+
+export interface LifeInsuranceTopUpsInput {
+  grossSalary?: number | null;
+  deceaseAgeYear?: number | null;
+  deceaseAgeMonth?: number | null;
+  coverType?: CoverType | null;
+  customCoverPercentage?: number | null;
 }
 
 export interface MobileConsentInput {
