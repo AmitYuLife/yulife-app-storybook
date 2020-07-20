@@ -37,15 +37,15 @@ const documents = fibDocumentsItems.map((document) => ({
 const packages = {
   common: {
     label: "Common",
-    descriptionHeading: "Designed to cover the basics",
   },
   rare: {
     label: "Rare",
-    descriptionHeading: "Cover the home and basics",
   },
   epic: {
     label: "Epic",
-    descriptionHeading: "Maximum protection for your loved ones",
+  },
+  custom: {
+    label: "Custom",
   },
 };
 
@@ -89,15 +89,15 @@ const FibBrowseContainer = memo(function (props: IFibContainer) {
     );
   }
 
-  const { earnRate, salaryPercentageCovered, estimatedCost } = data.getLifeInsuranceTopUps;
+  const { newEarnRate, salaryPercentageCovered, estimatedCost, descriptionHeading } = data.getLifeInsuranceTopUps;
 
   const packageDetails: Package = {
-    earnRate,
+    earnRate: newEarnRate,
     salaryPercentageCovered,
     estimatedCost,
     id: selectedCoverType,
     label: packages[selectedCoverType].label,
-    descriptionHeading: packages[selectedCoverType].descriptionHeading,
+    descriptionHeading,
   };
 
   return (

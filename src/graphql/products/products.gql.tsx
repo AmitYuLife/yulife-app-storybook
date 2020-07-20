@@ -42,6 +42,7 @@ export const GQL_GET_LIFE_INSURANCE_TOP_UPS = gql`
       earnRate
       salaryPercentageCovered
       newEarnRate
+      descriptionHeading
     }
   }
 `;
