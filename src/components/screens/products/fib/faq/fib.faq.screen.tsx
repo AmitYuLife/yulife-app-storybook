@@ -37,7 +37,12 @@ export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
           <Heading label={faq.question} style={styles.header} />
           <Markdown text={faq.answer} containerStyle={styles.markdownContainer} markdownStyles={styles} />
           {!childFaqs ? null : (
-            <Faq label={childFaqs.faq.question} onPress={childFaqs.onPress} styles={redirectFAQStyles} />
+            <Faq
+              label={childFaqs.faq.question}
+              onPress={childFaqs.onPress}
+              styles={redirectFAQStyles}
+              redirectType="internal"
+            />
           )}
         </Animatable.View>
       </ScrollView>

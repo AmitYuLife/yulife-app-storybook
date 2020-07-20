@@ -1,11 +1,11 @@
-import React, { memo, ComponentProps } from "react";
+import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Heading, DEFAULT_TEXT_PAD_LEFT } from "../common";
 import { Style } from "@styles";
-import { Faq } from "./faq";
+import { Faq, IFaq } from "./faq";
 
 interface IFaqs {
-  items: Array<ComponentProps<typeof Faq>>;
+  items: IFaq[];
 }
 
 export const Faqs = memo(({ items = [] }: IFaqs) => (

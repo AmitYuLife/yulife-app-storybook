@@ -6,6 +6,7 @@ import { View } from "react-native";
 import faqData from "@components/containers/products/fib/data/faq-fib-data";
 import documentsData from "@components/containers/products/fib/data/documents-data";
 import { Package } from "./fib.browse.types";
+import { IFaq } from "./subcomponents/faqs/faq";
 
 const selectedPackage: Package = {
   earnRate: 20,
@@ -17,11 +18,12 @@ const selectedPackage: Package = {
 };
 
 const onPress = (): null => null;
-const faqs = faqData.map(({ question }) => ({ label: question, onPress }));
-const documents = documentsData.map(({ question, iconSvgXml }) => ({
+const faqs: IFaq[] = faqData.map(({ question }) => ({ label: question, onPress, redirectType: "internal" }));
+const documents: IFaq[] = documentsData.map(({ question, iconSvgXml }) => ({
   label: question,
   onPress,
   iconSvgXml: iconSvgXml,
+  redirectType: "external",
 }));
 
 storiesOf("FibBrowse")
