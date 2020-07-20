@@ -2,17 +2,18 @@ import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle, TouchableOpacity } from "react-native";
 import { SvgXml } from "react-native-svg";
 import { Style, Colours } from "@styles";
-import { arrowRightSvg } from "./svgs";
+import { arrowRightSvg, externalLinkSvg } from "./svgs";
 import { Text } from "@atoms";
 
-interface IAdditionalBenefit {
+export interface IFaq {
   label: string;
   onPress: () => void;
   styles?: { [key: string]: ViewStyle | TextStyle };
   iconSvgXml?: string;
+  redirectType: "internal" | "external";
 }
 
-export const Faq = memo(({ label = "", onPress, styles, iconSvgXml }: IAdditionalBenefit) => {
+export const Faq = memo(({ label = "", onPress, styles, iconSvgXml, redirectType }: IFaq) => {
   const style = { ...defaultStyles, ...styles };
 
   return (
@@ -28,7 +29,7 @@ export const Faq = memo(({ label = "", onPress, styles, iconSvgXml }: IAdditiona
         </Text>
       </View>
       <View style={style.imageWrapper}>
-        <SvgXml height={18} width={18} xml={arrowRightSvg} />
+        <SvgXml height={18} width={18} xml={redirectType === "internal" ? arrowRightSvg : externalLinkSvg} />
       </View>
     </TouchableOpacity>
   );

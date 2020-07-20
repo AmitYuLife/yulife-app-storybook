@@ -1,4 +1,4 @@
-import React, { memo, ComponentProps, useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { StyleSheet, ScrollView, SafeAreaView } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { GenericHeading } from "@atoms";
@@ -13,6 +13,7 @@ import AdditionalBenefits from "./additional-benefits/additional-benefits";
 import { PayoutCalculator } from "./subcomponents/payout-calculator/payout-calculator";
 import { Documents } from "./subcomponents/documents/documents";
 import { PackageId } from "../fib.helper";
+import { IFaq } from "./subcomponents/faqs/faq";
 import Logger from "@services/logging/logger";
 
 interface IFibBrowseScreenProps {
@@ -22,8 +23,8 @@ interface IFibBrowseScreenProps {
   avatar: IAvatar;
   selectCoverType: (coverType: PackageId) => void;
   selectedPackage: Package;
-  faqs: ComponentProps<typeof Faqs>["items"];
-  documents: ComponentProps<typeof Faqs>["items"];
+  faqs: IFaq[];
+  documents: IFaq[];
 }
 
 export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {

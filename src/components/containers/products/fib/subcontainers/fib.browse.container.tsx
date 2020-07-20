@@ -16,13 +16,15 @@ import fibFaqItems from "../data/faq-fib-data";
 import fibDocumentsItems from "../data/documents-data";
 import { PackageId } from "@components/screens/products/fib/fib.helper";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
+import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
 
 interface IFibContainer {
   navigation: FibLocalNavigation;
   selectFaq: (fabId: string) => void;
 }
 
-const documents = fibDocumentsItems.map((document) => ({
+const documents: IFaq[] = fibDocumentsItems.map((document) => ({
+  redirectType: "external",
   label: document.question,
   onPress: async () => {
     try {
@@ -65,8 +67,9 @@ const FibBrowseContainer = memo(function (props: IFibContainer) {
     }
   );
 
-  const faqs = fibFaqItems.map((faq) => ({
+  const faqs: IFaq[] = fibFaqItems.map((faq) => ({
     label: faq.question,
+    redirectType: "internal",
     onPress: () => {
       navigation.push(FIB_FAQ);
       return selectFaq(faq.id);
