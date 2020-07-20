@@ -12,7 +12,7 @@ const fillers = {
   isAvatarCreated: true,
   loading: false,
   userName: "userName",
-  avatar: avatarFiller,
+  avatarUrl: "",
   avatarFromLocal: avatarFiller,
   products: {
     employer: null,

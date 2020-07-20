@@ -1,21 +1,20 @@
 import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Avatar } from "@components/screens/member/yu-screen/subcomponents/avatar-section/avatar";
-import { IAvatar } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
 import { Description } from "./description";
 import { Package } from "../fib.browse.types";
 
 interface Props {
-  avatar: IAvatar;
+  avatarUrl: string;
   selectedPackage: Package;
   currentEarnRate: number;
 }
 
-export const AvatarAndDescription = memo(({ selectedPackage, currentEarnRate, avatar }: Props) => {
+export const AvatarAndDescription = memo(({ selectedPackage, currentEarnRate, avatarUrl }: Props) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.avatarWrapper}>
-        <Avatar sizeMultiplier={0.8} avatar={avatar} isAvatarCreated={true} avatarFromLocal={avatar} loading={false} />
+        <Avatar avatar={null} sizeMultiplier={0.8} avatarUrl={avatarUrl} isAvatarCreated={true} loading={false} />
       </View>
       <Description selectedPackage={selectedPackage} currentEarnRate={currentEarnRate} />
     </View>

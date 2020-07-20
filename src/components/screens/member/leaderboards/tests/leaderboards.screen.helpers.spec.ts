@@ -54,7 +54,7 @@ const currentProps = {
       lastName: "test",
       name: "test test",
       steps: 5000,
-      avatar: {},
+      avatarRemoteFile: "",
     },
   ],
   isLoading: false,

@@ -4,7 +4,7 @@ import { Style } from "../../../../styles";
 import { TopBar } from "@components/molecules";
 import deviceInfoModule from "react-native-device-info";
 
-const VIEWBOX_MIN_X = 10;
+const VIEWBOX_MIN_X = 15;
 const VIEWBOX_MIN_Y = 80;
 const VIEWBOX_WIDTH = 340;
 const SVG_WIDTH = VIEWBOX_WIDTH + VIEWBOX_MIN_X;

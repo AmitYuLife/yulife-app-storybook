@@ -7,7 +7,6 @@ import { GQL_QUERY_GET_YULIFER, GetYuliferData } from "@graphql/yuscreen";
 import { IReduxState } from "@redux/_core/reducers";
 import { getUserFirstName } from "@redux/user/user.selectors";
 import { FibIntroductionScreen } from "@screens/products/fib/introduction/fib-introduction.screen";
-import { transformAvatar } from "@screens/member/yu-screen/avatar-builder/avatar-builder.helper";
 import { FIB_EDIT_SALARY, FibLocalNavigation } from "../fib.types";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -19,7 +18,9 @@ interface IFibEditSalaryContainerProps {
 type Props = IFibEditSalaryContainerProps & ConnectedState;
 
 const FibIntroductionContainer = memo(function (props: Props) {
-  const { loading, error, data } = useQuery<GetYuliferData>(GQL_QUERY_GET_YULIFER);
+  const { loading, error, data } = useQuery<GetYuliferData>(GQL_QUERY_GET_YULIFER, {
+    fetchPolicy: "cache-only",
+  });
   const { firstName, navigation } = props;
 
   if (loading) {
@@ -41,7 +42,7 @@ const FibIntroductionContainer = memo(function (props: Props) {
   return (
     <FibIntroductionScreen
       firstName={firstName}
-      avatar={transformAvatar(data.getYulifer.avatar)}
+      avatar={data.getYulifer.avatarRemoteFile}
       navigateToYuScreen={navigation.popToMain}
       onNavigateToSalary={() => navigation.push(FIB_EDIT_SALARY)}
     />

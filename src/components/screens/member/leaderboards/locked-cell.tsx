@@ -1,7 +1,6 @@
 import React, { ComponentProps } from "react";
 import { Animated, ViewStyle } from "react-native";
 import LeaderboardItem from "./leaderboard-item/leaderboard-item";
-import { transformAvatar } from "../yu-screen/avatar-builder/avatar-builder.helper";
 import { Style } from "@styles/index";
 
 interface Props {
@@ -37,7 +36,6 @@ export function LockedCell({
       <LeaderboardItem
         {...leaderboardItem}
         isLockedCell={true}
-        avatar={transformAvatar(leaderboardItem?.avatar as any)}
         sortBy={sortBy}
         rank={leaderboardItemIndex + 1}
         onPress={onPress}

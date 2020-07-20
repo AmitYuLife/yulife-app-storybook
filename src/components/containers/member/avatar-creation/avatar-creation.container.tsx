@@ -24,11 +24,16 @@ import {
 } from "../../../../redux/avatar/avatar.selectors";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import AvatarBuilder from "../../../screens/member/yu-screen/avatar-builder/avatar-builder";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { Navigation } from "react-native-navigation";
 import { ROUTES, MODALS } from "../../../../navigation/constants";
 import { IAvatar, AvatarBuilderHeading } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
-import { getAvatarForYuscreen } from "../../../../redux/avatar/avatar.selectors";
+import {
+  GQL_QUERY_GET_YULIFER_WITH_AVATAR,
+  GetYuliferWithAvatarData,
+} from "../../../../graphql/yuscreen/GetYuliferWithAvatar.gql";
+import { transformAvatar } from "@screens/member/yu-screen/avatar-builder/avatar-builder.helper";
+import { Loading } from "@atoms";
 
 interface IProps {
   componentId: string;
@@ -55,11 +60,10 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
     avatarCreated: dispatchAvatarCreated,
     refetch,
     heading,
-    avatarFromLocal,
   } = props;
 
-  const [updateUserAvatar]: SaveAvatarMutationTuple = useMutation(GQL_MUTATION_SAVE_AVATAR, {
-    refetchQueries: ["GetLeaderboard"],
+  const [updateUserAvatar, { loading: saveLoading }]: SaveAvatarMutationTuple = useMutation(GQL_MUTATION_SAVE_AVATAR, {
+    refetchQueries: ["GetYulifer", "GetLeaderboard"],
   });
 
   const handleAvatarUpdate = React.useCallback(
@@ -99,6 +103,25 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
     [updateUserAvatar, saveAvatarToStore, refetch, dispatchAvatarCreated]
   );
 
+  const { data, loading } = useQuery<GetYuliferWithAvatarData>(GQL_QUERY_GET_YULIFER_WITH_AVATAR, {
+    fetchPolicy: "network-only",
+  });
+
+  React.useEffect(() => {
+    // if avatar exists on the server, hydrate the redux store with it
+    if (data?.getYulifer?.avatar?.id) {
+      const avatarFromServer = transformAvatar(data.getYulifer.avatar);
+      saveAvatarToStore(avatarFromServer);
+      if (data.getYulifer?.avatar?.body?.part?.partId) {
+        setBodyType(data.getYulifer.avatar.body.part.partId.includes("female") ? "Female" : "Male");
+      }
+    }
+  }, [data, saveAvatarToStore]);
+
+  if (loading || !avatar || saveLoading) {
+    return <Loading />;
+  }
+
   if (bodySelected) {
     return (
       <AvatarBuilder
@@ -125,9 +148,7 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
       onContinue={handleBodySelected}
       onExitConfirmed={() => showExitModal(onExitConfirmed)}
       heading={heading}
-      bodyType={
-        bodyType || (!avatarFromLocal ? "None" : avatarFromLocal.head.partId.includes("female") ? "Female" : "Male")
-      }
+      bodyType={bodyType || (!avatar ? "None" : avatar.head.partId.includes("female") ? "Female" : "Male")}
     />
   );
 };
@@ -197,7 +218,6 @@ const mapStateToProps = (state: IReduxState) => ({
     glasses: getAvatarGlasses(state),
     facialHair: getAvatarFacialHair(state),
   },
-  avatarFromLocal: getAvatarForYuscreen(state),
 });
 
 const mapDispatchToProps = {

@@ -1,5 +1,4 @@
 import gql from "graphql-tag";
-import { GQL_FRAGMENT_AVATAR } from "../yuscreen/_fragments.gql";
 import { GetLifeInsuranceTopUps_getLifeInsuranceTopUps } from "@graphql/_core/schema";
 import { PackageId } from "@components/screens/products/fib/fib.helper";
 
@@ -16,8 +15,6 @@ export interface GetLifeInsuranceTopUpsVars {
 }
 
 export const GQL_GET_LIFE_INSURANCE_TOP_UPS = gql`
-  ${GQL_FRAGMENT_AVATAR}
-
   query GetLifeInsuranceTopUps(
     $grossSalary: Int
     $deceaseAgeYear: Int
@@ -36,10 +33,8 @@ export const GQL_GET_LIFE_INSURANCE_TOP_UPS = gql`
     ) {
       estimatedCost
       payoutAmount
-      avatar {
-        ...YuAvatar
-      }
       earnRate
+      avatarRemoteFile
       salaryPercentageCovered
       newEarnRate
       descriptionHeading

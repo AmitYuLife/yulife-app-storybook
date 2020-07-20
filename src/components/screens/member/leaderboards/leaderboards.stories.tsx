@@ -1,7 +1,6 @@
 import React, { ComponentProps } from "react";
 import { storiesOf } from "@storybook/react-native";
 import LeaderboardsScreen from "./leaderboards.screen";
-import { sampleServerAvatar } from "../yu-screen/yu-screen.stories-helper";
 
 const MY_USER_ID = "MY_USER_ID";
 const sampleLeaderboard = {
@@ -34,7 +33,7 @@ const fillers = {
     lastName: "lastName",
     name: "name",
     steps: 0,
-    avatar: sampleServerAvatar,
+    avatarRemoteFile: "string",
   })),
   copy: {
     heading: "copy.heading",

@@ -12,7 +12,7 @@ export const onRequest = (onEvent: onEventFunc): ApolloLink => {
       onEvent(mapResponse(operation, count, true, false));
       try {
         sub = forward(operation).subscribe({
-          next: (result) => {
+          next: async (result) => {
             count--;
             onEvent(mapResponse(operation, count, true, true, false, result));
             observer.next(result);

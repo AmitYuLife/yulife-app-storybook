@@ -25,7 +25,6 @@ import styles, {
   TOP_BAR_WRAPPER_HEIGHT,
   LEADERBOARD_PROMPT_OFFSET,
 } from "./leaderboards.screen.styles";
-import { transformAvatar } from "../yu-screen/avatar-builder/avatar-builder.helper";
 import { ROUTES } from "../../../../navigation/constants";
 import { Style } from "@styles/index";
 import LeaderboardTop, { LeaderboardTopIOS } from "./leaderboard-top/leaderboard-top.screen";
@@ -47,7 +46,7 @@ export interface IItem {
   lastName: string;
   name: string;
   steps: number;
-  avatar: any;
+  avatarRemoteFile: string;
 }
 
 export interface ILeaderboardsScreenProps {
@@ -83,8 +82,20 @@ export const initialState = {
 
 export default class LeaderboardsScreen extends React.Component<ILeaderboardsScreenProps, typeof initialState> {
   public state = initialState;
-  private itemForPad = { id: "first_element", coins: 1, firstName: "", lastName: "", name: "", steps: 1, avatar: {} };
+  private itemForPad = {
+    id: "first_element",
+    coins: 1,
+    firstName: "",
+    lastName: "",
+    name: "",
+    steps: 1,
+    avatarRemoteFile: "",
+  };
   private animatedFlatListRef: FlatList = null;
+
+  private avatarDataFirstUser: string;
+  private avatarDataSecondUser: string;
+  private avatarDataThirdUser: string;
 
   public constructor(props: ILeaderboardsScreenProps) {
     super(props);
@@ -123,10 +134,6 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
     }
   }
 
-  private avatarDataFirstUser: any;
-  private avatarDataSecondUser: any;
-  private avatarDataThirdUser: any;
-
   public render() {
     const {
       activeLeaderboardIndex,
@@ -141,9 +148,9 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
       copy,
     } = this.props;
     const activeLeaderboard = leaderboards.length > 0 && leaderboards[activeLeaderboardIndex];
-    this.avatarDataFirstUser = transformAvatar(items[0]?.avatar);
-    this.avatarDataSecondUser = transformAvatar(items[1]?.avatar);
-    this.avatarDataThirdUser = transformAvatar(items[2]?.avatar);
+    this.avatarDataFirstUser = items[0]?.avatarRemoteFile;
+    this.avatarDataSecondUser = items[1]?.avatarRemoteFile;
+    this.avatarDataThirdUser = items[2]?.avatarRemoteFile;
 
     const TRANSLATE_Y_TRANSFORM_ADJUST = Platform.select({ ios: -Style.getSafeAreaStart(), android: 0 });
     const translateYTransform = this.state.flatlistOnScrollValue.interpolate({
@@ -332,7 +339,6 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
 
   private renderIndexPath = ({ item, index }: any) => {
     const { sortBy, leaderboards, activeLeaderboardIndex } = this.props;
-    const avatarData = transformAvatar(item.avatar);
 
     if (index === 0) {
       if (Platform.OS === "android") {
@@ -363,7 +369,6 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
       return (
         <LeaderboardItem
           {...item}
-          avatar={avatarData}
           isCurrentUser={isCurrentUser}
           sortBy={sortBy}
           rank={index}

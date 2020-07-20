@@ -1,9 +1,6 @@
 import gql from "graphql-tag";
-import { GQL_FRAGMENT_AVATAR } from "../yuscreen/_fragments.gql";
 
 export const GQL_QUERY_LEADERBOARD = gql`
-  ${GQL_FRAGMENT_AVATAR}
-
   query GetLeaderboard($sortBy: String, $leaderboardId: String) {
     getLeaderboard(sortBy: $sortBy, leaderboardId: $leaderboardId) {
       __typename
@@ -13,9 +10,7 @@ export const GQL_QUERY_LEADERBOARD = gql`
       name
       coins
       steps
-      avatar {
-        ...YuAvatar
-      }
+      avatarRemoteFile
     }
     getCurrentUser {
       __typename

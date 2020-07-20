@@ -3,10 +3,11 @@ import { numberWithCommas } from "@services/utils";
 import * as React from "react";
 import { StyleSheet, View, Animated, TouchableWithoutFeedback } from "react-native";
 import styles from "./leaderboard-item.styles";
-import { IAvatar } from "../../yu-screen/avatar-builder/avatar.types";
-import { LeaderboardHeadAvatar } from "../../yu-screen/svg/body";
 import { FirstPlace, SecondPlace, ThirdPlace, EmptyHead } from "../svg/leaderboard";
 import { LEADERBOARD_NAME } from "@ids";
+import { SvgCssUri } from "react-native-svg";
+import { memo, FC } from "react";
+import { Style } from "@styles";
 
 export interface ILeaderboardItemProps {
   coins?: number;
@@ -16,12 +17,12 @@ export interface ILeaderboardItemProps {
   rank?: number;
   steps?: number;
   sortBy?: string;
-  avatar?: IAvatar;
+  avatarRemoteFile?: string;
   onPress?: () => void;
   animatedOpacity?: Animated.Value;
 }
 
-export default function LeaderboardItem({
+const LeaderboardItem: FC<ILeaderboardItemProps> = ({
   isCurrentUser,
   isLockedCell,
   rank = 0,
@@ -29,10 +30,10 @@ export default function LeaderboardItem({
   steps = 0,
   coins = 0,
   sortBy = "",
-  avatar = null,
+  avatarRemoteFile = null,
   onPress,
   animatedOpacity = new Animated.Value(1),
-}: ILeaderboardItemProps) {
+}: ILeaderboardItemProps) => {
   const currentUserStyle = isCurrentUser ? styles.textHighlighted : {};
   const lockedCellTextStyle = isLockedCell ? styles.lockedCellTextStyle : {};
   const lockedCellWrapperStyle = isLockedCell ? styles.lockedCellWrapper : {};
@@ -60,13 +61,13 @@ export default function LeaderboardItem({
             )}
           </View>
 
-          {!avatar.head ? (
+          {!avatarRemoteFile ? (
             <View style={[styles.emptyAvatarHeadWrapper, lockedCellAvatarStyle]}>
               <EmptyHead />
             </View>
           ) : (
-            <View style={[styles.avatarHeadWrapper, lockedCellAvatarStyle]}>
-              <LeaderboardHeadAvatar avatar={avatar} height={40} width={40} viewBox="4 30 254 150" />
+            <View style={styles.avatarHeadWrapper}>
+              <SvgCssUri uri={avatarRemoteFile} style={{ width: Style.adjust(40), height: Style.adjust(105) }} />
             </View>
           )}
           <View style={styles.nameWrapper}>
@@ -79,7 +80,9 @@ export default function LeaderboardItem({
       </TouchableWithoutFeedback>
     </Animated.View>
   );
-}
+};
+
+export default memo(LeaderboardItem, () => true);
 
 function getDataByCategory(sortBy: string, steps = 0, coins = 0) {
   // todo fix data of mindful mins
